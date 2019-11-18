@@ -1,3 +1,4 @@
+# https://github.com/keras-team/keras/tree/master/examples
 # DNN https://machinelearningmastery.com/tutorial-first-neural-network-python-keras/
 
 from numpy import loadtxt
@@ -34,13 +35,14 @@ compound_data.head()
 compound_data.describe().transpose()
 # 178 data points with 13 features and 1 label column (in the other example in that guy's blog)
 compound_data.shape # prints the dimensions of the matrix storing this data # (178, 14)
-X = element_list.drop('Successful Treatment true/false',axis=1)
-y = compound_data['Successful Treatment true/false']
+output_label = 'Successful Treatment true/false'
+X = element_list.drop(output_label,axis=1)
+y = compound_data[output_label]
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y)
+from sklearn.preprocessing import StandardScaler
 
 '''
-from sklearn.preprocessing import StandardScaler
 Scale your data to standardize it if youre going to use a variety of algorithms
 Many algorithms, including Support Vector Machines, linear regression, logistic regression, neural networks, and nearest neighbor methods, require that the input features be numerical and scaled to similar ranges (e.g., to the [-1,1] interval)
 Methods that employ a distance function, such as nearest neighbor methods and support vector machines with Gaussian kernels, are particularly sensitive to this

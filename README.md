@@ -19,6 +19,7 @@ These are the core components of this tool, which pull & process data available 
 - find (effective, safe range, toxic) dose of compound X for a person with biometric set A
 - find symptoms of condition Z
 - find stressors that directly trigger symptom A, rule B, side effect C, function D, property E, or can construct those objects
+- find steps to synthesize a compound 
 
 For every function of compound X, also find the same for compound mixes and with rules applied (like a particular state or condition or resource limit)
 
@@ -30,6 +31,8 @@ Using the above input functions in this tool, you can build prediction functions
 - predict metadata of compound mix
 - predict symptoms of compound X
 - predict stressors to fix condition Z
+- predict steps to synthesize a compound
+- predict which bioassays a compound will be active in
 
 For every function of compound X, also predict the same for compound mixes and with rules applied.
 
@@ -37,11 +40,22 @@ For every function of compound X, also predict the same for compound mixes and w
 
 In future, this will integrate causal, pattern, intent, & system analysis to reduce the amount of neural network training & data required to build these prediction functions.
 
+This will also be able to identify other types of treatment options than chemical compounds, like:
+- protein sequences
+- enzymes
+- genes
+- nucleotide sequences
+- microorganisms
+- cell structures
+
 Unsupervised learning will also be integrated in imminent versions.
 
 Azure & Gcloud samples will also be added in addition to the existing AWS implementation.
 
 ## Data Sources
+
+- Drug interactions:
+http://bioinformatics.charite.de/supercyp/
 
 - Pubchem looks like it has a good format for structural data of its compounds:
 https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/SID/387022308/record/JSON/?deposited=t&version=1&response_type=display
