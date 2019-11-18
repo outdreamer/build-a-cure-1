@@ -54,8 +54,14 @@ Azure & Gcloud samples will also be added in addition to the existing AWS implem
 
 ## Data Sources
 
+- UniChem has some of PubChem & ChemBl & SureChemBL:
+https://www.ebi.ac.uk/unichem/ucquery/listSources
+
 - Drug interactions:
 http://bioinformatics.charite.de/supercyp/
+
+- Patented compounds:
+https://www.surechembl.org/search/
 
 - Pubchem looks like it has a good format for structural data of its compounds:
 https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/SID/387022308/record/JSON/?deposited=t&version=1&response_type=display
