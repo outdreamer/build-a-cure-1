@@ -36,3 +36,19 @@ For every function of compound X, also predict the same for compound mixes and w
 ## Feature Roadmap
 
 In future, this will integrate causal, pattern, intent, & system analysis to reduce the amount of neural network training & data required to build these prediction functions.
+
+Unsupervised learning will also be integrated in imminent versions.
+
+Azure & Gcloud samples will also be added in addition to the existing AWS implementation.
+
+## Data Sources
+
+- Pubchem looks like it has a good format for structural data of its compounds:
+https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/SID/387022308/record/JSON/?deposited=t&version=1&response_type=display
+https://pubchem.ncbi.nlm.nih.gov/compound/53994448
+
+- Api docs:
+https://pubchemdocs.ncbi.nlm.nih.gov/pug-rest-tutorial
+
+- Bulk downloads:
+https://pubchemdocs.ncbi.nlm.nih.gov/downloads

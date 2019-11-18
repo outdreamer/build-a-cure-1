@@ -56,6 +56,5 @@ git clone https://github.com/outdreamer/build-a-cure.git && cd build-a-cure
 # assuming you have your libraries listed in a file in your project root called requirements.txt
 pip3 install -r requirements.txt
 
-python3 pull_data.py
-
-nohup python3 train.py >train.log 2>&1 < /dev/null &
+#python3 pull_data.py
+#nohup python3 train.py >train.log 2>&1 < /dev/null &
