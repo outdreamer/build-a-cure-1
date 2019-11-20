@@ -5,8 +5,7 @@ column_list = ['Pair 1', 'Pair 2', output_label]
 element_list = ['carbon', 'helium', 'helium ion', 'nitrogen', 'oxygen']  # continue until all the elements & element states you have access to or can make are in this list variable
 relationship_list = ['single bond', 'double bond', 'etc']  # this should contain all possible bond types
 impossible_rules = ['carbon+some element carbon cant bind to with a certain bond type']  #fill in this list with all known impossible bindings
-explosive_rules = ['C3H5N3O9'] #this is nitroglycerin - need to find a way to represent molecules in a way that preserves their structure, not just the count, so I'd create a list of pairs with the relationship type listing every connection in your data set to store nitroglycerin's structure in your spreadsheet row, like this:
-O1-N single bond, O2-N double bond, O-3 other bond type, etc.
+explosive_rules = ['C3H5N3O9'] #this is nitroglycerin - use the smile formula for these & autoencode smile formulas as numbers
 
 # plus any other filtering lists that would exclude a compound from being a candidate for treating a human condition
 toxic_rules = []

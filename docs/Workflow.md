@@ -86,10 +86,7 @@ python3 generate_new_compounds.py
 
 ## Choosing a network architecture
 
-- "If each of the features makes an independent contribution to the output, then algorithms based on linear functions (e.g., linear regression, logistic regression, Support Vector Machines, naive Bayes) and distance functions (e.g., nearest neighbor methods, support vector machines with Gaussian kernels) generally perform well. However, if there are complex interactions among features, then algorithms such as decision trees and neural networks work better" (https://en.wikipedia.org/wiki/Supervised_learning)
-- MLPs are a basic machine learning network structure that could help you find patterns once you have the data
-- CNNs are great for images but storing the chemical structure probably takes less space if you use a formula rather than a block of pixels - they've adapted a lot recently so they may be a good option too.
-
+- See ML_rules.md for info
 
 ## Semantic chemical structure metadata 
 
@@ -97,7 +94,7 @@ python3 generate_new_compounds.py
 - There will be some redundancy if you include derivable properties with your chemical structure data, so that needs to be considered when customizing your solution.
 - The mechanism behind or reason for the successful or failed attack should ideally be included ("this structure on the compound tears the cell barrier" or "induces apoptosis by depriving it of contrary signals", etc) in as structured a format as possible (numerical mappings could work for an initial version)
 - Side effect data should be included if possible for a safer drug recommendation function, which means side effect neural networks (& toxic compound identification networks) are prerequisite to this one.
-- In terms of other metadata to consider, the standard properties listed on wiki are nice to have but emergent derivable chemical properties are the tricky ones that could be really valuable.
+- In terms of other metadata to consider, the standard properties listed on wiki are nice to have but emergent interaction behaviors are the tricky ones that could be really valuable.
 - With regard to prediction specificity, you have to decide if you want to predict just compounds relevant to the specific type, or if you want to know about compounds that would treat the broader types of the condition.
 
 

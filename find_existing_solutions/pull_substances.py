@@ -7,37 +7,27 @@ from chembl_webresource_client.utils import utils
 from chembl_webresource_client.new_client import new_client
 
 '''
-Guide to smiles format to represent compounds in strings like: 
+Guide to smiles format to represent compounds in strings like: https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system
 CCS(=O)(=O)C1=CC=CC=C1C(=O)OCC
-
-https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system
-
-Smarts queries can be used to find compounds with a certain sub-structure 
 
 branch: parenthesis
 atom: square bracket (except atoms of B, C, N, O, P, S, F, Cl, Br, or I, which have no charge, are normal isotopes, not chiral centers & have expected number of hydrogens attached)
 bond symbols: . - = # $ : / \
 isotope: int + element (carbon-14 = 14c)
 
-You can drastically speed up your analysis if there is an api to check if a compound string is valid,
-bc generating smile formulas is quicker than manipulating coordinates
-You can probably generate a pretty good prediction function to identify if a compound is valid from existing known compounds
-if there is no good validity checker
+The bond may result from the electrostatic force of attraction between oppositely charged ions as in ionic bonds or through the sharing of electrons as in covalent bonds. 
+The strength of chemical bonds varies considerably; there are "strong bonds" or "primary bonds" such as covalent, ionic and metallic bonds, 
+and "weak bonds" or "secondary bonds" such as dipole–dipole interactions, the London dispersion force and hydrogen bonding. 
 
-So you'll be generating multiple datasets:
-	- smile + side effects to get a side-effect predictor from formula
-	- smile + function to get a function predictor from formula
-	- smile + props to get a property predictor from formula
-	- chembl similarity function can tell you how likely it is that the generated compound mimics functionality of another compound
-	but small changes can invalidate functionality - find a list of those change types
-	- to check for validity, you can look for a gui that has validation styling and then find the source code
-	the pubchem has a validator in their web ui
-		error for invalid structure submitted to api: 
-		"Exception during execution: Unable to standardize the given structure"
-
+You could derive the list of possible bonds from existing data, by de-duplicating pairs of bonded molecules with bond type
 '''
 
 def check_valid(smile_formula):
+	'''
+	https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/substructure/smiles/C3=NC1=C(C=NC2=C1C=NC=C2)[N]3/XML
+	get listkey from previous output
+	https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/listkey/xxxxx/cids/XML 
+	'''
 	encoded_formula = urllib.parse.urlencode(smile_formula)
 	url = ''.join("https://pubchem.ncbi.nlm.nih.gov/#query=", encoded_formula)
 	html = wget.download(url)
@@ -46,6 +36,7 @@ def check_valid(smile_formula):
 		return False
 	return True
 
+''' full list of pubchem props here: https://pubchemdocs.ncbi.nlm.nih.gov/pug-rest '''
 compound_props = [
 	'Compound: Canonicalized','Compound Complexity','Count: Hydrogen Bond Acceptor','Count: Hydrogen Bond Donor',
 	'Count: Rotatable Bond','IUPAC Name: Allowed','IUPAC Name: CAS-like Style',

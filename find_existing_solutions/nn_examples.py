@@ -1,3 +1,6 @@
+# Standardization: scales the input features while taking into account their standard deviation (using Standardization our transformed features will look similar to a Normal Distribution). This method can reduce outliers importance but can lead to different ranges between features because of differences in the standard deviation. Standardization can be implemented in scikit-learn by using StandardScaler().
+# Normalization: scales all the features in a range between 0 and 1 but can increase the effect of outliers because the standard deviation of each of the different features is not taken into account. Normalization can be implemented in scikit-learn by using MinMaxScaler().
+
 # https://github.com/keras-team/keras/tree/master/examples
 # DNN https://machinelearningmastery.com/tutorial-first-neural-network-python-keras/
 
@@ -44,7 +47,8 @@ from sklearn.preprocessing import StandardScaler
 
 '''
 Scale your data to standardize it if youre going to use a variety of algorithms
-Many algorithms, including Support Vector Machines, linear regression, logistic regression, neural networks, and nearest neighbor methods, require that the input features be numerical and scaled to similar ranges (e.g., to the [-1,1] interval)
+Many algorithms, including Support Vector Machines, linear regression, logistic regression, neural networks, and nearest neighbor methods, require that the input features be numerical 
+and scaled to similar ranges (e.g., to the [-1,1] interval)
 Methods that employ a distance function, such as nearest neighbor methods and support vector machines with Gaussian kernels, are particularly sensitive to this
 '''
 scaler = StandardScaler()
