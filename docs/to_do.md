@@ -17,7 +17,49 @@ So you'll be generating multiple datasets:
   but small changes can invalidate functionality - find a list of those change types
   
 - when you describe the attributes & functions of an object, make sure to list key attributes of each function in a keywords attribute for quick searching for relevant interactions
-- use bio assay data to predict how a compound will interact with an environment
+- use bio assay data to predict how a compound will interact with an environment in the absence of human testing
+- side effect keywords to use to test relationships derived with nlp tools:
+  - nouns: effect, activation, transcription, activity, catalyst, reaction, process
+  - verbs: enhance, reduce, down/upregulate, stimulate, de/activate, dis/enable, catalyze, alleviate, decline, increase, enrich, moderate, adjust, change
+  - adjectives: active, synergistic, neutralizing, anti-
+  - objects: 
+    - process:
+      - apoptosis
+      - glucolysis
+    - properties:
+      - fragility
+    - chemical compounds: molecules
+    - bio compounds 
+      - proteins
+      - enzymes
+      - lipids
+      - genes: expression, active, 
+      - blood
+    - cell components:
+      - mitochondria
+    - microorganisms:
+      - bacteria
+      - fungi
+      - virus
+    - tissue:
+      - muscle
+    - organs: 
+      - liver
+      - kidney
+      - bladder
+    - systems:
+      - lymph
+      - nervous
+      - immune
+      - circulatory
+      - digestive
+      - 
+    - treatments
+    - conditions: anything ending in -a is usually a condition
+    - tests: pcr
+    - metric: levels, quantitative, glucose
+
+
 - add function to convert smile formula into fixed number of numerical columns by assigning numbers to chars & scaling
 - decide if you need one hot encoding to reprsent categories
 - write smile generator function
@@ -55,6 +97,7 @@ So you'll be generating multiple datasets:
 
 - also create data set of just properties in case there is a relationship between successful treatment & one of the properties available (need a chemical with property x value y)
 - look for ways to break up tumors:
+  - promote circulation in the organ (like caffeoquinone acid in the liver)
   - inject something the immune system needs
   - push them to a place with greater blood flow or cell communication
   - make many small incisions to activate helpful cell division
