@@ -40,7 +40,7 @@ With answers like:
 				- 'enforcement should be automated' (automaters will have more power which must be limited)
 				- 'enforcement should be a backup method to prevention' (agencies that do prevention should work with agencies that automate enforcement)
 		- apply([], ['max', 'count', 'split'], 'find_biggest_number_in_string', 'programming') should return a function: "max([x for x in input.split('') if int(x)])"
-		
+
 ## Generate
 - generate(type, input_ranges, output_distribution):
 	- gets structures of subtypes within that type
@@ -189,7 +189,22 @@ general process of system analysis:
 		- the "usual number of moves" players plan ahead is another key structure
 		- the "function relating the set of possible moves & the set of optimal moves as the game progresses" 
 			is another key structure to derive rules like "predict the outcome" or "predict the next move"
-		- in the physics system, change rules that dont alter identities (symmetries) are a key structure
+		- in the physics system, change rules that dont alter identities (symmetries) are a key structure (described with eigenvectors)
+		- apply insights to derive factor matrixes to compute eigenvectors of original matrix:
+			- https://www.quantamagazine.org/neutrinos-lead-to-unexpected-discovery-in-basic-math-20191113/
+			- "break into components"
+			- "isolate unique subsets of variables" (related to pca)
+			- "remove the smallest number of variables at a time to minimize error"
+			- "remove one variable of each type"
+				- rows representing coefficients for all variables of one function
+				- column representing coefficients for a particular variable across all functions
+			- "variables in a function are by definition related"
+			- "removing one item from a list with a known composition metric (sum or product or other dependent variable) lets you calculate the missing item"
+			- "apply diagonal transform"
+			- "group sub components in different way to get component"
+		- vectors are like sliders/dimensions representing a spectrum or other range type - an isolated variable whose value changes across that range
+		- this means you can use vectors to represent emergent variables (branches off a vector once it reaches a threshold value to activate the emergent variable)
+		- eigenvectors dont change direction bc they represent change
 
 general metadata:
 - change rules (subtypes like the change rules that dont modify identity/boundary, change rules that add randomness, change rules that add convergence)

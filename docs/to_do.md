@@ -24,6 +24,10 @@ to do:
   You can drastically speed up your analysis to filter generated compounds by validity if there is an api to check if a compound string is valid, bc generating smile formulas is quicker than manipulating coordinates
   - pubchem has a validator in their search for invalid structure submitted to api: "Exception during execution: Unable to standardize the given structure"
 
+  - you need a way to store position of two numbers (left & right element number of protons) in one number as well as the bond type, unless you put the bond type in the next column or if the bond type is derivable
+  - you could use a ratio if you store the original values for each row, but that leaves out identity information - the ratio might not be relevant but the identities
+  - what about a decimal pair like left_number.right_number - is there room for tuples per cell?
+
 - the most important metadata attribute to write a function for is the reason for success/failure indicating the mechanism of action or strategy used
   The strategy behind the successful or failed attack should ideally be included
     - "this structure on the compound tears the cell barrier"
