@@ -1,11 +1,29 @@
 # generate possible compounds, filter the list, and predict if it'll be a good candidate for the target condition the neural network was trained on
+# generate possible smile formulas, then check with a validator api
+
+'''
+elements are differentiated by their number of protons - a default numerical index with meaning
+then after converting smile formula youd have strings like this: 1=(36 38)-39
+you could build the bond pair data a little faster with this method than an image 
+how will you numericalize the bond pair data?
+you could add increasing values for stronger bonds or bigger shapes
+could use a recurrent neural net
+
+how many possible compounds are there without filtering?
+link_chars = '[].=#$:/\()+-'
+range = 100 # find upper limit of atoms per element
+(number of element chars 118 + number of possible atoms per element 100 + number of link chars 13) ^ 100 = 2.29719567e236 possible combinations
+thats not something we can encode unless validators can drastically reduce that number - could also pull validated compounds from online data sets
+
+bio system macromolecules (DNA, proteins, polymers, cellulose) wont be indexed the same way as compounds so keep the range small
+'''
 
 output_label = 'Successful Treatment (true=1, false=0)'
 column_list = ['Pair 1', 'Pair 2', output_label]
 element_list = ['carbon', 'helium', 'helium ion', 'nitrogen', 'oxygen']  # continue until all the elements & element states you have access to or can make are in this list variable
 relationship_list = ['single bond', 'double bond', 'etc']  # this should contain all possible bond types
 impossible_rules = ['carbon+some element carbon cant bind to with a certain bond type']  #fill in this list with all known impossible bindings
-explosive_rules = ['C3H5N3O9'] #this is nitroglycerin - use the smile formula for these & find a way to autoencode smile formulas as numbers
+explosive_rules = ['C3H5N3O9'] #nitroglycerin
 
 # plus any other filtering lists that would exclude a compound from being a candidate for treating a human condition
 toxic_rules = []

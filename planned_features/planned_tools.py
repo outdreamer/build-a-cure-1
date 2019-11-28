@@ -28,9 +28,6 @@ def get_reason(activity, target):
 	example: specific like 'pierces cell membrane', general like 'cytotoxic'
 	'''
 
-def predict_properties():
-	''' you may be able to use chembl data to train a network to predict properties of compounds '''
-
 def simulate_interaction(compoundx, compoundy):
 	''' check sourceforge for simulators '''
 
@@ -73,7 +70,7 @@ def get_categories_from_name(compound_properties):
 		'polyatomic ions with oxygen are called oxyanions'
 	]
 	'''
-	1. pull categories from various names & save as metadata
+	1. pull categories from various names & save as metadata in absence of internet
 		IUPAC Names:
 			[2-(2,5-dichloroanilino)-2-oxo-ethyl] 2-ethylsulfonylbenzoate
 			2-ethylsulfonylbenzoic acid [2-(2,5-dichloroanilino)-2-oxoethyl] ester
@@ -102,7 +99,7 @@ def get_steps(source_compound, target_compound):
 	ret = unichem.get('AIN')
 	'''
 
-def get_property_predictions_from_chemaxon():
+def get_property_predictions():
 	'''
 	IUPAC name
     InChI name

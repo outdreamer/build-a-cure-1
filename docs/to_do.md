@@ -1,17 +1,54 @@
-done:
-
-
 to do:
 - finish is_valid function using pubchem search api & error message
+
 - finish get_correlation_of_relationship
+
 - finish get_metadata
+
+- find source of bio synonyms
+
+- add get_related_components function to pull components of a compound & primary metabolites
+
+- get word roots & word distortions of synonyms using lemmatization lib
+
+- pull strategies used by an organism or used on a compound like: 
+  https://medicalxpress.com/news/2019-11-high-resolution-images-malaria-parasites-evade.html
+
 - You can drastically speed up your analysis to filter generated compounds by validity if there is an api to check if a compound string is valid, bc generating smile formulas is quicker than manipulating coordinates
   - pubchem has a validator in their search for invalid structure submitted to api: "Exception during execution: Unable to standardize the given structure"
+
 - the most important metadata attribute to write a function for is the reason for success/failure indicating the mechanism of action or strategy used
   The strategy behind the successful or failed attack should ideally be included
     - "this structure on the compound tears the cell barrier"
     - "induces apoptosis by depriving it of contrary signals"
   in as structured a format as possible (numerical mappings could work for an initial version)
+
+-  make table of useful patterns as you pull data, replacing common objects with abstract type keywords:
+  Example:
+    Cytotoxicity in cancer cells
+    anti-tumor
+    suppress/interfere/inhibit activity of carcinog/canc/tumz
+
+  Patterns:
+    <component object>-toxicity
+    anti-<component object of illness>
+    suppress/interfere/inhibit activity of drug/medication/enzyme
+
+- once you have standard object analysis with some object model insights, you can apply them to bio systems
+  - "adjacency as a definition of relevance can be used as a way to derive the path to get a drug to a location in the system"
+
+- drugs need a way to handle common mutation strategies of pathogens
+  - up regulating CDR genes
+  - reduced sensitivity of the target enzyme to inhibition by the agent
+  - mutations in the ERG11 gene, which codes for 14α-demethylase. These mutations prevent the azole drug from binding, while still allowing binding of the enzyme's natural substrate, lanosterol
+
+- integrate pull substances, side effects, and treatments so you can pull them all at once
+
+- sertraline wiki doesnt mean interaction with fluconazole 
+  - youd have to derive by noting that it increased blood level/metabolism of substrates some CYP 450 enzymes inhibited by fluconazole
+  - or that it is metabolized by some of the same enzymes
+  - https://en.wikipedia.org/wiki/Sertraline#Overdose
+
 - So you'll be generating multiple datasets:
   - smile + side effects to get a side-effect predictor from formula
   - smile + function to get a function predictor from formula
