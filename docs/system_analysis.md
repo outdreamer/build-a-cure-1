@@ -205,6 +205,22 @@ general process of system analysis:
 		- vectors are like sliders/dimensions representing a spectrum or other range type - an isolated variable whose value changes across that range
 		- this means you can use vectors to represent emergent variables (branches off a vector once it reaches a threshold value to activate the emergent variable)
 		- eigenvectors dont change direction bc they represent change
+		- degree of order, degree of change, ratio of change to threshold :: change potential (possible moves if limited, states if not)
+		- different implementation of randomness, measured by system or component state (or other system object state)
+		- this is a good example of how to apply a structure to implement a concept:
+			apply('random', 'system_objects') should:
+			- pull the definition of randomnesss
+			- reduce randomness to concise insight (if not already stored in db): 
+				'equal distribution of outcomes across range'
+			- produce a list of all system objects & their attributes (like state) and subtypes (like change rules) that can vary
+			- filter by which system objects vary equally among all possible values
+			- also query for functions that would adjust the system (and its objects, their attributes & types) to maximize randomness
+				- query should be formatted like the question:
+					"if randomness is equal distribution of outcomes across range, how do you guarantee that in a system with other sources of randomness?"
+					- add variables that increase range of possible values without changing distribution
+					- add variables that increase equivalence of distribution
+		- markov chain: where the set of possible new states is determined by current state & change rules (how to move pieces) & system limits (number of open spaces)
+		https://www.quantamagazine.org/mathematicians-calculate-how-randomness-creeps-in-20191112/
 
 general metadata:
 - change rules (subtypes like the change rules that dont modify identity/boundary, change rules that add randomness, change rules that add convergence)
