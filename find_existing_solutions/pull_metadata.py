@@ -32,6 +32,8 @@ def get_symptoms(condition_keyword, data):
     return condition_keyword
 
 def get_treatments(condition_keyword, data):
+
+def get_all_data(condition_keyword, data):
     ''' fetch treatments from research studies '''
     just_summary = True # this indicates if you want metadata like id, title, & published data or just the summary text
     articles, data = pull_summary_data(condition_keyword, just_summary, data)
@@ -523,6 +525,7 @@ verb_contents = read('verbs.txt')
 standard_relationships = set(verb_contents.split('\n'))
 print('standard relationships', standard_relationships)
 relationship_types = ['increase', 'decrease', 'inhibit', 'induce', 'activate', 'deactivate', 'enable', 'disable'] #if standard_relationships is None else standard_relationships
-treatments = get_treatments('meningitis', data)
-print('treatments', treatments)
+data = get_all_data('meningitis', data)
+for key in data:
+	print(key, data[key])
 
