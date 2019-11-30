@@ -221,6 +221,9 @@ general process of system analysis:
 					- add variables that increase equivalence of distribution
 		- markov chain: where the set of possible new states is determined by current state & change rules (how to move pieces) & system limits (number of open spaces)
 		https://www.quantamagazine.org/mathematicians-calculate-how-randomness-creeps-in-20191112/
+		- randomness usually occurs with the patterns:
+			- starting from the same origin & diverging at equal angles
+			- converging to the same filter point (system entry point, like inputs to a function)
 
 general metadata:
 - change rules (subtypes like the change rules that dont modify identity/boundary, change rules that add randomness, change rules that add convergence)

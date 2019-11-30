@@ -77,6 +77,8 @@ These options will be supported in future releases rather than mvp:
 
 With these functions, you can build prediction functions.
 
+Running pull_metadata.py the first time will also generate a small database of insights, strategies, & other objects on your local computer in the data folder, which it will use to speed up future queries.
+
 ## Output functions
 
 Using the above input functions in this tool, you can build prediction functions with neural nets, like:

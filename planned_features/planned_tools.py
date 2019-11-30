@@ -4,6 +4,12 @@ from chembl_webresource_client.new_client import new_client
 
 ''' ideally you want to be able to map predicted compound functions to a general impact which is mapped to side effects '''
 
+
+def get_alt_treatments(role, function, original_treatment):
+  ''' find other inhibitors of cyp3a4, in addition to fluconazole '''
+  other_treatments = set()
+  return other_treatments
+
 def get_atc_class(class_name):
 	print(new_client.atc_class.get(class_name)) #'H03AA03',
 	atc_classifications =

@@ -1,9 +1,12 @@
 to do:
+
+- finish get object functions
+
 - finish is_valid function using pubchem search api & error message
 
-- finish get_correlation_of_relationship
-
 - make sure you remove punctuation
+
+- make a list of common intent synonyms & store - ie, diagnose
 
 - check output of synonym replacements to make sure its not changing meaning
 
@@ -11,14 +14,11 @@ to do:
 
 - finish get_metadata
 
-- find source of bio synonyms
+- use source of bio synonyms
 
 - add get_related_components function to pull components of a compound & primary metabolites
 
 - get word roots & word distortions of synonyms using lemmatization lib
-
-- pull strategies used by an organism or used on a compound like: 
-  https://medicalxpress.com/news/2019-11-high-resolution-images-malaria-parasites-evade.html
 
 - add function to convert smile formula - find way to represent it without assigning numbers to chars, or use the image
   You can drastically speed up your analysis to filter generated compounds by validity if there is an api to check if a compound string is valid, bc generating smile formulas is quicker than manipulating coordinates
@@ -28,11 +28,52 @@ to do:
   - you could use a ratio if you store the original values for each row, but that leaves out identity information - the ratio might not be relevant but the identities
   - what about a decimal pair like left_number.right_number - is there room for tuples per cell?
 
-- the most important metadata attribute to write a function for is the reason for success/failure indicating the mechanism of action or strategy used
-  The strategy behind the successful or failed attack should ideally be included
-    - "this structure on the compound tears the cell barrier"
-    - "induces apoptosis by depriving it of contrary signals"
-  in as structured a format as possible (numerical mappings could work for an initial version)
+- get strategies used by an organism or used on a compound like: 
+  https://medicalxpress.com/news/2019-11-high-resolution-images-malaria-parasites-evade.html
+
+  - the most important metadata attribute to write a function for is the reason for success/failure indicating the mechanism of action or strategy used
+    The strategy behind the successful or failed attack should ideally be included
+      - "this structure on the compound tears the cell barrier"
+      - "induces apoptosis by depriving it of contrary signals"
+    in as structured a format as possible (numerical mappings could work for an initial version)
+
+  - drugs need a way to handle common mutation strategies of pathogens
+    - up regulating CDR genes
+    - reduced sensitivity of the target enzyme to inhibition by the agent
+    - mutations in the ERG11 gene, which codes for 14α-demethylase. These mutations prevent the azole drug from binding, while still allowing binding of the enzyme's natural substrate, lanosterol
+
+
+objectives:
+
+- analyze which components these disease & evolved genes/traits have in common & which system attributes are influenced
+  and try to predict diseases & evolved genes/traits from new component sets & newly enabled interactions with existing components
+  & find an optimal set for health (extra processing organs, more diverse microbiome, etc)
+  https://medicalxpress.com/news/2019-11-humans-co-evolved-immune-related-diseasesand.html
+
+- generate multiple datasets:
+  - smile + each medical component (side effects, functions, symptoms) to get a predictor formula for that component from the smile formula
+  - really you should iterate through all combinations of components and generate a dataset for each one to check for relationships
+  medical_components = [
+    metrics: {'naa-cr ratio': 'reduced'}
+            conditions: 'hiv', 'encephalopathy'
+            organs: ['brain', 'immune system']
+            compounds: ['naa', 'cr']
+            insights: [
+                'naa-to-cr ratio is reduced in hiv patients', 
+                'naa-to-cr ratio is a marker for hiv brain infection'
+            ]
+            strategies: [
+                'target bio markers that change with illness for testing',
+                'consider other conditions like lack/excess of signals from diagnostic tests & interfering diseases'
+            ]
+            symptoms: [
+                'encephalopathy': 'no imaging findings'
+                'neurological disease': 'other'
+            ]
+            patient: ['HIV-positive', 'symptoms of neurological disease']
+  ]
+  - chembl similarity function can tell you how likely it is that the generated compound mimics functionality of another compound
+  - data set of just props in case there is a relationship between successful treatment & one of the properties available (need a chemical with property x value y)
 
 -  make table of useful patterns as you pull data, replacing common objects with abstract type keywords:
   Example:
@@ -47,25 +88,6 @@ to do:
 
 - once you have standard object analysis with some object model insights, you can apply them to bio systems
   - "adjacency as a definition of relevance can be used as a way to derive the path to get a drug to a location in the system"
-
-- drugs need a way to handle common mutation strategies of pathogens
-  - up regulating CDR genes
-  - reduced sensitivity of the target enzyme to inhibition by the agent
-  - mutations in the ERG11 gene, which codes for 14α-demethylase. These mutations prevent the azole drug from binding, while still allowing binding of the enzyme's natural substrate, lanosterol
-
-- sertraline wiki doesnt mean interaction with fluconazole 
-  - youd have to derive by noting that it increased blood level/metabolism of substrates some CYP 450 enzymes inhibited by fluconazole
-  - or that it is metabolized by some of the same enzymes
-  - https://en.wikipedia.org/wiki/Sertraline#Overdose
-
-- wiki for smiles doc has 240-char compound formula: https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system
-
-- So you'll be generating multiple datasets:
-  - smile + side effects to get a side-effect predictor from formula
-  - smile + function to get a function predictor from formula
-  - smile + props to get a property predictor from formula
-  - chembl similarity function can tell you how likely it is that the generated compound mimics functionality of another compound
-  - data set of just props in case there is a relationship between successful treatment & one of the properties available (need a chemical with property x value y)
 
 - small changes in structure can invalidate functionality - find a list of those change types
 
@@ -86,6 +108,8 @@ to do:
 - write function to pull relationships from a research article
 
 - write function to pull symptom lists for a condition from forums/drugs/rxlist
+
+- build math logic/plain language translation function first - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
 
 - in order to implement this without ml, you need functions to identify conceptual metadata of a compound or organism, so at least these to get started:
   - function-identifying function 
@@ -114,3 +138,18 @@ to do:
 - use this or similar as example when describing current state of problem solving: 
   https://miro.medium.com/max/462/1*X7dQgs1gsJ0Sktz3t7J21Q.png
   https://towardsdatascience.com/feature-extraction-techniques-d619b56e31be
+
+Assumption counterexamples:
+
+- Assumption: smile formulas are generally under 100 char
+  - wiki for smiles doc has 240-char compound formula: https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system
+
+- Assumption: structure is a good mechanism for deriving function
+  - bakuchiol has example of structural difference with similar function:
+  https://en.wikipedia.org/wiki/Bakuchiol
+
+- Assumption: wiki articles of related compounds will mention each other
+  - sertraline wiki doesnt mention interaction with fluconazole 
+    - youd have to derive by noting that it increased blood level/metabolism of substrates some CYP 450 enzymes inhibited by fluconazole
+    - or that it is metabolized by some of the same enzymes
+    - https://en.wikipedia.org/wiki/Sertraline#Overdose
