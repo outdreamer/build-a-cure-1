@@ -35,7 +35,7 @@ def identify_elements(supported_core, elements, index, metadata):
                 with_previous = word if i == 0 else ' '.join([split_element[i - 1], word])
                 with_next = word if i == (len(split_element) - 1) else ' '.join([word, split_element[i + 1]])
                 matched = get_subword_match(supported_core[keyword_type], word, 'bool')
-                if matched:
+                if matched and len(word) > 1:
                     if index:
                         index[keyword_type].add(word)
                     else:
@@ -53,10 +53,11 @@ def identify_elements(supported_core, elements, index, metadata):
                                 new_element_list = [split_element[i - 1], split_element[i], split_element[i + 1]]
                             if len(new_element_list) > 0:
                                 new_element = ' '.join(new_element_list)
-                            if index:
-                                index[keyword_type].add(new_element) # should be a string like 'alpha-nucleic acid'
-                            else:
-                                identified_elements[keyword_type].add(new_element)
+                            if len(new_element) > 1:
+                                if index:
+                                    index[keyword_type].add(new_element) # should be a string like 'alpha-nucleic acid'
+                                else:
+                                    identified_elements[keyword_type].add(new_element)
     if index:
         return index
     print('\tidentified elements', identified_elements)

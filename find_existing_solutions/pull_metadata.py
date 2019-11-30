@@ -62,6 +62,10 @@ def pull_summary_data(metadata, args, filters, just_summary):
         write_csv(rows, index.keys(), 'data/rows.csv')
         if metadata == 'generate-all':
             generate_all_datasets(index.keys(), rows)
+    for key in index:
+        print('\t\twriting', key, type(index[key]), index[key])
+        index_string = index[key] if type(index[key]) == str else '\n'.join(index[key])
+        save(''.join(['data/', key, '.txt']), index_string)
     return articles, index, rows
 
 def process_articles(condition_keyword, entries, index, just_summary, metadata):
@@ -75,7 +79,7 @@ def process_articles(condition_keyword, entries, index, just_summary, metadata):
                 if node.nodeName == 'summary':
                     for subnode in node.childNodes:
                         summary = set()
-                        lines = subnode.wholeText.replace('\n', ' ').replace('"', '').split('.') #taking comma out here removes lists embedded in sentences
+                        lines = subnode.wholeText.replace('\n', ' ').replace('"', '').replace('(', '').replace(')', '').split('.') #taking comma out here removes lists embedded in sentences
                         new_lines = []
                         for i, line in enumerate(lines):
                             if len(line) > 0:
@@ -85,7 +89,7 @@ def process_articles(condition_keyword, entries, index, just_summary, metadata):
                                         new_lines.pop()
                                 if len(line.replace(' ', '')) > 0:
                                     new_lines.append(line.strip())
-                        print('new lines', new_lines)
+                        print('lines', new_lines)
                         for line in new_lines:
                             line = line.strip()
                             if ' ' in line and len(line.split(' ')) > 1:
@@ -96,10 +100,18 @@ def process_articles(condition_keyword, entries, index, just_summary, metadata):
                                     row = identify_elements(supported_core, formatted_line, None, metadata)
                                     row = get_medical_objects(line, formatted_line, row, metadata) #standard nlp
                                     row = { key: str(','.join(val)) for key, val in row.items() }
-                                    print('row', row)
+                                    # print('row', row)
                                     #index, row = get_metadata(formatted_line, index, row) #custom analysis
                                     if row != empty_index:
                                         rows.append(row)
+                                        for key, val in row.items():
+                                            if type(val) == set and len(val) > 0:
+                                                index[key] = index[key].union(val)
+                                            elif type(val) == str:
+                                                index[key] = index[key].union(set(val.split(',')))
+                                            else:
+                                                print('unknown type', key, val, row, type(val))
+                                        print('new index', index)
                                     summary.add(formatted_line)
                         articles.append('\n'.join(summary))
             else:
@@ -113,18 +125,6 @@ def process_articles(condition_keyword, entries, index, just_summary, metadata):
     for datatype in ['verbs', 'treatments', 'components']:
         index[datatype] = remove_duplicates(index[datatype])
     '''
-    for key in index:
-        #print('\t', key, type(index[key]), index[key])
-        index_set = set()
-        if type(index[key]) == set:
-            for sub_item in index[key]:
-                if type(sub_item) == set:
-                    for x in sub_item:
-                        index_set.add(x)
-                else:
-                    index_set.add(sub_item)
-        index_string = index[key] if type(index[key]) == str else '\n'.join(index_set) if len(index_set) > 0 else '\n'.join(index[key])
-        save(''.join(['data/', key, '.txt']), index_string)
     return articles, index, rows
 
 def get_word_type(word):
@@ -157,14 +157,16 @@ def get_medical_objects(line, formatted_line, row, metadata):
         intent = get_intent(summary)    
         '''
         intent = None
+        objects = r.split('_')
+        new_objects = [o for o in objects if o != '']
+        new_object_string = '_'.join(new_objects)
         correlation = get_correlation_of_relationship(intent, r)
         print('\tget_medical_objects: object relationship', correlation, r)
-        if correlation > 0.3:
-            if r not in row['treatments_successful']:
-                row['treatments_successful'].add(r)
-        else:
-            if r not in row['treatments_failed']:
-                row['treatments_failed'].add(r)
+        if len(new_objects) > 0:
+            if correlation > 0.3:
+                row['treatments_successful'].add(new_object_string)
+            else:
+                row['treatments_failed'].add(new_object_string)
     return row
 
 def filter_line(line):
@@ -266,34 +268,35 @@ def get_relationships(line, row):
     print('\tget relationships', line)
     split_line = line.replace('.', '').replace(',', ' ,').split(' ')
     for i, word in enumerate(split_line):
-        numbers = ''.join([w for w in word if w in '0123456789'])
-        if len(numbers) > 0:
-            current_set.add(word)
-        else:
-            standard_word = get_standard_word(row, word, supported_core, supported_synonyms, standard_verbs)
-            #print('standard word', standard_word, word) # standard word brain_disorder encephalopathy
-            if standard_word:
-                if (len(standard_word) - len(word)) < 7:
-                    if len(Word(word).get_synsets(pos=NOUN)) > 0:
-                        # check that this is one of the identified elements
-                        word = stemmer.stem(word)
-                        if word in element_list:
+        if len(word) > 0:
+            numbers = ''.join([w for w in word if w in '0123456789'])
+            if len(numbers) > 0:
+                current_set.add(word)
+            else:
+                standard_word = get_standard_word(row, word, supported_core, supported_synonyms, standard_verbs)
+                #print('standard word', standard_word, word) # standard word brain_disorder encephalopathy
+                if standard_word:
+                    if len(standard_word) > 0 and (len(standard_word) - len(word)) < 7:
+                        if len(Word(word).get_synsets(pos=NOUN)) > 0:
+                            # check that this is one of the identified elements
+                            word = stemmer.stem(word)
+                            if word in element_list:
+                                current_set.add(standard_word)
+                            if (i == (len(split_line) - 1)) or (word in clause_keys):
+                                if len(current_set) > 1:
+                                    set_string = '_'.join(current_set).replace('\n','') if len(current_set) > 1 else ''.join(current_set)
+                                    relationships.add(set_string)
+                                    current_set = set()
+                        elif len(Word(word).get_synsets(pos=VERB)) > 0:
                             current_set.add(standard_word)
-                        if (i == (len(split_line) - 1)) or (word in clause_keys):
-                            if len(current_set) > 1:
-                                set_string = '_'.join(current_set).replace('\n','')
-                                relationships.add(set_string)
-                                current_set = set()
-                    elif len(Word(word).get_synsets(pos=VERB)) > 0:
-                        current_set.add(standard_word)
+                        else:
+                            current_set.add(word)
                     else:
                         current_set.add(word)
                 else:
                     current_set.add(word)
-            else:
-                current_set.add(word)
     print('\trelationships', relationships)
-    components = set(w for w in line.split(' ') for r in relationships if w not in r and w not in row['verbs'])
+    components = set(w for w in line.split(' ') for r in relationships if w not in r and w not in row['verbs'] and len(w) > 1)
     new_list = []
     for c in components:
         c_root = stemmer.stem(c)
@@ -368,7 +371,7 @@ if len(args_index.keys()) == 1:
     for x in word_map['standard_words'].keys():
         for y in word_map['standard_words'][x]:
             supported_synonyms.add(y)
-    for path in ['data', 'dataset']:
+    for path in ['data', 'datasets']:
         if not os.path.exists(path):
             os.mkdir(path)
     standard_verbs = set(['increase', 'decrease', 'inhibit', 'induce', 'activate', 'deactivate', 'enable', 'disable'])

@@ -166,8 +166,10 @@ why is object-attribute-rule model insufficient? bc
 	- it doesnt have a model for deriving & applying patterns of change/boundaries/rules
 
 why is pattern separate from function table? bc
-	- you want to store some standard numerical patterns like fibonacci sequence so you can identify pieces of the sequence
-	- the function is a specific implementation of a pattern & there are many functions that can produce each pattern
+	- pattern is a sequence (of anything), function is a sequence (of operations) with expected input/output
+	- you want to store some common patterns in a data set (such as variable value trajectories, like if butterfly always comes after larvae),
+	  so you can identify insights of the data set & similarity to other data sets
+	- the function is a specific implementation of a pattern sequence, restricted to operations & input/output, & there are many functions that can produce each pattern
 
 general process of system analysis:
 - derive core functions/operations
@@ -337,7 +339,7 @@ insight path:
 		in case you want to try to derive the original rule from the insight & its generating functions.
 
 		The insight path itself would be:
-		
+
 			- any combination of these insights that fits into the 3-step rule set above
 			- any combination of these insights that fits into a subset, transform, combination, alternative, or approximation of the 3-step rule set above
 				- this is bc the rule set can be modified by operations inherent to the rule set to derive other insights, 

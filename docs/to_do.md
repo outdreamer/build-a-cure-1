@@ -2,14 +2,27 @@ to do:
 
 - finish get object functions
 
-- finish is_valid function using pubchem search api & error message
+- fix plural form of duplicate objects in sets
 
-- finish tuning output of treatments to list actual treatments from articles
-  - make sure it adds nothing if theres no treatment in the article - this is related to intent function
-
+- remove nouns, verbs, adverbs & adjectives from objects:
+  - components
+  - compounds
+  - remove common nouns analysis, basis, dis/order, diagnosis from conditions
+- same line in functions: expressionactivity
 - do a check for full keyword matching before adding a partial match
   compounds: 'disease'
   causal_layers: 'cr,ratio' 
+  metrics: 'administration'
+
+- add function output to verbs index
+
+- finish is_valid function using pubchem search api & error message
+
+- integrate conditions/symptoms
+- integrate treatments/compounds
+
+- finish treatment failure condition
+  - make sure it adds nothing if theres no treatment in the article - this is related to intent function
 
 - make a list of common intent synonyms & store - ie, diagnose
 
