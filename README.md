@@ -22,6 +22,24 @@ options = [
 	'functions', 'insights', 'strategies', 'patterns', 'all'
 ]
 ```
+
+The first version will support fetching studied treatments, then recommending new treatment compounds & microbes
+
+These pull_metadata command options will be supported in future releases rather than mvp:
+	--metric "side effects" --props "minimize"
+	--function "neutralize impact of drug X on liver"
+	--metadata "stressors" --props "symptom:A, function:B, metric:metricC::metricvalue, condition:D"
+	--metadata "components" --compound "z" --function "synthesis"
+	--bio-metrics "blood ph:7.0,heart rate:60 bpm" --bio-symptoms "fever,tachycardia" --bio-conditions "high blood pressure"
+
+With these tools to pull & organize data, you can build prediction functions.
+
+Running pull_metadata.py the first time will also generate a small database of insights, strategies, & other objects on your local computer in the data folder, which it will use to speed up future queries.
+- pull all metadata:
+```
+python3 pull_metadata.py
+```
+
 - find symptoms of condition Z
 ```
 python3 pull_metadata.py --metadata "symptoms" --condition "z"
@@ -65,19 +83,6 @@ python3 pull_metadata.py --metadata "compound" --components "a,b,c" --function "
 ```
 python3 pull_metadata.py --metadata "compounds" --bio-metrics "blood ph:7.0,heart rate:60 bpm" --bio-symptoms "fever,tachycardia" --bio-conditions "high blood pressure"
 ```
-
-The first version will support fetching studied treatments, then recommending new treatment compounds & microbes
-
-These options will be supported in future releases rather than mvp:
-	--metric "side effects" --props "minimize"
-	--function "neutralize impact of drug X on liver"
-	--metadata "stressors" --props "symptom:A, function:B, metric:metricC::metricvalue, condition:D"
-	--metadata "components" --compound "z" --function "synthesis"
-	--bio-metrics "blood ph:7.0,heart rate:60 bpm" --bio-symptoms "fever,tachycardia" --bio-conditions "high blood pressure"
-
-With these functions, you can build prediction functions.
-
-Running pull_metadata.py the first time will also generate a small database of insights, strategies, & other objects on your local computer in the data folder, which it will use to speed up future queries.
 
 ## Output functions
 

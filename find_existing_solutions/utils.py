@@ -11,8 +11,8 @@ def get_similarity(base_word, new_word):
     new_synsets = Word(new_word).get_synsets(pos=VERB)
     base_synsets = Word(base_word).get_synsets(pos=VERB)
     if len(new_synsets) > 0 and len(base_synsets) > 0:
-        print('get similarity', new_synsets, base_synsets)
-        print('definitions', Word(base_word).definitions)
+        print('\tget similarity', new_synsets, base_synsets)
+        print('\tdefinitions', Word(base_word).definitions)
         return base_synsets.path_similarity(new_synsets)
     return 0
 
@@ -24,7 +24,7 @@ def get_verbs(line):
     return verbs
 
 def get_subword_match(keyword_list, word):
-    #print('get_subword_match: checking list for', word, keyword_list)
+    #print('\tget_subword_match: checking list for', word, keyword_list)
     for k in keyword_list:
         if '-' in k:
             position = 'suffix' if '-' == k[0] else 'prefix' if '-' == k[len(k) - 1] else 'other'
@@ -32,7 +32,7 @@ def get_subword_match(keyword_list, word):
             suffix = word[(len(word)-len(k)-1):len(word)-1]
             prefix = word[0:len(k)]
             if (position == 'suffix' and k == suffix) or (position == 'prefix' and k == prefix):
-                # print('suffix', suffix, 'prefix', prefix, 'word', word, 'k', k)
+                # print('\tsuffix', suffix, 'prefix', prefix, 'word', word, 'k', k)
                 return True 
         else:
             if k in word or word in k:
@@ -49,7 +49,7 @@ def get_subword_match(keyword_list, word):
 def get_standard_word(row, word, supported_core, supported_synonyms, standard_verbs):
     ''' this should standardize a word like 'enhance' to a verb like 'increase' '''
     # to do: fix nouns being identified as a verb like belt -> belt_out
-    #print('get synonym', synonym_set)
+    #print('\tget synonym', synonym_set)
     if word in supported_synonyms or word in standard_verbs:
         return word
     verb_synset = Word(word).get_synsets(pos=VERB)
@@ -83,7 +83,7 @@ def get_standard_word(row, word, supported_core, supported_synonyms, standard_ve
                 '''
                 if ms in supported_synonyms or ms in standard_verbs:
                     return ms
-            print('not in supported synonyms or standard relationships', word, ms, max_synonyms[0])
+            print('\tnot in supported synonyms or standard relationships', word, ms, max_synonyms[0])
             return max_synonyms[0]
     return False
 

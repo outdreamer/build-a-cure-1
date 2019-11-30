@@ -11,8 +11,6 @@ from get_index_def import get_empty_index
 from get_objects import identify_elements, get_metrics, get_patterns, get_intent, get_strategies, get_functions, get_side_effects, get_types, get_dependencies, get_related_components, get_symptoms, get_treatments, get_mechanisms_of_action, get_index
 
 '''
-for arg in sys.argv:
-    print(arg)
 import ssl
 try:
     _create_unverified_https_context = ssl._create_unverified_context
@@ -26,36 +24,40 @@ nltk.download()
 nltk.download('punkt')
 '''
 
-def pull_summary_data(keyword, just_summary):
+def pull_summary_data(metadata, args, just_summary):
     ''' get index from research study api providing summaries '''
-    start = 0
-    total_results = 0
-    max_results = 10
-    page_number = 1
+    print('pull metadata', metadata, args)
+    ''' we assume the primary argument comes first ''' 
     articles = []
     rows = []
     index = get_empty_index()
-    for i in range(0, 10):
-        start = i * max_results
-        sources = [
-            ''.join(['http://export.arxiv.org/api/query?search_query=all:', keyword, '&start=', str(start), '&max_results=', str(max_results)])
-        ]
-        print('sources', sources)
-        for url in sources:
-            response = requests.get(url)
-            response_string = xml.dom.minidom.parseString(response.content)
-            if response_string:
-                total_results = int(response_string.documentElement.getElementsByTagName("opensearch:totalResults")[0].childNodes[0].nodeValue)
-                entries = response_string.documentElement.getElementsByTagName("entry")
-            else:
-                entries = json.loads(response.content)
-            new_articles, index, new_rows = process_articles(keyword, entries, index, just_summary)
-            if len(new_rows) > 0:
-                rows.extend(new_rows)
-            if len(new_articles) > 0:
-                articles.extend(new_articles)
-        if total_results < (start + max_results):
-            break
+    for arg in args:
+        keyword = args[arg]
+        start = 0
+        total_results = 0
+        max_results = 10
+        page_number = 1
+        for i in range(0, 10):
+            start = i * max_results
+            sources = [
+                ''.join(['http://export.arxiv.org/api/query?search_query=all:', keyword, '&start=', str(start), '&max_results=', str(max_results)])
+            ]
+            print('sources', sources)
+            for url in sources:
+                response = requests.get(url)
+                response_string = xml.dom.minidom.parseString(response.content)
+                if response_string:
+                    total_results = int(response_string.documentElement.getElementsByTagName("opensearch:totalResults")[0].childNodes[0].nodeValue)
+                    entries = response_string.documentElement.getElementsByTagName("entry")
+                else:
+                    entries = json.loads(response.content)
+                new_articles, index, new_rows = process_articles(keyword, entries, index, just_summary)
+                if len(new_rows) > 0:
+                    rows.extend(new_rows)
+                if len(new_articles) > 0:
+                    articles.extend(new_articles)
+            if total_results < (start + max_results):
+                break
     #verbs,relationships,components,conditions,symptoms,compounds,metrics,stressors,patient_conditions,patient_symptoms,patient_metrics,patient_stressors,
     #treatments_successful,treatments_failed,patterns,functions,insights,strategies,systems,variables,intents,types,causal_layers
     if len(rows) > 0:
@@ -67,6 +69,7 @@ def process_articles(condition_keyword, entries, index, just_summary):
     articles = []
     empty_index = get_empty_index()
     for entry in entries:
+        print('\n------- article -------')
         for node in entry.childNodes:
             if just_summary is True:
                 if node.nodeName == 'summary':
@@ -75,7 +78,6 @@ def process_articles(condition_keyword, entries, index, just_summary):
                         lines = subnode.wholeText.replace('\n', ' ').replace('"', '').split('.') #taking comma out here removes lists embedded in sentences
                         new_lines = []
                         for i, line in enumerate(lines):
-                            print('line', line)
                             if len(line) > 0:
                                 if i > 0 and line[0] in '0123456789':
                                     line = ''.join([lines[i - 1], line])
@@ -87,7 +89,7 @@ def process_articles(condition_keyword, entries, index, just_summary):
                             if ' ' in line and len(line.split(' ')) > 1:
                                 line = re.sub(r'\+', '', line)
                                 line = line + '.'
-                                print('line', line)
+                                print('\n\tline', line)
                                 formatted_line = remove_duplicates(line)
                                 if len(formatted_line) > 0:
                                     row = identify_elements(supported_core, formatted_line, None)
@@ -109,7 +111,7 @@ def process_articles(condition_keyword, entries, index, just_summary):
         index[datatype] = remove_duplicates(index[datatype])
     '''
     for key in index:
-        #print(key, type(index[key]), index[key])
+        #print('\t', key, type(index[key]), index[key])
         index_set = set()
         if type(index[key]) == set:
             for sub_item in index[key]:
@@ -146,7 +148,7 @@ def get_medical_objects(line, row):
         #intent = get_intent(summary)
         intent = None
         correlation = get_correlation_of_relationship(intent, r)
-        print('get_medical_objects: object relationship', correlation, r)
+        print('\tget_medical_objects: object relationship', correlation, r)
         if correlation > 0.3:
             if r not in row['treatments_successful']:
                 row['treatments_successful'].add(r)
@@ -203,9 +205,9 @@ def get_correlation_of_relationship(intent, line):
     & tests if this is a positive association for the condition, so it can be used as a treatment
     '''
     line_string = ' '.join(line) if type(line) != str else line
-    #print("line sentiment", TextBlob(line_string).sentiment, "line", line)
+    #print("\tline sentiment", TextBlob(line_string).sentiment, "line", line)
     if intent:
-        print("intent sentiment", TextBlob(intent).sentiment, "intent", intent)
+        print("\tintent sentiment", TextBlob(intent).sentiment, "intent", intent)
     return TextBlob(line_string).sentiment.polarity
 
 def get_success_of_relationship(intent, hypothesis, line):
@@ -224,8 +226,8 @@ def get_success_of_relationship(intent, hypothesis, line):
                 that's a positive correlation (success) or a negative intent (reduce)
     '''
     line_string = ' '.join(line) if type(line) != str else line
-    print("line sentiment", TextBlob(line_string).sentiment, "line", line)
-    print("intent sentiment", TextBlob(intent).sentiment, "intent", intent)
+    print("\tline sentiment", TextBlob(line_string).sentiment, "line", line)
+    print("\tintent sentiment", TextBlob(intent).sentiment, "intent", intent)
     line_sentiment = TextBlob(line_string).sentiment.polarity
     intent_sentiment = TextBlob(intent).sentiment.polarity
     if (line_sentiment - intent_sentiment) < 0.3:
@@ -250,7 +252,7 @@ def get_relationships(line, row):
     relationships = set()
     current_set = set()
     line = ' '.join(line) if type(line) != str else line
-    print('get relationships', line)
+    print('\tget relationships', line)
     split_line = line.replace('.', '').replace(',', ' ,').split(' ')
     for i, word in enumerate(split_line):
         numbers = ''.join([w for w in word if w in '0123456789']) # missing 3mg
@@ -271,7 +273,7 @@ def get_relationships(line, row):
                     current_set.add(standard_word)
             else:
                 current_set.add(word)
-    print('relationships', relationships)
+    print('\trelationships', relationships)
     return relationships
 
 def generate_all_datasets(component_list, rows):
@@ -282,11 +284,11 @@ def generate_all_datasets(component_list, rows):
     combination_list = []
     for i in range(0, len(component_list)):
         new_combination = itertools.combinations(component_list, i)
-        print('generate_all_datasets: generating index set for elements', new_combination, 'to predict', new_combination[-1])
+        print('\tgenerate_all_datasets: generating index set for elements', new_combination, 'to predict', new_combination[-1])
         # this doesnt invalidate target_variable param bc we might not always use it in this function
         generate_dataset(new_combination, new_combination[-1], rows, True)
         combination_list.extend(new_combination)
-    print('generate_all_datasets: combination_list', combination_list)
+    print('\tgenerate_all_datasets: combination_list', combination_list)
     #list(zip(bio_component_set, meta_component_set))
 
 def generate_dataset(element_list, rows, write):
@@ -318,24 +320,38 @@ def write_csv(rows, header_list, path):
         csv_writer.writerows(rows)
         f.close()
 
+empty_index = get_empty_index()
 options = [
     'properties', 'treatments', 'contraindications', 'metrics',
     'side effects', 'interactions', 'symptoms', 'conditions', 
     'functions', 'insights', 'strategies', 'patterns', 'all'
 ]
-word_map = read('synonyms.json')
-supported_core = word_map['standard_words']
-supported_synonyms = set()
-for x in word_map['standard_words'].keys():
-    for y in word_map['standard_words'][x]:
-        supported_synonyms.add(y)
-for path in ['data', 'dataset']:
-    if not os.path.exists(path):
-        os.mkdir(path)
-standard_verbs = set(['increase', 'decrease', 'inhibit', 'induce', 'activate', 'deactivate', 'enable', 'disable'])
-if os.path.exists('data/verbs.txt'):
-    verb_contents = read('verbs.txt')
-    if verb_contents is not None:
-        standard_verbs = set(verb_contents.split('\n'))
-just_summary = True # this indicates if you want all article metadata like id, title, & published index or just the summary text
-articles, index, rows = pull_summary_data('meningitis', just_summary)
+supported_params = ['--metadata', '--conditions', '--compounds', '--functions', '--metrics', '--props', '--components', '--bio-metrics', '--bio-symptoms', '--bio-conditions']
+metadata_key = 'all'
+args_index = {}
+for i, arg in enumerate(sys.argv):
+    if arg in supported_params:
+        arg_key = arg.replace('-', '')
+        arg_val = sys.argv[i + 1]
+        if arg_key == 'metadata':
+            if arg_val in empty_index.keys():
+                metadata_key = arg_val
+        else:
+            args_index[arg_key] = arg_val
+if len(args_index.keys()) == 1:
+    word_map = read('synonyms.json')
+    supported_core = word_map['standard_words']
+    supported_synonyms = set()
+    for x in word_map['standard_words'].keys():
+        for y in word_map['standard_words'][x]:
+            supported_synonyms.add(y)
+    for path in ['data', 'dataset']:
+        if not os.path.exists(path):
+            os.mkdir(path)
+    standard_verbs = set(['increase', 'decrease', 'inhibit', 'induce', 'activate', 'deactivate', 'enable', 'disable'])
+    if os.path.exists('data/verbs.txt'):
+        verb_contents = read('verbs.txt')
+        if verb_contents is not None:
+            standard_verbs = set(verb_contents.split('\n'))
+    just_summary = True # this indicates if you want all article metadata like id, title, & published index or just the summary text
+    articles, index, rows = pull_summary_data(metadata_key, args_index, just_summary)

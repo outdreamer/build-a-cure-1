@@ -24,7 +24,6 @@ def identify_elements(supported_core, elements, index):
     if type(elements) == str and ' ' in elements:
         blob = TextBlob(elements)
         phrases = blob.noun_phrases
-        print('identify elements', phrases, elements)
     empty_index = get_empty_index()
     element_keys = [ key for key in empty_index.keys() if key in supported_core ]
     elements = elements.split(' ') if type(elements) == str else elements
@@ -58,6 +57,7 @@ def identify_elements(supported_core, elements, index):
                                 identified_elements[keyword_type].add(new_element)
     if index:
         return index
+    print('\tidentified elements', identified_elements)
     return identified_elements
 
 def get_metrics(line):
