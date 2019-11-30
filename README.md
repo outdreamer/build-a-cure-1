@@ -56,6 +56,7 @@ python3 pull_metadata.py --metadata "all" --condition "diabetes"
 - find compounds studied for condition A
 ```
 python3 pull_metadata.py --metadata "treatments" --condition "diabetes"
+```
 - find metadata (functions, properties, side effects, symptoms) of compound X
 ```
 python3 pull_metadata.py --metadata "all" --compound "x"
