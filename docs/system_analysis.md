@@ -337,6 +337,7 @@ insight path:
 		in case you want to try to derive the original rule from the insight & its generating functions.
 
 		The insight path itself would be:
+		
 			- any combination of these insights that fits into the 3-step rule set above
 			- any combination of these insights that fits into a subset, transform, combination, alternative, or approximation of the 3-step rule set above
 				- this is bc the rule set can be modified by operations inherent to the rule set to derive other insights, 
@@ -354,6 +355,35 @@ insight path:
 			  & doesnt violate standard & conceptual operations that hold in the original rule set,
 			  but if its abstracted at all, other rules can apply:
 			  - when you change "doctor" to "x", then personal interaction rules dont apply because x could be a machine
+
+			- however there are filters that apply for:
+
+				- an insight:
+					- it must explain the rule interaction accurately
+
+				- an insight to be part of an insight path:
+					- it must contribute to the explanation of how an origin object of a possible route in the rule set gets to its target object
+						- for trees, the routes go in one direction, so it's a clear matter of:
+						  "explain how the top node gets to the bottom node, which this insight interacts with"
+						- for other structures like networks, it may be a more complex route from start to finish of any given path in the network
+
+				- ideally each insight would contribute more than other insights considered, 
+					so there should be a "best-fit" insight path composed of the "best-fitting" insights,
+					as well as a stack of other explanatory insight paths,
+					such as an "abstract" insight path composed entirely of abstract insights,
+					containing no specific information except core-function versions of objects & functions, 
+					for example the abstract core-function decomposition of "machine" may be any of these depending on context like intent:
+					  	- information-storage unit (intent="store")
+					  	- operation-executor unit (intent="run_tasks")
+					  	- experience unit (intent="entertainment")
+					  	- communication unit (intent="interact")
+					so the insights containing "machine" would be considered abstract if they had this replacement done
+
+				- the full stack of insight paths can include:
+					- an abstract insight path
+					- a best-fit insight path
+					- a most-efficient insight path
+					- a most-reusable insight path (has objects in common with many other systems)
 
 		Then you could apply the generated insight paths from a rule set to a new system's rule set with similar dynamics, 
 			as determined by the number of matching insights in the new rule set.
