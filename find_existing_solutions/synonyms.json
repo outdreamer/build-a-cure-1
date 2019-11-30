@@ -70,7 +70,7 @@
             "verge",
             "abuttals"
         ],
-        "conditions": [
+        "condition_keywords": [
             "outbreak",
             "epidemic",
             "illness",
@@ -78,39 +78,20 @@
             "with",
             "having",
             "suffering",
-            "-positive",
-            "-negative",
             "patients",
-            "disease",
             "disorder",
             "dysfunction",
             "affects",
-            "-a",
-            "-al",
-            "-is",
-            "-pathy",
-            "-emia",
-            "-itis",
             "lack",
-            "deficiency",
             "ailment",
             "collapse",
             "disability",
-            "disorder",
             "disturbance",
-            "failure",
             "malady",
             "relapse",
-            "seizure",
-            "sickness",
-            "syndrome",
-            "virus",
             "affliction",
-            "attack",
-            "bug",
             "confinement",
             "convalescence",
-            "fit",
             "indisposition",
             "infirmity",
             "malaise",
@@ -121,7 +102,26 @@
             "poor health",
             "unhealth"
         ],
-        "components": [
+        "conditions": [
+            "-ia",
+            "-is",
+            "-pathy",
+            "-emia",
+            "-itis",
+            "-pathy",
+            "neuro-",
+            "hepato-",
+            "deficiency",
+            "disorder",
+            "failure",
+            "sickness",
+            "syndrome",
+            "virus",
+            "attack",
+            "parasite",
+            "bug"
+        ],
+        "component_keywords": [
             "factor",
             "ingredient",
             "item",
@@ -134,7 +134,7 @@
             "making",
             "plug-in"
         ],
-        "intents": [
+        "intent_keywords": [
             "ambition",
             "intention",
             "objective",
@@ -149,7 +149,7 @@
             "object",
             "motive"
         ],
-        "strategies": [
+        "strategy_keywords": [
             "action",
             "approach",
             "blueprint",
@@ -175,7 +175,7 @@
             "tactic",
             "maneuver"
         ],
-        "hypothesis": [
+        "hypothesis_keywords": [
             "assumption",
             "axiom",
             "conclusion",
@@ -224,7 +224,7 @@
             "starting point",
             "law"
         ],
-        "conclusions": [
+        "conclusion_keywords": [
             "closure",
             "completion",
             "result",
@@ -242,7 +242,7 @@
             "termination",
             "desistance"
         ],
-        "treatments": [
+        "treatment_keywords": [
             "cure",
             "medication",
             "medicine",
@@ -264,7 +264,8 @@
             "mix",
             "combination"
         ],
-        "symptoms": [
+        "symptom_keywords": [
+            "seizure",
             "manifestation",
             "syndrome",
             "evidence",
@@ -300,7 +301,6 @@
             "-ate",
             "-ite",
             "-ium",
-            "-al",
             "supplement",
             "solution",
             "tincture",

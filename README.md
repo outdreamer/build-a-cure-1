@@ -26,9 +26,9 @@ options = [
 The first version will support fetching studied treatments, then recommending new treatment compounds & microbes
 
 These pull_metadata command options will be supported in future releases rather than mvp:
-	--metric "side effects" --props "minimize"
+	--metric "side effects" --filters "minimize"
 	--function "neutralize impact of drug X on liver"
-	--metadata "stressors" --props "symptom:A, function:B, metric:metricC::metricvalue, condition:D"
+	--metadata "stressors" --filters "symptoms:A,functions:B,metrics:metricC::metricvalue,conditions:D"
 	--metadata "components" --compound "z" --function "synthesis"
 	--bio-metrics "blood ph:7.0,heart rate:60 bpm" --bio-symptoms "fever,tachycardia" --bio-conditions "high blood pressure"
 
@@ -40,9 +40,14 @@ Running pull_metadata.py the first time will also generate a small database of i
 python3 pull_metadata.py
 ```
 
-- find symptoms of condition Z
+- pull all metadata & generate all datasets:
 ```
-python3 pull_metadata.py --metadata "symptoms" --condition "z"
+python3 pull_metadata.py --metadata "generate-all"
+```
+
+- find symptoms & successful treatments of condition Z
+```
+python3 pull_metadata.py --metadata "symptoms,treatments_successful" --condition "z"
 ```
 - get all metadata available for a condition:
 ```
@@ -61,15 +66,15 @@ python3 pull_metadata.py --metadata "compounds" --function "neutralize impact of
 ```
 - find compound with fewest side effects
 ```
-python3 pull_metadata.py --metadata "compounds" --metric "side effects" --props "minimize"
+python3 pull_metadata.py --metadata "compounds" --metric "side effects" --filters "minimize"
 ```
 - find range of modified compounds with same function X & similar or harmless side effects
 ```
-python3 pull_metadata.py --metadata "compounds" --function "neutralize impact of drug X on liver" --metric "side effects" --props "minimize"
+python3 pull_metadata.py --metadata "compounds" --function "neutralize impact of drug X on liver" --metric "side effects" --filters "minimize"
 ```
 - find stressors that directly trigger symptom A, function B, metric C, condition D or can construct those objects
 ```
-python3 pull_metadata.py --metadata "stressors" --props "symptom:A, function:B, metric:metricC::metricvalue, condition:D"
+python3 pull_metadata.py --metadata "stressors" --filters "symptoms:A,functions:B,metrics:metricC::metricvalue,conditions:D"
 ```
 - find combinations of components necessary to synthesize a compound
 ```
@@ -77,7 +82,7 @@ python3 pull_metadata.py --metadata "components" --compound "z" --function "synt
 ```
 - find out if a particular combinations of components can synthesize compound x using standard (non-experimental) methods
 ```
-python3 pull_metadata.py --metadata "compound" --components "a,b,c" --function "synthesis" --props "x"
+python3 pull_metadata.py --metadata "compound" --components "a,b,c" --function "synthesis" --filters "x"
 ```
 - find (effective, safe range, toxic) dose of compound X for a person with a set of biometrics, symptoms, & known conditions
 ```

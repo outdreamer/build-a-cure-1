@@ -2,11 +2,12 @@ import sys, json, os, re, urllib, csv
 from xml.dom.minidom import parse
 import xml.dom.minidom
 import requests
+from nltk.stem.snowball import SnowballStemmer
 from textblob import TextBlob, Word
 from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
 
-from utils import get_verbs, get_standard_word, save, read, remove_duplicates
+from utils import get_verbs, get_standard_word, save, read, remove_duplicates, write_csv
 from get_index_def import get_empty_index
 from get_objects import identify_elements, get_metrics, get_patterns, get_intent, get_strategies, get_functions, get_side_effects, get_types, get_dependencies, get_related_components, get_symptoms, get_treatments, get_mechanisms_of_action, get_index
 
@@ -24,50 +25,49 @@ nltk.download()
 nltk.download('punkt')
 '''
 
-def pull_summary_data(metadata, args, just_summary):
+def pull_summary_data(metadata, args, filters, just_summary):
     ''' get index from research study api providing summaries '''
     print('pull metadata', metadata, args)
-    ''' we assume the primary argument comes first ''' 
+    ''' we assume the primary argument comes first - right now only supports one argument'''
     articles = []
     rows = []
-    index = get_empty_index()
+    index = get_empty_index(metadata)
     for arg in args:
-        keyword = args[arg]
-        start = 0
-        total_results = 0
-        max_results = 10
-        page_number = 1
-        for i in range(0, 10):
-            start = i * max_results
-            sources = [
-                ''.join(['http://export.arxiv.org/api/query?search_query=all:', keyword, '&start=', str(start), '&max_results=', str(max_results)])
-            ]
-            print('sources', sources)
-            for url in sources:
-                response = requests.get(url)
-                response_string = xml.dom.minidom.parseString(response.content)
-                if response_string:
-                    total_results = int(response_string.documentElement.getElementsByTagName("opensearch:totalResults")[0].childNodes[0].nodeValue)
-                    entries = response_string.documentElement.getElementsByTagName("entry")
-                else:
-                    entries = json.loads(response.content)
-                new_articles, index, new_rows = process_articles(keyword, entries, index, just_summary)
-                if len(new_rows) > 0:
-                    rows.extend(new_rows)
-                if len(new_articles) > 0:
-                    articles.extend(new_articles)
-            if total_results < (start + max_results):
-                break
-    #verbs,relationships,components,conditions,symptoms,compounds,metrics,stressors,patient_conditions,patient_symptoms,patient_metrics,patient_stressors,
-    #treatments_successful,treatments_failed,patterns,functions,insights,strategies,systems,variables,intents,types,causal_layers
+        print('args', arg, args[arg])
+        for keyword in args[arg]:
+            total_results = 0
+            max_results = 10
+            page_number = 1
+            sources = ['http://export.arxiv.org/api/query?search_query=all:']
+            for source in sources:
+                for i in range(0, 10):
+                    start = i * max_results
+                    if total_results > start or total_results == 0:
+                        url = ''.join([source, keyword, '&start=', str(start), '&max_results=', str(max_results)])
+                        print('url', url)
+                        response = requests.get(url)
+                        response_string = xml.dom.minidom.parseString(response.content)
+                        if response_string:
+                            if total_results == 0:
+                                total_results = int(response_string.documentElement.getElementsByTagName("opensearch:totalResults")[0].childNodes[0].nodeValue)
+                            entries = response_string.documentElement.getElementsByTagName("entry")
+                        else:
+                            entries = json.loads(response.content)
+                        new_articles, index, new_rows = process_articles(keyword, entries, index, just_summary, metadata)
+                        if len(new_rows) > 0:
+                            rows.extend(new_rows)
+                        if len(new_articles) > 0:
+                            articles.extend(new_articles)
     if len(rows) > 0:
         write_csv(rows, index.keys(), 'data/rows.csv')
+        if metadata == 'generate-all':
+            generate_all_datasets(index.keys(), rows)
     return articles, index, rows
 
-def process_articles(condition_keyword, entries, index, just_summary):
+def process_articles(condition_keyword, entries, index, just_summary, metadata):
     rows = []
     articles = []
-    empty_index = get_empty_index()
+    empty_index = get_empty_index(metadata)
     for entry in entries:
         print('\n------- article -------')
         for node in entry.childNodes:
@@ -83,17 +83,20 @@ def process_articles(condition_keyword, entries, index, just_summary):
                                     line = ''.join([lines[i - 1], line])
                                     if len(new_lines) > 0:
                                         new_lines.pop()
-                                new_lines.append(line)
+                                if len(line.replace(' ', '')) > 0:
+                                    new_lines.append(line.strip())
+                        print('new lines', new_lines)
                         for line in new_lines:
                             line = line.strip()
                             if ' ' in line and len(line.split(' ')) > 1:
-                                line = re.sub(r'\+', '', line)
-                                line = line + '.'
-                                print('\n\tline', line)
-                                formatted_line = remove_duplicates(line)
+                                line = remove_duplicates(line)
+                                formatted_line = ''.join([x for x in line.lower() if x in 'abcdefghijklmnopqrstuvwxyz0123456789- '])
+                                print('\n\tline', formatted_line)
                                 if len(formatted_line) > 0:
-                                    row = identify_elements(supported_core, formatted_line, None)
-                                    row = get_medical_objects(formatted_line, row) #standard nlp
+                                    row = identify_elements(supported_core, formatted_line, None, metadata)
+                                    row = get_medical_objects(line, formatted_line, row, metadata) #standard nlp
+                                    row = { key: str(','.join(val)) for key, val in row.items() }
+                                    print('row', row)
                                     #index, row = get_metadata(formatted_line, index, row) #custom analysis
                                     if row != empty_index:
                                         rows.append(row)
@@ -124,14 +127,22 @@ def process_articles(condition_keyword, entries, index, just_summary):
         save(''.join(['data/', key, '.txt']), index_string)
     return articles, index, rows
 
-def get_medical_objects(line, row):
+def get_word_type(word):
+    ''' look through synonyms to find out which element contains this word '''
+    return word
+
+def get_medical_objects(line, formatted_line, row, metadata):
     '''
     - this function determines conditions, symptoms, & treatments in the sentence 
     - this function is a supplement to get_metadata, 
     which fetches conceptual metadata like insights & strategies
+
+    to do: 
+        - add treatment keyword check & add treatment keywords
+        - add metadata check to make sure they requested this data
     '''
-    row['verbs'] = get_verbs(line)
-    row['relationships'] = get_relationships(line, row)
+    row['verbs'] = get_verbs(formatted_line)
+    row['relationships'], row['components'] = get_relationships(line, row)
     for r in row['relationships']:
         '''
         outputs = get_dependencies('outputs', line, relationships, 3)
@@ -142,10 +153,9 @@ def get_medical_objects(line, row):
         row['mechanisms'] = row['mechanisms'].union(get_mechanisms_of_action(line))
         row['types'] = row['types'].union(get_types(line))
         row['variables'] = row['variables'].union(get_dependencies('inputs', line, row['relationships'], 1))
-        row['alternatives'] = get_related_components(line)
+        row['alternatives'] = get_related_components(line)    
+        intent = get_intent(summary)    
         '''
-        # to do: add treatment keyword check & add treatment keywords
-        #intent = get_intent(summary)
         intent = None
         correlation = get_correlation_of_relationship(intent, r)
         print('\tget_medical_objects: object relationship', correlation, r)
@@ -182,7 +192,6 @@ def get_metadata(line, index, row):
     if len(filtered_line) < 3:
         return index
     '''
-    formatted_line = line.replace(',', '')
     row['functions'] = get_functions(row['relationships'])
     row['insights'] = get_insights(row['relationships'])
     row['strategies'] = get_strategies(row['relationships'])
@@ -247,34 +256,50 @@ def get_relationships(line, row):
     make sure youre handling original line unformatted
     '''
     element_list = [item for key in row for item in row[key]]
-    clause_keys = [] #[',', 'because', 'since', 'due']
+    clause_keys = [','] #[',', 'because', 'since', 'due']
     condition_keys = ['and', 'or', 'even', 'as if', 'as', 'like', 'except', 'which', 'in case', 'if', 'then']
     relationships = set()
     current_set = set()
+    components = set()
+    stemmer = SnowballStemmer("english")
     line = ' '.join(line) if type(line) != str else line
     print('\tget relationships', line)
     split_line = line.replace('.', '').replace(',', ' ,').split(' ')
     for i, word in enumerate(split_line):
-        numbers = ''.join([w for w in word if w in '0123456789']) # missing 3mg
-        if len(word) == len(numbers):
+        numbers = ''.join([w for w in word if w in '0123456789'])
+        if len(numbers) > 0:
             current_set.add(word)
         else:
             standard_word = get_standard_word(row, word, supported_core, supported_synonyms, standard_verbs)
+            #print('standard word', standard_word, word) # standard word brain_disorder encephalopathy
             if standard_word:
-                if len(Word(word).get_synsets(pos=NOUN)) > 0:
-                    # check that this is one of the identified elements
-                    if word in element_list:
+                if (len(standard_word) - len(word)) < 7:
+                    if len(Word(word).get_synsets(pos=NOUN)) > 0:
+                        # check that this is one of the identified elements
+                        word = stemmer.stem(word)
+                        if word in element_list:
+                            current_set.add(standard_word)
+                        if (i == (len(split_line) - 1)) or (word in clause_keys):
+                            if len(current_set) > 1:
+                                relationships.add(' '.join(current_set))
+                                current_set = set()
+                    elif len(Word(word).get_synsets(pos=VERB)) > 0:
                         current_set.add(standard_word)
-                    if (i == (len(split_line) - 1)) or (word in clause_keys):
-                        if len(current_set) > 1:
-                            relationships.add(' '.join(current_set))
-                            current_set = set()
-                elif len(Word(word).get_synsets(pos=VERB)) > 0:
-                    current_set.add(standard_word)
+                    else:
+                        current_set.add(word)
+                else:
+                    current_set.add(word)
             else:
                 current_set.add(word)
     print('\trelationships', relationships)
-    return relationships
+    components = set(w for w in line.split(' ') for r in relationships if w not in r and w not in row['verbs'])
+    new_list = []
+    for c in components:
+        c_root = stemmer.stem(c)
+        if len(Word(c_root).get_synsets(pos=VERB)) == 0 or len(Word(c_root).get_synsets(pos=NOUN)) == 0:
+            new_list.append(c)
+    components = set(new_list)
+    return relationships, components
 
 def generate_all_datasets(component_list, rows):
     '''
@@ -313,14 +338,7 @@ def generate_dataset(element_list, rows, write):
         return dataset
     return False
 
-def write_csv(rows, header_list, path):
-    with open(path, 'wt') as f:
-        csv_writer = csv.DictWriter(f, fieldnames=header_list)
-        csv_writer.writeheader()
-        csv_writer.writerows(rows)
-        f.close()
-
-empty_index = get_empty_index()
+empty_index = get_empty_index('all')
 options = [
     'properties', 'treatments', 'contraindications', 'metrics',
     'side effects', 'interactions', 'symptoms', 'conditions', 
@@ -329,6 +347,7 @@ options = [
 supported_params = ['--metadata', '--conditions', '--compounds', '--functions', '--metrics', '--props', '--components', '--bio-metrics', '--bio-symptoms', '--bio-conditions']
 metadata_key = 'all'
 args_index = {}
+filters_index = {}
 for i, arg in enumerate(sys.argv):
     if arg in supported_params:
         arg_key = arg.replace('-', '')
@@ -336,8 +355,11 @@ for i, arg in enumerate(sys.argv):
         if arg_key == 'metadata':
             if arg_val in empty_index.keys():
                 metadata_key = arg_val
+        elif arg_key == 'filters':
+            # --filters "symptoms:A,functions:B,metrics:metricC::metricvalue,conditions:D"
+            filters_index = { key: val.split(',') for key, val in arg_val.split(',') } # val will be metricC::metricvalue for metric
         else:
-            args_index[arg_key] = arg_val
+            args_index[arg_key] = arg_val.split(',')
 if len(args_index.keys()) == 1:
     word_map = read('synonyms.json')
     supported_core = word_map['standard_words']
@@ -354,4 +376,4 @@ if len(args_index.keys()) == 1:
         if verb_contents is not None:
             standard_verbs = set(verb_contents.split('\n'))
     just_summary = True # this indicates if you want all article metadata like id, title, & published index or just the summary text
-    articles, index, rows = pull_summary_data(metadata_key, args_index, just_summary)
+    articles, index, rows = pull_summary_data(metadata_key, args_index, filters_index, just_summary)

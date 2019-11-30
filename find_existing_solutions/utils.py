@@ -1,8 +1,11 @@
-import os, json, itertools
+import os, json, itertools, csv
 import nltk
 from nltk.tokenize import word_tokenize 
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet
+from nltk.stem import WordNetLemmatizer
+from nltk.stem.snowball import SnowballStemmer
+stemmer = SnowballStemmer("english")    
 from textblob import TextBlob, Word
 from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
@@ -23,27 +26,36 @@ def get_verbs(line):
             verbs.add(word)
     return verbs
 
-def get_subword_match(keyword_list, word):
-    #print('\tget_subword_match: checking list for', word, keyword_list)
-    for k in keyword_list:
-        if '-' in k:
-            position = 'suffix' if '-' == k[0] else 'prefix' if '-' == k[len(k) - 1] else 'other'
-            k = k.replace('-', '')
-            suffix = word[(len(word)-len(k)-1):len(word)-1]
-            prefix = word[0:len(k)]
-            if (position == 'suffix' and k == suffix) or (position == 'prefix' and k == prefix):
-                # print('\tsuffix', suffix, 'prefix', prefix, 'word', word, 'k', k)
-                return True 
-        else:
-            if k in word or word in k:
-                return True
-            match_count = 0
-            for pair in itertools.product(k, word):
-                if pair[0] == pair[1]:
-                    match_count += 1
-            match_ratio = match_count / len(word)
-            if match_ratio > 0.5:
-                return True
+def get_subword_match(keyword_list, words, match_type):
+    words = [words] if type(words) == str else words
+    for word_or_phrase in words:
+        for word in word_or_phrase.split(' '):
+            for k in keyword_list:
+                if '-' in k:
+                    position = 'suffix' if '-' == k[0] else 'prefix' if '-' == k[len(k) - 1] else 'other'
+                    new_k = k.replace('-', '')
+                    suffix = word[(len(word)-len(new_k)):len(word)]
+                    prefix = word[0:len(new_k)]
+                    if (position == 'suffix' and new_k == suffix) or (position == 'prefix' and new_k == prefix):
+                        return True if match_type == 'bool' else k
+                else:
+                    if len(k) > 4 and len(word) > 4 and k in word or word in k:
+                        return True if match_type == 'bool' else k
+                    match_count = 0
+                    for i in range(0, len(word)):
+                        if i < len(k):
+                            if k[i] == word[i]:
+                                match_count += 1
+                    match_ratio = match_count / len(word)
+                    if match_ratio > 0.8:
+                        return True if match_type == 'bool' else k
+                    '''
+                    word_root = stemmer.stem(word)
+                    print('word root', word_root, word)
+                    k_root = stemmer.stem(k)
+                    if word_root == k_root:
+                        return True if match_type == 'bool' else k
+                    '''
     return False
 
 def get_standard_word(row, word, supported_core, supported_synonyms, standard_verbs):
@@ -58,11 +70,14 @@ def get_standard_word(row, word, supported_core, supported_synonyms, standard_ve
         for item in key:
             if item == word:
                 return key
-    for key, val in row.items():
-        if word in val and key in supported_core:
-            matched = get_subword_match(supported_core[key], word)
-            if matched:
-                return word
+        word_root = stemmer.stem(word)
+        matched = get_subword_match(supported_core[key], word, 'word')
+        if matched:
+            #print('matched', matched, key, word_root, word)
+            if key in row.keys():
+                return key
+            else:
+                return matched if '-' not in matched else word
     synset = verb_synset if len(verb_synset) > 0 else noun_synset if len(noun_synset) > 0 else []
     if len(synset) > 0:
         counts = {}
@@ -83,7 +98,7 @@ def get_standard_word(row, word, supported_core, supported_synonyms, standard_ve
                 '''
                 if ms in supported_synonyms or ms in standard_verbs:
                     return ms
-            print('\tnot in supported synonyms or standard relationships', word, ms, max_synonyms[0])
+            #print('\tnot in supported synonyms or standard relationships', word, ms, max_synonyms[0])
             return max_synonyms[0]
     return False
 
@@ -105,11 +120,23 @@ def read(path):
             f.close()
     return index
 
+def write_csv(rows, header_list, path):
+    with open(path, 'wt') as f:
+        csv_writer = csv.DictWriter(f, fieldnames=header_list)
+        csv_writer.writeheader()
+        csv_writer.writerows(rows)
+        f.close()
+
 def remove_duplicates(line):
     ''' to do: add semantic & keyword equivalence checks '''
     custom_removal = ['the', ',', '.', 'a', 'an', 'them', 'they']
     if type(line) == str:
-        return ' '.join(set(w for w in line.lower().split(' ') if w.strip() not in stopwords.words('english') and w.strip() not in custom_removal))
+        line_list = [w for w in line.lower().split(' ') if w.strip() not in stopwords.words('english') and w.strip() not in custom_removal]
+        new_list = []
+        for item in line_list:
+            if item not in new_list:
+                new_list.append(item)
+        return ' '.join(new_list)
     else:
-        return set(w.lower() for w in line if w.strip().lower() not in stopwords.words('english') and w.strip.lower() not in custom_removal)
+        return [w.lower() for w in line if w.strip().lower() not in stopwords.words('english') and w.strip.lower() not in custom_removal]
     return line

@@ -4,7 +4,7 @@ from utils import get_subword_match
 
 ''' GET INDEX OF ELEMENTS '''
 
-def identify_elements(supported_core, elements, index):
+def identify_elements(supported_core, elements, index, metadata):
     '''
     this function is to identify which type of object can be found in elements
     - elements may be a set/list of sentences/phrases/words
@@ -24,15 +24,17 @@ def identify_elements(supported_core, elements, index):
     if type(elements) == str and ' ' in elements:
         blob = TextBlob(elements)
         phrases = blob.noun_phrases
-    empty_index = get_empty_index()
+    empty_index = get_empty_index(metadata)
     element_keys = [ key for key in empty_index.keys() if key in supported_core ]
     elements = elements.split(' ') if type(elements) == str else elements
-    identified_elements = get_empty_index()
+    identified_elements = get_empty_index(metadata)
     for element in elements:
         for keyword_type in element_keys:
             split_element = element if type(element) == set or type(element) == list else element.split(' ')
             for i, word in enumerate(split_element):
-                matched = get_subword_match(supported_core[keyword_type], word)
+                with_previous = word if i == 0 else ' '.join([split_element[i - 1], word])
+                with_next = word if i == (len(split_element) - 1) else ' '.join([word, split_element[i + 1]])
+                matched = get_subword_match(supported_core[keyword_type], word, 'bool')
                 if matched:
                     if index:
                         index[keyword_type].add(word)
@@ -190,11 +192,11 @@ def get_related_components(component):
     '''
     return component
 
-def get_index(sources, index_type):
+def get_index(sources, index_type, metadata):
     '''
     this assembles an index out of sources for the index type,
     pulling from data sources like wiki to generate a dataset, 
     if there isnt already a dataset stored locally
     '''
-    index = get_empty_index()
+    index = get_empty_index(metadata)
     return index

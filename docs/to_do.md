@@ -4,13 +4,13 @@ to do:
 
 - finish is_valid function using pubchem search api & error message
 
-- make sure you remove punctuation
+- finish tuning output of treatments to list actual treatments from articles
+
+- 'compounds': 'disease' do a check for full keyword matching before adding a partial match
 
 - make a list of common intent synonyms & store - ie, diagnose
 
 - check output of synonym replacements to make sure its not changing meaning
-
-- finish tuning output of treatments to list actual treatments from articles
 
 - finish get_metadata
 
