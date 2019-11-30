@@ -5,8 +5,11 @@ to do:
 - finish is_valid function using pubchem search api & error message
 
 - finish tuning output of treatments to list actual treatments from articles
+  - make sure it adds nothing if theres no treatment in the article - this is related to intent function
 
-- 'compounds': 'disease' do a check for full keyword matching before adding a partial match
+- do a check for full keyword matching before adding a partial match
+  compounds: 'disease'
+  causal_layers: 'cr,ratio' 
 
 - make a list of common intent synonyms & store - ie, diagnose
 

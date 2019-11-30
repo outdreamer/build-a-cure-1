@@ -281,7 +281,8 @@ def get_relationships(line, row):
                             current_set.add(standard_word)
                         if (i == (len(split_line) - 1)) or (word in clause_keys):
                             if len(current_set) > 1:
-                                relationships.add(' '.join(current_set))
+                                set_string = '_'.join(current_set).replace('\n','')
+                                relationships.add(set_string)
                                 current_set = set()
                     elif len(Word(word).get_synsets(pos=VERB)) > 0:
                         current_set.add(standard_word)
@@ -298,7 +299,7 @@ def get_relationships(line, row):
         c_root = stemmer.stem(c)
         if len(Word(c_root).get_synsets(pos=VERB)) == 0 or len(Word(c_root).get_synsets(pos=NOUN)) == 0:
             new_list.append(c)
-    components = set(new_list)
+    components = set(new_list) # to do: get rid of patients, patient
     return relationships, components
 
 def generate_all_datasets(component_list, rows):
