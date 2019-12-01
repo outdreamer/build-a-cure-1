@@ -218,6 +218,14 @@ why is priority different from intent?
 			- current/target objects & functions relating them
 		- ex: "if condition x, maintain efficiency of function y outputs"
 
+- list methods of variance flow on the change interface (function):
+	- how variance accretes in various metrics according to distortion of problem
+	- ex: diabetes can cause problems like hormone disruption and kidney problems, 
+		and the problem that shows up first depends on which system is more distorted by diabetes,
+		as they have different markers but indicate the same underlying condition
+
+- list methods of identifying metrics of optimization, such as gaps in efficiency:
+	- how a priority/intent/problem can be handled with fewer resources
 
 general process of system analysis:
 - derive core functions/operations
