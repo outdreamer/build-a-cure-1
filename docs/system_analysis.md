@@ -171,6 +171,54 @@ why is pattern separate from function table? bc
 	  so you can identify insights of the data set & similarity to other data sets
 	- the function is a specific implementation of a pattern sequence, restricted to operations & input/output, & there are many functions that can produce each pattern
 
+why is strategy different from insight?
+	- insight is the rule, strategy applies a rule in a context to achieve a goal
+	- strategy:
+		properties:
+			- a context condition, involving evaluating information about objects in isolation, without a system context
+			- an intent
+			- insight(s) describing the functions needed to get from starting point (condition x) to the goal (z)
+			- objects & a function relating them
+
+		- ex: 
+			- "given condition x, do function y to achieve intent z"
+			- "if the object is decomposable into subcomponents, split it into sub components & handle them separately to achieve the goal of deriving its functions"
+
+		- sometimes there will be strategies that have no context so theyre basically just core functions,
+			like:
+				- "break into smaller objects and handle those one at a time", 
+				which is a strategy that applies to solving problems in general & also fighting pathogen infections in the bio system
+				- "break into subsets and recombine to get original"
+
+		- often strategies will involve conditions to choose between insights:
+			- "if insight x doesnt work in the range of metric y, try insight z"
+
+	- insight:
+		properties:
+			- a rule set where the insight applies, explaining how one object in the rule set is linked to another
+			- bc of this, theyre usually tied to a system context, & applicable in a set of systems rather than applicable to any object
+			- objects & a function relating them
+		- ex: 
+			- "function y is useful for intent z"
+			- "power favors decentralization" (system context: abstract network + any system that interacts with the concept of power, which is any system involving resources)
+
+why is intent different from strategy?
+	- intent is the target end state, and the strategy is the plan to get there
+
+why is priority different from intent?
+	- priority is a concept, intent is a concrete goal
+
+	priority:
+		- properties:
+			- abstract concept that applies in most if not all system contexts
+		- ex: efficiency, balance, fairness, stability, relevance
+
+	intent:
+		- properties:
+			- current/target objects & functions relating them
+		- ex: "if condition x, maintain efficiency of function y outputs"
+
+
 general process of system analysis:
 - derive core functions/operations
 - classify these core operations

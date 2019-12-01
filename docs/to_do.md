@@ -14,6 +14,18 @@ to do:
   causal_layers: 'cr,ratio' 
   metrics: 'administration'
 
+- insight in a article doc is likely to:
+  - have more topic-related keywords
+  - have a causation verb (induces, associated)
+  - relate to intents important to agents (health, avoid illness)
+  "saturated fat intake induces a cellular reprogramming that is associated with prostate cancer progression and lethality"
+  https://medicalxpress.com/news/2019-11-high-fat-diet-proven-fuel-prostate.html
+
+- symptom examples:
+  - fever red urine skin rash paralysis headache bleeding
+
+- integrate chembl search if you can search for a condition & return molecules known to treat it
+
 - add function output to verbs index
 
 - finish is_valid function using pubchem search api & error message
