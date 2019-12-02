@@ -40,6 +40,9 @@ With answers like:
 				- 'enforcement should be automated' (automaters will have more power which must be limited)
 				- 'enforcement should be a backup method to prevention' (agencies that do prevention should work with agencies that automate enforcement)
 		- apply([], ['max', 'count', 'split'], 'find_biggest_number_in_string', 'programming') should return a function: "max([x for x in input.split('') if int(x)])"
+		- apply([], insight, 'strategy', problem_space) would apply that insight to the problem space, 
+			converting it into a usable strategy with an intent 
+			(agent & possible intents would be part of the problem space object)
 
 ## Generate
 - generate(type, input_ranges, output_distribution):
@@ -64,6 +67,8 @@ core function + core object -> interaction rule of core attributes that aligns w
 - find the rules of finding which key object combinations are important
 
 - talk about differences between systems & spaces they inhabit
+
+- when you describe the attributes & functions of an object, make sure to list key attributes of each function in a keywords attribute for quick searching for relevant interactions
 
 - why would "finding the symmetries that involve transforms that dont compromise identity of any objects in a system" 
 	solve the question of "how to model these specific object interactions efficiently"?
@@ -90,6 +95,10 @@ core function + core object -> interaction rule of core attributes that aligns w
 
 - interactive system analysis with a sample db of rules/types:
 	- examine possible sub-systems given core functions & output set of likeliest sub-system sets
+
+- object modifications:
+	- small changes in structure can invalidate functionality - find a list of those change types
+	- each object has a field of potential in which it can be distorted outside its normal boundaries, until it's not recognizable as the same type
 
 minimum information:
 - with a line in a space, you have this information:
@@ -170,6 +179,16 @@ why is pattern separate from function table? bc
 	- you want to store some common patterns in a data set (such as variable value trajectories, like if butterfly always comes after larvae),
 	  so you can identify insights of the data set & similarity to other data sets
 	- the function is a specific implementation of a pattern sequence, restricted to operations & input/output, & there are many functions that can produce each pattern
+
+why is function different from insight?
+	- function can be an abstract operation applicable to all systems, whereas insights are usually relating one identified object with another identified object, 
+	implying a host system like the abstract network if the objects are both concepts & other complex systems on the info layer if the objects are physical
+	- there seems to be a gap in insight coverage bc insights arent normally thought of as numerical, but insights can store math relationships if theyre abstract:
+		"y = 2x" is not an insight, but "the slope of a function is the rate of change" is an insight, and so is "the slope can be determined from the change in y / the change in x"
+	- core functions like "split this sequence into its smallest parts" arent an insight, its a function 
+	- it might be an insight if it was "the optimal way to solve an unknown problem is break it down",
+		which has a related object in the form of the function output (achieve the intent: "solve a problem")
+	- functions are relationships between objects like insights are, but insights contain information about optimal & true paths between objects
 
 why is strategy different from insight?
 	- insight is the rule, strategy applies a rule in a context to achieve a goal

@@ -14,6 +14,8 @@ to do:
   causal_layers: 'cr,ratio' 
   metrics: 'administration'
 
+- finish concept diagrams
+
 - insight in a article doc is likely to:
   - have more topic-related keywords
   - have a causation verb (induces, associated)
@@ -115,11 +117,7 @@ objectives:
     suppress/interfere/inhibit activity of drug/medication/enzyme
 
 - once you have standard object analysis with some object model insights, you can apply them to bio systems
-  - "adjacency as a definition of relevance can be used as a way to derive the path to get a drug to a location in the system"
-
-- small changes in structure can invalidate functionality - find a list of those change types
-
-- when you describe the attributes & functions of an object, make sure to list key attributes of each function in a keywords attribute for quick searching for relevant interactions
+  - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
 
 - the full data set should have numerical categories indicating condition(s) treated in the output label so it can be separated into sub-sets by condition treated
 
@@ -130,10 +128,6 @@ objectives:
 - add recurrent nn example code that can be copied & plugged in without modification
 
 - write function to get semantic bio metadata of compounds (bio-availability, activation in the host species, etc)
-
-- write function to pull concepts from a research article 
-
-- write function to pull relationships from a research article
 
 - write function to pull symptom lists for a condition from forums/drugs/rxlist
 
