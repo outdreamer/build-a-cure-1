@@ -221,6 +221,20 @@ why is strategy different from insight?
 			- "function y is useful for intent z"
 			- "power favors decentralization" (system context: abstract network + any system that interacts with the concept of power, which is any system involving resources)
 
+- "An unsupervised deep-learning algorithm is fed data without labels and sifts through it to find common patterns or representative features"
+  System analysis would be able to look at a data set & tell you there's an antecedent variable determining this batch of variables, 
+  and an imminent type convergence that will make these two variables intersect,
+  and a plateau of change rule changes in the system so the predictor can expect to remain valid for a while after the type convergence.
+  https://medicalxpress.com/news/2019-12-deep-molecular-patterns-cancer.html
+
+- why use system analysis in a neural network? because:
+  - the neural net needs some concept of system mechanics built in in order to fill in the gaps left by data
+  - if you integrate system analysis, the neural network can modify itself to accommodate its changing inputs & output relationships
+  - when a more efficient method to execute an operation is found, 
+    the system analysis nodes in your neural network will make sure your network is updated with the latest optimal strategies
+  - the system analysis nodes will be able to steadily reduce the neural network structure with enough uses to the final set of explanatory features & conceptual metadata, so all that's left is the most efficient prediction function rather than a neural network model function
+  - this will make problems currently solved with AI future-proof & automatable
+
 why is intent different from strategy?
 	- intent is the target end state, and the strategy is the plan to get there
 
