@@ -1,12 +1,89 @@
 to do:
 
-- finish get object functions
-- next task will be: predict a phage for a pathogen, vs. predict a compound for a pathogen
-- are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?
+- finish get object functions for pulling existing research studies 
 - fix plural form of duplicate objects in sets
-  https://en.wikipedia.org/wiki/List_of_fallacies
-- finish informal fallacy diagrams
 
+- remove nouns, verbs, adverbs & adjectives from objects:
+  - components
+  - compounds
+  - remove common nouns analysis, basis, dis/order, diagnosis from conditions
+
+- same line in functions: expressionactivity
+- do a check for full keyword matching before adding a partial match
+  compounds: 'disease'
+  causal_layers: 'cr,ratio' 
+  metrics: 'administration'
+
+- insight in a article doc is likely to:
+  - have more topic-related keywords
+  - have a causation verb (induces, associated)
+  - relate to intents important to agents (health, avoid illness)
+  "saturated fat intake induces a cellular reprogramming that is associated with prostate cancer progression and lethality"
+  https://medicalxpress.com/news/2019-11-high-fat-diet-proven-fuel-prostate.html
+
+- symptom examples:
+  - fever red urine skin rash paralysis headache bleeding
+
+- integrate chembl search if you can search for a condition & return molecules known to treat it
+
+- add function output to verbs index
+
+- finish is_valid function using pubchem search api & error message
+
+- integrate conditions/symptoms
+- integrate treatments/compounds
+
+- finish treatment failure condition
+  - make sure it adds nothing if theres no treatment in the article - this is related to intent function
+
+- make a list of common intent synonyms & store - ie, diagnose
+
+- check output of synonym replacements to make sure its not changing meaning
+
+- finish get_metadata
+
+- use source of bio synonyms
+
+- add get_related_components function to pull components of a compound & primary metabolites
+
+- get word roots & word distortions of synonyms using lemmatization lib
+
+- add function to convert smile formula - find way to represent it without assigning numbers to chars, or use the image
+    - filter generated compounds by validity if there is an api to check if a compound string is valid, bc generating smile formulas is quicker than manipulating coordinates
+    - pubchem has a validator in their search for invalid structure submitted to api: "Exception during execution: Unable to standardize the given structure"
+  - you need a way to store position of two numbers (left & right element number of protons) in one number as well as the bond type, unless you put the bond type in the next column 
+    or if the bond type is derivable you could leave it out
+  - you could use a ratio if you store the original values for each row, but that leaves out identity information - the ratio might not be relevant but the identities
+  - what about a decimal pair like left_number.right_number - is there room for tuples per cell?
+
+- get strategies used by an organism or used on a compound like: 
+  https://medicalxpress.com/news/2019-11-high-resolution-images-malaria-parasites-evade.html
+
+  - the most important metadata attribute to write a function for is the reason for success/failure indicating the mechanism of action or strategy used
+    The strategy behind the successful or failed attack should ideally be included
+      - "this structure on the compound tears the cell barrier"
+      - "induces apoptosis by depriving it of contrary signals"
+    in as structured a format as possible (numerical mappings could work for an initial version)
+
+  - drugs need a way to handle common mutation strategies of pathogens
+    - up regulating CDR genes
+    - reduced sensitivity of the target enzyme to inhibition by the agent
+    - mutations in the ERG11 gene, which codes for 14α-demethylase. These mutations prevent the azole drug from binding, while still allowing binding of the enzyme's natural substrate, lanosterol
+
+
+- next task will be: predict a phage for a pathogen, vs. predict a compound for a pathogen/condition
+- in order to accurately predict a compound for a pathogen/condition, you need to know:
+  - attributes (compound metadata youre already working on)
+  - gene expression impact
+  - interaction rules with common cell types it's expected to be exposed to (in the bloodstream if taken orally, in the lungs if inhaled)
+  - the sub-components of the compound that could be altered through interaction to neutralize its functionality
+  - the specificity of the compound's effects
+  - how it's metabolized, to know whether it could be taken at an effective dose
+  - if the conditio involves a pathogen, you need to know the pathogen's structure & metadata
+
+- are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?
+
+- finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
     Argument to moderation (false compromise, middle ground, fallacy of the mean, argumentum ad temperantiam) – assuming that the compromise between two positions is always correct.[16]
     Continuum fallacy (fallacy of the beard, line-drawing fallacy, sorites fallacy, fallacy of the heap, bald man fallacy) – improperly rejecting a claim for being imprecise.[17]
     Suppressed correlative – a correlative is redefined so that one alternative is made impossible.[18]
@@ -50,77 +127,7 @@ to do:
     Retrospective determinism – the argument that because an event has occurred under some circumstance, the circumstance must have made its occurrence inevitable.
     Special pleading – a proponent of a position attempts to cite something as an exemption to a generally accepted rule or principle without justifying the exemption.
 
-
-
-- remove nouns, verbs, adverbs & adjectives from objects:
-  - components
-  - compounds
-  - remove common nouns analysis, basis, dis/order, diagnosis from conditions
-
-- same line in functions: expressionactivity
-- do a check for full keyword matching before adding a partial match
-  compounds: 'disease'
-  causal_layers: 'cr,ratio' 
-  metrics: 'administration'
-
 - finish specific concepts, core functions, and concept operation diagrams
-
-- insight in a article doc is likely to:
-  - have more topic-related keywords
-  - have a causation verb (induces, associated)
-  - relate to intents important to agents (health, avoid illness)
-  "saturated fat intake induces a cellular reprogramming that is associated with prostate cancer progression and lethality"
-  https://medicalxpress.com/news/2019-11-high-fat-diet-proven-fuel-prostate.html
-
-- symptom examples:
-  - fever red urine skin rash paralysis headache bleeding
-
-- integrate chembl search if you can search for a condition & return molecules known to treat it
-
-- add function output to verbs index
-
-- finish is_valid function using pubchem search api & error message
-
-- integrate conditions/symptoms
-- integrate treatments/compounds
-
-- finish treatment failure condition
-  - make sure it adds nothing if theres no treatment in the article - this is related to intent function
-
-- make a list of common intent synonyms & store - ie, diagnose
-
-- check output of synonym replacements to make sure its not changing meaning
-
-- finish get_metadata
-
-- use source of bio synonyms
-
-- add get_related_components function to pull components of a compound & primary metabolites
-
-- get word roots & word distortions of synonyms using lemmatization lib
-
-- add function to convert smile formula - find way to represent it without assigning numbers to chars, or use the image
-  You can drastically speed up your analysis to filter generated compounds by validity if there is an api to check if a compound string is valid, bc generating smile formulas is quicker than manipulating coordinates
-  - pubchem has a validator in their search for invalid structure submitted to api: "Exception during execution: Unable to standardize the given structure"
-
-  - you need a way to store position of two numbers (left & right element number of protons) in one number as well as the bond type, unless you put the bond type in the next column or if the bond type is derivable
-  - you could use a ratio if you store the original values for each row, but that leaves out identity information - the ratio might not be relevant but the identities
-  - what about a decimal pair like left_number.right_number - is there room for tuples per cell?
-
-- get strategies used by an organism or used on a compound like: 
-  https://medicalxpress.com/news/2019-11-high-resolution-images-malaria-parasites-evade.html
-
-  - the most important metadata attribute to write a function for is the reason for success/failure indicating the mechanism of action or strategy used
-    The strategy behind the successful or failed attack should ideally be included
-      - "this structure on the compound tears the cell barrier"
-      - "induces apoptosis by depriving it of contrary signals"
-    in as structured a format as possible (numerical mappings could work for an initial version)
-
-  - drugs need a way to handle common mutation strategies of pathogens
-    - up regulating CDR genes
-    - reduced sensitivity of the target enzyme to inhibition by the agent
-    - mutations in the ERG11 gene, which codes for 14α-demethylase. These mutations prevent the azole drug from binding, while still allowing binding of the enzyme's natural substrate, lanosterol
-
 
 objectives:
 
