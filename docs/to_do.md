@@ -4,17 +4,31 @@ to do:
 
 - fix plural form of duplicate objects in sets
 
+- finish syllogistic fallacy diagrams:
+  Fallacy of four terms (quaternio terminorum) – a categorical syllogism that has four terms.[13]
+  Illicit major – a categorical syllogism that is invalid because its major term is not distributed in the major premise but distributed in the conclusion.[12]
+  Illicit minor – a categorical syllogism that is invalid because its minor term is not distributed in the minor premise but distributed in the conclusion.[12]
+  Fallacy of the undistributed middle – the middle term in a categorical syllogism is not distributed.[14]
+
+  https://en.wikipedia.org/wiki/List_of_fallacies
+
+- finish red herring fallacy diagrams:
+  - texas sharpshooter
+
+- finish informal fallacy diagrams
+
 - remove nouns, verbs, adverbs & adjectives from objects:
   - components
   - compounds
   - remove common nouns analysis, basis, dis/order, diagnosis from conditions
+
 - same line in functions: expressionactivity
 - do a check for full keyword matching before adding a partial match
   compounds: 'disease'
   causal_layers: 'cr,ratio' 
   metrics: 'administration'
 
-- finish concept diagrams
+- finish specific concepts, core functions, and concept operation diagrams
 
 - insight in a article doc is likely to:
   - have more topic-related keywords
