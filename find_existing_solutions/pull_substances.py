@@ -7,20 +7,142 @@ from chembl_webresource_client.utils import utils
 from chembl_webresource_client.new_client import new_client
 
 '''
-Guide to smiles format to represent compounds in strings like: https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system
-CCS(=O)(=O)C1=CC=CC=C1C(=O)OCC
+- Guide to smiles format to represent compounds in strings like: 
+    https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system
+    CCS(=O)(=O)C1=CC=CC=C1C(=O)OCC
 
-branch: parenthesis
-atom: square bracket (except atoms of B, C, N, O, P, S, F, Cl, Br, or I, which have no charge, are normal isotopes, not chiral centers & have expected number of hydrogens attached)
-bond symbols: . - = # $ : / \
-isotope: int + element (carbon-14 = 14c)
+- Bond symbols:
+    '-': isotope (carbon-14 = 14c)
 
-The bond may result from the electrostatic force of attraction between oppositely charged ions as in ionic bonds or through the sharing of electrons as in covalent bonds. 
-The strength of chemical bonds varies considerably; there are "strong bonds" or "primary bonds" such as covalent, ionic and metallic bonds, 
+    '=', '#', '$': Double, triple, and quadruple bonds are represented by the symbols =, #, and $ respectively
+
+    '.': An additional type of bond is a "non-bond" indicated with . to indicate that two parts are not bonded together
+
+   ':':  An aromatic "one and a half" bond may be indicated with :
+
+    '/', '\': Single bonds adjacent to double bonds may be represented using / or \ to indicate stereochemical configuration
+
+    - numbers: may indicate open & close of a ring structure, so include the first & last atom in the ring if you prep bond data
+    - (): branch
+    - []: atom (except atoms of B, C, N, O, P, S, F, Cl, Br, or I, which have no charge, are normal isotopes, not chiral centers & have expected number of hydrogens attached)
+
+Limitations:
+    - SMILES strings can specify the cis/trans configuration around a double bond, and can specify the chiral configuration of specific atoms in a molecule.
+    - SMILES strings do not represent all types of stereochemistry:
+        - Gross conformational left or right handedness such as helicenes
+        - Mechanical interferences, such as rotatable bonds that are constrained by mechanical interferences
+        - Gross conformational stereochemistry such as the shape of a protein after folding
+
+Chem rules:
+- The bond may result from the electrostatic force of attraction between oppositely charged ions as in ionic bonds or through the sharing of electrons as in covalent bonds. 
+- The strength of chemical bonds varies considerably; there are "strong bonds" or "primary bonds" such as covalent, ionic and metallic bonds, 
 and "weak bonds" or "secondary bonds" such as dipole–dipole interactions, the London dispersion force and hydrogen bonding. 
+- Bond order is determined by the number of electrons available to bind with on each atom's outer layer
+- when sharing more than one pair of electrons with one or more atoms, elements can form multiple covalent bonds
+- # of valence electrons needed to form octet equals # of covalent bonds that can form
+- electronegativity difference between two atoms in a bond can determine what type of bond is used. Note that this usually only applies to covalent and ionic bonds.
+    ΔEN>2,the bond is ionic
+    0.5≤ΔEN<2,the bond is polar covalent
+    ΔEN<0.5,the bond is non-polar covalent
+- inert/noble/halogen gases like Ne: they don't form compounds
+- they don't bond because each atom the element has 8 valence electrons already. so they are stable, they don't need to bond in order to become stable
+- elements with full outer electron layer also wont bond
+- since carbon's electron configuration is such that it can accommodate four covalent bonds, it forms covalent bonds very readily & isnt seen in ionic compounds
+- electronegativity is the tendency of an atom to pull electrons toward itself when it forms a bond with another atom
+- similar electronegativities = covalent bonds (e.g. CO2, H2O) while very different electronegativities = ionic compounds (e.g. NaCl)
+- less electronegative elements are "metals" and more electronegative elements in the top right of the PT are "non-metals"
+- metal + non-metal = ionic compounds, and non-metal + non-metal = covalent compounds, metal + metal = alloys
 
-You could derive the list of possible bonds from existing data, by de-duplicating pairs of bonded molecules with bond type
+- so usually the bond type (covalent vs ionic) & bond order (single, double, triple) will be straightforward to calculate, with some variation if its an ion or other configuration.
+- I suppose you could use notation like [number of electrons 1][number of electrons 2].bondtype, which wouldn't erase info if you could preserve the original values after accounting for rounding error
+
+- you could also check the reaction with chemlib's reaction product tool 
+another way you could encode it is by using the # of electrons in the first atom in each pair as the x value,
+ and # of electrons in the second atom as the y value 
+ (optionally including the bond type as z value by strength" & graphing it, 
+then deriving the function for each cluster of points using standard math
+do chemical compounds with similar formulas calculated in this way share properties?
+this implies the side of each bond has embedded meaning since youre grouping them: 
+'all the right-side values are x', 'all the left-side values are y'
+should you repeat the values to erase this bias? like h2o would be represented as pairs:
+[ho], [oh] rather than [ho] and [h, Null]
+
+the meaning is the relationship between bonded elements,
+ as well as the sequence between groups of bonded elements so I think its legit
+how do you preserve sequence order in that situation?
+do you assign an ordinal variable to each pair, so your data set is:
+    1,h,o,bondtype, 2,h,o,bondtype
+and you have 4 dimensions to graph instead of 3?
+once you have the function, each chemical can be represented by its coefficients
+
+if you have a function to calculate/predict bond strength between two atoms given their identity & electron count, 
+that could be useful data as well, beyond the bond order
+
 '''
+
+def get_item(s, index, next_type, next_order):
+    chars = '()[]=1234567890@#$\/.:=-+'
+    item_index = index + 1 if next_order == 'next' else index - 1
+    if next_order == 'next' and len(s) > (index + 1):
+        if next_type == 'element':
+            return s[index] if s[index] not in chars else get_next(s, item_index, next_type)
+        else:
+            return s[index] if s[index] in chars else get_next(s, item_index, next_type)
+    elif next_order == 'prev' and (index - 1) >= 0:
+        if next_type == 'element':
+            return s[index] if s[index] not in chars else get_next(s, item_index, next_type)
+        else:
+            return s[index] if s[index] in chars else get_next(s, item_index, next_type)
+    return False
+
+def convert_smile_to_bond_pairs(s):
+    xs = []
+    ys = []
+    order = []
+    index = 0
+    formula_length = len(s)
+    for i in range(0, formula_length):
+        if i < (formula_length - 1):
+            if i == 0:
+                next_element = get_item(s, i, 'element', 'next')
+                next_char = get_item(s, i, 'char', 'next')
+                # to do: include analysis for which chars indicate no bond with the next element, which is mostly '.' 
+                # unless there are no bonds left to make (like in a branch)
+                if next_char == s[i+1] and next_char == '.':
+                    continue # go to next pair
+                bonded_pair = (s[i], next_element)
+                xs.append(s[i])
+                ys.append(next_element)
+                index += 1
+                order.append(index)
+            else:
+                previous_element = get_item(s, i, 'element', 'prev')
+                previous_char = get_item(s, i, 'char', 'prev')
+                if previous_char != '.':
+                    bonded_pair = (previous_element, s[i])
+                    xs.append(previous_element)
+                    ys.append(s[i])
+                    index += 1
+                    order.append(index)
+                # to do: include analysis for which chars indicate no bond with the next element, which is mostly '.' 
+                # unless there are no bonds left to make (like in a branch)
+                next_element = get_next(s, i, 'element', 'next')
+                next_char = get_next(s, i, 'char', 'next')
+                if next_char == s[i+1] and next_char == '.':
+                    continue # go to next pair
+                bonded_pair = (s[i], next_element)
+                xs.append(s[i])
+                ys.append(next_element)
+                index += 1
+                order.append(index)   
+            # to do: calculate bond order & strength & type
+        else:
+            print('odd chars count', s[i])
+    print(xs, ys, order)
+    return {'x': xs, 'y': ys, 'order': order}
+
+def calculate_bond_strength(element1, element2):
+    return False
 
 def check_valid(smile_formula):
     '''
@@ -33,7 +155,7 @@ def check_valid(smile_formula):
     molecule = new_client.molecule
     molecule.set_format('json')
     result = molecule.filter(smiles=smile_formula)
-    print('result', result)
+    print('result', len(result), result, dir(result))
     for item in dir(result):
         value = getattr(result, item)
         print('value', item, value)
