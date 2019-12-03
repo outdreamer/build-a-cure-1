@@ -80,70 +80,6 @@ that could be useful data as well, beyond the bond order
 
 '''
 
-def get_item(s, index, next_type, next_order):
-    chars = '()[]=1234567890@#$\/.:=-+'
-    item_index = index + 1 if next_order == 'next' else index - 1
-    if next_order == 'next' and len(s) > (index + 1):
-        if next_type == 'element':
-            return s[index] if s[index] not in chars else get_next(s, item_index, next_type)
-        else:
-            return s[index] if s[index] in chars else get_next(s, item_index, next_type)
-    elif next_order == 'prev' and (index - 1) >= 0:
-        if next_type == 'element':
-            return s[index] if s[index] not in chars else get_next(s, item_index, next_type)
-        else:
-            return s[index] if s[index] in chars else get_next(s, item_index, next_type)
-    return False
-
-def convert_smile_to_bond_pairs(s):
-    xs = []
-    ys = []
-    order = []
-    index = 0
-    formula_length = len(s)
-    for i in range(0, formula_length):
-        if i < (formula_length - 1):
-            if i == 0:
-                next_element = get_item(s, i, 'element', 'next')
-                next_char = get_item(s, i, 'char', 'next')
-                # to do: include analysis for which chars indicate no bond with the next element, which is mostly '.' 
-                # unless there are no bonds left to make (like in a branch)
-                if next_char == s[i+1] and next_char == '.':
-                    continue # go to next pair
-                bonded_pair = (s[i], next_element)
-                xs.append(s[i])
-                ys.append(next_element)
-                index += 1
-                order.append(index)
-            else:
-                previous_element = get_item(s, i, 'element', 'prev')
-                previous_char = get_item(s, i, 'char', 'prev')
-                if previous_char != '.':
-                    bonded_pair = (previous_element, s[i])
-                    xs.append(previous_element)
-                    ys.append(s[i])
-                    index += 1
-                    order.append(index)
-                # to do: include analysis for which chars indicate no bond with the next element, which is mostly '.' 
-                # unless there are no bonds left to make (like in a branch)
-                next_element = get_next(s, i, 'element', 'next')
-                next_char = get_next(s, i, 'char', 'next')
-                if next_char == s[i+1] and next_char == '.':
-                    continue # go to next pair
-                bonded_pair = (s[i], next_element)
-                xs.append(s[i])
-                ys.append(next_element)
-                index += 1
-                order.append(index)   
-            # to do: calculate bond order & strength & type
-        else:
-            print('odd chars count', s[i])
-    print(xs, ys, order)
-    return {'x': xs, 'y': ys, 'order': order}
-
-def calculate_bond_strength(element1, element2):
-    return False
-
 def check_valid(smile_formula):
     '''
     https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/substructure/smiles/C3=NC1=C(C=NC2=C1C=NC=C2)[N]3/XML
@@ -310,12 +246,16 @@ def download_data(datatype):
     ''' some files in the pattern dont exist, like Substance_000025001_000050000.xml.gz '''
     return filename
 
-def download_xml_and_make_csv():
+def mkdir(dirname):
     cwd = os.getcwd()
-    data_directory = '/'.join(cwd, 'data')
+    data_directory = '/'.join(cwd, dirname)
     directory = os.path.dirname(data_directory)
     if not os.path.exists(directory):
         os.mkdir(directory)
+    return True
+
+def download_xml_and_make_csv():
+    mkdir('data')
     datatypes = ['Compound', 'Substance']
     for datatype in datatypes:
         for i in range(0, multiplier[datatype]):

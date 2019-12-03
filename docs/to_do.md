@@ -1,6 +1,9 @@
 to do:
 
 - finish get object functions for pulling existing research studies 
+  - symptom examples:
+  - fever red urine skin rash paralysis headache bleeding
+
 - fix plural form of duplicate objects in sets
 
 - remove nouns, verbs, adverbs & adjectives from objects:
@@ -14,61 +17,44 @@ to do:
   causal_layers: 'cr,ratio' 
   metrics: 'administration'
 
-- insight in a article doc is likely to:
-  - have more topic-related keywords
-  - have a causation verb (induces, associated)
-  - relate to intents important to agents (health, avoid illness)
-  "saturated fat intake induces a cellular reprogramming that is associated with prostate cancer progression and lethality"
-  https://medicalxpress.com/news/2019-11-high-fat-diet-proven-fuel-prostate.html
+- check chembl search if you can search for a condition & return molecules known to treat it
 
-- symptom examples:
-  - fever red urine skin rash paralysis headache bleeding
+- finish is_valid function to convert smile formula - find way to represent it without assigning numbers to chars, or use the image
 
-- integrate chembl search if you can search for a condition & return molecules known to treat it
+- integrate conditions/symptoms and treatments/compounds schemas
 
-- add function output to verbs index
+- finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
 
-- finish is_valid function using pubchem search api & error message
-
-- integrate conditions/symptoms
-- integrate treatments/compounds
-
-- finish treatment failure condition
-  - make sure it adds nothing if theres no treatment in the article - this is related to intent function
-
-- make a list of common intent synonyms & store - ie, diagnose
+- make a list of common intent synonyms & store - ie, diagnose - use source of bio synonyms
 
 - check output of synonym replacements to make sure its not changing meaning
-
-- finish get_metadata
-
-- use source of bio synonyms
 
 - add get_related_components function to pull components of a compound & primary metabolites
 
 - get word roots & word distortions of synonyms using lemmatization lib
 
-- add function to convert smile formula - find way to represent it without assigning numbers to chars, or use the image
-    - filter generated compounds by validity if there is an api to check if a compound string is valid, bc generating smile formulas is quicker than manipulating coordinates
-    - pubchem has a validator in their search for invalid structure submitted to api: "Exception during execution: Unable to standardize the given structure"
-  - you need a way to store position of two numbers (left & right element number of protons) in one number as well as the bond type, unless you put the bond type in the next column 
-    or if the bond type is derivable you could leave it out
-  - you could use a ratio if you store the original values for each row, but that leaves out identity information - the ratio might not be relevant but the identities
-  - what about a decimal pair like left_number.right_number - is there room for tuples per cell?
+- finish get_metadata (strategies, insights)
 
-- get strategies used by an organism or used on a compound like: 
-  https://medicalxpress.com/news/2019-11-high-resolution-images-malaria-parasites-evade.html
+  - insight in a article doc is likely to:
+    - have more topic-related keywords
+    - have a causation verb (induces, associated)
+    - relate to intents important to agents (health, avoid illness)
+    "saturated fat intake induces a cellular reprogramming that is associated with prostate cancer progression and lethality"
+    https://medicalxpress.com/news/2019-11-high-fat-diet-proven-fuel-prostate.html
 
-  - the most important metadata attribute to write a function for is the reason for success/failure indicating the mechanism of action or strategy used
-    The strategy behind the successful or failed attack should ideally be included
-      - "this structure on the compound tears the cell barrier"
-      - "induces apoptosis by depriving it of contrary signals"
-    in as structured a format as possible (numerical mappings could work for an initial version)
+  - get strategies used by an organism or used on a compound like: 
+    https://medicalxpress.com/news/2019-11-high-resolution-images-malaria-parasites-evade.html
 
-  - drugs need a way to handle common mutation strategies of pathogens
-    - up regulating CDR genes
-    - reduced sensitivity of the target enzyme to inhibition by the agent
-    - mutations in the ERG11 gene, which codes for 14α-demethylase. These mutations prevent the azole drug from binding, while still allowing binding of the enzyme's natural substrate, lanosterol
+    - the most important metadata attribute to write a function for is the reason for success/failure indicating the mechanism of action or strategy used
+      The strategy behind the successful or failed attack should ideally be included
+        - "this structure on the compound tears the cell barrier"
+        - "induces apoptosis by depriving it of contrary signals"
+      in as structured a format as possible (numerical mappings could work for an initial version)
+
+    - drugs need a way to handle common mutation strategies of pathogens
+      - up regulating CDR genes
+      - reduced sensitivity of the target enzyme to inhibition by the agent
+      - mutations in the ERG11 gene, which codes for 14α-demethylase. These mutations prevent the azole drug from binding, while still allowing binding of the enzyme's natural substrate, lanosterol
 
 
 - next task will be: predict a phage for a pathogen, vs. predict a compound for a pathogen/condition
