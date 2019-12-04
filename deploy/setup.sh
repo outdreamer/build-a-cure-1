@@ -4,6 +4,7 @@
 
 # create your aws account:
 # https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/
+# add installation of indigo - https://lifescience.opensource.epam.com/indigo/
 
 # install xcode
 xcode-select --install

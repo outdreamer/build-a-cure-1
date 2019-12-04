@@ -21,6 +21,10 @@ to do:
 
 - finish is_valid function 
 
+IndigoObject mol_input = s_indigo_IgnoreIndigoErrors.loadMolecule(molfile);
+if (mol_input == null) return false;
+  Smiles = mol_input.smiles();
+
 - integrate conditions/symptoms and treatments/compounds schemas
 
 - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function

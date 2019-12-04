@@ -11,9 +11,9 @@ In future, this tool will help you execute more advanced functions, like:
 
 Right now these are the supported features:
 
-## Generate graph from Smile Formula Bond Pairs
+## 1. Generate graph from Smile Formula Bond Pairs
 
-Running generate_smile_graphs.py with a formula parameter will generate the bond-pairs from the formula & graph them, 
+Running generate_smile_graphs.py with a "smile" parameter will generate the bond-pairs from the formula & graph them, 
 then store those images in the graphs directory.
 
 The parsing of the formula needs improvement.
@@ -21,13 +21,36 @@ The parsing of the formula needs improvement.
 python3 generate_smile_graphs.py --smile "O=C=O=C=ONHO"
 ```
 
-## Generate metadata for a keyword
+## 2. Generate smile formulas of length n
+
+Error parsing needs to be handled better but is logged in data/errors_generated_formulas.txt
+Only set a large n if your hardware can handle it.
+```
+python3 generate_smile_graphs.py --generate 3
+```
+This will store the generated smile formulas in data/valid_generated_formulas.txt,
+after first checking them for obvious errors with the indigo tool.
+
+To convert these formulas into the bond-pair numerical format used in the graph function (#1),
+adjust the bonds & graph parameters of the generate_smile_formulas function, which are switched off by default.
+
+## 3. Generate metadata for a keyword
 
 - get all metadata available for a condition:
 ```
 python3 pull_metadata.py --metadata "all" --condition "diabetes"
 ```
 This feature needs a lot of work but it's in progress however will be sporadically functional.
+
+# Setup 
+
+After installing pip3 & python3 (instructions in deploy/setup.sh), you can run:
+```
+pip3 install -r requirements.txt
+```
+
+You need to install Indigo manually for now - download page here: 
+https://lifescience.opensource.epam.com/indigo/
 
 # Goals
 

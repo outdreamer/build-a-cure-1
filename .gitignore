@@ -1,7 +1,9 @@
-find_existing_solutions/graphs/
+find_existing_solutions/indigo/
+find_existing_solutions/indigo_function_list.py
 find_existing_solutions/temp-plot.html
 find_existing_solutions/data/
 find_existing_solutions/datasets/
+find_existing_solutions/graphs/
 find_existing_solutions/__pycache__/
 *.txt
 *.sqlite

@@ -1,4 +1,4 @@
-import os, json, sys
+import itertools, os, json, sys
 import numpy as np
 from numpy import array
 import matplotlib as mpl
@@ -6,13 +6,13 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d, Axes3D
 from matplotlib.collections import LineCollection
 from matplotlib.colors import ListedColormap, BoundaryNorm
-
+from indigo.indigo import Indigo, IndigoException
+'''
 import plotly.offline
 import plotly.express as px
 import plotly.graph_objects as go
+'''
 
-alphabet = 'abcdefghijklmnopqrstuvwxyz'
-chars = '()[]1234567890@#$\/.:=-+'
 mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["r", "k", "c"]) 
 
 def mkdir(dirname):
@@ -214,20 +214,145 @@ def convert_smile_to_bond_pairs(s, electron_counts):
 def calculate_bond_strength(element1, element2):
     return False
 
-smile_formula = 'O=C=O=C=ONHO' #C(=O)=O is another way of saying CO2
-if len(sys.argv) > 0:
-    for arg in sys.argv:
-        if '-' not in arg:
-            ''' assume this is the chemical formula '''
-            smile_formula = arg
-print('formula', smile_formula)
+def check_formula_valid(formula):
+    ''' indigo can do:
+        Automatic layout for SMILES-represented molecules and reactions.
+        Canonical (isomeric) SMILES computation.
+        Exact matching, substructure matching, SMARTS matching.
+        Matching of tautomers and resonance structures.
+        Molecule fingerprinting, molecule similarity computation.
+        Fast enumeration of SSSR rings, subtrees, and edge subgraphs.
+        Molecular weight, molecular formula computation.
+        R-Group deconvolution and scaffold detection. 
+        Combinatorial chemistry
+
+    methods used in indigo:
+        https://lifescience.opensource.epam.com/resources.html
+    '''
+    ignore_errors = ['atom without a label', 'unrecognized lowercase symbol', 'not supported', 'only allowed for query molecules']
+    indigo = Indigo()
+    indigo.setOption("dearomatize-verification", False)
+    smile = ''
+    try:
+        mol = indigo.loadMolecule(formula)
+        #print('loaded molecule', mol.json())
+        ''' for CO this would be:
+        {"root":{"id":"","type":"molecule","atoms":[{"id":"a1","label":"C"},{"id":"a2","label":"O"}],"bonds":[{"atoms":["a1","a2"],"order":1}]}}
+        '''
+        if mol:
+            '''
+            # more functions found in indigo_function_list.py
+            mol.clearAlleneCenters(), mol.clearCisTrans(), mol.clearStereocenters()
+            '''
+            smile = mol.smiles()
+            canon = mol.canonicalSmiles()
+            print('smile', smile, 'canonical smile', canon)
+            '''
+            aromatize = mol.aromatize()
+            kekulization_failure = mol.dearomatize() # 0
+            print('aromatic', aromatize, kekulization_failure)
+            if kekulization_failure == 0:
+                print('indigo k failure')
+                return 'kekulization_failure'
+            '''
+    except IndigoException as e:
+        print('indigo', e.value)
+        if 'unrecognized lowercase symbol' not in e.value:
+            return False, e.value
+    return True, smile
+
+def generate_smile_formulas(length, max_length, supported_chars, bonds, graph, electron_counts):
+    ''' generate smile formulas of a certain character length '''
+    valid_formulas = []
+    valid_bonds = [] # this is your actual data set if you use bond pair electron counts as coordinates
+    errors = set()
+    # to do: fill in zeros for max char
+    # if length = 3, how many columns will your data set need to fill in?
+    
+    for i in range(1, (length + 1)):
+        new_combinations = itertools.product(supported_chars, repeat=i)
+        for c in new_combinations:
+            formula = ''.join([a for a in c])
+            if len(formula) < max_length:
+                valid, formula = check_formula_valid(formula)
+                if valid:
+                    if len(formula) > 0 and len(formula) < max_length:
+                        if formula not in valid_formulas:
+                            valid_formulas.append(formula)
+                            ''' extra processing '''
+                            if bonds is True:
+                                xs, ys, position = convert_smile_to_bond_pairs(formula, electron_counts)
+                                coordinates = [str(x) for x in xs]
+                                for y in ys:
+                                    coordinates.append(str(y))
+                                for p in position:
+                                    coordinates.append(str(p))
+                                if len(coordinates) > 0:
+                                    valid_bonds.append(','.join(coordinates))
+                                if graph is True:
+                                    if len(xs) > 0 and len(ys) > 0 and len(position) > 0:
+                                        graphed = graph_smile_formula_bond_pairs(formula, xs, ys, position)
+                else:
+                    errors.add(formula)
+    print('supported_chars', supported_chars)
+    print('valid formulas', valid_formulas)
+    if len(errors) > 0:
+        with open('data/errors_generated_formulas.txt', 'w') as f:
+            f.write('\n'.join(errors))
+            f.close()
+    if len(valid_bonds) > 0:
+        with open('data/valid_generated_bonds.txt', 'w') as f:
+            f.write('\n'.join(valid_bonds))
+            f.close()
+    if len(valid_formulas) > 0:
+        with open('data/valid_generated_formulas.txt', 'w') as f:
+            f.write('\n'.join(valid_formulas))
+            f.close()
+        return True
+    return False
+
 electron_counts = {}
 with open('electron_counts.json', 'r') as f:
     electron_counts = json.load(f)
     f.close()
-if electron_counts:
-    xs, ys, position = convert_smile_to_bond_pairs(smile_formula, electron_counts)
-    if len(xs) > 0 and len(ys) > 0 and len(position) > 0:
-        graphed = graph_smile_formula_bond_pairs(smile_formula, xs, ys, position)
-        if graphed:
-            print('graph complete')
+smile_formula = '' #O=C=O=C=ONHO, C(=O)=O is another way of saying CO2
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+chars = '()[]1234567890@#$\/.:=-+'
+supported_chars = [c for c in chars]
+for a in electron_counts:
+    supported_chars.append(a)
+'''
+for generate parameter of n, 
+the total number of possible chars (142) is raised to the power of n 
+to generate the number of possible combinations 
+you should expect less than that in your output 
+because it will be filtered by the indigo validator 
+'''
+generate_length = 0
+if len(sys.argv) > 0:
+    for i, arg in enumerate(sys.argv):
+        if '-' in arg:
+            arg_key = arg.replace('-', '')
+            if len(sys.argv) > (i + 1):
+                arg_val = sys.argv[i + 1]
+                if 'smile' in arg_key:
+                    ''' assume the first param is the chemical formula '''
+                    smile_formula = arg_val
+                if 'generate' in arg_key:
+                    generate_length = int(arg_val)
+print('formula', smile_formula, 'generate length', generate_length)
+if generate_length > 0:
+    bonds = True
+    graph = False
+    max_length = 100
+    generated = generate_smile_formulas(generate_length, max_length, supported_chars, bonds, graph, electron_counts)
+if len(smile_formula) > 0:
+    # to do: add char validation
+    valid, formula = check_formula_valid(smile_formula)
+    if valid:
+        if electron_counts:
+            xs, ys, position = convert_smile_to_bond_pairs(formula, electron_counts)
+            if len(xs) > 0 and len(ys) > 0 and len(position) > 0:
+                graphed = graph_smile_formula_bond_pairs(formula, xs, ys, position)
+                if graphed:
+                    print('graph complete')
