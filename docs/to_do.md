@@ -19,7 +19,7 @@ to do:
 
 - check chembl search if you can search for a condition & return molecules known to treat it
 
-- finish is_valid function to convert smile formula - find way to represent it without assigning numbers to chars, or use the image
+- finish is_valid function 
 
 - integrate conditions/symptoms and treatments/compounds schemas
 
@@ -55,7 +55,6 @@ to do:
       - up regulating CDR genes
       - reduced sensitivity of the target enzyme to inhibition by the agent
       - mutations in the ERG11 gene, which codes for 14α-demethylase. These mutations prevent the azole drug from binding, while still allowing binding of the enzyme's natural substrate, lanosterol
-
 
 - next task will be: predict a phage for a pathogen, vs. predict a compound for a pathogen/condition
 - in order to accurately predict a compound for a pathogen/condition, you need to know:

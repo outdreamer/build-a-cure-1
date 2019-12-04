@@ -7,6 +7,28 @@ In future, this tool will help you execute more advanced functions, like:
 - recommending a treatment dose given a patient's condition
 - designing a stressor plan to fix a medical condition in the absence of any substances that can treat it directly
 
+# Current Functionality
+
+Right now these are the supported features:
+
+## Generate graph from Smile Formula Bond Pairs
+
+Running generate_smile_graphs.py with a formula parameter will generate the bond-pairs from the formula & graph them, 
+then store those images in the graphs directory.
+
+The parsing of the formula needs improvement.
+```
+python3 generate_smile_graphs.py --smile "O=C=O=C=ONHO"
+```
+
+## Generate metadata for a keyword
+
+- get all metadata available for a condition:
+```
+python3 pull_metadata.py --metadata "all" --condition "diabetes"
+```
+This feature needs a lot of work but it's in progress however will be sporadically functional.
+
 # Goals
 
 ## Input functions 

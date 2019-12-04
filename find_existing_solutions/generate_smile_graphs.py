@@ -1,7 +1,11 @@
-import os, json
+import os, json, sys
+import numpy as np
+from numpy import array
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d, Axes3D
+from matplotlib.collections import LineCollection
+from matplotlib.colors import ListedColormap, BoundaryNorm
 
 import plotly.offline
 import plotly.express as px
@@ -18,18 +22,22 @@ def mkdir(dirname):
         os.mkdir(data_directory)
     return True
 
-def get_item(s, index, item_type, item_order, counts):
-    print('getting item', index, s[index], item_type, item_order)
-    item_index = index + 1 if (item_order == 'next' and index + 1 < len(s)) else index - 1 if (item_order == 'prev' and index - 1 >= 0) else index if item_type == 'current' else None
+def get_item(s, index, item_type, item_position, counts):
+    if (item_position == 'next' and index + 1 < len(s)):
+        item_index = index + 1
+    elif (item_position == 'prev' and index - 1 >= 0):
+        item_index = index - 1 
+    elif item_type == 'current':
+        item_index = index
+    else:
+        item_index = None
     count = 0
     item = False
     if item_index:
-        if item_order == 'current':
-            item = s[index] if s[index] in alphabet else get_item(s, item_index, item_type, item_order, counts)
-            print('3', item)
+        if item_position == 'current':
+            item = s[index] if s[index] in alphabet else get_item(s, item_index, item_type, item_position, counts)
         else:
-            item = s[item_index] if s[item_index] in alphabet else get_item(s, item_index, item_type, item_order, counts)
-            print('1', item)
+            item = s[item_index] if s[item_index] in alphabet else get_item(s, item_index, item_type, item_position, counts)
         if item:
             if not item.isnumeric and item.lower() in alphabet:
                 next_item = s[index + 1] if len(s) > (index + 1) and s[index + 1].lower() == s[index + 1] and s[index + 1] in alphabet else ''
@@ -40,96 +48,120 @@ def get_item(s, index, item_type, item_order, counts):
     return False
 
 def get_electron_count(element_name, counts):
-    print('looking for element', element_name)
     if element_name in counts:
-        print('found count', counts[element_name])
         return counts[element_name]
     return 0
 
-def graph_smile_formula_bond_pairs(s, xs, ys, order):
+def graph_smile_formula_bond_pairs(s, xs, ys, position):
+    cm = plt.get_cmap("RdYlGn")
     mkdir('graphs')
     label = ''.join(['Smile Formula Graph: ', s])
     zeros = [0.0 for x in xs]
     complete_set = [xs[0]]
     complete_set.extend(ys)
-    complete_order = [0.0]
-    complete_order.extend(order)
+    complete_position = [0]
+    complete_position.extend(position)
     complete_zeros = [0.0]
     complete_zeros.extend(zeros)
-    print('default', xs, ys, order)
-    print('complete', complete_set, complete_order, complete_zeros)
-    for graph_type in ['scatter', 'line']:
-        fig = plt.figure()
-        ax = Axes3D(fig)
-        cm = plt.get_cmap("RdYlGn")
-        colors = [cm(float(i)/len(zeros)) for i in range(len(zeros))]
-        complete_colors = [cm(float(i)/len(complete_zeros)) for i in range(len(complete_zeros))]
+    for graph_type in ['scatter', 'line']: #line
         if graph_type == 'line':
-            default = ax.plot3D(xs, ys, zeros, 'gray')
-            change = ax.plot3D(complete_order, complete_set, complete_zeros, 'gray')
-            all_changes = ax.plot3D(xs, ys, order, 'gray')
-            #ax.set_color_cycle([cm(1.*i/(len(zeros)-1)) for i in range(len(zeros)-1)])
-            #for i in range(len(zeros)-1):
-            #    ax.plot(xs[i:i+2],ys[i:i+2])        
+            # convert to ndarray
+            xs = array(xs)
+            ys = array(ys)
+            position = array(position)
+            points = np.array([xs, ys]).T.reshape(-1, 1, 2)
+            segments = np.concatenate([points[:-1], points[1:]], axis=1)
+            #print('segments', segments.shape)
+            fig, axs = plt.subplots(2, 1, sharex=True, sharey=True)
+            norm = plt.Normalize(0, position.max())
+            lc = LineCollection(segments, cmap='viridis', norm=norm)
+            lc.set_array(position)
+            lc.set_linewidth(2)
+            line = axs[0].add_collection(lc)
+            fig.colorbar(line, ax=axs[0])
+            axs[0].set_xlim(0, xs.max())
+            axs[0].set_ylim(0, ys.max())
+            fig.delaxes(axs[1])
+            #plt.show()
+            image_path = ''.join(['graphs/', s, '_', graph_type, '.png'])
+            plt.savefig(image_path)
+            plt.close()       
         elif graph_type == 'scatter':
-            # compare just bond pairs
-            default = ax.scatter3D(xs, ys, zeros, c=colors, cmap=cm)
-            # change tells you how the number of electrons changes as the sequence order progresses
-            change = ax.scatter3D(complete_order, complete_set, complete_zeros, c=complete_colors, cmap=cm) 
-            # includes all dimensions
-            all_changes = ax.scatter3D(xs, ys, order, c=colors, cmap=cm)
-        ''' # plotly 
-            default = go.Scatter3d(x=xs, y=ys, z=zeros) if graph_type == 'scatter' else px.line_3d(x=xs, y=ys, z=zeros)
-            change = go.Scatter3d(x=complete_order, y=complete_set, z=zeros) if graph_type == 'scatter' else px.line_3d(x=complete_order, y=complete_set, z=zeros)
-            all_changes = go.Scatter3d(x=xs, y=ys, z=order) if graph_type == 'scatter' else px.line_3d(x=xs, y=ys, z=order) 
+            colors = [cm(float(i)/len(zeros)) for i in range(len(zeros))]
+            complete_colors = [cm(float(i)/len(complete_zeros)) for i in range(len(complete_zeros))]
+            image_path = ''.join(['graphs/', s, '_', graph_type, '.png'])
+            scatters = {
+                'default': {
+                    'xs': xs,
+                    'ys': ys,
+                    'zs': zeros,
+                    'colors': colors,
+                    'xlabel': '1st electron count',
+                    'ylabel': '2nd electron count',
+                    'zlabel': 'N/A',
+                    'title': 'Bond Pair Electron Counts',
+                    'path': ''.join(['graphs/', s, '_default_', graph_type, '.png'])
+                },
+                'position': {
+                    'xs': complete_position,
+                    'ys': complete_set,
+                    'zs': complete_zeros,
+                    'colors': complete_colors,
+                    'xlabel': 'Position of element',
+                    'ylabel': 'Electron count',
+                    'zlabel': 'N/A',
+                    'title': 'Electron counts by position in smile formula',
+                    'path': ''.join(['graphs/', s, '_position_', graph_type, '.png'])
+                },
+                'all': {
+                    'xs': xs,
+                    'ys': ys,
+                    'zs': position,
+                    'colors': colors,
+                    'xlabel': '',
+                    'ylabel': '',
+                    'zlabel': '',
+                    'title': '',
+                    'path': ''.join(['graphs/', s, '_all_', graph_type, '.png'])
+                }
+            }
+            for scatter, value in scatters.items():
+                make_plot(value, cm)
+            plt.close()
+        
         '''
-        ''' this is how the first & second number of electrons in each pair relate 
-            (may be useful as a predictor for elements an element bonds with)
-            this leaves out information about distortions,
-            but if you include the bond type with enough detail, that should clarify it
-        '''
-        # comment in one of the following sections if you want to show the graph rather than save it
-        '''
-        # plotly:
+        # comment in one of the following sections if you want to use plotly which has a nice browser UI
+        default = go.Scatter3d(x=xs, y=ys, z=zeros) if graph_type == 'scatter' else px.line_3d(x=xs, y=ys, z=zeros)
+        change = go.Scatter3d(x=complete_position, y=complete_set, z=zeros) if graph_type == 'scatter' else px.line_3d(x=complete_position, y=complete_set, z=zeros)
+        all_changes = go.Scatter3d(x=xs, y=ys, z=position) if graph_type == 'scatter' else px.line_3d(x=xs, y=ys, z=position)
         fig = go.Figure()
         fig.add_trace(default)
         fig.add_trace(change) 
         fig.add_trace(all_changes)
         fig.update_layout(title = label)
         fig.show()
-
-        # matplotlib:
-        ax.plot3D(xs, ys, order, 'gray')
-        ax.scatter3D(xs, ys, order, c=order, cmap='hsv')
-        plt.show()
-        '''
-        ax.set_xlabel('1st electron count')
-        ax.set_ylabel('2nd electron count')
-        ax.set_zlabel('Order')
-        title = 'Bond Pair Electron Counts, by Order'
-        ax.set_title(label)
-        # comment in the following section if youre using plotly & working offlinem to view graph in the browser
-        '''plotly.offline.plot(
+        # comment in the following section if youre using plotly & working offline to view graph in the browser
+        plotly.offline.plot(
             {
                 "data": traces,
                 "layout": go.Layout(title=label)
             },
             image='jpeg',
             image_filename=image_path
-        )'''
-
-        # save graph
-        image_path = ''.join(['graphs/', s, '_', graph_type, '.png'])
-
-        ''' plotly 
+        )
         traces = [default, change, all_changes]
         py.image.save_as({'data':traces}, image_path, format='png')
         '''
 
-        # matplotlib
-        plt.savefig(image_path)
-
     return True
+
+def make_plot(s, cm):
+    fig = plt.figure()
+    ax = Axes3D(fig)
+    default = ax.scatter3D(s['xs'], s['ys'], s['zs'], c=s['colors'], cmap=cm)
+    ax.plot3D(s['xs'], s['ys'], s['zs'], 'gray')
+    plt.savefig(s['path'])
+    return s['path']
 
 def convert_smile_to_bond_pairs(s, electron_counts):
     ''' to do:
@@ -139,7 +171,7 @@ def convert_smile_to_bond_pairs(s, electron_counts):
     '''
     xs = []
     ys = []
-    order = []
+    position = []
     new_sequence = [x for x in s if x.lower() in alphabet]
     element_sequence = []
     for i, x in enumerate(new_sequence):
@@ -161,23 +193,41 @@ def convert_smile_to_bond_pairs(s, electron_counts):
         y_count = get_electron_count(pair[1], electron_counts)
         xs.append(x_count)
         ys.append(y_count)
-        order.append(i)
+        position.append(i)
     print('bonded pairs', bonded_pairs)
-    print('xs', xs, 'ys', ys, 'order', order)
-    return xs, ys, order
+    print('xs', xs, 'ys', ys, 'position', position)
+    ''' 
+    graphing:
+
+    - xs by ys compares tells you how the first & second electron count in each bond pair relate 
+    (may be useful as a predictor for elements an element bonds with)
+        this leaves out information about distortions,
+        but if you include the bond type with enough detail, that should clarify it
+
+    - comparing the full sequential position (complete_position) by the full electron count sequence (complete_set) 
+        tells you how the number of electrons changes as the sequence position progresses
+
+    - xs by ys by position tells you how the first & second electron count & position relate 
+    '''
+    return xs, ys, position
 
 def calculate_bond_strength(element1, element2):
     return False
 
-s = 'O=C=O' #C(=O)=O is another way of saying CO2
+smile_formula = 'O=C=O=C=ONHO' #C(=O)=O is another way of saying CO2
+if len(sys.argv) > 0:
+    for arg in sys.argv:
+        if '-' not in arg:
+            ''' assume this is the chemical formula '''
+            smile_formula = arg
+print('formula', smile_formula)
 electron_counts = {}
 with open('electron_counts.json', 'r') as f:
     electron_counts = json.load(f)
     f.close()
-print('electron_counts', electron_counts)
-
-xs, ys, order = convert_smile_to_bond_pairs(s, electron_counts)
-if len(xs) > 0 and len(ys) > 0 and len(order) > 0:
-    graphed = graph_smile_formula_bond_pairs(s, xs, ys, order)
-    if graphed:
-        print('done graphing')
+if electron_counts:
+    xs, ys, position = convert_smile_to_bond_pairs(smile_formula, electron_counts)
+    if len(xs) > 0 and len(ys) > 0 and len(position) > 0:
+        graphed = graph_smile_formula_bond_pairs(smile_formula, xs, ys, position)
+        if graphed:
+            print('graph complete')
