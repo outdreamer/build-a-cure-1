@@ -1,15 +1,55 @@
 to do:
+
 - take common nouns out of:
   compounds: "associate", "multi-resolution", "delicate"
   conditions: "order", "disorders"
   expression/activity
 
+- index words you pull from wiki so youre not repeating the query & store it across requests
+
 - write function to get generic name of a drug ('tylenol' => 'paracetamol')
 
 - add processing of wiki content sections - the sets of sections will tell you what it is
 
+- metrics should identify:
+  - minimum inhibitory concentration MIC
+  - naa-to-cr ratio
+
+- also add an 'instructions' & 'equipment' item to reduce a study:
+    https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4507162/
+
+  to the set of instructions to synthesize the compound:
+    - A: mix (((cop_oil & amb) dissolved in dmac) + (C dissolved in ethanol)) for 30 minutes & evaporate for 6 hours in a rotary evaporator 
+    - B: dissolve D in double distilled water
+    - add A to B one drop at a time while stirring
+    - homogenize using a microfluidizer
+
+  and the set of equipment necessary:
+    - beakers
+    - dropper
+    - heater || rotary evaporator
+    - homogenizer || microfluidizer
+
+  any compounds necessary:
+    - cop_oil, amb, dmac, ethanol, double distilled water
+
+  any optional substitutes:
+    C: (co-surfactants): soya lecithin (PC), span 80, propylene glycol     
+    D: (surfactants): tween 80, labrasol, d-α-tocopheryl polyethylene glycol 1000 succinate (TPGS), pluronic F-68, pluronic F-127
+
+  any parameters & parameter values:
+    - isotropic mixture (1:1) of TPGS and PC
+    - Cop, drug to Cop ratio 1:20
+    - homogenization parameters 15 cycles at 50 MPa of microfluidizer
+
+
+- new drugs are at: https://adisinsight.springer.com/drugs/800042427
+
 - best description of mechanism of action was on a category page:
   https://en.wikipedia.org/wiki/Fungistatics
+
+- Start small with three to four drops a day and gradually increasing it as your body adjusts to the right treatment dosage.
+- If you are taking oil of oregano in capsules, you should not consume more than 500 to 600 mg per day
 
 - pull these properties for compounds on wiki:
   Bioavailability 63–89%[4]:73
