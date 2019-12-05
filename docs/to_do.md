@@ -1,4 +1,40 @@
 to do:
+- take common nouns out of:
+  compounds: "associate", "multi-resolution", "delicate"
+  conditions: "order", "disorders"
+  expression/activity
+
+- add tree parsing to identify related words in sentences
+- focus on treatment/strategy/insight parsing tomorrow
+- now that you have a smile formula generator, you have the raw structure data, 
+  assuming you can usually generate the right formula from a sequence of electron counts, which may not be realistic but youll at least have sets of elements to look in
+- so its time to focus on metadata - aggregate a property set available from apis, find the most comprehensive one, & use that api to fill in structural metadata
+- then you can finish the conceptual metadata functions to pull treatments, symptoms, conditions, sub_components(atoms, ions, circles), related_components (genes, proteins), mechanisms of action (rules/functions)
+  (plus abstract metadata like intents, priorities, strategies, & insights)
+- figure out how to represent conceptual metadata as numbers in case you want to train on it, you may have to rely on mappings & encoding but some have clear value functions
+  if there are a thousand strategies, id rather store encoded first node, encoded function, encoded last node, 
+  which will involve less if there are 10 of each (30 features as opposed to 1000)
+  but if strategies have more than 2 nodes (if you cant reduce them further), then itll get big quickly & you wont be able to store all the metadata in one dataset
+- then you can generate combination datasets of:
+  supervised data:
+    [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, property] # to predict a certain property that a structure has, like activating a particular gene or binding to something
+    [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, genes] # to predict which genes will interact with a compound
+    [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, mechanism] # to predict which processes will activate/neutralize/bind with a compound
+    [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, metabolism] # to predict how a compound will be metabolized
+    [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, dose] # to predict a non-toxic dose of a compound
+    [structure, structural_metadata, mechanism_of_action_metadata, symptom] # to predict a symptom caused by a structure
+    [symptoms, successful_treatment_structure_label] # to predict successful treatment structures for a set of symptoms
+    [symptoms, structure, structural_metadata, mechanism_of_action_metadata, success_for_treating_condition_C] # to predict successful treatment structures for a condition given the symptoms indicating the phase
+  sequential data:
+    [past_conditions, future_conditions] # to predict the conditions a patient will likely develop
+
+- then you can create a script to generate & deploy a bunch of models as web services
+  you can write a cost estimator function to generate a cost as part of the output for the patient
+
+- should build a UI at some point but csv's should be fine for now, since its reducing the data a lot,
+ and most people will just use it for fetching known treatments that have been tried or a likely condition for their symptoms
+
+- once youre done with that, you can move on to more complex compounds like organisms & integrate some more interesting analysis
 
 - finish get object functions for pulling existing research studies 
   - symptom examples:
@@ -19,12 +55,6 @@ to do:
 
 - check chembl search if you can search for a condition & return molecules known to treat it
 
-- finish is_valid function 
-
-IndigoObject mol_input = s_indigo_IgnoreIndigoErrors.loadMolecule(molfile);
-if (mol_input == null) return false;
-  Smiles = mol_input.smiles();
-
 - integrate conditions/symptoms and treatments/compounds schemas
 
 - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
@@ -37,6 +67,9 @@ if (mol_input == null) return false;
 
 - get word roots & word distortions of synonyms using lemmatization lib
 
+- add function to test chemical reactions:
+  https://cheminfo.github.io/openchemlib-js/docs/classes/reaction.html
+
 - finish get_metadata (strategies, insights)
 
   - insight in a article doc is likely to:
@@ -45,6 +78,9 @@ if (mol_input == null) return false;
     - relate to intents important to agents (health, avoid illness)
     "saturated fat intake induces a cellular reprogramming that is associated with prostate cancer progression and lethality"
     https://medicalxpress.com/news/2019-11-high-fat-diet-proven-fuel-prostate.html
+
+    "The presence of many disulfide bonds making this a possible site for oxidative inactivation by ozone"
+    https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4927674/
 
   - get strategies used by an organism or used on a compound like: 
     https://medicalxpress.com/news/2019-11-high-resolution-images-malaria-parasites-evade.html

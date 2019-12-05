@@ -1,8 +1,106 @@
+from nltk import CFG
+from nltk import word_tokenize, pos_tag, ne_chunk
+
 from textblob import TextBlob, Word
 from get_index_def import get_empty_index
 from utils import get_subword_match
 
+'''
+  naa/JJ
+  cr/NN
+  ratio/NN
+    reduced/VBD
+  hiv/JJ
+  positive/JJ
+    patients/NNS
+  marker/VBP
+  infection/NN
+  brain/NN
+    even/RB
+    absence/RB
+    imaging/VBG
+    findings/NNS
+  encephalopathy/JJ
+  patient/JJ
+  symptomatic/JJ
+  due/JJ
+  neurological/JJ
+  disease/NN
+    etiologies/NNS
+
+CC: Coordinating conjunction
+CD: Cardinal number
+DT: Determiner
+EX: Existential there
+FW: Foreign word
+IN: Preposition or subordinating conjunction
+JJ: Adjective
+VP: Verb Phrase
+JJR: Adjective, comparative
+JJS: Adjective, superlative
+LS: List item marker
+MD: Modal
+NN: Noun, singular or mass
+NNS: Noun, plural
+PP: Preposition Phrase
+NNP: Proper noun, singular Phrase
+NNPS: Proper noun, plural
+PDT: Pre determiner
+POS: Possessive ending
+PRP: Personal pronoun Phrase
+PRP: Possessive pronoun Phrase
+RB: Adverb
+RBR: Adverb, comparative
+RBS: Adverb, superlative
+RP: Particle
+S: Simple declarative clause
+SBAR: Clause introduced by a (possibly empty) subordinating conjunction
+SBARQ: Direct question introduced by a wh-word or a wh-phrase.
+SINV: Inverted declarative sentence, i.e. one in which the subject follows the tensed verb or modal.
+SQ: Inverted yes/no question, or main clause of a wh-question, following the wh-phrase in SBARQ.
+SYM: Symbol
+VBD: Verb, past tense
+VBG: Verb, gerund or present participle
+VBN: Verb, past participle
+VBP: Verb, non-3rd person singular present
+VBZ: Verb, 3rd person singular present
+WDT: Wh-determiner
+WP: Wh-pronoun
+WP: Possessive wh-pronoun
+WRB: Wh-adverb
+'''
+
 ''' GET INDEX OF ELEMENTS '''
+
+def get_trees(line):
+    print('getting trees for line', line)
+    grammar_entries = ['S -> NP VP', 'PP -> P NP', 'NP -> Det N | NP PP', 'VP -> V NP | VP PP']
+    tagged = nltk.pos_tag(word_tokenize(line)) # [('This', 'DT'), ('is', 'VBZ'), ('a', 'DT'), ('Foo', 'NNP'), ('Bar', 'NNP'), ('sentence', 'NN'), ('.', '.')]
+    print('tagged', tagged)
+    grammar_dict = {}
+    for item in tagged:
+        pos = item[1]
+        value = item[0]
+        if pos != value:
+            if pos not in grammar_dict:
+                grammar_dict[pos] = [value]
+            else:
+                grammar_dict[pos].append(value)
+    for key, val in grammar_dict.items():
+        if len(val) > 1 and type(val) == list:
+            new_grammar_entry = ''.join([key, ' -> ', ' | '.join(val)])
+            grammar_entries.append(new_grammar_entry)
+    grammar_definition = '\n'.join(grammar_entries) if len(grammar_entries) > 0 else None
+    print('grammar_def', grammar_definition)
+    if grammar_definition:
+        grammar = CFG.fromstring(grammar_definition)
+        parser = nltk.ChartParser(grammar)
+        for tree in parser.parse(line):
+             print('tree', tree)
+    trees = ne_chunk(tagged)
+    # Tree('S', [('This', 'DT'), ('is', 'VBZ'), ('a', 'DT'), Tree('ORGANIZATION', [('Foo', 'NNP'), ('Bar', 'NNP')]), ('sentence', 'NN'), ('.', '.')])
+    print('trees', trees)
+    return trees
 
 def identify_elements(supported_core, elements, index, metadata):
     '''

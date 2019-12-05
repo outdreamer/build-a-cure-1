@@ -9,7 +9,7 @@ In future, this tool will help you execute more advanced functions, like:
 
 # Current Functionality
 
-Right now these are the supported features:
+Right now these are the supported use cases/features:
 
 ## 1. Generate graph from Smile Formula Bond Pairs
 
@@ -38,7 +38,7 @@ adjust the bonds & graph parameters of the generate_smile_formulas function, whi
 
 - get all metadata available for a condition:
 ```
-python3 pull_metadata.py --metadata "all" --condition "diabetes"
+python3 pull_metadata.py --metadata "all" --conditions "diabetes"
 ```
 This feature needs a lot of work but it's in progress however will be sporadically functional.
 
@@ -58,19 +58,40 @@ https://lifescience.opensource.epam.com/indigo/
 
 These are examples of the core functions of this tool, which pull & process data available online that you can feed into your neural networks.
 
-Eventually, metadata param options (if applicable) will include: 
+### Parameters 
+
+Eventually, parameter options will include: 
 ```
 options = [
 	'properties', 'treatments', 'contraindications', 'metrics',
-	'side effects', 'interactions', 'symptoms', 'conditions', 
-	'components', 'stressors', 'outputs', 'inputs',
+	'side-effects', 'interactions', 'symptoms', 'conditions', 
+	'bio-metrics', 'bio-symptoms', 'bio-conditions',
+	'components', 'stressors', 'outputs', 'inputs', 'filters',
 	'functions', 'insights', 'strategies', 'patterns', 'all'
 ]
 ```
 
+The metadata that can be requested is the same set of objects, except bio objects (which is intended for a specific patient's data),
+and the filters parameter.
+
+The generate param supports the same set of options as the metadata parameter.
+This parameter tells the program to combine the requested data into data sets, 
+which can be fed into your algorithms to create prediction functions.
+
+Examples:
+
+Pull all metadata for diabetes, then make a dataset where symptoms & conditions are used to predict which treatment would be successful.
+```
+python3 pull_metadata.py --metadata "all" --generate "symptoms,conditions::treatments" --conditions "diabetes"
+```
+
+The filters keyword can be used to send params all at once.
+
+### Planned Parameters 
+
 The first version will support fetching studied treatments, then recommending new treatment compounds & microbes
 
-These pull_metadata command options will be supported in future releases rather than mvp:
+These command options will be supported in future releases rather than mvp:
 	--metric "side effects" --filters "minimize"
 	--function "neutralize impact of drug X on liver"
 	--metadata "stressors" --filters "symptoms:A,functions:B,metrics:metricC::metricvalue,conditions:D"
@@ -79,44 +100,44 @@ These pull_metadata command options will be supported in future releases rather 
 
 With these tools to pull & organize data, you can build prediction functions.
 
+## Use Cases 
+
 Running pull_metadata.py the first time will also generate a small database of insights, strategies, & other objects on your local computer in the data folder, which it will use to speed up future queries.
 - pull all metadata:
 ```
 python3 pull_metadata.py
 ```
-
 - pull all metadata & generate all datasets:
 ```
-python3 pull_metadata.py --metadata "generate-all"
-```
-
-- find symptoms & successful treatments of condition Z
-```
-python3 pull_metadata.py --metadata "symptoms,treatments_successful" --condition "z"
+python3 pull_metadata.py --metadata "generate-all" --conditions "diabetes"
 ```
 - get all metadata available for a condition:
 ```
-python3 pull_metadata.py --metadata "all" --condition "diabetes"
+python3 pull_metadata.py --metadata "all" --conditions "diabetes"
 ```
-- find compounds studied for condition A
+- find just symptoms & successful treatments of a condition:
 ```
-python3 pull_metadata.py --metadata "treatments" --condition "diabetes"
+python3 pull_metadata.py --metadata "symptoms,treatments_successful" --conditions "z"
+```
+- find compounds studied for a condition:
+```
+python3 pull_metadata.py --metadata "treatments" --conditions "diabetes"
 ```
 - find metadata (functions, properties, side effects, symptoms) of compound X
 ```
-python3 pull_metadata.py --metadata "all" --compound "x"
+python3 pull_metadata.py --metadata "all" --compounds "x"
 ```
 - find compounds (microorganisms, genes) with function X
 ```
-python3 pull_metadata.py --metadata "compounds" --function "neutralize impact of drug X on liver"
+python3 pull_metadata.py --metadata "compounds" --functions "neutralize impact of drug X on liver"
 ```
 - find compound with fewest side effects
 ```
-python3 pull_metadata.py --metadata "compounds" --metric "side effects" --filters "minimize"
+python3 pull_metadata.py --metadata "compounds" --metrics "side effects" --filters "minimize"
 ```
 - find range of modified compounds with same function X & similar or harmless side effects
 ```
-python3 pull_metadata.py --metadata "compounds" --function "neutralize impact of drug X on liver" --metric "side effects" --filters "minimize"
+python3 pull_metadata.py --metadata "compounds" --functions "neutralize impact of drug X on liver" --metrics "side effects" --filters "minimize"
 ```
 - find stressors that directly trigger symptom A, function B, metric C, condition D or can construct those objects
 ```
@@ -124,11 +145,11 @@ python3 pull_metadata.py --metadata "stressors" --filters "symptoms:A,functions:
 ```
 - find combinations of components necessary to synthesize a compound
 ```
-python3 pull_metadata.py --metadata "components" --compound "z" --function "synthesis"
+python3 pull_metadata.py --metadata "components" --compounds "z" --functions "synthesis"
 ```
 - find out if a particular combinations of components can synthesize compound x using standard (non-experimental) methods
 ```
-python3 pull_metadata.py --metadata "compound" --components "a,b,c" --function "synthesis" --filters "x"
+python3 pull_metadata.py --metadata "compounds" --components "a,b,c" --functions "synthesis" --strategies "standard" --filters "compounds:x"
 ```
 - find (effective, safe range, toxic) dose of compound X for a person with a set of biometrics, symptoms, & known conditions
 ```
