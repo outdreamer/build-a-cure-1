@@ -102,7 +102,7 @@ def get_trees(line):
     print('trees', trees)
     return trees
 
-def identify_elements(supported_core, elements, index, metadata):
+def identify_elements(supported_core, elements, index, metadata, param_keys):
     '''
     this function is to identify which type of object can be found in elements
     - elements may be a set/list of sentences/phrases/words
@@ -122,10 +122,10 @@ def identify_elements(supported_core, elements, index, metadata):
     if type(elements) == str and ' ' in elements:
         blob = TextBlob(elements)
         phrases = blob.noun_phrases
-    empty_index = get_empty_index(metadata)
+    empty_index = get_empty_index(metadata, param_keys)
     element_keys = [ key for key in empty_index.keys() if key in supported_core ]
     elements = elements.split(' ') if type(elements) == str else elements
-    identified_elements = get_empty_index(metadata)
+    identified_elements = get_empty_index(metadata, param_keys)
     for element in elements:
         for keyword_type in element_keys:
             split_element = element if type(element) == set or type(element) == list else element.split(' ')
@@ -161,25 +161,27 @@ def identify_elements(supported_core, elements, index, metadata):
     print('\tidentified elements', identified_elements)
     return identified_elements
 
-def get_metrics(line):
-    ''' find any metrics in this line
-    to do: some metrics will have letters other than expected
-    pull all the alphanumeric strings & filter out dose information '''
-    metrics = set()
-    split_line = line.split(' ')
-    for key in supported_core['metrics']:
-        if key in line:
-            for i, word in enumerate(split_line):
-                if word == key or key in word:
-                    numbers = word.replace(key, '')
-                    if int(numbers):
-                        metrics.add(word) # '3mg'
-                    else:
-                        # get previous word '3 mg'
-                        previous_word = split_line[i - 1]
-                        if int(previous_word):
-                            metrics.add(previous_word)
-    return metrics
+def get_index(sources, index_type, metadata, param_keys):
+    '''
+    this assembles an index out of sources for the index type,
+    pulling from data sources like wiki to generate a dataset, 
+    if there isnt already a dataset stored locally
+    '''
+    index = get_empty_index(metadata, param_keys)
+    return index
+
+def get_index_objects(index_type, relationship):
+    print('get_index_objects', index_type, relationship)
+    function_name = ''.join(['get_', index_type])
+    globals_dict = globals()
+    if function_name in globals_dict:
+        print('found function in globals', function_name)
+        function = globals_dict[function_name]
+        print('function', function)
+        output = function(relationship)
+        print('output', output)
+        return output
+    return False
 
 ''' these functions do more advanced linguistic processing than 
     keyword matching as in identify_elements '''
@@ -187,13 +189,11 @@ def get_metrics(line):
 def get_primary_condition(summary, index):
     '''
     get the primary condition being studied
-    which should equal the keyword passed to get_summary_data
+    which should be the keyword passed to get_summary_data
+    if it was a condition
+    or the subject of the study
     '''
     return summary 
-
-def get_patterns(elements, index):
-    ''' this function looks for matches in elements with basic keyword patterns like alpha-<compound>-ic acid '''
-    return index
 
 def identify_key_sentences(summary):
     '''
@@ -202,7 +202,10 @@ def identify_key_sentences(summary):
         'intent': '',
         'key_sentences': {
             'hypothesis': '',
-            'treatment': '',
+            'assumptions': [],
+            'method': '',
+            'tests': [],
+            'treatments': [],
             'conclusion': ''
     }
     '''
@@ -215,7 +218,32 @@ def get_study_intent(hypothesis):
     '''
     return hypothesis
 
-def get_intent(line):
+def get_metrics(line):
+    '''
+    find any metrics in this line
+    to do: some metrics will have letters other than expected
+    pull all the alphanumeric strings & filter out dose information
+    '''
+    metrics = set()
+    split_line = line.split(' ')
+    for i, word in enumerate(split_line):
+        numbers = [w for w in word if w.isnumeric()]
+        if len(numbers) > 0:
+            if len(numbers) == len(word):
+                next_word = split_line[i + 1]
+                if len(next_word) < 5:
+                    # to do: add extra processing rather than assuming its a unit of measurement
+                    metrics.add(word)
+                    metrics.add(next_word) # '3 mg'
+            else:
+                metrics.add(word) # '3mg'
+    return metrics
+
+def get_patterns(line):
+    ''' this function looks for matches in elements with basic keyword patterns like alpha-<compound>-ic acid '''
+    return line
+
+def get_intents(line):
     ''' this function is checking for any purpose-related keywords
     to find priority data of bio components, 
     like 'bacteria seek to optimize efficiency' would return 'efficiency'
@@ -248,6 +276,9 @@ def get_hypothesis(summary):
     intents = ['diagnose', 'check_correlation', 'find_limit', 'evaluate_method']
     return summary
 
+def get_priorities(line):
+    return line 
+
 def get_side_effects(line):
     '''
     this should pull from data in standard sites like wiki, drugs, webmd, & rxlist 
@@ -261,13 +292,24 @@ def get_symptoms(line):
 def get_treatments(line):
     return line
 
-def get_mechanisms_of_action(line):
+def get_mechanisms(line):
     ''' get specific process explaining how this compound works '''
+    return line
+
+def get_tests(line):
     return line
 
 def get_types(line):
     ''' this returns the type stack in a component '''
-    return line 
+    return line
+
+def get_related_components(component):
+    '''
+    this should return all primary sub-components & outputs known for the component,
+    such as important adjacent compounds which this one frequently turns into
+    or other variations of the compound which have very different functionality
+    '''
+    return component
 
 def get_dependencies(io_type, component, relationships, n):
     ''' 
@@ -283,19 +325,3 @@ def get_dependencies(io_type, component, relationships, n):
     dependencies = []
     return dependencies
 
-def get_related_components(component):
-    '''
-    this should return all primary sub-components & outputs known for the component,
-    such as important adjacent compounds which this one frequently turns into
-    or other variations of the compound which have very different functionality
-    '''
-    return component
-
-def get_index(sources, index_type, metadata):
-    '''
-    this assembles an index out of sources for the index type,
-    pulling from data sources like wiki to generate a dataset, 
-    if there isnt already a dataset stored locally
-    '''
-    index = get_empty_index(metadata)
-    return index

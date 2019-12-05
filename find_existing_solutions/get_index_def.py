@@ -1,5 +1,5 @@
-def get_empty_index(metadata):
-    ''' 
+def get_empty_index(metadata, param_keys):
+    '''
     indexes isolates treatments from symptoms, metrics, etc to build indexes of those objects on your local env
         indexes = {
             'verbs': set(), # set of relationship verbs in the index set
@@ -10,10 +10,10 @@ def get_empty_index(metadata):
             'compounds': set(),
             'metrics': set(), # metric used to measure effectiveness of treatment
             'stressors': set(),
-            'patient_conditions': set(),
-            'patient_symptoms': set(),
-            'patient_metrics': set(),
-            'patient_stressors': set(),
+            'bio_conditions': set(),
+            'bio_symptoms': set(),
+            'bio_metrics': set(),
+            'bio_stressors': set(),
             'treatments_successful': set(),
             'treatments_failed': set(),
             'patterns': set(),
@@ -26,12 +26,10 @@ def get_empty_index(metadata):
             'types': set(),
             'causal_layers': set(),
         }
-
     rows
         - ensures data remains tied to its original context
         - it has the same elements as index but stores them by each sentence 
           from source data containing a symptom, condition, treatment, etc
-
     rows = [
         {
             'conditions': ['meningitis'],
@@ -79,16 +77,11 @@ def get_empty_index(metadata):
         }
     ]
     '''
-    
-    index_keys = [
-        'verbs', 'relationships', 'components',
-        'conditions', 'symptoms', 'compounds', 'metrics', 'stressors',
-        'patient_conditions', 'patient_symptoms', 'patient_metrics', 'patient_stressors',
-        'treatments_successful', 'treatments_failed', 
-        'patterns', 'functions', 'insights', 'strategies', 'systems', 
-        'variables', 'intents', 'types', 'causal_layers'
-    ]
-    if metadata == 'all' or metadata == 'generate-all':
+    index_keys = []
+    for key in param_keys:
+        if key != 'request':
+            index_keys.extend(param_keys[key])
+    if metadata == 'all':
         index = { key : set() for key in index_keys}
     else:
         metadata_keys = metadata.split(',')

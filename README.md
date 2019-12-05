@@ -66,6 +66,7 @@ options = [
 	'properties', 'treatments', 'contraindications', 'metrics',
 	'side-effects', 'interactions', 'symptoms', 'conditions', 
 	'bio-metrics', 'bio-symptoms', 'bio-conditions',
+	'dependencies', 'alternatives',
 	'components', 'stressors', 'outputs', 'inputs', 'filters',
 	'functions', 'insights', 'strategies', 'patterns', 'all'
 ]

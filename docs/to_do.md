@@ -4,8 +4,26 @@ to do:
   conditions: "order", "disorders"
   expression/activity
 
+- write function to get generic name of a drug ('tylenol' => 'paracetamol')
+
+- add processing of wiki content sections - the sets of sections will tell you what it is
+
+- best description of mechanism of action was on a category page:
+  https://en.wikipedia.org/wiki/Fungistatics
+
+- pull these properties for compounds on wiki:
+  Bioavailability 63–89%[4]:73
+  Protein binding 10–25%[5]
+  Metabolism  Predominantly in the liver[3]
+  Metabolites APAP gluc, APAP sulfate, APAP GSH, APAP cys, NAPQI[6]
+  Onset of action Pain relief onset by route:
+    By mouth – 37 minutes[7]
+    Buccal – 15 minutes[7]
+    Intravenous – 8 minutes[7]
+  Elimination half-life 1–4 hours[3]
+  Excretion Urine (85–90%)[3]
 - add tree parsing to identify related words in sentences
-- focus on treatment/strategy/insight parsing tomorrow
+- focus on treatment/strategy/insight parsing
 - now that you have a smile formula generator, you have the raw structure data, 
   assuming you can usually generate the right formula from a sequence of electron counts, which may not be realistic but youll at least have sets of elements to look in
 - so its time to focus on metadata - aggregate a property set available from apis, find the most comprehensive one, & use that api to fill in structural metadata
@@ -84,6 +102,7 @@ to do:
 
   - get strategies used by an organism or used on a compound like: 
     https://medicalxpress.com/news/2019-11-high-resolution-images-malaria-parasites-evade.html
+    - "nuclear fragmentation and membrane disruption"
 
     - the most important metadata attribute to write a function for is the reason for success/failure indicating the mechanism of action or strategy used
       The strategy behind the successful or failed attack should ideally be included
