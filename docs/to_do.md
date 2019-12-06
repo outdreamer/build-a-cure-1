@@ -12,7 +12,8 @@ to do:
 
 - identify individuals involved the study so you can isolate those sentences
 
-- dont filter out species when you remove periods "C. elegans"
+- dont filter out species when you remove periods "C. elegans" - elegans is being taken out rather than flagged as a species
+  so first go through periods and if previous char is a one-char word, join it with the next word like C.elegans during processing
 
 - add processing of wiki content sections - the sets of sections will tell you what it is
 
