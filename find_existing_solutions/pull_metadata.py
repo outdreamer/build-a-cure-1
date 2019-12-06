@@ -99,7 +99,7 @@ def pull_summary_data(sources, metadata, generate_source, generate_target, args,
                                     if len(summary) > 0:
                                         articles.append('\n'.join(summary))
     if len(articles) > 0:
-    	save('data/articles.txt', '\n'.join(articles))
+        save('data/articles.txt', '\n'.join(articles))
     if len(rows) > 0:
         write_csv(rows, index.keys(), 'data/rows.csv')
         if generate_target == 'all' and generate_source == 'all':
@@ -218,6 +218,32 @@ def get_relationships(line, row):
     print('get_relationships: row', row)
     return row
 
+def get_generic_medication(brand_name):
+    keyword = None
+    original_content = None
+    generic_content = None
+    try:
+        original_content = wikipedia.page(brand_name).content
+    except Exception as e:
+        print(e)
+        for item in e:
+            if brand_name.lower() not in item.lower() and 'medica' in item.lower():
+                keyword = item
+    try:
+        generic_page = wikipedia.page(item)
+        generic_title = generic_page.title
+        generic_content = generic_page.content
+        for i, s in enumerate(content.split('\n')):
+            if '==' in s and '.' not in s:
+                sname = s.replace('=','').strip().replace(' ','_').lower()
+                if sname in section_map:
+                    return generic_title
+        if 'a medication' in generic_content:
+            return generic_title
+    except Exception as e:
+        print('keyword e', keyword, e)
+    return False
+
 def get_metadata(line, index, row):
     ''' 
     this function is a supplement to get_medical_objects, 
@@ -241,32 +267,17 @@ def get_metadata(line, index, row):
                 noun_synsets = Word(word[0]).get_synsets(pos=NOUN)
                 verb_synsets = Word(word[0]).get_synsets(pos=VERB)
                 if len(noun_synsets) > 0 and len(verb_synsets) == 0:
-                    suggested = wikipedia.suggest(word[0])
-                    #print('suggested', suggested, word[0])
+                    suggested = None
+                    if word[0][0] == word[0][0].upper() and word[0][1] != word[0][1].upper():
+                        suggested = get_generic_medication(word[0])
+                    else:
+                        suggested = wikipedia.suggest(word[0])
+                    print('suggested', suggested, word[0])
                     suggested = suggested if suggested is not None else word[0]
                     '''
                     output = wikipedia.search(suggested, results=1)
                     images_urls = wikipedia.page(suggested).images
                     '''
-                    section_map = {
-                        'signs_and_symptoms': 'conditions',
-                        'medical_uses': 'treatments',
-                        'chemical_and_physical_properties': 'compounds',
-                        'applications': 'compounds',
-                        'growth': 'organisms',
-                        'adverse_effects': 'treatments',
-                        'side_effects': 'treatments',
-                        'contraindications': 'treatments',
-                        'interactions': 'treatments',
-                        'pharmacology': 'treatments',
-                        'common_names': 'organism',
-                        'cause': 'symptoms',
-                        'pathophysiology': 'symptoms',
-                        'diagnostic_approach': 'symptoms',
-                        'management': 'symptoms',
-                        'epidemiology': 'symptoms',
-                        'uses': 'organism', # https://en.wikipedia.org/wiki/Boesenbergia_rotunda
-                    }
                     summary = ''
                     section_list = []
                     categories = []
@@ -375,6 +386,25 @@ def generate_dataset(element_list, rows, write):
         return dataset
     return False
 
+section_map = {
+    'signs_and_symptoms': 'conditions',
+    'medical_uses': 'treatments',
+    'chemical_and_physical_properties': 'compounds', # this refers to a compound that is not a known treatment or is a sub component of a treatment
+    'applications': 'compounds',
+    'growth': 'organisms',
+    'adverse_effects': 'treatments',
+    'side_effects': 'treatments',
+    'contraindications': 'treatments',
+    'interactions': 'treatments',
+    'pharmacology': 'treatments',
+    'common_names': 'organism',
+    'cause': 'symptoms',
+    'pathophysiology': 'symptoms',
+    'diagnostic_approach': 'symptoms',
+    'management': 'symptoms',
+    'epidemiology': 'symptoms',
+    'uses': 'organism', # https://en.wikipedia.org/wiki/Boesenbergia_rotunda
+}
 numbers = '0123456789'
 alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789- '
 full_params = {
