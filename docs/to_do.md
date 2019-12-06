@@ -8,12 +8,20 @@ to do:
 - index words you pull from wiki so youre not repeating the query & store it across requests
 
 - write function to get generic name of a drug ('tylenol' => 'paracetamol')
+- biofilm should be identified as a synonym of membrane
 
 - add processing of wiki content sections - the sets of sections will tell you what it is
 
 - metrics should identify:
   - minimum inhibitory concentration MIC
   - naa-to-cr ratio
+
+- for queries of functions like "disable a gene", you can include intent & function metadata to point to sets of compounds that could do the required edits:
+  - find compound (protein, enzyme, etc) that unfolds DNA
+  - find compound that modifies (edits, activates, removes) the gene once unfolded as specifically as possible 
+    (can be a compound with a cutting subcomponent at the right length to target the dna if you can bind it to the first or last gene with another compound)
+  - find compound that refolds DNA
+  https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
 
 - also add an 'instructions' & 'equipment' item to reduce a study:
     https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4507162/
@@ -31,7 +39,7 @@ to do:
     - homogenizer || microfluidizer
 
   any compounds necessary:
-    - cop_oil, amb, dmac, ethanol, double distilled water
+    - cop_oil, amb, dmac, ethanol, double distilled water, TPGS, soya lecithin
 
   any optional substitutes:
     C: (co-surfactants): soya lecithin (PC), span 80, propylene glycol     
