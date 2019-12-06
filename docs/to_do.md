@@ -10,6 +10,10 @@ to do:
 - write function to get generic name of a drug ('tylenol' => 'paracetamol')
 - biofilm should be identified as a synonym of membrane
 
+- identify individuals involved the study so you can isolate those sentences
+
+- dont filter out species when you remove periods "C. elegans"
+
 - add processing of wiki content sections - the sets of sections will tell you what it is
 
 - metrics should identify:
