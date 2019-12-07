@@ -3,10 +3,12 @@ def get_empty_index(metadata, param_keys):
     indexes isolates treatments from symptoms, metrics, etc to build indexes of those objects on your local env
         indexes = {
             'counts': set(),
+            'clauses': set(),
             'phrases': set(),
             'verbs': set(), # set of relationship verbs in the index set
             'nouns': set(),
             'names': set(),
+            'title_similarities': set(),
             'taken_out': set(),
             'relationships': set(),
             'components': set(), # bio objects

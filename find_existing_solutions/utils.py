@@ -5,10 +5,10 @@ from nltk.corpus import stopwords
 from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer
 from nltk.stem.snowball import SnowballStemmer
-stemmer = SnowballStemmer("english")    
 from textblob import TextBlob, Word
 from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
+stemmer = SnowballStemmer("english")  
 
 def get_similarity(base_word, new_word):
     new_synsets = Word(new_word).get_synsets(pos=VERB)

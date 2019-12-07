@@ -351,28 +351,43 @@ def get_treatment_potential(intent, hypothesis, line, title):
             if the sentence is:
                 "drug did reduce blood pressure" => positive correlation (success) or a negative intent (reduce)
     '''
-
-    line_string = ' '.join(line) if type(line) != str else line
-    print("\tline sentiment", TextBlob(line_string).sentiment, "line", line)
+    negative_synonym_list = get_synonym_list(synonyms, key_map, 'negative') # antagonist, reduce, inhibit, deactivate, toxic
+    positive_synonym_list = get_synonym_list(synonyms, key_map, 'positive') # help, assist, enhance, induce, synergetic, sympathetic
+    line = ' '.join(line) if type(line) != str else line
+    print("\tline sentiment", TextBlob(line).sentiment, "line", line_string)
     if hypothesis:
         print("\thypothesis sentiment", TextBlob(hypothesis).sentiment, "hypothesis", hypothesis)
     if intent:
         print("\tintent sentiment", TextBlob(intent).sentiment, "intent", intent)
-
     metadata = get_structural_metadata(line, data_words, data, metadata)
-    for word in line_string.split(' '):
-        pos = get_pos(word)
-        polarity = get_polarity(word)
-        if word == subject:
+    print('clauses', metadata['clauses'])
 
-        elif word in objects:
+    '''
+    you want to catch all the meaning in phrases like 
+    "x reduced b inhibitor"
+    and your current logic will only capture "x reduced b"
+    when in reality youd want to store the full clause so the relationships can be derived:
+        "x increases b"
+        "x reduces inhibitor"
+        "inhibitor reduces b"
+    '''
 
-        elif pos == 'verb' or pos == 'noun':
-            decrease_synonyms = get_decrease_synonyms() # antagonist, reduce, inhibit, deactivate, toxic
-            increase_synonyms = get_increase_synonyms() # help, assist, enhance, induce, synergetic, sympathetic
-            if word in decrease_synonyms:
-
-            elif word in increase_synonyms:
+    derived_treatment_relationships = []
+    for c in metadata['clauses']:
+        clause_metadata = []
+        print('clause', clause)
+        for word in c.split(' '):
+            pos = get_pos(word)
+            polarity = get_polarity(word)
+            print('get_treatment_potential: polarity', polarity, pos, word)
+            if word in metadata['subjects'] or word in metadata['nouns']:
+                clause_metadata.append(word)
+            elif pos == '<verb>':
+                if word in negative_synonym_list and polarity < 0.0:
+                    clause_metadata.append('decreased')
+                elif word in positive_synonym_list and polarity > 0.0:
+                    clause_metadata.append('increased')
+        derived_treatment_relationships.add(' '.join(clause_metadata))
 
     line_sentiment = TextBlob(line_string).sentiment.polarity
     intent_sentiment = TextBlob(intent).sentiment.polarity
@@ -442,9 +457,14 @@ section_map = {
 numbers = '0123456789'
 alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789- '
 
+key_map = {
+    'negative': ['decrease'],
+    'positive': ['increase']
+}
+
 full_params = {
     'request': ['metadata', 'generate', 'filters'], # request params
-    'pos': ['verbs', 'nouns', 'subjects', 'clauses', 'names', 'relationships', 'taken_out', 'phrases'], # elements organized by structure
+    'pos': ['verbs', 'nouns', 'subjects', 'clauses', 'counts', 'names', 'relationships', 'taken_out', 'phrases', 'title_similarities'], # elements organized by structure
     'experiment': ['hypothesis', 'tests', 'metrics', 'properties'], # experiment elements
     'compound': ['compounds', 'contraindications', 'interactions', 'side-effects', 'treatments_successful', 'treatments_failed'], # drug elements
     'condition': ['symptoms', 'conditions'], # condition elements
