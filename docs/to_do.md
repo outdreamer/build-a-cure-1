@@ -5,14 +5,36 @@ to do:
   conditions: "order", "disorders"
   expression/activity
 
+- standardize synonyms to word stems
+
+- finish function to determine positive/negative relationship
+
 - index words you pull from wiki so youre not repeating the query & store it across requests
 
 - remove from names: ''M.D..''
-- biofilm should be identified as a synonym of membrane
 
-- metrics should identify:
+- synonyms:
+  biofilm :: membrane
+  sympathetic :: synergistic
+  irritate :: damage
+
+- metrics function should identify:
   - minimum inhibitory concentration MIC
   - naa-to-cr ratio
+
+- use distortion patterns of entities like atlases, templates, solution progressions to form a compressed version of the host system
+  https://techxplore.com/news/2019-11-medical-image-analysis.html
+
+- add stressor language patterns:
+  Sesquiterpenes work as a liver and gland stimulant and contain caryophyllene and valencene. 
+  Research from the universities of Berlin and Vienna show increased oxygenation around the pineal and pituitary glands.
+  While offering a variety of healing properties, the most important ability of the monoterpenes is that they can reprogram miswritten information in the cellular memory (DNA)
+  Terpene Alcohols stimulate the immune system, work as a diuretic and a general tonic.
+  Sesquiterpene Alcohols are ulcer-protective (preventative).
+  Phenols clean receptor sites of cells so sesquiterpenes can delete faulty information from the cell. They contain high levels of oxygenating molecules and have anioxidant properties.
+  Camphor, borneol, and eucalyptol are monoterpene ketones that the available body of evidence suggests may be toxic to the nervous system depending on dosage, while jasmine, fenchone, and isomenthone are considered nontoxic. Ketones aid the removal of mucous, stimulate cell and tissue regeneration, promote the removal of scar tissue, aid digestion, normalize inflammation, relieve pain, reduce fever, may inhibit coagulation of blood, and encourage relaxation.
+  https://www.homasy.com/blogs/tutorials/what-are-the-major-compounds-of-essential-oils
+  Furthermore, histidine can protect the body from radiation damage. It does this by binding to the damaging molecules, therefore eliminating them.
 
 - for queries of functions like "disable a gene", you can include intent & function metadata to point to sets of compounds that could do the required edits:
   - find compound (protein, enzyme, etc) that unfolds DNA
@@ -21,54 +43,29 @@ to do:
   - find compound that refolds DNA
   https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
 
-- also add an 'instructions' & 'equipment' item to reduce a study:
-    https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4507162/
-
-  to the set of instructions to synthesize the compound:
-    - A: mix (((cop_oil & amb) dissolved in dmac) + (C dissolved in ethanol)) for 30 minutes & evaporate for 6 hours in a rotary evaporator 
-    - B: dissolve D in double distilled water
-    - add A to B one drop at a time while stirring
-    - homogenize using a microfluidizer
-
-  and the set of equipment necessary:
-    - beakers
-    - dropper
-    - heater || rotary evaporator
-    - homogenizer || microfluidizer
-
-  any compounds necessary:
-    - cop_oil, amb, dmac, ethanol, double distilled water, TPGS, soya lecithin
-
-  any optional substitutes:
-    C: (co-surfactants): soya lecithin (PC), span 80, propylene glycol     
-    D: (surfactants): tween 80, labrasol, d-α-tocopheryl polyethylene glycol 1000 succinate (TPGS), pluronic F-68, pluronic F-127
-
-  any parameters & parameter values:
-    - isotropic mixture (1:1) of TPGS and PC
-    - Cop, drug to Cop ratio 1:20
-    - homogenization parameters 15 cycles at 50 MPa of microfluidizer
-
-
 - new drugs are at: https://adisinsight.springer.com/drugs/800042427
 
 - best description of mechanism of action was on a category page:
   https://en.wikipedia.org/wiki/Fungistatics
 
-- Start small with three to four drops a day and gradually increasing it as your body adjusts to the right treatment dosage.
-- If you are taking oil of oregano in capsules, you should not consume more than 500 to 600 mg per day
+- doses examples:
+  "Start small with three to four drops a day and gradually increasing it as your body adjusts to the right treatment dosage."
+  "If you are taking oil of oregano in capsules, you should not consume more than 500 to 600 mg per day"
 
 - pull these properties for compounds on wiki:
-  Bioavailability 63–89%[4]:73
-  Protein binding 10–25%[5]
-  Metabolism  Predominantly in the liver[3]
-  Metabolites APAP gluc, APAP sulfate, APAP GSH, APAP cys, NAPQI[6]
-  Onset of action Pain relief onset by route:
-    By mouth – 37 minutes[7]
-    Buccal – 15 minutes[7]
-    Intravenous – 8 minutes[7]
-  Elimination half-life 1–4 hours[3]
-  Excretion Urine (85–90%)[3]
+    Bioavailability 63–89%[4]:73
+    Protein binding 10–25%[5]
+    Metabolism  Predominantly in the liver[3]
+    Metabolites APAP gluc, APAP sulfate, APAP GSH, APAP cys, NAPQI[6]
+    Onset of action Pain relief onset by route:
+      By mouth – 37 minutes[7]
+      Buccal – 15 minutes[7]
+      Intravenous – 8 minutes[7]
+    Elimination half-life 1–4 hours[3]
+    Excretion Urine (85–90%)[3]
+
 - add tree parsing to identify related words in sentences
+
 - focus on treatment/strategy/insight parsing
 - now that you have a smile formula generator, you have the raw structure data, 
   assuming you can usually generate the right formula from a sequence of electron counts, which may not be realistic but youll at least have sets of elements to look in
@@ -111,7 +108,7 @@ to do:
   - compounds
   - remove common nouns analysis, basis, dis/order, diagnosis from conditions
 
-- same line in functions: expressionactivity
+- same line in functions: expression/activity
 - do a check for full keyword matching before adding a partial match
   compounds: 'disease'
   causal_layers: 'cr,ratio' 
@@ -154,6 +151,8 @@ to do:
       The strategy behind the successful or failed attack should ideally be included
         - "this structure on the compound tears the cell barrier"
         - "induces apoptosis by depriving it of contrary signals"
+        - "chlorpromazine increases valproic acid levels, which can be derived from valerian (valerian suppressed cyp3a4), 
+          which is a function in common with other compounds having activity against pathogen x"
       in as structured a format as possible (numerical mappings could work for an initial version)
 
     - drugs need a way to handle common mutation strategies of pathogens

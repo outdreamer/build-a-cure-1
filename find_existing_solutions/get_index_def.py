@@ -2,7 +2,12 @@ def get_empty_index(metadata, param_keys):
     '''
     indexes isolates treatments from symptoms, metrics, etc to build indexes of those objects on your local env
         indexes = {
+            'counts': set(),
+            'phrases': set(),
             'verbs': set(), # set of relationship verbs in the index set
+            'nouns': set(),
+            'names': set(),
+            'taken_out': set(),
             'relationships': set(),
             'components': set(), # bio objects
             'conditions': set(),
@@ -14,15 +19,24 @@ def get_empty_index(metadata, param_keys):
             'bio_symptoms': set(),
             'bio_metrics': set(),
             'bio_stressors': set(),
+            'synthesis_instructions': set(),
+            'synthesis_parameters': set(),
+            'synthesis_optimal_parameter_values': set(),
+            'synthesis_required_compounds': set(),
+            'synthesis_substitutes': set(),
+            'synthesis_equipment_links': set(),
+            'synthesis_adjacent_compounds_synthesis_steps': set(),
             'treatments_successful': set(),
             'treatments_failed': set(),
             'patterns': set(),
+            'pattern_stack': set(),
             'functions': set(),
             'insights': set(), # useful sentences in index set that have bio rules in them - for abstracts this will likely just be the treatment success sentence
             'strategies': set(), # insights relevant to methods/mechanisms of action/processes or patterns of problem-solving
             'systems': set(),
             'variables': set(),
-            'intents': set(),
+            'target_intents': set(),
+            'avoid_intents': set(), # in addition to functions you want to target, there are functions you want to avoid as well
             'types': set(),
             'causal_layers': set(),
         }
@@ -88,13 +102,21 @@ def get_empty_index(metadata, param_keys):
         index = { key : set() for key in metadata_keys if key in index_keys}
     ''' 
     each main medical component deserves its own dictionary, which can be built with rows data
-    symptom = {
+    'synthesis_instructions' = {
+        'parameters',
+        'optimal_parameter_values',
+        'required_compounds',
+        'substitutes',
+        'equipment_links',
+        'adjacent_compounds_and_steps',
+    }
+    'symptom' = {
         'attributes': [],
         'rules': [],
         'states': [],
         'treatments': []
     }
-    compounds = {
+    'compounds' = {
         'attributes': [],
         'rules': [],
         'states': [],

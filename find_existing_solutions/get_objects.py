@@ -28,6 +28,8 @@ from utils import get_subword_match
   disease/NN
     etiologies/NNS
 
+https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
+
 CC: Coordinating conjunction
 CD: Cardinal number
 DT: Determiner
@@ -186,6 +188,56 @@ def get_index_objects(index_type, relationship):
 ''' these functions do more advanced linguistic processing than 
     keyword matching as in identify_elements '''
 
+def get_variables(line):
+    ''' use this to determine parameters for synthesis function too '''
+
+def get_synthesis_instructions(article):
+    '''
+    - also add an 'instructions' & 'equipment' item to reduce a study:
+      https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4507162/
+
+      to the set of instructions to synthesize the compound:
+        - A: mix (((cop_oil & amb) dissolved in dmac) + (C dissolved in ethanol)) for 30 minutes & evaporate for 6 hours in a rotary evaporator 
+        - B: dissolve D in double distilled water
+        - add A to B one drop at a time while stirring
+        - homogenize using a microfluidizer
+
+      and the set of equipment necessary:
+        - beakers
+        - dropper
+        - heater || rotary evaporator
+        - homogenizer || microfluidizer
+
+      any compounds necessary:
+        - cop_oil, amb, dmac, ethanol, double distilled water, TPGS, soya lecithin
+
+      any optional substitutes:
+        C: (co-surfactants): soya lecithin (PC), span 80, propylene glycol     
+        D: (surfactants): tween 80, labrasol, d-α-tocopheryl polyethylene glycol 1000 succinate (TPGS), pluronic F-68, pluronic F-127
+
+      any parameters & parameter values:
+        - isotropic mixture (1:1) of TPGS and PC
+        - Cop, drug to Cop ratio 1:20
+        - homogenization parameters 15 cycles at 50 MPa of microfluidizer
+    '''
+
+def get_adjacent_compounds(compound):
+
+def identify_causal_layer(row, index, line, article):
+
+def generate_abstract_patterns(pattern_stack):
+    '''
+        pattern_stack is the output of get_pattern_stack, 
+        which returns a dict with 
+        key pointing to original sentence &
+        value pointing to pattern with pos replacement
+        out of the pattern_stack, you need a function to derive the abstract patterns:
+        - iterate through words 
+            - if its an object, replace it with its type 
+            - if its a function, replace it with its core function decomposition
+            - repeat until all relevant unique patterns are generated
+    '''
+
 def get_primary_condition(summary, index):
     '''
     get the primary condition being studied
@@ -301,6 +353,9 @@ def get_tests(line):
 
 def get_types(line):
     ''' this returns the type stack in a component '''
+    return line
+
+def get_function_decomposition(line):
     return line
 
 def get_related_components(component):

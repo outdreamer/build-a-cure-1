@@ -12,9 +12,10 @@ from textblob import TextBlob, Word
 from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
 
-from utils import get_verbs, get_standard_word, save, read, remove_duplicates, write_csv
+from utils import get_standard_word, save, read, remove_duplicates, write_csv
 from get_index_def import get_empty_index
 from get_objects import identify_elements, get_index_objects
+from get_structure import get_pos, get_structural_metadata
 
 def get_entries(source, keyword, start, max_results, total_results):
     url = source['url'].replace('<KEY>', keyword).replace('<START>', str(start)).replace('<MAX>', str(max_results))
@@ -314,40 +315,73 @@ def get_metadata(line, index, row):
     return index, row
 
 def get_correlation_of_relationship(intent, line):
-    '''
-    this will process a relationship like:
-    "this protein activates this gene" or "this compound had a synergistic effect"
-    & tests if this is a positive association for the condition, so it can be used as a treatment
-    '''
     line_string = ' '.join(line) if type(line) != str else line
     #print("\tline sentiment", TextBlob(line_string).sentiment, "line", line)
     if intent:
         print("\tintent sentiment", TextBlob(intent).sentiment, "intent", intent)
-    return TextBlob(line_string).sentiment.polarity
+    return get_polarity(line_string)
 
-def get_success_of_relationship(intent, hypothesis, line):
+def get_treatment_potential(intent, hypothesis, line, title):
     '''
-    this will process a relationship like:
-    "this protein activates this gene" or "this compound had a synergistic effect"
-    & tests if this is a positive association for the condition, so it can be used as a treatment
+    hypothesis & intent can be Null for now 
 
-    if the intent is to check for correlation:
+    this function will process a relationship like:
+
+    intent='check_correlation', line="this protein activates this gene known to cause this condition"
+
+    the line must have these conditions met before it should be analyzed as a treatment:
+        - check if it has words similar to the title to indicate relevance to study intent 
+        - then check that the objects are in the names or medical objects indexes
+        - the condition being studied or a marker of it is mentioned as well
+
+    then it analyzes the positivity of the relationship between objects in the line,
+     & tests if this is a positive association for the condition, so it can be used as a treatment:
+
+        - returns "positive" for line above to indicate a potential treatment
+        - returns "positive" for "this compound had a synergistic effect with a drug to treat the condition"
+        - returns "negative" for "this compound reduced disease inhibition"
+
+    - "intents" are similar to "effects" or "outputs", but assumed to be the purpose of an operation once known
+    
+    when you have intent & hypothesis functions done, you can do logic like:
+    if the intent is check_correlation:
         if the hypothesis is "drug reduced blood pressure":
             if the sentence is:
-                "drug did not reduce blood pressure"
-                that's a negative correlation (failure) or a negative intent (reduce)
+                "drug did not reduce blood pressure" => negative correlation (failure) or a negative intent (reduce)
             if the sentence is:
-                "drug did reduce blood pressure"
-                that's a positive correlation (success) or a negative intent (reduce)
+                "drug did reduce blood pressure" => positive correlation (success) or a negative intent (reduce)
     '''
+
     line_string = ' '.join(line) if type(line) != str else line
     print("\tline sentiment", TextBlob(line_string).sentiment, "line", line)
-    print("\tintent sentiment", TextBlob(intent).sentiment, "intent", intent)
+    if hypothesis:
+        print("\thypothesis sentiment", TextBlob(hypothesis).sentiment, "hypothesis", hypothesis)
+    if intent:
+        print("\tintent sentiment", TextBlob(intent).sentiment, "intent", intent)
+
+    metadata = get_structural_metadata(line, data_words, data, metadata)
+    for word in line_string.split(' '):
+        pos = get_pos(word)
+        polarity = get_polarity(word)
+        if word == subject:
+
+        elif word in objects:
+
+        elif pos == 'verb' or pos == 'noun':
+            decrease_synonyms = get_decrease_synonyms() # antagonist, reduce, inhibit, deactivate, toxic
+            increase_synonyms = get_increase_synonyms() # help, assist, enhance, induce, synergetic, sympathetic
+            if word in decrease_synonyms:
+
+            elif word in increase_synonyms:
+
     line_sentiment = TextBlob(line_string).sentiment.polarity
     intent_sentiment = TextBlob(intent).sentiment.polarity
     if (line_sentiment - intent_sentiment) < 0.3:
         return True
     return False
+
+def get_polarity(line):
+    return TextBlob(line).sentiment.polarity
 
 def generate_all_datasets(component_list, rows):
     '''
@@ -407,14 +441,16 @@ section_map = {
 }
 numbers = '0123456789'
 alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789- '
+
 full_params = {
     'request': ['metadata', 'generate', 'filters'], # request params
-    'pos': ['verbs', 'relationships', 'phrases'], # elements organized by structure
+    'pos': ['verbs', 'nouns', 'subjects', 'clauses', 'names', 'relationships', 'taken_out', 'phrases'], # elements organized by structure
     'experiment': ['hypothesis', 'tests', 'metrics', 'properties'], # experiment elements
     'compound': ['compounds', 'contraindications', 'interactions', 'side-effects', 'treatments_successful', 'treatments_failed'], # drug elements
     'condition': ['symptoms', 'conditions'], # condition elements
     'context': ['bio-metrics', 'bio-symptoms', 'bio-conditions', 'bio-stressors'], # context elements
-    'interaction': ['components', 'related_components', 'alternatives', 'stressors', 'dependencies'], # interaction elements
+    'synthesis': ['instructions', 'parameters', 'optimal_parameter_values', 'required_compounds', 'substitutes', 'equipment_links', 'adjacent_compound_synthesis_steps'],
+    'interaction': ['components', 'related', 'alternatives', 'substitutes', 'adjacent' 'stressors', 'dependencies'], # interaction elements
     'conceptual': ['variables', 'systems', 'functions', 'insights', 'strategies', 'patterns', 'priorities', 'intents', 'types', 'causal_layers'] # conceptual elements
 }
 supported_params = []

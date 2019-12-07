@@ -19,13 +19,6 @@ def get_similarity(base_word, new_word):
         return base_synsets.path_similarity(new_synsets)
     return 0
 
-def get_verbs(line):
-    verbs = set()
-    for word in line.split(' '):
-        if len(Word(word).get_synsets(pos=VERB)) > 0:
-            verbs.add(word)
-    return verbs
-
 def get_subword_match(keyword_list, words, match_type):
     words = [words] if type(words) == str else words
     for word_or_phrase in words:
