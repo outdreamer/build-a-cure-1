@@ -1,4 +1,4 @@
-def get_empty_index(metadata, param_keys):
+def get_empty_index(metadata_keys, param_keys):
     '''
     indexes isolates treatments from symptoms, metrics, etc to build indexes of those objects on your local env
         indexes = {
@@ -97,10 +97,9 @@ def get_empty_index(metadata, param_keys):
     for key in param_keys:
         if key != 'request':
             index_keys.extend(param_keys[key])
-    if metadata == 'all':
+    if 'all' in metadata_keys:
         index = { key : set() for key in index_keys}
     else:
-        metadata_keys = metadata.split(',')
         index = { key : set() for key in metadata_keys if key in index_keys}
     ''' 
     each main medical component deserves its own dictionary, which can be built with rows data

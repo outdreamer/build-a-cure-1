@@ -10,13 +10,18 @@ from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
 stemmer = SnowballStemmer("english")  
 
+def get_definitions(word):
+    defs = Word(base_word).definitions
+    print('\tdefinitions', defs)
+    return defs
+
 def get_similarity(base_word, new_word):
     new_synsets = Word(new_word).get_synsets(pos=VERB)
     base_synsets = Word(base_word).get_synsets(pos=VERB)
     if len(new_synsets) > 0 and len(base_synsets) > 0:
-        print('\tget similarity', new_synsets, base_synsets)
-        print('\tdefinitions', Word(base_word).definitions)
-        return base_synsets.path_similarity(new_synsets)
+        similarity = base_synsets.path_similarity(new_synsets)
+        print('\tget similarity', new_synsets, base_synsets, similarity)
+        return similarity
     return 0
 
 def get_subword_match(keyword_list, words, match_type):
@@ -51,26 +56,36 @@ def get_subword_match(keyword_list, words, match_type):
                     '''
     return False
 
-def get_standard_word(row, word, supported_core, supported_synonyms, standard_verbs):
-    ''' this should standardize a word like 'enhance' to a verb like 'increase' '''
-    # to do: fix nouns being identified as a verb like belt -> belt_out
-    #print('\tget synonym', synonym_set)
-    if word in supported_synonyms or word in standard_verbs:
-        return word
-    verb_synset = Word(word).get_synsets(pos=VERB)
-    noun_synset = Word(word).get_synsets(pos=NOUN)
+def check_for_supported_synonym(word, index_keys, supported_core):
+    common_synonym = ''
+    # word_root = stemmer.stem(word)
     for key in supported_core:
         for item in key:
             if item == word:
-                return key
-        word_root = stemmer.stem(word)
+                common_synonym = key
         matched = get_subword_match(supported_core[key], word, 'word')
         if matched:
-            #print('matched', matched, key, word_root, word)
-            if key in row.keys():
-                return key
+            if key in index_keys:
+                common_synonym = key
             else:
-                return matched if '-' not in matched else word
+                common_synonym = matched if '-' not in matched else word
+    if len(common_synonym) > 0:
+        return common_synonym
+    return False
+
+def get_standard_word(row, word, supported_core, supported_synonyms, standard_verbs):
+    '''
+    this should standardize a word like 'enhance' to a verb like 'increase' 
+    actually we can replace that for now with a synonym list, as in get_synonym_list()
+    '''
+    if word in supported_synonyms or word in standard_verbs:
+        return word
+    # word_root = stemmer.stem(word)
+    standard_word = check_for_supported_synonym(word, row.keys(), supported_core)
+    if standard_word:
+        return standard_word
+    verb_synset = Word(word).get_synsets(pos=VERB)
+    noun_synset = Word(word).get_synsets(pos=NOUN)
     synset = verb_synset if len(verb_synset) > 0 else noun_synset if len(noun_synset) > 0 else []
     if len(synset) > 0:
         counts = {}
@@ -119,17 +134,16 @@ def write_csv(rows, header_list, path):
         csv_writer.writeheader()
         csv_writer.writerows(rows)
         f.close()
+        return True 
+    return False
 
 def remove_duplicates(line):
     ''' to do: add semantic & keyword equivalence checks '''
     custom_removal = ['the', ',', '.', 'a', 'an', 'them', 'they']
     if type(line) == str:
-        line_list = [w for w in line.lower().split(' ') if w.strip() not in stopwords.words('english') and w.strip() not in custom_removal]
-        new_list = []
-        for item in line_list:
-            if item not in new_list:
-                new_list.append(item)
-        return ' '.join(new_list)
+        line = line.strip()
+        line_list = set(w for w in line.split(' ') if w.lower().strip() not in stopwords.words('english') and w.lower().strip() not in custom_removal)
+        return ' '.join(line_list)
     else:
         return [w.lower() for w in line if w.strip().lower() not in stopwords.words('english') and w.strip.lower() not in custom_removal]
     return line

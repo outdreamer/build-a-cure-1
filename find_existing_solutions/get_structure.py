@@ -62,53 +62,44 @@ def convert_patterns(lang_patterns):
         return patterns
     return False
 
-def get_verbs(line):
-    verbs = set()
-    for word in line.split(' '):
-        if len(Word(word).get_synsets(pos=VERB)) > 0:
-            verbs.add(word)
-    return verbs
-
 def get_pos(word):
-    noun_string = '<noun>'
-    verb_string = '<verb>'
+    noun_string = 'noun'
+    verb_string = 'verb'
     if len(word) > 0:
-        stem = stemmer.stem(word)
-        tagged = pos_tag(word_tokenize(word))
-        tagged_stem = pos_tag(word_tokenize(stem))
-        pos = [item[1] for item in tagged if item[0].lower() == word]
-        stem_pos = [item[1] for item in tagged_stem if item[0].lower() == stem]
+        pos = [item[1] for item in pos_tag(word_tokenize(word)) if item[0].lower() == word]
         if (len(pos) > 0 and pos[0] in noun_pos):
             return noun_string
         elif (len(pos) > 0 and pos[0] in verb_pos):
             return verb_string
-        elif len(stem_pos) > 0:
-            if stem_pos[0] in noun_pos:
-                return noun_string
-            elif stem_pos[0] in verb_pos:
-                return verb_string
         else:
             noun_synsets = Word(word).get_synsets(pos=NOUN)
-            verb_synsets = Word(word).get_synsets(pos=VERB)
             if len(noun_synsets) > 0:
                 return noun_string
-            elif len(verb_synsets) > 0:
+            verb_synsets = Word(word).get_synsets(pos=VERB)
+            if len(verb_synsets) > 0:
                 return verb_string
             else:
+                stem = stemmer.stem(word)
+                stem_pos = [item[1] for item in pos_tag(word_tokenize(stem)) if item[0].lower() == stem]
+                if len(stem_pos) > 0:
+                    if stem_pos[0] in noun_pos:
+                        return noun_string
+                    elif stem_pos[0] in verb_pos:
+                        return verb_string
                 noun_stem_synsets = Word(stem).get_synsets(pos=NOUN)
-                verb_stem_synsets = Word(stem).get_synsets(pos=VERB)
                 if len(noun_stem_synsets) > 0:
                     return noun_string
-                elif len(verb_stem_synsets) > 0:
+                verb_stem_synsets = Word(stem).get_synsets(pos=VERB)
+                if len(verb_stem_synsets) > 0:
                     return verb_string
-        #print('unknown word', word, pos, stem_pos, noun_synsets, verb_synsets)
+        print('get_pos: unknown word', word, pos)
     return False
 
 def convert_to_pattern_format(line):
     new_line = []
     for word in line.split(' '):
         pos = get_pos(word)
-        val = pos if pos and word not in pattern_words else word
+        val = pos if pos else word # to do: restrict by pattern_words
         new_line.append(val)
     line = ' '.join(new_line)
     return line
@@ -116,11 +107,9 @@ def convert_to_pattern_format(line):
 def find_pattern(original, line, pattern):
     found_phrases = []
     original_split = original.split(' ')
-    # phrases = TextBlob(line).noun_phrases
     if pattern in line:
         ''' replace pattern with pos so each pos in pattern is only taking up one item in line.split(' ') '''
         line_split = line.split(pattern)
-        print('line_split', line_split, pattern)
         for i, phrase in enumerate(line_split):
             words = phrase.split(' ')
             if i < (len(line_split) - 1):
@@ -160,7 +149,7 @@ def concatenate_species(data):
                 prev_item = d_split[-1]
                 if len(prev_item) > 1:
                     next_item = data_lines[i+1].strip().split(' ')[0]
-                    d_next = '.'.join([last_item, next_item])
+                    d_next = '-'.join([last_item, next_item]) #C. elegans => C-elegans
                     d_split.append(d_next)
                     new_lines.append(' '.join(d_split))
         else:
@@ -174,28 +163,171 @@ def concatenate_species(data):
     data = '.'.join(new_lines)
     return data
 
-def get_subject(line):
-    return line 
+def get_counts(article_words, processed_data, tagged, line, phrases, metadata):
+    for item in tagged:
+        if len(item) == 2:
+            w = item[0].lower()
+            if item[1] in leave_in_pos:
+                if len(w) > 0 and w not in stop:
+                    w_upper = w.upper()
+                    w_name = ''.join([w[0].upper(), w[1:]])
+                    upper_count = article_words.count(w_upper) # find acronyms, ignoring punctuated acronym
+                    count = processed_data.count(w)
+                    ## and w not in verbs and w not in nouns and w_name not in ' '.join(names):
+                    if item[0] == w_name and w_name != article_words[0] and w_name not in ' '.join(metadata['names']): # exclude first word in sentence
+                        if upper_count > 0 and upper_count <= count:
+                            if upper_count not in metadata['counts']:
+                                metadata['counts'][upper_count] = set()
+                            metadata['counts'][upper_count].add(w_upper)
+                        else:
+                            if count > 0:
+                                if count not in metadata['counts']:
+                                    metadata['counts'][count] = set()
+                                metadata['counts'][count].add(w)
+    for p in phrases:
+        if len(p) > 0:
+            phrase_words = p.split(' ')
+            for n in phrase_words:
+                new_p = set()
+                p_name = ''.join([n[0].upper(), n[1:]])
+                for name in metadata['names']:
+                    if name not in p_name:
+                        new_p.add(n)
+                p = ' '.join(new_p)
+            if len(p.strip()) > 0:
+                pos = [item[1] for item in tagged if item[0].lower() == phrase_words[0]]
+                if pos not in verb_pos and p not in metadata['verbs'] and p not in metadata['nouns'] and p_name not in ' '.join(metadata['names']) and p not in stop:
+                    p_upper = p.upper()
+                    upper_count = article_words.count(p_upper) # find acronyms
+                    phrase_count = processed_data.count(p)
+                    p = p_upper if upper_count > 0 and len(p_upper) > 0 and upper_count < phrase_count else p
+                    count = upper_count if upper_count > 0 and len(p_upper) > 0 and upper_count < phrase_count else phrase_count
+                    if count not in metadata['phrases']:
+                        metadata['phrases'][count] = set()
+                    metadata['phrases'][count].add(p)
+    common_words = get_most_common_words(counts, 3) # get top 3 tiers of common words
+    if common_words:
+        metadata['common_words'].extend(common_words)
+    return metadata
 
-def get_clauses(line):
-    return line 
+def get_names(article_words, line, phrases, metadata):
+    line = line.replace("'",'')
+    tagged = pos_tag(word_tokenize(line))
+    for p in phrases:
+        if len(p) > 0:
+            new_name = []
+            phrase_words = p.split(' ')
+            for name in phrase_words:
+                pos = [item[1] for item in tagged if item[0].lower() == name]
+                if len(pos) > 0:
+                    pos_item = pos[0]
+                    if name not in stop:
+                        if pos_item == 'NNP':
+                            name = ''.join([name[0].upper(), name[1:]]) if '.' not in name and '/' not in name else name.upper()
+                            new_name.append(name)  
+                        elif pos_item == 'NNS':
+                            name = ''.join([name[0].upper(), name[1:]])
+                            if name in article_string:
+                                new_name.append(name)
+            if len(new_name) > 0:                                         
+                final_name = ' '.join(new_name)
+                if len(new_name) == len(phrase_words) and final_name != article_words[0] and final_name.lower() not in metadata['nouns'] and final_name.lower() not in metadata['verbs']:
+                    metadata['names'].add(final_name) # find names and store separately
+    return metadata
 
-def get_synonym_list(synonyms, key_map, synonym_type):
+def get_clauses(line, phrases, metadata):
     '''
-    synonyms should be supported_core:
+    to do: 
+    - add logic for other phrase types than 'noun-noun', like verb_phrases
+    - clauses are relationships between subject and objects in line
+    - the response object should be a list of the acting subject, verb, & object:
+        row['clauses'] = ['chemical', 'caused', 'reaction'], ['experiment', 'was', 'successful']]
+    # handle sentences like: "x did this and then y did z", which would be broken up like:
+    active:
+        x 
+        did 
+        this and then y 
+        did 
+        z
+    passive: "this was done by x and then z was done by y"
+        this
+        was done 
+        by x and then z
+        was done
+        by y
+    '''
+    line = rearrange_sentence(line)
+    active = get_active(line)
+    sentence_pieces = [] # break up sentence by verbs
+    sentence_piece = []
+    for w in line.split(' '):
+        if w not in metadata['verbs']:
+            sentence_piece.append(w)
+        else:
+            sentence_pieces.append(sentence_piece)
+            sentence_pieces.append(w) # add the verb separately
+            sentence_piece = []
+    for i, s in enumerate(sentence_pieces):
+        if s in metadata['verbs']:
+            prev_object = '' if i < 1 else get_object_by_position(i, sentence_pieces, 'prev', metadata['nouns'], phrases)
+            next_object = '' if i == (len(sentence_pieces) - 1) else get_object_by_position(i, sentence_pieces, 'next', metadata['nouns'], phrases)
+            if active:
+                metadata['subjects'].add(prev_object)
+                metadata['clauses'].add(' '.join([prev_object, s, next_object]))
+            else:
+                active_s = change_to_active(s)
+                active_s = 'was' if active_s == 'be' else active_s # to do: handle other cases where infinitive is linguistically awkward bc clauses will be re-used later
+                metadata['subjects'].add(next_object)
+                metadata['clauses'].add(' '.join([next_object, active_s, prev_object]))
+    return metadata 
+
+def get_pos_in_line(line, metadata):
+    pattern_format_line = convert_to_pattern_format(line)
+    for index, p in enumerate(pattern_format_line.split(' ')):
+        if len(p) > 0:
+            if p == 'verb':
+                metadata['verbs'].add(line[index])
+                metadata['functions'].add(item[0])
+                # relationships = treatments, intents, functions, insights, strategies, mechanisms, patterns, systems
+            elif p == 'noun':
+                ''' check if the noun stem is a verb, if so add it to verbs
+                    # using verb_versions adds a lot of nouns like worm & rat to the verbs list
+                    verb_suffixes = ['e', 'd', 'ed'] 
+                    verb_versions = [pos_tag(word_tokenize(''.join([p, v]))) for v in verb_suffixes]
+                '''
+                metadata['nouns'].add(line[index])
+                metadata['components'].add(item[0]) 
+                # compounds, symptoms, treatments, metrics, conditions, stressors, types, variables
+            else:
+                metadata['taken_out'].add('_'.join([line[index], pos]))
+    return metadata
+
+def get_charge_of_word(word, supported_params, supported_core):
+    found_synonym = check_for_supported_synonym(word, supported_params, supported_core)
+    print('found synonym', found_synonym)
+    if found_synonym:
+        for synonym_type in key_map:
+            if found_synonym in key_map[synonym_type]:
+                print('found synonym charge', synonym_type)
+                return synonym_type
+    return False
+
+def get_synonym_list(supported_core, key_map, synonym_type):
+    '''
     supported_core = word_map['standard_words'] from synonyms.json
     key_map = {
         'negative': ['decrease', ...],
-        'positive': ['increase', ...]
+        'positive': ['increase', ...],
+        'equal': ['means', 'equals', ...]
     } 
     '''
     if synonym_type in key_map:
-        synonyms = set()
+        synonyms = {}
         for key in supported_core:
-            if key in key_map['negative']:
+            if key in key_map[synonym_type]:
                 for k in supported_core[key]:
-                    synonyms.add(k)
-        if len(synonyms) > 0:
+                    synonyms[k] = stemmer.stem(k)
+        if synonyms:
             return synonyms 
     return False
 
@@ -226,172 +358,58 @@ def get_most_common_words(counts, top_index):
     retrieved_index = 0
     max_words = []
     for k in sorted_keys:
-        max_words.extend(k)
+        max_words.extend(counts[k])
         retrieved_index += 1
-        if retrieve_index == top_index:
+        if retrieved_index == top_index:
             return max_words
     if len(max_words) > 0:
         return max_words
     return False
 
-def get_structural_metadata(line, title, article_words, article_string, metadata):
-    temp_metadata = get_empty_index()
-    processed_data = article_string.lower().replace('"', '').replace("'",'').replace(',','').replace('(','').replace(')','').replace('[','').replace(']','')
+def remove_standard_punctuation(line):
+    return line.replace('"', '').replace('(','').replace(')','').replace('[','').replace(']','')
+
+def get_structural_metadata(line, title, article_words, article_string, index, row, metadata_keys):
     line = replace_contractions(line)
-    name_line = line.replace('"', '').replace("'",'').replace('(','').replace(')','').replace('[','').replace(']','') # removes ' but not ,
-    line = line.replace('"', '').replace(',','').replace('(','').replace(')','').replace('[','').replace(']','') # removes , but not "
+    line = remove_standard_punctuation(line)
+    # line = line.replace(',','')
     similarity = get_similarity_to_title(line, title)
     if similarity:
         for key, val in similarity.items():
-            if key not in temp_metadata['title_similarities']:
-                temp_metadata['title_similarities'][key] = [val]
+            if key not in row['title_similarities']:
+                row['title_similarities'][key] = [val]
             else:
-                temp_metadata['title_similarities'][key].append(val)
+                row['title_similarities'][key].append(val)
     pattern_stack = get_pattern_stack(line)
     if pattern_stack:
         for key, val in pattern_stack.items():
-            if key not in temp_metadata['pattern_stack']:
-                temp_metadata['pattern_stack'][key] = val
+            if key not in row['pattern_stack']:
+                row['pattern_stack'][key] = val
             else:
-                temp_metadata['pattern_stack'][key].extend(val)
-    tagged = pos_tag(word_tokenize(name_line))
-    active = get_active(line)
-    for p in name_line.split(' '):
-        if len(p) > 0:
-            pos = [item[1] for item in tagged if item[0].lower() == name]
-            if len(pos) > 0:
-                pos_item = pos[0]
-                stem = stemmer.stem(name)
-                stem_pos = [item[1] for item in pos_tag(word_tokenize(stem)) if stemmer.stem(item[0].lower()) == stem]
-                if len(stem_pos) > 0 and stem_pos != pos_item and stem not in stop and stem_pos in common_noun_pos:
-                    temp_metadata['nouns'].add(stem)
-                elif len(stem_pos) > 0 and stem_pos != pos_item and stem not in stop and stem_pos in verb_pos:
-                    temp_metadata['verbs'].add(stem)
-                elif name not in stop:
-                    if pos_item in verb_pos:
-                        temp_metadata['verbs'].add(name)
-                    elif pos_item in common_noun_pos:
-                        ''' check if the noun stem is a verb, if so add it to verbs
-                            # using verb_versions adds a lot of nouns like worm & rat to the verbs list
-                            verb_suffixes = ['e', 'd', 'ed'] 
-                            verb_versions = [pos_tag(word_tokenize(''.join([name, v]))) for v in verb_suffixes]
-                            # append verb affixes and check if its a verb
-                        '''
-                        temp_metadata['nouns'].add(name)
-                else:
-                    temp_metadata['taken_out'].add('_'.join([name, pos_item[1]]))
-    for p in TextBlob(name_line).noun_phrases:
-        if len(p) > 0:
-            new_name = []
-            phrase_words = p.split(' ')
-            for name in phrase_words:
-                pos = [item[1] for item in tagged if item[0].lower() == name]
-                if len(pos) > 0:
-                    pos_item = pos[0]
-                    if name not in stop:
-                        if pos_item == 'NNP':
-                            name = ''.join([name[0].upper(), name[1:]]) if '.' not in name and '/' not in name else name.upper()
-                            new_name.append(name)  
-                        elif pos_item == 'NNS':
-                            name = ''.join([name[0].upper(), name[1:]])
-                            if name in article_string:
-                                new_name.append(name)
-            if len(new_name) > 0:                                         
-                final_name = ' '.join(new_name)
-                if len(new_name) == len(phrase_words) and final_name != article_words[0] and final_name.lower() not in temp_metadata['nouns'] and final_name.lower() not in temp_metadata['verbs']:
-                    temp_metadata['names'].add(final_name) # find names and store separately
-                    line = line.replace(final_name, '')
-    '''
-    # handle sentences like: "x did this and then y did z", which would be broken up like:
-    active:
-        x 
-        did 
-        this and then y 
-        did 
-        z
-    passive: "this was done by x and then z was done by y"
-        this
-        was done 
-        by x and then z
-        was done
-        by y
-    '''
-
-    '''
-    to do: adjust clause splitting to make sure youre getting compound nouns - add check for noun phrases
-    you want to catch all the meaning in phrases like: "x reduced b inhibitor"
-    and your current logic will only capture: "x reduced b"
-    when in reality youd want to store the full clause so the relationships can be derived:
-        "x increases b"
-        "x reduces inhibitor"
-        "inhibitor reduces b"
-    '''
+                row['pattern_stack'][key].extend(val)
+    row = get_pos_in_line(line, row)
     phrases = TextBlob(line).noun_phrases
-    sentence_pieces = [] # break up sentence by verbs
-    sentence_piece = []
-    for w in name_line.split(' '):
-        if w not in temp_metadata['verbs']:
-            sentence_piece.append(w)
-        else:
-            sentence_pieces.append(sentence_piece)
-            sentence_pieces.append(w)
-            sentence_piece = []
-    for i, s in enumerate(sentence_pieces):
-        if s in temp_metadata['verbs']:
-            prev_object = '' if i < 1 else get_object_by_position(i, sentence_pieces, 'prev', temp_metadata['nouns'], phrases)
-            next_object = '' if i == (len(sentence_pieces) - 1) else get_object_by_position(i, sentence_pieces, 'next', temp_metadata['nouns'], phrases)
-            if active:
-                temp_metadata['subjects'].add(prev_object)
-                temp_metadata['clauses'].add(' '.join([prev_object, s, next_object]))
-            else:
-                active_s = change_to_active(s)
-                active_s = 'was' if active_s == 'be' else active_s # to do: handle other cases where infinitive is linguistically awkward bc clauses will be re-used later
-                temp_metadata['subjects'].add(next_object)
-                temp_metadata['clauses'].add(' '.join([next_object, active_s, prev_object]))
-    tagged = pos_tag(word_tokenize(line)) # line without names
-    for item in tagged:
-        if len(item) == 2:
-            w = item[0].lower()
-            if item[1] in leave_in_pos:
-                if len(w) > 0 and w not in stop:
-                    w_upper = w.upper()
-                    w_name = ''.join([w[0].upper(), w[1:]])
-                    upper_count = article_words.count(w_upper) # find acronyms, ignoring punctuated acronym
-                    count = processed_data.count(w)
-                    ## and w not in verbs and w not in nouns and w_name not in ' '.join(names):
-                    if item[0] == w_name and w_name != article_words[0] and w_name not in ' '.join(temp_metadata['names']): # exclude first word in sentence
-                        if upper_count > 0 and upper_count <= count:
-                            if upper_count not in temp_metadata['counts']:
-                                temp_metadata['counts'][upper_count] = set()
-                            temp_metadata['counts'][upper_count].add(w_upper)
-                        else:
-                            if count > 0:
-                                if count not in temp_metadata['counts']:
-                                    temp_metadata['counts'][count] = set()
-                                temp_metadata['counts'][count].add(w)
-    for p in phrases:
-        if len(p) > 0:
-            phrase_words = p.split(' ')
-            for n in phrase_words:
-                new_p = set()
-                p_name = ''.join([n[0].upper(), n[1:]])
-                for name in temp_metadata['names']:
-                    if name not in p_name:
-                        new_p.add(n)
-                p = ' '.join(new_p)
-            if len(p.strip()) > 0:
-                pos = [item[1] for item in tagged if item[0].lower() == phrase_words[0]]
-                if pos not in verb_pos and p not in temp_metadata['verbs'] and p not in temp_metadata['nouns'] and p_name not in ' '.join(temp_metadata['names']) and p not in stop:
-                    p_upper = p.upper()
-                    upper_count = article_words.count(p_upper) # find acronyms
-                    phrase_count = processed_data.count(p)
-                    p = p_upper if upper_count > 0 and len(p_upper) > 0 and upper_count < phrase_count else p
-                    count = upper_count if upper_count > 0 and len(p_upper) > 0 and upper_count < phrase_count else phrase_count
-                    if count not in temp_metadata['phrases']:
-                        temp_metadata['phrases'][count] = set()
-                    temp_metadata['phrases'][count].add(p)
-    metadata = merge(temp_metadata, metadata)
-    return metadata 
+    row = get_names(article_string, line, phrases, row)
+    line = remove_names(line, row['names'])
+    row = get_clauses(line, phrases, row)
+    tagged = pos_tag(word_tokenize(line))
+    processed_data = remove_standard_punctuation(article_string.lower())
+    processed_data = processed_data.replace("'",'').replace(',','')
+    row = get_counts(article_words, processed_data, tagged, line, phrases, row)
+    for key in row:
+        if key in index:
+            index[key] = index[key].union(row[key])
+    return index, row
+
+def remove_names(line, names_list):
+    '''
+    # to do: remove all irrelevant proper nouns like place, company, university & individual names
+    if row:
+        if 'names' in row:
+            for name in row['names']:
+                line = line.replace(name, '') 
+    '''
+    return line
 
 def merge(temp, metadata):
     for key, val in temp.items():
@@ -451,9 +469,9 @@ def get_active(line):
         ' by '
     ]
     passive_patterns = [
-        'was <past_participle>',
-        'had <past_participle>',
-        'has been <past_participle>'
+        'was past_participle',
+        'had past_participle',
+        'has been past_participle'
     ]
     formatted_line = convert_to_pattern_format(line)
     passive = 0
@@ -553,36 +571,37 @@ pattern stack [
 ]
 '''
 
+
 pattern_categories = {
     'types': [
-        '<adjective> <noun>'
+        'adjective noun'
     ],
     'roles': [
-        '<adverb> || <verb> <noun>',
-        '<noun> of <noun>',
-        '<verb> || <noun> role',
-        'functions/works/operates/interacts/acts as (a) <verb> || <noun>'
+        'adverb || verb noun',
+        'noun of noun',
+        'verb || noun role',
+        'functions/works/operates/interacts/acts as (a) verb || noun'
     ],
     'noun': [
-        'the <noun>'
+        'the noun'
     ]
 }
 
 ''' () indicates an optional item, --a b c-- indicates a set of alternatives '''
 language_patterns = [
-    '<adjective> <noun>',
-    '--<adverb> <verb>-- <noun>',
-    '<noun> of <noun> <noun>',
-    '<noun> of <noun>',
-    '--<verb> <noun>-- role',
-    '--functions works operates interacts acts-- as (a) --<verb> <noun>--'
+    'adjective noun',
+    '--adverb verb-- noun',
+    'noun of noun noun',
+    'noun of noun',
+    '--verb noun-- role',
+    '--functions works operates interacts acts-- as (a) --verb noun--'
 ]
 language_pos_map = {
-    '<adjective>': '[ADJ]',
-    '<noun>': '[NN||NNP||NNS||JJ||JJR]',
-    '<adverb>': '[ADV]',
-    '<verb>': '[VB||VBP||VBD||VBG||VBN||VBZ]',
-    '<past_participle>': '[VBN]',
+    'adjective': '[ADJ]',
+    'noun': '[NN||NNP||NNS||JJ||JJR]',
+    'adverb': '[ADV]',
+    'verb': '[VB||VBP||VBD||VBG||VBN||VBZ]',
+    'past_participle': '[VBN]',
 }
 
 patterns = convert_patterns(language_patterns)

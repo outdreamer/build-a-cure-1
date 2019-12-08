@@ -6,28 +6,6 @@ from get_index_def import get_empty_index
 from utils import get_subword_match
 
 '''
-  naa/JJ
-  cr/NN
-  ratio/NN
-    reduced/VBD
-  hiv/JJ
-  positive/JJ
-    patients/NNS
-  marker/VBP
-  infection/NN
-  brain/NN
-    even/RB
-    absence/RB
-    imaging/VBG
-    findings/NNS
-  encephalopathy/JJ
-  patient/JJ
-  symptomatic/JJ
-  due/JJ
-  neurological/JJ
-  disease/NN
-    etiologies/NNS
-
 https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
 
 CC: Coordinating conjunction
@@ -78,7 +56,6 @@ def get_trees(line):
     print('getting trees for line', line)
     grammar_entries = ['S -> NP VP', 'PP -> P NP', 'NP -> Det N | NP PP', 'VP -> V NP | VP PP']
     tagged = nltk.pos_tag(word_tokenize(line)) # [('This', 'DT'), ('is', 'VBZ'), ('a', 'DT'), ('Foo', 'NNP'), ('Bar', 'NNP'), ('sentence', 'NN'), ('.', '.')]
-    print('tagged', tagged)
     grammar_dict = {}
     for item in tagged:
         pos = item[1]
@@ -104,30 +81,20 @@ def get_trees(line):
     print('trees', trees)
     return trees
 
-def identify_elements(supported_core, elements, index, metadata, param_keys):
+def identify_elements(supported_core, elements, index, metadata_keys, param_keys):
     '''
     this function is to identify which type of object can be found in elements
     - elements may be a set/list of sentences/phrases/words
     - if index is not None, it adds the identified word to the master index 
       otherwise it adds to the new index generated for this element
-
-    to do: 
-     - add more advanced analysis for linguistic patterns of symptoms 'fever that gets worse when x'
-     - add regex for numerically indexed prefixes like 14alpha-
-     - use sentence tree analysis to do more advanced processing on semantics http://www.nltk.org/book/ch08.html#ex-elephant
-            NAA to Cr ratio 
-                is reduced in HIV positive patients and
-                is a marker for HIV infection of the brain 
-                    even in the absence of imaging findings of HIV encephalopathy 
-                    or when the patient is symptomatic due to neurological disease of other etiologies.
     '''
-    if type(elements) == str and ' ' in elements:
-        blob = TextBlob(elements)
-        phrases = blob.noun_phrases
-    empty_index = get_empty_index(metadata, param_keys)
+    elements = elements.split(' ') if type(elements) == str else elements
+    blob = TextBlob(' '.join(elements))
+    phrases = blob.noun_phrases
+    empty_index = get_empty_index(metadata_keys, param_keys)
     element_keys = [ key for key in empty_index.keys() if key in supported_core ]
     elements = elements.split(' ') if type(elements) == str else elements
-    identified_elements = get_empty_index(metadata, param_keys)
+    identified_elements = get_empty_index(metadata_keys, param_keys)
     for element in elements:
         for keyword_type in element_keys:
             split_element = element if type(element) == set or type(element) == list else element.split(' ')
@@ -163,13 +130,13 @@ def identify_elements(supported_core, elements, index, metadata, param_keys):
     print('\tidentified elements', identified_elements)
     return identified_elements
 
-def get_index(sources, index_type, metadata, param_keys):
+def get_data_store(sources, index_type, metadata_keys, param_keys):
     '''
     this assembles an index out of sources for the index type,
     pulling from data sources like wiki to generate a dataset, 
     if there isnt already a dataset stored locally
     '''
-    index = get_empty_index(metadata, param_keys)
+    index = get_empty_index(metadata_keys, param_keys)
     return index
 
 def get_index_objects(index_type, relationship):
@@ -336,6 +303,10 @@ def get_side_effects(line):
     this should pull from data in standard sites like wiki, drugs, webmd, & rxlist 
     as well as forum data to find rare symptoms & interactions not listed elsewhere
     '''
+    return line
+
+def get_compounds(line):
+    ''' - add regex for numerically indexed prefixes like 14alpha-'''
     return line
 
 def get_symptoms(line):

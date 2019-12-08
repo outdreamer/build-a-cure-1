@@ -21,6 +21,37 @@ to do:
 - metrics function should identify:
   - minimum inhibitory concentration MIC
   - naa-to-cr ratio
+    naa/JJ
+    cr/NN
+    ratio/NN
+      reduced/VBD
+    hiv/JJ
+    positive/JJ
+      patients/NNS
+    marker/VBP
+    infection/NN
+    brain/NN
+      even/RB
+      absence/RB
+      imaging/VBG
+      findings/NNS
+    encephalopathy/JJ
+    patient/JJ
+    symptomatic/JJ
+    due/JJ
+    neurological/JJ
+    disease/NN
+      etiologies/NNS
+
+
+
+- see if theres a function to pull VP: Verb Phrase
+
+- standardize all your pos checks to use get_pos
+
+- replace get_relationships with get_clauses
+
+- consolidate leave_in_pos
 
 - use distortion patterns of entities like atlases, templates, solution progressions to form a compressed version of the host system
   https://techxplore.com/news/2019-11-medical-image-analysis.html
@@ -42,6 +73,10 @@ to do:
     (can be a compound with a cutting subcomponent at the right length to target the dna if you can bind it to the first or last gene with another compound)
   - find compound that refolds DNA
   https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
+
+- check that noun_phrases is catching all the phrase you need it to, otherwise your clause -> modifier -> relationship logic will suck 
+
+- analyze polarity of stems & words in synonyms to check that your get_synonyms & get_operator logic holds 
 
 - new drugs are at: https://adisinsight.springer.com/drugs/800042427
 

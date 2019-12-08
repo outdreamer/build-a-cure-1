@@ -691,6 +691,28 @@
             "bear hard on",
             "pin down"
         ],
+        "equal": [
+            "is",
+            "equate",
+            "equal",
+            "describe",
+            "indicate",
+            "delineate",
+            "same",
+            "similar",
+            "imply",
+            "signify",
+            "means"
+        ],
+        "positive_substrings": [
+            "en"
+        ],
+        "negative_substrings": [
+            "dis-",
+            "de-",
+            "re-",
+            "un-"
+        ],
         "improve": [
             "advance",
             "better",
