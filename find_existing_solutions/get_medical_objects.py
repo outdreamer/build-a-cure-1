@@ -1,3 +1,5 @@
+from textblob import TextBlob, Word
+
 from get_structural_objects import get_relationships_from_clauses
 
 def get_generic_medication(brand_name):
@@ -121,7 +123,7 @@ def get_related_components(component):
     '''
     return component
 
-def get_treatments(intent, hypothesis, line, title, row, metadata):
+def get_treatments(intent, hypothesis, line, title, row, metadata, all_vars):
     '''
     hypothesis & intent can be Null for now 
 
@@ -163,7 +165,7 @@ def get_treatments(intent, hypothesis, line, title, row, metadata):
         if (line_sentiment - intent_sentiment) < 0.3:
             return True
     '''
-    derived_relationships = get_relationships_from_clauses(metadata['clauses'], line, metadata['nouns'])
+    derived_relationships = get_relationships_from_clauses(row['clauses'], line, row['nouns'], all_vars)
     if derived_relationships:
         for r in derived_relationships:
             ''' row['variables'] = get_dependencies('inputs', line, row['relationships'], 1)) '''

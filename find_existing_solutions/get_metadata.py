@@ -13,7 +13,7 @@ from textblob import TextBlob, Word
 from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
 
-from utils import get_standard_word, save, read, remove_duplicates, write_csv
+from utils import *
 from get_index_def import get_empty_index
 from get_structure import get_pos, get_structural_metadata
 from generate_datasets import generate_datasets 
@@ -39,6 +39,7 @@ def pull_summary_data(sources, metadata_keys, generate_source, generate_target, 
     ''' get index from research study api providing summaries '''
     print('pull metadata', metadata_keys, 'args', 'generate_source', generate_source, 'generate target', generate_target, args, 'filters', filters)
     ''' we assume the primary argument comes first - right now only supports one argument'''
+    metadata_keys = 'all' if metadata_keys == '' else metadata_keys
     articles = []
     rows = []
     empty_index = get_empty_index(metadata_keys, all_vars['full_params'])
@@ -71,12 +72,13 @@ def pull_summary_data(sources, metadata_keys, generate_source, generate_target, 
                                             for line in lines:
                                                 if ' ' in line and len(line.split(' ')) > 1:
                                                     line = remove_duplicates(line)
-                                                    formatted_line = ''.join([x for x in line.lower() if x in all_vars['alphabet']])
+                                                    formatted_line = ''.join([x for x in line.lower() if x == ' ' or x in all_vars['alphabet']])
                                                     print('\n\tline', formatted_line)
                                                     if len(formatted_line) > 0:
-                                                        row = identify_elements(all_vars['supported_core'], formatted_line, None, metadata_keys, all_vars['full_params'])
-                                                        index, row = get_structural_metadata(line, title, data_words, data, index, row, metadata_keys)
-                                                        index, row = get_medical_metadata(line, formatted_line, title, index, row, metadata_keys)
+                                                        #row = identify_elements(all_vars['supported_core'], formatted_line, None, metadata_keys, all_vars['full_params'])
+                                                        row = empty_index
+                                                        index, row = get_structural_metadata(line, title, lines, text, index, row, metadata_keys, all_vars)
+                                                        index, row = get_medical_metadata(line, formatted_line, title, index, row, metadata_keys, all_vars)
                                                         index, row = get_conceptual_metadata(formatted_line, title, index, row, metadata_keys) #custom analysis
                                                         print('row', row)
                                                         if row != empty_index:
@@ -154,7 +156,7 @@ def get_index_type(word, all_vars, categories):
             index_type = categories[0]
     return index_type
 
-def get_medical_metadata(line, formatted_line, title, index, row, metadata):
+def get_medical_metadata(line, formatted_line, title, index, row, metadata, all_vars):
     '''
     - this function determines conditions, symptoms, & treatments in the sentence 
     - this function is a supplement to get_metadata, 
@@ -165,7 +167,7 @@ def get_medical_metadata(line, formatted_line, title, index, row, metadata):
     '''
     intent = None
     hypothesis = None
-    row = get_treatments(intent, hypothesis, line, title, row, metadata)
+    row = get_treatments(intent, hypothesis, line, title, row, metadata, all_vars)
     return index, row
 
 def get_conceptual_metadata(line, title, index, row, metadata_keys):
@@ -272,17 +274,4 @@ if all_vars:
             standard_verbs = set(verb_contents.split('\n')) if verb_contents is not None else standard_verbs
             sources = read('sources.json')
             if sources:
-                print('testing')
-                test_clauses = [
-                        "NAA to Cr ratio",
-                        "is reduced in HIV positive patients and",
-                        "is a marker for HIV infection of the brain",
-                        "even in the absence of imaging findings of HIV encephalopathy",
-                        "or when the patient is symptomatic due to neurological disease of other etiologies"
-                ]
-                test_nouns = ['NAA', 'Cr', 'ratio', 'HIV', 'positive', 'patients', 'marker', 'infection', 'brain', 'absence', 'imaging', 'findings', 'encephalopathy', 'patient', 'disease', 'etiologies']
-                test_line = ' '.join(test_clauses)
-                relationships = get_relationships_from_clauses(test_clauses, test_line, test_nouns, all_vars)
-                print('relationships', relationships)
-                exit()
-                articles, index, rows = pull_summary_data(sources, metadata_keys, generate_source, generate_target, args_index, filters_index, all_vars['full_params'])
+                articles, index, rows = pull_summary_data(sources, metadata_keys, generate_source, generate_target, args_index, filters_index, all_vars)

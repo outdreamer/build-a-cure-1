@@ -2,6 +2,30 @@ from nltk.stem.snowball import SnowballStemmer
 from utils import read
 stemmer = SnowballStemmer("english")
 
+def convert_patterns(lang_patterns, all_vars):
+    patterns = []
+    for p in lang_patterns:
+        pattern = []
+        for alt_phrases in p.split('--'):
+            pos_list = alt_phrases.split(' ')
+            all_pos = [True for pos_item in pos_list if pos_item in all_vars['language_pos_map'].keys()]
+            if len(all_pos) == len(pos_list):
+                ''' this is a set of alternative parts of speech '''
+                final_list= ['[']
+                for item in pos_list:
+                    final_list.append(all_vars['language_pos_map'][item].replace('[','').replace(']',''))
+                final_list.append(']')
+                pattern.append(''.join(final_list))
+        for i, w in enumerate(p.split(' ')):
+            if w in all_vars['language_pos_map'].values():
+                pattern.append(all_vars['language_pos_map'][w])
+            else:
+                pattern.append(w)
+        patterns.append(' '.join(pattern))
+    if len(patterns) > 0:
+        return patterns
+    return False
+
 def get_args(arg_list, all_vars):
     metadata_keys = ''
     generate_source = ''
@@ -34,7 +58,6 @@ def get_args(arg_list, all_vars):
 
 def get_vars():
     all_vars = {}
-    all_vars['pattern_words'] = ['of', 'acts', 'as']
     all_vars['section_map'] = {
         'signs_and_symptoms': 'conditions',
         'medical_uses': 'treatments',
@@ -58,10 +81,10 @@ def get_vars():
         '-' : "decreases",
         '+' : "increases",
         '=' : "equals",
-        'w' : "addition", # with
-        's' : "subtraction", # without
-        'm' : "multiplication", # apply
-        'd' : "division" # by standard
+        #'w' : "addition", # with
+        #'s' : "subtraction", # without
+        #'m' : "multiplication", # apply
+        #'d' : "division" # by standard
     }
     all_vars['combined_map'] = {
         'equal': ['=-', '-=', '=+', '+=', '=='], #"x = (i - b)" => x and b equal i
@@ -121,6 +144,8 @@ def get_vars():
         'verb': '[VB||VBP||VBD||VBG||VBN||VBZ]',
         'past_participle': '[VBN]',
     }
+    all_vars['patterns'] = convert_patterns(all_vars['language_patterns'], all_vars)
+    all_vars['pattern_words'] = ['of', 'acts', 'as']
     all_vars['supported_synonyms'] = get_supported_synonyms('synonyms.json', all_vars)
     all_vars['synonym_list'] = {
         'negative': get_synonym_list(all_vars['supported_core'], all_vars['key_map'], 'negative'), # antagonist, reduce, inhibit, deactivate, toxic, prevents

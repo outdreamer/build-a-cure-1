@@ -5,7 +5,6 @@ stop = set(stopwords.words('english'))
 from nltk.stem.snowball import SnowballStemmer
 stemmer = SnowballStemmer("english")
 
-from get_patterns import *
 from get_structure import get_pos 
 from utils import *
 
@@ -14,40 +13,6 @@ def get_first_non_stopword(words):
         pos = get_pos(word)
         if pos == 'verb' or word not in stop:
             return word
-    return False
-
-def get_replacement_synonym(word):
-    '''
-    'as' can mean:    
-        'like': 'as is common in that area',
-        'because': 'as',
-        'when': 'as the sun sets'
-    '''
-    synonym_sets = {
-        'and': ['with'], # conditional
-        'when': ['while', 'during'], # conditional
-        'or': [], # alternative
-        'but': ['however', 'yet'], # exception
-        'because': ['since', 'respective', 'respectively', 'due'], # dependency
-        'even': ['despite', 'in spite of', 'regardless of', 'heedless of', 'irrespective of'], # independence
-        'is': [
-            "equate",
-            "equal",
-            "describe",
-            "indicate",
-            "delineate",
-            "same",
-            "like",
-            "similar to",
-            "similar",
-            "imply",
-            "signify",
-            "means"
-        ] # similarity
-    }
-    for standard, synonyms in synonym_sets.items():
-        if word in synonyms:
-            return standard
     return False
 
 def get_conditionals(line, nouns, clauses):
@@ -64,20 +29,7 @@ def get_conditionals(line, nouns, clauses):
             or when the patient is symptomatic due to neurological disease of other etiologies.
     this function would return the last two items 
     '''
-    new_clauses = []
-    for c in clauses:
-        words = c.split(' ')
-        new_words = []
-        for w in words:
-            synonym = get_replacement_synonym(w)
-            if synonym:
-                new_words.append(synonym)
-            else:
-                new_words.append(w)
-        new_clause = ' '.join(new_words)
-        new_clauses.append(new_clause)
-    clauses = set(new_clauses)
-    clause_delimiters = ['and', 'or', 'because', 'but', 'as', 'if', 'then', 'when', 'even', 'without'] #'is',
+
     '''
         to do: you still need to deconstruct the sentence based on these dependencies 
         so its represented accurately according to order of operations
@@ -86,47 +38,61 @@ def get_conditionals(line, nouns, clauses):
         "x is a and b" or "x is a and is b" should be two clauses "x is a" and "x is b"
         "x is a or b" should be one clause 
     '''
-    all_sentence_pieces = []
-    conditional_pieces = []
-    items = {'conditional': [], 'other': []}
-    for c in clauses:
-        words = c.split(' ')
-        clause_found = False
-        for cd in clause_delimiters:
-            if cd in words: # should check if cd == words[0] and leave in delimiter
-                if not clause_found:
-                    clause_found = True
-                    if cd == words[0]:
-                        conditional_pieces.append(cd)
-                    new_items = add_items(c.split(cd), cd, clause_delimiters)
-                    conditional_pieces.extend(new_items)
-                    if cd != words[0]:
-                        conditional_pieces.append(cd)
-        if not clause_found:
+    ''' to do: implement multi-delimiter logic '''
+
+    print('\nclauses', clauses)
+    secondary_delimiters = ['when', 'without']
+    clause_delimiters = ['and', 'or', 'because', 'but', 'as', 'if', 'then', 'even', 'without']
+    # conditional is a list bc it needs to preserve order
+    items = {'conditional': {'first': ''}, 'subject': '', 'verb_relationships': set(), 'delimiters': []}
+    ''' to do: handle sentences with duplicate delimiters '''
+    for i, c in enumerate(clauses):
+        c_strip = c.strip()
+        if i == 0:
+            items['subject'] = c_strip
+        else:
+            words = c_strip.split(' ')
+            current_delimiter = 'first'
+            items['delimiters'].append(current_delimiter)
             is_condition = check_is_condition(words, clause_delimiters)
             if is_condition:
-                conditional_pieces.append(c)
-            else:
-                all_sentence_pieces = [c.strip()]
-    for cp in conditional_pieces:
-        all_sentence_pieces.append(cp)
-    for i, asp in enumerate(all_sentence_pieces):
-        if i > 0:
-            asp_words = asp.split(' ')
-            if len(asp_words) == 1:
-                ''' this is a delimiter, get the next phrase '''
-                next_clause = get_next_clause(asp, i, all_sentence_pieces)
-                if next_clause:
-                    items['conditional'].append(' '.join([asp, next_clause]))
+                print('is_condition', is_condition, get_pos(is_condition))
+                is_not_verb = True if get_pos(is_condition) != 'verb' else False
+                current_delimiter = is_condition if is_not_verb else current_delimiter       
+                if is_not_verb and current_delimiter in clause_delimiters:
+                    if current_delimiter not in items['conditional']:
+                        items['conditional'][current_delimiter] = ''
+                    for j, w in enumerate(words):
+                        if w in clause_delimiters:
+                            current_delimiter = w
+                            print('updated current_delimiter', current_delimiter)
+                            items['delimiters'].append(current_delimiter)
+                            remainder = ' '.join([w for w in words if words.index(w) > j])
+                            if is_condition == words[-1]:
+                                ''' the delimiter is the last word in this clause '''
+                                remainder = ' '.join([w for w in words if words.index(w) < j])
+                            items['conditional'][current_delimiter] = remainder
                 else:
-                    items['conditional'].append(asp)
-            else:
-                is_condition = check_is_condition(asp_words, clause_delimiters)
-                if is_condition:
-                    items['conditional'].append(asp)
-        else:
-            items['other'].append(asp)
-    print('conditionals', items)
+                    word_string = ' '.join(words)
+                    for w in words:
+                        if w in clause_delimiters:
+                            current_delimiter = w
+                            items['delimiters'].append(current_delimiter)
+                            words.remove(current_delimiter)
+                            word_string = ' '.join(words)
+                            print('cd', current_delimiter, 'ws', word_string)
+                            if word_string != current_delimiter:
+                                items['conditional'][current_delimiter] = word_string
+                    if c not in items['conditional'][current_delimiter]:
+                        items['conditional'][current_delimiter] = word_string
+                    items['verb_relationships'].add(word_string)  
+    print('\nconditionals', items)
+    ''' at this point items represents a sentence broken into:
+    - subject "x"
+    - verb_relationships "is y"
+    - delimiter "even"
+    - condition "when z"
+    '''
     return items
 
 def check_is_condition(asp_words, clause_delimiters):
@@ -134,17 +100,21 @@ def check_is_condition(asp_words, clause_delimiters):
     if first_word:
         pos = get_pos(first_word)
         if pos:
-            if pos != 'noun' or first_word in clause_delimiters:
-                return True
+            if pos != 'noun':
+                return first_word
+    for word in asp_words:
+        if word in clause_delimiters:
+            return word
     return False
 
-def add_items(words, cd, clause_delimiters):
+def add_items(phrases, cd, clause_delimiters):
     new_items = []
-    for i, item in enumerate(words):
-        stripped_item = item.strip()
-        if len(stripped_item) > 0 and stripped_item not in clause_delimiters:
-            new_items.append(stripped_item)
-    return new_items
+    for i, phrase in enumerate(phrases):
+        for w in phrase.split(' '):
+            stripped_item = w.strip()
+            if len(stripped_item) > 0 and stripped_item not in clause_delimiters:
+                new_items.append(stripped_item)
+    return ' '.join(new_items)
 
 def get_next_clause(delimiter, index, all_sentence_pieces):
     next_clause = None
@@ -173,6 +143,7 @@ def get_relationships_from_clauses(clauses, line, nouns, all_vars):
     to get the final version of the relationship
 
     to do: 
+     - you need an operator for clause delimiters
      - add more advanced analysis for linguistic patterns of symptoms 
         'fever that gets worse when x', or 'x reduced y and diminished z even in condition x or condition a', 
         which should have condition x added to the previous relationships
@@ -197,64 +168,75 @@ def get_relationships_from_clauses(clauses, line, nouns, all_vars):
         "a": "(i - b)"
     '''
     print('line', line)
-    conditional_items = get_conditionals(line, nouns, clauses)
-    ''' process non-conditionals first '''
-    for item_type in ['other', 'conditional']:
-        for original_clause in conditional_items[item_type]:
-            operator_clause = []
-            for word in original_clause.split(' '):
-                if word not in nouns:
-                    operator = get_operator(word, all_vars)
-                    if operator:
-                        operator_clause.append(operator)
-                else:
-                    operator_clause.append(word)
-            operator_clause = ' '.join(operator_clause)
-            operator_clauses[operator_clause] = original_clause
-        print('operator_clauses', operator_clauses)
-    operator_sentence = ' '.join(operator_clauses.keys())
-    print('operator sentence', operator_sentence)
+    citems = get_conditionals(line, nouns, clauses)
+    '''
+        these two verb-initiated relationships
+        'is reduced in HIV positive patients',
+        'is a marker for HIV infection of the brain',
+        should preface each conditional relationship right after the subject
+    '''
+    variables['subject'] = citems['subject']
+    word_relationships = set()
+    operator_relationships = set()
+    ''' to do: assume this can be nested, to contain other dicts of embedded relationships '''
+    for operand, original_clause in citems['conditional'].items():   
+        print('operand', operand) 
+        print('original_clause', original_clause)        
+        if original_clause in citems['verb_relationships']:
+            ''' for each verb_relationship r, join it with the subject & add to subject_full_relationships '''
+            operator_clause = convert_to_operators(original_clause, all_vars)
+            if operator_clause:
+                new_operator_clause = ' '.join(['subject', operator_clause])
+                operator_clauses[new_operator_clause] = original_clause
+                operator_relationships.add(new_operator_clause)
+                word_relationship = ' '.join([variables['subject'], original_clause])
+                word_relationships.add(word_relationship)
+            for operand, clause in citems['conditional'].items():
+                if clause not in citems['verb_relationships']:
+                    ''' for each verb_relationship r, join it with each conditional relationship clause & add to operator_relationships '''
+                    sub_operator_clause = convert_to_operators(clause, all_vars)
+                    if sub_operator_clause:
+                        word_relationships.add(clause)
+                        operator_relationships.add(sub_operator_clause)
+                        operator_clauses[sub_operator_clause] = clause
+
+                        joined_word_relationship = ' '.join([word_relationship, clause])
+                        word_relationships.add(joined_word_relationship)
+                        joined_operator_clause = ' '.join([new_operator_clause, sub_operator_clause])
+                        operator_relationships.add(joined_operator_clause)
+                        operator_clauses[joined_operator_clause] = joined_word_relationship
+
+    print('\nword_relationships', word_relationships)
+    print('\noperator_relationships', operator_relationships)
+    print('\noperator_clauses', operator_clauses.keys())
     placeholder_clauses = []
     for operator_clause in operator_clauses:
-        placeholder_clause, variables = replace_with_placeholders(operator_clause, operator_sentence, line, variables, all_vars)   
+        placeholder_clause, variables = replace_with_placeholders(operator_clause, line, variables, all_vars)   
         placeholder_clauses.append(placeholder_clause)
     print('placeholders', placeholder_clauses)
-    relationships_with_vars = extract_combined_relationships(placeholder_clauses, conditional_items, operator_sentence, variables, all_vars)
-    if relationships_with_vars:
-        relationships_with_values = replace_with_values(relationships_with_vars, variables, all_vars)
-        if relationships_with_values:
-            print('relationships_with_values', relationships_with_values)
-            return relationships_with_values
+    if len(placeholder_clauses) > 0:
+        relationships_with_vars = extract_combined_relationships(placeholder_clauses, citems, variables, all_vars)
+        if relationships_with_vars:
+            print('relationships_with_vars', relationships_with_vars)
+            return relationships_with_vars
     return False
 
-def replace_with_values(relationships_with_vars, variables, all_vars):
-    ''' 
-    this is step 5 in the below workflow:
-    - in order to preserve order of operations:
-        1. first converting "b inhibitor" to:
-            { new_key: modifier_relationship } = {"a": "(i - b)"}
-        2. then converting "x - (i - b)" to "x - a" and storing in placeholder_clauses
-        3. then converting "x - a" to permuted relationship set:
-            "x - i" and "x + b"
-        4. conditionals should be applied last
-        5. then the symbolic relationships can be replaced with original values:
-            "x reduces inhibitor" and "x increases b"
-    '''
-    relationships_with_values = set()
-    for r in relationships_with_vars:
-        new_words = []
-        words = r.split(' ')
-        for w in words:
-            if w in variables:
-                new_words.append(variables[w])
-            elif w in all_vars['operator_map']:
-                new_words.append(all_vars['operator_map'][w])
-            else:
-                new_words.append(w)
-        relationships_with_values.add(' '.join(new_words))
-    return relationships_with_values
+def convert_to_operators(original_clause, all_vars):
+    operator_clause = []
+    for word in original_clause.split(' '):
+        operator = get_operator(word, all_vars)
+        if operator:
+            operator_clause.append(operator)
+        else:
+            operator_clause.append(word)
+    if len(operator_clause) > 0:
+        operator_string = ' '.join(operator_clause)
+        operator_string = operator_string.replace('= = +', '+').replace('= = -', '-') # had been done
+        operator_string = operator_string.replace('= +', '+').replace('= -', '-') # is reduced
+        return operator_string
+    return False
 
-def extract_combined_relationships(placeholder_clauses, conditional_items, operator_sentence, variables, all_vars):
+def extract_combined_relationships(placeholder_clauses, conditional_items, variables, all_vars):
     '''
     this is step 3 in the below workflow:
     - in order to preserve order of operations:
@@ -263,65 +245,73 @@ def extract_combined_relationships(placeholder_clauses, conditional_items, opera
         2. then converting "x - (i - b)" to "x - a" and storing in placeholder_clauses
         3. then converting "x - a" to permuted relationship set:
             "x - i" and "x + b"
-        4. conditionals should be applied last
-        5. then the symbolic relationships can be replaced with original values:
-            "x reduces inhibitor" and "x increases b"
     '''
     subject = None
     operator = None
     symbol_relationships = set()
     for pc in placeholder_clauses:
-        new_relationships = process_placeholder(pc, conditional_items, variables, all_vars)
-        if new_relationships:
-            for r in new_relationships:
-                symbol_relationships.add(r)
+        new_relationship = process_placeholder(pc, conditional_items, variables, all_vars)
+        if new_relationship:
+            symbol_relationships.add(new_relationship)
     if len(symbol_relationships) > 0:
         return symbol_relationships
     return False
 
+def split_by_delimiter(placeholder_string, all_vars):
+    word_list = []
+    word = []
+    delimiters = []
+    for char in placeholder_string:
+        if char in all_vars['alphabet']:
+            word.append(char)
+        else:
+            delimiters.append(char)
+            word_string = ''.join(word)
+            word_list.append(word_string)
+            word = []
+    if len(word) > 0:
+        word_string = ''.join(word)
+        word_list.append(word_string)
+    return word_list, delimiters
+
+def get_combined_operator(combined):
+    if combined in all_vars['combined_map']['negative']:
+        return '-'
+    elif combined in all_vars['combined_map']['positive']:
+        return '+'
+    elif combined in all_vars['combined_map']['equal']:
+        return '='
+    return False
+
 def process_placeholder(pc, conditional_items, variables, all_vars):
-    relationships = []
-    if pc not in conditional_items['conditional']:
-        words = pc.split(' ')
-        print('clause words', words)
-        if len(words) > 1:
-            subject = words[0]
-            operator = words[1]
-            words = words[2:]
-            last_word = ' '.join(words)
-            print('last word', last_word)
-            operator_count = sum([last_word.count(o) for o in all_vars['operator_map'].keys() if o in last_word])
-            if operator_count > 1:
-                new_relationships = process_placeholder(last_word, conditional_items, variables, all_vars)
-                if new_relationships:
-                    ''' to do: dont just extend it, apply new_relationships to existing relationships '''
-                    relationships.extend(new_relationships)
-            elif last_word in variables:
-                subitem = variables[last_word]
-                ''' add the sub-item relationship itself: (i - b) '''
-                relationships.append(' '.join(subitem))
-                items = subitem.split(' ')
-                suboperator = None
-                for i in items:
-                    if i in all_vars['operator_map'].keys():
-                        suboperator = i
-                    else:
-                        if suboperator is None:
-                            ''' add the first object's applied relationship to the original subject: (x - i) '''
-                            relationships.append(' '.join([subject, operator, i]))
-                        else:
-                            ''' add the second object's applied relationship to the original subject: (x + b) '''
-                            final_suboperator = ''
-                            combined = ''.join([operator, suboperator])
-                            if combined in all_vars['combined_map']['negative']:
-                                final_suboperator = '-'
-                            elif combined in all_vars['combined_map']['positive']:
-                                final_suboperator = '+'
-                            elif combined in all_vars['combined_map']['equal']:
-                                final_suboperator = '='
-                            relationships.append(' '.join([subject, final_suboperator, i]))
-    if len(relationships) > 0:
-        return relationships
+    operator_list = ['+', '-', '=']
+    relationships = set()
+    relationship = set()
+    new_pc_words = []
+    sub_relationship = []
+    reverse_var_keys = reversed(sorted(variables.keys()))
+    for k in reverse_var_keys:
+        spaced_var = ''.join(['', variables[k], ''])
+        pc = pc.replace(k, spaced_var)
+        for o in operator_list:
+            if o in pc:
+                spaced_operator = ''.join([' ', all_vars['operator_map'][o], ' '])
+                pc = pc.replace(o, spaced_operator)
+    if pc:
+        return pc
+    return False
+
+def operator_count(line, operators):
+    line_list = line.split(' ') if type(line) == str else line
+    total = 0
+    for i in line_list:
+         for o in operators:
+            total += i.count(o)
+    return total
+
+def has_operator(line):
+    if '+' in line and '-' in line and '=' in line:
+        return True
     return False
 
 def split_by_operators(clause):
@@ -351,7 +341,7 @@ def get_new_key(key_dict, all_vars):
     random_letter = all_vars['alphabet'][random_index]
     if key_dict:
         for k in key_dict:
-            new_key = '_'.join([k, random_letter])
+            new_key = ''.join([k, random_letter])
     else:
         new_key = random_letter
     if new_key:
@@ -361,7 +351,7 @@ def get_new_key(key_dict, all_vars):
             return new_key
     return False 
 
-def replace_with_placeholders(operator_clause, operator_sentence, line, variables, all_vars):
+def replace_with_placeholders(operator_clause, line, variables, all_vars):
     ''' what differentiates a variable from a normal word? 
         variables are used to refer to components of sub-logic that include 
         an embedded relationship which must be handled associatively 
@@ -380,29 +370,36 @@ def replace_with_placeholders(operator_clause, operator_sentence, line, variable
         2. then converting "x - (i - b)" to "x - a" and storing in placeholder_clauses
         3. then converting "x - a" to permuted relationship set:
             "x - i" and "x + b"
-        4. conditionals should be applied last
-        5. then the symbolic relationships can be replaced with original values:
-            "x reduces inhibitor" and "x increases b"
     '''
     placeholder_clause = []
-    for i, word in enumerate(operator_clause.split(' ')):
-        if word not in ['+', '-', '=']:
-            prev_word = operator_clause[i - 1] if i > 0 else ''
-            next_word = operator_clause[i + 1] if i < (len(operator_clause) - 1) else ''
-            is_modifier = get_modifier(prev_word, word, next_word)
-            if is_modifier:
-                modified_word = get_modified_word(line, word)
-                if modified_word:
-                    new_key = get_new_key(variables, all_vars)
-                    variables[new_key] = [word, 'of', modified_word]
+    delimiter = '+' if '+' in operator_clause else '-' if '-' in operator_clause else '='
+    for i, phrase in enumerate(operator_clause.split(delimiter)):
+        phrase = phrase.strip()
+        if phrase not in ['+', '-', '=', 'subject']:
+            words = phrase.split(' ')
+            new_key = get_new_key(variables, all_vars)
+            variables[new_key] = ' '.join(words) if len(words) > 0 else words[0]
+            print('added var', new_key, variables[new_key])
+            placeholder_clause.append(new_key)
+            '''
+            to do: finish get_modifier logic
+            for j, word in enumerate(words):
+                prev_word = words[j - 1] if j > 0 else False
+                next_word = words[j + 1] if j < (len(words) - 1) else False
+                is_modifier = get_modifier(prev_word, word, next_word)
+                if is_modifier:
+                    modified_word = get_modified_word(line, word)
+                    if modified_word:
+                        variables[new_key] = [word, 'of', modified_word]
+                        placeholder_clause.append(new_key)
+                else:
+                    variables[new_key] = word
                     placeholder_clause.append(new_key)
-            else:
-                new_key = get_new_key(variables, all_vars)
-                variables[new_key] = word
-                placeholder_clause.append(new_key)
+            '''
         else:
-            placeholder_clause.append(word)
-    return ' '.join(placeholder_clause), variables
+            placeholder_clause.append(phrase)
+    placeholder_string = delimiter.join(placeholder_clause)
+    return placeholder_string, variables
 
 def get_modifier(prev_word, word, next_word):
     ''' if this is a modifier, return True 
@@ -436,9 +433,10 @@ def get_modifier(prev_word, word, next_word):
             if word[index:] == m:
                 modifier_score += 1
     for pattern in modifier_patterns:
-        found = find_pattern(word, word_pos, pattern)
-        if found:
-            modifier_score += 1
+        if word_pos:
+            found = find_pattern(word, word_pos, pattern)
+            if found:
+                modifier_score += 1
     if modifier_score > 3:
         return True
     return False
@@ -472,7 +470,7 @@ def get_operator(verb, all_vars):
     if pos == 'verb':
         stem = stemmer.stem(verb)
         polarity = get_polarity(verb)
-        print('get_treatment_potential: polarity', polarity, pos, stem, verb)
+        # print('get_operator: polarity', polarity, pos, stem, verb)
         if verb in all_vars['synonym_list']['negative'].keys() or stem in all_vars['synonym_list']['negative'].values() or polarity < 0.0:
             return '-'
         elif verb in all_vars['synonym_list']['positive'].keys() or stem in all_vars['synonym_list']['positive'].values() or polarity > 0.0:
