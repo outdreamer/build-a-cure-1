@@ -1,189 +1,143 @@
-to do:
-
-- take common nouns out of:
-  compounds: "associate", "multi-resolution", "delicate"
-  conditions: "order", "disorders"
-  expression/activity
-
-- standardize synonyms to word stems
-
-- finish function to determine positive/negative relationship
-
-- index words you pull from wiki so youre not repeating the query & store it across requests
-
-- remove from names: ''M.D..''
-
-- synonyms:
-  biofilm :: membrane
-  sympathetic :: synergistic
-  irritate :: damage
-
-- write functions for rearrange_sentence & remove_unnecessary_words
-
-- use prev_word & next_word in get_modifier
-
-- metrics function should identify:
-  - minimum inhibitory concentration MIC
-  - naa-to-cr ratio
-    naa/JJ
-    cr/NN
-    ratio/NN
-      reduced/VBD
-    hiv/JJ
-    positive/JJ
-      patients/NNS
-    marker/VBP
-    infection/NN
-    brain/NN
-      even/RB
-      absence/RB
-      imaging/VBG
-      findings/NNS
-    encephalopathy/JJ
-    patient/JJ
-    symptomatic/JJ
-    due/JJ
-    neurological/JJ
-    disease/NN
-      etiologies/NNS
-
-- find every time you use this logic and replace with function
-    clause_split = []
-    relation = set()
-    for c in clause.split(' '):
-        if c in ['+', '-', '=']:
-            clause_split.append(relation)
-            clause_split.append(c)
-            relation = set()
-        else:
-            relation.add(c)
-    if relation != set():
-        clause_split.append(relation)
-
-
-
-- see if theres a function to pull VP: Verb Phrase
-
-- standardize all your pos checks to use get_pos
-
-- replace get_relationships with get_clauses
-
-- consolidate leave_in_pos
-
-- use distortion patterns of entities like atlases, templates, solution progressions to form a compressed version of the host system
-  https://techxplore.com/news/2019-11-medical-image-analysis.html
-
-- add stressor language patterns:
-  Sesquiterpenes work as a liver and gland stimulant and contain caryophyllene and valencene. 
-  Research from the universities of Berlin and Vienna show increased oxygenation around the pineal and pituitary glands.
-  While offering a variety of healing properties, the most important ability of the monoterpenes is that they can reprogram miswritten information in the cellular memory (DNA)
-  Terpene Alcohols stimulate the immune system, work as a diuretic and a general tonic.
-  Sesquiterpene Alcohols are ulcer-protective (preventative).
-  Phenols clean receptor sites of cells so sesquiterpenes can delete faulty information from the cell. They contain high levels of oxygenating molecules and have anioxidant properties.
-  Camphor, borneol, and eucalyptol are monoterpene ketones that the available body of evidence suggests may be toxic to the nervous system depending on dosage, while jasmine, fenchone, and isomenthone are considered nontoxic. Ketones aid the removal of mucous, stimulate cell and tissue regeneration, promote the removal of scar tissue, aid digestion, normalize inflammation, relieve pain, reduce fever, may inhibit coagulation of blood, and encourage relaxation.
-  https://www.homasy.com/blogs/tutorials/what-are-the-major-compounds-of-essential-oils
-  Furthermore, histidine can protect the body from radiation damage. It does this by binding to the damaging molecules, therefore eliminating them.
-
-- for queries of functions like "disable a gene", you can include intent & function metadata to point to sets of compounds that could do the required edits:
-  - find compound (protein, enzyme, etc) that unfolds DNA
-  - find compound that modifies (edits, activates, removes) the gene once unfolded as specifically as possible 
-    (can be a compound with a cutting subcomponent at the right length to target the dna if you can bind it to the first or last gene with another compound)
-  - find compound that refolds DNA
-  https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
-
-- check that noun_phrases is catching all the phrase you need it to, otherwise your clause -> modifier -> relationship logic will suck 
-
-- analyze polarity of stems & words in synonyms to check that your get_synonyms & get_operator logic holds 
-
-- new drugs are at: https://adisinsight.springer.com/drugs/800042427
-
-- best description of mechanism of action was on a category page:
-  https://en.wikipedia.org/wiki/Fungistatics
-
-- doses examples:
-  "Start small with three to four drops a day and gradually increasing it as your body adjusts to the right treatment dosage."
-  "If you are taking oil of oregano in capsules, you should not consume more than 500 to 600 mg per day"
-
-- pull these properties for compounds on wiki:
-    Bioavailability 63–89%[4]:73
-    Protein binding 10–25%[5]
-    Metabolism  Predominantly in the liver[3]
-    Metabolites APAP gluc, APAP sulfate, APAP GSH, APAP cys, NAPQI[6]
-    Onset of action Pain relief onset by route:
-      By mouth – 37 minutes[7]
-      Buccal – 15 minutes[7]
-      Intravenous – 8 minutes[7]
-    Elimination half-life 1–4 hours[3]
-    Excretion Urine (85–90%)[3]
-
-- add tree parsing to identify related words in sentences
-
-- focus on treatment/strategy/insight parsing
-- now that you have a smile formula generator, you have the raw structure data, 
-  assuming you can usually generate the right formula from a sequence of electron counts, which may not be realistic but youll at least have sets of elements to look in
-- so its time to focus on metadata - aggregate a property set available from apis, find the most comprehensive one, & use that api to fill in structural metadata
-- then you can finish the conceptual metadata functions to pull treatments, symptoms, conditions, sub_components(atoms, ions, circles), related_components (genes, proteins), mechanisms of action (rules/functions)
-  (plus abstract metadata like intents, priorities, strategies, & insights)
-- figure out how to represent conceptual metadata as numbers in case you want to train on it, you may have to rely on mappings & encoding but some have clear value functions
-  if there are a thousand strategies, id rather store encoded first node, encoded function, encoded last node, 
-  which will involve less if there are 10 of each (30 features as opposed to 1000)
-  but if strategies have more than 2 nodes (if you cant reduce them further), then itll get big quickly & you wont be able to store all the metadata in one dataset
-- then you can generate combination datasets of:
-  supervised data:
-    [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, property] # to predict a certain property that a structure has, like activating a particular gene or binding to something
-    [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, genes] # to predict which genes will interact with a compound
-    [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, mechanism] # to predict which processes will activate/neutralize/bind with a compound
-    [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, metabolism] # to predict how a compound will be metabolized
-    [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, dose] # to predict a non-toxic dose of a compound
-    [structure, structural_metadata, mechanism_of_action_metadata, symptom] # to predict a symptom caused by a structure
-    [symptoms, successful_treatment_structure_label] # to predict successful treatment structures for a set of symptoms
-    [symptoms, structure, structural_metadata, mechanism_of_action_metadata, success_for_treating_condition_C] # to predict successful treatment structures for a condition given the symptoms indicating the phase
-  sequential data:
-    [past_conditions, future_conditions] # to predict the conditions a patient will likely develop
-
-- then you can create a script to generate & deploy a bunch of models as web services
-  you can write a cost estimator function to generate a cost as part of the output for the patient
-
-- should build a UI at some point but csv's should be fine for now, since its reducing the data a lot,
- and most people will just use it for fetching known treatments that have been tried or a likely condition for their symptoms
-
-- once youre done with that, you can move on to more complex compounds like organisms & integrate some more interesting analysis
-
-- finish get object functions for pulling existing research studies 
-  - symptom examples:
-  - fever red urine skin rash paralysis headache bleeding
-
-- fix plural form of duplicate objects in sets
-
-- remove nouns, verbs, adverbs & adjectives from objects:
-  - components
-  - compounds
-  - remove common nouns analysis, basis, dis/order, diagnosis from conditions
-
-- same line in functions: expression/activity
-- do a check for full keyword matching before adding a partial match
-  compounds: 'disease'
-  causal_layers: 'cr,ratio' 
-  metrics: 'administration'
+# Sources:
 
 - check chembl search if you can search for a condition & return molecules known to treat it
 
-- integrate conditions/symptoms and treatments/compounds schemas
+- chembl similarity function can tell you how likely it is that the generated compound mimics functionality of another compound
 
-- finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
+  ## Props 
+    - pull these properties for compounds on wiki:
+      Bioavailability 63–89%[4]:73
+      Protein binding 10–25%[5]
+      Metabolism  Predominantly in the liver[3]
+      Metabolites APAP gluc, APAP sulfate, APAP GSH, APAP cys, NAPQI[6]
+      Onset of action Pain relief onset by route:
+        By mouth – 37 minutes[7]
+        Buccal – 15 minutes[7]
+        Intravenous – 8 minutes[7]
+      Elimination half-life 1–4 hours[3]
+      Excretion Urine (85–90%)[3]
 
-- make a list of common intent synonyms & store - ie, diagnose - use source of bio synonyms
+  - index articles you pull from sources so youre not repeating the query & store it across requests
 
-- check output of synonym replacements to make sure its not changing meaning
+
+# Structural:
+
+  - remove nouns, verbs, adverbs & adjectives from all relevant object indexes:
+
+    - common nouns ("associate", "multi-resolution", "delicate", "order", "disorders", "expression/activity")
+    - also proper noun names: ''M.D..''
+    - remove plural form of duplicate objects in sets
+
+  - make sure this is the same line in functions: expression/activity
+
+  - check that noun_phrases is catching all the phrase you need it to, otherwise your clause -> modifier -> relationship logic will suck 
+
+  - see if theres a function to pull VP: Verb Phrase
+
+  - consolidate leave_in_pos
+
+  - integrate conditions/symptoms and treatments/compounds schemas
+
+
+## Relationships
+
+  - validate your output from get_relationships_from_clauses with tree parsing to identify related words in sentences
+
+  - use prev_word & next_word in get_modifier
+
+## Synonyms
+
+  - do a check for full keyword matching before adding a partial match
+    compounds: 'disease'
+    causal_layers: 'cr,ratio' 
+    metrics: 'administration'
+
+  - analyze polarity of stems & words in synonyms to check that your get_synonyms & get_operator logic holds 
+
+  - make a list of common intent synonyms & store - ie, diagnose - use source of bio synonyms
+
+  - standardize synonyms to word stems
+
+  - check output of synonym replacements to make sure its not changing meaning
+
+  - get word roots & word distortions of synonyms using lemmatization lib
+
+
+## Repetition
+
+  - find every time you use this logic and replace with function
+      clause_split = []
+      relation = set()
+      for c in clause.split(' '):
+          if c in ['+', '-', '=']:
+              clause_split.append(relation)
+              clause_split.append(c)
+              relation = set()
+          else:
+              relation.add(c)
+      if relation != set():
+          clause_split.append(relation)
+          
+
+Functions:
+
+- finish get_patterns so you can make table of useful patterns as you pull data, replacing common objects with abstract type keywords:
+  Example:
+    Cytotoxicity in cancer cells
+    anti-tumor
+    suppress/interfere/inhibit activity of carcinog/canc/tumz
+
+  Patterns:
+    <component object>-toxicity
+    anti-<component object of illness>
+    suppress/interfere/inhibit activity of drug/medication/enzyme
+
+- write function to get semantic bio metadata of compounds (bio-availability, activation in the host species, etc)
+
+- write function to pull symptom lists for a condition from forums/drugs/rxlist
+
+- build math logic/plain language translation function first - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
+
+- in order to implement this without ml, you need functions to identify conceptual metadata of a compound or organism, so at least these to get started:
+  - function-identifying function 
+  - attribute-identifying function 
+  - type-identifying function
+
+  - once you have this standard object analysis with some object model insights, you can apply them to bio systems
+    - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
+
+  - later you can do more advanced analysis, like:
+    - determining position/role in a system 
+    - determining set of patterns for its functions 
+    - determining rules associated with its core functions (change rules, boundary rules)
+    - determining side effects in edge cases, interacting with other bio-system layers
+    - determining solution via conceptual route
+
+- write a function to derive core component functions for any system
+
+  - then you can write functions to:
+    - determine equivalent functions
+    - determine more optimal version of a function
+
+    when generating solutions, change core functions to vary to describe any function set that builds any other function set in a system
+    - set of binding functions for element atoms
+    - set of molecular interaction physics for compound molecules
+    - set of interaction functions for microorganisms
+    - set of priority functions for microorganisms
+
+- write functions for rearrange_sentence & remove_unnecessary_words
 
 - add get_related_components function to pull components of a compound & primary metabolites
-
-- get word roots & word distortions of synonyms using lemmatization lib
 
 - add function to test chemical reactions:
   https://cheminfo.github.io/openchemlib-js/docs/classes/reaction.html
 
-- finish get_metadata (strategies, insights)
+- finish get_medical_metadata
+  - finish get object functions for pulling existing research studies 
+    - symptom examples:
+    - fever red urine skin rash paralysis headache bleeding
+
+- finish get_conceptual_metadata (strategies, insights)
 
   - insight in a article doc is likely to:
     - have more topic-related keywords
@@ -222,7 +176,159 @@ to do:
   - how it's metabolized, to know whether it could be taken at an effective dose
   - if the conditio involves a pathogen, you need to know the pathogen's structure & metadata
 
+
+Conceptual:
+
+- add intent matching so you can compare treatment relationships with article intents to see if its actually a sentence with a treatment in it
+  - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
+
+- use distortion patterns of entities like atlases, templates, solution progressions to form a compressed version of the host system
+  https://techxplore.com/news/2019-11-medical-image-analysis.html
+
+- add stressor language patterns:
+  Sesquiterpenes work as a liver and gland stimulant and contain caryophyllene and valencene. 
+  Research from the universities of Berlin and Vienna show increased oxygenation around the pineal and pituitary glands.
+  While offering a variety of healing properties, the most important ability of the monoterpenes is that they can reprogram miswritten information in the cellular memory (DNA)
+  Terpene Alcohols stimulate the immune system, work as a diuretic and a general tonic.
+  Sesquiterpene Alcohols are ulcer-protective (preventative).
+  Phenols clean receptor sites of cells so sesquiterpenes can delete faulty information from the cell. They contain high levels of oxygenating molecules and have anioxidant properties.
+  Camphor, borneol, and eucalyptol are monoterpene ketones that the available body of evidence suggests may be toxic to the nervous system depending on dosage, while jasmine, fenchone, and isomenthone are considered nontoxic. Ketones aid the removal of mucous, stimulate cell and tissue regeneration, promote the removal of scar tissue, aid digestion, normalize inflammation, relieve pain, reduce fever, may inhibit coagulation of blood, and encourage relaxation.
+  https://www.homasy.com/blogs/tutorials/what-are-the-major-compounds-of-essential-oils
+  Furthermore, histidine can protect the body from radiation damage. It does this by binding to the damaging molecules, therefore eliminating them.
+
+- for queries of functions like "disable a gene", you can include intent & function metadata to point to sets of compounds that could do the required edits:
+  - find compound (protein, enzyme, etc) that unfolds DNA
+  - find compound that modifies (edits, activates, removes) the gene once unfolded as specifically as possible 
+    (can be a compound with a cutting subcomponent at the right length to target the dna if you can bind it to the first or last gene with another compound)
+
+  - find compound with function = "refolds DNA"
+  https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
+
+
+# Questions
 - are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?
+
+
+# ML
+
+- the full data set should have numerical categories indicating condition(s) treated in the output label so it can be separated into sub-sets by condition treated
+
+- incorporate stacked autoencoders to leverage unsupervised learning to get initial weights
+
+- incorporate cosine loss rather than categorical cross entropy
+
+- add recurrent nn example code that can be copied & plugged in without modification
+
+- consider using dimensionality reduction as a way to identify abstract patterns & functions to explain common deviations from patterns
+  https://miro.medium.com/max/1659/1*nQrZmfQE3zmMnCJLb_MNpQ.png
+  https://towardsdatascience.com/step-by-step-signal-processing-with-machine-learning-pca-ica-nmf-8de2f375c422
+
+- use this or similar as example when describing current state of problem solving: 
+  https://miro.medium.com/max/462/1*X7dQgs1gsJ0Sktz3t7J21Q.png
+  https://towardsdatascience.com/feature-extraction-techniques-d619b56e31be
+
+
+# Examples:
+
+- synonyms examples:
+  biofilm :: membrane
+  sympathetic :: synergistic
+  irritate :: damage
+
+- metrics function should identify:
+  - minimum inhibitory concentration MIC
+  - naa-to-cr ratio
+
+- new drugs are at: https://adisinsight.springer.com/drugs/800042427
+
+- best description of mechanism of action was on a category page:
+  https://en.wikipedia.org/wiki/Fungistatics
+
+- doses examples:
+  "Start small with three to four drops a day and gradually increasing it as your body adjusts to the right treatment dosage."
+  "If you are taking oil of oregano in capsules, you should not consume more than 500 to 600 mg per day"
+
+- assumption counterexamples:
+
+  1. "smile formulas are generally under 100 char"
+    - wiki for smiles doc has 240-char compound formula: https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system
+
+  2. "structure is a good mechanism for deriving function"
+    - bakuchiol has example of structural difference with similar function:
+    https://en.wikipedia.org/wiki/Bakuchiol
+
+  3. "wiki articles of related compounds will mention each other"
+    - sertraline wiki doesnt mention interaction with fluconazole 
+      - youd have to derive by noting that it increased blood level/metabolism of substrates some CYP 450 enzymes inhibited by fluconazole
+      - or that it is metabolized by some of the same enzymes
+      - https://en.wikipedia.org/wiki/Sertraline#Overdose
+
+
+# Generating Data Sets from Smile Formula & other Raw Data:
+
+  - analyze which components these disease & evolved genes/traits have in common & which system attributes are influenced
+    and try to predict diseases & evolved genes/traits from new component sets & newly enabled interactions with existing components
+    & find an optimal set for health (extra processing organs, more diverse microbiome, etc)
+    https://medicalxpress.com/news/2019-11-humans-co-evolved-immune-related-diseasesand.html
+
+  - generate multiple datasets:
+    - smile + each medical component (side effects, functions, symptoms) to get a predictor formula for that component from the smile formula
+    - really you should iterate through all combinations of components and generate a dataset for each one to check for relationships
+    medical_components = [
+      metrics: {'naa-cr ratio': 'reduced'}
+              conditions: 'hiv', 'encephalopathy'
+              organs: ['brain', 'immune system']
+              compounds: ['naa', 'cr']
+              insights: [
+                  'naa-to-cr ratio is reduced in hiv patients', 
+                  'naa-to-cr ratio is a marker for hiv brain infection'
+              ]
+              strategies: [
+                  'target bio markers that change with illness for testing',
+                  'consider other conditions like lack/excess of signals from diagnostic tests & interfering diseases'
+              ]
+              symptoms: [
+                  'encephalopathy': 'no imaging findings'
+                  'neurological disease': 'other'
+              ]
+              patient: ['HIV-positive', 'symptoms of neurological disease']
+    ]
+    - data set of just props in case there is a relationship between successful treatment & one of the properties available (need a chemical with property x value y)
+
+  - now that you have a smile formula generator, you have the raw structure data, 
+    assuming you can usually generate the right formula from a sequence of electron counts, which may not be realistic but youll at least have sets of elements to look in
+  - so its time to focus on metadata - aggregate a property set available from apis, find the most comprehensive one, & use that api to fill in structural metadata
+  - then you can finish the conceptual metadata functions to pull treatments, symptoms, conditions, sub_components(atoms, ions, circles), related_components (genes, proteins), mechanisms of action (rules/functions)
+    (plus abstract metadata like intents, priorities, strategies, & insights)
+  - figure out how to represent conceptual metadata as numbers in case you want to train on it, you may have to rely on mappings & encoding but some have clear value functions
+    if there are a thousand strategies, id rather store encoded first node, encoded function, encoded last node, 
+    which will involve less if there are 10 of each (30 features as opposed to 1000)
+    but if strategies have more than 2 nodes (if you cant reduce them further), then itll get big quickly & you wont be able to store all the metadata in one dataset
+  - then you can generate combination datasets of:
+    supervised data:
+      [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, property] # to predict a certain property that a structure has, like activating a particular gene or binding to something
+      [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, genes] # to predict which genes will interact with a compound
+      [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, mechanism] # to predict which processes will activate/neutralize/bind with a compound
+      [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, metabolism] # to predict how a compound will be metabolized
+      [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, dose] # to predict a non-toxic dose of a compound
+      [structure, structural_metadata, mechanism_of_action_metadata, symptom] # to predict a symptom caused by a structure
+      [symptoms, successful_treatment_structure_label] # to predict successful treatment structures for a set of symptoms
+      [symptoms, structure, structural_metadata, mechanism_of_action_metadata, success_for_treating_condition_C] # to predict successful treatment structures for a condition given the symptoms indicating the phase
+    sequential data:
+      [past_conditions, future_conditions] # to predict the conditions a patient will likely develop
+
+  - then you can create a script to generate & deploy a bunch of models as web services
+    you can write a cost estimator function to generate a cost as part of the output for the patient
+
+  - should build a UI at some point but csv's should be fine for now, since its reducing the data a lot,
+   and most people will just use it for fetching known treatments that have been tried or a likely condition for their symptoms
+
+  - once youre done with that, you can move on to more complex compounds like organisms & integrate some more interesting analysis
+
+
+# Diagrams
+
+- finish diagrams for specific concepts, core functions, and concept operations
 
 - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
     Argument to moderation (false compromise, middle ground, fallacy of the mean, argumentum ad temperantiam) – assuming that the compromise between two positions is always correct.[16]
@@ -267,108 +373,3 @@ to do:
     Reification (concretism, hypostatization, or the fallacy of misplaced concreteness) – a fallacy of ambiguity, when an abstraction (abstract belief or hypothetical construct) is treated as if it were a concrete, real event or physical entity. 
     Retrospective determinism – the argument that because an event has occurred under some circumstance, the circumstance must have made its occurrence inevitable.
     Special pleading – a proponent of a position attempts to cite something as an exemption to a generally accepted rule or principle without justifying the exemption.
-
-- finish specific concepts, core functions, and concept operation diagrams
-
-objectives:
-
-- analyze which components these disease & evolved genes/traits have in common & which system attributes are influenced
-  and try to predict diseases & evolved genes/traits from new component sets & newly enabled interactions with existing components
-  & find an optimal set for health (extra processing organs, more diverse microbiome, etc)
-  https://medicalxpress.com/news/2019-11-humans-co-evolved-immune-related-diseasesand.html
-
-- generate multiple datasets:
-  - smile + each medical component (side effects, functions, symptoms) to get a predictor formula for that component from the smile formula
-  - really you should iterate through all combinations of components and generate a dataset for each one to check for relationships
-  medical_components = [
-    metrics: {'naa-cr ratio': 'reduced'}
-            conditions: 'hiv', 'encephalopathy'
-            organs: ['brain', 'immune system']
-            compounds: ['naa', 'cr']
-            insights: [
-                'naa-to-cr ratio is reduced in hiv patients', 
-                'naa-to-cr ratio is a marker for hiv brain infection'
-            ]
-            strategies: [
-                'target bio markers that change with illness for testing',
-                'consider other conditions like lack/excess of signals from diagnostic tests & interfering diseases'
-            ]
-            symptoms: [
-                'encephalopathy': 'no imaging findings'
-                'neurological disease': 'other'
-            ]
-            patient: ['HIV-positive', 'symptoms of neurological disease']
-  ]
-  - chembl similarity function can tell you how likely it is that the generated compound mimics functionality of another compound
-  - data set of just props in case there is a relationship between successful treatment & one of the properties available (need a chemical with property x value y)
-
--  make table of useful patterns as you pull data, replacing common objects with abstract type keywords:
-  Example:
-    Cytotoxicity in cancer cells
-    anti-tumor
-    suppress/interfere/inhibit activity of carcinog/canc/tumz
-
-  Patterns:
-    <component object>-toxicity
-    anti-<component object of illness>
-    suppress/interfere/inhibit activity of drug/medication/enzyme
-
-- once you have standard object analysis with some object model insights, you can apply them to bio systems
-  - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
-
-- the full data set should have numerical categories indicating condition(s) treated in the output label so it can be separated into sub-sets by condition treated
-
-- incorporate stacked autoencoders to leverage unsupervised learning to get initial weights
-
-- incorporate cosine loss rather than categorical cross entropy
-
-- add recurrent nn example code that can be copied & plugged in without modification
-
-- write function to get semantic bio metadata of compounds (bio-availability, activation in the host species, etc)
-
-- write function to pull symptom lists for a condition from forums/drugs/rxlist
-
-- build math logic/plain language translation function first - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
-
-- in order to implement this without ml, you need functions to identify conceptual metadata of a compound or organism, so at least these to get started:
-  - function-identifying function 
-  - attribute-identifying function 
-  - type-identifying function
-
-- later you can do more advanced analysis, like:
-  - determining position/role in a system 
-  - determining set of patterns for its functions 
-  - determining rules associated with its core functions (change rules, boundary rules)
-  - determining side effects in edge cases, interacting with other bio-system layers
-  - determining solution via conceptual route
-
-- when generating solutions, change core functions to vary to describe any function set that builds any other function set in a system
-  - set of binding functions for element atoms
-  - set of molecular interaction physics for compound molecules
-  - set of interaction functions for microorganisms
-  - set of priority functions for microorganisms
-
-- write a function to derive these core component functions for any system
-
-- consider using dimensionality reduction as a way to identify abstract patterns & functions to explain common deviations from patterns
-  https://miro.medium.com/max/1659/1*nQrZmfQE3zmMnCJLb_MNpQ.png
-  https://towardsdatascience.com/step-by-step-signal-processing-with-machine-learning-pca-ica-nmf-8de2f375c422
-
-- use this or similar as example when describing current state of problem solving: 
-  https://miro.medium.com/max/462/1*X7dQgs1gsJ0Sktz3t7J21Q.png
-  https://towardsdatascience.com/feature-extraction-techniques-d619b56e31be
-
-Assumption counterexamples:
-
-- Assumption: smile formulas are generally under 100 char
-  - wiki for smiles doc has 240-char compound formula: https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system
-
-- Assumption: structure is a good mechanism for deriving function
-  - bakuchiol has example of structural difference with similar function:
-  https://en.wikipedia.org/wiki/Bakuchiol
-
-- Assumption: wiki articles of related compounds will mention each other
-  - sertraline wiki doesnt mention interaction with fluconazole 
-    - youd have to derive by noting that it increased blood level/metabolism of substrates some CYP 450 enzymes inhibited by fluconazole
-    - or that it is metabolized by some of the same enzymes
-    - https://en.wikipedia.org/wiki/Sertraline#Overdose
