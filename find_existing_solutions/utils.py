@@ -3,12 +3,24 @@ import nltk
 from nltk.tokenize import word_tokenize 
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet
-from nltk.stem import WordNetLemmatizer
+from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.stem.snowball import SnowballStemmer
 from textblob import TextBlob, Word
 from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
 stemmer = SnowballStemmer("english")  
+lemmatizer = WordNetLemmatizer()
+
+def get_polarity(line):
+    return TextBlob(line).sentiment.polarity
+
+def change_to_active(verb):
+    infinitive = lemmatizer.lemmatize(verb, 'v')
+    print('infinitive', infinitive)
+    return infinitive
+
+def remove_standard_punctuation(line):
+    return line.replace('"', '').replace('(','').replace(')','').replace('[','').replace(']','')
 
 def get_definitions(word):
     defs = Word(base_word).definitions
@@ -123,6 +135,7 @@ def save(path, data):
 def read(path):
     index = None
     if os.path.exists(path):
+        print('found path', path)
         with open(path, 'r') as f:
             index = json.load(f) if 'json' in path else f.read()
             f.close()

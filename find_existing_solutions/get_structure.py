@@ -1,68 +1,20 @@
 from nltk import word_tokenize, pos_tag
-from nltk.corpus import stopwords
-from nltk.stem.snowball import SnowballStemmer
 from textblob import TextBlob, Word
 from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
-from nltk.stem.wordnet import WordNetLemmatizer
-lemmatizer = WordNetLemmatizer()
 
-''' important note: 
-    - always put the extended pattern first
-    - if you put '<noun>' before "<noun> <noun>',
-        you'll miss phrases like 'compound acid' returning matches like:
-             ['compound acid']
-        and will instead get matches for the '<noun>' pattern:
-            ['compound', 'acid']
-        so make sure thats what you want before ignoring this rule
-        
-- types follow patterns:
-    1. <adjective> <noun>
-    Ex: 'chaperone protein' (subtype = 'chaperone', type = 'protein')
+from nltk.stem.snowball import SnowballStemmer
+stemmer = SnowballStemmer("english")
 
-- roles follow patterns:
-    1. <adverb> || <verb> <noun>
-    Ex: 'emulsifying protein' (role = 'emulsifier')
+from utils import read
+from get_vars import get_vars
+from get_patterns import *
 
-    2. <noun> of <noun>
-    Ex: 'components of immune system' (role = 'component', system = 'immune system')
-
-    3. <verb> || <noun> role
-    Ex: functional role (role => 'function')
-
-    4. functions/works/operates/interacts/acts as (a) <verb> || <noun>
-    Ex: acts as an intermediary (role => 'intermediary')
-
-- roles are intrinsically related to functions, intents, strategies, & mechanisms
-
-# the word with the highest count that is a noun is likely to be a focal object of the article
-'''
-
-def convert_patterns(lang_patterns):
-    patterns = []
-    for p in lang_patterns:
-        pattern = []
-        for alt_phrases in p.split('--'):
-            pos_list = alt_phrases.split(' ')
-            all_pos = [True for pos_item in pos_list if pos_item in language_pos_map.keys()]
-            if len(all_pos) == len(pos_list):
-                ''' this is a set of alternative parts of speech '''
-                final_list= ['[']
-                for item in pos_list:
-                    final_list.append(language_pos_map[item].replace('[','').replace(']',''))
-                final_list.append(']')
-                pattern.append(''.join(final_list))
-        for i, w in enumerate(p.split(' ')):
-            if w in language_pos_map.values():
-                pattern.append(language_pos_map[w])
-            else:
-                pattern.append(w)
-        patterns.append(' '.join(pattern))
-    if len(patterns) > 0:
-        return patterns
-    return False
 
 def get_pos(word):
+    noun_pos = ['NN', 'NNP', 'NNS', 'JJ', 'JJR']
+    verb_pos = ['VB', 'VBP', 'VBD', 'VBG', 'VBN', 'VBZ']
+    exclude = ['DT', 'WRB', 'TO', 'CC', 'IN']
     noun_string = 'noun'
     verb_string = 'verb'
     if len(word) > 0:
@@ -92,50 +44,9 @@ def get_pos(word):
                 verb_stem_synsets = Word(stem).get_synsets(pos=VERB)
                 if len(verb_stem_synsets) > 0:
                     return verb_string
-        print('get_pos: unknown word', word, pos)
+        if pos not in exclude:
+            print('get_pos: unknown word', word, pos)
     return False
-
-def convert_to_pattern_format(line):
-    new_line = []
-    for word in line.split(' '):
-        pos = get_pos(word)
-        val = pos if pos else word # to do: restrict by pattern_words
-        new_line.append(val)
-    line = ' '.join(new_line)
-    return line
-
-def find_pattern(original, line, pattern):
-    found_phrases = []
-    original_split = original.split(' ')
-    if pattern in line:
-        ''' replace pattern with pos so each pos in pattern is only taking up one item in line.split(' ') '''
-        line_split = line.split(pattern)
-        for i, phrase in enumerate(line_split):
-            words = phrase.split(' ')
-            if i < (len(line_split) - 1):
-                new_pattern = []
-                for j in range(0, len(pattern.split(' '))):
-                    pattern_index = len(words) + j - 1
-                    if pattern_index < len(original_split):
-                        new_pattern.append(original_split[pattern_index])
-                found_phrases.append(' '.join(new_pattern))            
-    if len(found_phrases) > 0:
-        return found_phrases, pattern
-    return False, False
-
-def get_pattern_stack(line):
-    line = line.replace('\n','').replace('.', '')
-    original = line
-    pattern_stack = {}
-    pos_line = convert_to_pattern_format(line)
-    for pattern in patterns:
-        found, adjusted_pattern = find_pattern(original, pos_line, pattern)
-        if found:
-            if adjusted_pattern not in pattern_stack:
-                pattern_stack[adjusted_pattern] = found
-            else:
-                pattern_stack[adjusted_pattern].extend(found)
-    return pattern_stack
 
 def concatenate_species(data):
     data_lines = data.split('.')
@@ -163,7 +74,8 @@ def concatenate_species(data):
     data = '.'.join(new_lines)
     return data
 
-def get_counts(article_words, processed_data, tagged, line, phrases, metadata):
+def get_counts(article_words, processed_data, tagged, line, metadata):
+    leave_in_pos = ['NNP', 'NNS', 'JJR'] # JJR example: 'broader'
     for item in tagged:
         if len(item) == 2:
             w = item[0].lower()
@@ -184,27 +96,6 @@ def get_counts(article_words, processed_data, tagged, line, phrases, metadata):
                                 if count not in metadata['counts']:
                                     metadata['counts'][count] = set()
                                 metadata['counts'][count].add(w)
-    for p in phrases:
-        if len(p) > 0:
-            phrase_words = p.split(' ')
-            for n in phrase_words:
-                new_p = set()
-                p_name = ''.join([n[0].upper(), n[1:]])
-                for name in metadata['names']:
-                    if name not in p_name:
-                        new_p.add(n)
-                p = ' '.join(new_p)
-            if len(p.strip()) > 0:
-                pos = [item[1] for item in tagged if item[0].lower() == phrase_words[0]]
-                if pos not in verb_pos and p not in metadata['verbs'] and p not in metadata['nouns'] and p_name not in ' '.join(metadata['names']) and p not in stop:
-                    p_upper = p.upper()
-                    upper_count = article_words.count(p_upper) # find acronyms
-                    phrase_count = processed_data.count(p)
-                    p = p_upper if upper_count > 0 and len(p_upper) > 0 and upper_count < phrase_count else p
-                    count = upper_count if upper_count > 0 and len(p_upper) > 0 and upper_count < phrase_count else phrase_count
-                    if count not in metadata['phrases']:
-                        metadata['phrases'][count] = set()
-                    metadata['phrases'][count].add(p)
     common_words = get_most_common_words(counts, 3) # get top 3 tiers of common words
     if common_words:
         metadata['common_words'].extend(common_words)
@@ -300,35 +191,37 @@ def get_pos_in_line(line, metadata):
                 # compounds, symptoms, treatments, metrics, conditions, stressors, types, variables
             else:
                 metadata['taken_out'].add('_'.join([line[index], pos]))
-    return metadata
+    return metadataa
 
-def get_charge_of_word(word, supported_params, supported_core):
-    found_synonym = check_for_supported_synonym(word, supported_params, supported_core)
+def remove_unnecessary_words(line, phrases, clauses):
+    ''' this should remove all excessive language where phrases or clauses dont add meaning '''
+    return line
+
+def rearrange_sentence(line):
+    '''
+    this function is to format your sentences in the same way
+
+    this means fulfilling the following expectations:
+    - having conditionals at the end rather than the beginning
+    - standardized words when synonyms are found
+    - simplified language where clearly mappable
+
+    so a sentence like: 
+    "in the event of onset, symptoms appear at light speed, even if you take vitamin c at max dose"
+
+    is reduced to:
+    "symptoms appear even with vitamin c max dose"
+    '''
+    return line
+
+def get_charge_of_word(word, all_vars):
+    found_synonym = True if word in all_vars['supported_synonyms'] else False
     print('found synonym', found_synonym)
     if found_synonym:
-        for synonym_type in key_map:
-            if found_synonym in key_map[synonym_type]:
+        for synonym_type in all_vars['key_map']:
+            if found_synonym in all_vars['key_map'][synonym_type]:
                 print('found synonym charge', synonym_type)
                 return synonym_type
-    return False
-
-def get_synonym_list(supported_core, key_map, synonym_type):
-    '''
-    supported_core = word_map['standard_words'] from synonyms.json
-    key_map = {
-        'negative': ['decrease', ...],
-        'positive': ['increase', ...],
-        'equal': ['means', 'equals', ...]
-    } 
-    '''
-    if synonym_type in key_map:
-        synonyms = {}
-        for key in supported_core:
-            if key in key_map[synonym_type]:
-                for k in supported_core[key]:
-                    synonyms[k] = stemmer.stem(k)
-        if synonyms:
-            return synonyms 
     return False
 
 def get_similarity_to_title(string, title):
@@ -341,7 +234,7 @@ def get_similarity_to_title(string, title):
             both.add(s)
     if len(both) > 0:
         key = (len(both) / len(title))
-        similarity[key] = string
+        similarity[string] = key
         return similarity
     return False
 
@@ -366,20 +259,15 @@ def get_most_common_words(counts, top_index):
         return max_words
     return False
 
-def remove_standard_punctuation(line):
-    return line.replace('"', '').replace('(','').replace(')','').replace('[','').replace(']','')
-
 def get_structural_metadata(line, title, article_words, article_string, index, row, metadata_keys):
     line = replace_contractions(line)
     line = remove_standard_punctuation(line)
     # line = line.replace(',','')
     similarity = get_similarity_to_title(line, title)
     if similarity:
-        for key, val in similarity.items():
-            if key not in row['title_similarities']:
-                row['title_similarities'][key] = [val]
-            else:
-                row['title_similarities'][key].append(val)
+        for line, score in similarity.items():
+            if line not in row['title_similarities']:
+                row['title_similarities'][line] = score
     pattern_stack = get_pattern_stack(line)
     if pattern_stack:
         for key, val in pattern_stack.items():
@@ -389,13 +277,15 @@ def get_structural_metadata(line, title, article_words, article_string, index, r
                 row['pattern_stack'][key].extend(val)
     row = get_pos_in_line(line, row)
     phrases = TextBlob(line).noun_phrases
-    row = get_names(article_string, line, phrases, row)
+    if len(phrases) > 0:
+        metadata['phrases'] = phrases
+    row = get_names(article_string, line, metadata['phrases'], row)
     line = remove_names(line, row['names'])
-    row = get_clauses(line, phrases, row)
+    row = get_clauses(line, metadata['phrases'], row)
     tagged = pos_tag(word_tokenize(line))
     processed_data = remove_standard_punctuation(article_string.lower())
     processed_data = processed_data.replace("'",'').replace(',','')
-    row = get_counts(article_words, processed_data, tagged, line, phrases, row)
+    row = get_counts(article_words, processed_data, tagged, line, row)
     for key in row:
         if key in index:
             index[key] = index[key].union(row[key])
@@ -437,7 +327,7 @@ def merge(temp, metadata):
                         if type(val) == str:
                              metadata[key][k] = ','.join([metadata[key][k], val])
                         if type(val) == dict:
-                            for a, b in val.items()
+                            for a, b in val.items():
                                 if a in metadata[key]:
                                     if type(metadata[key][a]) == set:
                                         if a not in metadata[key]:
@@ -507,29 +397,26 @@ def replace_contractions(line):
     line = ' '.join(new_line)
     return line
 
-def change_to_active(verb):
-    infinitive = lemmatizer.lemmatize(verb, 'v')
-    print('infinitive', infinitive)
-    return infinitive
-
-def check_phrase(word, phrases, line):
+def get_phrase_with_word(word, phrases, line):
     phrase_string = ' '.join(phrases)
     if word in phrase_string:
         for phrase in phrases:
+            '''
             p_pos = line.find(phrase)
             word_pos = line.find(word)
             if word_pos >= p_pos:
-                for i, phrase_word in enumerate(phrase.split(' ')):
-                    if phrase_word == word and i == 0:
-                        ''' this is the first word in a phrase so get the whole phrase '''
-                        return phrase
+            '''
+            for i, phrase_word in enumerate(phrase.split(' ')):
+                if phrase_word == word and i == 0:
+                    ''' this is the first word in a phrase so get the whole phrase '''
+                    return phrase
     return False
 
 def get_object_by_position(index, sentence_pieces, position, check_list, phrases):
     relevant_piece = sentence_pieces[index - 1] if position == 'prev' else sentence_pieces[index + 1]
     sequenced_words = relevant_piece.split(' ') if position == 'next' else relevant_piece.split(' ').reverse()
     for w in sequenced_words:
-        found = check_phrase(w, phrases, line)
+        found = get_phrase_with_word(w, phrases, line)
         if found:
             return found
         elif w in check_list: # check that its in the noun list passed in before returning it as an object
@@ -537,6 +424,8 @@ def get_object_by_position(index, sentence_pieces, position, check_list, phrases
     return False
 
 '''
+structural metadata example output:
+
 counts {
      1: {'science', 'beyond'},
      2: {'university'},
@@ -557,7 +446,7 @@ nouns {
     'cancer', 'beta', 'endoplasmic', 'cell', 'response', 'gene', 'insulin-like', 'system', 'cellular', 'oncology', 'nematode', 'lateral', 'growth', 'factor', 'anti-tumor', 'unexpected', 'neurodegenerative', 'reduction', 
     'approach', 'culture', 'primordial', 'common', 'perspective'
 }
-names {'Caenorhabditis', 'Medical Center', 'Advances', 'Er', 'Hu', 'Peter Arvan', 'Vanderbilt', 'Alzheimers', 'PI3K/AKT', 'Michigan', 'M.D', 'Patrick Hu', 'Trap-alpha', 'Ming Liu'}
+names {'Caenorhabditis', 'Medical Center', 'Advances', 'Er', 'Vanderbilt', 'Alzheimers', 'PI3K/AKT', 'Michigan', 'M.D', 'Trap-alpha'}
 taken_out [
     'therapies_N', 'drugs_N', 'strategies_N', 'pathways_N', 'components_N', 'elegans_N', 'worms_N', 'systems_N', 'variants_N', 'cells_N', 'cells_N', 'molecules_N', 'cells_N', 'proteins_N', 'proteins_N', 
     'were_R', 'likely_B', 'imbalances_N', 'diseases_N', 'molecules_N', 'besides_N', 'broader_J', 'ways_N'
@@ -571,59 +460,23 @@ pattern stack [
 ]
 '''
 
-
-pattern_categories = {
-    'types': [
-        'adjective noun'
-    ],
-    'roles': [
-        'adverb || verb noun',
-        'noun of noun',
-        'verb || noun role',
-        'functions/works/operates/interacts/acts as (a) verb || noun'
-    ],
-    'noun': [
-        'the noun'
-    ]
-}
-
-''' () indicates an optional item, --a b c-- indicates a set of alternatives '''
-language_patterns = [
-    'adjective noun',
-    '--adverb verb-- noun',
-    'noun of noun noun',
-    'noun of noun',
-    '--verb noun-- role',
-    '--functions works operates interacts acts-- as (a) --verb noun--'
-]
-language_pos_map = {
-    'adjective': '[ADJ]',
-    'noun': '[NN||NNP||NNS||JJ||JJR]',
-    'adverb': '[ADV]',
-    'verb': '[VB||VBP||VBD||VBG||VBN||VBZ]',
-    'past_participle': '[VBN]',
-}
-
+'''
+stemmer = SnowballStemmer("english")
 patterns = convert_patterns(language_patterns)
-print('patterns', patterns)
-pattern_words = ['of', 'acts', 'as']
-leave_in_pos = ['NNP', 'NNS', 'JJR'] # JJR example: 'broader'
-common_noun_pos = ['JJ', 'NN']
-noun_pos = ['NN', 'NNP', 'NNS', 'JJ', 'JJR']
-verb_pos = ['VB', 'VBP', 'VBD', 'VBG', 'VBN', 'VBZ']
-stemmer = SnowballStemmer("english")  
-stop = set(stopwords.words('english'))
+print('converted patterns', patterns)
+metadata = 'all'
+all_vars = get_vars()
+empty_index = get_empty_def(metadata, all_vars['supported_params'])
+row = empty_index
+index = empty_index
 article_string = read('article.txt')
 if article_string:
     article_string = concatenate_species(article_string)
-    article_words = data.split('\n')
+    article_words = article_string.split('\n')
+    title = article_words[0]
     for line in article_words:
         if len(line.strip()) > 0:
-            metadata = get_structural_metadata(line, article_words, article_string, metadata)
-    print('counts', metadata['counts'])
-    print('phrases', metadata['phrases'])
-    print('pattern stack', metadata['pattern_stack'])
-    print('verbs', metadata['verbs'])
-    print('nouns', metadata['nouns'])
-    print('names', metadata['names'])
-    print('taken_out', metadata['taken_out'])
+            metadata = get_structural_metadata(line, title, article_words, article_string, index, row, metadata)
+            for key in metadata:
+                print(key, metadata[key])
+'''

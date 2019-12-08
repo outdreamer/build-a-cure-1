@@ -1,0 +1,7 @@
+[
+    {
+        "url": "http://export.arxiv.org/api/query?search_query=all:<KEY>&start=<START>&max_results=<MAX>",
+        "results_tag": "opensearch:totalResults",
+        "tag": "entry"
+    }
+]

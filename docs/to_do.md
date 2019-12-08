@@ -18,6 +18,10 @@ to do:
   sympathetic :: synergistic
   irritate :: damage
 
+- write functions for rearrange_sentence & remove_unnecessary_words
+
+- use prev_word & next_word in get_modifier
+
 - metrics function should identify:
   - minimum inhibitory concentration MIC
   - naa-to-cr ratio
@@ -42,6 +46,19 @@ to do:
     neurological/JJ
     disease/NN
       etiologies/NNS
+
+- find every time you use this logic and replace with function
+    clause_split = []
+    relation = set()
+    for c in clause.split(' '):
+        if c in ['+', '-', '=']:
+            clause_split.append(relation)
+            clause_split.append(c)
+            relation = set()
+        else:
+            relation.add(c)
+    if relation != set():
+        clause_split.append(relation)
 
 
 
