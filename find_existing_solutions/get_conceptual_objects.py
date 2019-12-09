@@ -1,7 +1,6 @@
 from nltk import CFG
 from nltk import word_tokenize, pos_tag, ne_chunk
 
-from textblob import TextBlob, Word
 from get_index_def import get_empty_index
 from utils import get_subword_match
 
@@ -101,8 +100,9 @@ def identify_elements(supported_core, elements, index, metadata_keys, param_keys
       otherwise it adds to the new index generated for this element
     '''
     elements = elements.split(' ') if type(elements) == str else elements
-    blob = TextBlob(' '.join(elements))
-    phrases = blob.noun_phrases
+    element_string = ' '.join(elements)
+    blob = get_blob(element_string)
+    phrases = blob.noun_phrases if blob else None
     empty_index = get_empty_index(metadata_keys, param_keys)
     element_keys = [ key for key in empty_index.keys() if key in supported_core ]
     elements = elements.split(' ') if type(elements) == str else elements
@@ -309,6 +309,26 @@ def get_article_intent(article):
 def get_patterns(line):
     ''' this function looks for matches in elements with basic keyword patterns like alpha-<compound>-ic acid '''
     return line
+
+def get_usage_patterns(word, articles, local_database):
+    patterns = set()
+    if local_database: #'data' folder
+        articles = get_local_database(local_database)
+    if len(articles) > 0:
+        for a in articles:
+            for line in a.split('\n'):
+                words = line.split(' ')
+                for i, w in enumerate(words):
+                    if w == word:
+                        prev_word = words[i - 1] if i > 0 else ''
+                        next_word = words[i + 1] if i < (len(words) - 1) else ''
+                        pattern = ' '.join([prev_word, word, next_word])
+                        converted_pattern = convert_to_pattern_format(pattern.strip())
+                        if converted_pattern:
+                            patterns.add(converted_pattern)
+        if len(patterns) > 0:
+            return patterns
+    return False
 
 def get_intents(line):
     ''' this function is checking for any purpose-related keywords

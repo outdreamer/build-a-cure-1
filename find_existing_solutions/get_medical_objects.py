@@ -1,5 +1,3 @@
-from textblob import TextBlob, Word
-
 from get_structural_objects import get_relationships_from_clauses
 
 ''' 
@@ -35,7 +33,7 @@ Compounds:
         "administration_method of compound",
         "compound compound"
     ]
-    
+
 Patients:
     # treatments mention response in patients/subjects
     patient_keywords = supported_core['participant'] # use participant instead of patient bc that has other meanings
@@ -268,17 +266,19 @@ def get_treatments(intent, hypothesis, line, title, row, metadata, all_vars):
                 "drug did reduce blood pressure" => positive correlation (success) or a negative intent (reduce)
     '''
 
-    print("\tline sentiment", TextBlob(line).sentiment, "line", line)
+    blob = get_blob(line)
+    sentiment = blob.sentiment if blob else None
+    print("\tline sentiment", sentiment, "line", line)
     if hypothesis:
-        print("\thypothesis sentiment", TextBlob(hypothesis).sentiment, "hypothesis", hypothesis)
+        hypothesis_blob = get_blob(hypothesis)
+        hypothesis_sentiment = hypothesis_blob.sentiment if hypothesis_blob else None
+        print("\thypothesis sentiment", hypothesis_sentiment, "hypothesis", hypothesis)
     if intent:
-        print("\tintent sentiment", TextBlob(intent).sentiment, "intent", intent)
-    ''' to do: do study & sentence intent matching
-        line_sentiment = TextBlob(line).sentiment.polarity
-        intent_sentiment = TextBlob(intent).sentiment.polarity
-        if (line_sentiment - intent_sentiment) < 0.3:
-            return True
-    '''
+        intent_blob = get_blob(intent)
+        intent_sentiment = intent_blob.sentiment if intent_blob else None
+        print("\tintent sentiment", intent_sentiment, "intent", intent)
+
+    ''' to do: do study & sentence intent matching '''
     derived_relationships = get_relationships_from_clauses(row['clauses'], line, row['nouns'], all_vars)
     if derived_relationships:
         for r in derived_relationships:

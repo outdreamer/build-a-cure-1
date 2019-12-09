@@ -4,13 +4,11 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet
 from nltk.stem.wordnet import WordNetLemmatizer
-from nltk.stem.snowball import SnowballStemmer
-from textblob import TextBlob, Word
-from textblob.wordnet import VERB, NOUN, ADJ, ADV
-from textblob.wordnet import Synset
-stemmer = SnowballStemmer("english")  
+from textblob import TextBlob
+
 lemmatizer = WordNetLemmatizer()
 stop = set(stopwords.words('english'))
+stemmer = SnowballStemmer("english")
 
 def get_stem(word):
     stem = stemmer.stem(word)
@@ -18,8 +16,105 @@ def get_stem(word):
         return stem 
     return word
 
+def get_pos_in_line(line, row):
+    for word in line.split(' '):
+        if len(word) > 0:
+            pos = get_pos(word)
+            if pos == 'verb':
+                row['verbs'].add(word)
+                row['functions'].add(word)
+                # relationships = treatments, intents, functions, insights, strategies, mechanisms, patterns, systems
+            elif pos == 'noun':
+                row['nouns'].add(word)
+                row['components'].add(word) 
+                # compounds, symptoms, treatments, metrics, conditions, stressors, types, variables
+            else:
+                row['taken_out'].add('_'.join([word, pos]))
+    return row
+
+def get_modifier(prev_word, word, next_word):
+    ''' if this is a modifier, return True 
+    - the reason we're isolating modifiers is because theyre embedded relationships 
+    so in order to process them correctly, we have to extract them 
+    & format them the same as other relationships 
+    - then we can do more straightforward calculations with the operator_clause 
+    & generate the full set of relationships in the original clause
+    - we can easily identify modifiers that are in syns or modifier index 
+    but for others we need standard pos patterns
+
+    to do:
+        - use prev_word & next_word in get_modifier
+    '''
+    modifier_score = 0
+    modifier_substrings = [
+        "or",
+        "er",
+        "ed"
+    ]
+    modifier_patterns = [
+        'noun-noun', # the second noun has a verb root, ie "enzyme-inhibitor"
+        'noun noun', 
+        'noun-verb',
+        'noun verb', 
+        '[noun adverb adjective verb] [noun verb]', # detoxified compound
+        '[noun verb] [noun adverb adjective verb]' # compound isolate
+    ]
+    word_pos = get_pos(word)
+    stem_pos = get_pos(get_stem(word))
+    if stem_pos in ['VBP', 'VBD', 'VBN', 'VBZ', 'VBG'] and modifier_pos in ['NN', 'JJ', 'JJR', 'NNS', 'NNP', 'NNPS', 'RB']:
+        modifier_score += 1
+    for m in modifier_substrings:
+        if m in word:
+            index = len(word) - len(m) - 1
+            if word[index:] == m:
+                modifier_score += 1
+    for pattern in modifier_patterns:
+        if word_pos:
+            found = find_pattern(word, word_pos, pattern)
+            if found:
+                modifier_score += 1
+    if modifier_score > 3:
+        return True
+    return False
+
+def get_topic(word):
+    '''
+      this function will be used in remove_unnecessary_words
+      to filter out words that are either non-medical or too specific to be useful (names)
+
+      test cases:
+          permeability => ['structure']
+          medicine => ['medical']
+          plausibility => ['logic']
+    '''
+    topics = ['structural', 'logical']
+    stem = get_stem(word)
+
+def get_first_important_word(words):
+    for word in words:
+        pos = get_pos(word)
+        if pos == 'verb' or word not in stop:
+            return word
+    return False
+
+def get_blob(string):
+    if type(string) == str:
+        return TextBlob(string)
+    return False
+
+def get_correlation_of_relationship(intent, line):
+    blob = get_blob(line)
+    print("\tline sentiment", blob.sentiment, "line", line)
+    if intent:
+        intent_blob = get_blob(intent)
+        print("\tintent sentiment", intent_blob.sentiment, "intent", intent)
+    return get_polarity(line)
+
 def get_polarity(line):
-    return TextBlob(line).sentiment.polarity
+    blob = get_blob(line)
+    if blob:
+        return blob.sentiment.polarity
+    return 0
 
 def change_to_infinitive(verb):
     infinitive = lemmatizer.lemmatize(verb, 'v')
@@ -51,8 +146,7 @@ def get_keywords(word):
     for d in defs:
         words = d.split(' ')
         for w in words:
-            if w not in stop:
-                keywords.append(w)
+            keywords.append(w)
     if len(keywords) > 0:
         return keywords
     return False
@@ -77,67 +171,6 @@ def get_local_database(path, objects):
                     docs.append(contents)
     if len(docs) > 0:
         return docs
-    return False
-
-def get_usage_patterns(word, articles, local_database):
-    patterns = set()
-    if local_database: #'data' folder
-        articles = get_local_database(local_database)
-    if len(articles) > 0:
-        for a in articles:
-            for line in a.split('\n'):
-                words = line.split(' ')
-                for i, w in enumerate(words):
-                    if w == word:
-                        prev_word = words[i - 1] if i > 0 else ''
-                        next_word = words[i + 1] if i < (len(words) - 1) else ''
-                        pattern = ' '.join([prev_word, word, next_word])
-                        converted_pattern = convert_to_pattern_format(pattern.strip())
-                        if converted_pattern:
-                            patterns.add(converted_pattern)
-        if len(patterns) > 0:
-            return patterns
-    return False
-
-def get_similarity(base_word, new_word):
-    new_synsets = Word(new_word).get_synsets(pos=VERB)
-    base_synsets = Word(base_word).get_synsets(pos=VERB)
-    if len(new_synsets) > 0 and len(base_synsets) > 0:
-        similarity = base_synsets.path_similarity(new_synsets)
-        print('\tget similarity', new_synsets, base_synsets, similarity)
-        return similarity
-    return 0
-
-def get_partial_match(keyword_list, words, match_type):
-    words = [words] if type(words) == str else words
-    for word_or_phrase in words:
-        for word in word_or_phrase.split(' '):
-            for k in keyword_list:
-                if '-' in k:
-                    position = 'suffix' if '-' == k[0] else 'prefix' if '-' == k[len(k) - 1] else 'other'
-                    new_k = k.replace('-', '')
-                    suffix = word[(len(word)-len(new_k)):len(word)]
-                    prefix = word[0:len(new_k)]
-                    if (position == 'suffix' and new_k == suffix) or (position == 'prefix' and new_k == prefix):
-                        return True if match_type == 'bool' else k
-                else:
-                    if len(k) > 4 and len(word) > 4 and k in word or word in k:
-                        return True if match_type == 'bool' else k
-                    match_count = 0
-                    for i in range(0, len(word)):
-                        if i < len(k):
-                            if k[i] == word[i]:
-                                match_count += 1
-                    match_ratio = match_count / len(word)
-                    if match_ratio > 0.8:
-                        return True if match_type == 'bool' else k
-                    '''
-                    word_root = stemmer.stem(word)
-                    print('word root', word_root, word)
-                    k_root = stemmer.stem(k)
-                    if word_root == k_root:
-                        return True if match_type == 'bool' else k
-                    '''
     return False
 
 def save(path, data):

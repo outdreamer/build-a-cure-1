@@ -1,9 +1,4 @@
 import random
-from nltk.corpus import stopwords
-stop = set(stopwords.words('english'))
-from nltk.stem.snowball import SnowballStemmer
-stemmer = SnowballStemmer("english")
-from get_structure import get_pos 
 from utils import *
 
 def rearrange_sentence(line):
@@ -12,7 +7,7 @@ def rearrange_sentence(line):
 
     this means fulfilling the following expectations:
     - having conditionals at the end rather than the beginning
-    - standardized words when synonyms are found
+    - standardized words
     - simplified language where clearly mappable
 
     so a sentence like: 
@@ -36,28 +31,6 @@ def remove_names(line, names_list):
 def remove_unnecessary_words(line, phrases, clauses):
     ''' this should remove all excessive language where phrases or clauses dont add meaning '''
     return line
-
-
-def get_topic(word):
-    '''
-      this function will be used in remove_unnecessary_words
-      to filter out words that are either non-medical or too specific to be useful (names)
-
-      test cases:
-          permeability => ['structure']
-          medicine => ['medical']
-          plausibility => ['logic']
-    '''
-    topics = ['structural', 'logical']
-    stem = stemmer.stem(word)
-
-
-def get_first_non_stopword(words):
-    for word in words:
-        pos = get_pos(word)
-        if pos == 'verb' or word not in stop:
-            return word
-    return False
 
 def get_conditionals(line, nouns, clauses):
     ''' 
@@ -139,7 +112,7 @@ def get_conditionals(line, nouns, clauses):
     return items
 
 def check_is_condition(asp_words, clause_delimiters):
-    first_word = get_first_non_stopword(asp_words)
+    first_word = get_first_important_word(asp_words)
     if first_word:
         pos = get_pos(first_word)
         if pos:
@@ -444,51 +417,6 @@ def replace_with_placeholders(operator_clause, line, variables, all_vars):
     placeholder_string = delimiter.join(placeholder_clause)
     return placeholder_string, variables
 
-def get_modifier(prev_word, word, next_word):
-    ''' if this is a modifier, return True 
-    - the reason we're isolating modifiers is because theyre embedded relationships 
-    so in order to process them correctly, we have to extract them 
-    & format them the same as other relationships 
-    - then we can do more straightforward calculations with the operator_clause 
-    & generate the full set of relationships in the original clause
-    - we can easily identify modifiers that are in supported_synonyms 
-    but for others we need standard pos patterns
-
-    to do:
-        - use prev_word & next_word in get_modifier
-    '''
-    modifier_score = 0
-    modifier_substrings = [
-        "or",
-        "er",
-        "ed"
-    ]
-    modifier_patterns = [
-        'noun-noun', # the second noun has a verb root, ie "enzyme-inhibitor"
-        'noun noun', 
-        'noun-verb',
-        'noun verb', 
-        '[noun adverb adjective verb] [noun verb]', # detoxified compound
-        '[noun verb] [noun adverb adjective verb]' # compound isolate
-    ]
-    word_pos = get_pos(word)
-    stem_pos = get_pos(stemmer.stem(word))
-    if stem_pos in ['VBP', 'VBD', 'VBN', 'VBZ', 'VBG'] and modifier_pos in ['NN', 'JJ', 'JJR', 'NNS', 'NNP', 'NNPS', 'RB']:
-        modifier_score += 1
-    for m in modifier_substrings:
-        if m in word:
-            index = len(word) - len(m) - 1
-            if word[index:] == m:
-                modifier_score += 1
-    for pattern in modifier_patterns:
-        if word_pos:
-            found = find_pattern(word, word_pos, pattern)
-            if found:
-                modifier_score += 1
-    if modifier_score > 3:
-        return True
-    return False
-
 def get_modified_word(operator_clause, nouns, modifier):
     ''' to do: this will fail if you removed the modified word or put it in the next clause '''
     print('get_modified_word: operator_clause', operator_clause, 'modifier', modifier)
@@ -505,24 +433,4 @@ def get_modified_word(operator_clause, nouns, modifier):
             return next_word
         else:
             ''' apply same logic but get next object & previous object '''
-    return False
-
-def get_operator(verb, all_vars):
-    ''' this is to map a verb to an operator like +, -, =
-    to simplify sentence sentiment analysis 
-    right now we're just supporting positive, negative, or equal 
-    to do: 
-    - implement positive/negative prefix/suffix checking, like 'dis-' is often a negative prefix
-    '''
-    pos = get_pos(verb)
-    if pos == 'verb':
-        stem = stemmer.stem(verb)
-        polarity = get_polarity(verb)
-        # print('get_operator: polarity', polarity, pos, stem, verb)
-        if verb in all_vars['synonym_list']['negative'].keys() or stem in all_vars['synonym_list']['negative'].values() or polarity < 0.0:
-            return '-'
-        elif verb in all_vars['synonym_list']['positive'].keys() or stem in all_vars['synonym_list']['positive'].values() or polarity > 0.0:
-            return '+'
-        elif verb in all_vars['synonym_list']['equal'].keys() or stem in all_vars['synonym_list']['equal'].values(): # to do: assess equal word polarity 
-            return '='
     return False

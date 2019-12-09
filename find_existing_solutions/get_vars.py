@@ -1,6 +1,4 @@
-from nltk.stem.snowball import SnowballStemmer
 from utils import read
-stemmer = SnowballStemmer("english")
 
 def convert_patterns(lang_patterns, all_vars):
     '''
@@ -84,6 +82,7 @@ def get_vars():
         'epidemiology': 'symptoms',
         'uses': 'organism', # https://en.wikipedia.org/wiki/Boesenbergia_rotunda
     }
+    all_vars['medical_sentence_terms'] = ['y', 'ic', 'ia', 'al', 'ment', 'tion'] 
     all_vars['clause_delimiters'] = [',', 'and', 'or', 'because', 'but', 'as', 'if', 'then', 'even', 'without']
     all_vars['operator_map'] = {
         '-' : "decreases",
@@ -149,10 +148,10 @@ def get_vars():
     }
     all_vars['patterns'] = convert_patterns(all_vars['language_patterns'], all_vars)
     all_vars['pattern_words'] = ['of', 'acts', 'as']
-    all_vars = get_supported_synonyms('maps', all_vars)
+    all_vars = fill_synonyms('maps', all_vars)
     all_vars['key_map'] = {
-        'negative': ['worsen', 'decrease', 'inhibit', 'reduce', 'deactivate', 'disable', 'negative_substrings'],
-        'positive': ['improve', 'increase', 'induce', 'enhance', 'activate', 'enable', 'positive_substrings'],
+        'negative': ['worsen', 'decrease', 'inhibit', 'reduce', 'deactivate', 'disable'],
+        'positive': ['improve', 'increase', 'induce', 'enhance', 'activate', 'enable'],
         'equal': ['equal', 'alternate']
     }
     all_vars['charge'] = {

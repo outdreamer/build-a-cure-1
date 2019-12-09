@@ -22,13 +22,24 @@
 
 # Structural:
 
-  - supported_synonyms should be a reverse map for quick access
+  - 'as' can mean:    
+        'like': 'as is common in that area',
+        'because': 'as',
+        'when': 'as the sun sets'
 
-  - replace all stem = stemmer.stem(word) with stem = get_stem(word)
+  - add function to unconjugate & get_common_word & get_common_score
 
-  - after youre done standardizing replace_phrases & synonyms - remove all the processing code done in pieces to make sure its done right away before adding to articles array
+  - add partial synonym matching in the same place you have phrase & word matching 
 
-  - test replace_phrases_in_line until its good 
+  - add adv & adj support to get_pos
+
+  - evaluate when you need full article index and when its ok to use a line index
+
+  - finish check_match function
+
+  - isolate pattern functions
+
+  - test replace_syns_in_line until its functional 
 
   - verify output from get_relationships_from_clauses with tree parsing to identify related words in sentences
 
@@ -41,8 +52,10 @@
   - make all_vars global variable & remove from params
 
   - check that noun_phrases is catching all the phrases you need it to for clause -> modifier -> relationship logic otherwise check for verb_phrases
+    - in get_clauses, make sure youre not replacing the verb with the consecutive verb if they appear together (imaging finding)
 
   - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
+
 
 
 ## Relationships

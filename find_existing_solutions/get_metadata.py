@@ -1,26 +1,17 @@
 import sys, json, os, re, urllib, csv, ssl, random
 import wikipedia
 from wikipedia.exceptions import DisambiguationError
-from xml.dom.minidom import parse
 import xml.dom.minidom
 import requests
-# import nltk
-from nltk.stem.snowball import SnowballStemmer
-from nltk import word_tokenize, pos_tag, ne_chunk
-from nltk.corpus import stopwords
-
-from textblob import TextBlob, Word
-from textblob.wordnet import VERB, NOUN, ADJ, ADV
-from textblob.wordnet import Synset
 
 from utils import *
 from get_index_def import get_empty_index
 from get_structure import get_pos, get_structural_metadata
-from generate_datasets import generate_datasets 
 from get_vars import get_vars, get_args
 from get_structural_objects import get_relationships_from_clauses
 from get_conceptual_objects import *
 from get_medical_objects import *
+from get_type import *
 
 def pull_summary_data(sources, metadata_keys, generate_source, generate_target, args, filters, all_vars):
     ''' get index from research study api providing summaries '''
@@ -105,54 +96,13 @@ def get_articles(source, keyword, start, max_results, total_results, all_vars):
                         if len(text) > 0:
                             processed_text = standard_text_processing(text, all_vars)
                             text = processed_text if processed_text else text
-                            replaced_text = replace_phrases_in_line(text, 'all', all_vars['supported_core'])
+                            replaced_text = replace_syns(text, 'all', all_vars['supported_core'])
                             text = replaced_text if replaced_text else test
                             text_list = [text] if node.nodeName == 'title' else text.split('\n')
                             article.extend(text_list)                    
                 if len(article) > 0:
                     articles.append('\n'.join(article))
     return articles
-
-def get_index_type(word, all_vars, categories):
-    ''' look through synonyms to find out which index element contains this word '''
-    index_type = None
-    full_keys = [
-        'condition_keywords', 'state', 'treatment_keywords', 'elements', 'compounds', 'metrics', 
-        'organisms', 'functions', 'causal_layers', 'symptom_keywords', 'side_effects'
-    ]
-    param_map = {}
-    for keyword in full_keys:
-        keyword = keyword.replace('_keywords', 's')
-        param_map[keyword] = keyword
-    for keyword in ['condition_keywords', 'state']:
-        for key in all_vars['supported_core'][keyword]:
-            param_map[key] = 'conditions'
-    for keyword in ['treatment_keywords', 'elements', 'compounds']:
-        for key in all_vars['supported_core'][keyword]:
-            param_map[key] = 'compounds' 
-            # not every compound will be a treatment
-    for keyword in ['metrics']:
-        for key in all_vars['supported_core'][keyword]:
-            param_map[key] = 'metrics'
-    for keyword in ['organisms']:
-        for key in all_vars['supported_core'][keyword]:
-            param_map[key] = 'organisms'
-    for keyword in ['functions', 'causal_layers']:
-        for key in all_vars['supported_core'][keyword]:
-            param_map[key] = 'functions'
-    for keyword in ['symptom_keywords', 'side_effects']:
-        for key in all_vars['supported_core'][keyword]:
-            param_map[key] = 'symptoms'
-            # assume its a symptom until you can associate it with a compound
-    if len(categories) > 0:
-        for c in categories:
-            c_split = c.split(' ')
-            for term in c_split:
-                if term in param_map:
-                    index_type = param_map[term]
-        if not index_type:
-            index_type = categories[0]
-    return index_type
 
 def get_medical_metadata(line, formatted_line, title, index, row, metadata, all_vars):
     '''
@@ -226,15 +176,9 @@ def get_conceptual_metadata(line, title, index, row, metadata_keys):
                                             for k in output:
                                                 row[k] = output[k]
                 except Exception as e:
-                    print('summary exception', e)
+                    print('wiki summary exception', e)
     row['dependencies'] = get_dependencies('all', None, row['relationships'], 3)
     return index, row
-
-def get_correlation_of_relationship(intent, line):
-    print("\tline sentiment", TextBlob(line).sentiment, "line", line)
-    if intent:
-        print("\tintent sentiment", TextBlob(intent).sentiment, "intent", intent)
-    return get_polarity(line)
 
 def downloads(paths):
     for path in paths:
@@ -256,8 +200,6 @@ def downloads(paths):
 
 # common_words = [] # to do: store common words that dont fit other categories & read them into list
 # if it doesnt have a word ending in one of these suffixes, its probably not relevant
-stemmer = SnowballStemmer("english")
-stop = set(stopwords.words('english'))
 all_vars = get_vars() # replace all subelements with reference
 print('supported params', all_vars['supported_params'])
 if all_vars:

@@ -1,13 +1,4 @@
 from nltk import word_tokenize, pos_tag
-from textblob import TextBlob, Word
-from textblob.wordnet import VERB, NOUN, ADJ, ADV
-from textblob.wordnet import Synset
-
-from nltk.stem.snowball import SnowballStemmer
-stemmer = SnowballStemmer("english")
-
-from nltk.corpus import stopwords
-stop = set(stopwords.words('english'))
 
 from utils import *
 from get_vars import get_vars
@@ -85,44 +76,6 @@ def convert_to_pattern_format(line):
     line = ' '.join(new_line)
     return line
 
-def get_pos(word):
-    noun_pos = ['NN', 'NNP', 'NNS', 'JJ', 'JJR']
-    verb_pos = ['VB', 'VBP', 'VBD', 'VBG', 'VBN', 'VBZ']
-    exclude = ['DT', 'WRB', 'TO', 'CC', 'IN']
-    noun_string = 'noun'
-    verb_string = 'verb'
-    if len(word) > 0:
-        pos = [item[1] for item in pos_tag(word_tokenize(word)) if item[0].lower() == word]
-        if (len(pos) > 0 and pos[0] in noun_pos):
-            return noun_string
-        elif (len(pos) > 0 and pos[0] in verb_pos):
-            return verb_string
-        else:
-            noun_synsets = Word(word).get_synsets(pos=NOUN)
-            if len(noun_synsets) > 0:
-                return noun_string
-            verb_synsets = Word(word).get_synsets(pos=VERB)
-            if len(verb_synsets) > 0:
-                return verb_string
-            else:
-                stem = stemmer.stem(word)
-                stem_pos = [item[1] for item in pos_tag(word_tokenize(stem)) if item[0].lower() == stem]
-                if len(stem_pos) > 0:
-                    if stem_pos[0] in noun_pos:
-                        return noun_string
-                    elif stem_pos[0] in verb_pos:
-                        return verb_string
-                noun_stem_synsets = Word(stem).get_synsets(pos=NOUN)
-                if len(noun_stem_synsets) > 0:
-                    return noun_string
-                verb_stem_synsets = Word(stem).get_synsets(pos=VERB)
-                if len(verb_stem_synsets) > 0:
-                    return verb_string
-        if len(pos) > 0:
-            if pos[0] not in exclude:
-                print('get_pos: unknown word', word, pos)
-    return False
-
 def concatenate_species(data):
     data_lines = data.split('.')
     new_lines = []
@@ -149,27 +102,27 @@ def concatenate_species(data):
     data = '.'.join(new_lines)
     return data
 
-def get_counts(article_words, processed_data, tagged, line, row):
+def get_counts(article_words, article_string, tagged, line, row):
+    data = article_string.replace("'",'').replace(',','')
     object_pos = ['NNP', 'NNS', 'JJR']
     for item in tagged:
         w = item[0].lower()
         if item[1] in object_pos:
-            if len(w) > 0 and w not in stop:
-                w_upper = w.upper()
-                w_name = ''.join([w[0].upper(), w[1:]])
-                upper_count = article_words.count(w_upper) # find acronyms, ignoring punctuated acronym
-                count = processed_data.count(w)
-                ## and w not in verbs and w not in nouns and w_name not in ' '.join(names):
-                if item[0] == w_name and w_name != article_words[0] and w_name not in ' '.join(row['names']): # exclude first word in sentence
-                    if upper_count > 0 and upper_count <= count:
-                        if upper_count not in row['counts']:
-                            row['counts'][upper_count] = set()
-                        row['counts'][upper_count].add(w_upper)
-                    else:
-                        if count > 0:
-                            if count not in row['counts']:
-                                row['counts'][count] = set()
-                            row['counts'][count].add(w)
+            w_upper = w.upper()
+            w_name = ''.join([w[0].upper(), w[1:]])
+            upper_count = article_words.count(w_upper) # find acronyms, ignoring punctuated acronym
+            count = data.count(w)
+            ## and w not in verbs and w not in nouns and w_name not in ' '.join(names):
+            if item[0] == w_name and w_name != article_words[0] and w_name not in ' '.join(row['names']): # exclude first word in sentence
+                if upper_count > 0 and upper_count <= count:
+                    if upper_count not in row['counts']:
+                        row['counts'][upper_count] = set()
+                    row['counts'][upper_count].add(w_upper)
+                else:
+                    if count > 0:
+                        if count not in row['counts']:
+                            row['counts'][count] = set()
+                        row['counts'][count].add(w)
     if len(row['counts']) > 0:
         common_words = get_most_common_words(row['counts'], 3) # get top 3 tiers of common words
         if common_words:
@@ -187,14 +140,13 @@ def get_names(article_words, line, row):
                 pos = [item[1] for item in tagged if item[0].lower() == name]
                 if len(pos) > 0:
                     pos_item = pos[0]
-                    if name not in stop:
-                        if pos_item == 'NNP':
-                            name = ''.join([name[0].upper(), name[1:]]) if '.' not in name and '/' not in name else name.upper()
-                            new_name.append(name)  
-                        elif pos_item == 'NNS':
-                            name = ''.join([name[0].upper(), name[1:]])
-                            if name in '\n'.join(article_words):
-                                new_name.append(name)
+                    if pos_item == 'NNP':
+                        name = ''.join([name[0].upper(), name[1:]]) if '.' not in name and '/' not in name else name.upper()
+                        new_name.append(name)  
+                    elif pos_item == 'NNS':
+                        name = ''.join([name[0].upper(), name[1:]])
+                        if name in '\n'.join(article_words):
+                            new_name.append(name)
             if len(new_name) > 0:                                         
                 final_name = ' '.join(new_name)
                 if len(new_name) == len(phrase_words) and final_name != line[0:len(final_name)] and final_name.lower() not in row['nouns'] and final_name.lower() not in row['verbs']:
@@ -246,30 +198,6 @@ def get_clauses(line, row, all_vars):
                             row['clauses'].add(' '.join([next_object, active_s, prev_object]))
     return row 
 
-def get_pos_in_line(line, row):
-    pattern_format_line = convert_to_pattern_format(line)
-    split_line = line.split(' ')
-    print('pattern_format_line', pattern_format_line)
-    for index, p in enumerate(pattern_format_line.split(' ')):
-        if len(p) > 0:
-            word = split_line[index]
-            if p == 'verb':
-                row['verbs'].add(word)
-                row['functions'].add(word)
-                # relationships = treatments, intents, functions, insights, strategies, mechanisms, patterns, systems
-            elif p == 'noun':
-                ''' check if the noun stem is a verb, if so add it to verbs
-                    # using verb_versions adds a lot of nouns like worm & rat to the verbs list
-                    verb_suffixes = ['e', 'd', 'ed'] 
-                    verb_versions = [pos_tag(word_tokenize(''.join([p, v]))) for v in verb_suffixes]
-                '''
-                row['nouns'].add(word)
-                row['components'].add(word) 
-                # compounds, symptoms, treatments, metrics, conditions, stressors, types, variables
-            else:
-                row['taken_out'].add('_'.join([split_line[index], p]))
-    return row
-
 def get_similarity_to_title(string, title):
     string_split = string.split(' ')
     title_split = title.split(' ')
@@ -308,9 +236,7 @@ def get_most_common_words(counts, top_index):
     return False
 
 def get_structural_metadata(line, title, article_words, article_string, index, row, metadata_keys, all_vars):
-    line = replace_contractions(line, all_vars)
     line = remove_standard_punctuation(line)
-    # line = line.replace(',','')
     similarity = get_similarity_to_title(line, title)
     if similarity:
         for line, score in similarity.items():
@@ -324,15 +250,15 @@ def get_structural_metadata(line, title, article_words, article_string, index, r
             else:
                 row['pattern_stack'][key].extend(val)
     row = get_pos_in_line(line, row)
-    phrases = TextBlob(line).noun_phrases
-    if len(phrases) > 0:
+    blob = get_blob(line)
+    phrases = blob.noun_phrases if blob else []
+    if phrases:
         row['phrases'] = phrases
     row = get_names(article_string, line, row)
     # line = remove_names(line, row['names'])
     row = get_clauses(line, row, all_vars)
     tagged = pos_tag(word_tokenize(line))
-    processed_data = article_string.replace("'",'').replace(',','')
-    row = get_counts(article_words, processed_data, tagged, line, row)
+    row = get_counts(article_words, article_string, tagged, line, row)
     for key in row:
         if key in index:
             if type(index[key]) == set:
@@ -344,16 +270,6 @@ def get_structural_metadata(line, title, article_words, article_string, index, r
                     else:
                         index[key][k] = set(v)
     return index, row
-
-def replace_mappings(lines):
-    article = '\n'.join(lines)
-    article_words = article.split(' ')
-    replacement_map = all_vars['supported_core']['replacement']
-    for k, v in replacement_map.items():
-        for word_to_replace in v:
-            if word_to_replace in article_words:
-                    article = article.replace(word_to_replace, k)
-    return article.split('\n')
 
 def get_active(line):
     ''' check for verb tenses normally used in passive sentences 
@@ -393,18 +309,6 @@ def get_active(line):
     if passive > 2:
         return False
     return True
-
-def replace_contractions(line, all_vars):
-    contractions = all_vars['supported_core']['replacement']['contraction']
-    line = line.replace("'",'')
-    new_line = []
-    for w in line.split(' '):
-        if w in contractions:
-            new_line.append(contractions[w])
-        else:
-            new_line.append(w)
-    line = ' '.join(new_line)
-    return line
 
 def get_phrase_with_word(word, phrases, line):
     phrase_string = ' '.join(phrases)
