@@ -22,30 +22,51 @@
 
 # Structural:
 
-  - remove nouns, verbs, adverbs & adjectives from all relevant object indexes:
+  - supported_synonyms should be a reverse map for quick access
 
+  - replace all stem = stemmer.stem(word) with stem = get_stem(word)
+
+  - after youre done standardizing replace_phrases & synonyms - remove all the processing code done in pieces to make sure its done right away before adding to articles array
+
+  - test replace_phrases_in_line until its good 
+
+  - verify output from get_relationships_from_clauses with tree parsing to identify related words in sentences
+
+  - finish get_topic & remove_unnecessary_words to filter irrelevant nouns, verbs, adverbs & adjectives from all object indexes:
     - common nouns ("associate", "multi-resolution", "delicate", "order", "disorders", "expression/activity")
     - also proper noun names: ''M.D..''
     - remove plural form of duplicate objects in sets
+    - make sure this is the same line in functions: expression/activity
 
-  - make sure this is the same line in functions: expression/activity
+  - make all_vars global variable & remove from params
 
-  - check that noun_phrases is catching all the phrase you need it to, otherwise your clause -> modifier -> relationship logic will suck 
+  - check that noun_phrases is catching all the phrases you need it to for clause -> modifier -> relationship logic otherwise check for verb_phrases
 
-  - see if theres a function to pull VP: Verb Phrase
-
-  - consolidate leave_in_pos
-
-  - integrate conditions/symptoms and treatments/compounds schemas
+  - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
 
 
 ## Relationships
 
-  - validate your output from get_relationships_from_clauses with tree parsing to identify related words in sentences
+  - if you finish get_active, rearrange_sentence, remove_unnecessary_words, get_modifier & generate_abstract_patterns, 
+    you can just enter patterns for most medical get_object functions
+
+  - use conceptual_clause_map to sort your logic in get_conditionals
+
+  - build an index of modifiers based on phrase data of words frequently found together
 
   - use prev_word & next_word in get_modifier
 
+
 ## Synonyms
+
+  - organize synonyms 
+    keywords are for sentence and index-type identification
+    object lists are for index-type identification
+    replacement lists are for mapping
+    prefixes/suffixes are for partial index-type identification
+    patterns are for logic application & index-type identification
+
+  - add phrase parsing to synonym identification (match "a b" rather than just "a" or "b")
 
   - do a check for full keyword matching before adding a partial match
     compounds: 'disease'
@@ -54,11 +75,18 @@
 
   - analyze polarity of stems & words in synonyms to check that your get_synonyms & get_operator logic holds 
 
-  - make a list of common intent synonyms & store - ie, diagnose - use source of bio synonyms
+  - use source of bio synonyms
 
   - standardize synonyms to word stems
 
+  - analyze synonyms to make sure theyre all unique & consider merging some lists (alternatives & like, decrease & increase lists)
+
+  - check the definitions functionality supported by tools youre using to see if you can derive common standardized words from those without relying on synonyms map
+
   - check output of synonym replacements to make sure its not changing meaning
+
+  - once you apply get_relationships_from_clauses - you want to create another relationships array,
+    which is the same array but with the original semantic verb ("disable" rather than more general "decrease")
 
   - get word roots & word distortions of synonyms using lemmatization lib
 
@@ -77,7 +105,7 @@
               relation.add(c)
       if relation != set():
           clause_split.append(relation)
-          
+
 
 Functions:
 
@@ -97,6 +125,11 @@ Functions:
 - write function to pull symptom lists for a condition from forums/drugs/rxlist
 
 - build math logic/plain language translation function first - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
+
+- write function to identify contradictory information (retracted studies, false information, conspiracy theory (anti-vax), opinion) & selecting least likely to be false
+  - this will be useful when youre pulling non-research study data, like when youre looking up a metric or compound if you dont find anything on wiki
+
+- write function to identify authoritative sources (wiki is more trustworthy than a holistic or commercialized blog)
 
 - in order to implement this without ml, you need functions to identify conceptual metadata of a compound or organism, so at least these to get started:
   - function-identifying function 
@@ -264,7 +297,16 @@ Conceptual:
       - https://en.wikipedia.org/wiki/Sertraline#Overdose
 
 
-# Generating Data Sets from Smile Formula & other Raw Data:
+# Generating Data Set from Smile Formula
+
+  - you could also check the reaction with chemlib's reaction product tool another way you could encode it is by using the # of electrons in the first atom in each pair as the x value, and # of electrons in the second atom as the y value (optionally including the bond type as z value by strength" & graphing it, then deriving the function for each cluster of points using standard math do chemical compounds with similar formulas calculated in this way share properties? this implies the side of each bond has embedded meaning since youre grouping them: 'all the right-side values are x', 'all the left-side values are y'should you repeat the values to erase this bias? like h2o would be represented as pairs: [ho], [oh] rather than [ho] and [h, Null]
+
+  - the meaning is the relationship between bonded elements, as well as the sequence between groups of bonded elements so I think its legit how do you preserve sequence order in that situation? do you assign an ordinal variable to each pair, so your data set is: 1,h,o,bondtype, 2,h,o,bondtype and you have 4 dimensions to graph instead of 3? once you have the function, each chemical can be represented by its coefficients
+
+  - if you have a function to calculate/predict bond strength between two atoms given their identity & electron count, that could be useful data as well, beyond the bond order
+
+
+# Generating Data Sets from Combinining Data for Component Names
 
   - analyze which components these disease & evolved genes/traits have in common & which system attributes are influenced
     and try to predict diseases & evolved genes/traits from new component sets & newly enabled interactions with existing components

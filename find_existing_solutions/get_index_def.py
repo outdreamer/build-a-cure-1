@@ -102,27 +102,4 @@ def get_empty_index(metadata_keys, full_params):
     metadata_keys = index_keys if 'all' in metadata_keys else metadata_keys
     for key in metadata_keys:
         index[key] = set() if key != 'counts' and key in index_keys else {}
-    ''' 
-    each main medical component deserves its own dictionary, which can be built with rows data
-    'synthesis_instructions' = {
-        'parameters',
-        'optimal_parameter_values',
-        'required_compounds',
-        'substitutes',
-        'equipment_links',
-        'adjacent_compounds_and_steps',
-    }
-    'symptom' = {
-        'attributes': [],
-        'rules': [],
-        'states': [],
-        'treatments': []
-    }
-    'compounds' = {
-        'attributes': [],
-        'rules': [],
-        'states': [],
-        'side_effects': [] # this is just a list of symptoms the compound causes, which can be assembled from rows data
-    }
-    '''
     return index

@@ -188,7 +188,26 @@ Unsupervised learning & other methods will also be integrated in imminent versio
 
 Azure & Gcloud samples will also be added in addition to the existing AWS implementation.
 
-# Data Sources
+# Data Sources & Tools
+
+	## Guide to smiles format to represent compounds in strings like: CCS(=O)(=O)C1=CC=CC=C1C(=O)OCC
+  	https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system
+
+	### Bond symbols
+	    '-': isotope (carbon-14 = 14c)
+	    '=', '#', '$': Double, triple, and quadruple bonds are represented by the symbols =, #, and $ respectively
+	    '.': An additional type of bond is a "non-bond" indicated with . to indicate that two parts are not bonded together
+	    ':':  An aromatic "one and a half" bond may be indicated with :
+	    '/', '\': Single bonds adjacent to double bonds may be represented using / or \ to indicate stereochemical configuration
+	    - numbers: may indicate open & close of a ring structure, so include the first & last atom in the ring if you prep bond data
+	    - (): branch
+	    - []: atom (except atoms of B, C, N, O, P, S, F, Cl, Br, or I, which have no charge, are normal isotopes, not chiral centers & have expected number of hydrogens attached)
+
+	### Limits
+    - SMILES strings do not represent all types of stereochemistry:
+        - Gross conformational left or right handedness such as helicenes
+        - Mechanical interferences, such as rotatable bonds that are constrained by mechanical interferences
+        - Gross conformational stereochemistry such as the shape of a protein after folding
 
 - UniChem has some of PubChem & ChemBl & SureChemBL:
 https://www.ebi.ac.uk/unichem/ucquery/listSources

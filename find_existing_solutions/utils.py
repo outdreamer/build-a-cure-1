@@ -1,4 +1,4 @@
-import os, json, itertools, csv
+import json, itertools, csv
 import nltk
 from nltk.tokenize import word_tokenize 
 from nltk.corpus import stopwords
@@ -10,14 +10,31 @@ from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
 stemmer = SnowballStemmer("english")  
 lemmatizer = WordNetLemmatizer()
+stop = set(stopwords.words('english'))
+
+def get_stem(word):
+    stem = stemmer.stem(word)
+    if stem:
+        return stem 
+    return word
 
 def get_polarity(line):
     return TextBlob(line).sentiment.polarity
 
-def change_to_active(verb):
+def change_to_infinitive(verb):
     infinitive = lemmatizer.lemmatize(verb, 'v')
     print('infinitive', infinitive)
     return infinitive
+
+def standard_text_processing(text, all_vars):
+    text = remove_standard_punctuation(text)
+    text = remove_stopwords(text.strip().lower())
+    words = text.strip().split(' ')
+    if len(words) > 1:
+        formatted_text = ''.join([x for x in text if x in all_vars['alphanumeric']])
+        if len(formatted_text) > 0:
+            return formatted_text
+    return text       
 
 def remove_standard_punctuation(line):
     return line.replace('"', '').replace('(','').replace(')','').replace('[','').replace(']','')
@@ -26,6 +43,61 @@ def get_definitions(word):
     defs = Word(base_word).definitions
     print('\tdefinitions', defs)
     return defs
+
+def get_keywords(word):
+    ''' add option to use local_database/index (phrases, relationships) or pull from a data source '''
+    keywords = []
+    defs = Word(word).definitions:
+    for d in defs:
+        words = d.split(' ')
+        for w in words:
+            if w not in stop:
+                keywords.append(w)
+    if len(keywords) > 0:
+        return keywords
+    return False
+
+def get_local_database(path, objects):
+    docs = []
+    if not os.path.exists(path) or not os.path.isdir(path):
+        cwd = getcwd()
+        path = ''.join([cwd, '/', path])
+    if os.path.exists(path) and os.path.isdir(path):
+        for file_path in os.path.listdir(path):
+            full_path = '/'.join([path, file_path])
+            if os.path.isfile(full_path):
+            if len(objects) > 0:
+                if file_path in objects:
+                    contents = read(full_path)
+                    if contents:
+                        docs.append(contents)
+            else:
+                contents = read(full_path)
+                if contents:
+                    docs.append(contents)
+    if len(docs) > 0:
+        return docs
+    return False
+
+def get_usage_patterns(word, articles, local_database):
+    patterns = set()
+    if local_database: #'data' folder
+        articles = get_local_database(local_database)
+    if len(articles) > 0:
+        for a in articles:
+            for line in a.split('\n'):
+                words = line.split(' ')
+                for i, w in enumerate(words):
+                    if w == word:
+                        prev_word = words[i - 1] if i > 0 else ''
+                        next_word = words[i + 1] if i < (len(words) - 1) else ''
+                        pattern = ' '.join([prev_word, word, next_word])
+                        converted_pattern = convert_to_pattern_format(pattern.strip())
+                        if converted_pattern:
+                            patterns.add(converted_pattern)
+        if len(patterns) > 0:
+            return patterns
+    return False
 
 def get_similarity(base_word, new_word):
     new_synsets = Word(new_word).get_synsets(pos=VERB)
@@ -36,7 +108,7 @@ def get_similarity(base_word, new_word):
         return similarity
     return 0
 
-def get_subword_match(keyword_list, words, match_type):
+def get_partial_match(keyword_list, words, match_type):
     words = [words] if type(words) == str else words
     for word_or_phrase in words:
         for word in word_or_phrase.split(' '):
@@ -68,60 +140,6 @@ def get_subword_match(keyword_list, words, match_type):
                     '''
     return False
 
-def check_for_supported_synonym(word, index_keys, supported_core):
-    common_synonym = ''
-    # word_root = stemmer.stem(word)
-    for key in supported_core:
-        for item in key:
-            if item == word:
-                common_synonym = key
-        matched = get_subword_match(supported_core[key], word, 'word')
-        if matched:
-            if key in index_keys:
-                common_synonym = key
-            else:
-                common_synonym = matched if '-' not in matched else word
-    if len(common_synonym) > 0:
-        return common_synonym
-    return False
-
-def get_standard_word(row, word, supported_core, supported_synonyms, standard_verbs):
-    '''
-    this should standardize a word like 'enhance' to a verb like 'increase' 
-    actually we can replace that for now with a synonym list, as in get_synonym_list()
-    '''
-    if word in supported_synonyms or word in standard_verbs:
-        return word
-    # word_root = stemmer.stem(word)
-    standard_word = check_for_supported_synonym(word, row.keys(), supported_core)
-    if standard_word:
-        return standard_word
-    verb_synset = Word(word).get_synsets(pos=VERB)
-    noun_synset = Word(word).get_synsets(pos=NOUN)
-    synset = verb_synset if len(verb_synset) > 0 else noun_synset if len(noun_synset) > 0 else []
-    if len(synset) > 0:
-        counts = {}
-        for s in synset:
-            sname = s.name().split('.')[0]
-            if sname in counts:
-                counts[sname] += 1
-            else:
-                counts[sname] = 1
-        count_values = [counts[x] for x in counts]
-        max_value = max(count_values)
-        max_synonyms = [c for c in counts if counts[c] == max_value]
-        if len(max_synonyms) > 0:
-            for ms in max_synonyms:
-                '''
-                supported_synonyms has synonyms of common functions like increase, enhance, activate
-                standard_verbs has common verbs found in medical abstracts
-                '''
-                if ms in supported_synonyms or ms in standard_verbs:
-                    return ms
-            #print('\tnot in supported synonyms or standard relationships', word, ms, max_synonyms[0])
-            return max_synonyms[0]
-    return False
-
 def save(path, data):
     path = path.replace('txt', 'json') if type(data) != str else path
     with open(path, 'w') as f:
@@ -150,13 +168,9 @@ def write_csv(rows, header_list, path):
         return True 
     return False
 
-def remove_duplicates(line):
+def remove_stopwords(line):
     ''' to do: add semantic & keyword equivalence checks '''
-    custom_removal = ['the', ',', '.', 'a', 'an', 'them', 'they']
-    if type(line) == str:
-        line = line.strip()
-        line_list = set(w for w in line.split(' ') if w.lower().strip() not in stopwords.words('english') and w.lower().strip() not in custom_removal)
-        return ' '.join(line_list)
-    else:
-        return [w.lower() for w in line if w.strip().lower() not in stopwords.words('english') and w.strip.lower() not in custom_removal]
-    return line
+    custom_removal = [] #['the', 'a', 'an', 'them', 'they']
+    words = line.strip().split(' ') if type(line) == str else line
+    word_list = [w for w in words if w not in stopwords.words('english') and w not in custom_removal]
+    return ' '.join(word_list)

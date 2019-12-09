@@ -1,0 +1,20 @@
+chemistry_rules:
+    - The bond may result from the electrostatic force of attraction between oppositely charged ions as in ionic bonds or through the sharing of electrons as in covalent bonds. 
+    - The strength of chemical bonds varies considerably; there are strong bonds or primary bonds such as covalent - ionic and metallic bonds - zand ƒweak bonds or secondary bonds such as dipole–dipole interactions - the London dispersion force and hydrogen bonding. 
+    - Bond order is determined by the number of electrons available to bind with on each atoms outer layer
+    - when sharing more than one pair of electrons with one or more atoms - elements can form multiple covalent bonds
+    - number of valence electrons needed to form octet equals number of covalent bonds that can form
+    - electronegativity difference between two atoms in a bond can determine what type of bond is used. Note that this usually only applies to covalent and ionic bonds.
+        - ΔEN>2 -the bond is ionic
+        - 0.5≤ΔEN<2 -the bond is polar covalent
+        - ΔEN<0.5 -the bond is non-polar covalent
+    - inert/noble/halogen gases like Ne: they dont form compounds
+    - they dont bond because each atom the element has 8 valence electrons already. so they are stable - they dont need to bond in order to become stable
+    - elements with full outer electron layer also wont bond
+    - since carbons electron configuration is such that it can accommodate four covalent bonds - it forms covalent bonds very readily and isnt seen in ionic compounds
+    - electronegativity is the tendency of an atom to pull electrons toward itself when it forms a bond with another atom
+    - similar electronegativities = covalent bonds (e.g. CO2 - H2O) while very different electronegativities = ionic compounds (e.g. NaCl)
+    - less electronegative elements are metals and more electronegative elements in the top right of the PT are non-metals
+    - metal + non-metal = ionic compounds - and non-metal + non-metal = covalent compounds - metal + metal = alloys
+    - so usually the bond type (covalent vs ionic) and bond order (single - double - triple) will be straightforward to calculate - with some variation if its an ion or other configuration.
+

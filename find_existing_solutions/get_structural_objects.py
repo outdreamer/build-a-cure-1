@@ -1,12 +1,56 @@
 import random
 from nltk.corpus import stopwords
 stop = set(stopwords.words('english'))
-
 from nltk.stem.snowball import SnowballStemmer
 stemmer = SnowballStemmer("english")
-
 from get_structure import get_pos 
 from utils import *
+
+def rearrange_sentence(line):
+    '''
+    this function is to format your sentences in the same way
+
+    this means fulfilling the following expectations:
+    - having conditionals at the end rather than the beginning
+    - standardized words when synonyms are found
+    - simplified language where clearly mappable
+
+    so a sentence like: 
+    "in the event of onset, symptoms appear at light speed, even if you take vitamin c at max dose"
+
+    is reduced to:
+    "symptoms appear even with vitamin c max dose"
+    '''
+    return line
+
+def remove_names(line, names_list):
+    '''
+    # to do: remove all irrelevant proper nouns like place, company, university & individual names
+    if row:
+        if 'names' in row:
+            for name in row['names']:
+                line = line.replace(name, '') 
+    '''
+    return line
+    
+def remove_unnecessary_words(line, phrases, clauses):
+    ''' this should remove all excessive language where phrases or clauses dont add meaning '''
+    return line
+
+
+def get_topic(word):
+    '''
+      this function will be used in remove_unnecessary_words
+      to filter out words that are either non-medical or too specific to be useful (names)
+
+      test cases:
+          permeability => ['structure']
+          medicine => ['medical']
+          plausibility => ['logic']
+    '''
+    topics = ['structural', 'logical']
+    stem = stemmer.stem(word)
+
 
 def get_first_non_stopword(words):
     for word in words:
@@ -17,32 +61,31 @@ def get_first_non_stopword(words):
 
 def get_conditionals(line, nouns, clauses):
     ''' 
-    this function assumes rearrange_sentence
-    was already called on line used to generate sentence_pieces 
+    this function assumes rearrange_sentence was already called on line used to generate sentence_pieces 
     '''
+    ''' to do:
+        - you still need to deconstruct the sentence based on these dependencies 
+            so its represented accurately according to order of operations
+            example: 
+                "even x or y" should be all one clause
+                "x is a and b" or "x is a and is b" should be two clauses "x is a" and "x is b"
+                "x is a or b" should be one clause 
+        - implement multi-delimiter logic 
+        - use conceptual_clause_map to sort your logic
 
-    ''' in the following sentence:
-    NAA to Cr ratio 
-        is reduced in HIV positive patients and
-        is a marker for HIV infection of the brain 
-            even in the absence of imaging findings of HIV encephalopathy 
-            or when the patient is symptomatic due to neurological disease of other etiologies.
-    this function would return the last two items 
+        "conceptual_clause_map": {
+                "independence": ["even", "still", "despite"],
+                "conditional": ["and", "with", "when", "while", "during", "for"],
+                "alternate": ["or"],
+                "exception": ["but", "yet"],
+                "dependency": ["because", "since", "due"],
+                "equivalence": ["is", "equals", "like", "is the same as", "functions as"]
+        }
     '''
-
-    '''
-        to do: you still need to deconstruct the sentence based on these dependencies 
-        so its represented accurately according to order of operations
-        example: 
-        "even x or y" should be all one clause
-        "x is a and b" or "x is a and is b" should be two clauses "x is a" and "x is b"
-        "x is a or b" should be one clause 
-    '''
-    ''' to do: implement multi-delimiter logic '''
 
     print('\nclauses', clauses)
     secondary_delimiters = ['when', 'without']
-    clause_delimiters = ['and', 'or', 'because', 'but', 'as', 'if', 'then', 'even', 'without']
+    clause_delimiters = all_vars['clause_delimiters']
     # conditional is a list bc it needs to preserve order
     items = {'conditional': {'first': ''}, 'subject': '', 'verb_relationships': set(), 'delimiters': []}
     ''' to do: handle sentences with duplicate delimiters '''
@@ -418,10 +461,15 @@ def get_modifier(prev_word, word, next_word):
     modifier_substrings = [
         "or",
         "er",
+        "ed"
     ]
     modifier_patterns = [
-        'noun-noun', # the second noun has a verb root, ie "enzyme inhibitor"
+        'noun-noun', # the second noun has a verb root, ie "enzyme-inhibitor"
         'noun noun', 
+        'noun-verb',
+        'noun verb', 
+        '[noun adverb adjective verb] [noun verb]', # detoxified compound
+        '[noun verb] [noun adverb adjective verb]' # compound isolate
     ]
     word_pos = get_pos(word)
     stem_pos = get_pos(stemmer.stem(word))

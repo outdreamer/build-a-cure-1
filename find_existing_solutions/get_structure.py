@@ -150,10 +150,10 @@ def concatenate_species(data):
     return data
 
 def get_counts(article_words, processed_data, tagged, line, row):
-    leave_in_pos = ['NNP', 'NNS', 'JJR'] # JJR example: 'broader'
+    object_pos = ['NNP', 'NNS', 'JJR']
     for item in tagged:
         w = item[0].lower()
-        if item[1] in leave_in_pos:
+        if item[1] in object_pos:
             if len(w) > 0 and w not in stop:
                 w_upper = w.upper()
                 w_name = ''.join([w[0].upper(), w[1:]])
@@ -170,7 +170,6 @@ def get_counts(article_words, processed_data, tagged, line, row):
                             if count not in row['counts']:
                                 row['counts'][count] = set()
                             row['counts'][count].add(w)
-    print('counts', row['counts'])
     if len(row['counts']) > 0:
         common_words = get_most_common_words(row['counts'], 3) # get top 3 tiers of common words
         if common_words:
@@ -202,88 +201,23 @@ def get_names(article_words, line, row):
                     row['names'].add(final_name) # find names and store separately
     return row
 
-def get_replacement_phrases(line):
-    '''
-    to do: 
-        - 'as' can mean:    
-            'like': 'as is common in that area',
-            'because': 'as',
-            'when': 'as the sun sets'
-    '''
-    synonym_sets = {
-        'and': ['with'], # conditional
-        'like': ['similar to'],
-        'without': ['in the absence of', 'lacking'],
-        'when': ['while', 'during'], # conditional
-        'but': ['however', 'but yet'], # exception
-        'because': ['because of', 'caused by', 'from', 'since', 'respective of', 'due to'], # dependency
-        'even': ['despite', 'in spite of', 'regardless of', 'heedless of', 'irrespective of'], # independence
-        'if': ['in case', 'in the event that']
-    }
-    for k, v in synonym_sets.items():
-        for item in v:
-            if item in line:
-                line = line.replace(item, k)
-    return line
-
-def get_replacement_synonym(word):
-    synonym_sets = {
-        'and': ['with'], # conditional
-        'when': ['while', 'during'], # conditional
-        'or': [], # alternative
-        'but': ['however', 'yet'], # exception
-        'because': ['since', 'respective', 'respectively', 'due'], # dependency
-        'even': ['despite', 'in spite of', 'regardless of', 'heedless of', 'irrespective of'], # independence
-        'is': [
-            "equate",
-            "equal",
-            "describe",
-            "indicate",
-            "delineate",
-            "same",
-            "like",
-            "similar to",
-            "similar",
-            "imply",
-            "signify",
-            "means"
-        ] # similarity
-    }
-    for standard, synonyms in synonym_sets.items():
-        if word in synonyms:
-            return standard
-    return False
-
-def get_clauses(line, row):
+def get_clauses(line, row, all_vars):
     '''
     to do: 
     - add logic for other phrase types than 'noun-noun', like verb_phrases
     - clauses are relationships between subject and objects in line
     - the response object should be a list of the acting subject, verb, & object:
         row['clauses'] = ['chemical', 'caused', 'reaction'], ['experiment', 'was', 'successful']]
-    # handle sentences like: "x did this and then y did z", which would be broken up like:
-    active:
-        x 
-        did 
-        this and then y 
-        did 
-        z
-    passive: "this was done by x and then z was done by y"
-        this
-        was done 
-        by x and then z
-        was done
-        by y
+
+    active: x  || did  ||  this and then y  ||  did  ||  z
+    passive: this  ||  was done  ||  by x and then z  ||  was done  ||  by y
+
     '''
-    line = get_replacement_phrases(line)
     line = rearrange_sentence(line)
     active = get_active(line)
     sentence_pieces = [] # break up sentence by verbs
     sentence_piece = []
     for w in line.split(' '):
-        synonym = get_replacement_synonym(w)
-        if synonym:
-            w = synonym
         if w not in row['verbs']:
             sentence_piece.append(w)
         else:
@@ -304,7 +238,7 @@ def get_clauses(line, row):
                         if next_object:
                             row['clauses'].add(' '.join([prev_object, word, next_object]))
                 else:
-                    active_s = change_to_active(word)
+                    active_s = change_to_infinitive(word)
                     active_s = 'was' if active_s == 'be' else active_s # to do: handle other cases where infinitive is linguistically awkward bc clauses will be re-used later
                     if next_object:
                         row['subjects'].add(next_object)
@@ -318,9 +252,10 @@ def get_pos_in_line(line, row):
     print('pattern_format_line', pattern_format_line)
     for index, p in enumerate(pattern_format_line.split(' ')):
         if len(p) > 0:
+            word = split_line[index]
             if p == 'verb':
-                row['verbs'].add(split_line[index])
-                row['functions'].add(split_line[index])
+                row['verbs'].add(word)
+                row['functions'].add(word)
                 # relationships = treatments, intents, functions, insights, strategies, mechanisms, patterns, systems
             elif p == 'noun':
                 ''' check if the noun stem is a verb, if so add it to verbs
@@ -328,43 +263,12 @@ def get_pos_in_line(line, row):
                     verb_suffixes = ['e', 'd', 'ed'] 
                     verb_versions = [pos_tag(word_tokenize(''.join([p, v]))) for v in verb_suffixes]
                 '''
-                row['nouns'].add(split_line[index])
-                row['components'].add(split_line[index]) 
+                row['nouns'].add(word)
+                row['components'].add(word) 
                 # compounds, symptoms, treatments, metrics, conditions, stressors, types, variables
             else:
                 row['taken_out'].add('_'.join([split_line[index], p]))
     return row
-
-def remove_unnecessary_words(line, phrases, clauses):
-    ''' this should remove all excessive language where phrases or clauses dont add meaning '''
-    return line
-
-def rearrange_sentence(line):
-    '''
-    this function is to format your sentences in the same way
-
-    this means fulfilling the following expectations:
-    - having conditionals at the end rather than the beginning
-    - standardized words when synonyms are found
-    - simplified language where clearly mappable
-
-    so a sentence like: 
-    "in the event of onset, symptoms appear at light speed, even if you take vitamin c at max dose"
-
-    is reduced to:
-    "symptoms appear even with vitamin c max dose"
-    '''
-    return line
-
-def get_charge_of_word(word, all_vars):
-    found_synonym = True if word in all_vars['supported_synonyms'] else False
-    print('found synonym', found_synonym)
-    if found_synonym:
-        for synonym_type in all_vars['key_map']:
-            if found_synonym in all_vars['key_map'][synonym_type]:
-                print('found synonym charge', synonym_type)
-                return synonym_type
-    return False
 
 def get_similarity_to_title(string, title):
     string_split = string.split(' ')
@@ -404,7 +308,7 @@ def get_most_common_words(counts, top_index):
     return False
 
 def get_structural_metadata(line, title, article_words, article_string, index, row, metadata_keys, all_vars):
-    line = replace_contractions(line)
+    line = replace_contractions(line, all_vars)
     line = remove_standard_punctuation(line)
     # line = line.replace(',','')
     similarity = get_similarity_to_title(line, title)
@@ -425,10 +329,9 @@ def get_structural_metadata(line, title, article_words, article_string, index, r
         row['phrases'] = phrases
     row = get_names(article_string, line, row)
     # line = remove_names(line, row['names'])
-    row = get_clauses(line, row)
+    row = get_clauses(line, row, all_vars)
     tagged = pos_tag(word_tokenize(line))
-    processed_data = remove_standard_punctuation(article_string.lower())
-    processed_data = processed_data.replace("'",'').replace(',','')
+    processed_data = article_string.replace("'",'').replace(',','')
     row = get_counts(article_words, processed_data, tagged, line, row)
     for key in row:
         if key in index:
@@ -442,60 +345,15 @@ def get_structural_metadata(line, title, article_words, article_string, index, r
                         index[key][k] = set(v)
     return index, row
 
-def remove_names(line, names_list):
-    '''
-    # to do: remove all irrelevant proper nouns like place, company, university & individual names
-    if row:
-        if 'names' in row:
-            for name in row['names']:
-                line = line.replace(name, '') 
-    '''
-    return line
-
-def merge(temp, metadata):
-    for key, val in temp.items():
-        if val:
-            if type(val) == dict:
-                merge_val = '::'.join(['_'.join([k, v]) for k, v in val.items()])
-            if key in metadata:
-                if type(metadata[key]) == set:
-                    if type(val) == str:
-                        metadata[key].add(val)
-                    elif type(val) == dict:
-                        metadata[key].add(merge_val)
-                    else:
-                        for item in val:
-                            metadata[key].add(item)
-                elif type(metadata[key]) == str:
-                    if type(val) == str:
-                        metadata[key] = ','.join([metadata[key], val])
-                    elif type(val) == dict:
-                        metadata[key] = ','.join([metadata[key], merge_val])
-                    else:
-                        metadata[key] = ','.join([metadata[key], ','.join(val)])
-                elif type(metadata[key]) == dict:
-                    for k, v in metadata[key]:
-                        if type(val) == str:
-                             metadata[key][k] = ','.join([metadata[key][k], val])
-                        if type(val) == dict:
-                            for a, b in val.items():
-                                if a in metadata[key]:
-                                    if type(metadata[key][a]) == set:
-                                        if a not in metadata[key]:
-                                            metadata[key][a] = set()
-                                        metadata[key][a].add(b)
-                                    elif type(metadata[key][a]) == list:
-                                        if a not in metadata[key]:
-                                            metadata[key][a] = []
-                                        metadata[key][a].append(b)
-                                    elif type(metadata[key][a]) == str:
-                                        metadata[key][a] = ','.join([metadata[key][a], b])
-                        else:
-                            if type(metadata[key][k]) == set:
-                                metadata[key][k] = metadata[key][k].union(list(val))
-                            elif type(metadata[key][k]) == list:
-                                metadata[key][k].extend(val)
-    return metadata
+def replace_mappings(lines):
+    article = '\n'.join(lines)
+    article_words = article.split(' ')
+    replacement_map = all_vars['supported_core']['replacement']
+    for k, v in replacement_map.items():
+        for word_to_replace in v:
+            if word_to_replace in article_words:
+                    article = article.replace(word_to_replace, k)
+    return article.split('\n')
 
 def get_active(line):
     ''' check for verb tenses normally used in passive sentences 
@@ -505,14 +363,24 @@ def get_active(line):
     VBP: Verb, non-3rd person singular present 
     VBZ: Verb, 3rd person singular present
     # had been done = past perfect
+
+    test cases:
+    pattern = "A were subjected to B induced by C of D"
+    pattern_with_pos = "A were subjected to B induced by C of D"
+    - "Rats were subjected to liver damage induced by intra-peritoneal injection of thioacetamide" => 
+        "intra-peritoneal thioacetamide injection induced liver damage in rats"
+        noun_phrases for this would be "intra-peritoneal thioacetamide injection", "liver damage" and "rats"
+    - "chalcone isolated from Boesenbergia rotunda rhizomes" => "Boesenbergia rotunda rhizomes isolate chalcone"
+
+    keep in mind:
+        if you standardize "injection of thioacetamide" to "thioacetamide injection", 
+        your other pattern configuration wont work, so either 
+        add more patterns, change the pattern, or apply pattern function before this one
+
     '''
-    passive_keywords = [
-        ' by '
-    ]
     passive_patterns = [
-        'was past_participle',
-        'had past_participle',
-        'has been past_participle'
+        '[was had has] [been done] past_participle [to by]',
+        '[noun verb] of [noun verb]'
     ]
     formatted_line = convert_to_pattern_format(line)
     passive = 0
@@ -526,18 +394,8 @@ def get_active(line):
         return False
     return True
 
-def replace_contractions(line):
-    contractions = {
-        'isnt': 'is not', 
-        'dont': 'do not', 
-        'wont': 'will not', 
-        'mustnt': 'must not', 
-        'couldnt': 'could not', 
-        'cant': 'can not', 
-        'wouldnt': 'would not', 
-        'shouldnt': 'should not', 
-        'havent': 'have not'
-    }
+def replace_contractions(line, all_vars):
+    contractions = all_vars['supported_core']['replacement']['contraction']
     line = line.replace("'",'')
     new_line = []
     for w in line.split(' '):

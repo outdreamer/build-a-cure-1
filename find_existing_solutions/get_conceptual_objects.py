@@ -5,6 +5,18 @@ from textblob import TextBlob, Word
 from get_index_def import get_empty_index
 from utils import get_subword_match
 
+''' conceptual relationships:
+    priority = direction
+    observation = insight = function = result = relationship
+    conclusion = ordered_list(observations) + guess = coefficients + bias
+    strategy = ordered_list(insights)
+    strategy = insight + context
+    problem = (combination of intents having different priorities) or (an resource distribution imbalance)
+    intent = strategy + priority
+    solution = (combination of strategies operating on variables with insight functions that reduce dimensions of problem (function-combination) or (resource-imbalance))
+    type = combination(attributes)
+'''
+
 '''
 https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
 
@@ -226,11 +238,72 @@ def get_elements_in_line(line):
             elements.append(word)
     return elements
 
-def get_study_intent(article):
+def get_article_intent(article):
     '''
-    this should capture the core intent which should be one of the supported intents:
+    this should capture the core intent which should be one of the supported intents
+    all intents are inherently relationships so most could be standardized to:
+     'find', 'test', 'build', 'compare', or 'verify'
+    but you want to find which one fits more given their subtle differences
+    for example:
+        - 'test' indicates a known relationship was tested
+        - 'find' indicates a new relationship was tested
+
+        - 'verify' indicates replication of a research object (result, study)
+        - 'compare' indicates analysis of related research objects (study/study, result/protocol)
+
+        - 'build' contains instructions on how to synthesize something
+        - 'find' would indicate info about a relationship between the input & output in the study, 
+            but not necessarily include the instructions
+
     '''
-    intents = ['diagnose', 'check_correlation', 'find_limit', 'test_method']
+    
+    study_intents = {
+        'test': 'to confirm a relationship (between x=success)', 
+        'find': 'to find a relationship (between x=y)', 
+        'verify': 'to confirm an object (study, method, result)',
+        'compare': 'to compare objects (study=study, method=method, result=protocol)', 
+        # compare => check that all studies confirm each other, or check that a method-implementation or result-derivation followed protocol
+        'build': 'to build object (compound, symptom, treatment, condition, state)' 
+        # to get 'health', follow build protocol 'x', to get 'compound', follow build protocol 'y'
+    }
+    
+    general_objects = ['relationship', 'problem', 'strategy', 'process', 'insight', 'function', 'variable', 'system', 'theory', 'opinion', 'conclusion', 'observation']
+    sentence_intents = {
+        'describe': ['introduce', 'detail']
+        'organize': ['list', 'categorize', 'summarize']
+    }
+    med_objects = ['treatment', 'compound', 'test', 'metric', 'mechanism']
+    study_objects = ['relationship', 'limit', 'type', 'method']
+    '''
+    for studies that have a 'test' intent (to confirm a theorized relationship),
+        the relationship youre trying to find is between:
+         'method'/'compound' and 'success'/'failure'
+    for other studies that are exploratory (to find a new relationship),
+        the relationship may be to find correlation between two medical factors:
+        'condition' and 'treatment' or 'condition' and 'symptom' or 'treatment' and 'symptom'
+    '''
+    intent_map = {
+        'find_limit',
+        'find_relationship': {
+            'condition': {
+                'treat': ['test_treatment_compound', 'test_treatment_method'],
+                'diagnose': ['test_diagnostic_method']
+            }
+            'synthesize_compound': ['test_synthesis_method']
+
+        }
+        'review': {
+            'compare': ['meta_review', 'peer_review'],
+            'verify': ['retract_study', 'replicate_result']
+        }
+        
+    }
+    intents = []
+    for line in article.split('\n'):
+        intent = get_intent(line)
+        if intent:
+            intents.append(intent)
+
     return intents
 
 def get_patterns(line):

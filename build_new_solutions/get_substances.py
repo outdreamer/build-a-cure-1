@@ -1,4 +1,4 @@
-import wget
+import wget, requests
 import urllib
 import csv
 from xml.dom.minidom import parse
@@ -6,43 +6,28 @@ import xml.dom.minidom
 from chembl_webresource_client.utils import utils
 from chembl_webresource_client.new_client import new_client
 
+
+''' to do: reduce overlap in properties, standardize property name from pubchem tag '''
 '''
-Guide to smiles format to represent compounds in strings like: https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system
-CCS(=O)(=O)C1=CC=CC=C1C(=O)OCC
-
-branch: parenthesis
-atom: square bracket (except atoms of B, C, N, O, P, S, F, Cl, Br, or I, which have no charge, are normal isotopes, not chiral centers & have expected number of hydrogens attached)
-bond symbols: . - = # $ : / \
-isotope: int + element (carbon-14 = 14c)
-
-The bond may result from the electrostatic force of attraction between oppositely charged ions as in ionic bonds or through the sharing of electrons as in covalent bonds. 
-The strength of chemical bonds varies considerably; there are "strong bonds" or "primary bonds" such as covalent, ionic and metallic bonds, 
-and "weak bonds" or "secondary bonds" such as dipole–dipole interactions, the London dispersion force and hydrogen bonding. 
-
-You could derive the list of possible bonds from existing data, by de-duplicating pairs of bonded molecules with bond type
+    <PC-Urn_label>Compound Complexity</PC-Urn_label><PC-InfoData_value_fval>607</PC-InfoData_value_fval>
+    <PC-Urn_label>Count</PC-Urn_label><PC-Urn_name>Hydrogen Bond Acceptor</PC-Urn_name><PC-InfoData_value_ival>5</PC-InfoData_value_ival>
+    <PC-Urn_label>Count</PC-Urn_label><PC-Urn_name>Hydrogen Bond Donor</PC-Urn_name><PC-InfoData_value_ival>1</PC-InfoData_value_ival>
+    <PC-Urn_label>Count</PC-Urn_label><PC-Urn_name>Rotatable Bond</PC-Urn_name><PC-InfoData_value_ival>7</PC-InfoData_value_ival>
+    <PC-Urn_label>Log P</PC-Urn_label><PC-Urn_name>XLogP3-AA</PC-Urn_name><PC-InfoData_value_fval>3.5</PC-InfoData_value_fval>
+    <PC-Urn_label>Mass</PC-Urn_label><PC-Urn_name>Exact</PC-Urn_name><PC-InfoData_value_fval>415.0047991</PC-InfoData_value_fval>
+    <PC-Urn_label>Molecular Formula</PC-Urn_label><PC-InfoData_value_sval>C17H15Cl2NO5S</PC-InfoData_value_sval>
+    <PC-Urn_label>Molecular Weight</PC-Urn_label><PC-InfoData_value_fval>416.3</PC-InfoData_value_fval>
+    <PC-Urn_label>Topological</PC-Urn_label><PC-Urn_name>Polar Surface Area</PC-Urn_name><PC-InfoData_value_fval>97.9</PC-InfoData_value_fval>
+    <PC-Urn_label>Weight</PC-Urn_label><PC-Urn_name>MonoIsotopic</PC-Urn_name><PC-InfoData_value_fval>415.0047991</PC-InfoData_value_fval>
 '''
 
-def check_valid(smile_formula):
-    '''
-    https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/substructure/smiles/C3=NC1=C(C=NC2=C1C=NC=C2)[N]3/XML
-    get listkey from previous output
-    https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/listkey/xxxxx/cids/XML 
-    see if chembl has support for search that returns the error text
-    '''
-    error = "Exception during execution: Unable to standardize the given structure"
-    molecule = new_client.molecule
-    molecule.set_format('json')
-    result = molecule.filter(smiles=smile_formula)
-    print('result', result)
-    for item in dir(result):
-        value = getattr(result, item)
-        print('value', item, value)
-    if len(result) == 0:
-        ''' this doesnt mean its invalid, just that its not in their db '''
-        # _handle_database_error has more relevant errors
-        if error in result:
-            return False
-    return True
+'''
+url="https://pubchem.ncbi.nlm.nih.gov/#query=C1%3DCC%3DC(C%3DC1)C%3DO"
+html = wget.download(url)
+print(html)
+resp = requests.get(url, verify=False)
+print(resp.content)
+'''
 
 ''' full list of pubchem props here: https://pubchemdocs.ncbi.nlm.nih.gov/pug-rest '''
 final_props = [
@@ -66,6 +51,28 @@ molecule_props = [
 ]
 calculated_props = ['MolecularFormula', 'RingCount', 'NumRotatableBonds', 'HeavyAtomCount', 'MolWt', 'MolLogP', 'TPSA']
 
+def check_valid(smile_formula):
+    '''
+    https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/substructure/smiles/C3=NC1=C(C=NC2=C1C=NC=C2)[N]3/XML
+    get listkey from previous output
+    https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/listkey/xxxxx/cids/XML 
+    see if chembl has support for search that returns the error text
+    '''
+    error = "Exception during execution: Unable to standardize the given structure"
+    molecule = new_client.molecule
+    molecule.set_format('json')
+    result = molecule.filter(smiles=smile_formula)
+    print('result', len(result), result, dir(result))
+    for item in dir(result):
+        value = getattr(result, item)
+        print('value', item, value)
+    if len(result) == 0:
+        ''' this doesnt mean its invalid, just that its not in their db '''
+        # _handle_database_error has more relevant errors
+        if error in result:
+            return False
+    return True
+
 def write_compound_csv_from_xml(xml_path, csv_path, get_metadata):
     csv_exists = True if os.path.exists(csv_path) else False
     with open(csv_path, 'w') as f:
@@ -75,20 +82,6 @@ def write_compound_csv_from_xml(xml_path, csv_path, get_metadata):
         DOMTree = xml.dom.minidom.parse(xml_path)
         collection = DOMTree.documentElement #PC-Compounds
         compounds = collection.getElementsByTagName("PC-Compound")
-
-        ''' to do: reduce overlap in properties, standardize property name from pubchem tag '''
-        '''
-        <PC-Urn_label>Compound Complexity</PC-Urn_label><PC-InfoData_value_fval>607</PC-InfoData_value_fval>
-        <PC-Urn_label>Count</PC-Urn_label><PC-Urn_name>Hydrogen Bond Acceptor</PC-Urn_name><PC-InfoData_value_ival>5</PC-InfoData_value_ival>
-        <PC-Urn_label>Count</PC-Urn_label><PC-Urn_name>Hydrogen Bond Donor</PC-Urn_name><PC-InfoData_value_ival>1</PC-InfoData_value_ival>
-        <PC-Urn_label>Count</PC-Urn_label><PC-Urn_name>Rotatable Bond</PC-Urn_name><PC-InfoData_value_ival>7</PC-InfoData_value_ival>
-        <PC-Urn_label>Log P</PC-Urn_label><PC-Urn_name>XLogP3-AA</PC-Urn_name><PC-InfoData_value_fval>3.5</PC-InfoData_value_fval>
-        <PC-Urn_label>Mass</PC-Urn_label><PC-Urn_name>Exact</PC-Urn_name><PC-InfoData_value_fval>415.0047991</PC-InfoData_value_fval>
-        <PC-Urn_label>Molecular Formula</PC-Urn_label><PC-InfoData_value_sval>C17H15Cl2NO5S</PC-InfoData_value_sval>
-        <PC-Urn_label>Molecular Weight</PC-Urn_label><PC-InfoData_value_fval>416.3</PC-InfoData_value_fval>
-        <PC-Urn_label>Topological</PC-Urn_label><PC-Urn_name>Polar Surface Area</PC-Urn_name><PC-InfoData_value_fval>97.9</PC-InfoData_value_fval>
-        <PC-Urn_label>Weight</PC-Urn_label><PC-Urn_name>MonoIsotopic</PC-Urn_name><PC-InfoData_value_fval>415.0047991</PC-InfoData_value_fval>
-        '''
         fields = {}
         compound_list = []
         for compound in compounds:
@@ -176,40 +169,47 @@ def get_calculatable_properties(smile_formula):
     descriptors = json.loads(utils.descriptors(compound))[0]
     return descriptors
 
-def download_data(datatype):
+def download_data(url):
+    localcopy = wget.download(url) #wget.download(url, bar=bar_thermometer) if you want to see download progress
+    if localcopy:
+        print('localcopy', localcopy)
+        ''' some files in the pattern dont exist, like Substance_000025001_000050000.xml.gz '''
+        return filename
+    return False
+
+def mkdir(dirname):
+    cwd = os.getcwd()
+    data_directory = '/'.join(cwd, dirname)
+    directory = os.path.dirname(data_directory)
+    if not os.path.exists(directory):
+        os.mkdir(directory)
+    return True
+
+def get_url(source, datatype, lower, upper):
+    filename = ''.join(datatype, '_', lower, '_', upper, '.xml.gz')
+    source = source.replace('DATATYPE', datatype)
+    url = ''.join(source, filename)
+    return url
+
+def download_xml_and_make_csv():
+    cwd = os.getcwd()
+    source = 'ftp://ftp.ncbi.nlm.nih.gov/pubchem/DATATYPE/CURRENT-Full/XML/'
     multiplier = {
         'Compound': 5584,
         'Substance': 15483
     }
-    filename = ''.join(datatype, '_', lower, '_', upper, '.xml.gz')
-    url = ''.join('ftp://ftp.ncbi.nlm.nih.gov/pubchem/', datatype, '/CURRENT-Full/XML/', filename)
-    localcopy = wget.download(url) #wget.download(url, bar=bar_thermometer) if you want to see download progress
-    print('localcopy', localcopy)
-    ''' some files in the pattern dont exist, like Substance_000025001_000050000.xml.gz '''
-    return filename
-
-def download_xml_and_make_csv():
-    cwd = os.getcwd()
-    data_directory = '/'.join(cwd, 'data')
-    directory = os.path.dirname(data_directory)
-    if not os.path.exists(directory):
-        os.mkdir(directory)
+    mkdir('data')
     datatypes = ['Compound', 'Substance']
     for datatype in datatypes:
         for i in range(0, multiplier[datatype]):
             upper = i * 25000
             lower = (upper - 25000) + 1
-            downloaded_file = download_data(datatype)
-            downloaded_path = ''.join(cwd, '/', downloaded_file)
-            csv_path = downloaded_path.replace('xml.gz', 'csv')
-            if os.path.exists(downloaded_path):
-                unzip_command = ''.join('gunzip ', downloaded_file)
-                os.system(unzip_command)
-                wrote_csv = write_compound_csv_from_xml(downloaded_path, csv_path, True)
-
-
-smile_formula = 'CO'
-check_valid(smile_formula)
-
-error_formula = 'CCS(=O)(=O)C1=CC=CHHNHC=C1C(=O)OCC'
-check_valid(error_formula)
+            url = get_url(source, datatype, lower, upper)
+            downloaded_file = download_data(url)
+            if downloaded_file:
+                downloaded_path = ''.join(cwd, '/', downloaded_file)
+                if os.path.exists(downloaded_path):
+                    unzip_command = ''.join('gunzip ', downloaded_file)
+                    os.system(unzip_command)
+                    csv_path = downloaded_path.replace('xml.gz', 'csv')
+                    wrote_csv = write_compound_csv_from_xml(downloaded_path, csv_path, True)

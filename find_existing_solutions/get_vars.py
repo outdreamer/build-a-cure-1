@@ -3,6 +3,10 @@ from utils import read
 stemmer = SnowballStemmer("english")
 
 def convert_patterns(lang_patterns, all_vars):
+    '''
+    this function converts esoteric terms like 'NN' into common words like 'noun' 
+    in the set of configured patterns
+    '''
     patterns = []
     for p in lang_patterns:
         pattern = []
@@ -57,7 +61,10 @@ def get_args(arg_list, all_vars):
     return args_index, filters_index, metadata_keys, generate_target, generate_source
 
 def get_vars():
+    verb_contents = read('data/verbs.txt')
+    standard_verbs = set('increase', 'decrease', 'inhibit', 'induce', 'activate', 'deactivate', 'enable', 'disable')
     all_vars = {}
+    all_vars['standard_verbs'] = set(verb_contents.split('\n')) if verb_contents is not None else standard_verbs
     all_vars['section_map'] = {
         'signs_and_symptoms': 'conditions',
         'medical_uses': 'treatments',
@@ -77,6 +84,7 @@ def get_vars():
         'epidemiology': 'symptoms',
         'uses': 'organism', # https://en.wikipedia.org/wiki/Boesenbergia_rotunda
     }
+    all_vars['clause_delimiters'] = [',', 'and', 'or', 'because', 'but', 'as', 'if', 'then', 'even', 'without']
     all_vars['operator_map'] = {
         '-' : "decreases",
         '+' : "increases",
@@ -94,11 +102,6 @@ def get_vars():
     all_vars['numbers'] = '0123456789'
     all_vars['alphanumeric'] = 'abcdefghijklmnopqrstuvwxyz0123456789- '
     all_vars['alphabet'] = 'abcdefghijklmnopqrstuvwxyz'
-    all_vars['key_map'] = {
-        'negative': ['worsen', 'decrease', 'inhibit', 'reduce', 'deactivate', 'disable', 'negative_substrings'],
-        'positive': ['improve', 'increase', 'induce', 'enhance', 'activate', 'enable', 'positive_substrings'],
-        'equal': ['equal']
-    }
     all_vars['full_params'] = {
         'request': ['metadata', 'generate', 'filters'], # request params
         'wiki': ['section_list'],
@@ -108,8 +111,8 @@ def get_vars():
         'condition': ['symptoms', 'conditions'], # condition elements
         'context': ['bio_metrics', 'bio_symptoms', 'bio_conditions', 'bio_stressors'], # context elements
         'synthesis': ['instructions', 'parameters', 'optimal_parameter_values', 'required_compounds', 'substitutes', 'equipment_links', 'adjacent_compound_synthesis'],
-        'interaction': ['components', 'related', 'alternatives', 'substitutes', 'adjacent', 'stressors', 'dependencies'], # interaction elements
-        'conceptual': ['variables', 'systems', 'functions', 'insights', 'strategies', 'patterns', 'priorities', 'intents', 'types', 'causal_layers'] # conceptual elements
+        'interaction': ['components', 'related', 'alternates', 'substitutes', 'adjacent', 'stressors', 'dependencies'], # interaction elements
+        'conceptual': ['variables', 'systems', 'functions', 'insights', 'strategies', 'patterns', 'usage_patterns', 'priorities', 'intents', 'types', 'causal_layers'] # conceptual elements
     }
     all_vars['supported_params'] = []
     for key, val in all_vars['full_params'].items():
@@ -146,41 +149,15 @@ def get_vars():
     }
     all_vars['patterns'] = convert_patterns(all_vars['language_patterns'], all_vars)
     all_vars['pattern_words'] = ['of', 'acts', 'as']
-    all_vars['supported_synonyms'] = get_supported_synonyms('synonyms.json', all_vars)
-    all_vars['synonym_list'] = {
-        'negative': get_synonym_list(all_vars['supported_core'], all_vars['key_map'], 'negative'), # antagonist, reduce, inhibit, deactivate, toxic, prevents
-        'positive': get_synonym_list(all_vars['supported_core'], all_vars['key_map'], 'positive'), # help, assist, enhance, induce, synergetic, sympathetic, leads to
-        'equal': get_synonym_list(all_vars['supported_core'], all_vars['key_map'], 'equal') # means, signifies, indicates, implies, is, equates to
+    all_vars = get_supported_synonyms('maps', all_vars)
+    all_vars['key_map'] = {
+        'negative': ['worsen', 'decrease', 'inhibit', 'reduce', 'deactivate', 'disable', 'negative_substrings'],
+        'positive': ['improve', 'increase', 'induce', 'enhance', 'activate', 'enable', 'positive_substrings'],
+        'equal': ['equal', 'alternate']
+    }
+    all_vars['charge'] = {
+        'negative': aggregate_synonyms_of_type(all_vars, 'negative'), # antagonist, reduce, inhibit, deactivate, toxic, prevents
+        'positive': aggregate_synonyms_of_type(all_vars, 'positive'), # help, assist, enhance, induce, synergetic, sympathetic, leads to
+        'equal': aggregate_synonyms_of_type(all_vars, 'equal') # means, signifies, indicates, implies, is, equates to
     }
     return all_vars
-
-def get_supported_synonyms(path, all_vars):
-    word_map = read(path)
-    if word_map:
-        all_vars['supported_core'] = word_map['standard_words'] if 'standard_words' in word_map else {}
-        supported_synonyms = set()
-        for x in all_vars['supported_core'].keys():
-            supported_synonyms.add(x)
-            for y in all_vars['supported_core'][x]:
-                supported_synonyms.add(y)
-        return supported_synonyms
-    return False
-
-def get_synonym_list(supported_core, key_map, synonym_type):
-    '''
-    supported_core = word_map['standard_words'] from synonyms.json
-    key_map = {
-        'negative': ['decrease', ...],
-        'positive': ['increase', ...],
-        'equal': ['means', 'equals', ...]
-    } 
-    '''
-    if synonym_type in key_map:
-        synonyms = {}
-        for key in supported_core:
-            if key in key_map[synonym_type]:
-                for k in supported_core[key]:
-                    synonyms[k] = stemmer.stem(k)
-        if synonyms:
-            return synonyms 
-    return False
