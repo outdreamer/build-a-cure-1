@@ -1,5 +1,6 @@
 import random
 from utils import *
+from get_synonyms import get_operator
 
 def get_relationships_from_clauses(clauses, line, nouns, all_vars):
     '''
@@ -10,7 +11,7 @@ def get_relationships_from_clauses(clauses, line, nouns, all_vars):
     when in reality youd want to store the full clause so the relationships can be derived:
         "x increases b" => "x + b"
         "x reduces inhibitor" => "x - i"
-        "inhibitor reduces b" => "i - b"
+        "inhibitor reduces b" => "i - b"ƒ
     so use get_modifiers to find the modifying words like inhibitor and apply them to the verb 
     to get the final version of the relationship
 
@@ -19,12 +20,7 @@ def get_relationships_from_clauses(clauses, line, nouns, all_vars):
      - add more advanced analysis for linguistic patterns of symptoms 
         'fever that gets worse when x', or 'x reduced y and diminished z even in condition x or condition a', 
         which should have condition x added to the previous relationships
-     - add this pattern to clause processing "x is y and is b" => x should be related to y and b
-            NAA to Cr ratio 
-                is reduced in HIV positive patients and
-                is a marker for HIV infection of the brain 
-                    even in the absence of imaging findings of HIV encephalopathy 
-                    or when the patient is symptomatic due to neurological disease of other etiologies.
+     - add this pattern to clause processing "x is y and is b" => "x is y" and "x is b"
     '''
     operator_clauses = {}
     '''
@@ -40,20 +36,12 @@ def get_relationships_from_clauses(clauses, line, nouns, all_vars):
         "a": "(i - b)"
     '''
     print('line', line)
-    citems = get_conditionals(line, nouns, clauses)
-    '''
-        these two verb-initiated relationships
-        'is reduced in HIV positive patients',
-        'is a marker for HIV infection of the brain',
-        should preface each conditional relationship right after the subject
-    '''
+    citems = get_conditionals(line, nouns, clauses, all_vars)
     variables['subject'] = citems['subject']
     word_relationships = set()
     operator_relationships = set()
     ''' to do: assume this can be nested, to contain other dicts of embedded relationships '''
-    for operand, original_clause in citems['conditional'].items():   
-        print('operand', operand) 
-        print('original_clause', original_clause)        
+    for i, original_clause in enumerate(citems['conditional']):   
         if original_clause in citems['verb_relationships']:
             ''' for each verb_relationship r, join it with the subject & add to subject_full_relationships '''
             operator_clause = convert_to_operators(original_clause, all_vars)
@@ -63,8 +51,8 @@ def get_relationships_from_clauses(clauses, line, nouns, all_vars):
                 operator_relationships.add(new_operator_clause)
                 word_relationship = ' '.join([variables['subject'], original_clause])
                 word_relationships.add(word_relationship)
-            for operand, clause in citems['conditional'].items():
-                if clause not in citems['verb_relationships']:
+            for j, clause in enumerate(citems['conditional']):
+                if j > i and clause not in citems['verb_relationships']:
                     ''' for each verb_relationship r, join it with each conditional relationship clause & add to operator_relationships '''
                     sub_operator_clause = convert_to_operators(clause, all_vars)
                     if sub_operator_clause:
@@ -76,7 +64,6 @@ def get_relationships_from_clauses(clauses, line, nouns, all_vars):
                         joined_operator_clause = ' '.join([new_operator_clause, sub_operator_clause])
                         operator_relationships.add(joined_operator_clause)
                         operator_clauses[joined_operator_clause] = joined_word_relationship
-
     print('\nword_relationships', word_relationships)
     print('\noperator_relationships', operator_relationships)
     print('\noperator_clauses', operator_clauses.keys())
@@ -92,11 +79,10 @@ def get_relationships_from_clauses(clauses, line, nouns, all_vars):
             return relationships_with_vars
     return False
 
-def get_conditionals(line, nouns, clauses):
+def get_conditionals(line, nouns, clauses, all_vars):
     ''' 
     this function assumes rearrange_sentence was already called on line used to generate sentence_pieces 
-    '''
-    ''' to do:
+    to do:
         - you still need to deconstruct the sentence based on these dependencies 
             so its represented accurately according to order of operations
             example: 
@@ -114,10 +100,10 @@ def get_conditionals(line, nouns, clauses):
             items['subject'] = c_strip
         else:
             words = c_strip.split(' ')
-            is_a_condition = is_condition(words, all_vars['clause_delimiters'])
+            is_a_condition = is_condition(words, all_vars)
             if is_a_condition:
                 ''' is_a_condition has the next important word in condition '''
-                if get_pos(is_a_condition) != 'verb':
+                if get_pos(is_a_condition, all_vars) != 'verb':
                     for j, w in enumerate(words):
                         if w in all_vars['clause_delimiters']:
                             items['delimiters'].append(w)
@@ -125,17 +111,23 @@ def get_conditionals(line, nouns, clauses):
                             if w == words[-1]:
                                 ''' the delimiter is the last word in this clause '''
                                 remainder = ' '.join([x for x in words if words.index(x) < j])
-                            items['conditional'].append(remainder)
+                            if remainder not in items['conditional']:
+                                items['conditional'].append(remainder)
                         else:
-                            items['conditional'].append(c_strip)
+                            if c_strip not in items['conditional']:
+                                items['conditional'].append(c_strip)
                 else:
                     for w in words:
                         if w in all_vars['clause_delimiters']:
                             items['delimiters'].append(w)
                             words.remove(w)
-                    items['verb_relationships'].append(c_strip)
+                    if c_strip not in items['conditional']:
+                        items['conditional'].append(c_strip)
+                    if c_strip not in  items['verb_relationships']:
+                        items['verb_relationships'].append(c_strip)
             else:
-                items['conditional'].append(c_strip) # last item without delimiter
+                if c_strip not in items['conditional']:
+                    items['conditional'].append(c_strip) # last item without delimiter
     ''' at this point items represents a sentence broken into: 
         items = {
             "subject": "x",
@@ -252,15 +244,15 @@ def get_new_key(key_dict, all_vars):
             return new_key
     return False 
 
-def is_condition(asp_words, clause_delimiters):
-    first_word = get_first_important_word(asp_words)
+def is_condition(asp_words, all_vars):
+    first_word = get_first_important_word(asp_words, all_vars)
     if first_word:
-        pos = get_pos(first_word)
+        pos = get_pos(first_word, all_vars)
         if pos:
             if pos != 'noun':
                 return first_word
     for word in asp_words:
-        if word in clause_delimiters:
+        if word in all_vars['clause_delimiters']:
             return word
     return False
 

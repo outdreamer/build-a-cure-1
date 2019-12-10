@@ -21,8 +21,17 @@
 
 
 # Structural:
-
-  - add support for other operators
+  - is == VBZ
+  - remove dict processing of supported_core
+  - add to clause condition processing: "time": ["during", "while", "later", "after", "before", "pre-", "post-"]
+  - right now pattern matching is just checking word pos
+    - add function to do word type checks once you finish get_types(word)
+  - consolidate excessive chained return false checks
+  - implement newly supported pos identification functions - get_adverbs, get_adjectives, get_determiners, get_prepositions
+    - you could implement ordered preferences by iterating through pos_tags with a list of keys
+      - show preference for verbs in ambiguous cases like "associate" should return a verb even though it can be a noun
+        "sodium isolate" => "noun verb" and then it can be identified as a modifier
+  - add support for other operators in get_clauses
         'union': ['and', 'with'],
         'exception': ['but', 'yet'],
         'dependence': ['because', 'since', 'due', 'caused by'],
@@ -30,19 +39,12 @@
         'conditional': ['when', 'while', 'during', 'for', 'x of y'],
         'alternate': ['or'],
         'equal': ['is']
-
-  - implement newly supported pos identification functions 
-
+  - add support for embedded alts like '__|a an|__' and '|VB NN |VB ADV||'
   - check for verb_phrases
     - in get_clauses, make sure youre not replacing the verb with the consecutive verb if they appear together (imaging finding)
-
   - use get_pattern_alts to get all possible combinations of your patterns before transforming nltk_pos to tag_name
 
-  - add function to unconjugate verb 
-  - add function to convert_to_base_form
-  - add function to get_custom_tag
-  - finish function to get_common_word - make sure it checks configured syns first
-  - finish function to get_common_score
+  - finish function to unconjugate verb 
 
   - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
 
@@ -56,77 +58,40 @@
     - type keyword matching 'v + rb', 'md + v'
     - partial synonym matching
     - structural (pos) pattern matching
-    - abstrct (type) pattern matching 
-
-  - add these char to removal function: of $, '', (, ), ,, --, ., :, FW, NNPS, SYM, WP$
-    parenthesis & brackets might indicate special items like clauses or details
+    - abstract (type) pattern matching 
 
   - evaluate when you need full article index and when its ok to use a line index
-
-  - finish check_match function
 
   - test replace_syns_in_line until its functional 
 
   - verify output from get_relationships_from_clauses with tree parsing to identify related words in sentences
 
-  - finish get_topic & remove_unnecessary_words to filter irrelevant nouns, verbs, adverbs & adjectives from all object indexes:
+  - finish get_topic to filter non-topical nouns, verbs, adverbs & adjectives from all object indexes:
 
   - make all_vars global variable & remove from params
-
 
   - 'as' can mean:    
         'like': 'as is common in that area',
         'because': 'as',
         'when': 'as the sun sets'
 
+## Synonyms
+  - add phrase parsing to synonym identification (match "a b" rather than just "a" or "b")
+  - use source of bio synonyms
+  - analyze synonyms to make sure theyre all unique
+  - check the definitions functionality supported by tools youre using to see if you can derive common standardized words from those without relying on synonyms map
+  - convert all match/similarity checks to call to get_match function with synonym param
+  - once you apply get_relationships_from_clauses - you want to create another relationships array,
+    which is the same array but with the original semantic verb ("disable" rather than more general "decrease")
+
 
 ## Relationships
 
   - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
-
   - if you finish get_active, rearrange_sentence, remove_unnecessary_words, get_modifier & generate_abstract_patterns, 
     you can just enter patterns for most medical get_object functions
-
   - use conceptual_clause_map to sort your logic in get_conditionals
-
   - build an index of modifiers based on phrase data of words frequently found together
-
-  - use prev_word & next_word in get_modifier
-
-
-## Synonyms
-
-  - organize synonyms 
-    keywords are for sentence and index-type identification
-    object lists are for index-type identification
-    replacement lists are for mapping
-    prefixes/suffixes are for partial index-type identification
-    patterns are for logic application & index-type identification
-
-  - add phrase parsing to synonym identification (match "a b" rather than just "a" or "b")
-
-  - do a check for full keyword matching before adding a partial match
-    compounds: 'disease'
-    causal_layers: 'cr,ratio' 
-    metrics: 'administration'
-
-  - analyze polarity of stems & words in synonyms to check that your get_synonyms & get_operator logic holds 
-
-  - use source of bio synonyms
-
-  - standardize synonyms to word stems
-
-  - analyze synonyms to make sure theyre all unique & consider merging some lists (alternatives & like, decrease & increase lists)
-
-  - check the definitions functionality supported by tools youre using to see if you can derive common standardized words from those without relying on synonyms map
-
-  - check output of synonym replacements to make sure its not changing meaning
-
-  - once you apply get_relationships_from_clauses - you want to create another relationships array,
-    which is the same array but with the original semantic verb ("disable" rather than more general "decrease")
-
-  - get word roots & word distortions of synonyms using lemmatization lib
-
 
 ## Repetition
 
@@ -142,7 +107,6 @@
               relation.add(c)
       if relation != set():
           clause_split.append(relation)
-
 
 Functions:
 

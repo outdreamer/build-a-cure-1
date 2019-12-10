@@ -1,4 +1,6 @@
 from utils import read
+from get_pos import convert_nltk_tags_to_pos_names, get_pos_tags
+from get_synonyms import fill_synonyms, aggregate_synonyms_of_type
 
 def get_args(arg_list, all_vars):
     metadata_keys = ''
@@ -9,7 +11,7 @@ def get_args(arg_list, all_vars):
     for i, arg in enumerate(arg_list):
         arg_key = arg.replace('--', '').replace('-', '_')
         if arg_key in all_vars['supported_params']:
-            arg_val = arg_list[i + 1]
+            arg_val = arg_list[i + 1] if (i + 1) < len(arg_list) else ''
             if arg_key == 'metadata':
                 if arg_val in all_vars['supported_params'] or arg_val == 'all':
                     metadata_keys = arg_val.split(',')
@@ -18,19 +20,19 @@ def get_args(arg_list, all_vars):
                 filters_index = { key: val.split(',') for key, val in arg_val.split(',') } # val will be metricC::metricvalue for metric
             elif arg_key == 'generate':
                 generate_list = arg_val.split('::')
-                source_list = generate_list[0].split(',')
-                generate_source = [s for s in source_list if s in all_vars['supported_params']]
+                generate_source = [s for s in generate_list[0].split(',') if s in all_vars['supported_params']]
                 generate_target = generate_list[1]
             else:
                 args_index[arg_key] = arg_val.split(',')
     print('args_index', args_index)
     print('filters', filters_index)
     print('metadata', metadata_keys, 'generate', generate_target, generate_source)
+    metadata_keys = 'all' if metadata_keys == '' else metadata_keys
     return args_index, filters_index, metadata_keys, generate_target, generate_source
 
 def get_vars():
     verb_contents = read('data/verbs.txt')
-    standard_verbs = set('increase', 'decrease', 'inhibit', 'induce', 'activate', 'deactivate', 'enable', 'disable')
+    standard_verbs = set(['increase', 'decrease', 'inhibit', 'induce', 'activate', 'deactivate', 'enable', 'disable'])
     all_vars = {}
     all_vars['standard_verbs'] = set(verb_contents.split('\n')) if verb_contents is not None else standard_verbs
     all_vars['numbers'] = '0123456789'
@@ -47,6 +49,16 @@ def get_vars():
         #'m' : "multiplication", # apply
         #'d' : "division" # by standard
     }
+    plural_keys = [
+        'conditions', 'tests', 'states', 'limits', 'participants', 'mechanisms', 'causal_layers', 'side_effects', 
+        'metrics', 'alternates', 'observations', 'results', 'conclusions', 'symptoms', 'treatments', 'hypotheses', 
+        'strategies', 'compounds', 'components', 'intents'
+    ]
+    all_vars['plural_map'] = {}
+    for pk in plural_keys:
+        singular = pk.replace('ses', 'sis').replace('gies', 'gy')
+        if pk[-1] == 's' and pk != 'hypotheses':            
+            all_vars['plural_map'][pk] = singular[0:-1]
     all_vars['combined_map'] = {
         'equal': ['=-', '-=', '=+', '+=', '=='], #"x = (i - b)" => x and b equal i
         'negative': ['-+', '+-'],
@@ -61,9 +73,9 @@ def get_vars():
         'condition': ['symptoms', 'conditions'], # condition elements
         'context': ['bio_metrics', 'bio_symptoms', 'bio_conditions', 'bio_stressors'], # context elements
         'synthesis': ['instructions', 'parameters', 'optimal_parameter_values', 'required_compounds', 'substitutes', 'equipment_links'],
-        'interaction': ['components', 'related', 'alternates', 'substitutes', 'adjacent', 'stressors', 'dependencies'], # interaction elements
+        'interaction': ['components', 'related', 'alternates', 'substitutes', 'adjacents', 'stressors', 'dependencies'], # interaction elements
         'pattern': ['line_patterns', 'pattern_stack', 'usage_patterns'],
-        'conceptual': ['variables', 'systems', 'functions', 'insights', 'strategies', 'priorities', 'intents', 'types', 'causal_layers'] # conceptual elements
+        'conceptual': ['concepts', 'variables', 'systems', 'functions', 'insights', 'strategies', 'priorities', 'intents', 'types', 'causal_layers'] # conceptual elements
     }
     all_vars['operator_phrases'] = {
         'and': ['with'],
@@ -110,9 +122,9 @@ def get_vars():
     all_vars['supported_params'] = []
     for key, val in all_vars['full_params'].items():
         all_vars['supported_params'].extend(val)
+    print('supported params', all_vars['supported_params'])
 
     ''' *** IMPORTANT PATTERN CONFIG INFO ***
-
         - for pattern configurations, always put the extended pattern first
             - if you put '<noun>' before "<noun> <noun>',
                 you'll miss phrases like 'compound acid' returning matches like:
@@ -120,15 +132,11 @@ def get_vars():
                 and will instead get matches for the '<noun>' pattern:
                     ['compound', 'acid']
                 so make sure thats what you want before ignoring this rule
-
         - pattern_syntax: 
             __a__ : an optional item
             |a b c| : a set of alternatives
-
         - note that we are also supporting pos names in the patterns, in case you want to include all tags from that pos type
-
         - if you include 'noun' in your pattern, it'll replace it with all the noun pos tags, like |NN NNS NNP NNPS| etc
-        
     '''
 
     all_vars['pattern_categories'] = {
@@ -160,17 +168,18 @@ def get_vars():
             '|VB VBP VBN VBD| |TO IN PP|', # finish by, done by
             '|VBD| VBN VBN |TO IN PP|', # has been done by
             '|noun verb| of |noun verb|' # inhibitor of protein 
+        ],
+        'modifier': [
+            'noun-noun', # the second noun has a verb root, ie "enzyme-inhibitor"
+            'noun noun', 
+            'noun-verb',
+            'noun verb', 
+            '[noun adverb adjective verb] [noun verb]', # detoxified compound
+            '[noun verb] [noun adverb adjective verb]' # compound isolate
         ]
     }
-    '''
-    VB: Verb, base form - ask is do have build assess evaluate analyze assume avoid begin believe reveal benefit # attention?
-        VBP: Verb, non-3rd person singular present - ask is do have
-        VBZ: Verb, 3rd person singular present - asks is does has
-        VBG: Verb, gerund or present participle - asking, being, doing, having
-    VBD: Verb, past tense - asked, was/were, did, had
-    VBN: Verb, past participle - asked, used, been, done, had
-    '''
-
+    all_vars['passive'] = [" by ", " from ", " of "]
+    all_vars['pos_tags'] = get_pos_tags()
     all_vars['language_patterns'] = convert_nltk_tags_to_pos_names(all_vars['language_patterns'], all_vars)
     all_vars = fill_synonyms('maps', all_vars)
     all_vars['key_map'] = {
@@ -182,13 +191,6 @@ def get_vars():
         'negative': aggregate_synonyms_of_type(all_vars, 'negative'), # antagonist, reduce, inhibit, deactivate, toxic, prevents
         'positive': aggregate_synonyms_of_type(all_vars, 'positive'), # help, assist, enhance, induce, synergetic, sympathetic, leads to
         'equal': aggregate_synonyms_of_type(all_vars, 'equal') # means, signifies, indicates, implies, is, equates to
-    },
-    all_vars['supported_tags'] = ['noun', 'adj', 'verb', 'adv']
-    all_vars['name_tag_map'] = {
-        'noun': 'NN',
-        'verb': 'VB',
-        'adv': 'ADV',
-        'adj': 'JJ'
     }
-    all_vars['tag_name_map'] = { item : tag_name for tag_name, tag_list in all_vars['pos_tags'].items() for item in tag_list }
+    all_vars['supported_tags'] = ['noun', 'adj', 'verb', 'adv']
     return all_vars

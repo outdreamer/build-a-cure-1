@@ -8,7 +8,7 @@ from utils import *
 from get_index_def import get_empty_index
 from get_structure import get_pos, get_structural_metadata
 from get_vars import get_vars, get_args
-from get_structural_objects import get_relationships_from_clauses
+from get_structural_objects import *
 from get_conceptual_objects import *
 from get_medical_objects import *
 from get_type import *
@@ -17,10 +17,9 @@ def pull_summary_data(sources, metadata_keys, generate_source, generate_target, 
     ''' get index from research study api providing summaries '''
     print('pull metadata', metadata_keys, 'args', 'generate_source', generate_source, 'generate target', generate_target, args, 'filters', filters)
     ''' we assume the primary argument comes first - right now only supports one argument'''
-    metadata_keys = 'all' if metadata_keys == '' else metadata_keys
     articles = []
     rows = []
-    local_database = get_local_database('data', '') # '' object param means get all objects
+    local_database = get_local_database('data', None) # '' object param means get all objects
     empty_index = get_empty_index(metadata_keys, all_vars['full_params'])
     index = get_empty_index(metadata_keys, all_vars['full_params'])
     for arg in args:
@@ -31,35 +30,31 @@ def pull_summary_data(sources, metadata_keys, generate_source, generate_target, 
                 for i in range(0, 10):
                     start = i * max_results
                     if total_results > start or total_results == 0:
-                        articles = get_articles(source, keyword, start, max_results, total_results, all_vars)
+                        new_articles = get_articles(source, keyword, start, max_results, total_results, all_vars)
+                        if new_articles:
+                            articles.extend(new_articles)
     if len(articles) > 0:
-        extracted_patterns = extract_patterns('', articles, local_database) # '' word param means get all patterns, not just for a particular word
-        if extracted_patterns:
-            index['usage_patterns'] = extracted_patterns
         for a in articles:
             for line in a.split('\n'):
-                        #row = identify_elements(all_vars['supported_core'], line, None, metadata_keys, all_vars['full_params'])
-                        row = empty_index    
-                        index, row = get_structural_metadata(line, text, index, row, metadata_keys, all_vars)
-                        index, row = get_medical_metadata(line, index, row, metadata_keys, all_vars)
-                        index, row = get_conceptual_metadata(line, index, row, metadata_keys, all_vars) #custom analysis
-                        print('row', row)
-                        if row != empty_index:
-                            for key, val in row.items():
-                                if type(val) == dict:
-                                    val = '::'.join(['_'.join([k,v]) for k,v in val.items()])
-                                elif type(val) == set or type(val) == list:
-                                    val = str(','.join(set(val)))
-                                elif type(val) == bool:
-                                    val = '1' if val is True else '0'
-                                if type(index[key]) == set:
-                                    ''' to do: figure out if you need to handle merging dicts here '''
-                                    set_val = set(val.split(',')) if ',' in val else set(val)
-                                    index[key] = index[key].union(set_val)
-                                row[key] = val
-                            rows.append(row)
-                            print('new index', index)
+                row = empty_index
+                index, row = get_structural_metadata(line, text, index, row, metadata_keys, all_vars)
+                index, row = get_medical_metadata(line, index, row, metadata_keys, all_vars)
+                index, row = get_conceptual_metadata(line, index, row, metadata_keys, all_vars) #custom analysis
+                print('row', row)
+                if row != empty_index:
+                    for key, val in row.items():
+                        if type(val) == dict:
+                            row[key] = '::'.join(['_'.join([k,v]) for k,v in val.items()])
+                        elif type(val) == set or type(val) == list:
+                            row[key] = str('::'.join(set(val)))
+                        elif type(val) == bool:
+                            row[key] = '1' if val is True else '0'
+                        if type(index[key]) == set:
+                            index[key] = index[key].union(set(row[key]))
+                    rows.append(row)
+                    print('new index', index)
         save('data/articles.txt', '\n'.join(articles))
+
     if len(rows) > 0:
         write_csv(rows, index.keys(), 'data/rows.csv')
         if generate_source == 'all':
@@ -68,7 +63,15 @@ def pull_summary_data(sources, metadata_keys, generate_source, generate_target, 
             generate_keys = generate_source.split(',')
         datasets = generate_datasets(generate_keys, generate_target, index, rows)
         print('datasets', datasets)
+
+    ''' save items in index '''
     for key in index:
+        ''' extract the patterns in the indexes we just built and save '''
+        extracted_patterns = extract_patterns(index[key], key, '') # get patterns for index[key] objects with object_type key
+        if extracted_patterns:
+            pos_patterns = extracted_patterns.keys()
+            word_patterns = [item for val_list in extracted_patterns.values() for item in val_list]
+            index['usage_patterns'] = '\n'.join(pos_patterns.extend(word_patterns))
         print('\t\twriting', key, type(index[key]), index[key])
         index_string = index[key] if type(index[key]) == str else '\n'.join(index[key])
         save(''.join(['data/', key, '.txt']), index_string)
@@ -96,8 +99,6 @@ def get_articles(source, keyword, start, max_results, total_results, all_vars):
                         if len(text) > 0:
                             processed_text = standard_text_processing(text, all_vars)
                             text = processed_text if processed_text else text
-                            replaced_text = replace_syns(text, 'all', all_vars['supported_core'])
-                            text = replaced_text if replaced_text else test
                             text_list = [text] if node.nodeName == 'title' else text.split('\n')
                             article.extend(text_list)                    
                 if len(article) > 0:
@@ -118,7 +119,7 @@ def get_medical_metadata(line, formatted_line, title, index, row, metadata, all_
     row = get_treatments(intent, hypothesis, line, title, row, metadata, all_vars)
     return index, row
 
-def get_conceptual_metadata(line, title, index, row, metadata_keys):
+def get_conceptual_metadata(line, title, index, row, metadata_keys, all_vars):
     ''' 
     this function is a supplement to get_medical_objects, 
     which fetches condition, symptom, & treatment metadata,
@@ -143,7 +144,7 @@ def get_conceptual_metadata(line, title, index, row, metadata_keys):
     index_type = None
     for r in row['relationships']:
         for word in r.split(' '):
-            pos = get_pos(word)
+            pos = get_pos(word, all_vars)
             if pos == 'noun':
                 ''' make sure this is a noun before querying '''
                 if word[0] == word[0].upper() and word[1] != word[1].upper():
@@ -152,7 +153,7 @@ def get_conceptual_metadata(line, title, index, row, metadata_keys):
                 print('suggested', suggested, word)
                 try:
                     content = wikipedia.page(suggested).content
-                    section_list = [s.strip().replace(' ','_').lower() for s in content.split('==') if '.' not in s and len(s) < 100]
+                    section_list = [s.strip().replace(' ', '_').lower() for s in content.split('==') if '.' not in s and len(s) < 100]
                     index['section_list'] = index['section_list'].union(section_list)
                     print('section list', section_list)
                     categories = wikipedia.page(suggested).categories
@@ -166,7 +167,7 @@ def get_conceptual_metadata(line, title, index, row, metadata_keys):
                                     if key in section:
                                         index_type =  val
                         else:
-                            index_type = get_index_type(suggested, all_vars['supported_core'], categories)
+                            index_type = get_index_type(suggested, all_vars, categories)
                             if index_type:
                                 print('found index type', index_type, word)
                                 if index_type in row:
@@ -198,10 +199,7 @@ def downloads(paths):
             nltk.download('maxent_ne_chunker')
     return True
 
-# common_words = [] # to do: store common words that dont fit other categories & read them into list
-# if it doesnt have a word ending in one of these suffixes, its probably not relevant
-all_vars = get_vars() # replace all subelements with reference
-print('supported params', all_vars['supported_params'])
+all_vars = get_vars()
 if all_vars:
     done = downloads(['data', 'datasets'])
     if done:

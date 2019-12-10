@@ -25,108 +25,109 @@
     - 'V + RP' => 'give up'
 '''
 
-def get_string_patterns(articles):
-    ''' this function looks for matches in elements with repeated pos or string patterns like alpha-<compound>-ic acid '''
-    string_patterns_found = set()
-    return string_patterns_found
-
-def extract_patterns(word, objects, local_database, object_types):
+def extract_patterns(objects, object_types, database_path):
+    ''' 
+        - this function is for meta-analysis, not finding or replacing a pattern in a line
+        - after youre done processing a batch of articles, 
+            youll have an index containing types of elements ('condition', 'symptom', 'strategy')
+            this function is for finding patterns in those index types
+            
+        - objects must be a dict if populated
+        - to do: you should load the database elsewhere & import
+    '''
     docs = {}
-    object_types = object_types if object_types else 'patterns'
-    if type(object_types) == list:
-        if len(object_types) > 0:
-            object_types = object_types[0]
     if objects:
         if len(objects) > 0:
-            docs[object_types] = objects
-    elif local_database: #'data' folder
-        docs = get_local_database(local_database, object_types)
+            for object_type in objects:
+                docs[object_type] = objects[object_type]
+    object_types = object_types if object_types else []
+    elif database_path: #'data' folder
+        docs = get_local_database(database_path, object_types)
     if docs:
-        patterns = set()
+        patterns = {}
         for object_type in docs:
-            for object_data in docs[object_type]:
-                for line in object_data.split('\n'):
-                    ''' get matches from configured patterns '''
-                    line_patterns = get_patterns_in_line(line, all_vars)
-                    if len(line_patterns) > 0:
-                        patterns = patterns.union(line_patterns)
-                    ''' 
-                    splitting into words & appending prev_word, word, & next_word 
-                    is a backup strategy if no others are found in article 
-                    '''
-                    words = line.split(' ')
-                    for i, w in enumerate(words):
-                        if w == word:
-                            ''' to do: use get_next_important_word rather than any next word '''
-                            prev_word = words[i - 1] if i > 0 else ''
-                            next_word = words[i + 1] if i < (len(words) - 1) else ''
-                            word_set = ' '.join([prev_word, word, next_word])
-                            converted_word_set = convert_words_to_pos(word_set.strip())
-                            if converted_word_set:
-                                patterns.add(converted_word_set)
-        if len(patterns) > 0:
+            for object_index in docs[object_type]:
+                for line in object_index.split('\n'):
+                    line_patterns = get_pattern_map_in_line(line, all_vars, None)
+                    if line_patterns:
+                        for k in line_patterns:
+                            if k not in patterns:
+                                patterns[k] = []
+                            patterns[k].extend(line_patterns[k])
+        if patterns:
             return patterns
     return False
 
-def get_delimiter(line):
-    ''' get a delimiter that isnt in the line '''
-    delimiter = '***' if '***' not in line else '###'
-    return delimiter
+def is_pattern_in_line(line, pattern):
+    ''' line.count(pattern) or False '''
+    pos_line = convert_words_to_pos(line)
+    if pattern in pos_line:
+        return pos_line.count(pattern)
+    return False
 
-def remove_items_from_list(original_line, exclude_list):
-    delimiter = get_delimiter(original_line)
+def replace_pattern_in_line(line, pattern):
+    ''' line.replace(pattern, source_words) '''
+    found_patterns = get_source_wordsets(line, pattern)
+    if found_patterns:
+        return ' '.join(found_patterns)
+    return False
+
+def get_pattern_map_in_line(line, all_vars, pattern_keys):
+    ''' a = {'pattern': 'source_words'} '''
+    found_patterns = {}
+    pattern_keys if pattern_keys is not None else all_vars['pattern_index'].keys()
+    for pattern_key in pattern_keys:
+        pattern_list = all_vars['pattern_index'][pattern_key]
+        for pattern in pattern_list:
+            source_wordsets_for_pattern = get_source_wordsets_for_pattern(line, pattern)
+            if source_wordsets_for_pattern:
+                if pattern not in found_patterns:
+                    found_patterns[pattern] = []
+                found_patterns[pattern].extend(source_wordsets_for_pattern)
+    if found_patterns:
+        return found_patterns
+    return False
+
+def get_source_wordsets_for_pattern(line, pattern):
+    ''' ['source_words_for_pattern_instance_1', 'source_words_for_pattern_instance_2', ...] '''
+    pos_line = convert_words_to_pos(line)
+    if pattern in pos_line:
+        source_wordsets_for_patterns = get_source_words(line, pos_line.split(pattern))
+        if source_wordsets_for_patterns:
+            return source_wordsets_for_patterns
+    return False
+
+def get_source_words(source_line, exclude_list):
+    delimiter = get_delimiter(source_line)
     for word_set in exclude_list.split(' '):
-        if word_set in original_line:
-            original_line = original_line.replace(word_set, delimiter)
-    words_for_patterns = original_line.split(delimiter)
-    if words_for_patterns:
-        return words_for_patterns
+        if word_set in source_line:
+            source_line = source_line.replace(word_set, delimiter)
+    source_wordsets_for_patterns = source_line.split(delimiter)
+    if source_wordsets_for_patterns:
+        if len(source_wordsets_for_patterns) > 0:
+            return source_wordsets_for_patterns
     return False
 
-def find_patterns(line, all_vars):
-    line_patterns = {}
-    keywords = None
-    for pattern in all_vars['patterns']:
-        found = find_pattern(line, pattern, keywords)
-        if found:
-            if len(found) > 0:
-                if pattern not in line_patterns:
-                    line_patterns[pattern] = set()
-                line_patterns[pattern] = line_patterns[pattern].union(found)
-    if line_patterns:
-        return line_patterns
-    return False
-
-def find_pattern(line, pattern, keywords): 
-    ''' original = 'cat ate dog after 12pm dog ate rat and then the next day' '''
-    ''' pos_line = 'noun verb noun after 12pm noun verb noun' and then the next day'''
-    ''' pattern = 'noun verb noun' '''
+def get_source_wordsets(line, pattern): 
     pos_line = convert_words_to_pos(line)
     if pattern in pos_line:
         non_patterns = pos_line.split(pattern)
-        ''' non_patterns = [' after 12pm ', ' and then the next day'] '''
-        words_for_patterns = remove_items_from_list(line, non_patterns)
-        ''''words_for_patterns = ['cat ate dog', 'dog ate rat'] '''
-        if words_for_patterns:
-            new_line = []
-            for i, word_set in enumerate(words_for_patterns):
-                new_line.append(word_set)
-                ''' get the corresponding item in non_patterns '''
+        source_words_for_patterns = get_source_words(line, non_patterns)
+        if source_words_for_patterns:
+            subsets = []
+            for i, subset in enumerate(source_words_for_patterns):
+                subsets.append(subset)
                 if i < len(non_patterns):
-                    new_line.append(non_patterns[i])
-            if len(new_line) > 0:
-                return new_line
-    if keywords:
-        keywords_found = [x for x in keywords if x in pos_line]
-        if len(keywords_found) > 2:
-            return keywords_found
+                    subsets.append(non_patterns[i])
+            if len(subsets) > 0:
+                return subsets
     return False
 
 def get_pattern_stack(pattern_stack):
     '''
         pattern_stack is the output of get_pattern_stack, 
         which returns a dict with 
-            keys pointing to original sentence &
+            keys pointing to source sentence &
             values pointing to pattern with pos replacement
         out of the pattern_stack, you need a function to derive the abstract patterns:
         - iterate through words 
@@ -136,15 +137,13 @@ def get_pattern_stack(pattern_stack):
     '''
     return pattern_stack
 
-''' FIND PATTERNS '''
-
 ''' PROCESS PATTERNS '''
 
-def add_sub_patterns(pattern_list, original_length, combination, all_patterns):
+def add_sub_patterns(pattern_list, source_length, combination, all_patterns):
     ''' get subsequent patterns since pattern_list[i] was a list '''
     ''' if set is complete according to len(pattern_list), reset trackers & add to all_patterns '''
     combination = [] if not combination else combination
-    if len(combination) == original_length or len(combination) == len(pattern_list):
+    if len(combination) == source_length or len(combination) == len(pattern_list):
         all_patterns.add(' '.join(combination))
         return combination, all_patterns
     for pattern_piece in pattern_list:
@@ -152,7 +151,7 @@ def add_sub_patterns(pattern_list, original_length, combination, all_patterns):
             combination.append(pattern_piece)
         else:
             ''' this is a set of alts - iterate through it & pick one & combine it with subsequent patterns '''
-            combination, all_patterns = add_sub_patterns(pattern_piece.split(' '), original_length, combination, all_patterns)
+            combination, all_patterns = add_sub_patterns(pattern_piece.split(' '), source_length, combination, all_patterns)
     return combination, all_patterns
 
 def get_pattern_alts(source_pattern):
@@ -185,7 +184,7 @@ def get_pattern_alts(source_pattern):
                         optional_word = ''.join(['__', item, '__'])
                         if optional_word in source_pattern:
                             new_pattern = new_pattern.replace(optional_word, '')
-                new_pattern = new_pattern.replace('  ',' ')
+                new_pattern = new_pattern.replace('  ', ' ')
                 # add the alternative pattern with optional strings replaced
                 all_patterns_with_alts.add(new_pattern) 
             all_patterns_with_alts.add(pattern)

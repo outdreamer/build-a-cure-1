@@ -29,9 +29,8 @@ def concatenate_species(data):
     data = '.'.join(new_lines)
     return data
 
-def get_counts(article_words, article_string, tagged, line, row):
-    data = article_string.replace("'",'').replace(',','')
-    object_pos = ['NNP', 'NNS', 'JJR']
+def get_counts(article_words, data, tagged, line, row):
+    object_pos = ['NNP', 'NNS', 'JJR'] 
     for item in tagged:
         w = item[0].lower()
         if item[1] in object_pos:
@@ -39,7 +38,6 @@ def get_counts(article_words, article_string, tagged, line, row):
             w_name = ''.join([w[0].upper(), w[1:]])
             upper_count = article_words.count(w_upper) # find acronyms, ignoring punctuated acronym
             count = data.count(w)
-            ## and w not in verbs and w not in nouns and w_name not in ' '.join(names):
             if item[0] == w_name and w_name != article_words[0] and w_name not in ' '.join(row['names']): # exclude first word in sentence
                 if upper_count > 0 and upper_count <= count:
                     if upper_count not in row['counts']:
@@ -57,7 +55,7 @@ def get_counts(article_words, article_string, tagged, line, row):
     return row
 
 def get_names(article_words, line, row):
-    line = line.replace("'",'')
+    # to do: identify all irrelevant proper nouns like place, company, university & individual names
     tagged = pos_tag(word_tokenize(line))
     for p in row['phrases']:
         if len(p) > 0:
@@ -78,30 +76,37 @@ def get_names(article_words, line, row):
                 final_name = ' '.join(new_name)
                 if len(new_name) == len(phrase_words) and final_name != line[0:len(final_name)] and final_name.lower() not in row['nouns'] and final_name.lower() not in row['verbs']:
                     row['names'].add(final_name) # find names and store separately
-    return row
+    line = ' '.join([w for w in line.split(' ') if w not in row['names']])
+    return row, line
 
 def get_clauses(line, row, all_vars):
     '''
-    to do: 
-    - add logic for other phrase types than 'noun-noun', like verb_phrases
     - clauses are relationships between subject and objects in line
-    - the response object should be a list of the acting subject, verb, & object:
-        row['clauses'] = ['chemical', 'caused', 'reaction'], ['experiment', 'was', 'successful']]
-
-    active: x  -  did  -  this and then y  -  did  -  z
-    passive: this  -  was done  -  by x and then z  -  was done  -  by y
+    - retrieved clauses should be a list separated by subjects, 
+        containing the acting subject, verb, & object:
+        clauses = ['chemical', 'caused', 'reaction'], ['experiment', 'was', 'successful']]
+    - active: x  -  did  -  this and then y  -  did  -  z
+    - passive: this  -  was done  -  by x and then z  -  was done  -  by y
     '''
     line = rearrange_sentence(line)
     active = get_active(line)
     sentence_pieces = [] # break up sentence by verbs
     sentence_piece = []
-    for w in line.split(' '):
-        if w not in row['verbs']:
-            sentence_piece.append(w)
-        else:
-            sentence_pieces.append(' '.join(sentence_piece))
-            sentence_pieces.append(w) # add the verb separately
-            sentence_piece = []
+    for w in line.split(' '): 
+        if len(w) > 0:
+            if '(' in w:
+                sentence_pieces.append(' '.join(sentence_piece))
+                sentence_piece = [w.replace('(', '')]
+            elif ')' in w:
+                sentence_piece.append(w.replace(')', ''))
+                sentence_pieces.append(' '.join(sentence_piece))
+                sentence_piece = []
+            elif w not in row['verbs']:
+                sentence_piece.append(w)
+            else:
+                sentence_pieces.append(' '.join(sentence_piece))
+                sentence_pieces.append(w) # add the verb separately
+                sentence_piece = []
     for j, s in enumerate(sentence_pieces):
         s_split = s.split(' ') if type(s) == str else s
         for i, word in enumerate(s_split):
@@ -138,29 +143,6 @@ def get_similarity_to_title(string, title):
         return similarity
     return False
 
-def get_most_common_words(counts, top_index):
-    '''
-    given counts which is structured like:
-    counts = {
-        0: ['words', 'that', 'appeared', 'once'],
-        1: ['items', 'shown', 'twice']
-    }
-    '''
-    count_keys = counts.keys()
-    if len(counts.keys()) > 0:
-        sorted_keys = reversed(sorted(count_keys))
-        max_key = max(counts.keys())
-        retrieved_index = 0
-        max_words = []
-        for k in sorted_keys:
-            max_words.extend(counts[k])
-            retrieved_index += 1
-            if retrieved_index == top_index:
-                return max_words
-        if len(max_words) > 0:
-            return max_words
-    return False
-
 def get_similar_lines(row, line, title):
     max_line = ''
     if line != title:
@@ -177,21 +159,15 @@ def get_similar_lines(row, line, title):
 
 def get_structural_metadata(line, article_string, index, row, metadata_keys, all_vars):
     lines = article_string.split('\n')
-    line = remove_standard_punctuation(line)
     most_similar_line, row = get_similar_lines(row, line, lines[0])
     line_patterns = get_patterns_in_line(line, all_vars)
     if line_patterns:
-        for key, val in line_patterns.items():
-            if key not in row['line_patterns']:
-                row['line_patterns'][key] = val
-            else:
-                row['line_patterns'][key].extend(val)
+        row['line_patterns'] = line_patterns
     row = get_pos_in_line(line, row)
     phrases = get_phrases(line)
     if phrases:
         row['phrases'] = phrases
-    row = get_names(article_string, line, row)
-    # line = remove_names(line, row['names'])
+    row, line = get_names(article_string, line, row)
     row = get_clauses(line, row, all_vars)
     tagged = pos_tag(word_tokenize(line))
     article_words = article_string.split(' ')

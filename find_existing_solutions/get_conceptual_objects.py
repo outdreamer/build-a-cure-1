@@ -2,7 +2,6 @@ from nltk import CFG
 from nltk import word_tokenize, pos_tag, ne_chunk
 
 from get_index_def import get_empty_index
-from utils import get_subword_match
 
 ''' conceptual relationships:
     priority = direction
@@ -15,57 +14,6 @@ from utils import get_subword_match
     solution = (combination of strategies operating on variables with insight functions that reduce dimensions of problem (function-combination) or (resource-imbalance))
     type = combination(attributes)
 '''
-
-''' GET INDEX OF ELEMENTS '''
-
-def identify_elements(supported_core, elements, index, metadata_keys, param_keys):
-    '''
-    this function is to identify which type of object can be found in elements
-    - elements may be a set/list of sentences/phrases/words
-    - if index is not None, it adds the identified word to the master index 
-      otherwise it adds to the new index generated for this element
-    '''
-    elements = elements.split(' ') if type(elements) == str else elements
-    element_string = ' '.join(elements)
-    phrases = get_phrases(element_string)
-    empty_index = get_empty_index(metadata_keys, param_keys)
-    element_keys = [ key for key in empty_index.keys() if key in supported_core ]
-    elements = elements.split(' ') if type(elements) == str else elements
-    identified_elements = get_empty_index(metadata_keys, param_keys)
-    for element in elements:
-        for keyword_type in element_keys:
-            split_element = element if type(element) == set or type(element) == list else element.split(' ')
-            for i, word in enumerate(split_element):
-                with_previous = word if i == 0 else ' '.join([split_element[i - 1], word])
-                with_next = word if i == (len(split_element) - 1) else ' '.join([word, split_element[i + 1]])
-                matched = get_subword_match(supported_core[keyword_type], word, 'bool')
-                if matched and len(word) > 1:
-                    if index:
-                        index[keyword_type].add(word)
-                    else:
-                        identified_elements[keyword_type].add(word)
-                else:
-                    ''' fetch the previous & subsequent word to index items like multi-hyphenated compounds '''
-                    for k in supported_core[keyword_type]:
-                        if k in word and len(split_element) > 1:
-                            new_element_list = []
-                            if i == 0:
-                                new_element_list = [split_element[i], split_element[i + 1]]
-                            elif (i + 1) == len(split_element):
-                                new_element_list = [split_element[i - 1], split_element[i]]
-                            else:
-                                new_element_list = [split_element[i - 1], split_element[i], split_element[i + 1]]
-                            if len(new_element_list) > 0:
-                                new_element = ' '.join(new_element_list)
-                            if len(new_element) > 1:
-                                if index:
-                                    index[keyword_type].add(new_element) # should be a string like 'alpha-nucleic acid'
-                                else:
-                                    identified_elements[keyword_type].add(new_element)
-    if index:
-        return index
-    print('\tidentified elements', identified_elements)
-    return identified_elements
 
 def get_data_store(sources, index_type, metadata_keys, param_keys):
     '''

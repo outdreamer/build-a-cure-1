@@ -24,8 +24,8 @@ from get_structural_objects import get_relationships_from_clauses
     }
 
 Treatments:
-    treatment_administration_modifiers = ['oral','liquid','topical','intravenous', 'iv']
-    treatment_administration_methods = ['injection','gavage','capsule', 'gel', 'powder','supplement', 'solution', 'spray', 'tincture', 'mixture']
+    treatment_administration_modifiers = ['oral', 'liquid', 'topical', 'intravenous', 'iv']
+    treatment_administration_methods = ['injection', 'gavage', 'capsule', 'gel', 'powder', 'supplement', 'solution', 'spray', 'tincture', 'mixture']
     
 Compounds:
     compound_modifiers = ['isolate', 'ion', 'acid']
@@ -36,7 +36,7 @@ Compounds:
 
 Patients:
     # treatments mention response in patients/subjects
-    patient_keywords = supported_core['participant'] # use participant instead of patient bc that has other meanings
+    patient_keywords = all_vars['supported_core']['participants'] # use participant instead of patient bc that has other meanings
 
 Side effect keywords to use to test relationships derived with nlp tools:
   - nouns: effect, activation, activity, reaction, process, role
@@ -133,7 +133,7 @@ def get_generic_medication(brand_name):
         generic_content = generic_page.content
         for i, s in enumerate(content.split('\n')):
             if '==' in s and '.' not in s:
-                sname = s.replace('=','').strip().replace(' ','_').lower()
+                sname = s.replace('=', '').strip().replace(' ', '_').lower()
                 if sname in all_vars['section_map']:
                     return generic_title
         if 'a medication' in generic_content:
@@ -184,27 +184,6 @@ def get_primary_condition(article, index):
     or the subject of the study
     '''
     return article 
-
-def get_metrics(line):
-    '''
-    find any metrics in this line
-    to do: some metrics will have letters other than expected
-    pull all the alphanumeric strings & filter out dose information
-    '''
-    metrics = set()
-    split_line = line.split(' ')
-    for i, word in enumerate(split_line):
-        numbers = [w for w in word if w.isnumeric()]
-        if len(numbers) > 0:
-            if len(numbers) == len(word):
-                next_word = split_line[i + 1]
-                if len(next_word) < 5:
-                    # to do: add extra processing rather than assuming its a unit of measurement
-                    metrics.add(word)
-                    metrics.add(next_word) # '3 mg'
-            else:
-                metrics.add(word) # '3mg'
-    return metrics
 
 def get_side_effects(line):
     '''
