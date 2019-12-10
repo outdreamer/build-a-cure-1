@@ -22,43 +22,67 @@
 
 # Structural:
 
-  - 'as' can mean:    
-        'like': 'as is common in that area',
-        'because': 'as',
-        'when': 'as the sun sets'
+  - add support for other operators
+        'union': ['and', 'with'],
+        'exception': ['but', 'yet'],
+        'dependence': ['because', 'since', 'due', 'caused by'],
+        'independence': ['even', 'still', 'despite', 'in spite of', 'regardless', 'irrespective'],
+        'conditional': ['when', 'while', 'during', 'for', 'x of y'],
+        'alternate': ['or'],
+        'equal': ['is']
 
-  - add function to unconjugate & get_common_word & get_common_score
+  - implement newly supported pos identification functions 
 
-  - add partial synonym matching in the same place you have phrase & word matching 
+  - check for verb_phrases
+    - in get_clauses, make sure youre not replacing the verb with the consecutive verb if they appear together (imaging finding)
 
-  - add adv & adj support to get_pos
+  - use get_pattern_alts to get all possible combinations of your patterns before transforming nltk_pos to tag_name
+
+  - add function to unconjugate verb 
+  - add function to convert_to_base_form
+  - add function to get_custom_tag
+  - finish function to get_common_word - make sure it checks configured syns first
+  - finish function to get_common_score
+
+  - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
+
+  - convert get_active and get_modifiers into a call to extract_patterns('modifier'), extract_patterns('active') etc
+
+  - where theres overlap between categories, you need a ranking to select the correct type in functions using get_pos_tags()
+
+  - add corresponding functions for get_pos_in_line
+    - phrase matching: 'architect of chaos' is a noun phrase, 'associating phrasing' is a verb phrase
+    - modifier matching 'chemical isolate' => 'isolate' is the modifier of the modifier clause
+    - type keyword matching 'v + rb', 'md + v'
+    - partial synonym matching
+    - structural (pos) pattern matching
+    - abstrct (type) pattern matching 
+
+  - add these char to removal function: of $, '', (, ), ,, --, ., :, FW, NNPS, SYM, WP$
+    parenthesis & brackets might indicate special items like clauses or details
 
   - evaluate when you need full article index and when its ok to use a line index
 
   - finish check_match function
-
-  - isolate pattern functions
 
   - test replace_syns_in_line until its functional 
 
   - verify output from get_relationships_from_clauses with tree parsing to identify related words in sentences
 
   - finish get_topic & remove_unnecessary_words to filter irrelevant nouns, verbs, adverbs & adjectives from all object indexes:
-    - common nouns ("associate", "multi-resolution", "delicate", "order", "disorders", "expression/activity")
-    - also proper noun names: ''M.D..''
-    - remove plural form of duplicate objects in sets
-    - make sure this is the same line in functions: expression/activity
 
   - make all_vars global variable & remove from params
 
-  - check that noun_phrases is catching all the phrases you need it to for clause -> modifier -> relationship logic otherwise check for verb_phrases
-    - in get_clauses, make sure youre not replacing the verb with the consecutive verb if they appear together (imaging finding)
 
-  - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
-
+  - 'as' can mean:    
+        'like': 'as is common in that area',
+        'because': 'as',
+        'when': 'as the sun sets'
 
 
 ## Relationships
+
+  - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
 
   - if you finish get_active, rearrange_sentence, remove_unnecessary_words, get_modifier & generate_abstract_patterns, 
     you can just enter patterns for most medical get_object functions

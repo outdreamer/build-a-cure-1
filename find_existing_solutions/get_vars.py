@@ -1,33 +1,5 @@
 from utils import read
 
-def convert_patterns(lang_patterns, all_vars):
-    '''
-    this function converts esoteric terms like 'NN' into common words like 'noun' 
-    in the set of configured patterns
-    '''
-    patterns = []
-    for p in lang_patterns:
-        pattern = []
-        for alt_phrases in p.split('--'):
-            pos_list = alt_phrases.split(' ')
-            all_pos = [True for pos_item in pos_list if pos_item in all_vars['language_pos_map'].keys()]
-            if len(all_pos) == len(pos_list):
-                ''' this is a set of alternative parts of speech '''
-                final_list= ['[']
-                for item in pos_list:
-                    final_list.append(all_vars['language_pos_map'][item].replace('[','').replace(']',''))
-                final_list.append(']')
-                pattern.append(''.join(final_list))
-        for i, w in enumerate(p.split(' ')):
-            if w in all_vars['language_pos_map'].values():
-                pattern.append(all_vars['language_pos_map'][w])
-            else:
-                pattern.append(w)
-        patterns.append(' '.join(pattern))
-    if len(patterns) > 0:
-        return patterns
-    return False
-
 def get_args(arg_list, all_vars):
     metadata_keys = ''
     generate_source = ''
@@ -36,14 +8,13 @@ def get_args(arg_list, all_vars):
     filters_index = {}
     for i, arg in enumerate(arg_list):
         arg_key = arg.replace('--', '').replace('-', '_')
-        print('arg key', arg_key)
         if arg_key in all_vars['supported_params']:
             arg_val = arg_list[i + 1]
             if arg_key == 'metadata':
                 if arg_val in all_vars['supported_params'] or arg_val == 'all':
                     metadata_keys = arg_val.split(',')
             elif arg_key == 'filters':
-                # --filters "symptoms:A,functions:B,metrics:metricC::metricvalue,conditions:D"
+                # |filters "symptoms:A,functions:B,metrics:metricC::metricvalue,conditions:D"
                 filters_index = { key: val.split(',') for key, val in arg_val.split(',') } # val will be metricC::metricvalue for metric
             elif arg_key == 'generate':
                 generate_list = arg_val.split('::')
@@ -54,8 +25,7 @@ def get_args(arg_list, all_vars):
                 args_index[arg_key] = arg_val.split(',')
     print('args_index', args_index)
     print('filters', filters_index)
-    print('metadata', metadata_keys)
-    print('generate', generate_target, generate_source)
+    print('metadata', metadata_keys, 'generate', generate_target, generate_source)
     return args_index, filters_index, metadata_keys, generate_target, generate_source
 
 def get_vars():
@@ -63,6 +33,61 @@ def get_vars():
     standard_verbs = set('increase', 'decrease', 'inhibit', 'induce', 'activate', 'deactivate', 'enable', 'disable')
     all_vars = {}
     all_vars['standard_verbs'] = set(verb_contents.split('\n')) if verb_contents is not None else standard_verbs
+    all_vars['numbers'] = '0123456789'
+    all_vars['alphanumeric'] = 'abcdefghijklmnopqrstuvwxyz0123456789- '
+    all_vars['alphabet'] = 'abcdefghijklmnopqrstuvwxyz'
+    all_vars['medical_sentence_terms'] = ['y', 'ic', 'ia', 'al', 'ment', 'tion'] 
+    all_vars['clause_delimiters'] = [',', 'and', 'or', 'because', 'but', 'as', 'if', 'then', 'even', 'without']
+    all_vars['operator_map'] = {
+        '-' : "decreases",
+        '+' : "increases",
+        '=' : "equals",
+        #'w' : "addition", # with
+        #'s' : "subtraction", # without
+        #'m' : "multiplication", # apply
+        #'d' : "division" # by standard
+    }
+    all_vars['combined_map'] = {
+        'equal': ['=-', '-=', '=+', '+=', '=='], #"x = (i - b)" => x and b equal i
+        'negative': ['-+', '+-'],
+        'positive': ['--', '++']
+    }
+    all_vars['full_params'] = {
+        'request': ['metadata', 'generate', 'filters'], # request params
+        'wiki': ['section_list'],
+        'pos': ['verbs', 'nouns', 'subjects', 'clauses', 'common_words', 'counts', 'names', 'relationships', 'taken_out', 'phrases', 'title_similarities'], # elements organized by structure
+        'experiment': ['hypothesis', 'tests', 'metrics', 'properties'], # experiment elements
+        'compound': ['compounds', 'contraindications', 'interactions', 'side_effects', 'treatments_successful', 'treatments_failed'], # drug elements
+        'condition': ['symptoms', 'conditions'], # condition elements
+        'context': ['bio_metrics', 'bio_symptoms', 'bio_conditions', 'bio_stressors'], # context elements
+        'synthesis': ['instructions', 'parameters', 'optimal_parameter_values', 'required_compounds', 'substitutes', 'equipment_links'],
+        'interaction': ['components', 'related', 'alternates', 'substitutes', 'adjacent', 'stressors', 'dependencies'], # interaction elements
+        'pattern': ['line_patterns', 'pattern_stack', 'usage_patterns'],
+        'conceptual': ['variables', 'systems', 'functions', 'insights', 'strategies', 'priorities', 'intents', 'types', 'causal_layers'] # conceptual elements
+    }
+    all_vars['operator_phrases'] = {
+        'and': ['with'],
+        'or': [],
+        'like': ['similar to'],
+        'without': ['in the absence of', 'lacking'],
+        'when': ['while', 'during', 'for'],
+        'but': ['however', 'but yet', 'yet', 'still'],
+        'because': ['because of', 'caused by', 'from', 'since', 'respective of', 'due to'], 
+        'even': ['despite', 'in spite of', 'regardless of', 'heedless of', 'irrespective of'],
+        'if': ['in case', 'in the event that'],
+        'before': ['if'],
+        'after': ['then'],
+        'is': ['equate', 'equal', 'describe', 'indicate', 'delineate', 'same', 'like', 'similar', 'imply', 'signify', 'means']
+      },
+    all_vars['conceptual_clause_map'] = {
+        'union': ['and', 'with'],
+        'exception': ['but', 'yet'],
+        'dependence': ['because', 'since', 'due', 'caused by'],
+        'independence': ['even', 'still', 'despite', 'in spite of', 'regardless', 'irrespective'],
+        'conditional': ['when', 'while', 'during', 'for', 'x of y'],
+        'alternate': ['or'],
+        'equal': ['is']
+    }
     all_vars['section_map'] = {
         'signs_and_symptoms': 'conditions',
         'medical_uses': 'treatments',
@@ -82,72 +107,71 @@ def get_vars():
         'epidemiology': 'symptoms',
         'uses': 'organism', # https://en.wikipedia.org/wiki/Boesenbergia_rotunda
     }
-    all_vars['medical_sentence_terms'] = ['y', 'ic', 'ia', 'al', 'ment', 'tion'] 
-    all_vars['clause_delimiters'] = [',', 'and', 'or', 'because', 'but', 'as', 'if', 'then', 'even', 'without']
-    all_vars['operator_map'] = {
-        '-' : "decreases",
-        '+' : "increases",
-        '=' : "equals",
-        #'w' : "addition", # with
-        #'s' : "subtraction", # without
-        #'m' : "multiplication", # apply
-        #'d' : "division" # by standard
-    }
-    all_vars['combined_map'] = {
-        'equal': ['=-', '-=', '=+', '+=', '=='], #"x = (i - b)" => x and b equal i
-        'negative': ['-+', '+-'],
-        'positive': ['--', '++']
-    }
-    all_vars['numbers'] = '0123456789'
-    all_vars['alphanumeric'] = 'abcdefghijklmnopqrstuvwxyz0123456789- '
-    all_vars['alphabet'] = 'abcdefghijklmnopqrstuvwxyz'
-    all_vars['full_params'] = {
-        'request': ['metadata', 'generate', 'filters'], # request params
-        'wiki': ['section_list'],
-        'pos': ['verbs', 'nouns', 'subjects', 'clauses', 'common_words', 'counts', 'names', 'relationships', 'taken_out', 'phrases', 'title_similarities'], # elements organized by structure
-        'experiment': ['hypothesis', 'tests', 'metrics', 'properties'], # experiment elements
-        'compound': ['compounds', 'contraindications', 'interactions', 'side_effects', 'treatments_successful', 'treatments_failed'], # drug elements
-        'condition': ['symptoms', 'conditions'], # condition elements
-        'context': ['bio_metrics', 'bio_symptoms', 'bio_conditions', 'bio_stressors'], # context elements
-        'synthesis': ['instructions', 'parameters', 'optimal_parameter_values', 'required_compounds', 'substitutes', 'equipment_links', 'adjacent_compound_synthesis'],
-        'interaction': ['components', 'related', 'alternates', 'substitutes', 'adjacent', 'stressors', 'dependencies'], # interaction elements
-        'conceptual': ['variables', 'systems', 'functions', 'insights', 'strategies', 'patterns', 'usage_patterns', 'priorities', 'intents', 'types', 'causal_layers'] # conceptual elements
-    }
     all_vars['supported_params'] = []
     for key, val in all_vars['full_params'].items():
         all_vars['supported_params'].extend(val)
+
+    ''' *** IMPORTANT PATTERN CONFIG INFO ***
+
+        - for pattern configurations, always put the extended pattern first
+            - if you put '<noun>' before "<noun> <noun>',
+                you'll miss phrases like 'compound acid' returning matches like:
+                     ['compound acid']
+                and will instead get matches for the '<noun>' pattern:
+                    ['compound', 'acid']
+                so make sure thats what you want before ignoring this rule
+
+        - pattern_syntax: 
+            __a__ : an optional item
+            |a b c| : a set of alternatives
+
+        - note that we are also supporting pos names in the patterns, in case you want to include all tags from that pos type
+
+        - if you include 'noun' in your pattern, it'll replace it with all the noun pos tags, like |NN NNS NNP NNPS| etc
+        
+    '''
+
     all_vars['pattern_categories'] = {
         'types': [
             'adjective noun'
         ],
         'roles': [
-            'adverb || verb noun',
+            '|adverb verb| noun',
             'noun of noun',
-            'verb || noun role',
-            'functions/works/operates/interacts/acts as (a) verb || noun'
+            '|verb noun| role',
+            '|functions works operates interacts acts| as __a__ |verb noun|'
         ],
         'noun': [
             'the noun'
         ]
     }
-    ''' () indicates an optional item, --a b c-- indicates a set of alternatives '''
     all_vars['language_patterns'] = [
-        'adjective noun',
-        '--adverb verb-- noun',
-        'noun of noun noun',
-        'noun of noun',
-        '--verb noun-- role',
-        '--functions works operates interacts acts-- as (a) --verb noun--'
+        'JJ NN',
+        '|ADV VB| NN',
+        'NN of NN NN',
+        'NN of NN',
+        '|VB NN| role',
+        '|functions works operates interacts acts| as __a__ |VB NN|'
     ]
-    all_vars['language_pos_map'] = {
-        'adjective': '[ADJ]',
-        'noun': '[NN||NNP||NNS||JJ||JJR]',
-        'adverb': '[ADV]',
-        'verb': '[VB||VBP||VBD||VBG||VBN||VBZ]',
-        'past_participle': '[VBN]',
+    all_vars['pattern_index'] = {
+        'passive': [
+            '|VB VBP VBN VBD| |VB VBP VBN VBD|', # is done, was done
+            'VBG |VB VBP VBN VBD| |VB VBP VBN VBD|', # having been done
+            '|VB VBP VBN VBD| |TO IN PP|', # finish by, done by
+            '|VBD| VBN VBN |TO IN PP|', # has been done by
+            '|noun verb| of |noun verb|' # inhibitor of protein 
+        ]
     }
-    all_vars['patterns'] = convert_patterns(all_vars['language_patterns'], all_vars)
-    all_vars['pattern_words'] = ['of', 'acts', 'as']
+    '''
+    VB: Verb, base form - ask is do have build assess evaluate analyze assume avoid begin believe reveal benefit # attention?
+        VBP: Verb, non-3rd person singular present - ask is do have
+        VBZ: Verb, 3rd person singular present - asks is does has
+        VBG: Verb, gerund or present participle - asking, being, doing, having
+    VBD: Verb, past tense - asked, was/were, did, had
+    VBN: Verb, past participle - asked, used, been, done, had
+    '''
+
+    all_vars['language_patterns'] = convert_nltk_tags_to_pos_names(all_vars['language_patterns'], all_vars)
     all_vars = fill_synonyms('maps', all_vars)
     all_vars['key_map'] = {
         'negative': ['worsen', 'decrease', 'inhibit', 'reduce', 'deactivate', 'disable'],
@@ -158,5 +182,13 @@ def get_vars():
         'negative': aggregate_synonyms_of_type(all_vars, 'negative'), # antagonist, reduce, inhibit, deactivate, toxic, prevents
         'positive': aggregate_synonyms_of_type(all_vars, 'positive'), # help, assist, enhance, induce, synergetic, sympathetic, leads to
         'equal': aggregate_synonyms_of_type(all_vars, 'equal') # means, signifies, indicates, implies, is, equates to
+    },
+    all_vars['supported_tags'] = ['noun', 'adj', 'verb', 'adv']
+    all_vars['name_tag_map'] = {
+        'noun': 'NN',
+        'verb': 'VB',
+        'adv': 'ADV',
+        'adj': 'JJ'
     }
+    all_vars['tag_name_map'] = { item : tag_name for tag_name, tag_list in all_vars['pos_tags'].items() for item in tag_list }
     return all_vars

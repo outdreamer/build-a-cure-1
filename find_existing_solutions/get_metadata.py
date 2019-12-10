@@ -33,16 +33,16 @@ def pull_summary_data(sources, metadata_keys, generate_source, generate_target, 
                     if total_results > start or total_results == 0:
                         articles = get_articles(source, keyword, start, max_results, total_results, all_vars)
     if len(articles) > 0:
-        usage_patterns = get_usage_patterns('', articles, local_database) # '' word param means get all patterns, not just for a particular word
-        if usage_patterns:
-            index['usage_patterns'] = usage_patterns
+        extracted_patterns = extract_patterns('', articles, local_database) # '' word param means get all patterns, not just for a particular word
+        if extracted_patterns:
+            index['usage_patterns'] = extracted_patterns
         for a in articles:
             for line in a.split('\n'):
-                        #row = identify_elements(all_vars['supported_core'], formatted_line, None, metadata_keys, all_vars['full_params'])
+                        #row = identify_elements(all_vars['supported_core'], line, None, metadata_keys, all_vars['full_params'])
                         row = empty_index    
-                        index, row = get_structural_metadata(line, title, lines, text, index, row, metadata_keys, all_vars)
-                        index, row = get_medical_metadata(line, formatted_line, title, index, row, metadata_keys, all_vars)
-                        index, row = get_conceptual_metadata(formatted_line, title, index, row, metadata_keys) #custom analysis
+                        index, row = get_structural_metadata(line, text, index, row, metadata_keys, all_vars)
+                        index, row = get_medical_metadata(line, index, row, metadata_keys, all_vars)
+                        index, row = get_conceptual_metadata(line, index, row, metadata_keys, all_vars) #custom analysis
                         print('row', row)
                         if row != empty_index:
                             for key, val in row.items():

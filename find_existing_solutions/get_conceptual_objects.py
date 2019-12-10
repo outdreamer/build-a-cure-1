@@ -16,81 +16,7 @@ from utils import get_subword_match
     type = combination(attributes)
 '''
 
-'''
-https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
-
-CC: Coordinating conjunction
-CD: Cardinal number
-DT: Determiner
-EX: Existential there
-FW: Foreign word
-IN: Preposition or subordinating conjunction
-JJ: Adjective
-VP: Verb Phrase
-JJR: Adjective, comparative
-JJS: Adjective, superlative
-LS: List item marker
-MD: Modal
-NN: Noun, singular or mass
-NNS: Noun, plural
-PP: Preposition Phrase
-NNP: Proper noun, singular Phrase
-NNPS: Proper noun, plural
-PDT: Pre determiner
-POS: Possessive ending
-PRP: Personal pronoun Phrase
-PRP: Possessive pronoun Phrase
-RB: Adverb
-RBR: Adverb, comparative
-RBS: Adverb, superlative
-RP: Particle
-S: Simple declarative clause
-SBAR: Clause introduced by a (possibly empty) subordinating conjunction
-SBARQ: Direct question introduced by a wh-word or a wh-phrase.
-SINV: Inverted declarative sentence, i.e. one in which the subject follows the tensed verb or modal.
-SQ: Inverted yes/no question, or main clause of a wh-question, following the wh-phrase in SBARQ.
-SYM: Symbol
-VBD: Verb, past tense
-VBG: Verb, gerund or present participle
-VBN: Verb, past participle
-VBP: Verb, non-3rd person singular present
-VBZ: Verb, 3rd person singular present
-WDT: Wh-determiner
-WP: Wh-pronoun
-WP: Possessive wh-pronoun
-WRB: Wh-adverb
-'''
-
 ''' GET INDEX OF ELEMENTS '''
-
-def get_trees(line):
-    print('getting trees for line', line)
-    grammar_entries = ['S -> NP VP', 'PP -> P NP', 'NP -> Det N | NP PP', 'VP -> V NP | VP PP']
-    tagged = nltk.pos_tag(word_tokenize(line)) # [('This', 'DT'), ('is', 'VBZ'), ('a', 'DT'), ('Foo', 'NNP'), ('Bar', 'NNP'), ('sentence', 'NN'), ('.', '.')]
-    grammar_dict = {}
-    for item in tagged:
-        pos = item[1]
-        value = item[0]
-        if pos != value:
-            if pos not in grammar_dict:
-                grammar_dict[pos] = [value]
-            else:
-                grammar_dict[pos].append(value)
-    for key, val in grammar_dict.items():
-        if len(val) > 1 and type(val) == list:
-            new_grammar_entry = ''.join([key, ' -> ', ' | '.join(val)])
-            grammar_entries.append(new_grammar_entry)
-    grammar_definition = '\n'.join(grammar_entries) if len(grammar_entries) > 0 else None
-    print('grammar_def', grammar_definition)
-    if grammar_definition:
-        grammar = CFG.fromstring(grammar_definition)
-        parser = nltk.ChartParser(grammar)
-        for tree in parser.parse(line):
-             print('tree', tree)
-    trees = ne_chunk(tagged)
-    # Tree('S', [('This', 'DT'), ('is', 'VBZ'), ('a', 'DT'), Tree('ORGANIZATION', [('Foo', 'NNP'), ('Bar', 'NNP')]), ('sentence', 'NN'), ('.', '.')])
-    print('trees', trees)
-    return trees
 
 def identify_elements(supported_core, elements, index, metadata_keys, param_keys):
     '''
@@ -101,8 +27,7 @@ def identify_elements(supported_core, elements, index, metadata_keys, param_keys
     '''
     elements = elements.split(' ') if type(elements) == str else elements
     element_string = ' '.join(elements)
-    blob = get_blob(element_string)
-    phrases = blob.noun_phrases if blob else None
+    phrases = get_phrases(element_string)
     empty_index = get_empty_index(metadata_keys, param_keys)
     element_keys = [ key for key in empty_index.keys() if key in supported_core ]
     elements = elements.split(' ') if type(elements) == str else elements
@@ -170,23 +95,6 @@ def get_index_objects(index_type, relationship):
 def get_variables(line):
     ''' use this to determine parameters for synthesis function too '''
 
-def identify_causal_layer(row, index, line, article):
-    return row
-
-def generate_abstract_patterns(pattern_stack):
-    '''
-        pattern_stack is the output of get_pattern_stack, 
-        which returns a dict with 
-        key pointing to original sentence &
-        value pointing to pattern with pos replacement
-        out of the pattern_stack, you need a function to derive the abstract patterns:
-        - iterate through words 
-            - if its an object, replace it with its type 
-            - if its a function, replace it with its core function decomposition
-            - repeat until all relevant unique patterns are generated
-    '''
-    return pattern_stack
-
 def identify_key_sentences(article):
     '''
     key_sentences should have an item from each sentence_type that is relevant to the study intent
@@ -204,8 +112,8 @@ def identify_key_sentences(article):
 def get_sentence_type(line):
     ''' out of sentence_types, determine which this is likeliest to be 
     to do: 
-        - implement keyword check for each sentence type
-        - add linguistic patterns for each sentence type
+    - implement keyword check for each sentence type
+    - add linguistic patterns for each sentence type
     '''
     sentence_types = {
         'hypothesis': [],
@@ -218,14 +126,14 @@ def get_sentence_type(line):
         'treatment': []
     }
     sentence_type_values = [ x for k, v in sentence_types.items() for x in v ]
-    elements = get_elements_in_line(line)
+    elements = get_elements(line)
     element_sentence_pattern = ' '.join(elements)
     for k, v in sentence_types.items():
         if element_sentence_pattern in v:
             return k
     return False
 
-def get_elements_in_line(line):
+def get_elements(line):
     elements = []
     for word in line.split(' '):
         index_type = get_index_type(word)
@@ -237,6 +145,9 @@ def get_elements_in_line(line):
         else:
             elements.append(word)
     return elements
+
+def get_causal_layer(row, index, line, article):
+    return row
 
 def get_article_intent(article):
     '''
@@ -254,9 +165,16 @@ def get_article_intent(article):
         - 'build' contains instructions on how to synthesize something
         - 'find' would indicate info about a relationship between the input & output in the study, 
             but not necessarily include the instructions
-
     '''
-    
+    '''
+    for studies that have a 'test' intent (to confirm a theorized relationship),
+        the relationship youre trying to find is between:
+         'method'/'compound' and 'success'/'failure'
+    for other studies that are exploratory (to find a new relationship),
+        the relationship may be to find correlation between two medical factors:
+        'condition' and 'treatment' or 'condition' and 'symptom' or 'treatment' and 'symptom'
+    '''
+
     study_intents = {
         'test': 'to confirm a relationship (between x=success)', 
         'find': 'to find a relationship (between x=y)', 
@@ -266,22 +184,14 @@ def get_article_intent(article):
         'build': 'to build object (compound, symptom, treatment, condition, state)' 
         # to get 'health', follow build protocol 'x', to get 'compound', follow build protocol 'y'
     }
-    
-    general_objects = ['relationship', 'problem', 'strategy', 'process', 'insight', 'function', 'variable', 'system', 'theory', 'opinion', 'conclusion', 'observation']
+    abstract_verbs = ['find', 'derive', 'build', 'test']
+    med_objects = ['treatment', 'compound', 'test', 'metric', 'mechanism']
+    study_objects = ['relationship', 'limit', 'type', 'method']
+    conceptual_objects = ['relationship', 'problem', 'strategy', 'process', 'insight', 'function', 'variable', 'system', 'theory', 'opinion', 'conclusion', 'observation']
     sentence_intents = {
         'describe': ['introduce', 'detail']
         'organize': ['list', 'categorize', 'summarize']
     }
-    med_objects = ['treatment', 'compound', 'test', 'metric', 'mechanism']
-    study_objects = ['relationship', 'limit', 'type', 'method']
-    '''
-    for studies that have a 'test' intent (to confirm a theorized relationship),
-        the relationship youre trying to find is between:
-         'method'/'compound' and 'success'/'failure'
-    for other studies that are exploratory (to find a new relationship),
-        the relationship may be to find correlation between two medical factors:
-        'condition' and 'treatment' or 'condition' and 'symptom' or 'treatment' and 'symptom'
-    '''
     intent_map = {
         'find_limit',
         'find_relationship': {
@@ -290,13 +200,11 @@ def get_article_intent(article):
                 'diagnose': ['test_diagnostic_method']
             }
             'synthesize_compound': ['test_synthesis_method']
-
         }
         'review': {
             'compare': ['meta_review', 'peer_review'],
             'verify': ['retract_study', 'replicate_result']
         }
-        
     }
     intents = []
     for line in article.split('\n'):
@@ -305,30 +213,6 @@ def get_article_intent(article):
             intents.append(intent)
 
     return intents
-
-def get_patterns(line):
-    ''' this function looks for matches in elements with basic keyword patterns like alpha-<compound>-ic acid '''
-    return line
-
-def get_usage_patterns(word, articles, local_database):
-    patterns = set()
-    if local_database: #'data' folder
-        articles = get_local_database(local_database)
-    if len(articles) > 0:
-        for a in articles:
-            for line in a.split('\n'):
-                words = line.split(' ')
-                for i, w in enumerate(words):
-                    if w == word:
-                        prev_word = words[i - 1] if i > 0 else ''
-                        next_word = words[i + 1] if i < (len(words) - 1) else ''
-                        pattern = ' '.join([prev_word, word, next_word])
-                        converted_pattern = convert_to_pattern_format(pattern.strip())
-                        if converted_pattern:
-                            patterns.add(converted_pattern)
-        if len(patterns) > 0:
-            return patterns
-    return False
 
 def get_intents(line):
     ''' this function is checking for any purpose-related keywords

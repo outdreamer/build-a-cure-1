@@ -3,79 +3,6 @@ from nltk import word_tokenize, pos_tag
 from utils import *
 from get_vars import get_vars
 
-''' important note for pattern definitions in get_vars:
-    - always put the extended pattern first
-    - if you put '<noun>' before "<noun> <noun>',
-        you'll miss phrases like 'compound acid' returning matches like:
-             ['compound acid']
-        and will instead get matches for the '<noun>' pattern:
-            ['compound', 'acid']
-        so make sure thats what you want before ignoring this rule
-        
-- types follow patterns:
-    1. <adjective> <noun>
-    Ex: 'chaperone protein' (subtype = 'chaperone', type = 'protein')
-
-- roles follow patterns:
-    1. <adverb> || <verb> <noun>
-    Ex: 'emulsifying protein' (role = 'emulsifier')
-
-    2. <noun> of <noun>
-    Ex: 'components of immune system' (role = 'component', system = 'immune system')
-
-    3. <verb> || <noun> role
-    Ex: functional role (role => 'function')
-
-    4. functions/works/operates/interacts/acts as (a) <verb> || <noun>
-    Ex: acts as an intermediary (role => 'intermediary')
-
-- roles are intrinsically related to functions, intents, strategies, & mechanisms
-
-# the word with the highest count that is a noun is likely to be a focal object of the article
-'''
-
-def find_pattern(original, line, pattern):
-    found_phrases = []
-    original_split = original.split(' ')
-    if pattern in line:
-        ''' replace pattern with pos so each pos in pattern is only taking up one item in line.split(' ') '''
-        line_split = line.split(pattern)
-        for i, phrase in enumerate(line_split):
-            words = phrase.split(' ')
-            if i < (len(line_split) - 1):
-                new_pattern = []
-                for j in range(0, len(pattern.split(' '))):
-                    pattern_index = len(words) + j - 1
-                    if pattern_index < len(original_split):
-                        new_pattern.append(original_split[pattern_index])
-                found_phrases.append(' '.join(new_pattern))            
-    if len(found_phrases) > 0:
-        return found_phrases, pattern
-    return False, False
-
-def get_pattern_stack(line, all_vars):
-    line = line.replace('\n','').replace('.', '')
-    original = line
-    pattern_stack = {}
-    pos_line = convert_to_pattern_format(line)
-    for pattern in all_vars['patterns']:
-        found, adjusted_pattern = find_pattern(original, pos_line, pattern)
-        if found:
-            if adjusted_pattern not in pattern_stack:
-                pattern_stack[adjusted_pattern] = found
-            else:
-                pattern_stack[adjusted_pattern].extend(found)
-    return pattern_stack
-
-def convert_to_pattern_format(line):
-    new_line = []
-    for word in line.split(' '):
-        pos = get_pos(word)
-        val = pos if pos else word # to do: restrict by pattern_words
-        new_line.append(val)
-    line = ' '.join(new_line)
-    return line
-
 def concatenate_species(data):
     data_lines = data.split('.')
     new_lines = []
@@ -161,9 +88,8 @@ def get_clauses(line, row, all_vars):
     - the response object should be a list of the acting subject, verb, & object:
         row['clauses'] = ['chemical', 'caused', 'reaction'], ['experiment', 'was', 'successful']]
 
-    active: x  || did  ||  this and then y  ||  did  ||  z
-    passive: this  ||  was done  ||  by x and then z  ||  was done  ||  by y
-
+    active: x  -  did  -  this and then y  -  did  -  z
+    passive: this  -  was done  -  by x and then z  -  was done  -  by y
     '''
     line = rearrange_sentence(line)
     active = get_active(line)
@@ -235,29 +161,40 @@ def get_most_common_words(counts, top_index):
             return max_words
     return False
 
-def get_structural_metadata(line, title, article_words, article_string, index, row, metadata_keys, all_vars):
+def get_similar_lines(row, line, title):
+    max_line = ''
+    if line != title:
+        counts = {}
+        similarity = get_similarity_to_title(line, title)
+        if similarity:
+            for line, score in similarity.items():
+                if score not in row['title_similarities']:
+                    counts[score] = line
+                    row['title_similarities'][line] = score
+        max_score = max(counts.keys())
+        max_line = counts[max_score]
+    return max_line, row
+
+def get_structural_metadata(line, article_string, index, row, metadata_keys, all_vars):
+    lines = article_string.split('\n')
     line = remove_standard_punctuation(line)
-    similarity = get_similarity_to_title(line, title)
-    if similarity:
-        for line, score in similarity.items():
-            if line not in row['title_similarities']:
-                row['title_similarities'][line] = score
-    pattern_stack = get_pattern_stack(line, all_vars)
-    if pattern_stack:
-        for key, val in pattern_stack.items():
-            if key not in row['pattern_stack']:
-                row['pattern_stack'][key] = val
+    most_similar_line, row = get_similar_lines(row, line, lines[0])
+    line_patterns = get_patterns_in_line(line, all_vars)
+    if line_patterns:
+        for key, val in line_patterns.items():
+            if key not in row['line_patterns']:
+                row['line_patterns'][key] = val
             else:
-                row['pattern_stack'][key].extend(val)
+                row['line_patterns'][key].extend(val)
     row = get_pos_in_line(line, row)
-    blob = get_blob(line)
-    phrases = blob.noun_phrases if blob else []
+    phrases = get_phrases(line)
     if phrases:
         row['phrases'] = phrases
     row = get_names(article_string, line, row)
     # line = remove_names(line, row['names'])
     row = get_clauses(line, row, all_vars)
     tagged = pos_tag(word_tokenize(line))
+    article_words = article_string.split(' ')
     row = get_counts(article_words, article_string, tagged, line, row)
     for key in row:
         if key in index:
@@ -270,45 +207,6 @@ def get_structural_metadata(line, title, article_words, article_string, index, r
                     else:
                         index[key][k] = set(v)
     return index, row
-
-def get_active(line):
-    ''' check for verb tenses normally used in passive sentences 
-    VBD: Verb, past tense #thought, did, gave
-    VBG: Verb, gerund or present participle #thinking, doing, giving
-    VBN: Verb, past participle #had thought, had done, had given
-    VBP: Verb, non-3rd person singular present 
-    VBZ: Verb, 3rd person singular present
-    # had been done = past perfect
-
-    test cases:
-    pattern = "A were subjected to B induced by C of D"
-    pattern_with_pos = "A were subjected to B induced by C of D"
-    - "Rats were subjected to liver damage induced by intra-peritoneal injection of thioacetamide" => 
-        "intra-peritoneal thioacetamide injection induced liver damage in rats"
-        noun_phrases for this would be "intra-peritoneal thioacetamide injection", "liver damage" and "rats"
-    - "chalcone isolated from Boesenbergia rotunda rhizomes" => "Boesenbergia rotunda rhizomes isolate chalcone"
-
-    keep in mind:
-        if you standardize "injection of thioacetamide" to "thioacetamide injection", 
-        your other pattern configuration wont work, so either 
-        add more patterns, change the pattern, or apply pattern function before this one
-
-    '''
-    passive_patterns = [
-        '[was had has] [been done] past_participle [to by]',
-        '[noun verb] of [noun verb]'
-    ]
-    formatted_line = convert_to_pattern_format(line)
-    passive = 0
-    for p in passive_patterns:
-        keywords_found = [True for x in passive_keywords if x in line]
-        found = find_pattern(line, formatted_line, p)
-        if found:
-            passive += 1
-        passive += len(keywords_found)
-    if passive > 2:
-        return False
-    return True
 
 def get_phrase_with_word(word, phrases, line):
     phrase_string = ' '.join(phrases)
@@ -366,11 +264,11 @@ taken_out [
     'were_R', 'likely_B', 'imbalances_N', 'diseases_N', 'molecules_N', 'besides_N', 'broader_J', 'ways_N'
 ]
 pattern stack [
-    {'[NN || NNP || NNS || JJ || JJR] of [NN || NNP || NNS || JJ || JJR]': ['understanding of type']}, 
-    {'[NN || NNP || NNS || JJ || JJR] of [NN || NNP || NNS || JJ || JJR]': ['professor of medicine']}, 
-    {'[NN || NNP || NNS || JJ || JJR] of [NN || NNP || NNS || JJ || JJR]': ['University of Michigan']}, 
-    {'[NN || NNP || NNS || JJ || JJR] of [NN || NNP || NNS || JJ || JJR]': ['molecules of insulin']}, 
-    {'[NN || NNP || NNS || JJ || JJR] of [NN || NNP || NNS || JJ || JJR]': ['expression of chaperone']}
+    {'|NN NNP NNS JJ JJR| of |NN NNP NNS JJ JJR|': ['understanding of type']}, 
+    {'|NN NNP NNS JJ JJR| of |NN NNP NNS JJ JJR|': ['professor of medicine']}, 
+    {'|NN NNP NNS JJ JJR| of |NN NNP NNS JJ JJR|': ['University of Michigan']}, 
+    {'|NN NNP NNS JJ JJR| of |NN NNP NNS JJ JJR|': ['molecules of insulin']}, 
+    {'|NN NNP NNS JJ JJR| of |NN NNP NNS JJ JJR|': ['expression of chaperone']}
 ]
 '''
 

@@ -156,8 +156,8 @@ def get_synthesis_instructions(article):
       and the set of equipment necessary:
         - beakers
         - dropper
-        - heater || rotary evaporator
-        - homogenizer || microfluidizer
+        - --heater rotary-evaporator--
+        - --homogenizer micro-fluidizer--
 
       any compounds necessary:
         - cop_oil, amb, dmac, ethanol, double distilled water, TPGS, soya lecithin
