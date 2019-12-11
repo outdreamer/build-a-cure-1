@@ -29,25 +29,19 @@ def concatenate_species(data):
     data = '.'.join(new_lines)
     return data
 
-def get_counts(article_words, data, tagged, line, row):
-    object_pos = ['NNP', 'NNS', 'JJR'] 
-    for item in tagged:
-        w = item[0].lower()
-        if item[1] in object_pos:
-            w_upper = w.upper()
-            w_name = ''.join([w[0].upper(), w[1:]])
-            upper_count = article_words.count(w_upper) # find acronyms, ignoring punctuated acronym
-            count = data.count(w)
-            if item[0] == w_name and w_name != article_words[0] and w_name not in ' '.join(row['names']): # exclude first word in sentence
-                if upper_count > 0 and upper_count <= count:
-                    if upper_count not in row['counts']:
-                        row['counts'][upper_count] = set()
-                    row['counts'][upper_count].add(w_upper)
-                else:
-                    if count > 0:
-                        if count not in row['counts']:
-                            row['counts'][count] = set()
-                        row['counts'][count].add(w)
+def get_counts_in_line(words, row):
+    ''' to do: nouns with highest counts are likely to be central objects '''
+    for w in words:
+        count = words.count(w)
+        w_upper = w.upper()
+        w_name = w.capitalize() if w.capitalize() != words[0] else w
+        upper_count = words.count(w_upper) # find acronyms, ignoring punctuated acronym
+        if count > 0 or upper_count > 0:
+            count_num = upper_count if upper_count <= count else count
+            count_val = w_upper if upper_count <= count else w 
+            if count_num not in row['counts']:
+                row['counts'][count_num] = set()
+            row['counts'][count_num].add(count_val)
     if len(row['counts']) > 0:
         common_words = get_most_common_words(row['counts'], 3) # get top 3 tiers of common words
         if common_words:
@@ -79,56 +73,6 @@ def get_names(article_words, line, row):
     line = ' '.join([w for w in line.split(' ') if w not in row['names']])
     return row, line
 
-def get_clauses(line, row, all_vars):
-    '''
-    - clauses are relationships between subject and objects in line
-    - retrieved clauses should be a list separated by subjects, 
-        containing the acting subject, verb, & object:
-        clauses = ['chemical', 'caused', 'reaction'], ['experiment', 'was', 'successful']]
-    - active: x  -  did  -  this and then y  -  did  -  z
-    - passive: this  -  was done  -  by x and then z  -  was done  -  by y
-    '''
-    line = rearrange_sentence(line)
-    active = get_active(line)
-    sentence_pieces = [] # break up sentence by verbs
-    sentence_piece = []
-    for w in line.split(' '): 
-        if len(w) > 0:
-            if '(' in w:
-                sentence_pieces.append(' '.join(sentence_piece))
-                sentence_piece = [w.replace('(', '')]
-            elif ')' in w:
-                sentence_piece.append(w.replace(')', ''))
-                sentence_pieces.append(' '.join(sentence_piece))
-                sentence_piece = []
-            elif w not in row['verbs']:
-                sentence_piece.append(w)
-            else:
-                sentence_pieces.append(' '.join(sentence_piece))
-                sentence_pieces.append(w) # add the verb separately
-                sentence_piece = []
-    for j, s in enumerate(sentence_pieces):
-        s_split = s.split(' ') if type(s) == str else s
-        for i, word in enumerate(s_split):
-            if word in row['verbs']:
-                prev_object = False if i < 1 else get_object_by_position(i, s_split, 'prev', row['nouns'], row['phrases'])
-                prev_object = sentence_pieces[j - 1] if prev_object is False and j > 0 else prev_object
-                next_object = False if i == (len(sentence_pieces) - 1) else get_object_by_position(i, s_split, 'next', row['nouns'], row['phrases'])
-                next_object = sentence_pieces[j + 1] if next_object is False and j < (len(sentence_pieces) - 1) else next_object
-                if active:
-                    if prev_object:
-                        row['subjects'].add(prev_object)
-                        if next_object:
-                            row['clauses'].add(' '.join([prev_object, word, next_object]))
-                else:
-                    active_s = change_to_infinitive(word)
-                    active_s = 'was' if active_s == 'be' else active_s # to do: handle other cases where infinitive is linguistically awkward bc clauses will be re-used later
-                    if next_object:
-                        row['subjects'].add(next_object)
-                        if prev_object:
-                            row['clauses'].add(' '.join([next_object, active_s, prev_object]))
-    return row 
-
 def get_similarity_to_title(string, title):
     string_split = string.split(' ')
     title_split = title.split(' ')
@@ -157,9 +101,7 @@ def get_similar_lines(row, line, title):
         max_line = counts[max_score]
     return max_line, row
 
-def get_structural_metadata(line, article_string, index, row, metadata_keys, all_vars):
-    lines = article_string.split('\n')
-    most_similar_line, row = get_similar_lines(row, line, lines[0])
+def get_structural_metadata(line, row, metadata_keys, all_vars):
     line_patterns = get_patterns_in_line(line, all_vars)
     if line_patterns:
         row['line_patterns'] = line_patterns
@@ -169,20 +111,8 @@ def get_structural_metadata(line, article_string, index, row, metadata_keys, all
         row['phrases'] = phrases
     row, line = get_names(article_string, line, row)
     row = get_clauses(line, row, all_vars)
-    tagged = pos_tag(word_tokenize(line))
-    article_words = article_string.split(' ')
-    row = get_counts(article_words, article_string, tagged, line, row)
-    for key in row:
-        if key in index:
-            if type(index[key]) == set:
-                index[key] = index[key].union(row[key])
-            elif type(index[key]) == dict:
-                for k, v in row[key].items():
-                    if k in index[key]:
-                        index[key][k] = index[key][k].union(v)
-                    else:
-                        index[key][k] = set(v)
-    return index, row
+    row = get_counts_in_line(line, row)
+    return row
 
 def get_phrase_with_word(word, phrases, line):
     phrase_string = ' '.join(phrases)

@@ -10,7 +10,7 @@ def unconjugate(verb, pos, pos_tags):
     ''' the basic form of a verb is VB, so if this is a verb, 
         convert all other verb forms to that verb form
     '''
-    tag = get_nltk_pos_of_word(verb)
+    tag = get_nltk_pos(verb)
     if tag != 'VB':
         if tag in pos_tags['verbs']:
             base_verb = change_to_infinitive(verb)
@@ -26,6 +26,18 @@ def convert_words_to_pos(line, all_vars):
         new_line.append(val)
     line = ' '.join(new_line)
     return line
+
+def get_nltk_objects(tag_key, line, all_vars):
+    items = []
+    if tag_key in all_vars['pos_tags']:
+        tagged = pos_tag(word_tokenize(line))
+        if tagged:
+            for item in tagged:
+                if item[1] in all_vars['pos_tags'][tag_key]:
+                    items.append(item[0])
+    if len(items) > 0:
+        return items
+    return False
 
 def convert_nltk_tags_to_pos_names(source_list, all_vars):
     ''' this function converts 'NN' => 'noun'  '''
@@ -43,7 +55,7 @@ def convert_nltk_tags_to_pos_names(source_list, all_vars):
         return new_list
     return False
 
-def get_nltk_pos_of_word(word):
+def get_nltk_pos(word):
     tagged = pos_tag(word_tokenize(word))
     if len(tagged) > 0:
         for item in tagged:
@@ -54,26 +66,21 @@ def get_nltk_pos_of_word(word):
 def get_pos(word, all_vars):
     ''' get 'noun' from 'voter' rather than 'NN' '''
     if len(word) > 0:
-        pos = get_nltk_pos_of_word(word)
+        pos = get_nltk_pos(word)
         pos_key = pos
-        for key, val in all_vars['pos_tags'].items():
-            if pos in val and key in all_vars['supported_tags']:
-                return key
-        print('get_pos: unknown word type', word, pos)
+        if pos not in all_vars['pos_tags']['exclude']:
+            for key, val in all_vars['pos_tags'].items():
+                if pos in val and key in all_vars['supported_tags']:
+                    return key
     return False
 
 def get_pos_tags():
     pos_tags = {}
-    article_tags = ['question', 'passive', 'list', 'phrase', 'clause']
-
     ''' I. SUBSETS '''
-    pos_tags['list'] = ['LS']
-    ''' LS: List item marker - 1) A A. SP-44001 * a first one '''
 
-    pos_tags['conjunction'] = ['CC', 'IN']
-    '''
-        CC: Coordinating conjunction - 'n and both but either et for less minus neither nor or plus so therefore times v. versus vs. whether yet
-        IN: Preposition or subordinating conjunction - among upon whether out pro despite on by below within for near behind atop around if until below next into if beside
+    pos_tags['list'] = ['LS']
+    ''' 
+        LS: List item marker - 1) A A. SP-44001 * a first one 
     '''
     pos_tags['phrase'] = ['PP', 'NNP', 'VP']
     '''
@@ -86,6 +93,7 @@ def get_pos_tags():
         S: Simple declarative clause
         SBAR: Clause introduced by a (possibly empty) subordinating conjunction
     '''
+    pos_tags['conditional'] = ['CC', 'IN', 'RB', 'WRB', 'JJ'] # 'RB' points to 'even', 'WRB' points to when, 'JJ' describes 'due'
 
     pos_tags['question'] = ['SBARQ', 'SQ']
     '''
@@ -134,28 +142,33 @@ def get_pos_tags():
         JJR: Adjective, comparative - bigger
         JJS: Adjective, superlative - biggest
     '''
-    pos_tags['symbolic'] = ['CD', 'SYN']
+    pos_tags['sym'] = ['CD', 'SYN']
     '''
         CD: Cardinal number - ten, 1.0, IX, '60s', DM2, mid-1890, 1,000, dozen
         SYM: Symbol # took out symbols in replace_syns()   
     '''
     # once you establish coordinating relationships or ratios, remove determiners & prepositions 
-    pos_tags['determiner'] = ['DT', 'PDT', 'WDT']
+    pos_tags['det'] = ['DT', 'PDT', 'WDT']
     '''
         DT: Determiner - all an another any both each either every half many much nary neither no some such that the them these this those
         PDT: Pre determiner - all both half many quite such sure this
         WDT: Wh-determiner - that what whatever which whichever
     '''
-    pos_tags['preposition'] = ['TO', 'PP']
+    pos_tags['prep'] = ['TO', 'PP']
     '''
         TO: "to" as preposition or infinitive marker
         PP: Preposition Phrase
+    '''
+    pos_tags['conj'] = ['CC', 'IN']
+    '''
+        CC: Coordinating conjunction - 'n and both but either et for less minus neither nor or plus so therefore times v. versus vs. whether yet
+        IN: Preposition or subordinating conjunction - among upon whether out pro despite on by below within for near behind atop around if until below next into if beside
     '''
     pos_tags['all_nouns'] = ['NN', 'JJ', 'JJR', 'NNS', 'NNP', 'NNPS', 'RB']
 
     ''' III. REMOVE '''
     # safe to remove pronouns unless theres ambiguity - converted sentence should be less ambiguous
-    pos_tags['exclude'] = ['UN', 'EX', 'FW', 'DT', 'TO', 'PRP', 'PRP$', 'WP', 'WP$', 'POS']
+    pos_tags['exclude'] = ['UN', 'EX', 'FW', 'TO', 'PRP', 'PRP$', 'WP', 'WP$', 'POS']
     ''' 
         UH: interjection - goodbye hey amen huh uh shucks heck anyways
         EX: Existential there - 'there' (in 'there exists')
@@ -168,7 +181,7 @@ def get_pos_tags():
     '''
     return pos_tags
 
-def get_ratio(word, number_of_items):
+def get_determiner_ratio(word, number_of_items):
     '''
     word = 'giraffes'
     number_of_items = number of giraffes

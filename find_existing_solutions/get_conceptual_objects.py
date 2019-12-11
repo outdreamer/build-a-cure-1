@@ -1,4 +1,3 @@
-from nltk import CFG
 from nltk import word_tokenize, pos_tag, ne_chunk
 
 from get_index_def import get_empty_index

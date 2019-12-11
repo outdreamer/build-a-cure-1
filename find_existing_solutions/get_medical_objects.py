@@ -40,6 +40,7 @@ Patients:
 
 Side effect keywords to use to test relationships derived with nlp tools:
   - nouns: effect, activation, activity, reaction, process, role
+  - roles: intrinsically related to functions, intents, strategies, & mechanisms
   - adjectives:
   - objects: 
     - functions: attenuate, enhance, reduce, down/up/regulate, stimulate, de/activate, dis/enable, absorb, catalyze, alleviate, suppress, decline, increase, enrich, moderate, adjust, change
@@ -212,6 +213,16 @@ def get_related_components(component):
     such as important adjacent compounds which this one frequently turns into
     or other variations of the compound which have very different functionality
     '''
+    related_components = set()
+    definitions = get_definition_keywords(word)
+    if definitions:
+        if len(definitions) > 0:
+            for d in definitions:
+                tagged = pos_tag(word_tokenize(d))
+                print('tagged definition', tagged)
+                for item in tagged:
+                    if item[1] in all_vars['pos_tags']['all_nouns']:
+                        related_components.add(item[0])
     return component
 
 def get_treatments(intent, hypothesis, line, title, row, metadata, all_vars):

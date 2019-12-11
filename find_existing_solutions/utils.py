@@ -1,11 +1,11 @@
 import json, itertools, csv, os
 import nltk
-from nltk import pos_tag, word_tokenize 
+from nltk import CFG, pos_tag, word_tokenize, ne_chunk
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet
 from nltk.stem import SnowballStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
-from textblob import TextBlob
+from textblob import TextBlob, Sentence, Word, WordList
 
 lemmatizer = WordNetLemmatizer()
 stop = set(stopwords.words('english'))
@@ -15,22 +15,25 @@ from get_pos import *
 
 ''' SIMILARITY FUNCTIONS '''
 
-def get_correlation_of_relationship(intent, line):
-    blob = get_blob(line)
-    print("\tline sentiment", blob.sentiment, "line", line)
-    if intent:
-        intent_blob = get_blob(intent)
-        print("\tintent sentiment", intent_blob.sentiment, "intent", intent)
-    return get_polarity(line)
-
 def get_polarity(line):
-    blob = get_blob(line)
-    if blob:
-        return blob.sentiment.polarity
+    line_blob = get_blob(line)
+    sentiment = line_blob.sentiment
+    if sentiment:
+        if sentiment.polarity:
+            return roun(sentiment.polarity, 1)
     return 0
 
+def correct_spelling(line):
+    blob = textblob.Sentence(line)
+    if blob:
+        return blob.correct()
+    return text
+
+def get_subjectivity(line):
+    return line
+
 def get_definitions(word):
-    defs = Word(base_word).definitions
+    defs = Word(word).definitions
     if defs:
         print('\tdefinitions', defs)
         return defs
@@ -39,6 +42,7 @@ def get_definitions(word):
 def get_definition_keywords(word):
     ''' add option to use local_database/index (phrases, relationships) or pull from a data source '''
     defs = get_definitions(word)
+    print('defs', word, defs)
     if defs:
         keywords = []
         for d in defs:
@@ -52,9 +56,9 @@ def get_definition_keywords(word):
 ''' GET STRUCTURAL TYPE FUNCTIONS '''
 
 def get_trees(line):
-    print('getting trees for line', line)
     grammar_entries = ['S -> NP VP', 'PP -> P NP', 'NP -> Det N | NP PP', 'VP -> V NP | VP PP']
-    tagged = pos_tag(word_tokenize(line)) # [('This', 'DT'), ('is', 'VBZ'), ('a', 'DT'), ('Foo', 'NNP'), ('Bar', 'NNP'), ('sentence', 'NN'), ('.', '.')]
+    tagged = pos_tag(word_tokenize(line))
+    '''
     grammar_dict = {}
     for item in tagged:
         pos = item[1]
@@ -75,6 +79,7 @@ def get_trees(line):
         parser = nltk.ChartParser(grammar)
         for tree in parser.parse(line):
              print('tree', tree)
+    '''
     trees = ne_chunk(tagged)
     # Tree('S', [('This', 'DT'), ('is', 'VBZ'), ('a', 'DT'), Tree('ORGANIZATION', [('Foo', 'NNP'), ('Bar', 'NNP')]), ('sentence', 'NN'), ('.', '.')])
     print('trees', trees)
@@ -98,6 +103,14 @@ def get_blob(string):
         return TextBlob(string)
     return False
 
+def get_singular(word):
+    wl = WordList((word))
+    singular_list = wl.singularize()
+    if len(singular_list) > 0:
+        for item in singular_list:
+            return item
+    return False
+
 def change_to_infinitive(verb):
     infinitive = lemmatizer.lemmatize(verb, 'v')
     return infinitive
@@ -117,107 +130,6 @@ def get_pos_in_line(line, row, all_vars):
             else:
                 row['taken_out'].add('_'.join([word, pos]))
     return row
-
-def get_active(line, all_vars):
-    '''
-    check for verb tenses normally used in passive sentences 
-    # had been done = past perfect
-
-    test cases:
-    - "protein that modulates a signaling pathway" => "signaling pathway-changing protein" 
-    pattern = "A were subjected to B induced by C of D"
-    pattern_with_pos = "A were subjected to B induced by C of D"
-
-    - "Rats were subjected to liver damage induced by intra-peritoneal injection of thioacetamide" => 
-        "intra-peritoneal thioacetamide injection induced liver damage in rats"
-        noun_phrases for this would be "intra-peritoneal thioacetamide injection", "liver damage" and "rats"
-    - "chalcone isolated from Boesenbergia rotunda rhizomes" => "Boesenbergia rotunda rhizomes isolate chalcone"
-
-    keep in mind:
-        if you standardize "injection of thioacetamide" to "thioacetamide injection", 
-        your other pattern configuration wont work, so either 
-        add more patterns, change the pattern, or apply pattern function before this one
-    '''
-    active_line = None # to do: need a map between passive & active patterns
-    passive = 0
-    for pattern in all_vars['pattern_index']['passive']:
-        found = is_pattern_in_line(line, pattern, all_vars)
-        if found:
-            passive += found
-        passive += len(keywords_found)
-    if passive > 3:
-        active = apply_pattern_map(line, 'active', all_vars)
-    if active_line:
-        return active_line
-    return False
-
-def get_metrics(line):
-    '''
-    find any metrics in this line
-    to do: some metrics will have letters other than expected
-    pull all the alphanumeric strings & filter out dose information
-    '''
-    metrics = set()
-    split_line = line.split(' ')
-    for i, word in enumerate(split_line):
-        numbers = [w for w in word if w.isnumeric()]
-        if len(numbers) > 0:
-            if len(numbers) == len(word):
-                next_word = split_line[i + 1] if (i + 1) < len(split_line) else ''
-                if len(next_word) < 5:
-                    # to do: add extra processing rather than assuming its a unit of measurement
-                    metrics.add(word)
-                    metrics.add(next_word) # '3 mg'
-            else:
-                metrics.add(word) # '3mg'
-    return metrics
-
-def get_modifier(words, row, all_vars):
-    if ' '.join(words) not in row['phrases']:
-        modifier = None
-        modified = None
-        modifier_substrings = ["or", "er", "ed", "ing"]       
-        for word in words:
-            for m in modifier_substrings:
-                split = word.split(m)
-                if split[-1] == m:
-                    modifier = word
-        return modified, modifier
-    return False, False
-    
-def get_modifiers(words, row, all_vars):
-    '''
-    - we're isolating modifiers bc theyre the smallest unit of 
-        functions (inputs, process, outputs)
-        which can be embedded in phrases, clauses, and sentences
-    - we wouldnt add noun modifiers which imply an action in the past which wont be repeated:
-        "protein isolate"
-    - only verb modifiers which imply an action in the present to indicate ongoing relevant functionality:
-        "ionizing radiation", "ionizer of radiation"
-    - noun modifiers should be indexed as phrases, so get_phrases has to be called before this function
-    '''
-    modifier_sets = []
-    for pattern in all_vars['pattern_index']['modifier']:
-        subsets = get_source_wordsets_for_pattern(' '.join(words), pattern)
-        if subsets:
-            for subset in subsets:
-                modified, modifier = get_modifier(subset, row, all_vars)
-                if modified and modifier:
-                    modifier_sets.append(' '.join([modified, modifier]))
-    word_range = 3 if len(words) > 5 else 2 if len(words) > 3 else 1
-    for i in range(0, word_range):
-        subset = get_subset_of_list(words, word, i, 'both')
-        modified, modifier = get_modifier(subset, row, all_vars)
-        if modified and modifier:
-            modifier_sets.append(' '.join([modified, modifier]))
-    if len(modifier_sets) > 0:
-        return modifier_sets
-    return False
-
-def get_delimiter(line):
-    ''' get a delimiter that isnt in the line '''
-    delimiter = '***' if '***' not in line else '###'
-    return delimiter
 
 ''' STORAGE FUNCTIONS '''
 
@@ -244,12 +156,13 @@ def add_objects(paths, docs):
         if os.path.isfile(path):
             contents = read(path)
             if contents:
-                if object_type not in docs:
-                    docs[object_type] = []
-                docs[object_type].append(contents)
+                lines = contents.split('\n')
+                if len(lines) > 0:
+                    docs[object_type] = set(lines)
     return docs
 
 def save(path, data):
+    print('\t\twriting', path)
     path = path.replace('txt', 'json') if type(data) != str else path
     with open(path, 'w') as f:
         if 'json' in path:
@@ -263,7 +176,6 @@ def read(path):
     index = None
     if 'DS_Store' not in path:
         if os.path.exists(path):
-            print('found path', path)
             with open(path, 'r') as f:
                 index = json.load(f) if 'json' in path else f.read()
                 f.close()
@@ -278,14 +190,76 @@ def write_csv(rows, header_list, path):
         return True 
     return False
 
-''' WORD REMOVAL FUNCTIONS '''
+def downloads(paths):
+    for path in paths:
+        if not os.path.exists(path):
+            ''' this is the first run so download packages '''
+            os.mkdir(path)
+            try:
+                _create_unverified_https_context = ssl._create_unverified_context
+            except AttributeError:
+                pass
+            else:
+                ssl._create_default_https_context = _create_unverified_https_context
+            # download all the corpuses by running nltk.download() & selecting it manually in the gui that pops up, 
+            nltk.download()
+            nltk.download('punkt')
+            nltk.download('averaged_perceptron_tagger')
+            nltk.download('maxent_ne_chunker')
+    return True
+
+def is_condition(asp_words, all_vars):
+    first_word = get_first_important_word(asp_words, all_vars)
+    if first_word:
+        pos = get_pos(first_word, all_vars)
+        if pos:
+            if pos != 'noun':
+                return first_word
+    for word in asp_words:
+        if word in all_vars['clause_delimiters']:
+            return word
+    return False
+
+def get_delimiter(line):
+    ''' get a delimiter that isnt in the line '''
+    delimiter = '***' if '***' not in line else '###'
+    return delimiter
+
+def get_sentence_delimiter(text):
+    return '\n' if text.count('\n') > text.count('. ') else '. '
+
+def standardize_delimiter(text):
+    blob = get_blob(text)
+    if blob:
+        sentences = blob.sentences
+        if len(sentences) > 0:
+            return '\n'.join(sentences)
+    delimiter = get_sentence_delimiter(text)
+    if delimiter:
+        return '\n'.join(text.split(delimiter))
+    return False
 
 def standard_text_processing(text, all_vars):
     text = space_punctuation(text.strip())
     text = remove_stopwords(text)
-    replaced_text = replace_syns(text, 'all', all_vars['supported_core'])
-    text = replaced_text if replaced_text else test
-    return text       
+    replaced_text = replace_syns(text, 'all', all_vars)
+    text = replaced_text if replaced_text else text
+    return text
+
+def split_by_delimiter(line, all_vars):
+    words = []
+    word = []
+    delimiters = [] 
+    for char in line:
+        if char in all_vars['alphabet']:
+            word.append(char)
+        else:
+            delimiters.append(char)
+            words.append(''.join(word))
+            word = []
+    if len(word) > 0:
+        words.append(''.join(word))
+    return words, delimiters
 
 def space_punctuation(line):
     quotes = line.count('"')
@@ -311,7 +285,6 @@ def space_punctuation(line):
                     new_line.append(w)
         else:
             print('uneven quotes', quote_pairs, quotes, line)
-            exit()
         # now all quote content should be surrounded by parentheses instead
         line = ' '.join(new_line) if len(new_line) > 0 else line
     line = line.replace('[', ' ( ').replace(']', ' ) ').replace("'", '') # remove contraction & possession apostrophes
@@ -319,45 +292,6 @@ def space_punctuation(line):
     line = line.replace(',', ' , ').replace('  ', ' ')
     return line
 
-def rearrange_sentence(line, all_vars):
-    '''
-    this function is to position your sentence clauses in the same pattern
-    this means fulfilling the following expectations:
-    - having conditionals at the end rather than the beginning
-    so a sentence like: 
-        "in the event of onset, symptoms appear at light speed, even if you take vitamin c at the max dose"
-    is reduced to:
-        "symptoms appear quickly even with vitamin c max dose"
-    '''
-    split = line.split(',')
-    clauses = get_clauses(line)
-    clauses = [
-        "in the event of onset",
-        "symptoms appear",
-        "at light speed", 
-        "even if you take vitamin c",
-        "at the max dose"
-    ]
-    ordered_clauses = order_clauses(clauses)
-    meaningful_clauses = filter_clauses(ordered_clauses)
-    meaningful_clauses = [
-        "symptoms appear",
-        "quickly", 
-        "even with",
-        "vitamin c",
-        "max dose"
-    ]
-    converted_clauses = convert_clauses(meaningful_clauses)
-    converted_clauses = [
-        "symptoms appear",
-        "quickly", 
-        "independently of",
-        "vitamin c",
-        "max dose"
-    ]
-    line = ' '.join(converted_clauses)
-    return line
-    
 def select_option(alt_phrase):
     ''' 
         this function translates:
@@ -424,10 +358,11 @@ def remove_stopwords(line):
                 word_list.append(w)
     return ' '.join(word_list)
 
-def get_subset_of_list(word_list, word, x, direction):
+def get_ngrams(word_list, word, x, direction):
     ''' 
     get a list of words in word list starting with word 
     and iterating outward in direction x number of times 
+    to do: use blob.ngrams(n=x)
     '''
     list_length = len(word_list)
     word_index = word_list.index(word)
@@ -437,7 +372,8 @@ def get_subset_of_list(word_list, word, x, direction):
         return word_list[start:end]
     return False
 
-def get_phrases(line):
+def get_phrases(line, all_vars):
+    ''' to do: use all_vars['pos_tags']['phrase'] = ['PP', 'NNP', 'VP'] '''
     phrases = set()
     blob = get_blob(line)
     if blob:

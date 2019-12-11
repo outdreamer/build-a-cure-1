@@ -1,16 +1,18 @@
-def get_index_type(word, all_vars, categories):
+def get_types(word, all_vars):
+    return word
+
+def get_index_type(object_type, all_vars, categories):
     param_map = {
         'conditions': 'state',
         'compounds': 'elements', # not every compound will be a treatment
         'symptoms': 'side_effects',
         'functions': 'causal_layers'
     }
-    for object_type, keyword_list in all_vars['supported_core'].items():
-        if word in keyword_list or word == object_type:
-            return object_type
-        alt_type = param_map[object_type]
-        if word in all_vars['supported_core'][alt_type] or word == alt_type:
-            return object_type
+    if object_type in all_vars['supported_synonyms']:
+        return all_vars['supported_synonyms'][object_type]
+    alt_type = param_map[object_type]
+    if alt_type in all_vars['supported_synonyms']:
+        return all_vars['supported_synonyms'][alt_type]
     if len(categories) > 0:
         for c in categories:
             c_split = c.split(' ')

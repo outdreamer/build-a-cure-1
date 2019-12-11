@@ -13,99 +13,96 @@ from get_conceptual_objects import *
 from get_medical_objects import *
 from get_type import *
 
-def pull_summary_data(sources, metadata_keys, generate_source, generate_target, args, filters, all_vars):
-    ''' get index from research study api providing summaries '''
-    print('pull metadata', metadata_keys, 'args', 'generate_source', generate_source, 'generate target', generate_target, args, 'filters', filters)
-    ''' we assume the primary argument comes first - right now only supports one argument'''
-    articles = []
-    rows = []
+def pull_summary_data(sources, metadata, generate_source, generate_target, args, filters, all_vars):
+    ''' 
+    - this function indexes data from api providing articles
+    - if the local database is found, use that as starting index, otherwise build it
+    '''
+    empty_index = get_empty_index(metadata, all_vars['full_params'])
     local_database = get_local_database('data', None) # '' object param means get all objects
-    empty_index = get_empty_index(metadata_keys, all_vars['full_params'])
-    index = get_empty_index(metadata_keys, all_vars['full_params'])
+    index = local_database if local_database else empty_index
+    index['articles'] = []
+    rows = []
     for arg in args:
         for keyword in args[arg]:
-            total_results = 0
-            max_results = 10
             for source in sources:
-                for i in range(0, 10):
-                    start = i * max_results
-                    if total_results > start or total_results == 0:
-                        new_articles = get_articles(source, keyword, start, max_results, total_results, all_vars)
-                        if new_articles:
-                            articles.extend(new_articles)
-    if len(articles) > 0:
-        for a in articles:
+                index = get_articles(source, keyword, index, all_vars)
+    if len(index['articles']) > 0:
+        for a in index['articles']:
             for line in a.split('\n'):
                 row = empty_index
-                index, row = get_structural_metadata(line, text, index, row, metadata_keys, all_vars)
-                index, row = get_medical_metadata(line, index, row, metadata_keys, all_vars)
-                index, row = get_conceptual_metadata(line, index, row, metadata_keys, all_vars) #custom analysis
+                if line != lines[0]:
+                    most_similar_line, row = get_similar_lines(row, line, lines[0])
+                    if most_similar_line:
+                        row['most_similar_line'] = most_similar_line
+                index, row = get_structural_metadata(line, row, metadata, all_vars)
+                index, row = get_medical_metadata(lines, line, index, row, metadata, all_vars)
+                index, row = get_conceptual_metadata(lines line, index, row, metadata, all_vars) #custom analysis
+                index, row = update_index(row, index, empty_index, rows)
                 print('row', row)
-                if row != empty_index:
-                    for key, val in row.items():
-                        if type(val) == dict:
-                            row[key] = '::'.join(['_'.join([k,v]) for k,v in val.items()])
-                        elif type(val) == set or type(val) == list:
-                            row[key] = str('::'.join(set(val)))
-                        elif type(val) == bool:
-                            row[key] = '1' if val is True else '0'
-                        if type(index[key]) == set:
-                            index[key] = index[key].union(set(row[key]))
-                    rows.append(row)
-                    print('new index', index)
-        save('data/articles.txt', '\n'.join(articles))
 
     if len(rows) > 0:
         write_csv(rows, index.keys(), 'data/rows.csv')
-        if generate_source == 'all':
-            generate_keys = index.keys()
-        else:
-            generate_keys = generate_source.split(',')
+        generate_keys = index.keys() if generate_source == 'all' else generate_source.split(',')
         datasets = generate_datasets(generate_keys, generate_target, index, rows)
-        print('datasets', datasets)
-
     ''' save items in index '''
     for key in index:
-        ''' extract the patterns in the indexes we just built and save '''
-        extracted_patterns = extract_patterns(index[key], key, '') # get patterns for index[key] objects with object_type key
-        if extracted_patterns:
-            pos_patterns = extracted_patterns.keys()
-            word_patterns = [item for val_list in extracted_patterns.values() for item in val_list]
+        ''' get the patterns in the indexes we just built and save '''
+        patterns = extract(index[key], local_database, all_vars, 'patterns') # get patterns for index[key] objects with object_type key
+        if patterns:
+            pos_patterns = patterns.keys()
+            word_patterns = [item for val_list in patterns.values() for item in val_list]
             index['usage_patterns'] = '\n'.join(pos_patterns.extend(word_patterns))
-        print('\t\twriting', key, type(index[key]), index[key])
-        index_string = index[key] if type(index[key]) == str else '\n'.join(index[key])
-        save(''.join(['data/', key, '.txt']), index_string)
+        save(''.join(['data/', key, '.txt']), '\n'.join(index[key]))
     return articles, index, rows
 
-def get_articles(source, keyword, start, max_results, total_results, all_vars):
-    articles = []
-    url = source['url'].replace('<KEY>', keyword).replace('<START>', str(start)).replace('<MAX>', str(max_results))
-    print('url', url)
-    response = requests.get(url)
-    response_string = xml.dom.minidom.parseString(response.content)
-    if response_string:
-        if total_results == 0:
-            total_results = int(response_string.documentElement.getElementsByTagName(source['results_tag'])[0].childNodes[0].nodeValue)
-        entries = response_string.documentElement.getElementsByTagName(source['tag'])
-    else:
-        entries = json.loads(response.content)
-    if len(entries) > 0:
-        for entry in entries:
-            for node in entry.childNodes:
-                article = []
-                if node.nodeName in ['title', 'summary']:
-                    for subnode in node.childNodes:
-                        text = subnode.wholeText
-                        if len(text) > 0:
-                            processed_text = standard_text_processing(text, all_vars)
-                            text = processed_text if processed_text else text
-                            text_list = [text] if node.nodeName == 'title' else text.split('\n')
-                            article.extend(text_list)                    
-                if len(article) > 0:
-                    articles.append('\n'.join(article))
-    return articles
+def update_index(row, index, empty_index, rows):
+    if row != empty_index:
+        for key, val in row.items():
+            if type(val) == dict:
+                row[key] = '::'.join(['_'.join([k,v]) for k,v in val.items()])
+             elif type(val) == set or type(val) == list:
+                row[key] = str('::'.join(set(val)))
+            elif type(val) == bool:
+                row[key] = '1' if val is True else '0'
+            index[key] = index[key].add(row[key])
+        rows.append(row)
+    return index, rows
 
-def get_medical_metadata(line, formatted_line, title, index, row, metadata, all_vars):
+def get_articles(source, keyword, index, all_vars):
+    total = 0
+    max_count = 10
+    for i in range(0, 10):
+        start = i * max_count
+        if total > start or total == 0:
+            url = source['url'].replace('<KEY>', keyword).replace('<START>', str(start)).replace('<MAX>', str(max_count))
+            print('url', url)
+            response = requests.get(url)
+            if response.content:
+                xml_string = xml.dom.minidom.parseString(response.content)
+                if xml_string:
+                    count_tag = xml_string.documentElement.getElementsByTagName(source['count'])
+                    total = int(count_tag[0].childNodes[0].nodeValue)
+                    entries = xml_string.documentElement.getElementsByTagName(source['entries'])
+                else:
+                    entries = json.loads(response.content)
+                if len(entries) > 0:
+                    for entry in entries:
+                        for node in entry.childNodes:
+                            article = []
+                            if node.nodeName in ['title', 'summary']:
+                                for subnode in node.childNodes:
+                                    text = subnode.wholeText
+                                    if len(text) > 0:
+                                        text = standardize_delimiter(text)
+                                        text = standard_text_processing(text, all_vars)
+                                        text_list = [text] if node.nodeName == 'title' else sentences
+                                        article.extend(text_list)                    
+                            if len(article) > 0:
+                                index['articles'].append('\n'.join(article))
+    return index
+
+def get_medical_metadata(lines, line, index, row, metadata, all_vars):
     '''
     - this function determines conditions, symptoms, & treatments in the sentence 
     - this function is a supplement to get_metadata, 
@@ -116,10 +113,11 @@ def get_medical_metadata(line, formatted_line, title, index, row, metadata, all_
     '''
     intent = None
     hypothesis = None
+    title = lines[0]
     row = get_treatments(intent, hypothesis, line, title, row, metadata, all_vars)
     return index, row
 
-def get_conceptual_metadata(line, title, index, row, metadata_keys, all_vars):
+def get_conceptual_metadata(lines, line, index, row, metadata, all_vars):
     ''' 
     this function is a supplement to get_medical_objects, 
     which fetches condition, symptom, & treatment metadata,
@@ -139,6 +137,7 @@ def get_conceptual_metadata(line, title, index, row, metadata_keys, all_vars):
     summary = wikipedia.summary(suggested)
     print('summary', summary) 
     '''
+    title = lines[0]
     wikipedia.set_lang("en")
     suggested = None
     index_type = None
@@ -181,29 +180,11 @@ def get_conceptual_metadata(line, title, index, row, metadata_keys, all_vars):
     row['dependencies'] = get_dependencies('all', None, row['relationships'], 3)
     return index, row
 
-def downloads(paths):
-    for path in paths:
-        if not os.path.exists(path):
-            ''' this is the first run so download packages '''
-            os.mkdir(path)
-            try:
-                _create_unverified_https_context = ssl._create_unverified_context
-            except AttributeError:
-                pass
-            else:
-                ssl._create_default_https_context = _create_unverified_https_context
-            # download all the corpuses by running nltk.download() & selecting it manually in the gui that pops up, 
-            nltk.download()
-            nltk.download('punkt')
-            nltk.download('averaged_perceptron_tagger')
-            nltk.download('maxent_ne_chunker')
-    return True
-
 all_vars = get_vars()
 if all_vars:
     done = downloads(['data', 'datasets'])
     if done:
-        args_index, filters_index, metadata_keys, generate_target, generate_source = get_args(sys.argv, all_vars)
+        args_index, filters_index, metadata, generate_target, generate_source = get_args(sys.argv, all_vars)
         if len(args_index.keys()) == 1:
             if 'sources' in all_vars:
-                articles, index, rows = pull_summary_data(all_vars['sources'], metadata_keys, generate_source, generate_target, args_index, filters_index, all_vars)
+                articles, index, rows = pull_summary_data(all_vars['sources'], metadata, generate_source, generate_target, args_index, filters_index, all_vars)
