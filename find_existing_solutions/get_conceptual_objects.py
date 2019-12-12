@@ -85,8 +85,6 @@ def get_article_intents(article):
 
     if something (object, process, attribute) is a known output of a function, 
         its assumed to be the intent
-
-    to do: replace get_pos_in_line with call to get structural/medical metadata 
     '''
 
     '''
@@ -153,7 +151,7 @@ def get_article_intents(article):
 
 def get_object_intents(line):
     intents = {}
-    row = get_pos_in_line(row, None, all_vars)
+    row = get_pos_metadata(row, None, all_vars)
     if row:
         if 'nouns' in row:
             for n in row['nouns']:
@@ -211,24 +209,26 @@ def get_impact(function, object_name):
         - make sure the impact verb is acting on that subject so switch if its passive 
     '''
     if object_name in function:
-        row = get_pos_in_line(function, None, all_vars)
+        row = get_pos_metadata(function, None, all_vars)
         if row:
             if 'verbs' in row:
                 for v in row['verbs']:
-                    standard_verb, check_type = find_matching_synonym(v, ['synonym'], None, 'word', all_vars)
-                    if standard_verb and check_type:
-                        return standard_verb
+                    match_items = find_matching_synonym(v, ['synonym'], None, all_vars)
+                    if match_items:
+                        for verb, check_type in match_items.items():
+                            return verb
                     else:
                         ''' 
                         no supported synonym found for this verb, 
                         check for any other matches other than pos matches
                         '''
-                        verbs, check_type = find_matching_synonym(v, None, ['pos', 'synonym'], 'list', all_vars)
-                        if verbs and check_type:
-                            for sv in verbs:
-                                standard, check_type = find_matching_synonym(sv, ['synonym'], None, 'word', all_vars)
-                                if standard and check_type:
-                                    return standard_verb
+                        match_items = find_matching_synonym(v, None, ['pos', 'synonym'], all_vars)
+                        if match_items:
+                            for verb, check_type in match_items.items():
+                                match_items = find_matching_synonym(verb, ['synonym'], None, all_vars)
+                                if match_items:
+                                    for verb, check_type in match_items.items():
+                                        return verb
     return False
 
 def get_functions(line, local_database):

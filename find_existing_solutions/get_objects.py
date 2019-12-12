@@ -32,8 +32,6 @@ def find_modifier(pattern_subsets, pattern, all_vars):
         "ionizing radiation", "ionizer of radiation"
     - noun modifiers should be indexed as phrases, so get_phrases has to be called before this function
     - use cardinal numbers to get metric modifiers
-    '''
-    '''
     - apply pattern_map functionality first if it can replace patterns in modifiers 
     - otherwise continue with below logic
         convert "x subset_keyword y" to "y x"
@@ -84,56 +82,130 @@ def find_modifier(pattern_subsets, pattern, all_vars):
                     elif prev_pos == 'noun' or prev_pos == 'verb':
                         return ' '.join([modifier, prev])
     return False
-    
-
 '''
-    - you still need to deconstruct the sentence based on these dependencies 
-        so its represented accurately according to order of operations
-        example: 
-            "even x or y" should be all one clause
-            "x is a and b" or "x is a and is b" should be two clauses "x is a" and "x is b"
-            "x is a or b" should be one clause
-    - use get_modifiers to find the modifying words like inhibitor & apply them to the verb to get the final relationship
-    - add more advanced analysis for linguistic patterns of symptoms 
-        'fever that gets worse when x', or 'x reduced y and diminished z even in condition x or condition a', 
-        which should have condition x added to the previous relationships
     - clauses are relationships between subject and objects in line
-    - retrieved clauses should be a list separated by subjects, 
-        containing the acting subject, verb, & object:
-        clauses = ['chemical', 'caused', 'reaction'], ['experiment', 'was', 'successful']]
-    - active: x  -  did  -  this and then y  -  did  -  z
-    - passive: this  -  was done  -  by x and then z  -  was done  -  by y
+
+    - this function:
+        1. separates the line by subjects
+            1. identifies operators
+            2. formats the line into a set of clauses for each subject, organized by operator logic
+            3. deconstructs the sentence based on operator logic so its represented by order of operations
+                - applies operator logic to clauses to produce alternative relationships:
+                    - "x was b even with a" means a is irrelevant, so it should produce the relationships:
+                        "x was b"
+                        "a does not impact (x was b)"
+
+                    - "x was a and was b" should produce:
+                        clause "x was (a and b)"
+                        relationship "x was a"
+                        relationship "x was b"
+                        variable "(a and b)"
+
+                    - "x was a and therefore b"
+                        clause "x was a so b"
+                        relationship "a therefore b"
+                        relationship "x leads to b"
+                        variable "(a so b)"
+
+                    - "subject verb even with x or y" should produce:
+                        - "subject verb even with x"
+                        - "subject verb even with y"
+
+    - once you identify modifiers, identifying clauses is mostly a matter of 
+        identifying subjects and operators (and, because, ',')
+        
+    - retrieved clauses should be:
+        a list separated by subjects, containing the acting subject, verb, & object:
+            clauses = ['chemical', 'caused', 'reaction'], ['experiment', 'was', 'successful']]
+
     - converts a sentence like: 
             "in the event of onset, symptoms appear at light speed, even if you take vitamin c at the max dose"
         to reduced ordered form:
             "symptoms appear quickly even with vitamin c max dose"
-    - standardize modifiers & passive language
-    - positions your sentence clauses in the same pattern   
-    - handle sentences with multiple subjects - actually it should already be organized by subject into separate lines 
-    - have conditionals at the end rather than the beginning
-
-    - translate clauses based on operators into alternative relationships:
-    - "x was b even with a" means a is irrelevant, so it should produce the relationships:
-        "x was b"
-        "a does not impact (x was b)"
-
-    - translate questions into statements of intent:
-        "would there be an effect of x on y?"
-        intent = "evaluate relationship between x and y" 
+        because:
+            "in the event of onset" == low meaning clause
+            "at light speed" => reduced to "quickly"
+            "you take" => ""
+                it's implied that a patient will be taking the medicine so it doesnt need to be stated
+            "vitamin c at the max dose" => modifier pattern "max dose vitamin c"
+            "noun1 noun2 at the noun3 noun4" => "noun3 noun4 noun1 noun2"
+            "phrase1 at the phrase2" => "phrase2 phrase2"
 '''
-
-all_vars['conceptual_clause_map'] = {
-    'union': ['and', 'with'],
-    'exception': ['but', 'yet'],
-    'dependence': ['because', 'since', 'due', 'caused by'],
-    'independence': ['even', 'still', 'despite', 'in spite of', 'regardless', 'irrespective'],
-    'conditional': ['when', 'while', 'during', 'for', 'x of y'],
-    'alternate': ['or'],
-    'equal': ['is']
-}
-
+    all_vars['combined_map'] = {
+        '=': ['=-', '-=', '=+', '+=', '=='], #"x = (i - b)" => x and b equal i
+        '-': ['-+', '+-'],
+        '+': ['--', '++'],
+        '#': [
+            '#&', # even with x
+            '#!', # even without x
+            '~!' # does not increase => 'neutral' or 'independent', 'does not increase' doesnt mean 'decrease'
+            #'!noun' # no increase => 'independent'
+        ]
+    }
+    all_vars['clause_map'] = {
+        '-' : ["decrease"], # attacks
+        '+' : ["increase"], # helps
+        '=': ['is', 'like', 'equate', 'equal', 'describe', 'indicate', 'delineate', 'same', 'like', 'similar', 'imply', 'signify', 'mean'],
+        '&': ['and', 'with'],
+        '|': ['or'],
+        '^': ['but', 'yet', 'but yet', 'but rather', 'but actually', 'still', 'without', 'however', 'nevertheless' 'in the absence of', 'lacking'], # except and without
+        '%': [
+            'because', 'as', 'since', 'if', 'then', 'from', 'due', 'when', 'while', 'during', 'for', 'given',
+            'in case', 'in the event that', 'caused by', 'respective of'
+        ], # x of y is contextual "x in the context of y"
+        '#': ['even', 'still', 'despite', 'otherwise', 'in spite of', 'regardless', 'heedless', 'irrespective'],
+        '!': ['not', 'without'],
+        '~': ['function']
+    }
+    all_vars['operator_map'] = {
+        '-' : "decrease", # attacks
+        '+' : "increase", # helps
+        '=' : "equal", # is
+        '&' : "union", # with, union
+        '|' : "alternate", # or
+        '^' : "exception", # without
+        '%' : "dependent", # apply
+        '#' : "independent" # by standard
+        '!' : "not" # negating an noun or verb
+    }
+    all_vars['clause_delimiters'] = [',', ':', ';']
+    for operator, keyword_list in all_vars['clause_map'].items():
+        all_vars['clause_delimiters'].extend(keyword_list)
 
 def rearrange_sentence(line, all_vars):
+    '''
+        organizing a sentence would be a good use case for pattern_maps
+
+        line = 'x was y even with a' => 
+        separate by clause_delimiters:
+            ['x was y', 'even with', 'a']
+        isolate clauses having embedded relationships with parenthesis:
+            (if clause contains verb or verb-modifier)
+            '(x was y) even with a'
+        replace with clause_map operators:
+            '(x equal y) independent a'
+        replace with symbolic operators:
+            '(x = y) # a'
+        }
+        now you can generate the relationships based on operator logic stored in our pattern_maps: 
+        '(x = y) # a': [
+            '(x = y) # a',
+            '(x = y) # a',
+            'a (x = y) # a'
+        ]
+
+        get_relationships('(x = y) # a') = [
+            'x is y',
+            'x is y even with a',
+            'a cannot prevent (x is y)'
+        ]
+        we would store multiple patterns for the independence relationship, 
+        because a is an object and would therefore be a subject (acting agent) in some relationships, 
+        so we want to index that too, even though it seems like a duplicate
+        if a is a treatment, we definitely want the relationship:
+            "treatment a cannot prevent symptom x from being symptom y"
+            indexed with treatment a as the subject
+    '''
     split = line.split(',')
     clauses = []
     clauses = [
@@ -161,36 +233,13 @@ def rearrange_sentence(line, all_vars):
         "max dose"
     ]
     line = ' '.join(converted_clauses)
-    '''
-    check for verb tenses normally used in passive sentences 
-    # had been done = past perfect
-
-    test cases:
-    - "protein that modulates a signaling pathway" => "signaling pathway-changing protein" 
-    pattern = "A were subjected to B induced by C of D"
-    pattern_with_pos = "A were subjected to B induced by C of D"
-
-    - "Rats were subjected to liver damage induced by intra-peritoneal injection of thioacetamide" => 
-        "intra-peritoneal thioacetamide injection induced liver damage in rats"
-        noun_phrases for this would be "intra-peritoneal thioacetamide injection", "liver damage" and "rats"
-    - "chalcone isolated from Boesenbergia rotunda rhizomes" => "Boesenbergia rotunda rhizomes isolate chalcone"
-
-    keep in mind:
-        if you standardize "injection of thioacetamide" to "thioacetamide injection", 
-        your other pattern configuration wont work, so either 
-        add more patterns, change the pattern, or apply pattern function before this one
-    '''
-    active_line = None # to do: need a map between passive & active patterns
-    passive = 0
     for pattern in all_vars['pattern_index']['passive']:
         found = is_pattern_in_line(line, pattern, all_vars)
         if found:
-            passive += found
-        passive += len(keywords_found)
-    if passive > 3:
-        active = apply_pattern_map(line, 'active', all_vars)
-    if active_line:
-        return active_line
+            ''' if even one passive pattern is found, convert to active '''
+            active_line = convert_to_active(line)
+            if active_line:
+                line = active_line
     return False
 
 def split_by_relevance(line):
@@ -217,14 +266,12 @@ def split_by_relevance(line):
 def get_conditionals(line, row, nouns, clauses, all_vars):
     ''' assumes rearrange_sentence was already called on line used to generate clauses '''
     print('\nclauses', clauses)
-
     '''
     row['functions'].add(word)
     # relationships = treatments, intents, functions, insights, strategies, mechanisms, patterns, systems
     row['components'].add(word) 
     # compounds, symptoms, treatments, metrics, conditions, stressors, types, variables
     '''
-
     items = {'conditional': [], 'subject': '', 'verb_relationships': [], 'delimiters': []}
     all_vars['clause_delimiters'].append('1')
     for i, c in enumerate(clauses):
@@ -306,10 +353,39 @@ def get_clauses(line, row, all_vars):
                             row['clauses'].add(' '.join([prev_object, word, next_object]))
                 else:
                     active_s = change_to_infinitive(word)
-                    active_s = 'was' if active_s == 'be' else active_s # to do: handle other cases where infinitive is linguistically awkward bc clauses will be re-used later
+                    active_s = 'was' if active_s == 'be' else active_s
+                    # to do: handle other cases where infinitive is linguistically awkward bc clauses will be re-used later
                     if next_object:
                         row['subjects'].add(next_object)
                         if prev_object:
                             row['clauses'].add(' '.join([next_object, active_s, prev_object]))
     return row 
     
+def get_object_by_position(index, sentence_pieces, position, check_list, phrases):
+    relevant_piece = sentence_pieces[index - 1] if position == 'prev' else sentence_pieces[index + 1] if index < (len(sentence_pieces) - 1) else ''
+    if relevant_piece != '':
+        sequenced_words = relevant_piece.split(' ') if position == 'next' else relevant_piece.split(' ').reverse()
+        for w in sequenced_words:
+            phrase_string = ' '.join(phrases)
+            if w in phrase_string:
+                for phrase in phrases:
+                    for i, phrase_word in enumerate(phrase.split(' ')):
+                        if phrase_word == w and i == 0:
+                            ''' this is the first word in a phrase so get the whole phrase '''
+                            return phrase
+            elif w in check_list: # check that its in the check_list passed in before returning it
+                return w
+    return False
+
+def get_ngrams(word_list, word, x, direction):
+    ''' 
+    get a list of words of length (2x + 1) in word list starting with word 
+    and iterating outward in direction x number of times 
+    '''
+    list_length = len(word_list)
+    word_index = word_list.index(word)
+    if word_index:
+        start = word_index - x if word_index > x else word_index if direction == 'next' else 0
+        end = word_index + x if (word_index + x) < list_length else word_index if direction == 'prev' else list_length
+        return word_list[start:end]
+    return False

@@ -39,17 +39,18 @@ def get_nltk_objects(tag_key, line, all_vars):
         return items
     return False
 
-def convert_nltk_tags_to_pos_names(source_list, all_vars):
-    ''' this function converts 'NN' => 'noun'  '''
+def convert_pos_names_to_nltk_tags(source_list, all_vars):
+    '''
+        pos_tags['all_nouns'] = ['NN', 'JJ', 'JJR', 'NNS', 'NNP', 'NNPS', 'RB']
+        this function converts 'noun' => '|NN JJ JJR NNS NNP NNPS RB|'  
+    '''
     new_list = []
     for p in source_list:
         for pos in p.split(' '):
-            # pos should be '__VP' or 'VB' or '|NN' or 'NNP|'
-            isolated_pos = pos.replace('__', '').replace('|', '')
-            for tag, tags in all_vars['pos_tags'].items():
-                if isolated_pos in tags:
-                    pos_tag = pos.replace(isolated_pos, tag)
-                    p = p.replace(pos, pos_tag)
+            if pos in all_vars['pos_tags']:
+                nltk_pos = ''.join(['|', ' '.join(all_vars['pos_tags'][pos]), '|'])
+                # pos should now be '__VP' or 'VB' or '|NN NNP|'
+                p = p.replace(pos, nltk_pos)
         new_list.append(p)
     if len(new_list) > 0:
         return new_list

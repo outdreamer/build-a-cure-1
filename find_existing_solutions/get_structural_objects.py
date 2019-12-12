@@ -5,14 +5,16 @@ from get_objects import *
 
 def get_relationships_from_clauses(clauses, line, nouns, all_vars):
     '''
-    this function is to catch all the meaning in clauses like: 
-        "x reduced b inhibitor" => "x - (i - b)"
-    and your current logic will only capture: 
-        "x reduced b"
-    when in reality youd want to store the full clause so the relationships can be derived:
-        "x increases b" => "x + b"
-        "x reduces inhibitor" => "x - i"
-        "inhibitor reduces b" => "i - b"ƒ
+        - this is a generative function, applying each subject to each verb & each clause 
+            to generate the full set of relationships in the sentence
+        - this function is to catch all the meaning in clauses like: 
+            "x reduced b inhibitor" => "x - (i - b)"
+        - and your current logic will only capture: 
+            "x reduced b"
+        when in reality youd want to store the full clause so the relationships can be derived:
+            "x increases b" => "x + b"
+            "x reduces inhibitor" => "x - i"
+            "inhibitor reduces b" => "i - b"
     '''
     operator_clauses = {}
     '''
@@ -128,12 +130,11 @@ def add_items(word_sets, cd, clause_delimiters):
     return ' '.join(new_items)
 
 def get_next_clause(delimiter, index, all_sentence_pieces):
-    next_clause = None
     for i, clause in enumerate(all_sentence_pieces):
         if i == index and clause == delimiter:
-            if i < (len(all_sentence_pieces) - 1):
+            if (i + 1) < len(all_sentence_pieces):
                 next_clause = all_sentence_pieces[i + 1]
-                if len(next_clause.split(' ')) > 1:
+                if len(next_clause) > 1:
                     return next_clause
                 else:
                     new_index = index + 1

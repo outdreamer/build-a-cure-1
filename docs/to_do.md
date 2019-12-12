@@ -64,9 +64,30 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
 # Structural:
 
+  - consolidate calls to find_matching_synonym() to make sure its only being run when necessary
+
+  - finish convert_to_active():
+      puts subject at start of sentence
+      puts conditions at end of sentence
+      produces more phrases like:
+        - "protein that modulates a signaling pathway" => "signaling pathway-changing protein" 
+
+  - ensure order of operations:
+    convert_to_active()
+    get phrases
+    get modifiers
+    get clauses 
+    get relationships
+
+  - add support for numerical indexes of variables in patterns & pattern_maps
+    "noun1 noun2 at the noun3 noun4" => "noun3 noun4 noun1 noun2"
+    "phrase1 at the phrase2" => "phrase2 phrase2"
+
+  - standardize verbs before adding them - this will make some patterns invalid and might make it more difficult to identify modifiers & so on
+
   - add read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
 
-  - add treatment keyword check & add treatment keywords
+  - add keyword check function
   
   - add metadata check to make sure they requested this data
 

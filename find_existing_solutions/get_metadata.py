@@ -42,7 +42,7 @@ def get_data_store(index, database, operation, args):
                 return new_index
     return False
 
-def get_data_From_source(source, keyword, index, all_vars):
+def get_data_from_source(source, keyword, index, all_vars):
     total = 0
     max_count = 10
     for i in range(0, 10):
@@ -71,7 +71,7 @@ def get_data_From_source(source, keyword, index, all_vars):
                                         text_list = [text] if node.nodeName == 'title' else text.split('\n')
                                         article.extend(text_list)                    
                             if len(article) > 0:
-                                index['articles'].append('\n'.join(article))
+                                index['data'].append('\n'.join(article))
     return index
 
 def add_row(row, index, empty_index, rows):
@@ -98,36 +98,33 @@ def build_indexes(database, metadata, args, filters, all_vars):
     for arg in args:
         for keyword in args[arg]:
             for source in all_vars['sources']:
-                index = get_data_From_source(source, keyword, index, all_vars)
-    if len(index['data']) > 0:
-        for a in index['data']:
-            article_words = a.split(' ')
-            lines = a.split('\n')
-            title = lines[0]
-            for line in lines:
-                row = empty_index                   
-                row['line'] = line
-                row['original_line'] = line
-                row = get_structural_metadata(row, metadata, all_vars)
-                row = get_metadata(row, metadata, all_vars)
-                index, rows = add_row(row, index, empty_index, rows)
-                print('row', row)
-            most_similar_lines, row = get_similar_lines(lines)
-            if most_similar_lines:
-                index['most_similar_lines'] = most_similar_lines
+                index = get_data_from_source(source, keyword, index, all_vars)
+    if index:
+        if len(index['data']) > 0:
+            for a in index['data']:
+                lines = a.split('\n')
+                for line in lines:
+                    row = empty_index                   
+                    row['line'] = line
+                    row['original_line'] = line
+                    ''' replace non-medical irrelevant names with empty string '''
+                    row = replace_names(row, all_vars)
+                    row = get_similarity_to_title(line, lines[0], row)  
+                    row = get_pos_metadata(line, row, all_vars)
+                    row = get_metadata(row, metadata, all_vars)
+                    index, rows = add_row(row, index, empty_index, rows)
+                    print('row', row)
     ''' save rows '''
     if len(rows) > 0:
         write_csv(rows, index.keys(), 'data/rows.csv')
     ''' save indexes '''
     for key in index:
         ''' get the patterns in the indexes we just built and save '''
-        index_text = '\n '.join(index[key])
-        patterns = get_pattern_matches_in_line(index_text, key, all_vars) # get patterns for index[key] objects with object_type key
+        patterns = find_patterns(index[key], key, all_vars) # get patterns for index[key] objects with object_type key
         if patterns:
             object_patterns = [''.join([k, '_', '::'.join(v)]) for k, v in patterns.items()]
             object_pattern_name = ''.join(['data/patterns_', key, '.txt']) 
-            object_pattern_data = '\n'.join(object_patterns)
-            index[object_pattern_name] = object_pattern_data
+            index[object_pattern_name] = '\n'.join(object_patterns)
         save(''.join(['data/', key, '.txt']), '\n'.join(index[key]))
     return index, rows
 
@@ -146,7 +143,7 @@ def get_metadata(row, metadata, all_vars):
     intent = None
     hypothesis = None
     row = get_treatments(intent, hypothesis, row, metadata, all_vars)
-    for metadata_type in ['medical', 'conceptual']:
+    for metadata_type in ['structural', 'medical', 'conceptual']:
         for key in metadata:
             if key in all_vars['supported_params']:
                 found_objects = get_objects_of_type(None, key, row['line'], all_vars)
@@ -179,7 +176,7 @@ def extract_objects_matching_patterns(index, search_pattern_keys, all_vars):
             if object_type not in objects:
                 objects[object_type] = set()
             for line in index[object_type]:
-                pattern_matches = get_pattern_matches_in_line(line, search_pattern_keys, all_vars)
+                pattern_matches = find_patterns(line, search_pattern_keys, all_vars)
                 if pattern_matches:
                     for pattern, matches in pattern_matches.items():
                         objects['patterns'].add(pattern)

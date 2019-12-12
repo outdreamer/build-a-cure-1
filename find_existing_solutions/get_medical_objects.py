@@ -1,7 +1,7 @@
 from get_structural_objects import *
 
 ''' 
-    each main medical object deserves its own dictionary, which can be built with rows data
+  each main medical object has its own property set, which can be built with rows data:
     'synthesis_instructions' = {
         'parameters',
         'optimal_parameter_values',
@@ -22,21 +22,6 @@ from get_structural_objects import *
         'states': [],
         'side_effects': [] # this is just a list of symptoms the compound causes, which can be assembled from rows data
     }
-
-Treatments:
-    treatment_administration_modifiers = ['oral', 'liquid', 'topical', 'intravenous', 'iv']
-    treatment_administration_methods = ['injection', 'gavage', 'capsule', 'gel', 'powder', 'supplement', 'solution', 'spray', 'tincture', 'mixture']
-    
-Compounds:
-    compound_modifiers = ['isolate', 'ion', 'acid']
-    compound_patterns = [
-        "administration_method of compound",
-        "compound compound"
-    ]
-
-Patients:
-    # treatments mention response in patients/subjects
-    patient_keywords = all_vars['supported_core']['participants'] # use participant instead of patient bc that has other meanings
 
 Side effect keywords to use to test relationships derived with nlp tools:
   - nouns: effect, activation, activity, reaction, process, role
@@ -105,7 +90,7 @@ Side effect keywords to use to test relationships derived with nlp tools:
 verification_dict = {}
 output_dict = {}
 
-def test_similarity(verification_dict, output_dict):
+def get_object_similarity(verification_dict, output_dict):
   '''
   1. check for coverage of verification_dict 
   2. check for errors (missing components, words that are too different to be correct)
@@ -189,6 +174,7 @@ def get_side_effects(line):
     '''
     this should pull from data in standard sites like wiki, drugs, webmd, & rxlist 
     as well as forum data to find rare symptoms & interactions not listed elsewhere
+    side_effects = unintended symptoms caused by a drug
     '''
     return line
 
@@ -202,13 +188,17 @@ def get_symptoms(line):
     return line
 
 def get_mechanisms(line):
-    ''' get specific process explaining how this compound works '''
+    '''
+    get specific process explaining how this compound works
+    uses descriptive language, detailing the process, so present tense verbs like 'works'
+    if its a new discovery in an experiment it might be 'x was observed to work'
+    '''
     return line
 
 def get_tests(line):
     return line
 
-def get_adjacent_compounds(compound):
+def get_adjacents(compound):
     ''' 
     get similar compounds with similar functionality 
     that can be synthesized with accessible methods 
@@ -237,7 +227,7 @@ def get_related_components(component, data_store, all_vars):
     definitions = get_definitions(word)
     if definitions:
         for d in definitions:
-            d_row = get_pos_in_line(d, None, all_vars)
+            d_row = get_pos_metadata(d, None, all_vars)
             if d_row:
                 if 'nouns' in d_row:
                     for n in d_row['nouns']:
@@ -293,14 +283,13 @@ def get_treatments(intent, hypothesis, line, title, row, metadata, all_vars):
         for r in derived_relationships:
             ''' row['variables'] = get_dependencies('inputs', line, row['relationships'], 1)) '''
             intent = None
-            correlation = get_correlation_of_relationship(intent, r)
+            correlation = get_similarity(intent, r)
             print('\tget_treatments: correlation', correlation, r)
             if correlation > 0.3:
                 row['treatments_successful'].add(r)
             else:
                 row['treatments_failed'].add(r)
     return row
-
 
 def filter_source_list(object_type, sources):
   ''' 

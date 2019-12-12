@@ -156,7 +156,7 @@ def get_determiner_ratio(word):
             return k
     return False
 
-def get_pos_in_line(line, row, all_vars):
+def get_pos_metadata(line, row, all_vars):
     ''' to do: nouns with highest counts are likely to be central objects '''
     ''' takes out determiners if indicating 'one', 'some', or 'same' quantity '''
     keep_ratios = ['extra', 'high', 'none']
@@ -176,6 +176,8 @@ def get_pos_in_line(line, row, all_vars):
                 row['counts'][count_num].add(count_val)
             pos = get_pos(word, all_vars)
             if pos == 'verb':
+                ''' to do: standardize verbs before adding them - this will make some patterns invalid '''
+                # word = change_to_infinitive(word)
                 row['verbs'].add(word)
             elif pos == 'noun':
                 row['nouns'].add(word)
@@ -199,6 +201,28 @@ def get_pos_in_line(line, row, all_vars):
         if noun_phrases:
             row['noun_phrases'] = noun_phrases
     return row
+
+def get_most_common_words(counts, top_index):
+    '''
+    counts = {
+        0: ['words', 'that', 'appeared', 'once'],
+        1: ['items', 'shown', 'twice']
+    }
+    '''
+    count_keys = counts.keys()
+    if len(counts.keys()) > 0:
+        sorted_keys = reversed(sorted(count_keys))
+        max_key = max(counts.keys())
+        retrieved_index = 0
+        max_words = []
+        for k in sorted_keys:
+            max_words.extend(counts[k])
+            retrieved_index += 1
+            if retrieved_index == top_index:
+                return max_words
+        if len(max_words) > 0:
+            return max_words
+    return False
 
 def is_condition(asp_words, all_vars):
     first_word = get_first_important_word(asp_words, all_vars)
@@ -247,10 +271,20 @@ def split_by_delimiter(line, all_vars):
     return words, delimiters
 
 def standard_text_processing(text, all_vars):
-    text = standardize_delimiter(text.strip())
-    text = replace_quotes_with_parenthesis(text)
+    text = concatenate_species(text.strip())
+    text = standardize_delimiter(text)
     text = standardize_punctuation(text)
     text = remove_stopwords(text)
+    new_lines = []
+    for line in text.split('\n'):
+        line = replace_quotes_with_parenthesis(line)
+        new_line = convert_to_active(line)
+        if new_line:
+            new_lines.append(new_line)
+        else:
+            new_lines.append(line)
+    if len(new_lines) > 0:
+        text = '\n'.join(new_lines)
     text = replace_with_syns(text, 'all', all_vars)
     return text
 
@@ -260,20 +294,23 @@ def replace_with_syns(text, element, all_vars):
         word = ''.join([x for x in w if x == '-' or x == ' ' or x in all_vars['alphabet']]) # some synonyms have dashes and spaces
         check_types = ['synonym', 'common', 'standard', 'similarity']
         # dont add stem-similarity replacement bc you still need pos identification
-        match, check_type = find_matching_synonym(word, check_types, None, 'word', all_vars)
+        match, check_type, all_vars = find_matching_synonym(word, check_types, None, all_vars)
         if match and check_type:
             new_text.append(w.replace(word, match))
         else:
             new_text.append(w)
     if len(new_text) > 0:
         return ' '.join(new_text)
-    return text
+    return text, all_vars
 
 def standardize_punctuation(line):
     # remove apostrophes, replace brackets with parenthesis
     line = line.replace('[', ' ( ').replace(']', ' ) ').replace("'", '') 
     # replace clause punctuation with comma
-    line = line.replace(':', ' , ').replace(';', ' , ') 
+    line = line.replace(' - ', ' , ')
+    operator_keys = all_vars['operator_map'].keys()
+    for k in operator_keys:
+        line = line.replace(k, '')
     # space comma to avoid conflation with words, then replace double spaces
     line = line.replace(',', ' , ').replace('  ', ' ')
     return line
@@ -356,6 +393,41 @@ def select_option(alt_phrase):
                 return default_alt
     return alt_phrase
 
+def get_charge_of_word(word, all_vars):
+    if word in all_vars['supported_synonyms']:
+        synonym = all_vars['supported_synonyms'][word]
+        for synonym_type in all_vars['charge']:
+            if synonym in all_vars['charge'][synonym_type]:
+                print('get_charge_of_word: found synonym charge', word, synonym, synonym_type)
+                return synonym_type
+    return False
+
+def get_similarity(base_word, new_word, pos_type, all_vars):
+    pos_lib_map = { 'noun': NOUN, 'verb': VERB, 'adv': ADV, 'adj': ADJ }
+    if pos_type in pos_lib_map:
+        pos_type = pos_lib_map[pos_type]
+        base_synsets = Word(base_word).get_synsets(pos=pos_type)
+        new_synsets = Word(new_word).get_synsets(pos=pos_type)
+        if len(new_synsets) > 0 and len(base_synsets) > 0:
+            similarity = base_synsets.path_similarity(new_synsets)
+            print('\tget similarity', new_synsets, base_synsets, similarity)
+            return similarity
+    return 0
+
+def get_similarity_to_title(line, title, row):
+    similarity = 0
+    if line != title:
+        title_split = title.split(' ')
+        both = set()
+        for s in string.split(' '):
+            if s in title_split:
+                both.add(s)
+        if len(both) > 0:
+            similarity = round(len(both) / len(title_split), 1)
+        if similarity
+            row['similarity'] = similarity
+    return row
+
 def get_meaning_score(phrase, line):
     '''
     this should return 0 for phrases 
@@ -366,20 +438,6 @@ def get_meaning_score(phrase, line):
     meaning = 0
     if meaning:
         return meaning
-    return False
-
-def get_ngrams(word_list, word, x, direction):
-    ''' 
-    get a list of words in word list starting with word 
-    and iterating outward in direction x number of times 
-    to do: use blob.ngrams(n=x)
-    '''
-    list_length = len(word_list)
-    word_index = word_list.index(word)
-    if word_index:
-        start = word_index - x if word_index > x else word_index if direction == 'next' else 0
-        end = word_index + x if (word_index + x) < list_length else word_index if direction == 'prev' else list_length
-        return word_list[start:end]
     return False
 
 def get_phrases(line, row, all_vars):
@@ -434,6 +492,37 @@ def concatenate_species(data):
     data = '.'.join(new_lines)
     return data
 
+def convert_to_active(line):
+    '''
+    active test cases:
+    
+    - "protein that modulates a signaling pathway" => "signaling pathway-changing protein" 
+        pattern = "A were subjected to B induced by C of D"
+        pattern_with_pos = "A were subjected to B induced by C of D"
+
+    - "Rats were subjected to liver damage induced by intra-peritoneal injection of thioacetamide" => 
+        "intra-peritoneal thioacetamide injection induced liver damage in rats"
+        noun_phrases for this would be "intra-peritoneal thioacetamide injection", "liver damage" and "rats"
+    
+    - "chalcone isolated from Boesenbergia rotunda rhizomes" => "Boesenbergia rotunda rhizomes isolate chalcone"
+
+    keep in mind:
+        if you standardize "injection of thioacetamide" to "thioacetamide injection", 
+        your other pattern "x of y" configuration wont be necessary, 
+        so remove that pattern once youve tested apply_pattern_map
+
+    - check for verb tenses normally used in passive sentences # had been done = past perfect
+    - translate questions into statements of intent:
+        "would there be an effect of x on y?"
+        intent = "evaluate relationship between x and y" 
+    - active: x  -  did  -  this and then y  -  did  -  z
+    - passive: this  -  was done  -  by x and then z  -  was done  -  by y
+    '''
+    active_line = apply_pattern_map(line, all_vars['pattern_maps']['passive_to_active'])
+    if active_line:
+        return active_line
+    return line
+
 ''' STORAGE FUNCTIONS '''
 
 def get_local_database(database_dir, object_types):
@@ -445,15 +534,15 @@ def get_local_database(database_dir, object_types):
         object_types = object_types if object_types else []
         if len(object_types) > 0:
             paths = [''.join([database_dir, '/', ot, '.txt']) for ot in object_types]
-            docs = get_objects(paths, docs)
+            docs = get_local_data(paths, docs)
         else:
             paths = [''.join([database_dir, '/', fp]) for fp in os.path.listdir(path)]
-            docs = get_objects(paths, docs)
+            docs = get_local_data(paths, docs)
     if docs:
         return docs
     return False
 
-def get_objects(paths, docs):
+def get_local_data(paths, docs):
     for path in paths:
         object_type = path.split('/')[-1].replace('.txt', '')
         if os.path.isfile(path):
