@@ -4,7 +4,7 @@
 
 - chembl similarity function can tell you how likely it is that the generated compound mimics functionality of another compound
 
-  ## Props 
+  ## Data 
     - pull these properties for compounds on wiki:
       Bioavailability 63–89%[4]:73
       Protein binding 10–25%[5]
@@ -18,83 +18,22 @@
       Excretion Urine (85–90%)[3]
 
   - index articles you pull from sources so youre not repeating the query & store it across requests
+  
+  - find source of bio keywords & synonyms
 
+''' in case there are no patterns found, try splitting into ngrams '''
+words = line.split(' ')
+word_range = 3 if len(words) > 5 else 2 if len(words) > 3 else 1
+for i in range(0, word_range):
+subset = get_ngrams(words, word, i, 'both') # ngrams
+''' to do: finish ngram pattern matching '''
 
-# Structural:
-  - is == VBZ
-  - remove dict processing of supported_core
-  - add to clause condition processing: "time": ["during", "while", "later", "after", "before", "pre-", "post-"]
-  - right now pattern matching is just checking word pos
-    - add function to do word type checks once you finish get_types(word)
+# Code quality
+  - store line splitting in row['words'] variable to avoid doing the operation again 
+  - remove len(0) checks for lists
   - consolidate excessive chained return false checks
-  - implement newly supported pos identification functions - get_adverbs, get_adjectives, get_determiners, get_prepositions
-    - you could implement ordered preferences by iterating through pos_tags with a list of keys
-      - show preference for verbs in ambiguous cases like "associate" should return a verb even though it can be a noun
-        "sodium isolate" => "noun verb" and then it can be identified as a modifier
-  - add support for other operators in get_clauses
-        'union': ['and', 'with'],
-        'exception': ['but', 'yet'],
-        'dependence': ['because', 'since', 'due', 'caused by'],
-        'independence': ['even', 'still', 'despite', 'in spite of', 'regardless', 'irrespective'],
-        'conditional': ['when', 'while', 'during', 'for', 'x of y'],
-        'alternate': ['or'],
-        'equal': ['is']
-  - add support for embedded alts like '__|a an|__' and '|VB NN |VB ADV||'
-  - check for verb_phrases
-    - in get_clauses, make sure youre not replacing the verb with the consecutive verb if they appear together (imaging finding)
-  - use get_pattern_alts to get all possible combinations of your patterns before transforming nltk_pos to tag_name
-
-  - finish function to unconjugate verb 
-
   - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
-
-  - convert get_active and get_modifiers into a call to extract_patterns('modifier'), extract_patterns('active') etc
-
-  - where theres overlap between categories, you need a ranking to select the correct type in functions using get_pos_tags()
-
-  - add corresponding functions for get_pos_in_line
-    - phrase matching: 'architect of chaos' is a noun phrase, 'associating phrasing' is a verb phrase
-    - modifier matching 'chemical isolate' => 'isolate' is the modifier of the modifier clause
-    - type keyword matching 'v + rb', 'md + v'
-    - partial synonym matching
-    - structural (pos) pattern matching
-    - abstract (type) pattern matching 
-
   - evaluate when you need full article index and when its ok to use a line index
-
-  - test replace_syns_in_line until its functional 
-
-  - verify output from get_relationships_from_clauses with tree parsing to identify related words in sentences
-
-  - finish get_topic to filter non-topical nouns, verbs, adverbs & adjectives from all object indexes:
-
-  - make all_vars global variable & remove from params
-
-  - 'as' can mean:    
-        'like': 'as is common in that area',
-        'because': 'as',
-        'when': 'as the sun sets'
-
-## Synonyms
-  - add phrase parsing to synonym identification (match "a b" rather than just "a" or "b")
-  - use source of bio synonyms
-  - analyze synonyms to make sure theyre all unique
-  - check the definitions functionality supported by tools youre using to see if you can derive common standardized words from those without relying on synonyms map
-  - convert all match/similarity checks to call to get_match function with synonym param
-  - once you apply get_relationships_from_clauses - you want to create another relationships array,
-    which is the same array but with the original semantic verb ("disable" rather than more general "decrease")
-
-
-## Relationships
-
-  - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
-  - if you finish get_active, rearrange_sentence, remove_unnecessary_words, get_modifier & generate_abstract_patterns, 
-    you can just enter patterns for most medical get_object functions
-  - use conceptual_clause_map to sort your logic in get_conditionals
-  - build an index of modifiers based on phrase data of words frequently found together
-
-## Repetition
-
   - find every time you use this logic and replace with function
       clause_split = []
       relation = set()
@@ -108,24 +47,106 @@
       if relation != set():
           clause_split.append(relation)
 
-Functions:
+  - every time you use this logic, make sure youre adding the final item
+    new_subsets = []
+    words = line.split(' ')
+    new_subset = []
+    for w in words:
+        pos = get_nltk_pos(w)
+        for key in ['noun', 'verb', 'verb_keywords', 'adv', 'adj']:
+            pos_list = all_vars['pos_tags'][key]:
+            if pos in pos_list:
+                new_subset.append(w)
+            else:
+                new_subsets.append(new_subset)
+                new_subset = []
+        
 
-- finish get_patterns so you can make table of useful patterns as you pull data, replacing common objects with abstract type keywords:
-  Example:
-    Cytotoxicity in cancer cells
-    anti-tumor
-    suppress/interfere/inhibit activity of carcinog/canc/tumz
+# Structural:
 
-  Patterns:
-    <component object>-toxicity
-    anti-<component object of illness>
-    suppress/interfere/inhibit activity of drug/medication/enzyme
+  - add read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
 
-- write function to get semantic bio metadata of compounds (bio-availability, activation in the host species, etc)
+  - add treatment keyword check & add treatment keywords
+  
+  - add metadata check to make sure they requested this data
 
-- write function to pull symptom lists for a condition from forums/drugs/rxlist
+  - change words to their stem and get the pos of their stem 
+    "membrane disruption" is a modifier pattern: "noun function_as_process_noun" 
 
-- build math logic/plain language translation function first - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
+  - merge get_clauses, get_conditionals, rearrange_sentence and call it once
+
+      - add support for other operators in get_clauses
+          'union': ['and', 'with'],
+          'exception': ['but', 'yet'],
+          'dependence': ['because', 'since', 'due', 'caused by'],
+          'independence': ['even', 'still', 'despite', 'in spite of', 'regardless', 'irrespective'],
+          'conditional': ['when', 'while', 'during', 'for', 'x of y'],
+          'alternate': ['or'],
+          'equal': ['is']
+
+      - go from most granular unit to largest when youre identifying structural metadata (modifiers -> clauses -> relationships)
+      - once you apply get_relationships_from_clauses - you want to create another relationships array,
+        which is the same array but with the original semantic verb ("disable" rather than more general "decrease")
+
+  - get_pos_in_line: implement newly supported pos identification functions: adv, adj, det, prep
+
+    - remove determiners if they dont add important information like quantity (keep never, always, all or nothing = remove some, any)
+    
+  - add function to do word type checks once you finish get_types(word) so you can use it to generate more patterns in a sentence
+
+  - add abstract/pos pattern match & replacement function 
+        Cytotoxicity in cancer cells => <component object>-toxicity
+        anti-tumor => anti-<component object of illness>
+        suppress/interfere/inhibit activity of carcinog/canc/tumz => suppress/interfere/inhibit activity of drug/medication/enzyme
+
+  - add support for nested alts in patterns like:
+     '__|a an|__' and '|VB NN |VB ADV||'
+
+  - use blob.correct() on non-research sources - remove '.,' and other errors or typos 
+  - add to clause condition processing: "time": ["during", "while", "later", "after", "before", "pre-", "post-"]
+
+  - where theres overlap between categories, you need a ranking to select the correct type in functions using get_pos_tags()
+      - implement ordered pos-tagging preferences by iterating through pos_tags with a list of keys
+      - show preference for verbs in ambiguous cases like "associate" should return a verb even though it can be a noun
+        "sodium isolate" => "noun verb" and then it can be identified as a modifier
+
+  - in get_pos_in_line:
+    - make sure youre not replacing the verb with the consecutive verb if they appear together 
+    - phrase pos identification: 'architect of chaos' is a noun phrase, 'associating phrasing' is a verb phrase
+      - sort noun_phrases by verb phrases if it captures verb phrases
+      - imaging finding which should be identified by blob.noun_phrases anyway
+
+  - finish function to unconjugate verb - lemmatize changes to infinitive
+
+  - finish get_topic to filter non-topical nouns, verbs, adverbs & adjectives from all object indexes
+
+  - make all_vars global variable & remove from params
+  
+  - make sure youre using exclude in replace_syns 
+
+  - write function to get semantic props of compounds (bio-availability, activation in the host species, etc)
+
+  - make sources query specific - symptom queries should pull from drugs/rxlist/forums/wiki
+
+
+## Synonyms
+  - add phrase parsing to synonym identification (match "a b" rather than just "a" or "b") for call in replace_syns
+  - analyze synonyms to make sure theyre mostly unique
+  - check the definitions functionality supported by tools youre using to see if you can derive common standardized words from those without relying on synonyms map
+  - convert all synonym/match/similarity checks to call to matches function with synonym param
+  - use definitions as a data source for relationships & synonyms if none are found 
+
+## Relationships
+
+  - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
+  - if you finish get_active, rearrange_sentence, remove_unnecessary_words, get_modifier & generate_abstract_patterns, 
+    you can just enter patterns for most medical get_object functions
+  - use conceptual_clause_map to sort your logic in get_conditionals
+  - build an index of modifiers based on phrase data of words frequently found together
+
+## Functions
+
+- build math logic/plain language translation function - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
 
 - write function to identify contradictory information (retracted studies, false information, conspiracy theory (anti-vax), opinion) & selecting least likely to be false
   - this will be useful when youre pulling non-research study data, like when youre looking up a metric or compound if you dont find anything on wiki
@@ -159,57 +180,33 @@ Functions:
     - set of interaction functions for microorganisms
     - set of priority functions for microorganisms
 
-- write functions for rearrange_sentence & remove_unnecessary_words
-
-- add get_related_components function to pull components of a compound & primary metabolites
-
-- add function to test chemical reactions:
-  https://cheminfo.github.io/openchemlib-js/docs/classes/reaction.html
-
-- finish get_medical_metadata
-  - finish get object functions for pulling existing research studies 
-    - symptom examples:
-    - fever red urine skin rash paralysis headache bleeding
+- add function to test chemical reactions: https://cheminfo.github.io/openchemlib-js/docs/classes/reaction.html
 
 - finish get_conceptual_metadata (strategies, insights)
 
-  - insight in a article doc is likely to:
+  - insights in a article doc are more likely to:
     - have more topic-related keywords
-    - have a causation verb (induces, associated)
+    - have a causation verb (induces, associated) - add function to identify causation verbs
     - relate to intents important to agents (health, avoid illness)
-    "saturated fat intake induces a cellular reprogramming that is associated with prostate cancer progression and lethality"
-    https://medicalxpress.com/news/2019-11-high-fat-diet-proven-fuel-prostate.html
+      - "saturated fat intake induces a cellular reprogramming that is associated with prostate cancer progression and lethality"
+      https://medicalxpress.com/news/2019-11-high-fat-diet-proven-fuel-prostate.html
+      - "The presence of many disulfide bonds making this a possible site for oxidative inactivation by ozone"
+      https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4927674/
 
-    "The presence of many disulfide bonds making this a possible site for oxidative inactivation by ozone"
-    https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4927674/
+- get strategies used by an organism or used on a compound
 
-  - get strategies used by an organism or used on a compound like: 
-    https://medicalxpress.com/news/2019-11-high-resolution-images-malaria-parasites-evade.html
-    - "nuclear fragmentation and membrane disruption"
+- add function to combine functions by intent get_net_impact(functions)
 
-    - the most important metadata attribute to write a function for is the reason for success/failure indicating the mechanism of action or strategy used
-      The strategy behind the successful or failed attack should ideally be included
-        - "this structure on the compound tears the cell barrier"
-        - "induces apoptosis by depriving it of contrary signals"
-        - "chlorpromazine increases valproic acid levels, which can be derived from valerian (valerian suppressed cyp3a4), 
-          which is a function in common with other compounds having activity against pathogen x"
-      in as structured a format as possible (numerical mappings could work for an initial version)
+- add adverb/det/adjective processing to your function definition so that 'never finishes' is not equated with 'finish'
 
-    - drugs need a way to handle common mutation strategies of pathogens
-      - up regulating CDR genes
-      - reduced sensitivity of the target enzyme to inhibition by the agent
-      - mutations in the ERG11 gene, which codes for 14α-demethylase. These mutations prevent the azole drug from binding, while still allowing binding of the enzyme's natural substrate, lanosterol
-
-- next task will be: predict a phage for a pathogen, vs. predict a compound for a pathogen/condition
-- in order to accurately predict a compound for a pathogen/condition, you need to know:
-  - attributes (compound metadata youre already working on)
+- function to predict a compound for a pathogen/condition without ml requires data:
+  - attributes (compound metadata)
   - gene expression impact
   - interaction rules with common cell types it's expected to be exposed to (in the bloodstream if taken orally, in the lungs if inhaled)
-  - the sub-components of the compound that could be altered through interaction to neutralize its functionality
-  - the specificity of the compound's effects
+  - sub-components that could be altered through interaction to neutralize its functionality
+  - scope of the compound's effects
   - how it's metabolized, to know whether it could be taken at an effective dose
-  - if the conditio involves a pathogen, you need to know the pathogen's structure & metadata
-
+  - pathogen structure & metadata
 
 Conceptual:
 

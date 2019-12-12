@@ -13,63 +13,36 @@ from get_conceptual_objects import *
 from get_medical_objects import *
 from get_type import *
 
-def pull_summary_data(sources, metadata, generate_source, generate_target, args, filters, all_vars):
-    ''' 
-    - this function indexes data from api providing articles
-    - if the local database is found, use that as starting index, otherwise build it
+
+def get_data_store(index, database, operation, args):
     '''
-    empty_index = get_empty_index(metadata, all_vars['full_params'])
-    local_database = get_local_database('data', None) # '' object param means get all objects
-    index = local_database if local_database else empty_index
-    index['articles'] = []
-    rows = []
-    for arg in args:
-        for keyword in args[arg]:
-            for source in sources:
-                index = get_articles(source, keyword, index, all_vars)
-    if len(index['articles']) > 0:
-        for a in index['articles']:
-            for line in a.split('\n'):
-                row = empty_index
-                if line != lines[0]:
-                    most_similar_line, row = get_similar_lines(row, line, lines[0])
-                    if most_similar_line:
-                        row['most_similar_line'] = most_similar_line
-                index, row = get_structural_metadata(line, row, metadata, all_vars)
-                index, row = get_medical_metadata(lines, line, index, row, metadata, all_vars)
-                index, row = get_conceptual_metadata(lines line, index, row, metadata, all_vars) #custom analysis
-                index, row = update_index(row, index, empty_index, rows)
-                print('row', row)
+    this assembles an index or retrieves it from local storage,
+    filtering by object_types found in the metadata argument
+    '''
+    downloaded = downloads(['data', 'datasets'])
+    if not downloaded:
+        return False
+    all_vars = get_vars()
+    if all_vars:
+        data_store = {}
+        ''' if index or database not passed in, fetch the local db if it exists '''
+        args_index, filters, metadata, generate_target, generate_source = get_args(args, all_vars)
+        if operation == 'build':
+            database = get_local_database('data', None)
+            data_store, rows = build_indexes(database, metadata, args, filters, all_vars)
+        elif operation == 'get_database':
+            data_store = get_local_database('data', None)
+        elif operation == 'get_index':
+            data_store = index
+        if data_store and metadata:
+            new_index = {}
+            for key in metadata:
+                new_index[key] = data_store[key] if key in data_store else set()
+            if new_index:
+                return new_index
+    return False
 
-    if len(rows) > 0:
-        write_csv(rows, index.keys(), 'data/rows.csv')
-        generate_keys = index.keys() if generate_source == 'all' else generate_source.split(',')
-        datasets = generate_datasets(generate_keys, generate_target, index, rows)
-    ''' save items in index '''
-    for key in index:
-        ''' get the patterns in the indexes we just built and save '''
-        patterns = extract(index[key], local_database, all_vars, 'patterns') # get patterns for index[key] objects with object_type key
-        if patterns:
-            pos_patterns = patterns.keys()
-            word_patterns = [item for val_list in patterns.values() for item in val_list]
-            index['usage_patterns'] = '\n'.join(pos_patterns.extend(word_patterns))
-        save(''.join(['data/', key, '.txt']), '\n'.join(index[key]))
-    return articles, index, rows
-
-def update_index(row, index, empty_index, rows):
-    if row != empty_index:
-        for key, val in row.items():
-            if type(val) == dict:
-                row[key] = '::'.join(['_'.join([k,v]) for k,v in val.items()])
-             elif type(val) == set or type(val) == list:
-                row[key] = str('::'.join(set(val)))
-            elif type(val) == bool:
-                row[key] = '1' if val is True else '0'
-            index[key] = index[key].add(row[key])
-        rows.append(row)
-    return index, rows
-
-def get_articles(source, keyword, index, all_vars):
+def get_data_From_source(source, keyword, index, all_vars):
     total = 0
     max_count = 10
     for i in range(0, 10):
@@ -94,97 +67,135 @@ def get_articles(source, keyword, index, all_vars):
                                 for subnode in node.childNodes:
                                     text = subnode.wholeText
                                     if len(text) > 0:
-                                        text = standardize_delimiter(text)
                                         text = standard_text_processing(text, all_vars)
-                                        text_list = [text] if node.nodeName == 'title' else sentences
+                                        text_list = [text] if node.nodeName == 'title' else text.split('\n')
                                         article.extend(text_list)                    
                             if len(article) > 0:
                                 index['articles'].append('\n'.join(article))
     return index
 
-def get_medical_metadata(lines, line, index, row, metadata, all_vars):
+def add_row(row, index, empty_index, rows):
+    if row != empty_index:
+        for key, val in row.items():
+            if type(val) == dict:
+                row[key] = '::'.join(['_'.join([k,v]) for k,v in val.items()])
+             elif type(val) == set or type(val) == list:
+                row[key] = str('::'.join(set(val)))
+            elif type(val) == bool:
+                row[key] = '1' if val is True else '0'
+            index[key] = index[key].add(row[key])
+        rows.append(row)
+    return index, rows
+
+def build_indexes(database, metadata, args, filters, all_vars):
+    ''' 
+    - this function indexes data from api providing articles
+    - if the local database is found, use that as starting index, otherwise build it
     '''
-    - this function determines conditions, symptoms, & treatments in the sentence 
-    - this function is a supplement to get_metadata, 
-      which fetches conceptual metadata like insights & strategies
+    empty_index = get_empty_index(metadata, all_vars)
+    index = database if database else empty_index
+    rows = []
+    for arg in args:
+        for keyword in args[arg]:
+            for source in all_vars['sources']:
+                index = get_data_From_source(source, keyword, index, all_vars)
+    if len(index['data']) > 0:
+        for a in index['data']:
+            article_words = a.split(' ')
+            lines = a.split('\n')
+            title = lines[0]
+            for line in lines:
+                row = empty_index                   
+                row['line'] = line
+                row['original_line'] = line
+                row = get_structural_metadata(row, metadata, all_vars)
+                row = get_metadata(row, metadata, all_vars)
+                index, rows = add_row(row, index, empty_index, rows)
+                print('row', row)
+            most_similar_lines, row = get_similar_lines(lines)
+            if most_similar_lines:
+                index['most_similar_lines'] = most_similar_lines
+    ''' save rows '''
+    if len(rows) > 0:
+        write_csv(rows, index.keys(), 'data/rows.csv')
+    ''' save indexes '''
+    for key in index:
+        ''' get the patterns in the indexes we just built and save '''
+        index_text = '\n '.join(index[key])
+        patterns = get_pattern_matches_in_line(index_text, key, all_vars) # get patterns for index[key] objects with object_type key
+        if patterns:
+            object_patterns = [''.join([k, '_', '::'.join(v)]) for k, v in patterns.items()]
+            object_pattern_name = ''.join(['data/patterns_', key, '.txt']) 
+            object_pattern_data = '\n'.join(object_patterns)
+            index[object_pattern_name] = object_pattern_data
+        save(''.join(['data/', key, '.txt']), '\n'.join(index[key]))
+    return index, rows
+
+def get_metadata(row, metadata, all_vars):
+    ''' 
+    this function should be called from get_relationships_from_clauses so 
+    types, concepts, strategies & insights are identified & indexed right away 
+    while this function fetches conceptual metadata like types, strategies & insights
     to do: 
-        - add treatment keyword check & add treatment keywords
-        - add metadata check to make sure they requested this data
+        - add filtering to skip irrelevant sentences to topic ('medical')
+        - add filtering of insights to apply directly to the target condition or mechanisms
+        - add mechanisms of action keywords & patterns to get strategies
+        - this function determines conditions, symptoms, & treatments in the sentence 
+          which fetches conceptual metadata like insights & strategies
     '''
     intent = None
     hypothesis = None
-    title = lines[0]
-    row = get_treatments(intent, hypothesis, line, title, row, metadata, all_vars)
-    return index, row
+    row = get_treatments(intent, hypothesis, row, metadata, all_vars)
+    for metadata_type in ['medical', 'conceptual']:
+        for key in metadata:
+            if key in all_vars['supported_params']:
+                found_objects = get_objects_of_type(None, key, row['line'], all_vars)
+                if found_objects:
+                    row[key] = found_objects
+    print('medical objects', row)
+    return row
 
-def get_conceptual_metadata(lines, line, index, row, metadata, all_vars):
+def get_objects_of_type(index, index_type, line, all_vars):
+    print('get_objects_of_type', index_type, line)
+    index = {index_type: line} if line else index
+    if index:
+        matched_objects = extract_objects_matching_patterns(index, [index_type], all_vars)
+        if matched_objects:
+            return matched_objects
+    return False
+
+def extract_objects_matching_patterns(index, search_pattern_keys, all_vars):
     ''' 
-    this function is a supplement to get_medical_objects, 
-    which fetches condition, symptom, & treatment metadata,
-    while this function fetches conceptual metadata like types, strategies & insights
-
-    to do: 
-        - add filtering to skip sentences without any symptoms or bio metrics, like:
-        - add filtering of insights to apply directly to the condition or mechanisms involved
-        - add standardization of acronyms using search with keywords so you get n-acetylaspartic acid from naa and creatine from cr
-        - find the primary condition being studied to differentiate from other conditions or complications mentioned 
-        - add mechanisms of action keywords & patterns to get strategies
+    - this function is for meta-analysis, not finding or replacing a pattern in a line
+    - after youre done processing a batch of articles, 
+        youll have an index containing types of elements ('condition', 'symptom', 'strategy')
+        this function is for finding patterns in those index types
+    - objects & local_database are both dicts of sets, just like index & row in get_metadata
     '''
+    ''' all of your 'find_object' functions need to support params: pattern, matches, all_vars '''
+    if index:
+        objects = {}
+        for object_type in index:
+            if object_type not in objects:
+                objects[object_type] = set()
+            for line in index[object_type]:
+                pattern_matches = get_pattern_matches_in_line(line, search_pattern_keys, all_vars)
+                if pattern_matches:
+                    for pattern, matches in pattern_matches.items():
+                        objects['patterns'].add(pattern)
+                        if object_type != 'patterns':
+                            ''' filter matches before adding them, with type-specific logic '''
+                            function_name = ''.join(['find_', object_type])
+                            function = getattr(globals(), function_name)
+                            got_objects = function(pattern, matches, all_vars)
+                            if got_objects:
+                                if len(got_objects) > 0:
+                                    for item in got_objects:
+                                        objects[object_type].add(item)
+        if objects:
+            return objects
+    return False
 
-    '''
-    output = wikipedia.search(suggested, results=1)
-    images_urls = wikipedia.page(suggested).images
-    summary = wikipedia.summary(suggested)
-    print('summary', summary) 
-    '''
-    title = lines[0]
-    wikipedia.set_lang("en")
-    suggested = None
-    index_type = None
-    for r in row['relationships']:
-        for word in r.split(' '):
-            pos = get_pos(word, all_vars)
-            if pos == 'noun':
-                ''' make sure this is a noun before querying '''
-                if word[0] == word[0].upper() and word[1] != word[1].upper():
-                    suggested = get_generic_medication(word)
-                suggested = wikipedia.suggest(word) if not suggested else suggested
-                print('suggested', suggested, word)
-                try:
-                    content = wikipedia.page(suggested).content
-                    section_list = [s.strip().replace(' ', '_').lower() for s in content.split('==') if '.' not in s and len(s) < 100]
-                    index['section_list'] = index['section_list'].union(section_list)
-                    print('section list', section_list)
-                    categories = wikipedia.page(suggested).categories
-                    if len(categories) > 0:
-                        row['types'] = row['types'].union(set(categories))
-                        print('categories', categories)
-                        if len(section_list) > 0:
-                            ''' use section list to determine type first '''
-                            for key, val in all_vars['section_map'].items():
-                                for section in section_list:
-                                    if key in section:
-                                        index_type =  val
-                        else:
-                            index_type = get_index_type(suggested, all_vars, categories)
-                            if index_type:
-                                print('found index type', index_type, word)
-                                if index_type in row:
-                                    if index_type != 'dependencies':
-                                        output = get_index_objects(index_type, r)
-                                        if output != r:
-                                            for k in output:
-                                                row[k] = output[k]
-                except Exception as e:
-                    print('wiki summary exception', e)
-    row['dependencies'] = get_dependencies('all', None, row['relationships'], 3)
-    return index, row
-
-all_vars = get_vars()
-if all_vars:
-    done = downloads(['data', 'datasets'])
-    if done:
-        args_index, filters_index, metadata, generate_target, generate_source = get_args(sys.argv, all_vars)
-        if len(args_index.keys()) == 1:
-            if 'sources' in all_vars:
-                articles, index, rows = pull_summary_data(all_vars['sources'], metadata, generate_source, generate_target, args_index, filters_index, all_vars)
+if sys.argv:
+    index = get_data_store(None, None, 'build', sys.argv)
+    print('get_data_store:index', index

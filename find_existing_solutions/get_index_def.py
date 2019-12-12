@@ -1,4 +1,4 @@
-def get_empty_index(metadata_keys, full_params):
+def get_empty_index(metadata_keys, all_vars):
     '''
     indexes isolates treatments from symptoms, metrics, etc to build indexes of those objects on your local env
         indexes = {
@@ -95,11 +95,14 @@ def get_empty_index(metadata_keys, full_params):
     '''
     index = {}
     index_keys = []
-    for key in full_params.keys():
+    for key in all_vars['full_params'].keys():
         if key != 'request':
-            for item in full_params[key]:
+            for item in all_vars['full_params'][key]:
                 index_keys.append(item)
     metadata_keys = index_keys if 'all' in metadata_keys else metadata_keys
     for key in metadata_keys:
-        index[key] = set() if key != 'counts' and key in index_keys else {}
+        index[key] = set() if key in index_keys else {}
+    index['counts'] = {}
+    index['patterns'] = {}
+    index['data'] = [] # not necessary to ensure uniqueness in articles
     return index

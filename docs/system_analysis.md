@@ -10,13 +10,23 @@ How to decide which layer to choose core functions at?
 
 System analysis should be able to answer questions like:
 - what is a way to reduce computation time in a ml model?
+
 With answers like:
 - compressing features along mathematical symmetries of object behavior
 
 Or questions like:
-- how do you find the likely relevant causes of a process in a system?
-With answers like:
-- scan the relevant properties & rules of interacting objects, where relevance has various definitions (distance, adjacency, similarity)
+- how do you find the likely relevant causes of a process in a system? With answers like:
+	- scan the relevant properties & rules of interacting objects, where relevance has various definitions (distance, adjacency, similarity)
+
+- give an example of mapping an invention & insight on the abstract network
+
+- useful implementations of conceptual physics (
+    discovering functions between nodes, 
+    matching problem/solution types, 
+    identifying & leveraging conceptual behavior
+        - use truth to apply pressure
+        - express faith to motivate
+)
 
 # Functions
 

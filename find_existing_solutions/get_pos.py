@@ -93,8 +93,6 @@ def get_pos_tags():
         S: Simple declarative clause
         SBAR: Clause introduced by a (possibly empty) subordinating conjunction
     '''
-    pos_tags['conditional'] = ['CC', 'IN', 'RB', 'WRB', 'JJ'] # 'RB' points to 'even', 'WRB' points to when, 'JJ' describes 'due'
-
     pos_tags['question'] = ['SBARQ', 'SQ']
     '''
         SBARQ: Direct question introduced by a wh-word or a wh-phrase.
@@ -124,9 +122,12 @@ def get_pos_tags():
         VBN: Verb, past participle - asked, used, been, done, had
         VP: Verb Phrase
     '''
-    pos_tags['verb_keywords'] = ['RP', 'MD']
+    pos_tags['verb_keywords'] = ['RP'] 
     '''
         RP: Particle - aboard about across along apart around aside at away back before by ever for from go i.e. in into just later more off on open out over per that through under up whole with
+    '''
+    pos_tags['verb_potential'] = ['MD']
+    '''
         MD: Modal - 'could', 'will'
     '''
     pos_tags['adv'] = ['WRB', 'RB', 'RBR', 'RBS']
@@ -145,7 +146,10 @@ def get_pos_tags():
     pos_tags['sym'] = ['CD', 'SYN']
     '''
         CD: Cardinal number - ten, 1.0, IX, '60s', DM2, mid-1890, 1,000, dozen
-        SYM: Symbol # took out symbols in replace_syns()   
+        SYM: Symbol 
+    '''
+    '''
+    replace_with_syns() takes out symbols, punctuation, and determiners if indicating 'some'
     '''
     # once you establish coordinating relationships or ratios, remove determiners & prepositions 
     pos_tags['det'] = ['DT', 'PDT', 'WDT']
@@ -165,6 +169,17 @@ def get_pos_tags():
         IN: Preposition or subordinating conjunction - among upon whether out pro despite on by below within for near behind atop around if until below next into if beside
     '''
     pos_tags['all_nouns'] = ['NN', 'JJ', 'JJR', 'NNS', 'NNP', 'NNPS', 'RB']
+    pos_tags['all_verbs'] = ['RP', 'MD', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VP']
+
+    '''
+    'RB' points to 'even', 'WRB' points to when, 'JJ' describes 'due'
+    '''
+    conditional_keys = ['conj', 'prep', 'adv', 'adj', 'potential']
+    for tag in conditional_keys:
+        pos_tags['conditional'].extend(pos_tags[tag])
+    relation_keys = ['conj', 'prep', 'adv', 'adj']
+    for tag in conditional_keys:
+        pos_tags['relation'].extend(pos_tags[tag])
 
     ''' III. REMOVE '''
     # safe to remove pronouns unless theres ambiguity - converted sentence should be less ambiguous
@@ -180,26 +195,3 @@ def get_pos_tags():
         PRP$: Possessive pronoun - her his mine my our ours their thy your
     '''
     return pos_tags
-
-def get_determiner_ratio(word, number_of_items):
-    '''
-    word = 'giraffes'
-    number_of_items = number of giraffes
-    '''
-    extra = str(number_of_items + 1)
-    same = str(number_of_items)
-    high = str(number_of_items - 1)
-    some = str(int(round(number_of_items / 2)))
-    ratios = {
-        extra: ['extra', 'another', 'more'],
-        same: ['whole', 'both', 'all', 'every', 'each'], # to do: integrate equal keywords like 'basically', 'essentially', 'same', 'equal']
-        high: ['high', 'extremely', 'such', 'especially', 'very', 'much', 'many', 'quite'],
-        some: ['a', 'an', 'lot', 'any', 'whatever', 'which', 'whichever', 'part', 'either', 'half', 'some'],
-        '1': ['the', 'this', 'that', 'those', 'these', 'them', 'particular'],
-        '0': ['none', 'nothing', 'nary', 'neither', 'nor', 'no']
-    }
-    for k, v in ratios.items():
-        if word in v:
-            ratio = round((int(k) / number_of_items), 1)
-            return ratio
-    return 0

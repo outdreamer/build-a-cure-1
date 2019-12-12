@@ -90,6 +90,79 @@
 	  	- determine the ratio of stress that optimizes learning without killing the host; ideally the solution would use the extra cell division potential to make useful cells
 	  	- make a list of the common types of error the immune system makes (h pylori, cancer) & figure out if adjusting immune system function is the best layer to attack from
 
+### IV. Liver function
+
+	- apple cider vinegar
+	- d-mannose
+	- bethanechol can stimulate the nerves of the bladder, making them more responsive to stimulus
+	- prelief is a dietary supplement that works as an acid blocker for the bladder
+	- Water mixed with tea tree oil can help flush out the urinary tract and connective tissue, limiting your chances of developing a nasty urinary tract infection
+
+	- eat:
+	  - fruit & vegetables with vitamin c & get enough vitamin d
+	  - vegetables (broccoli, squash, kale, green beans, potatoes, lettuce, soy, celery, garlic)
+	  - lean proteins (turkey, chicken, fish, eggs)
+	  - low-acid fruit (certain berries, pears, apricots, papaya, watermelon)
+	  - high-fiber foods (wholegrain bread)
+	  - almonds, cashews, peanuts
+
+	- avoid:
+	  - alcoholic/caffeinated beverages (carbonated drinks, chocolate, coffee & tea)
+	  - high-acid foods (citrus fruits, apples, bananas, figs, cantaloupes, 
+	      grapes, guava, peaches, prunes, plums, strawberries, pineapples,
+	      cranberries (unless youre trying to clear an infection), 
+	      tomatoes, onions, rye bread, fava beans, lentils, lima beans, nuts
+	    )
+	  - acidic condiments (vinegar, spicy seasoning, mayonnaise, soy sauce)
+	  - weird or high-salt meat (corned beef, chicken liver, pickled herring)
+	  - dairy (except probiotic yogurt if it doesnt bother you)
+	  - excessive salt
+	  - any sugar other than from low-acid fruit
+
+	- essential oils found associated with stimulating bladder:
+	  - Oregano Oil
+	  - Cinnamon Oil
+	  - Basil Oil
+	  - Tea Tree Oil
+	  - Clary Sage
+	  - Rosemary Oil
+	- essential oils found to be anti-spasmodic for bladder:
+	  - marjoram
+	  - chamomile
+	  - Basil
+	  - Cypress
+	  - grapefruit
+	  - peppermint
+	  - eucalyptus
+
+- other compounds to help liver & kidneys:
+  - milk thistle
+  - turmeric
+  - Bitter leafy greens such as dandelion, chicory and arugula also may promote liver function by reducing congestion because they stimulate bile flow
+  - diuretic (celery, parsley, dandelion root, cucumber, asparagus, eggplant, watercress, artichokes and watermelon)
+  - Sulfur is especially beneficial for your liver because it detoxifies substances that are found commonly in medications, pesticides and other environmental toxins. 
+    Natural foods especially rich in sulfur include onions, garlic and cruciferous vegetables such as broccoli, cauliflower, cabbage and brussels sprouts. 
+    The primary medicinal compound in garlic is called allicin, a strong antimicrobial that also deters infections
+  - Antioxidants are compounds that eliminate free radicals, which reduce tissue damage and allow the organs and blood vessels to properly heal. 
+    Vitamins C and E, beta-carotene and compounds called flavonoids are powerful antioxidants. 
+    Produce rich in these potent nutrients include citrus fruits, most berries, dark-colored grapes, apples, tomatoes, carrots, broccoli, spinach and asparagus
+  - Vitamin C also helps to dissolve calcium buildup in the kidneys
+  - B. rotunda fingerroot has the potential to successfully treat liver cirrhosis in humans & diuresis (excess urine), dysentery and abdominal pain 
+
+essential oils for liver:
+- rosemary: cleans the blood and flush harmful toxins from the liver, stimulates the production and flow of bile which aids digestion, used in the treatment of liver problems including cirrhosis and jaundice.
+- german chamomile: stimulates liver & gall bladder which helps digestion & cleans the blood
+- peppermint: stimulates bile flow from the liver & gall bladder & helps digestion
+- juniper: helps digestion, helps liver eliminate waste products
+- fennel: helps digestion, has an antiseptic & protective effect on the liver
+- cypress, lemon & thyme oils: decongest liver 
+
+essential oils for kidneys:
+- juniper (depurative, detoxifier, diuretic)
+- fennel (diuretic, antiseptic, prevention of kidney stones)
+- chamomile (inhibits lipid peroxidation, anti-inflammatory, induced cancer cell apoptosis in some cancers)
+
+
 ## Functions
 
 I. stimulate bladder

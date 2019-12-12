@@ -48,18 +48,32 @@ def get_vars():
     for pk in plural_keys:
         all_vars['plural_map'][pk] = get_singular(pk)
     all_vars['full_params'] = {
-        'request': ['metadata', 'generate', 'filters'], # request params
+        'request': ['metadata', 'generate', 'filters', 'data'], # request params
         'wiki': ['section_list'],
-        'pos': ['verbs', 'nouns', 'subjects', 'clauses', 'common_words', 'counts', 'names', 'relationships', 'taken_out', 'phrases', 'title_similarities'], # elements organized by structure
+        'structure': ['verbs', 'nouns', 'subjects', 'clauses', 'common_words', 'counts', 'names', 'relationships', 'taken_out', 'phrases', 'title_similarities', 'most_similar_lines'], # structural
         'experiment': ['hypothesis', 'tests', 'metrics', 'properties'], # experiment elements
         'compound': ['compounds', 'contraindications', 'interactions', 'side_effects', 'treatments_successful', 'treatments_failed'], # drug elements
-        'condition': ['symptoms', 'conditions'], # condition elements
+        'organism': ['genes', 'gene_expressions', 'evolution', 'organs', 'cells', 'nutrients'],
+        'condition': ['symptoms', 'conditions', 'diagnosis', 'phases'], # condition elements - separate diagnosis bc theyre not always accurate so not equivalent to condition
         'context': ['bio_metrics', 'bio_symptoms', 'bio_conditions', 'bio_stressors'], # context elements
         'synthesis': ['instructions', 'parameters', 'optimal_parameter_values', 'required_compounds', 'substitutes', 'equipment_links'],
-        'interaction': ['components', 'related', 'alternates', 'substitutes', 'adjacents', 'stressors', 'dependencies'], # interaction elements
+        'interaction': ['components', 'related', 'alternates', 'substitutes', 'subcomponents', 'adjacents', 'stressors', 'dependencies'], # interaction elements
         'pattern': ['line_patterns', 'pattern_stack', 'usage_patterns'],
-        'conceptual': ['concepts', 'variables', 'systems', 'functions', 'insights', 'strategies', 'priorities', 'intents', 'types', 'causal_layers'] # conceptual elements
+        'conceptual': ['concepts', 'variables', 'systems',  'structures', 'prediction', 'functions', 'insights', 'strategies', 'priorities', 'intents', 'types', 'causal_layers'] # conceptual elements
     }
+    object_type_keys = {
+        'medical': ['experiment', 'compound', 'organism', 'condition', 'context', 'synthesis'],
+        'conceptual': ['conceptual', 'interaction', 'pattern']
+        'structural': ['structure']
+    }
+    '''
+    some of these types have mappings like with 
+    condition = state and synthesis = build process, 
+    so generalize when you can
+    '''
+    for key, val in object_type_keys:
+        for ref in val:
+            all_vars[key] = [item for item in all_vars['full_params'][ref]]
     all_vars['supported_params'] = []
     for key, val in all_vars['full_params'].items():
         all_vars['supported_params'].extend(val)
@@ -147,7 +161,6 @@ def get_vars():
         'alternate': ['or'],
         'equal': ['is']
     }
-
     all_vars['language_patterns'] = [
         'JJ NN',
         '|ADV VB| NN',
@@ -157,17 +170,9 @@ def get_vars():
         '|functions works operates interacts acts| as __a__ |VB NN|'
     ]
     all_vars['pattern_index'] = {
-        'types': [
-            'adjective noun'
-        ],
-        'roles': [
-            '|adv verb| noun',
-            'noun of noun',
-            '|verb noun| role',
-            '|functions works operates interacts acts| as __a__ |verb noun|'
-        ],
         'noun': [
-            'the noun'
+            'the noun',
+            'noun of'
         ],
         'passive': [
             '|VB VBP VBN VBD| |VB VBP VBN VBD|', # is done, was done
@@ -197,6 +202,24 @@ def get_vars():
             '|functions works operates interacts acts| as (a) |<verb> <noun>|' # Ex: acts as an intermediary (role => 'intermediary')
         ]
     }
+    '''
+    if there are files with the 'data/objecttype_patterns.txt' name pattern, 
+    pull that data and add it to pattern_index dict 
+    '''
+    for key in all_vars:
+        cwd = getcwd()
+        pattern_filename = ''.join([cwd, 'data/patterns_', key, '.txt'])
+        if os.file.exists(pattern_filename):
+            pattern_contents = read(pattern_filename)
+            if pattern_contents:
+                pattern_lines = pattern_contents.split('\n')
+                if len(pattern_lines) > 0:
+                    if key not in all_vars['pattern_index']:
+                        all_vars['pattern_index'][key] = []
+                    for line in pattern_lines:
+                        pattern = line.split('_')[0] 
+                        # just fetching the pattern, not the matches stored after the '_'         
+                        all_vars['pattern_index'][key].append(pattern)
 
     all_vars['language_patterns'] = convert_nltk_tags_to_pos_names(all_vars['language_patterns'], all_vars)
     all_vars['supported_tags'] = ['noun', 'adj', 'verb', 'adv']

@@ -1,57 +1,4 @@
-def replace_pattern(source_pattern, target_pattern, line, all_vars):
-    '''
-    - to do: add mapping patterns for use in replacement functions
-        - 'MD + V' => 'could succeed'
-        - 'V + RP' => 'give away'
-    '''
-    return source_pattern 
-
-def get_objects(lines, object_type, index):
-    index = {object_type: lines} if index is None else { object_type: list(index[object_type]) }
-    objects = extract(index, local_database, all_vars, 'objects')
-    if objects:
-        return objects
-    return False
-
-def extract(objects, local_database, all_vars, extraction_type):
-    ''' 
-    - this function is for meta-analysis, not finding or replacing a pattern in a line
-    - after youre done processing a batch of articles, 
-        youll have an index containing types of elements ('condition', 'symptom', 'strategy')
-        this function is for finding patterns in those index types
-    - objects & local_database are both dicts of sets, just like index & row in get_metadata
-    '''
-    index = local_database if local_database else objects
-    if index:
-        patterns = {}
-        for object_type in index:
-            for line in index[object_type]:
-                line_patterns = get_pattern_map_in_line(line, all_vars, None)
-                if line_patterns:
-                    for k, v in line_patterns.items():
-                        if k not in patterns:
-                            patterns[k] = set()
-                        if extraction_type == 'objects' or extraction_type == 'both':
-                            get_function_name = ''.join(['get_', object_type])
-                            objects_from_subset = getattr(get_objects, get_function_name)(v, k, all_vars)
-                            if objects_from_subset:
-                                if len(objects_from_subset) > 0:
-                                    for item in objects_from_subset:
-                                        patterns[k].add(item)
-                        elif extraction_type == 'patterns' or extraction_type == 'both':
-                            patterns[k].add(v)
-                else:
-                    ''' in case there are no patterns found, try splitting into ngrams '''
-                    words = subset.split(' ')
-                    word_range = 3 if len(words) > 5 else 2 if len(words) > 3 else 1
-                    for i in range(0, word_range):
-                        subset = get_ngrams(words, word, i, 'both') # ngrams
-                        ''' to do: finish ngram pattern matching '''
-        if patterns:
-            return patterns
-    return False
-
-def get_pattern_map_in_line(line, all_vars, pattern_keys):
+def get_pattern_matches_in_line(line, pattern_keys, all_vars):
     ''' a = {'pattern': 'source_words'} '''
     found_patterns = {}
     pattern_keys if pattern_keys is not None else all_vars['pattern_index'].keys()
@@ -182,26 +129,17 @@ def get_alt_patterns(source_pattern):
             return all_patterns_with_alts
     return False
 
-def get_metrics(line):
+def get_type_patterns(source_pattern):
+    ''' to do: implement this after get_types '''
+    return source_pattern
+
+def replace_pattern(source_pattern, target_pattern, line, all_vars):
     '''
-    find any metrics in this line
-    to do: some metrics will have letters other than expected
-    pull all the alphanumeric strings & filter out dose information
+    - to do: add mapping patterns for use in replacement functions
+        - 'MD + V' => 'could succeed'
+        - 'V + RP' => 'give away'
     '''
-    metrics = set()
-    split_line = line.split(' ')
-    for i, word in enumerate(split_line):
-        numbers = [w for w in word if w.isnumeric()]
-        if len(numbers) > 0:
-            if len(numbers) == len(word):
-                next_word = split_line[i + 1] if (i + 1) < len(split_line) else ''
-                if len(next_word) < 5:
-                    # to do: add extra processing rather than assuming its a unit of measurement
-                    metrics.add(word)
-                    metrics.add(next_word) # '3 mg'
-            else:
-                metrics.add(word) # '3mg'
-    return metrics
+    return source_pattern
 
 def get_pattern_stack(pattern_stack):
     '''

@@ -1,4 +1,44 @@
-def get_types(word, all_vars):
+import wikipedia
+from wikipedia.exceptions import DisambiguationError
+
+def get_types(word, title, all_vars):
+    types = {}
+    wikipedia.set_lang("en")
+    suggested = None
+    pos = get_pos(word, all_vars)
+    if pos == 'noun':
+        ''' make sure this is a noun before querying '''
+        if word[0] == word[0].upper() and word[1] != word[1].upper():
+                suggested = get_generic_medication(word)
+            suggested = wikipedia.suggest(word) if not suggested else suggested
+            print('suggested', suggested, word)
+            try:
+                content = wikipedia.page(suggested).content
+                section_list = [s.strip().replace(' ', '_').lower() for s in content.split('==') if '.' not in s and len(s) < 100]
+                index['section_list'] = index['section_list'].union(section_list)
+                print('section list', section_list)
+                categories = wikipedia.page(suggested).categories
+                if len(categories) > 0:
+                    row['types'] = row['types'].union(set(categories))
+                    print('categories', categories)
+                    if len(section_list) > 0:
+                        ''' use section list to determine type first '''
+                        for key, val in all_vars['section_map'].items():
+                            for section in section_list:
+                                if key in section:
+                                    index_type =  val
+                    else:
+                        index_type = get_index_type(suggested, all_vars, categories)
+                        if index_type:
+                            print('found index type', index_type, word)
+                            if index_type in row:
+                                if index_type != 'dependencies':
+                                    output = get_objects_of_type(index_type, r)
+                                    if output != r:
+                                        for k in output:
+                                            row[k] = output[k]
+            except Exception as e:
+                print('wiki summary exception', e)
     return word
 
 def get_index_type(object_type, all_vars, categories):

@@ -14,40 +14,21 @@ from get_index_def import get_empty_index
     type = combination(attributes)
 '''
 
-def get_data_store(sources, index_type, metadata_keys, param_keys):
-    '''
-    this assembles an index out of sources for the index type,
-    pulling from data sources like wiki to generate a dataset, 
-    if there isnt already a dataset stored locally
-    '''
-    index = get_empty_index(metadata_keys, param_keys)
-    return index
-
-def get_index_objects(index_type, relationship):
-    print('get_index_objects', index_type, relationship)
-    function_name = ''.join(['get_', index_type])
-    globals_dict = globals()
-    if function_name in globals_dict:
-        print('found function in globals', function_name)
-        function = globals_dict[function_name]
-        print('function', function)
-        output = function(relationship)
-        print('output', output)
-        return output
-    return False
-
 ''' these functions do more advanced linguistic processing than 
     keyword matching as in identify_elements '''
 
 def get_variables(line):
     ''' use this to determine parameters for synthesis function too '''
+    ''' variables are the inputs to functions '''
+    ''' this can mean the subject of a sentence, or the inputs of that subject (resources, context) '''
+    return line
 
 def identify_key_sentences(article):
     '''
     key_sentences should have an item from each sentence_type that is relevant to the study intent
     '''
     key_sentences = {}
-    intents = get_study_intent(article)
+    intents = get_article_intents(article)
     if intents:
         key_sentences['intent'] = ','.join(intents)
     for line in article.split('\n'):
@@ -67,8 +48,8 @@ def get_sentence_type(line):
         'assumption': [],
         'test': [],
         'intent': [],
-        'synthesis_instruction': [],
-        'function': [],
+        'instruction': [],
+        'function': [], # describing processes
         'result': [],
         'treatment': []
     }
@@ -96,7 +77,18 @@ def get_elements(line):
 def get_causal_layer(row, index, line, article):
     return row
 
-def get_article_intent(article):
+def get_article_intents(article):
+    '''
+    this function is checking for any purpose-related keywords
+    to find priority data of bio components, 
+    like 'bacteria seek to optimize efficiency' would return 'efficiency'
+
+    if something (object, process, attribute) is a known output of a function, 
+        its assumed to be the intent
+
+    to do: replace get_pos_in_line with call to get structural/medical metadata 
+    '''
+
     '''
     this should capture the core intent which should be one of the supported intents
     all intents are inherently relationships so most could be standardized to:
@@ -159,20 +151,117 @@ def get_article_intent(article):
         if intent:
             intents.append(intent)
 
+def get_object_intents(line):
+    intents = {}
+    row = get_pos_in_line(row, None, all_vars)
+    if row:
+        if 'nouns' in row:
+            for n in row['nouns']:
+                functions = get_functions(n)
+                if functions:
+                    for f in functions:
+                        if 'outputs' in f:
+                            if n not in intents:
+                                intents[n] = []
+                            intents[n].append(f['outputs'])
+                related_components = get_related_components(n)
+                if related_components:
+                    for rc in related_components:
+                        functions = get_functions(n)
+                        if functions:
+                            for rcf in functions:
+                                if 'outputs' in rcf:
+                                    if n not in intents:
+                                        intents[n] = []
+                                    intents[n].append(rcf['outputs'])
     return intents
-
-def get_intents(line):
-    ''' this function is checking for any purpose-related keywords
-    to find priority data of bio components, 
-    like 'bacteria seek to optimize efficiency' would return 'efficiency'
-    '''
-    return line
     
-def get_strategies(line):
+def get_net_impact(functions, object_name):
     '''
-    get the strategy explaining why this worked or failed, 
-    which may be equal to the mechanism of action, 
-    so you can do searches for other compounds with similar activity
+        function to combine functions by intent:
+          - if you have these two functions:
+                - switch on process A
+                - switch off processing of B which creates input for process A
+          - the output intent is:
+                - neutralize process A (assuming the two functions are equal in power)
+    '''
+    impact = None
+    for f in functions:
+        f_impact = get_impact(f, object_name)
+        if f_impact:
+            if impact:
+                if not impact_match(f_impact, impact, object_name):
+                    impact = update_impact(f_impact, impact, object_name)
+            else:
+                impact = f_impact
+    if impact:
+        return impact
+    return False
+
+def impact_match(f_impact, impact, object_name):
+
+def update_impact(f_impact, impact, object_name):
+
+def get_impact(function, object_name):
+    '''
+    function_string='this compound activates b', object_name='b'
+    should return a standard verb like 'activate', 'enable'
+
+    - the object_name is the subject of the sentence
+        - make sure the impact verb is acting on that subject so switch if its passive 
+    '''
+    if object_name in function:
+        row = get_pos_in_line(function, None, all_vars)
+        if row:
+            if 'verbs' in row:
+                for v in row['verbs']:
+                    standard_verb, check_type = find_matching_synonym(v, ['synonym'], None, 'word', all_vars)
+                    if standard_verb and check_type:
+                        return standard_verb
+                    else:
+                        ''' 
+                        no supported synonym found for this verb, 
+                        check for any other matches other than pos matches
+                        '''
+                        verbs, check_type = find_matching_synonym(v, None, ['pos', 'synonym'], 'list', all_vars)
+                        if verbs and check_type:
+                            for sv in verbs:
+                                standard, check_type = find_matching_synonym(sv, ['synonym'], None, 'word', all_vars)
+                                if standard and check_type:
+                                    return standard_verb
+    return False
+
+def get_functions(line, local_database):
+    ''' for fluconazole, this should be: "antifungal", "inhibitor of cyp3a4" '''
+    row = get_structural_metadata(line, None, None, all_vars)
+    if row:
+        if 'functions' in row:
+            return row['functions']
+    if local_database:
+        ''' to do: add query functions to get objects from local data store '''
+        return local_database
+    return False
+
+def get_strategies(line, intent):
+    '''
+     - get the strategy explaining why this method worked or failed for the intent, 
+        which may be equal to the mechanism of action, 
+        so you can do searches for other compounds with similar activity
+
+     - these are processes used by an organism or used on a compound
+
+    - strategies are the reason for success/failure of a method/treatment, including processes & mechanisms of action
+        - "this structure on the compound tears the cell barrier"
+        - "induces apoptosis by depriving it of contrary signals"
+        - "chlorpromazine increases valproic acid levels, which can be derived from valerian (valerian suppressed cyp3a4), 
+        which is a function in common with other compounds with activity against pathogen x"
+
+    - drugs need a way to handle common mutation strategies of pathogens
+      - up regulating CDR genes
+      - reduced sensitivity of the target enzyme to inhibition by the agent
+      - mutations in the ERG11 gene, which codes for 14α-demethylase. 
+        These mutations prevent the azole drug from binding, 
+        while still allowing binding of the enzyme's natural substrate, lanosterol
     '''
     # initial treatment output should be: ['fluconazole', 'itraconazole', 'sertraline', 'thymol', 'carvacrol', 'peppermint']
     # type output should be: ['azole', 'essential oils from plant genus x']
@@ -180,10 +269,6 @@ def get_strategies(line):
     return line
 
 def get_insights(line):
-    return line
-
-def get_functions(line):
-    ''' for fluconazole, this should be: "antifungal", "inhibitor of cyp3a4" '''
     return line
 
 def get_hypothesis(summary):

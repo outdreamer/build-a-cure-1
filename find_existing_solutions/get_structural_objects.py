@@ -119,23 +119,6 @@ def replace_operators_with_words(pc, conditional_items, variables, all_vars):
         return pc
     return False
 
-def get_new_key(key_dict, all_vars):
-    new_key = None
-    upper_limit = len(all_vars['alphabet']) - 1
-    random_index = random.randint(0, upper_limit)
-    random_letter = all_vars['alphabet'][random_index]
-    if key_dict:
-        for k in key_dict:
-            new_key = ''.join([k, random_letter])
-    else:
-        new_key = random_letter
-    if new_key:
-        if new_key in key_dict:
-            return get_new_key(key_dict, all_vars)
-        else:
-            return new_key
-    return False 
-
 def add_items(word_sets, cd, clause_delimiters):
     new_items = []
     for i, word_set in enumerate(word_sets):

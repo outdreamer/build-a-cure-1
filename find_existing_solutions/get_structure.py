@@ -3,76 +3,6 @@ from nltk import word_tokenize, pos_tag
 from utils import *
 from get_vars import get_vars
 
-def concatenate_species(data):
-    data_lines = data.split('.')
-    new_lines = []
-    next_item = None
-    for i, d in enumerate(data_lines):
-        d_split = d.split(' ')
-        last_item = d_split.pop()
-        if len(last_item) == 1:
-            if (i + 1) < len(d):
-                prev_item = d_split[-1]
-                if len(prev_item) > 1:
-                    next_item = data_lines[i+1].strip().split(' ')[0]
-                    d_next = '-'.join([last_item, next_item]) #C. elegans => C-elegans
-                    d_split.append(d_next)
-                    new_lines.append(' '.join(d_split))
-        else:
-            next_item = None
-            new_lines.append(' '.join(d_split))
-        if next_item is not None:
-            next_item_len = len(next_item)
-            if next_item == d[0:next_item_len]:
-                d = ' '.join(d[next_item_len:].split(' '))
-                new_lines.append(d)
-    data = '.'.join(new_lines)
-    return data
-
-def get_counts_in_line(words, row):
-    ''' to do: nouns with highest counts are likely to be central objects '''
-    for w in words:
-        count = words.count(w)
-        w_upper = w.upper()
-        w_name = w.capitalize() if w.capitalize() != words[0] else w
-        upper_count = words.count(w_upper) # find acronyms, ignoring punctuated acronym
-        if count > 0 or upper_count > 0:
-            count_num = upper_count if upper_count <= count else count
-            count_val = w_upper if upper_count <= count else w 
-            if count_num not in row['counts']:
-                row['counts'][count_num] = set()
-            row['counts'][count_num].add(count_val)
-    if len(row['counts']) > 0:
-        common_words = get_most_common_words(row['counts'], 3) # get top 3 tiers of common words
-        if common_words:
-            row['common_words'] = row['common_words'].union(common_words)
-    return row
-
-def get_names(article_words, line, row):
-    # to do: identify all irrelevant proper nouns like place, company, university & individual names
-    tagged = pos_tag(word_tokenize(line))
-    for p in row['phrases']:
-        if len(p) > 0:
-            new_name = []
-            phrase_words = p.split(' ')
-            for name in phrase_words:
-                pos = [item[1] for item in tagged if item[0].lower() == name]
-                if len(pos) > 0:
-                    pos_item = pos[0]
-                    if pos_item == 'NNP':
-                        name = ''.join([name[0].upper(), name[1:]]) if '.' not in name and '/' not in name else name.upper()
-                        new_name.append(name)  
-                    elif pos_item == 'NNS':
-                        name = ''.join([name[0].upper(), name[1:]])
-                        if name in '\n'.join(article_words):
-                            new_name.append(name)
-            if len(new_name) > 0:                                         
-                final_name = ' '.join(new_name)
-                if len(new_name) == len(phrase_words) and final_name != line[0:len(final_name)] and final_name.lower() not in row['nouns'] and final_name.lower() not in row['verbs']:
-                    row['names'].add(final_name) # find names and store separately
-    line = ' '.join([w for w in line.split(' ') if w not in row['names']])
-    return row, line
-
 def get_similarity_to_title(string, title):
     string_split = string.split(' ')
     title_split = title.split(' ')
@@ -102,16 +32,26 @@ def get_similar_lines(row, line, title):
     return max_line, row
 
 def get_structural_metadata(line, row, metadata_keys, all_vars):
-    line_patterns = get_patterns_in_line(line, all_vars)
-    if line_patterns:
-        row['line_patterns'] = line_patterns
-    row = get_pos_in_line(line, row)
-    phrases = get_phrases(line)
+    ''' get counts, most_common_words, nouns, verbs, noun_phrases, and taken_out words '''
+    row = get_pos_in_line(line, row, all_vars)
+    ''' get phrases comes before get_names '''
+    phrases = get_phrases(line, row, all_vars)
     if phrases:
         row['phrases'] = phrases
-    row, line = get_names(article_string, line, row)
+    ''' replace non-medical irrelevant names with empty string '''
+    row = replace_names(row, all_vars)
+    
+    ''' these should be isolated & done with get_metadata '''
+    ''' get modifier blocks '''
+    modifiers = get_modifier(line, row, all_vars)
+    if modifiers:
+        row['modifiers'] = modifiers
+    ''' get clause, functions, component, & relationship blocks '''
     row = get_clauses(line, row, all_vars)
-    row = get_counts_in_line(line, row)
+    ''' get any pos patterns found in line '''
+    line_patterns = get_patterns_in_line(line, row, all_vars)
+    if line_patterns:
+        row['line_patterns'] = line_patterns
     return row
 
 def get_phrase_with_word(word, phrases, line):

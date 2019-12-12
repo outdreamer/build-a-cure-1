@@ -1,4 +1,4 @@
-from get_structural_objects import get_relationships_from_clauses
+from get_structural_objects import *
 
 ''' 
     each main medical object deserves its own dictionary, which can be built with rows data
@@ -111,11 +111,12 @@ def test_similarity(verification_dict, output_dict):
   2. check for errors (missing components, words that are too different to be correct)
   '''
 
-def get_sub_components(condition_keyword):
-  ''' when searching for research on a compound or condition, also check for its sub-components, 
-      and the compounds its sub-components can be used to make '''
-
 def get_generic_medication(brand_name):
+    '''
+      to do:
+        - add standardization of acronyms using search with keywords 
+          so you get n-acetylaspartic acid from naa and creatine from cr
+    '''
     import wikipedia
     from wikipedia.exceptions import DisambiguationError
     keyword = None
@@ -174,15 +175,13 @@ def get_synthesis_instructions(article):
     '''
     return article
 
-def get_adjacent_compounds(compound):
-    return compound
-
 def get_primary_condition(article, index):
     '''
-    get the primary condition being studied
-    which should be the keyword passed to get_summary_data
-    if it was a condition
-    or the subject of the study
+      to do:
+        - find the primary condition being studied to differentiate 
+          from other conditions or complications mentioned 
+          which should be the keyword passed to get_summary_data if it was a condition query 
+          or one of the subjects of the study
     '''
     return article 
 
@@ -198,6 +197,8 @@ def get_compounds(line):
     return line
 
 def get_symptoms(line):
+    ''' pulls from sources specific to symptoms: rxlist, drugs, wiki, forums '''
+    ''' symptom examples: fever red urine skin rash paralysis headache bleeding '''
     return line
 
 def get_mechanisms(line):
@@ -207,23 +208,41 @@ def get_mechanisms(line):
 def get_tests(line):
     return line
 
-def get_related_components(component):
+def get_adjacent_compounds(compound):
+    ''' 
+    get similar compounds with similar functionality 
+    that can be synthesized with accessible methods 
+    '''
+    return compound
+
+def get_sub_components(condition_keyword):
+  ''' when searching for research on a compound or condition, also check for its sub-components, 
+      and the compounds its sub-components can be used to make '''
+
+def get_related_components(component, data_store, all_vars):
     '''
     this should return all primary sub-components & outputs known for the component,
     such as important adjacent compounds which this one frequently turns into
     or other variations of the compound which have very different functionality
+    & pull components of a compound & primary metabolites
+
+    this should only pull the dependencies that are components 
+      components meaning interaction objects rather than functions or attributes
     '''
     related_components = set()
-    definitions = get_definition_keywords(word)
+    ''' 
+    to do: add logic to pull functions
+    if not already in index or local_database & get related components from functions
+    '''
+    definitions = get_definitions(word)
     if definitions:
-        if len(definitions) > 0:
-            for d in definitions:
-                tagged = pos_tag(word_tokenize(d))
-                print('tagged definition', tagged)
-                for item in tagged:
-                    if item[1] in all_vars['pos_tags']['all_nouns']:
-                        related_components.add(item[0])
-    return component
+        for d in definitions:
+            d_row = get_pos_in_line(d, None, all_vars)
+            if d_row:
+                if 'nouns' in d_row:
+                    for n in d_row['nouns']:
+                        related_components.add(n)
+    return related_components
 
 def get_treatments(intent, hypothesis, line, title, row, metadata, all_vars):
     '''
@@ -281,3 +300,36 @@ def get_treatments(intent, hypothesis, line, title, row, metadata, all_vars):
             else:
                 row['treatments_failed'].add(r)
     return row
+
+
+def filter_source_list(object_type, sources):
+  ''' 
+    filter sources by target object bc some sources are irrelevant to some intents
+    apply other filters based on query intent:
+      - if they want treatments or synthesis instructions,
+        add 'store' sources so you can return links to purchase products
+      - if they want a prediction, query code sources for ML functions
+      - if the treatment involves an organism (like a type of bacteria), 
+          synthesis instructions may involve:
+          - collecting samples in the wild
+          - predicting phase structure
+      - if they want condition data, you need to return phases & timeline
+        - if they submit symptoms with a condition query, tell them what phase theyre at
+      - if the results are not sufficient, offer option to generate a predictor & estimate cost
+      - if a known treatment doesnt exist, your generator needs to return results like:
+        - how to modify the problem to be more solvable
+          - how to modify treatments to apply to the problem (mutation strategies)
+          - how to trigger genes to switch off a process
+          - how to make an organism evolve a particular function
+  '''
+  all_sources = ['rxlist', 'drugs', 'wiki', 'forums', 'pubchem', 'code', 'store', 'generator']
+  source_filters = {
+    'symptoms': ['rxlist', 'drugs', 'wiki', 'forums', 'pubchem', 'generator'],
+    'treatments': ['pubchem', 'wiki', 'rxlist', 'drugs','store', 'generator'],
+    'compounds': ['rxlist', 'drugs', 'wiki', 'pubchem', 'store', 'generator'],
+    'synthesis_instructions': ['rxlist', 'drugs', 'wiki', 'pubchem', 'store', 'generator'],
+    'components': ['rxlist', 'drugs', 'wiki', 'pubchem', 'generator'],
+    'conditions': ['wiki', 'pubchem', 'rxlist', 'drugs', 'generator'],
+    'organisms': ['wiki', 'pubchem', 'rxlist', 'drugs', 'store', 'generator']
+  }
+  return sources
