@@ -62,7 +62,7 @@ def find_modifier(pattern_subsets, pattern, word_map, all_vars):
                     blob_dict[token] = val.split('/')
         if tagged_dict and blob_dict:
             for i, word in enumerate(words):
-                pos = word_map[word] if word in word_map else None
+                pos = word_map[word] if word in word_map else ''
                 if pos:
                     if pos not in all_vars['pos_tags']['exclude']:
                         if word in blob_dict and word in tagged_dict:
@@ -71,7 +71,7 @@ def find_modifier(pattern_subsets, pattern, word_map, all_vars):
                             modifier = word
                             other_word = words[i + 1] if (i + 1) < len(words) else words[i - 1] if i > 0 else None
                             if other_word:
-                                other_word_pos = word_map[other_word] if other_word in word_map else None
+                                other_word_pos = word_map[other_word] if other_word in word_map else ''
                                 if other_word_pos in all_vars['pos_tags']['ALL_N'] or other_word_pos in all_vars['pos_tags']['ALL_V']:
                                     row['modifiers'].add(' '.join([ratio, other_word]))
         return row
@@ -204,7 +204,7 @@ def split_by_relevance(line, word_map, all_vars):
     words = line.split(' ')
     new_subset = []
     for w in words:
-        pos = word_map[w] if w in word_map else None
+        pos = word_map[w] if w in word_map else ''
         for key in ['N', 'V', 'verb_keywords', 'ADV', 'ADJ']:
             pos_list = all_vars['pos_tags'][key]
             if pos in pos_list:
@@ -280,7 +280,7 @@ def get_conditionals(row, all_vars):
             is_a_condition = is_condition(words, row, all_vars)
             if is_a_condition:
                 ''' is_a_condition has the next important word in condition '''
-                pos = row['word_map'][is_a_condition] if is_a_condition in row['word_map'] else None
+                pos = row['word_map'][is_a_condition] if is_a_condition in row['word_map'] else ''
                 if pos:
                     if pos not in all_vars['pos_tags']['ALL_V']:
                         for j, w in enumerate(words):

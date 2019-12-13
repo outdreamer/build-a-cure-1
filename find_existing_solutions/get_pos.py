@@ -6,29 +6,6 @@ from nltk import pos_tag, word_tokenize
     nltk.help.upenn_tagset()
 '''
 
-def unconjugate(verb, pos_tags, word_map, all_vars):
-    ''' the basic form of a verb is VB, so if this is a verb, 
-        convert all other verb forms to that verb form
-    '''
-    tag = word_map[verb] if verb in word_map else None
-    if tag != 'VB':
-        if tag in pos_tags['verbs']:
-            base_verb = change_to_infinitive(verb)
-            if base_verb:
-                return base_verb
-    return verb
-
-def convert_words_to_pos(line, all_vars):
-    new_line = []
-    for word in line.split(' '):
-        pos = get_nltk_pos(word, all_vars)
-        if pos in all_vars['pos_tags']['ALL']:
-            new_line.append(pos)
-        else:
-            new_line.append(word)
-    line = ' '.join(new_line)
-    return line
-
 def get_nltk_objects(tag_key, line, all_vars):
     items = []
     if tag_key in all_vars['pos_tags']:
@@ -67,8 +44,6 @@ def convert_pos_names_to_nltk_tags(all_vars):
     for pattern_type, pattern_list in all_vars['pattern_index'].items():
         new_list = []
         for p in pattern_list:
-            alts = get_nested_alts(p)
-
             new_words = []
             for word in p.split(' '):
                 if word in all_vars['supported_pattern_variables']:

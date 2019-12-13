@@ -4,14 +4,13 @@ from nltk import CFG, pos_tag, word_tokenize, ne_chunk
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet
 from nltk.stem import SnowballStemmer
-from nltk.stem.wordnet import WordNetLemmatizer
 from textblob import TextBlob, Sentence, Word, WordList
 
-lemmatizer = WordNetLemmatizer()
+from get_index_def import get_empty_index
+from get_patterns import apply_pattern_map
+
 stop = set(stopwords.words('english'))
 stemmer = SnowballStemmer("english")
-
-from get_pos import *
 
 ''' SIMILARITY FUNCTIONS '''
 
@@ -76,11 +75,6 @@ def get_singular(word):
         for item in singular_list:
             return item
     return False
-
-def change_to_infinitive(verb):
-    ''' get first synset name '''
-    infinitive = lemmatizer.lemmatize(verb, 'v')
-    return infinitive
 
 def get_new_key(key_dict, all_vars):
     new_key = None
@@ -147,10 +141,15 @@ def get_pos_metadata(row, all_vars):
     ''' to do: nouns with highest counts are likely to be central objects '''
     ''' takes out determiners if indicating 'one', 'some', or 'same' quantity '''
     keep_ratios = ['extra', 'high', 'none']
-    row = row if row else get_empty_index(None, all_vars)
+    print('row', row)
+    if type(row) != str:
+        row = get_empty_index(['all'], all_vars)
+        row['line'] = row['line'] if 'line' in row else ''
+    else:
+        row['line'] = row
     words = row['line'].split(' ')
-    for i, word in enumerate(words):
-        if len(word) > 0:
+    for i, w in enumerate(words):
+        if len(w) > 0:
             count = words.count(w)
             w_upper = w.upper()
             w_name = w.capitalize() if w.capitalize() != words[0] else w
@@ -161,22 +160,20 @@ def get_pos_metadata(row, all_vars):
                 if count_num not in row['counts']:
                     row['counts'][count_num] = set()
                 row['counts'][count_num].add(count_val)
-            pos = row['pos_map'][word]
+            pos = row['word_map'][w] if w in row['word_map'] else ''
             if pos in all_vars['pos_tags']['ALL_V']:
-                ''' to do: standardize verbs before adding them - this will make some patterns invalid '''
-                # word = change_to_infinitive(word)
-                row['verbs'].add(word)
+                row['verbs'].add(w)
             elif pos in all_vars['pos_tags']['ALL_N']:
-                row['nouns'].add(word)
+                row['nouns'].add(w)
             else:
                 if pos in all_vars['pos_tags']['D']:
-                    ratio = get_determiner_ratio(word)
+                    ratio = get_determiner_ratio(w)
                     if ratio:
                         if ratio in keep_ratios:
                             other_word = words[i + 1] if (i + 1) < len(words) else words[i - 1] if i > 0 else None
                             if other_word:
                                 row['descriptors'].add(' '.join([ratio, other_word]))
-                row['taken_out'].add('_'.join([word, pos]))
+                row['taken_out'].add('_'.join([w, str(pos)]))
     if len(row['counts']) > 0:
         common_words = get_most_common_words(row['counts'], 3) # get top 3 tiers of common words
         if common_words:
@@ -228,39 +225,6 @@ def get_delimiter(line):
 def get_sentence_delimiter(text):
     return '\n' if text.count('\n') > text.count('. ') else '. '
 
-def find_delimiter(line, all_vars):
-    delimiters = [c for c in line if c not in all_vars['alphabet']] 
-    if len(delimiters) > 0:
-        max_delimiter = max(delimiters)
-        if max_delimiter:
-            return max_delimiter
-    default_delimiter = ' ' if ' ' in line else ''
-    return default_delimiter
-
-def standard_text_processing(text, all_vars):
-    text = concatenate_species(text.strip())
-    text = standardize_delimiter(text)
-    text = standardize_punctuation(text)
-    lines = text.split('\n')
-    for i, line in enumerate(lines):
-        line = replace_quotes_with_parenthesis(line)
-        new_line = convert_to_active(line)
-        line = new_line if new_line else line
-        if line not in article_lines:
-            article_lines[line] = {}
-        word_map = {}
-        for word in line.split(' '):
-            pos = get_nltk_pos(word)
-            if pos:
-                word_map[word] = pos
-        if i == (len(lines) - 1):
-            line = remove_stopwords(line, word_map)
-            line = replace_with_syns(line, word_map, all_vars)
-            article_lines[line] = word_map
-    if article_lines:
-        return article_lines
-    return False
-
 def standardize_delimiter(text):
     blob = get_blob(text)
     if blob:
@@ -271,24 +235,6 @@ def standardize_delimiter(text):
     if delimiter:
         return '\n'.join(text.split(delimiter))
     return False
-
-def replace_with_syns(line, word_map, all_vars):
-    new_text = []
-    for w in line.split(' '):
-        word = ''.join([x for x in w if x == '-' or x == ' ' or x in all_vars['alphabet']]) # some synonyms have dashes and spaces
-        # dont add stem-similarity replacement bc you still need pos identification
-        check_types = ['synonym', 'common', 'standard', 'similarity']
-        pos = word_map[w] if w in word_map else None
-        if pos not in all_vars['pos_tags']['exclude']:
-            matched_items, all_vars = find_matching_synonym(word, pos, check_types, None, all_vars)
-            if matched_items:
-                for match, check_type in matched_items.items():
-                    new_text.append(w.replace(word, match))
-            else:
-                new_text.append(w)
-    if len(new_text) > 0:
-        return ' '.join(new_text)
-    return text, all_vars
 
 def standardize_punctuation(line):
     # remove apostrophes, replace brackets with parenthesis
@@ -482,7 +428,7 @@ def concatenate_species(data):
     data = '.'.join(new_lines)
     return data
 
-def convert_to_active(line):
+def convert_to_active(line, all_vars):
     '''
     - check for verb tenses normally used in passive sentences # had been done = past perfect
     - translate questions into statements of intent:
@@ -510,7 +456,7 @@ def convert_to_active(line):
         your other pattern "x of y" configuration wont be necessary, so remove that pattern
 
     '''
-    active_line = apply_pattern_map(line, all_vars['pattern_maps']['passive_to_active'])
+    active_line = apply_pattern_map(line, all_vars['pattern_maps']['passive_to_active'], all_vars)
     if active_line:
         return active_line
     return line

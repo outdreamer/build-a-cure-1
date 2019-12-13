@@ -156,7 +156,7 @@ def get_article_intents(article):
 
 def get_object_intents(line):
     intents = {}
-    row = get_pos_metadata(row, None, all_vars)
+    row = get_pos_metadata(line, all_vars)
     if row:
         if 'nouns' in row:
             for n in row['nouns']:
@@ -215,7 +215,7 @@ def get_verb_impact(function, object_name, all_vars):
         - make sure the impact verb is acting on that subject so switch if its passive 
     '''
     if object_name in function:
-        row = get_pos_metadata(function, None, all_vars)
+        row = get_pos_metadata(function, all_vars)
         if row:
             if 'verbs' in row:
                 for v in row['verbs']:

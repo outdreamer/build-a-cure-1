@@ -1,3 +1,6 @@
+from utils import *
+from get_pos import get_nltk_pos
+
 def get_patterns_between_objects(objects):
     '''
     this function is to determine patterns using each object in the list as input
@@ -92,37 +95,38 @@ def find_patterns(source_input, pattern_keys, all_vars):
     if type(source_input) == list:
         found_patterns = get_patterns_between_objects(source_input)
     else:
-        pattern_keys if pattern_keys is not None else all_vars['pattern_index'].keys()
+        pattern_keys = pattern_keys if pattern_keys is not None else all_vars['pattern_index'].keys()
         for pattern_key in pattern_keys:
             combined_key = ''.join(['patterns_', pattern_key])
             found_patterns[combined_key] = {}
             if pattern_key in all_vars['pattern_index']:
                 for pattern in all_vars['pattern_index'][pattern_key]:
-                    source_subsets = get_pattern_source_subsets(source_input, pattern, 'pattern')
+                    source_subsets = get_pattern_source_subsets(source_input, pattern, 'pattern', all_vars)
                     if source_subsets:
                         found_patterns[combined_key][pattern] = set(source_subsets)
     if found_patterns:
         return found_patterns
     return False
 
-def apply_pattern_map(line, pattern_map):
+def apply_pattern_map(line, pattern_map, all_vars):
     ''' 
     this replaces a pattern with its associated pattern found in the line using variables 
-
     apply_pattern_map(line='dog of cat', pattern_map = {'noun1 of noun2' => 'noun2 noun1'})
         would output: 'cat dog'
-
     output: the line with replaced values of the pattern_map, if the pattern keys are found in the line
     '''
     # for object_type in ['word', 'modifier', 'phrase']:
-    for source_pattern, target_pattern in pattern_map.items():
-        found_subsets = get_pattern_source_subsets(line, source_pattern, 'pattern')
-        if found_subsets:
-            for subset in found_subsets:
-                pattern_map = {'source': source_pattern, 'target': target_pattern}
-                applied = get_new_version(subset, sub_pattern_map, all_vars)
-                line.replace(p, applied)
-            return line
+    reverse_keys = reversed(sorted(pattern_map.keys()))
+    print('pattern map', pattern_map)
+    for source_pattern in reverse_keys:
+        for target_pattern in pattern_map[source_pattern]:
+            found_subsets = get_pattern_source_subsets(line, source_pattern, 'pattern', all_vars)
+            if found_subsets:
+                for subset in found_subsets:
+                    pattern_map = {'source': source_pattern, 'target': target_pattern}
+                    applied = get_new_version(subset, sub_pattern_map, all_vars)
+                    line.replace(p, applied)
+                return line
     return False
 
 def get_new_version(subset, sub_pattern_map, all_vars):
@@ -141,7 +145,6 @@ def get_new_version(subset, sub_pattern_map, all_vars):
         sub_pattern_map = {'source': "JJ1 NN1 of JJ2 NN2", 'target': "JJ2 NN2 JJ1 NN1"}
         subset = "catalyzing inhibitor of alkalizing enzyme"
     '''
-    
     delimiter = find_delimiter(subset, all_vars)
     if delimiter:
         ''' create a position map for source & target '''
@@ -180,7 +183,7 @@ def get_new_version(subset, sub_pattern_map, all_vars):
             return delimiter.join(new_words)
     return False
 
-def get_pattern_source_subsets(line, pattern, get_type):
+def get_pattern_source_subsets(line, pattern, get_type, all_vars):
     ''' get only the matching subsets from line with words in the same positions & pos as pattern '''
     ''' ['pattern_instance_1', 'pattern_instance_2''] '''
     '''
@@ -188,8 +191,8 @@ def get_pattern_source_subsets(line, pattern, get_type):
         to do: this prevents users from configuring patterns with numbers like 14alpha-deoxy-enzyme
     '''
     pattern_without_numbers = []
-    pos_line = convert_words_to_pos(line)
-    delimiter = find_delimiter(subset, all_vars)
+    pos_line = convert_words_to_pos(line, all_vars)
+    delimiter = find_delimiter(line, all_vars)
     if delimiter:
         for word in pattern.split(delimiter):
             nonnumeric_word = ''.join([w for w in word if w not in '0123456789']) 
@@ -276,7 +279,7 @@ def get_alt_patterns(source_pattern, nested_variables):
     - optional string are indicated by: __optionalstring__
     '''
     # source_pattern =  '|NN VB| VB' or 'NN NP'
-    delimiter = '|' in '|' in source_pattern else ' '
+    delimiter = '|' if '|' in source_pattern else ' '
     pattern_sets = [i for i in source_pattern.split(delimiter)]
     # you could also create a list of lists & iterate with counters
     # pattern_sets should be a list of pos with alts separated by spaces ['NN VB', 'VB'] or ['NN', 'NP']
@@ -352,3 +355,23 @@ def get_pattern_stack(pattern_stack):
             - repeat until all relevant unique patterns are generated
     '''
     return pattern_stack
+
+def convert_words_to_pos(line, all_vars):
+    new_line = []
+    for word in line.split(' '):
+        pos = get_nltk_pos(word, all_vars)
+        if pos in all_vars['pos_tags']['ALL']:
+            new_line.append(pos)
+        else:
+            new_line.append(word)
+    line = ' '.join(new_line)
+    return line
+
+def find_delimiter(line, all_vars):
+    delimiters = [c for c in line if c not in all_vars['alphabet']] 
+    if len(delimiters) > 0:
+        max_delimiter = max(delimiters)
+        if max_delimiter:
+            return max_delimiter
+    default_delimiter = ' ' if ' ' in line else ''
+    return default_delimiter

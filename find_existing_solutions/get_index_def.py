@@ -99,10 +99,10 @@ def get_empty_index(metadata_keys, all_vars):
         if key != 'request':
             for item in all_vars['full_params'][key]:
                 index_keys.append(item)
-    dict_keys = ['counts', 'patterns', 'pos']
+    dict_keys = ['counts', 'patterns', 'pos', 'word_map']
     metadata_keys = index_keys if 'all' in metadata_keys else metadata_keys
     for key in metadata_keys:
-        if key in index_keys
+        if key in index_keys:
             if key not in dict_keys:
                 index[key] = set()
             else:
