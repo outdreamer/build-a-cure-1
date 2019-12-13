@@ -1,9 +1,9 @@
 import random
 from utils import *
-from get_synonyms import get_operator
+from get_synonyms import *
 from get_objects import *
 
-def get_relationships_from_clauses(clauses, line, nouns, all_vars):
+def get_relationships_from_clauses(row, all_vars):
     '''
         - this is a generative function, applying each subject to each verb & each clause 
             to generate the full set of relationships in the sentence
@@ -23,8 +23,8 @@ def get_relationships_from_clauses(clauses, line, nouns, all_vars):
     '''
     variables = {}
     ''' variables should be a dict like: { var : modifier relationship }  ("a": "i - b") '''
-    print('line', line)
-    citems = get_conditionals(line, nouns, clauses, all_vars)
+    print('line', row['line'])
+    citems = get_conditionals(row, all_vars)
     variables['subject'] = citems['subject']
     word_relationships = []
     for v, verb_clause in enumerate(citems['verb_relationships']):
@@ -45,7 +45,7 @@ def get_relationships_from_clauses(clauses, line, nouns, all_vars):
     print('\noperator_clauses', operator_clauses.keys())
     placeholder_clauses = []
     for operator_clause in operator_clauses:
-        placeholder_clause, variables = replace_with_placeholders(operator_clause, line, variables, all_vars)   
+        placeholder_clause, variables = replace_with_placeholders(operator_clause, variables, all_vars)   
         placeholder_clauses.append(placeholder_clause)
     print('\nplaceholders', placeholder_clauses)
     if len(placeholder_clauses) > 0:
@@ -54,7 +54,7 @@ def get_relationships_from_clauses(clauses, line, nouns, all_vars):
             return relationships
     return False
 
-def replace_with_placeholders(operator_clause, line, variables, all_vars):
+def replace_with_placeholders(operator_clause, variables, all_vars):
     ''' what differentiates a variable from a normal word? 
         variables are used to refer to components of sub-logic that include 
         an embedded relationship which must be handled associatively 
@@ -157,18 +157,13 @@ def convert_to_operators(original_clause, all_vars):
             operator_clause.append(word)
     if len(operator_clause) > 0:
         operator_string = ' '.join(operator_clause)
-        operator_string = operator_string.replace('= = +', '+').replace('= = -', '-') # had been done
-        operator_string = operator_string.replace('= +', '+').replace('= -', '-') # is reduced
         return operator_string
     return False
 
 def get_combined_operator(combined):
-    if combined in all_vars['combined_map']['-']:
-        return '-'
-    elif combined in all_vars['combined_map']['+']:
-        return '+'
-    elif combined in all_vars['combined_map']['=']:
-        return '='
+    for key, val in all_vars['combined_map'].items():
+        if combined in val:
+            return key
     return False
 
 def operator_count(line, operators):

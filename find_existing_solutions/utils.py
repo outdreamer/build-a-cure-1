@@ -16,15 +16,16 @@ from get_pos import *
 ''' SIMILARITY FUNCTIONS '''
 
 def get_polarity(line):
-    line_blob = get_blob(line)
-    sentiment = line_blob.sentiment
-    if sentiment:
-        if sentiment.polarity:
-            return roun(sentiment.polarity, 1)
+    blob = get_blob(line)
+    if blob:
+        sentiment = blob.sentiment
+        if sentiment:
+            if sentiment.polarity:
+                return roun(sentiment.polarity, 1)
     return 0
 
 def correct_spelling(line):
-    blob = textblob.Sentence(line)
+    blob = Sentence(line)
     if blob:
         return blob.correct()
     return text
@@ -57,25 +58,11 @@ def get_definition_keywords(word):
 
 ''' GET STRUCTURAL TYPE FUNCTIONS '''
 
-def get_trees(line):
-    grammar_entries = ['S -> NP VP', 'PP -> P NP', 'NP -> Det N | NP PP', 'VP -> V NP | VP PP']
-    tagged = pos_tag(word_tokenize(line))
-    trees = ne_chunk(tagged)
-    print('trees', trees)
-    return trees
-
 def get_stem(word):
     stem = stemmer.stem(word)
     if stem:
         return stem 
     return word
-
-def get_first_important_word(words, all_vars):
-    for word in words:
-        pos = get_pos(word, all_vars)
-        if pos == 'verb' or word not in stop:
-            return word
-    return False
 
 def get_blob(string):
     if type(string) == str:
@@ -156,12 +143,12 @@ def get_determiner_ratio(word):
             return k
     return False
 
-def get_pos_metadata(line, row, all_vars):
+def get_pos_metadata(row, all_vars):
     ''' to do: nouns with highest counts are likely to be central objects '''
     ''' takes out determiners if indicating 'one', 'some', or 'same' quantity '''
     keep_ratios = ['extra', 'high', 'none']
     row = row if row else get_empty_index(None, all_vars)
-    words = line.split(' ')
+    words = row['line'].split(' ')
     for i, word in enumerate(words):
         if len(word) > 0:
             count = words.count(w)
@@ -174,28 +161,27 @@ def get_pos_metadata(line, row, all_vars):
                 if count_num not in row['counts']:
                     row['counts'][count_num] = set()
                 row['counts'][count_num].add(count_val)
-            pos = get_pos(word, all_vars)
-            if pos == 'verb':
+            pos = row['pos_map'][word]
+            if pos in all_vars['pos_tags']['ALL_V']:
                 ''' to do: standardize verbs before adding them - this will make some patterns invalid '''
                 # word = change_to_infinitive(word)
                 row['verbs'].add(word)
-            elif pos == 'noun':
+            elif pos in all_vars['pos_tags']['ALL_N']:
                 row['nouns'].add(word)
             else:
-                nltk_pos = get_nltk_pos(word)
-                if nltk_pos in all_vars['pos_tags']['det']:
+                if pos in all_vars['pos_tags']['D']:
                     ratio = get_determiner_ratio(word)
                     if ratio:
                         if ratio in keep_ratios:
                             other_word = words[i + 1] if (i + 1) < len(words) else words[i - 1] if i > 0 else None
                             if other_word:
-                                row['modifiers'].add(' '.join([ratio, other_word]))
+                                row['descriptors'].add(' '.join([ratio, other_word]))
                 row['taken_out'].add('_'.join([word, pos]))
     if len(row['counts']) > 0:
         common_words = get_most_common_words(row['counts'], 3) # get top 3 tiers of common words
         if common_words:
             row['common_words'] = row['common_words'].union(common_words)
-    blob = get_blob(line)
+    blob = get_blob(row['line'])
     if blob:
         noun_phrases = blob.noun_phrases
         if noun_phrases:
@@ -224,16 +210,14 @@ def get_most_common_words(counts, top_index):
             return max_words
     return False
 
-def is_condition(asp_words, all_vars):
-    first_word = get_first_important_word(asp_words, all_vars)
-    if first_word:
-        pos = get_pos(first_word, all_vars)
-        if pos:
-            if pos != 'noun':
-                return first_word
+def is_condition(asp_words, row, all_vars):
     for word in asp_words:
         if word in all_vars['clause_delimiters']:
             return word
+        else:
+            pos = row['pos'][word] if word in row['pos'] else get_pos(word)
+            if pos not in all_vars['pos_tags']['ALL_N'] or word not in stop:
+                return word
     return False
 
 def get_delimiter(line):
@@ -243,6 +227,39 @@ def get_delimiter(line):
 
 def get_sentence_delimiter(text):
     return '\n' if text.count('\n') > text.count('. ') else '. '
+
+def find_delimiter(line, all_vars):
+    delimiters = [c for c in line if c not in all_vars['alphabet']] 
+    if len(delimiters) > 0:
+        max_delimiter = max(delimiters)
+        if max_delimiter:
+            return max_delimiter
+    default_delimiter = ' ' if ' ' in line else ''
+    return default_delimiter
+
+def standard_text_processing(text, all_vars):
+    text = concatenate_species(text.strip())
+    text = standardize_delimiter(text)
+    text = standardize_punctuation(text)
+    lines = text.split('\n')
+    for i, line in enumerate(lines):
+        line = replace_quotes_with_parenthesis(line)
+        new_line = convert_to_active(line)
+        line = new_line if new_line else line
+        if line not in article_lines:
+            article_lines[line] = {}
+        word_map = {}
+        for word in line.split(' '):
+            pos = get_nltk_pos(word)
+            if pos:
+                word_map[word] = pos
+        if i == (len(lines) - 1):
+            line = remove_stopwords(line, word_map)
+            line = replace_with_syns(line, word_map, all_vars)
+            article_lines[line] = word_map
+    if article_lines:
+        return article_lines
+    return False
 
 def standardize_delimiter(text):
     blob = get_blob(text)
@@ -255,50 +272,20 @@ def standardize_delimiter(text):
         return '\n'.join(text.split(delimiter))
     return False
 
-def split_by_delimiter(line, all_vars):
-    words = []
-    word = []
-    delimiters = [] 
-    for char in line:
-        if char in all_vars['alphabet']:
-            word.append(char)
-        else:
-            delimiters.append(char)
-            words.append(''.join(word))
-            word = []
-    if len(word) > 0:
-        words.append(''.join(word))
-    return words, delimiters
-
-def standard_text_processing(text, all_vars):
-    text = concatenate_species(text.strip())
-    text = standardize_delimiter(text)
-    text = standardize_punctuation(text)
-    text = remove_stopwords(text)
-    new_lines = []
-    for line in text.split('\n'):
-        line = replace_quotes_with_parenthesis(line)
-        new_line = convert_to_active(line)
-        if new_line:
-            new_lines.append(new_line)
-        else:
-            new_lines.append(line)
-    if len(new_lines) > 0:
-        text = '\n'.join(new_lines)
-    text = replace_with_syns(text, 'all', all_vars)
-    return text
-
-def replace_with_syns(text, element, all_vars):
+def replace_with_syns(line, word_map, all_vars):
     new_text = []
-    for w in text.split(' '):
+    for w in line.split(' '):
         word = ''.join([x for x in w if x == '-' or x == ' ' or x in all_vars['alphabet']]) # some synonyms have dashes and spaces
-        check_types = ['synonym', 'common', 'standard', 'similarity']
         # dont add stem-similarity replacement bc you still need pos identification
-        match, check_type, all_vars = find_matching_synonym(word, check_types, None, all_vars)
-        if match and check_type:
-            new_text.append(w.replace(word, match))
-        else:
-            new_text.append(w)
+        check_types = ['synonym', 'common', 'standard', 'similarity']
+        pos = word_map[w] if w in word_map else None
+        if pos not in all_vars['pos_tags']['exclude']:
+            matched_items, all_vars = find_matching_synonym(word, pos, check_types, None, all_vars)
+            if matched_items:
+                for match, check_type in matched_items.items():
+                    new_text.append(w.replace(word, match))
+            else:
+                new_text.append(w)
     if len(new_text) > 0:
         return ' '.join(new_text)
     return text, all_vars
@@ -308,20 +295,22 @@ def standardize_punctuation(line):
     line = line.replace('[', ' ( ').replace(']', ' ) ').replace("'", '') 
     # replace clause punctuation with comma
     line = line.replace(' - ', ' , ')
+    '''
     operator_keys = all_vars['operator_map'].keys()
     for k in operator_keys:
         line = line.replace(k, '')
+    '''
     # space comma to avoid conflation with words, then replace double spaces
     line = line.replace(',', ' , ').replace('  ', ' ')
     return line
 
-def remove_stopwords(line):
+def remove_stopwords(line, word_map):
     custom_removal = [] #['the', 'a', 'an', 'them', 'they']
     words = line.split(' ') if type(line) == str else line
     word_list = []
     for w in words:
         if '/' in w or '|' in w:
-            option = select_option(w)
+            option = select_option(w, word_map)
             if option:
                 word_list.append(option)
         else:
@@ -329,7 +318,9 @@ def remove_stopwords(line):
                 w = get_singular(w)
             if w not in stopwords.words('english') and w not in custom_removal:
                 word_list.append(w)
-    return ' '.join(word_list)
+    if len(word_list) > 0:
+        return ' '.join(word_list)
+    return line
 
 def replace_quotes_with_parenthesis(line):
     quotes = line.count('"')
@@ -359,7 +350,7 @@ def replace_quotes_with_parenthesis(line):
         line = ' '.join(new_line) if len(new_line) > 0 else line
     return line
 
-def select_option(alt_phrase):
+def select_option(alt_phrase, word_map):
     ''' 
         this function translates:
         - expression/activity = expression-activity (different pos = phrase)
@@ -367,7 +358,7 @@ def select_option(alt_phrase):
     '''
     delimiter = [c for c in '/|' if c in alt_phrase]
     alts = alt_phrase.split(delimiter)
-    alt_pos = [get_pos(a, all_vars) for a in alts]
+    alt_pos = [word_map[a] for a in alts]
     if len(alt_pos) > 0:
         if alt_pos[0]:
             default_pos = alt_pos[0]
@@ -382,9 +373,10 @@ def select_option(alt_phrase):
                 for a in alts:
                     if a != default_alt:
                         similarity = get_similarity(default_alt, a)
-                        if similarity < 0.7:
-                            ''' found a non-synonym, keep all options '''
-                            return alt_phrase
+                        if similarity:
+                            if similarity < 0.7:
+                                ''' found a non-synonym, keep all options '''
+                                return alt_phrase
                 ''' all words were synonyms, return first option if most common not found '''
                 most_common_option = get_most_common_word(alts)
                 if most_common_option:
@@ -403,9 +395,7 @@ def get_charge_of_word(word, all_vars):
     return False
 
 def get_similarity(base_word, new_word, pos_type, all_vars):
-    pos_lib_map = { 'noun': NOUN, 'verb': VERB, 'adv': ADV, 'adj': ADJ }
-    if pos_type in pos_lib_map:
-        pos_type = pos_lib_map[pos_type]
+    if pos_type in ['N', 'V', 'ADV', 'ADJ']:
         base_synsets = Word(base_word).get_synsets(pos=pos_type)
         new_synsets = Word(new_word).get_synsets(pos=pos_type)
         if len(new_synsets) > 0 and len(base_synsets) > 0:
@@ -414,9 +404,9 @@ def get_similarity(base_word, new_word, pos_type, all_vars):
             return similarity
     return 0
 
-def get_similarity_to_title(line, title, row):
+def get_similarity_to_title(title, row):
     similarity = 0
-    if line != title:
+    if row['line'] != title:
         title_split = title.split(' ')
         both = set()
         for s in string.split(' '):
@@ -424,7 +414,7 @@ def get_similarity_to_title(line, title, row):
                 both.add(s)
         if len(both) > 0:
             similarity = round(len(both) / len(title_split), 1)
-        if similarity
+        if similarity:
             row['similarity'] = similarity
     return row
 
@@ -440,7 +430,7 @@ def get_meaning_score(phrase, line):
         return meaning
     return False
 
-def get_phrases(line, row, all_vars):
+def get_noun_phrases(line, row, all_vars):
     ''' to do: use all_vars['pos_tags']['phrase'] = ['PP', 'NNP', 'VP'] '''
     ''' rather than just noun_phrases, we want to identify any phrases '''
     phrases = set()
@@ -494,6 +484,16 @@ def concatenate_species(data):
 
 def convert_to_active(line):
     '''
+    - check for verb tenses normally used in passive sentences # had been done = past perfect
+    - translate questions into statements of intent:
+        "would there be an effect of x on y?"
+        intent = "evaluate relationship between x and y" 
+    - active: x  -  did  -  this and then y  -  did  -  z
+    - passive: this  -  was done  -  by x and then z  -  was done  -  by y
+    - puts subject at start of sentence
+    - puts conditions at end of sentence
+    - converts passive phrases to active phrases
+
     active test cases:
     
     - "protein that modulates a signaling pathway" => "signaling pathway-changing protein" 
@@ -506,17 +506,9 @@ def convert_to_active(line):
     
     - "chalcone isolated from Boesenbergia rotunda rhizomes" => "Boesenbergia rotunda rhizomes isolate chalcone"
 
-    keep in mind:
-        if you standardize "injection of thioacetamide" to "thioacetamide injection", 
-        your other pattern "x of y" configuration wont be necessary, 
-        so remove that pattern once youve tested apply_pattern_map
+    - if you standardize "injection of thioacetamide" to "thioacetamide injection", 
+        your other pattern "x of y" configuration wont be necessary, so remove that pattern
 
-    - check for verb tenses normally used in passive sentences # had been done = past perfect
-    - translate questions into statements of intent:
-        "would there be an effect of x on y?"
-        intent = "evaluate relationship between x and y" 
-    - active: x  -  did  -  this and then y  -  did  -  z
-    - passive: this  -  was done  -  by x and then z  -  was done  -  by y
     '''
     active_line = apply_pattern_map(line, all_vars['pattern_maps']['passive_to_active'])
     if active_line:

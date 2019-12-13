@@ -1,13 +1,13 @@
 from utils import *
 
-def find_metrics(pattern, matches, all_vars):
+def find_metrics(pattern_subsets, pattern, word_map, all_vars):
     '''
     find any metrics in this pattern's matches
     to do: some metrics will have letters other than expected
     pull all the alphanumeric strings & filter out dose information
     '''
     metrics = set()
-    split_line = line.split(' ')
+    split_line = pattern.split(' ')
     for i, word in enumerate(split_line):
         numbers = [w for w in word if w.isnumeric()]
         if len(numbers) > 0:
@@ -21,7 +21,7 @@ def find_metrics(pattern, matches, all_vars):
                 metrics.add(word) # '3mg'
     return metrics
 
-def find_modifier(pattern_subsets, pattern, all_vars):
+def find_modifier(pattern_subsets, pattern, word_map, all_vars):
     '''
     - we're isolating modifiers bc theyre the smallest unit of 
         functions (inputs, process, outputs)
@@ -38,12 +38,18 @@ def find_modifier(pattern_subsets, pattern, all_vars):
         subset_keywords = ['of', 'in', 'from']
             "item in list" => "list item"
             "inhibitor of x" => "x-inhibitor"
+    - change words to their stem and get the pos of their stem 
+      "x has effect of membrane disruption" is a modifier pattern: "x has function of noun noun" 
+      "x has function of noun1 noun2": "x noun1 noun2 function"
+      but the second noun is a conjugation of a verb "disrupt" so should be converted to 
+      "x disrupts membranes"
     '''
     ''' takes out determiners if indicating 'one', 'some', or 'same' quantity '''
     modifier = None
     modified = None   
     tagged_dict = {} 
     blob_dict = {}
+    words = subset.split(' ')
     tagged = pos_tag(word_tokenize(subset))
     if tagged:
         for item in tagged:
@@ -54,34 +60,23 @@ def find_modifier(pattern_subsets, pattern, all_vars):
             if blob_tokens:
                 for token, val in blob_tokens.items():
                     blob_dict[token] = val.split('/')
-        nltk_pos = get_nltk_pos(word)
-        if nltk_pos in all_vars['pos_tags']['det']:
-            other_word = words[i + 1] if (i + 1) < len(words) else words[i - 1] if i > 0 else None
-            if other_word:
-                row['modifiers'].add(' '.join([ratio, other_word]))
-    if tagged_dict and blob_dict:
-        words = subset.split(' ')
-        for i, word in enumerate(words):
-            word_pos = get_nltk_pos(word)
-            if word_pos not in all_vars['pos_tags']['exclude']:
-                if word in blob_dict and word in tagged_dict:
-                    if blob_dict[word][0] != tagged_dict[word]:
-                        ''' ntlk and blob tags differ:
-                            nltk: 'imaging' => 'VBG'
-                            blob: 'imaging' => 'NN', 'B-NP', 'I-PNP'
-                        '''
-                    else:
-
-                    modifier = word
-                    next = words[i+1] if (i + 1) < len(words) else None
-                    prev = words[i-1] if i > 1 else None
-                    next_pos = get_pos(next)
-                    prev_pos = get_pos(prev)
-                    if next_pos == 'noun' or next_pos == 'verb':
-                        return ' '.join([modifier, next])
-                    elif prev_pos == 'noun' or prev_pos == 'verb':
-                        return ' '.join([modifier, prev])
+        if tagged_dict and blob_dict:
+            for i, word in enumerate(words):
+                pos = word_map[word] if word in word_map else None
+                if pos:
+                    if pos not in all_vars['pos_tags']['exclude']:
+                        if word in blob_dict and word in tagged_dict:
+                            #if blob_dict[word][0] != tagged_dict[word]:
+                            ''' ntlk and blob tags differ: nltk: 'imaging' => 'VBG' blob: 'imaging' => 'NN', 'B-NP', 'I-PNP' '''
+                            modifier = word
+                            other_word = words[i + 1] if (i + 1) < len(words) else words[i - 1] if i > 0 else None
+                            if other_word:
+                                other_word_pos = word_map[other_word] if other_word in word_map else None
+                                if other_word_pos in all_vars['pos_tags']['ALL_N'] or other_word_pos in all_vars['pos_tags']['ALL_V']:
+                                    row['modifiers'].add(' '.join([ratio, other_word]))
+        return row
     return False
+
 '''
     - clauses are relationships between subject and objects in line
 
@@ -130,52 +125,19 @@ def find_modifier(pattern_subsets, pattern, all_vars):
             "vitamin c at the max dose" => modifier pattern "max dose vitamin c"
             "noun1 noun2 at the noun3 noun4" => "noun3 noun4 noun1 noun2"
             "phrase1 at the phrase2" => "phrase2 phrase2"
+    conditional_keys = ['C', 'P', 'ADV', 'ADJ', 'verb_potential']
+    pos_tags['conditional'] = []
+    for tag in conditional_keys:
+        pos_tags['conditional'].extend(pos_tags[tag])
+
+    relation_keys = ['C', 'P']
+    pos_tags['relation'] = []
+    for tag in relation_keys:
+        pos_tags['relation'].extend(pos_tags[tag])
 '''
-    all_vars['combined_map'] = {
-        '=': ['=-', '-=', '=+', '+=', '=='], #"x = (i - b)" => x and b equal i
-        '-': ['-+', '+-'],
-        '+': ['--', '++'],
-        '#': [
-            '#&', # even with x
-            '#!', # even without x
-            '~!' # does not increase => 'neutral' or 'independent', 'does not increase' doesnt mean 'decrease'
-            #'!noun' # no increase => 'independent'
-        ]
-    }
-    all_vars['clause_map'] = {
-        '-' : ["decrease"], # attacks
-        '+' : ["increase"], # helps
-        '=': ['is', 'like', 'equate', 'equal', 'describe', 'indicate', 'delineate', 'same', 'like', 'similar', 'imply', 'signify', 'mean'],
-        '&': ['and', 'with'],
-        '|': ['or'],
-        '^': ['but', 'yet', 'but yet', 'but rather', 'but actually', 'still', 'without', 'however', 'nevertheless' 'in the absence of', 'lacking'], # except and without
-        '%': [
-            'because', 'as', 'since', 'if', 'then', 'from', 'due', 'when', 'while', 'during', 'for', 'given',
-            'in case', 'in the event that', 'caused by', 'respective of'
-        ], # x of y is contextual "x in the context of y"
-        '#': ['even', 'still', 'despite', 'otherwise', 'in spite of', 'regardless', 'heedless', 'irrespective'],
-        '!': ['not', 'without'],
-        '~': ['function']
-    }
-    all_vars['operator_map'] = {
-        '-' : "decrease", # attacks
-        '+' : "increase", # helps
-        '=' : "equal", # is
-        '&' : "union", # with, union
-        '|' : "alternate", # or
-        '^' : "exception", # without
-        '%' : "dependent", # apply
-        '#' : "independent" # by standard
-        '!' : "not" # negating an noun or verb
-    }
-    all_vars['clause_delimiters'] = [',', ':', ';']
-    for operator, keyword_list in all_vars['clause_map'].items():
-        all_vars['clause_delimiters'].extend(keyword_list)
 
 def rearrange_sentence(line, all_vars):
     '''
-        organizing a sentence would be a good use case for pattern_maps
-
         line = 'x was y even with a' => 
         separate by clause_delimiters:
             ['x was y', 'even with', 'a']
@@ -233,29 +195,24 @@ def rearrange_sentence(line, all_vars):
         "max dose"
     ]
     line = ' '.join(converted_clauses)
-    for pattern in all_vars['pattern_index']['passive']:
-        found = is_pattern_in_line(line, pattern, all_vars)
-        if found:
-            ''' if even one passive pattern is found, convert to active '''
-            active_line = convert_to_active(line)
-            if active_line:
-                line = active_line
     return False
 
-def split_by_relevance(line):
+def split_by_relevance(line, word_map, all_vars):
     ''' this function should split a line by det and prep '''
+    ''' include splitting by parentheis & clause delimiters '''
     new_subsets = []
     words = line.split(' ')
     new_subset = []
     for w in words:
-        pos = get_nltk_pos(w)
-        for key in ['noun', 'verb', 'verb_keywords', 'adv', 'adj']:
-            pos_list = all_vars['pos_tags'][key]:
+        pos = word_map[w] if w in word_map else None
+        for key in ['N', 'V', 'verb_keywords', 'ADV', 'ADJ']:
+            pos_list = all_vars['pos_tags'][key]
             if pos in pos_list:
                 new_subset.append(w)
             else:
                 new_subsets.append(new_subset)
-                new_subsets.append(w) ''' add the det, conj, prep in its own item '''
+                new_subsets.append(w)
+                ''' add any DCP in their own item '''
                 new_subset = []
         if new_subset:
             new_subsets.append(new_subset)
@@ -263,67 +220,11 @@ def split_by_relevance(line):
         return ' '.join(new_subsets)
     return False
 
-def get_conditionals(line, row, nouns, clauses, all_vars):
-    ''' assumes rearrange_sentence was already called on line used to generate clauses '''
-    print('\nclauses', clauses)
-    '''
-    row['functions'].add(word)
-    # relationships = treatments, intents, functions, insights, strategies, mechanisms, patterns, systems
-    row['components'].add(word) 
-    # compounds, symptoms, treatments, metrics, conditions, stressors, types, variables
-    '''
-    items = {'conditional': [], 'subject': '', 'verb_relationships': [], 'delimiters': []}
-    all_vars['clause_delimiters'].append('1')
-    for i, c in enumerate(clauses):
-        c_strip = c.strip()
-        if i == 0:
-            items['subject'] = c_strip
-        else:
-            words = c_strip.split(' ')
-            is_a_condition = is_condition(words, all_vars)
-            if is_a_condition:
-                ''' is_a_condition has the next important word in condition '''
-                if get_pos(is_a_condition, all_vars) != 'verb':
-                    for j, w in enumerate(words):
-                        if w in all_vars['clause_delimiters']:
-                            items['delimiters'].append(w)
-                            remainder = ' '.join([x for x in words if words.index(x) >= j])
-                            if w == words[-1]:
-                                ''' the delimiter is the last word in this clause '''
-                                remainder = ' '.join([x for x in words if words.index(x) < j])
-                            if remainder not in items['conditional']:
-                                items['conditional'].append(remainder)
-                        else:
-                            if c_strip not in items['conditional']:
-                                items['conditional'].append(c_strip)
-                else:
-                    for w in words:
-                        if w in all_vars['clause_delimiters']:
-                            items['delimiters'].append(w)
-                            words.remove(w)
-                    #if c_strip not in items['conditional']:
-                    #    items['conditional'].append(c_strip)
-                    if c_strip not in  items['verb_relationships']:
-                        items['verb_relationships'].append(c_strip)
-            else:
-                if c_strip not in items['conditional']:
-                    items['conditional'].append(c_strip)
-    ''' at this point items represents a sentence broken into: 
-        items = {
-            "subject": "x",
-            "verb_relationships": "is y",
-            "delimiter": "even",
-            "condition": "when z"
-        }
-    '''
-    print('\nconditionals', items)
-    return items
-
-def get_clauses(line, row, all_vars):
-    line, clauses = rearrange_sentence(line, all_vars)
+def get_conditionals(row, all_vars):
+    row['line'], row['clauses'] = rearrange_sentence(row['line'], all_vars)
     sentence_pieces = [] # break up sentence by verbs
     sentence_piece = []
-    for w in line.split(' '): 
+    for w in row['line'].split(' '): 
         if len(w) > 0:
             if '(' in w:
                 sentence_pieces.append(' '.join(sentence_piece))
@@ -359,7 +260,61 @@ def get_clauses(line, row, all_vars):
                         row['subjects'].add(next_object)
                         if prev_object:
                             row['clauses'].add(' '.join([next_object, active_s, prev_object]))
-    return row 
+
+    ''' assumes rearrange_sentence was already called on line used to generate clauses '''
+    print('\nclauses', row['clauses'])
+    row['functions'].add(word) # relationships = treatments, intents, functions, insights, strategies, mechanisms, patterns, systems
+    row['components'].add(word) # compounds, symptoms, treatments, metrics, conditions, stressors, types, variables
+    row['conditionals'] = []
+    row['subjects'] = []
+    row['verb_relationships'] = []
+    row['delimiters'] = []
+
+    all_vars['clause_delimiters'].append('1')
+    for i, c in enumerate(row['clauses']):
+        c_strip = c.strip()
+        if i == 0:
+            items['subject'] = c_strip
+        else:
+            words = c_strip.split(' ')
+            is_a_condition = is_condition(words, row, all_vars)
+            if is_a_condition:
+                ''' is_a_condition has the next important word in condition '''
+                pos = row['word_map'][is_a_condition] if is_a_condition in row['word_map'] else None
+                if pos:
+                    if pos not in all_vars['pos_tags']['ALL_V']:
+                        for j, w in enumerate(words):
+                            if w in all_vars['clause_delimiters']:
+                                items['delimiters'].append(w)
+                                remainder = ' '.join([x for x in words if words.index(x) >= j])
+                                if w == words[-1]:
+                                    ''' the delimiter is the last word in this clause '''
+                                    remainder = ' '.join([x for x in words if words.index(x) < j])
+                                if remainder not in items['conditional']:
+                                    items['conditional'].append(remainder)
+                            else:
+                                if c_strip not in items['conditional']:
+                                    items['conditional'].append(c_strip)
+                    else:
+                        for w in words:
+                            if w in all_vars['clause_delimiters']:
+                                items['delimiters'].append(w)
+                                words.remove(w)
+                        if c_strip not in  items['verb_relationships']:
+                            items['verb_relationships'].append(c_strip)
+            else:
+                if c_strip not in items['conditional']:
+                    items['conditional'].append(c_strip)
+    ''' at this point items represents a sentence broken into: 
+        items = {
+            "subject": "x",
+            "verb_relationships": "is y",
+            "delimiter": "even when",
+            "condition": "z"
+        }
+    '''
+    print('\nconditionals', items)
+    return items
     
 def get_object_by_position(index, sentence_pieces, position, check_list, phrases):
     relevant_piece = sentence_pieces[index - 1] if position == 'prev' else sentence_pieces[index + 1] if index < (len(sentence_pieces) - 1) else ''

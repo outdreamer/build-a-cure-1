@@ -61,17 +61,20 @@ def get_data_from_source(source, keyword, index, all_vars):
                     entries = json.loads(response.content)
                 if len(entries) > 0:
                     for entry in entries:
+                        article_lines = None
+                        title = None
                         for node in entry.childNodes:
-                            article = []
                             if node.nodeName in ['title', 'summary']:
                                 for subnode in node.childNodes:
                                     text = subnode.wholeText
                                     if len(text) > 0:
-                                        text = standard_text_processing(text, all_vars)
-                                        text_list = [text] if node.nodeName == 'title' else text.split('\n')
-                                        article.extend(text_list)                    
-                            if len(article) > 0:
-                                index['data'].append('\n'.join(article))
+                                        if node.nodeName == 'title':
+                                            title = text
+                                        else:
+                                            article_lines = standard_text_processing(text, all_vars)
+                                            '''article_lines[line][word] = pos '''
+                        if article_lines and title:
+                            index['data'][title] = article_lines
     return index
 
 def add_row(row, index, empty_index, rows):
@@ -99,21 +102,21 @@ def build_indexes(database, metadata, args, filters, all_vars):
         for keyword in args[arg]:
             for source in all_vars['sources']:
                 index = get_data_from_source(source, keyword, index, all_vars)
-    if index:
-        if len(index['data']) > 0:
-            for a in index['data']:
-                lines = a.split('\n')
-                for line in lines:
-                    row = empty_index                   
-                    row['line'] = line
-                    row['original_line'] = line
-                    ''' replace non-medical irrelevant names with empty string '''
-                    row = replace_names(row, all_vars)
-                    row = get_similarity_to_title(line, lines[0], row)  
-                    row = get_pos_metadata(line, row, all_vars)
-                    row = get_metadata(row, metadata, all_vars)
-                    index, rows = add_row(row, index, empty_index, rows)
-                    print('row', row)
+                if index:
+                    if len(index['data']) > 0:
+                        for titlw, article_lines in index['data'].items():
+                            for line, word_map in article_lines.items():
+                                row = empty_index                   
+                                row['line'] = line
+                                row['pos_map'] = word_map
+                                row['original_line'] = line
+                                ''' replace non-medical irrelevant names with empty string '''
+                                row = replace_names(row, all_vars)
+                                row = get_similarity_to_title(lines[0], row)  
+                                row = get_pos_metadata(row, all_vars)
+                                row = get_metadata(row, metadata, all_vars)
+                                index, rows = add_row(row, index, empty_index, rows)
+                                print('row', row)
     ''' save rows '''
     if len(rows) > 0:
         write_csv(rows, index.keys(), 'data/rows.csv')
@@ -146,20 +149,11 @@ def get_metadata(row, metadata, all_vars):
     for metadata_type in ['structural', 'medical', 'conceptual']:
         for key in metadata:
             if key in all_vars['supported_params']:
-                found_objects = get_objects_of_type(None, key, row['line'], all_vars)
-                if found_objects:
-                    row[key] = found_objects
+                matched_objects = find_patterns(row['line'], [key], all_vars)
+                if matched_objects:
+                    row[key] = matched_objects
     print('medical objects', row)
     return row
-
-def get_objects_of_type(index, index_type, line, all_vars):
-    print('get_objects_of_type', index_type, line)
-    index = {index_type: line} if line else index
-    if index:
-        matched_objects = extract_objects_matching_patterns(index, [index_type], all_vars)
-        if matched_objects:
-            return matched_objects
-    return False
 
 def extract_objects_matching_patterns(index, search_pattern_keys, all_vars):
     ''' 
@@ -181,7 +175,10 @@ def extract_objects_matching_patterns(index, search_pattern_keys, all_vars):
                     for pattern, matches in pattern_matches.items():
                         objects['patterns'].add(pattern)
                         if object_type != 'patterns':
-                            ''' filter matches before adding them, with type-specific logic '''
+                            ''' 
+                            filter pattern matches for this type before adding them, 
+                            with type-specific logic in find_* functions 
+                            '''
                             function_name = ''.join(['find_', object_type])
                             function = getattr(globals(), function_name)
                             got_objects = function(pattern, matches, all_vars)

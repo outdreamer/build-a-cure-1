@@ -62,92 +62,61 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
                 new_subset = []
         
 
+  - make more sense when you account for smugness, have you considered lack of opportunities to punch up
+  - request maximization of servers
+
+
 # Structural:
 
-  - consolidate calls to find_matching_synonym() to make sure its only being run when necessary
-
-  - finish convert_to_active():
-      puts subject at start of sentence
-      puts conditions at end of sentence
-      produces more phrases like:
-        - "protein that modulates a signaling pathway" => "signaling pathway-changing protein" 
-
   - ensure order of operations:
-    convert_to_active()
-    get phrases
-    get modifiers
-    get clauses 
-    get relationships
-
-  - add support for numerical indexes of variables in patterns & pattern_maps
-    "noun1 noun2 at the noun3 noun4" => "noun3 noun4 noun1 noun2"
-    "phrase1 at the phrase2" => "phrase2 phrase2"
-
-  - standardize verbs before adding them - this will make some patterns invalid and might make it more difficult to identify modifiers & so on
-
-  - add read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
-
-  - add keyword check function
-  
-  - add metadata check to make sure they requested this data
-
-  - change words to their stem and get the pos of their stem 
-    "membrane disruption" is a modifier pattern: "noun function_as_process_noun" 
+      get modifiers
+      get phrases
+      get clauses
+      get relationships
 
   - merge get_clauses, get_conditionals, rearrange_sentence and call it once
-
-      - add support for other operators in get_clauses
-          'union': ['and', 'with'],
-          'exception': ['but', 'yet'],
-          'dependence': ['because', 'since', 'due', 'caused by'],
-          'independence': ['even', 'still', 'despite', 'in spite of', 'regardless', 'irrespective'],
-          'conditional': ['when', 'while', 'during', 'for', 'x of y'],
-          'alternate': ['or'],
-          'equal': ['is']
-
       - go from most granular unit to largest when youre identifying structural metadata (modifiers -> clauses -> relationships)
       - once you apply get_relationships_from_clauses - you want to create another relationships array,
         which is the same array but with the original semantic verb ("disable" rather than more general "decrease")
+        
+  - given the set of nouns, verbs, phrases, modifiers, clauses, & relationships, you can add functions to identify:
+    - objects (agent nouns like 'protein')
+    - properties (attribute nouns like 'toxicity')
+    - functions (verbs like 'ionizing', 'activate')
+      - function inputs/outputs (subject_noun/predicate_noun)
+    - types (['structure', 'life form', 'organic molecule'] from 'protein')
 
-  - get_pos_in_line: implement newly supported pos identification functions: adv, adj, det, prep
+  - add modifier types ('subset', 'function')
+      - iterate up in size from word => modifier => phrase
+        so you dont miss phrases that match a pattern with only variable names:
+          'x of y' (will catch subsets matching 'noun of a noun' and 'modifier of a phrase')
+        rather than pos:
+          'noun of noun' (will only catch 'inhibitor of enzyme')
 
-    - remove determiners if they dont add important information like quantity (keep never, always, all or nothing = remove some, any)
-    
-  - add function to do word type checks once you finish get_types(word) so you can use it to generate more patterns in a sentence
-
-  - add abstract/pos pattern match & replacement function 
-        Cytotoxicity in cancer cells => <component object>-toxicity
-        anti-tumor => anti-<component object of illness>
-        suppress/interfere/inhibit activity of carcinog/canc/tumz => suppress/interfere/inhibit activity of drug/medication/enzyme
-
-  - add support for nested alts in patterns like:
-     '__|a an|__' and '|VB NN |VB ADV||'
-
-  - use blob.correct() on non-research sources - remove '.,' and other errors or typos 
-  - add to clause condition processing: "time": ["during", "while", "later", "after", "before", "pre-", "post-"]
+  - you should be identifying & adding more patterns for each row with each metadata iteration (structural, medical, conceptual):
+    - add abstract/pos pattern match & replacement function after get_types()
+        and whenever you implement add_components and add_functions
+          Cytotoxicity in cancer cells => <component object>-toxicity
+          anti-tumor => anti-<component object of illness>
+          suppress/interfere/inhibit activity of carcinog/canc/tumz => suppress/interfere/inhibit activity of drug/medication/enzyme
 
   - where theres overlap between categories, you need a ranking to select the correct type in functions using get_pos_tags()
       - implement ordered pos-tagging preferences by iterating through pos_tags with a list of keys
       - show preference for verbs in ambiguous cases like "associate" should return a verb even though it can be a noun
         "sodium isolate" => "noun verb" and then it can be identified as a modifier
 
-  - in get_pos_in_line:
-    - make sure youre not replacing the verb with the consecutive verb if they appear together 
-    - phrase pos identification: 'architect of chaos' is a noun phrase, 'associating phrasing' is a verb phrase
-      - sort noun_phrases by verb phrases if it captures verb phrases
-      - imaging finding which should be identified by blob.noun_phrases anyway
-
+  - standardize verbs before adding them
+    - actually this will make some patterns invalid and might make it more difficult to identify modifiers & so on
+    - you can singularize plural nouns though 
+  - use blob.correct() on non-research sources - remove '.,' and other errors or typos 
   - finish function to unconjugate verb - lemmatize changes to infinitive
-
   - finish get_topic to filter non-topical nouns, verbs, adverbs & adjectives from all object indexes
-
   - make all_vars global variable & remove from params
-  
-  - make sure youre using exclude in replace_syns 
-
   - write function to get semantic props of compounds (bio-availability, activation in the host species, etc)
-
   - make sources query specific - symptom queries should pull from drugs/rxlist/forums/wiki
+  - add keyword check function in get_object function using all_vars['keywords'] map
+  - add metadata check to make sure they requested this data
+  - add read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
 
 
 ## Synonyms
@@ -162,7 +131,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
   - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
   - if you finish get_active, rearrange_sentence, remove_unnecessary_words, get_modifier & generate_abstract_patterns, 
     you can just enter patterns for most medical get_object functions
-  - use conceptual_clause_map to sort your logic in get_conditionals
+  - use clause_map to sort your logic in get_conditionals
   - build an index of modifiers based on phrase data of words frequently found together
 
 ## Functions

@@ -99,10 +99,13 @@ def get_empty_index(metadata_keys, all_vars):
         if key != 'request':
             for item in all_vars['full_params'][key]:
                 index_keys.append(item)
+    dict_keys = ['counts', 'patterns', 'pos']
     metadata_keys = index_keys if 'all' in metadata_keys else metadata_keys
     for key in metadata_keys:
-        index[key] = set() if key in index_keys else {}
-    index['counts'] = {}
-    index['patterns'] = {}
+        if key in index_keys
+            if key not in dict_keys:
+                index[key] = set()
+            else:
+                index[key] = {}
     index['data'] = [] # not necessary to ensure uniqueness in articles
     return index

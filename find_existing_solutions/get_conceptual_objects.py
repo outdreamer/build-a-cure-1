@@ -12,6 +12,8 @@ from get_index_def import get_empty_index
     intent = strategy + priority
     solution = (combination of strategies operating on variables with insight functions that reduce dimensions of problem (function-combination) or (resource-imbalance))
     type = combination(attributes)
+    intents = function outputs
+    roles = functions
 '''
 
 ''' these functions do more advanced linguistic processing than 
@@ -148,6 +150,9 @@ def get_article_intents(article):
         intent = get_intent(line)
         if intent:
             intents.append(intent)
+    if len(intents) > 0:
+        return intents
+    return False
 
 def get_object_intents(line):
     intents = {}
@@ -174,7 +179,7 @@ def get_object_intents(line):
                                     intents[n].append(rcf['outputs'])
     return intents
     
-def get_net_impact(functions, object_name):
+def get_net_impact(functions, object_name, all_vars):
     '''
         function to combine functions by intent:
           - if you have these two functions:
@@ -185,26 +190,27 @@ def get_net_impact(functions, object_name):
     '''
     impact = None
     for f in functions:
-        f_impact = get_impact(f, object_name)
+        f_impact = get_verb_impact(f, object_name, all_vars)
         if f_impact:
             if impact:
-                if not impact_match(f_impact, impact, object_name):
-                    impact = update_impact(f_impact, impact, object_name)
+                if not impact_match(f_impact, impact, object_name, all_vars):
+                    impact = update_impact(f_impact, impact, object_name, all_vars)
             else:
                 impact = f_impact
     if impact:
         return impact
     return False
 
-def impact_match(f_impact, impact, object_name):
+def impact_match(f_impact, impact, object_name, all_vars):
+    return f_impact
 
-def update_impact(f_impact, impact, object_name):
+def update_impact(f_impact, impact, object_name, all_vars):
+    return f_impact
 
-def get_impact(function, object_name):
+def get_verb_impact(function, object_name, all_vars):
     '''
-    function_string='this compound activates b', object_name='b'
-    should return a standard verb like 'activate', 'enable'
-
+    - function='this compound activates b', object_name='b'
+        should return a standard verb like 'activate', 'enable'
     - the object_name is the subject of the sentence
         - make sure the impact verb is acting on that subject so switch if its passive 
     '''
@@ -213,26 +219,12 @@ def get_impact(function, object_name):
         if row:
             if 'verbs' in row:
                 for v in row['verbs']:
-                    match_items = find_matching_synonym(v, ['synonym'], None, all_vars)
-                    if match_items:
-                        for verb, check_type in match_items.items():
-                            return verb
-                    else:
-                        ''' 
-                        no supported synonym found for this verb, 
-                        check for any other matches other than pos matches
-                        '''
-                        match_items = find_matching_synonym(v, None, ['pos', 'synonym'], all_vars)
-                        if match_items:
-                            for verb, check_type in match_items.items():
-                                match_items = find_matching_synonym(verb, ['synonym'], None, all_vars)
-                                if match_items:
-                                    for verb, check_type in match_items.items():
-                                        return verb
+                    if v in all_vars['supported_synonyms']:
+                        return all_vars['supported_synonyms'][v]
     return False
 
 def get_functions(line, local_database):
-    ''' for fluconazole, this should be: "antifungal", "inhibitor of cyp3a4" '''
+    ''' for fluconazole, this should be: "antifungal", "inhibits cyp3a4" '''
     row = get_structural_metadata(line, None, None, all_vars)
     if row:
         if 'functions' in row:

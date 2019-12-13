@@ -34,7 +34,7 @@
 		- translocation of GLUT-4 receptor 
 		- activation of the PPARγ
 
-###  II. fungal meningitis 
+### II. fungal meningitis 
 
 	- treatments should include:
 		- carvacrol, thymol, eugenol
@@ -135,33 +135,32 @@
 	  - peppermint
 	  - eucalyptus
 
-- other compounds to help liver & kidneys:
-  - milk thistle
-  - turmeric
-  - Bitter leafy greens such as dandelion, chicory and arugula also may promote liver function by reducing congestion because they stimulate bile flow
-  - diuretic (celery, parsley, dandelion root, cucumber, asparagus, eggplant, watercress, artichokes and watermelon)
-  - Sulfur is especially beneficial for your liver because it detoxifies substances that are found commonly in medications, pesticides and other environmental toxins. 
-    Natural foods especially rich in sulfur include onions, garlic and cruciferous vegetables such as broccoli, cauliflower, cabbage and brussels sprouts. 
-    The primary medicinal compound in garlic is called allicin, a strong antimicrobial that also deters infections
-  - Antioxidants are compounds that eliminate free radicals, which reduce tissue damage and allow the organs and blood vessels to properly heal. 
-    Vitamins C and E, beta-carotene and compounds called flavonoids are powerful antioxidants. 
-    Produce rich in these potent nutrients include citrus fruits, most berries, dark-colored grapes, apples, tomatoes, carrots, broccoli, spinach and asparagus
-  - Vitamin C also helps to dissolve calcium buildup in the kidneys
-  - B. rotunda fingerroot has the potential to successfully treat liver cirrhosis in humans & diuresis (excess urine), dysentery and abdominal pain 
+	- other compounds to help liver & kidneys:
+	  - milk thistle
+	  - turmeric
+	  - Bitter leafy greens such as dandelion, chicory and arugula also may promote liver function by reducing congestion because they stimulate bile flow
+	  - diuretic (celery, parsley, dandelion root, cucumber, asparagus, eggplant, watercress, artichokes and watermelon)
+	  - Sulfur is especially beneficial for your liver because it detoxifies substances that are found commonly in medications, pesticides and other environmental toxins. 
+	    Natural foods especially rich in sulfur include onions, garlic and cruciferous vegetables such as broccoli, cauliflower, cabbage and brussels sprouts. 
+	    The primary medicinal compound in garlic is called allicin, a strong antimicrobial that also deters infections
+	  - Antioxidants are compounds that eliminate free radicals, which reduce tissue damage and allow the organs and blood vessels to properly heal. 
+	    Vitamins C and E, beta-carotene and compounds called flavonoids are powerful antioxidants. 
+	    Produce rich in these potent nutrients include citrus fruits, most berries, dark-colored grapes, apples, tomatoes, carrots, broccoli, spinach and asparagus
+	  - Vitamin C also helps to dissolve calcium buildup in the kidneys
+	  - B. rotunda fingerroot has the potential to successfully treat liver cirrhosis in humans & diuresis (excess urine), dysentery and abdominal pain 
 
-essential oils for liver:
-- rosemary: cleans the blood and flush harmful toxins from the liver, stimulates the production and flow of bile which aids digestion, used in the treatment of liver problems including cirrhosis and jaundice.
-- german chamomile: stimulates liver & gall bladder which helps digestion & cleans the blood
-- peppermint: stimulates bile flow from the liver & gall bladder & helps digestion
-- juniper: helps digestion, helps liver eliminate waste products
-- fennel: helps digestion, has an antiseptic & protective effect on the liver
-- cypress, lemon & thyme oils: decongest liver 
+	- essential oils for liver:
+		- rosemary: cleans the blood and flush harmful toxins from the liver, stimulates the production and flow of bile which aids digestion, used in the treatment of liver problems including cirrhosis and jaundice.
+		- german chamomile: stimulates liver & gall bladder which helps digestion & cleans the blood
+		- peppermint: stimulates bile flow from the liver & gall bladder & helps digestion
+		- juniper: helps digestion, helps liver eliminate waste products
+		- fennel: helps digestion, has an antiseptic & protective effect on the liver
+		- cypress, lemon & thyme oils: decongest liver 
 
-essential oils for kidneys:
-- juniper (depurative, detoxifier, diuretic)
-- fennel (diuretic, antiseptic, prevention of kidney stones)
-- chamomile (inhibits lipid peroxidation, anti-inflammatory, induced cancer cell apoptosis in some cancers)
-
+	- essential oils for kidneys:
+		- juniper (depurative, detoxifier, diuretic)
+		- fennel (diuretic, antiseptic, prevention of kidney stones)
+		- chamomile (inhibits lipid peroxidation, anti-inflammatory, induced cancer cell apoptosis in some cancers)
 
 ## Functions
 

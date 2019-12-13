@@ -88,101 +88,72 @@ def find_patterns(source_input, pattern_keys, all_vars):
     rather than patterns in a string source_input
     '''
     ''' a = {'pattern': 'source_words'} '''
-    found_patterns = get_patterns_between_objects(source_input)
-    if found_patterns:
-        return found_patterns
     found_patterns = {}
-    pattern_keys if pattern_keys is not None else all_vars['pattern_index'].keys()
-    for pattern_key in pattern_keys:
-        combined_key = ''.join(['patterns_', pattern_key])
-        found_patterns[combined_key] = {}
-        if pattern_key in all_vars['pattern_index']:
-            pattern_list = all_vars['pattern_index'][pattern_key]
-            for pattern in pattern_list:
-                ''' pattern is included in alt_patterns if there are no alt options in pattern '''
-                alt_patterns = get_alt_patterns(pattern)
-                if alt_patterns:
-                    if len(alt_patterns) > 0:
-                        for alt_pattern in alt_patterns:
-                            source_subsets = get_pattern_source_subsets(line, alt_pattern)
-                            if source_subsets:
-                                found_patterns[combined_key][alt_pattern] = set(source_subsets)
+    if type(source_input) == list:
+        found_patterns = get_patterns_between_objects(source_input)
+    else:
+        pattern_keys if pattern_keys is not None else all_vars['pattern_index'].keys()
+        for pattern_key in pattern_keys:
+            combined_key = ''.join(['patterns_', pattern_key])
+            found_patterns[combined_key] = {}
+            if pattern_key in all_vars['pattern_index']:
+                for pattern in all_vars['pattern_index'][pattern_key]:
+                    source_subsets = get_pattern_source_subsets(source_input, pattern, 'pattern')
+                    if source_subsets:
+                        found_patterns[combined_key][pattern] = set(source_subsets)
     if found_patterns:
         return found_patterns
     return False
 
 def apply_pattern_map(line, pattern_map):
-    ''' this replaces a pattern with another pattern using variables 
-    pattern_map = {
-        'nounified_verb of noun' => 'nounified_verb-noun'
-    }
-    output would be:
-        the line with replaced values of the pattern_map, if the pattern keys are found in the line
-    when you check for patterns:
-        iterate up in size from word => modifier => phrase
-        so you dont miss phrases that match a pattern with only variable names:
-            'x of y' (will catch 'substrate of a mixture of compound and organism')
-        rather than pos:
-            'noun of noun' (will only catch 'inhibitor of enzyme')
+    ''' 
+    this replaces a pattern with its associated pattern found in the line using variables 
+
+    apply_pattern_map(line='dog of cat', pattern_map = {'noun1 of noun2' => 'noun2 noun1'})
+        would output: 'cat dog'
+
+    output: the line with replaced values of the pattern_map, if the pattern keys are found in the line
     '''
-    for object_type in ['word', 'modifier', 'phrase']:
-        for pattern in pattern_map:
-            found_patterns = get_pattern_source_subsets(line, pattern)
-            if found_patterns:
-                for p in found_patterns:
-                    applied = get_new_version(p, pattern, pattern_map[pattern])
-                    line.replace(p, applied)
-                return line
+    # for object_type in ['word', 'modifier', 'phrase']:
+    for source_pattern, target_pattern in pattern_map.items():
+        found_subsets = get_pattern_source_subsets(line, source_pattern, 'pattern')
+        if found_subsets:
+            for subset in found_subsets:
+                pattern_map = {'source': source_pattern, 'target': target_pattern}
+                applied = get_new_version(subset, sub_pattern_map, all_vars)
+                line.replace(p, applied)
+            return line
     return False
 
-def get_new_version(subset, pattern_map):
+def get_new_version(subset, sub_pattern_map, all_vars):
     ''' subset = "inhibitor of compound"
-        pattern_map = {
-            'source': "x of y", "NN of NN",
-            'target': "y x
+        sub_pattern_map = {
+            'source': "x of y",
+            'target': "y x"
         }
-        output should be "compound-inhibitor"
+        output = "compound-inhibitor"
+
+        to do:
+        - handle target patterns with more words than source
+        - handle other delimiters than space in case your source pattern has no spaces
+
+        this should be identified as positive matches of the modifier pattern 'JJ NN':
+        sub_pattern_map = {'source': "JJ1 NN1 of JJ2 NN2", 'target': "JJ2 NN2 JJ1 NN1"}
+        subset = "catalyzing inhibitor of alkalizing enzyme"
     '''
-    ''' handle target patterns with more words than source '''
-    ''' handle other delimiters than space in case your source pattern has no spaces '''
-    delimiter = None
-    split, delimiters = split_by_delimiter(subset, all_vars)
-    if delimiters:
-        if len(delimiters) > 0:
-            if ' ' not in delimiters:
-                delimiter = delimiters[0]
+    
+    delimiter = find_delimiter(subset, all_vars)
     if delimiter:
         ''' create a position map for source & target '''
         positions = {'source': {}, 'target': {}}
-        designated_variables = [x for x in all_vars['alphabet']]
-        source_words = pattern_map['source'].split(delimiter)
-        ''' assuming 'I' and 'a' have been removed at this point'''
+        source_words = subset.split(delimiter)
         for pattern_type in ['source', 'target']:
-            for position, w in enumerate(pattern_map[pattern_type].split(delimiter)):
-                nltk_pos = get_nltk_pos(word)
-                pos = get_pos(word)
-                synsets = get_synsets(word, pos, all_vars)
-                if w in designated_variables:
-                    positions[pattern_type][position] = w
-                elif w in all_vars['pos_tags']['all']:
-                    positions[pattern_type][position] = w
-                elif not pos or not nltk_pos or len(synsets) == 0:
-                    '''
-                    check output of pos identification for single letters
-                    allow variables of a type other than designated
-                     '''
-                    positions[pattern_type][position] = w
+            for position, w in enumerate(sub_pattern_map[pattern_type].split(delimiter)):
+                source_word = source_words[position] if position < len(source_words) else None
+                if pattern_type == 'target' and source_word is not None and source_word not in sub_pattern_map['target']:
+                    positions[pattern_type][position] = ''
                 else:
-                    '''
-                    not a variable name so add it in this position
-                    if this word is not in target_pattern, 
-                    include an empty string in target_pattern 
-                    '''
-                    source_word = source_words[position]
-                    if pattern_type == 'target' and source_word not in pattern_map['target']:
-                        positions[pattern_type][position] = ''
-                    else:
-                        positions[pattern_type][position] = w
+                    positions[pattern_type][position] = w
         '''
         positions = {
             'source': {0: 'x', 1: 'of', 2: 'y'},
@@ -197,13 +168,7 @@ def get_new_version(subset, pattern_map):
                         position_map[source_position] = target_position
             else:
                 position_map[source_position] = ''
-        '''
-        final_map = {
-            0: 2,
-            1: '',
-            2: 0
-        }
-        '''
+        ''' position_map = {0: 2, 1: '', 2: 0} '''
         ''' now apply this mapping to the subset '''
         saved_words = subset.split(delimiter)
         new_words = []
@@ -212,50 +177,51 @@ def get_new_version(subset, pattern_map):
                 target_position = position_map[i]
                 new_words.append(saved_words[target_position])
         if len(new_words) > 0:
-            new_subset = delimiter.join(new_words)
-            return new_subset
+            return delimiter.join(new_words)
     return False
 
-def is_pattern_in_line(line, pattern):
-    ''' count of pattern in line or False '''
-    pos_line = convert_words_to_pos(line)
-    if pattern.lower() in pos_line.lower():
-        return pos_line.lower().count(pattern.lower())
-    return False
-
-def get_pattern_source_subsets(line, pattern):
+def get_pattern_source_subsets(line, pattern, get_type):
     ''' get only the matching subsets from line with words in the same positions & pos as pattern '''
     ''' ['pattern_instance_1', 'pattern_instance_2''] '''
+    '''
+        support numerical variables by checking non-numeric pattern for match with pos_line 
+        to do: this prevents users from configuring patterns with numbers like 14alpha-deoxy-enzyme
+    '''
+    pattern_without_numbers = []
     pos_line = convert_words_to_pos(line)
-    if pattern in pos_line:
-        source_subsets = get_pattern_source_words(line, pos_line.split(pattern))
-        if source_subsets:
-            if len(source_subsets) > 0:
-                return source_subsets
-    return False
-
-def get_all_source_subsets(line, pattern):
-    ''' split a line into subsets so each pattern section is in its own subset '''
-    ''' ['pattern_instance_1', 'non-pattern-words', 'pattern_instance_2', 'other non-pattern words'] '''
-    pos_line = convert_words_to_pos(line)
-    if pattern in pos_line:
-        non_patterns = pos_line.split(pattern)
-        source_subsets = get_pattern_source_words(line, non_patterns)
-        if source_subsets:
+    delimiter = find_delimiter(subset, all_vars)
+    if delimiter:
+        for word in pattern.split(delimiter):
+            nonnumeric_word = ''.join([w for w in word if w not in '0123456789']) 
+            if nonnumeric_word in all_vars['pos_tags']['ALL']:
+                pattern_without_numbers.append(nonnumeric_word)
+            else:
+                pattern_without_numbers.append(word)
+        nonnumeric_pattern = delimiter.join(pattern_without_numbers) if len(pattern_without_numbers) > 0 else pattern
+        if nonnumeric_pattern in pos_line:
             subsets = []
-            for i, subset in enumerate(source_subsets):
-                subsets.append(subset)
-                if i < len(non_patterns):
-                    subsets.append(non_patterns[i])
-            if len(subsets) > 0:
-                return subsets
+            if get_type == 'pattern':
+                subsets = get_pattern_source_words(line, pos_line.split(nonnumeric_pattern))
+            else:
+                ''' split a line into subsets so each pattern section is in its own subset '''
+                ''' ['pattern_instance_1', 'non-pattern-words', 'pattern_instance_2', 'other non-pattern words'] '''
+                non_patterns = pos_line.split(pattern)
+                sources = get_pattern_source_words(line, non_patterns)
+                if sources:
+                    for i, subset in enumerate(sources):
+                        subsets.append(subset)
+                        if i < len(non_patterns):
+                            subsets.append(non_patterns[i])
+            if subsets:
+                if len(subsets) > 0:
+                    return subsets 
     return False
 
 def get_pattern_source_words(source_line, exclude_list):
     ''' get source words in same positions as pattern '''
     ''' ('a b c', ['b']) == ['a', 'c'] '''
     delimiter = get_delimiter(source_line)
-    for word_set in exclude_list.split(' '):
+    for word_set in exclude_list:
         if word_set in source_line:
             source_line = source_line.replace(word_set, delimiter)
     source_subsets = source_line.split(delimiter)
@@ -264,23 +230,43 @@ def get_pattern_source_words(source_line, exclude_list):
             return source_subsets
     return False
 
-def add_sub_patterns(pattern_list, source_length, combination, all_patterns):
-    ''' get subsequent patterns since pattern_list[i] was a list '''
-    ''' if set is complete according to len(pattern_list), reset trackers & add to all_patterns '''
-    combination = [] if not combination else combination
-    if len(combination) > 0:
-        if len(combination) == source_length or len(combination) == len(pattern_list):
-            all_patterns.add(' '.join(combination))
-            return combination, all_patterns
-    for pattern_piece in pattern_list:
-        if ' ' not in pattern_piece:
-            combination.append(pattern_piece)
-        else:
-            ''' this is a set of alts - iterate through it & pick one & combine it with subsequent patterns '''
-            combination, all_patterns = add_sub_patterns(pattern_piece.split(' '), source_length, combination, all_patterns)
-    return combination, all_patterns
+def get_nested_patterns(pattern):
+    '''
+    support for nested alts in patterns like:
+     '__|a an|__' and '|VB NN |VB ADV|| VB'
 
-def get_alt_patterns(source_pattern):
+    basically you want to find any nested patterns 
+    and replace them with a variable, 
+    and return the new pattern with variables as well as the variable map:
+        pattern = '|VB NN x| VB' and variables['x'] = '|VB ADV|'
+    '''
+    print('get nested alts for pattern', pattern)
+    variables = {}
+    nested_patterns = []
+    split = ['', 'VB NN ', 'VB ADV', '', ' VB']
+    delimiter_index = 0
+    new_variable_value = []
+    for char in pattern.split(''):
+        if char == delimiter:
+            delimiter_index += 1
+            if delimiter_index > 0 and (delimiter_index / 2) == int(delimiter_index / 2):
+                ''' this is an even delimiter index, so end this variable '''
+                new_key = get_new_key(variables.keys(), all_vars)
+                variables[new_key] = ''.join(new_variable_value)
+                pattern.replace(new_variable_value, new_key)
+                new_variable_value = []
+        else:
+            new_variable_value.append(char)
+    if pattern:
+        print('new pattern', pattern, variables)
+        ''' pattern is included in alt_patterns if there are no alt options in pattern '''
+        alt_patterns = get_alt_patterns(pattern, variables)
+        if alt_patterns:
+            if len(alt_patterns) > 0:
+                return alt_patterns
+    return False, False
+
+def get_alt_patterns(source_pattern, nested_variables):
     ''' 
     this converts a pattern string: 
         source_pattern = '|option1 option2| VB'
@@ -297,7 +283,18 @@ def get_alt_patterns(source_pattern):
     combination = []
     all_patterns = set()
     all_patterns_with_alts = set()
-    combination, all_patterns = add_sub_patterns(pattern_sets, len(pattern_sets), combination, all_patterns)
+    pattern_length = len(pattern_sets)
+    if nested_variables:
+        '''
+        pattern = '|VB NN x| VB' and variables['x'] = 'VB ADV'
+        pattern = '|VB NN VB&ADV|' means 'VB or NN or VB & ADV'
+
+        this function needs to support nested patterns, so when iterating, 
+        check for any var chars and if found, 
+        iterate through variable values & replace with each value
+        '''          
+        pattern_length += sum([len(v.split(' ')) for k, v in nested_variables.items()])
+    combination, all_patterns = add_sub_patterns(pattern_sets, pattern_length, combination, all_patterns, nested_variables)
     # all_patterns should be a list of combined patterns like ['NN VB', 'VB VB'],
     # which is both combinations possible of the set ['NN VB', 'VB']
     if all_patterns:
@@ -318,16 +315,28 @@ def get_alt_patterns(source_pattern):
             return all_patterns_with_alts
     return False
 
+def add_sub_patterns(pattern_list, source_length, combination, all_patterns, nested_variables):
+    ''' get subsequent patterns since pattern_list[i] was a list
+        if set is complete according to len(pattern_list), reset trackers & add to all_patterns
+        you can replace these with a variable just like you replaced nested patterns with variables
+    '''
+    combination = [] if not combination else combination
+    if len(combination) > 0:
+        if len(combination) == source_length or len(combination) == len(pattern_list):
+            all_patterns.add(' '.join(combination))
+            return combination, all_patterns
+    for pattern_piece in pattern_list:
+        if pattern_piece in nested_variables:
+            pattern_piece = nested_variables[pattern_piece]
+        if ' ' not in pattern_piece:
+            combination.append(pattern_piece)
+        else:
+            ''' this is a set of alts - iterate through it & pick one & combine it with subsequent patterns '''
+            combination, all_patterns = add_sub_patterns(pattern_piece.split(' '), source_length, combination, all_patterns)
+    return combination, all_patterns
+
 def get_type_patterns(source_pattern):
     ''' to do: implement this after get_types '''
-    return source_pattern
-
-def replace_pattern(source_pattern, target_pattern, line, all_vars):
-    '''
-    - to do: add mapping patterns for use in replacement functions
-        - 'MD + V' => 'could succeed'
-        - 'V + RP' => 'give away'
-    '''
     return source_pattern
 
 def get_pattern_stack(pattern_stack):

@@ -6,11 +6,11 @@ from nltk import pos_tag, word_tokenize
     nltk.help.upenn_tagset()
 '''
 
-def unconjugate(verb, pos, pos_tags):
+def unconjugate(verb, pos_tags, word_map, all_vars):
     ''' the basic form of a verb is VB, so if this is a verb, 
         convert all other verb forms to that verb form
     '''
-    tag = get_nltk_pos(verb)
+    tag = word_map[verb] if verb in word_map else None
     if tag != 'VB':
         if tag in pos_tags['verbs']:
             base_verb = change_to_infinitive(verb)
@@ -21,9 +21,11 @@ def unconjugate(verb, pos, pos_tags):
 def convert_words_to_pos(line, all_vars):
     new_line = []
     for word in line.split(' '):
-        pos = get_pos(word, all_vars)
-        val = pos if pos else word
-        new_line.append(val)
+        pos = get_nltk_pos(word, all_vars)
+        if pos in all_vars['pos_tags']['ALL']:
+            new_line.append(pos)
+        else:
+            new_line.append(word)
     line = ' '.join(new_line)
     return line
 
@@ -39,40 +41,54 @@ def get_nltk_objects(tag_key, line, all_vars):
         return items
     return False
 
-def convert_pos_names_to_nltk_tags(source_list, all_vars):
+def convert_pos_names_to_nltk_tags(all_vars):
     '''
-        pos_tags['all_nouns'] = ['NN', 'JJ', 'JJR', 'NNS', 'NNP', 'NNPS', 'RB']
-        this function converts 'noun' => '|NN JJ JJR NNS NNP NNPS RB|'  
-    '''
-    new_list = []
-    for p in source_list:
-        for pos in p.split(' '):
-            if pos in all_vars['pos_tags']:
-                nltk_pos = ''.join(['|', ' '.join(all_vars['pos_tags'][pos]), '|'])
-                # pos should now be '__VP' or 'VB' or '|NN NNP|'
-                p = p.replace(pos, nltk_pos)
-        new_list.append(p)
-    if len(new_list) > 0:
-        return new_list
-    return False
+    - convert noun => |NN JJ JJR NNS NNP NNPS RB] 
+        which is every nltk pos in all_vars['pos_tags']['ALL_N'] 
+        and same for verbs since nouns & verbs are often identified as other tags, 
+        which are listed in ALL_N and ALL_V
 
-def get_nltk_pos(word):
+    - for every pattern found in all_vars['pattern_index'], replace keywords with nltk tags:
+
+        all_vars['pos_tags']['D'] = ['DT', 'PDT', 'WDT']
+        all_vars['pos_tags']['P'] = ['TO', 'PP']
+        all_vars['pos_tags']['C'] = ['CC', 'IN']
+        all_vars['pos_tags']['DPC'] = ['DT', 'PDT', 'WDT', 'TO', 'PP', 'CC', 'IN']
+
+        all_vars['pos_tags']['ADV'] = ['WRB', 'RB', 'RBR', 'RBS']
+        all_vars['pos_tags']['ADJ'] = ['JJ', 'JJR', 'JJS']
+
+        all_vars['pos_tags']['N'] = ['NN', 'NNP', 'NNS', 'JJ', 'JJR']
+        all_vars['pos_tags']['V'] = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VP']
+        all_vars['pos_tags']['ALL_N'] = ['NN', 'JJ', 'JJR', 'NNS', 'NNP', 'NNPS', 'RB']
+        all_vars['pos_tags']['ALL_V'] = ['RP', 'MD', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VP']
+
+    '''
+    for pattern_type, pattern_list in all_vars['pattern_index'].items():
+        new_list = []
+        for p in pattern_list:
+            alts = get_nested_alts(p)
+
+            new_words = []
+            for word in p.split(' '):
+                if word in all_vars['supported_pattern_variables']:
+                    nltk_pos = ''.join(['|', ' '.join(all_vars['pos_tags'][word]), '|'])
+                    # pos should now be '__VP' or 'VB' or '|NN NNP|'
+                    new_words.append(nltk_pos)
+            if len(new_words) > 0:
+                new_list.append(' '.join(new_words))
+        if len(new_list) > 0:
+            all_vars['pattern_index'][pattern_type] = new_list
+    return all_vars
+
+def get_nltk_pos(word, all_vars):
+    if word in [a for a in all_vars['alphabet']]:
+        return False
     tagged = pos_tag(word_tokenize(word))
     if len(tagged) > 0:
         for item in tagged:
             if len(item) > 0:
                 return item[1]
-    return False
-
-def get_pos(word, all_vars):
-    ''' get 'noun' from 'voter' rather than 'NN' '''
-    if len(word) > 0:
-        pos = get_nltk_pos(word)
-        pos_key = pos
-        if pos not in all_vars['pos_tags']['exclude']:
-            for key, val in all_vars['pos_tags'].items():
-                if pos in val and key in all_vars['supported_tags']:
-                    return key
     return False
 
 def get_pos_tags():
@@ -106,14 +122,14 @@ def get_pos_tags():
     '''
 
     ''' II. WORDS '''
-    pos_tags['noun'] = ['NN', 'NNP', 'NNS', 'JJ', 'JJR'] # JJ and JJR often capture nouns rather than adjectives
+    pos_tags['N'] = ['NN', 'NNP', 'NNS', 'JJ', 'JJR'] # JJ and JJR often capture nouns rather than adjectives
     '''
         NN: Noun, singular or mass - common-carrier knuckle-duster casino thermostat investment humour falloff wind hyena override subhumanity machinist
         NNP; Proper noun, singular (Names) - Africa Michigan Hyugen NYC
         NNS: Noun, plural
         NNPS: Proper noun, plural - 'Associations'
     '''
-    pos_tags['verb'] = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VP']
+    pos_tags['V'] = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VP']
     '''
         VB: Verb, base form - ask is do have build assess evaluate analyze assume avoid begin believe reveal benefit # attention?
             VBP: Verb, non-3rd person singular present - ask is do have
@@ -131,20 +147,20 @@ def get_pos_tags():
     '''
         MD: Modal - 'could', 'will'
     '''
-    pos_tags['adv'] = ['WRB', 'RB', 'RBR', 'RBS']
+    pos_tags['ADV'] = ['WRB', 'RB', 'RBR', 'RBS']
     '''
         RB: Adverb - very occasionally basically practically prominently technologically predominately swiftly fiscally
         RBR: Adverb, comparative - 'better'
         RBS: Adverb, superlative - 'best'
         WRB: Wh-adverb - how however whence whenever where whereby whereever wherein whereof why
     '''
-    pos_tags['adj'] = ['JJ', 'JJR', 'JJS']
+    pos_tags['ADJ'] = ['JJ', 'JJR', 'JJS']
     '''
         JJ: Adjective - big, third pre-war separable ectoplasmic battery-powered participatory multi-disciplinary
         JJR: Adjective, comparative - bigger
         JJS: Adjective, superlative - biggest
     '''
-    pos_tags['sym'] = ['CD', 'SYN']
+    pos_tags['SYM'] = ['CD', 'SYN']
     '''
         CD: Cardinal number - ten, 1.0, IX, '60s', DM2, mid-1890, 1,000, dozen
         SYM: Symbol 
@@ -153,33 +169,46 @@ def get_pos_tags():
     replace_with_syns() takes out symbols, punctuation, and determiners if indicating 'some'
     '''
     # once you establish coordinating relationships or ratios, remove determiners & prepositions 
-    pos_tags['det'] = ['DT', 'PDT', 'WDT']
+    pos_tags['D'] = ['DT', 'PDT', 'WDT']
     '''
         DT: Determiner - all an another any both each either every half many much nary neither no some such that the them these this those
         PDT: Pre determiner - all both half many quite such sure this
         WDT: Wh-determiner - that what whatever which whichever
     '''
-    pos_tags['prep'] = ['TO', 'PP']
+    pos_tags['P'] = ['TO', 'PP']
     '''
         TO: "to" as preposition or infinitive marker
         PP: Preposition Phrase
     '''
-    pos_tags['conj'] = ['CC', 'IN']
+    pos_tags['C'] = ['CC', 'IN']
     '''
         CC: Coordinating conjunction - 'n and both but either et for less minus neither nor or plus so therefore times v. versus vs. whether yet
         IN: Preposition or subordinating conjunction - among upon whether out pro despite on by below within for near behind atop around if until below next into if beside
     '''
-    pos_tags['all_nouns'] = ['NN', 'JJ', 'JJR', 'NNS', 'NNP', 'NNPS', 'RB']
-    pos_tags['all_verbs'] = ['RP', 'MD', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VP']
-
+    pos_tags['DPC'] = ['DT', 'PDT', 'WDT', 'TO', 'PP', 'CC', 'IN']
+    pos_tags['ALL_N'] = ['NN', 'JJ', 'JJR', 'NNS', 'NNP', 'NNPS', 'RB']
+    pos_tags['ALL_V'] = ['RP', 'MD', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VP']
+    pos_tags['SYNSET'] = set()
+    for key in ['N', 'V', 'ADJ', 'ADV']:
+        for item in pos_tags[key]:
+            pos_tags['SYNSET'].add(item)
+    pos_tags['SYNSET'] = list(pos_tags['SYNSET'])
+    pos_tags['ALL'] = set()
+    for key in pos_tags:
+        for item in pos_tags[key]:
+            pos_tags['ALL'].add(item)
+    pos_tags['ALL'] = list(pos_tags['ALL'])
     '''
     'RB' points to 'even', 'WRB' points to when, 'JJ' describes 'due'
     '''
-    conditional_keys = ['conj', 'prep', 'adv', 'adj', 'potential']
+    conditional_keys = ['C', 'P', 'ADV', 'ADJ', 'verb_potential']
+    pos_tags['conditional'] = []
     for tag in conditional_keys:
         pos_tags['conditional'].extend(pos_tags[tag])
-    relation_keys = ['conj', 'prep', 'adv', 'adj']
-    for tag in conditional_keys:
+
+    relation_keys = ['C', 'P']
+    pos_tags['relation'] = []
+    for tag in relation_keys:
         pos_tags['relation'].extend(pos_tags[tag])
 
     ''' III. REMOVE '''
