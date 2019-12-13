@@ -90,6 +90,15 @@ Side effect keywords to use to test relationships derived with nlp tools:
 verification_dict = {}
 output_dict = {}
 
+def get_stressors():
+  '''
+  - example of stressor response:
+  - when drug handles a function, bio system component shrinks:
+    - Researchers measured the volume of the hypothalamus in each scan. 
+    This cone-shaped part of the brain has a number of jobs including controlling the release of hormones and regulating reproductive functions.
+  - find example of the opposite relationship
+  '''
+
 def get_object_similarity(verification_dict, output_dict):
   '''
   1. check for coverage of verification_dict 
@@ -234,7 +243,7 @@ def get_related_components(component, data_store, all_vars):
                         related_components.add(n)
     return related_components
 
-def get_treatments(intent, hypothesis, line, title, row, metadata, all_vars):
+def find_treatments(pattern, lines, row, all_vars):
     '''
     hypothesis & intent can be Null for now 
 
@@ -265,9 +274,11 @@ def get_treatments(intent, hypothesis, line, title, row, metadata, all_vars):
                 "drug did reduce blood pressure" => positive correlation (success) or a negative intent (reduce)
     '''
 
-    blob = get_blob(line)
+    lines = [lines] if type(lines) == str else lines
+    blob = get_blob(row['line'])
     sentiment = blob.sentiment if blob else None
-    print("\tline sentiment", sentiment, "line", line)
+    print("\tline sentiment", sentiment, "line", row['line'])
+    '''
     if hypothesis:
         hypothesis_blob = get_blob(hypothesis)
         hypothesis_sentiment = hypothesis_blob.sentiment if hypothesis_blob else None
@@ -276,12 +287,11 @@ def get_treatments(intent, hypothesis, line, title, row, metadata, all_vars):
         intent_blob = get_blob(intent)
         intent_sentiment = intent_blob.sentiment if intent_blob else None
         print("\tintent sentiment", intent_sentiment, "intent", intent)
-
+    '''
     ''' to do: do study & sentence intent matching '''
-    derived_relationships = get_relationships_from_clauses(row['clauses'], line, row['nouns'], all_vars)
-    if derived_relationships:
-        for r in derived_relationships:
-            ''' row['variables'] = get_dependencies('inputs', line, row['relationships'], 1)) '''
+    if 'relationships' in row:
+        for r in row['relationships']:
+            ''' row['variables'] = get_dependencies('inputs', row['line'], row['relationships'], 1)) '''
             intent = None
             correlation = get_similarity(intent, r)
             print('\tget_treatments: correlation', correlation, r)

@@ -1,4 +1,5 @@
 from nltk import pos_tag, word_tokenize 
+from textblob import TextBlob
 
 '''
     https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
@@ -59,10 +60,17 @@ def convert_pos_names_to_nltk_tags(all_vars):
 def get_nltk_pos(word, all_vars):
     if word in [a for a in all_vars['alphabet']]:
         return False
+    tags = TextBlob(word).parse()
+    tags_split = tags.split('/')
+    blob_pos = tags_split[1] if len(tags_split) > 1 else None
     tagged = pos_tag(word_tokenize(word))
     if len(tagged) > 0:
         for item in tagged:
             if len(item) > 0:
+                if blob_pos != item[1]:
+                    ''' blob identifies 'explains' as a verb when nltk doesnt '''
+                    if blob_pos in all_vars['pos_tags']['ALL_V']:
+                        return blob_pos
                 return item[1]
     return False
 

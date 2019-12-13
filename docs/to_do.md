@@ -60,13 +60,25 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
             else:
                 new_subsets.append(new_subset)
                 new_subset = []
-        
-
-  - make more sense when you account for smugness, have you considered lack of opportunities to punch up
-  - request maximization of servers
-
 
 # Structural:
+
+  - 'has effect' => 'have induce' with current synonym replacements, 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
+
+  -  check how your pattern replacement function handled pos tags
+
+  - all find functions need to support params:
+    - pattern, matches_lines, row_index, all_vars
+         such as:
+          1. pattern & subsets matching pattern
+          - pattern = 'x of y'
+          - lines = 'dog of cat', 'cat of dog' 
+
+          2. no pattern passed in, just lines array
+          - pattern = None
+          - lines = ['find the objects in this sentence']
+
+  - 'by' can indicate a process/mechanism "it works by doing x"
 
   - ensure order of operations:
       get modifiers
@@ -86,14 +98,10 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
       - function inputs/outputs (subject_noun/predicate_noun)
     - types (['structure', 'life form', 'organic molecule'] from 'protein')
 
-  - add modifier types ('subset', 'function')
-      - iterate up in size from word => modifier => phrase
-        so you dont miss phrases that match a pattern with only variable names:
-          'x of y' (will catch subsets matching 'noun of a noun' and 'modifier of a phrase')
-        rather than pos:
-          'noun of noun' (will only catch 'inhibitor of enzyme')
-
   - you should be identifying & adding more patterns for each row with each metadata iteration (structural, medical, conceptual):
+    this is already being done with call to objects['patterns'].add(pattern) in extract_objects_matching_patterns
+    but should be done in find_patterns
+
     - add abstract/pos pattern match & replacement function after get_types()
         and whenever you implement add_components and add_functions
           Cytotoxicity in cancer cells => <component object>-toxicity
@@ -111,10 +119,12 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
   - use blob.correct() on non-research sources - remove '.,' and other errors or typos 
   - finish function to unconjugate verb - lemmatize changes to infinitive
   - finish get_topic to filter non-topical nouns, verbs, adverbs & adjectives from all object indexes
+    - add filtering of insights to apply directly to the target condition or mechanisms
+    - add mechanisms of action keywords & patterns to get strategies
   - make all_vars global variable & remove from params
   - write function to get semantic props of compounds (bio-availability, activation in the host species, etc)
   - make sources query specific - symptom queries should pull from drugs/rxlist/forums/wiki
-  - add keyword check function in get_object function using all_vars['keywords'] map
+  - add keyword check function in get_object function using all_vars['keywords'] map & type check function
   - add metadata check to make sure they requested this data
   - add read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
 

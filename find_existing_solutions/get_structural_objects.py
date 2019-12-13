@@ -3,7 +3,7 @@ from utils import *
 from get_synonyms import *
 from get_objects import *
 
-def get_relationships_from_clauses(row, all_vars):
+def find_relationships(pattern, lines, row, all_vars):
     '''
         - this is a generative function, applying each subject to each verb & each clause 
             to generate the full set of relationships in the sentence
@@ -23,7 +23,6 @@ def get_relationships_from_clauses(row, all_vars):
     '''
     variables = {}
     ''' variables should be a dict like: { var : modifier relationship }  ("a": "i - b") '''
-    print('line', row['line'])
     citems = get_conditionals(row, all_vars)
     variables['subject'] = citems['subject']
     word_relationships = []

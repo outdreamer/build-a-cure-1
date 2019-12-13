@@ -128,18 +128,18 @@ def get_article_intents(article):
     study_objects = ['relationship', 'limit', 'type', 'method']
     conceptual_objects = ['relationship', 'problem', 'strategy', 'process', 'insight', 'function', 'variable', 'system', 'theory', 'opinion', 'conclusion', 'observation']
     sentence_intents = {
-        'describe': ['introduce', 'detail']
+        'describe': ['introduce', 'detail'],
         'organize': ['list', 'categorize', 'summarize']
     }
     intent_map = {
-        'find_limit',
+        'find_limit': {},
         'find_relationship': {
             'condition': {
                 'treat': ['test_treatment_compound', 'test_treatment_method'],
                 'diagnose': ['test_diagnostic_method']
-            }
+            },
             'synthesize_compound': ['test_synthesis_method']
-        }
+        },
         'review': {
             'compare': ['meta_review', 'peer_review'],
             'verify': ['retract_study', 'replicate_result']

@@ -32,7 +32,7 @@ def get_types(word, pos, title, row, all_vars):
                             if index_type in row:
                                 if index_type != 'dependencies': # to do: exclude other relationship objects here
                                     index = {index_type: word}
-                                    matched_objects = find_patterns(word, [index_type], all_vars)
+                                    matched_objects = find_patterns(word, index_type, all_vars)
                                     if matched_objects:
                                         row[key] = matched_objects
             except Exception as e:

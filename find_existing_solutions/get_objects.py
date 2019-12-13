@@ -1,13 +1,13 @@
 from utils import *
 
-def find_metrics(pattern_subsets, pattern, word_map, all_vars):
+def find_metrics(pattern, lines, row, all_vars):
     '''
     find any metrics in this pattern's matches
     to do: some metrics will have letters other than expected
     pull all the alphanumeric strings & filter out dose information
     '''
     metrics = set()
-    split_line = pattern.split(' ')
+    split_line = pattern.split(' ') if pattern is not None else []
     for i, word in enumerate(split_line):
         numbers = [w for w in word if w.isnumeric()]
         if len(numbers) > 0:
@@ -21,7 +21,7 @@ def find_metrics(pattern_subsets, pattern, word_map, all_vars):
                 metrics.add(word) # '3mg'
     return metrics
 
-def find_modifier(pattern_subsets, pattern, word_map, all_vars):
+def find_modifiers(pattern, lines, row, all_vars):
     '''
     - we're isolating modifiers bc theyre the smallest unit of 
         functions (inputs, process, outputs)
@@ -62,7 +62,7 @@ def find_modifier(pattern_subsets, pattern, word_map, all_vars):
                     blob_dict[token] = val.split('/')
         if tagged_dict and blob_dict:
             for i, word in enumerate(words):
-                pos = word_map[word] if word in word_map else ''
+                pos = row['word_map'][word] if word in row['word_map'] else ''
                 if pos:
                     if pos not in all_vars['pos_tags']['exclude']:
                         if word in blob_dict and word in tagged_dict:
@@ -71,7 +71,7 @@ def find_modifier(pattern_subsets, pattern, word_map, all_vars):
                             modifier = word
                             other_word = words[i + 1] if (i + 1) < len(words) else words[i - 1] if i > 0 else None
                             if other_word:
-                                other_word_pos = word_map[other_word] if other_word in word_map else ''
+                                other_word_pos = row['word_map'][other_word] if other_word in row['word_map'] else ''
                                 if other_word_pos in all_vars['pos_tags']['ALL_N'] or other_word_pos in all_vars['pos_tags']['ALL_V']:
                                     row['modifiers'].add(' '.join([ratio, other_word]))
         return row
@@ -253,13 +253,11 @@ def get_conditionals(row, all_vars):
                         if next_object:
                             row['clauses'].add(' '.join([prev_object, word, next_object]))
                 else:
-                    active_s = change_to_infinitive(word)
-                    active_s = 'was' if active_s == 'be' else active_s
                     # to do: handle other cases where infinitive is linguistically awkward bc clauses will be re-used later
                     if next_object:
                         row['subjects'].add(next_object)
                         if prev_object:
-                            row['clauses'].add(' '.join([next_object, active_s, prev_object]))
+                            row['clauses'].add(' '.join([next_object, word, prev_object]))
 
     ''' assumes rearrange_sentence was already called on line used to generate clauses '''
     print('\nclauses', row['clauses'])
@@ -269,7 +267,6 @@ def get_conditionals(row, all_vars):
     row['subjects'] = []
     row['verb_relationships'] = []
     row['delimiters'] = []
-
     all_vars['clause_delimiters'].append('1')
     for i, c in enumerate(row['clauses']):
         c_strip = c.strip()

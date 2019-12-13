@@ -1,7 +1,7 @@
 from utils import *
 from get_pos import get_nltk_pos
 
-def get_patterns_between_objects(objects):
+def get_patterns_between_objects(objects, object_type, all_vars):
     '''
     this function is to determine patterns using each object in the list as input
     to find patterns between list items
@@ -85,25 +85,25 @@ def index_as_functions(line):
     '''
     return line
 
-def find_patterns(source_input, pattern_keys, all_vars):
+def find_patterns(source_input, pattern_key, all_vars):
     '''
     if source_input is a list, get patterns between objects in the list,
     rather than patterns in a string source_input
     '''
     ''' a = {'pattern': 'source_words'} '''
     found_patterns = {}
-    if type(source_input) == list:
+    if type(source_input) == list or type(source_input) == set:
         found_patterns = get_patterns_between_objects(source_input)
     else:
-        pattern_keys = pattern_keys if pattern_keys is not None else all_vars['pattern_index'].keys()
-        for pattern_key in pattern_keys:
+        if pattern_key in all_vars['pattern_index']:
             combined_key = ''.join(['patterns_', pattern_key])
-            found_patterns[combined_key] = {}
-            if pattern_key in all_vars['pattern_index']:
-                for pattern in all_vars['pattern_index'][pattern_key]:
-                    source_subsets = get_pattern_source_subsets(source_input, pattern, 'pattern', all_vars)
-                    if source_subsets:
-                        found_patterns[combined_key][pattern] = set(source_subsets)
+            for pattern in all_vars['pattern_index'][pattern_key]:
+                source_subsets = get_pattern_source_subsets(source_input, pattern, 'pattern', all_vars)
+                if source_subsets:
+                    if combined_key not in found_patterns:
+                        found_patterns[combined_key] = {}
+                    found_patterns[combined_key][pattern] = set(source_subsets)
+                    print('found', found_patterns)
     if found_patterns:
         return found_patterns
     return False
@@ -117,11 +117,11 @@ def apply_pattern_map(line, pattern_map, all_vars):
     '''
     # for object_type in ['word', 'modifier', 'phrase']:
     reverse_keys = reversed(sorted(pattern_map.keys()))
-    print('pattern map', pattern_map)
     for source_pattern in reverse_keys:
         for target_pattern in pattern_map[source_pattern]:
             found_subsets = get_pattern_source_subsets(line, source_pattern, 'pattern', all_vars)
             if found_subsets:
+                print('found_subsets', found_subsets)
                 for subset in found_subsets:
                     pattern_map = {'source': source_pattern, 'target': target_pattern}
                     applied = get_new_version(subset, sub_pattern_map, all_vars)

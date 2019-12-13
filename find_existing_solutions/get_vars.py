@@ -95,7 +95,11 @@ def get_pattern_config(all_vars):
         'treatments': [],
         'compounds': {
             'object': ['ion', 'acid'],
-            'modifiers': ['oral', 'liquid', 'topical', 'intravenous', 'iv', 'injection', 'gavage', 'capsule', 'gel', 'powder', 'supplement', 'solution', 'spray', 'tincture', 'mixture'],
+            'modifiers': [
+                'oral', 'liquid', 'topical', 'intravenous', 'iv', 
+                'injection', 'gavage', 'capsule', 'gel', 'powder', 
+                'supplement', 'solution', 'spray', 'tincture', 'mixture'
+            ],
         },
         'patient': all_vars['supported_core']['participants']
     }
@@ -110,13 +114,15 @@ def get_pattern_config(all_vars):
             'x of y': 'y x', # to do: add support for new characters in target_pattern like 'y-x'
             'x was inhibited by y': 'y inhibits x',
             'x that has y': 'x with y',
+            'ALL_N1 VBD VBN IN ALL_N2': 'ALL_N2 VBN ALL_N1', # x was bitten by y => y bit x
             'x was VBD by y': 'y VBZ x',
             'x that y z': 'z y x', # "protein that modulates a (signaling pathway)" => "(signaling pathway)-changing protein" 
             'x that does VBG': 'x VBZ', # x that does inhibition => x inhibits
             'x that does VBG': 'x VBZ', # x that does inhibition => x inhibits 
             'x with y functionality': 'x y', 
             'x has ability to do y': 'x y',
-            'JJ1 NN1 of JJ2 NN2': 'JJ2 NN2 JJ1 NN1'
+            'JJ1 NN1 of JJ2 NN2': 'JJ2 NN2 JJ1 NN1',
+            'x is an item in list b': 'x is in list b'
         }
     }
     all_vars['supported_pattern_variables'] = ['N', 'V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
@@ -128,7 +134,7 @@ def get_pattern_config(all_vars):
             '|VBD| VBN VBN |TO IN PP|', # has been done by
             '|word phrase| of |word phrase|' # enzyme inhibitor of protein synthesis
         ],
-        'modifier': [
+        'modifiers': [
             #'(?)', # add support for an any character 
             '|N V| |N ADV ADJ V|', # compound isolate
             'ALL_N IN |ADJ ADV VB VBG VBD| ALL_N', # converter of ionic/ionized/ionizing radiation, necrotizing spondylosis
@@ -154,18 +160,18 @@ def get_pattern_config(all_vars):
             'plays a |VB NN| role',
             '|functions works operates interacts acts| as __a__ |VB NN|'
         ],
-        'compound': [
+        'compounds': [
             "administration_method of compound",
             "compound compound"
         ],
-        'symptom': [
+        'symptoms': [
             'fever that gets worse when x',
             'x reduced y and diminished z even in condition x or condition a'
         ],
-         'type': [
+         'types': [
             'ADJ N', # Ex: 'chaperone protein' (subtype = 'chaperone', type = 'protein')
         ],
-        'role': [
+        'roles': [
             '|ADV V N|', # Ex: 'emulsifying protein' (role = 'emulsifier')
             'N of N', # Ex: 'components of immune system' (role = 'component', system = 'immune system')
             '|V N| role', # Ex: functional role (role => 'function')
@@ -268,7 +274,7 @@ def get_vars():
     all_vars['full_params'] = {
         'request': ['metadata', 'generate', 'filters', 'data'], # request params
         'wiki': ['section_list'],
-        'pos': ['pos', 'verbs', 'nouns', 'common_words', 'counts', 'taken_out', 'word_map'],
+        'pos': ['pos', 'verbs', 'nouns', 'common_words', 'counts', 'taken_out', 'line', 'prep', 'conj', 'det', 'descriptors', 'original_line', 'word_map'],
         'structure': ['types', 'names', 'modifiers', 'phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships', 'similar_lines'], # structural
         'experiment': ['hypothesis', 'tests', 'metrics', 'properties', 'assumptions'], # experiment elements
         'compound': ['compounds', 'contraindications', 'interactions', 'side_effects', 'treatments_successful', 'treatments_failed'], # drug elements
@@ -289,9 +295,9 @@ def get_vars():
     so generalize when you can
     '''
     object_type_keys = {
-        'medical': ['experiment', 'compound', 'organism', 'condition', 'context', 'synthesis'],
-        'conceptual': ['conceptual', 'relational'],
-        'structural': ['pos', 'structure']
+        'medical_types': ['experiment', 'compound', 'organism', 'condition', 'context', 'synthesis'],
+        'conceptual_types': ['conceptual', 'relational'],
+        'structural_types': ['pos', 'structure']
     }
     for key, val in object_type_keys.items():
         for ref in val:
@@ -349,11 +355,12 @@ def fill_synonyms(path, all_vars):
         path = '/'.join([cwd, path])
     if os.path.exists(path) and os.path.isdir(path):
         for filename in os.listdir(path):
-            if 'sources' not in filename:
-                full_path = '/'.join([path, filename]) 
-                if os.path.exists(full_path) and os.path.isfile(full_path):
-                    word_map = read(full_path)
-                    if word_map:
+
+            full_path = '/'.join([path, filename]) 
+            if os.path.exists(full_path) and os.path.isfile(full_path):
+                word_map = read(full_path)
+                if word_map:
+                    if 'sources' not in filename:
                         for top_element in word_map:
                             all_vars['supported_core'][top_element] = word_map[top_element]
                             all_vars['supported_stems'][top_element] = set()
@@ -364,7 +371,10 @@ def fill_synonyms(path, all_vars):
                                 for k, y in word_map[top_element].items():
                                     all_vars['supported_stems'][top_element].add(get_stem(k))
                                     all_vars = process_synonym_element(y, top_element, all_vars)
-                                    all_vars = process_synonym_element(y, k, all_vars)                            
+                                    all_vars = process_synonym_element(y, k, all_vars)     
+                    else:
+                        print('word map', word_map)
+                        all_vars['sources'] = word_map
     return all_vars
 
 def process_synonym_element(y, keyword, all_vars):

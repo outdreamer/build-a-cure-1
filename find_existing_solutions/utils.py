@@ -1,4 +1,4 @@
-import json, itertools, csv, os
+import json, itertools, csv, os, ssl
 import nltk
 from nltk import CFG, pos_tag, word_tokenize, ne_chunk
 from nltk.corpus import stopwords
@@ -15,6 +15,18 @@ stemmer = SnowballStemmer("english")
 ''' SIMILARITY FUNCTIONS '''
 
 def get_polarity(line):
+    ''' to do: use blob.sentiment_assessments 
+            Sentiment(
+                polarity=-0.008806818181818186, 
+                subjectivity=0.32386363636363635, 
+                assessments=[
+                    (['positive'], 0.22727272727272727, 0.5454545454545454, None), 
+                    (['absence'], -0.0125, 0.0, None), 
+                    (['due'], -0.125, 0.375, None), 
+                    (['other'], -0.125, 0.375, None)
+                ]
+            )
+    '''
     blob = get_blob(line)
     if blob:
         sentiment = blob.sentiment
@@ -33,8 +45,6 @@ def get_subjectivity(line):
     return line
 
 def get_definitions(word):
-    definitions = Word(word).define(NOUN)
-    print('define', word, definitions)
     defs = Word(word).definitions
     if defs:
         print('\tdefinitions', word, defs)
@@ -138,16 +148,20 @@ def get_determiner_ratio(word):
     return False
 
 def get_pos_metadata(row, all_vars):
-    ''' to do: nouns with highest counts are likely to be central objects '''
-    ''' takes out determiners if indicating 'one', 'some', or 'same' quantity '''
+    ''' to do: 
+        - nouns with highest counts are likely to be central objects
+        - iterate up in size from word => modifier => phrase
+            so you dont miss phrases that match a pattern with only variable names:
+                'x of y' (will catch subsets matching 'noun of a noun' and 'modifier of a phrase')
+            rather than pos:
+                'noun of noun' (will only catch 'inhibitor of enzyme')
+    '''
     keep_ratios = ['extra', 'high', 'none']
-    print('row', row)
-    if type(row) != str:
-        row = get_empty_index(['all'], all_vars)
-        row['line'] = row['line'] if 'line' in row else ''
-    else:
-        row['line'] = row
-    words = row['line'].split(' ')
+    line = row['line'] if 'line' in row and type(row) == dict else row # can be a row index dict or a definition line
+    row = row if type(row) == dict else get_empty_index(['all'], all_vars)
+    row['line'] = line
+    word_pos_line = ''.join([x for x in line if x in all_vars['alphanumeric'] or x == ' ' or x == '-'])
+    words = word_pos_line.split(' ')
     for i, w in enumerate(words):
         if len(w) > 0:
             count = words.count(w)
@@ -155,24 +169,30 @@ def get_pos_metadata(row, all_vars):
             w_name = w.capitalize() if w.capitalize() != words[0] else w
             upper_count = words.count(w_upper) # find acronyms, ignoring punctuated acronym
             if count > 0 or upper_count > 0:
-                count_num = upper_count if upper_count <= count else count
-                count_val = w_upper if upper_count <= count else w 
+                count_num = upper_count if upper_count >= count else count
+                count_val = w_upper if upper_count >= count else w 
                 if count_num not in row['counts']:
                     row['counts'][count_num] = set()
                 row['counts'][count_num].add(count_val)
             pos = row['word_map'][w] if w in row['word_map'] else ''
             if pos in all_vars['pos_tags']['ALL_V']:
                 row['verbs'].add(w)
-            elif pos in all_vars['pos_tags']['ALL_N']:
+            elif pos in all_vars['pos_tags']['D']:
+                ratio = get_determiner_ratio(w)
+                if ratio:
+                    if ratio in keep_ratios:
+                        row['det'].add(str(ratio))
+                        #other_word = words[i + 1] if (i + 1) < len(words) else words[i - 1] if i > 0 else None
+                        #if other_word: 
+            elif pos in all_vars['pos_tags']['P']:
+                row['prep'].add(w)
+            elif pos in all_vars['pos_tags']['C']:
+                row['conj'].add(w)
+            elif pos in all_vars['pos_tags']['ALL_N'] or w in all_vars['alphabet']:
                 row['nouns'].add(w)
+            elif pos in all_vars['pos_tags']['ADV'] or pos in all_vars['pos_tags']['ADJ']:
+                row['descriptors'].add(w)
             else:
-                if pos in all_vars['pos_tags']['D']:
-                    ratio = get_determiner_ratio(w)
-                    if ratio:
-                        if ratio in keep_ratios:
-                            other_word = words[i + 1] if (i + 1) < len(words) else words[i - 1] if i > 0 else None
-                            if other_word:
-                                row['descriptors'].add(' '.join([ratio, other_word]))
                 row['taken_out'].add('_'.join([w, str(pos)]))
     if len(row['counts']) > 0:
         common_words = get_most_common_words(row['counts'], 3) # get top 3 tiers of common words
@@ -230,7 +250,7 @@ def standardize_delimiter(text):
     if blob:
         sentences = blob.sentences
         if len(sentences) > 0:
-            return '\n'.join(sentences)
+            return '\n'.join([s.string for s in sentences])
     delimiter = get_sentence_delimiter(text)
     if delimiter:
         return '\n'.join(text.split(delimiter))
@@ -402,32 +422,6 @@ def get_topic(word):
     stem = get_stem(word)
     return word
 
-def concatenate_species(data):
-    data_lines = data.split('.')
-    new_lines = []
-    next_item = None
-    for i, d in enumerate(data_lines):
-        d_split = d.split(' ')
-        last_item = d_split.pop()
-        if len(last_item) == 1:
-            if (i + 1) < len(d):
-                prev_item = d_split[-1]
-                if len(prev_item) > 1:
-                    next_item = data_lines[i+1].strip().split(' ')[0]
-                    d_next = '-'.join([last_item, next_item]) #C. elegans => C-elegans
-                    d_split.append(d_next)
-                    new_lines.append(' '.join(d_split))
-        else:
-            next_item = None
-            new_lines.append(' '.join(d_split))
-        if next_item is not None:
-            next_item_len = len(next_item)
-            if next_item == d[0:next_item_len]:
-                d = ' '.join(d[next_item_len:].split(' '))
-                new_lines.append(d)
-    data = '.'.join(new_lines)
-    return data
-
 def convert_to_active(line, all_vars):
     '''
     - check for verb tenses normally used in passive sentences # had been done = past perfect
@@ -474,7 +468,7 @@ def get_local_database(database_dir, object_types):
             paths = [''.join([database_dir, '/', ot, '.txt']) for ot in object_types]
             docs = get_local_data(paths, docs)
         else:
-            paths = [''.join([database_dir, '/', fp]) for fp in os.path.listdir(path)]
+            paths = [''.join([database_dir, '/', fp]) for fp in os.listdir(database_dir)]
             docs = get_local_data(paths, docs)
     if docs:
         return docs
@@ -512,12 +506,13 @@ def read(path):
     return index
 
 def write_csv(rows, header_list, path):
-    with open(path, 'wt') as f:
-        csv_writer = csv.DictWriter(f, fieldnames=header_list)
-        csv_writer.writeheader()
-        csv_writer.writerows(rows)
-        f.close()
-        return True 
+    if len(rows) > 0:
+        with open(path, 'wt') as f:
+            csv_writer = csv.DictWriter(f, fieldnames=header_list)
+            csv_writer.writeheader()
+            csv_writer.writerows(rows)
+            f.close()
+            return True 
     return False
 
 def downloads(paths):
