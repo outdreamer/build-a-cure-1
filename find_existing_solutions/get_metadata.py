@@ -209,7 +209,7 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
                 if found_objects:
                     objects[object_type] = found_objects
         if objects or patterns:
-            print('extract_objects_and_patterns_from_index response', objects, patterns)
+            print('extracted', objects, patterns)
             return objects, patterns
     return False, False
 
@@ -294,35 +294,59 @@ def get_structural_metadata(row, all_vars):
     for k, v in ngrams.items():
         ngram_list.extend(v)
     ngram_list.append(word_pos_line)
+    row['modifiers'] = set(ngram_list) # probably needs to preserve position for later processing
     index = { 'modifiers': ngram_list }
     objects, modifier_patterns = extract_objects_and_patterns_from_index(index, None, 'modifiers', 'modifiers', all_vars)
     if objects:
         if 'modifiers' in objects:
-            row['modifiers'] = objects['modifiers']
+            row['modifiers'] = set(objects['modifiers'])
     if modifier_patterns:
         row['patterns'] = row['patterns'].union(set([p for p in modifier_patterns]))
-    structure_types = ['phrases', 'clauses', 'relationships']
+    #pos_line = convert_words_to_pos(row['line'], all_vars)
+    #if pos_line:
+    #    row['patterns'].append(pos_line)
+    structure_types = ['phrases', 'subjects', 'clauses', 'relationships']
     for i, key in enumerate(structure_types):
         search_items = ngram_list if i == 0 else row[structure_types[i - 1]] if len(row[structure_types[i - 1]]) > 0 else []
         search_items.append(word_pos_line)
         index = { key: search_items }
+        row[key] = set(search_items) if key == 'phrases' else set()
         objects, patterns = extract_objects_and_patterns_from_index(index, None, key, key, all_vars)
         if objects:
             if key in objects:
-                row[key] = objects[key]
+                if key == 'subjects':
+                    for item in objects[key]:
+                        row[key].add(item.split(' ')[0]) # get first word in 'N V' subject pattern
+                else:
+                    row[key] = set(objects[key])
         if patterns:
             row['patterns'] = row['patterns'].union(set([p for p in patterns]))
+    # to do: add call to find_repeated_patterns to get any other patterns not added yet
     return row
 
 def get_ngrams(line, all_vars):
     phrases = {'N': [], 'V': [], 'ADJ': [], 'ADV': [], 'DPC': []} # take out adj & adv
-    phrase_keys = ['N', 'V', 'ADJ', 'ADV', 'DPC']
-    ''' to do: you split by DPC chars and then get ngrams of the subsets of the output list '''
-    for key in phrase_keys:
-        pos_phrases = get_ngrams_of_type(key, line, all_vars)
-        if pos_phrases:
-            phrases[key] = pos_phrases
-    print('phrases', phrases)
+    phrase_keys = ['N', 'V', 'ADJ', 'ADV']
+    tags = all_vars['pos_tags']
+    non_dpc_segments = []
+    new_segment = []
+    for w in line.split(' '):
+        pos = get_nltk_pos(w, all_vars)
+        if pos:
+            if pos in tags['ALL_V'] or pos in tags['ALL_N'] or pos in tags['ADV'] or pos in tags['ADJ']:
+                new_segment.append(w)
+            else:
+                non_dpc_segments.append(' '.join(new_segment))
+                new_segment = []
+    if len(non_dpc_segments) > 0:
+        for non_dpc_segment in non_dpc_segments:
+            for key in phrase_keys:
+                pos_phrases = get_ngrams_of_type(key, non_dpc_segment, all_vars)
+                if pos_phrases:
+                    phrases[key] = pos_phrases
+    dpc_phrases = get_ngrams_of_type('DPC', line, all_vars)
+    if dpc_phrases:
+        phrases['DPC'] = dpc_phrases
     if phrases:
         return phrases
     return False

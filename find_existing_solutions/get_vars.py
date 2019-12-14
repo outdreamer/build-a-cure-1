@@ -127,13 +127,18 @@ def get_pattern_config(all_vars):
         }
     }
     all_vars['supported_pattern_variables'] = ['N', 'V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
+    all_vars['pattern_vars'] = ['modifiers', 'clauses', 'phrases', 'noun_phrases', 'verb_phrases']
+    ''' to do: add full_params objects to pattern_vars & standardize to singular keys '''
     all_vars['pattern_index'] = {
         'passive': [
             '|VB VBP VBN VBD| |VB VBP VBN VBD|', # is done, was done
             'VBG |VB VBP VBN VBD| |VB VBP VBN VBD|', # having been done
             '|VB VBP VBN VBD| |TO IN PP|', # finish by, done by
             '|VBD| VBN VBN |TO IN PP|', # has been done by
-            '|word phrase| of |word phrase|' # enzyme inhibitor of protein synthesis
+            '|noun_phrases| of |noun_phrases|' # enzyme inhibitor of protein synthesis
+        ],
+        'subjects': [
+            'ALL_N ALL_V',
         ],
         'modifiers': [
             #'(?)', # add support for an any character 
@@ -147,7 +152,7 @@ def get_pattern_config(all_vars):
             'ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N', # converter of ionic/ionized/ionizing radiation, necrotizing spondylosis
             'ALL_N DPC ALL_N |VBG VBD|', # metabolite of radiation poisoning
             'ALL_N DPC ALL_N', # metabolite/metabolizer/inhibitor/alkalization of radiation, 
-            'modifier DPC modifier'
+            'modifiers DPC modifiers'
         ],
         'clauses': [
             'DPC NP VP NP',
@@ -157,8 +162,8 @@ def get_pattern_config(all_vars):
             'DPC NP',
         ],
         'relationships': [
-            'clause',
-            'clause CC clause'
+            'clauses',
+            'clauses CC clauses'
         ],
         'noun_phrases': [
             'ALL_N ALL_N',
@@ -287,7 +292,7 @@ def get_vars():
         'request': ['metadata', 'generate', 'filters', 'data'], # request params
         'wiki': ['section_list'],
         'pos': ['pos', 'verbs', 'nouns', 'common_words', 'counts', 'taken_out', 'line', 'prep', 'conj', 'det', 'descriptors', 'original_line', 'word_map'],
-        'structure': ['types', 'names', 'ngrams', 'modifiers', 'phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships', 'similar_lines'], # structural
+        'structure': ['types', 'names', 'ngrams', 'modifiers', 'phrases', 'clauses', 'subjects', 'relationships', 'patterns', 'similar_lines'], # structural
         'experiment': ['hypothesis', 'tests', 'metrics', 'properties', 'assumptions'], # experiment elements
         'compound': ['compounds', 'contraindications', 'interactions', 'side_effects', 'treatments_successful', 'treatments_failed'], # drug elements
         'organism': ['genes', 'gene_expressions', 'evolution', 'organs', 'cells', 'nutrients'],
@@ -295,7 +300,7 @@ def get_vars():
         'context': ['bio_metrics', 'bio_symptoms', 'bio_conditions', 'bio_stressors'], # context elements
         'synthesis': ['instructions', 'parameters', 'optimal_parameter_values', 'required_compounds', 'substitutes', 'equipment_links'],
         'relational': ['components', 'related', 'alternates', 'substitutes', 'sub', 'adjacents', 'stressors', 'dependencies'],
-        'conceptual': ['concepts', 'functions', 'causal_stack', 'insights', 'strategies', 'prediction', 'priorities', 'intents', 'systems']
+        'conceptual': ['concepts', 'variables', 'functions', 'causal_stack', 'insights', 'strategies', 'prediction', 'priorities', 'intents', 'systems']
     }
     '''
     some of these types have type mappings:

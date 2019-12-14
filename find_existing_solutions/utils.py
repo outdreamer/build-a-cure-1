@@ -196,11 +196,6 @@ def is_condition(asp_words, row, all_vars):
                 return word
     return False
 
-def get_delimiter(line):
-    ''' get a delimiter that isnt in the line '''
-    delimiter = '***' if '***' not in line else '###'
-    return delimiter
-
 def get_sentence_delimiter(text):
     return '\n' if text.count('\n') > text.count('. ') else '. '
 
@@ -393,18 +388,6 @@ def get_meaning_score(phrase, line):
         return meaning
     return False
 
-def get_noun_phrases(line, row, all_vars):
-    ''' to do: use all_vars['pos_tags']['phrase'] = ['PP', 'NNP', 'VP'] '''
-    ''' rather than just noun_phrases, we want to identify any phrases '''
-    phrases = set()
-    blob = get_blob(line)
-    if blob:
-        for p in blob.noun_phrases:
-            phrases.add(p)
-    if len(phrases) > 0:
-        return phrases
-    return False
-
 def get_topic(word):
     '''
       this function will be used in remove_unnecessary_words
@@ -419,6 +402,10 @@ def get_topic(word):
     stem = get_stem(word)
     return word
 
+def replace_with_pattern_maps(line, all_vars):
+    ''' to do: add any other processing in addition to passive to active '''
+    return line
+    
 def convert_to_active(line, all_vars):
     '''
     - check for verb tenses normally used in passive sentences # had been done = past perfect

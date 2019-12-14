@@ -58,14 +58,27 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
               else:
                   new_subsets.append(new_subset)
                   new_subset = []
+    non_dpc_segments = []
+    new_segment = []
+    for w in line.split(' '):
+        pos = get_nltk_pos(w, all_vars)
+        if pos:
+            if pos in tags['ALL_V'] or pos in tags['ALL_N'] or pos in tags['ADV'] or pos in tags['ADJ']:
+                new_segment.append(w)
+            else:
+                non_dpc_segments.append(' '.join(new_segment))
+                new_segment = []
 
 # Structural:
 
+  - add other pattern types to pattern_map
   - once you replace some patterns, youll have new phrases & conditions, so do apply_pattern_map before your other parsing
   - 'has effect' => 'have induce' with current synonym replacements, 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
       - 'by' can indicate a process/mechanism "it works by doing x"
   - fix rows csv format
   - debug pattern replacement function handled pos tags
+  - based on processing order, isolate which patterns would be identified as other objects first
+  - add support for structural object keywords in find & replace patterns functions
   - add variable accretion patterns (how an object becomes influenced by a new variable)
   - all find functions need to support params:
     - pattern, matches_lines, row_index, all_vars
@@ -75,6 +88,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
       2. no pattern passed in, just lines array
         - pattern = None
         - lines = ['find the objects in this sentence']
+  - implement a find_repeated_patterns function that aggregateds repeated pos/type/abstract patterns across a article/line set
   - organize: find 'modifiers', 'phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships', then rearrange_sentence
   - once you apply find_relationships, create another relationships array, which is the same but has the original semantic verb ("disable" rather than operator synonym "decrease")
       - then add identification functions:
@@ -91,11 +105,8 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
       - implement ordered pos-tagging preferences by iterating through pos_tags with a list of keys
       - show preference for verbs in ambiguous cases like "associate" should return a verb even though it can be a noun
         "sodium isolate" => "noun verb" and then it can be identified as a modifier
-  - standardize verbs before adding them
-    - actually this will make some patterns invalid and might make it more difficult to identify modifiers & so on
-      'alkalizing inhibitor' would be converted to 'alkalize inhibit'
-  - you should standardize inhibitor to 'inhibit' but it should be through a pattern config
-  - you can singularize plural nouns though 
+  - check modifier patterns: 'x is a y alkalizing inhibitor' should be converted to 'x alkalizing-inhibits y'
+  - singularize plural nouns 
   - use blob.correct() on non-research sources - remove '.,' and other errors or typos 
   - finish get_topic to filter non-topical nouns, verbs, adverbs & adjectives from all object indexes
     - add filtering of insights to apply directly to the target condition or mechanisms
@@ -109,6 +120,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
 
 ## Synonyms
+
   - add phrase parsing to synonym identification (match "a b" rather than just "a" or "b") for call in replace_syns
   - analyze synonyms to make sure theyre mostly unique
   - check the definitions functionality supported by tools youre using to see if you can derive common standardized words from those without relying on synonyms map
