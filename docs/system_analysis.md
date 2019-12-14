@@ -21,6 +21,7 @@ Or questions like:
 - give an example of mapping an invention & insight on the abstract network
 
 - use logical unit isolation as a source for boundary/symmetry physics
+	- 'how to estimate which phase change a rule implementation is at'
 
 - useful implementations of conceptual physics (
     discovering functions between nodes, 
