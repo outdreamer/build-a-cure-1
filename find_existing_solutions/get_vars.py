@@ -115,10 +115,11 @@ def get_pattern_config(all_vars):
             'x was inhibited by y': 'y inhibits x',
             'x that has y': 'x with y',
             'ALL_N1 VBD VBN IN ALL_N2': 'ALL_N2 VBN ALL_N1', # x was bitten by y => y bit x
-            'x was VBD by y': 'y VBZ x',
+            'x VBD VBN by y': 'y VBN x',
+            'x VBZ VBN by y': 'y VBN x',
             'x that y z': 'z y x', # "protein that modulates a (signaling pathway)" => "(signaling pathway)-changing protein" 
-            'x that does VBG': 'x VBZ', # x that does inhibition => x inhibits
-            'x that does VBG': 'x VBZ', # x that does inhibition => x inhibits 
+            'x that does VBG': 'x VBZ', # x that does inhibiting => x inhibits
+            'x that does VBG': 'x VBZ', # x that does inhibiting => x inhibits 
             'x with y functionality': 'x y', 
             'x has ability to do y': 'x y',
             'JJ1 NN1 of JJ2 NN2': 'JJ2 NN2 JJ1 NN1',

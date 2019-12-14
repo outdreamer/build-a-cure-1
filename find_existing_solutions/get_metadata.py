@@ -29,7 +29,7 @@ def get_data_store(index, database, operation, args):
         ''' if index or database not passed in, fetch the local db if it exists '''
         args, filters, metadata, generate_target, generate_source = get_args(args, all_vars)
         if operation == 'build':
-            database = get_local_database('data', None)
+            database = get_local_database('data', None) if not database else database
             data_store, rows = build_indexes(database, metadata, args, filters, all_vars)
         elif operation == 'get_database':
             data_store = get_local_database('data', None)
@@ -54,24 +54,30 @@ def get_data_from_source(source, keyword, all_vars):
             print('url', url)
             response = requests.get(url)
             if response.content:
-                xml_string = xml.dom.minidom.parseString(response.content)
-                if xml_string:
-                    count_tag = xml_string.documentElement.getElementsByTagName(source['count'])
-                    total = int(count_tag[0].childNodes[0].nodeValue)
-                    entries = xml_string.documentElement.getElementsByTagName(source['entries'])
+                articles = {}
+                if source['response_format'] == 'xml':
+                    xml_string = xml.dom.minidom.parseString(response.content)
+                    if xml_string:
+                        count_tag = xml_string.documentElement.getElementsByTagName(source['count'])
+                        total = int(count_tag[0].childNodes[0].nodeValue)
+                        articles = xml_string.documentElement.getElementsByTagName(source['entries'])
                 else:
-                    entries = json.loads(response.content)
-                if len(entries) > 0:
-                    for entry in entries:
-                        title = get_text_from_nodes(entry, 'title')
-                        article_text = get_text_from_nodes(entry, 'summary')
-                        if title and article_text:
-                            article_lines = standard_text_processing(article_text, all_vars)
-                            if article_lines:
-                                data[title] = article_lines # article_lines[line][word] = pos
+                    articles = json.loads(response.content)
+                if len(articles) > 0:
+                    data = process_articles(entries, data, source, all_vars)
     if data:                                         
         return data
     return False
+
+def process_articles(articles, data, source, all_vars):
+    for article in articles:
+        title = get_text_from_nodes(article, source['title_element'])
+        article_text = get_text_from_nodes(article, source['summary_element'])
+        if title and article_text:
+            article_lines = standard_text_processing(article_text, all_vars)
+            if article_lines:
+                data[title] = article_lines # article_lines[line][word] = pos
+    return data
 
 def get_text_from_nodes(entry, element_name):
     nodes = [node for node in entry.childNodes if node.nodeName == element_name]
@@ -110,19 +116,23 @@ def build_indexes(database, metadata, args, filters, all_vars):
                 for title, article_lines in data.items():
                     for line, word_map in article_lines.items():
                         row = get_metadata(metadata, line, title, word_map, all_vars)
-                        index, rows = add_row(row, index, empty_index, rows)
-    write_csv(rows, index.keys(), 'data/rows.csv')
-    for key in index:
-        ''' get the patterns in each index we just built & save '''
-        objects, patterns = extract_objects_and_patterns_from_index(index, key, None, all_vars)
-        #to do: patterns = get_patterns_between_objects(index[key], key, all_vars) # get patterns for index[key] objects with object_type key
-        if patterns:
-            if len(patterns) > 0:
-                object_patterns = [''.join([k, '_', '::'.join(v)]) for k, v in patterns.items()] # 'pattern_match1::match2::match3'
-                object_pattern_name = ''.join(['data/patterns_', key, '.txt']) 
-                index[object_pattern_name] = '\n'.join(object_patterns)
-        save(''.join(['data/', key, '.txt']), '\n'.join(index[key]))
-    return index, rows
+                        if row:
+                            index, rows = add_row(row, index, empty_index, rows)
+    if index:
+        write_csv(rows, index.keys(), 'data/rows.csv')
+        for key in index:
+            if key != 'rows':
+                ''' get the patterns in each index we just built & save '''
+                objects, patterns = extract_objects_and_patterns_from_index(index, key, None, all_vars)
+                #to do: patterns = get_patterns_between_objects(index[key], key, all_vars) # get patterns for index[key] objects with object_type key
+                if patterns:
+                    if len(patterns) > 0:
+                        object_patterns = [''.join([k, '_', '::'.join(v)]) for k, v in patterns.items()] # 'pattern_match1::match2::match3'
+                        object_pattern_name = ''.join(['data/patterns_', key, '.txt']) 
+                        index[object_pattern_name] = '\n'.join(object_patterns)
+                save(''.join(['data/', key, '.txt']), '\n'.join(index[key]))
+        return index, rows
+    return False, False
 
 def get_metadata(metadata, line, title, word_map, all_vars):
     ''' 
@@ -143,11 +153,11 @@ def get_metadata(metadata, line, title, word_map, all_vars):
     row = find_treatments(None, row['line'], row, all_vars)
     for metadata_type in ['structural_types', 'medical_types', 'conceptual_types']:
         for meta_type in all_vars[metadata_type]:
-            search_pattern_keys = search_pattern_keys if search_pattern_keys else all_vars['pattern_index'].keys()
-            if meta_type in metadata and meta_type in search_pattern_keys:
+            if meta_type in metadata and meta_type in all_vars['pattern_index']:
+                search_pattern_key = meta_type
                 # check that this data 'strategies', 'treatments' was requested and is supported in pattern_index
                 #modifiers, verb_phrases, roles, types, etc
-                objects, patterns = extract_objects_and_patterns_from_index(row, meta_type, meta_type, all_vars)
+                objects, patterns = extract_objects_and_patterns_from_index(row, meta_type, search_pattern_key, all_vars)
                 if objects:
                     row[meta_type] = objects
                 if patterns:

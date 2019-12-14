@@ -375,7 +375,7 @@ def get_similarity_to_title(title, row):
     if row['line'] != title:
         title_split = title.split(' ')
         both = set()
-        for s in string.split(' '):
+        for s in row['line'].split(' '):
             if s in title_split:
                 both.add(s)
         if len(both) > 0:
