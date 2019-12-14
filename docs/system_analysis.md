@@ -24,6 +24,9 @@ Or questions like:
 	- 'how to estimate which phase change a rule implementation is at'
     - required input-mocking or prevention for pathogens
    	- single live pathogen exposure at ratios amenable to stressor-handling potential energy as a way to build immunity
+	- estimate phase changes with optimal transport as a method of getting optimal/efficient/possible paths between function i/o out of operation (core function) data
+	    example: https://broadinstitute.github.io/wot/
+	  - you also need to estimate probable & multi-prioritized transport paths
 
 - useful implementations of conceptual physics (
     discovering functions between nodes, 

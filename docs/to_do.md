@@ -137,9 +137,6 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
 ## Functions
 
-- estimate phase changes with optimal transport, example: https://broadinstitute.github.io/wot/
-  - you also need to estimate probable & multi-prioritized transport paths
-
 - build math logic/plain language translation function - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
 
 - write function to identify contradictory information (retracted studies, false information, conspiracy theory (anti-vax), opinion) & selecting least likely to be false
