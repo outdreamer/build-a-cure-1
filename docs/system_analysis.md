@@ -22,6 +22,8 @@ Or questions like:
 
 - use logical unit isolation as a source for boundary/symmetry physics
 	- 'how to estimate which phase change a rule implementation is at'
+    - required input-mocking or prevention for pathogens
+   	- single live pathogen exposure at ratios amenable to stressor-handling potential energy as a way to build immunity
 
 - useful implementations of conceptual physics (
     discovering functions between nodes, 
