@@ -33,8 +33,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
   - remove len(0) checks for lists
   - consolidate excessive chained return false checks
   - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
-  - evaluate when you need full article index and when its ok to use a line index
-  - find every time you use this logic and replace with function
+  - find every time you use this logic and replace with function & make sure youre adding the final item
       clause_split = []
       relation = set()
       for c in clause.split(' '):
@@ -47,83 +46,57 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
       if relation != set():
           clause_split.append(relation)
 
-  - every time you use this logic, make sure youre adding the final item
-    new_subsets = []
-    words = line.split(' ')
-    new_subset = []
-    for w in words:
-        pos = get_nltk_pos(w)
-        for key in ['noun', 'verb', 'verb_keywords', 'adv', 'adj']:
-            pos_list = all_vars['pos_tags'][key]:
-            if pos in pos_list:
-                new_subset.append(w)
-            else:
-                new_subsets.append(new_subset)
-                new_subset = []
+      new_subsets = []
+      words = line.split(' ')
+      new_subset = []
+      for w in words:
+          pos = get_nltk_pos(w)
+          for key in ['noun', 'verb', 'verb_keywords', 'adv', 'adj']:
+              pos_list = all_vars['pos_tags'][key]:
+              if pos in pos_list:
+                  new_subset.append(w)
+              else:
+                  new_subsets.append(new_subset)
+                  new_subset = []
 
 # Structural:
 
+  - once you replace some patterns, youll have new phrases & conditions, so do apply_pattern_map before your other parsing
   - 'has effect' => 'have induce' with current synonym replacements, 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
-
-  - fix rows csv format & path
-
-  - make sure letters added to word_map => '' rather than False 
-
-  - check how your pattern replacement function handled pos tags
-    - add type conversion in pattern replacement to get the item in target pattern with the nearest possible type
-       - 'vbg' => 'vbz' (inhibiting => x inhibits)
-
+      - 'by' can indicate a process/mechanism "it works by doing x"
+  - fix rows csv format
+  - debug pattern replacement function handled pos tags
+  - add variable accretion patterns (how an object becomes influenced by a new variable)
   - all find functions need to support params:
     - pattern, matches_lines, row_index, all_vars
-         such as:
-          1. pattern & subsets matching pattern
-          - pattern = 'x of y'
-          - lines = 'dog of cat', 'cat of dog' 
-
-          2. no pattern passed in, just lines array
-          - pattern = None
-          - lines = ['find the objects in this sentence']
-
-  - 'by' can indicate a process/mechanism "it works by doing x"
-
-  - ensure order of operations:
-      get modifiers
-      get phrases
-      get clauses
-      get relationships
-
-  - merge get_clauses, get_conditionals, rearrange_sentence and call it once
-      - go from most granular unit to largest when youre identifying structural metadata (modifiers -> clauses -> relationships)
-      - once you apply get_relationships_from_clauses - you want to create another relationships array,
-        which is the same array but with the original semantic verb ("disable" rather than more general "decrease")
-        
-  - given the set of nouns, verbs, phrases, modifiers, clauses, & relationships, you can add functions to identify:
-    - objects (agent nouns like 'protein')
-    - properties (attribute nouns like 'toxicity')
-    - functions (verbs like 'ionizing', 'activate')
-      - function inputs/outputs (subject_noun/predicate_noun)
-    - types (['structure', 'life form', 'organic molecule'] from 'protein')
-
-  - you should be identifying & adding more patterns for each row with each metadata iteration (structural, medical, conceptual):
-    this is already being done with call to objects['patterns'].add(pattern) in extract_objects_matching_patterns
-    but should be done in find_patterns
-
-    - add abstract/pos pattern match & replacement function after get_types()
-        and whenever you implement add_components and add_functions
+      1. pattern & subsets matching pattern
+        - pattern = 'x of y'
+        - lines = 'dog of cat', 'cat of dog' 
+      2. no pattern passed in, just lines array
+        - pattern = None
+        - lines = ['find the objects in this sentence']
+  - organize: find 'modifiers', 'phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships', then rearrange_sentence
+  - once you apply find_relationships, create another relationships array, which is the same but has the original semantic verb ("disable" rather than operator synonym "decrease")
+      - then add identification functions:
+        - objects (agent nouns like 'protein')
+        - properties (attribute nouns like 'toxicity')
+        - functions (verbs like 'ionizing', 'activate')
+          - function inputs/outputs (subject_noun/predicate_noun)
+        - types (['structure', 'life form', 'organic molecule'] from 'protein')
+    - add abstract pattern match & replacement function after get_types(), add_components() and add_functions()
           Cytotoxicity in cancer cells => <component object>-toxicity
           anti-tumor => anti-<component object of illness>
           suppress/interfere/inhibit activity of carcinog/canc/tumz => suppress/interfere/inhibit activity of drug/medication/enzyme
-
   - where theres overlap between categories, you need a ranking to select the correct type in functions using get_pos_tags()
       - implement ordered pos-tagging preferences by iterating through pos_tags with a list of keys
       - show preference for verbs in ambiguous cases like "associate" should return a verb even though it can be a noun
         "sodium isolate" => "noun verb" and then it can be identified as a modifier
-
   - standardize verbs before adding them
     - actually this will make some patterns invalid and might make it more difficult to identify modifiers & so on
-    - you can singularize plural nouns though 
+      'alkalizing inhibitor' would be converted to 'alkalize inhibit'
+  - you should standardize inhibitor to 'inhibit' but it should be through a pattern config
+  - you can singularize plural nouns though 
   - use blob.correct() on non-research sources - remove '.,' and other errors or typos 
-  - finish function to unconjugate verb - lemmatize changes to infinitive
   - finish get_topic to filter non-topical nouns, verbs, adverbs & adjectives from all object indexes
     - add filtering of insights to apply directly to the target condition or mechanisms
     - add mechanisms of action keywords & patterns to get strategies

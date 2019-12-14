@@ -98,11 +98,12 @@ def find_patterns(source_input, pattern_key, all_vars):
         if pattern_key in all_vars['pattern_index']:
             combined_key = ''.join(['patterns_', pattern_key])
             for pattern in all_vars['pattern_index'][pattern_key]:
-                source_subsets = get_pattern_source_subsets(source_input, pattern, 'pattern', all_vars)
-                if source_subsets:
+                found_subsets = get_pattern_source_subsets(source_input, pattern, 'pattern', all_vars)
+                if found_subsets:
+                    print('find_patterns: found_subsets', found_subsets)
                     if combined_key not in found_patterns:
                         found_patterns[combined_key] = {}
-                    found_patterns[combined_key][pattern] = set(source_subsets)
+                    found_patterns[combined_key][pattern] = set(found_subsets)
                     print('found', found_patterns)
     if found_patterns:
         return found_patterns
@@ -121,13 +122,32 @@ def apply_pattern_map(line, pattern_map, all_vars):
         for target_pattern in pattern_map[source_pattern]:
             found_subsets = get_pattern_source_subsets(line, source_pattern, 'pattern', all_vars)
             if found_subsets:
-                print('found_subsets', found_subsets)
+                print('apply_pattern_map 1: found_subsets', found_subsets)
                 for subset in found_subsets:
-                    pattern_map = {'source': source_pattern, 'target': target_pattern}
+                    sub_pattern_map = {'source': source_pattern, 'target': target_pattern}
                     applied = get_new_version(subset, sub_pattern_map, all_vars)
-                    line.replace(p, applied)
-                return line
-    return False
+                    line = line.replace(subset, applied)
+            else:
+                ''' no matches found for original patterns (VBZ) check for partial patterns (VB) '''
+                partial_source_pattern = get_partial_pos(source_pattern, all_vars)
+                partial_target_pattern = get_partial_pos(target_pattern, all_vars)
+                partial_line = get_partial_pos(line, all_vars)
+                found_subsets = get_pattern_source_subsets(line, partial_source_pattern, 'pattern', all_vars)
+                if found_subsets:
+                    print('apply_pattern_map 2: found_subsets', found_subsets)
+                    for subset in found_subsets:
+                        sub_pattern_map = {'source': source_pattern, 'target': target_pattern}
+                        applied = get_new_version(subset, sub_pattern_map, all_vars)
+                        line = line.replace(subset, applied)
+    return line
+
+def get_partial_pos(pattern, all_vars):
+    pattern = convert_words_to_pos(pattern, all_vars)
+    pos_keys = {'V': 'V', 'N': 'N', 'ADV': 'ADV', 'ADJ': 'ADJ', 'D': 'D', 'P': 'P', 'C': 'C'}
+    for pos_key, pos_val in pos_keys.items():
+        for pos in all_vars['pos_tags'][pos_key]:
+            pattern = pattern.replace(pos, pos_val)
+    return pattern
 
 def get_new_version(subset, sub_pattern_map, all_vars):
     ''' subset = "inhibitor of compound"
@@ -135,12 +155,14 @@ def get_new_version(subset, sub_pattern_map, all_vars):
             'source': "x of y",
             'target': "y x"
         }
+        sub_pattern_map = {
+            'source': "VBZ of NN",
+            'target': "NN VBG"
+        }
         output = "compound-inhibitor"
-
         to do:
         - handle target patterns with more words than source
         - handle other delimiters than space in case your source pattern has no spaces
-
         this should be identified as positive matches of the modifier pattern 'JJ NN':
         sub_pattern_map = {'source': "JJ1 NN1 of JJ2 NN2", 'target': "JJ2 NN2 JJ1 NN1"}
         subset = "catalyzing inhibitor of alkalizing enzyme"
@@ -149,12 +171,14 @@ def get_new_version(subset, sub_pattern_map, all_vars):
     if delimiter:
         ''' create a position map for source & target '''
         positions = {'source': {}, 'target': {}}
-        source_words = subset.split(delimiter)
+        source_words = sub_pattern_map['source'].split(delimiter)
+        target_words = sub_pattern_map['target'].split(delimiter)
         for pattern_type in ['source', 'target']:
             for position, w in enumerate(sub_pattern_map[pattern_type].split(delimiter)):
-                source_word = source_words[position] if position < len(source_words) else None
-                if pattern_type == 'target' and source_word is not None and source_word not in sub_pattern_map['target']:
-                    positions[pattern_type][position] = ''
+                if pattern_type == 'target':
+                    source_word = source_words[position] if position < len(source_words) else ''
+                    if source_word == '' or source_word not in target_words:
+                        positions[pattern_type][position] = ''
                 else:
                     positions[pattern_type][position] = w
         '''
@@ -164,10 +188,16 @@ def get_new_version(subset, sub_pattern_map, all_vars):
         }
         '''
         position_map = {}
+        partial_target_pattern = get_partial_pos(sub_pattern_map['target'], all_vars)
+        partial_target_words = partial_target_pattern.split(delimiter)
         for source_position, source_word in positions['source'].items():
-            if source_word in positions['target'].values():
+            partial_source_word = get_partial_pos(source_word, all_vars)
+            if partial_source_word in partial_target_words:
                 for target_position, target_word in positions['target'].items():
-                    if source_word == target_word:
+                    partial_target_word = get_partial_pos(target_word, all_vars) if len(target_word) > 0 else ''
+                    ''' to do: need to handle more complex cases with multiple matches '''
+                    if (source_word == target_word) or (partial_target_word in all_vars['pos_tags'] and partial_target_word == partial_source_word):
+                        ''' exact word match or (V or N) '''
                         position_map[source_position] = target_position
             else:
                 position_map[source_position] = ''
@@ -175,10 +205,30 @@ def get_new_version(subset, sub_pattern_map, all_vars):
         ''' now apply this mapping to the subset '''
         saved_words = subset.split(delimiter)
         new_words = []
-        for i, word in enumerate(subset.split(delimiter)):
+        for i, word in enumerate(saved_words):
             if i in position_map:
+                # i is source position
                 target_position = position_map[i]
-                new_words.append(saved_words[target_position])
+                source_word = positions['source'][i]
+                target_word = positions['target'][target_position]
+                if source_word != target_word:
+                    ''' VBZ != VBG '''
+                    partial_source_word = get_partial_pos(source_word, all_vars)
+                    partial_target_word = get_partial_pos(target_word, all_vars)
+                    if partial_source_word == partial_target_word:
+                        ''' V == V '''
+                        ''' transform the original subset word from type source_word to type target_word '''
+                        word_pos = get_nltk_pos(word)
+                        if word_pos:
+                            if word_pos in all_vars['pos_tags'][partial_source_word]:
+                                ''' VBZ in all_vars['pos_tags']['V'] '''
+                                conjugated_word = conjugate(word, word_pos, target_word) # word, source_pos, target_pos
+                                if conjugated_word:
+                                    new_words.append(conjugated_word)
+                else:
+                    new_words.append(saved_words[target_position])
+            else:
+                new_words.append(word)
         if len(new_words) > 0:
             return delimiter.join(new_words)
     return False
@@ -246,7 +296,6 @@ def get_nested_patterns(pattern):
     print('get nested alts for pattern', pattern)
     variables = {}
     nested_patterns = []
-    split = ['', 'VB NN ', 'VB ADV', '', ' VB']
     delimiter_index = 0
     new_variable_value = []
     for char in pattern.split(''):
@@ -359,11 +408,15 @@ def get_pattern_stack(pattern_stack):
 def convert_words_to_pos(line, all_vars):
     new_line = []
     for word in line.split(' '):
-        pos = get_nltk_pos(word, all_vars)
-        if pos in all_vars['pos_tags']['ALL']:
-            new_line.append(pos)
-        else:
+        if word in all_vars['pos_tags']['ALL'] or word in all_vars['pos_tags']:
+            ''' add tags (N, VB, NN, VBZ, etc) unchanged if found '''
             new_line.append(word)
+        else:
+            pos = get_nltk_pos(word, all_vars)
+            if pos in all_vars['pos_tags']['ALL']:
+                new_line.append(pos)
+            else:
+                new_line.append(word)
     line = ' '.join(new_line)
     return line
 

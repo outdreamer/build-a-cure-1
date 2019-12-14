@@ -328,16 +328,3 @@ def get_object_by_position(index, sentence_pieces, position, check_list, phrases
             elif w in check_list: # check that its in the check_list passed in before returning it
                 return w
     return False
-
-def get_ngrams(word_list, word, x, direction):
-    ''' 
-    get a list of words of length (2x + 1) in word list starting with word 
-    and iterating outward in direction x number of times 
-    '''
-    list_length = len(word_list)
-    word_index = word_list.index(word)
-    if word_index:
-        start = word_index - x if word_index > x else word_index if direction == 'next' else 0
-        end = word_index + x if (word_index + x) < list_length else word_index if direction == 'prev' else list_length
-        return word_list[start:end]
-    return False

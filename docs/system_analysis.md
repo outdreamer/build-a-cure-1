@@ -20,6 +20,8 @@ Or questions like:
 
 - give an example of mapping an invention & insight on the abstract network
 
+- use logical unit isolation as a source for boundary/symmetry physics
+
 - useful implementations of conceptual physics (
     discovering functions between nodes, 
     matching problem/solution types, 

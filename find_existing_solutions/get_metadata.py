@@ -118,19 +118,20 @@ def build_indexes(database, metadata, args, filters, all_vars):
                         row = get_metadata(metadata, line, title, word_map, all_vars)
                         if row:
                             index, rows = add_row(row, index, empty_index, rows)
-    if index:
+    if index and rows:
         for key in index:
             if key != 'rows':
                 ''' get the patterns in each index we just built & save '''
-                objects, patterns = extract_objects_and_patterns_from_index(index, key, None, all_vars)
-                #to do: patterns = get_patterns_between_objects(index[key], key, all_vars)
-                # get patterns for index[key] objects with object_type key
-                if patterns:
-                    if len(patterns) > 0:
-                        object_patterns = [''.join([k, '_', '::'.join(v)]) for k, v in patterns.items()] # 'pattern_match1::match2::match3'
-                        object_pattern_name = ''.join(['data/patterns_', key, '.txt']) 
-                        index[object_pattern_name] = '\n'.join(object_patterns)
-                save(''.join(['data/', key, '.txt']), '\n'.join(index[key]))
+                for row in rows:
+                    objects, patterns = extract_objects_and_patterns_from_index(index, row, key, None, all_vars)
+                    #to do: patterns = get_patterns_between_objects(index[key], key, all_vars)
+                    # get patterns for index[key] objects with object_type key
+                    if patterns:
+                        if len(patterns) > 0:
+                            object_patterns = [''.join([k, '_', '::'.join(v)]) for k, v in patterns.items()] # 'pattern_match1::match2::match3'
+                            object_pattern_name = ''.join(['data/patterns_', key, '.txt']) 
+                            index[object_pattern_name] = '\n'.join(object_patterns)
+                    save(''.join(['data/pk_', key, '.txt']), '\n'.join(index[key]))
             else:
                 write_csv(rows, index.keys(), 'data/rows.csv')
         return index, rows
@@ -149,25 +150,24 @@ def get_metadata(metadata, line, title, word_map, all_vars):
     row['original_line'] = line
     row = replace_names(row, all_vars)
     row = get_similarity_to_title(title, row)  
-    row = get_pos_metadata(row, all_vars)
+    row = get_structural_metadata(row, all_vars)
     intent = None # find_intents()
     hypothesis = None # find_hypothesis()
     row = find_treatments(None, row['line'], row, all_vars)
-    for metadata_type in ['structural_types', 'medical_types', 'conceptual_types']:
-        for meta_type in all_vars[metadata_type]:
-            if meta_type in metadata and meta_type in all_vars['pattern_index']:
-                search_pattern_key = meta_type
-                # check that this data 'strategies', 'treatments' was requested and is supported in pattern_index
-                #modifiers, verb_phrases, roles, types, etc
-                objects, patterns = extract_objects_and_patterns_from_index(row, meta_type, search_pattern_key, all_vars)
-                if objects:
-                    row[meta_type] = objects
-                if patterns:
-                    row['patterns'] = row['patterns'].union(set([p for p in patterns]))
+    for metadata_type in ['medical_types', 'conceptual_types']:
+        for object_type in all_vars[metadata_type]:
+            if object_type in metadata:
+                for search_pattern_key in all_vars['pattern_index']:
+                    # check that this data 'strategies', 'treatments' was requested and is supported in pattern_index
+                    objects, patterns = extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, all_vars)
+                    if objects:
+                        row[object_type] = objects
+                    if patterns:
+                        row['patterns'] = row['patterns'].union(set([p for p in patterns]))
     print('medical objects', row)
     return row
 
-def extract_objects_and_patterns_from_index(index, object_type, search_pattern_key, all_vars):
+def extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, all_vars):
     '''
     - all of your 'find_object' functions need to support params: pattern, matches, row, all_vars
 
@@ -181,23 +181,29 @@ def extract_objects_and_patterns_from_index(index, object_type, search_pattern_k
     - search_pattern_key is the key of all_vars['pattern_index'] keys to search: 
         ['modifiers', 'types', 'roles']
 
-    - index can be the master index used to track all objects identified across an article set,
-        or the row index to track objects found in each line
+    - object_type can equal search_pattern_key
+
     '''
-    if index:
+    if index or row:
         patterns = {}
         objects = { object_type: set() }
-        lines = [index['line']] if 'line' in index else index[object_type] if object_type in index else []
+        lines = [row['line']] if row and 'line' in row else []
+        if index:
+            if object_type in index:
+                lines = index[object_type]
+        else:
+            index = row
+        print('index search_pattern_key', search_pattern_key, lines)
         for line in lines:
             found_objects_in_patterns, found_patterns = get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, all_vars)
             if found_objects_in_patterns:
                 objects[object_type] = found_objects_in_patterns
-                if found_patterns:
-                    patterns = found_patterns
+            if found_patterns:
+                patterns = found_patterns
             else:
                 ''' 
                 if there are no matches found for object_type patterns, 
-                do a standard object query independent of pattern matches 
+                do a standard object query independent of patterns to apply type-specific logic 
                 '''
                 found_objects = apply_find_function(object_type, None, [line], index, all_vars)
                 if found_objects:
@@ -213,6 +219,7 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
     if found_patterns and object_type != 'patterns':
         for pattern, matches in found_patterns.items():
             ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
+            ''' note: this is not restricting output to found objects '''
             found_objects = apply_find_function(object_type, pattern, matches, index, all_vars)
     if len(found_objects) > 0 or found_patterns:
         return found_objects, found_patterns
@@ -231,6 +238,131 @@ def apply_find_function(object_type, pattern, matches, index, all_vars):
         except Exception as e:
             # print('e', e)
             return False
+    return False
+
+def get_structural_metadata(row, all_vars):
+    '''
+        organize: 
+            'ngrams', 'modifiers', 'phrases', 'clauses', 
+            'subjects', 'patterns', 'variables', 'relationships'
+        then rearrange_sentence
+    '''
+    keep_ratios = ['extra', 'high', 'none']
+    line = row['line'] if 'line' in row and type(row) == dict else row # can be a row index dict or a definition line
+    row = row if type(row) == dict else get_empty_index(['all'], all_vars)
+    row['line'] = line
+    word_pos_line = ''.join([x for x in line if x in all_vars['alphanumeric'] or x in all_vars['clause_analysis_chars']])
+    words = word_pos_line.split(' ')
+    for i, w in enumerate(words):
+        if len(w) > 0:
+            count = words.count(w)
+            w_upper = w.upper()
+            w_name = w.capitalize() if w.capitalize() != words[0] else w
+            upper_count = words.count(w_upper) # find acronyms, ignoring punctuated acronym
+            if count > 0:
+                count_num = upper_count if upper_count >= count else count
+                count_val = w_upper if upper_count >= count else w 
+                if count_num not in row['counts']:
+                    row['counts'][count_num] = set()
+                row['counts'][count_num].add(count_val)
+            pos = row['word_map'][w] if w in row['word_map'] else ''
+            if pos in all_vars['pos_tags']['ALL_V']:
+                row['verbs'].add(w)
+            elif pos in all_vars['pos_tags']['D']:
+                ratio = get_determiner_ratio(w)
+                if ratio:
+                    if ratio in keep_ratios:
+                        row['det'].add(str(ratio))
+            elif pos in all_vars['pos_tags']['P']:
+                row['prep'].add(w)
+            elif pos in all_vars['pos_tags']['C']:
+                row['conj'].add(w)
+            elif pos in all_vars['pos_tags']['ALL_N'] or w in all_vars['alphabet']:
+                row['nouns'].add(w)
+            elif pos in all_vars['pos_tags']['ADV'] or pos in all_vars['pos_tags']['ADJ']:
+                row['descriptors'].add(w)
+            else:
+                row['taken_out'].add('_'.join([w, str(pos)]))
+    if len(row['counts'].keys()) > 1:
+        common_words = get_most_common_words(row['counts'], 3) # get top 3 tiers of common words
+        if common_words:
+            row['common_words'] = common_words
+    ngrams = get_ngrams(word_pos_line, all_vars) # 'even with', 'was reduced', 'subject position'
+    if ngrams:
+        row['ngrams'] = ngrams
+    ngram_list = []
+    for k, v in ngrams.items():
+        ngram_list.extend(v)
+    ngram_list.append(word_pos_line)
+    index = { 'modifiers': ngram_list }
+    objects, modifier_patterns = extract_objects_and_patterns_from_index(index, None, 'modifiers', 'modifiers', all_vars)
+    if objects:
+        if 'modifiers' in objects:
+            row['modifiers'] = objects['modifiers']
+    if modifier_patterns:
+        row['patterns'] = row['patterns'].union(set([p for p in modifier_patterns]))
+    structure_types = ['phrases', 'clauses', 'relationships']
+    for i, key in enumerate(structure_types):
+        search_items = ngram_list if i == 0 else row[structure_types[i - 1]] if len(row[structure_types[i - 1]]) > 0 else []
+        search_items.append(word_pos_line)
+        index = { key: search_items }
+        objects, patterns = extract_objects_and_patterns_from_index(index, None, key, key, all_vars)
+        if objects:
+            if key in objects:
+                row[key] = objects[key]
+        if patterns:
+            row['patterns'] = row['patterns'].union(set([p for p in patterns]))
+    return row
+
+def get_ngrams(line, all_vars):
+    phrases = {'N': [], 'V': [], 'ADJ': [], 'ADV': [], 'DPC': []} # take out adj & adv
+    phrase_keys = ['N', 'V', 'ADJ', 'ADV', 'DPC']
+    ''' to do: you split by DPC chars and then get ngrams of the subsets of the output list '''
+    for key in phrase_keys:
+        pos_phrases = get_ngrams_of_type(key, line, all_vars)
+        if pos_phrases:
+            phrases[key] = pos_phrases
+    print('phrases', phrases)
+    if phrases:
+        return phrases
+    return False
+
+def get_ngrams_of_type(pos_type, line, all_vars):
+    all_pos_type = ''.join(['ALL_', pos_type])
+    pos_type = all_pos_type if all_pos_type in all_vars['pos_tags'] else pos_type
+    if pos_type in all_vars['pos_tags']:
+        words = line.split(' ')
+        ngrams = get_ngram_combinations(words, 5) # hydrolyzing radioactive catalyzing potential isolates
+        phrases = []
+        ngrams = ngrams if ngrams else [' '.join(words)]
+        for n in ngrams:
+            ngram_phrase = []
+            for word in n:
+                word_pos = get_nltk_pos(word, all_vars)
+                if word_pos:
+                    if word_pos in all_vars['pos_tags'][pos_type]:
+                        ngram_phrase.append(word)
+            if len(ngram_phrase) > 1:
+                ''' skip ngrams of length 1 '''
+                joined_phrase = ' '.join(ngram_phrase)
+                if joined_phrase not in phrases:
+                    phrases.append(joined_phrase)
+        if len(phrases) > 0:
+            return phrases
+    return False
+
+def get_ngram_combinations(word_list, x):
+    if x > 0 and x < len(word_list):
+        grams = []
+        combinations = itertools.combinations(word_list, x)
+        for c in combinations:
+            gram = [w for w in c]
+            if len(gram) > 0:
+                phrase = ' '.join(gram)
+                if phrase in ' '.join(word_list):
+                    grams.append(gram)
+        if len(grams) > 0:
+            return grams
     return False
 
 if sys.argv:

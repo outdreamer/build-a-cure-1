@@ -5,9 +5,12 @@ from nltk.corpus import stopwords
 from nltk.corpus import wordnet
 from nltk.stem import SnowballStemmer
 from textblob import TextBlob, Sentence, Word, WordList
+from nltk.stem.wordnet import WordNetLemmatizer
+lemmatizer = WordNetLemmatizer()
 
 from get_index_def import get_empty_index
 from get_patterns import apply_pattern_map
+from get_pos import get_nltk_pos
 
 stop = set(stopwords.words('english'))
 stemmer = SnowballStemmer("english")
@@ -147,63 +150,18 @@ def get_determiner_ratio(word):
             return k
     return False
 
-def get_pos_metadata(row, all_vars):
-    ''' to do: 
-        - nouns with highest counts are likely to be central objects
-        - iterate up in size from word => modifier => phrase
-            so you dont miss phrases that match a pattern with only variable names:
-                'x of y' (will catch subsets matching 'noun of a noun' and 'modifier of a phrase')
-            rather than pos:
-                'noun of noun' (will only catch 'inhibitor of enzyme')
+def get_ngrams_by_position(word_list, word, x, direction):
+    ''' 
+    get a list of words of length (2x + 1) in word list starting with word 
+    and iterating outward in direction x number of times 
     '''
-    keep_ratios = ['extra', 'high', 'none']
-    line = row['line'] if 'line' in row and type(row) == dict else row # can be a row index dict or a definition line
-    row = row if type(row) == dict else get_empty_index(['all'], all_vars)
-    row['line'] = line
-    word_pos_line = ''.join([x for x in line if x in all_vars['alphanumeric'] or x == ' ' or x == '-'])
-    words = word_pos_line.split(' ')
-    for i, w in enumerate(words):
-        if len(w) > 0:
-            count = words.count(w)
-            w_upper = w.upper()
-            w_name = w.capitalize() if w.capitalize() != words[0] else w
-            upper_count = words.count(w_upper) # find acronyms, ignoring punctuated acronym
-            if count > 0 or upper_count > 0:
-                count_num = upper_count if upper_count >= count else count
-                count_val = w_upper if upper_count >= count else w 
-                if count_num not in row['counts']:
-                    row['counts'][count_num] = set()
-                row['counts'][count_num].add(count_val)
-            pos = row['word_map'][w] if w in row['word_map'] else ''
-            if pos in all_vars['pos_tags']['ALL_V']:
-                row['verbs'].add(w)
-            elif pos in all_vars['pos_tags']['D']:
-                ratio = get_determiner_ratio(w)
-                if ratio:
-                    if ratio in keep_ratios:
-                        row['det'].add(str(ratio))
-                        #other_word = words[i + 1] if (i + 1) < len(words) else words[i - 1] if i > 0 else None
-                        #if other_word: 
-            elif pos in all_vars['pos_tags']['P']:
-                row['prep'].add(w)
-            elif pos in all_vars['pos_tags']['C']:
-                row['conj'].add(w)
-            elif pos in all_vars['pos_tags']['ALL_N'] or w in all_vars['alphabet']:
-                row['nouns'].add(w)
-            elif pos in all_vars['pos_tags']['ADV'] or pos in all_vars['pos_tags']['ADJ']:
-                row['descriptors'].add(w)
-            else:
-                row['taken_out'].add('_'.join([w, str(pos)]))
-    if len(row['counts']) > 0:
-        common_words = get_most_common_words(row['counts'], 3) # get top 3 tiers of common words
-        if common_words:
-            row['common_words'] = row['common_words'].union(common_words)
-    blob = get_blob(row['line'])
-    if blob:
-        noun_phrases = blob.noun_phrases
-        if noun_phrases:
-            row['noun_phrases'] = noun_phrases
-    return row
+    list_length = len(word_list)
+    word_index = word_list.index(word)
+    if word_index:
+        start = word_index - x if word_index > x else word_index if direction == 'next' else 0
+        end = word_index + x if (word_index + x) < list_length else word_index if direction == 'prev' else list_length
+        return word_list[start:end]
+    return False
 
 def get_most_common_words(counts, top_index):
     '''
@@ -213,13 +171,14 @@ def get_most_common_words(counts, top_index):
     }
     '''
     count_keys = counts.keys()
-    if len(counts.keys()) > 0:
+    if len(count_keys) > 1:
+        top_index = len(count_keys) - 1 if len(count_keys) < top_index else top_index
         sorted_keys = reversed(sorted(count_keys))
-        max_key = max(counts.keys())
+        max_key = max(count_keys)
         retrieved_index = 0
-        max_words = []
+        max_words = set()
         for k in sorted_keys:
-            max_words.extend(counts[k])
+            max_words = max_words.union(counts[k])
             retrieved_index += 1
             if retrieved_index == top_index:
                 return max_words
@@ -358,6 +317,44 @@ def get_charge_of_word(word, all_vars):
             if synonym in all_vars['charge'][synonym_type]:
                 print('get_charge_of_word: found synonym charge', word, synonym, synonym_type)
                 return synonym_type
+    return False
+
+def conjugate(word, source_pos, target_pos, all_vars):
+    ''' convert word from source_pos to target_pos '''
+    if source_pos in all_vars['pos_tags']['V'] and target_pos in all_vars['pos_tags']['V']:
+        equivalent = ['VB', 'VBD'] # 'VBG', 'VBN', 'VBP', 'VBZ'
+        '''
+            VB: Verb, base form - ask is do have 
+                VBP: Verb, non-3rd person singular present - ask is do have
+                VBZ: Verb, 3rd person singular present - asks is does has
+                VBG: Verb, gerund or present participle - asking, being, doing, having
+            VBD: Verb, past tense - asked, was/were, did, had
+            VBN: Verb, past participle - asked, used, been, done, had
+        '''
+        case_maps = {
+            'be': {'VB': 'is', 'VBD': 'is', 'VBG': 'is', 'VBN': 'being', 'VBP': 'was', 'VBZ': 'been'},
+            'do': {'VB': 'do', 'VBD': 'do', 'VBG': 'does', 'VBN': 'doing', 'VBP': 'did', 'VBZ': 'done'},
+            'have': {'VB': 'have', 'VBD': 'have', 'VBG': 'has', 'VBN': 'having', 'VBP': 'had', 'VBZ': 'had'}
+        }
+        infinitive = lemmatizer.lemmatize(word, 'v')
+        if target_pos == 'VB':
+            return infinitive
+        if infinitive in case_maps:
+            return case_maps[infinitive][target_pos]
+        stem = get_stem(word)
+        target_endings = {
+            'VB': '',
+            'VBP': '',
+            'VBZ': 's',
+            'VBG': 'ing',
+            'VBD': 'ed',
+            'VBN': 'ed'
+        }
+        if source_pos in all_vars['pos_tags']['ALL'] and target_pos in all_vars['pos_tags']['ALL']:
+            if source_pos != target_pos:
+                new_word = ''.join([stem, target_endings[target_pos]])
+                print('conjugate', new_word, source_pos, target_pos)
+                return new_word
     return False
 
 def get_similarity(base_word, new_word, pos_type, all_vars):

@@ -112,7 +112,7 @@ def get_pattern_config(all_vars):
     all_vars['pattern_maps'] = {
         'passive_to_active': {
             'x of y': 'y x', # to do: add support for new characters in target_pattern like 'y-x'
-            'x was inhibited by y': 'y inhibits x',
+            'x was VBD by y': 'y VBZ x', # alkalization of x => x alkalizer => alkalizes x
             'x that has y': 'x with y',
             'ALL_N1 VBD VBN IN ALL_N2': 'ALL_N2 VBN ALL_N1', # x was bitten by y => y bit x
             'x VBD VBN by y': 'y VBN x',
@@ -138,16 +138,27 @@ def get_pattern_config(all_vars):
         'modifiers': [
             #'(?)', # add support for an any character 
             '|N V| |N ADV ADJ V|', # compound isolate
-            'ALL_N IN |ADJ ADV VB VBG VBD| ALL_N', # converter of ionic/ionized/ionizing radiation, necrotizing spondylosis
-            'ALL_N IN ALL_N |VBG VBD|', # metabolite of radiation poisoning
-            'ALL_N IN ALL_N', # metabolite of radiation 
             'NNP ALL_N', # Diabetes mellitus
             'N N', # the second noun may have a verb root, ie "enzyme-inhibitor"
             'N V',
-            'JJ NN',
-            'or IN ALL_N',
-            'er IN ALL_N',
-            'tion IN ALL_N' # alkalization of compound => compound alkalizer => alkalizes compound
+            'JJ NN'
+        ],
+        'phrases': [
+            'ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N', # converter of ionic/ionized/ionizing radiation, necrotizing spondylosis
+            'ALL_N DPC ALL_N |VBG VBD|', # metabolite of radiation poisoning
+            'ALL_N DPC ALL_N', # metabolite/metabolizer/inhibitor/alkalization of radiation, 
+            'modifier DPC modifier'
+        ],
+        'clauses': [
+            'DPC NP VP NP',
+            'DPC NP DPC NP',
+            'DPC VP NP',
+            'DPC VP',
+            'DPC NP',
+        ],
+        'relationships': [
+            'clause',
+            'clause CC clause'
         ],
         'noun_phrases': [
             'ALL_N ALL_N',
@@ -271,12 +282,12 @@ def get_vars():
     all_vars['plural_map'] = {}
     for pk in plural_keys:
         all_vars['plural_map'][pk] = get_singular(pk)
-
+    all_vars['clause_analysis_chars'] = [' ', '-', ':', ';', '(', ')']
     all_vars['full_params'] = {
         'request': ['metadata', 'generate', 'filters', 'data'], # request params
         'wiki': ['section_list'],
         'pos': ['pos', 'verbs', 'nouns', 'common_words', 'counts', 'taken_out', 'line', 'prep', 'conj', 'det', 'descriptors', 'original_line', 'word_map'],
-        'structure': ['types', 'names', 'modifiers', 'phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships', 'similar_lines'], # structural
+        'structure': ['types', 'names', 'ngrams', 'modifiers', 'phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships', 'similar_lines'], # structural
         'experiment': ['hypothesis', 'tests', 'metrics', 'properties', 'assumptions'], # experiment elements
         'compound': ['compounds', 'contraindications', 'interactions', 'side_effects', 'treatments_successful', 'treatments_failed'], # drug elements
         'organism': ['genes', 'gene_expressions', 'evolution', 'organs', 'cells', 'nutrients'],

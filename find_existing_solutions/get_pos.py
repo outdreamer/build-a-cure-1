@@ -37,9 +37,9 @@ def convert_pos_names_to_nltk_tags(all_vars):
         all_vars['pos_tags']['ADJ'] = ['JJ', 'JJR', 'JJS']
 
         all_vars['pos_tags']['N'] = ['NN', 'NNP', 'NNS', 'JJ', 'JJR']
-        all_vars['pos_tags']['V'] = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VP']
+        all_vars['pos_tags']['V'] = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
         all_vars['pos_tags']['ALL_N'] = ['NN', 'JJ', 'JJR', 'NNS', 'NNP', 'NNPS', 'RB']
-        all_vars['pos_tags']['ALL_V'] = ['RP', 'MD', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VP']
+        all_vars['pos_tags']['ALL_V'] = ['RP', 'MD', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
 
     '''
     for pattern_type, pattern_list in all_vars['pattern_index'].items():
@@ -112,7 +112,7 @@ def get_pos_tags():
         NNS: Noun, plural
         NNPS: Proper noun, plural - 'Associations'
     '''
-    pos_tags['V'] = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VP']
+    pos_tags['V'] = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'] # 'VP'
     '''
         VB: Verb, base form - ask is do have build assess evaluate analyze assume avoid begin believe reveal benefit # attention?
             VBP: Verb, non-3rd person singular present - ask is do have
@@ -170,7 +170,7 @@ def get_pos_tags():
     '''
     pos_tags['DPC'] = ['DT', 'PDT', 'WDT', 'TO', 'PP', 'CC', 'IN']
     pos_tags['ALL_N'] = ['NN', 'JJ', 'JJR', 'NNS', 'NNP', 'NNPS', 'RB']
-    pos_tags['ALL_V'] = ['RP', 'MD', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'VP']
+    pos_tags['ALL_V'] = ['RP', 'MD', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
     pos_tags['SYNSET'] = set()
     for key in ['N', 'V', 'ADJ', 'ADV']:
         for item in pos_tags[key]:
