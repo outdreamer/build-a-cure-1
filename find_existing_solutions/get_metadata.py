@@ -119,18 +119,20 @@ def build_indexes(database, metadata, args, filters, all_vars):
                         if row:
                             index, rows = add_row(row, index, empty_index, rows)
     if index:
-        write_csv(rows, index.keys(), 'data/rows.csv')
         for key in index:
             if key != 'rows':
                 ''' get the patterns in each index we just built & save '''
                 objects, patterns = extract_objects_and_patterns_from_index(index, key, None, all_vars)
-                #to do: patterns = get_patterns_between_objects(index[key], key, all_vars) # get patterns for index[key] objects with object_type key
+                #to do: patterns = get_patterns_between_objects(index[key], key, all_vars)
+                # get patterns for index[key] objects with object_type key
                 if patterns:
                     if len(patterns) > 0:
                         object_patterns = [''.join([k, '_', '::'.join(v)]) for k, v in patterns.items()] # 'pattern_match1::match2::match3'
                         object_pattern_name = ''.join(['data/patterns_', key, '.txt']) 
                         index[object_pattern_name] = '\n'.join(object_patterns)
                 save(''.join(['data/', key, '.txt']), '\n'.join(index[key]))
+            else:
+                write_csv(rows, index.keys(), 'data/rows.csv')
         return index, rows
     return False, False
 

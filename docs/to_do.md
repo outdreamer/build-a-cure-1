@@ -65,7 +65,13 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
   - 'has effect' => 'have induce' with current synonym replacements, 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
 
-  -  check how your pattern replacement function handled pos tags
+  - fix rows csv format & path
+
+  - make sure letters added to word_map => '' rather than False 
+
+  - check how your pattern replacement function handled pos tags
+    - add type conversion in pattern replacement to get the item in target pattern with the nearest possible type
+       - 'vbg' => 'vbz' (inhibiting => x inhibits)
 
   - all find functions need to support params:
     - pattern, matches_lines, row_index, all_vars
