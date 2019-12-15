@@ -1,3 +1,7 @@
+from nltk.stem.wordnet import WordNetLemmatizer
+lemmatizer = WordNetLemmatizer()
+from nltk.stem import SnowballStemmer
+stemmer = SnowballStemmer("english")
 import random
 from get_pos import get_nltk_pos
 
@@ -137,18 +141,22 @@ def apply_pattern_map(line, pattern_map, all_vars):
         variables['target'] = target_variables if target_variables else {}
         nested_patterns['source'] = nested_source_patterns if nested_source_patterns else {}
         nested_patterns['target'] = nested_target_patterns if nested_target_patterns else {}
+        print('nested_patterns', nested_patterns)
+        print('vars', variables)
+        all_patterns.extend(nested_patterns['source'])
+        all_patterns.extend(nested_patterns['target'])
         if nested_source_patterns and nested_target_patterns:
             if len(nested_patterns['source']) > 0 and len(nested_patterns['target']) > 0:
-                for pattern_type in ['source', 'target']:
-                    all_patterns.extend(nested_patterns[pattern_type])
-                    ''' returns ['VB NN D1 D2', 'VB JJ D1 D2'] from pattern = 'VB |NN JJ| D1 D2' '''
-                    for i, nsp in enumerate(nested_patterns['source']):
-                        if i < len(nested_patterns['target']):
-                            ntp = nested_patterns['target'][i]
-                            sub_pattern_map = {'source': nsp, 'target': ntp}
-                            applied = reposition(line, sub_pattern_map, all_vars)
-                            if applied:
-                                line = line.replace(nsp, applied)
+                ''' returns ['VB NN D1 D2', 'VB JJ D1 D2'] from pattern = 'VB |NN JJ| D1 D2' '''
+                for i, nsp in enumerate(nested_patterns['source']):
+                    if i < len(nested_patterns['target']):
+                        ntp = nested_patterns['target'][i]
+                        sub_pattern_map = {'source': nsp, 'target': ntp}
+                        applied = reposition(line, sub_pattern_map, all_vars)
+                        print('applied', applied)
+                        if applied:
+                            line = applied
+        print('line', line)
     return line
 
 def get_partial_pos(pattern, all_vars):
@@ -213,9 +221,13 @@ def reposition(subset, sub_pattern_map, all_vars):
         for source_position, source_word in positions['source'].items():
             for target_position, target_word in positions['target'].items():
                 ''' to do: need to handle more complex cases with multiple matches '''
+                print('sw', source_word, 'tw', target_word)
                 if source_word == target_word:
                     ''' to do: exact word match or (supported_tag) '''
                     position_map[source_position] = target_position
+                else:
+                    if source_word in all_vars['pos_tags']['ALL_V'] and target_word in all_vars['pos_tags']['ALL_V']:
+                        position_map[source_position] = target_position
         ''' position_map = {0: 2, 1: '', 2: 0} '''
         ''' now apply this mapping to the subset '''
         new_position_dict = {}
@@ -223,44 +235,50 @@ def reposition(subset, sub_pattern_map, all_vars):
             if source_position in positions['source'] and target_position in positions['target']:
                 new_position_dict[target_position] = positions['source'][source_position]
         saved_words = subset.split(delimiter)
+        print('saved words', saved_words)
+        print('positions', positions)
+        print('position map', position_map)
         new_words = {}
         for i, word in enumerate(saved_words):
             if i in position_map:
                 # i is source position
                 for source_position, target_position in position_map.items():
                     if i == source_position:
+                        print('i', i, source_position)
                         original_source_word = positions['source'][source_position]
                         original_target_word = positions['target'][target_position]
                         source_var = positions['source'][source_position]
                         target_var = positions['target'][target_position]
+                        print('source position', source_position, 'target position', target_position)
+                        print('source var', source_var, 'target var', target_var)
+                        print('source word', saved_words[source_position])
+                        print('target word', saved_words[target_position])
                         if source_var != target_var:                           
                             ''' VBZ != VBG '''
-                            partial_source_word = get_partial_pos(source_var, all_vars)
-                            partial_target_word = get_partial_pos(target_var, all_vars)
-                            if partial_source_word == partial_target_word:
-                                ''' V == V '''
-                                ''' transform the original subset word from type source_word to type target_word '''
-                                word_pos = get_nltk_pos(word)
-                                if word_pos:
-                                    if word_pos in all_vars['pos_tags'][partial_source_word]:
-                                        ''' VBZ in all_vars['pos_tags']['V'] '''
-                                        target_pos = get_nltk_pos(target_word)
-                                        if target_pos:
-                                            conjugated_word = conjugate(word, word_pos, target_pos) # word, source_pos, target_pos
-                                            if conjugated_word:
-                                                new_words[target_position] = conjugated_word
-                            else:
-                                if original_source_word in positions['target'].values():
-                                    new_words[target_position] = original_source_word
+                            ''' V == V '''
+                            ''' transform the original subset word from type source_word to type target_word '''
+                            ''' VBZ in all_vars['pos_tags']['V'] '''
+                            conjugated_word = conjugate(saved_words[source_position], source_var, target_var, all_vars) # word, source_pos, target_pos
+                            print('conj', conjugated_word)
+                            if conjugated_word:
+                                new_words[target_position] = conjugated_word
                         else:
                             if original_target_word in positions['target'].values():
-                                new_words[target_position] = original_target_word
+                                print('target', original_target_word, 'source', original_source_word)
+                                if original_target_word in all_vars['pos_tags']['ALL']:
+                                    new_words[target_position] = saved_words[source_position]
+                                else:
+                                    new_words[target_position] = original_target_word
         if new_words:
             new_items = []
             for k in sorted(new_words.keys()):
                 new_items.append(new_words[k])
             if len(new_items) > 0:
-                return delimiter.join(new_items)
+                print('new items', new_items)
+                print('subset', subset)
+                print('pattern map', sub_pattern_map)
+                new_line = delimiter.join(new_items)
+                return new_line
     return False
 
 def get_pattern_source_subsets(line, pos_line, pattern, get_type, all_vars):
@@ -404,7 +422,7 @@ def get_nested_patterns(line, pattern, pattern_type, all_vars):
                             else:
                                 final_words.append(var)
         return final_patterns, variables
-    return False, False
+    return [pattern], variables
 
 def get_alt_patterns(source_pattern, nested_variables):
     ''' 
@@ -541,3 +559,41 @@ def get_new_key(key_dict, source_line, all_vars):
         else:
             return new_key
     return False 
+
+def conjugate(word, source_pos, target_pos, all_vars):
+    ''' convert word from source_pos to target_pos '''
+    if source_pos in all_vars['pos_tags']['V'] and target_pos in all_vars['pos_tags']['V']:
+        equivalent = ['VB', 'VBD'] # 'VBG', 'VBN', 'VBP', 'VBZ'
+        '''
+            VB: Verb, base form - ask is do have 
+                VBP: Verb, non-3rd person singular present - ask is do have
+                VBZ: Verb, 3rd person singular present - asks is does has
+                VBG: Verb, gerund or present participle - asking, being, doing, having
+            VBD: Verb, past tense - asked, was/were, did, had
+            VBN: Verb, past participle - asked, used, been, done, had
+        '''
+        case_maps = {
+            'be': {'VB': 'is', 'VBD': 'is', 'VBG': 'is', 'VBN': 'being', 'VBP': 'was', 'VBZ': 'been'},
+            'do': {'VB': 'do', 'VBD': 'do', 'VBG': 'does', 'VBN': 'doing', 'VBP': 'did', 'VBZ': 'done'},
+            'have': {'VB': 'have', 'VBD': 'have', 'VBG': 'has', 'VBN': 'having', 'VBP': 'had', 'VBZ': 'had'}
+        }
+        infinitive = lemmatizer.lemmatize(word, 'v')
+        if target_pos == 'VB':
+            return infinitive
+        if infinitive in case_maps:
+            return case_maps[infinitive][target_pos]
+        stem = stemmer.stem(word)
+        target_endings = {
+            'VB': '',
+            'VBP': '',
+            'VBZ': 's',
+            'VBG': 'ing',
+            'VBD': 'ed',
+            'VBN': 'ed'
+        }
+        if source_pos in all_vars['pos_tags']['ALL'] and target_pos in all_vars['pos_tags']['ALL']:
+            if source_pos != target_pos:
+                new_word = ''.join([stem, target_endings[target_pos]])
+                print('conjugate', new_word, source_pos, target_pos)
+                return new_word
+    return False

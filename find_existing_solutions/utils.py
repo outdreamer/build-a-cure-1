@@ -297,44 +297,6 @@ def get_charge_of_word(word, all_vars):
                 return synonym_type
     return False
 
-def conjugate(word, source_pos, target_pos, all_vars):
-    ''' convert word from source_pos to target_pos '''
-    if source_pos in all_vars['pos_tags']['V'] and target_pos in all_vars['pos_tags']['V']:
-        equivalent = ['VB', 'VBD'] # 'VBG', 'VBN', 'VBP', 'VBZ'
-        '''
-            VB: Verb, base form - ask is do have 
-                VBP: Verb, non-3rd person singular present - ask is do have
-                VBZ: Verb, 3rd person singular present - asks is does has
-                VBG: Verb, gerund or present participle - asking, being, doing, having
-            VBD: Verb, past tense - asked, was/were, did, had
-            VBN: Verb, past participle - asked, used, been, done, had
-        '''
-        case_maps = {
-            'be': {'VB': 'is', 'VBD': 'is', 'VBG': 'is', 'VBN': 'being', 'VBP': 'was', 'VBZ': 'been'},
-            'do': {'VB': 'do', 'VBD': 'do', 'VBG': 'does', 'VBN': 'doing', 'VBP': 'did', 'VBZ': 'done'},
-            'have': {'VB': 'have', 'VBD': 'have', 'VBG': 'has', 'VBN': 'having', 'VBP': 'had', 'VBZ': 'had'}
-        }
-        infinitive = lemmatizer.lemmatize(word, 'v')
-        if target_pos == 'VB':
-            return infinitive
-        if infinitive in case_maps:
-            return case_maps[infinitive][target_pos]
-        stem = get_stem(word)
-        target_endings = {
-            'VB': '',
-            'VBP': '',
-            'VBZ': 's',
-            'VBG': 'ing',
-            'VBD': 'ed',
-            'VBN': 'ed'
-        }
-        if source_pos in all_vars['pos_tags']['ALL'] and target_pos in all_vars['pos_tags']['ALL']:
-            if source_pos != target_pos:
-                new_word = ''.join([stem, target_endings[target_pos]])
-                print('conjugate', new_word, source_pos, target_pos)
-                return new_word
-    return False
-
 def get_similarity(base_word, new_word, pos_type, all_vars):
     if pos_type in ['N', 'V', 'ADV', 'ADJ']:
         base_synsets = Word(base_word).get_synsets(pos=pos_type)
