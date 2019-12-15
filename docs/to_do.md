@@ -30,7 +30,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
 # Code quality
   - store line splitting in row['words'] variable to avoid doing the operation again 
-  - remove len(0) checks for lists
+  - remove len(0) checks for lists when possible
   - consolidate excessive chained return false checks
   - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
   - find every time you use this logic and replace with function & make sure youre adding the final item
@@ -69,14 +69,26 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
                 non_dpc_segments.append(' '.join(new_segment))
                 new_segment = []
 
-# Structural:
+## Structural Objects
 
+
+    '''
+    - use all_vars['pattern_vars'] as var checker in other functions too
+    all_vars['pattern_vars'] = [
+        'V', 'N', 'D', 'P', 'C', 'DPC', 'modifiers', 'clauses', 'phrases', 'noun_phrases', 'verb_phrases'
+    ]
+    '''
+
+  - iterate through multiple pos_tags in a convert_words_to_pos(line) and assign numerical values
+
+  - make sure youve changed 'modifier1' to 'VB1 NN1', 'VB1 VB2' etc 
+    while iterating through modifier patterns before submitting a call to find_patterns so you can just use 'ALL' pos tag checks
   - add other pattern types to pattern_map
   - once you replace some patterns, youll have new phrases & conditions, so do apply_pattern_map before your other parsing
   - 'has effect' => 'have induce' with current synonym replacements, 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
       - 'by' can indicate a process/mechanism "it works by doing x"
   - fix rows csv format
-  - debug pattern replacement function handled pos tags
+  - add pattern replacement function handling of pos tags
   - based on processing order, isolate which patterns would be identified as other objects first
   - add support for structural object keywords in find & replace patterns functions
   - add variable accretion patterns (how an object becomes influenced by a new variable)
@@ -88,6 +100,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
       2. no pattern passed in, just lines array
         - pattern = None
         - lines = ['find the objects in this sentence']
+  - add support for numerical var names in get_nested_patterns
   - implement a find_repeated_patterns function that aggregateds repeated pos/type/abstract patterns across a article/line set
   - organize: find 'modifiers', 'phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships', then rearrange_sentence
   - once you apply find_relationships, create another relationships array, which is the same but has the original semantic verb ("disable" rather than operator synonym "decrease")
@@ -105,7 +118,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
       - implement ordered pos-tagging preferences by iterating through pos_tags with a list of keys
       - show preference for verbs in ambiguous cases like "associate" should return a verb even though it can be a noun
         "sodium isolate" => "noun verb" and then it can be identified as a modifier
-  - check modifier patterns: 'x is a y alkalizing inhibitor' should be converted to 'x alkalizing-inhibits y'
+  - check modifier patterns with pattern_map: 'x is a y alkalizing inhibitor' should be converted to 'x alkalizing-inhibits y'
   - singularize plural nouns 
   - use blob.correct() on non-research sources - remove '.,' and other errors or typos 
   - finish get_topic to filter non-topical nouns, verbs, adverbs & adjectives from all object indexes

@@ -2,6 +2,7 @@ import random
 from utils import *
 from get_synonyms import *
 from get_objects import *
+from get_patterns import get_new_key
 
 def find_relationships(pattern, lines, row, all_vars):
     '''

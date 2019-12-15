@@ -89,23 +89,6 @@ def get_singular(word):
             return item
     return False
 
-def get_new_key(key_dict, all_vars):
-    new_key = None
-    upper_limit = len(all_vars['alphabet']) - 1
-    random_index = random.randint(0, upper_limit)
-    random_letter = all_vars['alphabet'][random_index]
-    if key_dict:
-        for k in key_dict:
-            new_key = ''.join([k, random_letter])
-    else:
-        new_key = random_letter
-    if new_key:
-        if new_key in key_dict:
-            return get_new_key(key_dict, all_vars)
-        else:
-            return new_key
-    return False 
-
 def replace_names(row, all_vars):
     # to do: identify all irrelevant proper nouns like place, company, university & individual names
     original_words = row['original_line'].split(' ')
@@ -405,7 +388,7 @@ def get_topic(word):
 def replace_with_pattern_maps(line, all_vars):
     ''' to do: add any other processing in addition to passive to active '''
     return line
-    
+
 def convert_to_active(line, all_vars):
     '''
     - check for verb tenses normally used in passive sentences # had been done = past perfect

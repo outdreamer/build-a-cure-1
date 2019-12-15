@@ -115,6 +115,7 @@ def get_pattern_config(all_vars):
             'x was VBD by y': 'y VBZ x', # alkalization of x => x alkalizer => alkalizes x
             'x that has y': 'x with y',
             'ALL_N1 VBD VBN IN ALL_N2': 'ALL_N2 VBN ALL_N1', # x was bitten by y => y bit x
+            'x VBD VBD IN y': 'y VBN x',
             'x VBD VBN by y': 'y VBN x',
             'x VBZ VBN by y': 'y VBN x',
             'x that y z': 'z y x', # "protein that modulates a (signaling pathway)" => "(signaling pathway)-changing protein" 
@@ -127,7 +128,7 @@ def get_pattern_config(all_vars):
         }
     }
     all_vars['supported_pattern_variables'] = ['N', 'V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
-    all_vars['pattern_vars'] = ['modifiers', 'clauses', 'phrases', 'noun_phrases', 'verb_phrases']
+    all_vars['pattern_vars'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P', 'modifiers', 'clauses', 'phrases', 'noun_phrases', 'verb_phrases']
     ''' to do: add full_params objects to pattern_vars & standardize to singular keys '''
     all_vars['pattern_index'] = {
         'passive': [
