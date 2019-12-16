@@ -136,21 +136,15 @@ def find_modifiers(pattern, lines, row, all_vars):
         pos_tags['relation'].extend(pos_tags[tag])
 '''
 
-def rearrange_sentence(line, all_vars):
+def rearrange_sentence(row, line, all_vars):
     '''
         line = 'x was y even with a' => 
-        separate by clause_delimiters:
-            ['x was y', 'even with', 'a']
-        isolate clauses having embedded relationships with parenthesis:
-            (if clause contains verb or verb-modifier)
-            '(x was y) even with a'
-        replace with clause_map operators:
-            '(x equal y) independent a'
-        replace with symbolic operators:
-            '(x = y) # a'
-        }
+        separate by clause_delimiters: ['x was y', 'even with', 'a']
+        isolate clauses having embedded relationships with parenthesis: (if clause contains verb or verb-modifier) => '(x was y) even with a'
+        replace with clause_map operators: '(x equal y) independent a'
+        replace with symbolic operators: '(x = y) # a'
         now you can generate the relationships based on operator logic stored in our pattern_maps: 
-        '(x = y) # a': [
+            '(x = y) # a': [
             '(x = y) # a',
             '(x = y) # a',
             'a (x = y) # a'
@@ -178,24 +172,33 @@ def rearrange_sentence(line, all_vars):
         "at the max dose"
     ]
     ordered_clauses = order_clauses(clauses)
+    meaningful_clauses = [
+        "&", #"in the event of", "given"
+        "symptoms +", # "symptoms appear"
+        "quickly",
+        "# &", # even with
+        "vitamin c",
+        "max dose"
+    ]
+    ''' filter_clauses removes clauses that dont change the output impact of the sentence '''
     meaningful_clauses = filter_clauses(ordered_clauses)
     meaningful_clauses = [
-        "symptoms appear",
-        "quickly", 
-        "even with",
+        "symptoms +", # "symptoms appear"
+        "quickly",
+        "# &", # even with
         "vitamin c",
         "max dose"
     ]
-    converted_clauses = convert_clauses(meaningful_clauses)
-    converted_clauses = [
-        "symptoms appear",
-        "quickly", 
-        "independently of",
-        "vitamin c",
-        "max dose"
-    ]
-    line = ' '.join(converted_clauses)
+    line = ' '.join(meaningful_clauses)
     return False
+
+def order_clauses(clauses):
+    ''' arranges clauses according to operators '''
+    return clauses
+
+def filter_clauses(clauses):
+    ''' removes meaningless clauses '''
+    return clauses
 
 def split_by_relevance(line, word_map, all_vars):
     ''' this function should split a line by det and prep '''

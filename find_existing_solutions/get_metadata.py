@@ -254,8 +254,7 @@ def apply_find_function(object_type, pattern, matches, index, all_vars):
 def get_structural_metadata(row, all_vars):
     '''
         organize: 
-            'ngrams', 'modifiers', 'phrases', 'clauses', 
-            'subjects', 'patterns', 'variables', 'relationships'
+            'ngrams', 'modifiers', 'phrases', 'noun_phrases', 'verb_phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships'
         then rearrange_sentence
     '''
     keep_ratios = ['extra', 'high', 'none']
@@ -301,38 +300,25 @@ def get_structural_metadata(row, all_vars):
     ngrams = get_ngrams(word_pos_line, all_vars) # 'even with', 'was reduced', 'subject position'
     if ngrams:
         row['ngrams'] = ngrams
-    ngram_list = []
-    for k, v in ngrams.items():
-        ngram_list.extend(v)
-    ngram_list.append(word_pos_line)
-    row['modifiers'] = set(ngram_list) # probably needs to preserve position for later processing
-    index = { 'modifiers': ngram_list }
-    objects, modifier_patterns = extract_objects_and_patterns_from_index(index, None, 'modifiers', 'modifiers', all_vars)
-    if objects:
-        if 'modifiers' in objects:
-            row['modifiers'] = set(objects['modifiers'])
-    if modifier_patterns:
-        row['patterns'] = row['patterns'].union(set([p for p in modifier_patterns]))
-    #pos_line = convert_words_to_pos(row['line'], all_vars)
-    #if pos_line:
-    #    row['patterns'].append(pos_line)
-    structure_types = ['phrases', 'subjects', 'clauses', 'relationships']
-    for i, key in enumerate(structure_types):
-        search_items = ngram_list if i == 0 else row[structure_types[i - 1]] if len(row[structure_types[i - 1]]) > 0 else []
-        search_items.append(word_pos_line)
-        index = { key: search_items }
-        row[key] = set(search_items) if key == 'phrases' else set()
-        objects, patterns = extract_objects_and_patterns_from_index(index, None, key, key, all_vars)
-        if objects:
-            if key in objects:
-                if key == 'subjects':
-                    for item in objects[key]:
-                        row[key].add(item.split(' ')[0]) # get first word in 'N V' subject pattern
-                else:
-                    row[key] = set(objects[key])
-        if patterns:
-            row['patterns'] = row['patterns'].union(set([p for p in patterns]))
-    # to do: add call to find_repeated_patterns to get any other patterns not added yet
+        ngram_list = [v for k, v in ngrams.items()]
+        ngram_list.append(word_pos_line)
+        use_ngram_keys = ['modifiers', 'verb_phrases', 'noun_phrases', 'phrases']
+        structure_types = ['modifiers', 'verb_phrases', 'noun_phrases', 'phrases', 'subjects', 'clauses', 'relationships']
+        for i, key in enumerate(structure_types):
+            objects, patterns = extract_objects_and_patterns_from_index(row, None, key, key, all_vars)
+            if objects:
+                if key in objects:
+                    if key == 'subjects':
+                        for item in objects[key]:
+                            row[key].add(item.split(' ')[0]) # get first word in 'N V' subject pattern
+                    else:
+                        row[key] = row[key].union(set(objects[key]))
+            if patterns:
+                row['patterns'] = row['patterns'].union(set(patterns))
+    extra_patterns = find_patterns(row['line'], all_vars)
+    if extra_patterns:
+        row['patterns'] = row['patterns'].union(set(extra_patterns))
+    row = rearrange_sentence(row, line, all_vars)
     return row
 
 def get_ngrams(line, all_vars):

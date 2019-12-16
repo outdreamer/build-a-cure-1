@@ -4,7 +4,7 @@ lemmatizer = WordNetLemmatizer()
 from nltk.stem import SnowballStemmer
 stemmer = SnowballStemmer("english")
 from get_pos import get_nltk_pos
-from get_vars import get_all_versions, find_delimiter, generate_patterns_for_pattern
+from get_vars import get_all_versions, find_delimiter
 
 def get_patterns_between_objects(objects, object_type, all_vars):
     '''
@@ -112,9 +112,9 @@ def apply_pattern_map(line, pattern_map, all_vars):
                     line = new_line # return new_line if not iterating through all patterns in map
     return line
 
-def find_patterns(lines, all_vars):
+def find_patterns(line, all_vars):
     ''' to do: this is to cluster repeated patterns in a lines list '''
-    return lines
+    return line
 
 def match_patterns(line, pattern_key, all_vars):
     '''
@@ -125,7 +125,7 @@ def match_patterns(line, pattern_key, all_vars):
     if type(line) == list or type(line) == set:
         found_patterns = get_patterns_between_objects(line)
     else:
-        pos_lines = add_indexes_to_repeated_words(line, all_vars) 
+        pos_lines = get_all_versions(line, all_vars) 
         if pos_lines:
             if len(pos_lines) > 0:
                 for pos_line in pos_lines:
@@ -136,14 +136,11 @@ def match_patterns(line, pattern_key, all_vars):
                             only want to generate source patterns here, 
                             send a flag to not generate target patterns
                             '''
-                            generated_patterns, generated_variables = generate_patterns_for_pattern(pattern, line, pos_line, all_vars)
-                            if generated_patterns:
-                                for gsp in generated_patterns['source']:
-                                    found_subsets = get_pattern_source_subsets(line, pos_line, gsp, 'pattern', all_vars)
-                                    if found_subsets:
-                                        if combined_key not in found_patterns:
-                                            found_patterns[combined_key] = {}
-                                        found_patterns[combined_key][gsp] = found_subsets
+                            found_subsets = get_pattern_source_subsets(line, pos_line, pattern, 'pattern', all_vars)
+                            if found_subsets:
+                                if combined_key not in found_patterns:
+                                    found_patterns[combined_key] = {}
+                                found_patterns[combined_key][pattern] = found_subsets
     if found_patterns:
         return found_patterns
     return False
@@ -213,7 +210,7 @@ def get_pattern_source_subsets(line, pos_line, pattern, get_type, all_vars):
         to do: this prevents users from configuring patterns with numbers like 14alpha-deoxy-enzyme
     '''
     delimiter = find_delimiter(line, all_vars)
-    pos_patterns = add_indexes_to_repeated_words(pattern, all_vars) 
+    pos_patterns = get_all_versions(pattern, all_vars) 
     if pos_patterns and delimiter:
         if len(pos_patterns) > 0:
             subsets = []

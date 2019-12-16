@@ -266,7 +266,8 @@ def get_pattern_config(all_vars):
                         new_type_pattern = nonnumeric_type_pattern.replace(nonnumeric_index_type, sub_pattern)
                         new_type_pattern_index.append(' '.join(new_type_pattern))
         if len(new_type_pattern_index) > 0:
-            all_vars['type_pattern_index'][key] = new_type_pattern_index
+            if key in all_vars['pattern_index']:
+                all_vars['pattern_index'][key].extend(new_type_pattern_index)
 
     ''' 
         sort pattern_index so the longer patterns are checked first
@@ -716,21 +717,17 @@ def get_all_versions(pattern, version_types, all_vars):
                     pattern = new_pattern if new_pattern else pattern
             except Exception as e:
                 print('e', e)
-
     ''' pattern = 'VB |JJ NN|' '''
     ''' feed output of each chained_types function into the next '''
-
     patterns_to_iterate = []
     nested_patterns, nested_variables = get_nested_patterns(pattern, 'pattern', {}, all_vars)
     ''' nested_patterns = 'VB x', nested_variables = {'x': 'JJ NN'} '''
-
     for np in nested_patterns:
         alt_patterns = get_alt_patterns(np, nested_variables, all_vars)
         if alt_patterns:
             for ap in alt_patterns:
                 patterns_to_iterate.append(ap)
     ''' patterns_to_iterate = ['VB JJ', VB NN'] '''
-
     all_patterns = []
     if len(patterns_to_iterate) > 0:
         for p in patterns_to_iterate:
@@ -754,15 +751,6 @@ def get_all_versions(pattern, version_types, all_vars):
     if len(all_patterns) > 0:
         return all_patterns
     return False
-
-def generate_patterns_for_pattern(pattern, all_vars):
-    patterns = []
-    all_patterns = get_all_versions(pattern, 'all', all_vars)
-    if all_patterns:
-        patterns.extend(alt_patterns)
-    if len(patterns) > 0:
-        return patterns, variables
-    return False, False
 
 def get_original_pattern_length(pattern, delimiter):
     ''' for a pattern like  '|VB NN x| VB', should return 2 '''
@@ -892,6 +880,7 @@ def convert_to_pos_type(word, nonnumeric_w, pos_type, all_vars):
                         return pos_key
     return False
 
+'''
 def get_partial_pos(pattern, all_vars):
     new_pattern_words = []
     for w in pattern.split(' '):
@@ -905,6 +894,7 @@ def get_partial_pos(pattern, all_vars):
     if len(new_pattern_words) > 0:
         return ' '.join(new_pattern_words)
     return pattern
+'''
 
 def is_supported_tag(var, all_vars):
     if var in all_vars['pos_tags']['ALL'] or var in all_vars['pos_tags']:
