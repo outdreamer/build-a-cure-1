@@ -34,7 +34,11 @@ def get_types(word, pos, title, row, all_vars):
                                     index = {index_type: word}
                                     matched_objects = find_patterns(word, index_type, all_vars)
                                     if matched_objects:
-                                        row[key] = matched_objects
+                                        for pattern_type in matched_objects.items():
+                                            if pattern_type not in row:
+                                                row[pattern_type] = []
+                                            for pattern, matches in matched_objects[pattern_type].items():
+                                                row[pattern_type].extend(matches)
             except Exception as e:
                 print('wiki summary exception', e)
     return word

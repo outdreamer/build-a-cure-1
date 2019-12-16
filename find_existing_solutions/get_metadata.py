@@ -217,10 +217,11 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
     found_objects = set()
     found_patterns = find_patterns(line, search_pattern_key, all_vars)
     if found_patterns and object_type != 'patterns':
-        for pattern, matches in found_patterns.items():
-            ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
-            ''' note: this is not restricting output to found objects '''
-            found_objects = apply_find_function(object_type, pattern, matches, index, all_vars)
+        for pattern_type in found_patterns:
+            for pattern, matches in found_patterns[pattern_type].items():
+                ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
+                ''' note: this is not restricting output to found objects '''
+                found_objects = apply_find_function(object_type, pattern, matches, index, all_vars)
     if len(found_objects) > 0 or found_patterns:
         return found_objects, found_patterns
     return False, False
@@ -231,10 +232,11 @@ def apply_find_function(object_type, pattern, matches, index, all_vars):
     if function_name in globals():
         try:
             function = getattr(globals(), function_name)
-            got_objects = function(pattern, matches, index, all_vars)
-            if got_objects:
-                if len(got_objects) > 0:
-                    return set([item for item in got_objects])
+            if function:
+                got_objects = function(pattern, matches, index, all_vars)
+                if got_objects:
+                    if len(got_objects) > 0:
+                        return set([item for item in got_objects])
         except Exception as e:
             # print('e', e)
             return False

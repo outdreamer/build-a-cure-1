@@ -3,17 +3,16 @@ import nltk
 from nltk import CFG, pos_tag, word_tokenize, ne_chunk
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet
-from nltk.stem import SnowballStemmer
 from textblob import TextBlob, Sentence, Word, WordList
 from nltk.stem.wordnet import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
 
 from get_index_def import get_empty_index
+from get_vars import read, get_singular, get_stem
 from get_patterns import apply_pattern_map
 from get_pos import get_nltk_pos
 
 stop = set(stopwords.words('english'))
-stemmer = SnowballStemmer("english")
 
 ''' SIMILARITY FUNCTIONS '''
 
@@ -70,23 +69,9 @@ def get_definition_keywords(word):
 
 ''' GET STRUCTURAL TYPE FUNCTIONS '''
 
-def get_stem(word):
-    stem = stemmer.stem(word)
-    if stem:
-        return stem 
-    return word
-
 def get_blob(string):
     if type(string) == str:
         return TextBlob(string)
-    return False
-
-def get_singular(word):
-    wl = WordList((word))
-    singular_list = wl.singularize()
-    if len(singular_list) > 0:
-        for item in singular_list:
-            return item
     return False
 
 def replace_names(row, all_vars):
@@ -424,15 +409,6 @@ def save(path, data):
             f.write(data)
         f.close()
     return True
-
-def read(path):
-    index = None
-    if 'DS_Store' not in path:
-        if os.path.exists(path):
-            with open(path, 'r') as f:
-                index = json.load(f) if 'json' in path else f.read()
-                f.close()
-    return index
 
 def write_csv(rows, header_list, path):
     if len(rows) > 0:

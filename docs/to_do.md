@@ -79,6 +79,10 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
     ]
     '''
 
+  - test with ALL_N vars 
+  
+  - update find_patterns
+
   - iterate through multiple pos_tags in a convert_words_to_pos(line) and assign numerical values
 
   - make sure youve changed 'modifier1' to 'VB1 NN1', 'VB1 VB2' etc 
