@@ -7,7 +7,7 @@ import requests
 from utils import *
 from get_index_def import get_empty_index
 from get_vars import get_vars, get_args
-from get_patterns import find_patterns
+from get_patterns import match_patterns
 #from get_objects import *
 from get_structural_objects import *
 from get_conceptual_objects import *
@@ -215,7 +215,7 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
 
 def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, all_vars):
     found_objects = set()
-    found_patterns = find_patterns(line, search_pattern_key, all_vars)
+    found_patterns = match_patterns(line, search_pattern_key, all_vars)
     if found_patterns and object_type != 'patterns':
         for pattern_type in found_patterns:
             for pattern, matches in found_patterns[pattern_type].items():
@@ -227,7 +227,16 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
     return False, False
 
 def apply_find_function(object_type, pattern, matches, index, all_vars):
-    ''' find functions check for objects of object_type in matches list which match pattern '''
+    ''' find functions check for objects of object_type in matches list which match pattern 
+        - all find object functions need to support params:
+            - pattern, matches_lines, row_index, all_vars
+              pattern & subsets matching pattern
+                - pattern = 'x of y'
+                - lines = 'dog of cat', 'cat of dog' 
+              no pattern passed in, just lines array
+                - pattern = None
+                - lines = ['find the objects in this sentence']
+    '''
     function_name = ''.join(['find_', object_type])
     if function_name in globals():
         try:

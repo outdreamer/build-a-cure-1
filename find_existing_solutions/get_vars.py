@@ -135,15 +135,41 @@ def get_pattern_config(all_vars):
         }
     }
     all_vars['supported_pattern_variables'] = ['N', 'V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
-    all_vars['pattern_vars'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P', 'modifiers', 'clauses', 'phrases', 'noun_phrases', 'verb_phrases']
+    all_vars['pattern_vars'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
     ''' to do: add full_params objects to pattern_vars & standardize to singular keys '''
+    all_vars['type_pattern_index'] = {
+        'passive': [
+            'noun_phrases1 of noun_phrases2' # enzyme inhibitor of protein synthesis
+        ],
+        'phrases': [
+            'modifiers1 DPC modifiers2'
+        ],
+        'clauses': [
+            'clauses1 DPC clauses2'
+        ],
+        'relationships': [
+            'clauses',
+            'phrases1 phrases2 V clauses',
+            'clauses1 DPC clauses2'
+        ],
+        'rules': [],
+        'contexts': [],
+        'compounds': [
+            "rules of compounds",
+            "compounds1 compounds2"
+        ],
+        'conditions': [],
+        'symptoms': [
+            'N that gets worse when contexts1',
+            'x - y & - z even in conditions1 or conditions2'
+        ]
+    }
     all_vars['pattern_index'] = {
         'passive': [
             '|VB VBP VBN VBD| |VB VBP VBN VBD|', # is done, was done
             'VBG |VB VBP VBN VBD| |VB VBP VBN VBD|', # having been done
             '|VB VBP VBN VBD| |TO IN PP|', # finish by, done by
             '|VBD| VBN VBN |TO IN PP|', # has been done by
-            '|noun_phrases| of |noun_phrases|' # enzyme inhibitor of protein synthesis
         ],
         'subjects': [
             'ALL_N ALL_V',
@@ -160,7 +186,6 @@ def get_pattern_config(all_vars):
             'ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N', # converter of ionic/ionized/ionizing radiation, necrotizing spondylosis
             'ALL_N DPC ALL_N |VBG VBD|', # metabolite of radiation poisoning
             'ALL_N DPC ALL_N', # metabolite/metabolizer/inhibitor/alkalization of radiation, 
-            'modifiers DPC modifiers'
         ],
         'clauses': [
             'DPC NP VP NP',
@@ -168,10 +193,6 @@ def get_pattern_config(all_vars):
             'DPC VP NP',
             'DPC VP',
             'DPC NP',
-        ],
-        'relationships': [
-            'clauses',
-            'clauses CC clauses'
         ],
         'noun_phrases': [
             'ALL_N ALL_N',
@@ -185,15 +206,7 @@ def get_pattern_config(all_vars):
             'plays a |VB NN| role',
             '|functions works operates interacts acts| as __a__ |VB NN|'
         ],
-        'compounds': [
-            "administration_method of compound",
-            "compound compound"
-        ],
-        'symptoms': [
-            'fever that gets worse when x',
-            'x reduced y and diminished z even in condition x or condition a'
-        ],
-         'types': [
+        'types': [
             'ADJ N', # Ex: 'chaperone protein' (subtype = 'chaperone', type = 'protein')
         ],
         'roles': [
@@ -203,7 +216,25 @@ def get_pattern_config(all_vars):
             '|functions works operates interacts acts| as (a) |V N|' # Ex: acts as an intermediary (role => 'intermediary')
         ]
     }
+
+    for key in all_vars['type_pattern_index']:
+        all_vars['pattern_vars'].append(key)
+    for key in all_vars['pattern_index']:
+        all_vars['pattern_vars'].append(key)
+    all_vars['pattern_vars'] = set(all_vars['pattern_vars'])
+
     all_vars['all_version_types'] = ['correct', 'repeated', 'nested', 'alt', 'pos', 'type', 'synonym', 'operator', 'function']
+
+    for key in ['pattern_index', 'type_pattern_index']:
+        for pattern_key, patterns in all_vars[key].items():
+            new_patterns = []
+            for pattern in patterns:
+                generated_patterns = get_all_versions(pattern, 'all', all_vars) 
+                if generated_patterns:
+                    for gp in generated_patterns:
+                        new_patterns.append(gp)
+            all_vars[key][pattern_key] = reversed(sorted(new_patterns))
+
     for pattern_map_key, pattern_map in all_vars['pattern_maps'].items():
         new_pattern_map = {}
         for sp, tp in pattern_map.items():
@@ -216,17 +247,30 @@ def get_pattern_config(all_vars):
                             new_pattern_map[sp_pattern] = tp_pattern
         if new_pattern_map:
             all_vars['pattern_maps'][pattern_map_key] = new_pattern_map
-    for pattern_key in all_vars['pattern_index']:
-        new_patterns = []
-        for pattern in all_vars['pattern_index'][pattern_key]:
-            patterns = get_all_versions(pattern, 'all', all_vars) 
-            if patterns:
-                for pattern in patterns:
-                    new_patterns.append(pattern)
-        all_vars['pattern_index'][pattern_key] = reversed(sorted(new_patterns))
 
-    ''' sort pattern_index so the longer patterns are checked first
-    for key in all_vars['pattern_index']:
+    ''' 
+    now that pattern lists are generated, 
+    populate pattern types from type_pattern_index[key[
+    with all variants from the corresponding list in pattern_index[key]
+    '''
+    for key, type_pattern_index in all_vars['type_pattern_index'].items():
+        new_type_pattern_index = []
+        for type_pattern in type_pattern_index:
+            for sub_pattern_type, sub_pattern_list in all_vars['pattern_index'].items():
+                nonnumeric_index_type = get_nonnumeric(sub_pattern_type, all_vars)
+                nonnumeric_type_pattern = get_nonnumeric(type_pattern, all_vars)
+                ''' if 'modifiers' in ['modifiers', 'DPC', 'modifiers'] '''
+                if nonnumeric_index_type in nonnumeric_type_pattern.split(' '):
+                    ''' iterate through modifiers pattern_index, replacing nonnumeric_index_type with index pattern '''
+                    for sub_pattern in sub_pattern_list:
+                        new_type_pattern = nonnumeric_type_pattern.replace(nonnumeric_index_type, sub_pattern)
+                        new_type_pattern_index.append(' '.join(new_type_pattern))
+        if len(new_type_pattern_index) > 0:
+            all_vars['type_pattern_index'][key] = new_type_pattern_index
+
+    ''' 
+        sort pattern_index so the longer patterns are checked first
+        for key in all_vars['pattern_index']:
         all_vars['pattern_index'][key] = reverse_sort(all_vars['pattern_index'][key])
     '''
     '''
@@ -630,18 +674,18 @@ def get_correct_patterns(pattern, all_vars):
     return pattern
 
 def get_type_patterns(pattern, all_vars):
-    ''' to do: implement this after get_types '''
-    return pattern
+    ''' 
+    to do: implement after get_types 
+        Cytotoxicity in cancer cells => <component object>-toxicity, anti-tumor => anti-<component object of illness>
+        suppress/interfere/inhibit activity of carcinog/canc/tumz => suppress/interfere/inhibit activity of drug/medication/enzyme
+    '''
+    return [pattern]
 
 def get_synonym_patterns(pattern, all_vars):
-    return pattern
+    return [pattern]
 
 def get_operator_patterns(pattern, all_vars):
-    return pattern
-
-def get_supported_pattern_key_patterns(pattern, all_vars):
-    ''' modifiers, phrases, clauses, verb_phrases, noun_phrases '''
-    return pattern
+    return [pattern]
 
 def get_function_patterns(pattern, all_vars):
     ''' find functions in pattern & replace with their core function decomposition '''
@@ -653,7 +697,7 @@ def get_function_patterns(pattern, all_vars):
                 ''' replace f with core_functions in pattern '''
                 for cf in core_functions:
                     pattern = pattern.replace(function, cf)
-    return pattern
+    return [pattern]
 
 def get_all_versions(pattern, version_types, all_vars):
     ''' this is to generate patterns with standardized synonyms, operators, & types in configured patterns '''

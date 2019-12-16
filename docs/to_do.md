@@ -71,41 +71,20 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
 ## Structural Objects
 
-
-    '''
-    - use all_vars['pattern_vars'] as var checker in other functions too
-    all_vars['pattern_vars'] = [
-        'V', 'N', 'D', 'P', 'C', 'DPC', 'modifiers', 'clauses', 'phrases', 'noun_phrases', 'verb_phrases'
-    ]
-    '''
-
   - test with ALL_N vars 
-  
-  - update find_patterns
-
-  - iterate through multiple pos_tags in a convert_words_to_pos(line) and assign numerical values
-
-  - make sure youve changed 'modifier1' to 'VB1 NN1', 'VB1 VB2' etc 
-    while iterating through modifier patterns before submitting a call to find_patterns so you can just use 'ALL' pos tag checks
   - add other pattern types to pattern_map
-  - once you replace some patterns, youll have new phrases & conditions, so do apply_pattern_map before your other parsing
-  - 'has effect' => 'have induce' with current synonym replacements, 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
-      - 'by' can indicate a process/mechanism "it works by doing x"
   - fix rows csv format
-  - add pattern replacement function handling of pos tags
-  - based on processing order, isolate which patterns would be identified as other objects first
-  - add support for structural object keywords in find & replace patterns functions
-  - add variable accretion patterns (how an object becomes influenced by a new variable)
-  - all find functions need to support params:
-    - pattern, matches_lines, row_index, all_vars
-      1. pattern & subsets matching pattern
-        - pattern = 'x of y'
-        - lines = 'dog of cat', 'cat of dog' 
-      2. no pattern passed in, just lines array
-        - pattern = None
-        - lines = ['find the objects in this sentence']
-  - add support for numerical var names in get_nested_patterns
-  - implement a find_repeated_patterns function that aggregateds repeated pos/type/abstract patterns across a article/line set
+
+  pattern processing order:
+    - make sure youve changed 'modifier1' to 'VB1 NN1', 'VB1 VB2' etc 
+      while iterating through modifier patterns before submitting a call to find_patterns so you can just use 'ALL' pos tag checks
+    - once you replace some patterns, youll have new phrases & conditions, so do apply_pattern_map before your other parsing
+    - 'has effect' => 'have induce' with current synonym replacements, 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
+        - 'by' can indicate a process/mechanism "it works by doing x"
+    - based on processing order, isolate which patterns would be identified as other objects first
+    - add variable accretion patterns (how an object becomes influenced by a new variable)
+  - add phrase, modifier, synonym, function, type pattern generating functions after get_types(), add_components() and add_functions()
+  - implement a find_patterns function that aggregates repeated pos/type/abstract patterns across a article/line set
   - organize: find 'modifiers', 'phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships', then rearrange_sentence
   - once you apply find_relationships, create another relationships array, which is the same but has the original semantic verb ("disable" rather than operator synonym "decrease")
       - then add identification functions:
@@ -114,10 +93,6 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
         - functions (verbs like 'ionizing', 'activate')
           - function inputs/outputs (subject_noun/predicate_noun)
         - types (['structure', 'life form', 'organic molecule'] from 'protein')
-    - add abstract pattern match & replacement function after get_types(), add_components() and add_functions()
-          Cytotoxicity in cancer cells => <component object>-toxicity
-          anti-tumor => anti-<component object of illness>
-          suppress/interfere/inhibit activity of carcinog/canc/tumz => suppress/interfere/inhibit activity of drug/medication/enzyme
   - where theres overlap between categories, you need a ranking to select the correct type in functions using get_pos_tags()
       - implement ordered pos-tagging preferences by iterating through pos_tags with a list of keys
       - show preference for verbs in ambiguous cases like "associate" should return a verb even though it can be a noun
@@ -131,18 +106,13 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
   - make all_vars global variable & remove from params
   - write function to get semantic props of compounds (bio-availability, activation in the host species, etc)
   - make sources query specific - symptom queries should pull from drugs/rxlist/forums/wiki
-  - add keyword check function in get_object function using all_vars['keywords'] map & type check function
-  - add metadata check to make sure they requested this data
+  - add metadata checks to make sure they requested data being matched/found
   - add read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
 
-
 ## Synonyms
-
-  - add phrase parsing to synonym identification (match "a b" rather than just "a" or "b") for call in replace_syns
   - analyze synonyms to make sure theyre mostly unique
-  - check the definitions functionality supported by tools youre using to see if you can derive common standardized words from those without relying on synonyms map
   - convert all synonym/match/similarity checks to call to matches function with synonym param
-  - use definitions as a data source for relationships & synonyms if none are found 
+  - use definitions as a data source for relationships if none are found 
 
 ## Relationships
 

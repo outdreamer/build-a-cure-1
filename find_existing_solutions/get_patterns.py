@@ -4,7 +4,7 @@ lemmatizer = WordNetLemmatizer()
 from nltk.stem import SnowballStemmer
 stemmer = SnowballStemmer("english")
 from get_pos import get_nltk_pos
-from get_vars import get_all_versions, find_delimiter
+from get_vars import get_all_versions, find_delimiter, generate_patterns_for_pattern
 
 def get_patterns_between_objects(objects, object_type, all_vars):
     '''
@@ -112,7 +112,11 @@ def apply_pattern_map(line, pattern_map, all_vars):
                     line = new_line # return new_line if not iterating through all patterns in map
     return line
 
-def find_patterns(line, pattern_key, all_vars):
+def find_patterns(lines, all_vars):
+    ''' to do: this is to cluster repeated patterns in a lines list '''
+    return lines
+
+def match_patterns(line, pattern_key, all_vars):
     '''
     if line is a sequence, get patterns between objects in the list,
     rather than patterns in a line
