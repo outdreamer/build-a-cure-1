@@ -127,6 +127,11 @@ def get_pattern_config(all_vars):
             'x is an item in list b': 'x is in list b'
         }
     }
+    all_vars['pattern_maps'] = {
+        'passive_to_active': {
+            'the N1 VBD VBN IN the N2': 'the N2 VBZ the N1'
+        }
+    }
     all_vars['supported_pattern_variables'] = ['N', 'V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
     all_vars['pattern_vars'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P', 'modifiers', 'clauses', 'phrases', 'noun_phrases', 'verb_phrases']
     ''' to do: add full_params objects to pattern_vars & standardize to singular keys '''

@@ -90,49 +90,18 @@ def index_as_functions(line):
     '''
     return line
 
-def find_patterns(source_input, pattern_key, all_vars):
-    '''
-    if source_input is a list, get patterns between objects in the list,
-    rather than patterns in a string source_input
-    '''
-    ''' a = {'pattern': 'source_words'} '''
-    found_patterns = {}
-    if type(source_input) == list or type(source_input) == set:
-        found_patterns = get_patterns_between_objects(source_input)
-    else:
-        if pattern_key in all_vars['pattern_vars']:
-            combined_key = ''.join(['patterns_', pattern_key])
-            for pattern in all_vars['pattern_index'][pattern_key]:
-                all_patterns = [pattern]
-                for variable in all_vars['pattern_vars']:
-                    if variable in pattern:
-                        generated_patterns = generate_patterns_for_keyword_pattern(pattern, variable, all_vars)
-                        if generated_patterns:
-                            all_patterns.extend(generated_patterns)
-                for ap in all_patterns:
-                    found_subsets = get_pattern_source_subsets(source_input, pos_line, ap, 'pattern', all_vars)
-                    if found_subsets:
-                        if combined_key not in found_patterns:
-                            found_patterns[combined_key] = {}
-                        found_patterns[combined_key][pattern] = found_subsets
-    if found_patterns:
-        return found_patterns
-    return False
-
 def get_partial_pos(pattern, all_vars):
-    pattern = convert_words_to_pos(pattern, all_vars)
+    pattern = convert_words_to_pos(pattern, None, all_vars)
     pattern_words = pattern.split(' ')
     new_pattern_words = []
-    for pos_key in all_vars['supported_pattern_variables']:
-        for w in pattern_words:
-            ''' to do: this shouldnt be necessary '''
-            #nonnumeric_var = ''.join([x for x in w if x in all_vars['alphabet']])
-            #if nonnumeric_var in all_vars['supported_pattern_variables']:                
-            #''' JJ found in all_vars['supported_pattern_variables'] '''
-            if pos_key in all_vars['supported_pattern_variables']:
-                new_pattern_words.append(pos_key)
-            else:
-                new_pattern_words.append(w)
+    for w in pattern_words:
+        nonnumeric_var = get_nonnumeric(w, all_vars)
+        if nonnumeric_var in all_vars['pos_tags']['ALL']:
+            for pos_key in ['V', 'N', 'D', 'P', 'C', 'ADV', 'ADJ']:
+                if nonnumeric_var in all_vars['pos_tags'][pos_key] or nonnumeric_var == pos_key:
+                    new_pattern_words.append(pos_key)
+        else:
+            new_pattern_words.append(w)
     if len(new_pattern_words) > 0:
         return ' '.join(new_pattern_words)
     return pattern
@@ -152,207 +121,221 @@ def apply_pattern_map(line, pattern_map, all_vars):
     '''
 
     original_line = line
-    pos_line = convert_words_to_pos(line, all_vars)
-    pattern_map = add_indexes_to_repeated_words(pattern_map)
-    reverse_keys = reversed(sorted(pattern_map.keys())) # to do: this should already be done in get_vars
+    pattern_map = add_repeated_indexes_to_pattern_map(pattern_map, all_vars)
+    reverse_keys = reversed(sorted(pattern_map.keys()))
     for source_pattern in reverse_keys:
+        pos_line = convert_words_to_pos(line, source_pattern, all_vars)
         target_pattern = pattern_map[source_pattern]
-        new_line, variables, generated_patterns = apply_pattern(pattern_map, source_pattern, target_pattern, line, pos_line, all_vars)
+        new_line, variables, generated_patterns = apply_pattern(source_pattern, target_pattern, line, pos_line, all_vars)
         if new_line:
-            print('new line', new_line)
-            print('vars', variables)
-            print('generated patterns', generated_patterns)
-            ''' to do: decide if you want to iterate or return line after first replaced pattern '''
-            #line = new_line
-            return new_line
+            print('applied pattern to line', new_line)
+            print('sp', source_pattern, 'tp', target_pattern, 'vars', variables)
+            ''' to do: in order to support iterated replacement, you need to make sure your patterns are ordered in the right way '''
+            return new_line #line = new_line
     return line
 
-def apply_pattern(pattern_map, source_pattern, target_pattern, line, pos_line, all_vars):
+def generate_patterns_for_pattern(pattern, line, pos_line, all_vars):
+    patterns = []
     variables = {}
+    nested_patterns, variables = get_nested_patterns(line, pattern, 'pattern', None, all_vars)
+    if nested_patterns:
+        variables = variables if variables else {}
+        for np in nested_patterns:
+            alt_patterns = get_alt_patterns(np, variables, all_vars)
+            alt_patterns = alt_patterns if alt_patterns else [np]
+            patterns.extend(alt_patterns)
+    else:
+        patterns.extend(nested_patterns)
+    if len(patterns) > 0:
+        return patterns, variables
+    return False, False
+
+def generate_patterns_for_pattern_map(source_pattern, target_pattern, line, pos_line, all_vars):
+    variables = {'source': {}, 'target': {}}
     generated_patterns = {'source': [], 'target': []}
-    nested_source_patterns, source_variables = get_nested_patterns(line, source_pattern, 'pattern', None, all_vars)
-    nested_target_patterns, target_variables = get_nested_patterns(line, target_pattern, 'pattern', source_variables, all_vars)
-    print('source_variables', source_variables)
-    print('target_variables', target_variables)
-    ''' get_nested_patterns returns ['VB x D1 D2''] from pattern = 'VB |NN JJ| D1 D2' '''
-    if nested_source_patterns and nested_target_patterns:
+    source_patterns, source_variables = generate_patterns_for_pattern(source_pattern, line, pos_line, all_vars)
+    if source_patterns:
+        generated_patterns['source'].extend(source_patterns)
         variables['source'] = source_variables if source_variables else {}
-        variables['target'] = target_variables if target_variables else {}
-        ''' 
-        get_alt_patterns returns ['VB NN D1 D2', 'VB JJ D1 D2'] 
-        from pattern = 'VB x D1 D2' and variables['x'] = 'NN JJ'
-        # '|NN VB| of |ADV ADJ|': '|ADV ADJ| |NN VB|'
-        '''
-        for nsp in nested_source_patterns:
-            alt_s_patterns = get_alt_patterns(nsp, variables['source'], all_vars)
-            print('nsp', nsp, 'alt_s_patterns', alt_s_patterns)
-            if alt_s_patterns:
-                alt_s_patterns = alt_s_patterns if len(alt_s_patterns) > 0 else [nsp]
-            alt_s_patterns = alt_s_patterns if alt_s_patterns else [nsp]
-            if len(alt_s_patterns) > 0:
-                generated_patterns['source'].extend(alt_s_patterns)
-                for asp in alt_s_patterns:
-                    ''' 
-                    below logic (get target alt patterns & reposition) 
-                    should only be called if get_pattern_source_subsets(asp, line) is True 
-                    '''
-                    found_asp_subsets = get_pattern_source_subsets(line, pos_line, asp, 'pattern', all_vars)
-                    if found_asp_subsets:
-                        print('found asp in source', asp, line)
-                        for ntp in nested_target_patterns:
-                            alt_t_patterns = get_alt_patterns(ntp, variables['target'], all_vars)
-                            print('ntp', ntp, 'alt_t_patterns', alt_t_patterns)
-                            if alt_t_patterns:
-                                alt_t_patterns = alt_t_patterns if len(alt_t_patterns) > 0 else [ntp]
-                            alt_t_patterns = alt_t_patterns if alt_t_patterns else [ntp]
-                            if len(alt_t_patterns) > 0:
-                                generated_patterns['target'].extend(alt_t_patterns)
-                                for atp in alt_t_patterns:
-                                    sub_pattern_map = {'source': asp, 'target': atp}
-                                    applied = reposition(line, sub_pattern_map, all_vars)
-                                    if applied:
-                                        line = applied
-                                        print('line', line, 'asp', asp, 'atp', atp)
-        return line, variables, generated_patterns
+        for sp in source_patterns:
+            ''' only generate target patterns for sp if sp found in line '''
+            found_sp_subsets = get_pattern_source_subsets(line, pos_line, sp, 'pattern', all_vars)
+            print('found source pattern in subset', found_sp_subsets, sp)
+            if found_sp_subsets:
+                target_patterns, target_variables = generate_patterns_for_pattern(target_pattern, line, pos_line, all_vars)
+                if target_patterns:
+                    generated_patterns['target'].extend(target_patterns)
+                    variables['target'] = target_variables if target_variables else {}
+        return generated_patterns, variables
+    return False, False
+
+def apply_pattern(source_pattern, target_pattern, line, pos_line, all_vars):
+    variables = {}
+    all_patterns = {'source': [], 'target': []}
+    generated_patterns, generated_variables = generate_patterns_for_pattern_map(source_pattern, target_pattern, line, pos_line, all_vars)
+    print('generated_patterns', 'source', source_pattern, 'target', target_pattern)
+    print(generated_patterns)
+    if generated_patterns:
+        all_patterns['source'] = generated_patterns['source'] if 'source' in generated_patterns else []
+        all_patterns['target'] = generated_patterns['target'] if 'target' in generated_patterns else []
+        variables = generated_variables if generated_variables else {'source': {}, 'target': {}}
+        for sp in all_patterns['source']:
+            for tp in all_patterns['target']:
+                applied = reposition(line, sp, tp, all_vars)
+                if applied:
+                    line = applied
+        return line, variables, all_patterns
     return False, False, False
 
-def add_indexes_to_repeated_words(pattern_map):
+def find_patterns(line, pattern_key, all_vars):
+    '''
+    if line is a sequence, get patterns between objects in the list,
+    rather than patterns in a line
+    '''
+    found_patterns = {}
+    if type(line) == list or type(line) == set:
+        found_patterns = get_patterns_between_objects(line)
+    else:
+        if pattern_key in all_vars['pattern_index']:
+            combined_key = ''.join([pattern_key, '_patterns'])
+            for pattern in all_vars['pattern_index'][pattern_key]:
+                ''' only want to generate source patterns here, send a flag to not generate target patterns '''
+                generated_patterns, generated_variables = generate_patterns_for_pattern(pattern, line, pos_line, all_vars)
+                if generated_patterns:
+                    for gsp in generated_patterns['source']:
+                        pos_line = convert_words_to_pos(line, gsp, all_vars)
+                        found_subsets = get_pattern_source_subsets(line, pos_line, gsp, 'pattern', all_vars)
+                        if found_subsets:
+                            if combined_key not in found_patterns:
+                                found_patterns[combined_key] = {}
+                            found_patterns[combined_key][gsp] = found_subsets
+    if found_patterns:
+        return found_patterns
+    return False
+
+def add_repeated_indexes_to_pattern_map(pattern_map, all_vars):
     ''' 
         append position integers to repeated words in source & target patterns 
-        if the same count is in the target pattern 
+        if the same count is in the target pattern
+        to do:
+            - implement count comparison if count of indexed word differs in source/target 
     '''
     new_pattern_map = {}
     for source_pattern, target_pattern in pattern_map.items():
-        source_words = source_pattern.split(' ')
-        target_words = target_pattern.split(' ')
-        repeated_index = 0
-        new_source_words = []
-        for i, w in enumerate(source_words):
-            source_count = source_words.count(w)
-            if source_count > 1 and source_count == target_words.count(w):
-                indexed_word = ''.join([w, str(repeated_index)])
-                new_source_words.append(indexed_word)
-                repeated_index += 1
-            else:
-                new_source_words.append(w)
-        if len(new_source_words) > 0:
-            new_source_pattern = ' '.join(new_source_words)
-        repeated_index = 0
-        new_target_words = []
-        for i, w in enumerate(target_words):
-            target_count = target_words.count(w)
-            if target_count > 1 and target_count == source_words.count(w):
-                indexed_word = ''.join([w, str(repeated_index)])
-                new_target_words.append(indexed_word)
-                repeated_index += 1
-            else:
-                new_target_words.append(w)
-        if len(new_target_words) > 0:
-            new_target_pattern = ' '.join(new_target_words)
-            new_pattern_map[new_source_pattern] = new_target_pattern
+        indexed_source_pattern = add_indexes_to_repeated_words(source_pattern, target_pattern, all_vars)
+        indexed_target_pattern = add_indexes_to_repeated_words(target_pattern, source_pattern, all_vars)
+        new_pattern_map[indexed_source_pattern] = indexed_target_pattern
     pattern_map = new_pattern_map if new_pattern_map else pattern_map
     return pattern_map
 
-def reposition(subset, sub_pattern_map, all_vars):
-    ''' subset = "inhibitor of compound"
-        sub_pattern_map = {
-            'source': "x of y",
-            'target': "y x"
-        }
-        sub_pattern_map = {
-            'source': "VBZ of NN",
-            'target': "NN VBG"
-        }
+def add_indexes_to_repeated_words(line, comparison, all_vars):
+    '''
+    line the NN VBD VBN IN the NN IN a RB JJ NN IN CC NN VB CC VBG NN
+    comparison the0 N1 VBD VBN IN the1 N2
+    '''
+    comparison_words = generate_all_var_type_variants(line, comparison, all_vars)
+    ''' comparison_words should now be: ['the', 'N', 'V', 'V', 'IN', 'the', 'N2'] '''
+    new_words = []
+    words = line.split(' ')
+    for i, w in enumerate(words):
+        ''' w = V, V1, VB, VB1, the, the1 '''
+        nonnumeric_w = get_nonnumeric(w, all_vars)
+        if w == nonnumeric_w:
+            is_supported = is_supported_tag(nonnumeric_w, all_vars)
+            if is_supported:
+                ''' V, VB '''
+                new_words.append(''.join([nonnumeric_w, str(i)]))
+            else:
+                ''' the '''
+                new_words.append(''.join([w, str(i)]))
+        elif w != nonnumeric_w:
+            ''' V1, the1 '''
+            new_words.append(w)
+    if len(new_words) > 0:
+        return ' '.join(new_words)
+    return line
+
+def generate_all_var_type_variants(pattern, comparison, all_vars):
+    '''
+        - this function is necessary for pattern maps where the source pos type & target pos type 
+            are a set:subset relationship (V: VBD, V1: VBD2) rather than equivalent (VBD: VBD, VBD1: VBD2)
+            or patterns that have specific source words (the) vs. their target pos type (DT, DT1)
+
+        pattern = 'the0 N1 VBD the1' should produce a list: [
+            'the0 N1 VBD the1', # original pattern
+            'the N VBD the', # numbers removed
+            'the0 N1 V the1', # specific pos_tags converted to general pos_types
+
+            'DT0 N1 VBD DT1', # original pattern with words converted to specific pos_type
+            'DT N VBD DT', # numbers removed
+            'DT0 N1 V DT1', # specific pos_tags converted to general pos_types & words converted to specific pos_type
+
+            'D0 N1 VBD D1', # original pattern with words converted to general pos_type
+            'D N VBD D', # numbers removed
+            'D0 N1 V D1', # specific pos_tags converted to general pos_types & words converted to general pos_type
+        ]
+    '''
+    pattern_list = []
+    #comparison_words = [get_partial_pos(get_nonnumeric(c, all_vars), all_vars) for c in comparison.split(' ')]
+    return pattern_list
+    
+def reposition(subset, source_pattern, target_pattern, all_vars):
+    ''' subset = "inhibitor of compound", source_pattern = "VBZ of NN", target_pattern = "NN VBG"
         output = "compound-inhibitor"
         to do:
         - handle target patterns with more words than source
         - handle other delimiters than space in case your source pattern has no spaces
-
-        this should be identified as positive matches of the modifier pattern 'JJ NN':
-        sub_pattern_map = {'source': "JJ1 NN1 of JJ2 NN2", 'target': "JJ2 NN2 JJ1 NN1"}
-        subset = "catalyzing inhibitor of alkalizing enzyme"
-
-        should we support | char here or embed that query? 
-        - it should already be done with get_alt_patterns so no '|' should still be in the pattern string
+        - syntax delimiters ('|', '&') should be handled in prior processing in get_alt_patterns
     '''
-    ''' need to identify that JJ1 is a variable without removing its identifier 1 '''
-    print('reposition', subset, sub_pattern_map)
+    print('reposition', subset, source_pattern, target_pattern)
     delimiter = find_delimiter(subset, all_vars)
     if delimiter:
         ''' create a position map for source & target '''
-        positions = {'source': {}, 'target': {}}
-        source_words = sub_pattern_map['source'].split(delimiter)
-        target_words = sub_pattern_map['target'].split(delimiter)
-        for position, w in enumerate(sub_pattern_map['source'].split(delimiter)):
-            positions['source'][position] = w
-        for position, w in enumerate(sub_pattern_map['source'].split(delimiter)):
-            target_word = target_words[position] if position < len(target_words) else ''
-            positions['target'][position] = target_word
-        '''
-        positions = {
-            'source': {0: 'x', 1: 'of', 2: 'y'},
-            'target': {0: 'y', 1: '', 2: 'x'}
-        }
-        '''
-        print('positions', positions)
+        new_words = {}
         position_map = {}
+        positions = {'source': {}, 'target': {}}
+        source_words = source_pattern.split(delimiter)
+        target_words = target_pattern.split(delimiter)
+        for position, w in enumerate(source_words):
+            positions['source'][position] = w
+            positions['target'][position] = target_words[position] if position < len(target_words) else ''
+        ''' positions = { 'source': {0: 'x', 1: 'of', 2: 'y'}, 'target': {0: 'y', 1: '', 2: 'x'} } '''
         for source_position, source_word in positions['source'].items():
             for target_position, target_word in positions['target'].items():
-                ''' to do: need to handle more complex cases with multiple matches '''
-                if source_word == target_word:
+                partial_source_pos = get_partial_pos(source_word, all_vars)
+                partial_target_pos = get_partial_pos(target_word, all_vars)
+                if (source_word == target_word) or (partial_source_pos == partial_target_pos):
                     ''' to do: exact word match or (supported_tag) '''
                     position_map[source_position] = target_position
                 else:
                     if source_word in all_vars['pos_tags']['ALL_V'] and target_word in all_vars['pos_tags']['ALL_V']:
                         position_map[source_position] = target_position
-        ''' position_map = {0: 2, 1: '', 2: 0} '''
-        ''' now apply this mapping to the subset '''
-        new_position_dict = {}
-        for source_position, target_position in position_map.items():
-            if source_position in positions['source'] and target_position in positions['target']:
-                new_position_dict[target_position] = positions['source'][source_position]
-        saved_words = subset.split(delimiter)
-        print('saved words', saved_words)
-        print('position map', position_map)
-        new_words = {}
-        for source_position, word in enumerate(saved_words):
-            target_position = None
+        ''' apply position_map to words in subset: position_map = {0: 2, 1: '', 2: 0} '''
+        for source_position, source_word in enumerate(subset.split(delimiter)):
             for sp, tp in position_map.items():
                 if sp == source_position:
-                    target_position = tp
-            if type(target_position) == int:
-                source_var = positions['source'][source_position]
-                target_var = positions['target'][target_position]
-                nonnumeric_source_var = ''.join([x for x in source_var if x.lower() in all_vars['alphabet']])
-                nonnumeric_target_var = ''.join([x for x in target_var if x.lower() in all_vars['alphabet']])
-                source_is_var = True if nonnumeric_source_var in all_vars['pos_tags']['ALL'] or nonnumeric_source_var in all_vars['pos_tags'] else False
-                target_is_var = True if nonnumeric_target_var in all_vars['pos_tags']['ALL'] or nonnumeric_target_var in all_vars['pos_tags'] else False
-                print('source word', word, 'source var', source_var, 'target var', target_var, 'source position', source_position, 'target position', target_position)
-                if source_is_var and target_is_var:
-                    ''' this is a variable '''
-                    if source_var != target_var:                           
-                        ''' transform the original subset word from pos=source_var to pos=target_var like VBN => VBZ '''
-                        conjugated_word = conjugate(word, source_var, target_var, all_vars) # word, source_pos, target_pos
-                        if conjugated_word:
-                            new_words[target_position] = conjugated_word
+                    source_var = positions['source'][sp]
+                    target_var = positions['target'][tp]
+                    nonnumeric_source_var = get_nonnumeric(source_var, all_vars)
+                    nonnumeric_target_var = get_nonnumeric(target_var, all_vars)
+                    source_is_var = is_supported_tag(nonnumeric_source_var, all_vars)
+                    target_is_var = is_supported_tag(nonnumeric_target_var, all_vars)
+                    if source_is_var and target_is_var:
+                        ''' variable: conjugate if different, add if equal '''
+                        if source_var != target_var:
+                            conjugated_word = conjugate(source_word, source_var, target_var, all_vars)
+                            if conjugated_word:
+                                new_words[tp] = conjugated_word
+                        else:
+                            new_words[tp] = source_word
                     else:
-                        ''' theres no verb variable transformation necessary, so just add the original word for this position '''
-                        new_words[target_position] = word
-                else:
-                    ''' this is a word '''
-                    if source_var == word or nonnumeric_source_var == word:
-                        ''' 
-                            exclude positional but non-content word matches like 'x' => 'the' 
-                            but include indexed word matches like 'the' => 'the0' 
-                        '''
-                        new_words[target_position] = word
+                        ''' not a variable: include index matches ('the': 'the0') but not positional/non-content matches ('x': 'the') '''
+                        if source_var == source_word or nonnumeric_source_var == source_word:
+                            new_words[tp] = source_word
         if new_words:
-            new_items = []
-            for k in sorted(new_words.keys()):
-                new_items.append(new_words[k])
+            new_items = [new_words[k] for k in sorted(new_words.keys()) if k in new_words]
             if len(new_items) > 0:
-                new_line = delimiter.join(new_items)
-                return new_line
+                return delimiter.join(new_items)
     return False
 
 def get_pattern_source_subsets(line, pos_line, pattern, get_type, all_vars):
@@ -361,15 +344,19 @@ def get_pattern_source_subsets(line, pos_line, pattern, get_type, all_vars):
         support numerical variables by checking non-numeric pattern for match with pos_line 
         to do: this prevents users from configuring patterns with numbers like 14alpha-deoxy-enzyme
     '''
+    print('get pattern subsets for line', line)
+    print('pos line', pos_line)
+    print('pattern', pattern)
     subsets = []
     delimiter = find_delimiter(line, all_vars)
-    delimiter = delimiter if len(delimiter) > 0 else ' '
-    pos_pattern = convert_words_to_pos(pattern, all_vars)
+    pos_pattern = convert_words_to_pos(pattern, None, all_vars)
+    print('pos pattern', pos_pattern)
     if delimiter:
         pattern_without_numbers = []
         for word in pos_pattern.split(delimiter):
-            nonnumeric_word = ''.join([w for w in word if w not in '0123456789']) 
-            if nonnumeric_word in all_vars['pos_tags']['ALL']:
+            nonnumeric_word = get_nonnumeric(word, all_vars)
+            is_supported = is_supported_tag(nonnumeric_word, all_vars)
+            if is_supported:
                 pattern_without_numbers.append(nonnumeric_word)
             else:
                 pattern_without_numbers.append(word)
@@ -464,7 +451,9 @@ def get_nested_patterns(line, pattern, pattern_type, source_vars, all_vars):
                 ''' make sure only sub-patterns with pos_tags are logged as a variable '''
                 is_tag_section = False
                 for var in words:
-                    if var in all_vars['pos_tags']['ALL'] or var in all_vars['pos_tags']:
+                    nonnumeric_var = get_nonnumeric(var, all_vars)
+                    is_supported = is_supported_tag(nonnumeric_var, all_vars)
+                    if is_supported:
                         is_tag_section = True
                 if is_tag_section:
                     var_value = ' '.join(words)
@@ -619,24 +608,63 @@ def get_pattern_stack(pattern_stack):
     '''
     return pattern_stack
 
-def convert_words_to_pos(line, all_vars):
+def convert_words_to_pos(line, pattern, all_vars):
+    ''' 
+    when running function to get pos_line, 
+    check each word if its an indexed word appearing in nonnumeric source_pattern words
+    if so, leave it as-is
+
+    pos line the NN VBD VBN IN the NN IN a RB JJ NN IN CC NN VB CC VBG NN
+    pattern the0 N1 VBD VBN IN the1 N2
+    pos pattern the0 N1 VBD VBN IN the1 N2
+
+    to do:
+        - add support for mapping a source var like V1 to a target var like VB1
+        - words like 'bear', 'worm', 'rat' will be logged as a verb even when preceded by determiner
+        - add pattern_map word_pos entries to convert words to the correct pos: 
+            'DT V1 V2 V3' => 'DT N V1 V2' if V1 can be a noun
+    ''' 
     new_line = []
-    processing_line = line
     delimiters = ['|', '__', '&']
-    for word in processing_line.split(' '):
+    line = add_indexes_to_repeated_words(line, pattern, all_vars)   
+    nonnumeric_source_words = []    
+    if pattern:
+        nonnumeric_source_words = [get_nonnumeric(sw, all_vars) for sw in pattern.split(' ')]
+    for word in line.split(' '):
         for d in delimiters:
-            processing_word = word.replace(d, '')
-        if word in all_vars['pos_tags']['ALL'] or word in all_vars['pos_tags']:
-            ''' add tags (N, VB, NN, VBZ, etc) unchanged if found '''
+            word = word.replace(d, '')
+        if word in nonnumeric_source_words:
             new_line.append(word)
         else:
-            pos = get_nltk_pos(word, all_vars)
-            if pos in all_vars['pos_tags']['ALL']:
-                new_line.append(pos)
-            else:
+            nonnumeric_w = get_nonnumeric(word, all_vars)
+            is_supported = is_supported_tag(nonnumeric_w, all_vars)
+            if is_supported:
+                ''' add tags (N, VB, NN, VBZ, etc) unchanged if found '''
                 new_line.append(word)
+            else:
+                if nonnumeric_w != word:
+                    ''' this is an indexed word like 'the1', add as-is '''
+                    new_line.append(word)
+                else:
+                    pos = get_nltk_pos(word, all_vars)
+                    is_supported = is_supported_tag(pos, all_vars)
+                    if is_supported:
+                        new_line.append(pos)
+                    else:
+                        new_line.append(word)
     line = ' '.join(new_line)
     return line
+
+def is_supported_tag(var, all_vars):
+    if var in all_vars['pos_tags']['ALL'] or var in all_vars['pos_tags']:
+        return True
+    return False
+
+def get_nonnumeric(var, all_vars):
+    nonnumeric_var = ''.join([x for x in var if x.lower() in all_vars['alphabet']])
+    if len(nonnumeric_var) > 0:
+        return nonnumeric_var
+    return var
 
 def find_delimiter(line, all_vars):
     delimiters = [c for c in line if c.lower() not in all_vars['alphabet']] 
@@ -666,38 +694,45 @@ def get_new_key(key_dict, source_line, all_vars):
 
 def conjugate(word, source_pos, target_pos, all_vars):
     ''' convert word from source_pos to target_pos '''
-    if source_pos in all_vars['pos_tags']['V'] and target_pos in all_vars['pos_tags']['V']:
-        equivalent = ['VB', 'VBD'] # 'VBG', 'VBN', 'VBP', 'VBZ'
-        '''
-            VB: Verb, base form - ask is do have 
-                VBP: Verb, non-3rd person singular present - ask is do have
-                VBZ: Verb, 3rd person singular present - asks is does has
-                VBG: Verb, gerund or present participle - asking, being, doing, having
-            VBD: Verb, past tense - asked, was/were, did, had
-            VBN: Verb, past participle - asked, used, been, done, had
-        '''
-        case_maps = {
-            'be': {'VB': 'is', 'VBD': 'was', 'VBG': 'is', 'VBN': 'been', 'VBP': 'is', 'VBZ': 'is'},
-            'do': {'VB': 'do', 'VBD': 'did', 'VBG': 'doing', 'VBN': 'done', 'VBP': 'do', 'VBZ': 'does'},
-            'have': {'VB': 'have', 'VBD': 'had', 'VBG': 'having', 'VBN': 'had', 'VBP': 'have', 'VBZ': 'has'}
-        }
-        infinitive = lemmatizer.lemmatize(word, 'v')
-        stem = stemmer.stem(infinitive)
-        if infinitive in case_maps:
-            return case_maps[infinitive][target_pos]
-        if target_pos == 'VB' or target_pos == 'VBZ':
-            return infinitive
-        target_endings = {
-            'VB': '',
-            'VBP': '',
-            'VBZ': 's',
-            'VBG': 'ing',
-            'VBD': 'ed',
-            'VBN': 'ed'
-        }
-        ''' to do: remove trailing e/s if applicable '''
-        if source_pos in all_vars['pos_tags']['ALL'] and target_pos in all_vars['pos_tags']['ALL']:
-            if source_pos != target_pos:
+    target_endings = {
+        'VB': '',
+        'VBP': '',
+        'VBZ': 's',
+        'VBG': 'ing',
+        'VBD': 'ed',
+        'VBN': 'ed'
+    }
+    case_maps = {
+        'be': {'VB': 'is', 'VBD': 'was', 'VBG': 'is', 'VBN': 'been', 'VBP': 'is', 'VBZ': 'is'},
+        'do': {'VB': 'do', 'VBD': 'did', 'VBG': 'doing', 'VBN': 'done', 'VBP': 'do', 'VBZ': 'does'},
+        'have': {'VB': 'have', 'VBD': 'had', 'VBG': 'having', 'VBN': 'had', 'VBP': 'have', 'VBZ': 'has'}
+    }
+    nonnumeric_s_pos = get_nonnumeric(source_pos)
+    nonnumeric_t_pos = get_nonnumeric(target_pos)
+    if nonnumeric_s_pos != nonnumeric_t_pos:
+        is_source_supported = is_supported_tag(nonnumeric_s_pos, all_vars)
+        is_target_supported = is_supported_tag(nonnumeric_t_pos, all_vars)
+        if is_source_supported and is_target_supported:
+            if (
+                (nonnumeric_s_pos == 'V' or nonnumeric_s_pos in all_vars['pos_tags']['V']) and 
+                (nonnumeric_t_pos == 'V' or nonnumeric_t_pos in all_vars['pos_tags']['V'])
+            ):
+                equivalent = ['VB', 'VBP'] # 'VBG', 'VBN', 'VBD', 'VBZ'
+                '''
+                    VB: Verb, base form - ask is do have 
+                        VBP: Verb, non-3rd person singular present - ask is do have
+                        VBZ: Verb, 3rd person singular present - asks is does has
+                        VBG: Verb, gerund or present participle - asking, being, doing, having
+                    VBD: Verb, past tense - asked, was/were, did, had
+                    VBN: Verb, past participle - asked, used, been, done, had
+                '''
+                infinitive = lemmatizer.lemmatize(word, 'v')
+                stem = stemmer.stem(infinitive)
+                if infinitive in case_maps:
+                    return case_maps[infinitive][target_pos]
+                if target_pos == 'VB' or target_pos == 'VBZ':
+                    return infinitive
+                ''' to do: remove trailing e/s if applicable '''            
                 new_word = ''.join([stem, target_endings[target_pos]])
                 return new_word
     return False
