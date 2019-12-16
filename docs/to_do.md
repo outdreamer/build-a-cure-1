@@ -83,9 +83,9 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
         - 'by' can indicate a process/mechanism "it works by doing x"
     - based on processing order, isolate which patterns would be identified as other objects first
     - add variable accretion patterns (how an object becomes influenced by a new variable)
-  - add phrase, modifier, synonym, function, type pattern generating functions after get_types(), add_components() and add_functions()
+  - add synonym, function, type pattern generating functions after get_types(), add_components() and add_functions()
   - implement a find_patterns function that aggregates repeated pos/type/abstract patterns across a article/line set
-  - organize: find 'modifiers', 'phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships', then rearrange_sentence
+  - organize: find 'modifiers', 'phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships', then rearrange_sentence in get_structural_metadata
   - once you apply find_relationships, create another relationships array, which is the same but has the original semantic verb ("disable" rather than operator synonym "decrease")
       - then add identification functions:
         - objects (agent nouns like 'protein')

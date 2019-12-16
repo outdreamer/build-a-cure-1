@@ -253,9 +253,9 @@ def apply_find_function(object_type, pattern, matches, index, all_vars):
 
 def get_structural_metadata(row, all_vars):
     '''
-        organize: 
-            'ngrams', 'modifiers', 'phrases', 'noun_phrases', 'verb_phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships'
-        then rearrange_sentence
+        1. 'ngrams', 'modifiers', 'phrases', 'noun_phrases', 'verb_phrases', 'clauses', 'subjects', 'patterns',
+        2. order_and_convert_clauses
+        3. 'relationships'
     '''
     keep_ratios = ['extra', 'high', 'none']
     line = row['line'] if 'line' in row and type(row) == dict else row # can be a row index dict or a definition line
@@ -303,7 +303,7 @@ def get_structural_metadata(row, all_vars):
         ngram_list = [v for k, v in ngrams.items()]
         ngram_list.append(word_pos_line)
         use_ngram_keys = ['modifiers', 'verb_phrases', 'noun_phrases', 'phrases']
-        structure_types = ['modifiers', 'verb_phrases', 'noun_phrases', 'phrases', 'subjects', 'clauses', 'relationships']
+        structure_types = ['modifiers', 'verb_phrases', 'noun_phrases', 'phrases', 'subjects', 'clauses']
         for i, key in enumerate(structure_types):
             objects, patterns = extract_objects_and_patterns_from_index(row, None, key, key, all_vars)
             if objects:
@@ -318,7 +318,13 @@ def get_structural_metadata(row, all_vars):
     extra_patterns = find_patterns(row['line'], all_vars)
     if extra_patterns:
         row['patterns'] = row['patterns'].union(set(extra_patterns))
-    row = rearrange_sentence(row, line, all_vars)
+    row = order_and_convert_clauses(row, line, all_vars)
+    objects, patterns = extract_objects_and_patterns_from_index(row, None, 'relationships', 'relationships', all_vars)
+    if objects:
+        if 'relationships' in objects:
+            row['relationships'] = row['relationships'].union(set(objects['relationships']))
+        if patterns:
+            row['patterns'] = row['patterns'].union(set(patterns))
     return row
 
 def get_ngrams(line, all_vars):

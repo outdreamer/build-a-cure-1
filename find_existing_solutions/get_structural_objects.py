@@ -4,8 +4,20 @@ from get_synonyms import *
 from get_objects import *
 from get_vars import get_new_key
 
-def find_relationships(pattern, lines, row, all_vars):
+def find_relationships(row, all_vars):
+
     '''
+        now you can generate the relationships based on operator logic stored in our row['clauses']: 
+            '(x = y) # a': [
+            '(x = y) # a',
+            '(x = y) # a',
+            'a (x = y) # a'
+        ]
+        get_relationships('(x = y) # a') = [
+            'x is y',
+            'x is y even with a',
+            'a cannot prevent (x is y)'
+        ]
         - this is a generative function, applying each subject to each verb & each clause 
             to generate the full set of relationships in the sentence
         - this function is to catch all the meaning in clauses like: 
