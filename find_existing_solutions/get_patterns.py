@@ -1,3 +1,4 @@
+import itertools
 from nltk.stem.wordnet import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
 from nltk.stem import SnowballStemmer
@@ -118,47 +119,6 @@ def find_patterns(source_input, pattern_key, all_vars):
         return found_patterns
     return False
 
-def apply_pattern_map(line, pattern_map, all_vars):
-    ''' 
-    this replaces a pattern with its associated pattern found in the line using variables 
-    apply_pattern_map(line='dog of cat', pattern_map = {'noun1 of noun2' => 'noun2 noun1'})
-        would output: 'cat dog'
-    output: the line with replaced values of the pattern_map, if the pattern keys are found in the line
-    '''
-    ''' dont use sets in pattern recognition, use lines to preserve order '''
-    # for object_type in ['word', 'modifier', 'phrase']:
-    variables = {}
-    nested_patterns = {}
-    pos_line = convert_words_to_pos(line, all_vars)
-    reverse_keys = reversed(sorted(pattern_map.keys())) # to do: this should already be done in get_vars
-    for source_pattern in reverse_keys:
-        ''' to do: add partial patterns to get_nested_patterns '''
-        target_pattern = pattern_map[source_pattern]
-        all_patterns = [source_pattern, target_pattern]
-        nested_source_patterns, source_variables = get_nested_patterns(line, source_pattern, 'pattern', all_vars)
-        nested_target_patterns, target_variables = get_nested_patterns(line, target_pattern, 'pattern', all_vars)
-        variables['source'] = source_variables if source_variables else {}
-        variables['target'] = target_variables if target_variables else {}
-        nested_patterns['source'] = nested_source_patterns if nested_source_patterns else {}
-        nested_patterns['target'] = nested_target_patterns if nested_target_patterns else {}
-        print('nested_patterns', nested_patterns)
-        print('vars', variables)
-        all_patterns.extend(nested_patterns['source'])
-        all_patterns.extend(nested_patterns['target'])
-        if nested_source_patterns and nested_target_patterns:
-            if len(nested_patterns['source']) > 0 and len(nested_patterns['target']) > 0:
-                ''' returns ['VB NN D1 D2', 'VB JJ D1 D2'] from pattern = 'VB |NN JJ| D1 D2' '''
-                for i, nsp in enumerate(nested_patterns['source']):
-                    if i < len(nested_patterns['target']):
-                        ntp = nested_patterns['target'][i]
-                        sub_pattern_map = {'source': nsp, 'target': ntp}
-                        applied = reposition(line, sub_pattern_map, all_vars)
-                        print('applied', applied)
-                        if applied:
-                            line = applied
-        print('line', line)
-    return line
-
 def get_partial_pos(pattern, all_vars):
     pattern = convert_words_to_pos(pattern, all_vars)
     pattern_words = pattern.split(' ')
@@ -176,6 +136,122 @@ def get_partial_pos(pattern, all_vars):
     if len(new_pattern_words) > 0:
         return ' '.join(new_pattern_words)
     return pattern
+
+def apply_pattern_map(line, pattern_map, all_vars):
+    ''' 
+    - this replaces a pattern with its associated pattern found in the line using variables 
+        apply_pattern_map(line='dog of cat', pattern_map = {'noun1 of noun2' => 'noun2 noun1'}) = 'cat dog'
+    to do:
+        - add partial patterns to get_nested_patterns
+        - make sure youre generating all patterns for both source & target pattern sets
+        - make a sub function to apply one pattern at a time & retain a copy of the original line
+        - for object_type in ['word', 'modifier', 'phrase'] - these should already be replaced with option sets of each type pattern 
+        - modifier1 should be replaced with each modifier pattern + 1 and used to generate a new pattern containing each modifier pattern
+        - when the source pattern is 'VBD VBN' and the target is 'VBZ' you need to isolate the 'VBN' which is the more meaningful verb
+            currently its getting overridden by the consecutive verb which also matches the 'V' type but need a more robust way
+    '''
+
+    original_line = line
+    pos_line = convert_words_to_pos(line, all_vars)
+    pattern_map = add_indexes_to_repeated_words(pattern_map)
+    reverse_keys = reversed(sorted(pattern_map.keys())) # to do: this should already be done in get_vars
+    for source_pattern in reverse_keys:
+        target_pattern = pattern_map[source_pattern]
+        new_line, variables, generated_patterns = apply_pattern(pattern_map, source_pattern, target_pattern, line, pos_line, all_vars)
+        if new_line:
+            print('new line', new_line)
+            print('vars', variables)
+            print('generated patterns', generated_patterns)
+            ''' to do: decide if you want to iterate or return line after first replaced pattern '''
+            #line = new_line
+            return new_line
+    return line
+
+def apply_pattern(pattern_map, source_pattern, target_pattern, line, pos_line, all_vars):
+    variables = {}
+    generated_patterns = {'source': [], 'target': []}
+    nested_source_patterns, source_variables = get_nested_patterns(line, source_pattern, 'pattern', None, all_vars)
+    nested_target_patterns, target_variables = get_nested_patterns(line, target_pattern, 'pattern', source_variables, all_vars)
+    print('source_variables', source_variables)
+    print('target_variables', target_variables)
+    ''' get_nested_patterns returns ['VB x D1 D2''] from pattern = 'VB |NN JJ| D1 D2' '''
+    if nested_source_patterns and nested_target_patterns:
+        variables['source'] = source_variables if source_variables else {}
+        variables['target'] = target_variables if target_variables else {}
+        ''' 
+        get_alt_patterns returns ['VB NN D1 D2', 'VB JJ D1 D2'] 
+        from pattern = 'VB x D1 D2' and variables['x'] = 'NN JJ'
+        # '|NN VB| of |ADV ADJ|': '|ADV ADJ| |NN VB|'
+        '''
+        for nsp in nested_source_patterns:
+            alt_s_patterns = get_alt_patterns(nsp, variables['source'], all_vars)
+            print('nsp', nsp, 'alt_s_patterns', alt_s_patterns)
+            if alt_s_patterns:
+                alt_s_patterns = alt_s_patterns if len(alt_s_patterns) > 0 else [nsp]
+            alt_s_patterns = alt_s_patterns if alt_s_patterns else [nsp]
+            if len(alt_s_patterns) > 0:
+                generated_patterns['source'].extend(alt_s_patterns)
+                for asp in alt_s_patterns:
+                    ''' 
+                    below logic (get target alt patterns & reposition) 
+                    should only be called if get_pattern_source_subsets(asp, line) is True 
+                    '''
+                    found_asp_subsets = get_pattern_source_subsets(line, pos_line, asp, 'pattern', all_vars)
+                    if found_asp_subsets:
+                        print('found asp in source', asp, line)
+                        for ntp in nested_target_patterns:
+                            alt_t_patterns = get_alt_patterns(ntp, variables['target'], all_vars)
+                            print('ntp', ntp, 'alt_t_patterns', alt_t_patterns)
+                            if alt_t_patterns:
+                                alt_t_patterns = alt_t_patterns if len(alt_t_patterns) > 0 else [ntp]
+                            alt_t_patterns = alt_t_patterns if alt_t_patterns else [ntp]
+                            if len(alt_t_patterns) > 0:
+                                generated_patterns['target'].extend(alt_t_patterns)
+                                for atp in alt_t_patterns:
+                                    sub_pattern_map = {'source': asp, 'target': atp}
+                                    applied = reposition(line, sub_pattern_map, all_vars)
+                                    if applied:
+                                        line = applied
+                                        print('line', line, 'asp', asp, 'atp', atp)
+        return line, variables, generated_patterns
+    return False, False, False
+
+def add_indexes_to_repeated_words(pattern_map):
+    ''' 
+        append position integers to repeated words in source & target patterns 
+        if the same count is in the target pattern 
+    '''
+    new_pattern_map = {}
+    for source_pattern, target_pattern in pattern_map.items():
+        source_words = source_pattern.split(' ')
+        target_words = target_pattern.split(' ')
+        repeated_index = 0
+        new_source_words = []
+        for i, w in enumerate(source_words):
+            source_count = source_words.count(w)
+            if source_count > 1 and source_count == target_words.count(w):
+                indexed_word = ''.join([w, str(repeated_index)])
+                new_source_words.append(indexed_word)
+                repeated_index += 1
+            else:
+                new_source_words.append(w)
+        if len(new_source_words) > 0:
+            new_source_pattern = ' '.join(new_source_words)
+        repeated_index = 0
+        new_target_words = []
+        for i, w in enumerate(target_words):
+            target_count = target_words.count(w)
+            if target_count > 1 and target_count == source_words.count(w):
+                indexed_word = ''.join([w, str(repeated_index)])
+                new_target_words.append(indexed_word)
+                repeated_index += 1
+            else:
+                new_target_words.append(w)
+        if len(new_target_words) > 0:
+            new_target_pattern = ' '.join(new_target_words)
+            new_pattern_map[new_source_pattern] = new_target_pattern
+    pattern_map = new_pattern_map if new_pattern_map else pattern_map
+    return pattern_map
 
 def reposition(subset, sub_pattern_map, all_vars):
     ''' subset = "inhibitor of compound"
@@ -200,6 +276,7 @@ def reposition(subset, sub_pattern_map, all_vars):
         - it should already be done with get_alt_patterns so no '|' should still be in the pattern string
     '''
     ''' need to identify that JJ1 is a variable without removing its identifier 1 '''
+    print('reposition', subset, sub_pattern_map)
     delimiter = find_delimiter(subset, all_vars)
     if delimiter:
         ''' create a position map for source & target '''
@@ -217,11 +294,11 @@ def reposition(subset, sub_pattern_map, all_vars):
             'target': {0: 'y', 1: '', 2: 'x'}
         }
         '''
+        print('positions', positions)
         position_map = {}
         for source_position, source_word in positions['source'].items():
             for target_position, target_word in positions['target'].items():
                 ''' to do: need to handle more complex cases with multiple matches '''
-                print('sw', source_word, 'tw', target_word)
                 if source_word == target_word:
                     ''' to do: exact word match or (supported_tag) '''
                     position_map[source_position] = target_position
@@ -236,47 +313,44 @@ def reposition(subset, sub_pattern_map, all_vars):
                 new_position_dict[target_position] = positions['source'][source_position]
         saved_words = subset.split(delimiter)
         print('saved words', saved_words)
-        print('positions', positions)
         print('position map', position_map)
         new_words = {}
-        for i, word in enumerate(saved_words):
-            if i in position_map:
-                # i is source position
-                for source_position, target_position in position_map.items():
-                    if i == source_position:
-                        print('i', i, source_position)
-                        original_source_word = positions['source'][source_position]
-                        original_target_word = positions['target'][target_position]
-                        source_var = positions['source'][source_position]
-                        target_var = positions['target'][target_position]
-                        print('source position', source_position, 'target position', target_position)
-                        print('source var', source_var, 'target var', target_var)
-                        print('source word', saved_words[source_position])
-                        print('target word', saved_words[target_position])
-                        if source_var != target_var:                           
-                            ''' VBZ != VBG '''
-                            ''' V == V '''
-                            ''' transform the original subset word from type source_word to type target_word '''
-                            ''' VBZ in all_vars['pos_tags']['V'] '''
-                            conjugated_word = conjugate(saved_words[source_position], source_var, target_var, all_vars) # word, source_pos, target_pos
-                            print('conj', conjugated_word)
-                            if conjugated_word:
-                                new_words[target_position] = conjugated_word
-                        else:
-                            if original_target_word in positions['target'].values():
-                                print('target', original_target_word, 'source', original_source_word)
-                                if original_target_word in all_vars['pos_tags']['ALL']:
-                                    new_words[target_position] = saved_words[source_position]
-                                else:
-                                    new_words[target_position] = original_target_word
+        for source_position, word in enumerate(saved_words):
+            target_position = None
+            for sp, tp in position_map.items():
+                if sp == source_position:
+                    target_position = tp
+            if type(target_position) == int:
+                source_var = positions['source'][source_position]
+                target_var = positions['target'][target_position]
+                nonnumeric_source_var = ''.join([x for x in source_var if x.lower() in all_vars['alphabet']])
+                nonnumeric_target_var = ''.join([x for x in target_var if x.lower() in all_vars['alphabet']])
+                source_is_var = True if nonnumeric_source_var in all_vars['pos_tags']['ALL'] or nonnumeric_source_var in all_vars['pos_tags'] else False
+                target_is_var = True if nonnumeric_target_var in all_vars['pos_tags']['ALL'] or nonnumeric_target_var in all_vars['pos_tags'] else False
+                print('source word', word, 'source var', source_var, 'target var', target_var, 'source position', source_position, 'target position', target_position)
+                if source_is_var and target_is_var:
+                    ''' this is a variable '''
+                    if source_var != target_var:                           
+                        ''' transform the original subset word from pos=source_var to pos=target_var like VBN => VBZ '''
+                        conjugated_word = conjugate(word, source_var, target_var, all_vars) # word, source_pos, target_pos
+                        if conjugated_word:
+                            new_words[target_position] = conjugated_word
+                    else:
+                        ''' theres no verb variable transformation necessary, so just add the original word for this position '''
+                        new_words[target_position] = word
+                else:
+                    ''' this is a word '''
+                    if source_var == word or nonnumeric_source_var == word:
+                        ''' 
+                            exclude positional but non-content word matches like 'x' => 'the' 
+                            but include indexed word matches like 'the' => 'the0' 
+                        '''
+                        new_words[target_position] = word
         if new_words:
             new_items = []
             for k in sorted(new_words.keys()):
                 new_items.append(new_words[k])
             if len(new_items) > 0:
-                print('new items', new_items)
-                print('subset', subset)
-                print('pattern map', sub_pattern_map)
                 new_line = delimiter.join(new_items)
                 return new_line
     return False
@@ -360,7 +434,7 @@ def get_original_pattern_length(pattern, delimiter):
         return final_count
     return False
 
-def get_nested_patterns(line, pattern, pattern_type, all_vars):
+def get_nested_patterns(line, pattern, pattern_type, source_vars, all_vars):
     '''
     support for nested alts in patterns like:
      '__|a an|__' and '|VB NN |VB ADV|| VB'
@@ -388,78 +462,64 @@ def get_nested_patterns(line, pattern, pattern_type, all_vars):
                 new_pattern = []
             if i > 0 and (i / 2) != int(i / 2):
                 ''' make sure only sub-patterns with pos_tags are logged as a variable '''
-                new_key = get_new_key(variables.keys(), pattern, all_vars)  
                 is_tag_section = False
                 for var in words:
                     if var in all_vars['pos_tags']['ALL'] or var in all_vars['pos_tags']:
                         is_tag_section = True
                 if is_tag_section:
-                    var = '-_-'.join(words)
-                    new_pattern.append(var)
-                    new_key = get_new_key(variables.keys(), line, all_vars)
-                    variables[new_key] = var
+                    var_value = ' '.join(words)
+                    if source_vars:
+                        if var_value in source_vars.values():
+                            for k, v in source_vars.items():
+                                if v == var_value:
+                                    variables[k] = v
+                                    new_pattern.append(k) # *** var
+                        else:
+                            new_key = get_new_key(variables.keys(), line, all_vars)
+                            variables[new_key] = var_value # *** '-_-'.join(words)
+                            new_pattern.append(new_key) # *** var
+                    else:
+                        new_key = get_new_key(variables.keys(), line, all_vars)
+                        variables[new_key] = var_value # *** '-_-'.join(words)
+                        new_pattern.append(new_key) # *** var
             else:
                 new_pattern.extend(words)
     if len(new_patterns) > 0:
-        final_patterns = []
-        for np in new_patterns:
-            # np = 'x VBD-_-VBD by y'
-            words = np.split(' ')
-            for i, word in enumerate(words):
-                if '-_-' in word:
-                    options = word.split('-_-')
-                    # ['VBD', 'VBD']
-                    for var in options:
-                        final_words = []
-                        for j, w in enumerate(words):
-                            if j != i:
-                                ''' not the same index as this variable set '''
-                                final_words.append(w)
-                                if (j + 1) == len(words):
-                                    final_pattern = ' '.join(final_words)
-                                    if final_pattern not in final_patterns:
-                                        final_patterns.append(final_pattern)
-                            else:
-                                final_words.append(var)
-        return final_patterns, variables
+        return new_patterns, variables
     return [pattern], variables
 
-def get_alt_patterns(source_pattern, nested_variables):
+def get_alt_patterns(pattern, nested_variables, all_vars):
     ''' 
-    this converts a pattern string: 
-        source_pattern = '|JJ1 JJ2| VB'
-    into a list of pattern combinations, given alt options in the source_pattern 
-        all_patterns = ['JJ1 VB', 'JJ2 VB']
+    this functions returns ['VB NN D1 D2', 'VB JJ D1 D2'] 
+    from pattern = 'VB x D1 D2' and nested_variables['x'] = 'NN JJ'
     - alternatives are indicated by options separated by spaces within pairs of '|'
     - optional string are indicated by: __optionalstring__
     - you could also replace 'VB' with 'V' and do a match on those
     '''
-    combination = []
+    pattern = pattern.strip()
     all_patterns = []
-    delimiters = ['|']
-    for d in delimiters:
-        pattern_sets = [i for i in source_pattern.split(d)]
+    delimiter = find_delimiter(pattern, all_vars)
+    if delimiter:
         # you could also create a list of lists & iterate with counters
         # pattern_sets should be a list of pos with alts separated by spaces ['NN VB', 'VB'] or ['NN', 'NP']
-        pattern_length = len(pattern_sets)
-        if nested_variables:
-            '''
-            pattern = '|VB NN x| VB' and variables['x'] = 'VB ADV'
-            pattern = '|VB NN VB&ADV|' means 'VB or NN or VB & ADV'
-            this function needs to support nested patterns, so when iterating, 
-            check for any var chars and if found, iterate through variable values & replace with each value
-            '''
-            pattern_length += sum([len(v.split(' ')) for k, v in nested_variables.items()])
-        new_combination, new_all_patterns = add_sub_patterns(pattern_sets, pattern_length, combination, all_patterns, nested_variables)
-        if new_combination:
-            combination.extend(new_combination)
+        '''
+        pattern = '|VB NN x| VB' and variables['x'] = 'VB ADV'
+        pattern = '|VB NN VB&ADV|' means 'VB or NN or VB & ADV'
+        this function needs to support nested patterns, so when iterating, 
+        check for any var chars and if found, iterate through variable values & replace with each value
+        '''
+        new_all_patterns = add_sub_patterns(pattern.split(delimiter), nested_variables)
         if new_all_patterns:
-            all_patterns.extend(new_all_patterns)
+            if len(new_all_patterns) > 0:
+                for nap in new_all_patterns:
+                    all_patterns.append(nap)
+        if len(all_patterns) > 0:
+            return all_patterns
     # all_patterns should be a list of combined patterns like ['NN VB', 'VB VB'],
     # which is both combinations possible of the set ['NN VB', 'VB']
-    ''' move to add_sub_patterns so vars are supported as well '''
+    ''' move to add_sub_patterns so vars are supported as well
     if all_patterns:
-        ''' now replace optional strings with an empty string and add that pattern '''
+        #now replace optional strings with an empty string and add that pattern
         for pattern in all_patterns:
             all_patterns_with_alts = []
             if '__' in pattern:
@@ -467,7 +527,7 @@ def get_alt_patterns(source_pattern, nested_variables):
                 for item in pattern.split('__'):
                     if ' ' not in item:
                         optional_word = ''.join(['__', item, '__'])
-                        if optional_word in source_pattern:
+                        if optional_word in pattern:
                             new_pattern = new_pattern.replace(optional_word, '')
                 new_pattern = new_pattern.replace('  ', ' ')
                 # add the alternative pattern with optional strings replaced
@@ -475,27 +535,71 @@ def get_alt_patterns(source_pattern, nested_variables):
             all_patterns_with_alts.append(pattern)
         if len(all_patterns_with_alts) > 0:
             return all_patterns_with_alts
+    '''
     return False
 
-def add_sub_patterns(pattern_list, source_length, combination, all_patterns, nested_variables):
+def add_sub_patterns(pattern_list, nested_variables):
     ''' get subsequent patterns since pattern_list[i] was a list
         if set is complete according to len(pattern_list), reset trackers & add to all_patterns
         you can replace these with a variable just like you replaced nested patterns with variables
     '''
-    combination = [] if not combination else combination
-    if len(combination) > 0:
-        if len(combination) == source_length or len(combination) == len(pattern_list):
-            all_patterns.append(' '.join(combination))
-            return combination, all_patterns
-    for pattern_piece in pattern_list:
-        if pattern_piece in nested_variables:
-            pattern_piece = nested_variables[pattern_piece]
-        if ' ' not in pattern_piece:
-            combination.append(pattern_piece)
-        else:
-            ''' this is a set of alts - iterate through it & pick one & combine it with subsequent patterns '''
-            combination, all_patterns = add_sub_patterns(pattern_piece.split(' '), source_length, combination, all_patterns, nested_variables)
-    return combination, all_patterns
+    ''' you could generate a dict of lists with initial vars or indexes as keys 
+        or create sets of variable replacement values and then iterate through pattern_list, 
+        replacing vars with those in order
+    '''
+    all_sub_patterns = []
+    pattern_string = ' '.join(pattern_list)
+    new_pattern_words = []
+    var_sets = []
+    var_set = []
+    variable_lists = {}
+    '''
+    nested_variables = {
+        'x': 'NN ADV RR Q',
+        'y': 'JJ ADJ B' 
+    }
+    '''
+    #positions of x & y = [0, 2]
+    #generate every non-repeating combination of them: [0, 2] and [2, 0]
+    # pattern_list = ['x', 'of', 'y']
+    value_sets = []
+    final_sets = []
+    all_list_strings = []
+    ordered_var_lists = []
+    sorted_keys = sorted(nested_variables.keys())
+    for key in sorted_keys:
+        val_list = nested_variables[key].split(' ')
+        value_sets.extend(val_list)
+        ordered_var_lists.append(val_list)
+    list_length = len(nested_variables.keys())
+    combinations = itertools.combinations(value_sets, list_length)
+    for c in combinations:
+        for i, key in enumerate(sorted_keys):
+            new_list = []
+            for j, item in enumerate(c):
+                if item in ordered_var_lists[j]:
+                    new_list.append(item)
+            if len(new_list) == list_length:
+                new_list_string = ' '.join(new_list)
+                if new_list_string not in all_list_strings:
+                    final_sets.append(new_list)
+                    all_list_strings.append(new_list_string)
+    new_lists = []
+    for varset in final_sets:
+        new_list = []
+        for i, piece in enumerate(pattern_list):
+            if piece in nested_variables:
+                var_index = sorted_keys.index(piece)
+                var_value = varset[var_index]
+                new_list.append(var_value)
+            else:
+                new_list.append(piece)
+        if len(new_list) > 0:
+            new_list_string = ' '.join(new_list)
+            new_lists.append(new_list_string)
+    if len(new_lists) > 0:
+        return new_lists
+    return False
 
 def get_type_patterns(source_pattern):
     ''' to do: implement this after get_types '''
@@ -540,8 +644,8 @@ def find_delimiter(line, all_vars):
         max_delimiter = max(delimiters)
         if max_delimiter:
             return max_delimiter
-    default_delimiter = ' ' if ' ' in line else ''
-    return default_delimiter
+    delimiter = ' ' if ' ' in line else ''
+    return delimiter
 
 def get_new_key(key_dict, source_line, all_vars):
     new_key = None
@@ -573,16 +677,16 @@ def conjugate(word, source_pos, target_pos, all_vars):
             VBN: Verb, past participle - asked, used, been, done, had
         '''
         case_maps = {
-            'be': {'VB': 'is', 'VBD': 'is', 'VBG': 'is', 'VBN': 'being', 'VBP': 'was', 'VBZ': 'been'},
-            'do': {'VB': 'do', 'VBD': 'do', 'VBG': 'does', 'VBN': 'doing', 'VBP': 'did', 'VBZ': 'done'},
-            'have': {'VB': 'have', 'VBD': 'have', 'VBG': 'has', 'VBN': 'having', 'VBP': 'had', 'VBZ': 'had'}
+            'be': {'VB': 'is', 'VBD': 'was', 'VBG': 'is', 'VBN': 'been', 'VBP': 'is', 'VBZ': 'is'},
+            'do': {'VB': 'do', 'VBD': 'did', 'VBG': 'doing', 'VBN': 'done', 'VBP': 'do', 'VBZ': 'does'},
+            'have': {'VB': 'have', 'VBD': 'had', 'VBG': 'having', 'VBN': 'had', 'VBP': 'have', 'VBZ': 'has'}
         }
         infinitive = lemmatizer.lemmatize(word, 'v')
-        if target_pos == 'VB':
-            return infinitive
+        stem = stemmer.stem(infinitive)
         if infinitive in case_maps:
             return case_maps[infinitive][target_pos]
-        stem = stemmer.stem(word)
+        if target_pos == 'VB' or target_pos == 'VBZ':
+            return infinitive
         target_endings = {
             'VB': '',
             'VBP': '',
@@ -591,9 +695,9 @@ def conjugate(word, source_pos, target_pos, all_vars):
             'VBD': 'ed',
             'VBN': 'ed'
         }
+        ''' to do: remove trailing e/s if applicable '''
         if source_pos in all_vars['pos_tags']['ALL'] and target_pos in all_vars['pos_tags']['ALL']:
             if source_pos != target_pos:
                 new_word = ''.join([stem, target_endings[target_pos]])
-                print('conjugate', new_word, source_pos, target_pos)
                 return new_word
     return False

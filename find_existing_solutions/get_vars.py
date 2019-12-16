@@ -114,7 +114,7 @@ def get_pattern_config(all_vars):
             'x of y': 'y x', # to do: add support for new characters in target_pattern like 'y-x'
             'x was VBD by y': 'y VBZ x', # alkalization of x => x alkalizer => alkalizes x
             'x that has y': 'x with y',
-            'ALL_N1 VBD VBN IN ALL_N2': 'ALL_N2 VBN ALL_N1', # x was bitten by y => y bit x
+            'the N1 VBD VBN IN the N2': 'the N2 VBZ the N1', # x was bitten by y => y bit x
             'x VBD VBD IN y': 'y VBN x',
             'x VBD VBN by y': 'y VBN x',
             'x VBZ VBN by y': 'y VBN x',
