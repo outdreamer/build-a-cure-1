@@ -1,5 +1,41 @@
 from utils import *
 
+def find_facts(article, all_vars):
+    '''
+      - function to identify common article intents to identify false info:
+      - confuse
+      - obfuscate (hide info with high volume or randomization)
+      - contradict
+      - deflect
+      - project
+      - distract/attract attention (alter priorities)
+      - question/cast doubt on
+      - evaluate
+      - explain
+      - interpret
+      - understand
+      - appeal to audience
+      - persuade
+      - deny
+      - deliver info type (excuse, opinion, fact, lie, belief, joke, insight)
+      - frame one info type (opinion) as another (fact)
+      - rationalize
+      - defend
+      - attack
+      - derive
+      - explore
+      - trace logical path to conclusion
+      - conclude
+      - entertain
+      - display priority
+      - argue
+      - review/compare
+      - address a point
+      - excuse
+      - educate
+    '''
+    return article
+
 def find_metrics(pattern, lines, row, all_vars):
     '''
     find any metrics in this pattern's matches

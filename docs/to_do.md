@@ -74,53 +74,42 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
   - test with ALL_N vars 
   - add other pattern types to pattern_map
   - fix rows csv format
-
-  pattern processing order:
+  - pattern processing order:
     - make sure youve changed 'modifier1' to 'VB1 NN1', 'VB1 VB2' etc 
       while iterating through modifier patterns before submitting a call to find_patterns so you can just use 'ALL' pos tag checks
     - once you replace some patterns, youll have new phrases & conditions, so do apply_pattern_map before your other parsing
     - 'has effect' => 'have induce' with current synonym replacements, 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
         - 'by' can indicate a process/mechanism "it works by doing x"
     - based on processing order, isolate which patterns would be identified as other objects first
-    - add variable accretion patterns (how an object becomes influenced by a new variable)
-  - add synonym, function, type pattern generating functions after get_types(), add_components() and add_functions()
-  - implement a find_patterns function that aggregates repeated pos/type/abstract patterns across a article/line set
-  - organize: find 'modifiers', 'phrases', 'clauses', 'subjects', 'patterns', 'variables', 'relationships', then rearrange_sentence in get_structural_metadata
-  - once you apply find_relationships, create another relationships array, which is the same but has the original semantic verb ("disable" rather than operator synonym "decrease")
-      - then add identification functions:
-        - objects (agent nouns like 'protein')
-        - properties (attribute nouns like 'toxicity')
-        - functions (verbs like 'ionizing', 'activate')
-          - function inputs/outputs (subject_noun/predicate_noun)
-        - types (['structure', 'life form', 'organic molecule'] from 'protein')
-  - where theres overlap between categories, you need a ranking to select the correct type in functions using get_pos_tags()
-      - implement ordered pos-tagging preferences by iterating through pos_tags with a list of keys
-      - show preference for verbs in ambiguous cases like "associate" should return a verb even though it can be a noun
-        "sodium isolate" => "noun verb" and then it can be identified as a modifier
+  - add calls to find_synonym, find_function, find_type, find_topic in your get_all_versions() pattern generating function
+  - finish order_and_convert_clauses logic
+  - add identification functions:
+      - objects (nouns like 'protein')
+      - components (topical nouns that are found in another topical component, like organelles of a cell)
+      - attributes (attribute metric/feature nouns like 'toxicity')
+      - functions (verbs like 'ionizing', 'activate', inputs/outputs like subject/predicate nouns)
+      - variables (function inputs like subject/modifier nouns)
+      - types (['structure', 'life form', 'organic molecule'] from 'protein')
+  - implement ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos
+      - show preference for verbs in ambiguous cases (associate, bear) should return a verb even though it can be a noun
   - check modifier patterns with pattern_map: 'x is a y alkalizing inhibitor' should be converted to 'x alkalizing-inhibits y'
-  - singularize plural nouns 
-  - use blob.correct() on non-research sources - remove '.,' and other errors or typos 
-  - finish get_topic to filter non-topical nouns, verbs, adverbs & adjectives from all object indexes
-    - add filtering of insights to apply directly to the target condition or mechanisms
-    - add mechanisms of action keywords & patterns to get strategies
+  - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
+    - implement a find_patterns function that aggregates repeated pos/type/abstract patterns across a article/line set
+      - then you can enter patterns for medical find_object functions by scanning articles & applying find_patterns 
+        (same for modifiers, clauses, & phrases so you dont have to configure every pattern manually)
+  - add filtering of insights to apply directly to the topic of the problem space of the target condition or mechanisms
+  - add mechanisms of action keywords & patterns to get strategies
+
+  - add read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
+  - add variable accretion patterns (how an object becomes influenced by a new variable)
+  - analyze synonyms to make sure theyre mostly unique
+  - use definitions as a data source for relationships if none are found 
   - make all_vars global variable & remove from params
+  - singularize plural nouns
+  - use blob.correct() on non-research sources - remove '.,' and other errors or typos 
   - write function to get semantic props of compounds (bio-availability, activation in the host species, etc)
   - make sources query specific - symptom queries should pull from drugs/rxlist/forums/wiki
   - add metadata checks to make sure they requested data being matched/found
-  - add read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
-
-## Synonyms
-  - analyze synonyms to make sure theyre mostly unique
-  - convert all synonym/match/similarity checks to call to matches function with synonym param
-  - use definitions as a data source for relationships if none are found 
-
-## Relationships
-
-  - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
-  - if you finish get_active, rearrange_sentence, remove_unnecessary_words, get_modifier & generate_abstract_patterns, 
-    you can just enter patterns for most medical get_object functions
-  - use clause_map to sort your logic in get_conditionals
-  - build an index of modifiers based on phrase data of words frequently found together
 
 ## Functions
 
@@ -186,7 +175,10 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
   - how it's metabolized, to know whether it could be taken at an effective dose
   - pathogen structure & metadata
 
+
 Conceptual:
+
+- function to identify & remove common article intents with high probability of falsehood to reduce it to just facts
 
 - add intent matching so you can compare treatment relationships with article intents to see if its actually a sentence with a treatment in it
   - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
