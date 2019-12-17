@@ -28,9 +28,11 @@ def get_data_store(index, database, operation, args):
         data_store = {}
         ''' if index or database not passed in, fetch the local db if it exists '''
         args, filters, metadata, generate_target, generate_source = get_args(args, all_vars)
+        if metadata:
+            all_vars['metadata'] = metadata
         if operation == 'build':
             database = get_local_database('data', None) if not database else database
-            data_store, rows = build_indexes(database, metadata, args, filters, all_vars)
+            data_store, rows = build_indexes(database, args, filters, all_vars)
         elif operation == 'get_database':
             data_store = get_local_database('data', None)
         elif operation == 'get_index':
@@ -101,13 +103,13 @@ def add_row(row, index, empty_index, rows):
             rows.append(row)
     return index, rows
 
-def build_indexes(database, metadata, args, filters, all_vars):
+def build_indexes(database, args, filters, all_vars):
     ''' 
     - this function indexes data from api providing articles
     - if the local database is found, use that as starting index, otherwise build it
     '''
     rows = []
-    empty_index = get_empty_index(metadata, all_vars)
+    empty_index = get_empty_index(all_vars)
     index = database if database else empty_index if empty_index else None
     for arg in args:
         for source in all_vars['sources']:
@@ -115,7 +117,7 @@ def build_indexes(database, metadata, args, filters, all_vars):
             if data:
                 for title, article_lines in data.items():
                     for line, word_map in article_lines.items():
-                        row = get_metadata(metadata, line, title, word_map, all_vars)
+                        row = get_metadata(line, title, word_map, all_vars)
                         if row:
                             index, rows = add_row(row, index, empty_index, rows)
     if index and rows:
@@ -137,26 +139,26 @@ def build_indexes(database, metadata, args, filters, all_vars):
         return index, rows
     return False, False
 
-def get_metadata(metadata, line, title, word_map, all_vars):
+def get_metadata(line, title, word_map, all_vars):
     ''' 
     this function initializes the row object & populates it with various metadata types:
         - structural_types to get nouns, verbs, phrases, modifiers, clauses, & relationships
         - medical_types to get conditions, symptoms, & treatments in the sentence 
         - conceptual_types to get types, strategies & insights
     '''
-    row = get_empty_index(metadata, all_vars)                   
+    row = get_empty_index(all_vars)                   
     row['line'] = line
     row['word_map'] = word_map
     row['original_line'] = line
     row = replace_names(row, all_vars)
     row = get_similarity_to_title(title, row)  
     row = get_structural_metadata(row, all_vars)
-    intent = None # find_intents()
-    hypothesis = None # find_hypothesis()
-    row = find_treatments(None, row['line'], row, all_vars)
+    intent = None # find_intents(row, all_vars)
+    hypothesis = None # find_hypothesis(row, all_vars)
+    row = find_treatments(row, all_vars)
     for metadata_type in ['medical_types', 'conceptual_types']:
         for object_type in all_vars[metadata_type]:
-            if object_type in metadata:
+            if object_type in all_vars['metadata']:
                 for search_pattern_key in all_vars['pattern_index']:
                     # check that this data 'strategies', 'treatments' was requested and is supported in pattern_index
                     objects, patterns = extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, all_vars)
@@ -172,6 +174,13 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
     - all of your 'find_object' functions need to support params: pattern, matches, row, all_vars
 
     - this function is for meta-analysis
+
+        1. find any matches from search_pattern_key patterns in index[object_type]/row[object_type] lines
+        2. if pattern matches found in lines, 
+            find objects in matches with type-specific logic from find_<object_type> function
+        3. if no pattern matches found in lines, 
+            find objects in lines with type-specific logic from find_<object_type> function
+
         for an index or row containing types of elements ('condition', 'symptom', 'strategy')
         this function is for finding patterns in those index types in the input (index or row['line'])
 
@@ -185,35 +194,44 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
 
     '''
     if index or row:
-        patterns = {}
-        objects = { object_type: set() }
         lines = [row['line']] if row and 'line' in row else []
+        if not index:
+            index = row
         if index:
             if object_type in index:
                 lines = index[object_type]
-        else:
-            index = row
-        print('index search_pattern_key', search_pattern_key, lines)
-        for line in lines:
-            found_objects_in_patterns, found_patterns = get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, all_vars)
-            if found_objects_in_patterns:
-                objects[object_type] = found_objects_in_patterns
-            if found_patterns:
-                patterns = found_patterns
-            else:
-                ''' 
-                if there are no matches found for object_type patterns, 
-                do a standard object query independent of patterns to apply type-specific logic 
-                '''
-                found_objects = apply_find_function(object_type, None, [line], index, all_vars)
-                if found_objects:
-                    objects[object_type] = found_objects
-        if objects or patterns:
-            print('extracted', objects, patterns)
-            return objects, patterns
+                if len(index[object_type]) > 0:
+                    patterns = {}
+                    objects = { object_type: set() }
+                    print('index search_pattern_key', search_pattern_key)
+                    print('search index lines', index[object_type])
+                    for line in lines:
+                        found_objects_in_patterns, found_patterns = get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, all_vars)
+                        if found_objects_in_patterns:
+                            objects[object_type] = found_objects_in_patterns
+                        if found_patterns:
+                            patterns = found_patterns
+                        else:
+                            ''' 
+                            if there are no matches found for object_type patterns, 
+                            do a standard object query independent of patterns to apply type-specific logic 
+                            '''
+                            found_objects = apply_find_function(object_type, None, [line], index, all_vars)
+                            if found_objects:
+                                objects[object_type] = found_objects
+                    if objects or patterns:
+                        print('extracted', objects, patterns)
+                        return objects, patterns
     return False, False
 
 def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, all_vars):
+    ''' the reason we allow search_pattern_key and object_type to differ is to find subset matches 
+        example: 
+            find 'modifiers' in 'treatment patterns' would have:
+            object_type = 'modifiers' and search_pattern_key = 'treatments'
+        to do:
+            - make a list of subset pattern type relationships
+    '''
     found_objects = set()
     found_patterns = match_patterns(line, search_pattern_key, all_vars)
     if found_patterns and object_type != 'patterns':
@@ -276,7 +294,12 @@ def get_structural_metadata(row, all_vars):
                     row['counts'][count_num] = set()
                 row['counts'][count_num].add(count_val)
             pos = row['word_map'][w] if w in row['word_map'] else ''
-            if pos in all_vars['pos_tags']['ALL_V']:
+            ''' favor nouns before verbs '''
+            if pos in all_vars['pos_tags']['VC']:
+                row['clause_markers'].add(w)
+            if pos in all_vars['pos_tags']['ALL_N'] or w in all_vars['alphabet']:
+                row['nouns'].add(w)
+            elif pos in all_vars['pos_tags']['ALL_V']:
                 row['verbs'].add(w)
             elif pos in all_vars['pos_tags']['D']:
                 ratio = get_determiner_ratio(w)
@@ -287,8 +310,6 @@ def get_structural_metadata(row, all_vars):
                 row['prep'].add(w)
             elif pos in all_vars['pos_tags']['C']:
                 row['conj'].add(w)
-            elif pos in all_vars['pos_tags']['ALL_N'] or w in all_vars['alphabet']:
-                row['nouns'].add(w)
             elif pos in all_vars['pos_tags']['ADV'] or pos in all_vars['pos_tags']['ADJ']:
                 row['descriptors'].add(w)
             else:
@@ -302,8 +323,7 @@ def get_structural_metadata(row, all_vars):
         row['ngrams'] = ngrams
         ngram_list = [v for k, v in ngrams.items()]
         ngram_list.append(word_pos_line)
-        use_ngram_keys = ['modifiers', 'verb_phrases', 'noun_phrases', 'phrases']
-        structure_types = ['modifiers', 'verb_phrases', 'noun_phrases', 'phrases', 'subjects', 'clauses']
+        structure_types = ['modifiers', 'verb_phrases', 'noun_phrases', 'phrases', 'clauses']
         for i, key in enumerate(structure_types):
             objects, patterns = extract_objects_and_patterns_from_index(row, None, key, key, all_vars)
             if objects:

@@ -230,20 +230,20 @@ def get_related_components(component, data_store, all_vars):
     '''
     related_components = set()
     ''' 
-    to do: add logic to pull functions
+    to do: add logic to pull functions, relationships, clauses, phrases, & modifiers
     if not already in index or local_database & get related components from functions
     '''
     definitions = get_definitions(word)
     if definitions:
         for d in definitions:
-            d_row = get_pos_metadata(d, None, all_vars)
+            d_row = get_structural_metadata(d, all_vars)
             if d_row:
                 if 'nouns' in d_row:
                     for n in d_row['nouns']:
                         related_components.add(n)
     return related_components
 
-def find_treatments(pattern, lines, row, all_vars):
+def find_treatments(row, all_vars):
     '''
     hypothesis & intent can be Null for now 
 

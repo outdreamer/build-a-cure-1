@@ -318,20 +318,6 @@ def get_meaning_score(phrase, line):
         return meaning
     return False
 
-def get_topic(word):
-    '''
-      this function will be used in remove_unnecessary_words
-      to filter out words that are either non-medical or too specific to be useful (names)
-
-      test cases:
-          permeability => ['structure']
-          medicine => ['medical']
-          plausibility => ['logic']
-    '''
-    topics = ['structural', 'logical']
-    stem = get_stem(word)
-    return word
-
 def replace_with_pattern_maps(line, all_vars):
     ''' to do: add any other processing in addition to passive to active '''
     return line

@@ -1,4 +1,4 @@
-def get_empty_index(metadata_keys, all_vars):
+def get_empty_index(all_vars):
     '''
     indexes isolates treatments from symptoms, metrics, etc to build indexes of those objects on your local env
         indexes = {
@@ -100,8 +100,8 @@ def get_empty_index(metadata_keys, all_vars):
             for item in all_vars['full_params'][key]:
                 index_keys.append(item)
     dict_keys = ['counts', 'patterns', 'pos', 'word_map']
-    metadata_keys = index_keys if 'all' in metadata_keys else metadata_keys
-    for key in metadata_keys:
+    all_vars['metadata'] = index_keys if 'metadata' not in all_vars or 'all' in all_vars['metadata'] else all_vars['metadata']
+    for key in all_vars['metadata']:
         if key in index_keys:
             if key not in dict_keys:
                 index[key] = set()

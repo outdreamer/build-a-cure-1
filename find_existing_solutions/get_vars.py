@@ -24,9 +24,9 @@ def get_pattern_config(all_vars):
         '-': ['worsen', 'decrease', 'inhibit', 'reduce', 'deactivate', 'disable'],
         '+': ['improve', 'increase', 'induce', 'enhance', 'activate', 'enable'],
         '=': ['equal', 'alternate'],
-        '>': ['creates'],
-        '@': ['changes'],
-        '~': ['functions']
+        '>': ['create'],
+        '@': ['change'],
+        '~': ['function']
     }
     all_vars['charge'] = {
         '-': aggregate_synonyms_of_type(all_vars, '-'), # antagonist, reduce, inhibit, deactivate, toxic, prevents
@@ -77,6 +77,351 @@ def get_pattern_config(all_vars):
     for k, v in all_vars['clause_map'].items():
         all_vars['clause_delimiters'].extend(v)
     all_vars['clause_delimiters'].extend([',', ':', ';'])
+    abstract_verbs = ['find', 'derive', 'build', 'test', 'apply']
+    med_objects = ['treatment', 'compound', 'test', 'metric', 'mechanism']
+    study_objects = ['relationship', 'limit', 'type', 'method']
+    conceptual_objects = ['relationship', 'problem', 'strategy', 'process', 'insight', 'function', 'variable', 'system', 'theory', 'opinion', 'conclusion', 'observation']
+    all_vars['info_types'] = ['excuse', 'opinion', 'fact', 'lie', 'belief', 'joke', 'insight', 'reason', 'intent', 'strategy']
+    ''' to do: some of these types have type mappings so generalize when you can
+        condition = state
+        symptom = function = side_effects
+        function = relationship
+        synthesis = build process
+        structure = pattern
+    '''
+    all_vars['intent_map'] = {
+        'route': {
+            'attention': 'distract',
+            'assumption': 'project',
+        },
+        'find': {
+            'interaction': 'relevance',
+            'alternative': {},
+            'limit': {},
+            'relationship': {
+                'condition': {
+                    'treat': ['compound', 'method'],
+                    'diagnose': ['method']
+                },
+                'symptom': {
+                    'check': 'condition'
+                },
+                'compound': {
+                    'synthesize': ['method']
+                }
+            }
+        },
+        'change': {
+            'subject': 'deflect',
+            'negative': {
+                'statement': 'contradict',
+                'accusation': 'deny'
+            },
+            'assumption': 'counter-argue',
+            'add': {
+                'doubt': 'question', # cast doubt on
+                'noise': 'obfuscate',
+                'contradiction': 'confuse',
+                'nonsense': 'entertain' # not real
+            },
+            'align': {
+                'incentive': 'provoke' # argument/emotion/reaction
+            },
+            'remove': {
+                'doubt': 'imply', # remove doubt
+                'ambiguity': 'clarify', # remove ambiguity
+                'credibility': 'criticize',
+                'alignment': 'conflict'
+            },
+        },
+        'reveal': {
+            'priority': 'persuade',
+            'benefit': 'persuade', # defend,
+            'cost': 'persuade' # attack
+        },
+        'organize': {
+            'example': '',
+            'introduce': '',
+            'exception': '',
+            'list': {
+                'property': 'compare'
+            },  
+            'categorize': '', 
+            'summarize': '',
+            'compare': {
+                'review': ['meta', 'peer', 'alternative']
+            },
+            'verify': ['retract', 'replicate']
+        },
+        'fit': {
+            'structure': {
+                'model': 'test', # explore, experiment
+                'network': {
+                    'system': 'understand',
+                    'system_path': 'educate'
+                },
+                'path': {
+                    'perspective': 'interpret',
+                    'understanding': 'explain',
+                    'protocol': 'evaluate',
+                    'logic': 'conclude',
+                    'logic': 'argume',
+                    'logic': 'function', # derive
+                    'logic': 'justify',
+                    'intent': 'justify'
+                }
+            }
+        },
+        'frame': {  # cast one info type (opinion) as another (fact) 
+            'question': 'implication',
+            'opinion': 'fact',
+            'lie': 'fact',
+            'opinion': 'joke',
+            'lie': 'joke',
+            'opinion': 'insight',
+            'lie': 'insight',
+            'excuse': 'reason',
+            'lie': 'reason',
+            'lie': 'excuse',
+            'intent': 'excuse',
+            'info_asymmetry': 'excuse'
+        }
+    }
+    all_vars['default_props'] = {
+        'input': {},
+        'output': {},
+        'optimal_parameter': {},
+        'attribute': {},
+        'function': [],
+        'type': [],
+        'topic': [],
+        'state': [] # versions
+    }
+    all_vars['instruction_props'] = {
+        'substitute': {},
+        'equipment':{},
+    }
+    all_vars['symptom_props'] = {
+        'treatment': []
+    }
+    all_vars['compound_props'] = {
+        'side_effect': [] # this is just a list of symptoms the compound causes, which can be assembled from rows data
+    }
+    all_vars['keywords'] = {
+        'equipment': {
+            'type': [],
+            'object': {},
+            'modifier': [],
+            'property': {},
+            'component': {}
+        },
+        'metric': {
+            'type': [],
+            'object': {},
+            'modifier': ['quantitative'],
+            'property': ['level', 'quantity'],
+            'component': {}
+        },
+        'test': {
+            'type': [],
+            'object': {},
+            'modifier': ['machine', 'sample'],
+            'property': {},
+            'component': {}
+        },
+        'experiment': {
+            'type': [],
+            'object': {},
+            'modifier': [],
+            'property': ['parameter', 'linearity', 'sensitivity', 'precision', 'repeatability', 'recovery'],
+            'component': {}
+        },
+        'state': {
+            'type': [],
+            'object': {},
+            'modifier': ['-tion'],
+            'property': ['active', 'order'],
+            'component': {}
+        },
+        'function': {
+            'type': ['function', 'intent', 'strategy', 'mechanism', 'relationship', 'process', 'modifier', 'logic'],
+            'object': [
+                'effect', 'activation', 'activity', 'reaction', 'process', 'role', '-osis', '-isis', '-ysis', '-ism', '-tion',
+                'anti-', 'pro-', '-ist', '-ive', '-ing', '-yst', '-ior', '-or', '-er',
+                'attenuate', 'down/up/regulate', 'stimulate', 'absorb', 'catalyze', 'alleviate', 'suppress','moderate', 'adjust', 'change'
+            ],
+            'modifier': [],
+            'property': {},
+            'component': {}
+        },
+        'patient': {
+            'type': [],
+            'object': all_vars['supported_core']['participants'],
+            'modifier': [],
+            'property': {},
+            'component': {}
+        },
+        'symptom': {
+            'type': [],
+            'object': {},
+            'modifier': [],
+            'property': {},
+            'component': {}
+        },
+        'treatment': {
+            'type': [],
+            'object': {},
+            'modifier': [],
+            'property': {},
+            'component': {}
+        },
+        'condition': {
+            'type': [],
+            'object': {},
+            'modifier': [],
+            'property': {},
+            'component': {}
+        },
+        'compound': {
+            'type': ['bio', 'chemical'],
+            'object': [
+                'polymer', 'molecule', 'macromolecule', 'peptide', 'fat', 'protein', 'carbohydrate', 'sugar', 'lipid', 'fatty acid', 
+                'acid', 'base', 'enzyme', 'plasma', 'fluid', 'tissue', 'blood', 'receptor', '-ion', 'acid', 'base'
+            ],
+            'modifier': [
+                'oral', 'liquid', 'frozen', 'heated', 'refrigerated', 'topical', 'intravenous', 'iv', 'concentration',
+                'injection', 'gavage', 'capsule', 'gel', 'powder', 'supplement', 'solution', 'spray', 'tincture', 'mixture'
+            ],
+            'property': {'charge': '', 'electron_count': ''},
+            'component': {'bond': [], 'element': [], 'atom': [], 'molecule': [], 'ion': []}
+        },
+        'gene': {
+            'type': [],
+            'object': [],
+            'modifier': [],
+            'property': {},
+            'component': {}
+        },
+        'cell': {
+            'type': [],
+            'object': [],
+            'modifier': [],
+            'property': {},
+            'component': {
+                'mitochondria': {
+                    'type': [],
+                    'object': [],
+                    'modifier': [],
+                    'property': {},
+                    'component': {}
+                },
+                'nucleus': {
+                    'type': [],
+                    'object': [],
+                    'modifier': [],
+                    'property': {},
+                    'component': {}
+                }, 
+                'dna': {
+                    'type': [],
+                    'object': [],
+                    'modifier': [],
+                    'property': {},
+                    'component': []
+                }, 
+                'membrane': {
+                    'type': [],
+                    'object': [],
+                    'modifier': [],
+                    'property': {},
+                    'component': {}
+                }
+            }
+        },
+        'tissue': {
+            'type': [
+                'muscle', 
+                'mucus_membrane', 
+                'bone', 
+                'collagen',
+                'organ'
+            ],
+            'object': [],
+            'modifier': [],
+            'property': {},
+            'component': ['cell']
+        },
+        'micro-organism': {
+            'type': [],
+            'object': ['bacteria', 'fungi', 'virus', 'pathogen', 'cell'],
+            'modifier': [],
+            'property': {},
+            'component': {}
+        },
+        'bio_system': {
+            'type': [],
+            'object': {
+                'organ': {
+                    'type': [],
+                    'object': ['liver', 'kidney', 'bladder', 'ovary', 'uterus', 'lung', 'intestine', 'gall bladder', 'bladder', 'skin', 'appendix'],
+                    'modifier': [],
+                    'property': {},
+                    'component': {}
+                },
+                'nervous': {
+                    'type': [],
+                    'object': [],
+                    'modifier': [],
+                    'property': {},
+                    'component': {}
+                },  
+                'lymphatic': {
+                    'type': [],
+                    'object': [],
+                    'modifier': [],
+                    'property': {},
+                    'component': {}
+                },  
+                'immune': {
+                    'type': [],
+                    'object': [],
+                    'modifier': [],
+                    'property': {},
+                    'component': {}
+                },   
+                'circulatory': {
+                    'type': [],
+                    'object': [],
+                    'modifier': [],
+                    'property': {},
+                    'component': {}
+                },    
+                'digestive': {
+                    'type': [],
+                    'object': [],
+                    'modifier': [],
+                    'property': {},
+                    'component': {}
+                },  
+                'timer': {
+                    'type': [],
+                    'object': [],
+                    'modifier': [],
+                    'property': {},
+                    'component': {}
+                }
+            },
+            'modifier': [],
+            'property': ['fragility', 'toxicity', '-ty', 'synthetic'],
+            'component': {}
+        }
+    }
+
+    '''
+        VBZ: Verb, 3rd person singular present - asks is does has
+        VBG: Verb, gerund or present participle - asking, being, doing, having
+        VBD: Verb, past tense - asked, was/were, did, had
+    '''
 
     ''' *** IMPORTANT PATTERN CONFIG INFO ***
         - for pattern configurations, always put the extended pattern first
@@ -93,24 +438,6 @@ def get_pattern_config(all_vars):
         - if you include 'noun' in your pattern, it'll replace it with all the noun pos tags, like |NN NNS NNP NNPS| etc
     '''
 
-    all_vars['keywords'] = {
-        'treatments': [],
-        'compounds': {
-            'object': ['ion', 'acid'],
-            'modifiers': [
-                'oral', 'liquid', 'topical', 'intravenous', 'iv', 
-                'injection', 'gavage', 'capsule', 'gel', 'powder', 
-                'supplement', 'solution', 'spray', 'tincture', 'mixture'
-            ],
-        },
-        'patient': all_vars['supported_core']['participants']
-    }
-    # use participant instead of patient bc that has other meanings
-    '''
-        VBZ: Verb, 3rd person singular present - asks is does has
-        VBG: Verb, gerund or present participle - asking, being, doing, having
-        VBD: Verb, past tense - asked, was/were, did, had
-    '''
     all_vars['pattern_maps'] = {
         'passive_to_active': {
             'x of y': 'y x', # to do: add support for new characters in target_pattern like 'y-x'
@@ -129,39 +456,33 @@ def get_pattern_config(all_vars):
             'x is an item in list b': 'x is in list b'
         }
     }
-    all_vars['pattern_maps'] = {
-        'passive_to_active': {
-            'the N1 VBD VBN IN the N2': 'the N2 VBZ the N1'
-        }
-    }
-    all_vars['supported_pattern_variables'] = ['N', 'V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
+    all_vars['supported_pattern_variables'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
     all_vars['pattern_vars'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
-    ''' to do: add full_params objects to pattern_vars & standardize to singular keys '''
     all_vars['type_pattern_index'] = {
         'passive': [
-            'noun_phrases1 of noun_phrases2' # enzyme inhibitor of protein synthesis
+            'noun_phrase1 of noun_phrase2' # enzyme inhibitor of protein synthesis
         ],
-        'phrases': [
-            'modifiers1 DPC modifiers2'
+        'phrase': [
+            'modifier1 DPC modifier2'
         ],
-        'clauses': [
-            'clauses1 DPC clauses2'
+        'clause': [
+            'clause1 DPC clause2'
         ],
-        'relationships': [
-            'clauses',
-            'phrases1 phrases2 V clauses',
-            'clauses1 DPC clauses2'
+        'relationship': [
+            'clause',
+            'phrase1 phrase2 V clause',
+            'clause1 DPC clause2'
         ],
-        'rules': [],
-        'contexts': [],
-        'compounds': [
-            "rules of compounds",
-            "compounds1 compounds2"
+        'rule': [],
+        'context': [],
+        'compound': [
+            "rule of compound",
+            "compound1 compound2"
         ],
-        'conditions': [],
-        'symptoms': [
-            'N that gets worse when contexts1',
-            'x - y & - z even in conditions1 or conditions2'
+        'condition': [],
+        'symptom': [
+            'N that gets worse when context1',
+            'x - y & - z even in condition1 or condition2'
         ]
     }
     all_vars['pattern_index'] = {
@@ -171,10 +492,10 @@ def get_pattern_config(all_vars):
             '|VB VBP VBN VBD| |TO IN PP|', # finish by, done by
             '|VBD| VBN VBN |TO IN PP|', # has been done by
         ],
-        'subjects': [
+        'subject': [
             'ALL_N ALL_V',
         ],
-        'modifiers': [
+        'modifier': [
             #'(?)', # add support for an any character 
             '|N V| |N ADV ADJ V|', # compound isolate
             'NNP ALL_N', # Diabetes mellitus
@@ -182,23 +503,23 @@ def get_pattern_config(all_vars):
             'N V',
             'JJ NN'
         ],
-        'phrases': [
+        'phrase': [
             'ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N', # converter of ionic/ionized/ionizing radiation, necrotizing spondylosis
             'ALL_N DPC ALL_N |VBG VBD|', # metabolite of radiation poisoning
             'ALL_N DPC ALL_N', # metabolite/metabolizer/inhibitor/alkalization of radiation, 
         ],
-        'clauses': [
+        'clause': [
             'DPC NP VP NP',
             'DPC NP DPC NP',
             'DPC VP NP',
             'DPC VP',
             'DPC NP',
         ],
-        'noun_phrases': [
+        'noun_phrase': [
             'ALL_N ALL_N',
             'ALL_N ALL_N ALL_N', # HIV-positive patients => NNP JJ NNS
         ],
-        'verb_phrases': [
+        'verb_phrase': [
             'ADV ALL_V',
             'ADJ ALL_V',
             'ALL_V ALL_V', #'associating alkalizing with compound x'
@@ -206,10 +527,10 @@ def get_pattern_config(all_vars):
             'plays a |VB NN| role',
             '|functions works operates interacts acts| as __a__ |VB NN|'
         ],
-        'types': [
+        'type': [
             'ADJ N', # Ex: 'chaperone protein' (subtype = 'chaperone', type = 'protein')
         ],
-        'roles': [
+        'role': [
             '|ADV V N|', # Ex: 'emulsifying protein' (role = 'emulsifier')
             'N of N', # Ex: 'components of immune system' (role = 'component', system = 'immune system')
             '|V N| role', # Ex: functional role (role => 'function')
@@ -223,7 +544,7 @@ def get_pattern_config(all_vars):
         all_vars['pattern_vars'].append(key)
     all_vars['pattern_vars'] = set(all_vars['pattern_vars'])
 
-    all_vars['all_version_types'] = ['correct', 'repeated', 'nested', 'alt', 'pos', 'type', 'synonym', 'operator', 'function']
+    all_vars['all_pattern_version_types'] = ['correct', 'repeated', 'nested', 'alt', 'pos', 'type', 'synonym', 'operator', 'function']
 
     for key in ['pattern_index', 'type_pattern_index']:
         for pattern_key, patterns in all_vars[key].items():
@@ -259,7 +580,7 @@ def get_pattern_config(all_vars):
             for sub_pattern_type, sub_pattern_list in all_vars['pattern_index'].items():
                 nonnumeric_index_type = get_nonnumeric(sub_pattern_type, all_vars)
                 nonnumeric_type_pattern = get_nonnumeric(type_pattern, all_vars)
-                ''' if 'modifiers' in ['modifiers', 'DPC', 'modifiers'] '''
+                ''' if 'modifier' in ['modifier', 'DPC', 'modifier'] '''
                 if nonnumeric_index_type in nonnumeric_type_pattern.split(' '):
                     ''' iterate through modifiers pattern_index, replacing nonnumeric_index_type with index pattern '''
                     for sub_pattern in sub_pattern_list:
@@ -293,10 +614,27 @@ def get_pattern_config(all_vars):
                         pattern = line.split('_')[0] 
                         # just fetching the pattern, not the matches stored after the '_'         
                         all_vars['pattern_index'][key].append(pattern)
-    converted_all_vars = convert_pos_names_to_nltk_tags(all_vars)
-    if converted_all_vars:
-        return converted_all_vars
     return all_vars
+
+def convert_pos_vars_to_nltk_tag_alts(pattern, all_vars):
+    '''
+    - convert 'ALL_N' => |NN JJ JJR NNS NNP NNPS RB] 
+        which is every nltk pos in all_vars['pos_tags']['ALL_N'] 
+        and same for verbs since nouns & verbs are often identified as other tags, 
+        which are listed in ALL_N and ALL_V
+    - supported_pattern_vars = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
+    - for every pattern word thats a key in all_vars['pos_tags'], replace keywords with nltk tags in that list
+    '''
+    new_words = []
+    for word in pattern.split(' '):
+        if word in all_vars['supported_pattern_variables']:
+            # word should now be joined by alt delimiter: '|NN NNP|'
+            new_words.append(''.join(['|', ' '.join(all_vars['pos_tags'][word]), '|']))
+        else:
+            new_words.append(word)
+    if len(new_words) > 0:
+        return ' '.join(new_words)
+    return False
 
 def reverse_sort(map_list):
     '''
@@ -354,38 +692,21 @@ def get_vars():
     all_vars['numbers'] = '0123456789'
     all_vars['alphanumeric'] = 'abcdefghijklmnopqrstuvwxyz0123456789- '
     all_vars['alphabet'] = 'abcdefghijklmnopqrstuvwxyz'    
-    plural_keys = [
-        'conditions', 'tests', 'states', 'limits', 'participants', 'mechanisms', 'causal_layers', 'side_effects', 
-        'metrics', 'alternates', 'observations', 'results', 'conclusions', 'symptoms', 'treatments', 'hypotheses', 
-        'strategies', 'compounds', 'components', 'intents'
-    ]
-    all_vars['plural_map'] = {}
-    for pk in plural_keys:
-        all_vars['plural_map'][pk] = get_singular(pk)
     all_vars['clause_analysis_chars'] = [' ', '-', ':', ';', '(', ')']
     all_vars['full_params'] = {
         'request': ['metadata', 'generate', 'filters', 'data'], # request params
         'wiki': ['section_list'],
-        'pos': ['pos', 'verbs', 'nouns', 'common_words', 'counts', 'taken_out', 'line', 'prep', 'conj', 'det', 'descriptors', 'original_line', 'word_map'],
-        'structure': ['types', 'names', 'ngrams', 'modifiers', 'phrases', 'clauses', 'subjects', 'relationships', 'patterns', 'similar_lines'], # structural
-        'experiment': ['hypothesis', 'tests', 'metrics', 'properties', 'assumptions'], # experiment elements
-        'compound': ['compounds', 'contraindications', 'interactions', 'side_effects', 'treatments_successful', 'treatments_failed'], # drug elements
-        'organism': ['genes', 'gene_expressions', 'evolution', 'organs', 'cells', 'nutrients'],
-        'condition': ['symptoms', 'conditions', 'diagnosis', 'phases'], # separate diagnosis bc theyre not always accurate so not equivalent to condition
-        'context': ['bio_metrics', 'bio_symptoms', 'bio_conditions', 'bio_stressors'], # context elements
-        'synthesis': ['instructions', 'parameters', 'optimal_parameter_values', 'required_compounds', 'substitutes', 'equipment_links'],
-        'relational': ['components', 'related', 'alternates', 'substitutes', 'sub', 'adjacents', 'stressors', 'dependencies'],
-        'conceptual': ['concepts', 'variables', 'functions', 'causal_stack', 'insights', 'strategies', 'prediction', 'priorities', 'intents', 'systems']
+        'pos': ['pos', 'verb', 'noun', 'common_word', 'count', 'taken_out', 'clause_marker', 'line', 'prep', 'conj', 'det', 'descriptor', 'original_line', 'word_map'],
+        'structure': ['type', 'name', 'ngram', 'modifier', 'phrase', 'clause', 'subject', 'relationship', 'pattern', 'similar_line'], # structural
+        'experiment': ['hypothesis', 'test', 'metric', 'property', 'assumption'], # experiment elements
+        'compound': ['compound', 'contraindication', 'interaction', 'side_effect', 'treatment_successful', 'treatment_failed'], # drug elements
+        'organism': ['gene', 'expression', 'evolution', 'organ', 'cell', 'nutrient'],
+        'condition': ['symptom', 'condition', 'diagnosis', 'phase'], # separate diagnosis bc theyre not always accurate so not equivalent to condition
+        'context': ['bio_metric', 'bio_symptom', 'bio_condition', 'bio_stressor'], # context elements
+        'synthesis': ['instruction', 'parameter', 'optimal_parameter', 'substitute', 'equipment'],
+        'relational': ['component', 'related', 'alternate', 'substitute', 'sub', 'adjacent', 'stressor', 'dependency'],
+        'conceptual': ['concept', 'variable', 'function', 'causal_stack', 'insight', 'strategy', 'prediction', 'priority', 'intent', 'system']
     }
-    '''
-    some of these types have type mappings:
-        condition = state
-        symptom = function = side_effects
-        function = relationship
-        synthesis = build process
-        structure = pattern
-    so generalize when you can
-    '''
     object_type_keys = {
         'medical_types': ['experiment', 'compound', 'organism', 'condition', 'context', 'synthesis'],
         'conceptual_types': ['conceptual', 'relational'],
@@ -705,8 +1026,11 @@ def get_all_versions(pattern, version_types, all_vars):
     processing_types = ['correct', 'repeated']
     chained_types = ['nested', 'alt', 'pos', 'type', 'synonym', 'operator']
     extra_processing = ['function']
+    version_types = all_vars['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
+
     ''' if its a function, replace it with its core function decomposition '''
-    version_types = all_vars['all_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
+    converted_pattern = convert_pos_vars_to_nltk_tag_alts(pattern, all_vars)
+    pattern = converted_pattern if converted_pattern else pattern
     for process in processing_types:
         function_name = ''.join(['get_', process, '_patterns'])
         if function_name in locals():
@@ -717,17 +1041,19 @@ def get_all_versions(pattern, version_types, all_vars):
                     pattern = new_pattern if new_pattern else pattern
             except Exception as e:
                 print('e', e)
+
     ''' pattern = 'VB |JJ NN|' '''
-    ''' feed output of each chained_types function into the next '''
     patterns_to_iterate = []
     nested_patterns, nested_variables = get_nested_patterns(pattern, 'pattern', {}, all_vars)
     ''' nested_patterns = 'VB x', nested_variables = {'x': 'JJ NN'} '''
+
     for np in nested_patterns:
         alt_patterns = get_alt_patterns(np, nested_variables, all_vars)
         if alt_patterns:
             for ap in alt_patterns:
                 patterns_to_iterate.append(ap)
     ''' patterns_to_iterate = ['VB JJ', VB NN'] '''
+
     all_patterns = []
     if len(patterns_to_iterate) > 0:
         for p in patterns_to_iterate:

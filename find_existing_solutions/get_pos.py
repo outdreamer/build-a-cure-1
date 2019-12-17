@@ -7,56 +7,6 @@ from textblob import TextBlob
     nltk.help.upenn_tagset()
 '''
 
-def get_nltk_objects(tag_key, line, all_vars):
-    items = []
-    if tag_key in all_vars['pos_tags']:
-        tagged = pos_tag(word_tokenize(line))
-        if tagged:
-            for item in tagged:
-                if item[1] in all_vars['pos_tags'][tag_key]:
-                    items.append(item[0])
-    if len(items) > 0:
-        return items
-    return False
-
-def convert_pos_names_to_nltk_tags(all_vars):
-    '''
-    - convert noun => |NN JJ JJR NNS NNP NNPS RB] 
-        which is every nltk pos in all_vars['pos_tags']['ALL_N'] 
-        and same for verbs since nouns & verbs are often identified as other tags, 
-        which are listed in ALL_N and ALL_V
-
-    - for every pattern found in all_vars['pattern_index'], replace keywords with nltk tags:
-
-        all_vars['pos_tags']['D'] = ['DT', 'PDT', 'WDT']
-        all_vars['pos_tags']['P'] = ['TO', 'PP']
-        all_vars['pos_tags']['C'] = ['CC', 'IN']
-        all_vars['pos_tags']['DPC'] = ['DT', 'PDT', 'WDT', 'TO', 'PP', 'CC', 'IN']
-
-        all_vars['pos_tags']['ADV'] = ['WRB', 'RB', 'RBR', 'RBS']
-        all_vars['pos_tags']['ADJ'] = ['JJ', 'JJR', 'JJS']
-
-        all_vars['pos_tags']['N'] = ['NN', 'NNP', 'NNS', 'JJ', 'JJR']
-        all_vars['pos_tags']['V'] = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
-        all_vars['pos_tags']['ALL_N'] = ['NN', 'JJ', 'JJR', 'NNS', 'NNP', 'NNPS', 'RB']
-        all_vars['pos_tags']['ALL_V'] = ['RP', 'MD', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
-
-    '''
-    for pattern_type, pattern_list in all_vars['pattern_index'].items():
-        new_list = []
-        for p in pattern_list:
-            new_words = []
-            for word in p.split(' '):
-                if word in all_vars['supported_pattern_variables']:
-                    nltk_pos = ''.join(['|', ' '.join(all_vars['pos_tags'][word]), '|'])
-                    # pos should now be '__VP' or 'VB' or '|NN NNP|'
-                    new_words.append(nltk_pos)
-            if len(new_words) > 0:
-                new_list.append(' '.join(new_words))
-        if len(new_list) > 0:
-            all_vars['pattern_index'][pattern_type] = new_list
-    return all_vars
-
 def get_nltk_pos(word, all_vars):
     if word in [a for a in all_vars['alphabet']]:
         return False
@@ -68,7 +18,7 @@ def get_nltk_pos(word, all_vars):
         for item in tagged:
             if len(item) > 0:
                 if blob_pos != item[1]:
-                    ''' blob identifies 'explains' as a verb when nltk doesnt '''
+                    ''' blob identifies 'explains' as a verb when pos_tag doesnt '''
                     if blob_pos in all_vars['pos_tags']['ALL_V']:
                         return blob_pos
                 return item[1]
@@ -122,13 +72,10 @@ def get_pos_tags():
         VBN: Verb, past participle - asked, used, been, done, had
         VP: Verb Phrase
     '''
-    pos_tags['verb_keywords'] = ['RP'] 
-    '''
-        RP: Particle - aboard about across along apart around aside at away back before by ever for from go i.e. in into just later more off on open out over per that through under up whole with
-    '''
-    pos_tags['verb_potential'] = ['MD']
+    pos_tags['VC'] = ['MD', 'RP']
     '''
         MD: Modal - 'could', 'will'
+        RP: Particle - aboard about across along apart around aside at away back before by ever for from go i.e. in into just later more off on open out over per that through under up whole with
     '''
     pos_tags['ADV'] = ['WRB', 'RB', 'RBR', 'RBS']
     '''
@@ -148,10 +95,6 @@ def get_pos_tags():
         CD: Cardinal number - ten, 1.0, IX, '60s', DM2, mid-1890, 1,000, dozen
         SYM: Symbol 
     '''
-    '''
-    replace_with_syns() takes out symbols, punctuation, and determiners if indicating 'some'
-    '''
-    # once you establish coordinating relationships or ratios, remove determiners & prepositions 
     pos_tags['D'] = ['DT', 'PDT', 'WDT']
     '''
         DT: Determiner - all an another any both each either every half many much nary neither no some such that the them these this those
@@ -181,21 +124,22 @@ def get_pos_tags():
         for item in pos_tags[key]:
             pos_tags['ALL'].add(item)
     pos_tags['ALL'] = list(pos_tags['ALL'])
-    '''
-    'RB' points to 'even', 'WRB' points to when, 'JJ' describes 'due'
-    '''
-    conditional_keys = ['C', 'P', 'ADV', 'ADJ', 'verb_potential']
+    ''' 'RB' points to 'even', 'WRB' points to when, 'JJ' describes 'due' '''
+    conditional_keys = ['C', 'P', 'ADV', 'ADJ', 'VC']
     pos_tags['conditional'] = []
     for tag in conditional_keys:
         pos_tags['conditional'].extend(pos_tags[tag])
-
     relation_keys = ['C', 'P']
     pos_tags['relation'] = []
     for tag in relation_keys:
         pos_tags['relation'].extend(pos_tags[tag])
 
     ''' III. REMOVE '''
+
     # safe to remove pronouns unless theres ambiguity - converted sentence should be less ambiguous
+    # replace_with_syns() takes out symbols, punctuation, and determiners if indicating 'some'
+    # to do: once you establish coordinating relationships or ratios, remove determiners & prepositions 
+
     pos_tags['exclude'] = ['UN', 'EX', 'FW', 'TO', 'PRP', 'PRP$', 'WP', 'WP$', 'POS']
     ''' 
         UH: interjection - goodbye hey amen huh uh shucks heck anyways
@@ -207,4 +151,5 @@ def get_pos_tags():
         POS: Possessive ending - ' 's in words to indicating someone's property (my parents' house, womens' issues, people's problems)
         PRP$: Possessive pronoun - her his mine my our ours their thy your
     '''
+
     return pos_tags

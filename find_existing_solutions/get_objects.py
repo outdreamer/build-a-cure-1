@@ -2,7 +2,7 @@ from utils import *
 
 def find_facts(article, all_vars):
     '''
-      - function to identify common article intents to identify false info:
+    - function to identify common article intents to identify false info:
       - confuse
       - obfuscate (hide info with high volume or randomization)
       - contradict
@@ -33,8 +33,37 @@ def find_facts(article, all_vars):
       - address a point
       - excuse
       - educate
+      - provoke (argument/emotion/reaction)
+      - silence
+
     '''
     return article
+
+def get_meaning_score(phrase, line):
+    '''
+    this should return 0 for phrases 
+    that dont change the meaning of the sentence
+    (mostly any phrase without a verb) 
+    lines with more variation between words & compared to intent are more meaningful
+    '''
+    meaning = 0
+    if meaning:
+        return meaning
+    return False
+
+def find_topic(word):
+    '''
+      this function will be used in remove_unnecessary_words
+      to filter out words that are either non-medical or too specific to be useful (names)
+
+      test cases:
+          permeability => ['structure']
+          medicine => ['medical']
+          plausibility => ['logic']
+    '''
+    topics = ['structural', 'logical']
+    stem = get_stem(word)
+    return word
 
 def find_metrics(pattern, lines, row, all_vars):
     '''
@@ -131,17 +160,7 @@ def find_clauses(row, all_vars):
                         - "N V even with x or y" should produce: ["N V even with x", "N V even with y", "N V even with x or y"]
 
         - once you identify modifiers, identifying clauses is mostly a matter of identifying subjects and operators (and, because, ',')
-
-        conditional_keys = ['C', 'P', 'ADV', 'ADJ', 'verb_potential']
-        pos_tags['conditional'] = []
-        for tag in conditional_keys:
-            pos_tags['conditional'].extend(pos_tags[tag])
-
-        relation_keys = ['C', 'P']
-        pos_tags['relation'] = []
-        for tag in relation_keys:
-            pos_tags['relation'].extend(pos_tags[tag])
-
+        
         to do:
             - call after order_and_convert_clauses() so position is: 'subject verb relationship conditionals'
             where clauses include:

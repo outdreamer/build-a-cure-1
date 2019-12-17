@@ -73,6 +73,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
   - test with ALL_N vars 
   - add other pattern types to pattern_map
+  - examine all your iterated lists bc they determine processing order (supported_pattern_variables, all_version_types, reversed keys, etc)
   - fix rows csv format
   - pattern processing order:
     - make sure youve changed 'modifier1' to 'VB1 NN1', 'VB1 VB2' etc 

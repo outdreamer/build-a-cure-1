@@ -19,13 +19,63 @@ from get_index_def import get_empty_index
 ''' these functions do more advanced linguistic processing than 
     keyword matching as in identify_elements '''
 
-def get_variables(line):
+def get_article_intents(article):
+    '''
+    this function is checking for any purpose-related keywords
+    to find priority data of bio components, 
+    like 'bacteria seek to optimize efficiency' would return 'efficiency'
+
+    if something (object, process, attribute) is a known output of a function, 
+        its assumed to be the intent
+
+    this should capture the core intent which should be one of the supported intents
+    all intents are inherently relationships so most could be standardized to:
+     'find', 'test', 'build', 'compare', or 'verify'
+    but you want to find which one fits more given their subtle differences
+    for example:
+        - 'test' indicates a known relationship was tested
+        - 'find' indicates a new relationship was tested
+
+        - 'verify' indicates replication of a research object (result, study)
+        - 'compare' indicates analysis of related research objects (study/study, result/protocol)
+
+        - 'build' contains instructions on how to synthesize something
+        - 'find' would indicate info about a relationship between the input & output in the study, 
+            but not necessarily include the instructions
+
+    for studies that have a 'test' intent (to confirm a theorized relationship),
+        the relationship youre trying to find is between:
+         'method'/'compound' and 'success'/'failure'
+    for other studies that are exploratory (to find a new relationship),
+        the relationship may be to find correlation between two medical factors:
+        'condition' and 'treatment' or 'condition' and 'symptom' or 'treatment' and 'symptom'
+    '''
+
+    study_intents = {
+        'test': 'to confirm a relationship (between x=success)', 
+        'find': 'to find a relationship (between x=y)', 
+        'verify': 'to confirm an object (study, method, result)',
+        'compare': 'to compare objects (study=study, method=method, result=protocol)', 
+        # compare => check that all studies confirm each other, or check that a method-implementation or result-derivation followed protocol
+        'build': 'to build object (compound, symptom, treatment, condition, state)' 
+        # to get 'health', follow build protocol 'x', to get 'compound', follow build protocol 'y'
+    }
+    intents = []
+    for line in article.split('\n'):
+        intent = get_intent(line)
+        if intent:
+            intents.append(intent)
+    if len(intents) > 0:
+        return intents
+    return False
+
+def find_variables(line):
     ''' use this to determine parameters for synthesis function too '''
     ''' variables are the inputs to functions '''
     ''' this can mean the subject of a sentence, or the inputs of that subject (resources, context) '''
     return line
 
-def identify_key_sentences(article):
+def find_key_sentences(article):
     '''
     key_sentences should have an item from each sentence_type that is relevant to the study intent
     '''
@@ -39,7 +89,7 @@ def identify_key_sentences(article):
             key_sentences[sentence_type] = line
     return key_sentences
 
-def get_sentence_type(line):
+def find_sentence_type(line):
     ''' out of sentence_types, determine which this is likeliest to be 
     to do: 
     - implement keyword check for each sentence type
@@ -63,7 +113,7 @@ def get_sentence_type(line):
             return k
     return False
 
-def get_elements(line):
+def find_elements(line):
     elements = []
     for word in line.split(' '):
         index_type = get_index_type(word)
@@ -76,83 +126,8 @@ def get_elements(line):
             elements.append(word)
     return elements
 
-def get_causal_layer(row, index, line, article):
+def find_causal_layer(row, index, line, article):
     return row
-
-def get_article_intents(article):
-    '''
-    this function is checking for any purpose-related keywords
-    to find priority data of bio components, 
-    like 'bacteria seek to optimize efficiency' would return 'efficiency'
-
-    if something (object, process, attribute) is a known output of a function, 
-        its assumed to be the intent
-    '''
-
-    '''
-    this should capture the core intent which should be one of the supported intents
-    all intents are inherently relationships so most could be standardized to:
-     'find', 'test', 'build', 'compare', or 'verify'
-    but you want to find which one fits more given their subtle differences
-    for example:
-        - 'test' indicates a known relationship was tested
-        - 'find' indicates a new relationship was tested
-
-        - 'verify' indicates replication of a research object (result, study)
-        - 'compare' indicates analysis of related research objects (study/study, result/protocol)
-
-        - 'build' contains instructions on how to synthesize something
-        - 'find' would indicate info about a relationship between the input & output in the study, 
-            but not necessarily include the instructions
-    '''
-    '''
-    for studies that have a 'test' intent (to confirm a theorized relationship),
-        the relationship youre trying to find is between:
-         'method'/'compound' and 'success'/'failure'
-    for other studies that are exploratory (to find a new relationship),
-        the relationship may be to find correlation between two medical factors:
-        'condition' and 'treatment' or 'condition' and 'symptom' or 'treatment' and 'symptom'
-    '''
-
-    study_intents = {
-        'test': 'to confirm a relationship (between x=success)', 
-        'find': 'to find a relationship (between x=y)', 
-        'verify': 'to confirm an object (study, method, result)',
-        'compare': 'to compare objects (study=study, method=method, result=protocol)', 
-        # compare => check that all studies confirm each other, or check that a method-implementation or result-derivation followed protocol
-        'build': 'to build object (compound, symptom, treatment, condition, state)' 
-        # to get 'health', follow build protocol 'x', to get 'compound', follow build protocol 'y'
-    }
-    abstract_verbs = ['find', 'derive', 'build', 'test']
-    med_objects = ['treatment', 'compound', 'test', 'metric', 'mechanism']
-    study_objects = ['relationship', 'limit', 'type', 'method']
-    conceptual_objects = ['relationship', 'problem', 'strategy', 'process', 'insight', 'function', 'variable', 'system', 'theory', 'opinion', 'conclusion', 'observation']
-    sentence_intents = {
-        'describe': ['introduce', 'detail'],
-        'organize': ['list', 'categorize', 'summarize']
-    }
-    intent_map = {
-        'find_limit': {},
-        'find_relationship': {
-            'condition': {
-                'treat': ['test_treatment_compound', 'test_treatment_method'],
-                'diagnose': ['test_diagnostic_method']
-            },
-            'synthesize_compound': ['test_synthesis_method']
-        },
-        'review': {
-            'compare': ['meta_review', 'peer_review'],
-            'verify': ['retract_study', 'replicate_result']
-        }
-    }
-    intents = []
-    for line in article.split('\n'):
-        intent = get_intent(line)
-        if intent:
-            intents.append(intent)
-    if len(intents) > 0:
-        return intents
-    return False
 
 def get_object_intents(line):
     intents = {}
@@ -223,18 +198,11 @@ def get_verb_impact(function, object_name, all_vars):
                         return all_vars['supported_synonyms'][v]
     return False
 
-def get_functions(line, local_database):
+def find_functions(line, index):
     ''' for fluconazole, this should be: "antifungal", "inhibits cyp3a4" '''
-    row = get_structural_metadata(line, None, None, all_vars)
-    if row:
-        if 'functions' in row:
-            return row['functions']
-    if local_database:
-        ''' to do: add query functions to get objects from local data store '''
-        return local_database
     return False
 
-def get_strategies(line, intent):
+def find_strategies(line, intent):
     '''
      - get the strategy explaining why this method worked or failed for the intent, 
         which may be equal to the mechanism of action, 
