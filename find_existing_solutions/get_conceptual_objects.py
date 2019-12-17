@@ -2,8 +2,10 @@ from nltk import word_tokenize, pos_tag, ne_chunk
 
 from get_index_def import get_empty_index
 
-''' these functions do more advanced linguistic processing than 
-    keyword or pattern matching as in identify_elements '''
+''' 
+these functions do more advanced linguistic processing than 
+keyword or pattern matching as in identify_elements 
+'''
 
 def find_article_intents(article, all_vars):
     '''
@@ -17,6 +19,7 @@ def find_article_intents(article, all_vars):
     this should capture the core intent which should be one of the supported intents
     all intents are inherently relationships so most could be standardized to:
      'find', 'test', 'build', 'compare', or 'verify'
+
     but you want to find which one fits more given their subtle differences
     for example:
         - 'test' indicates a known relationship was tested
@@ -38,7 +41,7 @@ def find_article_intents(article, all_vars):
     '''
     intents = []
     for line in article.split('\n'):
-        intent = get_intent(line)
+        intent = find_intent(line)
         if intent:
             intents.append(intent)
     if len(intents) > 0:

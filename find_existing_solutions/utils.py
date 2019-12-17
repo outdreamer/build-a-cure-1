@@ -285,39 +285,6 @@ def get_similarity_to_title(title, row):
             row['similarity'] = similarity
     return row
 
-def convert_to_active(line, all_vars):
-    '''
-    - check for verb tenses normally used in passive sentences # had been done = past perfect
-    - translate questions into statements of intent:
-        "would there be an effect of x on y?"
-        intent = "evaluate relationship between x and y" 
-    - active: x  -  did  -  this and then y  -  did  -  z
-    - passive: this  -  was done  -  by x and then z  -  was done  -  by y
-    - puts subject at start of sentence
-    - puts conditions at end of sentence
-    - converts passive phrases to active phrases
-
-    active test cases:
-    
-    - "protein that modulates a signaling pathway" => "signaling pathway-changing protein" 
-        pattern = "A were subjected to B induced by C of D"
-        pattern_with_pos = "A were subjected to B induced by C of D"
-
-    - "Rats were subjected to liver damage induced by intra-peritoneal injection of thioacetamide" => 
-        "intra-peritoneal thioacetamide injection induced liver damage in rats"
-        noun_phrases for this would be "intra-peritoneal thioacetamide injection", "liver damage" and "rats"
-    
-    - "chalcone isolated from Boesenbergia rotunda rhizomes" => "Boesenbergia rotunda rhizomes isolate chalcone"
-
-    - if you standardize "injection of thioacetamide" to "thioacetamide injection", 
-        your other pattern "x of y" configuration wont be necessary, so remove that pattern
-
-    '''
-    active_line = apply_pattern_map(line, all_vars['pattern_maps']['passive_to_active'], all_vars)
-    if active_line:
-        return active_line
-    return line
-
 ''' STORAGE FUNCTIONS '''
 
 def get_local_database(database_dir, object_types):

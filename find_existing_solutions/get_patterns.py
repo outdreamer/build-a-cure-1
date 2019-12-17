@@ -279,22 +279,20 @@ def conjugate(word, source_pos, target_pos, all_vars):
                 (nonnumeric_s_pos == 'V' or nonnumeric_s_pos in all_vars['pos_tags']['V']) and 
                 (nonnumeric_t_pos == 'V' or nonnumeric_t_pos in all_vars['pos_tags']['V'])
             ):
-                equivalent = ['VB', 'VBP'] # 'VBG', 'VBN', 'VBD', 'VBZ'
-                '''
-                    VB: Verb, base form - ask is do have 
-                        VBP: Verb, non-3rd person singular present - ask is do have
-                        VBZ: Verb, 3rd person singular present - asks is does has
-                        VBG: Verb, gerund or present participle - asking, being, doing, having
-                    VBD: Verb, past tense - asked, was/were, did, had
-                    VBN: Verb, past participle - asked, used, been, done, had
-                '''
-                infinitive = lemmatizer.lemmatize(word, 'v')
-                stem = stemmer.stem(infinitive)
+                equivalent = ['VB', 'VBG', 'VBP'] # 'VBG', 'VBN', 'VBD', 'VBZ'
                 if infinitive in case_maps:
                     return case_maps[infinitive][target_pos]
                 if target_pos == 'VB' or target_pos == 'VBZ':
                     return infinitive
-                ''' to do: remove trailing e/s if applicable '''            
+                ''' remove trailing e/s if applicable '''  
+                if penultimate_char not in 'aeiou' and last_char == 's':
+                    word = word[0:-1]
+                elif 'ies' == word[-3]:
+                    word = ''.join([word[0:-3], 'y'])
+                elif penultimate_char in 'aeiou' and last_char == 's':
+                    word = word[0:-2]
+                infinitive = lemmatizer.lemmatize(word, 'v')
+                stem = stemmer.stem(infinitive)
                 new_word = ''.join([stem, target_endings[target_pos]])
                 return new_word
     return False

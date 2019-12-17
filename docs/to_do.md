@@ -77,6 +77,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
   - examine all your iterated lists bc they determine processing order (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
   
   - pattern processing order:
+    - example: if you replace modifiers first, then clause patterns, you can ensure that words get rearranged in a way that is likelier to be correct
     - implement ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos
       - show preference for verbs in ambiguous cases (associate, bear) should return a verb even though it can be a noun
     - make sure youve changed 'modifier1' to 'VB1 NN1', 'VB1 VB2' etc 
@@ -84,8 +85,19 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
     - once you replace some patterns, youll have new phrases & conditions, so do apply_pattern_map before your other parsing
     - 'has effect' => 'have induce' with current synonym replacements, 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
         - 'by' can indicate a process/mechanism "it works by doing x"
-    - based on processing order, isolate which patterns would be identified as other objects first
+    - based on processing order, isolate which tags would be identified as other objects first
   
+  - support conversion between pos types like 'verb-to-noun':
+      - 'subject1 verb clause because subject2 verb clause' => 'subject2 verb-to-noun causes subject1 verb-to-noun'
+      - 'the process activated x because y inhibits b' => 'y b-inhibition causes the process to activate x' => 'y b-inhibition enables process to activate x'
+    1. convert operators in patterns returned from get_all_versions
+    2. then convert operators in line 
+    3. then convert line to pos_line
+      before passing to running find/extract in get_structural_metadata
+      so rather than deconstructing the sentence, all you have to do is deconstruct the pos_line 
+      also replace tags with 'modifier' and 'phrase'
+
+  - add function to identify structural sentence type: question, description, declarative, etc
   - add calls to find_synonym, find_function, find_type, find_topic in your get_all_versions() pattern generating function
   
   - finish order_and_convert_clauses logic

@@ -1,4 +1,4 @@
-getimport os, random
+import os, random
 from nltk.stem import SnowballStemmer
 stemmer = SnowballStemmer("english")
 from utils import *
@@ -20,6 +20,9 @@ def get_pattern_config(all_vars):
             '~ !' # does not increase =>
         ]
     }
+    all_vars['impact_operator_map'] = {
+        '!@': 'does not change'
+    }
     all_vars['key_map'] = {
         '-': ['worsen', 'decrease', 'inhibit', 'reduce', 'deactivate', 'disable'],
         '+': ['improve', 'increase', 'induce', 'enhance', 'activate', 'enable'],
@@ -35,22 +38,23 @@ def get_pattern_config(all_vars):
     }
     ''' this maps operators to lists of operator keyword to use as clause delimiters '''
     all_vars['clause_map'] = {
-        '-' : ["decrease"], # attacks
-        '+' : ["increase"], # helps
+        '-': ["decrease"], # attacks
+        '+': ["increase"], # helps
         '=': ['is', 'like', 'equate', 'equal', 'describe', 'indicate', 'delineate', 'same', 'like', 'similar', 'implies', 'signifies', 'means'],
-        '&': ['and', 'with'],
-        '|': ['or'],
-        '^': ['but', 'yet', 'but yet', 'but rather', 'but actually', 'still', 'without', 'however', 'nevertheless' 'in the absence of', 'lacking'], # except and without
+        '&': ['and', 'with'], # can be conditional delimiters or statement delimiters or part of a noun phrase
+        '|': ['or'], # can be conditional delimiters or statement delimiters or part of a noun phrase
+        '^': ['but', 'yet', 'but yet', 'but rather', 'but actually', 'still', 'without', 'however', 'nevertheless', 'in the absence of', 'lacking'], # 'as', except and without
         '%': [
-            'because', 'as', 'since', 'if', 'then', 'from', 'due', 'when', 'while', 'during', 'for', 'given',
-            'in case', 'in the event that', 'caused by', 'respective of', 'during', 'later', 'after', 'before', 'pre-', 'post-'
+            'because', 'since', 'if', 'then', 'from', 'due', 'when', 'while', 'during', 'for', 'given',
+            'in case', 'in the event that', 'caused by', 'respective of', 'later', 'after', 'before', 'pre-', 'post-'
         ], # x of y is contextual "x in the context of y"
         '#': ['even', 'still', 'despite', 'otherwise', 'in spite of', 'regardless', 'heedless', 'irrespective'],
-        '!': ['not', 'without'],
+        '!': ['not'],
         '~': ['functions', 'that'],
         '>': ['creates', 'becomes', 'changes into', 'transforms', 'produces', 'leads to', 'converts into'],
         '@': ['changes', 'impacts', 'influences', 'adjusts', 'modulates', 'modifies', 'alters', 'affects'],
-        '<': ['subset'] #'x is a subset of y'
+        '<': ['subset'], #'x is a subset of y'
+        '!@': ['does not change'] # to do: add all combination operators
     }
     ''' this maps operators to standard words to replace them with '''
     all_vars['operator_map'] = {
@@ -68,15 +72,13 @@ def get_pattern_config(all_vars):
         '@' : 'change',
         '<' : 'is subset of'
     }
-
     ''' sort clause delimiters so the longer strings are matched first '''
     for key in all_vars['clause_map']:
         all_vars['clause_map'][key] = reverse_sort(all_vars['clause_map'][key])
-
     all_vars['clause_delimiters'] = []
     for k, v in all_vars['clause_map'].items():
         all_vars['clause_delimiters'].extend(v)
-    all_vars['clause_delimiters'].extend([',', ':', ';'])
+    all_vars['clause_delimiters'].extend([',', ':', ';', '(', ')'])
     abstract_verbs = ['find', 'derive', 'build', 'test', 'apply']
     med_objects = ['treatment', 'compound', 'test', 'metric', 'mechanism']
     study_objects = ['relationship', 'limit', 'type', 'method']
@@ -483,6 +485,17 @@ def get_pattern_config(all_vars):
             'x has ability to do y': 'x y',
             'JJ1 NN1 of JJ2 NN2': 'JJ2 NN2 JJ1 NN1',
             'x is an item in list b': 'x is in list b'
+        },
+        'verb_phrase': {
+            'could not have been done': 'was impossible',
+            'could not have': 'cannot',
+            'could have been done': 'was possible',
+            'could have': 'can',
+            'should not have been done': 'was inadvisable',
+            'should not have': 'does',
+            'should have': 'does not',
+            'has not been done': 'did not',
+            'had been done': 'did'
         }
     }
     all_vars['supported_pattern_variables'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
@@ -538,6 +551,7 @@ def get_pattern_config(all_vars):
             'ALL_N DPC ALL_N', # metabolite/metabolizer/inhibitor/alkalization of radiation, 
         ],
         'clause': [
+            '|suppose thought assumed| that', 
             'DPC NP VP NP',
             'DPC NP DPC NP',
             'DPC VP NP',

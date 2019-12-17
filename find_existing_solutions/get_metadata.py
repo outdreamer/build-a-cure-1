@@ -274,7 +274,11 @@ def get_structural_metadata(row, all_vars):
         1. 'ngram', 'modifier', 'phrase', 'noun_phrase', 'verb_phrase', 'clause', 'subject', 'pattern',
         2. order_and_convert_clauses
         3. 'relationship'
+
+        verb-noun-phrases should be converted into modifiers
+        once you have the nouns/modifiers, you can pick a subject from the noun or modifier
     '''
+
     keep_ratios = ['extra', 'high', 'none']
     line = row['line'] if 'line' in row and type(row) == dict else row # can be a row index dict or a definition line
     row = row if type(row) == dict else get_empty_index(['all'], all_vars)
@@ -294,13 +298,28 @@ def get_structural_metadata(row, all_vars):
                     row['count'][count_num] = set()
                 row['count'][count_num].add(count_val)
             pos = row['word_map'][w] if w in row['word_map'] else ''
-            ''' favor nouns before verbs '''
+            ''' favor noun before verb '''
             if pos in all_vars['pos_tags']['VC']:
                 row['clause_marker'].add(w)
             if pos in all_vars['pos_tags']['ALL_N'] or w in all_vars['alphabet']:
-                row['noun'].add(w)
+                ''' format nouns like 'inhibitor' as a verb '''
+                stem = get_stem(w)
+                stem_pos = get_nltk_pos(stem)
+                present_verb = conjugate(w, stem_pos, 'VBZ', all_vars)
+                if present_verb:
+                    row['verb'].add(present_verb)
+                else:
+                    row['noun'].add(w)
             elif pos in all_vars['pos_tags']['ALL_V']:
-                row['verb'].add(w)
+                ''' dont conjugate '-ing' to preserve verb-noun modifier phrases '''
+                if pos != 'VBG':
+                    present_verb = conjugate(w, pos, 'VBZ', all_vars)
+                    if present_verb:
+                        row['verb'].add(present_verb)
+                    else:
+                        row['verb'].add(w)
+                else:
+                    row['verb'].add(w)
             elif pos in all_vars['pos_tags']['D']:
                 ratio = get_determiner_ratio(w)
                 if ratio:
@@ -328,7 +347,17 @@ def get_structural_metadata(row, all_vars):
             objects, patterns = extract_objects_and_patterns_from_index(row, None, key, key, all_vars)
             if objects:
                 if key in objects:
-                    if key == 'subject':
+                    if key == 'verb_phrase':
+                        for item in objects[key]:
+                            for w in item.split(' '):
+                                pos = get_nltk_pos(w, all_vars)
+                                if pos:
+                                    present_verb = conjugate(w, pos, 'VBZ', all_vars)
+                                    if present_verb:
+                                        row[key].add(present_verb)
+                                    else:
+                                        row[key].add(w)
+                    elif key == 'subject':
                         for item in objects[key]:
                             row[key].add(item.split(' ')[0]) # get first word in 'N V' subject pattern
                     else:
@@ -345,6 +374,7 @@ def get_structural_metadata(row, all_vars):
             row['relationship'] = row['relationship'].union(set(objects['relationship']))
         if patterns:
             row['pattern'] = row['pattern'].union(set(patterns))
+    print('row', row)
     return row
 
 def find_ngrams(line, all_vars):
