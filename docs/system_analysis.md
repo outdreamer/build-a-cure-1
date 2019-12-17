@@ -334,6 +334,25 @@ general process of system analysis:
 			- starting from the same origin & diverging at equal angles
 			- converging to the same filter point (system entry point, like inputs to a function)
 
+		High-randomness system properties:
+
+		- consolidation of variance to an interface
+		- interchangeable inputs
+		- structural similarity across interacting systems (few variables in which they differ) on that interface
+		- variables across different interfaces (system-level variable, intent-level variable, function-level variable)
+		- change physics applies to every layer of the system, its components, and interacting/host systems
+		- compounding stability in structure, compounding variance in content
+		- centrality of random variable as a hub in a causal or interface network
+
+		In a random (unpredictable) system, it's possible to derive patterns in structure much of the time (whether a function exists), but less feasible to predict patterns in content (how a function is implemented).
+
+		Random system concepts:
+		- symmetry
+		- equivalence
+		- uncertainty
+		- variance
+		- binding, change, & boundary physics
+
 general metadata:
 - change rules (subtypes like the change rules that dont modify identity/boundary, change rules that add randomness, change rules that add convergence)
 - derivation dependency network between metadata objects (types, variables, system structure, patterns, layer variance)
