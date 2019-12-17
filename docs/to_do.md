@@ -71,17 +71,25 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
 
 ## Structural Objects
+
   - fix rows csv format
+  
   - examine all your iterated lists bc they determine processing order (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
+  
   - pattern processing order:
+    - implement ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos
+      - show preference for verbs in ambiguous cases (associate, bear) should return a verb even though it can be a noun
     - make sure youve changed 'modifier1' to 'VB1 NN1', 'VB1 VB2' etc 
       while iterating through modifier patterns before submitting a call to find_patterns so you can just use 'ALL' pos tag checks
     - once you replace some patterns, youll have new phrases & conditions, so do apply_pattern_map before your other parsing
     - 'has effect' => 'have induce' with current synonym replacements, 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
         - 'by' can indicate a process/mechanism "it works by doing x"
     - based on processing order, isolate which patterns would be identified as other objects first
+  
   - add calls to find_synonym, find_function, find_type, find_topic in your get_all_versions() pattern generating function
+  
   - finish order_and_convert_clauses logic
+  
   - add identification functions:
       - objects (nouns like 'protein')
       - components (topical nouns that are found in another topical component, like organelles of a cell)
@@ -89,14 +97,12 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
       - functions (verbs like 'ionizing', 'activate', inputs/outputs like subject/predicate nouns)
       - variables (function inputs like subject/modifier nouns)
       - types (['structure', 'life form', 'organic molecule'] from 'protein')
-  - implement ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos
-      - show preference for verbs in ambiguous cases (associate, bear) should return a verb even though it can be a noun
-  - check modifier patterns with pattern_map: 'x is a y alkalizing inhibitor' should be converted to 'x alkalizing-inhibits y'
+
   - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
-    - implement a find_patterns function that aggregates repeated pos/type/abstract patterns across a article/line set
+    - implement a find_pattern function that aggregates repeated pos/type/abstract patterns across a article/line set
       - then you can enter patterns for medical find_object functions by scanning articles & applying find_patterns 
         (same for modifiers, clauses, & phrases so you dont have to configure every pattern manually)
-  - add filtering of insights to apply directly to the topic of the problem space of the target condition or mechanisms
+  - add filtering of insights to apply directly to the topic of the problem space of the target condition or mechanisms requested in metadata
   - add mechanisms of action keywords & patterns to get strategies
 
   - add read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example

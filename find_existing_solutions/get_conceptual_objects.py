@@ -248,7 +248,7 @@ def get_verb_impact(function, object_name, all_vars):
         - make sure the impact verb is acting on that subject so switch if its passive 
     '''
     if object_name in function:
-        row = get_pos_metadata(function, all_vars)
+        row = get_structural_metadata(function, all_vars)
         if row:
             if 'verb' in row:
                 for v in row['verb']:

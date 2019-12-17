@@ -1,4 +1,4 @@
-import os, random
+getimport os, random
 from nltk.stem import SnowballStemmer
 stemmer = SnowballStemmer("english")
 from utils import *
@@ -834,7 +834,7 @@ def process_synonym_element(y, keyword, all_vars):
         all_vars['supported_synonyms'][y] = keyword
     return all_vars                                    
 
-def get_nested_patterns(pattern, pattern_type, source_vars, all_vars):
+def generate_nested_patterns(pattern, pattern_type, source_vars, all_vars):
     '''
     support for nested alts in patterns like: '__|a an|__' and '|VB NN |VB ADV|| VB'
     pattern = '|VB NN x| VB' and variables['x'] = '|VB ADV|'
@@ -888,7 +888,7 @@ def get_nested_patterns(pattern, pattern_type, source_vars, all_vars):
         return new_patterns, variables
     return [pattern], variables
 
-def get_alt_patterns(pattern, nested_variables, all_vars):
+def generate_alt_patterns(pattern, nested_variables, all_vars):
     ''' 
     this functions returns ['VB NN D1 D2', 'VB JJ D1 D2'] 
     from pattern = 'VB x D1 D2' and nested_variables['x'] = 'NN JJ'
@@ -996,7 +996,7 @@ def add_sub_patterns(pattern_list, nested_variables):
         return new_lists
     return False
 
-def get_repeated_patterns(pattern, all_vars):
+def generate_repeated_patterns(pattern, all_vars):
     ''' this function adds an integer index to any repeated items '''
     new_words = []
     for i, w in enumerate(pattern):
@@ -1014,7 +1014,7 @@ def get_repeated_patterns(pattern, all_vars):
         return ' '.join(new_words)
     return pattern
     
-def get_correct_patterns(pattern, all_vars):
+def generate_correct_patterns(pattern, all_vars):
     '''
         - words like 'bear', 'worm', 'rat' will be logged as a verb even when preceded by determiner
         - add pattern_map word_pos entries to convert words to the correct pos: 
@@ -1024,7 +1024,7 @@ def get_correct_patterns(pattern, all_vars):
     '''
     return pattern
 
-def get_type_patterns(pattern, all_vars):
+def generate_type_patterns(pattern, all_vars):
     ''' 
     to do: implement after get_types 
         Cytotoxicity in cancer cells => <component object>-toxicity, anti-tumor => anti-<component object of illness>
@@ -1032,13 +1032,13 @@ def get_type_patterns(pattern, all_vars):
     '''
     return [pattern]
 
-def get_synonym_patterns(pattern, all_vars):
+def generate_synonym_patterns(pattern, all_vars):
     return [pattern]
 
-def get_operator_patterns(pattern, all_vars):
+def generate_operator_patterns(pattern, all_vars):
     return [pattern]
 
-def get_function_patterns(pattern, all_vars):
+def generate_function_patterns(pattern, all_vars):
     ''' find functions in pattern & replace with their core function decomposition '''
     functions = find_function(pattern)
     if functions:
@@ -1061,7 +1061,7 @@ def get_all_versions(pattern, version_types, all_vars):
     converted_pattern = convert_pos_vars_to_nltk_tag_alts(pattern, all_vars)
     pattern = converted_pattern if converted_pattern else pattern
     for process in processing_types:
-        function_name = ''.join(['get_', process, '_patterns'])
+        function_name = ''.join(['generate_', process, '_patterns'])
         if function_name in locals():
             try:
                 function = getattr(locals(), function_name)
@@ -1073,11 +1073,11 @@ def get_all_versions(pattern, version_types, all_vars):
 
     ''' pattern = 'VB |JJ NN|' '''
     patterns_to_iterate = []
-    nested_patterns, nested_variables = get_nested_patterns(pattern, 'pattern', {}, all_vars)
+    nested_patterns, nested_variables = generate_nested_patterns(pattern, 'pattern', {}, all_vars)
     ''' nested_patterns = 'VB x', nested_variables = {'x': 'JJ NN'} '''
 
     for np in nested_patterns:
-        alt_patterns = get_alt_patterns(np, nested_variables, all_vars)
+        alt_patterns = generate_alt_patterns(np, nested_variables, all_vars)
         if alt_patterns:
             for ap in alt_patterns:
                 patterns_to_iterate.append(ap)
@@ -1090,16 +1090,16 @@ def get_all_versions(pattern, version_types, all_vars):
             get_pos_patterns creates a list of nonnumeric/general/specific 
             pattern variants for each word pos type 
             '''
-            variant_patterns = get_pos_patterns(p, all_vars)
+            variant_patterns = generate_pos_patterns(p, all_vars)
             if variant_patterns:
                 for vp in variant_patterns:
-                    type_patterns = get_type_patterns(vp, all_vars)
+                    type_patterns = generate_type_patterns(vp, all_vars)
                     if type_patterns:
                         for tp in type_patterns:
-                            synonym_patterns = get_synonym_patterns(tp, all_vars)
+                            synonym_patterns = generate_synonym_patterns(tp, all_vars)
                             if synonym_patterns:
                                 for sp in synonym_patterns:
-                                    operator_patterns = get_operator_patterns(sp, all_vars)
+                                    operator_patterns = generate_operator_patterns(sp, all_vars)
                                     if operator_patterns:
                                         for op in operator_patterns:
                                             all_patterns.append(op)
@@ -1126,7 +1126,7 @@ def get_original_pattern_length(pattern, delimiter):
         return final_count
     return False
 
-def get_pos_patterns(pattern, all_vars):
+def generate_pos_patterns(pattern, all_vars):
     ''' this function generates all the pos_type variants of a pattern 
         - this is necessary for pattern maps where the source pos type & target pos type 
             are a set:subset relationship (V: VBD, V1: VBD2) rather than equivalent (VBD: VBD, VBD1: VBD2)
@@ -1234,22 +1234,6 @@ def convert_to_pos_type(word, nonnumeric_w, pos_type, all_vars):
                     if pos in values:
                         return pos_key
     return False
-
-'''
-def get_partial_pos(pattern, all_vars):
-    new_pattern_words = []
-    for w in pattern.split(' '):
-        nonnumeric_w = get_nonnumeric(w, all_vars)        
-        if nonnumeric_w in all_vars['pos_tags']['ALL']:
-            for pos_key in ['V', 'N', 'D', 'P', 'C', 'ADV', 'ADJ']:
-                if nonnumeric_w in all_vars['pos_tags'][pos_key] or nonnumeric_w == pos_key:
-                    new_pattern_words.append(pos_key)
-        else:
-            new_pattern_words.append(w)
-    if len(new_pattern_words) > 0:
-        return ' '.join(new_pattern_words)
-    return pattern
-'''
 
 def is_supported_tag(var, all_vars):
     if var in all_vars['pos_tags']['ALL'] or var in all_vars['pos_tags']:
