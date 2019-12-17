@@ -153,19 +153,19 @@ def get_metadata(line, title, word_map, all_vars):
     row = replace_names(row, all_vars)
     row = get_similarity_to_title(title, row)  
     row = get_structural_metadata(row, all_vars)
-    intent = None # find_intents(row, all_vars)
+    intent = None # find_intent(row, all_vars)
     hypothesis = None # find_hypothesis(row, all_vars)
-    row = find_treatments(row, all_vars)
+    row = find_treatment(row['line'], None, row, all_vars)
     for metadata_type in ['medical_types', 'conceptual_types']:
         for object_type in all_vars[metadata_type]:
             if object_type in all_vars['metadata']:
                 for search_pattern_key in all_vars['pattern_index']:
-                    # check that this data 'strategies', 'treatments' was requested and is supported in pattern_index
+                    # check that this data 'strategy', 'treatment' was requested and is supported in pattern_index
                     objects, patterns = extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, all_vars)
                     if objects:
                         row[object_type] = objects
                     if patterns:
-                        row['patterns'] = row['patterns'].union(set([p for p in patterns]))
+                        row['pattern'] = row['pattern'].union(set([p for p in patterns]))
     print('medical objects', row)
     return row
 
@@ -185,10 +185,10 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
         this function is for finding patterns in those index types in the input (index or row['line'])
 
     - object_type is the key in object types supported in all_vars['full_params'] to find:
-        ['treatments', 'conditions', 'strategies']
+        ['treatment', 'condition', 'strategy']
 
     - search_pattern_key is the key of all_vars['pattern_index'] keys to search: 
-        ['modifiers', 'types', 'roles']
+        ['modifier', 'type', 'role']
 
     - object_type can equal search_pattern_key
 
@@ -228,13 +228,13 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
     ''' the reason we allow search_pattern_key and object_type to differ is to find subset matches 
         example: 
             find 'modifiers' in 'treatment patterns' would have:
-            object_type = 'modifiers' and search_pattern_key = 'treatments'
+            object_type = 'modifier' and search_pattern_key = 'treatment'
         to do:
             - make a list of subset pattern type relationships
     '''
     found_objects = set()
     found_patterns = match_patterns(line, search_pattern_key, all_vars)
-    if found_patterns and object_type != 'patterns':
+    if found_patterns and object_type != 'pattern':
         for pattern_type in found_patterns:
             for pattern, matches in found_patterns[pattern_type].items():
                 ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
@@ -271,9 +271,9 @@ def apply_find_function(object_type, pattern, matches, index, all_vars):
 
 def get_structural_metadata(row, all_vars):
     '''
-        1. 'ngrams', 'modifiers', 'phrases', 'noun_phrases', 'verb_phrases', 'clauses', 'subjects', 'patterns',
+        1. 'ngram', 'modifier', 'phrase', 'noun_phrase', 'verb_phrase', 'clause', 'subject', 'pattern',
         2. order_and_convert_clauses
-        3. 'relationships'
+        3. 'relationship'
     '''
     keep_ratios = ['extra', 'high', 'none']
     line = row['line'] if 'line' in row and type(row) == dict else row # can be a row index dict or a definition line
@@ -290,17 +290,17 @@ def get_structural_metadata(row, all_vars):
             if count > 0:
                 count_num = upper_count if upper_count >= count else count
                 count_val = w_upper if upper_count >= count else w 
-                if count_num not in row['counts']:
-                    row['counts'][count_num] = set()
-                row['counts'][count_num].add(count_val)
+                if count_num not in row['count']:
+                    row['count'][count_num] = set()
+                row['count'][count_num].add(count_val)
             pos = row['word_map'][w] if w in row['word_map'] else ''
             ''' favor nouns before verbs '''
             if pos in all_vars['pos_tags']['VC']:
-                row['clause_markers'].add(w)
+                row['clause_marker'].add(w)
             if pos in all_vars['pos_tags']['ALL_N'] or w in all_vars['alphabet']:
-                row['nouns'].add(w)
+                row['noun'].add(w)
             elif pos in all_vars['pos_tags']['ALL_V']:
-                row['verbs'].add(w)
+                row['verb'].add(w)
             elif pos in all_vars['pos_tags']['D']:
                 ratio = get_determiner_ratio(w)
                 if ratio:
@@ -311,43 +311,43 @@ def get_structural_metadata(row, all_vars):
             elif pos in all_vars['pos_tags']['C']:
                 row['conj'].add(w)
             elif pos in all_vars['pos_tags']['ADV'] or pos in all_vars['pos_tags']['ADJ']:
-                row['descriptors'].add(w)
+                row['descriptor'].add(w)
             else:
                 row['taken_out'].add('_'.join([w, str(pos)]))
-    if len(row['counts'].keys()) > 1:
-        common_words = get_most_common_words(row['counts'], 3) # get top 3 tiers of common words
+    if len(row['count'].keys()) > 1:
+        common_words = get_most_common_words(row['count'], 3) # get top 3 tiers of common words
         if common_words:
-            row['common_words'] = common_words
-    ngrams = get_ngrams(word_pos_line, all_vars) # 'even with', 'was reduced', 'subject position'
+            row['common_word'] = common_words
+    ngrams = find_ngrams(word_pos_line, all_vars) # 'even with', 'was reduced', 'subject position'
     if ngrams:
-        row['ngrams'] = ngrams
+        row['ngram'] = ngrams
         ngram_list = [v for k, v in ngrams.items()]
         ngram_list.append(word_pos_line)
-        structure_types = ['modifiers', 'verb_phrases', 'noun_phrases', 'phrases', 'clauses']
+        structure_types = ['modifier', 'verb_phrase', 'noun_phrase', 'phrase', 'clause']
         for i, key in enumerate(structure_types):
             objects, patterns = extract_objects_and_patterns_from_index(row, None, key, key, all_vars)
             if objects:
                 if key in objects:
-                    if key == 'subjects':
+                    if key == 'subject':
                         for item in objects[key]:
                             row[key].add(item.split(' ')[0]) # get first word in 'N V' subject pattern
                     else:
                         row[key] = row[key].union(set(objects[key]))
             if patterns:
-                row['patterns'] = row['patterns'].union(set(patterns))
-    extra_patterns = find_patterns(row['line'], all_vars)
+                row['pattern'] = row['pattern'].union(set(patterns))
+    extra_patterns = find_pattern(row['line'], all_vars)
     if extra_patterns:
-        row['patterns'] = row['patterns'].union(set(extra_patterns))
+        row['pattern'] = row['pattern'].union(set(extra_patterns))
     row = order_and_convert_clauses(row, line, all_vars)
-    objects, patterns = extract_objects_and_patterns_from_index(row, None, 'relationships', 'relationships', all_vars)
+    objects, patterns = extract_objects_and_patterns_from_index(row, None, 'relationship', 'relationship', all_vars)
     if objects:
-        if 'relationships' in objects:
-            row['relationships'] = row['relationships'].union(set(objects['relationships']))
+        if 'relationship' in objects:
+            row['relationship'] = row['relationship'].union(set(objects['relationship']))
         if patterns:
-            row['patterns'] = row['patterns'].union(set(patterns))
+            row['pattern'] = row['pattern'].union(set(patterns))
     return row
 
-def get_ngrams(line, all_vars):
+def find_ngrams(line, all_vars):
     phrases = {'N': [], 'V': [], 'ADJ': [], 'ADV': [], 'DPC': []} # take out adj & adv
     phrase_keys = ['N', 'V', 'ADJ', 'ADV']
     tags = all_vars['pos_tags']

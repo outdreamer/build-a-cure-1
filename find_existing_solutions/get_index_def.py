@@ -1,82 +1,41 @@
 def get_empty_index(all_vars):
     '''
     indexes isolates treatments from symptoms, metrics, etc to build indexes of those objects on your local env
-        indexes = {
-            'counts': set(),
-            'clauses': set(),
-            'phrases': set(),
-            'verbs': set(), # set of relationship verbs in the index set
-            'nouns': set(),
-            'names': set(),
-            'title_similarities': set(),
-            'taken_out': set(),
-            'relationships': set(),
-            'components': set(), # bio objects
-            'conditions': set(),
-            'symptoms': set(),
-            'compounds': set(),
-            'metrics': set(), # metric used to measure effectiveness of treatment
-            'stressors': set(),
-            'bio_conditions': set(),
-            'bio_symptoms': set(),
-            'bio_metrics': set(),
-            'bio_stressors': set(),
-            'synthesis_instructions': set(),
-            'synthesis_parameters': set(),
-            'synthesis_optimal_parameter_values': set(),
-            'synthesis_required_compounds': set(),
-            'synthesis_substitutes': set(),
-            'synthesis_equipment_links': set(),
-            'synthesis_adjacent_compounds_synthesis_steps': set(),
-            'treatments_successful': set(),
-            'treatments_failed': set(),
-            'patterns': set(),
-            'pattern_stack': set(),
-            'functions': set(),
-            'insights': set(), # useful sentences in index set that have bio rules in them - for abstracts this will likely just be the treatment success sentence
-            'strategies': set(), # insights relevant to methods/mechanisms of action/processes or patterns of problem-solving
-            'systems': set(),
-            'variables': set(),
-            'target_intents': set(),
-            'avoid_intents': set(), # in addition to functions you want to target, there are functions you want to avoid as well
-            'types': set(),
-            'causal_layers': set(),
-        }
     rows
         - ensures data remains tied to its original context
         - it has the same elements as index but stores them by each sentence 
           from source data containing a symptom, condition, treatment, etc
     rows = [
         {
-            'conditions': ['meningitis'],
-            'symptoms': ['temperature'],
+            'condition': ['meningitis'],
+            'symptom': ['temperature'],
             'treatments_successful': ['fluconazole'],
-            'insights': ['fluconazole effective 10-week survival'],
+            'insight': ['fluconazole effective 10-week survival'],
             ...
         },
         {
-            'conditions': ['diabetes'],
-            'symptoms': ['organ failure'],
+            'condition': ['diabetes'],
+            'symptom': ['organ failure'],
             'treatments_successful': ['metformin'],
-            'insights': ['metformin effective for diabetes'],
+            'insight': ['metformin effective for diabetes'],
             ...
         },
         {
-            'metrics': {'naa-cr ratio': 'reduced'}
-            'conditions': ['hiv', 'encephalopathy'],
-            'components': {
-                'organs': ['brain', 'immune system'],
-                'microbes': [],
-                'cells': [],
-                'genes': [],
-                'enzymes': [],
-                'biosystems': ['immune system', 'nervous system']
+            'metric': {'naa-cr ratio': 'reduced'}
+            'condition': ['hiv', 'encephalopathy'],
+            'component': {
+                'organ': ['brain', 'immune system'],
+                'microbe': [],
+                'cell': [],
+                'gene': [],
+                'enzyme': [],
+                'biosystem': ['immune system', 'nervous system']
             }
-            'compounds': ['naa', 'cr'],
+            'compound': ['naa', 'cr'],
             'treatments_successful': [],
             'treatments_failed': [],
-            'intents': ['diagnose'],
-            'insights': [
+            'intent': ['diagnose'],
+            'insight': [
                 'naa-to-cr ratio is reduced in hiv patients', 
                 'naa-to-cr ratio is a marker for hiv brain infection'
             ],
@@ -99,7 +58,7 @@ def get_empty_index(all_vars):
         if key != 'request':
             for item in all_vars['full_params'][key]:
                 index_keys.append(item)
-    dict_keys = ['counts', 'patterns', 'pos', 'word_map']
+    dict_keys = ['count', 'pattern', 'pos', 'word_map']
     all_vars['metadata'] = index_keys if 'metadata' not in all_vars or 'all' in all_vars['metadata'] else all_vars['metadata']
     for key in all_vars['metadata']:
         if key in index_keys:

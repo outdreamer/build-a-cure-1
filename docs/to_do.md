@@ -69,12 +69,10 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
                 non_dpc_segments.append(' '.join(new_segment))
                 new_segment = []
 
-## Structural Objects
 
-  - test with ALL_N vars 
-  - add other pattern types to pattern_map
-  - examine all your iterated lists bc they determine processing order (supported_pattern_variables, all_version_types, reversed keys, etc)
+## Structural Objects
   - fix rows csv format
+  - examine all your iterated lists bc they determine processing order (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
   - pattern processing order:
     - make sure youve changed 'modifier1' to 'VB1 NN1', 'VB1 VB2' etc 
       while iterating through modifier patterns before submitting a call to find_patterns so you can just use 'ALL' pos tag checks

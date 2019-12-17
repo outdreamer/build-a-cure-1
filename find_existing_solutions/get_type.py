@@ -1,7 +1,7 @@
 import wikipedia
 from wikipedia.exceptions import DisambiguationError
 
-def get_types(word, pos, title, row, all_vars):
+def find_type(word, pos, title, row, all_vars):
     types = {}
     wikipedia.set_lang("en")
     suggested = None
@@ -17,8 +17,8 @@ def get_types(word, pos, title, row, all_vars):
                 print('section list', section_list)
                 categories = wikipedia.page(suggested).categories
                 if len(categories) > 0:
-                    row['types'] = row['types'].union(set(categories))
                     print('categories', categories)
+                    row['type'] = row['type'].union(set(categories))
                     if len(section_list) > 0:
                         ''' use section list to determine type first '''
                         for key, val in all_vars['section_map'].items():
@@ -30,7 +30,7 @@ def get_types(word, pos, title, row, all_vars):
                         if index_type:
                             print('found index type', index_type, word)
                             if index_type in row:
-                                if index_type != 'dependencies': # to do: exclude other relationship objects here
+                                if index_type != 'dependency': # to do: exclude other relationship objects here
                                     index = {index_type: word}
                                     matched_objects = match_patterns(word, index_type, all_vars)
                                     if matched_objects:
@@ -45,10 +45,10 @@ def get_types(word, pos, title, row, all_vars):
 
 def get_index_type(object_type, all_vars, categories):
     param_map = {
-        'conditions': 'state',
-        'compounds': 'elements', # not every compound will be a treatment
-        'symptoms': 'side_effects',
-        'functions': 'causal_layers'
+        'condition': 'state',
+        'compound': 'element', # not every compound will be a treatment
+        'symptom': 'side_effect',
+        'function': 'causal_layer'
     }
     if object_type in all_vars['supported_synonyms']:
         return all_vars['supported_synonyms'][object_type]

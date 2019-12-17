@@ -1,111 +1,34 @@
 from get_structural_objects import *
 
-''' 
-  each main medical object has its own property set, which can be built with rows data:
-    'synthesis_instructions' = {
-        'parameters',
-        'optimal_parameter_values',
-        'required_compounds',
-        'substitutes',
-        'equipment_links',
-        'adjacent_compounds_and_steps',
-    }
-    'symptom' = {
-        'attributes': [],
-        'rules': [],
-        'states': [],
-        'treatments': []
-    }
-    'compounds' = {
-        'attributes': [],
-        'rules': [],
-        'states': [],
-        'side_effects': [] # this is just a list of symptoms the compound causes, which can be assembled from rows data
-    }
-
-Side effect keywords to use to test relationships derived with nlp tools:
-  - nouns: effect, activation, activity, reaction, process, role
-  - roles: intrinsically related to functions, intents, strategies, & mechanisms
-  - adjectives:
-  - objects: 
-    - functions: attenuate, enhance, reduce, down/up/regulate, stimulate, de/activate, dis/enable, absorb, catalyze, alleviate, suppress, decline, increase, enrich, moderate, adjust, change
-    - experiment:
-      - properties: parameters, linearity, sensitivity, precision, repeatability, recovery
-    - role:
-      - inhibitor, antagonist, catalyst, receptor
-      - synergy, cooperative, coordinating, enhancing, activating
-      - neutralizing, counteracting, disabling, deactivating, anti
-    - process:
-      - apoptosis
-      - glucolysis
-      - transcription
-    - states:
-      - active, inactive
-      - inflammation
-    - bio properties:
-      - fragility
-      - toxicity
-    - chemical compounds:
-      - molecules
-      - bonds
-      - elements
-      - charge
-      - electrons
-      - ions
-    - bio compounds 
-      - proteins
-      - enzymes
-      - lipids
-      - genes: expression, active
-      - blood
-    - cell components:
-      - mitochondria
-      - nucleus
-      - dna
-      - membrane
-    - microorganisms:
-      - bacteria
-      - fungi
-      - virus
-    - tissue:
-      - muscle
-      - mucus membrane
-      - collagen
-    - organs: 
-      - liver: synoyms (hepatic), components (hepatocytes)
-      - kidney
-      - bladder
-    - systems:
-      - lymph
-      - nervous
-      - immune
-      - circulatory
-      - digestive
-    - treatments
-    - conditions: anything ending in -a is usually a condition
-    - tests: pcr
-    - metric: levels, quantitative, concentration
-'''
-
-verification_dict = {}
-output_dict = {}
-
-def get_stressors():
-  '''
-  - example of stressor response:
-  - when drug handles a function, bio system component shrinks:
-    - Researchers measured the volume of the hypothalamus in each scan. 
-    This cone-shaped part of the brain has a number of jobs including controlling the release of hormones and regulating reproductive functions.
-  - find example of the opposite relationship
-  '''
-
-def get_object_similarity(verification_dict, output_dict):
+def find_object_similarity(verification_dict, output_dict):
   '''
   1. check for coverage of verification_dict 
   2. check for errors (missing components, words that are too different to be correct)
   '''
+  return False
 
-def get_generic_medication(brand_name):
+def find_metric(pattern, matches, row, all_vars):
+    '''
+    find any metrics in this pattern's matches
+    to do: some metrics will have letters other than expected
+    pull all the alphanumeric strings & filter out dose information
+    '''
+    metrics = set()
+    split_line = pattern.split(' ') if pattern is not None else []
+    for i, word in enumerate(split_line):
+        numbers = [w for w in word if w.isnumeric()]
+        if len(numbers) > 0:
+            if len(numbers) == len(word):
+                next_word = split_line[i + 1] if (i + 1) < len(split_line) else ''
+                if len(next_word) < 5:
+                    # to do: add extra processing rather than assuming its a unit of measurement
+                    metrics.add(word)
+                    metrics.add(next_word) # '3 mg'
+            else:
+                metrics.add(word) # '3mg'
+    return row
+
+def find_generic_medication(pattern, matches, row, all_vars):
     '''
       to do:
         - add standardization of acronyms using search with keywords 
@@ -138,7 +61,7 @@ def get_generic_medication(brand_name):
         print('keyword e', keyword, e)
     return False
 
-def get_synthesis_instructions(article):
+def find_synthesis(pattern, matches, row, all_vars):
     '''
     - also add an 'instructions' & 'equipment' item to reduce a study:
       https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4507162/
@@ -167,9 +90,19 @@ def get_synthesis_instructions(article):
         - Cop, drug to Cop ratio 1:20
         - homogenization parameters 15 cycles at 50 MPa of microfluidizer
     '''
-    return article
+    return row
 
-def get_primary_condition(article, index):
+def find_stressor(pattern, matches, row, all_vars):
+    '''
+    - example of stressor response:
+    - when drug handles a function, bio system component shrinks:
+      - Researchers measured the volume of the hypothalamus in each scan. 
+      This cone-shaped part of the brain has a number of jobs including controlling the release of hormones and regulating reproductive functions.
+    - find example of the opposite relationship
+    '''
+    return row
+
+def find_primary_condition(pattern, matches, row, all_vars):
     '''
       to do:
         - find the primary condition being studied to differentiate 
@@ -177,48 +110,49 @@ def get_primary_condition(article, index):
           which should be the keyword passed to get_summary_data if it was a condition query 
           or one of the subjects of the study
     '''
-    return article 
+    return row 
 
-def get_side_effects(line):
+def find_side_effect(pattern, matches, row, all_vars):
     '''
     this should pull from data in standard sites like wiki, drugs, webmd, & rxlist 
     as well as forum data to find rare symptoms & interactions not listed elsewhere
     side_effects = unintended symptoms caused by a drug
     '''
-    return line
+    return row
 
-def get_compounds(line):
+def find_compound(pattern, matches, row, all_vars):
     ''' - add regex for numerically indexed prefixes like 14alpha-'''
-    return line
+    return row
 
-def get_symptoms(line):
+def find_symptom(pattern, matches, row, all_vars):
     ''' pulls from sources specific to symptoms: rxlist, drugs, wiki, forums '''
     ''' symptom examples: fever red urine skin rash paralysis headache bleeding '''
-    return line
+    return row
 
-def get_mechanisms(line):
+def find_mechanism(pattern, matches, row, all_vars):
     '''
     get specific process explaining how this compound works
     uses descriptive language, detailing the process, so present tense verbs like 'works'
     if its a new discovery in an experiment it might be 'x was observed to work'
     '''
-    return line
+    return row
 
-def get_tests(line):
-    return line
+def find_test(pattern, matches, row, all_vars):
+    return row
 
-def get_adjacents(compound):
+def find_adjacent(pattern, matches, row, all_vars):
     ''' 
     get similar compounds with similar functionality 
     that can be synthesized with accessible methods 
     '''
-    return compound
+    return row
 
-def get_sub_components(condition_keyword):
-  ''' when searching for research on a compound or condition, also check for its sub-components, 
+def find_sub_component(pattern, matches, row, all_vars):
+    ''' when searching for research on a compound or condition, also check for its sub-components, 
       and the compounds its sub-components can be used to make '''
+    return row
 
-def get_related_components(component, data_store, all_vars):
+def find_related_component(pattern, matches, row, all_vars):
     '''
     this should return all primary sub-components & outputs known for the component,
     such as important adjacent compounds which this one frequently turns into
@@ -238,28 +172,28 @@ def get_related_components(component, data_store, all_vars):
         for d in definitions:
             d_row = get_structural_metadata(d, all_vars)
             if d_row:
-                if 'nouns' in d_row:
-                    for n in d_row['nouns']:
+                if 'noun' in d_row:
+                    for n in d_row['noun']:
                         related_components.add(n)
-    return related_components
+    return row
 
-def find_treatments(row, all_vars):
+def find_treatment(pattern, matches, row, all_vars):
     '''
     hypothesis & intent can be Null for now 
 
     this function will process a relationship like:
 
-    intent='check_correlation', line="this protein activates this gene known to cause this condition"
+    intent='check_correlation', row="this protein activates this gene known to cause this condition"
 
-    the line must have these conditions met before it should be analyzed as a treatment:
+    the row must have these conditions met before it should be analyzed as a treatment:
         - check if it has words similar to the title to indicate relevance to study intent 
         - then check that the objects are in the names or medical objects indexes
         - the condition being studied or a marker of it is mentioned as well
 
-    then it analyzes the positivity of the relationship between objects in the line,
+    then it analyzes the positivity of the relationship between objects in the row,
      & tests if this is a positive association for the condition, so it can be used as a treatment:
 
-        - returns "positive" for line above to indicate a potential treatment
+        - returns "positive" for row above to indicate a potential treatment
         - returns "positive" for "this compound had a synergistic effect with a drug to treat the condition"
         - returns "negative" for "this compound reduced disease inhibition"
 
@@ -274,10 +208,9 @@ def find_treatments(row, all_vars):
                 "drug did reduce blood pressure" => positive correlation (success) or a negative intent (reduce)
     '''
 
-    lines = [lines] if type(lines) == str else lines
-    blob = get_blob(row['line'])
+    blob = get_blob(row['row'])
     sentiment = blob.sentiment if blob else None
-    print("\tline sentiment", sentiment, "line", row['line'])
+    print("\trow sentiment", sentiment, "row", row['row'])
     '''
     if hypothesis:
         hypothesis_blob = get_blob(hypothesis)
@@ -291,7 +224,7 @@ def find_treatments(row, all_vars):
     ''' to do: do study & sentence intent matching '''
     if 'relationships' in row:
         for r in row['relationships']:
-            ''' row['variables'] = get_dependencies('inputs', row['line'], row['relationships'], 1)) '''
+            ''' row['variables'] = get_dependencies('inputs', row['row'], row['relationships'], 1)) '''
             intent = None
             correlation = get_similarity(intent, r)
             print('\tget_treatments: correlation', correlation, r)
@@ -312,7 +245,7 @@ def filter_source_list(object_type, sources):
           synthesis instructions may involve:
           - collecting samples in the wild
           - predicting phase structure
-      - if they want condition data, you need to return phases & timeline
+      - if they want condition data, you need to return phases & timerow
         - if they submit symptoms with a condition query, tell them what phase theyre at
       - if the results are not sufficient, offer option to generate a predictor & estimate cost
       - if a known treatment doesnt exist, your generator needs to return results like:
@@ -323,12 +256,12 @@ def filter_source_list(object_type, sources):
   '''
   all_sources = ['rxlist', 'drugs', 'wiki', 'forums', 'pubchem', 'code', 'store', 'generator']
   source_filters = {
-    'symptoms': ['rxlist', 'drugs', 'wiki', 'forums', 'pubchem', 'generator'],
-    'treatments': ['pubchem', 'wiki', 'rxlist', 'drugs','store', 'generator'],
-    'compounds': ['rxlist', 'drugs', 'wiki', 'pubchem', 'store', 'generator'],
-    'synthesis_instructions': ['rxlist', 'drugs', 'wiki', 'pubchem', 'store', 'generator'],
-    'components': ['rxlist', 'drugs', 'wiki', 'pubchem', 'generator'],
-    'conditions': ['wiki', 'pubchem', 'rxlist', 'drugs', 'generator'],
-    'organisms': ['wiki', 'pubchem', 'rxlist', 'drugs', 'store', 'generator']
+    'symptom': ['rxlist', 'drugs', 'wiki', 'forums', 'pubchem', 'generator'],
+    'treatment': ['pubchem', 'wiki', 'rxlist', 'drugs','store', 'generator'],
+    'compound': ['rxlist', 'drugs', 'wiki', 'pubchem', 'store', 'generator'],
+    'synthesis': ['rxlist', 'drugs', 'wiki', 'pubchem', 'store', 'generator'],
+    'component': ['rxlist', 'drugs', 'wiki', 'pubchem', 'generator'],
+    'condition': ['wiki', 'pubchem', 'rxlist', 'drugs', 'generator'],
+    'organism': ['wiki', 'pubchem', 'rxlist', 'drugs', 'store', 'generator']
   }
   return sources

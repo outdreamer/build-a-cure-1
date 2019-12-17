@@ -2,24 +2,10 @@ from nltk import word_tokenize, pos_tag, ne_chunk
 
 from get_index_def import get_empty_index
 
-''' conceptual relationships:
-    priority = direction
-    observation = insight = function = result = relationship
-    conclusion = ordered_list(observations) + guess = coefficients + bias
-    strategy = ordered_list(insights)
-    strategy = insight + context
-    problem = (combination of intents having different priorities) or (an resource distribution imbalance)
-    intent = strategy + priority
-    solution = (combination of strategies operating on variables with insight functions that reduce dimensions of problem (function-combination) or (resource-imbalance))
-    type = combination(attributes)
-    intents = function outputs
-    roles = functions
-'''
-
 ''' these functions do more advanced linguistic processing than 
-    keyword matching as in identify_elements '''
+    keyword or pattern matching as in identify_elements '''
 
-def get_article_intents(article):
+def find_article_intents(article, all_vars):
     '''
     this function is checking for any purpose-related keywords
     to find priority data of bio components, 
@@ -50,16 +36,6 @@ def get_article_intents(article):
         the relationship may be to find correlation between two medical factors:
         'condition' and 'treatment' or 'condition' and 'symptom' or 'treatment' and 'symptom'
     '''
-
-    study_intents = {
-        'test': 'to confirm a relationship (between x=success)', 
-        'find': 'to find a relationship (between x=y)', 
-        'verify': 'to confirm an object (study, method, result)',
-        'compare': 'to compare objects (study=study, method=method, result=protocol)', 
-        # compare => check that all studies confirm each other, or check that a method-implementation or result-derivation followed protocol
-        'build': 'to build object (compound, symptom, treatment, condition, state)' 
-        # to get 'health', follow build protocol 'x', to get 'compound', follow build protocol 'y'
-    }
     intents = []
     for line in article.split('\n'):
         intent = get_intent(line)
@@ -69,13 +45,7 @@ def get_article_intents(article):
         return intents
     return False
 
-def find_variables(line):
-    ''' use this to determine parameters for synthesis function too '''
-    ''' variables are the inputs to functions '''
-    ''' this can mean the subject of a sentence, or the inputs of that subject (resources, context) '''
-    return line
-
-def find_key_sentences(article):
+def find_key_sentences(article, all_vars):
     '''
     key_sentences should have an item from each sentence_type that is relevant to the study intent
     '''
@@ -89,7 +59,7 @@ def find_key_sentences(article):
             key_sentences[sentence_type] = line
     return key_sentences
 
-def find_sentence_type(line):
+def find_sentence_type(line, all_vars):
     ''' out of sentence_types, determine which this is likeliest to be 
     to do: 
     - implement keyword check for each sentence type
@@ -102,7 +72,7 @@ def find_sentence_type(line):
         'intent': [],
         'instruction': [],
         'function': [], # describing processes
-        'result': [],
+        'result': [], # conclusion
         'treatment': []
     }
     sentence_type_values = [ x for k, v in sentence_types.items() for x in v ]
@@ -113,7 +83,38 @@ def find_sentence_type(line):
             return k
     return False
 
-def find_elements(line):
+def find_hypothesis(article):
+    '''
+    with an overall intent like 'diagnose',
+    if its relevant to the hypothesis of the study
+    '''
+    intents = ['diagnose', 'check_correlation', 'find_limit', 'evaluate_method']
+    return article
+
+def find_fact(pattern, matches, row, all_vars):
+    ''' function to identify common article intents to identify false info '''
+    return row
+
+def find_topic(pattern, matches, row, all_vars):
+    '''
+      this function will be used in remove_unnecessary_words
+      to filter out words that are either non-medical or too specific to be useful (names)
+
+      test cases:
+          permeability => ['structure']
+          medicine => ['medical']
+          plausibility => ['logic']
+    '''
+    topics = ['structural', 'logical']
+    return row
+
+def find_variable(pattern, matches, row, all_vars):
+    ''' use this to determine parameters for synthesis function too '''
+    ''' variables are the inputs to functions '''
+    ''' this can mean the subject of a sentence, or the inputs of that subject (resources, context) '''
+    return row
+
+def find_element(pattern, matches, row, all_vars):
     elements = []
     for word in line.split(' '):
         index_type = get_index_type(word)
@@ -126,35 +127,92 @@ def find_elements(line):
             elements.append(word)
     return elements
 
-def find_causal_layer(row, index, line, article):
+def find_causal_layer(pattern, matches, row, all_vars):
     return row
 
-def get_object_intents(line):
+def find_intent(pattern, matches, row, all_vars):
     intents = {}
-    row = get_pos_metadata(line, all_vars)
+    row = get_structural_metadata(line, all_vars)
     if row:
-        if 'nouns' in row:
-            for n in row['nouns']:
+        if 'noun' in row:
+            for n in row['noun']:
                 functions = get_functions(n)
                 if functions:
                     for f in functions:
-                        if 'outputs' in f:
+                        if 'output' in f:
                             if n not in intents:
                                 intents[n] = []
-                            intents[n].append(f['outputs'])
+                            intents[n].append(f['output'])
                 related_components = get_related_components(n)
                 if related_components:
                     for rc in related_components:
                         functions = get_functions(n)
                         if functions:
                             for rcf in functions:
-                                if 'outputs' in rcf:
+                                if 'output' in rcf:
                                     if n not in intents:
                                         intents[n] = []
-                                    intents[n].append(rcf['outputs'])
+                                    intents[n].append(rcf['output'])
     return intents
     
-def get_net_impact(functions, object_name, all_vars):
+def find_function(pattern, matches, row, all_vars):
+    ''' for fluconazole, this should be: "antifungal", "inhibits cyp3a4" '''
+    return False
+
+def find_strategy(pattern, matches, row, all_vars):
+    '''
+     - get the strategy explaining why this method worked or failed for the intent, 
+        which may be equal to the mechanism of action, 
+        so you can do searches for other compounds with similar activity
+
+     - these are processes used by an organism or used on a compound
+
+    - strategies are the reason for success/failure of a method/treatment, including processes & mechanisms of action
+        - "this structure on the compound tears the cell barrier"
+        - "induces apoptosis by depriving it of contrary signals"
+        - "chlorpromazine increases valproic acid levels, which can be derived from valerian (valerian suppressed cyp3a4), 
+        which is a function in common with other compounds with activity against pathogen x"
+
+    - drugs need a way to handle common mutation strategies of pathogens
+      - up regulating CDR genes
+      - reduced sensitivity of the target enzyme to inhibition by the agent
+      - mutations in the ERG11 gene, which codes for 14α-demethylase. 
+        These mutations prevent the azole drug from binding, 
+        while still allowing binding of the enzyme's natural substrate, lanosterol
+    '''
+    # initial treatment output should be: ['fluconazole', 'itraconazole', 'sertraline', 'thymol', 'carvacrol', 'peppermint']
+    # type output should be: ['azole', 'essential oils from plant genus x']
+    # functional output should be: inhibitors of cyp3a4, cyp2c19, cyp2c9, filtered by interference with fluconazole
+    return row
+
+def find_insight(pattern, matches, row, all_vars):
+    return row
+
+def find_priority(pattern, matches, row, all_vars):
+    return row 
+
+def find_type(pattern, matches, row, all_vars):
+    ''' this returns the type stack in a component '''
+    return row
+
+def find_core_function(pattern, matches, row, all_vars):
+    return row
+
+def find_dependency(pattern, matches, row, all_vars):
+    ''' 
+    this should return a list of outputs, n operations away
+
+    - relationships is a list of lists containing ordered causal relationships
+    - io_type is 'input' or 'output'
+
+    outputs = get_outputs('nutrient', [['nutrient', 'stomach', 'liver', 'digestive system', 'amino acid']], 3)
+    outputs should be:
+        [['stomach', 'liver', 'digestive system']]
+    '''
+    dependencies = []
+    return dependencies
+
+def find_impact(pattern, matches, row, all_vars):
     '''
         function to combine functions by intent:
           - if you have these two functions:
@@ -192,74 +250,8 @@ def get_verb_impact(function, object_name, all_vars):
     if object_name in function:
         row = get_pos_metadata(function, all_vars)
         if row:
-            if 'verbs' in row:
-                for v in row['verbs']:
+            if 'verb' in row:
+                for v in row['verb']:
                     if v in all_vars['supported_synonyms']:
                         return all_vars['supported_synonyms'][v]
     return False
-
-def find_functions(line, index):
-    ''' for fluconazole, this should be: "antifungal", "inhibits cyp3a4" '''
-    return False
-
-def find_strategies(line, intent):
-    '''
-     - get the strategy explaining why this method worked or failed for the intent, 
-        which may be equal to the mechanism of action, 
-        so you can do searches for other compounds with similar activity
-
-     - these are processes used by an organism or used on a compound
-
-    - strategies are the reason for success/failure of a method/treatment, including processes & mechanisms of action
-        - "this structure on the compound tears the cell barrier"
-        - "induces apoptosis by depriving it of contrary signals"
-        - "chlorpromazine increases valproic acid levels, which can be derived from valerian (valerian suppressed cyp3a4), 
-        which is a function in common with other compounds with activity against pathogen x"
-
-    - drugs need a way to handle common mutation strategies of pathogens
-      - up regulating CDR genes
-      - reduced sensitivity of the target enzyme to inhibition by the agent
-      - mutations in the ERG11 gene, which codes for 14α-demethylase. 
-        These mutations prevent the azole drug from binding, 
-        while still allowing binding of the enzyme's natural substrate, lanosterol
-    '''
-    # initial treatment output should be: ['fluconazole', 'itraconazole', 'sertraline', 'thymol', 'carvacrol', 'peppermint']
-    # type output should be: ['azole', 'essential oils from plant genus x']
-    # functional output should be: inhibitors of cyp3a4, cyp2c19, cyp2c9, filtered by interference with fluconazole
-    return line
-
-def get_insights(line):
-    return line
-
-def get_hypothesis(summary):
-    '''
-    with an overall intent like 'diagnose',
-    if its relevant to the hypothesis of the study
-    '''
-    intents = ['diagnose', 'check_correlation', 'find_limit', 'evaluate_method']
-    return summary
-
-def get_priorities(line):
-    return line 
-
-def get_types(line):
-    ''' this returns the type stack in a component '''
-    return line
-
-def get_function_decomposition(line):
-    return line
-
-def get_dependencies(io_type, component, relationships, n):
-    ''' 
-    this should return a list of outputs, n operations away
-
-    - relationships is a list of lists containing ordered causal relationships
-    - io_type is 'input' or 'output'
-
-    outputs = get_outputs('nutrient', [['nutrient', 'stomach', 'liver', 'digestive system', 'amino acid']], 3)
-    outputs should be:
-        [['stomach', 'liver', 'digestive system']]
-    '''
-    dependencies = []
-    return dependencies
-

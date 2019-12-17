@@ -63,9 +63,9 @@ def get_pattern_config(all_vars):
         '%' : "dependent", # apply
         '#' : "independent", # by standard
         '!' : "not", # negating an noun or verb
-        '~' : 'functions',
-        '>' : 'creates', # should add changes as well as creates
-        '@' : 'changes',
+        '~' : 'function',
+        '>' : 'create', # should add changes as well as creates
+        '@' : 'change',
         '<' : 'is subset of'
     }
 
@@ -89,6 +89,35 @@ def get_pattern_config(all_vars):
         synthesis = build process
         structure = pattern
     '''
+    ''' conceptual relationships:
+        priority = direction
+        observation = insight = function = result = relationship
+        conclusion = ordered_list(observations) + guess = coefficients + bias
+        strategy = ordered_list(insights)
+        strategy = insight + context
+        problem = (combination of intents having different priorities) or (an resource distribution imbalance)
+        intent = strategy + priority
+        solution = (combination of strategies operating on variables with insight functions that reduce dimensions of problem (function-combination) or (resource-imbalance))
+        type = combination(attributes)
+        intents = function outputs, including unintended/emergent/unforeseen side effects
+        roles = functions
+        relationships = treatments, intents, functions, insights, strategies, mechanisms, patterns, systems
+        components = compounds, symptoms, treatments, metrics, conditions, stressors, types, variables
+
+        'insight': set(), # useful sentences in index set that have bio rules in them - for abstracts this will likely just be the treatment success sentence
+        'strategy': set(), # insights relevant to methods/mechanisms of action/processes or patterns of problem-solving
+        'target_intent': set(),
+        'avoid_intent': set(), # in addition to functions you want to target, there are functions you want to avoid as well
+    '''
+    all_vars['study_intents'] = {
+        'test': 'to confirm a relationship (between x=success)', 
+        'find': 'to find a relationship (between x=y)', 
+        'verify': 'to confirm an object (study, method, result)',
+        'compare': 'to compare objects (study=study, method=method, result=protocol)', 
+        # compare => check that all studies confirm each other, or check that a method-implementation or result-derivation followed protocol
+        'build': 'to build object (compound, symptom, treatment, condition, state)' 
+        # to get 'health', follow build protocol 'x', to get 'compound', follow build protocol 'y'
+    }
     all_vars['intent_map'] = {
         'route': {
             'attention': 'distract',
@@ -722,22 +751,22 @@ def get_vars():
     ''' retrieve synonyms from maps/*.json '''
     all_vars = fill_synonyms('maps', all_vars)
     all_vars['section_map'] = {
-        'signs_and_symptoms': 'conditions',
-        'medical_uses': 'treatments',
-        'chemical_and_physical_properties': 'compounds', # this refers to a compound that is not a known treatment or is a sub component of a treatment
-        'applications': 'compounds',
-        'growth': 'organisms',
-        'adverse_effects': 'treatments',
-        'side_effects': 'treatments',
-        'contraindications': 'treatments',
-        'interactions': 'treatments',
-        'pharmacology': 'treatments',
+        'signs_and_symptoms': 'condition',
+        'medical_uses': 'treatment',
+        'chemical_and_physical_properties': 'compound', # this refers to a compound that is not a known treatment or is a sub component of a treatment
+        'applications': 'compound',
+        'growth': 'organism',
+        'adverse_effects': 'treatment',
+        'side_effects': 'treatment',
+        'contraindications': 'treatment',
+        'interactions': 'treatment',
+        'pharmacology': 'treatment',
         'common_names': 'organism',
-        'cause': 'symptoms',
-        'pathophysiology': 'symptoms',
-        'diagnostic_approach': 'symptoms',
-        'management': 'symptoms',
-        'epidemiology': 'symptoms',
+        'cause': 'symptom',
+        'pathophysiology': 'symptom',
+        'diagnostic_approach': 'symptom',
+        'management': 'symptom',
+        'epidemiology': 'symptom',
         'uses': 'organism', # https://en.wikipedia.org/wiki/Boesenbergia_rotunda
     }
     all_vars = get_pattern_config(all_vars)
@@ -1011,10 +1040,10 @@ def get_operator_patterns(pattern, all_vars):
 
 def get_function_patterns(pattern, all_vars):
     ''' find functions in pattern & replace with their core function decomposition '''
-    functions = get_functions(pattern)
+    functions = find_function(pattern)
     if functions:
         for f in functions:
-            core_functions = get_core_functions(f)
+            core_functions = find_core_function(f)
             if core_functions:
                 ''' replace f with core_functions in pattern '''
                 for cf in core_functions:

@@ -9,6 +9,7 @@ from textblob import TextBlob
 
 def get_nltk_pos(word, all_vars):
     if word in [a for a in all_vars['alphabet']]:
+        ''' this is a variable, dont modify '''
         return False
     tags = TextBlob(word).parse()
     tags_split = tags.split('/')

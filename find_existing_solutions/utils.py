@@ -46,27 +46,6 @@ def correct_spelling(line):
 def get_subjectivity(line):
     return line
 
-def get_definitions(word):
-    defs = Word(word).definitions
-    if defs:
-        print('\tdefinitions', word, defs)
-        return defs
-    return False
-
-def get_definition_keywords(word):
-    ''' add option to use local_database/index (phrases, relationships) or pull from a data source '''
-    defs = get_definitions(word)
-    print('defs', word, defs)
-    if defs:
-        keywords = []
-        for d in defs:
-            words = d.split(' ')
-            for w in words:
-                keywords.append(w)
-        if len(keywords) > 0:
-            return keywords
-    return False
-
 ''' GET STRUCTURAL TYPE FUNCTIONS '''
 
 def get_blob(string):
@@ -79,7 +58,7 @@ def replace_names(row, all_vars):
     original_words = row['original_line'].split(' ')
     tagged = pos_tag(word_tokenize(row['line']))
     ''' to do: make sure names are grouped into phrases '''
-    for p in row['phrases']:
+    for p in row['phrase']:
         if len(p) > 0:
             new_name = []
             phrase_words = p.split(' ')
@@ -98,10 +77,10 @@ def replace_names(row, all_vars):
                 final_name = ' '.join(new_name)
                 if len(new_name) == len(phrase_words):
                     if final_name != row['line'][0:len(final_name)]:
-                        if final_name.lower() not in row['nouns']:
-                            if final_name.lower() not in row['verbs']:
-                                row['names'].add(final_name) # find names and store separately
-    row['line'] = ' '.join([w for w in row['line'].split(' ') if w not in row['names']])
+                        if final_name.lower() not in row['noun']:
+                            if final_name.lower() not in row['verb']:
+                                row['name'].add(final_name) # find names and store separately
+    row['line'] = ' '.join([w for w in row['line'].split(' ') if w not in row['name']])
     return row
 
 def get_determiner_ratio(word):
@@ -305,22 +284,6 @@ def get_similarity_to_title(title, row):
         if similarity:
             row['similarity'] = similarity
     return row
-
-def get_meaning_score(phrase, line):
-    '''
-    this should return 0 for phrases 
-    that dont change the meaning of the sentence
-    (mostly any phrase without a verb) 
-    lines with more variation between words & compared to intent are more meaningful
-    '''
-    meaning = 0
-    if meaning:
-        return meaning
-    return False
-
-def replace_with_pattern_maps(line, all_vars):
-    ''' to do: add any other processing in addition to passive to active '''
-    return line
 
 def convert_to_active(line, all_vars):
     '''

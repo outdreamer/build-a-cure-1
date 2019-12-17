@@ -112,7 +112,7 @@ def apply_pattern_map(line, pattern_map, all_vars):
                     line = new_line # return new_line if not iterating through all patterns in map
     return line
 
-def find_patterns(line, all_vars):
+def find_pattern(line, all_vars):
     ''' to do: this is to cluster repeated patterns in a lines list '''
     return line
 
@@ -130,7 +130,7 @@ def match_patterns(line, pattern_key, all_vars):
             if len(pos_lines) > 0:
                 for pos_line in pos_lines:
                     if pattern_key in all_vars['pattern_index']:
-                        combined_key = ''.join([pattern_key, '_patterns'])
+                        combined_key = ''.join([pattern_key, '_pattern'])
                         for pattern in all_vars['pattern_index'][pattern_key]:
                             '''
                             only want to generate source patterns here, 
