@@ -73,6 +73,8 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 ## Structural Objects
 
   - fix rows csv format
+
+  - translate patterns to use operators where possible and finish adding combined operator output impact
   
   - examine all your iterated lists bc they determine processing order (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
   
@@ -90,8 +92,8 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
   - support conversion between pos types like 'verb-to-noun':
       - 'subject1 verb clause because subject2 verb clause' => 'subject2 verb-to-noun causes subject1 verb-to-noun'
       - 'the process activated x because y inhibits b' => 'y b-inhibition causes the process to activate x' => 'y b-inhibition enables process to activate x'
-    1. convert operators in patterns returned from get_all_versions
-    2. then convert operators in line 
+    1. convert to operators in patterns returned from get_all_versions
+    2. then convert to operators in line 
     3. then convert line to pos_line
       before passing to running find/extract in get_structural_metadata
       so rather than deconstructing the sentence, all you have to do is deconstruct the pos_line 
@@ -144,7 +146,8 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
   - once you have this standard object analysis with some object model insights, you can apply them to bio systems
     - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
-
+    - "isolate a pathogen cell before destroying it so it cant communicate info about what destroyed it to other pathogens to help them evolve resistance"
+    
   - later you can do more advanced analysis, like:
     - determining position/role in a system 
     - determining set of patterns for its functions 

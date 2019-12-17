@@ -413,19 +413,19 @@ def order_and_convert_clauses(row, line, all_vars):
         ''' to do: rearrange if separating operator is the dependence operator '''
         for clause in row['condition']:
             if clause['type'] == 'statement':
-                for s in clause['statement']:
+                for s in clause['operator_statement']:
                     full_statement = ' '.join([clause['subject'], s])
                     ordered_clauses.append(full_statement)
     else:
         ''' make sure statements precede conditions '''
         for clause in row['condition']:
             if clause['type'] == 'statement':
-                for s in clause['statement']:
+                for s in clause['operator_statement']:
                     full_statement = ' '.join([clause['subject'], s])
                     ordered_clauses.append(full_statement)
         for clause in row['condition']:
             if clause['type'] == 'condition':
-                ordered_clauses.extend(clause['conditional'])
+                ordered_clauses.extend(clause['operator_conditional'])
     print('ordered clauses', ordered_clauses)
     clauses = filter_clauses(ordered_clauses, all_vars)
     return clauses
