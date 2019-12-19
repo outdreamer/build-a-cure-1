@@ -28,11 +28,30 @@ def find_metric(pattern, matches, row, all_vars):
                 metrics.add(word) # '3mg'
     return row
 
+def get_common_property(objects, patterns, metadata):
+    ''' 
+      for requested metadata="treatment", 
+      get properties related to successful treatments 
+      & do extra searches for those properties as well
+
+      property types:
+        - general properties like 'symmetric'
+        - topic-related properties like 'hepatoprotective'
+        - object-related properties like 'has chemical sub-structure= "hydrogen group" or "benzene cycle"'
+
+      so when youre identifying objects, once you have some objects indexed, 
+      go through their properties and do extra searches on the common properties to find 'potential matches'
+      in addition to 'known matches'
+
+    '''
+    return False
+
 def find_generic_medication(pattern, matches, row, all_vars):
     '''
       to do:
         - add standardization of acronyms using search with keywords 
           so you get n-acetylaspartic acid from naa and creatine from cr
+        - also add reverse function to get all possible names of a substance or species to maximize results
     '''
     import wikipedia
     from wikipedia.exceptions import DisambiguationError
@@ -208,9 +227,9 @@ def find_treatment(pattern, matches, row, all_vars):
                 "drug did reduce blood pressure" => positive correlation (success) or a negative intent (reduce)
     '''
 
-    blob = get_blob(row['row'])
+    blob = get_blob(row['line'])
     sentiment = blob.sentiment if blob else None
-    print("\trow sentiment", sentiment, "row", row['row'])
+    print("\trow sentiment", sentiment, "row", row['line'])
     '''
     if hypothesis:
         hypothesis_blob = get_blob(hypothesis)
@@ -224,7 +243,7 @@ def find_treatment(pattern, matches, row, all_vars):
     ''' to do: do study & sentence intent matching '''
     if 'relationships' in row:
         for r in row['relationships']:
-            ''' row['variables'] = get_dependencies('inputs', row['row'], row['relationships'], 1)) '''
+            ''' row['variables'] = get_dependencies('inputs', row['line'], row['relationships'], 1)) '''
             intent = None
             correlation = get_similarity(intent, r)
             print('\tget_treatments: correlation', correlation, r)

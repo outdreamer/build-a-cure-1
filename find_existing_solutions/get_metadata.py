@@ -7,7 +7,7 @@ import requests
 from utils import *
 from get_index_def import get_empty_index
 from get_vars import get_vars, get_args
-from get_patterns import match_patterns
+from get_patterns import match_patterns, find_pattern
 #from get_objects import *
 from get_structural_objects import *
 from get_conceptual_objects import *
@@ -152,7 +152,9 @@ def get_metadata(line, title, word_map, all_vars):
     row['original_line'] = line
     row = replace_names(row, all_vars)
     row = get_similarity_to_title(title, row)  
+    print('\ngetting structural metadata for line', line)
     row = get_structural_metadata(row, all_vars)
+    print('\nrow with structural metadata', row)
     intent = None # find_intent(row, all_vars)
     hypothesis = None # find_hypothesis(row, all_vars)
     row = find_treatment(row['line'], None, row, all_vars)
@@ -166,7 +168,7 @@ def get_metadata(line, title, word_map, all_vars):
                         row[object_type] = objects
                     if patterns:
                         row['pattern'] = row['pattern'].union(set([p for p in patterns]))
-    print('medical objects', row)
+    print('\nmedical objects', row)
     return row
 
 def extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, all_vars):
@@ -235,11 +237,13 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
     found_objects = set()
     found_patterns = match_patterns(line, search_pattern_key, all_vars)
     if found_patterns and object_type != 'pattern':
+        print('found patterns', found_patterns)
         for pattern_type in found_patterns:
             for pattern, matches in found_patterns[pattern_type].items():
                 ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
                 ''' note: this is not restricting output to found objects '''
                 found_objects = apply_find_function(object_type, pattern, matches, index, all_vars)
+                print('found objects', found_objects)
     if len(found_objects) > 0 or found_patterns:
         return found_objects, found_patterns
     return False, False
@@ -259,6 +263,7 @@ def apply_find_function(object_type, pattern, matches, index, all_vars):
     if function_name in globals():
         try:
             function = getattr(globals(), function_name)
+            print('found function', function)
             if function:
                 got_objects = function(pattern, matches, index, all_vars)
                 if got_objects:
@@ -297,42 +302,44 @@ def get_structural_metadata(row, all_vars):
                 if count_num not in row['count']:
                     row['count'][count_num] = set()
                 row['count'][count_num].add(count_val)
-            pos = row['word_map'][w] if w in row['word_map'] else ''
-            ''' favor noun before verb '''
-            if pos in all_vars['pos_tags']['VC']:
-                row['clause_marker'].add(w)
-            if pos in all_vars['pos_tags']['ALL_N'] or w in all_vars['alphabet']:
-                ''' format nouns like 'inhibitor' as a verb '''
-                stem = get_stem(w)
-                stem_pos = get_nltk_pos(stem)
-                present_verb = conjugate(w, stem_pos, 'VBZ', all_vars)
-                if present_verb:
-                    row['verb'].add(present_verb)
-                else:
-                    row['noun'].add(w)
-            elif pos in all_vars['pos_tags']['ALL_V']:
-                ''' dont conjugate '-ing' to preserve verb-noun modifier phrases '''
-                if pos != 'VBG':
-                    present_verb = conjugate(w, pos, 'VBZ', all_vars)
-                    if present_verb:
-                        row['verb'].add(present_verb)
+            pos = row['word_map'][w] if w in row['word_map'] else False
+            if pos:
+                ''' favor noun before verb '''
+                if pos in all_vars['pos_tags']['VC']:
+                    row['clause_marker'].add(w)
+                if pos in all_vars['pos_tags']['ALL_N'] or w in all_vars['alphabet']:
+                    ''' format nouns like 'inhibitor' as a verb '''
+                    stem = get_stem(w)
+                    stem_pos = get_nltk_pos(stem, all_vars)
+                    if stem_pos:
+                        present_verb = conjugate(w, stem_pos, 'VBZ', all_vars)
+                        if present_verb:
+                            row['verb'].add(present_verb)
+                    else:
+                        row['noun'].add(w)
+                elif pos in all_vars['pos_tags']['ALL_V']:
+                    ''' dont conjugate '-ing' to preserve verb-noun modifier phrases '''
+                    if pos != 'VBG':
+                        present_verb = conjugate(w, pos, 'VBZ', all_vars)
+                        if present_verb:
+                            row['verb'].add(present_verb)
+                        else:
+                            row['verb'].add(w)
                     else:
                         row['verb'].add(w)
+                elif pos in all_vars['pos_tags']['D']:
+                    ratio = get_determiner_ratio(w)
+                    if ratio:
+                        if ratio in keep_ratios:
+                            row['det'].add(str(ratio))
+                elif pos in all_vars['pos_tags']['P']:
+                    row['prep'].add(w)
+                elif pos in all_vars['pos_tags']['C']:
+                    row['conj'].add(w)
+                elif pos in all_vars['pos_tags']['ADV'] or pos in all_vars['pos_tags']['ADJ']:
+                    row['descriptor'].add(w)
                 else:
-                    row['verb'].add(w)
-            elif pos in all_vars['pos_tags']['D']:
-                ratio = get_determiner_ratio(w)
-                if ratio:
-                    if ratio in keep_ratios:
-                        row['det'].add(str(ratio))
-            elif pos in all_vars['pos_tags']['P']:
-                row['prep'].add(w)
-            elif pos in all_vars['pos_tags']['C']:
-                row['conj'].add(w)
-            elif pos in all_vars['pos_tags']['ADV'] or pos in all_vars['pos_tags']['ADJ']:
-                row['descriptor'].add(w)
-            else:
-                row['taken_out'].add('_'.join([w, str(pos)]))
+                    row['taken_out'].add('_'.join([w, str(pos)]))
     if len(row['count'].keys()) > 1:
         common_words = get_most_common_words(row['count'], 3) # get top 3 tiers of common words
         if common_words:
@@ -367,7 +374,7 @@ def get_structural_metadata(row, all_vars):
     extra_patterns = find_pattern(row['line'], all_vars)
     if extra_patterns:
         row['pattern'] = row['pattern'].union(set(extra_patterns))
-    row = order_and_convert_clauses(row, line, all_vars)
+    row = find_relationship(row, all_vars)
     objects, patterns = extract_objects_and_patterns_from_index(row, None, 'relationship', 'relationship', all_vars)
     if objects:
         if 'relationship' in objects:

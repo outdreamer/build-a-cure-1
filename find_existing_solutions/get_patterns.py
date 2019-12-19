@@ -4,7 +4,7 @@ lemmatizer = WordNetLemmatizer()
 from nltk.stem import SnowballStemmer
 stemmer = SnowballStemmer("english")
 from get_pos import get_nltk_pos
-from get_vars import get_all_versions, find_delimiter
+from get_vars import get_all_versions, find_delimiter, get_nonnumeric
 
 def get_patterns_between_objects(objects, object_type, all_vars):
     '''
@@ -114,7 +114,7 @@ def apply_pattern_map(line, pattern_map, all_vars):
 
 def find_pattern(line, all_vars):
     ''' to do: this is to cluster repeated patterns in a lines list '''
-    return line
+    return False
 
 def match_patterns(line, pattern_key, all_vars):
     '''
@@ -269,8 +269,8 @@ def conjugate(word, source_pos, target_pos, all_vars):
         'do': {'VB': 'do', 'VBD': 'did', 'VBG': 'doing', 'VBN': 'done', 'VBP': 'do', 'VBZ': 'does'},
         'have': {'VB': 'have', 'VBD': 'had', 'VBG': 'having', 'VBN': 'had', 'VBP': 'have', 'VBZ': 'has'}
     }
-    nonnumeric_s_pos = get_nonnumeric(source_pos)
-    nonnumeric_t_pos = get_nonnumeric(target_pos)
+    nonnumeric_s_pos = get_nonnumeric(source_pos, all_vars)
+    nonnumeric_t_pos = get_nonnumeric(target_pos, all_vars)
     if nonnumeric_s_pos != nonnumeric_t_pos:
         is_source_supported = is_supported_tag(nonnumeric_s_pos, all_vars)
         is_target_supported = is_supported_tag(nonnumeric_t_pos, all_vars)

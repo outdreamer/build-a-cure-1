@@ -12,16 +12,25 @@ def get_pattern_config(all_vars):
         '-': ['-+', '+-', '=-', '-=', '==-', '=-=', '-==', '-=-', '---'],
         '+': ['--', '++', '+=', '=+', '==+', '=+=', '+==', '+=+', '+++'],
         '#': [
-            '# &', # even with x
-            '# !', # even without x
-            '! -', # not decrease
-            '! +', # not increase ('neutral' or 'independent', 'does not increase' doesnt mean 'decrease')
-            '! >', # not change
-            '~ !' # does not increase =>
-        ]
+            '#&', # despite x
+            '#!', # despite no x
+            '!-', # not decrease
+            '!+', # not increase ('neutral' or 'independent', 'does not increase' doesnt mean 'decrease')
+            '!>', # not change
+            '~!', # does not increase =>
+            '!@' # 'does not change' # to do: add all combination operators
+        ],
+
     }
+    all_vars['combined_operators'] = []
+    for key, values in all_vars['combined_map'].items():
+        all_vars['combined_operators'].extend(values)
     all_vars['impact_operator_map'] = {
         '!@': 'does not change'
+    }
+    all_vars['replacement_patterns'] = {
+        'fails': 'does not V', # antonym
+        'acts as': 'is' # reduction
     }
     all_vars['key_map'] = {
         '-': ['worsen', 'decrease', 'inhibit', 'reduce', 'deactivate', 'disable'],
@@ -48,14 +57,21 @@ def get_pattern_config(all_vars):
             'because', 'since', 'if', 'then', 'from', 'due', 'when', 'while', 'during', 'for', 'given',
             'in case', 'in the event that', 'caused by', 'respective of', 'later', 'after', 'before', 'pre-', 'post-'
         ], # x of y is contextual "x in the context of y"
-        '#': ['even', 'still', 'despite', 'otherwise', 'in spite of', 'regardless', 'heedless', 'irrespective'],
+        '#': ['despite', 'even', 'still', 'otherwise', 'in spite of', 'regardless', 'heedless', 'irrespective'],
         '!': ['not'],
         '~': ['functions', 'that'],
         '>': ['creates', 'becomes', 'changes into', 'transforms', 'produces', 'leads to', 'converts into'],
         '@': ['changes', 'impacts', 'influences', 'adjusts', 'modulates', 'modifies', 'alters', 'affects'],
-        '<': ['subset'], #'x is a subset of y'
-        '!@': ['does not change'] # to do: add all combination operators
+        '<': ['is subset of'] #'x is a subset of y'
     }
+    ''' to do: need functional operator for 'causes' '''
+    all_vars['clause_punctuation'] = [',', ':', ';', '(', ')']
+    all_vars['ordered_operators'] = ['because'] #, 'despite', 'not']
+    all_vars['passive_operators'] = ['%'] # the next clause after the passive operators should precede the previous clause
+    all_vars['general_operators'] = ['&', '|', '^'] # and, or, but can be conditional delimiters or statement delimiters or part of a phrase
+    all_vars['causal_operators'] = ['#'] #['when', 'even', 'despite', 'because']
+    all_vars['verb_operators'] = ['=', '+', '-', '~', '>', '@', '<']
+    all_vars['clause_types'] = ['condition', 'statement', 'question']
     ''' this maps operators to standard words to replace them with '''
     all_vars['operator_map'] = {
         '-' : "decrease", # attacks
@@ -84,6 +100,7 @@ def get_pattern_config(all_vars):
     study_objects = ['relationship', 'limit', 'type', 'method']
     conceptual_objects = ['relationship', 'problem', 'strategy', 'process', 'insight', 'function', 'variable', 'system', 'theory', 'opinion', 'conclusion', 'observation']
     all_vars['info_types'] = ['excuse', 'opinion', 'fact', 'lie', 'belief', 'joke', 'insight', 'reason', 'intent', 'strategy']
+
     ''' to do: some of these types have type mappings so generalize when you can
         condition = state
         symptom = function = side_effects
@@ -1255,9 +1272,10 @@ def is_supported_tag(var, all_vars):
     return False
 
 def get_nonnumeric(var, all_vars):
-    nonnumeric_var = ''.join([x for x in var if x.lower() in all_vars['alphabet']])
-    if len(nonnumeric_var) > 0:
-        return nonnumeric_var
+    if var:
+        nonnumeric_var = ''.join([x for x in var if x.lower() in all_vars['alphabet']])
+        if len(nonnumeric_var) > 0:
+            return nonnumeric_var
     return var
 
 def get_new_key(key_dict, source_line, all_vars):
