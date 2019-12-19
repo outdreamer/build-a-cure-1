@@ -27,6 +27,7 @@ Or questions like:
 	- estimate phase changes with optimal transport as a method of getting optimal/efficient/possible paths between function i/o out of operation (core function) data
 	    example: https://broadinstitute.github.io/wot/
 	  - you also need to estimate probable & multi-prioritized transport paths
+	- cycling on/off antitumor drugs like mebendazole & essential oils with antitumor effects to prevent tumor growth (such as 1/week, then switch to new antitumor substance next week to avoid hepatotoxicity & other toxic buildup)
 
 - useful implementations of conceptual physics (
     discovering functions between nodes, 

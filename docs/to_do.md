@@ -74,6 +74,8 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
   - fix rows csv format
 
+  - implement antonym patterns
+
   - translate patterns to use operators where possible and finish adding combined operator output impact
   
   - examine all your iterated lists bc they determine processing order (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
@@ -132,6 +134,10 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
 ## Functions
 
+- add get_common_properties function to do extra property-based searches after identifying objects with extract
+
+- add wiki & drugs & nih api calls to sources & api support for those data sources in get_data_source/build_indexes
+
 - build math logic/plain language translation function - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
 
 - write function to identify contradictory information (retracted studies, false information, conspiracy theory (anti-vax), opinion) & selecting least likely to be false
@@ -147,7 +153,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
   - once you have this standard object analysis with some object model insights, you can apply them to bio systems
     - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
     - "isolate a pathogen cell before destroying it so it cant communicate info about what destroyed it to other pathogens to help them evolve resistance"
-    
+
   - later you can do more advanced analysis, like:
     - determining position/role in a system 
     - determining set of patterns for its functions 
