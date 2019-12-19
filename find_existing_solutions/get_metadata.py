@@ -5,9 +5,9 @@ import xml.dom.minidom
 from get_pos import *
 from get_type import *
 from get_vars import *
+from get_medical_objects import *
 from get_structural_objects import *
 from get_conceptual_objects import *
-from get_medical_objects import *
 
 def get_data_store(index, database, operation, args):
     '''
@@ -22,8 +22,7 @@ def get_data_store(index, database, operation, args):
         data_store = {}
         ''' if index or database not passed in, fetch the local db if it exists '''
         args, filters, metadata, generate_target, generate_source = get_args(args, all_vars)
-        if metadata:
-            all_vars['metadata'] = metadata
+        all_vars['metadata'] = metadata if metadata else all_vars['supported_params']
         if operation == 'build':
             database = get_local_database('data', None) if not database else database
             data_store, rows = build_indexes(database, args, filters, all_vars)
@@ -194,7 +193,7 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
         if not index:
             index = row
         if index:
-            if object_type in index:
+            if object_type in index and object_type in all_vars['metadata']:
                 lines = index[object_type]
                 if len(index[object_type]) > 0:
                     patterns = {}
@@ -277,6 +276,16 @@ def get_structural_metadata(row, all_vars):
         verb-noun-phrases should be converted into modifiers
         once you have the nouns/modifiers, you can pick a subject from the noun or modifier
     '''
+
+    generated_patterns = generated_patterns = get_all_versions(row['line'], 'all', all_vars) 
+    if generated_patterns:
+        print(generated_patterns)
+        for gp in generated_patterns:
+            if gp in all_vars['all_patterns']:
+                row['pattern'].add(gp)
+    print('got patterns for line', row['line'])
+    print(row['pattern'])
+    ''' save after generating patterns once you map them '''
 
     keep_ratios = ['extra', 'high', 'none']
     line = row['line'] if 'line' in row and type(row) == dict else row # can be a row index dict or a definition line
@@ -375,6 +384,8 @@ def get_structural_metadata(row, all_vars):
             row['relationship'] = row['relationship'].union(set(objects['relationship']))
         if patterns:
             row['pattern'] = row['pattern'].union(set(patterns))
+    for key in row:
+        print('key', key, row[key])
     return row
 
 def find_ngrams(line, all_vars):

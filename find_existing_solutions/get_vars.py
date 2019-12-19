@@ -40,8 +40,7 @@ def get_pattern_config(all_vars):
         '!@': 'does not change'
     }
     all_vars['replacement_patterns'] = {
-        'fails': 'does not V', # antonym
-        'acts as': 'is' # reduction
+        'fails': 'does not V' # antonym
     }
     all_vars['key_map'] = {
         '-': ['worsen', 'decrease', 'inhibit', 'reduce', 'deactivate', 'disable'],
@@ -73,7 +72,7 @@ def get_pattern_config(all_vars):
         '~': ['functions', 'that'],
         '>': ['creates', 'becomes', 'changes into', 'transforms', 'produces', 'leads to', 'converts into'],
         '@': ['changes', 'impacts', 'influences', 'adjusts', 'modulates', 'modifies', 'alters', 'affects'],
-        '<': ['is subset of'] #'x is a subset of y'
+        '<': ['is a subset of', 'is in', 'is part of', 'is a section of', 'is a segment of', 'is a piece of', 'is a component of'] #'x is a subset of y'
     }
     ''' to do: need functional operator for 'causes' '''
     all_vars['clause_punctuation'] = [',', ':', ';', '(', ')']
@@ -604,10 +603,7 @@ def get_pattern_config(all_vars):
             'ADJ N', # Ex: 'chaperone protein' (subtype = 'chaperone', type = 'protein')
         ],
         'role': [
-            '|ADV V N|', # Ex: 'emulsifying protein' (role = 'emulsifier')
-            'N of N', # Ex: 'components of immune system' (role = 'component', system = 'immune system')
-            '|V N| role', # Ex: functional role (role => 'function')
-            '|functions works operates interacts acts| as __a__ |V N|' # Ex: acts as an intermediary (role => 'intermediary')
+            'ADV |V N|', # Ex: 'emulsifying protein' (role = 'emulsifier')
         ]
     }
 
@@ -616,34 +612,7 @@ def get_pattern_config(all_vars):
     for key in all_vars['pattern_index']:
         all_vars['pattern_vars'].append(key)
     all_vars['pattern_vars'] = set(all_vars['pattern_vars'])
-
     all_vars['all_pattern_version_types'] = ['correct', 'indexed', 'nested', 'alt', 'pos', 'type', 'synonym', 'operator', 'function']
-
-    for key in ['pattern_index', 'type_pattern_index']:
-        for pattern_key, patterns in all_vars[key].items():
-            new_patterns = []
-            for pattern in patterns:
-                print('getting all versions for pattern', pattern)
-                generated_patterns = get_all_versions(pattern, 'all', all_vars) 
-                if generated_patterns:
-                    print('got generated patterns', pattern)
-                    print(generated_patterns)
-                    for gp in generated_patterns:
-                        new_patterns.append(gp)
-            all_vars[key][pattern_key] = reversed(sorted(new_patterns))
-
-    for pattern_map_key, pattern_map in all_vars['pattern_maps'].items():
-        new_pattern_map = {}
-        for sp, tp in pattern_map.items():
-            sp_patterns = get_all_versions(sp, 'all', all_vars) 
-            if sp_patterns:
-                for sp_pattern in sp_patterns:
-                    tp_patterns = get_all_versions(tp, 'all', all_vars) 
-                    if tp_patterns:
-                        for tp_pattern in tp_patterns:
-                            new_pattern_map[sp_pattern] = tp_pattern
-        if new_pattern_map:
-            all_vars['pattern_maps'][pattern_map_key] = new_pattern_map
 
     ''' 
     now that pattern lists are generated, 
@@ -665,31 +634,61 @@ def get_pattern_config(all_vars):
         if len(new_type_pattern_index) > 0:
             if key in all_vars['pattern_index']:
                 all_vars['pattern_index'][key].extend(new_type_pattern_index)
-
-    ''' 
-        sort pattern_index so the longer patterns are checked first
-        for key in all_vars['pattern_index']:
-        all_vars['pattern_index'][key] = reverse_sort(all_vars['pattern_index'][key])
-    '''
     '''
     if there are files with the 'data/objecttype_patterns.txt' name pattern, 
     pull that data and add it to pattern_index dict 
     '''
-
-    for key in all_vars:
+    new_pattern_lines = []
+    all_vars['all_patterns'] = []
+    for key in ['all_patterns']:
         cwd = os.getcwd()
-        pattern_filename = ''.join([cwd, 'data/patterns_', key, '.txt'])
+        pattern_filename = ''.join([cwd, 'data/', key, '.txt'])
         if os.path.exists(pattern_filename):
             pattern_contents = read(pattern_filename)
             if pattern_contents:
                 pattern_lines = pattern_contents.split('\n')
                 if len(pattern_lines) > 0:
-                    if key not in all_vars['pattern_index']:
-                        all_vars['pattern_index'][key] = []
                     for line in pattern_lines:
-                        pattern = line.split('_')[0] 
-                        # just fetching the pattern, not the matches stored after the '_'         
-                        all_vars['pattern_index'][key].append(pattern)
+                        pattern_split = line.split('::')
+                        pattern_index = pattern_split[0]
+                        pattern_key = pattern_split[1]
+                        pattern = pattern_split[2]
+                        for key in all_vars['type_pattern_index']:
+                            if key in pattern:
+                                all_vars['type_pattern_index'][pattern_key].append(pattern)
+                        if pattern_key in all_vars['pattern_index']:
+                            all_vars['pattern_index'][pattern_key].append(pattern)
+        if len(all_vars['all_patterns']) == 0:
+            for key in ['pattern_index', 'type_pattern_index']:
+                for pattern_key, patterns in all_vars[key].items():
+                    new_patterns = []
+                    for pattern in patterns:
+                        generated_patterns = get_all_versions(pattern, 'all', all_vars) 
+                        if generated_patterns:
+                            print('got generated patterns', pattern, generated_patterns)
+                            for gp in generated_patterns:
+                                new_pattern_lines.append('::'.join([key, pattern_key, gp]))
+                                new_patterns.append(gp)
+                    all_vars[key][pattern_key] = reversed(sorted(new_patterns))
+                    all_vars['all_patterns'].extend(all_vars[key][pattern_key])
+        if len(all_vars['all_patterns']) > 0:
+            all_pattern_path = 'data/all_patterns.txt'
+            if os.path.exists(all_pattern_path):
+                os.remove(all_pattern_path)
+            save(all_pattern_path, new_pattern_lines)
+        all_vars['all_patterns'] = reversed(sorted(all_vars['all_patterns']))
+    for pattern_map_key, pattern_map in all_vars['pattern_maps'].items():
+        new_pattern_map = {}
+        for sp, tp in pattern_map.items():
+            sp_patterns = get_all_versions(sp, 'all', all_vars) 
+            if sp_patterns:
+                for sp_pattern in sp_patterns:
+                    tp_patterns = get_all_versions(tp, 'all', all_vars) 
+                    if tp_patterns:
+                        for tp_pattern in tp_patterns:
+                            new_pattern_map[sp_pattern] = tp_pattern
+        if new_pattern_map:
+            all_vars['pattern_maps'][pattern_map_key] = new_pattern_map
     return all_vars
 
 def convert_pos_vars_to_nltk_tag_alts(pattern, all_vars):
@@ -944,6 +943,172 @@ def generate_nested_patterns(pattern, pattern_type, all_vars):
         return new_patterns, variables
     return False, False
 
+def get_alts(pattern, all_vars):
+    delimiter_pairs = []
+    delimiter_count = pattern.count('|')
+    for i in range(0, delimiter_count):
+        delimiter_pairs.append([i, i + 1])
+    delimiter_count = 0
+    delimiter_indexes = {}
+    for i, char in enumerate(pattern):
+        if char == '|':
+            delimiter_indexes[delimiter_count] = i
+            delimiter_count += 1
+    index_pairs = []
+    for count, char_pos in delimiter_indexes.items():
+        if (count + 1) < len(delimiter_indexes.keys()):
+            delimiter_pair = [count, count + 1]
+            index_pairs.append(delimiter_pair)
+    wrap_index_pairs = []
+    for count, char_pos in delimiter_indexes.items():
+        even = True if (count/2) == int(count/2) else False
+        if even:
+            for j, other_char_pos in delimiter_indexes.items():
+                if j > count:
+                    j_even = True if (j/2) == int(j/2) else False
+                    if not j_even:
+                        if (j - count) >= 3:
+                            wrap_index_pairs.append([count, j])
+    # index_pairs = [[0, 1], [0, 3], [0, 5], [2, 3], [2, 5], [4, 5]]
+    variables = {}
+    not_embedded_alt_sets = []
+    for index_pair in index_pairs:
+        start = index_pair[0]
+        end = index_pair[1]
+        start_pos = delimiter_indexes[start] + 1
+        end_pos = delimiter_indexes[end]
+        subset = pattern[start_pos:end_pos]
+        sub_without_delimiter = subset.replace('|', '')
+        if sub_without_delimiter == sub_without_delimiter.strip():
+            no_letters_spaces = ''.join([x for x in subset if x.lower() not in all_vars['alphabet'] and x != ' ' and x != '_'])
+            if len(no_letters_spaces) == 0:
+                split_subset = subset.split(' ')
+                if len(split_subset) > 0:
+                    if split_subset[0] != '' and split_subset[-1] != '':
+                        joined = ''.join(['|', subset.strip(), '|'])
+                        if joined in pattern:
+                            index = pattern.index(joined)
+                            last_index = len(pattern) - len(joined)
+                            if index != 0 and index != last_index:
+                                new_key = get_new_key(variables, pattern, all_vars)
+                                variables[new_key] = subset
+                                not_embedded_alt_sets.append(new_key)
+                            else:
+                                not_embedded_alt_sets.append(subset)
+                    else:
+                        new_subset = []
+                        for s in split_subset:
+                            if s != '':
+                                new_subset.append(s)
+                        if len(new_subset) > 0:
+                            not_embedded_alt_sets.append(new_subset)
+        else:
+            not_embedded_alt_sets.append(subset)
+    original_list = []
+    for i, item in enumerate(not_embedded_alt_sets):
+        if (i + 1) < len(not_embedded_alt_sets):
+            next_item = not_embedded_alt_sets[i + 1]                
+            if next_item in variables:
+                wrapped_item = ''.join(['|', item, ''.join(['|', variables[next_item], '|']), '|'])
+                if wrapped_item in pattern:
+                    item_dict = {item: variables[next_item]}
+                    original_list.append(item_dict)
+                else:
+                    if type(item) != list:
+                        item = [item]
+                    original_list.append(item)
+            else:
+                if type(item) != list:
+                    if item.strip() == item:
+                        item = item.split(' ')
+                    else:
+                        item = [item]
+                new_item = []
+                for i in item:
+                    if i != '':
+                        new_item.append(i)
+                if len(new_item) > 0:
+                    original_list.append(new_item)
+        else:
+            if item not in variables:
+                if type(item) != list:
+                    item = [item]
+                original_list.append(item)
+    new_list = []
+    for item in original_list:
+        if type(item) == dict:
+            new_subsets = []
+            for k, v in item.items():
+                if type(v) != list:
+                    v = v.split(' ')
+                for v_val in v:
+                    new_subsets.append(''.join([k, v_val]))
+            if len(new_subsets) > 0:
+                new_list.append(new_subsets)
+        else:
+            new_list.append(item)
+    all_lists = []
+    list_sizes = []
+    final_lists = []
+    for i, sub_list in enumerate(new_list):
+        new_all_lists = all_lists
+        all_lists = []
+        if len(sub_list) == 1:
+            for current_list in new_all_lists:
+                current_list.append(0)
+                all_lists.append(current_list)
+        else:
+            if len(new_all_lists) > 0:
+                for j in range(0, len(sub_list)):
+                    for current_all_list in new_all_lists:
+                        if len(current_all_list) < len(new_list):
+                            current_all_list.append(j)
+                            if len(current_all_list) == len(new_list):
+                                all_lists.append(current_all_list)
+                            else:
+                                all_lists.append(current_all_list)
+                        else:
+                            new_copy = [x for x in current_all_list]
+                            new_copy.pop()
+                            new_copy.append(j)
+                            if len(new_copy) == len(new_list):
+                                all_lists.append(new_copy)
+                            else:
+                                all_lists.append(new_copy)
+            else:
+                for j in range(0, len(sub_list)):
+                    current_all_list = [j]
+                    all_lists.append(current_all_list)
+    word_lists = []
+    for final_list in all_lists:
+        new_final_list = []
+        for i, val in enumerate(final_list):
+            if ' ' in new_list[i][val] and new_list[i][val] == new_list[i][val].strip():
+                joined = ''.join(['|', new_list[i][val], '|'])
+                new_final_list.append(joined)
+            else:
+                new_final_list.append(new_list[i][val])
+        word_lists.append(' '.join(new_final_list))
+    options = []
+    for item in word_lists:
+        item = item.replace('  ', ' ')
+        if item.count('|') == 2:
+            start = item.index('|') + 1
+            initial = item[0:start].replace('|', '')
+            remainder = item[start:]
+            end = remainder.index('|')
+            sub_remainder = remainder[0:end]
+            final = remainder[end:].replace('|', '')
+            if ' ' in sub_remainder:
+                item = sub_remainder.split(' ')
+                for i in item:
+                    new_item = ''.join([initial, i, final])
+                    if new_item not in options:
+                        options.append(new_item)
+    if len(options) > 0:
+        return options
+    return False
+
 def generate_alt_patterns(pattern, nested_variables, all_vars):
     ''' 
     this functions returns ['VB NN D1 D2', 'VB JJ D1 D2'] 
@@ -952,43 +1117,47 @@ def generate_alt_patterns(pattern, nested_variables, all_vars):
     - optional string are indicated by: __optionalstring__
     - you could also replace 'VB' with 'V' and do a match on those
     '''
-    pattern = pattern.strip()
+    '''
+    pattern = '0functions works1 as 2VB NN 3ADV ADJ45'
+    you could also iterate through pairs of even-odd delimiter indexes:
+    and check for a pair that has another pair in it with ' |' or a set of consecutive delimiters in the pair like '||'
+    which should return '25' as the pair with another pair of delimiters in it
+
+    actually just iterate through consecutive pairs (01, 12, 23, 34, 45) and 
+    check if they have only letters/spaces/underscores between them - if so thats a granular alt
+    '''
+    # pattern = '|functions works| as __a__ |VB NN |ADV ADJ||'
+    new_pattern = pattern.strip().replace('_', '')
     all_patterns = []
-    delimiter = find_delimiter(pattern, all_vars)
+    delimiter = find_delimiter(new_pattern, all_vars)
     if delimiter:
-        # you could also create a list of lists & iterate with counters
-        # pattern_sets should be a list of pos with alts separated by spaces ['NN VB', 'VB'] or ['NN', 'NP']
-        '''
-        pattern = '|VB NN x| VB' and variables['x'] = 'VB ADV'
-        pattern = '|VB NN VB&ADV|' means 'VB or NN or VB & ADV'
-        this function needs to support nested patterns, so when iterating, 
-        check for any var chars and if found, iterate through variable values & replace with each value
-        '''
-        new_all_patterns = add_sub_patterns(pattern.split(delimiter), nested_variables)
-        if new_all_patterns:
-            if len(new_all_patterns) > 0:
-                for nap in new_all_patterns:
-                     #now replace optional strings with an empty string and add that pattern
-                    if '__' in nap:
-                        nap_with_options = []
-                        nap_without_options = []
-                        subsets = nap.split(' ')
-                        for subset in subsets:
-                            sections = subset.split('__')
-                            for section in sections:
-                                joined = ''.join(['__', section, '__'])
-                                if joined in nap:
-                                    nap_with_options.append(section)
-                                else:
-                                    nap_with_options.append(section)
-                                    nap_without_options.append(section)
-                        nap_with_options = ' '.join(nap_with_options)
-                        nap_without_options = ' '.join(nap_without_options)
-                        all_patterns.append(nap_with_options)
-                        all_patterns.append(nap_without_options)
-                    else:
-                        all_patterns.append(nap)
+        alts = get_alts(new_pattern, all_vars)
+        if alts:
+            if '__' in pattern:
+                for alt in alts:
+                    # you could also create a list of lists & iterate with counters
+                    # pattern_sets should be a list of pos with alts separated by spaces ['NN VB', 'VB'] or ['NN', 'NP']
+                    '''
+                    pattern = '|VB NN x| VB' and variables['x'] = 'VB ADV'
+                    pattern = '|VB NN VB&ADV|' means 'VB or NN or VB & ADV'
+                    this function needs to support nested patterns, so when iterating, 
+                    check for any var chars and if found, iterate through variable values & replace with each value
+                    '''
+                    #now replace optional strings with an empty string and add that pattern
+                    nap_with_options = []
+                    nap_without_options = []
+                    alt_words = alt.split(' ')
+                    for word in alt_words:
+                        joined = ''.join(['__', word, '__'])
+                        if joined in pattern:
+                            nap_with_options.append(word)
+                        else:
+                            nap_with_options.append(word)
+                            nap_without_options.append(word)
+                    all_patterns.append(' '.join(nap_with_options))
+                    all_patterns.append(' '.join(nap_without_options))
         if len(all_patterns) > 0:
+            print('all', all_patterns)
             return all_patterns
     return False
 
@@ -1056,15 +1225,17 @@ def generate_indexed_patterns(pattern, all_vars):
     words = pattern.split(' ')
     for i, w in enumerate(words):
         ''' w = V, V1, VB, VB1, the, the1 '''
-        nonnumeric_w = get_nonnumeric(w, all_vars)
-        if w == nonnumeric_w:
-            if words.count(w) > 1:
-                new_word = ''.join([w, str(i)])
+        if w not in ['_', '|']: # exclude delimiters from indexing
+            nonnumeric_w = get_nonnumeric(w, all_vars)
+            if w == nonnumeric_w:
+                if words.count(w) > 1:
+                    new_words.append(''.join([w, str(i)]))
+                else:
+                    new_words.append(w)
             else:
-                new_word = w
+                new_words.append(w)
         else:
-            new_word = w
-        new_words.append(new_word)
+            new_words.append(w)
     if len(new_words) > 0:
         return ' '.join(new_words)
     return False
@@ -1077,7 +1248,7 @@ def generate_correct_patterns(pattern, all_vars):
         - this function corrects patterns with incorrect mappings like:
              'the VB VB VB IN the NN' to 'the NN VB VB IN the NN'
     '''
-    return pattern
+    return False
 
 def generate_type_patterns(pattern, all_vars):
     ''' 
@@ -1085,7 +1256,7 @@ def generate_type_patterns(pattern, all_vars):
         Cytotoxicity in cancer cells => <component object>-toxicity, anti-tumor => anti-<component object of illness>
         suppress/interfere/inhibit activity of carcinog/canc/tumz => suppress/interfere/inhibit activity of drug/medication/enzyme
     '''
-    return [pattern]
+    return False
 
 def generate_synonym_patterns(pattern, all_vars):
     ''' first check that words are not in supported keywords, then get the synonym '''
@@ -1093,7 +1264,10 @@ def generate_synonym_patterns(pattern, all_vars):
         nonnumeric = get_nonnumeric(word, all_vars)
         if nonnumeric not in all_vars['pos_tags']['ALL'] and all_vars['type_pattern_index'] and nonnumeric not in all_vars['pattern_index']:
             ''' this is a word, check for synonyms '''
-            new_pattern, all_vars = replace_with_syns(pattern, None, all_vars)
+            new_pattern, all_vars = replace_with_syns(pattern, None, ['synonym'], all_vars)
+            if new_pattern:
+                return new_pattern, all_vars
+            new_pattern, all_vars = replace_with_syns(pattern, None, ['common', 'standard', 'similarity'], all_vars)
             if new_pattern:
                 return new_pattern, all_vars
     return False, False
@@ -1131,9 +1305,11 @@ def get_all_versions(pattern, version_types, all_vars):
     pattern = converted_pattern if converted_pattern else pattern
     print('pattern', pattern)
 
+    '''
     if 'correct' in processing_types:
         new_pattern = generate_correct_patterns(pattern, all_vars)
         pattern = new_pattern if new_pattern else pattern
+    '''
     ''' pattern = 'VB |JJ NN|' '''
 
     patterns_to_iterate = []
@@ -1152,6 +1328,9 @@ def get_all_versions(pattern, version_types, all_vars):
         if alt_patterns:
             for ap in alt_patterns:
                 patterns_to_iterate.append(ap)
+
+    patterns_to_iterate = patterns_to_iterate if len(patterns_to_iterate) > 0 else [pattern]
+
     ''' patterns_to_iterate = ['VB JJ', VB NN'] '''
     all_patterns = []
     if len(patterns_to_iterate) > 0:
@@ -1163,6 +1342,7 @@ def get_all_versions(pattern, version_types, all_vars):
             if 'indexed' in processing_types:
                 new_pattern = generate_indexed_patterns(p, all_vars)
                 if new_pattern:
+                    print('indexed pattern', new_pattern)
                     pos_pattern = generate_pos_patterns(new_pattern, all_vars)
                     if pos_pattern:
                         print('pos pattern', pos_pattern)
@@ -1226,6 +1406,7 @@ def generate_pos_patterns(pattern, all_vars):
     delimiters = ['|', '__', '&']
     for d in delimiters:
         pattern = pattern.replace(d, '')
+    print('generate_pos_patterns: pattern', pattern)
     all_indexed_patterns = []
     ''' all words converted the same '''
     all_s = []
@@ -1241,41 +1422,42 @@ def generate_pos_patterns(pattern, all_vars):
     gs_tag_word_s = []
     gs_tag_word_g = []
     for w in pattern.split(' '):
-        nonnumeric_w = get_nonnumeric(w, all_vars)
-        nonnumeric.append(nonnumeric_w)
-        specific = convert_to_pos_type(w, nonnumeric_w, 'specific', all_vars)
-        if specific:
-            all_s.append(specific)
-            nonnumeric_specific = get_nonnumeric(specific, all_vars)
-            nonnumeric_s.append(nonnumeric_specific)
-        general = convert_to_pos_type(w, nonnumeric_w, 'general', all_vars)
-        if general:
-            all_g.append(general)
-            nonnumeric_general = get_nonnumeric(general, all_vars)
-            nonnumeric_g.append(nonnumeric_general)
-        is_supported = is_supported_tag(nonnumeric_w, all_vars)
-        if is_supported:
-            if nonnumeric_w in all_vars['pos_tags']:
-                ''' general tag '''
+        if len(w) > 0:
+            nonnumeric_w = get_nonnumeric(w, all_vars)
+            nonnumeric.append(nonnumeric_w)
+            specific = convert_to_pos_type(w, nonnumeric_w, 'specific', all_vars)
+            if specific:
+                all_s.append(specific)
+                nonnumeric_specific = get_nonnumeric(specific, all_vars)
+                nonnumeric_s.append(nonnumeric_specific)
+            general = convert_to_pos_type(w, nonnumeric_w, 'general', all_vars)
+            if general:
+                all_g.append(general)
+                nonnumeric_general = get_nonnumeric(general, all_vars)
+                nonnumeric_g.append(nonnumeric_general)
+            is_supported = is_supported_tag(nonnumeric_w, all_vars)
+            if is_supported:
+                if nonnumeric_w in all_vars['pos_tags']:
+                    ''' general tag '''
+                    if specific:
+                        gs_tag_word_s.append(specific)
+                        gs_tag_word_g.append(specific)
+                else:
+                    ''' specific tag '''
+                    if general:
+                        sg_tag_word_s.append(general)
+                        sg_tag_word_g.append(general)
+            else:
+                ''' word '''
                 if specific:
                     gs_tag_word_s.append(specific)
                     gs_tag_word_g.append(specific)
-            else:
-                ''' specific tag '''
                 if general:
                     sg_tag_word_s.append(general)
                     sg_tag_word_g.append(general)
-        else:
-            ''' word '''
-            if specific:
-                gs_tag_word_s.append(specific)
-                gs_tag_word_g.append(specific)
-            if general:
-                sg_tag_word_s.append(general)
-                sg_tag_word_g.append(general)
-            ''' no conversion for word '''
-            sg_tag.append(w)
-            gs_tag.append(w)
+                ''' no conversion for word '''
+                sg_tag.append(w)
+                gs_tag.append(w)
     pattern_list = [pattern, all_s, all_g, nonnumeric, nonnumeric_s, nonnumeric_g, sg_tag, gs_tag]
     pattern_list.append(sg_tag_word_s)
     pattern_list.append(sg_tag_word_g)
@@ -1676,12 +1858,12 @@ def get_local_data(paths, docs):
 
 def save(path, data):
     print('\t\twriting', path)
-    path = path.replace('txt', 'json') if type(data) != str else path
+    path = path.replace('txt', 'json') if '.json' in path else path
     with open(path, 'w') as f:
         if 'json' in path:
-            json.dump(data)
+            json.dump(data, f)
         else:
-            f.write(data)
+            f.write('\n'.join(data))
         f.close()
     return True
 
@@ -1713,12 +1895,12 @@ def downloads(paths):
             nltk.download('maxent_ne_chunker')
     return True
 
-def replace_with_syns(line, word_map, all_vars):
+def replace_with_syns(line, word_map, check_types, all_vars):
     new_text = []
     for w in line.split(' '):
         word = ''.join([x for x in w if x == '-' or x == ' ' or x in all_vars['alphabet']]) # some synonyms have dashes and spaces
         # dont add stem-similarity replacement bc you still need pos identification
-        check_types = ['synonym', 'common', 'standard', 'similarity']
+        check_types = ['synonym', 'common', 'standard', 'similarity'] if not check_types else check_types
         if word_map:
             pos = word_map[w] if w in word_map else None
         else:
@@ -1804,7 +1986,7 @@ def standard_text_processing(text, all_vars):
                 article_lines[line][word] = ''
         #line = remove_stopwords(line, article_lines[line])
         #print('lin2', line)
-        syn_line = replace_with_syns(line, article_lines[line], all_vars)
+        syn_line = replace_with_syns(line, article_lines[line], None, all_vars)
         if syn_line:
             article_lines[syn_ine] = article_lines[line]
     if article_lines:
