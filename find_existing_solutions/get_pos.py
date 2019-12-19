@@ -1,29 +1,8 @@
-from nltk import pos_tag, word_tokenize 
-from textblob import TextBlob
-
 '''
     https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
     https://stackoverflow.com/questions/15388831/what-are-all-possible-pos-tags-of-nltk
     nltk.help.upenn_tagset()
 '''
-
-def get_nltk_pos(word, all_vars):
-    if word in [a for a in all_vars['alphabet']]:
-        ''' this is a variable, dont modify '''
-        return False
-    tags = TextBlob(word).parse()
-    tags_split = tags.split('/')
-    blob_pos = tags_split[1] if len(tags_split) > 1 else None
-    tagged = pos_tag(word_tokenize(word))
-    if len(tagged) > 0:
-        for item in tagged:
-            if len(item) > 0:
-                if blob_pos != item[1]:
-                    ''' blob identifies 'explains' as a verb when pos_tag doesnt '''
-                    if blob_pos in all_vars['pos_tags']['ALL_V']:
-                        return blob_pos
-                return item[1]
-    return False
 
 def get_pos_tags():
     pos_tags = {}
@@ -154,3 +133,74 @@ def get_pos_tags():
     '''
 
     return pos_tags
+
+def get_empty_index(all_vars):
+    '''
+    indexes isolates treatments from symptoms, metrics, etc to build indexes of those objects on your local env
+    rows
+        - ensures data remains tied to its original context
+        - it has the same elements as index but stores them by each sentence 
+          from source data containing a symptom, condition, treatment, etc
+    rows = [
+        {
+            'condition': ['meningitis'],
+            'symptom': ['temperature'],
+            'treatments_successful': ['fluconazole'],
+            'insight': ['fluconazole effective 10-week survival'],
+            ...
+        },
+        {
+            'condition': ['diabetes'],
+            'symptom': ['organ failure'],
+            'treatments_successful': ['metformin'],
+            'insight': ['metformin effective for diabetes'],
+            ...
+        },
+        {
+            'metric': {'naa-cr ratio': 'reduced'}
+            'condition': ['hiv', 'encephalopathy'],
+            'component': {
+                'organ': ['brain', 'immune system'],
+                'microbe': [],
+                'cell': [],
+                'gene': [],
+                'enzyme': [],
+                'biosystem': ['immune system', 'nervous system']
+            }
+            'compound': ['naa', 'cr'],
+            'treatments_successful': [],
+            'treatments_failed': [],
+            'intent': ['diagnose'],
+            'insight': [
+                'naa-to-cr ratio is reduced in hiv patients', 
+                'naa-to-cr ratio is a marker for hiv brain infection'
+            ],
+            "strategies": [
+                'target bio markers that change with illness for testing',
+                'consider other conditions like lack/excess of signals from diagnostic tests & interfering diseases'
+            ],
+            "symptoms": [
+                'encephalopathy': 'no imaging findings',
+                'neurological disease': 'other'
+            ],
+            "patient_conditions": ['HIV-positive'],
+            "patient_symptoms": ['neurological disease']
+        }
+    ]
+    '''
+    index = {}
+    index_keys = []
+    for key in all_vars['full_params'].keys():
+        if key != 'request':
+            for item in all_vars['full_params'][key]:
+                index_keys.append(item)
+    dict_keys = ['count', 'pattern', 'pos', 'word_map']
+    all_vars['metadata'] = index_keys if 'metadata' not in all_vars or 'all' in all_vars['metadata'] else all_vars['metadata']
+    for key in all_vars['metadata']:
+        if key in index_keys:
+            if key not in dict_keys:
+                index[key] = set()
+            else:
+                index[key] = {}
+    index['data'] = [] # not necessary to ensure uniqueness in articles
+    return index

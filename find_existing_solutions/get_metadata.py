@@ -1,19 +1,13 @@
-import sys, json, os, re, urllib, csv, ssl, random
 import wikipedia
 from wikipedia.exceptions import DisambiguationError
 import xml.dom.minidom
-import requests
 
-from utils import *
-from get_index_def import get_empty_index
-from get_vars import get_vars, get_args
-from get_patterns import match_patterns, find_pattern
-#from get_objects import *
+from get_pos import *
+from get_type import *
+from get_vars import *
 from get_structural_objects import *
 from get_conceptual_objects import *
 from get_medical_objects import *
-from get_type import *
-
 
 def get_data_store(index, database, operation, args):
     '''
@@ -381,7 +375,6 @@ def get_structural_metadata(row, all_vars):
             row['relationship'] = row['relationship'].union(set(objects['relationship']))
         if patterns:
             row['pattern'] = row['pattern'].union(set(patterns))
-    print('row', row)
     return row
 
 def find_ngrams(line, all_vars):

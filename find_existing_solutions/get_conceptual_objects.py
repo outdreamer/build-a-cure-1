@@ -1,7 +1,3 @@
-from nltk import word_tokenize, pos_tag, ne_chunk
-
-from get_index_def import get_empty_index
-
 ''' 
 these functions do more advanced linguistic processing than 
 keyword or pattern matching as in identify_elements 

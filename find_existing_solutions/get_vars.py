@@ -1,8 +1,19 @@
-import os, random
+import random, json, itertools, csv, os, ssl, sys, re, urllib, itertools, requests
+import nltk
 from nltk.stem import SnowballStemmer
-stemmer = SnowballStemmer("english")
-from utils import *
+from nltk import CFG, pos_tag, word_tokenize, ne_chunk
+from nltk.corpus import stopwords
+from nltk.corpus import wordnet
+from nltk.stem.wordnet import WordNetLemmatizer
+from textblob import TextBlob, Sentence, Word, WordList
+from textblob.wordnet import VERB, NOUN, ADJ, ADV
+from textblob.wordnet import Synset
+
 from get_pos import *
+
+stemmer = SnowballStemmer("english")
+lemmatizer = WordNetLemmatizer()
+stop = set(stopwords.words('english'))
 
 def get_pattern_config(all_vars):
     all_vars['passive'] = [" by ", " from ", " of "]
@@ -515,12 +526,14 @@ def get_pattern_config(all_vars):
             'had been done': 'did'
         }
     }
-    all_vars['supported_pattern_variables'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
     all_vars['pattern_vars'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
     all_vars['type_pattern_index'] = {
         'passive': [
             'noun_phrase1 of noun_phrase2' # enzyme inhibitor of protein synthesis
         ],
+        'modifier': [],
+        'noun_phrase': [],
+        'verb_phrase': [],
         'phrase': [
             'modifier1 DPC modifier2'
         ],
@@ -594,7 +607,7 @@ def get_pattern_config(all_vars):
             '|ADV V N|', # Ex: 'emulsifying protein' (role = 'emulsifier')
             'N of N', # Ex: 'components of immune system' (role = 'component', system = 'immune system')
             '|V N| role', # Ex: functional role (role => 'function')
-            '|functions works operates interacts acts| as (a) |V N|' # Ex: acts as an intermediary (role => 'intermediary')
+            '|functions works operates interacts acts| as __a__ |V N|' # Ex: acts as an intermediary (role => 'intermediary')
         ]
     }
 
@@ -604,14 +617,17 @@ def get_pattern_config(all_vars):
         all_vars['pattern_vars'].append(key)
     all_vars['pattern_vars'] = set(all_vars['pattern_vars'])
 
-    all_vars['all_pattern_version_types'] = ['correct', 'repeated', 'nested', 'alt', 'pos', 'type', 'synonym', 'operator', 'function']
+    all_vars['all_pattern_version_types'] = ['correct', 'indexed', 'nested', 'alt', 'pos', 'type', 'synonym', 'operator', 'function']
 
     for key in ['pattern_index', 'type_pattern_index']:
         for pattern_key, patterns in all_vars[key].items():
             new_patterns = []
             for pattern in patterns:
+                print('getting all versions for pattern', pattern)
                 generated_patterns = get_all_versions(pattern, 'all', all_vars) 
                 if generated_patterns:
+                    print('got generated patterns', pattern)
+                    print(generated_patterns)
                     for gp in generated_patterns:
                         new_patterns.append(gp)
             all_vars[key][pattern_key] = reversed(sorted(new_patterns))
@@ -685,15 +701,31 @@ def convert_pos_vars_to_nltk_tag_alts(pattern, all_vars):
     - supported_pattern_vars = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
     - for every pattern word thats a key in all_vars['pos_tags'], replace keywords with nltk tags in that list
     '''
-    new_words = []
-    for word in pattern.split(' '):
-        if word in all_vars['supported_pattern_variables']:
-            # word should now be joined by alt delimiter: '|NN NNP|'
-            new_words.append(''.join(['|', ' '.join(all_vars['pos_tags'][word]), '|']))
-        else:
-            new_words.append(word)
-    if len(new_words) > 0:
-        return ' '.join(new_words)
+    new_subsets = []
+    for subset in pattern.split(' '):
+        new_subset = []
+        new_words = []
+        for word in subset.split('|'):
+            nonnumeric = get_nonnumeric(word, all_vars)
+            if nonnumeric == 'ALL':
+                all_tags = []
+                for k, values in all_vars['pos_tags']:
+                    all_tags.extend(values)
+                delimiter_list = ''.join(['|', set(all_tags), '|'])
+                new_words.append(delimiter_list)
+            if nonnumeric in all_vars['pos_tags']:
+                # word should now be joined by alt delimiter: '|NN NNP|'
+                tag_list = ' '.join(all_vars['pos_tags'][nonnumeric])
+                delimiter_list = ''.join(['|', tag_list, '|'])
+                new_words.append(delimiter_list)
+            elif nonnumeric in all_vars['pos_tags']['ALL']:
+                new_words.append(word)
+            else:
+                new_words.append(word)
+        if len(new_subset) > 0:
+            new_subsets.append('|'.join(new_subset))
+    if len(new_subsets) > 0:
+        return ' '.join(new_subsets)
     return False
 
 def reverse_sort(map_list):
@@ -827,7 +859,6 @@ def fill_synonyms(path, all_vars):
         path = '/'.join([cwd, path])
     if os.path.exists(path) and os.path.isdir(path):
         for filename in os.listdir(path):
-
             full_path = '/'.join([path, filename]) 
             if os.path.exists(full_path) and os.path.isfile(full_path):
                 word_map = read(full_path)
@@ -865,7 +896,7 @@ def process_synonym_element(y, keyword, all_vars):
         all_vars['supported_synonyms'][y] = keyword
     return all_vars                                    
 
-def generate_nested_patterns(pattern, pattern_type, source_vars, all_vars):
+def generate_nested_patterns(pattern, pattern_type, all_vars):
     '''
     support for nested alts in patterns like: '__|a an|__' and '|VB NN |VB ADV|| VB'
     pattern = '|VB NN x| VB' and variables['x'] = '|VB ADV|'
@@ -879,45 +910,39 @@ def generate_nested_patterns(pattern, pattern_type, source_vars, all_vars):
     new_pattern = []
     variables = {}
     delimiters = ['|']
-    space_count = pattern.count(' ') - 2
+    # space_count = pattern.count(' ') - 2
     for d in delimiters:
-        original_pattern_length = get_original_pattern_length(pattern, d)
-        for i, subset in enumerate(pattern.split(d)):
-            words = subset.strip().split(' ')
-            ''' delimiter section is beginning or ending '''
-            if len(new_pattern) == (original_pattern_length - space_count):
-                new_pattern.extend(words)
-                new_patterns.append(' '.join(new_pattern))
-                new_pattern = []
-            if i > 0 and (i / 2) != int(i / 2):
-                ''' make sure only sub-patterns with pos_tags are logged as a variable '''
-                is_tag_section = False
-                for var in words:
-                    nonnumeric_var = get_nonnumeric(var, all_vars)
-                    is_supported = is_supported_tag(nonnumeric_var, all_vars)
-                    if is_supported:
-                        is_tag_section = True
-                if is_tag_section:
-                    var_value = ' '.join(words)
-                    if source_vars:
-                        if var_value in source_vars.values():
-                            for k, v in source_vars.items():
-                                if v == var_value:
-                                    variables[k] = v
-                                    new_pattern.append(k) # *** var
-                        else:
-                            new_key = get_new_key(variables.keys(), subset, all_vars)
-                            variables[new_key] = var_value # *** '-_-'.join(words)
-                            new_pattern.append(new_key) # *** var
-                    else:
-                        new_key = get_new_key(variables.keys(), subset, all_vars)
-                        variables[new_key] = var_value # *** '-_-'.join(words)
-                        new_pattern.append(new_key) # *** var
-            else:
-                new_pattern.extend(words)
+        original_pattern_sets = pattern.count(d)
+        if original_pattern_sets > 0:
+            original_pattern_length = original_pattern_sets / 2
+            if original_pattern_length == int(original_pattern_length):
+                for i, subset in enumerate(pattern.split(d)):
+                    if len(subset) > 0:
+                        words = subset.strip().split(' ')
+                        words = [w for w in words if w != '']
+                        if len(words) > 0:
+                            ''' delimiter section is beginning or ending '''
+                            if i > 0 and (i / 2) != int(i / 2):
+                                ''' make sure only sub-patterns with pos_tags are logged as a variable '''
+                                is_tag_section = [is_supported_tag(get_nonnumeric(var, all_vars), all_vars) for var in words]
+                                if True in is_tag_section:
+                                    new_key = get_new_key(variables.keys(), subset, all_vars)
+                                    if len(new_key) > 0:
+                                        variables[new_key] = ' '.join(words) # *** '-_-'.join(words)
+                                        new_pattern.append(new_key) # *** var
+                                    if len(new_pattern) == original_pattern_length:
+                                        if len(new_pattern) > 0:
+                                            print('adding new pattern', new_pattern)
+                                            new_patterns.append(' '.join(new_pattern))
+                                            new_pattern = []
+                            else:
+                                if len(words) > 0:
+                                    new_pattern.extend(words)
+    if len(new_pattern) > 0:
+        new_patterns.append(' '.join(new_pattern))
     if len(new_patterns) > 0:
         return new_patterns, variables
-    return [pattern], variables
+    return False, False
 
 def generate_alt_patterns(pattern, nested_variables, all_vars):
     ''' 
@@ -943,30 +968,28 @@ def generate_alt_patterns(pattern, nested_variables, all_vars):
         if new_all_patterns:
             if len(new_all_patterns) > 0:
                 for nap in new_all_patterns:
-                    all_patterns.append(nap)
+                     #now replace optional strings with an empty string and add that pattern
+                    if '__' in nap:
+                        nap_with_options = []
+                        nap_without_options = []
+                        subsets = nap.split(' ')
+                        for subset in subsets:
+                            sections = subset.split('__')
+                            for section in sections:
+                                joined = ''.join(['__', section, '__'])
+                                if joined in nap:
+                                    nap_with_options.append(section)
+                                else:
+                                    nap_with_options.append(section)
+                                    nap_without_options.append(section)
+                        nap_with_options = ' '.join(nap_with_options)
+                        nap_without_options = ' '.join(nap_without_options)
+                        all_patterns.append(nap_with_options)
+                        all_patterns.append(nap_without_options)
+                    else:
+                        all_patterns.append(nap)
         if len(all_patterns) > 0:
             return all_patterns
-    # all_patterns should be a list of combined patterns like ['NN VB', 'VB VB'],
-    # which is both combinations possible of the set ['NN VB', 'VB']
-    ''' move to add_sub_patterns so vars are supported as well
-    if all_patterns:
-        #now replace optional strings with an empty string and add that pattern
-        for pattern in all_patterns:
-            all_patterns_with_alts = []
-            if '__' in pattern:
-                new_pattern = pattern
-                for item in pattern.split('__'):
-                    if ' ' not in item:
-                        optional_word = ''.join(['__', item, '__'])
-                        if optional_word in pattern:
-                            new_pattern = new_pattern.replace(optional_word, '')
-                new_pattern = new_pattern.replace('  ', ' ')
-                # add the alternative pattern with optional strings replaced
-                all_patterns_with_alts.append(new_pattern) 
-            all_patterns_with_alts.append(pattern)
-        if len(all_patterns_with_alts) > 0:
-            return all_patterns_with_alts
-    '''
     return False
 
 def add_sub_patterns(pattern_list, nested_variables):
@@ -1027,14 +1050,15 @@ def add_sub_patterns(pattern_list, nested_variables):
         return new_lists
     return False
 
-def generate_repeated_patterns(pattern, all_vars):
+def generate_indexed_patterns(pattern, all_vars):
     ''' this function adds an integer index to any repeated items '''
     new_words = []
-    for i, w in enumerate(pattern):
+    words = pattern.split(' ')
+    for i, w in enumerate(words):
         ''' w = V, V1, VB, VB1, the, the1 '''
         nonnumeric_w = get_nonnumeric(w, all_vars)
         if w == nonnumeric_w:
-            if variant_pattern.count(w) > 1:
+            if words.count(w) > 1:
                 new_word = ''.join([w, str(i)])
             else:
                 new_word = w
@@ -1043,7 +1067,7 @@ def generate_repeated_patterns(pattern, all_vars):
         new_words.append(new_word)
     if len(new_words) > 0:
         return ' '.join(new_words)
-    return pattern
+    return False
     
 def generate_correct_patterns(pattern, all_vars):
     '''
@@ -1064,10 +1088,21 @@ def generate_type_patterns(pattern, all_vars):
     return [pattern]
 
 def generate_synonym_patterns(pattern, all_vars):
-    return [pattern]
+    ''' first check that words are not in supported keywords, then get the synonym '''
+    for word in pattern.split(' '):
+        nonnumeric = get_nonnumeric(word, all_vars)
+        if nonnumeric not in all_vars['pos_tags']['ALL'] and all_vars['type_pattern_index'] and nonnumeric not in all_vars['pattern_index']:
+            ''' this is a word, check for synonyms '''
+            new_pattern, all_vars = replace_with_syns(pattern, None, all_vars)
+            if new_pattern:
+                return new_pattern, all_vars
+    return False, False
 
 def generate_operator_patterns(pattern, all_vars):
-    return [pattern]
+    new_pattern, variables = convert_to_operators(pattern, all_vars)
+    if new_pattern:
+        return new_pattern
+    return False
 
 def generate_function_patterns(pattern, all_vars):
     ''' find functions in pattern & replace with their core function decomposition '''
@@ -1083,37 +1118,41 @@ def generate_function_patterns(pattern, all_vars):
 
 def get_all_versions(pattern, version_types, all_vars):
     ''' this is to generate patterns with standardized synonyms, operators, & types in configured patterns '''
-    processing_types = ['correct', 'repeated']
-    chained_types = ['nested', 'alt', 'pos', 'type', 'synonym', 'operator']
+    ''' execute indexed patterns after you run nested & alt patterns '''
     extra_processing = ['function']
-    version_types = all_vars['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
-
+    processing_types = ['correct', 'indexed']
+    chained_types = ['nested', 'alt', 'pos', 'type', 'synonym', 'operator']
+    if version_types == 'all' or len(version_types) == 0:
+        version_types = all_vars['all_pattern_version_types']
     ''' if its a function, replace it with its core function decomposition '''
+
+    ''' convert generic types like V to |VB VBG VBZ| etc '''
     converted_pattern = convert_pos_vars_to_nltk_tag_alts(pattern, all_vars)
     pattern = converted_pattern if converted_pattern else pattern
-    for process in processing_types:
-        function_name = ''.join(['generate_', process, '_patterns'])
-        if function_name in locals():
-            try:
-                function = getattr(locals(), function_name)
-                if function:
-                    new_pattern = function(pattern)
-                    pattern = new_pattern if new_pattern else pattern
-            except Exception as e:
-                print('e', e)
+    print('pattern', pattern)
 
+    if 'correct' in processing_types:
+        new_pattern = generate_correct_patterns(pattern, all_vars)
+        pattern = new_pattern if new_pattern else pattern
     ''' pattern = 'VB |JJ NN|' '''
-    patterns_to_iterate = []
-    nested_patterns, nested_variables = generate_nested_patterns(pattern, 'pattern', {}, all_vars)
-    ''' nested_patterns = 'VB x', nested_variables = {'x': 'JJ NN'} '''
 
-    for np in nested_patterns:
-        alt_patterns = generate_alt_patterns(np, nested_variables, all_vars)
+    patterns_to_iterate = []
+    nested_patterns, nested_variables = generate_nested_patterns(pattern, 'pattern', all_vars)
+    ''' nested_patterns = 'VB x', nested_variables = {'x': 'JJ NN'} '''
+    
+    if nested_patterns:
+        print('nested patterns', nested_patterns)
+        for np in nested_patterns:
+            alt_patterns = generate_alt_patterns(np, nested_variables, all_vars)
+            if alt_patterns:
+                for ap in alt_patterns:
+                    patterns_to_iterate.append(ap)
+    else:
+        alt_patterns = generate_alt_patterns(pattern, {}, all_vars)
         if alt_patterns:
             for ap in alt_patterns:
                 patterns_to_iterate.append(ap)
     ''' patterns_to_iterate = ['VB JJ', VB NN'] '''
-
     all_patterns = []
     if len(patterns_to_iterate) > 0:
         for p in patterns_to_iterate:
@@ -1121,40 +1160,42 @@ def get_all_versions(pattern, version_types, all_vars):
             get_pos_patterns creates a list of nonnumeric/general/specific 
             pattern variants for each word pos type 
             '''
-            variant_patterns = generate_pos_patterns(p, all_vars)
-            if variant_patterns:
-                for vp in variant_patterns:
-                    type_patterns = generate_type_patterns(vp, all_vars)
-                    if type_patterns:
-                        for tp in type_patterns:
-                            synonym_patterns = generate_synonym_patterns(tp, all_vars)
-                            if synonym_patterns:
-                                for sp in synonym_patterns:
-                                    operator_patterns = generate_operator_patterns(sp, all_vars)
-                                    if operator_patterns:
-                                        for op in operator_patterns:
-                                            all_patterns.append(op)
+            if 'indexed' in processing_types:
+                new_pattern = generate_indexed_patterns(p, all_vars)
+                if new_pattern:
+                    pos_pattern = generate_pos_patterns(new_pattern, all_vars)
+                    if pos_pattern:
+                        print('pos pattern', pos_pattern)
+                        all_patterns.append(pos_pattern)
+                else:
+                    all_patterns.append(p)
+    '''
+    for ap in all_patterns:
+        type_patterns = generate_type_patterns(ap, all_vars)
+        if type_patterns:
+            print('type patterns', type_patterns)
+            for tp in type_patterns:
+                if tp != ap:
+                    all_patterns.append(tp)
+    '''
+    ''' synonym & operator only have one-match per pattern '''
+    for ap in all_patterns:
+        synonym_pattern, new_all_vars = generate_synonym_patterns(ap, all_vars)
+        if synonym_pattern:
+            if new_all_vars:
+                all_vars = new_all_vars 
+                ''' update all_vars with every call to replace_with_syns '''
+            if synonym_pattern != ap:
+                print('syn pattern', synonym_pattern)
+                all_patterns.append(synonym_pattern)
+    for ap in all_patterns:
+        operator_pattern = generate_operator_patterns(ap, all_vars)
+        if operator_pattern:
+            if operator_pattern != ap:
+                print('operator pattern', operator_pattern)
+                all_patterns.append(operator_pattern)
     if len(all_patterns) > 0:
         return all_patterns
-    return False
-
-def get_original_pattern_length(pattern, delimiter):
-    ''' for a pattern like  '|VB NN x| VB', should return 2 '''
-    delimiter_count = pattern.count(delimiter)
-    delimiter_pair_count = delimiter_count / 2
-    delimiter_index = 0
-    reduced_pattern = []
-    for i, char in enumerate(pattern):    
-        if char == delimiter:
-            delimiter_index += 1
-        elif delimiter_index == 0 or (delimiter_index/2 == int(delimiter_index/2)):
-            reduced_pattern.append(char)
-    reduced_pattern_string = ''.join(reduced_pattern)
-    reduced_pattern_string = reduced_pattern_string.replace('  ',' ')
-    space_count = reduced_pattern_string.count(' ')
-    final_count = delimiter_count + space_count
-    if final_count > 0:
-        return final_count
     return False
 
 def generate_pos_patterns(pattern, all_vars):
@@ -1242,7 +1283,7 @@ def generate_pos_patterns(pattern, all_vars):
     pattern_list.append(gs_tag_word_g)
     if len(pattern_list) > 0:
         return pattern_list[0]
-    return [pattern]
+    return False
 
 def convert_to_pos_type(word, nonnumeric_w, pos_type, all_vars):
     is_supported = is_supported_tag(nonnumeric_w, all_vars)
@@ -1326,3 +1367,1011 @@ def find_delimiter(line, all_vars):
             return max_delimiter
     delimiter = ' ' if ' ' in line else ''
     return delimiter
+
+def get_delimiter(line):
+    ''' get a delimiter that isnt in the line '''
+    delimiter = '***' if '***' not in line else '###'
+    return delimiter
+
+''' SIMILARITY FUNCTIONS '''
+
+def get_polarity(line):
+    ''' to do: use blob.sentiment_assessments 
+            Sentiment(
+                polarity=-0.008806818181818186, 
+                subjectivity=0.32386363636363635, 
+                assessments=[
+                    (['positive'], 0.22727272727272727, 0.5454545454545454, None), 
+                    (['absence'], -0.0125, 0.0, None), 
+                    (['due'], -0.125, 0.375, None), 
+                    (['other'], -0.125, 0.375, None)
+                ]
+            )
+    '''
+    blob = get_blob(line)
+    if blob:
+        sentiment = blob.sentiment
+        if sentiment:
+            if sentiment.polarity:
+                return roun(sentiment.polarity, 1)
+    return 0
+
+def correct_spelling(line):
+    blob = Sentence(line)
+    if blob:
+        return blob.correct()
+    return text
+
+def get_subjectivity(line):
+    return line
+
+''' GET STRUCTURAL TYPE FUNCTIONS '''
+
+def get_blob(string):
+    if type(string) == str:
+        return TextBlob(string)
+    return False
+
+def replace_names(row, all_vars):
+    # to do: identify all irrelevant proper nouns like place, company, university & individual names
+    original_words = row['original_line'].split(' ')
+    tagged = pos_tag(word_tokenize(row['line']))
+    ''' to do: make sure names are grouped into phrases '''
+    for p in row['phrase']:
+        if len(p) > 0:
+            new_name = []
+            phrase_words = p.split(' ')
+            for name in phrase_words:
+                pos = [item[1] for item in tagged if item[0].lower() == name]
+                if len(pos) > 0:
+                    pos_item = pos[0]
+                    if pos_item == 'NNP':
+                        name = ''.join([name[0].upper(), name[1:]]) if '.' not in name and '/' not in name else name.upper()
+                        new_name.append(name)  
+                    elif pos_item == 'NNS':
+                        name = ''.join([name[0].upper(), name[1:]])
+                        if name in original_words:
+                            new_name.append(name)
+            if len(new_name) > 0:                                         
+                final_name = ' '.join(new_name)
+                if len(new_name) == len(phrase_words):
+                    if final_name != row['line'][0:len(final_name)]:
+                        if final_name.lower() not in row['noun']:
+                            if final_name.lower() not in row['verb']:
+                                row['name'].add(final_name) # find names and store separately
+    row['line'] = ' '.join([w for w in row['line'].split(' ') if w not in row['name']])
+    return row
+
+def get_determiner_ratio(word):
+    ratios = {
+        'extra': ['extra', 'another', 'more'],
+        'same': ['whole', 'both', 'all', 'every', 'each'], # to do: integrate equal keywords like 'basically', 'essentially', 'same', 'equal']
+        'high': ['high', 'extremely', 'such', 'especially', 'very', 'much', 'many', 'lot', 'quite'],
+        'some': ['a', 'an', 'any', 'whatever', 'which', 'whichever', 'part', 'half', 'some'], # exclude 'either'
+        'one': ['the', 'this', 'that', 'those', 'these', 'them', 'particular'],
+        'none': ['none', 'nothing', 'nary', 'neither', 'nor', 'no']
+    }
+    for k, v in ratios.items():
+        if word in v or word == k:
+            return k
+    return False
+
+def get_ngrams_by_position(word_list, word, x, direction):
+    ''' 
+    get a list of words of length (2x + 1) in word list starting with word 
+    and iterating outward in direction x number of times 
+    '''
+    list_length = len(word_list)
+    word_index = word_list.index(word)
+    if word_index:
+        start = word_index - x if word_index > x else word_index if direction == 'next' else 0
+        end = word_index + x if (word_index + x) < list_length else word_index if direction == 'prev' else list_length
+        return word_list[start:end]
+    return False
+
+def get_most_common_words(counts, top_index):
+    '''
+    counts = {
+        0: ['words', 'that', 'appeared', 'once'],
+        1: ['items', 'shown', 'twice']
+    }
+    '''
+    count_keys = counts.keys()
+    if len(count_keys) > 1:
+        top_index = len(count_keys) - 1 if len(count_keys) < top_index else top_index
+        sorted_keys = reversed(sorted(count_keys))
+        max_key = max(count_keys)
+        retrieved_index = 0
+        max_words = set()
+        for k in sorted_keys:
+            max_words = max_words.union(counts[k])
+            retrieved_index += 1
+            if retrieved_index == top_index:
+                return max_words
+        if len(max_words) > 0:
+            return max_words
+    return False
+
+def is_condition(asp_words, row, all_vars):
+    for word in asp_words:
+        if word in all_vars['clause_delimiters']:
+            return word
+        else:
+            pos = row['pos'][word] if word in row['pos'] else get_pos(word)
+            if pos not in all_vars['pos_tags']['ALL_N'] or word not in stop:
+                return word
+    return False
+
+def get_sentence_delimiter(text):
+    return '\n' if text.count('\n') > text.count('. ') else '. '
+
+def standardize_delimiter(text):
+    blob = get_blob(text)
+    if blob:
+        sentences = blob.sentences
+        if len(sentences) > 0:
+            return '\n'.join([s.string for s in sentences])
+    delimiter = get_sentence_delimiter(text)
+    if delimiter:
+        return '\n'.join(text.split(delimiter))
+    return False
+
+def standardize_punctuation(line):
+    # remove apostrophes, replace brackets with parenthesis
+    line = line.replace('[', ' ( ').replace(']', ' ) ').replace("'", '') 
+    # replace clause punctuation with comma
+    line = line.replace(' - ', ' , ')
+    '''
+    operator_keys = all_vars['operator_map'].keys()
+    for k in operator_keys:
+        line = line.replace(k, '')
+    '''
+    # space comma to avoid conflation with words, then replace double spaces
+    line = line.replace(',', ' , ').replace('  ', ' ')
+    return line
+
+def remove_stopwords(line, word_map):
+    custom_removal = [] #['the', 'a', 'an', 'them', 'they']
+    words = line.split(' ') if type(line) == str else line
+    word_list = []
+    for w in words:
+        if '/' in w or '|' in w:
+            option = select_option(w, word_map)
+            if option:
+                word_list.append(option)
+        else:
+            if w[-1] == 's':
+                w = get_singular(w)
+            if w not in stopwords.words('english') and w not in custom_removal:
+                word_list.append(w)
+    if len(word_list) > 0:
+        return ' '.join(word_list)
+    return line
+
+def replace_quotes_with_parenthesis(line):
+    quotes = line.count('"')
+    if quotes > 0:
+        new_line = []
+        quote_pairs = quotes / 2
+        if quote_pairs == int(quote_pairs):
+            found_first = False
+            this_quote = []
+            for w in line.split(' '):
+                if '"' in w:
+                    if found_first:
+                        ''' already found quote in pair, closing quote '''
+                        found_first = False
+                        this_quote.append(w.replace('"', ')'))
+                        new_line.append(' '.join(this_quote))
+                        this_quote = []
+                    else:
+                        ''' first quote in pair, opening quote '''
+                        found_first = True
+                        this_quote.append(w.replace('"', '('))
+                else:
+                    new_line.append(w)
+        else:
+            print('uneven quotes', quote_pairs, quotes, line)
+        # now all quote content should be surrounded by parentheses instead
+        line = ' '.join(new_line) if len(new_line) > 0 else line
+    return line
+
+def select_option(alt_phrase, word_map):
+    ''' 
+        this function translates:
+        - expression/activity = expression-activity (different pos = phrase)
+        - describes/delineates = describes (same pos, if synonym, choose more common one)
+    '''
+    delimiter = [c for c in '/|' if c in alt_phrase]
+    alts = alt_phrase.split(delimiter)
+    alt_pos = [word_map[a] for a in alts]
+    if len(alt_pos) > 0:
+        if alt_pos[0]:
+            default_pos = alt_pos[0]
+            found_non_default = [True for a in alt_pos if a != default_pos]
+            if found_non_default:
+                ''' these options are different pos so dont remove them '''
+                alt_phrase = alt_phrase.replace(delimiter, '-')
+                return alt_phrase
+            else:
+                ''' these options are all the same pos, check if theyre synonyms '''
+                default_alt = alts[0]
+                for a in alts:
+                    if a != default_alt:
+                        similarity = get_similarity(default_alt, a)
+                        if similarity:
+                            if similarity < 0.7:
+                                ''' found a non-synonym, keep all options '''
+                                return alt_phrase
+                ''' all words were synonyms, return first option if most common not found '''
+                most_common_option = get_most_common_word(alts)
+                if most_common_option:
+                    if len(most_common_option) > 0:
+                        return most_common_option[0]
+                return default_alt
+    return alt_phrase
+
+def get_charge_of_word(word, all_vars):
+    if word in all_vars['supported_synonyms']:
+        synonym = all_vars['supported_synonyms'][word]
+        for synonym_type in all_vars['charge']:
+            if synonym in all_vars['charge'][synonym_type]:
+                print('get_charge_of_word: found synonym charge', word, synonym, synonym_type)
+                return synonym_type
+    return False
+
+def get_similarity(base_word, new_word, pos_type, all_vars):
+    if pos_type in ['N', 'V', 'ADV', 'ADJ']:
+        base_synsets = Word(base_word).get_synsets(pos=pos_type)
+        new_synsets = Word(new_word).get_synsets(pos=pos_type)
+        if len(new_synsets) > 0 and len(base_synsets) > 0:
+            similarity = base_synsets.path_similarity(new_synsets)
+            print('\tget similarity', new_synsets, base_synsets, similarity)
+            return similarity
+    return 0
+
+def get_similarity_to_title(title, row):
+    similarity = 0
+    if row['line'] != title:
+        title_split = title.split(' ')
+        both = set()
+        for s in row['line'].split(' '):
+            if s in title_split:
+                both.add(s)
+        if len(both) > 0:
+            similarity = round(len(both) / len(title_split), 1)
+        if similarity:
+            row['similarity'] = similarity
+    return row
+
+''' STORAGE FUNCTIONS '''
+
+def get_local_database(database_dir, object_types):
+    docs = {}
+    if not os.path.exists(database_dir) or not os.path.isdir(database_dir):
+        cwd = getcwd()
+        database_dir = ''.join([cwd, '/', database_dir])
+    if os.path.exists(database_dir) and os.path.isdir(database_dir):
+        object_types = object_types if object_types else []
+        if len(object_types) > 0:
+            paths = [''.join([database_dir, '/', ot, '.txt']) for ot in object_types]
+            docs = get_local_data(paths, docs)
+        else:
+            paths = [''.join([database_dir, '/', fp]) for fp in os.listdir(database_dir)]
+            docs = get_local_data(paths, docs)
+    if docs:
+        return docs
+    return False
+
+def get_local_data(paths, docs):
+    for path in paths:
+        object_type = path.split('/')[-1].replace('.txt', '')
+        if os.path.isfile(path):
+            contents = read(path)
+            if contents:
+                lines = contents.split('\n')
+                if len(lines) > 0:
+                    docs[object_type] = set(lines)
+    return docs
+
+def save(path, data):
+    print('\t\twriting', path)
+    path = path.replace('txt', 'json') if type(data) != str else path
+    with open(path, 'w') as f:
+        if 'json' in path:
+            json.dump(data)
+        else:
+            f.write(data)
+        f.close()
+    return True
+
+def write_csv(rows, header_list, path):
+    if len(rows) > 0:
+        with open(path, 'wt') as f:
+            csv_writer = csv.DictWriter(f, fieldnames=header_list)
+            csv_writer.writeheader()
+            csv_writer.writerows(rows)
+            f.close()
+            return True 
+    return False
+
+def downloads(paths):
+    for path in paths:
+        if not os.path.exists(path):
+            ''' this is the first run so download packages '''
+            os.mkdir(path)
+            try:
+                _create_unverified_https_context = ssl._create_unverified_context
+            except AttributeError:
+                pass
+            else:
+                ssl._create_default_https_context = _create_unverified_https_context
+            # download all the corpuses by running nltk.download() & selecting it manually in the gui that pops up, 
+            nltk.download()
+            nltk.download('punkt')
+            nltk.download('averaged_perceptron_tagger')
+            nltk.download('maxent_ne_chunker')
+    return True
+
+def replace_with_syns(line, word_map, all_vars):
+    new_text = []
+    for w in line.split(' '):
+        word = ''.join([x for x in w if x == '-' or x == ' ' or x in all_vars['alphabet']]) # some synonyms have dashes and spaces
+        # dont add stem-similarity replacement bc you still need pos identification
+        check_types = ['synonym', 'common', 'standard', 'similarity']
+        if word_map:
+            pos = word_map[w] if w in word_map else None
+        else:
+            pos = get_nltk_pos(w, all_vars)
+        if pos:
+            passed_checks = pos if pos not in all_vars['pos_tags']['exclude'] and pos not in all_vars['pos_tags']['DPC'] else False
+            if passed_checks:
+                match, check_type = find_matching_synonym(word, pos, check_types, None, all_vars)
+                if match and check_type:
+                    if check_type in check_types:
+                        if w not in all_vars['supported_synonyms']:
+                            all_vars['supported_synonyms'][w] = match
+                    new_text.append(w.replace(word, match))
+                else:
+                    '''
+                        add a mapping with the word to itself 
+                        so you can avoid going through all check_types in 
+                        future calls to find_matching_synonym for this word 
+                        because 'synonym' check_type should return it from now on
+                    '''
+                    if w not in all_vars['supported_synonyms']:
+                        all_vars['supported_synonyms'][w] = w
+                    new_text.append(w)
+    if len(new_text) > 0:
+        return ' '.join(new_text), all_vars
+    return line, all_vars
+
+
+def get_definitions(word):
+    defs = Word(word).definitions
+    if defs:
+        print('defs', word, defs)
+        return defs
+    return False
+
+def get_definition_keywords(word):
+    ''' add option to use local_database/index (phrases, relationships) or pull from a data source '''
+    defs = get_definitions(word)
+    if defs:
+        keywords = []
+        for d in defs:
+            words = d.split(' ')
+            for w in words:
+                keywords.append(w)
+        if len(keywords) > 0:
+            return keywords
+    return False
+
+def get_syn_from_definition(word, word_pos):
+    candidates = set()
+    definitions = get_definitions(word)
+    if definitions:
+        for d in definitions:
+            for w in d:
+                dpos = get_nltk_pos(w, all_vars)
+                if dpos == word_pos:
+                    candidates.add(w)
+    if len(candidates) > 0:
+        '''
+        to do: if found other words with same pos in definitions, 
+        filter by meaning & similarity to word
+        '''
+        return candidates
+    return False
+
+def standard_text_processing(text, all_vars):
+    text = concatenate_species(text.strip())
+    text = standardize_delimiter(text)
+    text = standardize_punctuation(text)
+    article_lines = {}
+    lines = text.split('\n')
+    for i, line in enumerate(lines):
+        line = replace_quotes_with_parenthesis(line)
+        active_line = apply_pattern_map(line, all_vars['pattern_maps']['passive_to_active'], all_vars)
+        line = active_line if active_line else line
+        if line not in article_lines:
+            article_lines[line] = {}
+        for word in line.split(' '):
+            pos = get_nltk_pos(word, all_vars)
+            if pos:
+                article_lines[line][word] = pos
+            else:
+                article_lines[line][word] = ''
+        #line = remove_stopwords(line, article_lines[line])
+        #print('lin2', line)
+        syn_line = replace_with_syns(line, article_lines[line], all_vars)
+        if syn_line:
+            article_lines[syn_ine] = article_lines[line]
+    if article_lines:
+        return article_lines
+    return False
+    
+def get_operator(verb, all_vars):
+    ''' this maps a verb ('reduce' or 'inhibit') to an operator like +, -, = '''
+    for charge, values in all_vars['charge'].items():
+        if verb == charge or verb in values:
+            return charge
+        #polarity = get_polarity(verb)
+        #operator = '-' if polarity < 0.0 else '+' if polarity > 0.0 else '='
+        #return operator
+    return False
+
+''' these functions can be used in get_common_synonym(word) or get_common_score(word) '''
+
+def get_synsets(word, pos, all_vars):
+    synsets = {}
+    if pos:
+        pos_lower = str(pos).lower()
+        synsets = get_synsets_of_type(word, pos_lower, all_vars)
+        if synsets:
+            synsets[pos_lower] = synsets
+            synsets['count'] = {k : len(v) for k, v in synsets.items()}
+    else:
+        synsets = {
+            'N': get_synsets_of_type(word, 'N', all_vars),
+            'V': get_synsets_of_type(word, 'V', all_vars),
+            'ADV': get_synsets_of_type(word, 'ADV', all_vars),
+            'ADJ': get_synsets_of_type(word, 'ADJ', all_vars)
+        }
+        synsets['count'] = {k : len(v) for k, v in synsets.items()}
+    return synsets
+
+def get_synsets_of_type(word, pos_type, all_vars):
+    pos_lib_map = { 'N': NOUN, 'V': VERB, 'ADV': ADV, 'ADJ': ADJ }
+    if pos_type in pos_lib_map:
+        pos_type = pos_lib_map[pos_type]
+        if len(word) > 0 and len(pos_type) > 0:
+            synsets = Word(word).get_synsets(pos=pos_type)
+            if len(synsets) > 0:
+                return [s.name().split('.')[0].lower() for s in synsets]
+    return False
+
+def get_common_word(word, pos, all_vars):
+    '''
+    this should standardize a word like 'enhance' to a verb like 'increase' 
+    actually we can replace that for now with a synonym list, as in aggregate_synonyms_of_type()
+    '''
+    if word in all_vars['supported_synonyms']:
+        return all_vars['supported_synonyms'][word]
+    if pos:
+        if pos in all_vars['pos_tags']['SYNSET']:
+            synsets = get_synsets(word, pos, all_vars)
+            if synsets:
+                for supported_tag, synset_list in synsets.items():
+                     if len(synset_list) > 0:
+                        counts = {}
+                        for item in synset_list:
+                            if item not in counts:
+                                counts[item] = 0
+                            counts[item] += 1
+                        max_value = max(counts.values())
+                        max_synonyms = [c for c in counts if counts[c] == max_value]
+                        if len(max_synonyms) > 0:
+                            for syn in max_synonyms:
+                                similar_score = get_similarity(word, syn, pos_type, all_vars) 
+                                if similar_score > 0.5:
+                                    return syn
+                            return max_synonyms[0]
+    return word
+
+def find_matching_synonym(word, pos, check_types, exclude_types, all_vars):
+    items = {}
+    default_check_types = [
+        'standard', 'stem', 'substring', 'type', 'pos', 'partial',
+        'synonym', 'common', 'ratio', 'charge', 'similarity'
+    ]
+    if len(word) > 0:
+        if check_types != 'definition':
+            if not check_types:
+                check_types = default_check_types
+            if exclude_types:
+                for exclude_type in exclude_types:
+                    check_types = check_types.remove(exclude_type)
+            match, check_type = iterate_through_synonyms(all_vars, check_types, word, pos)
+            if match and check_type:
+                return match, check_type
+            #print('no matches found', word, pos, check_types)
+            return word, check_types[0]
+        ''' if no matches found, check for syns of words in definition '''
+        if pos in all_vars['pos_tags']['SYNSET']:
+            definitions = get_definitions(word)
+            if definitions:
+                for d in definitions:
+                    d_row = get_structural_metadata(d, all_vars)
+                    if d_row:
+                        if 'verb' in d_row:
+                            for v in d_row['verb']:
+                                ''' for each verb in the definition, do same synonym check '''
+                                match, check_type = iterate_through_synonyms(all_vars, check_types, v, pos)
+                                if match and check_type:
+                                    print('found matches', word, check_type, match)
+                                    return match, check_type
+    ''' as a backup, you can query pattern, function, & relationship data to derive standard verb '''
+    return False, False
+
+def iterate_through_synonyms(all_vars, check_types, word, pos):
+    for key, val in all_vars['supported_synonyms'].items():
+        for check_type in check_types:
+            if len(word) > 0:
+                keyword_match, check_type = matches(word, pos, key, check_type, 'word', all_vars)
+                if keyword_match and check_type:
+                    return keyword_match, check_type
+    return False, False
+
+def matches(word, word_pos, k, check_type, word_type, all_vars):
+    ''' word_type can be line, phrase, or word '''
+    ''' add synsets option '''
+    words = [word] if word_type != 'line' else word.split(' ')
+    for w in words:
+        if k and w:
+            pos_k = get_nltk_pos(k, all_vars)
+            if check_type == 'standard':
+                w = conjugate(w, word_pos, 'VB', all_vars) # standardize tense to infinitive
+                k = conjugate(k, pos_k, 'VB', all_vars)
+            elif check_type == 'stem':
+                if w in all_vars['supported_stems'] and k in all_vars['supported_stems']:
+                    w = all_vars['supported_stems'][w]
+                    k = all_vars['supported_stems'][k]
+                else:
+                    w = stemmer.stem(w)
+                    k = stemmer.stem(k)
+            elif check_type == 'substring':
+                if w in k or k in w:
+                    return k, check_type
+            elif check_type == 'type':
+                w = find_type(w, word_pos, None, None, all_vars)
+                k = find_type(k, pos_k, None, None, all_vars)
+            elif check_type == 'pos':
+                w = word_pos
+                k = pos_k
+            elif check_type == 'partial':
+                w = get_partial_match(all_vars, w, 'synonym')
+                k = get_partial_match(all_vars, k, 'synonym')
+            elif check_type == 'synonym':
+                w = all_vars['supported_synonyms'][w] if w in all_vars['supported_synonyms'] else None
+                k = all_vars['supported_synonyms'][k] if k in all_vars['supported_synonyms'] else None
+            elif check_type == 'common':
+                w = get_common_word(w, word_pos, all_vars)
+                k = get_common_word(k, pos_k, all_vars)
+            elif check_type == 'ratio':
+                ratio = get_match_ratio(w, k)
+                if ratio:
+                    if ratio > 0.9:
+                        return k, check_type
+            elif check_type == 'charge':
+                w = get_charge_of_word(w, all_vars)
+                k = get_charge_of_word(k, all_vars)
+            elif check_type == 'similarity':
+                similarity = get_similarity(w, k, word_pos, all_vars)
+                if similarity > 0.9:
+                    return k, check_type
+            if w and k:
+                if w == k:
+                    return k, check_type
+    return False, False
+
+def get_partial_match(all_vars, word, match_type):
+    ''' to do: add lemmatize + suffix check to get_partial_match function '''
+    ''' match_type = ['synonym', 'bool', 'keyword'] '''
+    for k, v in all_vars['supported_synonyms'].items():
+        if k[0] == '-' or k[-1] == '-':
+            new_k = k.replace('-', '')
+            word_split = word.split(new_k)
+            if len(word_split) == 2:
+                if (k[0] == '-' and word_split[-1] == '') or (k[-1] == '-' and word_split[0] == ''):
+                    return True if match_type == 'bool' else v if match_type == 'synonym' else new_k
+        else:
+            ''' to do: integrate similarity & pos matching '''
+            ratio = get_match_ratio(word, k)
+            threshold = 0.7 # should be at threshold just under 8/13 to capture rational => rationalizing
+            if ratio > threshold:
+                return True if match_type == 'bool' else v if match_type == 'synonym' else k
+        if len(k) > 5 and len(word) > 5 and k in word or word in k and (len(k) - len(word)) <= 5:
+            return True if match_type == 'bool' else v if match_type == 'synonym' else k
+    return False
+
+def get_match_ratio(word, keyword):
+    last_index = len(keyword) - 1
+    reversed_indexes = reversed(range(0, last_index))
+    for length in reversed_indexes:
+        remainder = keyword[length:]
+        if remainder in word:
+            return round(len(remainder) / len(word), 1)
+    for length in reversed_indexes:
+        for offset in reversed_indexes:
+            if length < len(keyword):
+                if offset < length:
+                    subset = keyword[offset:length]
+                    if subset in word:
+                        return round(len(subset) / len(word), 1)
+    return False
+
+def concatenate_species(data):
+    data_lines = data.split('.')
+    new_lines = []
+    next_item = None
+    for i, d in enumerate(data_lines):
+        d_split = d.split(' ')
+        last_item = d_split.pop()
+        if len(last_item) == 1:
+            if (i + 1) < len(d):
+                prev_item = d_split[-1]
+                if len(prev_item) > 1:
+                    next_item = data_lines[i+1].strip().split(' ')[0] if (i + 1) < len(data_lines) else ''
+                    d_next = '-'.join([last_item, next_item]) #C. elegans => C-elegans
+                    d_split.append(d_next)
+                    new_lines.append(' '.join(d_split))
+        else:
+            next_item = None
+            new_lines.append(' '.join(d_split))
+        if next_item is not None:
+            next_item_len = len(next_item)
+            if next_item == d[0:next_item_len]:
+                d = ' '.join(d[next_item_len:].split(' '))
+                new_lines.append(d)
+    data = '.'.join(new_lines)
+    return data
+
+def conjugate(word, source_pos, target_pos, all_vars):
+    ''' convert word from source_pos to target_pos '''
+    target_endings = {
+        'VB': '',
+        'VBP': '',
+        'VBZ': 's',
+        'VBG': 'ing',
+        'VBD': 'ed',
+        'VBN': 'ed'
+    }
+    case_maps = {
+        'be': {'VB': 'is', 'VBD': 'was', 'VBG': 'is', 'VBN': 'been', 'VBP': 'is', 'VBZ': 'is'},
+        'do': {'VB': 'do', 'VBD': 'did', 'VBG': 'doing', 'VBN': 'done', 'VBP': 'do', 'VBZ': 'does'},
+        'have': {'VB': 'have', 'VBD': 'had', 'VBG': 'having', 'VBN': 'had', 'VBP': 'have', 'VBZ': 'has'}
+    }
+    nonnumeric_s_pos = get_nonnumeric(source_pos, all_vars)
+    nonnumeric_t_pos = get_nonnumeric(target_pos, all_vars)
+    if nonnumeric_s_pos != nonnumeric_t_pos:
+        is_source_supported = is_supported_tag(nonnumeric_s_pos, all_vars)
+        is_target_supported = is_supported_tag(nonnumeric_t_pos, all_vars)
+        if is_source_supported and is_target_supported:
+            if (
+                (nonnumeric_s_pos == 'V' or nonnumeric_s_pos in all_vars['pos_tags']['V']) and 
+                (nonnumeric_t_pos == 'V' or nonnumeric_t_pos in all_vars['pos_tags']['V'])
+            ):
+                equivalent = ['VB', 'VBG', 'VBP'] # 'VBG', 'VBN', 'VBD', 'VBZ'
+                infinitive = lemmatizer.lemmatize(word, 'v')
+                stem = stemmer.stem(infinitive)
+                new_word = ''.join([stem, target_endings[target_pos]])
+                if infinitive in case_maps:
+                    return case_maps[infinitive][target_pos]
+                if target_pos == 'VB':
+                    return infinitive
+                ''' remove trailing e/s if applicable '''  
+                if penultimate_char not in 'aeiou' and last_char == 's':
+                    word = word[0:-1]
+                elif 'ies' == word[-3]:
+                    word = ''.join([word[0:-3], 'y'])
+                elif penultimate_char in 'aeiou' and last_char == 's':
+                    word = word[0:-2]
+                return new_word
+    return False
+
+def get_patterns_between_objects(objects, object_type, all_vars):
+    '''
+    this function is to determine patterns using each object in the list as input
+    to find patterns between list items
+    since we're passing in index[keys] to this function,
+    we'll be handling lists of objects like strategies
+    to find patterns in strategy objects,
+    youd abstract the objects in each strategy and check if that abstract version occurs elsewhere
+
+    example:
+        with inputs:
+            objects = [
+                'look before you leap',
+                'check yourself before you wreck yourself'
+            ]
+        this function would identify the pattern these strategies have in common:
+            abstract_pattern = "use caution to prevent adverse events"
+
+        this function would return:
+            pattern = "apply(context, style, abstract_strategy) => metaphorical_strategy"
+
+        Example of applying the abstract_pattern to produce a strategy:
+
+            apply(context="crossing a gap", style=None, strategy=abstract_pattern) = 'look before you leap'
+                - the adverse event possible in the context of "crossing a gap" is "falling in the gap"
+                - the method of using caution in the context of "crossing a gap" is "looking"
+
+            apply(context="prepare_for_social_situation", style="slang", strategy=abstract_pattern) = 'check yourself before you wreck yourself'
+                - the adverse event possible in the context of "prepare_for_social_situation" is "wrecking yourself"
+                - the method of using caution in the context of "prepare_for_social_situation" is "checking yourself"
+    '''
+    return objects
+
+def index_as_functions(line):
+    ''' this is to convert relationships in line into a function object
+        example: "x could possibly generate y" outputs the following object:
+            function = {
+                input="object(x)", 
+                attribute="possible", 
+                intent="generate", 
+                type="causative",
+                output="object(y)"
+            }
+
+        - functional patterns:
+            - are more complicated than pos/string/type patterns, and are returned from get_functions(line)
+            - rely heavily on the verb or verb phrases and conditional operators
+            - if its a supported type like strategy or insight you dont need to wrap it with object() syntax
+            - each argument to function inputs, relation, and outputs should be another function object
+            - we use relation as a param to the function to differentiate them 
+            - indexing info this way makes storing function pattern_maps & advanced system analysis queries possible
+
+        - syntax: 
+            - y.function(x) indicates its a process of some external object acting on x
+                "pathway regulation" => regulatory_system.regulating(pathway)
+            - a function of x would be indicated similarly:
+                "x.function(a)" => pathway.adapt("receptor_A")
+
+        - example:
+            original_line = 'Understanding how this pathway is regulated could lead to new strategies to treat both diseases'
+                function=(
+                    input=(
+                        function(input="object(pathway)", attribute="pathway.regulation", output="insight")
+                          # ----------------------- Understanding of 'pathway regulation'
+                    ),
+                    relation=(
+                        function(input="relation", attribute="possible", intent="generate", output="function") 
+                    ),    # ----------------------- could generate
+                    output=(
+                        function(
+                            input="object([diabetes, cancer], type=medical_condition)", 
+                            output="strategy(attribute=[new, multiple], intent=treatment)"
+                        ) # ----------------------- strategies to treat both diseases
+                    )
+                )
+            which abstracts to the function pattern:
+                function=(
+                    input=(function(input="object(x)", attribute="y.function(x)", output="insight")),
+                    relation=(function(input="function.name", attribute=function.attribute, intent=function.intent, output=function)),
+                    output=(function(input="object(objects), type=objects.type", output="strategy(attribute=strategy.attributes, intent=strategy.intent)"))
+                )
+    '''
+    return line
+
+def apply_pattern_map(line, pattern_map, all_vars):
+    ''' 
+    - this replaces a pattern with its associated pattern found in the line using variables 
+        apply_pattern_map(line='dog of cat', pattern_map = {'noun1 of noun2' => 'noun2 noun1'}) = 'cat dog'
+    to do:
+        - for object_type in ['word', 'modifier', 'phrase'] - these should already be replaced with option sets of each type pattern 
+        - modifier1 should be replaced with each modifier pattern + 1 and used to generate a new pattern containing each modifier pattern
+        - when the source pattern is 'VBD VBN' and the target is 'VBZ' you need to isolate the 'VBN' which is the more meaningful verb
+            currently its getting overridden by the consecutive verb which also matches the 'V' type but need a more robust way
+        - in order to support iterated replacement, you need to make sure your patterns are ordered in the right way
+    '''
+    pos_lines = get_all_versions(line, 'all', all_vars)
+    if pos_lines:
+        for pos_line in pos_lines:
+            for source_pattern, target_pattern in pattern_map.items():
+                new_line = apply_pattern(pos_line, source_pattern, target_pattern, all_vars)
+                if new_line:
+                    print('applied pattern to line', new_line)
+                    print('sp', source_pattern, 'tp', target_pattern)
+                    line = new_line # return new_line if not iterating through all patterns in map
+    return line
+
+def find_pattern(line, all_vars):
+    ''' to do: this is to cluster repeated patterns in a lines list '''
+    return False
+
+def match_patterns(line, pattern_key, all_vars):
+    '''
+    if line is a sequence, get patterns between objects in the list,
+    rather than patterns in a line
+    '''
+    found_patterns = {}
+    if type(line) == list or type(line) == set:
+        found_patterns = get_patterns_between_objects(line)
+    else:
+        pos_lines = get_all_versions(line, all_vars) 
+        if pos_lines:
+            if len(pos_lines) > 0:
+                for pos_line in pos_lines:
+                    if pattern_key in all_vars['pattern_index']:
+                        combined_key = ''.join([pattern_key, '_pattern'])
+                        for pattern in all_vars['pattern_index'][pattern_key]:
+                            '''
+                            only want to generate source patterns here, 
+                            send a flag to not generate target patterns
+                            '''
+                            found_subsets = get_pattern_source_subsets(line, pos_line, pattern, 'pattern', all_vars)
+                            if found_subsets:
+                                if combined_key not in found_patterns:
+                                    found_patterns[combined_key] = {}
+                                found_patterns[combined_key][pattern] = found_subsets
+    if found_patterns:
+        return found_patterns
+    return False
+
+def apply_pattern(subset, source_pattern, target_pattern, all_vars):
+    ''' subset = "inhibitor of compound", source_pattern = "VBZ of NN", target_pattern = "NN VBG"
+        output = "compound-inhibitor"
+        to do:
+        - handle target patterns with more words than source
+        - handle other delimiters than space in case your source pattern has no spaces
+        - syntax delimiters ('|', '&') should be handled in prior processing in generate_alt_patterns
+        - return False if source_pattern not in subset
+    '''
+    print('apply_pattern', subset, source_pattern, target_pattern)
+    delimiter = find_delimiter(subset, all_vars)
+    if delimiter:
+        ''' create a position map for source & target '''
+        new_words = {}
+        position_map = {}
+        positions = {'source': {}, 'target': {}}
+        source_words = source_pattern.split(delimiter)
+        target_words = target_pattern.split(delimiter)
+        for position, w in enumerate(source_words):
+            positions['source'][position] = w
+            positions['target'][position] = target_words[position] if position < len(target_words) else ''
+        ''' positions = { 'source': {0: 'x', 1: 'of', 2: 'y'}, 'target': {0: 'y', 1: '', 2: 'x'} } '''
+        for source_position, source_word in positions['source'].items():
+            for target_position, target_word in positions['target'].items():
+                if source_word == target_word:
+                    ''' to do: exact word match or (supported_tag) '''
+                    position_map[source_position] = target_position
+                else:
+                    if source_word in all_vars['pos_tags']['ALL_V'] and target_word in all_vars['pos_tags']['ALL_V']:
+                        position_map[source_position] = target_position
+        ''' apply position_map to words in subset: position_map = {0: 2, 1: '', 2: 0} '''
+        for source_position, source_word in enumerate(subset.split(delimiter)):
+            for sp, tp in position_map.items():
+                if sp == source_position:
+                    source_var = positions['source'][sp]
+                    target_var = positions['target'][tp]
+                    nonnumeric_source_var = get_nonnumeric(source_var, all_vars)
+                    nonnumeric_target_var = get_nonnumeric(target_var, all_vars)
+                    source_is_var = is_supported_tag(nonnumeric_source_var, all_vars)
+                    target_is_var = is_supported_tag(nonnumeric_target_var, all_vars)
+                    if source_is_var and target_is_var:
+                        ''' variable: conjugate if different, add if equal '''
+                        if source_var != target_var:
+                            conjugated_word = conjugate(source_word, source_var, target_var, all_vars)
+                            if conjugated_word:
+                                new_words[tp] = conjugated_word
+                        else:
+                            new_words[tp] = source_word
+                    else:
+                        ''' not a variable: include index matches ('the': 'the0') but not positional/non-content matches ('x': 'the') '''
+                        if source_var == source_word or nonnumeric_source_var == source_word:
+                            new_words[tp] = source_word
+        if new_words:
+            new_items = [new_words[k] for k in sorted(new_words.keys()) if k in new_words]
+            if len(new_items) > 0:
+                return delimiter.join(new_items)
+    return False
+
+def get_pattern_source_subsets(line, pos_line, pattern, get_type, all_vars):
+    ''' get only the matching subsets from line with words in the same positions & pos as pattern
+        ['pattern_instance_1', 'pattern_instance_2']
+        support numerical variables by checking non-numeric pattern for match with pos_line 
+        to do: this prevents users from configuring patterns with numbers like 14alpha-deoxy-enzyme
+    '''
+    delimiter = find_delimiter(line, all_vars)
+    pos_patterns = get_all_versions(pattern, all_vars) 
+    if pos_patterns and delimiter:
+        if len(pos_patterns) > 0:
+            subsets = []
+            for pos_pattern in pos_patterns:
+                if pos_pattern == pos_line:
+                    return [pattern]
+                if pos_pattern in pos_line:
+                    if get_type == 'pattern':
+                        subsets = get_pattern_source_words(line, pos_line.split(pos_pattern))
+                    else:
+                        ''' split a line into subsets so each pattern section is in its own subset '''
+                        ''' ['pattern_instance_1', 'non-pattern-words', 'pattern_instance_2', 'other non-pattern words'] '''
+                        non_patterns = pos_line.split(pos_pattern)
+                        sources = get_pattern_source_words(line, non_patterns)
+                        if sources:
+                            for i, subset in enumerate(sources):
+                                ''' to do: convert back to original line subset '''
+                                subsets.append(subset)
+                                if i < len(non_patterns):
+                                    subsets.append(non_patterns[i])
+            if subsets:
+                if len(subsets) > 0:
+                    return subsets
+    return False
+
+def get_pattern_source_words(source_line, exclude_list):
+    ''' get source words in same positions as pattern '''
+    ''' ('a b c', ['b']) == ['a', 'c'] '''
+    delimiter = get_delimiter(source_line)
+    for word_set in exclude_list:
+        if word_set in source_line:
+            source_line = source_line.replace(word_set, delimiter)
+    source_subsets = source_line.split(delimiter)
+    if source_subsets:
+        if len(source_subsets) > 0:
+            return source_subsets
+    return False
+
+def convert_to_operators(line, all_vars):
+    # check for synonym first: 'reduced' has polarity 0.0
+    variables = {}
+    new_words = []
+    words = line.split(' ')
+    for i, word in enumerate(words):
+        found_operator = get_operator(word, all_vars)
+        if found_operator:
+            if variables:
+                operator_count = 0
+                for k in variables:
+                    if found_operator in k:
+                        operator_count += 1
+                if operator_count > 0:
+                    operator_count += 1
+                indexed_operator = ''.join([found_operator, str(operator_count)])
+                variables[indexed_operator] = word # {variables['+1'] = 'enables'}
+                new_words.append(indexed_operator)
+            else:
+                variables[found_operator] = word
+                new_words.append(found_operator)
+        else:
+            if word in all_vars['supported_synonyms']:
+                common_verb = all_vars['supported_synonyms'][word]
+                operator = get_operator(common_verb, all_vars)
+                if operator:
+                    new_words.append(operator)
+                else:
+                    new_words.append(common_verb)
+            else:
+                new_words.append(word)
+    if len(new_words) > 0:
+        return ' '.join(new_words), variables
+    return False, False
+
+def get_nltk_pos(word, all_vars):
+    if word in [a for a in all_vars['alphabet']]:
+        ''' this is a variable, dont modify '''
+        return False
+    tags = TextBlob(word).parse()
+    tags_split = tags.split('/')
+    blob_pos = tags_split[1] if len(tags_split) > 1 else None
+    tagged = pos_tag(word_tokenize(word))
+    if len(tagged) > 0:
+        for item in tagged:
+            if len(item) > 0:
+                if blob_pos != item[1]:
+                    ''' blob identifies 'explains' as a verb when pos_tag doesnt '''
+                    if blob_pos in all_vars['pos_tags']['ALL_V']:
+                        return blob_pos
+                return item[1]
+    return False

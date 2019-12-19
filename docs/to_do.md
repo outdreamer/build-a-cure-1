@@ -74,7 +74,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
   - fix rows csv format
 
-  - implement antonym patterns
+  - implement antonym patterns & other word replacement patterns
 
   - translate patterns to use operators where possible and finish adding combined operator output impact
   
@@ -102,6 +102,8 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
       also replace tags with 'modifier' and 'phrase'
 
   - add function to identify structural sentence type: question, description, declarative, etc
+    for questions, reverse verb-subject to subject-verb
+
   - add calls to find_synonym, find_function, find_type, find_topic in your get_all_versions() pattern generating function
   
   - finish order_and_convert_clauses logic

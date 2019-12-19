@@ -1,4 +1,4 @@
-from get_structural_objects import *
+from get_vars import *
 
 def find_object_similarity(verification_dict, output_dict):
   '''
@@ -227,9 +227,8 @@ def find_treatment(pattern, matches, row, all_vars):
                 "drug did reduce blood pressure" => positive correlation (success) or a negative intent (reduce)
     '''
 
-    blob = get_blob(row['line'])
-    sentiment = blob.sentiment if blob else None
-    print("\trow sentiment", sentiment, "row", row['line'])
+    polarity = get_polarity(row['line'])
+    print("\tline polarity", polarity, "row", row['line'])
     '''
     if hypothesis:
         hypothesis_blob = get_blob(hypothesis)
@@ -245,6 +244,8 @@ def find_treatment(pattern, matches, row, all_vars):
         for r in row['relationships']:
             ''' row['variables'] = get_dependencies('inputs', row['line'], row['relationships'], 1)) '''
             intent = None
+            relation_polarity = get_polarity(row['line'])
+            print("\trelation sentiment", relation_polarity, "row", row['line'])
             correlation = get_similarity(intent, r)
             print('\tget_treatments: correlation', correlation, r)
             if correlation > 0.3:

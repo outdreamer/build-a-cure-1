@@ -1,8 +1,3 @@
-import random
-from utils import *
-from get_synonyms import *
-from get_vars import get_new_key
-
 def find_relationship(row, all_vars):
     '''
         now you can generate the relationships based on operator logic stored in our row['clause']['condition'] objects
@@ -233,36 +228,6 @@ def get_operator(word, all_vars):
         if word in values:
             return  k
     return False
-
-def convert_to_operators(line, all_vars):
-     # check for synonym first: 'reduced' has polarity 0.0
-    variables = {}
-    new_words = []
-    for i, word in line.split(' '):
-        found_operator = get_operator(word, all_vars)
-        if found_operator:
-            operator_count = 0
-            for k in variables:
-                if operator in k:
-                    operator_count += 1
-            if operator_count > 0:
-                operator_count += 1
-            indexed_operator = ''.join([operator, operator_count])
-            variables[indexed_operator] = word # {variables['+1'] = 'enables'}
-            new_words.append(indexed_operator)
-        else:
-            if word in all_vars['supported_synonyms']:
-                common_verb = all_vars['supported_synonyms'][word]
-                operator = get_operator(common_verb, all_vars)
-                if operator:
-                    new_words.append(operator)
-                else:
-                    new_words.append(common_verb)
-            else:
-                new_words.append(word)
-    if len(new_words) > 0:
-        return ' '.join(new_words), variables
-    return False, False
 
 def convert_to_words(line, variables, all_vars):
     new_words = []
