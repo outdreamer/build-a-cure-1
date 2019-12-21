@@ -69,7 +69,7 @@ def process_articles(articles, data, source, all_vars):
         title = get_text_from_nodes(article, source['title_element'])
         article_text = get_text_from_nodes(article, source['summary_element'])
         if title and article_text:
-            article_lines = standard_text_processing(article_text, all_vars)
+            article_lines, all_vars = standard_text_processing(article_text, all_vars)
             if article_lines:
                 data[title] = article_lines # article_lines[line][word] = pos
     return data
@@ -201,7 +201,7 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
                     print('index search_pattern_key', search_pattern_key)
                     print('search index lines', index[object_type])
                     for line in lines:
-                        found_objects_in_patterns, found_patterns = get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, all_vars)
+                        found_objects_in_patterns, found_patterns, all_vars = get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, all_vars)
                         if found_objects_in_patterns:
                             objects[object_type] = found_objects_in_patterns
                         if found_patterns:
@@ -228,7 +228,7 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
             - make a list of subset pattern type relationships
     '''
     found_objects = set()
-    found_patterns = match_patterns(line, search_pattern_key, all_vars)
+    found_patterns, all_vars = match_patterns(line, search_pattern_key, all_vars)
     if found_patterns and object_type != 'pattern':
         print('found patterns', found_patterns)
         for pattern_type in found_patterns:
@@ -238,8 +238,8 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
                 found_objects = apply_find_function(object_type, pattern, matches, index, all_vars)
                 print('found objects', found_objects)
     if len(found_objects) > 0 or found_patterns:
-        return found_objects, found_patterns
-    return False, False
+        return found_objects, found_patterns, all_vars
+    return False, False, all_vars
 
 def apply_find_function(object_type, pattern, matches, index, all_vars):
     ''' find functions check for objects of object_type in matches list which match pattern 
@@ -277,7 +277,7 @@ def get_structural_metadata(row, all_vars):
         once you have the nouns/modifiers, you can pick a subject from the noun or modifier
     '''
 
-    generated_patterns = generated_patterns = get_all_versions(row['line'], 'all', all_vars) 
+    generated_patterns, all_vars = get_all_versions(row['line'], 'all', all_vars) 
     if generated_patterns:
         print(generated_patterns)
         for gp in generated_patterns:

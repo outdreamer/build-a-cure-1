@@ -8,28 +8,20 @@ def get_pos_tags():
     pos_tags = {}
     ''' I. SUBSETS '''
 
+    '''
     pos_tags['list'] = ['LS']
-    ''' 
         LS: List item marker - 1) A A. SP-44001 * a first one 
-    '''
     pos_tags['phrase'] = ['PP', 'NNP', 'VP']
-    '''
         PP: Preposition Phrase
         NNP: Proper noun, singular Phrase
         VP: Verb Phrase
-    '''
     pos_tags['clause'] = ['S', 'SBAR']
-    '''
         S: Simple declarative clause
         SBAR: Clause introduced by a (possibly empty) subordinating conjunction
-    '''
     pos_tags['question'] = ['SBARQ', 'SQ']
-    '''
         SBARQ: Direct question introduced by a wh-word or a wh-phrase.
         SQ: Inverted yes/no question, or main clause of a wh-question, following the wh-phrase in SBARQ.
-    '''
     pos_tags['passive'] = ['SINV', 'SQ']
-    '''
         SINV: Inverted declarative sentence, i.e. one in which the subject follows the tensed verb or modal.
         SQ: Inverted yes/no question, or main clause of a wh-question, following the wh-phrase in SBARQ.
     '''

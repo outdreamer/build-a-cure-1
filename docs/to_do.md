@@ -76,13 +76,6 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
   - get_all_versions replacing noun_phrase with nounphrase bc of alphabet check
 
-  - you need to bubble out from innermost pair and iterate once you identify all permutations of the embedded variable with its host set
-    pattern |functions works operates interacts acts| as __a__ |VB NN|
-    nested patterns ['as __a__ b']
-    pos pattern as 1 2 a 4 5 b
-    syn pattern 1 2 4 5
-    got generated patterns |functions works operates interacts acts| as __a__ |VB NN| ['as 1 2 a 4 5 b', '1 2 4 5']
-
   - pattern processing order:
     - examine all your iterated lists bc they determine processing order (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
     - example: if you replace modifiers first, then clause patterns, you can ensure that words get rearranged in a way that is likelier to be correct
@@ -91,6 +84,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
     - implement type_pattern_index so that:
       you change 'modifier1' to 'VB1 NN1', 'VB1 VB2' etc
       while iterating through modifier patterns before submitting a call to find_patterns so you can just use 'ALL' pos tag checks
+      also replace ALL_N with all noun types in pos_patterns
     - run apply_pattern_map on row['line'] in get_structural_metadata & in find_pattern on row['line'] before you do get_all_versions
     - check synonym replacements & make sure theyre mostly unique
       'has effect' => 'have induce', 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
