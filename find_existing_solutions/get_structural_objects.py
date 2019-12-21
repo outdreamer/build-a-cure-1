@@ -109,7 +109,7 @@ def get_net_impact_relation(relation, all_vars):
                 - => +- => -
             full = 'x - i + b - y - a + z - c'
     to do: 
-        - right now it only supports "=", "+", "-": add &, ^, and other operator support
+        - right now it only supports "=", "+", "-" - add &, ^, and other operator support
         - this doesnt supported multi-layer nested operators yet
     '''
     # before iterating, replace & combine consecutive operators

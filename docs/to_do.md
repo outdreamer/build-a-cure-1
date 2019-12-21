@@ -76,6 +76,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
   - get_all_versions replacing noun_phrase with nounphrase bc of alphabet check
 
+  - you need to bubble out from innermost pair and iterate once you identify all permutations of the embedded variable with its host set
     pattern |functions works operates interacts acts| as __a__ |VB NN|
     nested patterns ['as __a__ b']
     pos pattern as 1 2 a 4 5 b
