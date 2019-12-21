@@ -639,7 +639,7 @@ def get_pattern_config(all_vars):
     '''
     all_vars['all_patterns'] = []
     cwd = os.getcwd()
-    all_pattern_filename = ''.join([cwd, 'data/all_patterns.txt'])
+    all_pattern_filename = ''.join([cwd, '/data/all_patterns.txt'])
     if os.path.exists(all_pattern_filename):
         pattern_contents = read(all_pattern_filename)
         if pattern_contents:
@@ -930,7 +930,7 @@ def is_isolated_alt(subset, all_vars):
             return alt_subset
     return False
 
-def get_alts(pattern, all_vars):
+def get_alts(pattern, pattern_length, all_vars):
     variables = {}
     delimiter_pairs = []
     delimiter_count = pattern.count('|')
@@ -952,12 +952,10 @@ def get_alts(pattern, all_vars):
     list_sizes = []
     final_lists = []
     all_items = []
-    subsets = []
     if len(index_pairs) > 0:
         initial = pattern[0: delimiter_indexes[0]]
         if len(initial) > 0:
             all_items.append(initial)
-            subsets.append(initial)
         for ip in index_pairs:
             start = delimiter_indexes[ip[0]] + 1
             end = delimiter_indexes[ip[1]]
@@ -967,29 +965,29 @@ def get_alts(pattern, all_vars):
                 new_key = get_new_key(variables, pattern, all_vars)
                 variables[new_key] = isolated_alt
                 all_items.append(new_key)
-                subsets.append('x')
             else:
                 all_items.append(subset)
-                subsets.append(subset)
         max_key = max(delimiter_indexes.keys())
         final = pattern[delimiter_indexes[max_key] + 1:]
         if len(final) > 0:
-            subsets.append(final)
             all_items.append(final)
+    print('all items', all_items)
     for item in all_items:
         if item in variables:
             all_lists.append(variables[item].split(' '))
         else:
             all_lists.append(item)
-    pattern_length = ''.join(subsets).count(' ') + 1
+    print('all_lists', all_lists)
     index_lists = []
     for i, sub_list in enumerate(all_lists):
+        print('sub list', sub_list)
         if type(sub_list) != list:
             sub_list = [sub_list]
         index_lists = append_list(index_lists, sub_list)
         if index_lists:
+            print('index_lists', index_lists)
             if len(index_lists) > 0:
-                if len(index_lists[0].split(' ')) == pattern_length:
+                if len(index_lists[0].strip().split(' ')) == pattern_length:
                     return index_lists
     return False
 
@@ -1006,7 +1004,7 @@ def append_list(index_lists, sub_list):
         return new_index_lists
     return False
 
-def generate_alt_patterns(pattern, nested_variables, all_vars):
+def generate_alt_patterns(pattern, nested_variables, pattern_length, all_vars):
     ''' 
     this functions returns ['VB NN D1 D2', 'VB JJ D1 D2'] 
     from pattern = 'VB x D1 D2' and nested_variables['x'] = 'NN JJ'
@@ -1020,7 +1018,7 @@ def generate_alt_patterns(pattern, nested_variables, all_vars):
     new_pattern = pattern.strip().replace('__', '')
     delimiter = find_delimiter(new_pattern, all_vars)
     if delimiter:
-        alts = get_alts(new_pattern, all_vars)
+        alts = get_alts(new_pattern, pattern_length, all_vars)
         if alts:
             ''' now replace optional strings and add that pattern as well '''
             if '__' in pattern:
@@ -1132,6 +1130,7 @@ def get_all_versions(pattern, version_types, all_vars):
     chained_types = ['nested', 'alt', 'pos', 'type', 'synonym', 'operator']
     if version_types == 'all' or len(version_types) == 0:
         version_types = all_vars['all_pattern_version_types']
+    pattern_length = get_pattern_length(pattern, all_vars)
     patterns_to_iterate = []
     specific_pos_pattern = get_specific_pos(pattern, all_vars)
     if specific_pos_pattern:
@@ -1146,14 +1145,16 @@ def get_all_versions(pattern, version_types, all_vars):
     corrected_pattern = generate_correct_patterns(pattern, all_vars)
     pattern = corrected_pattern if corrected_pattern else pattern
     '''
+    print('patterns_to_iterate', patterns_to_iterate)
     all_patterns_to_iterate = []
     for p in patterns_to_iterate:
         if '|' in p:
-            alt_patterns = generate_alt_patterns(p, {}, all_vars)
+            alt_patterns = generate_alt_patterns(p, {}, pattern_length, all_vars)
             if alt_patterns:
                 for ap in alt_patterns:
                     all_patterns_to_iterate.append(ap.strip())
     all_patterns_to_iterate = set(all_patterns_to_iterate) if len(all_patterns_to_iterate) > 0 else set(patterns_to_iterate) if len(patterns_to_iterate) > 0 else [pattern]
+    print('all_patterns_to_iterate', all_patterns_to_iterate)
     all_patterns = []
     if len(all_patterns_to_iterate) > 0:
         for p in all_patterns_to_iterate:
@@ -1182,6 +1183,55 @@ def get_all_versions(pattern, version_types, all_vars):
     if len(final_patterns) > 0:
         return set(final_patterns), all_vars
     return False, all_vars
+
+def get_pattern_length(pattern, all_vars):
+    ''' len(strings) + delimiter_pairs_count - embedded_pairs_count '''
+    index_pairs = []
+    delimiter_indexes = {}
+    strings = []
+    tracking_pattern = pattern
+    delimiter_pairs_count = pattern.count('|') / 2
+    embedded_pairs_count = 0
+    for i, char in enumerate(pattern):
+        if char == '|':
+            delimiter_index = len(delimiter_indexes.keys())
+            delimiter_indexes[delimiter_index] = i
+    for count, char_pos in delimiter_indexes.items():
+        if (count + 1) < len(delimiter_indexes.keys()):
+            index_pairs.append([count, count + 1])
+    if len(index_pairs) > 0:
+        if len(pattern[0: delimiter_indexes[0]]) > 0:
+            strings.append('i')
+        for i, ip in enumerate(index_pairs):
+            substring = pattern[delimiter_indexes[ip[0]]:delimiter_indexes[ip[1]] + 1]
+            subset = substring.replace('|', '').strip()
+            if len(subset) > 0:
+                delimiter_joined = ''.join(['|', subset, '|'])
+                space_joined = ''.join([' ', subset, ' '])
+                if space_joined in pattern:
+                    strings.append(space_joined)
+                elif delimiter_joined == substring:
+                    prev_delimiter_pair = index_pairs[i - 1][0] if i > 0 else ip[0]
+                    next_delimiter_pair = index_pairs[i + 1][1] if (i + 1) < len(index_pairs) else ip[1]
+                    outer_subset = pattern[delimiter_indexes[prev_delimiter_pair] + 1:delimiter_indexes[next_delimiter_pair] + 1]
+                    initial = ''.join([outer_subset.strip(), '|']).replace('| |', '|')
+                    final = ''.join(['|', outer_subset.strip()]).replace('| |', '|')
+                    outer_delimiter_joined = ''.join(['|', outer_subset.strip(), '|']).replace('| |', '|')
+                    if outer_delimiter_joined in tracking_pattern and outer_delimiter_joined.count('|') > 2:
+                        tracking_pattern = tracking_pattern.replace(outer_delimiter_joined, ''.join(['-' for x in outer_delimiter_joined]))
+                        embedded_pairs_count += 1
+                    elif final in tracking_pattern and final.count('|') > 2:
+                        tracking_pattern = tracking_pattern.replace(final, ''.join(['-' for x in final]))
+                        embedded_pairs_count += 1
+                    elif initial in tracking_pattern and initial.count('|') > 2:
+                        tracking_pattern = tracking_pattern.replace(initial, ''.join(['-' for x in initial]))
+                        embedded_pairs_count += 1
+        if len(pattern[delimiter_indexes[max(delimiter_indexes.keys())] + 1:]) > 0:
+            strings.append('f')
+    final_count = len(strings) + delimiter_pairs_count - embedded_pairs_count
+    if final_count > 0:
+        return final_count
+    return False
 
 def convert_to_pos_type(word, nonnumeric_w, pos_type, all_vars):
     is_supported = is_supported_tag(nonnumeric_w, all_vars)
