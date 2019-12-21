@@ -74,7 +74,11 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
   - finish adding combined operator output impact
 
-  - get_all_versions replacing noun_phrase with nounphrase bc of alphabet check
+  - take out generic tag names & '|' patterns with delimiter in them
+    pattern_index::verb_phrase::plays a NN
+    pattern_index::verb_phrase::0 functions works operates interacts acts 6 as __a__ 9 ALL_V ALL_N 12
+    pattern_index::verb_phrase::|NNS NNS VBZ2 VBZ3 NNS| IN __a__ |VB NN|
+    pattern_index::verb_phrase::|functions works operates interacts acts| as __a__ |VB NN|
 
   - pattern processing order:
     - examine all your iterated lists bc they determine processing order (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
@@ -85,7 +89,7 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
       you change 'modifier1' to 'VB1 NN1', 'VB1 VB2' etc
       while iterating through modifier patterns before submitting a call to find_patterns so you can just use 'ALL' pos tag checks
       also replace ALL_N with all noun types in pos_patterns
-    - run apply_pattern_map on row['line'] in get_structural_metadata & in find_pattern on row['line'] before you do get_all_versions
+    - run apply_pattern_map on row['line'] in get_structural_metadata & in find_pattern on row['line'] before you do get_all_versions of row['line']
     - check synonym replacements & make sure theyre mostly unique
       'has effect' => 'have induce', 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
         - 'by' can indicate a process/mechanism "it works by doing x", "as"

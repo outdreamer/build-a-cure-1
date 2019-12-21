@@ -637,6 +637,7 @@ def get_pattern_config(all_vars):
     if there are files with the 'data/objecttype_patterns.txt' name pattern, 
     pull that data and add it to pattern_index dict 
     '''
+    indexed_patterns = []
     all_vars['all_patterns'] = []
     cwd = os.getcwd()
     all_pattern_filename = ''.join([cwd, '/data/all_patterns.txt'])
@@ -649,30 +650,39 @@ def get_pattern_config(all_vars):
                 pattern_key = pattern_split[1]
                 pattern = pattern_split[2]
                 if pattern_key in all_vars[pattern_index]:
+                    all_vars['all_patterns'].append(pattern)
                     all_vars[pattern_index][pattern_key].append(pattern)
-    else:
+    if len(all_vars['all_patterns']) > 0:
+        indexed_patterns = all_vars['all_patterns']
+    elif len(all_vars['all_patterns']) == 0:
         new_pattern_lines = []
         for pattern_index in ['pattern_index', 'type_pattern_index']:
             for pattern_key, patterns in all_vars[pattern_index].items():
                 for original_pattern in patterns:
-                    generated_patterns, all_vars = get_all_versions(original_pattern, 'all', all_vars) 
-                    if generated_patterns:
-                        for pattern in generated_patterns:
-                            new_pattern_lines.append('::'.join([pattern_index, pattern_key, pattern]))
-                        all_vars[pattern_index][pattern_key] = reversed(sorted(generated_patterns))
+                    if original_pattern not in indexed_patterns:
+                        indexed_patterns.append(original_pattern)
+                        generated_patterns, all_vars = get_all_versions(original_pattern, 'all', all_vars) 
+                        if generated_patterns:
+                            for pattern in generated_patterns:
+                                new_pattern_lines.append('::'.join([pattern_index, pattern_key, pattern]))
+                            all_vars[pattern_index][pattern_key] = reversed(sorted(generated_patterns))
         if len(new_pattern_lines) > 0:
             all_vars['all_patterns'] = reversed(sorted(new_pattern_lines))
             save(all_pattern_filename, new_pattern_lines)
     for pattern_map_key, pattern_map in all_vars['pattern_maps'].items():
         new_pattern_map = {}
         for sp, tp in pattern_map.items():
-            sp_patterns, all_vars = get_all_versions(sp, 'all', all_vars) 
-            if sp_patterns:
-                for sp_pattern in sp_patterns:
-                    tp_patterns, all_vars = get_all_versions(tp, 'all', all_vars) 
-                    if tp_patterns:
-                        for tp_pattern in tp_patterns:
-                            new_pattern_map[sp_pattern] = tp_pattern
+            if sp not in indexed_patterns:
+                indexed_patterns.append(sp)
+                sp_patterns, all_vars = get_all_versions(sp, 'all', all_vars) 
+                if sp_patterns:
+                    for sp_pattern in sp_patterns:
+                        if tp not in indexed_patterns:
+                            indexed_patterns.append(tp)
+                            tp_patterns, all_vars = get_all_versions(tp, 'all', all_vars) 
+                            if tp_patterns:
+                                for tp_pattern in tp_patterns:
+                                    new_pattern_map[sp_pattern] = tp_pattern
         if new_pattern_map:
             all_vars['pattern_maps'][pattern_map_key] = new_pattern_map
     return all_vars
@@ -971,21 +981,17 @@ def get_alts(pattern, pattern_length, all_vars):
         final = pattern[delimiter_indexes[max_key] + 1:]
         if len(final) > 0:
             all_items.append(final)
-    print('all items', all_items)
     for item in all_items:
         if item in variables:
             all_lists.append(variables[item].split(' '))
         else:
             all_lists.append(item)
-    print('all_lists', all_lists)
     index_lists = []
     for i, sub_list in enumerate(all_lists):
-        print('sub list', sub_list)
         if type(sub_list) != list:
             sub_list = [sub_list]
         index_lists = append_list(index_lists, sub_list)
         if index_lists:
-            print('index_lists', index_lists)
             if len(index_lists) > 0:
                 if len(index_lists[0].strip().split(' ')) == pattern_length:
                     return index_lists
@@ -1145,7 +1151,7 @@ def get_all_versions(pattern, version_types, all_vars):
     corrected_pattern = generate_correct_patterns(pattern, all_vars)
     pattern = corrected_pattern if corrected_pattern else pattern
     '''
-    print('patterns_to_iterate', patterns_to_iterate)
+    print('\n\tpatterns_to_iterate', patterns_to_iterate)
     all_patterns_to_iterate = []
     for p in patterns_to_iterate:
         if '|' in p:
@@ -1154,32 +1160,32 @@ def get_all_versions(pattern, version_types, all_vars):
                 for ap in alt_patterns:
                     all_patterns_to_iterate.append(ap.strip())
     all_patterns_to_iterate = set(all_patterns_to_iterate) if len(all_patterns_to_iterate) > 0 else set(patterns_to_iterate) if len(patterns_to_iterate) > 0 else [pattern]
-    print('all_patterns_to_iterate', all_patterns_to_iterate)
+    print('\n\tall_patterns_to_iterate', all_patterns_to_iterate)
     all_patterns = []
     if len(all_patterns_to_iterate) > 0:
         for p in all_patterns_to_iterate:
-            if 'indexed' in processing_types:
-                new_pattern = generate_indexed_patterns(p, all_vars)
-                if new_pattern:
-                    all_patterns.append(new_pattern)
-            else:
-                all_patterns.append(item)
+            new_pattern = generate_indexed_patterns(p, all_vars)
+            if new_pattern:
+                all_patterns.append(new_pattern)
     all_patterns = set(all_patterns)
-    print('all patterns', all_patterns)
+    print('\n\tall patterns', all_patterns)
     ''' type_patterns = generate_type_patterns(ap, all_vars) '''
     ''' synonym & operator only have one-match per pattern '''
-    final_patterns = []
+    final_patterns = list(all_patterns)
     for ap in all_patterns:
         synonym_pattern, all_vars = generate_synonym_patterns(ap, all_vars)
         if synonym_pattern:
-            final_patterns.append(synonym_pattern)
-            operator_pattern = generate_operator_patterns(synonym_pattern, all_vars)
-            if operator_pattern:
-                final_patterns.append(operator_pattern)
+            if synonym_pattern != ap:
+                final_patterns.append(synonym_pattern)
+                operator_pattern = generate_operator_patterns(synonym_pattern, all_vars)
+                if operator_pattern:
+                    if operator_pattern != ap and operator_pattern != synonym_pattern:
+                        final_patterns.append(operator_pattern)
         else:
             operator_pattern = generate_operator_patterns(ap, all_vars)
             if operator_pattern:
-                final_patterns.append(operator_pattern)
+                if operator_pattern != ap:
+                    final_patterns.append(operator_pattern)
     if len(final_patterns) > 0:
         return set(final_patterns), all_vars
     return False, all_vars
@@ -1190,7 +1196,10 @@ def get_pattern_length(pattern, all_vars):
     delimiter_indexes = {}
     strings = []
     tracking_pattern = pattern
-    delimiter_pairs_count = pattern.count('|') / 2
+    delimiter_count = pattern.count('|')
+    if delimiter_count == 0:
+        return pattern.count(' ') + 1
+    delimiter_pairs_count = delimiter_count / 2
     embedded_pairs_count = 0
     for i, char in enumerate(pattern):
         if char == '|':
@@ -2110,6 +2119,8 @@ def apply_pattern_map(line, pattern_map, all_vars):
             currently its getting overridden by the consecutive verb which also matches the 'V' type but need a more robust way
         - in order to support iterated replacement, you need to make sure your patterns are ordered in the right way
     '''
+    print('apm')
+    exit()
     pos_lines, all_vars = get_all_versions(line, 'all', all_vars)
     if pos_lines:
         for pos_line in pos_lines:
@@ -2130,6 +2141,8 @@ def match_patterns(line, pattern_key, all_vars):
     if line is a sequence, get patterns between objects in the list,
     rather than patterns in a line
     '''
+    print('mp')
+    exit()
     found_patterns = {}
     if type(line) == list or type(line) == set:
         found_patterns = get_patterns_between_objects(line)
@@ -2218,6 +2231,8 @@ def get_pattern_source_subsets(line, pos_line, pattern, get_type, all_vars):
         support numerical variables by checking non-numeric pattern for match with pos_line 
         to do: this prevents users from configuring patterns with numbers like 14alpha-deoxy-enzyme
     '''
+    print('gpss')
+    exit()
     delimiter = find_delimiter(line, all_vars)
     pos_patterns, all_vars = get_all_versions(pattern, all_vars) 
     if pos_patterns and delimiter:

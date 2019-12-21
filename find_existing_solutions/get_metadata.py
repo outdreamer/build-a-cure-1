@@ -276,7 +276,6 @@ def get_structural_metadata(row, all_vars):
         verb-noun-phrases should be converted into modifiers
         once you have the nouns/modifiers, you can pick a subject from the noun or modifier
     '''
-
     generated_patterns, all_vars = get_all_versions(row['line'], 'all', all_vars) 
     if generated_patterns:
         print(generated_patterns)
