@@ -7,7 +7,7 @@ def find_object_similarity(verification_dict, output_dict):
   '''
   return False
 
-def find_metric(pattern, matches, row, all_vars):
+def find_metric(pattern, matches, row, av):
     '''
     find any metrics in this pattern's matches
     to do: some metrics will have letters other than expected
@@ -46,7 +46,7 @@ def get_common_property(objects, patterns, metadata):
     '''
     return False
 
-def find_generic_medication(pattern, matches, row, all_vars):
+def find_generic_medication(pattern, matches, row, av):
     '''
       to do:
         - add standardization of acronyms using search with keywords 
@@ -72,7 +72,7 @@ def find_generic_medication(pattern, matches, row, all_vars):
         for i, s in enumerate(content.split('\n')):
             if '==' in s and '.' not in s:
                 sname = s.replace('=', '').strip().replace(' ', '_').lower()
-                if sname in all_vars['section_map']:
+                if sname in av['section_map']:
                     return generic_title
         if 'a medication' in generic_content:
             return generic_title
@@ -80,7 +80,7 @@ def find_generic_medication(pattern, matches, row, all_vars):
         print('keyword e', keyword, e)
     return False
 
-def find_synthesis(pattern, matches, row, all_vars):
+def find_synthesis(pattern, matches, row, av):
     '''
     - also add an 'instructions' & 'equipment' item to reduce a study:
       https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4507162/
@@ -111,7 +111,7 @@ def find_synthesis(pattern, matches, row, all_vars):
     '''
     return row
 
-def find_stressor(pattern, matches, row, all_vars):
+def find_stressor(pattern, matches, row, av):
     '''
     - example of stressor response:
     - when drug handles a function, bio system component shrinks:
@@ -121,7 +121,7 @@ def find_stressor(pattern, matches, row, all_vars):
     '''
     return row
 
-def find_primary_condition(pattern, matches, row, all_vars):
+def find_primary_condition(pattern, matches, row, av):
     '''
       to do:
         - find the primary condition being studied to differentiate 
@@ -131,7 +131,7 @@ def find_primary_condition(pattern, matches, row, all_vars):
     '''
     return row 
 
-def find_side_effect(pattern, matches, row, all_vars):
+def find_side_effect(pattern, matches, row, av):
     '''
     this should pull from data in standard sites like wiki, drugs, webmd, & rxlist 
     as well as forum data to find rare symptoms & interactions not listed elsewhere
@@ -139,16 +139,16 @@ def find_side_effect(pattern, matches, row, all_vars):
     '''
     return row
 
-def find_compound(pattern, matches, row, all_vars):
+def find_compound(pattern, matches, row, av):
     ''' - add regex for numerically indexed prefixes like 14alpha-'''
     return row
 
-def find_symptom(pattern, matches, row, all_vars):
+def find_symptom(pattern, matches, row, av):
     ''' pulls from sources specific to symptoms: rxlist, drugs, wiki, forums '''
     ''' symptom examples: fever red urine skin rash paralysis headache bleeding '''
     return row
 
-def find_mechanism(pattern, matches, row, all_vars):
+def find_mechanism(pattern, matches, row, av):
     '''
     get specific process explaining how this compound works
     uses descriptive language, detailing the process, so present tense verbs like 'works'
@@ -156,22 +156,22 @@ def find_mechanism(pattern, matches, row, all_vars):
     '''
     return row
 
-def find_test(pattern, matches, row, all_vars):
+def find_test(pattern, matches, row, av):
     return row
 
-def find_adjacent(pattern, matches, row, all_vars):
+def find_adjacent(pattern, matches, row, av):
     ''' 
     get similar compounds with similar functionality 
     that can be synthesized with accessible methods 
     '''
     return row
 
-def find_sub_component(pattern, matches, row, all_vars):
+def find_sub_component(pattern, matches, row, av):
     ''' when searching for research on a compound or condition, also check for its sub-components, 
       and the compounds its sub-components can be used to make '''
     return row
 
-def find_related_component(pattern, matches, row, all_vars):
+def find_related_component(pattern, matches, row, av):
     '''
     this should return all primary sub-components & outputs known for the component,
     such as important adjacent compounds which this one frequently turns into
@@ -189,14 +189,14 @@ def find_related_component(pattern, matches, row, all_vars):
     definitions = get_definitions(word)
     if definitions:
         for d in definitions:
-            d_row = get_structural_metadata(d, all_vars)
+            d_row = get_structural_metadata(d, av)
             if d_row:
                 if 'noun' in d_row:
                     for n in d_row['noun']:
                         related_components.add(n)
     return row
 
-def find_treatment(pattern, matches, row, all_vars):
+def find_treatment(pattern, matches, row, av):
     '''
     hypothesis & intent can be Null for now 
 

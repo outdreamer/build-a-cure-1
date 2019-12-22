@@ -1,11 +1,11 @@
 import wikipedia
 from wikipedia.exceptions import DisambiguationError
 
-def find_type(word, pos, title, row, all_vars):
+def find_type(word, pos, title, row, av):
     types = {}
     wikipedia.set_lang("en")
     suggested = None
-    if pos in all_vars['pos_tags']['ALL_N']:
+    if pos in av['tags']['ALL_N']:
         ''' make sure this is a noun before querying '''
         if word[0] == word[0].upper() and word[1] != word[1].upper():
             suggested = get_generic_medication(word)
@@ -21,18 +21,18 @@ def find_type(word, pos, title, row, all_vars):
                     row['type'] = row['type'].union(set(categories))
                     if len(section_list) > 0:
                         ''' use section list to determine type first '''
-                        for key, val in all_vars['section_map'].items():
+                        for key, val in av['section_map'].items():
                             for section in section_list:
                                 if key in section:
                                     index_type =  val
                     else:
-                        index_type = get_index_type(suggested, all_vars, categories)
+                        index_type = get_index_type(suggested, av, categories)
                         if index_type:
                             print('found index type', index_type, word)
                             if index_type in row:
                                 if index_type != 'dependency': # to do: exclude other relationship objects here
                                     index = {index_type: word}
-                                    matched_objects = match_patterns(word, index_type, all_vars)
+                                    matched_objects = match_patterns(word, index_type, av)
                                     if matched_objects:
                                         for pattern_type in matched_objects.items():
                                             if pattern_type not in row:
@@ -43,18 +43,18 @@ def find_type(word, pos, title, row, all_vars):
                 print('wiki summary exception', e)
     return word
 
-def get_index_type(object_type, all_vars, categories):
+def get_index_type(object_type, av, categories):
     param_map = {
         'condition': 'state',
         'compound': 'element', # not every compound will be a treatment
         'symptom': 'side_effect',
         'function': 'causal_layer'
     }
-    if object_type in all_vars['supported_synonyms']:
-        return all_vars['supported_synonyms'][object_type]
+    if object_type in av['supported_synonyms']:
+        return av['supported_synonyms'][object_type]
     alt_type = param_map[object_type]
-    if alt_type in all_vars['supported_synonyms']:
-        return all_vars['supported_synonyms'][alt_type]
+    if alt_type in av['supported_synonyms']:
+        return av['supported_synonyms'][alt_type]
     if len(categories) > 0:
         for c in categories:
             c_split = c.split(' ')

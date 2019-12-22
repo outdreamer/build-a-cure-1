@@ -4,7 +4,7 @@
     nltk.help.upenn_tagset()
 '''
 
-def get_pos_tags():
+def get_tags():
     pos_tags = {}
     ''' I. SUBSETS '''
 
@@ -126,7 +126,7 @@ def get_pos_tags():
 
     return pos_tags
 
-def get_empty_index(all_vars):
+def get_empty_index(av):
     '''
     indexes isolates treatments from symptoms, metrics, etc to build indexes of those objects on your local env
     rows
@@ -182,13 +182,13 @@ def get_empty_index(all_vars):
     '''
     index = {}
     index_keys = []
-    for key in all_vars['full_params'].keys():
+    for key in av['full_params'].keys():
         if key != 'request':
-            for item in all_vars['full_params'][key]:
+            for item in av['full_params'][key]:
                 index_keys.append(item)
     dict_keys = ['count', 'pattern', 'pos', 'word_map']
-    all_vars['metadata'] = index_keys if 'metadata' not in all_vars or 'all' in all_vars['metadata'] else all_vars['metadata']
-    for key in all_vars['metadata']:
+    av['metadata'] = index_keys if 'metadata' not in av or 'all' in av['metadata'] else av['metadata']
+    for key in av['metadata']:
         if key in index_keys:
             if key not in dict_keys:
                 index[key] = set()

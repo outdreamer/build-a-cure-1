@@ -3,7 +3,7 @@ these functions do more advanced linguistic processing than
 keyword or pattern matching as in identify_elements 
 '''
 
-def find_article_intents(article, all_vars):
+def find_article_intents(article, av):
     '''
     this function is checking for any purpose-related keywords
     to find priority data of bio components, 
@@ -44,7 +44,7 @@ def find_article_intents(article, all_vars):
         return intents
     return False
 
-def find_key_sentences(article, all_vars):
+def find_key_sentences(article, av):
     '''
     key_sentences should have an item from each sentence_type that is relevant to the study intent
     '''
@@ -58,7 +58,7 @@ def find_key_sentences(article, all_vars):
             key_sentences[sentence_type] = line
     return key_sentences
 
-def find_sentence_type(line, all_vars):
+def find_sentence_type(line, av):
     ''' out of sentence_types, determine which this is likeliest to be 
     to do: 
     - implement keyword check for each sentence type
@@ -90,11 +90,11 @@ def find_hypothesis(article):
     intents = ['diagnose', 'check_correlation', 'find_limit', 'evaluate_method']
     return article
 
-def find_fact(pattern, matches, row, all_vars):
+def find_fact(pattern, matches, row, av):
     ''' function to identify common article intents to identify false info '''
     return row
 
-def find_topic(pattern, matches, row, all_vars):
+def find_topic(pattern, matches, row, av):
     '''
       this function will be used in remove_unnecessary_words
       to filter out words that are either non-medical or too specific to be useful (names)
@@ -107,13 +107,13 @@ def find_topic(pattern, matches, row, all_vars):
     topics = ['structural', 'logical']
     return row
 
-def find_variable(pattern, matches, row, all_vars):
+def find_variable(pattern, matches, row, av):
     ''' use this to determine parameters for synthesis function too '''
     ''' variables are the inputs to functions '''
     ''' this can mean the subject of a sentence, or the inputs of that subject (resources, context) '''
     return row
 
-def find_element(pattern, matches, row, all_vars):
+def find_element(pattern, matches, row, av):
     elements = []
     for word in line.split(' '):
         index_type = get_index_type(word)
@@ -126,12 +126,12 @@ def find_element(pattern, matches, row, all_vars):
             elements.append(word)
     return elements
 
-def find_causal_layer(pattern, matches, row, all_vars):
+def find_causal_layer(pattern, matches, row, av):
     return row
 
-def find_intent(pattern, matches, row, all_vars):
+def find_intent(pattern, matches, row, av):
     intents = {}
-    row = get_structural_metadata(line, all_vars)
+    row = get_structural_metadata(line, av)
     if row:
         if 'noun' in row:
             for n in row['noun']:
@@ -154,11 +154,11 @@ def find_intent(pattern, matches, row, all_vars):
                                     intents[n].append(rcf['output'])
     return intents
     
-def find_function(pattern, matches, row, all_vars):
+def find_function(pattern, matches, row, av):
     ''' for fluconazole, this should be: "antifungal", "inhibits cyp3a4" '''
     return False
 
-def find_strategy(pattern, matches, row, all_vars):
+def find_strategy(pattern, matches, row, av):
     '''
      - get the strategy explaining why this method worked or failed for the intent, 
         which may be equal to the mechanism of action, 
@@ -184,20 +184,20 @@ def find_strategy(pattern, matches, row, all_vars):
     # functional output should be: inhibitors of cyp3a4, cyp2c19, cyp2c9, filtered by interference with fluconazole
     return row
 
-def find_insight(pattern, matches, row, all_vars):
+def find_insight(pattern, matches, row, av):
     return row
 
-def find_priority(pattern, matches, row, all_vars):
+def find_priority(pattern, matches, row, av):
     return row 
 
-def find_type(pattern, matches, row, all_vars):
+def find_type(pattern, matches, row, av):
     ''' this returns the type stack in a component '''
     return row
 
-def find_core_function(pattern, matches, row, all_vars):
+def find_core_function(pattern, matches, row, av):
     return row
 
-def find_dependency(pattern, matches, row, all_vars):
+def find_dependency(pattern, matches, row, av):
     ''' 
     this should return a list of outputs, n operations away
 
@@ -211,7 +211,7 @@ def find_dependency(pattern, matches, row, all_vars):
     dependencies = []
     return dependencies
 
-def find_impact(pattern, matches, row, all_vars):
+def find_impact(pattern, matches, row, av):
     '''
         function to combine functions by intent:
           - if you have these two functions:
@@ -222,24 +222,24 @@ def find_impact(pattern, matches, row, all_vars):
     '''
     impact = None
     for f in functions:
-        f_impact = get_verb_impact(f, object_name, all_vars)
+        f_impact = get_verb_impact(f, object_name, av)
         if f_impact:
             if impact:
-                if not impact_match(f_impact, impact, object_name, all_vars):
-                    impact = update_impact(f_impact, impact, object_name, all_vars)
+                if not impact_match(f_impact, impact, object_name, av):
+                    impact = update_impact(f_impact, impact, object_name, av)
             else:
                 impact = f_impact
     if impact:
         return impact
     return False
 
-def impact_match(f_impact, impact, object_name, all_vars):
+def impact_match(f_impact, impact, object_name, av):
     return f_impact
 
-def update_impact(f_impact, impact, object_name, all_vars):
+def update_impact(f_impact, impact, object_name, av):
     return f_impact
 
-def get_verb_impact(function, object_name, all_vars):
+def get_verb_impact(function, object_name, av):
     '''
     - function='this compound activates b', object_name='b'
         should return a standard verb like 'activate', 'enable'
@@ -247,10 +247,10 @@ def get_verb_impact(function, object_name, all_vars):
         - make sure the impact verb is acting on that subject so switch if its passive 
     '''
     if object_name in function:
-        row = get_structural_metadata(function, all_vars)
+        row = get_structural_metadata(function, av)
         if row:
             if 'verb' in row:
                 for v in row['verb']:
-                    if v in all_vars['supported_synonyms']:
-                        return all_vars['supported_synonyms'][v]
+                    if v in av['supported_synonyms']:
+                        return av['supported_synonyms'][v]
     return False

@@ -1,4 +1,4 @@
-def find_relationship(row, all_vars):
+def find_relationship(row, av):
     '''
         now you can generate the relationships based on operator logic stored in our row['clause']['condition'] objects
         
@@ -18,7 +18,7 @@ def find_relationship(row, all_vars):
 
         'x=y # z-a' == 'x is y independently of z is a' == 'x-y relationship is independent of z-a relationship'
 
-        find_relationship(row, all_vars) = [
+        find_relationship(row, av) = [
             'x=y',
             'a does not change x=y'
         ]
@@ -72,7 +72,7 @@ def find_relationship(row, all_vars):
                     if subject_statement_conditional_impact:
                         new_clause_relations.append(subject_statement_conditional_impact)
             for ncr in new_clause_relations:
-                word_relation = convert_to_words(ncr, clause['variables'], all_vars)
+                word_relation = convert_to_words(ncr, clause['variables'], av)
                 if word_relation:
                     word_relations.add(word_relation) 
             clause_relations.extend(new_clause_relations)   
@@ -85,7 +85,7 @@ def find_relationship(row, all_vars):
             row['word_relations'] = word_relations
     return row
 
-def get_net_impact_relation(relation, all_vars):
+def get_net_impact_relation(relation, av):
     '''  
     this function should only be applied to relations with more than one operator
     a relationship that has no spaces indicates an isolated modifier block like 'b-inhibitor'
@@ -117,7 +117,7 @@ def get_net_impact_relation(relation, all_vars):
     operators = []
     operator_sequence = []
     for w in relation:
-        if w in all_vars['clause_map']:
+        if w in av['clause_map']:
             if len(operator_sequence) > 0:
                 operator_sequence.append(w)
             else:
@@ -126,7 +126,7 @@ def get_net_impact_relation(relation, all_vars):
             if len(operator_sequence) > 0:
                 operator_string = ''.join(operator_sequence)
                 if len(operator_sequence) > 1:
-                    net_operator = get_combined_operator(combined, all_vars)
+                    net_operator = get_combined_operator(combined, av)
                     if net_operator:
                         letters.append(net_operator)
                         operators.append(net_operator)
@@ -145,9 +145,9 @@ def get_net_impact_relation(relation, all_vars):
     sub_relations = []
     full_relation = []
     for word in relation.split(' '):
-        if word not in all_vars['clause_map']:
+        if word not in av['clause_map']:
             ''' could be sub-relation 'i-b' or a word like 'x' '''
-            sub_operator_in_word = [x for x in word if x in all_vars['clause_map']]
+            sub_operator_in_word = [x for x in word if x in av['clause_map']]
             if len(sub_operator_in_word) > 0:
                 if len(sub_operator_in_word) == 1:
                     ''' this is a sub-relation like a modifier 'i-b' with no spaces to indicate a sub-unit '''
@@ -160,7 +160,7 @@ def get_net_impact_relation(relation, all_vars):
                         if prev_operator:
                             combined = ''.join([prev_operator, sub_operator])
                             if len(combined) > 1:
-                                net_operator = get_combined_operator(combined, all_vars)
+                                net_operator = get_combined_operator(combined, av)
                                 if net_operator:
                                     initial_sub_relation = ' '.join([new_words[-1], prev_operator, sub_words[0]]) # x - i
                                     second_sub_relation = ' '.join([new_words[-1], net_operator, sub_words[2]]) # x + b
@@ -177,16 +177,16 @@ def get_net_impact_relation(relation, all_vars):
                     print('more than one operator per logical unit', word, relation)
                     exit()
             else:
-                pos = get_nltk_pos(word, all_vars)
+                pos = get_nltk_pos(word, av)
                 if pos:
-                    if pos in all_vars['pos_tags']['N']:
+                    if pos in av['tags']['N']:
                         ''' 
                         only add nouns for impact relationship analysis - 
                         should already be done but just verifying 
                         '''
                         new_words.append(word)
                 else:
-                    if word in all_vars['alphabet'] or word in variables:
+                    if word in av['alphabet'] or word in variables:
                         print('found var', word)
                     new_words.append(word)
         else:
@@ -223,20 +223,20 @@ def get_combinations(object_list, line):
         return combinations
     return False
 
-def get_operator(word, all_vars):
-    for k, values in all_vars['clause_map'].items():
+def get_operator(word, av):
+    for k, values in av['clause_map'].items():
         if word in values:
             return  k
     return False
 
-def convert_to_words(line, variables, all_vars):
+def convert_to_words(line, variables, av):
     new_words = []
     for word in line.split(' '):
         if word in variables:
             new_words.append(variables[word])
         else:
             found_operator_or_variable = False
-            for k, values in all_vars['clause_map'].items():
+            for k, values in av['clause_map'].items():
                 if k in word: # for indexed vars like +1, -1, =1
                     if word in variables:
                         new_words.append(variables[word])
@@ -255,7 +255,7 @@ def convert_to_words(line, variables, all_vars):
         return ' '.join(new_words)
     return False
 
-def find_clause(pattern, matches, row, all_vars):
+def find_clause(pattern, matches, row, av):
     ''' 
         - clauses are relationships between subject and objects in line separated by delimiters like:
             prepositions, conjunctions, determiners, and punctuation
@@ -286,23 +286,23 @@ def find_clause(pattern, matches, row, all_vars):
 
     line = row['line']
     split_by_delimiters = split_by_delimiters(line)
-    new_split = filter_clauses(split_by_delimiters, all_vars)
+    new_split = filter_clauses(split_by_delimiters, av)
     if new_split:
         split_by_delimiters = new_split
         line = ' '.join(new_split)
     no_punctuation_line = line
-    for cd in all_vars['clause_punctuation']:
+    for cd in av['clause_punctuation']:
         if cd in no_punctuation_line:
             no_punctuation_line = no_punctuation_line.replace(cd, '***')
     clauses_by_punctuation = no_punctuation_line.split('***')
     print('clauses_by_punctuation', clauses_by_punctuation)
     operator_clauses = {}
     for oc in clauses_by_punctuation:
-        operator_clause, variables = convert_to_operators(clause, all_vars)
+        operator_clause, variables = convert_to_operators(clause, av)
         if operator_clause:
             operator_clauses[operator_clause] = variables if variables else {}
     print('operator clauses', operator_clauses)
-    new_line = order_clauses(line, clauses_by_punctuation, all_vars)
+    new_line = order_clauses(line, clauses_by_punctuation, av)
     if new_line:
         line = new_line
     all_subjects = []
@@ -327,21 +327,21 @@ def find_clause(pattern, matches, row, all_vars):
                 if v in row['verb']: # hit the verb, exit
                     verb_index = i
                     cmap['statement'] = original_clause_words[(i - 1):len(original_clause_words)]
-                    operator_statement = convert_to_operators(cmap['statement'], all_vars)
+                    operator_statement = convert_to_operators(cmap['statement'], av)
                     if operator_statement:
                         cmap['statement'] = operator_statement
-                elif w in all_vars['clause_delimiters']:
+                elif w in av['clause_delimiters']:
                     cmap['delimiter'].append(w)
             cmap['conditional'] = original_clause.replace(cmap['subject'], '')
             cmap['conditional'] = cmap['conditional'].replace(cmap['statement'], '')
-            operator_condition = convert_to_operators(cmap['conditional'], all_vars)
+            operator_condition = convert_to_operators(cmap['conditional'], av)
             if operator_condition:
                 cmap['conditional'] = operator_condition
             ''' determine what type of clause this is '''
             for key in ['statement', 'conditional']:
                 if len(cmap[key]) > 0:
                     verb_operator_count = 0
-                    for v in all_vars['verb_operators']:
+                    for v in av['verb_operators']:
                         if v in cmap[key]:
                             verb_operator_count += 1
                     if verb_operator_count > 0 and len(cmap['subject']) > 0:
@@ -349,14 +349,14 @@ def find_clause(pattern, matches, row, all_vars):
                             - the verb is part of a verb phrase like 'even with alkalizing process'
                             - it has definitive condition keywords 
                         '''
-                        for w in all_vars['causal_operators']:
+                        for w in av['causal_operators']:
                             if w in cmap[key]:
                                 ''' found a definitive causal keyword '''
                                 cmap['type'] = 'condition'
                         if 'type' not in conditional:
                             cmap['type'] = 'statement'
                     else:
-                        for w in all_vars['causal_operators']:
+                        for w in av['causal_operators']:
                             if w in cmap[key]:
                                 ''' found a definitive condition keyword '''
                                 cmap['type'] = 'condition'
@@ -370,12 +370,12 @@ def find_clause(pattern, matches, row, all_vars):
     print('\nfinal row', row)
     return row
 
-def split_by_delimiters(line, all_vars):
+def split_by_delimiters(line, av):
     new_sections = []
     new_section = []
     for word in line.split(' '):
         punctuation_found = False
-        for punctuation in all_vars['clause_punctuation']:
+        for punctuation in av['clause_punctuation']:
             if punctuation in word:
                 word = word.replace(punctuation, '')
                 new_section.append(word)
@@ -384,7 +384,7 @@ def split_by_delimiters(line, all_vars):
                 punctuation_found = True
         if not punctuation_found:
             delimiter_found = False
-            for k, values in all_vars['clause_map'].items():
+            for k, values in av['clause_map'].items():
                 if word in values:
                     new_sections.append(' '.join(new_section))
                     new_section = []
@@ -397,7 +397,7 @@ def split_by_delimiters(line, all_vars):
         return new_sections
     return False
 
-def order_clauses(line, clauses_by_punctuation, all_vars):
+def order_clauses(line, clauses_by_punctuation, av):
     '''
     - conditional clauses have a delimiter that indicates a condition or dependency:
         'or', 'when', 'even', 'despite', 'because', 
@@ -433,10 +433,10 @@ def order_clauses(line, clauses_by_punctuation, all_vars):
     lines = []
 
     ''' rearrangement logic '''
-    for k, values in all_vars['ordered_operators']:
+    for k, values in av['ordered_operators']:
         if k == 'because':
             ''' check that each 'because' keyword is not in the first clause, otherwise leave it where it is '''
-            for v in all_vars['clause_map']['%']:
+            for v in av['clause_map']['%']:
                 for i, word in enumerate(line.split(' ')):
                     if v == word:
                         if v not in clauses_by_punctuation[0]:
@@ -449,17 +449,17 @@ def order_clauses(line, clauses_by_punctuation, all_vars):
         return line
     return False
 
-def filter_clauses(clauses, all_vars):
+def filter_clauses(clauses, av):
     ''' removes meaningless clauses '''
     return clauses
 
-def get_combined_operator(combined, all_vars):
-    for key, val in all_vars['combined_map'].items():
+def get_combined_operator(combined, av):
+    for key, val in av['combined_map'].items():
         if combined in val:
             return key
     return False
 
-def find_attribute(pattern, matches, row, all_vars):
+def find_attribute(pattern, matches, row, av):
     return False
 
 def get_meaning_score(phrase, line):
@@ -474,7 +474,7 @@ def get_meaning_score(phrase, line):
         return meaning
     return False
 
-def find_modifier(pattern, matches, row, all_vars):
+def find_modifier(pattern, matches, row, av):
     '''
     - we're isolating modifiers bc theyre the smallest unit of 
         functions (inputs, process, outputs)
@@ -517,7 +517,7 @@ def find_modifier(pattern, matches, row, all_vars):
             for i, word in enumerate(words):
                 pos = row['word_map'][word] if word in row['word_map'] else ''
                 if pos:
-                    if pos not in all_vars['pos_tags']['exclude']:
+                    if pos not in av['tags']['exclude']:
                         if word in blob_dict and word in tagged_dict:
                             #if blob_dict[word][0] != tagged_dict[word]:
                             ''' ntlk and blob tags differ: nltk: 'imaging' => 'VBG' blob: 'imaging' => 'NN', 'B-NP', 'I-PNP' '''
@@ -525,6 +525,6 @@ def find_modifier(pattern, matches, row, all_vars):
                             other_word = words[i + 1] if (i + 1) < len(words) else words[i - 1] if i > 0 else None
                             if other_word:
                                 other_word_pos = row['word_map'][other_word] if other_word in row['word_map'] else ''
-                                if other_word_pos in all_vars['pos_tags']['ALL_N'] or other_word_pos in all_vars['pos_tags']['ALL_V']:
+                                if other_word_pos in av['tags']['ALL_N'] or other_word_pos in av['tags']['ALL_V']:
                                     row['modifier'].add(' '.join([ratio, other_word]))
     return row

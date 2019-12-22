@@ -17,15 +17,15 @@ def get_data_store(index, database, operation, args):
     downloaded = downloads(['data', 'datasets'])
     if not downloaded:
         return False
-    all_vars = get_vars()
-    if all_vars:
+    av = get_vars()
+    if av:
         data_store = {}
         ''' if index or database not passed in, fetch the local db if it exists '''
-        args, filters, metadata, generate_target, generate_source = get_args(args, all_vars)
-        all_vars['metadata'] = metadata if metadata else all_vars['supported_params']
+        args, filters, metadata, generate_target, generate_source = get_args(args, av)
+        av['metadata'] = metadata if metadata else av['supported_params']
         if operation == 'build':
             database = get_local_database('data', None) if not database else database
-            data_store, rows = build_indexes(database, args, filters, all_vars)
+            data_store, rows = build_indexes(database, args, filters, av)
         elif operation == 'get_database':
             data_store = get_local_database('data', None)
         elif operation == 'get_index':
@@ -38,7 +38,7 @@ def get_data_store(index, database, operation, args):
                 return new_index
     return False
 
-def get_data_from_source(source, keyword, all_vars):
+def get_data_from_source(source, keyword, av):
     data = {}
     total = 0
     max_count = 10
@@ -59,17 +59,17 @@ def get_data_from_source(source, keyword, all_vars):
                 else:
                     articles = json.loads(response.content)
                 if len(articles) > 0:
-                    data = process_articles(entries, data, source, all_vars)
+                    data = process_articles(entries, data, source, av)
     if data:                                         
         return data
     return False
 
-def process_articles(articles, data, source, all_vars):
+def process_articles(articles, data, source, av):
     for article in articles:
         title = get_text_from_nodes(article, source['title_element'])
         article_text = get_text_from_nodes(article, source['summary_element'])
         if title and article_text:
-            article_lines, all_vars = standard_text_processing(article_text, all_vars)
+            article_lines, av = standard_text_processing(article_text, av)
             if article_lines:
                 data[title] = article_lines # article_lines[line][word] = pos
     return data
@@ -96,21 +96,21 @@ def add_row(row, index, empty_index, rows):
             rows.append(row)
     return index, rows
 
-def build_indexes(database, args, filters, all_vars):
+def build_indexes(database, args, filters, av):
     ''' 
     - this function indexes data from api providing articles
     - if the local database is found, use that as starting index, otherwise build it
     '''
     rows = []
-    empty_index = get_empty_index(all_vars)
+    empty_index = get_empty_index(av)
     index = database if database else empty_index if empty_index else None
     for arg in args:
-        for source in all_vars['sources']:
-            data = get_data_from_source(source, arg, all_vars)
+        for source in av['sources']:
+            data = get_data_from_source(source, arg, av)
             if data:
                 for title, article_lines in data.items():
                     for line, word_map in article_lines.items():
-                        row = get_metadata(line, title, word_map, all_vars)
+                        row = get_metadata(line, title, word_map, av)
                         if row:
                             index, rows = add_row(row, index, empty_index, rows)
     if index and rows:
@@ -118,8 +118,8 @@ def build_indexes(database, args, filters, all_vars):
             if key != 'rows':
                 ''' get the patterns in each index we just built & save '''
                 for row in rows:
-                    objects, patterns = extract_objects_and_patterns_from_index(index, row, key, None, all_vars)
-                    #to do: patterns = get_patterns_between_objects(index[key], key, all_vars)
+                    objects, patterns = extract_objects_and_patterns_from_index(index, row, key, None, av)
+                    #to do: patterns = get_patterns_between_objects(index[key], key, av)
                     # get patterns for index[key] objects with object_type key
                     if patterns:
                         if len(patterns) > 0:
@@ -132,31 +132,31 @@ def build_indexes(database, args, filters, all_vars):
         return index, rows
     return False, False
 
-def get_metadata(line, title, word_map, all_vars):
+def get_metadata(line, title, word_map, av):
     ''' 
     this function initializes the row object & populates it with various metadata types:
         - structural_types to get nouns, verbs, phrases, modifiers, clauses, & relationships
         - medical_types to get conditions, symptoms, & treatments in the sentence 
         - conceptual_types to get types, strategies & insights
     '''
-    row = get_empty_index(all_vars)                   
+    row = get_empty_index(av)                   
     row['line'] = line
     row['word_map'] = word_map
     row['original_line'] = line
-    row = replace_names(row, all_vars)
+    row = replace_names(row, av)
     row = get_similarity_to_title(title, row)  
     print('\ngetting structural metadata for line', line)
-    row = get_structural_metadata(row, all_vars)
+    row = get_structural_metadata(row, av)
     print('\nrow with structural metadata', row)
-    intent = None # find_intent(row, all_vars)
-    hypothesis = None # find_hypothesis(row, all_vars)
-    row = find_treatment(row['line'], None, row, all_vars)
+    intent = None # find_intent(row, av)
+    hypothesis = None # find_hypothesis(row, av)
+    row = find_treatment(row['line'], None, row, av)
     for metadata_type in ['medical_types', 'conceptual_types']:
-        for object_type in all_vars[metadata_type]:
-            if object_type in all_vars['metadata']:
-                for search_pattern_key in all_vars['pattern_index']:
+        for object_type in av[metadata_type]:
+            if object_type in av['metadata']:
+                for search_pattern_key in av['pattern_index']:
                     # check that this data 'strategy', 'treatment' was requested and is supported in pattern_index
-                    objects, patterns = extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, all_vars)
+                    objects, patterns = extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, av)
                     if objects:
                         row[object_type] = objects
                     if patterns:
@@ -164,9 +164,9 @@ def get_metadata(line, title, word_map, all_vars):
     print('\nmedical objects', row)
     return row
 
-def extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, all_vars):
+def extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, av):
     '''
-    - all of your 'find_object' functions need to support params: pattern, matches, row, all_vars
+    - all of your 'find_object' functions need to support params: pattern, matches, row, av
 
     - this function is for meta-analysis
 
@@ -179,10 +179,10 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
         for an index or row containing types of elements ('condition', 'symptom', 'strategy')
         this function is for finding patterns in those index types in the input (index or row['line'])
 
-    - object_type is the key in object types supported in all_vars['full_params'] to find:
+    - object_type is the key in object types supported in av['full_params'] to find:
         ['treatment', 'condition', 'strategy']
 
-    - search_pattern_key is the key of all_vars['pattern_index'] keys to search: 
+    - search_pattern_key is the key of av['pattern_index'] keys to search: 
         ['modifier', 'type', 'role']
 
     - object_type can equal search_pattern_key
@@ -193,7 +193,7 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
         if not index:
             index = row
         if index:
-            if object_type in index and object_type in all_vars['metadata']:
+            if object_type in index and object_type in av['metadata']:
                 lines = index[object_type]
                 if len(index[object_type]) > 0:
                     patterns = {}
@@ -201,7 +201,7 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
                     print('index search_pattern_key', search_pattern_key)
                     print('search index lines', index[object_type])
                     for line in lines:
-                        found_objects_in_patterns, found_patterns, all_vars = get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, all_vars)
+                        found_objects_in_patterns, found_patterns, av = get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, av)
                         if found_objects_in_patterns:
                             objects[object_type] = found_objects_in_patterns
                         if found_patterns:
@@ -211,7 +211,7 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
                             if there are no matches found for object_type patterns, 
                             do a standard object query independent of patterns to apply type-specific logic 
                             '''
-                            found_objects = apply_find_function(object_type, None, [line], index, all_vars)
+                            found_objects = apply_find_function(object_type, None, [line], index, av)
                             if found_objects:
                                 objects[object_type] = found_objects
                     if objects or patterns:
@@ -219,7 +219,7 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
                         return objects, patterns
     return False, False
 
-def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, all_vars):
+def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, av):
     ''' the reason we allow search_pattern_key and object_type to differ is to find subset matches 
         example: 
             find 'modifiers' in 'treatment patterns' would have:
@@ -228,23 +228,23 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
             - make a list of subset pattern type relationships
     '''
     found_objects = set()
-    found_patterns, all_vars = match_patterns(line, search_pattern_key, all_vars)
+    found_patterns, av = match_patterns(line, search_pattern_key, av)
     if found_patterns and object_type != 'pattern':
         print('found patterns', found_patterns)
         for pattern_type in found_patterns:
             for pattern, matches in found_patterns[pattern_type].items():
                 ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
                 ''' note: this is not restricting output to found objects '''
-                found_objects = apply_find_function(object_type, pattern, matches, index, all_vars)
+                found_objects = apply_find_function(object_type, pattern, matches, index, av)
                 print('found objects', found_objects)
     if len(found_objects) > 0 or found_patterns:
-        return found_objects, found_patterns, all_vars
-    return False, False, all_vars
+        return found_objects, found_patterns, av
+    return False, False, av
 
-def apply_find_function(object_type, pattern, matches, index, all_vars):
+def apply_find_function(object_type, pattern, matches, index, av):
     ''' find functions check for objects of object_type in matches list which match pattern 
         - all find object functions need to support params:
-            - pattern, matches_lines, row_index, all_vars
+            - pattern, matches_lines, row_index, av
               pattern & subsets matching pattern
                 - pattern = 'x of y'
                 - lines = 'dog of cat', 'cat of dog' 
@@ -258,7 +258,7 @@ def apply_find_function(object_type, pattern, matches, index, all_vars):
             function = getattr(globals(), function_name)
             print('found function', function)
             if function:
-                got_objects = function(pattern, matches, index, all_vars)
+                got_objects = function(pattern, matches, index, av)
                 if got_objects:
                     if len(got_objects) > 0:
                         return set([item for item in got_objects])
@@ -267,7 +267,7 @@ def apply_find_function(object_type, pattern, matches, index, all_vars):
             return False
     return False
 
-def get_structural_metadata(row, all_vars):
+def get_structural_metadata(row, av):
     '''
         1. 'ngram', 'modifier', 'phrase', 'noun_phrase', 'verb_phrase', 'clause', 'subject', 'pattern',
         2. order_and_convert_clauses
@@ -276,11 +276,11 @@ def get_structural_metadata(row, all_vars):
         verb-noun-phrases should be converted into modifiers
         once you have the nouns/modifiers, you can pick a subject from the noun or modifier
     '''
-    generated_patterns, all_vars = get_all_versions(row['line'], 'all', all_vars) 
+    generated_patterns, av = get_all_versions(row['line'], 'all', av) 
     if generated_patterns:
         print(generated_patterns)
         for gp in generated_patterns:
-            if gp in all_vars['all_patterns']:
+            if gp in av['all_patterns']:
                 row['pattern'].add(gp)
     print('got patterns for line', row['line'])
     print(row['pattern'])
@@ -288,9 +288,9 @@ def get_structural_metadata(row, all_vars):
 
     keep_ratios = ['extra', 'high', 'none']
     line = row['line'] if 'line' in row and type(row) == dict else row # can be a row index dict or a definition line
-    row = row if type(row) == dict else get_empty_index(['all'], all_vars)
+    row = row if type(row) == dict else get_empty_index(['all'], av)
     row['line'] = line
-    word_pos_line = ''.join([x for x in line if x in all_vars['alphanumeric'] or x in all_vars['clause_analysis_chars']])
+    word_pos_line = ''.join([x for x in line if x in av['alphanumeric'] or x in av['clause_analysis_chars']])
     words = word_pos_line.split(' ')
     for i, w in enumerate(words):
         if len(w) > 0:
@@ -307,38 +307,38 @@ def get_structural_metadata(row, all_vars):
             pos = row['word_map'][w] if w in row['word_map'] else False
             if pos:
                 ''' favor noun before verb '''
-                if pos in all_vars['pos_tags']['VC']:
+                if pos in av['tags']['VC']:
                     row['clause_marker'].add(w)
-                if pos in all_vars['pos_tags']['ALL_N'] or w in all_vars['alphabet']:
+                if pos in av['tags']['ALL_N'] or w in av['alphabet']:
                     ''' format nouns like 'inhibitor' as a verb '''
                     stem = get_stem(w)
-                    stem_pos = get_nltk_pos(stem, all_vars)
+                    stem_pos = get_nltk_pos(stem, av)
                     if stem_pos:
-                        present_verb = conjugate(w, stem_pos, 'VBZ', all_vars)
+                        present_verb = conjugate(w, stem_pos, 'VBZ', av)
                         if present_verb:
                             row['verb'].add(present_verb)
                     else:
                         row['noun'].add(w)
-                elif pos in all_vars['pos_tags']['ALL_V']:
+                elif pos in av['tags']['ALL_V']:
                     ''' dont conjugate '-ing' to preserve verb-noun modifier phrases '''
                     if pos != 'VBG':
-                        present_verb = conjugate(w, pos, 'VBZ', all_vars)
+                        present_verb = conjugate(w, pos, 'VBZ', av)
                         if present_verb:
                             row['verb'].add(present_verb)
                         else:
                             row['verb'].add(w)
                     else:
                         row['verb'].add(w)
-                elif pos in all_vars['pos_tags']['D']:
+                elif pos in av['tags']['D']:
                     ratio = get_determiner_ratio(w)
                     if ratio:
                         if ratio in keep_ratios:
                             row['det'].add(str(ratio))
-                elif pos in all_vars['pos_tags']['P']:
+                elif pos in av['tags']['P']:
                     row['prep'].add(w)
-                elif pos in all_vars['pos_tags']['C']:
+                elif pos in av['tags']['C']:
                     row['conj'].add(w)
-                elif pos in all_vars['pos_tags']['ADV'] or pos in all_vars['pos_tags']['ADJ']:
+                elif pos in av['tags']['ADV'] or pos in av['tags']['ADJ']:
                     row['descriptor'].add(w)
                 else:
                     row['taken_out'].add('_'.join([w, str(pos)]))
@@ -346,22 +346,22 @@ def get_structural_metadata(row, all_vars):
         common_words = get_most_common_words(row['count'], 3) # get top 3 tiers of common words
         if common_words:
             row['common_word'] = common_words
-    ngrams = find_ngrams(word_pos_line, all_vars) # 'even with', 'was reduced', 'subject position'
+    ngrams = find_ngrams(word_pos_line, av) # 'even with', 'was reduced', 'subject position'
     if ngrams:
         row['ngram'] = ngrams
         ngram_list = [v for k, v in ngrams.items()]
         ngram_list.append(word_pos_line)
         structure_types = ['modifier', 'verb_phrase', 'noun_phrase', 'phrase', 'clause']
         for i, key in enumerate(structure_types):
-            objects, patterns = extract_objects_and_patterns_from_index(row, None, key, key, all_vars)
+            objects, patterns = extract_objects_and_patterns_from_index(row, None, key, key, av)
             if objects:
                 if key in objects:
                     if key == 'verb_phrase':
                         for item in objects[key]:
                             for w in item.split(' '):
-                                pos = get_nltk_pos(w, all_vars)
+                                pos = get_nltk_pos(w, av)
                                 if pos:
-                                    present_verb = conjugate(w, pos, 'VBZ', all_vars)
+                                    present_verb = conjugate(w, pos, 'VBZ', av)
                                     if present_verb:
                                         row[key].add(present_verb)
                                     else:
@@ -373,11 +373,11 @@ def get_structural_metadata(row, all_vars):
                         row[key] = row[key].union(set(objects[key]))
             if patterns:
                 row['pattern'] = row['pattern'].union(set(patterns))
-    extra_patterns = find_pattern(row['line'], all_vars)
+    extra_patterns = find_pattern(row['line'], av)
     if extra_patterns:
         row['pattern'] = row['pattern'].union(set(extra_patterns))
-    row = find_relationship(row, all_vars)
-    objects, patterns = extract_objects_and_patterns_from_index(row, None, 'relationship', 'relationship', all_vars)
+    row = find_relationship(row, av)
+    objects, patterns = extract_objects_and_patterns_from_index(row, None, 'relationship', 'relationship', av)
     if objects:
         if 'relationship' in objects:
             row['relationship'] = row['relationship'].union(set(objects['relationship']))
@@ -387,14 +387,14 @@ def get_structural_metadata(row, all_vars):
         print('key', key, row[key])
     return row
 
-def find_ngrams(line, all_vars):
+def find_ngrams(line, av):
     phrases = {'N': [], 'V': [], 'ADJ': [], 'ADV': [], 'DPC': []} # take out adj & adv
     phrase_keys = ['N', 'V', 'ADJ', 'ADV']
-    tags = all_vars['pos_tags']
+    tags = av['tags']
     non_dpc_segments = []
     new_segment = []
     for w in line.split(' '):
-        pos = get_nltk_pos(w, all_vars)
+        pos = get_nltk_pos(w, av)
         if pos:
             if pos in tags['ALL_V'] or pos in tags['ALL_N'] or pos in tags['ADV'] or pos in tags['ADJ']:
                 new_segment.append(w)
@@ -404,20 +404,20 @@ def find_ngrams(line, all_vars):
     if len(non_dpc_segments) > 0:
         for non_dpc_segment in non_dpc_segments:
             for key in phrase_keys:
-                pos_phrases = get_ngrams_of_type(key, non_dpc_segment, all_vars)
+                pos_phrases = get_ngrams_of_type(key, non_dpc_segment, av)
                 if pos_phrases:
                     phrases[key] = pos_phrases
-    dpc_phrases = get_ngrams_of_type('DPC', line, all_vars)
+    dpc_phrases = get_ngrams_of_type('DPC', line, av)
     if dpc_phrases:
         phrases['DPC'] = dpc_phrases
     if phrases:
         return phrases
     return False
 
-def get_ngrams_of_type(pos_type, line, all_vars):
+def get_ngrams_of_type(pos_type, line, av):
     all_pos_type = ''.join(['ALL_', pos_type])
-    pos_type = all_pos_type if all_pos_type in all_vars['pos_tags'] else pos_type
-    if pos_type in all_vars['pos_tags']:
+    pos_type = all_pos_type if all_pos_type in av['tags'] else pos_type
+    if pos_type in av['tags']:
         words = line.split(' ')
         ngrams = get_ngram_combinations(words, 5) # hydrolyzing radioactive catalyzing potential isolates
         phrases = []
@@ -425,9 +425,9 @@ def get_ngrams_of_type(pos_type, line, all_vars):
         for n in ngrams:
             ngram_phrase = []
             for word in n:
-                word_pos = get_nltk_pos(word, all_vars)
+                word_pos = get_nltk_pos(word, av)
                 if word_pos:
-                    if word_pos in all_vars['pos_tags'][pos_type]:
+                    if word_pos in av['tags'][pos_type]:
                         ngram_phrase.append(word)
             if len(ngram_phrase) > 1:
                 ''' skip ngrams of length 1 '''
