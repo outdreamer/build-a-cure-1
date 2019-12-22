@@ -1165,7 +1165,6 @@ def get_all_versions(pattern, version_types, av):
     final_patterns = set([x for x in final_patterns if type(x) != bool])
     if len(final_patterns) > 0:
         print('final', len(final_patterns))
-        exit()
         return final_patterns, av
     return False, av
 
@@ -2133,7 +2132,6 @@ def apply_pattern_map(line, pattern_map, av):
         - in order to support iterated replacement, you need to make sure your patterns are ordered in the right way
     '''
     print('apm')
-    exit()
     pos_lines, av = get_all_versions(line, 'all', av)
     if pos_lines:
         for pos_line in pos_lines:
@@ -2155,7 +2153,6 @@ def match_patterns(line, pattern_key, av):
     rather than patterns in a line
     '''
     print('mp')
-    exit()
     found_patterns = {}
     if type(line) == list or type(line) == set:
         found_patterns = get_patterns_between_objects(line)
@@ -2245,7 +2242,6 @@ def get_pattern_source_subsets(line, pos_line, pattern, get_type, av):
         to do: this prevents users from configuring patterns with numbers like 14alpha-deoxy-enzyme
     '''
     print('gpss')
-    exit()
     delimiter = find_delimiter(line, av)
     pos_patterns, av = get_all_versions(pattern, av) 
     if pos_patterns and delimiter:
