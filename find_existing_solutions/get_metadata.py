@@ -278,14 +278,9 @@ def get_structural_metadata(row, av):
     '''
     generated_patterns, av = get_all_versions(row['line'], 'all', av) 
     if generated_patterns:
-        print(generated_patterns)
-        for gp in generated_patterns:
-            if gp in av['all_patterns']:
-                row['pattern'].add(gp)
-    print('got patterns for line', row['line'])
+        row['pattern'][row['line']] = set(generated_patterns)
+    print('get_structural_metadata: got patterns for line', row['line'])
     print(row['pattern'])
-    ''' save after generating patterns once you map them '''
-
     keep_ratios = ['extra', 'high', 'none']
     line = row['line'] if 'line' in row and type(row) == dict else row # can be a row index dict or a definition line
     row = row if type(row) == dict else get_empty_index(['all'], av)

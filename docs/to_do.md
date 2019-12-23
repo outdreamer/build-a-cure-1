@@ -74,14 +74,11 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
   - finish adding combined operator output impact
 
-  - fix pattern length calculation
-
-  - 
-
   - take out generic tag names & '|' patterns with delimiter in them
     pattern_index::verb_phrase::|functions works operates interacts acts| as __a__ |VB NN|
   
   - |NNS NNS VBZ2 VBZ3 NNS| repeated options shouldnt happen within an alt set
+  - '|suppose thought1 assumed| that3 DPC |suppose thought6 assumed| that8 ALL_N9 ALL_N10 ALL_N11'
 
   - pattern processing order:
     - examine all your iterated lists bc they determine processing order (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
