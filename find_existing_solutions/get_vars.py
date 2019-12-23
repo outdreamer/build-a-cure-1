@@ -931,7 +931,7 @@ def is_isolated_alt(subset, av):
     return False
 
 def get_alts(pattern, av):
-    all_alts = get_alt_sets(pattern, [], av)
+    all_alts, variables = get_alt_sets(pattern, [], av)
     index_lists = []
     if all_alts:
         if len(all_alts) > 0:
@@ -962,7 +962,7 @@ def get_alt_sets(pattern, all_alts, av):
                         if len(all_options) > 0:
                             all_alts.append(all_options)
                     elif delimiter_count > 2:
-                        new_all_sets = get_alt_sets(variables[item], all_alts, av)
+                        new_all_sets, variables = get_alt_sets(variables[item], all_alts, av)
                         if len(new_all_sets) > 0:
                             all_alts = new_all_sets
                     elif delimiter_count == 0:
@@ -978,8 +978,35 @@ def get_alt_sets(pattern, all_alts, av):
             else:
                 new_alts.append(sub_list)
         if len(new_alts) > 0:
-            return new_alts
-    return False
+            final_alts = []
+            for sub_list in new_alts:
+                if type(sub_list) == list:
+                    new_item_list = []
+                    for item in sub_list:
+                        if item in variables:
+                            new_item_list.extend(variables[item].replace('|', '').split(' '))
+                        else:
+                            new_item_list.append(item)
+                    if len(new_item_list) > 0:
+                        final_alts.append(new_item_list)
+                else:
+                    new_item_list = []
+                    for item in sub_list.split(' '):
+                        if item in variables:
+                            if len(new_item_list) > 0:
+                                final_alts.append(' '.join(new_item_list))
+                                new_item_list = []
+                            final_alts.append(variables[item].replace('|', '').split(' '))
+                        else:
+                            if item in av['tags']:
+                                item_list = av['tags'][item]
+                                final_alts.append(item_list)
+                            else:
+                                new_item_list.append(item)
+                    if len(new_item_list) > 0:
+                        final_alts.append(' '.join(new_item_list))
+            return final_alts, variables
+    return False, False
 
 def append_list(index_lists, sub_list):
     new_index_list = []
@@ -1033,11 +1060,7 @@ def generate_alt_patterns(pattern, av):
                     if len(all_patterns) > 0:
                         return all_patterns
                 else:
-                    new_alts = []
-                    for alt in alts:
-                        new_alts.append(alt.strip().replace('&', ' & '))
-                    if len(new_alts) > 0:
-                        return new_alts
+                    return [alt.strip().replace('&', ' & ') for alt in alts]
     return False
 
 def generate_indexed_patterns(pattern, av):
@@ -1132,23 +1155,20 @@ def get_all_versions(pattern, version_types, av):
     '''
     #pattern = '|functions works operates interacts acts| as __a__ |VB NN|'
     pattern = 'ALL_N DPC |ADJ ADV VB |VBG VBD|| ALL_N |JJ NN|'
+    '''embedded alt sets should be collapsed into the same level of alt as the host set
+        '||JJ JJR JJS| |WRB RB RBR RBS| VB |VBG VBD||'
+    should be:
+        '|JJ JJR JJS WRB RB RBR RBS VB VBG VBD|'
+    '''
+    #' |NN JJ JJR NNS NNP NNPS RB| |DT PDT WDT TO PP CC IN| ||JJ JJR JJS| |WRB RB RBR RBS| VB |VBG VBD|| |NN JJ JJR NNS NNP NNPS RB| |JJ NN|'
+    #|3 x 4 x 1 x 2| is not being collapsed to one option at a time
     # to_iterate = set([x for x in [get_specific_pos(pattern, av), get_general_pos(pattern, av), get_all_pos(pattern, av)] if type(x) != bool])
     word_count = [x for x in pattern.replace('|','').replace('__','').replace('&',' ').split(' ') if x not in av['tags']['ALL'] and x not in av['tags']]
     print('\n\tget_all_versions: pattern', pattern)
     all_to_iterate = []
     alt_patterns = generate_alt_patterns(pattern, av)
     if alt_patterns:
-        print('alt_patterns', alt_patterns)
         for ap in alt_patterns:
-            ''' now replace general with specific and call generate_alt_patterns again '''
-            '''
-            specific_ap = get_specific_pos(pattern, av)
-            specific_alt_patterns = generate_alt_patterns(specific_ap, av)
-            if specific_alt_patterns:
-                for sap in specific_alt_patterns:
-                    all_to_iterate.append(generate_indexed_patterns(sap, av))
-            else:
-            '''
             all_to_iterate.append(generate_indexed_patterns(ap, av))
     else:
         all_to_iterate.append(generate_indexed_patterns(pattern, av))
@@ -1164,13 +1184,15 @@ def get_all_versions(pattern, version_types, av):
         final_patterns.add(generate_operator_patterns(ap, av))
     final_patterns = set([x for x in final_patterns if type(x) != bool])
     if len(final_patterns) > 0:
-        print('final', len(final_patterns))
         return final_patterns, av
     return False, av
 
 def get_pattern_subsets(pattern, av):
     '''        0           1       23       4     5
     'ALL_N DPC |ADJ ADV VB |VBG VBD|| ALL_N |JJ NN|'
+
+    0                         1 2                      3 45          6 7              8    9      1011 12                      13 14   15
+    |NN JJ JJR NNS NNP NNPS RB| |DT PDT WDT TO PP CC IN| ||JJ JJR JJS| |WRB RB RBR RBS| VB |VBG VBD|| |NN JJ JJR NNS NNP NNPS RB| |JJ NN|
     {
       x: |VBG VBD|,
       y: |ADJ ADV VB x|,
@@ -1187,55 +1209,83 @@ def get_pattern_subsets(pattern, av):
     one legit embedded pair (1, 2)
     but both pairs (1, 2) and (4, 5) should be logged as vars
     'ALL_N DPC y ALL_N z'
+
+
+    first iterate and replace all isolated alts with vars, 
+        then iterate over replaced pattern looking for new isolated alts 
+        if any found, assign new var containing original string
+        
+    45          6 7              8    9      1011
+    ||JJ JJR JJS| |WRB RB RBR RBS| VB |VBG VBD||
+    01          1 2              2    3       30
+    0 x y VB z 0
+
     '''
-    variables = {}
-    index_pairs = []
-    delimiter_indexes = {}
-    strings = []
-    tracking_pattern = pattern
-    delimiter_count = pattern.count('|')
-    if delimiter_count == 0:
+    if pattern.count('|') == 0:
         return pattern.count(' ') + 1
+    variables = {}
+    replacement_subsets, replacement_vars = get_replaced_subsets(pattern, variables, av)
+    variables = replacement_vars if replacement_vars else {}
+    if len(replacement_subsets) > 0:
+        return replacement_subsets, variables
+    return False, False
+
+def get_replaced_subsets(pattern, variables, av):
+    indexes = {}
+    new_subsets = []
+    index_pairs = []
+    replacement_subsets = []
     for i, char in enumerate(pattern):
         if char == '|':
-            delimiter_index = len(delimiter_indexes.keys())
-            delimiter_indexes[delimiter_index] = i
-    first_index = delimiter_indexes[0]
-    last_index = delimiter_indexes[max(delimiter_indexes.keys())]
-    new_subsets = []
-    if first_index > 0:
-        initial = pattern[0: first_index]
-        new_subsets.append(initial)
-    for count, char_pos in delimiter_indexes.items():
-        if (count + 1) < len(delimiter_indexes.keys()):
+            indexes[len(indexes.keys())] = i
+    for count, char_pos in indexes.items():
+        if (count + 1) < len(indexes.keys()):
             index_pairs.append([count, count + 1])
+    first_index = indexes[0]
+    last_index = indexes[(pattern.count('|') - 1)]
+    if first_index > 0:
+        replacement_subsets.append(pattern[0: first_index])
     if len(index_pairs) > 0:
         for i, ip in enumerate(index_pairs):
-            new_key = get_new_key(variables, pattern, av)
-            substring = pattern[delimiter_indexes[ip[0]]:delimiter_indexes[ip[1]] + 1]
+            substring = pattern[indexes[ip[0]]:indexes[ip[1]] + 1]
             if '|' in substring:
-                subset = substring.replace('|', '').strip()
-                delimiter_joined = ''.join(['|', subset, '|'])
-                if delimiter_joined != '||' and delimiter_joined in substring:
-                    ''' inner_pair is an alt set, possible embedded pair '''
-                    value_for_embedded_pair = get_var_for_embedded(delimiter_joined, delimiter_indexes, index_pairs, i, 1, variables, pattern, av)
-                    if value_for_embedded_pair:
-                        variables[new_key] = value_for_embedded_pair
-                        value_without_embedded_pair = value_for_embedded_pair.replace(delimiter_joined, '').replace('|','')
-                        if value_without_embedded_pair.strip() == new_subsets[-1].strip():
-                            new_subsets.pop()
-                    else:
-                        variables[new_key] = delimiter_joined
-                    new_subsets.append(new_key)
+                subset = substring.replace('|', '')
+                if len(subset) > 0:
+                    beginning_space = subset[0] if subset[0] == ' ' else ''
+                    ending_space = subset[-1] if subset[-1] == ' ' else ''
+                    beginning_delimiter = substring[0] if substring[0] == '|' and substring[1] != ' ' else ''
+                    ending_delimiter = substring[-1] if substring[-1] == '|' and substring[-2] != ' ' else ''
+                    delimiter_joined = ''.join(['|', subset.strip(), '|'])
+                    if delimiter_joined == '||':
+                        replacement_subsets.append('')
+                    elif delimiter_joined in substring:
+                        ''' inner_pair is an alt set, possible embedded pair '''
+                        new_key = get_new_key(variables, pattern, av)
+                        variables[new_key] = ''.join(['|', subset.strip(), '|'])
+                        joined_new_key = ''.join([beginning_space, new_key, ending_space])
+                        replacement_subsets.append(joined_new_key)
+                    else:                        
+                        replacement_subsets.append(''.join([beginning_delimiter, subset, ending_delimiter]))
                 else:
-                    new_subsets.append(subset)
+                    if len(replacement_subsets) > 0:
+                        prev_item = replacement_subsets[-1].split(' ')[-1]
+                        replacement_string = ''.join(replacement_subsets)
+                        if prev_item in variables and replacement_string.count('|') > 0:
+                            replacement_subsets.append('|')
             else:
-                new_subsets.append(substring)
+                replacement_subsets.append(substring)
     if last_index < (len(pattern) - 1):
-        final = pattern[last_index:]
-        new_subsets.append(final)
-    if len(new_subsets) > 0:
-        return new_subsets, variables
+        prev_item = replacement_subsets[-1].split(' ')[-1]
+        replacement_string = ''.join(replacement_subsets)
+        if prev_item in variables and replacement_string.count('|') == 0:
+            replacement_subsets.append(pattern[last_index:].replace('|',''))
+        else:
+            replacement_subsets.append(pattern[last_index:])
+    if len(replacement_subsets) > 0:
+        replaced_pattern = ''.join(replacement_subsets)
+        if '|' in replaced_pattern:
+            return get_replaced_subsets(replaced_pattern, variables, av)
+        return replacement_subsets, variables
     return False, False
 
 def get_var_for_embedded(delimiter_joined, delimiter_indexes, index_pairs, i, offset, variables, pattern, av):
@@ -1249,7 +1299,6 @@ def get_var_for_embedded(delimiter_joined, delimiter_indexes, index_pairs, i, of
             ''' outer pair is an alt set as well, check next outer pair '''
             next_outer_delimiter_joined = get_var_for_embedded(outer_substring, delimiter_indexes, index_pairs, i, offset + 1, variables, pattern, av)
             if next_outer_delimiter_joined:
-                new_key = get_new_key(variables, pattern, av)
                 return next_outer_delimiter_joined
             return outer_substring
     return False
