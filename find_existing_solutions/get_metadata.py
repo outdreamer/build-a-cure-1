@@ -167,56 +167,47 @@ def get_metadata(line, title, word_map, av):
 def extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, av):
     '''
     - all of your 'find_object' functions need to support params: pattern, matches, row, av
-
     - this function is for meta-analysis
-
         1. find any matches from search_pattern_key patterns in index[object_type]/row[object_type] lines
         2. if pattern matches found in lines, 
             find objects in matches with type-specific logic from find_<object_type> function
         3. if no pattern matches found in lines, 
             find objects in lines with type-specific logic from find_<object_type> function
-
         for an index or row containing types of elements ('condition', 'symptom', 'strategy')
         this function is for finding patterns in those index types in the input (index or row['line'])
-
     - object_type is the key in object types supported in av['full_params'] to find:
         ['treatment', 'condition', 'strategy']
-
     - search_pattern_key is the key of av['pattern_index'] keys to search: 
         ['modifier', 'type', 'role']
-
     - object_type can equal search_pattern_key
-
     '''
     if index or row:
-        lines = [row['line']] if row and 'line' in row else []
-        if not index:
-            index = row
-        if index:
-            if object_type in index and object_type in av['metadata']:
-                lines = index[object_type]
-                if len(index[object_type]) > 0:
-                    patterns = {}
-                    objects = { object_type: set() }
-                    print('index search_pattern_key', search_pattern_key)
-                    print('search index lines', index[object_type])
-                    for line in lines:
-                        found_objects_in_patterns, found_patterns, av = get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, av)
-                        if found_objects_in_patterns:
-                            objects[object_type] = found_objects_in_patterns
-                        if found_patterns:
-                            patterns = found_patterns
-                        else:
-                            ''' 
-                            if there are no matches found for object_type patterns, 
-                            do a standard object query independent of patterns to apply type-specific logic 
-                            '''
-                            found_objects = apply_find_function(object_type, None, [line], index, av)
-                            if found_objects:
-                                objects[object_type] = found_objects
-                    if objects or patterns:
-                        print('extracted', objects, patterns)
-                        return objects, patterns
+        index = index if index else row
+        if object_type in index and object_type in av['metadata']:
+            lines = [row['line']] if row and 'line' in row else [] #index[object_type] if object_type in index else
+            if len(index[object_type]) > 0:
+                patterns = {}
+                objects = { object_type: set() }
+                print('index search_pattern_key', search_pattern_key)
+                print('search index lines', index[object_type])
+                for line in lines:
+                    found_objects_in_patterns, found_patterns, av = get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, av)
+                    if found_objects_in_patterns:
+                        objects[object_type] = found_objects_in_patterns
+                    if found_patterns:
+                        patterns = found_patterns
+                    else:
+                        ''' 
+                        if there are no matches found for object_type patterns, 
+                        do a standard object query independent of patterns to apply type-specific logic 
+                        '''
+                        found_objects = apply_find_function(object_type, None, [line], index, av)
+                        if found_objects:
+                            print('find function objects', object_type, found_objects)
+                            objects[object_type] = found_objects
+                if objects or patterns:
+                    print('extracted', objects, patterns)
+                    return objects, patterns
     return False, False
 
 def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, av):
@@ -269,10 +260,9 @@ def apply_find_function(object_type, pattern, matches, index, av):
 
 def get_structural_metadata(row, av):
     '''
-        1. 'ngram', 'modifier', 'phrase', 'noun_phrase', 'verb_phrase', 'clause', 'subject', 'pattern',
-        2. order_and_convert_clauses
-        3. 'relationship'
-
+        1. identifies 'ngram', 'modifier', 'phrase', 'noun_phrase', 'verb_phrase', 'clause', 'subject', 'pattern'
+        2. then assembles conditions of sentence & executes order_clauses on conditions
+        3. then identifies 'relationship' objects from sentence conditions
         verb-noun-phrases should be converted into modifiers
         once you have the nouns/modifiers, you can pick a subject from the noun or modifier
     '''
@@ -293,13 +283,13 @@ def get_structural_metadata(row, av):
             w_upper = w.upper()
             w_name = w.capitalize() if w.capitalize() != words[0] else w
             upper_count = words.count(w_upper) # find acronyms, ignoring punctuated acronym
+            pos = row['word_map'][w] if w in row['word_map'] else False
             if count > 0:
                 count_num = upper_count if upper_count >= count else count
                 count_val = w_upper if upper_count >= count else w 
                 if count_num not in row['count']:
                     row['count'][count_num] = set()
                 row['count'][count_num].add(count_val)
-            pos = row['word_map'][w] if w in row['word_map'] else False
             if pos:
                 ''' favor noun before verb '''
                 if pos in av['tags']['VC']:

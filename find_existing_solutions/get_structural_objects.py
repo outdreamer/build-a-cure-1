@@ -45,7 +45,7 @@ def find_relationship(row, av):
                 - "x was a and therefore b" => clause "x was a so b", relationship ["a therefore b", "x leads to b"], variable "(a so b)"
                 - "N V even with x or y" should produce: ["N V even with x", "N V even with y", "N V even with x or y"]
     '''
-    word_relation = []
+    relationship = []
     clause_relations = []
     if type(row['clause']) == dict:
         for clause in row['clause']['condition']:
@@ -71,18 +71,18 @@ def find_relationship(row, av):
                     subject_statement_conditional_impact = get_net_impact_relation(subject_statement_conditional)
                     if subject_statement_conditional_impact:
                         new_clause_relations.append(subject_statement_conditional_impact)
-            for ncr in new_clause_relations:
-                word_relation = convert_to_words(ncr, clause['variables'], av)
-                if word_relation:
-                    word_relations.add(word_relation) 
-            clause_relations.extend(new_clause_relations)   
-
+            if len(new_clause_relations) > 0:
+                for ncr in new_clause_relations:
+                    relationship = convert_to_words(ncr, clause['variables'], av)
+                    if relationship:
+                        relationship.add(relationship) 
+                clause_relations.extend(new_clause_relations)   
         print('\nclause_relations', clause_relations)
-        print('\nword_relations', word_relations)
+        print('\nrelationship', relationship)
         if len(clause_relations) > 0:
             row['clause_relations'] = clause_relations            
-        if len(word_relations) > 0:
-            row['word_relations'] = word_relations
+        if len(relationship) > 0:
+            row['relationship'] = relationship
     return row
 
 def get_net_impact_relation(relation, av):

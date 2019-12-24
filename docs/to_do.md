@@ -72,33 +72,28 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
 
 ## Structural Objects
 
+  - some of these types have type mappings so generalize when you can
+        condition = state
+        symptom = function = side_effects
+        function = relationship
+        synthesis = build process
+        structure = pattern
   - finish adding combined operator output impact
-
-  - take out generic tag names & '|' patterns with delimiter in them
-    pattern_index::verb_phrase::|functions works operates interacts acts| as __a__ |VB NN|
-  
-  - |NNS NNS VBZ2 VBZ3 NNS| repeated options shouldnt happen within an alt set
-  - '|suppose thought1 assumed| that3 DPC |suppose thought6 assumed| that8 ALL_N9 ALL_N10 ALL_N11'
-
+  - repeated options shouldnt happen within an alt set: |NNS NNS VBZ2 VBZ3 NNS| 
+  - random indexes: |suppose thought1 assumed| that3 DPC |suppose thought6 assumed| that8 ALL_N9 ALL_N10 ALL_N11
+  - add call to get_all_versions when youve identified a new pattern when you implement find_pattern()
   - pattern processing order:
     - examine all your iterated lists bc they determine processing order (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
-    - example: if you replace modifiers first, then clause patterns, you can ensure that words get rearranged in a way that is likelier to be correct
-    - add ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos
-      - show preference for verbs in ambiguous cases (associate, bear) should return a verb even though it can be a noun
-    - implement type_pattern_index so that:
-      you change 'modifier1' to 'VB1 NN1', 'VB1 VB2' etc
-      while iterating through modifier patterns before submitting a call to find_patterns so you can just use 'ALL' pos tag checks
-      also replace ALL_N with all noun types in pos_patterns
-    - run apply_pattern_map on row['line'] in get_structural_metadata & in find_pattern on row['line'] before you do get_all_versions of row['line']
-    - check synonym replacements & make sure theyre mostly unique
-      'has effect' => 'have induce', 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
-        - 'by' can indicate a process/mechanism "it works by doing x", "as"
-    - based on processing order, isolate which tags would be identified as other objects first
-  
+      - if you replace modifiers first, then clause patterns, you can ensure that words get rearranged in a way that is likelier to be correct
+      - add ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos
+        - show preference for verbs in ambiguous cases (associate, bear) should return a verb even though it can be a noun
+        - based on processing order, isolate which tags would be identified as other objects first
+  - check synonym replacements & make sure theyre mostly unique
+    'has effect' => 'have induce', 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
+    - 'by' can indicate a process/mechanism "it works by doing x", "as"
   - support conversion between pos types like 'verb-to-noun':
       - 'subject1 verb clause because subject2 verb clause' => 'subject2 verb-to-noun causes subject1 verb-to-noun'
       - 'the process activated x because y inhibits b' => 'y b-inhibition causes the process to activate x' => 'y b-inhibition enables process to activate x'
-
   - add identification functions:
       - objects (nouns like 'protein')
       - components (topical nouns that are found in another topical component, like organelles of a cell)
@@ -107,25 +102,21 @@ subset = get_ngrams(words, word, i, 'both') # ngrams
       - variables (function inputs like subject/modifier nouns)
       - types (['structure', 'life form', 'organic molecule'] from 'protein') - add generate_type_patterns() after get_type
       - get_topic
-
   - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
     - implement a find_pattern function that aggregates repeated pos/type/abstract patterns across a article/line set
       - then you can enter patterns for medical find_object functions by scanning articles & applying find_patterns 
         (same for modifiers, clauses, & phrases so you dont have to configure every pattern manually)
   - add filtering of insights to apply directly to the topic of the problem space of the target condition or mechanisms requested in metadata
   - add mechanisms of action keywords & patterns to get strategies
-
   - add read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
   - add variable accretion patterns (how an object becomes influenced by a new variable)
   - use definitions as a data source for relationships if none are found 
-  - make all_vars global variable & remove from params
   - singularize plural nouns
   - use blob.correct() on non-research sources - remove '.,' and other errors or typos 
   - write function to get semantic props of compounds (bio-availability, activation in the host species, etc) & get_common_property
   - make sources query specific - symptom queries should pull from drugs/rxlist/forums/wiki
   - for question sentence_types, reverse verb-subject to subject-verb
   - fix rows csv format
-
 
 ## Functions
 
