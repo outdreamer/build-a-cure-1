@@ -630,47 +630,49 @@ def update_patterns(av):
         & generate patterns for source/target patters in pattern maps 
         and save all generated patterns in 'data/all_patterns.txt'
     '''
-    new_pattern_lines = []
     all_pattern_filename = ''.join([os.getcwd(), '/data/all_patterns.txt'])
     if os.path.exists(all_pattern_filename):
         pattern_contents = read(all_pattern_filename)
         if pattern_contents:
             for line in pattern_contents.split('\n'):
                 pattern_split = line.split('::')
-                pattern_index = pattern_split[0]
-                pattern_key = pattern_split[1]
-                pattern = pattern_split[2]
-                new_pattern_lines.append(pattern)
-                av[pattern_index][pattern_key].append(pattern)
+                if len(pattern_split) > 0:
+                    pattern_index = pattern_split[0]
+                    pattern_key = pattern_split[1]
+                    pattern = pattern_split[2]
+                    if pattern_index == 'pattern_maps':
+                        pattern_map = pattern.split('***')
+                        av[pattern_index][pattern_key][pattern_map[0]] = pattern_map[1]
+                    else:
+                        av[pattern_index][pattern_key].append(pattern)
     else:
+        new_pattern_lines = []
         for pattern_index in ['pattern_index', 'type_pattern_index']:
             for pattern_key, patterns in av[pattern_index].items():
                 for original_pattern in patterns:
                     generated_patterns, av = get_all_versions(original_pattern, 'all', 'all', av) 
                     if generated_patterns:
-                        av[pattern_index][pattern_key] = reversed(sorted(generated_patterns))
+                        av[pattern_index][pattern_key] = list(reversed(sorted(generated_patterns)))
                         for pattern in generated_patterns:
                             new_pattern_lines.append('::'.join([pattern_index, pattern_key, pattern]))
-    version_types = [x for x in av['all_pattern_version_types'] if x != 'maps']
-    for pattern_map_key, pattern_map in av['pattern_maps'].items():
-        new_pattern_map = {}
-        for sp, tp in pattern_map.items():
-            sp_patterns, av = get_all_versions(sp, version_types, 'all', av) 
-            if sp_patterns:
-                for sp_pattern in sp_patterns:
-                    new_pattern_lines.append('::'.join(['pattern_maps', pattern_map_key, sp_pattern]))
-            tp_patterns, av = get_all_versions(tp, version_types, 'all', av) 
-            if tp_patterns:
-                for tp_pattern in tp_patterns:
-                    new_pattern_lines.append('::'.join(['pattern_maps', pattern_map_key, tp_pattern]))
-            for sp_item in sp_patterns:
-                for tp_item in tp_patterns:
-                    new_pattern_map[sp_item] = tp_item
-        av['pattern_maps'][pattern_map_key] = new_pattern_map if new_pattern_map else {}
-    if len(new_pattern_lines) > 0:
-        av['all_patterns'] = reversed(sorted(new_pattern_lines))
-        save(all_pattern_filename, av['all_patterns'])
-    print('all patterns', len(av['all_patterns']))
+                    else:
+                        new_pattern_lines.append('::'.join([pattern_index, pattern_key, original_pattern]))
+        version_types = [x for x in av['all_pattern_version_types'] if x != 'maps']
+        for pattern_map_key, pattern_map in av['pattern_maps'].items():
+            new_pattern_map = {}
+            for sp, tp in pattern_map.items():
+                sp_patterns, av = get_all_versions(sp, version_types, 'all', av) 
+                tp_patterns, av = get_all_versions(tp, version_types, 'all', av) 
+                if sp_patterns:
+                    for sp_item in sp_patterns:
+                        if tp_patterns:
+                            for tp_item in tp_patterns:
+                                new_pattern_lines.append('::'.join(['pattern_maps', pattern_map_key, '***'.join([sp_item, tp_item])]))
+                                new_pattern_map[sp_item] = tp_item
+            av['pattern_maps'][pattern_map_key] = new_pattern_map if new_pattern_map else {}
+        if len(new_pattern_lines) > 0:
+            av['all_patterns'] = list(set(reversed(sorted(new_pattern_lines))))
+            save(all_pattern_filename, av['all_patterns'])
     return av
 
 def reverse_sort(map_list):
@@ -734,7 +736,7 @@ def get_vars():
         'request': ['metadata', 'generate', 'filters', 'data'], # request params
         'wiki': ['section_list'],
         'pos': ['pos', 'verb', 'noun', 'common_word', 'count', 'taken_out', 'clause_marker', 'line', 'prep', 'conj', 'det', 'descriptor', 'original_line', 'word_map'],
-        'structure': ['type', 'name', 'ngram', 'modifier', 'phrase', 'clause', 'subject', 'relationship', 'pattern', 'similar_line'], # structural
+        'structure': ['type', 'name', 'ngram', 'modifier', 'phrase', 'noun_phrase', 'verb_phrase', 'clause', 'subject', 'relationship', 'pattern', 'similar_line'], # structural
         'experiment': ['hypothesis', 'test', 'metric', 'property', 'assumption'], # experiment elements
         'compound': ['compound', 'contraindication', 'interaction', 'side_effect', 'treatment_successful', 'treatment_failed'], # drug elements
         'organism': ['gene', 'expression', 'evolution', 'organ', 'cell', 'nutrient'],
@@ -905,17 +907,21 @@ def get_all_pos(pattern, av):
     return False
 
 def append_list(index_lists, sub_list):
+    sub_list = ' '.join([il for il in sub_list]) if type(sub_list) != str else sub_list
     new_index_list = []
     if type(sub_list) == list:
         for i, item in enumerate(sub_list):
+            item = ' '.join([il for il in item]) if type(item) != str else item
             if len(index_lists) > 0:
                 for index_list in index_lists:
+                    index_list = ' '.join([il for il in index_list]) if type(index_list) != str else index_list
                     new_index_list.append(' '.join([index_list, item]).strip())
             else:
                 new_index_list.append(item)
     else:
         if len(index_lists) > 0:
             for index_list in index_lists:
+                index_list = ' '.join([il for il in index_list]) if type(index_list) != str else index_list
                 new_index_list.append(' '.join([index_list, sub_list]).strip())
         else:
             new_index_list.append(sub_list)
@@ -931,6 +937,7 @@ def is_isolated_alt(subset, av):
     return False
 
 def get_alts(pattern, av):
+    pattern = pattern.strip().replace('__', '')
     all_alts, variables = get_alt_sets(pattern, [], av)
     index_lists = []
     if all_alts:
@@ -1010,7 +1017,6 @@ def get_alt_sets(pattern, all_alts, av):
                 return final_alts, variables
     ''' replace type_pattern_index keywords with sets of patterns from pattern_index '''
     final_alts = []
-    new_item_list = []
     for word in pattern.split(' '):
         nn = get_nonnumeric(word, av)
         if nn in av['tags']:
@@ -1030,25 +1036,16 @@ def generate_alt_patterns(pattern, av):
     - optional strings are indicated by: __option__    
     - pattern = '|VB NN VB&ADV|' means 'VB or NN or VB & ADV'
     '''
-    new_pattern = pattern.strip().replace('__', '')
-    alts = get_alts(new_pattern, av)
+    alts = get_alts(pattern, av)
     if alts:
         if len(alts) > 0:
             ''' now replace optional strings and add that pattern as well '''
             if '__' in pattern:
                 all_patterns = []
                 for alt in alts:
-                    nap_with_options = []
-                    nap_without_options = []
-                    for word in alt.strip().replace('&', ' & ').split(' '):
-                        joined = ''.join(['__', word, '__'])
-                        if joined in pattern:
-                            nap_with_options.append(word)
-                        else:
-                            nap_with_options.append(word)
-                            nap_without_options.append(word)
-                    all_patterns.append(' '.join(nap_with_options))
-                    all_patterns.append(' '.join(nap_without_options))
+                    alt_words = alt.strip().replace('&', ' & ').split(' ')
+                    all_patterns.append(' '.join(alt_words))
+                    all_patterns.append(' '.join([word for word in alt_words if ''.join(['__', word, '__']) not in pattern]))
                 if len(all_patterns) > 0:
                     return all_patterns
             else:
@@ -1141,7 +1138,22 @@ def generate_indexed_patterns(pattern, av):
     if len(new_words) > 0:
         return ' '.join(new_words)
     return False
-    
+
+def correct(line):
+    blob = get_blob(line)
+    if blob:
+        corrected_string = blob.correct().string
+        start = corrected_string.count('(')
+        end = corrected_string.count(')')
+        if start > end:
+            corrected_string = ''.join([corrected_string.split(''), ')'])
+        elif start < end:
+            corrected_string = ''.join(['(', corrected_string.split('')])
+        if corrected_string:
+            corrected_string = corrected_string.replace('..', '.').replace(',.', '.').replace('.,', '.').replace(';.', ';').replace('.;', ';').replace(':.', ':').replace('.:', ':')
+        return corrected_string
+    return False
+
 def generate_correct_patterns(pattern, av):
     '''
         - words like 'bear', 'worm', 'rat' will be logged as a verb even when preceded by determiner
@@ -1157,6 +1169,9 @@ def generate_correct_patterns(pattern, av):
                 if there are no embedded patterns, remove any consecutive delimiters '||'
             - make sure there are no repeats within an alt_set: '|VB VB NN|' should be '|VB NN|'
     '''
+    pattern = correct(pattern)
+    if pattern:
+        return pattern
     return False
 
 def generate_type_patterns(pattern, av):
@@ -1212,18 +1227,16 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
     - collapses embedded alt sets into the same level of alt as the host set
         '||JJ JJR JJS| |WRB RB RBR RBS| VB |VBG VBD||' => '|JJ JJR JJS WRB RB RBR RBS VB VBG VBD|'
     '''
-    #corrected_pattern = generate_correct_patterns(pattern, av)
+    corrected_pattern = generate_correct_patterns(pattern, av)
     #word_patterns_to_iterate = set([x for x in get_all_pos(pattern, av) if type(x) != bool]) # converts words into tags as well
-    word_count = [x for x in pattern.replace('|','').replace('__','').replace('&',' ').split(' ') if x not in av['tags']['ALL'] and x not in av['tags']]
     version_types = av['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
     pattern_map_keys = pattern_map_keys if pattern_map_keys else av['pattern_maps'].keys()
-    print('\n\1: pattern', pattern)
+    print('\npattern', pattern)
     if 'maps' in version_types:
         for key in pattern_map_keys:
             if key in av['pattern_maps']:
                 new_pattern, av = apply_pattern_map(pattern, av['pattern_maps'][key], av)
                 pattern = new_pattern if new_pattern else pattern
-    print('\n\2: pattern', pattern)
     all_to_iterate = []
     if '' in pattern:
         alt_patterns = generate_alt_patterns(pattern, av)
@@ -1235,12 +1248,24 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
     all_patterns = set([x for x in all_to_iterate if type(x) != bool])
     final_patterns = set()
     for ap in all_patterns:
+        word_count = set()
+        for x in pattern.replace('|','').replace('__','').replace('&',' ').split(' '):
+            nn = get_nonnumeric(x, av)
+            pos = get_nltk_pos(x, av)
+            if nn not in av['tags']['ALL'] and nn not in av['tags'] and nn not in av['pattern_index'] and pos not in av['tags']['DPC']:
+                word_count.add(x)
         if len(word_count) > 0:
             synonym_pattern, av = generate_synonym_patterns(ap, av)
             if synonym_pattern:
-                final_patterns.add(synonym_pattern)
-                final_patterns.add(generate_operator_patterns(synonym_pattern, av))
-        final_patterns.add(generate_operator_patterns(ap, av))
+                if synonym_pattern != ap:
+                    final_patterns.add(synonym_pattern)
+                    op = generate_operator_patterns(synonym_pattern, av)
+                    if op:
+                        final_patterns.add(op)
+        else:
+            op = generate_operator_patterns(ap, av)
+            if op:
+                final_patterns.add(op)
     final_patterns = set([x for x in final_patterns if type(x) != bool])
     if len(final_patterns) > 0:
         return final_patterns, av
@@ -1356,12 +1381,6 @@ def get_polarity(line):
             if sentiment.polarity:
                 return roun(sentiment.polarity, 1)
     return 0
-
-def correct_spelling(line):
-    blob = Sentence(line)
-    if blob:
-        return blob.correct()
-    return text
 
 def get_subjectivity(line):
     return line
@@ -1510,9 +1529,9 @@ def remove_stopwords(line, word_map):
     return line
 
 def replace_quotes_with_parenthesis(line):
+    new_line = []
     quotes = line.count('"')
     if quotes > 0:
-        new_line = []
         quote_pairs = quotes / 2
         if quote_pairs == int(quote_pairs):
             found_first = False
@@ -1533,7 +1552,7 @@ def replace_quotes_with_parenthesis(line):
                     new_line.append(w)
         else:
             print('uneven quotes', quote_pairs, quotes, line)
-        # now all quote content should be surrounded by parentheses instead
+        ''' now all quote content should be surrounded by parentheses instead '''
         line = ' '.join(new_line) if len(new_line) > 0 else line
     return line
 
@@ -1707,29 +1726,22 @@ def get_definition_keywords(word):
     ''' add option to use local_database/index (phrases, relationships) or pull from a data source '''
     defs = get_definitions(word)
     if defs:
-        keywords = []
-        for d in defs:
-            words = d.split(' ')
-            for w in words:
-                keywords.append(w)
+        keywords = [w for d in defs for w in d.split(' ')]
         if len(keywords) > 0:
             return keywords
     return False
 
 def get_syn_from_definition(word, word_pos):
     candidates = set()
-    definitions = get_definitions(word)
-    if definitions:
-        for d in definitions:
+    defs = get_definitions(word)
+    if defs:
+        for d in defs:
             for w in d:
                 dpos = get_nltk_pos(w, av)
                 if dpos == word_pos:
                     candidates.add(w)
     if len(candidates) > 0:
-        '''
-        to do: if found other words with same pos in definitions, 
-        filter by meaning & similarity to word
-        '''
+        ''' to do: if found other words with same pos in definitions, filter by meaning & similarity to word '''
         return candidates
     return False
 
@@ -1741,6 +1753,7 @@ def standard_text_processing(text, av):
     lines = text.split('\n')
     for i, line in enumerate(lines):
         line = replace_quotes_with_parenthesis(line)
+        line = correct(line)
         active_line, av = get_all_versions(line, 'all', 'passive_to_active', av)
         line = active_line if active_line else line
         if line not in article_lines:
@@ -2131,7 +2144,9 @@ def apply_pattern_map(line, pattern_map, av):
     return line, av
 
 def find_pattern(line, av):
-    ''' to do: this is to cluster repeated patterns in a lines list '''
+    ''' to do: this is to cluster repeated patterns in a lines list 
+    add call to get_all_versions if pattern found
+    '''
     return False
 
 def match_patterns(line, pattern_key, av):
@@ -2139,27 +2154,25 @@ def match_patterns(line, pattern_key, av):
     if line is a sequence, get patterns between objects in the list,
     rather than patterns in a line
     '''
-    print('mp')
     found_patterns = {}
     if type(line) == list or type(line) == set:
         found_patterns = get_patterns_between_objects(line)
     else:
         pos_lines, av = get_all_versions(line, 'all', 'all', av) 
         if pos_lines:
+            print('match_patterns:pos_lines', pos_lines)
             if len(pos_lines) > 0:
                 for pos_line in pos_lines:
-                    if pattern_key in av['pattern_index']:
-                        combined_key = ''.join([pattern_key, '_pattern'])
-                        for pattern in av['pattern_index'][pattern_key]:
-                            '''
-                            only want to generate source patterns here, 
-                            send a flag to not generate target patterns
-                            '''
-                            found_subsets, av = get_pattern_source_subsets(line, pos_line, pattern, 'pattern', av)
-                            if found_subsets:
-                                if combined_key not in found_patterns:
-                                    found_patterns[combined_key] = {}
-                                found_patterns[combined_key][pattern] = found_subsets
+                    for pattern_index in ['pattern_index', 'type_pattern_index']:
+                        if pattern_key in av[pattern_index]:
+                            combined_key = ''.join([pattern_key, '_pattern'])
+                            for pattern in av[pattern_index][pattern_key]:
+                                ''' only want to generate source patterns here, send a flag to not generate target patterns '''
+                                found_subsets, av = get_pattern_source_subsets(line, pos_line, pattern, 'pattern', av)
+                                if found_subsets:
+                                    if combined_key not in found_patterns:
+                                        found_patterns[combined_key] = {}
+                                    found_patterns[combined_key][pattern] = found_subsets
     if found_patterns:
         return found_patterns, av
     return False, av
@@ -2229,31 +2242,26 @@ def get_pattern_source_subsets(line, pos_line, pattern, get_type, av):
         to do: this prevents users from configuring patterns with numbers like 14alpha-deoxy-enzyme
     '''
     print('gpss')
-    delimiter = find_delimiter(line, av)
-    pos_patterns, av = get_all_versions(pattern, 'all', 'all', av) 
-    if pos_patterns and delimiter:
-        if len(pos_patterns) > 0:
-            subsets = []
-            for pos_pattern in pos_patterns:
-                if pos_pattern == pos_line:
-                    return [pattern]
-                if pos_pattern in pos_line:
-                    if get_type == 'pattern':
-                        subsets = get_pattern_source_words(line, pos_line.split(pos_pattern))
-                    else:
-                        ''' split a line into subsets so each pattern section is in its own subset '''
-                        ''' ['pattern_instance_1', 'non-pattern-words', 'pattern_instance_2', 'other non-pattern words'] '''
-                        non_patterns = pos_line.split(pos_pattern)
-                        sources = get_pattern_source_words(line, non_patterns)
-                        if sources:
-                            for i, subset in enumerate(sources):
-                                ''' to do: convert back to original line subset '''
-                                subsets.append(subset)
-                                if i < len(non_patterns):
-                                    subsets.append(non_patterns[i])
-            if subsets:
-                if len(subsets) > 0:
-                    return subsets, av
+    if pattern == pos_line:
+        return [pattern]
+    if pattern in pos_line:
+        subsets = []
+        if get_type == 'pattern':
+            subsets = get_pattern_source_words(line, pos_line.split(pattern))
+        else:
+            ''' split a line into subsets so each pattern section is in its own subset '''
+            ''' ['pattern_instance_1', 'non-pattern-words', 'pattern_instance_2', 'other non-pattern words'] '''
+            non_patterns = pos_line.split(pattern)
+            sources = get_pattern_source_words(line, non_patterns)
+            if sources:
+                for i, subset in enumerate(sources):
+                    ''' to do: convert back to original line subset '''
+                    subsets.append(subset)
+                    if i < len(non_patterns):
+                        subsets.append(non_patterns[i])
+        if subsets:
+            if len(subsets) > 0:
+                return subsets, av
     return False, av
 
 def get_pattern_source_words(source_line, exclude_list):
@@ -2320,4 +2328,21 @@ def get_nltk_pos(word, av):
                     if blob_pos in av['tags']['ALL_V']:
                         return blob_pos
                 return item[1]
+    return False
+
+def split_by_subset(items, check_var, check_list):
+    subsets = []
+    subset = []
+    for w in items:
+        check_var = get_nltk_pos(w) if check_var == 'pos' else w
+        if check_var:
+            if check_var in check_list:
+                subsets.append(' '.join(subset))
+                subset = []
+            else:
+                subset.append(w)
+    if len(subset) > 0:
+        subsets.append(' '.join(subset))
+    if len(subsets) > 0:
+        return subsets
     return False

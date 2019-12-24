@@ -185,6 +185,17 @@ def find_strategy(pattern, matches, row, av):
     return row
 
 def find_insight(pattern, matches, row, av):
+    '''
+    - insights in a article doc are more likely to:
+    - have more topic-related keywords
+    - have a causation verb (induces, associated) - add function to identify causation verbs
+    - relate to intents important to agents (health, avoid illness)
+      - "saturated fat intake induces a cellular reprogramming that is associated with prostate cancer progression and lethality"
+      https://medicalxpress.com/news/2019-11-high-fat-diet-proven-fuel-prostate.html
+      - "The presence of many disulfide bonds making this a possible site for oxidative inactivation by ozone"
+      https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4927674/
+      - add filtering of insights to apply directly to the topic of the problem space of the target condition or mechanisms requested in metadata
+    '''
     return row
 
 def find_priority(pattern, matches, row, av):

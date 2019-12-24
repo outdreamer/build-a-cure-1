@@ -1,245 +1,132 @@
 # Sources:
 
 - check chembl search if you can search for a condition & return molecules known to treat it
-
 - chembl similarity function can tell you how likely it is that the generated compound mimics functionality of another compound
+- index articles you pull from sources so youre not repeating the query & store it across requests
+- make sources query specific - symptom queries should pull from drugs/rxlist/forums/wiki
 
-  ## Data 
-    - pull these properties for compounds on wiki:
-      Bioavailability 63–89%[4]:73
-      Protein binding 10–25%[5]
-      Metabolism  Predominantly in the liver[3]
-      Metabolites APAP gluc, APAP sulfate, APAP GSH, APAP cys, NAPQI[6]
-      Onset of action Pain relief onset by route:
-        By mouth – 37 minutes[7]
-        Buccal – 15 minutes[7]
-        Intravenous – 8 minutes[7]
-      Elimination half-life 1–4 hours[3]
-      Excretion Urine (85–90%)[3]
-
-  - index articles you pull from sources so youre not repeating the query & store it across requests
-  
+## Data 
+  - pull these properties for compounds on wiki:
+        Bioavailability 63–89%[4]:73
+        Protein binding 10–25%[5]
+        Metabolism  Predominantly in the liver[3]
+        Metabolites APAP gluc, APAP sulfate, APAP GSH, APAP cys, NAPQI[6]
+        Onset of action Pain relief onset by route:
+          By mouth – 37 minutes[7]
+          Buccal – 15 minutes[7]
+          Intravenous – 8 minutes[7]
+        Elimination half-life 1–4 hours[3]
+        Excretion Urine (85–90%)[3]
   - find source of bio keywords & synonyms
 
-''' in case there are no patterns found, try splitting into ngrams '''
-words = line.split(' ')
-word_range = 3 if len(words) > 5 else 2 if len(words) > 3 else 1
-for i in range(0, word_range):
-subset = get_ngrams(words, word, i, 'both') # ngrams
-''' to do: finish ngram pattern matching '''
-
-# Code quality
-  - store line splitting in row['words'] variable to avoid doing the operation again 
-  - remove len(0) checks for lists when possible
-  - consolidate excessive chained return false checks
+## Code quality
+  - remove len(0) checks for lists when possible & consolidate excessive chained response checks
   - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
-  - find every time you use this logic and replace with function & make sure youre adding the final item
-      clause_split = []
-      relation = set()
-      for c in clause.split(' '):
-          if c in ['+', '-', '=']:
-              clause_split.append(relation)
-              clause_split.append(c)
-              relation = set()
-          else:
-              relation.add(c)
-      if relation != set():
-          clause_split.append(relation)
-
-      new_subsets = []
-      words = line.split(' ')
-      new_subset = []
-      for w in words:
-          pos = get_nltk_pos(w)
-          for key in ['noun', 'verb', 'verb_keywords', 'adv', 'adj']:
-              pos_list = all_vars['pos_tags'][key]:
-              if pos in pos_list:
-                  new_subset.append(w)
-              else:
-                  new_subsets.append(new_subset)
-                  new_subset = []
-    non_dpc_segments = []
-    new_segment = []
-    for w in line.split(' '):
-        pos = get_nltk_pos(w, all_vars)
-        if pos:
-            if pos in tags['ALL_V'] or pos in tags['ALL_N'] or pos in tags['ADV'] or pos in tags['ADJ']:
-                new_segment.append(w)
-            else:
-                non_dpc_segments.append(' '.join(new_segment))
-                new_segment = []
-
 
 ## Structural Objects
-
-  - some of these types have type mappings so generalize when you can
-        condition = state
-        symptom = function = side_effects
-        function = relationship
-        synthesis = build process
-        structure = pattern
+  - some of these types have type mappings so generalize when you can: condition = state, symptom = function = side_effects, function = relationship, synthesis = build process, structure = pattern
   - finish adding combined operator output impact
   - repeated options shouldnt happen within an alt set: |NNS NNS VBZ2 VBZ3 NNS| 
   - random indexes: |suppose thought1 assumed| that3 DPC |suppose thought6 assumed| that8 ALL_N9 ALL_N10 ALL_N11
-  - add call to get_all_versions when youve identified a new pattern when you implement find_pattern()
-  - pattern processing order:
-    - examine all your iterated lists bc they determine processing order (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
-      - if you replace modifiers first, then clause patterns, you can ensure that words get rearranged in a way that is likelier to be correct
-      - add ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos
-        - show preference for verbs in ambiguous cases (associate, bear) should return a verb even though it can be a noun
-        - based on processing order, isolate which tags would be identified as other objects first
+  - pattern processing order: examine iterated lists that determine processing order: (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
+    - if you replace modifiers first, then clause patterns, you can ensure that words get rearranged in a way that is likelier to be correct
+    - add ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos
+      - show preference for verbs in ambiguous cases (associate, bear) should return a verb even though it can be a noun
+      - based on processing order, isolate which tags would be identified as other objects first
   - check synonym replacements & make sure theyre mostly unique
-    'has effect' => 'have induce', 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
+    - 'has effect' => 'have induce', 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
     - 'by' can indicate a process/mechanism "it works by doing x", "as"
   - support conversion between pos types like 'verb-to-noun':
-      - 'subject1 verb clause because subject2 verb clause' => 'subject2 verb-to-noun causes subject1 verb-to-noun'
-      - 'the process activated x because y inhibits b' => 'y b-inhibition causes the process to activate x' => 'y b-inhibition enables process to activate x'
+    - 'subject1 verb clause because subject2 verb clause' => 'subject2 verb-to-noun causes subject1 verb-to-noun'
+    - 'the process activated x because y inhibits b' => 'y b-inhibition causes the process to activate x' => 'y b-inhibition enables process to activate x'
+  - implement a find_pattern function that aggregates patterns across an article set, & implement a function to scan sources & pull & index patterns from them
+  - fix rows csv format & read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
+  - use definitions as a data source for relationships if none are found 
+  - write function to get semantic props of compounds (bio-availability, activation in the host species, etc) & get_common_property between objects
+  - for question sentence_types, standardize verb-subject to subject-verb: 'V DET noun_phrase ... ?' => 'DET noun_phrase V ...'
+  - add function to combine functions by intent get_net_impact(functions)
+  - add adverb/det/adjective/operator processing to your function definition so 'never finishes' is not equated with 'finish'
+  - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
+
+## Functions
+
+- add variable accretion patterns (how an object becomes influenced by a new variable)
+- add get_common_properties function to do extra property-based searches after identifying objects with extract
+- add wiki & drugs & nih api calls to sources & api support for those data sources in get_data_source/build_indexes
+- build math logic/plain language translation function - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
+- write function to identify contradictory information (retracted studies, false information, conspiracy theory (anti-vax), opinion) & selecting least likely to be false
+  - this will be useful when youre pulling non-research study data, like when youre looking up a metric or compound if you dont find anything on wiki
+- write function to identify authoritative sources (wiki is more trustworthy than a holistic or commercialized blog)
+- in order to implement this without ml, you need functions to identify conceptual metadata of a compound or organism, so at least these to get started:
   - add identification functions:
+      - types (['structure', 'life form', 'organic molecule'] from 'protein') - add generate_type_patterns() after get_type
+      - get_topic
       - objects (nouns like 'protein')
       - components (topical nouns that are found in another topical component, like organelles of a cell)
       - attributes (attribute metric/feature nouns like 'toxicity')
       - functions (verbs like 'ionizing', 'activate', inputs/outputs like subject/predicate nouns)
       - variables (function inputs like subject/modifier nouns)
-      - types (['structure', 'life form', 'organic molecule'] from 'protein') - add generate_type_patterns() after get_type
-      - get_topic
-  - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
-    - implement a find_pattern function that aggregates repeated pos/type/abstract patterns across a article/line set
-      - then you can enter patterns for medical find_object functions by scanning articles & applying find_patterns 
-        (same for modifiers, clauses, & phrases so you dont have to configure every pattern manually)
-  - add filtering of insights to apply directly to the topic of the problem space of the target condition or mechanisms requested in metadata
-  - add mechanisms of action keywords & patterns to get strategies
-  - add read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
-  - add variable accretion patterns (how an object becomes influenced by a new variable)
-  - use definitions as a data source for relationships if none are found 
-  - singularize plural nouns
-  - use blob.correct() on non-research sources - remove '.,' and other errors or typos 
-  - write function to get semantic props of compounds (bio-availability, activation in the host species, etc) & get_common_property
-  - make sources query specific - symptom queries should pull from drugs/rxlist/forums/wiki
-  - for question sentence_types, reverse verb-subject to subject-verb
-  - fix rows csv format
-
-## Functions
-
-- add get_common_properties function to do extra property-based searches after identifying objects with extract
-
-- add wiki & drugs & nih api calls to sources & api support for those data sources in get_data_source/build_indexes
-
-- build math logic/plain language translation function - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
-
-- write function to identify contradictory information (retracted studies, false information, conspiracy theory (anti-vax), opinion) & selecting least likely to be false
-  - this will be useful when youre pulling non-research study data, like when youre looking up a metric or compound if you dont find anything on wiki
-
-- write function to identify authoritative sources (wiki is more trustworthy than a holistic or commercialized blog)
-
-- in order to implement this without ml, you need functions to identify conceptual metadata of a compound or organism, so at least these to get started:
-  - function-identifying function 
-  - attribute-identifying function 
-  - type-identifying function
-
-  - once you have this standard object analysis with some object model insights, you can apply them to bio systems
-    - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
-    - "isolate a pathogen cell before destroying it so it cant communicate info about what destroyed it to other pathogens to help them evolve resistance"
-
-  - later you can do more advanced analysis, like:
-    - determining position/role in a system 
-    - determining set of patterns for its functions 
-    - determining rules associated with its core functions (change rules, boundary rules)
-    - determining side effects in edge cases, interacting with other bio-system layers
-    - determining solution via conceptual route
-
-- write a function to derive core component functions for any system
-
-  - then you can write functions to:
-    - determine equivalent functions
-    - determine more optimal version of a function
-
-    when generating solutions, change core functions to vary to describe any function set that builds any other function set in a system
-    - set of binding functions for element atoms
-    - set of molecular interaction physics for compound molecules
-    - set of interaction functions for microorganisms
-    - set of priority functions for microorganisms
-
+      - test on bio systems:
+        - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
+        - "isolate a pathogen cell before destroying it so it cant communicate info about what destroyed it to other pathogens to help them evolve resistance"
+  - functions to determine:
+    - position/role in a system 
+    - function type associated with its core functions (change rules, boundary rules)
+    - emergent effects in edge cases, rule change states, & interacting with other system layers
+    - solution via conceptual route
+- write a function to derive core component functions for any system - then you can write functions to:
+    - determine equivalent functions or more optimal version of a function
+    - determine function intent
+    - alter core functions used to alter function intent
+    - when generating solutions, change core functions to vary to describe any function set that builds any other function set in a system
+      - set of binding/interaction/priority functions for element atoms
 - add function to test chemical reactions: https://cheminfo.github.io/openchemlib-js/docs/classes/reaction.html
-
-- finish get_conceptual_metadata (strategies, insights)
-
-  - insights in a article doc are more likely to:
-    - have more topic-related keywords
-    - have a causation verb (induces, associated) - add function to identify causation verbs
-    - relate to intents important to agents (health, avoid illness)
-      - "saturated fat intake induces a cellular reprogramming that is associated with prostate cancer progression and lethality"
-      https://medicalxpress.com/news/2019-11-high-fat-diet-proven-fuel-prostate.html
-      - "The presence of many disulfide bonds making this a possible site for oxidative inactivation by ozone"
-      https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4927674/
-
-- get strategies used by an organism or used on a compound
-
-- add function to combine functions by intent get_net_impact(functions)
-
-- add adverb/det/adjective processing to your function definition so that 'never finishes' is not equated with 'finish'
-
-- function to predict a compound for a pathogen/condition without ml requires data:
-  - attributes (compound metadata)
-  - gene expression impact
-  - interaction rules with common cell types it's expected to be exposed to (in the bloodstream if taken orally, in the lungs if inhaled)
+- add keyword processing to apply_find_function 
+- fill in keywords & patterns for objects (strategies/mechanisms used by an organism/on a compound)
+- function to predict a compound for a pathogen/condition requires data:
+  - compound & pathogen attributes (compound metadata like metabolism/dose/interactions/effects)
+  - variable/state impact (gene expression)
+  - interaction rules with expected object types (in the bloodstream if taken orally, in the lungs if inhaled)
   - sub-components that could be altered through interaction to neutralize its functionality
-  - scope of the compound's effects
-  - how it's metabolized, to know whether it could be taken at an effective dose
-  - pathogen structure & metadata
-
+  - dependency scope (volume of layers of relevance)
 
 Conceptual:
-
 - function to identify & remove common article intents with high probability of falsehood to reduce it to just facts
-
 - add intent matching so you can compare treatment relationships with article intents to see if its actually a sentence with a treatment in it
   - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
-
 - use distortion patterns of entities like atlases, templates, solution progressions to form a compressed version of the host system
   https://techxplore.com/news/2019-11-medical-image-analysis.html
-
 - add stressor language patterns:
-  Sesquiterpenes work as a liver and gland stimulant and contain caryophyllene and valencene. 
-  Research from the universities of Berlin and Vienna show increased oxygenation around the pineal and pituitary glands.
-  While offering a variety of healing properties, the most important ability of the monoterpenes is that they can reprogram miswritten information in the cellular memory (DNA)
-  Terpene Alcohols stimulate the immune system, work as a diuretic and a general tonic.
-  Sesquiterpene Alcohols are ulcer-protective (preventative).
-  Phenols clean receptor sites of cells so sesquiterpenes can delete faulty information from the cell. They contain high levels of oxygenating molecules and have anioxidant properties.
-  Camphor, borneol, and eucalyptol are monoterpene ketones that the available body of evidence suggests may be toxic to the nervous system depending on dosage, while jasmine, fenchone, and isomenthone are considered nontoxic. Ketones aid the removal of mucous, stimulate cell and tissue regeneration, promote the removal of scar tissue, aid digestion, normalize inflammation, relieve pain, reduce fever, may inhibit coagulation of blood, and encourage relaxation.
-  https://www.homasy.com/blogs/tutorials/what-are-the-major-compounds-of-essential-oils
-  Furthermore, histidine can protect the body from radiation damage. It does this by binding to the damaging molecules, therefore eliminating them.
-
+    Sesquiterpenes work as a liver and gland stimulant and contain caryophyllene and valencene. 
+    Research from the universities of Berlin and Vienna show increased oxygenation around the pineal and pituitary glands.
+    While offering a variety of healing properties, the most important ability of the monoterpenes is that they can reprogram miswritten information in the cellular memory (DNA)
+    Terpene Alcohols stimulate the immune system, work as a diuretic and a general tonic.
+    Sesquiterpene Alcohols are ulcer-protective (preventative).
+    Phenols clean receptor sites of cells so sesquiterpenes can delete faulty information from the cell. They contain high levels of oxygenating molecules and have anioxidant properties.
+    Camphor, borneol, and eucalyptol are monoterpene ketones that the available body of evidence suggests may be toxic to the nervous system depending on dosage, while jasmine, fenchone, and isomenthone are considered nontoxic. Ketones aid the removal of mucous, stimulate cell and tissue regeneration, promote the removal of scar tissue, aid digestion, normalize inflammation, relieve pain, reduce fever, may inhibit coagulation of blood, and encourage relaxation.
+    https://www.homasy.com/blogs/tutorials/what-are-the-major-compounds-of-essential-oils
+    Furthermore, histidine can protect the body from radiation damage. It does this by binding to the damaging molecules, therefore eliminating them.
 - for queries of functions like "disable a gene", you can include intent & function metadata to point to sets of compounds that could do the required edits:
   - find compound (protein, enzyme, etc) that unfolds DNA
   - find compound that modifies (edits, activates, removes) the gene once unfolded as specifically as possible 
     (can be a compound with a cutting subcomponent at the right length to target the dna if you can bind it to the first or last gene with another compound)
-
   - find compound with function = "refolds DNA"
   https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
-
 
 # Questions
 - are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?
 
-
 # ML
-
 - the full data set should have numerical categories indicating condition(s) treated in the output label so it can be separated into sub-sets by condition treated
-
 - incorporate stacked autoencoders to leverage unsupervised learning to get initial weights
-
 - incorporate cosine loss rather than categorical cross entropy
-
 - add recurrent nn example code that can be copied & plugged in without modification
-
 - consider using dimensionality reduction as a way to identify abstract patterns & functions to explain common deviations from patterns
   https://miro.medium.com/max/1659/1*nQrZmfQE3zmMnCJLb_MNpQ.png
   https://towardsdatascience.com/step-by-step-signal-processing-with-machine-learning-pca-ica-nmf-8de2f375c422
-
 - use this or similar as example when describing current state of problem solving: 
   https://miro.medium.com/max/462/1*X7dQgs1gsJ0Sktz3t7J21Q.png
   https://towardsdatascience.com/feature-extraction-techniques-d619b56e31be
-
 
 # Examples:
 
@@ -351,7 +238,6 @@ Conceptual:
 # Diagrams
 
 - finish diagrams for specific concepts, core functions, and concept operations
-
 - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
     Argument to moderation (false compromise, middle ground, fallacy of the mean, argumentum ad temperantiam) – assuming that the compromise between two positions is always correct.[16]
     Continuum fallacy (fallacy of the beard, line-drawing fallacy, sorites fallacy, fallacy of the heap, bald man fallacy) – improperly rejecting a claim for being imprecise.[17]
