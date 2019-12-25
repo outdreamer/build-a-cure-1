@@ -808,23 +808,22 @@ def fill_synonyms(path, av):
         for filename in os.listdir(path):
             full_path = '/'.join([path, filename]) 
             if os.path.exists(full_path) and os.path.isfile(full_path):
-                word_map = read(full_path)
-                if word_map:
+                synonym_map = read(full_path)
+                if synonym_map:
                     if 'sources' not in filename:
-                        for top_element in word_map:
-                            av['supported_core'][top_element] = word_map[top_element]
+                        for top_element in synonym_map:
+                            av['supported_core'][top_element] = synonym_map[top_element]
                             av['supported_stems'][top_element] = set()
-                            if type(word_map[top_element]) == list:
-                                for y in word_map[top_element]:
+                            if type(synonym_map[top_element]) == list:
+                                for y in synonym_map[top_element]:
                                     av = process_synonym_element(y, top_element, av)
-                            elif type(word_map[top_element]) == dict:
-                                for k, y in word_map[top_element].items():
+                            elif type(synonym_map[top_element]) == dict:
+                                for k, y in synonym_map[top_element].items():
                                     av['supported_stems'][top_element].add(get_stem(k))
                                     av = process_synonym_element(y, top_element, av)
                                     av = process_synonym_element(y, k, av)     
                     else:
-                        print('word map', word_map)
-                        av['sources'] = word_map
+                        av['sources'] = synonym_map
     return av
 
 def process_synonym_element(y, keyword, av):
@@ -1184,22 +1183,89 @@ def generate_type_patterns(pattern, av):
 
 def generate_synonym_patterns(pattern, av):
     ''' first check that words are not in supported keywords, then get the synonym '''
-    new_pattern = []
-    for word in pattern.split(' '):
+    words = pattern.split(' ')
+    variables = {}
+    new_words = []
+    logged_grams = []
+    logged_syns = []
+    for i, word in enumerate(words):
+        if len(word) > 0:
+            bi_gram = words[i:i + 2] if (i + 2) < len(words) else None
+            tri_gram = words[i:i + 3] if (i + 3) < len(words) else None
+            if bi_gram or tri_gram:
+                gram_list = [bi_gram, tri_gram]
+                for gram in gram_list:
+                    if gram:
+                        nonnumeric = get_nonnumeric(' '.join(gram), av)
+                        if nonnumeric not in av['tags']['ALL'] and nonnumeric not in av['tags'] and av['type_pattern_index'] and nonnumeric not in av['pattern_index']:
+                            ''' this is a word, check for synonyms '''
+                            synonym, av = replace_with_syns([nonnumeric], None, ['synonym'], av)
+                            if not synonym:
+                                synonym, av = replace_with_syns([nonnumeric], None, ['common', 'standard', 'similarity'], av)
+                            if synonym:
+                                if synonym != nonnumeric:
+                                    new_words.append(nonnumeric)
+                                    variables[nonnumeric] = synonym
+                                else:
+                                    new_words.append(nonnumeric)
+                            else:
+                                new_words.append(nonnumeric)
+                        else:
+                            new_words.append(nonnumeric)
+            else:
+                new_words.append(word)
+    if len(new_words) > 0:
+        final_words = []
+        for w in new_words:
+            found_synonym_var = []
+            for k, v in variables.items():
+                if k in w:
+                    found_synonym_var.append(v)
+                if len(final_words) > 0:
+                    if k.split(' ')[0] == final_words[-1].split(' ')[-1]:
+                        final_words[-1] = ' '.join(final_words[-1].split(' ')[0: -1])
+                if k.split(' ')[-1] == w.split(' ')[0]:
+                    w = ' '.join(w.split(' ')[1:])
+            if w in variables:
+                final_words.append(variables[w])
+            elif len(found_synonym_var) == 0:
+                if len(final_words) > 0:
+                    if final_words[-1] in w:
+                        final_words.pop()
+                    if w not in final_words[-1]:
+                        final_words.append(w)
+                else:
+                    final_words.append(w)
+        last_words = []
+        for w in final_words:
+            if ' ' in w:
+                prev_word = final_words[-1].split(' ')[-1]
+                prev_two_words = final_words[-1].split(' ')[-2:]
+                if prev_two_words == w.split(' ')[0:2]:
+                    w = ' '.join(w.split(' ')[2:])
+                elif prev_word == w.split(' ')[0]:
+                    w = ' '.join(w.split(' ')[1:])
+            last_words.append(w)
+        if len(last_words) > 0:
+            new_pattern = ' '.join(last_words)
+            for k, v in variables.items():
+                new_pattern = new_pattern.replace(k, v)
+            return new_pattern, av
+    for word in words:
         nonnumeric = get_nonnumeric(word, av)
         if nonnumeric not in av['tags']['ALL'] and nonnumeric not in av['tags'] and av['type_pattern_index'] and nonnumeric not in av['pattern_index']:
             ''' this is a word, check for synonyms '''
-            synonym, av = replace_with_syns(word, None, ['synonym'], av)
+            synonym, av = replace_with_syns(nonnumeric, None, ['synonym'], av)
             if not synonym:
-                synonym, av = replace_with_syns(word, None, ['common', 'standard', 'similarity'], av)
+                synonym, av = replace_with_syns(nonnumeric, None, ['common', 'standard', 'similarity'], av)
             if synonym:
-                new_pattern.append(synonym)
+                new_words.append(synonym)
             else:
-                new_pattern.append(word)
+                new_words.append(word)
         else:
-            new_pattern.append(word)
-    if len(new_pattern) > 0:
-        return ' '.join(new_pattern), av
+            new_words.append(word)
+    if len(new_words) > 0:
+        return ' '.join(new_words), av
     return False, av
 
 def generate_operator_patterns(pattern, av):
@@ -1228,10 +1294,9 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
         '||JJ JJR JJS| |WRB RB RBR RBS| VB |VBG VBD||' => '|JJ JJR JJS WRB RB RBR RBS VB VBG VBD|'
     '''
     corrected_pattern = generate_correct_patterns(pattern, av)
-    #word_patterns_to_iterate = set([x for x in get_all_pos(pattern, av) if type(x) != bool]) # converts words into tags as well
     version_types = av['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
     pattern_map_keys = pattern_map_keys if pattern_map_keys else av['pattern_maps'].keys()
-    print('\npattern', pattern)
+    print('pattern', pattern)
     if 'maps' in version_types:
         for key in pattern_map_keys:
             if key in av['pattern_maps']:
@@ -1564,11 +1629,15 @@ def select_option(alt_phrase, word_map):
     '''
     delimiter = [c for c in '/|' if c in alt_phrase]
     alts = alt_phrase.split(delimiter)
-    alt_pos = [word_map[a] for a in alts]
-    if len(alt_pos) > 0:
-        if alt_pos[0]:
-            default_pos = alt_pos[0]
-            found_non_default = [True for a in alt_pos if a != default_pos]
+    alt_pos = []
+    if len(alts) > 0:
+        for a in alts:
+            if a in word_map:
+                alt_pos.append(word_map[a])
+        if len(alt_pos) > 0:
+            alt_pos = alt_pos[0]
+        if alt_pos:
+            found_non_default = [True for a in alt_pos if a != alt_pos]
             if found_non_default:
                 ''' these options are different pos so dont remove them '''
                 alt_phrase = alt_phrase.replace(delimiter, '-')
@@ -1693,27 +1762,29 @@ def downloads(paths):
             nltk.download('maxent_ne_chunker')
     return True
 
-def replace_with_syns(line, word_map, check_types, av):
+def replace_with_syns(words, word_map, check_types, av):
     new_text = []
     check_types = ['synonym', 'common', 'standard', 'similarity'] if not check_types else check_types
     # dont add stem-similarity replacement bc you still need pos identification
-    for w in line.split(' '):
+    for w in words:
         word = ''.join([x for x in w if x == '-' or x == ' ' or x == '_' or x in av['alphabet']]) # some synonyms have dashes and spaces
         pos = word_map[w] if word_map and w in word_map else get_nltk_pos(w, av)
         if pos:
             if pos not in av['tags']['exclude'] and pos not in av['tags']['DPC']:
                 match, check_type = find_matching_synonym(word, pos, check_types, None, av)
                 if match:
-                    if w not in av['supported_synonyms']:
-                        av['supported_synonyms'][w] = match
-                    new_text.append(w.replace(word, match))
+                    if match != w:
+                        if w not in av['supported_synonyms']:
+                            av['supported_synonyms'][w] = match
+                        new_text.append(w.replace(word, match))
+                    else:
+                        new_text.append(w)
                     ''' add synonym mapping to avoid checking all check_types for this word in future bc 'synonym' check_type should return it now '''
                 else:
                     new_text.append(w)
     if len(new_text) > 0:
         return ' '.join(new_text), av
-    return line, av
-
+    return ' '.join(words), av
 
 def get_definitions(word):
     defs = Word(word).definitions
@@ -1746,6 +1817,7 @@ def get_syn_from_definition(word, word_pos):
     return False
 
 def standard_text_processing(text, av):
+    print('stp', text)
     text = concatenate_species(text.strip())
     text = standardize_delimiter(text)
     text = standardize_punctuation(text)
@@ -1754,20 +1826,18 @@ def standard_text_processing(text, av):
     for i, line in enumerate(lines):
         line = replace_quotes_with_parenthesis(line)
         line = correct(line)
+        singularize = get_singular(line)
         active_line, av = get_all_versions(line, 'all', 'passive_to_active', av)
         line = active_line if active_line else line
         if line not in article_lines:
             article_lines[line] = {}
         for word in line.split(' '):
             pos = get_nltk_pos(word, av)
-            if pos:
-                article_lines[line][word] = pos
-            else:
-                article_lines[line][word] = ''
+            article_lines[line][word] = pos if pos else ''
         #line = remove_stopwords(line, article_lines[line])
-        syn_line, av = replace_with_syns(line, article_lines[line], None, av)
+        syn_line, av = replace_with_syns(line.split(' '), article_lines[line], None, av)
         if syn_line:
-            article_lines[syn_ine] = article_lines[line]
+            article_lines[syn_line] = article_lines[line]
     if article_lines:
         return article_lines, av
     return False, av
@@ -1892,8 +1962,8 @@ def matches(word, word_pos, k, check_type, word_type, av):
         if k and w:
             pos_k = get_nltk_pos(k, av)
             if check_type == 'standard':
-                w = conjugate(w, word_pos, 'VB', av) # standardize tense to infinitive
-                k = conjugate(k, pos_k, 'VB', av)
+                w = conjugate(w, 'VB', av) # standardize tense to infinitive
+                k = conjugate(k, 'VB', av)
             elif check_type == 'stem':
                 if w in av['supported_stems'] and k in av['supported_stems']:
                     w = av['supported_stems'][w]
@@ -1998,9 +2068,9 @@ def concatenate_species(data):
     data = '.'.join(new_lines)
     return data
 
-def conjugate(word, source_pos, target_pos, av):
+def conjugate(word, target_pos, av):
     ''' convert word from source_pos to target_pos '''
-    target_endings = {
+    endings = {
         'VB': '',
         'VBP': '',
         'VBZ': 's',
@@ -2013,32 +2083,27 @@ def conjugate(word, source_pos, target_pos, av):
         'do': {'VB': 'do', 'VBD': 'did', 'VBG': 'doing', 'VBN': 'done', 'VBP': 'do', 'VBZ': 'does'},
         'have': {'VB': 'have', 'VBD': 'had', 'VBG': 'having', 'VBN': 'had', 'VBP': 'have', 'VBZ': 'has'}
     }
-    nonnumeric_s_pos = get_nonnumeric(source_pos, av)
-    nonnumeric_t_pos = get_nonnumeric(target_pos, av)
-    if nonnumeric_s_pos != nonnumeric_t_pos:
-        is_source_supported = is_supported_tag(nonnumeric_s_pos, av)
-        is_target_supported = is_supported_tag(nonnumeric_t_pos, av)
-        if is_source_supported and is_target_supported:
-            if (
-                (nonnumeric_s_pos == 'V' or nonnumeric_s_pos in av['tags']['V']) and 
-                (nonnumeric_t_pos == 'V' or nonnumeric_t_pos in av['tags']['V'])
-            ):
-                equivalent = ['VB', 'VBG', 'VBP'] # 'VBG', 'VBN', 'VBD', 'VBZ'
-                infinitive = lemmatizer.lemmatize(word, 'v')
-                stem = stemmer.stem(infinitive)
-                new_word = ''.join([stem, target_endings[target_pos]])
-                if infinitive in case_maps:
-                    return case_maps[infinitive][target_pos]
-                if target_pos == 'VB':
-                    return infinitive
-                ''' remove trailing e/s if applicable '''  
-                if penultimate_char not in 'aeiou' and last_char == 's':
-                    word = word[0:-1]
-                elif 'ies' == word[-3]:
-                    word = ''.join([word[0:-3], 'y'])
-                elif penultimate_char in 'aeiou' and last_char == 's':
-                    word = word[0:-2]
-                return new_word
+    equivalent = ['VB', 'VBG', 'VBP'] # 'VBG', 'VBN', 'VBD', 'VBZ'  
+    infinitive = lemmatizer.lemmatize(word, 'v')
+    stem = stemmer.stem(infinitive)
+    if infinitive in case_maps:
+        return case_maps[infinitive][target_pos]
+    if target_pos == 'VB':
+        return infinitive
+    if len(word) > 2:
+        new_word = stem[0:-2] if stem[-2:] == 'or' or stem[-2:] == 'er' else ''.join([stem, endings[target_pos]]) if stem != infinitive and stem[-1] != 's' else stem
+        penultimate_char = new_word[-2]
+        last_char = new_word[-1]
+        if penultimate_char not in 'aeiou' and last_char == 's':
+            return word
+        if penultimate_char in 'aeiou' and last_char == 's':
+            return new_word
+        if len(new_word) > 2:
+            if new_word[-3] == 'ies':
+                return ''.join([new_word[0:-3], 'y'])
+        if last_char != 's':
+            new_word = ''.join([new_word, 's'])
+        return new_word
     return False
 
 def get_patterns_between_objects(objects, object_type, av):
@@ -2158,21 +2223,23 @@ def match_patterns(line, pattern_key, av):
     if type(line) == list or type(line) == set:
         found_patterns = get_patterns_between_objects(line)
     else:
-        pos_lines, av = get_all_versions(line, 'all', 'all', av) 
-        if pos_lines:
-            print('match_patterns:pos_lines', pos_lines)
-            if len(pos_lines) > 0:
-                for pos_line in pos_lines:
+        converted_patterns, av = get_all_versions(line, 'all', 'all', av) 
+        print('match_patterns:converted_patterns', converted_patterns)
+        if converted_patterns:
+            if len(converted_patterns) > 0:
+                for converted_pattern in converted_patterns:
                     for pattern_index in ['pattern_index', 'type_pattern_index']:
                         if pattern_key in av[pattern_index]:
                             combined_key = ''.join([pattern_key, '_pattern'])
                             for pattern in av[pattern_index][pattern_key]:
                                 ''' only want to generate source patterns here, send a flag to not generate target patterns '''
-                                found_subsets, av = get_pattern_source_subsets(line, pos_line, pattern, 'pattern', av)
+                                found_subsets, av = get_pattern_source_subsets(line, converted_pattern, pattern, 'pattern', av)
                                 if found_subsets:
                                     if combined_key not in found_patterns:
                                         found_patterns[combined_key] = {}
                                     found_patterns[combined_key][pattern] = found_subsets
+                if not found_patterns:
+                    found_patterns = {'converted_pattern': {line: converted_patterns}}
     if found_patterns:
         return found_patterns, av
     return False, av
@@ -2220,7 +2287,7 @@ def apply_pattern(subset, source_pattern, target_pattern, av):
                     if source_is_var and target_is_var:
                         ''' variable: conjugate if different, add if equal '''
                         if source_var != target_var:
-                            conjugated_word = conjugate(source_word, source_var, target_var, av)
+                            conjugated_word = conjugate(source_word, target_var, av)
                             if conjugated_word:
                                 new_words[tp] = conjugated_word
                         else:
@@ -2241,7 +2308,6 @@ def get_pattern_source_subsets(line, pos_line, pattern, get_type, av):
         support numerical variables by checking non-numeric pattern for match with pos_line 
         to do: this prevents users from configuring patterns with numbers like 14alpha-deoxy-enzyme
     '''
-    print('gpss')
     if pattern == pos_line:
         return [pattern]
     if pattern in pos_line:
@@ -2316,10 +2382,17 @@ def get_nltk_pos(word, av):
     if '_' in word or word in [a for a in av['alphabet']]:
         ''' this is a variable, dont modify '''
         return False
+    tagged = pos_tag(word_tokenize(word))
     tags = TextBlob(word).parse()
     tags_split = tags.split('/')
-    blob_pos = tags_split[1] if len(tags_split) > 1 else None
-    tagged = pos_tag(word_tokenize(word))
+    blob_pos = tags_split[1] if len(tags_split) > 0 else None
+    if len(tags_split) > 1:
+        if tags_split[2] == 'B-NP':
+            ''' this is a noun form of a verb, conjugate to original verb '''
+            present_verb = conjugate(word, 'VBZ', av)
+            if present_verb:
+                return 'VBZ'
+        return blob_pos
     if len(tagged) > 0:
         for item in tagged:
             if len(item) > 0:
@@ -2345,4 +2418,81 @@ def split_by_subset(items, check_var, check_list):
         subsets.append(' '.join(subset))
     if len(subsets) > 0:
         return subsets
+    return False
+
+
+def find_ngrams(line, av):
+    phrases = {'phrase': [], 'N': [], 'V': [], 'ADJ': [], 'ADV': [], 'DPC': []} # take out adj & adv
+    key_map = {'N': 'noun', 'V': 'verb', 'ADJ': 'adj', 'ADV': 'adv', 'DPC': 'dpc'}
+    non_dpc_segments = []
+    new_segment = []
+    for w in line.split(' '):
+        if len(w) > 0:
+            pos = get_nltk_pos(w, av)
+            if pos:
+                if pos not in av['tags']['DPC']:
+                    new_segment.append(w)
+                else:
+                    new_section = ' '.join(new_segment)
+                    if len(new_section) > 0:
+                        non_dpc_segments.append(new_section)
+                    else:
+                        non_dpc_segments.append('***')
+                    new_segment = []
+            else:
+                new_segment.append(w)
+        else:
+            new_segment.append('***')
+    if len(new_segment) > 0:
+        non_dpc_segments.append(' '.join(new_segment))
+    if len(non_dpc_segments) > 0:
+        non_dpc_segments = ' '.join(non_dpc_segments).split('***')
+        phrases['phrase'] = non_dpc_segments
+    for key in ['N', 'V', 'ADJ', 'ADV', 'DPC']:
+        pos_phrases = get_ngrams_of_type(key, line, av)
+        if pos_phrases:
+            for p in pos_phrases:
+                if p in line:
+                    map_key = key_map[key]
+                    phrases[key].append(p)
+    if phrases:
+        return phrases
+    return False
+
+def get_ngrams_of_type(pos_type, line, av):
+    all_pos_type = ''.join(['ALL_', pos_type])
+    pos_type = all_pos_type if all_pos_type in av['tags'] else pos_type
+    if pos_type in av['tags']:
+        words = line.split(' ')
+        ngrams = get_ngram_combinations(words, 5) # hydrolyzing radioactive catalyzing potential isolates
+        phrases = []
+        ngrams = ngrams if ngrams else [' '.join(words)]
+        for n in ngrams:
+            ngram_phrase = []
+            for word in n:
+                word_pos = get_nltk_pos(word, av)
+                if word_pos:
+                    if word_pos in av['tags'][pos_type]:
+                        ngram_phrase.append(word)
+            if len(ngram_phrase) > 1:
+                ''' skip ngrams of length 1 '''
+                joined_phrase = ' '.join(ngram_phrase)
+                if joined_phrase not in phrases:
+                    phrases.append(joined_phrase)
+        if len(phrases) > 0:
+            return phrases
+    return False
+
+def get_ngram_combinations(word_list, x):
+    if x > 0 and x < len(word_list):
+        grams = []
+        combinations = itertools.combinations(word_list, x)
+        for c in combinations:
+            gram = [w for w in c]
+            if len(gram) > 0:
+                phrase = ' '.join(gram)
+                if phrase in ' '.join(word_list):
+                    grams.append(gram)
+        if len(grams) > 0:
+            return grams
     return False

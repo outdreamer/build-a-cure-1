@@ -146,7 +146,6 @@ def get_metadata(line, title, word_map, av):
     row['original_line'] = line
     row = replace_names(row, av)
     row = get_similarity_to_title(title, row)
-    print('\ngetting structural metadata for line', line)
     row = get_structural_metadata(row, av)
     print('\nrow with structural metadata', row)
     intent = None # find_intent(row, av)
@@ -205,7 +204,7 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
                         print('find function objects', object_type, found_objects)
                         objects[object_type] = found_objects
             if objects or patterns:
-                print('extracted', objects, patterns)
+                print('extracted objects', objects, 'patterns', patterns)
                 return objects, patterns, av
     return False, False, av
 
@@ -219,15 +218,13 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
     '''
     found_objects = set()
     found_patterns, av = match_patterns(line, search_pattern_key, av)
-    print('found patterns', found_patterns)
     if found_patterns and object_type != 'pattern':
         for pattern_type in found_patterns:
             for pattern, matches in found_patterns[pattern_type].items():
                 ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
                 ''' note: this is not restricting output to found objects '''
                 found_objects = apply_find_function(object_type, pattern, matches, index, av)
-                print('found objects', found_objects)
-    if len(found_objects) > 0 or found_patterns:
+    if found_patterns or found_objects:
         return found_objects, found_patterns, av
     return False, False, av
 
@@ -272,9 +269,11 @@ def get_structural_metadata(row, av):
     row['line'] = corrected_line if corrected_line else row['line']
     generated_patterns, av = get_all_versions(row['line'], 'all', 'all', av) 
     if generated_patterns:
-        row['pattern'] = set(generated_patterns)
+        for gp in generated_patterns:
+            row['pattern'].add(gp)
     word_pos_line = ''.join([x for x in line if x in av['alphanumeric'] or x in av['clause_analysis_chars']])
     words = word_pos_line.split(' ')
+    new_line = []
     for i, w in enumerate(words):
         if len(w) > 0:
             w_upper = w.upper()
@@ -286,52 +285,59 @@ def get_structural_metadata(row, av):
             if count_num not in row['count']:
                 row['count'][count_num] = set()
             row['count'][count_num].add(count_val)
-            pos = row['word_map'][w] if w in row['word_map'] else False
+            pos = row['word_map'][w] if row['word_map'] and w in row['word_map'] else get_nltk_pos(w, av)
             if pos:
-                ''' favor noun before verb '''
                 if pos in av['tags']['VC']:
                     row['clause_marker'].add(w)
-                if pos in av['tags']['ALL_N'] or w in av['alphabet']:
-                    ''' format nouns like 'inhibitor' as a verb '''
-                    stem = get_stem(w)
-                    stem_pos = get_nltk_pos(stem, av)
-                    if stem_pos:
-                        present_verb = conjugate(w, stem_pos, 'VBZ', av)
-                        if present_verb:
-                            row['verb'].add(present_verb)
+                if pos in av['tags']['ALL_N'] or w in av['alphabet'] or pos == 'N':
+                    ''' format nouns like 'inhibitor' or 'catalyzer' as a verb '''
+                    present_verb = conjugate(w, 'VBZ', av)
+                    if present_verb:
+                        row['verb'].add(present_verb)
+                        new_line.append(present_verb)
                     else:
                         row['noun'].add(w)
-                elif pos in av['tags']['ALL_V']:
+                        new_line.append(w)
+                elif pos in av['tags']['ALL_V'] or pos == 'V':
                     ''' dont conjugate '-ing' to preserve verb-noun modifier phrases '''
-                    present_verb = conjugate(w, pos, 'VBZ', av)
-                    if pos != 'VBG' and present_verb:
+                    present_verb = conjugate(w, 'VBZ', av)
+                    if present_verb:
                         row['verb'].add(present_verb)
+                        new_line.append(present_verb)
                     else:
                         row['verb'].add(w)
-                elif pos in av['tags']['D']:
+                        new_line.append(w)
+                elif pos in av['tags']['D'] or pos == 'D':
                     ratio = get_determiner_ratio(w)
                     if ratio:
                         if ratio in keep_ratios:
                             row['det'].add(str(ratio))
-                elif pos in av['tags']['P']:
+                            new_line.append(str(ratio))
+                elif pos in av['tags']['P'] or pos == 'P':
                     row['prep'].add(w)
-                elif pos in av['tags']['C']:
+                    new_line.append(w)
+                elif pos in av['tags']['C'] or pos == 'C':
                     row['conj'].add(w)
-                elif pos in av['tags']['ADV'] or pos in av['tags']['ADJ']:
+                    new_line.append(w)
+                elif pos in av['tags']['ADV'] or pos in av['tags']['ADJ'] or pos == 'ADJ' or pos in av['tags']['ADV'] or pos in av['tags']['ADV'] or pos == 'ADV':
                     row['descriptor'].add(w)
+                    new_line.append(w)
                 else:
                     row['taken_out'].add('_'.join([w, str(pos)]))
+            else:
+                if w in av['alphabet']:
+                    row['noun'].add(w)
+                    new_line.append(w)
+    row['line'] = ' '.join(new_line) if len(new_line) > 0 else word_pos_line
     if len(row['count'].keys()) > 1:
-        common_words = get_most_common_words(row['count'], 3) # get top 3 tiers of common words
-        if common_words:
-            row['common_word'] = common_words
-    ngrams = find_ngrams(word_pos_line, av) # 'even with', 'was reduced', 'subject position'
+        row['common_word'] = get_most_common_words(row['count'], 3) # get top 3 tiers of common words
+    else:
+        row['count'] = {}
+    ngrams = find_ngrams(row['line'], av) # 'even with', 'was reduced', 'subject position'
     if ngrams:
         for k, v in ngrams.items():
             row['ngram'] = row['ngram'].union(v)
-        print('ngrams', row['ngram'])
     for i, key in enumerate(structure_types):
-        print('extracting', key)
         objects, patterns, av = extract_objects_and_patterns_from_index(None, row, key, key, av)
         if objects:
             if key in objects:
@@ -341,7 +347,7 @@ def get_structural_metadata(row, av):
                         for w in item.split(' '):
                             pos = get_nltk_pos(w, av)
                             if pos:
-                                present_verb = conjugate(w, pos, 'VBZ', av)
+                                present_verb = conjugate(w, 'VBZ', av)
                                 if present_verb:
                                     new_list.append(present_verb)
                                 else:
@@ -356,96 +362,27 @@ def get_structural_metadata(row, av):
                 else:
                     row[key] = row[key].union(set(objects[key]))
         if patterns:
-            row['pattern'] = row['pattern'].union(set(patterns))
+            for pattern_index, pattern_keys in patterns.items():
+                for pattern_key, pattern_value in pattern_keys.items():
+                    row['pattern'].add(pattern_key)
+                    row['pattern'].add(pattern_value)
     extra_patterns = find_pattern(row['line'], av)
     if extra_patterns:
-        row['pattern'] = row['pattern'].union(set(extra_patterns))
+        for ep in extra_patterns:
+            row['pattern'].add(ep)
     row = find_relationship(row, av)
     objects, patterns, av = extract_objects_and_patterns_from_index(row, None, 'relationship', 'relationship', av)
     if objects:
         if 'relationship' in objects:
             row['relationship'] = row['relationship'].union(set(objects['relationship']))
         if patterns:
-            row['pattern'] = row['pattern'].union(set(patterns))
+            for pattern_index, pattern_keys in patterns.items():
+                for pattern_key, pattern_value in pattern_keys.items():
+                    row['pattern'].add(pattern_key)
+                    row['pattern'].add(pattern_value)
     for key in row:
         print('key', key, row[key])
     return row
-
-def find_ngrams(line, av):
-    phrases = {'phrase': [], 'N': [], 'V': [], 'ADJ': [], 'ADV': [], 'DPC': []} # take out adj & adv
-    key_map = {'N': 'noun', 'V': 'verb', 'ADJ': 'adj', 'ADV': 'adv', 'DPC': 'dpc'}
-    non_dpc_segments = []
-    new_segment = []
-    for w in line.split(' '):
-        if len(w) > 0:
-            pos = get_nltk_pos(w, av)
-            if pos:
-                if pos not in av['tags']['DPC']:
-                    new_segment.append(w)
-                else:
-                    new_section = ' '.join(new_segment)
-                    if len(new_section) > 0:
-                        non_dpc_segments.append(new_section)
-                    else:
-                        non_dpc_segments.append('***')
-                    new_segment = []
-            else:
-                new_segment.append(w)
-        else:
-            new_segment.append('***')
-    if len(new_segment) > 0:
-        non_dpc_segments.append(' '.join(new_segment))
-    if len(non_dpc_segments) > 0:
-        non_dpc_segments = ' '.join(non_dpc_segments).split('***')
-        phrases['phrase'] = non_dpc_segments
-    for key in ['N', 'V', 'ADJ', 'ADV', 'DPC']:
-        pos_phrases = get_ngrams_of_type(key, line, av)
-        if pos_phrases:
-            for p in pos_phrases:
-                if p in line:
-                    map_key = key_map[key]
-                    phrases[key].append(p)
-    if phrases:
-        return phrases
-    return False
-
-def get_ngrams_of_type(pos_type, line, av):
-    all_pos_type = ''.join(['ALL_', pos_type])
-    pos_type = all_pos_type if all_pos_type in av['tags'] else pos_type
-    if pos_type in av['tags']:
-        words = line.split(' ')
-        ngrams = get_ngram_combinations(words, 5) # hydrolyzing radioactive catalyzing potential isolates
-        phrases = []
-        ngrams = ngrams if ngrams else [' '.join(words)]
-        for n in ngrams:
-            ngram_phrase = []
-            for word in n:
-                word_pos = get_nltk_pos(word, av)
-                if word_pos:
-                    if word_pos in av['tags'][pos_type]:
-                        ngram_phrase.append(word)
-            if len(ngram_phrase) > 1:
-                ''' skip ngrams of length 1 '''
-                joined_phrase = ' '.join(ngram_phrase)
-                if joined_phrase not in phrases:
-                    phrases.append(joined_phrase)
-        if len(phrases) > 0:
-            return phrases
-    return False
-
-def get_ngram_combinations(word_list, x):
-    if x > 0 and x < len(word_list):
-        grams = []
-        combinations = itertools.combinations(word_list, x)
-        for c in combinations:
-            gram = [w for w in c]
-            if len(gram) > 0:
-                phrase = ' '.join(gram)
-                if phrase in ' '.join(word_list):
-                    grams.append(gram)
-        if len(grams) > 0:
-            return grams
-    return False
 
 if sys.argv:
     index = get_data_store(None, None, 'build', sys.argv)

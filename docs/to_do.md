@@ -91,42 +91,42 @@
   - dependency scope (volume of layers of relevance)
 
 Conceptual:
-- function to identify & remove common article intents with high probability of falsehood to reduce it to just facts
-- add intent matching so you can compare treatment relationships with article intents to see if its actually a sentence with a treatment in it
-  - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
-- use distortion patterns of entities like atlases, templates, solution progressions to form a compressed version of the host system
-  https://techxplore.com/news/2019-11-medical-image-analysis.html
-- add stressor language patterns:
-    Sesquiterpenes work as a liver and gland stimulant and contain caryophyllene and valencene. 
-    Research from the universities of Berlin and Vienna show increased oxygenation around the pineal and pituitary glands.
-    While offering a variety of healing properties, the most important ability of the monoterpenes is that they can reprogram miswritten information in the cellular memory (DNA)
-    Terpene Alcohols stimulate the immune system, work as a diuretic and a general tonic.
-    Sesquiterpene Alcohols are ulcer-protective (preventative).
-    Phenols clean receptor sites of cells so sesquiterpenes can delete faulty information from the cell. They contain high levels of oxygenating molecules and have anioxidant properties.
-    Camphor, borneol, and eucalyptol are monoterpene ketones that the available body of evidence suggests may be toxic to the nervous system depending on dosage, while jasmine, fenchone, and isomenthone are considered nontoxic. Ketones aid the removal of mucous, stimulate cell and tissue regeneration, promote the removal of scar tissue, aid digestion, normalize inflammation, relieve pain, reduce fever, may inhibit coagulation of blood, and encourage relaxation.
-    https://www.homasy.com/blogs/tutorials/what-are-the-major-compounds-of-essential-oils
-    Furthermore, histidine can protect the body from radiation damage. It does this by binding to the damaging molecules, therefore eliminating them.
-- for queries of functions like "disable a gene", you can include intent & function metadata to point to sets of compounds that could do the required edits:
-  - find compound (protein, enzyme, etc) that unfolds DNA
-  - find compound that modifies (edits, activates, removes) the gene once unfolded as specifically as possible 
-    (can be a compound with a cutting subcomponent at the right length to target the dna if you can bind it to the first or last gene with another compound)
-  - find compound with function = "refolds DNA"
-  https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
+  - function to identify & remove common article intents with high probability of falsehood to reduce it to just facts
+  - add intent matching so you can compare treatment relationships with article intents to see if its actually a sentence with a treatment in it
+    - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
+  - use distortion patterns of entities like atlases, templates, solution progressions to form a compressed version of the host system
+    https://techxplore.com/news/2019-11-medical-image-analysis.html
+  - add stressor language patterns:
+      Sesquiterpenes work as a liver and gland stimulant and contain caryophyllene and valencene. 
+      Research from the universities of Berlin and Vienna show increased oxygenation around the pineal and pituitary glands.
+      While offering a variety of healing properties, the most important ability of the monoterpenes is that they can reprogram miswritten information in the cellular memory (DNA)
+      Terpene Alcohols stimulate the immune system, work as a diuretic and a general tonic.
+      Sesquiterpene Alcohols are ulcer-protective (preventative).
+      Phenols clean receptor sites of cells so sesquiterpenes can delete faulty information from the cell. They contain high levels of oxygenating molecules and have anioxidant properties.
+      Camphor, borneol, and eucalyptol are monoterpene ketones that the available body of evidence suggests may be toxic to the nervous system depending on dosage, while jasmine, fenchone, and isomenthone are considered nontoxic. Ketones aid the removal of mucous, stimulate cell and tissue regeneration, promote the removal of scar tissue, aid digestion, normalize inflammation, relieve pain, reduce fever, may inhibit coagulation of blood, and encourage relaxation.
+      https://www.homasy.com/blogs/tutorials/what-are-the-major-compounds-of-essential-oils
+      Furthermore, histidine can protect the body from radiation damage. It does this by binding to the damaging molecules, therefore eliminating them.
+  - for queries of functions like "disable a gene", you can include intent & function metadata to point to sets of compounds that could do the required edits:
+    - find compound (protein, enzyme, etc) that unfolds DNA
+    - find compound that modifies (edits, activates, removes) the gene once unfolded as specifically as possible 
+      (can be a compound with a cutting subcomponent at the right length to target the dna if you can bind it to the first or last gene with another compound)
+    - find compound with function = "refolds DNA"
+    https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
 
 # Questions
-- are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?
+  - are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?
 
 # ML
-- the full data set should have numerical categories indicating condition(s) treated in the output label so it can be separated into sub-sets by condition treated
-- incorporate stacked autoencoders to leverage unsupervised learning to get initial weights
-- incorporate cosine loss rather than categorical cross entropy
-- add recurrent nn example code that can be copied & plugged in without modification
-- consider using dimensionality reduction as a way to identify abstract patterns & functions to explain common deviations from patterns
-  https://miro.medium.com/max/1659/1*nQrZmfQE3zmMnCJLb_MNpQ.png
-  https://towardsdatascience.com/step-by-step-signal-processing-with-machine-learning-pca-ica-nmf-8de2f375c422
-- use this or similar as example when describing current state of problem solving: 
-  https://miro.medium.com/max/462/1*X7dQgs1gsJ0Sktz3t7J21Q.png
-  https://towardsdatascience.com/feature-extraction-techniques-d619b56e31be
+  - the full data set should have numerical categories indicating condition(s) treated in the output label so it can be separated into sub-sets by condition treated
+  - incorporate stacked autoencoders to leverage unsupervised learning to get initial weights
+  - incorporate cosine loss rather than categorical cross entropy
+  - add recurrent nn example code that can be copied & plugged in without modification
+  - consider using dimensionality reduction as a way to identify abstract patterns & functions to explain common deviations from patterns
+    https://miro.medium.com/max/1659/1*nQrZmfQE3zmMnCJLb_MNpQ.png
+    https://towardsdatascience.com/step-by-step-signal-processing-with-machine-learning-pca-ica-nmf-8de2f375c422
+  - use this or similar as example when describing current state of problem solving: 
+    https://miro.medium.com/max/462/1*X7dQgs1gsJ0Sktz3t7J21Q.png
+    https://towardsdatascience.com/feature-extraction-techniques-d619b56e31be
 
 # Examples:
 
@@ -167,9 +167,7 @@ Conceptual:
 # Generating Data Set from Smile Formula
 
   - you could also check the reaction with chemlib's reaction product tool another way you could encode it is by using the # of electrons in the first atom in each pair as the x value, and # of electrons in the second atom as the y value (optionally including the bond type as z value by strength" & graphing it, then deriving the function for each cluster of points using standard math do chemical compounds with similar formulas calculated in this way share properties? this implies the side of each bond has embedded meaning since youre grouping them: 'all the right-side values are x', 'all the left-side values are y'should you repeat the values to erase this bias? like h2o would be represented as pairs: [ho], [oh] rather than [ho] and [h, Null]
-
   - the meaning is the relationship between bonded elements, as well as the sequence between groups of bonded elements so I think its legit how do you preserve sequence order in that situation? do you assign an ordinal variable to each pair, so your data set is: 1,h,o,bondtype, 2,h,o,bondtype and you have 4 dimensions to graph instead of 3? once you have the function, each chemical can be represented by its coefficients
-
   - if you have a function to calculate/predict bond strength between two atoms given their identity & electron count, that could be useful data as well, beyond the bond order
 
 
@@ -183,25 +181,6 @@ Conceptual:
   - generate multiple datasets:
     - smile + each medical component (side effects, functions, symptoms) to get a predictor formula for that component from the smile formula
     - really you should iterate through all combinations of components and generate a dataset for each one to check for relationships
-    medical_components = [
-      metrics: {'naa-cr ratio': 'reduced'}
-              conditions: 'hiv', 'encephalopathy'
-              organs: ['brain', 'immune system']
-              compounds: ['naa', 'cr']
-              insights: [
-                  'naa-to-cr ratio is reduced in hiv patients', 
-                  'naa-to-cr ratio is a marker for hiv brain infection'
-              ]
-              strategies: [
-                  'target bio markers that change with illness for testing',
-                  'consider other conditions like lack/excess of signals from diagnostic tests & interfering diseases'
-              ]
-              symptoms: [
-                  'encephalopathy': 'no imaging findings'
-                  'neurological disease': 'other'
-              ]
-              patient: ['HIV-positive', 'symptoms of neurological disease']
-    ]
     - data set of just props in case there is a relationship between successful treatment & one of the properties available (need a chemical with property x value y)
 
   - now that you have a smile formula generator, you have the raw structure data, 
