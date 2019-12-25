@@ -5,6 +5,9 @@ import xml.dom.minidom
 from get_pos import *
 from get_type import *
 from get_vars import *
+import get_medical_objects
+import get_structural_objects
+import get_conceptual_objects
 from get_medical_objects import *
 from get_structural_objects import *
 from get_conceptual_objects import *
@@ -235,8 +238,17 @@ def apply_find_function(object_type, subset, index, av):
     function_name = ''.join(['find_', object_type])
     if function_name in globals():
         try:
-            function = getattr(globals(), function_name)
-            print('found function', function)
+            function = None
+            if get_structural_objects:
+                function = getattr(get_structural_objects, function_name)
+            if not function and get_conceptual_objects:
+                function = getattr(get_conceptual_objects, function_name)
+            if not function and get_medical_objects:
+                function = getattr(get_medical_objects, function_name)
+            if not function and get_vars:
+                function = getattr(get_vars, function_name)
+            if not function and get_type:
+                function = getattr(get_type, function_name)
             if function:
                 got_objects = function(subset, index, av)
                 if got_objects:

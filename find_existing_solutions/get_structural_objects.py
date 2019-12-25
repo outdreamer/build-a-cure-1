@@ -1,4 +1,4 @@
-def find_relationship(row, av):
+def find_relationship(subset, row, av):
     '''
         - now you can generate the relationships based on operator logic stored in our row['clause']['condition'] objects
         - variables should be a dict like: { var_name : var_value, var_name: modifier }  ("x": "original_word")
