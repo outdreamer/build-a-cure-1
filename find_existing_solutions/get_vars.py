@@ -2347,7 +2347,7 @@ def convert_to_operators(line, av):
     # check for synonym first: 'reduced' has polarity 0.0
     variables = {}
     new_words = []
-    words = line.split(' ')
+    words = line.split(' ') if type(line) == str else line
     for i, word in enumerate(words):
         found_operator = get_operator(word, av)
         if found_operator:
@@ -2401,23 +2401,6 @@ def get_nltk_pos(word, av):
                     if blob_pos in av['tags']['ALL_V']:
                         return blob_pos
                 return item[1]
-    return False
-
-def split_by_subset(items, check_var, check_list):
-    subsets = []
-    subset = []
-    for w in items:
-        check_var = get_nltk_pos(w) if check_var == 'pos' else w if check_var == 'word' else None
-        if check_var:
-            if check_var in check_list:
-                subsets.append(' '.join(subset))
-                subset = []
-            else:
-                subset.append(w)
-    if len(subset) > 0:
-        subsets.append(' '.join(subset))
-    if len(subsets) > 0:
-        return subsets
     return False
 
 def find_ngrams(line, av):

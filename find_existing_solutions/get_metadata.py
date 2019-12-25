@@ -249,6 +249,7 @@ def apply_find_function(object_type, subset, index, av):
                 function = getattr(get_vars, function_name)
             if not function and get_type:
                 function = getattr(get_type, function_name)
+            print('function', function)
             if function:
                 got_objects = function(subset, index, av)
                 if got_objects:
@@ -364,8 +365,10 @@ def get_structural_metadata(row, av):
                 elif key == 'subject':
                     for item in objects[key]:
                         row[key].add(item.split(' ')[0]) # to do: remove trailing verb in 'N V' subject pattern
+                elif key == 'clause':
+                    row[key] = objects[key]
                 else:
-                    row[key] = row[key].union(set(objects[key]))
+                    row[key] = set(row[key]).union(set(objects[key]))
         if patterns:
             for pattern_index, pattern_keys in patterns.items():
                 for pattern_key, pattern_value in pattern_keys.items():
@@ -376,7 +379,7 @@ def get_structural_metadata(row, av):
     if extra_patterns:
         for ep in extra_patterns:
             row['pattern'].add(ep)
-    row = find_relationship(row, av)
+    row = find_relationship(row['line'], row, av)
     objects, patterns, av = extract_objects_and_patterns_from_index(row, None, 'relationship', 'relationship', av)
     if objects:
         if 'relationship' in objects:

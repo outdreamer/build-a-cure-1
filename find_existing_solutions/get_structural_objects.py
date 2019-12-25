@@ -1,3 +1,6 @@
+from nltk import pos_tag, word_tokenize
+from get_vars import get_blob, get_nltk_pos, convert_to_operators
+
 def find_relationship(subset, row, av):
     '''
         - now you can generate the relationships based on operator logic stored in our row['clause']['condition'] objects
@@ -271,8 +274,11 @@ def find_clause(subset, row, av):
             where clauses include: ['subject verb relationship(s)', 'conditional(s)']
             and relationships include: ['subject verb relationship(s)', 'subject verb relationship(s) conditional(s)']
     '''
-    split_by_delimiters = split_by_delimiters(subset)
-    new_split = filter_clauses(split_by_delimiters, av)
+    variables = {}
+    all_subjects = []
+    row['clause'] = []
+    split = split_by_delimiters(subset, av)
+    new_split = filter_clauses(split, av)
     if new_split:
         subset = ' '.join(new_split)
     no_punctuation_subset = subset
@@ -283,16 +289,17 @@ def find_clause(subset, row, av):
     print('clauses_by_punctuation', clauses_by_punctuation)
     operator_clauses = {}
     for oc in clauses_by_punctuation:
-        operator_clause, variables = convert_to_operators(clause, av)
+        operator_clause, variables = convert_to_operators(oc, av)
         if operator_clause:
             operator_clauses[operator_clause] = variables if variables else {}
     print('operator clauses', operator_clauses)
     new_subset = order_clauses(subset, clauses_by_punctuation, av)
+    print('new_subset', new_subset)
     if new_subset:
         subset = new_subset
-    all_subjects = []
-    row['clause'] = []
+    print('subset', subset)
     if operator_clauses:
+        print('operator clauses', operator_clauses)
         for operator_clause, clause_variables in operator_clauses.items():
             print('parsing operator clause', operator_clause, 'variables', clause_variables)
             cmap = {                
@@ -304,22 +311,25 @@ def find_clause(subset, row, av):
                 'delimiter': []
             }
             verb_index = 0
-            for i, w in enumerate(operator_clause.split(' ')):
+            print('type', type(operator_clause), operator_clause)
+            original_clause_words = operator_clause.split(' ')
+            print('ocw', original_clause_words)
+            for i, w in enumerate(original_clause_words):
                 if verb_index == 0:
                     if w not in all_subjects:
-                        cmap['subject'].append(w)
+                        cmap['subject'] = w
                         all_subjects.append(w) # make sure subjects are not repeated across clause entries
-                if v in row['verb']: # hit the verb, exit
+                if w in row['verb']: # hit the verb, exit
                     verb_index = i
                     cmap['statement'] = original_clause_words[(i - 1):len(original_clause_words)]
-                    operator_statement = convert_to_operators(cmap['statement'], av)
+                    operator_statement, variables = convert_to_operators(cmap['statement'], av)
                     if operator_statement:
                         cmap['statement'] = operator_statement
                 elif w in av['clause_delimiters']:
                     cmap['delimiter'].append(w)
-            cmap['conditional'] = original_clause.replace(cmap['subject'], '')
+            cmap['conditional'] = operator_clause.replace(cmap['subject'], '')
             cmap['conditional'] = cmap['conditional'].replace(cmap['statement'], '')
-            operator_condition = convert_to_operators(cmap['conditional'], av)
+            operator_condition, variables = convert_to_operators(cmap['conditional'], av)
             if operator_condition:
                 cmap['conditional'] = operator_condition
             ''' determine what type of clause this is '''
@@ -415,7 +425,7 @@ def order_clauses(line, clauses_by_punctuation, av):
           'y b-inhibition enables process to activate x'
     '''
     ''' rearrangement logic '''
-    for k, values in av['ordered_operators']:
+    for k in av['ordered_operators']:
         if k == 'because':
             ''' check that each 'because' keyword is not in the first clause, otherwise leave it where it is '''
             for v in av['clause_map']['%']:
@@ -486,8 +496,8 @@ def find_modifier(subset, row, av):
         if blob:
             blob_tokens = blob.parse()
             if blob_tokens:
-                for token, val in blob_tokens.items():
-                    blob_dict[token] = val.split('/')
+                for token in blob_tokens:
+                    blob_dict[token] = token.split('/')
         if tagged_dict and blob_dict:
             for i, word in enumerate(words):
                 pos = row['word_map'][word] if word in row['word_map'] else ''
@@ -504,9 +514,10 @@ def find_modifier(subset, row, av):
 
 def find_phrase(subset, row, av):
     words = subset.split(' ')
-    phrases = split_by_subset(words, 'pos', av['tags']['DPC'])
-    if len(phrases) > 0:
-        return set(phrases)
+    phrases = split_by_subset(words, 'pos', av['tags']['DPC'], av)
+    if phrases:
+        if len(phrases) > 0:
+            return set(phrases)
     return False
 
 def find_verb_phrase(subset, row, av):
@@ -539,4 +550,21 @@ def find_attribute(subset, row, av):
     return False
 
 def find_function(subset, row, av):
+    return False
+
+def split_by_subset(items, check_var, check_list, av):
+    subsets = []
+    subset = []
+    for w in items:
+        check_var = get_nltk_pos(w, av) if check_var == 'pos' else w if check_var == 'word' else None
+        if check_var:
+            if check_var in check_list:
+                subsets.append(' '.join(subset))
+                subset = []
+            else:
+                subset.append(w)
+    if len(subset) > 0:
+        subsets.append(' '.join(subset))
+    if len(subsets) > 0:
+        return subsets
     return False

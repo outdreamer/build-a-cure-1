@@ -19,15 +19,12 @@
         Excretion Urine (85–90%)[3]
   - find source of bio keywords & synonyms
 
-## Code quality
+## Structural Objects
   - remove len(0) checks for lists when possible & consolidate excessive chained response checks
   - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
-
-## Structural Objects
   - find functions should have logic to rule out other types & type-specific logic since they're used as a backup to pattern-matching
   - fix word pattern iteration
   - add pattern_map synonym replacements
-  - add functions for structure_types = ['modifier', 'clause']
   - some of these types have type mappings so generalize when you can: condition = state, symptom = function = side_effects, function = relationship, synthesis = build process, structure = pattern
   - finish adding combined operator output impact
   - repeated options shouldnt happen within an alt set: |NNS NNS VBZ2 VBZ3 NNS| 
