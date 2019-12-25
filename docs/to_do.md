@@ -24,9 +24,10 @@
   - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
 
 ## Structural Objects
+  - find functions should have logic to rule out other types & type-specific logic since they're used as a backup to pattern-matching
   - fix word pattern iteration
   - add pattern_map synonym replacements
-  - add functions for structure_types = ['modifier', 'verb_phrase', 'noun_phrase', 'phrase', 'clause']
+  - add functions for structure_types = ['modifier', 'clause']
   - some of these types have type mappings so generalize when you can: condition = state, symptom = function = side_effects, function = relationship, synthesis = build process, structure = pattern
   - finish adding combined operator output impact
   - repeated options shouldnt happen within an alt set: |NNS NNS VBZ2 VBZ3 NNS| 
@@ -52,48 +53,47 @@
   - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
 
 ## Functions
-- add variable accretion patterns (how an object becomes influenced by a new variable)
-- add get_common_properties function to do extra property-based searches after identifying objects with extract
-- add wiki & drugs & nih api calls to sources & api support for those data sources in get_data_source/build_indexes
-- build math logic/plain language translation function - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
-- write function to identify contradictory information (retracted studies, false information, conspiracy theory (anti-vax), opinion) & selecting least likely to be false
-  - this will be useful when youre pulling non-research study data, like when youre looking up a metric or compound if you dont find anything on wiki
-- write function to identify authoritative sources (wiki is more trustworthy than a holistic or commercialized blog)
-- in order to implement this without ml, you need functions to identify conceptual metadata of a compound or organism, so at least these to get started:
-  - add identification functions:
-      - types (['structure', 'life form', 'organic molecule'] from 'protein') - add generate_type_patterns() after get_type
-      - get_topic
-      - objects (nouns like 'protein')
-      - components (topical nouns that are found in another topical component, like organelles of a cell)
-      - attributes (attribute metric/feature nouns like 'toxicity')
-      - functions (verbs like 'ionizing', 'activate', inputs/outputs like subject/predicate nouns)
-      - variables (function inputs like subject/modifier nouns)
-      - test on bio systems:
-        - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
-        - "isolate a pathogen cell before destroying it so it cant communicate info about what destroyed it to other pathogens to help them evolve resistance"
-  - functions to determine:
-    - position/role in a system 
-    - function type associated with its core functions (change rules, boundary rules)
-    - emergent effects in edge cases, rule change states, & interacting with other system layers
-    - solution via conceptual route
-- write a function to derive core component functions for any system - then you can write functions to:
-    - determine equivalent functions or more optimal version of a function
-    - determine function intent
-    - alter core functions used to alter function intent
-    - when generating solutions, change core functions to vary to describe any function set that builds any other function set in a system
-      - set of binding/interaction/priority functions for element atoms
-- add function to test chemical reactions: https://cheminfo.github.io/openchemlib-js/docs/classes/reaction.html
-- add keyword processing to apply_find_function 
-- fill in keywords & patterns for objects (strategies/mechanisms used by an organism/on a compound)
-- function to predict a compound for a pathogen/condition requires data:
-  - compound & pathogen attributes (compound metadata like metabolism/dose/interactions/effects)
-  - variable/state impact (gene expression)
-  - interaction rules with expected object types (in the bloodstream if taken orally, in the lungs if inhaled)
-  - sub-components that could be altered through interaction to neutralize its functionality
-  - dependency scope (volume of layers of relevance)
-
-- implementation of idea: "code selection algorithm to select function combinations according to data structure & priority at function stack run time"
-  - example:
+  - add variable accretion patterns (how an object becomes influenced by a new variable)
+  - add get_common_properties function to do extra property-based searches after identifying objects with extract
+  - add wiki & drugs & nih api calls to sources & api support for those data sources in get_data_source/build_indexes
+  - build math logic/plain language translation function - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
+  - write function to identify contradictory information (retracted studies, false information, conspiracy theory (anti-vax), opinion) & selecting least likely to be false
+    - this will be useful when youre pulling non-research study data, like when youre looking up a metric or compound if you dont find anything on wiki
+  - write function to identify authoritative sources (wiki is more trustworthy than a holistic or commercialized blog)
+  - in order to implement this without ml, you need functions to identify conceptual metadata of a compound or organism, so at least these to get started:
+    - add identification functions:
+        - types (['structure', 'life form', 'organic molecule'] from 'protein') - add generate_type_patterns() after get_type
+        - get_topic
+        - objects (nouns like 'protein')
+        - components (topical nouns that are found in another topical component, like organelles of a cell)
+        - attributes (attribute metric/feature nouns like 'toxicity')
+        - functions (verbs like 'ionizing', 'activate', inputs/outputs like subject/predicate nouns)
+        - variables (function inputs like subject/modifier nouns)
+        - test on bio systems:
+          - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
+          - "isolate a pathogen cell before destroying it so it cant communicate info about what destroyed it to other pathogens to help them evolve resistance"
+    - functions to determine:
+      - position/role in a system 
+      - function type associated with its core functions (change rules, boundary rules)
+      - emergent effects in edge cases, rule change states, & interacting with other system layers
+      - solution via conceptual route
+  - write a function to derive core component functions for any system - then you can write functions to:
+      - determine equivalent functions or more optimal version of a function
+      - determine function intent
+      - alter core functions used to alter function intent
+      - when generating solutions, change core functions to vary to describe any function set that builds any other function set in a system
+        - set of binding/interaction/priority functions for element atoms
+  - add function to test chemical reactions: https://cheminfo.github.io/openchemlib-js/docs/classes/reaction.html
+  - add keyword processing to apply_find_function 
+  - fill in keywords & patterns for objects (strategies/mechanisms used by an organism/on a compound)
+  - function to predict a compound for a pathogen/condition requires data:
+    - compound & pathogen attributes (compound metadata like metabolism/dose/interactions/effects)
+    - variable/state impact (gene expression)
+    - interaction rules with expected object types (in the bloodstream if taken orally, in the lungs if inhaled)
+    - sub-components that could be altered through interaction to neutralize its functionality
+    - dependency scope (volume of layers of relevance)
+  - implementation of idea: "code selection algorithm to select function combinations according to data structure & priority at function stack run time"
+    - example:
     - select code that is optimized for fewest lines of code/quickest execution time/data storage usage/state storage/memory usage based on input data structure & variance
       - "if input has variance k, allow for conditions checking for parameters of variance"
         - "if input has types [a, b, c], select conditions checking for corresponding types [a1, b1, c1]"

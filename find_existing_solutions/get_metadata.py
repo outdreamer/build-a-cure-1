@@ -148,15 +148,12 @@ def get_metadata(line, title, word_map, av):
     row = get_similarity_to_title(title, row)
     row = get_structural_metadata(row, av)
     print('\nrow with structural metadata', row)
-    intent = None # find_intent(row, av)
-    hypothesis = None # find_hypothesis(row, av)
-    row = find_treatment(row['line'], None, row, av)
     for metadata_type in ['medical_types', 'conceptual_types']:
         for object_type in av[metadata_type]:
             if object_type in av['metadata']:
                 for search_pattern_key in av['pattern_index']:
                     # check that this data 'strategy', 'treatment' was requested and is supported in pattern_index
-                    print('get metadata', object_type, search_pattern_key)
+                    print('\nget metadata', object_type, search_pattern_key)
                     objects, patterns, av = extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, av)
                     if objects:
                         row[object_type] = objects
@@ -167,7 +164,7 @@ def get_metadata(line, title, word_map, av):
 
 def extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, av):
     '''
-    - all of your 'find_object' functions need to support params: pattern, matches, row, av
+    - all of your 'find_object' functions need to support params: (subset, row, av)
     - this function is for meta-analysis
         1. find any matches from search_pattern_key patterns in index[object_type]/row[object_type] lines
         2. if pattern matches found in lines, 
@@ -190,19 +187,19 @@ def extract_objects_and_patterns_from_index(index, row, object_type, search_patt
             lines = [index['line']] if 'line' in index else index[object_type] if object_type in index else [] #index[object_type] if object_type in index else
             for line in lines:
                 found_objects_in_patterns, found_patterns, av = get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, av)
-                if found_objects_in_patterns:
-                    objects[object_type] = found_objects_in_patterns
                 if found_patterns:
                     patterns = found_patterns
+                if found_objects_in_patterns:
+                    objects[object_type] = objects[object_type].union(found_objects_in_patterns)
                 else:
                     ''' 
                     if there are no matches found for object_type patterns, 
                     do a standard object query independent of patterns to apply type-specific logic 
                     '''
-                    found_objects = apply_find_function(object_type, None, [line], index, av)
+                    found_objects = apply_find_function(object_type, line, index, av)
                     if found_objects:
                         print('find function objects', object_type, found_objects)
-                        objects[object_type] = found_objects
+                        objects[object_type] = objects[object_type].union(found_objects)
             if objects or patterns:
                 print('extracted objects', objects, 'patterns', patterns)
                 return objects, patterns, av
@@ -213,8 +210,6 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
         example: 
             find 'modifiers' in 'treatment patterns' would have:
             object_type = 'modifier' and search_pattern_key = 'treatment'
-        to do:
-            - make a list of subset pattern type relationships
     '''
     found_objects = set()
     found_patterns, av = match_patterns(line, search_pattern_key, av)
@@ -223,21 +218,19 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
             for pattern, matches in found_patterns[pattern_type].items():
                 ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
                 ''' note: this is not restricting output to found objects '''
-                found_objects = apply_find_function(object_type, pattern, matches, index, av)
+                for m in matches:
+                    objects_found = apply_find_function(object_type, m, index, av)
+                    if objects_found:
+                        found_objects = found_objects.union(objects_found)
     if found_patterns or found_objects:
         return found_objects, found_patterns, av
     return False, False, av
 
-def apply_find_function(object_type, pattern, matches, index, av):
+def apply_find_function(object_type, subset, index, av):
     ''' find functions check for objects of object_type in matches list which match pattern 
         - all find object functions need to support params:
-            - pattern, matches_lines, row_index, av
-              pattern & subsets matching pattern
-                - pattern = 'x of y'
-                - lines = 'dog of cat', 'cat of dog' 
-              no pattern passed in, just lines array
-                - pattern = None
-                - lines = ['find the objects in this sentence']
+            - subset, row_index, av
+                - subsets = 'dog of cat', 'cat of dog' (matches for pattern 'x of y')
     '''
     function_name = ''.join(['find_', object_type])
     if function_name in globals():
@@ -245,12 +238,12 @@ def apply_find_function(object_type, pattern, matches, index, av):
             function = getattr(globals(), function_name)
             print('found function', function)
             if function:
-                got_objects = function(pattern, matches, index, av)
+                got_objects = function(subset, index, av)
                 if got_objects:
                     if len(got_objects) > 0:
                         return set([item for item in got_objects])
         except Exception as e:
-            # print('e', e)
+            print('e', e)
             return False
     return False
 
@@ -263,15 +256,15 @@ def get_structural_metadata(row, av):
         once you have the nouns/modifiers, you can pick a subject from the noun or modifier
     '''
     keep_ratios = ['extra', 'high', 'none']
-    structure_types = ['modifier', 'verb_phrase', 'noun_phrase', 'phrase', 'clause']
+    structure_types = ['modifier', 'phrase', 'verb_phrase', 'noun_phrase', 'clause']
     corrected_line = correct(row['line'])
     row['line'] = corrected_line if corrected_line else row['line']
     row['pattern'] = set()
-    generated_patterns, av = get_all_versions(row['line'], 'all', 'all', av) 
+    generated_patterns, av = get_all_versions(row['line'], 'all', 'all', av)
     if generated_patterns:
         for gp in generated_patterns:
             row['pattern'].add(gp)
-    word_pos_line = ''.join([x for x in line if x in av['alphanumeric'] or x in av['clause_analysis_chars']])
+    word_pos_line = ''.join([x for x in row['line'] if x in av['alphanumeric'] or x in av['clause_analysis_chars']])
     words = word_pos_line.split(' ')
     new_line = []
     for i, w in enumerate(words):

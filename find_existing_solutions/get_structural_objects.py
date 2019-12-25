@@ -243,7 +243,7 @@ def convert_to_words(line, variables, av):
         return ' '.join(new_words)
     return False
 
-def find_clause(pattern, matches, row, av):
+def find_clause(subset, row, av):
     ''' 
         - clauses are relationships between subject and objects in line separated by delimiters like:
             prepositions, conjunctions, determiners, and punctuation
@@ -271,18 +271,15 @@ def find_clause(pattern, matches, row, av):
             where clauses include: ['subject verb relationship(s)', 'conditional(s)']
             and relationships include: ['subject verb relationship(s)', 'subject verb relationship(s) conditional(s)']
     '''
-
-    line = row['line']
-    split_by_delimiters = split_by_delimiters(line)
+    split_by_delimiters = split_by_delimiters(subset)
     new_split = filter_clauses(split_by_delimiters, av)
     if new_split:
-        split_by_delimiters = new_split
-        line = ' '.join(new_split)
-    no_punctuation_line = line
+        subset = ' '.join(new_split)
+    no_punctuation_subset = subset
     for cd in av['clause_punctuation']:
-        if cd in no_punctuation_line:
-            no_punctuation_line = no_punctuation_line.replace(cd, '***')
-    clauses_by_punctuation = no_punctuation_line.split('***')
+        if cd in no_punctuation_subset:
+            no_punctuation_subset = no_punctuation_subset.replace(cd, '***')
+    clauses_by_punctuation = no_punctuation_subset.split('***')
     print('clauses_by_punctuation', clauses_by_punctuation)
     operator_clauses = {}
     for oc in clauses_by_punctuation:
@@ -290,9 +287,9 @@ def find_clause(pattern, matches, row, av):
         if operator_clause:
             operator_clauses[operator_clause] = variables if variables else {}
     print('operator clauses', operator_clauses)
-    new_line = order_clauses(line, clauses_by_punctuation, av)
-    if new_line:
-        line = new_line
+    new_subset = order_clauses(subset, clauses_by_punctuation, av)
+    if new_subset:
+        subset = new_subset
     all_subjects = []
     row['clause'] = []
     if operator_clauses:
@@ -454,7 +451,7 @@ def get_meaning_score(phrase, line):
         return meaning
     return False
 
-def find_modifier(pattern, matches, row, av):
+def find_modifier(subset, row, av):
     '''
     - we're isolating modifiers bc theyre the smallest unit of 
         functions (inputs, process, outputs)
@@ -472,12 +469,11 @@ def find_modifier(pattern, matches, row, av):
             "item in list" => "list item"
             "inhibitor of x" => "x-inhibitor"
     - change words to their stem and get the pos of their stem 
-      "x has effect of membrane disruption" is a modifier pattern: "x has function of noun noun" 
-      "x has function of noun1 noun2": "x noun1 noun2 function"
-      but the second noun is a conjugation of a verb "disrupt" so should be converted to 
-      "x disrupts membranes"
+        "x has effect of membrane disruption" is a modifier pattern: "x has function of noun noun" 
+        "x has function of noun1 noun2": "x noun1 noun2 function"
+      but the second noun is a conjugation of a verb "disrupt" so should be converted to "x disrupts membranes"
+    - takes out determiners if indicating 'one', 'some', or 'same' quantity 
     '''
-    ''' takes out determiners if indicating 'one', 'some', or 'same' quantity '''
     modifier = None
     tagged_dict = {} 
     blob_dict = {}
@@ -506,17 +502,41 @@ def find_modifier(pattern, matches, row, av):
                                     row['modifier'].add(' '.join([ratio, other_word]))
     return row
 
-def find_phrase(pattern, matches, row, av):
+def find_phrase(subset, row, av):
+    words = subset.split(' ')
+    phrases = split_by_subset(words, 'pos', av['tags']['DPC'])
+    if len(phrases) > 0:
+        return set(phrases)
     return False
 
-def find_verb_phrase(pattern, matches, row, av):
+def find_verb_phrase(subset, row, av):
+    verb_phrases = set()
+    if 'phrase' in row:
+        for p in row['phrase']:
+            for w in p.split(' '):
+                pos = row['word_map'][w] if w in row['word_map'] else get_nltk_pos(w, av)
+                if pos:
+                    if pos in av['tags']['V']:
+                        verb_phrases.add(p)
+    if len(verb_phrases) > 0:
+        return verb_phrases
     return False
 
-def find_noun_phrase(pattern, matches, row, av):
+def find_noun_phrase(subset, row, av):
+    noun_phrases = set()
+    if 'phrase' in row:
+        for p in row['phrase']:
+            for w in p.split(' '):
+                pos = row['word_map'][w] if w in row['word_map'] else get_nltk_pos(w, av)
+                if pos:
+                    if pos in av['tags']['N']:
+                        noun_phrases.add(p)
+    if len(noun_phrases) > 0:
+        return noun_phrases
     return False
 
-def find_attribute(pattern, matches, row, av):
+def find_attribute(subset, row, av):
     return False
 
-def find_function(pattern, matches, row, av):
+def find_function(subset, row, av):
     return False

@@ -90,11 +90,11 @@ def find_hypothesis(article):
     intents = ['diagnose', 'check_correlation', 'find_limit', 'evaluate_method']
     return article
 
-def find_fact(pattern, matches, row, av):
+def find_fact(subset, row, av):
     ''' function to identify common article intents to identify false info '''
     return row
 
-def find_topic(pattern, matches, row, av):
+def find_topic(subset, row, av):
     '''
       this function will be used in remove_unnecessary_words
       to filter out words that are either non-medical or too specific to be useful (names)
@@ -107,13 +107,13 @@ def find_topic(pattern, matches, row, av):
     topics = ['structural', 'logical']
     return row
 
-def find_variable(pattern, matches, row, av):
+def find_variable(subset, row, av):
     ''' use this to determine parameters for synthesis function too '''
     ''' variables are the inputs to functions '''
     ''' this can mean the subject of a sentence, or the inputs of that subject (resources, context) '''
     return row
 
-def find_element(pattern, matches, row, av):
+def find_element(subset, row, av):
     elements = []
     for word in line.split(' '):
         index_type = get_index_type(word)
@@ -126,10 +126,10 @@ def find_element(pattern, matches, row, av):
             elements.append(word)
     return elements
 
-def find_causal_layer(pattern, matches, row, av):
+def find_causal_layer(subset, row, av):
     return row
 
-def find_intent(pattern, matches, row, av):
+def find_intent(subset, row, av):
     intents = {}
     row = get_structural_metadata(line, av)
     if row:
@@ -154,11 +154,11 @@ def find_intent(pattern, matches, row, av):
                                     intents[n].append(rcf['output'])
     return intents
     
-def find_function(pattern, matches, row, av):
+def find_function(subset, row, av):
     ''' for fluconazole, this should be: "antifungal", "inhibits cyp3a4" '''
     return False
 
-def find_strategy(pattern, matches, row, av):
+def find_strategy(subset, row, av):
     '''
      - get the strategy explaining why this method worked or failed for the intent, 
         which may be equal to the mechanism of action, 
@@ -184,7 +184,7 @@ def find_strategy(pattern, matches, row, av):
     # functional output should be: inhibitors of cyp3a4, cyp2c19, cyp2c9, filtered by interference with fluconazole
     return row
 
-def find_insight(pattern, matches, row, av):
+def find_insight(subset, row, av):
     '''
     - insights in a article doc are more likely to:
     - have more topic-related keywords
@@ -198,17 +198,17 @@ def find_insight(pattern, matches, row, av):
     '''
     return row
 
-def find_priority(pattern, matches, row, av):
+def find_priority(subset, row, av):
     return row 
 
-def find_type(pattern, matches, row, av):
+def find_type(subset, row, av):
     ''' this returns the type stack in a component '''
     return row
 
-def find_core_function(pattern, matches, row, av):
+def find_core_function(subset, row, av):
     return row
 
-def find_dependency(pattern, matches, row, av):
+def find_dependency(subset, row, av):
     ''' 
     this should return a list of outputs, n operations away
 
@@ -222,7 +222,7 @@ def find_dependency(pattern, matches, row, av):
     dependencies = []
     return dependencies
 
-def find_impact(pattern, matches, row, av):
+def find_impact(subset, row, av):
     '''
         function to combine functions by intent:
           - if you have these two functions:

@@ -2407,7 +2407,7 @@ def split_by_subset(items, check_var, check_list):
     subsets = []
     subset = []
     for w in items:
-        check_var = get_nltk_pos(w) if check_var == 'pos' else w
+        check_var = get_nltk_pos(w) if check_var == 'pos' else w if check_var == 'word' else None
         if check_var:
             if check_var in check_list:
                 subsets.append(' '.join(subset))
@@ -2419,7 +2419,6 @@ def split_by_subset(items, check_var, check_list):
     if len(subsets) > 0:
         return subsets
     return False
-
 
 def find_ngrams(line, av):
     phrases = {'phrase': [], 'N': [], 'V': [], 'ADJ': [], 'ADV': [], 'DPC': []} # take out adj & adv
