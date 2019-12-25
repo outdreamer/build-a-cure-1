@@ -24,6 +24,9 @@
   - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
 
 ## Structural Objects
+  - fix word pattern iteration
+  - add pattern_map synonym replacements
+  - add functions for structure_types = ['modifier', 'verb_phrase', 'noun_phrase', 'phrase', 'clause']
   - some of these types have type mappings so generalize when you can: condition = state, symptom = function = side_effects, function = relationship, synthesis = build process, structure = pattern
   - finish adding combined operator output impact
   - repeated options shouldnt happen within an alt set: |NNS NNS VBZ2 VBZ3 NNS| 
@@ -49,7 +52,6 @@
   - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
 
 ## Functions
-
 - add variable accretion patterns (how an object becomes influenced by a new variable)
 - add get_common_properties function to do extra property-based searches after identifying objects with extract
 - add wiki & drugs & nih api calls to sources & api support for those data sources in get_data_source/build_indexes
@@ -89,6 +91,30 @@
   - interaction rules with expected object types (in the bloodstream if taken orally, in the lungs if inhaled)
   - sub-components that could be altered through interaction to neutralize its functionality
   - dependency scope (volume of layers of relevance)
+
+- implementation of idea: "code selection algorithm to select function combinations according to data structure & priority at function stack run time"
+  - example:
+    - select code that is optimized for fewest lines of code/quickest execution time/data storage usage/state storage/memory usage based on input data structure & variance
+      - "if input has variance k, allow for conditions checking for parameters of variance"
+        - "if input has types [a, b, c], select conditions checking for corresponding types [a1, b1, c1]"
+                  if word_type in a1_type_list:
+                    type_a.add(word)
+                  elif word_type in b1_type_list:
+                    type_b.add(word)
+                  elif word_type in c1_type_list:
+                    type_c.add(word)
+                  else:
+                    no_type.add(word)
+        - "if input has types [a], organize code so that assignment is done at end of condition set"
+                  word_type = None
+                  if original_type in type_list:
+                    other_type = logic_operation(word, original_type)
+                    if other_type:
+                      word_type = other_type
+                    else:
+                      word_type = original_type
+                  if word_type:
+                    type_a.add(word_type)
 
 Conceptual:
   - function to identify & remove common article intents with high probability of falsehood to reduce it to just facts

@@ -733,8 +733,8 @@ def get_vars():
     av['alphabet'] = 'abcdefghijklmnopqrstuvwxyz'    
     av['clause_analysis_chars'] = [' ', '-', ':', ';', '(', ')']
     av['full_params'] = {
-        'request': ['metadata', 'generate', 'filters', 'data'], # request params
         'wiki': ['section_list'],
+        'request': ['metadata', 'generate', 'filters', 'data'], # request params
         'pos': ['pos', 'verb', 'noun', 'common_word', 'count', 'taken_out', 'clause_marker', 'line', 'prep', 'conj', 'det', 'descriptor', 'original_line', 'word_map'],
         'structure': ['type', 'name', 'ngram', 'modifier', 'phrase', 'noun_phrase', 'verb_phrase', 'clause', 'subject', 'relationship', 'pattern', 'similar_line'], # structural
         'experiment': ['hypothesis', 'test', 'metric', 'property', 'assumption'], # experiment elements

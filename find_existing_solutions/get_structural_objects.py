@@ -1,13 +1,11 @@
 def find_relationship(row, av):
     '''
-        now you can generate the relationships based on operator logic stored in our row['clause']['condition'] objects
-        
+        - now you can generate the relationships based on operator logic stored in our row['clause']['condition'] objects
         - variables should be a dict like: { var_name : var_value, var_name: modifier }  ("x": "original_word")
         - each dict in row['clause']['condition'] indicates an independent clause in a sentence 
         - each clause is separated by subject, so there should only be one subject per row['clause']['condition']
             (can also be a sentence if its independent & contains one clause 
-
-        for relation [ 'x=y # z-a' ], 
+        - for relation [ 'x=y # z-a' ], 
             row['clause']['condition'][0] = {
                 'type': 'statement', # 'condition'
                 'subject': '',
@@ -15,29 +13,19 @@ def find_relationship(row, av):
                 'conditional': '# z-a',
                 'variables': {'s': 'original words'}
             }
-
         'x=y # z-a' == 'x is y independently of z is a' == 'x-y relationship is independent of z-a relationship'
-
-        find_relationship(row, av) = [
-            'x=y',
-            'a does not change x=y'
-        ]
-
+        find_relationship(row, av) = ['x=y', 'a does not change x=y']
         - this is a generative function, applying each subject to each verb & each clause 
             to generate the full set of relationships in the sentence
-
         - this function is to catch all the meaning in clauses like: 
             "x reduced b inhibitor" => "x - i-b"
-
-        deriving relationships like:
+        - deriving relationships like:
             "x increases b" => "x+b"
             "x reduces inhibitor" => "x-i"
             "inhibitor reduces b" => "i-b"
             "x reduces b-inhibitor" => "x - b-i"
-
-        this function also applies combined operator impact from the configured map with get_impact() so that:
+        - this function also applies combined operator impact from the configured map with get_impact() so that:
             "x - i-b" parses to "x+b" since "--" maps to "+"
-
         1. deconstructs the sentence based on operator logic so its represented by order of operations
             - applies operator logic to clauses to produce alternative relationships:
                 - "x was b even with a" means a is irrelevant, so => relationships ["x was b", "a does not impact (x was b)"]
@@ -429,9 +417,6 @@ def order_clauses(line, clauses_by_punctuation, av):
           'y b-inhibition causes the process to activate x' => 
           'y b-inhibition enables process to activate x'
     '''
-
-    lines = []
-
     ''' rearrangement logic '''
     for k, values in av['ordered_operators']:
         if k == 'because':
@@ -442,8 +427,6 @@ def order_clauses(line, clauses_by_punctuation, av):
                         if v not in clauses_by_punctuation[0]:
                             ''' to do: assign ratio logic here, 3 is minimum relation length '''
                             line = ' causes '.join(reversed(line.split(v)))
-    #elif k == 'not':
-    #for line in lines:
     ''' to do: replace verb + not with antonym & handle 'despite' operator '''
     if line:
         return line
@@ -457,9 +440,6 @@ def get_combined_operator(combined, av):
     for key, val in av['combined_map'].items():
         if combined in val:
             return key
-    return False
-
-def find_attribute(pattern, matches, row, av):
     return False
 
 def get_meaning_score(phrase, line):
@@ -499,7 +479,6 @@ def find_modifier(pattern, matches, row, av):
     '''
     ''' takes out determiners if indicating 'one', 'some', or 'same' quantity '''
     modifier = None
-    modified = None   
     tagged_dict = {} 
     blob_dict = {}
     words = subset.split(' ')
@@ -519,8 +498,6 @@ def find_modifier(pattern, matches, row, av):
                 if pos:
                     if pos not in av['tags']['exclude']:
                         if word in blob_dict and word in tagged_dict:
-                            #if blob_dict[word][0] != tagged_dict[word]:
-                            ''' ntlk and blob tags differ: nltk: 'imaging' => 'VBG' blob: 'imaging' => 'NN', 'B-NP', 'I-PNP' '''
                             modifier = word
                             other_word = words[i + 1] if (i + 1) < len(words) else words[i - 1] if i > 0 else None
                             if other_word:
@@ -528,3 +505,18 @@ def find_modifier(pattern, matches, row, av):
                                 if other_word_pos in av['tags']['ALL_N'] or other_word_pos in av['tags']['ALL_V']:
                                     row['modifier'].add(' '.join([ratio, other_word]))
     return row
+
+def find_phrase(pattern, matches, row, av):
+    return False
+
+def find_verb_phrase(pattern, matches, row, av):
+    return False
+
+def find_noun_phrase(pattern, matches, row, av):
+    return False
+
+def find_attribute(pattern, matches, row, av):
+    return False
+
+def find_function(pattern, matches, row, av):
+    return False

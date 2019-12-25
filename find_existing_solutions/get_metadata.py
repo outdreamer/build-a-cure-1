@@ -264,7 +264,6 @@ def get_structural_metadata(row, av):
     '''
     keep_ratios = ['extra', 'high', 'none']
     structure_types = ['modifier', 'verb_phrase', 'noun_phrase', 'phrase', 'clause']
-    line = row['line'] if 'line' in row and type(row) == dict else row # can be a row index dict or a definition line
     corrected_line = correct(row['line'])
     row['line'] = corrected_line if corrected_line else row['line']
     row['pattern'] = set()
