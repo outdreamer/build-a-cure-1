@@ -267,6 +267,7 @@ def get_structural_metadata(row, av):
     line = row['line'] if 'line' in row and type(row) == dict else row # can be a row index dict or a definition line
     corrected_line = correct(row['line'])
     row['line'] = corrected_line if corrected_line else row['line']
+    row['pattern'] = set()
     generated_patterns, av = get_all_versions(row['line'], 'all', 'all', av) 
     if generated_patterns:
         for gp in generated_patterns:
@@ -365,7 +366,8 @@ def get_structural_metadata(row, av):
             for pattern_index, pattern_keys in patterns.items():
                 for pattern_key, pattern_value in pattern_keys.items():
                     row['pattern'].add(pattern_key)
-                    row['pattern'].add(pattern_value)
+                    for v in pattern_value:
+                        row['pattern'].add(v)
     extra_patterns = find_pattern(row['line'], av)
     if extra_patterns:
         for ep in extra_patterns:
@@ -379,7 +381,8 @@ def get_structural_metadata(row, av):
             for pattern_index, pattern_keys in patterns.items():
                 for pattern_key, pattern_value in pattern_keys.items():
                     row['pattern'].add(pattern_key)
-                    row['pattern'].add(pattern_value)
+                    for v in pattern_value:
+                        row['pattern'].add(v)
     for key in row:
         print('key', key, row[key])
     return row
