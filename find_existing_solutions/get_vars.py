@@ -1,3 +1,5 @@
+import wikipedia
+from wikipedia.exceptions import DisambiguationError
 import random, json, itertools, csv, os, ssl, sys, re, urllib, itertools, requests
 import nltk
 from nltk.stem import SnowballStemmer
@@ -9,8 +11,10 @@ from textblob import TextBlob, Sentence, Word, WordList
 from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
 
+from get_medical_objects import find_generic_medication
 from get_pos import *
 
+wikipedia.set_lang("en")
 stemmer = SnowballStemmer("english")
 lemmatizer = WordNetLemmatizer()
 stop = set(stopwords.words('english'))
@@ -497,18 +501,19 @@ def get_pattern_config(av):
             'x has ability to do y': 'x y',
             'JJ1 NN1 of JJ2 NN2': 'JJ2 NN2 JJ1 NN1',
             'x is an item in list b': 'x is in list b'
-        },
-        'verb_phrase': {
-            'could not have been done': 'was impossible',
-            'could not have': 'cannot',
-            'could have been done': 'was possible',
-            'could have': 'can',
-            'should not have been done': 'was inadvisable',
-            'should not have': 'does',
-            'should have': 'does not',
-            'has not been done': 'did not',
-            'had been done': 'did'
         }
+    }
+    av['convert_map'] = {
+        'could not have been done': 'was impossible',
+        'could not have': 'cannot',
+        'could have been done': 'was possible',
+        'could have': 'can',
+        'should not have been done': 'was inadvisable',
+        'should not have': 'does',
+        'should have': 'does not',
+        'has not been done': 'did not',
+        'had been done': 'did',
+        'into': 'to'
     }
     av['pattern_vars'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
     av['type_pattern_index'] = {
@@ -1183,74 +1188,8 @@ def generate_type_patterns(pattern, av):
 
 def generate_synonym_patterns(pattern, av):
     ''' first check that words are not in supported keywords, then get the synonym '''
-    words = pattern.split(' ')
-    variables = {}
     new_words = []
-    logged_grams = []
-    logged_syns = []
-    for i, word in enumerate(words):
-        if len(word) > 0:
-            bi_gram = words[i:i + 2] if (i + 2) < len(words) else None
-            tri_gram = words[i:i + 3] if (i + 3) < len(words) else None
-            if bi_gram or tri_gram:
-                gram_list = [bi_gram, tri_gram]
-                for gram in gram_list:
-                    if gram:
-                        nonnumeric = get_nonnumeric(' '.join(gram), av)
-                        if nonnumeric not in av['tags']['ALL'] and nonnumeric not in av['tags'] and av['type_pattern_index'] and nonnumeric not in av['pattern_index']:
-                            ''' this is a word, check for synonyms '''
-                            synonym, av = replace_with_syns([nonnumeric], None, ['synonym'], av)
-                            if not synonym:
-                                synonym, av = replace_with_syns([nonnumeric], None, ['common', 'standard', 'similarity'], av)
-                            if synonym:
-                                if synonym != nonnumeric:
-                                    new_words.append(nonnumeric)
-                                    variables[nonnumeric] = synonym
-                                else:
-                                    new_words.append(nonnumeric)
-                            else:
-                                new_words.append(nonnumeric)
-                        else:
-                            new_words.append(nonnumeric)
-            else:
-                new_words.append(word)
-    if len(new_words) > 0:
-        final_words = []
-        for w in new_words:
-            found_synonym_var = []
-            for k, v in variables.items():
-                if k in w:
-                    found_synonym_var.append(v)
-                if len(final_words) > 0:
-                    if k.split(' ')[0] == final_words[-1].split(' ')[-1]:
-                        final_words[-1] = ' '.join(final_words[-1].split(' ')[0: -1])
-                if k.split(' ')[-1] == w.split(' ')[0]:
-                    w = ' '.join(w.split(' ')[1:])
-            if w in variables:
-                final_words.append(variables[w])
-            elif len(found_synonym_var) == 0:
-                if len(final_words) > 0:
-                    if final_words[-1] in w:
-                        final_words.pop()
-                    if w not in final_words[-1]:
-                        final_words.append(w)
-                else:
-                    final_words.append(w)
-        last_words = []
-        for w in final_words:
-            if ' ' in w:
-                prev_word = final_words[-1].split(' ')[-1]
-                prev_two_words = final_words[-1].split(' ')[-2:]
-                if prev_two_words == w.split(' ')[0:2]:
-                    w = ' '.join(w.split(' ')[2:])
-                elif prev_word == w.split(' ')[0]:
-                    w = ' '.join(w.split(' ')[1:])
-            last_words.append(w)
-        if len(last_words) > 0:
-            new_pattern = ' '.join(last_words)
-            for k, v in variables.items():
-                new_pattern = new_pattern.replace(k, v)
-            return new_pattern, av
+    words = pattern.split(' ')
     for word in words:
         nonnumeric = get_nonnumeric(word, av)
         if nonnumeric not in av['tags']['ALL'] and nonnumeric not in av['tags'] and av['type_pattern_index'] and nonnumeric not in av['pattern_index']:
@@ -1294,6 +1233,9 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
         '||JJ JJR JJS| |WRB RB RBR RBS| VB |VBG VBD||' => '|JJ JJR JJS WRB RB RBR RBS VB VBG VBD|'
     '''
     corrected_pattern = generate_correct_patterns(pattern, av)
+    new_pattern = remove_unnecessary(pattern, av)
+    if new_pattern:
+        pattern = new_pattern
     version_types = av['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
     pattern_map_keys = pattern_map_keys if pattern_map_keys else av['pattern_maps'].keys()
     print('pattern', pattern)
@@ -1313,25 +1255,9 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
     all_patterns = set([x for x in all_to_iterate if type(x) != bool])
     final_patterns = set()
     for ap in all_patterns:
-        word_count = set()
-        for x in pattern.replace('|','').replace('__','').replace('&',' ').split(' '):
-            nn = get_nonnumeric(x, av)
-            pos = get_nltk_pos(x, av)
-            if nn not in av['tags']['ALL'] and nn not in av['tags'] and nn not in av['pattern_index'] and pos not in av['tags']['DPC']:
-                word_count.add(x)
-        if len(word_count) > 0:
-            synonym_pattern, av = generate_synonym_patterns(ap, av)
-            if synonym_pattern:
-                if synonym_pattern != ap:
-                    final_patterns.add(synonym_pattern)
-                    op = generate_operator_patterns(synonym_pattern, av)
-                    if op:
-                        final_patterns.add(op)
-        else:
-            op = generate_operator_patterns(ap, av)
-            if op:
-                final_patterns.add(op)
-    final_patterns = set([x for x in final_patterns if type(x) != bool])
+        op = generate_operator_patterns(ap, av)
+        if op:
+            final_patterns.add(op)
     if len(final_patterns) > 0:
         return final_patterns, av
     return False, av
@@ -1647,7 +1573,7 @@ def select_option(alt_phrase, word_map):
                 default_alt = alts[0]
                 for a in alts:
                     if a != default_alt:
-                        similarity = get_similarity(default_alt, a)
+                        similarity = get_similarity(default_alt, a, av)
                         if similarity:
                             if similarity < 0.7:
                                 ''' found a non-synonym, keep all options '''
@@ -1669,15 +1595,26 @@ def get_charge_of_word(word, av):
                 return synonym_type
     return False
 
-def get_similarity(base_word, new_word, pos_type, av):
-    if pos_type in ['N', 'V', 'ADV', 'ADJ']:
-        base_synsets = Word(base_word).get_synsets(pos=pos_type)
-        new_synsets = Word(new_word).get_synsets(pos=pos_type)
-        if len(new_synsets) > 0 and len(base_synsets) > 0:
-            similarity = base_synsets.path_similarity(new_synsets)
-            print('\tget similarity', new_synsets, base_synsets, similarity)
-            return similarity
-    return 0
+def get_similarity(base_word, new_word, av):
+    base_pos = get_nltk_pos(base_word, av)
+    new_pos = get_nltk_pos(new_word, av)
+    pos_lib_map = { 'N': NOUN, 'V': VERB, 'ADV': ADV, 'ADJ': ADJ }
+    if new_pos and base_pos:
+        for tag, tag_values in av['tags'].items():
+            if base_pos in tag_values and tag in pos_lib_map:
+                base_pos = tag
+            if new_pos in tag_values and tag in pos_lib_map:
+                new_pos = tag    
+        if base_pos in pos_lib_map and new_pos in pos_lib_map:
+            base_synsets = Word(base_word).get_synsets(pos=pos_lib_map[base_pos])
+            new_synsets = Word(new_word).get_synsets(pos=pos_lib_map[new_pos])
+            if len(new_synsets) > 0 and len(base_synsets) > 0:
+                for bs in base_synsets:
+                    for ns in new_synsets:
+                        similarity = bs.path_similarity(ns)
+                        print('\tget similarity', base_word, new_word, new_synsets, base_synsets, similarity)
+                        return similarity
+    return False
 
 def get_similarity_to_title(title, row):
     similarity = 0
@@ -1817,7 +1754,6 @@ def get_syn_from_definition(word, word_pos):
     return False
 
 def standard_text_processing(text, av):
-    print('stp', text)
     text = concatenate_species(text.strip())
     text = standardize_delimiter(text)
     text = standardize_punctuation(text)
@@ -1826,6 +1762,8 @@ def standard_text_processing(text, av):
     for i, line in enumerate(lines):
         line = replace_quotes_with_parenthesis(line)
         line = correct(line)
+        new_line = remove_unnecessary(line, av)
+        line = new_line if new_line else line
         singularize = get_singular(line)
         active_line, av = get_all_versions(line, 'all', 'passive_to_active', av)
         line = active_line if active_line else line
@@ -1904,19 +1842,130 @@ def get_common_word(word, pos, av):
                         max_synonyms = [c for c in counts if counts[c] == max_value]
                         if len(max_synonyms) > 0:
                             for syn in max_synonyms:
-                                similar_score = get_similarity(word, syn, pos_type, av) 
+                                similar_score = get_similarity(word, syn, av) 
                                 if similar_score > 0.5:
                                     return syn
                             return max_synonyms[0]
     return word
 
+def remove_unnecessary(line, av):
+    logged_grams = []
+    logged_synonyms = []
+    words = line.split(' ')
+    if len(words) > 0:
+        gram_counts = [2]
+        for gc in gram_counts:
+            new_words = []
+            for i, word in enumerate(words):
+                if len(word) > 0:
+                    gram = ' '.join(words[i:i + gc]) if (i + gc) < len(words) else ' '.join(words[i:])
+                    if gram not in logged_grams and gram != line:
+                        logged_grams.append(gram)
+                        found_new_words, logged_synonyms = get_synonyms_for_gram(gram, new_words, logged_synonyms, av)
+                        if found_new_words:
+                            if found_new_words != new_words:
+                                new_words = found_new_words
+            if len(new_words) > 0:
+                return ' '.join(new_words)
+        ''' check the whole line at once '''
+        for i, word in enumerate(words):
+            if len(word) > 0:
+                found_new_words, logged_synonyms = get_synonyms_for_gram(word, new_words, logged_synonyms, av)
+                if found_new_words:
+                    if found_new_words != new_words:
+                        new_words = found_new_words
+        if len(new_words) > 0:
+            return ' '.join(new_words)
+    return False
+
+def get_synonyms_for_gram(gram, new_words, logged_synonyms, av):
+    gram_index = ''.join([x for x in gram if x in '0123456789'])
+    nn = get_nonnumeric(gram, av)
+    synonym = get_synonym_word(nn, av)
+    first_word = nn.split(' ')[0]
+    previous_logged_synonym_last_word = None
+    if len(logged_synonyms) > 0:
+        previous_logged_synonym_last_word = logged_synonyms[-1].split(' ')[-1]
+    if len(logged_synonyms) == 0 or first_word != previous_logged_synonym_last_word:
+        if len(new_words) > 0:
+            prev_word = new_words[-1]
+            if prev_word == first_word:
+                new_words.pop()
+            else:
+                if prev_word.count(' ') > 0:
+                    prev_word_item = prev_word.split(' ')[-1]
+                    if prev_word_item:
+                        if prev_word_item == first_word:
+                            new_words[-1] = ' '.join(prev_word.split(' ')[0:-1])
+            logged_synonyms.append(nn)
+        if synonym:
+            if synonym != nn:
+                joined = ''.join([synonym, gram_index])
+                new_words.append(joined)
+            else:
+                new_item, logged_synonyms = get_synonym_phrase(nn, new_words, logged_synonyms, av)
+                if new_item:
+                    new_words.append(new_item)
+        else:
+            new_item, logged_synonyms = get_synonym_phrase(nn, new_words, logged_synonyms, av)
+            if new_item:
+                new_words.append(new_item)
+        return new_words, logged_synonyms
+    return False, logged_synonyms
+
+def get_synonym_phrase(nn, new_words, logged_synonyms, av):
+    new_nnw = []
+    for nnw in nn.split(' '):
+        nn_index = ''.join([x for x in nnw if x in '0123456789'])
+        syn = get_synonym_word(nnw, av)
+        nnw = syn if syn else nnw
+        if len(new_words) > 0:
+            if nnw != new_words[-1] and nnw != new_words[-1].split(' ')[-1]:
+                new_nnw.append(''.join([nnw, nn_index]))
+        else:
+            new_nnw.append(''.join([nnw, nn_index]))
+    if len(new_nnw) > 0:
+        return ' '.join(new_nnw), logged_synonyms
+    return False, logged_synonyms
+
+def get_synonym_word(word, av):
+    if word in av['convert_map']:
+        return av['convert_map'][word]
+    elif word in av['supported_synonyms']:
+        return av['supported_synonyms'][word]
+    return False
+
+def get_shortest_definition(defs):
+    if len(defs) > 0:
+        shortest_def = None
+        for d in defs:
+            if shortest_def:
+                if len(d) < len(shortest_def):
+                    shortest_def = d
+            else:
+                shortest_def = d
+        if shortest_def:
+            return shortest_def
+    return False
+
 def find_matching_synonym(word, pos, check_types, exclude_types, av):
     items = {}
     default_check_types = [
+        'standard', 'stem', 'synonym', 'common', 'similarity', 'partial'
+    ]
+    all_check_types = [
         'standard', 'stem', 'substring', 'type', 'pos', 'partial',
         'synonym', 'common', 'ratio', 'charge', 'similarity'
     ]
     if len(word) > 0:
+        ''' favor definitions over synonym calculations '''
+        defs = get_definitions(word)
+        if defs:   
+            shortest_def = get_shortest_definition(defs)         
+            if shortest_def:
+                new_def = remove_unnecessary(shortest_def, av)
+                shortest_def = new_def if new_def else shortest_def
+                return shortest_def
         if check_types != 'definition':
             if not check_types:
                 check_types = default_check_types
@@ -1926,10 +1975,8 @@ def find_matching_synonym(word, pos, check_types, exclude_types, av):
             match, check_type = iterate_through_synonyms(av, check_types, word, pos)
             if match and check_type:
                 return match, check_type
-            #print('no matches found', word, pos, check_types)
-            return word, check_types[0]
-        ''' if no matches found, check for syns of words in definition '''
         if pos in av['tags']['SYNSET']:
+            ''' if no matches found, check for syns of words in definition '''
             definitions = get_definitions(word)
             if definitions:
                 for d in definitions:
@@ -1942,6 +1989,9 @@ def find_matching_synonym(word, pos, check_types, exclude_types, av):
                                 if match and check_type:
                                     print('found matches', word, check_type, match)
                                     return match, check_type
+                            if pos == 'V' or pos in av['tags']['V']:
+                                return v, check_types[0]
+        return word, check_types[0]
     ''' as a backup, you can query pattern, function, & relationship data to derive standard verb '''
     return False, False
 
@@ -1960,6 +2010,7 @@ def matches(word, word_pos, k, check_type, word_type, av):
     words = [word] if word_type != 'line' else word.split(' ')
     for w in words:
         if k and w:
+            similarity = get_similarity(w, k, av)
             pos_k = get_nltk_pos(k, av)
             if check_type == 'standard':
                 w = conjugate(w, 'VB', av) # standardize tense to infinitive
@@ -1972,7 +2023,7 @@ def matches(word, word_pos, k, check_type, word_type, av):
                     w = stemmer.stem(w)
                     k = stemmer.stem(k)
             elif check_type == 'substring':
-                if w in k or k in w:
+                if w in k or k in w and (len(w) - len(k)) < 6:
                     return k, check_type
             elif check_type == 'type':
                 w = find_type(w, word_pos, None, None, av)
@@ -1998,11 +2049,24 @@ def matches(word, word_pos, k, check_type, word_type, av):
                 w = get_charge_of_word(w, av)
                 k = get_charge_of_word(k, av)
             elif check_type == 'similarity':
-                similarity = get_similarity(w, k, word_pos, av)
-                if similarity > 0.9:
-                    return k, check_type
+                if similarity:
+                    if similarity > 0.9:
+                        return k, check_type
+            elif check_type == 'definition':
+                w = get_definitions(w)
+                k = get_definitions(k)
+                if w and k:
+                    shortest_w_def = get_shortest_definition(w)
+                    shortest_k_def = get_shortest_definition(k)
+                    if shortest_w_def and shortest_k_def:
+                        missing_words = 0
+                        for dw_word in shortest_w_def.split(' '):
+                            if dw_word not in shortest_k_def.split(' '):
+                                missing_words += 1
+                        if missing_words < 3:
+                            return k, check_type
             if w and k:
-                if w == k:
+                if w == k or similarity > 0.9:
                     return k, check_type
     return False, False
 
@@ -2214,7 +2278,7 @@ def find_pattern(line, av):
     '''
     return False
 
-def match_patterns(line, pattern_key, av):
+def match_patterns(row, line, pattern_key, av):
     '''
     if line is a sequence, get patterns between objects in the list,
     rather than patterns in a line
@@ -2223,7 +2287,10 @@ def match_patterns(line, pattern_key, av):
     if type(line) == list or type(line) == set:
         found_patterns = get_patterns_between_objects(line)
     else:
-        converted_patterns, av = get_all_versions(line, 'all', 'all', av) 
+        if 'converted_pattern' not in row['pattern']:
+            converted_patterns, av = get_all_versions(line, 'all', 'all', av) 
+        else:
+            converted_patterns = row['pattern']['converted_pattern']
         print('match_patterns:converted_patterns', converted_patterns)
         if converted_patterns:
             if len(converted_patterns) > 0:
@@ -2239,7 +2306,10 @@ def match_patterns(line, pattern_key, av):
                                         found_patterns[combined_key] = {}
                                     found_patterns[combined_key][pattern] = found_subsets
                 if not found_patterns:
-                    found_patterns = {'converted_pattern': {line: converted_patterns}}
+                    if 'converted_pattern' not in row['pattern']:
+                        if len(converted_patterns) > 0:
+                            print('converted_patterns', converted_patterns)
+                            found_patterns = {'converted_pattern': converted_patterns}
     if found_patterns:
         return found_patterns, av
     return False, av
@@ -2385,22 +2455,23 @@ def get_nltk_pos(word, av):
     tagged = pos_tag(word_tokenize(word))
     tags = TextBlob(word).parse()
     tags_split = tags.split('/')
-    blob_pos = tags_split[1] if len(tags_split) > 0 else None
     if len(tags_split) > 1:
-        if tags_split[2] == 'B-NP':
-            ''' this is a noun form of a verb, conjugate to original verb '''
-            present_verb = conjugate(word, 'VBZ', av)
-            if present_verb:
-                return 'VBZ'
-        return blob_pos
-    if len(tagged) > 0:
-        for item in tagged:
-            if len(item) > 0:
-                if blob_pos != item[1]:
-                    ''' blob identifies 'explains' as a verb when pos_tag doesnt '''
-                    if blob_pos in av['tags']['ALL_V']:
-                        return blob_pos
-                return item[1]
+        blob_pos = tags_split[1]
+        if len(tags_split) > 2:
+            if tags_split[2] == 'B-NP':
+                ''' this is a noun form of a verb, conjugate to original verb '''
+                present_verb = conjugate(word, 'VBZ', av)
+                if present_verb:
+                    return 'VBZ'
+                return blob_pos
+        if len(tagged) > 0:
+            for item in tagged:
+                if len(item) > 0:
+                    if blob_pos != item[1]:
+                        ''' blob identifies 'explains' as a verb when pos_tag doesnt '''
+                        if blob_pos in av['tags']['ALL_V']:
+                            return blob_pos
+                    return item[1]
     return False
 
 def find_ngrams(line, av):
@@ -2477,4 +2548,72 @@ def get_ngram_combinations(word_list, x):
                     grams.append(gram)
         if len(grams) > 0:
             return grams
+    return False
+
+def find_type(word, pos, title, row, av):
+    types = {}
+    suggested = None
+    if pos in av['tags']['ALL_N']:
+        ''' make sure this is a noun before querying '''
+        if len(word) > 1:
+            '''
+            if word[0] == word[0].upper() and word[1] != word[1].upper():
+                suggested = find_generic_medication(word, {}, av)
+                suggested = wikipedia.suggest(word) if not suggested else suggested
+                print('suggested', suggested, word)
+                try:
+                    content = wikipedia.page(suggested).content
+                    section_list = [s.strip().replace(' ', '_').lower() for s in content.split('==') if '.' not in s and len(s) < 100]
+                    print('section list', section_list)
+                    categories = wikipedia.page(suggested).categories
+                    if len(categories) > 0:
+                        print('categories', categories)
+                        row['type'] = row['type'].union(set(categories))
+                        if len(section_list) > 0:
+                            # use section list to determine type first
+                            for key, val in av['section_map'].items():
+                                for section in section_list:
+                                    if key in section:
+                                        index_type =  val
+                        else:
+                            index_type = get_index_type(suggested, av, categories)
+                            if index_type:
+                                print('found index type', index_type, word)
+                                if index_type in row:
+                                    if index_type != 'dependency': # to do: exclude other relationship objects here
+                                        index = {index_type: word}
+                                        matched_objects, av = match_patterns(row, word, index_type, av)
+                                        if matched_objects:
+                                            for pattern_type in matched_objects.items():
+                                                if pattern_type not in row:
+                                                    row[pattern_type] = []
+                                                for pattern, matches in matched_objects[pattern_type].items():
+                                                    row[pattern_type].extend(matches)
+                except Exception as e:
+                    print('wiki summary exception', e)
+            '''
+    return word
+
+def get_index_type(object_type, av, categories):
+    param_map = {
+        'condition': 'state',
+        'compound': 'element', # not every compound will be a treatment
+        'symptom': 'side_effect',
+        'function': 'causal_layer'
+    }
+    if object_type in av['supported_synonyms']:
+        return av['supported_synonyms'][object_type]
+    alt_type = param_map[object_type]
+    if alt_type in av['supported_synonyms']:
+        return av['supported_synonyms'][alt_type]
+    if len(categories) > 0:
+        for c in categories:
+            c_split = c.split(' ')
+            for term in c_split:
+                index_type = None
+                for k, v in param_map.items():
+                    index_type = k if v == term else v if k == term else None
+                    if index_type:
+                        return index_type
+        return categories[0]
     return False

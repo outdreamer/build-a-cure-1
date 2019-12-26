@@ -3,7 +3,6 @@ from wikipedia.exceptions import DisambiguationError
 import xml.dom.minidom
 
 from get_pos import *
-from get_type import *
 from get_vars import *
 import get_medical_objects
 import get_structural_objects
@@ -159,9 +158,14 @@ def get_metadata(line, title, word_map, av):
                     print('\nget metadata', object_type, search_pattern_key)
                     objects, patterns, av = extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, av)
                     if objects:
-                        row[object_type] = objects
+                        if objects[object_type] != row.keys():
+                            row[object_type] = set(row[object_type]).union(set(objects[object_type]))
                     if patterns:
-                        row['pattern'] = row['pattern'].union(set([p for p in patterns]))
+                        joined_key = '_'.join([object_type, search_pattern_key])
+                        if joined_key not in row['pattern']:
+                            row['pattern'][joined_key] = set()
+                        for p in patterns:
+                            row['pattern'][joined_key].add(p)
     print('\nmedical objects', row)
     return row
 
@@ -215,15 +219,16 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
             object_type = 'modifier' and search_pattern_key = 'treatment'
     '''
     found_objects = set()
-    found_patterns, av = match_patterns(line, search_pattern_key, av)
+    found_patterns, av = match_patterns(index, line, search_pattern_key, av)
     if found_patterns and object_type != 'pattern':
         for pattern_type in found_patterns:
-            for pattern, matches in found_patterns[pattern_type].items():
+            for matches in found_patterns[pattern_type]:
                 ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
                 ''' note: this is not restricting output to found objects '''
                 for m in matches:
                     objects_found = apply_find_function(object_type, m, index, av)
                     if objects_found:
+                        print('of', objects_found)
                         found_objects = found_objects.union(objects_found)
     if found_patterns or found_objects:
         return found_objects, found_patterns, av
@@ -237,27 +242,19 @@ def apply_find_function(object_type, subset, index, av):
     '''
     function_name = ''.join(['find_', object_type])
     if function_name in globals():
-        try:
-            function = None
-            if get_structural_objects:
-                function = getattr(get_structural_objects, function_name)
-            if not function and get_conceptual_objects:
-                function = getattr(get_conceptual_objects, function_name)
-            if not function and get_medical_objects:
-                function = getattr(get_medical_objects, function_name)
-            if not function and get_vars:
-                function = getattr(get_vars, function_name)
-            if not function and get_type:
-                function = getattr(get_type, function_name)
-            print('function', function)
-            if function:
-                got_objects = function(subset, index, av)
-                if got_objects:
-                    if len(got_objects) > 0:
-                        return set([item for item in got_objects])
-        except Exception as e:
-            print('e', e)
-            return False
+        if function_name:
+            if get_structural_objects and get_conceptual_objects and get_medical_objects and get_vars:
+                function = None
+                for package in [get_structural_objects, get_conceptual_objects, get_medical_objects, get_vars]:
+                    try:
+                        function = getattr(package, function_name)
+                    except Exception as e:
+                        continue
+                if function:
+                    got_objects = function(subset, index, av)
+                    if got_objects:
+                        if len(got_objects) > 0:
+                            return set([item for item in got_objects])
     return False
 
 def get_structural_metadata(row, av):
@@ -272,11 +269,12 @@ def get_structural_metadata(row, av):
     structure_types = ['modifier', 'phrase', 'verb_phrase', 'noun_phrase', 'clause']
     corrected_line = correct(row['line'])
     row['line'] = corrected_line if corrected_line else row['line']
-    row['pattern'] = set()
     generated_patterns, av = get_all_versions(row['line'], 'all', 'all', av)
     if generated_patterns:
         for gp in generated_patterns:
-            row['pattern'].add(gp)
+            if 'generated_patterns' not in row['pattern']:
+                row['pattern']['generated_patterns'] = set()
+            row['pattern']['generated_patterns'].add(gp)
     word_pos_line = ''.join([x for x in row['line'] if x in av['alphanumeric'] or x in av['clause_analysis_chars']])
     words = word_pos_line.split(' ')
     new_line = []
@@ -346,6 +344,7 @@ def get_structural_metadata(row, av):
     for i, key in enumerate(structure_types):
         objects, patterns, av = extract_objects_and_patterns_from_index(None, row, key, key, av)
         if objects:
+            print('\n\n\nobjects', key, objects)
             if key in objects:
                 if key == 'verb_phrase':
                     for item in objects[key]:
@@ -368,31 +367,36 @@ def get_structural_metadata(row, av):
                 elif key == 'clause':
                     row[key] = objects[key]
                 else:
-                    row[key] = set(row[key]).union(set(objects[key]))
+                    print('objects key', key)
+                    if objects[key] != row.keys():
+                        row[key] = set(row[key]).union(set(objects[key]))
         if patterns:
-            for pattern_index, pattern_keys in patterns.items():
-                for pattern_key, pattern_value in pattern_keys.items():
-                    row['pattern'].add(pattern_key)
-                    for v in pattern_value:
-                        row['pattern'].add(v)
+            for pattern_key in patterns:
+                if pattern_key not in row['pattern']:
+                    row['pattern'][pattern_key] = set()
+                row['pattern'][pattern_key] = row['pattern'][pattern_key].union(patterns[pattern_key])
     extra_patterns = find_pattern(row['line'], av)
     if extra_patterns:
         for ep in extra_patterns:
-            row['pattern'].add(ep)
-    row = find_relationship(row['line'], row, av)
+            if 'extra_patterns' not in row['pattern']:
+                row['pattern']['extra_patterns'] = set()
+            row['pattern']['extra_patterns'].add(ep)
+    new_row = find_relationship(row['line'], row, av)
+    row = new_row if new_row else row
     objects, patterns, av = extract_objects_and_patterns_from_index(row, None, 'relationship', 'relationship', av)
     if objects:
         if 'relationship' in objects:
             row['relationship'] = row['relationship'].union(set(objects['relationship']))
         if patterns:
-            for pattern_index, pattern_keys in patterns.items():
-                for pattern_key, pattern_value in pattern_keys.items():
-                    row['pattern'].add(pattern_key)
-                    for v in pattern_value:
-                        row['pattern'].add(v)
-    for key in row:
-        print('key', key, row[key])
-    return row
+            for pattern_key in patterns:
+                if pattern_key not in row['pattern']:
+                    row['pattern'][pattern_key] = set()
+                row['pattern'][pattern_key] = row['pattern'][pattern_key].union(patterns[pattern_key])
+    if row:
+        for key in row:
+            print('key', key, row[key])
+        return row
+    return False
 
 if sys.argv:
     index = get_data_store(None, None, 'build', sys.argv)

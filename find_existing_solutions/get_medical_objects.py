@@ -1,3 +1,5 @@
+import wikipedia
+from wikipedia.exceptions import DisambiguationError
 from get_vars import *
 
 def find_object_similarity(verification_dict, output_dict):
@@ -53,18 +55,17 @@ def find_generic_medication(subset, row, av):
           so you get n-acetylaspartic acid from naa and creatine from cr
         - also add reverse function to get all possible names of a substance or species to maximize results
     '''
-    import wikipedia
-    from wikipedia.exceptions import DisambiguationError
     keyword = None
     original_content = None
     generic_content = None
+    '''
     try:
-        original_content = wikipedia.page(brand_name).content
+        original_content = wikipedia.page(subset).content
     except Exception as e:
-        print(e)
-        for item in e:
-            if brand_name.lower() not in item.lower() and 'medica' in item.lower():
-                keyword = item
+        if e:
+            print(e)
+            #if subset.lower() not in e.strerror() and 'medica' in e.strerror():
+            #    keyword = e.strerror
     try:
         generic_page = wikipedia.page(item)
         generic_title = generic_page.title
@@ -78,6 +79,7 @@ def find_generic_medication(subset, row, av):
             return generic_title
     except Exception as e:
         print('keyword e', keyword, e)
+    '''
     return False
 
 def find_synthesis(subset, row, av):
@@ -246,7 +248,7 @@ def find_treatment(subset, row, av):
             intent = None
             relation_polarity = get_polarity(row['line'])
             print("\trelation sentiment", relation_polarity, "row", row['line'])
-            correlation = get_similarity(intent, r)
+            correlation = get_similarity(intent, r, av)
             print('\tget_treatments: correlation', correlation, r)
             if correlation > 0.3:
                 row['treatments_successful'].add(r)

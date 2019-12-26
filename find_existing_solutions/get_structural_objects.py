@@ -36,6 +36,7 @@ def find_relationship(subset, row, av):
                 - "x was a and therefore b" => clause "x was a so b", relationship ["a therefore b", "x leads to b"], variable "(a so b)"
                 - "N V even with x or y" should produce: ["N V even with x", "N V even with y", "N V even with x or y"]
     '''
+    original_row = row
     relationship = []
     clause_relations = []
     if type(row['clause']) == dict:
@@ -74,7 +75,9 @@ def find_relationship(subset, row, av):
             row['clause_relations'] = clause_relations            
         if len(relationship) > 0:
             row['relationship'] = relationship
-    return row
+    if original_row != row:
+        return row
+    return False
 
 def get_net_impact_relation(relation, av):
     '''  
@@ -274,6 +277,7 @@ def find_clause(subset, row, av):
             where clauses include: ['subject verb relationship(s)', 'conditional(s)']
             and relationships include: ['subject verb relationship(s)', 'subject verb relationship(s) conditional(s)']
     '''
+    original_row = row
     variables = {}
     all_subjects = []
     row['clause'] = []
@@ -311,7 +315,7 @@ def find_clause(subset, row, av):
                 'delimiter': []
             }
             verb_index = 0
-            print('type', type(operator_clause), operator_clause)
+            operator_clause = ' '.join(operator_clause) if type(operator_clause) == list else operator_clause
             original_clause_words = operator_clause.split(' ')
             print('ocw', original_clause_words)
             for i, w in enumerate(original_clause_words):
@@ -328,33 +332,29 @@ def find_clause(subset, row, av):
                 elif w in av['clause_delimiters']:
                     cmap['delimiter'].append(w)
             cmap['conditional'] = operator_clause.replace(cmap['subject'], '')
-            cmap['conditional'] = cmap['conditional'].replace(cmap['statement'], '')
+            for statement in cmap['statement']:
+                cmap['conditional'] = operator_clause.replace(statement, '')
+            ''' to do: split conditional by condition keywords '''
             operator_condition, variables = convert_to_operators(cmap['conditional'], av)
             if operator_condition:
                 cmap['conditional'] = operator_condition
             ''' determine what type of clause this is '''
+            condition_score = 0
+            statement_score = 0
             for key in ['statement', 'conditional']:
                 if len(cmap[key]) > 0:
-                    verb_operator_count = 0
-                    for v in av['verb_operators']:
-                        if v in cmap[key]:
-                            verb_operator_count += 1
-                    if verb_operator_count > 0 and len(cmap['subject']) > 0:
-                        ''' probably a statement unless:
+                    for item in cmap[key]:
+                        verb_count = [v for v in av['verb_operators'] if v in item]
+                        condition_count = [w for w in av['causal_operators'] if w in item]
+                        ''' found verb in item so probably a statement unless:
                             - the verb is part of a verb phrase like 'even with alkalizing process'
                             - it has definitive condition keywords 
                         '''
-                        for w in av['causal_operators']:
-                            if w in cmap[key]:
-                                ''' found a definitive causal keyword '''
-                                cmap['type'] = 'condition'
-                        if 'type' not in conditional:
-                            cmap['type'] = 'statement'
-                    else:
-                        for w in av['causal_operators']:
-                            if w in cmap[key]:
-                                ''' found a definitive condition keyword '''
-                                cmap['type'] = 'condition'
+                        if len(condition_count) > 0:
+                            condition_score += 1
+                        elif len(verb_count) > 0:
+                            statement_score += 1
+            cmap['type'] = 'condition' if condition_score > statement_score else 'statement'
             if cmap:
                 print('found cmap', cmap)
                 row['clause'].append(cmap)
@@ -362,8 +362,9 @@ def find_clause(subset, row, av):
     # the process was activated because x was signaling successfully
     # x successful signals activated the process
     # should replace independence operators with 'with' because the next clause is true regardless but retain not ! operator
-    print('\nfinal row', row)
-    return row
+    if original_row != row:
+        return row
+    return False
 
 def split_by_delimiters(line, av):
     new_sections = []
@@ -484,6 +485,7 @@ def find_modifier(subset, row, av):
       but the second noun is a conjugation of a verb "disrupt" so should be converted to "x disrupts membranes"
     - takes out determiners if indicating 'one', 'some', or 'same' quantity 
     '''
+    original_row = row
     modifier = None
     tagged_dict = {} 
     blob_dict = {}
@@ -510,7 +512,9 @@ def find_modifier(subset, row, av):
                                 other_word_pos = row['word_map'][other_word] if other_word in row['word_map'] else ''
                                 if other_word_pos in av['tags']['ALL_N'] or other_word_pos in av['tags']['ALL_V']:
                                     row['modifier'].add(' '.join([ratio, other_word]))
-    return row
+    if original_row != row:
+        return row
+    return False
 
 def find_phrase(subset, row, av):
     words = subset.split(' ')

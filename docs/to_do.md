@@ -20,6 +20,15 @@
   - find source of bio keywords & synonyms
 
 ## Structural Objects
+
+  - add if original_row != row: to find_* functions
+  - do full synonym generation at beginning with get_all_versions
+    synonym, av = replace_with_syns([nonnumeric], None, ['synonym'], av)
+                          if not synonym:
+                              synonym, av = replace_with_syns([nonnumeric], None, ['common', 'standard', 'similarity'], av)
+                          if synonym:
+
+  - add similarity check for synonyms before returning the first option
   - remove len(0) checks for lists when possible & consolidate excessive chained response checks
   - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
   - find functions should have logic to rule out other types & type-specific logic since they're used as a backup to pattern-matching
@@ -35,7 +44,8 @@
       - show preference for verbs in ambiguous cases (associate, bear) should return a verb even though it can be a noun
       - based on processing order, isolate which tags would be identified as other objects first
   - check synonym replacements & make sure theyre mostly unique
-    - 'has effect' => 'have induce', 'imaging finding' => 'imaging find', 'is' => 'be', 'reason' => 'hypothesis'
+    - 'has effect' => 'have induce', 'imaging finding' => 'imaging find', 'reason' => 'hypothesis'
+    - 'as' can mean 'like', 'while', or 'because'
     - 'by' can indicate a process/mechanism "it works by doing x", "as"
   - support conversion between pos types like 'verb-to-noun':
     - 'subject1 verb clause because subject2 verb clause' => 'subject2 verb-to-noun causes subject1 verb-to-noun'
