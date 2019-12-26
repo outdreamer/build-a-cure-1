@@ -21,32 +21,30 @@
 
 ## Structural Objects
 
-  - add if original_row != row: to find_* functions
-  - do full synonym generation at beginning with get_all_versions
-    synonym, av = replace_with_syns([nonnumeric], None, ['synonym'], av)
-                          if not synonym:
-                              synonym, av = replace_with_syns([nonnumeric], None, ['common', 'standard', 'similarity'], av)
-                          if synonym:
+  - add if original_row != row: to all find_* functions
+  - do full synonym check vs definition check at beginning with get_all_versions - generate_synonym_patterns
 
-  - add similarity check for synonyms before returning the first option
-  - remove len(0) checks for lists when possible & consolidate excessive chained response checks
-  - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
   - find functions should have logic to rule out other types & type-specific logic since they're used as a backup to pattern-matching
-  - fix word pattern iteration
-  - add pattern_map synonym replacements
   - some of these types have type mappings so generalize when you can: condition = state, symptom = function = side_effects, function = relationship, synthesis = build process, structure = pattern
-  - finish adding combined operator output impact
+
+  - in find_clause, for question sentence_types, standardize verb-subject to subject-verb: 'V DET noun_phrase ... ?' => 'DET noun_phrase V ...'
+  - finish function to combine functions by intent get_net_impact(functions) & combined operators
+
+  - ***
+  - in list b***in list b
+  - = ADV V |V N|
   - repeated options shouldnt happen within an alt set: |NNS NNS VBZ2 VBZ3 NNS| 
-  - random indexes: |suppose thought1 assumed| that3 DPC |suppose thought6 assumed| that8 ALL_N9 ALL_N10 ALL_N11
-  - pattern processing order: examine iterated lists that determine processing order: (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
-    - if you replace modifiers first, then clause patterns, you can ensure that words get rearranged in a way that is likelier to be correct
-    - add ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos
-      - show preference for verbs in ambiguous cases (associate, bear) should return a verb even though it can be a noun
-      - based on processing order, isolate which tags would be identified as other objects first
-  - check synonym replacements & make sure theyre mostly unique
-    - 'has effect' => 'have induce', 'imaging finding' => 'imaging find', 'reason' => 'hypothesis'
+  - randomly assigned indexes: |suppose thought1 assumed| that3 DPC |suppose thought6 assumed| that8 ALL_N9 ALL_N10 ALL_N11
+  - fix word pattern iteration: suppose thought thought that
+
+  - pattern processing order: examine iterations (lists/if conditions) that determine processing order: 
+    (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
+    - add ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos - isolate which tags would be identified as other objects first
+
+  - add ordering logic in find_clause for special clause keywords:
     - 'as' can mean 'like', 'while', or 'because'
     - 'by' can indicate a process/mechanism "it works by doing x", "as"
+
   - support conversion between pos types like 'verb-to-noun':
     - 'subject1 verb clause because subject2 verb clause' => 'subject2 verb-to-noun causes subject1 verb-to-noun'
     - 'the process activated x because y inhibits b' => 'y b-inhibition causes the process to activate x' => 'y b-inhibition enables process to activate x'
@@ -54,10 +52,10 @@
   - fix rows csv format & read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
   - use definitions as a data source for relationships if none are found 
   - write function to get semantic props of compounds (bio-availability, activation in the host species, etc) & get_common_property between objects
-  - for question sentence_types, standardize verb-subject to subject-verb: 'V DET noun_phrase ... ?' => 'DET noun_phrase V ...'
-  - add function to combine functions by intent get_net_impact(functions)
-  - add adverb/det/adjective/operator processing to your function definition so 'never finishes' is not equated with 'finish'
   - integrate conditions/symptoms and treatments/compounds schemas (this would be a nice way to test get_attribute function to find differentiating props)
+
+  - remove len(0) checks for lists when possible & consolidate excessive chained response checks
+  - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
 
 ## Functions
   - add variable accretion patterns (how an object becomes influenced by a new variable)
