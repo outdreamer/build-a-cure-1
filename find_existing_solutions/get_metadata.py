@@ -204,17 +204,19 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
             object_type = 'modifier' and search_pattern_key = 'treatment'
     '''
     found_objects = set()
-    found_patterns, av = match_patterns(line, search_pattern_key, av)
-    if found_patterns and object_type != 'pattern':
-        for pattern_type in found_patterns:
-            for matches in found_patterns[pattern_type]:
-                ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
-                ''' note: this is not restricting output to found objects '''
-                for m in matches:
-                    objects_found = apply_find_function(object_type, m, index, av)
-                    if objects_found:
-                        print('objects_found', objects_found)
-                        found_objects = found_objects.union(objects_found)
+    generated_patterns, all_patterns, av = get_all_versions(line, 'all', 'all', av)
+    if generated_patterns and all_patterns:
+        found_patterns, av = match_patterns(line, search_pattern_key, generated_patterns, all_patterns, av)
+        if found_patterns and object_type != 'pattern':
+            for pattern_type in found_patterns:
+                for matches in found_patterns[pattern_type]:
+                    ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
+                    ''' note: this is not restricting output to found objects '''
+                    for m in matches:
+                        objects_found = apply_find_function(object_type, m, index, av)
+                        if objects_found:
+                            print('objects_found', objects_found)
+                            found_objects = found_objects.union(objects_found)
     if found_patterns or found_objects:
         return found_objects, found_patterns, av
     return False, False, av

@@ -201,10 +201,6 @@ def find_insight(subset, row, av):
 def find_priority(subset, row, av):
     return row 
 
-def find_type(subset, row, av):
-    ''' this returns the type stack in a component '''
-    return row
-
 def find_core_function(subset, row, av):
     return row
 

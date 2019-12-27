@@ -1227,11 +1227,13 @@ def generate_type_patterns(line, av):
     '''
     new_pattern = []
     for w in line.split(' '):
-        types = find_type(w, av)
-        if types:
-            new_pattern.append(types)
-        else:
-            new_pattern.append(w)
+        pos = get_nltk_pos(w, av)
+        if pos:
+            types = find_type(w, pos, None, None, av)
+            if types:
+                new_pattern.append(types)
+            else:
+                new_pattern.append(w)
     if len(new_pattern) > 0:
         index_lists = []
         for sub_list in new_pattern:
@@ -1247,7 +1249,7 @@ def generate_type_patterns(line, av):
             return index_lists
     return False
 
-def generate_pattern_type_patterns(line, av):
+def generate_pattern_type_patterns(line, generated_patterns, all_patterns, av):
     ''' transform modifiers/clauses in a line to type names like 'modifier', 'clause', etc 
         to do: 
         - identify common alts & consolidate to one pattern with alts wherever possible
@@ -1256,15 +1258,16 @@ def generate_pattern_type_patterns(line, av):
     all_patterns = set()
     for pattern_index in ['pattern_index', 'type_index']:
         for pattern_key in av[pattern_index]:
-            patterns, av = match_patterns(line, pattern_key, av)
-            if patterns:
-                for pattern_type in patterns:
-                    for pattern, matches in pattern_type.items():
-                        all_matches = all_matches.union(matches)
-                        all_patterns.add(pattern.split(' '))
-                        ''' replace m with pattern_key '''
-                        for m in matches:
-                            line = line.replace(m, pattern_key)
+            if generated_patterns and all_patterns:
+                patterns, av = match_patterns(line, pattern_key, generated_patterns, all_patterns, av)
+                if patterns:
+                    for pattern_type in patterns:
+                        for pattern, matches in pattern_type.items():
+                            all_matches = all_matches.union(matches)
+                            all_patterns.add(pattern.split(' '))
+                            ''' replace m with pattern_key '''
+                            for m in matches:
+                                line = line.replace(m, pattern_key)
     if line:
         return line
     return False
@@ -1308,7 +1311,7 @@ def consolidate_patterns(all_patterns, av):
                 if len(new_alt_pattern) > 0:
                     possible_alt_patterns.add(' '.join(new_alt_pattern))   
         if len(possible_alt_patterns) > 0:
-            return possible_alt_patterns:
+            return possible_alt_patterns
     return False 
 
 def get_words_in_common(source_words, target_words):
@@ -1410,11 +1413,11 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
         if cp:
             pattern_index['combination'].append(cp)
             final_patterns.add(cp)
-    tp = generate_type_patterns(line, av)
+    tp = generate_type_patterns(pattern, av)
     if tp:
         pattern_index['type'].append(tp)
-        final_patterns.add(tp)
-    index_type_pattern = generate_pattern_type_patterns(line, av)
+        final_patterns = final_patterns.union(tp)
+    index_type_pattern = generate_pattern_type_patterns(pattern, pattern_index, final_patterns, av)
     if index_type_pattern:
         pattern_index['pattern_type'].append(index_type_pattern)
         final_patterns.add(index_type_pattern)
@@ -2500,7 +2503,7 @@ def derive_and_store_patterns(object_type, av):
                             save(filename, '\n'.join(new_pattern_type))
     return all_patterns, articles
 
-def match_patterns(line, pattern_key, av):
+def match_patterns(line, pattern_key, generated_patterns, all_patterns, av):
     '''
     if line is a sequence, get patterns between objects in the list,
     rather than patterns in a line
@@ -2511,7 +2514,6 @@ def match_patterns(line, pattern_key, av):
     found_patterns = {}
     pos_line = get_nltk_pos(line, av)
     #found_patterns = get_patterns_between_objects(line) if type(line) == list or type(line) == set else {}
-    generated_patterns, all_patterns, av = get_all_versions(line, 'all', 'all', av)
     if generated_patterns and all_patterns:
         for pattern_type, patterns in generated_patterns.items():
             if len(patterns) > 0:
@@ -2800,7 +2802,8 @@ def find_type(word, pos, title, row, av):
                                 if index_type in row:
                                     if index_type != 'dependency': # to do: exclude other relationship objects here
                                         index = {index_type: word}
-                                        matched_objects, av = match_patterns(word, index_type, av)
+                                        generated_patterns, all_patterns, av = get_all_versions(line, 'all', 'all', av)
+                                        matched_objects, av = match_patterns(word, index_type, generated_patterns, all_patterns, av)
                                         if matched_objects:
                                             for pattern_type in matched_objects.items():
                                                 if pattern_type not in row:
