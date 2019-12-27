@@ -116,22 +116,7 @@ def build_indexes(database, args, filters, av):
                         if row:
                             index, rows = add_row(row, index, empty_index, rows)
     if index and rows:
-        for key in index:
-            if key != 'rows':
-                ''' get the patterns in each index we just built & save '''
-                for row in rows:
-                    print('build', key)
-                    objects, patterns, av = extract_objects_and_patterns_from_index(index, row, key, None, av)
-                    #to do: patterns = get_patterns_between_objects(index[key], key, av)
-                    # get patterns for index[key] objects with object_type key
-                    if patterns:
-                        if len(patterns) > 0:
-                            object_patterns = [''.join([k, '_', '::'.join(v)]) for k, v in patterns.items()] # 'pattern_match1::match2::match3'
-                            object_pattern_name = ''.join(['data/patterns_', key, '.txt']) 
-                            index[object_pattern_name] = '\n'.join(object_patterns)
-                    save(''.join(['data/pk_', key, '.txt']), '\n'.join(index[key]))
-            else:
-                write_csv(rows, index.keys(), 'data/rows.csv')
+        write_csv(rows, index.keys(), 'data/rows.csv')
         return index, rows
     return False, False
 
@@ -228,7 +213,7 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
                 for m in matches:
                     objects_found = apply_find_function(object_type, m, index, av)
                     if objects_found:
-                        print('of', objects_found)
+                        print('objects_found', objects_found)
                         found_objects = found_objects.union(objects_found)
     if found_patterns or found_objects:
         return found_objects, found_patterns, av
@@ -269,12 +254,14 @@ def get_structural_metadata(row, av):
     structure_types = ['modifier', 'phrase', 'verb_phrase', 'noun_phrase', 'clause']
     corrected_line = correct(row['line'])
     row['line'] = corrected_line if corrected_line else row['line']
-    generated_patterns, av = get_all_versions(row['line'], 'all', 'all', av)
+    generated_patterns, all_patterns, av = get_all_versions(row['line'], 'all', 'all', av)
     if generated_patterns:
-        for gp in generated_patterns:
-            if 'generated_patterns' not in row['pattern']:
-                row['pattern']['generated_patterns'] = set()
-            row['pattern']['generated_patterns'].add(gp)
+        for pattern_type, patterns in generated_patterns.items():
+            if pattern_type not in row['pattern']:
+                row['pattern'][pattern_type] = set()
+            if len(patterns) > 0:
+                for pattern in patterns:
+                    row['pattern'][pattern_type].add(pattern)
     word_pos_line = ''.join([x for x in row['line'] if x in av['alphanumeric'] or x in av['clause_analysis_chars']])
     words = word_pos_line.split(' ')
     new_line = []
@@ -371,16 +358,20 @@ def get_structural_metadata(row, av):
                     if objects[key] != row.keys():
                         row[key] = set(row[key]).union(set(objects[key]))
         if patterns:
-            for pattern_key in patterns:
-                if pattern_key not in row['pattern']:
-                    row['pattern'][pattern_key] = set()
-                row['pattern'][pattern_key] = row['pattern'][pattern_key].union(patterns[pattern_key])
-    extra_patterns = find_pattern(row['line'], av)
-    if extra_patterns:
-        for ep in extra_patterns:
-            if 'extra_patterns' not in row['pattern']:
-                row['pattern']['extra_patterns'] = set()
-            row['pattern']['extra_patterns'].add(ep)
+            for pattern_type in patterns:
+                if pattern_type not in row['pattern']:
+                    row['pattern'][pattern_type] = set(patterns[pattern_key])
+                else:
+                    if len(row['pattern'][pattern_type]) == 0:
+                        row['pattern'][pattern_type] = set(patterns[pattern_key])
+                    else:
+                        row['pattern'][pattern_type] = row['pattern'][pattern_type].union(patterns[pattern_key])
+    derived_patterns = derive_and_store_patterns(row['line'], av)
+    if derived_patterns:
+        for ep in derived_patterns:
+            if 'derived_patterns' not in row['pattern']:
+                row['pattern']['derived_patterns'] = set()
+            row['pattern']['derived_patterns'].add(ep)
     new_row = find_relationship(row['line'], row, av)
     row = new_row if new_row else row
     objects, patterns, av = extract_objects_and_patterns_from_index(row, None, 'relationship', 'relationship', av)

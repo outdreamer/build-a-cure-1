@@ -21,21 +21,16 @@
 
 ## Structural Objects
 
+  - finish generate_pattern_type_patterns and generate_type_patterns
   - add if original_row != row: to all find_* functions
   - do full synonym check vs definition check at beginning with get_all_versions - generate_synonym_patterns
-
   - find functions should have logic to rule out other types & type-specific logic since they're used as a backup to pattern-matching
-  - some of these types have type mappings so generalize when you can: condition = state, symptom = function = side_effects, function = relationship, synthesis = build process, structure = pattern
 
   - in find_clause, for question sentence_types, standardize verb-subject to subject-verb: 'V DET noun_phrase ... ?' => 'DET noun_phrase V ...'
   - finish function to combine functions by intent get_net_impact(functions) & combined operators
-
-  - ***
-  - in list b***in list b
-  - = ADV V |V N|
+  - in list b***in list b, = ADV V |V N|
   - repeated options shouldnt happen within an alt set: |NNS NNS VBZ2 VBZ3 NNS| 
   - randomly assigned indexes: |suppose thought1 assumed| that3 DPC |suppose thought6 assumed| that8 ALL_N9 ALL_N10 ALL_N11
-  - fix word pattern iteration: suppose thought thought that
 
   - pattern processing order: examine iterations (lists/if conditions) that determine processing order: 
     (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
@@ -48,7 +43,6 @@
   - support conversion between pos types like 'verb-to-noun':
     - 'subject1 verb clause because subject2 verb clause' => 'subject2 verb-to-noun causes subject1 verb-to-noun'
     - 'the process activated x because y inhibits b' => 'y b-inhibition causes the process to activate x' => 'y b-inhibition enables process to activate x'
-  - implement a find_pattern function that aggregates patterns across an article set, & implement a function to scan sources & pull & index patterns from them
   - fix rows csv format & read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
   - use definitions as a data source for relationships if none are found 
   - write function to get semantic props of compounds (bio-availability, activation in the host species, etc) & get_common_property between objects
@@ -56,6 +50,8 @@
 
   - remove len(0) checks for lists when possible & consolidate excessive chained response checks
   - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
+  - some of these types have type mappings so generalize when you can: condition = state, symptom = function = side_effects, function = relationship, synthesis = build process, structure = pattern
+
 
 ## Functions
   - add variable accretion patterns (how an object becomes influenced by a new variable)
