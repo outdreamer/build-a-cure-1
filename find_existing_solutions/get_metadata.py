@@ -204,7 +204,7 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
             object_type = 'modifier' and search_pattern_key = 'treatment'
     '''
     found_objects = set()
-    found_patterns, av = match_patterns(index, line, search_pattern_key, av)
+    found_patterns, av = match_patterns(line, search_pattern_key, av)
     if found_patterns and object_type != 'pattern':
         for pattern_type in found_patterns:
             for matches in found_patterns[pattern_type]:

@@ -519,7 +519,7 @@ def get_pattern_config(av):
         'into': 'to'
     }
     av['pattern_vars'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
-    av['type_pattern_index'] = {
+    av['type_index'] = {
         'passive': [
             'noun_phrase1 of noun_phrase2' # enzyme inhibitor of protein synthesis
         ],
@@ -609,7 +609,7 @@ def get_pattern_config(av):
             'ADV |V N|', # Ex: 'emulsifying protein' (role = 'emulsifier')
         ]
     }
-    for key in av['type_pattern_index']:
+    for key in av['type_index']:
         av['pattern_vars'].append(key)
     for key in av['pattern_index']:
         av['pattern_vars'].append(key)
@@ -617,12 +617,12 @@ def get_pattern_config(av):
     av['all_pattern_version_types'] = ['correct', 'indexed', 'nested', 'alt', 'pos', 'type', 'synonym', 'operator', 'function', 'maps']
     ''' 
     now that pattern lists are generated, 
-    populate pattern types from type_pattern_index[key[
+    populate pattern types from type_index[key[
     with all variants from the corresponding list in pattern_index[key]
     '''
-    for key, type_pattern_index in av['type_pattern_index'].items():
-        new_type_pattern_index = []
-        for type_pattern in type_pattern_index:
+    for key, type_index in av['type_index'].items():
+        new_type_index = []
+        for type_pattern in type_index:
             for sub_pattern_type, sub_pattern_list in av['pattern_index'].items():
                 nonnumeric_index_type = get_nonnumeric(sub_pattern_type, av)
                 nonnumeric_type_pattern = get_nonnumeric(type_pattern, av)
@@ -631,10 +631,10 @@ def get_pattern_config(av):
                     ''' iterate through modifiers pattern_index, replacing nonnumeric_index_type with index pattern '''
                     for sub_pattern in sub_pattern_list:
                         new_type_pattern = nonnumeric_type_pattern.replace(nonnumeric_index_type, sub_pattern)
-                        new_type_pattern_index.append(''.join(new_type_pattern))
-        if len(new_type_pattern_index) > 0:
+                        new_type_index.append(''.join(new_type_pattern))
+        if len(new_type_index) > 0:
             if key in av['pattern_index']:
-                av['pattern_index'][key].extend(new_type_pattern_index)
+                av['pattern_index'][key].extend(new_type_index)
     ''' if there are files with the 'data/objecttype_patterns.txt' name pattern, pull that data and add it to pattern_index dict  '''
     av = update_patterns(av)
     return av
@@ -642,9 +642,9 @@ def get_pattern_config(av):
 def update_patterns(av):
     '''
     if 'data/all_patterns.txt' found, 
-        read patterns & sort into pattern_index/type_pattern_index lists
+        read patterns & sort into pattern_index/type_index lists
     otherwise 
-        generate patterns for pattern_index & type_pattern_index patterns
+        generate patterns for pattern_index & type_index patterns
         & generate patterns for source/target patters in pattern maps 
         and save all generated patterns in 'data/all_patterns.txt'
     '''
@@ -665,7 +665,7 @@ def update_patterns(av):
                         av[pattern_index][pattern_key].append(pattern)
     else:
         new_pattern_lines = []
-        for pattern_index in ['pattern_index', 'type_pattern_index']:
+        for pattern_index in ['pattern_index', 'type_index']:
             for pattern_key, patterns in av[pattern_index].items():
                 for original_pattern in patterns:
                     generated_patterns, final_patterns, av = get_all_versions(original_pattern, 'all', 'all', av) 
@@ -1057,7 +1057,7 @@ def get_alt_sets(pattern, all_alts, av):
                         if len(new_item_list) > 0:
                             final_alts.append(' '.join(new_item_list))
                 return final_alts, variables
-    ''' replace type_pattern_index keywords with sets of patterns from pattern_index '''
+    ''' replace type_index keywords with sets of patterns from pattern_index '''
     final_alts = []
     for word in pattern.split(' '):
         nn = get_nonnumeric(word, av)
@@ -1160,7 +1160,6 @@ def get_pattern_subsets(pattern, variables, av):
             return replacement_subsets, variables
     return False, False
 
-
 def generate_indexed_patterns(pattern, av):
     ''' this function adds an integer index to any repeated items '''
     new_words = []
@@ -1218,14 +1217,107 @@ def generate_correct_patterns(pattern, av):
 
 def generate_type_patterns(line, av):
     ''' 
-    to do: implement after get_types 
-        Cytotoxicity in cancer cells => <component object>-toxicity, anti-tumor => anti-<component object of illness>
-        suppress/interfere/inhibit activity of carcinog/canc/tumz => suppress/interfere/inhibit activity of drug/medication/enzyme
+    to do:
+        - implement after get_types 
+
+        Cytotoxicity in cancer cells => <component object>-toxicity, 
+            anti-tumor => anti-<component object of illness>
+        suppress/interfere/inhibit activity of carcinog/canc/tumz => 
+            suppress/interfere/inhibit activity of drug/medication/enzyme
     '''
+    new_pattern = []
+    for w in line.split(' '):
+        types = find_type(w, av)
+        if types:
+            new_pattern.append(types)
+        else:
+            new_pattern.append(w)
+    if len(new_pattern) > 0:
+        index_lists = []
+        for sub_list in new_pattern:
+            original_sub_list = sub_list
+            sub_list = sub_list if type(sub_list) == str else ' '.join(sub_list)
+            new_sub_list = remove_unnecessary(sub_list, av)
+            sub_list = new_sub_list if new_sub_list else sub_list
+            if type(original_sub_list) == list:
+                sub_list = ''.join(['|', sub_list, '|'])
+        index_lists = append_list(index_lists, sub_list)
+        index_lists = set([il.replace('  ',' ') for il in index_lists])
+        if len(index_lists) > 0:
+            return index_lists
     return False
 
 def generate_pattern_type_patterns(line, av):
-    ''' transform modifiers/clauses in a line to type names like 'modifier', 'clause', etc '''
+    ''' transform modifiers/clauses in a line to type names like 'modifier', 'clause', etc 
+        to do: 
+        - identify common alts & consolidate to one pattern with alts wherever possible
+    '''
+    all_matches = set()
+    all_patterns = set()
+    for pattern_index in ['pattern_index', 'type_index']:
+        for pattern_key in av[pattern_index]:
+            patterns, av = match_patterns(line, pattern_key, av)
+            if patterns:
+                for pattern_type in patterns:
+                    for pattern, matches in pattern_type.items():
+                        all_matches = all_matches.union(matches)
+                        all_patterns.add(pattern.split(' '))
+                        ''' replace m with pattern_key '''
+                        for m in matches:
+                            line = line.replace(m, pattern_key)
+    if line:
+        return line
+    return False
+
+def consolidate_patterns(all_patterns, av):
+    ''' this function identifies possible alt_patterns in a set '''
+    if len(all_patterns) > 0:
+        ''' note: pattern retrieved from match_pattern may have delimiter '''
+        candidates = {}
+        possible_alt_patterns = []
+        for pattern_words in all_patterns:
+            for ap_words in all_patterns:
+                words_in_common = get_words_in_common(pattern_words, ap_words)
+                if words_in_common:
+                    if (len(words_in_common) / len(pattern_words)) > 0.7:
+                        pattern = ' '.join(pattern_words)
+                        if pattern not in candidates:
+                            candidates[pattern].append(ap_words)
+        for pattern, alt_word_sets in candidates.items():
+            alt_pattern = []
+            pattern_words = pattern.split(' ')
+            for i, s in enumerate(pattern_words):
+                for ap_words in alt_word_sets:
+                    if i < len(ap_words):
+                        ''' to do: handle optional words found in one pattern but not the other '''
+                        if s == ap_words[i]:
+                            alt_pattern.append(s)
+                        else:
+                            if i < len(alt_pattern):
+                                if type(alt_pattern[i]) == list:
+                                    alt_pattern[i].append(ap_words[i])
+                            else:
+                                alt_pattern[i] = [s, ap_words[i]]
+            if len(alt_pattern) > 0:
+                new_alt_pattern = []
+                for ap in alt_pattern:
+                    if type(ap) == list:
+                        new_alt_pattern.append(''.join(['|', ' '.join(ap), '|']))
+                    else:
+                        new_alt_pattern.append(ap)
+                if len(new_alt_pattern) > 0:
+                    possible_alt_patterns.add(' '.join(new_alt_pattern))   
+        if len(possible_alt_patterns) > 0:
+            return possible_alt_patterns:
+    return False 
+
+def get_words_in_common(source_words, target_words):
+    words_in_common = []
+    for s in source_words:
+        if s in target_words:
+            words_in_common.append(s)
+    if len(words_in_common) > 0:
+        return words_in_common
     return False
 
 def generate_synonym_patterns(pattern, av):
@@ -1234,7 +1326,7 @@ def generate_synonym_patterns(pattern, av):
     words = pattern.split(' ')
     for word in words:
         nonnumeric = get_nonnumeric(word, av)
-        if nonnumeric not in av['tags']['ALL'] and nonnumeric not in av['tags'] and av['type_pattern_index'] and nonnumeric not in av['pattern_index']:
+        if nonnumeric not in av['tags']['ALL'] and nonnumeric not in av['tags'] and av['type_index'] and nonnumeric not in av['pattern_index']:
             ''' this is a word, check for synonyms '''
             synonym, av = replace_with_syns(nonnumeric, None, ['synonym'], av)
             if not synonym:
@@ -1275,7 +1367,6 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
         '||JJ JJR JJS| |WRB RB RBR RBS| VB |VBG VBD||' => '|JJ JJR JJS WRB RB RBR RBS VB VBG VBD|'
     '''
     #corrected_pattern = generate_correct_patterns(pattern, av)
-    pattern = 'modifier clause'
     pattern_index = {'maps': [], 'standard': [], 'type': [], 'operator': [], 'synonym': [], 'pos': [], 'combination': [], 'pattern_type': []}
     version_types = av['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
     pattern_map_keys = pattern_map_keys if pattern_map_keys else av['pattern_maps'].keys()
@@ -1305,6 +1396,7 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
                 if ap != new_ap:
                     pattern_index['standard'].append(ap)
     final_patterns = set()
+    print('all_to_iterate', all_to_iterate)
     for ap in all_to_iterate:
         op = generate_operator_patterns(ap, av)
         if op:
@@ -1322,10 +1414,10 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
     if tp:
         pattern_index['type'].append(tp)
         final_patterns.add(tp)
-    pattern_type = generate_pattern_type_patterns(line, av)
-    if pattern_type:
-        pattern_index['pattern_type'].append(pattern_type)
-        final_patterns.add(pattern_type)
+    index_type_pattern = generate_pattern_type_patterns(line, av)
+    if index_type_pattern:
+        pattern_index['pattern_type'].append(index_type_pattern)
+        final_patterns.add(index_type_pattern)
     if len(final_patterns) > 0:
         return pattern_index, final_patterns, av
     return False, False, av
@@ -2259,6 +2351,10 @@ def get_patterns_between_objects(objects, object_type, av):
                 - the adverse event possible in the context of "prepare_for_social_situation" is "wrecking yourself"
                 - the method of using caution in the context of "prepare_for_social_situation" is "checking yourself"
     '''
+    ''' once you identify a set of objects & store it, you want to identify patterns within that object set '''
+    objects, patterns, av = extract_objects_and_patterns_from_index(pattern_list, ap, object_type, object_type, av)
+    if patterns:
+        object_patterns = [''.join([pattern_type, '***', k, '_', '::'.join(v)]) for k, v in patterns.items()] # 'pattern_match1::match2::match3'
     return objects
 
 def index_as_functions(line):
@@ -2343,12 +2439,12 @@ def derive_and_store_patterns(object_type, av):
 
     and add to index, then aggregate by max counts & store most common patterns in data set
     '''
-    articles = []
     pattern_counts = {'maps': {}, 'standard': {}, 'type': {}, 'operator': {}, 'synonym': {}, 'pos': {}, 'combination': {}, 'pattern_type': {}}
     index = get_empty_index(av)
     if object_type in index:
         source_names = filter_source_list(object_type)
         if source_names:
+            articles = []
             for source_name in source_names:
                 for source in av['sources']:
                     if source_name == source['name']:
@@ -2368,33 +2464,43 @@ def derive_and_store_patterns(object_type, av):
                                                 if p not in pattern_counts[pattern_type]:
                                                     pattern_counts[pattern_type][p] = 0
                                                 pattern_counts[pattern_type][p] += 1
-                                            pattern_list = pattern_counts[pattern_type].keys()
-                                            objects, patterns, av = extract_objects_and_patterns_from_index(pattern_list, ap, object_type, object_type, av)
-                                            if patterns:
-                                                if len(patterns) > 0:
-                                                    object_patterns = [''.join([k, '_', '::'.join(v)]) for k, v in patterns.items()] # 'pattern_match1::match2::match3'
-                                                    object_pattern_name = ''.join(['data/patterns_', object_type, '_', pattern_type, '.txt']) 
-                                                    save(object_pattern_name, '\n'.join(object_patterns))
                                 if len(article) > 0:
-                                    articles.append('\n'.join(article))
+                                    articles.append('\n'.join(article))                
             if len(articles) > 0:
                 filename = ''.join(['article_store_', object_type, '.txt'])
                 save(filename, '\n\n'.join(articles))
             if pattern_counts:
+                object_pattern_name = ''.join(['data/patterns_', object_type, '.txt'])
+                ''' dont need to extract patterns in pattern_list bc that just identifies matching patterns and we want to derive patterns '''
                 ''' store patterns for this type of data source '''
                 for pattern_type, pattern_map in pattern_counts.items():
+                    pattern_list = pattern_map.keys()
+                    new_counts = {}
+                    possible_alt_patterns = consolidate_patterns(pattern_list, av)
+                    if possible_alt_patterns:
+                        for p in possible_alt_patterns:
+                            if p not in new_counts:
+                                if p in pattern_map:
+                                    new_counts[p] = pattern_map[p]
+                                else:
+                                    new_counts[p] = 1
+                            else:
+                                new_counts[p] += 1
+                    if new_counts:
+                        pattern_map = new_counts
                     new_pattern_type = []
+                    threshold = 1
                     max_pattern_count = max(pattern_map.values())
-                    if max_pattern_count > 1:
+                    if max_pattern_count > threshold:
                         for pattern, pattern_count in pattern_map.items():
-                            if pattern_count > 1:
+                            if pattern_count > threshold:
                                 new_pattern_type.append('::'.join([pattern, pattern_count]))
                         if len(new_pattern_type) > 0:
                             filename = ''.join(['pattern_store_', object_type, '_', pattern_type, '.txt'])
                             save(filename, '\n'.join(new_pattern_type))
     return all_patterns, articles
 
-def match_patterns(row, line, pattern_key, av):
+def match_patterns(line, pattern_key, av):
     '''
     if line is a sequence, get patterns between objects in the list,
     rather than patterns in a line
@@ -2416,7 +2522,7 @@ def match_patterns(row, line, pattern_key, av):
                         if combined_key not in found_patterns:
                             found_patterns[combined_key] = {}
                         found_patterns[combined_key][pattern] = found_subsets
-    for pattern_index in ['pattern_index', 'type_pattern_index']:
+    for pattern_index in ['pattern_index', 'type_index']:
         if pattern_key in av[pattern_index]:
             for pattern in av[pattern_index][pattern_key]:
                 ''' only want to generate source patterns here, send a flag to not generate target patterns '''
@@ -2694,7 +2800,7 @@ def find_type(word, pos, title, row, av):
                                 if index_type in row:
                                     if index_type != 'dependency': # to do: exclude other relationship objects here
                                         index = {index_type: word}
-                                        matched_objects, av = match_patterns(row, word, index_type, av)
+                                        matched_objects, av = match_patterns(word, index_type, av)
                                         if matched_objects:
                                             for pattern_type in matched_objects.items():
                                                 if pattern_type not in row:

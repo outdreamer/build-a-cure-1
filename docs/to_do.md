@@ -21,16 +21,21 @@
 
 ## Structural Objects
 
-  - finish generate_pattern_type_patterns and generate_type_patterns
-  - add if original_row != row: to all find_* functions
+  - finish generate_type_patterns
+  - modifier replacements are not getting extrapolated in pattern = 'modifier clause' 
   - do full synonym check vs definition check at beginning with get_all_versions - generate_synonym_patterns
+
+  find functions:
+    - add if original_row != row: to all find_* functions
   - find functions should have logic to rule out other types & type-specific logic since they're used as a backup to pattern-matching
 
   - in find_clause, for question sentence_types, standardize verb-subject to subject-verb: 'V DET noun_phrase ... ?' => 'DET noun_phrase V ...'
   - finish function to combine functions by intent get_net_impact(functions) & combined operators
-  - in list b***in list b, = ADV V |V N|
-  - repeated options shouldnt happen within an alt set: |NNS NNS VBZ2 VBZ3 NNS| 
-  - randomly assigned indexes: |suppose thought1 assumed| that3 DPC |suppose thought6 assumed| that8 ALL_N9 ALL_N10 ALL_N11
+
+  pattern alts:
+    - in list b***in list b, = ADV V |V N| in output patterns
+    - repeated options shouldnt happen within an alt set: |NNS NNS VBZ2 VBZ3 NNS| 
+    - randomly assigned indexes: |suppose thought1 assumed| that3 DPC |suppose thought6 assumed| that8 ALL_N9 ALL_N10 ALL_N11
 
   - pattern processing order: examine iterations (lists/if conditions) that determine processing order: 
     (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
@@ -43,6 +48,7 @@
   - support conversion between pos types like 'verb-to-noun':
     - 'subject1 verb clause because subject2 verb clause' => 'subject2 verb-to-noun causes subject1 verb-to-noun'
     - 'the process activated x because y inhibits b' => 'y b-inhibition causes the process to activate x' => 'y b-inhibition enables process to activate x'
+
   - fix rows csv format & read/save delimiter handling for get_objects - we are storing patterns with 'pattern_match1::match2::match3' syntax for example
   - use definitions as a data source for relationships if none are found 
   - write function to get semantic props of compounds (bio-availability, activation in the host species, etc) & get_common_property between objects
@@ -51,6 +57,8 @@
   - remove len(0) checks for lists when possible & consolidate excessive chained response checks
   - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
   - some of these types have type mappings so generalize when you can: condition = state, symptom = function = side_effects, function = relationship, synthesis = build process, structure = pattern
+
+
 
 
 ## Functions
@@ -63,7 +71,7 @@
   - write function to identify authoritative sources (wiki is more trustworthy than a holistic or commercialized blog)
   - in order to implement this without ml, you need functions to identify conceptual metadata of a compound or organism, so at least these to get started:
     - add identification functions:
-        - types (['structure', 'life form', 'organic molecule'] from 'protein') - add generate_type_patterns() after get_type
+        - types (['structure', 'life form', 'organic molecule'] from 'protein')
         - get_topic
         - objects (nouns like 'protein')
         - components (topical nouns that are found in another topical component, like organelles of a cell)
@@ -116,6 +124,141 @@
                       word_type = original_type
                   if word_type:
                     type_a.add(word_type)
+
+
+  - implementation of code building algorithm:
+    function_metadata = {'input': line, 'output': pattern, 'attribute': {'subtype': 'type'}}
+
+    1. generate function interface:
+      A. using pattern of other generate_*_pattern(line) functions if any are found 
+      B. using definition of pattern found in definitions or functions, which is:
+        'a variation of a word list with some words replaced with different types of types'
+      C. determining the pattern definition implementation relevant for this function, which is: 
+        'a variation of a word list with some words replaced with word types'
+      D. checking for a function to determine type of a word
+      E. using function find_type, which takes in word & returns types list
+      F. using input data type line, split into words
+      G. iteration through words in line
+      H. if type list is returned from find_type, append type list
+      I. if no types found, append word
+
+      def generate_type_patterns(line):
+        new_pattern = []
+        for w in line.split(' '):
+            types = find_type(w)
+            if types:
+              new_pattern.append(types)
+        if len(new_pattern) > 0:
+          return new_pattern
+        return False
+
+    2. look for other functions with similar interfaces:
+      A. note that get_alt_sets has similar input/output:
+         input = pattern_line, output = list of words or lists of type options
+
+      B. look at where that function is used (get_alts)
+
+      C. check if get_alts has any useful functionality for generate_type_patterns interface intent 'generate pattern'
+
+      D. note that get_alts has pattern characters '|' in its output, which makes it relevant for 'generate pattern' intent
+
+      E. pull in all logic from get_alts and position existing generate_type_patterns interface logic to route input/output similarly
+
+        def generate_type_patterns(line, av):
+          new_pattern = []
+          for w in line.split(' '):
+              types = find_type(w, av)
+              if types:
+                new_pattern.append(types)
+              else:
+                new_pattern.append(w)
+          all_alts = []
+          if len(new_pattern) > 0:
+            all_alts = new_pattern
+          index_lists = []
+          if all_alts:
+              if len(all_alts) > 0:
+                  for sub_list in all_alts:
+                      if iteration == 0:
+                          original_sub_list = sub_list
+                          sub_list = sub_list if type(sub_list) == str else ' '.join(sub_list)
+                          new_sub_list = remove_unnecessary(sub_list, av)
+                          sub_list = new_sub_list if new_sub_list else sub_list
+                          if type(original_sub_list) == list:
+                              sub_list = ''.join(['|', sub_list, '|'])
+                      index_lists = append_list(index_lists, sub_list)
+                  index_lists = set([il.replace('  ',' ') for il in index_lists])
+                  if len(index_lists) > 0:
+                      if '|' in ' '.join(index_lists):
+                          if (iteration + 1) <= 1:
+                              return get_alts(pattern, iteration + 1, av)
+                      return index_lists
+          return False
+
+      F. check if all logic is necessary & remove if not:
+        - we wont be doing more than one iteration 
+        because find_type will not return patterns, only lists, 
+        so remove that part of logic pulled in from get_alts
+
+        def generate_type_patterns(line, av):
+          new_pattern = []
+          for w in line.split(' '):
+              types = find_type(w, av)
+              if types:
+                new_pattern.append(types)
+              else:
+                new_pattern.append(w)
+          all_alts = []
+          if len(new_pattern) > 0:
+            all_alts = new_pattern
+          index_lists = []
+          if all_alts:
+              if len(all_alts) > 0:
+                  for sub_list in all_alts:
+                      original_sub_list = sub_list
+                      sub_list = sub_list if type(sub_list) == str else ' '.join(sub_list)
+                      new_sub_list = remove_unnecessary(sub_list, av)
+                      sub_list = new_sub_list if new_sub_list else sub_list
+                      if type(original_sub_list) == list:
+                          sub_list = ''.join(['|', sub_list, '|'])
+                  index_lists = append_list(index_lists, sub_list)
+                  index_lists = set([il.replace('  ',' ') for il in index_lists])
+                  if len(index_lists) > 0:
+                      return index_lists
+          return False
+
+        def generate_type_patterns(line, av):
+          new_pattern = []
+          for w in line.split(' '):
+              types = find_type(w, av)
+              if types:
+                  new_pattern.append(types)
+              else:
+                  new_pattern.append(w)
+          if len(new_pattern) > 0:
+              index_lists = []
+              for sub_list in new_pattern:
+                  original_sub_list = sub_list
+                  sub_list = sub_list if type(sub_list) == str else ' '.join(sub_list)
+                  new_sub_list = remove_unnecessary(sub_list, av)
+                  sub_list = new_sub_list if new_sub_list else sub_list
+                  if type(original_sub_list) == list:
+                      sub_list = ''.join(['|', sub_list, '|'])
+              index_lists = append_list(index_lists, sub_list)
+              index_lists = set([il.replace('  ',' ') for il in index_lists])
+              if len(index_lists) > 0:
+                  return index_lists
+          return False
+
+        G. do same check for any embedded function calls in get_alts logic (append_list)
+
+
+
+
+              
+
+
+
 
 Conceptual:
   - function to identify & remove common article intents with high probability of falsehood to reduce it to just facts

@@ -76,6 +76,8 @@ def find_relationship(subset, row, av):
         if len(relationship) > 0:
             row['relationship'] = relationship
     if original_row != row:
+        print('row', row)
+        exit()
         return row
     return False
 
