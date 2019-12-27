@@ -181,4 +181,13 @@
       - math decomposition
       - language decomposition
       - mapping
-      
+
+# Variable Accretion Patterns
+  - add variable accretion patterns (how an object like a system or a type becomes influenced by a new variable)
+  - example:
+    - more complex models progress to simpler models with increases in system stability, 
+      which create a system that can interact with more systems without a corresponding degree of change disrupting its functioning, 
+      but rather aggregates logic & fits it in the places where it can enhance stability,
+      as a steadily increasing degree of exposure to new variables allows the system enough time 
+      to produce handlers that standardize chaotic inputs to usable inputs
+
