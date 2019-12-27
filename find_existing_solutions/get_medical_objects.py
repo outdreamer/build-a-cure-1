@@ -9,11 +9,23 @@ def find_object_similarity(verification_dict, output_dict):
   '''
   return False
 
+def find_dose(subset, row, av):
+  '''
+  - examples:
+    "Start small with three to four drops a day and gradually increasing it as your body adjusts to the right treatment dosage."
+    "If you are taking oil of oregano in capsules, you should not consume more than 500 to 600 mg per day"
+  '''
+
 def find_metric(subset, row, av):
     '''
     find any metrics in this pattern's matches
     to do: some metrics will have letters other than expected
     pull all the alphanumeric strings & filter out dose information
+
+    examples:
+    - minimum inhibitory concentration MIC
+    - naa-to-cr ratio
+
     '''
     metrics = set()
     split_line = pattern.split(' ') if pattern is not None else []
@@ -120,6 +132,18 @@ def find_stressor(subset, row, av):
       - Researchers measured the volume of the hypothalamus in each scan. 
       This cone-shaped part of the brain has a number of jobs including controlling the release of hormones and regulating reproductive functions.
     - find example of the opposite relationship
+
+    Sample patterns:
+      Sesquiterpenes work as a liver and gland stimulant and contain caryophyllene and valencene. 
+      Research from the universities of Berlin and Vienna show increased oxygenation around the pineal and pituitary glands.
+      While offering a variety of healing properties, the most important ability of the monoterpenes is that they can reprogram miswritten information in the cellular memory (DNA)
+      Terpene Alcohols stimulate the immune system, work as a diuretic and a general tonic.
+      Sesquiterpene Alcohols are ulcer-protective (preventative).
+      Phenols clean receptor sites of cells so sesquiterpenes can delete faulty information from the cell. They contain high levels of oxygenating molecules and have anioxidant properties.
+      Camphor, borneol, and eucalyptol are monoterpene ketones that the available body of evidence suggests may be toxic to the nervous system depending on dosage, while jasmine, fenchone, and isomenthone are considered nontoxic. Ketones aid the removal of mucous, stimulate cell and tissue regeneration, promote the removal of scar tissue, aid digestion, normalize inflammation, relieve pain, reduce fever, may inhibit coagulation of blood, and encourage relaxation.
+      https://www.homasy.com/blogs/tutorials/what-are-the-major-compounds-of-essential-oils
+      Furthermore, histidine can protect the body from radiation damage. It does this by binding to the damaging molecules, therefore eliminating them.
+
     '''
     return row
 
@@ -155,6 +179,9 @@ def find_mechanism(subset, row, av):
     get specific process explaining how this compound works
     uses descriptive language, detailing the process, so present tense verbs like 'works'
     if its a new discovery in an experiment it might be 'x was observed to work'
+
+    - best description of mechanism of action was on a category page: https://en.wikipedia.org/wiki/Fungistatics
+
     '''
     return row
 
@@ -196,6 +223,12 @@ def find_related_component(subset, row, av):
                 if 'noun' in d_row:
                     for n in d_row['noun']:
                         related_components.add(n)
+    return row
+
+def find_drug(subset, row, av):
+    '''
+    - new drugs are at: https://adisinsight.springer.com/drugs/800042427
+    '''
     return row
 
 def find_treatment(subset, row, av):
@@ -256,7 +289,7 @@ def find_treatment(subset, row, av):
                 row['treatments_failed'].add(r)
     return row
 
-def filter_source_list(object_type, sources):
+def filter_source_list(object_type):
   ''' 
     filter sources by target object bc some sources are irrelevant to some intents
     apply other filters based on query intent:
@@ -286,4 +319,6 @@ def filter_source_list(object_type, sources):
     'condition': ['wiki', 'pubchem', 'rxlist', 'drugs', 'generator'],
     'organism': ['wiki', 'pubchem', 'rxlist', 'drugs', 'store', 'generator']
   }
+  if object_type in source_filters:
+    return source_filters[object_type]
   return sources

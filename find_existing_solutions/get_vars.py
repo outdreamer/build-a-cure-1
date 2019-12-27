@@ -1217,9 +1217,6 @@ def generate_correct_patterns(pattern, av):
 
 def generate_type_patterns(line, av):
     ''' 
-    to do:
-        - implement after get_types 
-
         Cytotoxicity in cancer cells => <component object>-toxicity, 
             anti-tumor => anti-<component object of illness>
         suppress/interfere/inhibit activity of carcinog/canc/tumz => 
@@ -2099,6 +2096,13 @@ def get_shortest_definition(defs):
     return False
 
 def find_matching_synonym(word, pos, check_types, exclude_types, av):
+    '''
+    examples:
+        biofilm :: membrane
+        sympathetic :: synergistic
+        irritate :: damage
+    '''
+
     items = {}
     default_check_types = [
         'standard', 'stem', 'synonym', 'common', 'similarity', 'partial'
@@ -2441,6 +2445,8 @@ def derive_and_store_patterns(object_type, av):
     - pattern_index type patterns: 'modifier clause'
 
     and add to index, then aggregate by max counts & store most common patterns in data set
+    to do:
+      - use definitions as a data source for relationships if none are found 
     '''
     pattern_counts = {'maps': {}, 'standard': {}, 'type': {}, 'operator': {}, 'synonym': {}, 'pos': {}, 'combination': {}, 'pattern_type': {}}
     index = get_empty_index(av)

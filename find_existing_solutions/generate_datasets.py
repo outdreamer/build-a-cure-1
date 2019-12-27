@@ -5,6 +5,28 @@ def generate_datasets(generate_source, generate_target, index):
     '''
     iterate through all combinations of elements in rows and 
     generate a dataset for each one to check for relationships
+
+    - generate combination datasets:
+        supervised data:
+          [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, property] 
+          # to predict a certain property that a structure has, like activating a particular gene or binding to something
+          [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, genes] 
+          # to predict which genes will interact with a compound
+          [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, mechanism] 
+          # to predict which processes will activate/neutralize/bind with a compound
+          [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, metabolism] 
+          # to predict how a compound will be metabolized
+          [structure, structural_metadata, mechanism_of_action_metadata, sub_component_metadata, dose] 
+          # to predict a non-toxic dose of a compound
+          [structure, structural_metadata, mechanism_of_action_metadata, symptom] 
+          # to predict a symptom caused by a structure
+          [symptoms, successful_treatment_structure_label] 
+          # to predict successful treatment structures for a set of symptoms
+          [symptoms, structure, structural_metadata, mechanism_of_action_metadata, success_for_treating_condition_C] 
+          # to predict successful treatment structures for a condition given the symptoms indicating the phase
+
+        sequential data:
+          [past_conditions, future_conditions] # to predict the conditions a patient will likely develop
     '''
     if generate_target and generate_source:
         generate_source = index.keys() if generate_source == 'all' else generate_source.split(',')

@@ -27,8 +27,11 @@
 ## implementation of code building algorithm:
     function_metadata = {'input': line, 'output': pattern, 'attribute': {'subtype': 'type'}}
 
+    Prerequisites:
+      - the codebase if available should have index_metadata() run on each function so that metadata is queryable for code-building
+
     1. generate function interface:
-      A. using pattern of other generate_*_pattern(line) functions if any are found 
+      A. using pattern of other generate_*_pattern(line) functions if any are found in available codebase with indexed function metadata
       B. using definition of pattern found in definitions or functions, which is:
         'a variation of a word list with some words replaced with different types of types'
       C. determining the pattern definition implementation relevant for this function, which is: 
@@ -161,3 +164,21 @@
           - get_all_pos() is relevant if there are words in the pattern that could be converted to pos tags
           - generate_correct_patterns() is applied to other patterns before applying get_alts()
           - generate_pattern_type_patterns() is relevant in that it assigns types to generate a pattern so this function could be extra useful for input/output relationship comparison
+
+
+## Math/Language translation function
+
+  - build math logic/plain language translation function - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
+    - in order to implement this, you need to:
+      - implement function to break_into_core_functions
+      - apply break_into_core_functions() to math and language functions
+      - compare both once standardized with break_into_core_functions() & build map of corrollary functions
+      - use this as a dictionary for future translation calls
+
+    - example:
+      - math rule ''
+      - language rule ''
+      - math decomposition
+      - language decomposition
+      - mapping
+      
