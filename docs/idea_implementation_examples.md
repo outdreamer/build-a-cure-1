@@ -176,11 +176,38 @@
       - use this as a dictionary for future translation calls
 
     - example:
-      - math rule ''
-      - language rule ''
-      - math decomposition
-      - language decomposition
-      - mapping
+      1. math rule: 
+          'W += -alpha * (1.0/m * tri_W + lamb * W)'
+      2. structural language version:
+          'changes to W take the form of a constant multiplier of (the change in W value applied to the standard of m, summed with a second constant multiplier applied to the previous value of W)'
+      3. organized structural language version:
+          'initial change between W and previous W based on m, aggregated with a transform of previous W has a constant relationship to output change in W'
+      4. abstract organized structural language version:
+          'a constant multiplier of previous W and ((the difference between previous & current W) based on m) determine new W'
+      5. derived language version
+          'the constant multiplier of previous W is different than the m standard applied to the difference multiplier'
+      6. structural derived language version
+          'constant multiplier of previous W does not equal difference multiplier based on m'
+      7. derived math rule:
+          'lamb does not equal (difference multiplier divided by m)'
+      8. derived math rule with operators:
+          'lamb != (change in W)/m'
+
+      - function metadata:
+        - intents:
+          - 'differentiate influence of change constants'
+        - use cases:
+          - 'gradient descent'
+
+      - in that example, we went from math rule 1 => math decomposition into language functions 2 => language decompositions 3 - 5 => mapping 6 => math rule 7 - 8
+
+      The overall workflow is:
+      - math rule
+      - math decomposition to language
+      - language decomposition to abstraction
+      - abstraction mapping
+      - structure application
+      - math rule
 
 # Variable Accretion Patterns
   - add variable accretion patterns (how an object like a system or a type becomes influenced by a new variable)
@@ -190,4 +217,9 @@
       but rather aggregates logic & fits it in the places where it can enhance stability,
       as a steadily increasing degree of exposure to new variables allows the system enough time 
       to produce handlers that standardize chaotic inputs to usable inputs
+
+    - this progression makes it possible to identify:
+      - when a simpler model is the future & more useful version of a complex model
+      - which direction the complex model is progressing in (away from/toward standardization/simplicity)
+      - the set of reasons why its moving in that direction (system unraveling through interaction with more complex systems its not prepared for, etc)
 
