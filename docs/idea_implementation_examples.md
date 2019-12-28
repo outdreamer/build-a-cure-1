@@ -174,6 +174,7 @@
       - apply break_into_core_functions() to math and language functions
       - compare both once standardized with break_into_core_functions() & build map of corrollary functions
       - use this as a dictionary for future translation calls
+      - the reason is partly to translate and also to make intent-derivation clearer for people who dont like math
 
     - example:
       1. math rule: 
@@ -210,7 +211,43 @@
       - math rule
 
 # Variable Accretion Patterns
-  - add variable accretion patterns (how an object like a system or a type becomes influenced by a new variable)
+
+  - add examples of system/rule/type change patterns
+
+  - add examples of variable gathering patterns into a type
+
+  - add examples of variable accretion patterns (how an object like a system or a type becomes influenced by a new variable)
+
+    - stable variable collisions occur when variables:
+      - dont disrupt the system interactions
+          example:
+          - produce metabolites that are handled by existing mechanisms
+      - actively coordinate with the system interactions for existing intents
+          example:
+          - aligns intents
+          - links trade loops to optimize trades
+      - supports emerging intents that have not been exhausted out of full set of possible system intents
+          example:
+          - creates a type split
+      - replace system interactions
+          example:
+          - provide extra regulatory layers as a backup check
+          - provide self-repair or self-regenerative capacity to create independence within the system
+
+    - unstable variable collisions happen when variables:
+      - introduce more variance than needed or supported, or enter the system at a point or state where supporting functionality is inaccessible or underivable
+          example: 
+          - interfering with a gene that is not regulated/protected
+      - interfere with system interactions
+          example: 
+          - prevent cell communication
+      - remove barriers between systems
+          example: 
+          - removing barriers between organs or systems can produce cascading problems (blood barrier, intestinal/mucosal barrier)
+      - a variance injector that interferes with causal variables or system-wide variables
+          example: 
+          - mutagenic compounds disrupt bio system on a system level
+
   - example:
     - more complex models progress to simpler models with increases in system stability, 
       which create a system that can interact with more systems without a corresponding degree of change disrupting its functioning, 
