@@ -212,6 +212,14 @@
 
 # Variable Accretion Patterns
 
+  - visualize:
+    - emergent properties as circuits within an object/system/type set
+    - variables as an output vector or tensor composed of tensors or vector sets
+      - several metrics united by origin point, 
+        such as how a species' features are composed of a network of many causative factors, 
+        where a variable like dog paw shape is representable as a subset of these network paths, 
+        and a smaller subset of network path patterns (causation physics)
+
   - add examples of system/rule/type change patterns
 
   - add examples of variable gathering patterns into a type
@@ -248,15 +256,16 @@
           example: 
           - mutagenic compounds disrupt bio system on a system level
 
-  - example:
-    - more complex models progress to simpler models with increases in system stability, 
-      which create a system that can interact with more systems without a corresponding degree of change disrupting its functioning, 
-      but rather aggregates logic & fits it in the places where it can enhance stability,
-      as a steadily increasing degree of exposure to new variables allows the system enough time 
-      to produce handlers that standardize chaotic inputs to usable inputs
+    - example:
 
-    - this progression makes it possible to identify:
-      - when a simpler model is the future & more useful version of a complex model
-      - which direction the complex model is progressing in (away from/toward standardization/simplicity)
-      - the set of reasons why its moving in that direction (system unraveling through interaction with more complex systems its not prepared for, etc)
+      - more complex models progress to simpler models with increases in system stability, 
+        which create a system that can interact with more systems without a corresponding degree of change disrupting its functioning, 
+        but rather aggregates logic & fits it in the places where it can enhance stability,
+        as a steadily increasing degree of exposure to new variables allows the system enough time 
+        to produce handlers that standardize chaotic inputs to usable inputs
+
+      - this progression makes it possible to identify:
+        - when a simpler model is the future & more useful version of a complex model
+        - which direction the complex model is progressing in (away from/toward standardization/simplicity)
+        - the set of reasons why its moving in that direction (system unraveling through interaction with more complex systems its not prepared for, etc)
 
