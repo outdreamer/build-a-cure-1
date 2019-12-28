@@ -213,6 +213,7 @@
 # Variable Accretion Patterns
 
   - visualize:
+  
     - emergent properties as circuits within an object/system/type set
     - variables as an output vector or tensor composed of tensors or vector sets
       - several metrics united by origin point, 
@@ -220,11 +221,22 @@
         where a variable like dog paw shape is representable as a subset of these network paths, 
         and a smaller subset of network path patterns (causation physics)
 
-  - add examples of system/rule/type change patterns
+  - add examples of system/object/rule/type change patterns
 
   - add examples of variable gathering patterns into a type
 
   - add examples of variable accretion patterns (how an object like a system or a type becomes influenced by a new variable)
+
+    - variable path pattern convergence/divergence and interaction with systems/objects/types/rules
+      - this should enable you to predict:
+        - variable flow (which variables are about to be irrelevant, which variables would disrupt others, which variable types to use)
+        - variance flow:
+          - in system/object/rule/type:
+            - stability/boundary/change/isolation patterns (core/granular functions without side effects, independent closed loop systems)
+            - exchange rates (how it trades variance with other objects and how the sum of all trades influences system variance)
+        - impact between variables & other system objects
+        - impact of variable survival success on external system dynamics
+        - optimal variables/functions/paths for a function/system/type
 
     - stable variable collisions occur when variables:
       - dont disrupt the system interactions
