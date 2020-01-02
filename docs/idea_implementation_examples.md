@@ -165,6 +165,45 @@
           - generate_correct_patterns() is applied to other patterns before applying get_alts()
           - generate_pattern_type_patterns() is relevant in that it assigns types to generate a pattern so this function could be extra useful for input/output relationship comparison
 
+## Object Model Applications
+  
+  ### Problem Source Identification
+
+    - example: if a bottle containing juice is the only thing someone drinks regularly and it makes them sick, 
+        how do you figure out that it's bc of a chemical on the inner lining of the bottle, programmatically?
+
+      - query object definitions involved (bottle, juice, person) and relationships involved (containing, drinking)
+      - query attributes of objects that interact (with output: bottle lining-juice, bottle cap-juice, manufacturing machinery-juice, juice-person, etc)
+      - query known strategies of implementation - with output:
+        - 'aligned supply and demand may not match in quantity, quality, or timing'
+        - 'goods are often not purchased immediately because supply and demand matching is imperfect as information is often unavailable'
+        - 'to protect goods while waiting for purchase, chemicals are used'
+        - 'to find protective chemicals, companies do research'
+        - 'interim sub-optimal solutions are often used while waiting for optimal solutions'
+        - 'companies often use easiest chemical to find, which are often within a set range of permutations away from or combinations of common chemicals'
+        - 'a company usually finds an optimal solution before the sub-optimal units are purchased'
+        - 'if a company finds an optimal solution, they often still try to sell the remaining supply of the sub-optimal solution'
+        - 'usually the company produces x batches before they find a better solution, if they integrate customer feedback and use third party evaluators'
+      - query causes of that illness (medication, nausea, food poisoning)
+      - eliminate unlikely causes using filtering rules, for efficiency (reverse later if none found among likely rules):
+        - 'regular use of a product can produce sustained or compounding impact'
+        - 'toxic chemicals are more likely to be used by large companies with ties to legislators'
+        - 'ingesting chemicals is x times more toxic than breathing or touching chemicals'
+        - 'the industry producing this product has x lawsuits/reports and z oversight relative to other industries'
+        - 'the industry producing this product has a regulation loophole x that would allow exploit y'
+        - 'this company's business model doesnt incentivize quality control at the source level'
+      - after scanning all the objects someone interacts with regularly, this set of interactions should be able to identify the bottle lining as the problem
+      - if no problem source is found among their current objects, their purchase history & that of those they interact with can be scanned for prior exposure or dietary causes
+
+  ### Interaction Predictions
+
+    - before buying a product, after scanning the objects you own, this tool would be able to tell you how the product might negatively interact with the other objects
+    - example: when buying essential oil, it would answer questions like:
+      - 'how will this interact with the furniture in my house, if used as directed?' (diffuser)
+      - 'how will this interact with the furniture in my house, if used as people use it for alternative purposes than directed' (medical)
+      - 'how effective will it be for a particular problem/use case' (this is simulated product testing using object model queries like in the previous section)
+    - it would also scan the commonly used & potential use cases for possible intentions with the product
+      - 'if youre planning on using it for use case "self-treatment", only take x amount for y period of time if youre otherwise healthy'
 
 ## Math/Language translation function
 
@@ -175,6 +214,13 @@
       - compare both once standardized with break_into_core_functions() & build map of corrollary functions
       - use this as a dictionary for future translation calls
       - the reason is partly to translate and also to make intent-derivation clearer for people who dont like math
+
+    - operator map:
+      +: 
+      -: 
+      /: 
+      *: 
+      ^: 
 
     - example:
       1. math rule: 
@@ -213,8 +259,9 @@
 # Variable Accretion Patterns
 
   - visualize:
-  
+
     - emergent properties as circuits within an object/system/type set
+
     - variables as an output vector or tensor composed of tensors or vector sets
       - several metrics united by origin point, 
         such as how a species' features are composed of a network of many causative factors, 
@@ -237,6 +284,7 @@
         - impact between variables & other system objects
         - impact of variable survival success on external system dynamics
         - optimal variables/functions/paths for a function/system/type
+        - optimal origin positions of concepts to allow successful systems to evolve
 
     - stable variable collisions occur when variables:
       - dont disrupt the system interactions

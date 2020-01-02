@@ -33,6 +33,7 @@
 
 # Structural Objects
 
+  - adjust metadata with map to related objects for requested metadata
   - do full synonym check vs definition check at beginning with get_all_versions - generate_synonym_patterns
 
   find functions:
@@ -48,7 +49,7 @@
   - randomly assigned indexes: |suppose thought1 assumed| that3 DPC |suppose thought6 assumed| that8 ALL_N9 ALL_N10 ALL_N11
   - consolidate output of index_type patterns like 'modifier clause'
 
-  - pattern processing order: examine iterations (lists/if conditions) that determine processing order: 
+  - examine iterations (lists/if conditions) that determine processing order: 
     (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
     - add ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos - isolate which tags would be identified as other objects first
 
