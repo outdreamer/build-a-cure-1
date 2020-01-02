@@ -27,7 +27,6 @@
   - add wiki & drugs & nih api calls to sources & adjust api support for those data sources in get_data_source/build_indexes
 
 # Data 
-
   - pull these properties for compounds on wiki
   - find source of bio keywords & synonyms
 

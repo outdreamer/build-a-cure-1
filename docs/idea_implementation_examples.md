@@ -1,6 +1,6 @@
 # Idea Implementations
 
-## implementation of idea: "code selection algorithm to select function combinations according to data structure & priority at function stack run time"
+## implementation of code selection algorithm to select function combinations according to data structure & priority at function stack run time
     - example:
     - select code that is optimized for fewest lines of code/quickest execution time/data storage usage/state storage/memory usage based on input data structure & variance
       - "if input has variance k, allow for conditions checking for parameters of variance"
@@ -194,6 +194,7 @@
         - 'this company's business model doesnt incentivize quality control at the source level'
       - after scanning all the objects someone interacts with regularly, this set of interactions should be able to identify the bottle lining as the problem
       - if no problem source is found among their current objects, their purchase history & that of those they interact with can be scanned for prior exposure or dietary causes
+      - this uses insight path technology
 
   ### Interaction Predictions
 
@@ -204,6 +205,9 @@
       - 'how effective will it be for a particular problem/use case' (this is simulated product testing using object model queries like in the previous section)
     - it would also scan the commonly used & potential use cases for possible intentions with the product
       - 'if youre planning on using it for use case "self-treatment", only take x amount for y period of time if youre otherwise healthy'
+
+## Insight Paths
+  - use patterns in network structures & insight paths to predict probable missing pieces of networks or trajectory of insight path
 
 ## Math/Language translation function
 
@@ -256,7 +260,7 @@
       - structure application
       - math rule
 
-# Variable Accretion Patterns
+## Variable Accretion Patterns
 
   - visualize:
 

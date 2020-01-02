@@ -260,6 +260,8 @@ def find_treatment(subset, row, av):
                 "drug did not reduce blood pressure" => negative correlation (failure) or a negative intent (reduce)
             if the sentence is:
                 "drug did reduce blood pressure" => positive correlation (success) or a negative intent (reduce)
+
+    - https://en.wikipedia.org/wiki/Hyperlipidemia has the word 'estrogens' as a cause, which could mean a side effect of birth control or phytoestrogens or substances that mimic estrogens
     '''
 
     polarity = get_polarity(row['line'])
