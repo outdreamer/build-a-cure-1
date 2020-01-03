@@ -32,10 +32,9 @@
 
 # Structural Objects
 
-  - function to calculate best price per mg for a set of alt medicines
   - adjust metadata with map to related objects for requested metadata
   - do full synonym check vs definition check at beginning with get_all_versions - generate_synonym_patterns
-  - add common patterns that have more than one index type to all index types - 'x of y', 'phrase of phrase', etc
+  - add common patterns that have more than one index type to all index type lists - 'x of y', 'phrase of phrase', etc
   - identify lists in sentence and surround with parenthesis if embedded ('such as', 'like', 'as in')
   - 'found in', 'including', 'having'
 
