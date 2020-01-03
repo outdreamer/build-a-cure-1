@@ -1,4 +1,7 @@
 import requests
+import urllib.request
+import time
+from bs4 import BeautifulSoup
 
 '''
 to do:
@@ -15,22 +18,26 @@ to do:
 order_sizes = ['mcg', 'mg', 'mL', 'g', 'kg']
 
 def get_div_list(urls):
-    div_list = [] ''' each item should have all relevant info for one product '''
+    ''' each item should have all relevant info for one product '''
+    div_list = []
     for url in urls:
+        print('url', url)
         response = requests.get(url)
+        print('response', response)
         if response:
+            print('response', response)
             if response.ok:
-                html = response.content
-                dom = dom(html)
-                for div in dom:
-                    if div.hastext():
-                        lines = div.text.split('\n')
+                soup = BeautifulSoup(response.text, 'html.parser')
+                for text in soup.strings:
+                    print('text', text)
+                    quantity_count = sum([1 for order_size in order_sizes if order_size in text])
+                    if quantity_count > 0:
                         new_lines = []
+                        lines = text.split('\n')
                         for line in lines:
                             if line not in new_lines:
                                 new_lines.append(line)
-                        new_text = '\n'.join(new_lines)
-                        div_list.append(new_text)
+                        div_list.append('\n'.join(new_lines))
     if len(div_list) > 0:
         return div_list
     return False
@@ -38,13 +45,20 @@ def get_div_list(urls):
 def get_best_price_per_unit(div_list):
     products = {}
     ''' determine order of price & product dose divs '''
-    dose_item = {'name': 'total_dose_count', 'keyword' = 'mg', 'direction': -1}
-    price_item = {'name': 'price', 'keyword' = '$', 'direction': 1}
+    div_list_text = '\n'.join(div_list)
+    highest_size_count = 0
+    for order_size in order_sizes:
+        count = div_list_text.count(order_size)
+        if count > highest_size_count:
+            highest_size_count = count
+    dose_item = {'name': 'total_dose_count', 'keyword': highest_size_count, 'direction': -1}
+    price_item = {'name': 'price', 'keyword': '$', 'direction': 1}
     ordered_items = [dose_item, price_item]
     found_index = None
+    
     for item in ordered_items:
-        if item['keyword'] in div_list_html:
-            found_index = div_list_html.index(item['keyword'])
+        if item['keyword'] in div_list_text:
+            found_index = div_list_text.index(item['keyword'])
             if found_index > -1:
                 print('found index', found_index, 'of keyword', item['keyword'])
                 break
@@ -111,3 +125,11 @@ def convert_to_grams(value, size):
         else:
             print('conversion not supported for', value, size)
     return value
+
+def get_best_price(product_name):
+    urls = [] # add api sources for a product
+    div_list = get_div_list(urls)
+    if div_list:
+        best_priced_products = get_best_price_per_unit(div_list)
+        if best_priced_products:
+            print('best_priced_products', best_priced_products)
