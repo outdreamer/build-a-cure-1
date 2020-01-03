@@ -196,8 +196,12 @@ def find_adjacent(subset, row, av):
     return row
 
 def find_sub_component(subset, row, av):
-    ''' when searching for research on a compound or condition, also check for its sub-components, 
-      and the compounds its sub-components can be used to make '''
+    ''' 
+      - when searching for research on a compound or condition, also check for its sub-components, 
+        and the compounds its sub-components can be used to make 
+      - queries for a bio-system component should also produce what symptoms 
+        can occur if its missing or in excess & what conditions are related
+    '''
     return row
 
 def find_related_component(subset, row, av):
