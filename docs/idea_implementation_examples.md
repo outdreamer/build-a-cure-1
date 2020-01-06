@@ -339,12 +339,20 @@
   1. use predictive tools to predict transactions & calculate them in advance to speed up tx
     - this would assess people's known resources to build an index of global demand/supply, then calculating through these resource distributions, economic incentives for trades, social networks, platform dominance, & product availability & findability (search results rankings) - which tx were likely to happen where for which products, then calculate those tx in advance
 
+
+## Vuln potential of a solution
+
+  1. identify conceptual/type interactions of the solution
+    example: explore the interaction of random applied to random (or algorithms applied to themselves, like hash of a hash) for possible interference opportunities
+
+
 ## Invention Prediction
 
   1. Reverse-engineer: apply known useful functions (combine, reduce, standardize, compare, duplicate, randomize) 
     to fulfill common useful intents (predict, verify, find, etc) & assess value of output product in problem space
 
   2. Conceptual query: apply structure to conceptual combinations & check matching problem spaces if the output product has value for an agent in that space
+
 
 ## Protocol Recommendations
   
