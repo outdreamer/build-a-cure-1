@@ -336,4 +336,9 @@
 
 ## Crypto
 
-  1. use predictive tools to predict transactions & calculate them in advance
+  1. use predictive tools to predict transactions & calculate them in advance to speed up tx
+    - this would assess people's known resources to build an index of global demand/supply, then calculating through these resource distributions, economic incentives for trades, social networks, platform dominance, & product availability & findability (search results rankings) - which tx were likely to happen where for which products, then calculate those tx in advance
+
+## Invention Prediction
+  1. Reverse-engineer: apply known useful functions & assess value of output product in problem space
+  2. Conceptual query: apply structure to conceptual combinations & check matching problem spaces if the output product has value for an agent in that space
