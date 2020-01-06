@@ -333,3 +333,7 @@
         - which direction the complex model is progressing in (away from/toward standardization/simplicity)
         - the set of reasons why its moving in that direction (system unraveling through interaction with more complex systems its not prepared for, etc)
 
+
+## Crypto
+
+  1. use predictive tools to predict transactions & calculate them in advance

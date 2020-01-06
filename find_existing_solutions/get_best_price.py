@@ -153,5 +153,5 @@ def get_best_price(product_name):
         best_priced_products = get_best_price_per_unit(div_list)
         if best_priced_products:
             print('best_priced_products', best_priced_products)
-
-get_best_price('any')
+            return best_priced_products
+    return False
