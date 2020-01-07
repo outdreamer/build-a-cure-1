@@ -219,14 +219,13 @@ def find_related_component(subset, row, av):
     to do: add logic to pull functions, relationships, clauses, phrases, & modifiers
     if not already in index or local_database & get related components from functions
     '''
-    definitions = get_definitions(word)
-    if definitions:
-        for d in definitions:
-            d_row = get_structural_metadata(d, av)
-            if d_row:
-                if 'noun' in d_row:
-                    for n in d_row['noun']:
-                        related_components.add(n)
+    definition = get_definitions(word)
+    if definition:
+        d_row = get_structural_metadata(definition, av)
+        if d_row:
+            if 'noun' in d_row:
+                for n in d_row['noun']:
+                    related_components.add(n)
     return row
 
 def find_drug(subset, row, av):

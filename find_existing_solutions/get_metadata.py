@@ -209,13 +209,12 @@ def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_typ
         found_patterns, av = match_patterns(line, search_pattern_key, generated_patterns, all_patterns, av)
         if found_patterns and object_type != 'pattern':
             for pattern_type in found_patterns:
-                for matches in found_patterns[pattern_type]:
+                for pattern, matches in found_patterns[pattern_type].items():
                     ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
                     ''' note: this is not restricting output to found objects '''
                     for m in matches:
                         objects_found = apply_find_function(object_type, m, index, av)
                         if objects_found:
-                            print('objects_found', objects_found)
                             found_objects = found_objects.union(objects_found)
     if found_patterns or found_objects:
         return found_objects, found_patterns, av
@@ -270,10 +269,10 @@ def get_structural_metadata(row, av):
     print('\nword pos line', word_pos_line)
     words = word_pos_line.split(' ')
     new_line = []
-    max_words, counts = get_common_words(row['line'], av)
+    max_words, counts = get_common_words(row['line'], 3, av)
     if max_words and counts:
         row['count'] = counts
-        row['max_words'] = max_words
+        row['common_word'] = max_words
     names = get_names(row['line'])
     if names:
         row['names'] = names
@@ -324,10 +323,6 @@ def get_structural_metadata(row, av):
                     new_line.append(w)
     row['line'] = ' '.join(new_line) if len(new_line) > 0 else word_pos_line
     print('\ninterim row', row)
-    if len(row['count'].keys()) > 1:
-        row['common_word'] = get_most_common_words(row['count'], 3) # get top 3 tiers of common words
-    else:
-        row['count'] = {}
     ngrams = find_ngrams(row['line'], av) # 'even with', 'was reduced', 'subject position'
     if ngrams:
         for k, v in ngrams.items():
@@ -366,12 +361,12 @@ def get_structural_metadata(row, av):
         if patterns:
             for pattern_type in patterns:
                 if pattern_type not in row['pattern']:
-                    row['pattern'][pattern_type] = set(patterns[pattern_key])
+                    row['pattern'][pattern_type] = set(patterns[pattern_type])
                 else:
                     if len(row['pattern'][pattern_type]) == 0:
-                        row['pattern'][pattern_type] = set(patterns[pattern_key])
+                        row['pattern'][pattern_type] = set(patterns[pattern_type])
                     else:
-                        row['pattern'][pattern_type] = row['pattern'][pattern_type].union(patterns[pattern_key])
+                        row['pattern'][pattern_type] = row['pattern'][pattern_type].union(patterns[pattern_type])
     print('\nafter pattern identification', row)
     '''
     derived_patterns = derive_and_store_patterns(row['line'], av)

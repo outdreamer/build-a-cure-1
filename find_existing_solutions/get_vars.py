@@ -1200,16 +1200,14 @@ def generate_indexed_patterns(pattern, av):
 def correct(line):
     blob = get_blob(line)
     if blob:
-        corrected_string = blob.correct().string
-        start = corrected_string.count('(')
-        end = corrected_string.count(')')
+        #corrected_string = blob.correct().string
+        start = line.count('(')
+        end = line.count(')')
         if start > end:
-            corrected_string = ''.join([corrected_string.split(''), ')'])
+            line = ''.join([line.split(''), ')'])
         elif start < end:
-            corrected_string = ''.join(['(', corrected_string.split('')])
-        if corrected_string:
-            corrected_string = corrected_string.replace('..', '.').replace(',.', '.').replace('.,', '.').replace(';.', ';').replace('.;', ';').replace(':.', ':').replace('.:', ':')
-        return corrected_string
+            line = ''.join(['(', line.split('')])
+        return line.replace('..', '.').replace(',.', '.').replace('.,', '.').replace(';.', ';').replace('.;', ';').replace(':.', ':').replace('.:', ':')
     return False
 
 def generate_correct_patterns(pattern, av):
@@ -1590,29 +1588,6 @@ def get_ngrams_by_position(word_list, word, x, direction):
         return word_list[start:end]
     return False
 
-def get_most_common_words(counts, top_index):
-    '''
-    counts = {
-        0: ['words', 'that', 'appeared', 'once'],
-        1: ['items', 'shown', 'twice']
-    }
-    '''
-    count_keys = counts.keys()
-    if len(count_keys) > 1:
-        top_index = len(count_keys) - 1 if len(count_keys) < top_index else top_index
-        sorted_keys = reversed(sorted(count_keys))
-        max_key = max(count_keys)
-        retrieved_index = 0
-        max_words = set()
-        for k in sorted_keys:
-            max_words = max_words.union(counts[k])
-            retrieved_index += 1
-            if retrieved_index == top_index:
-                return max_words
-        if len(max_words) > 0:
-            return max_words
-    return False
-
 def is_condition(asp_words, row, av):
     for word in asp_words:
         if word in av['clause_delimiters']:
@@ -1729,10 +1704,10 @@ def select_option(alt_phrase, word_map):
                                 ''' found a non-synonym, keep all options '''
                                 return alt_phrase
                 ''' all words were synonyms, return first option if most common not found '''
-                most_common_option = get_most_common_word(alts)
-                if most_common_option:
-                    if len(most_common_option) > 0:
-                        return most_common_option[0]
+                max_words, counts = get_common_words(alts, 3, av)
+                if max_words:
+                    if len(max_words) > 0:
+                        return max_words[0]
                 return default_alt
     return alt_phrase
 
@@ -1851,7 +1826,7 @@ def downloads(paths):
 
 def replace_with_syns(words, word_map, check_types, av):
     new_text = []
-    check_types = ['synonym', 'common', 'standard', 'similarity'] if not check_types else check_types
+    check_types = ['definition', 'synonym', 'common', 'standard', 'similarity'] if not check_types else check_types
     # dont add stem-similarity replacement bc you still need pos identification
     for w in words:
         word = ''.join([x for x in w if x == '-' or x == ' ' or x == '_' or x in av['alphabet']]) # some synonyms have dashes and spaces
@@ -1859,7 +1834,6 @@ def replace_with_syns(words, word_map, check_types, av):
         if pos:
             if pos not in av['tags']['exclude'] and pos not in av['tags']['DPC']:
                 match, check_type = find_matching_synonym(word, pos, check_types, None, av)
-
                 if match:
                     if match != w:
                         if w not in av['supported_synonyms']:
@@ -1870,11 +1844,14 @@ def replace_with_syns(words, word_map, check_types, av):
                     ''' add synonym mapping to avoid checking all check_types for this word in future bc 'synonym' check_type should return it now '''
                 else:
                     new_text.append(w)
+        else:
+            new_text.append(w)
     if len(new_text) > 0:
         return ' '.join(new_text), av
     return ' '.join(words), av
 
 def get_names(line):
+    names = []
     words = line.split(' ')
     for w in words:
         w_upper = w.upper()
@@ -1887,7 +1864,7 @@ def get_names(line):
         return names
     return False
 
-def get_common_words(line, av):
+def get_common_words(line, distance, av):
     blob = get_blob(line)
     if blob:
         word_counts = blob.word_counts
@@ -1903,106 +1880,112 @@ def get_common_words(line, av):
         max_count = max(counts.values())
         for word, count in counts.items():
             if count > 1:
-                if (max_count - count) < 3:
+                if (max_count - count) < distance:
                     max_words.append(word)
         if len(max_words) > 0 and counts:
             return max_words, counts
     return False, False
 
-def get_definitions(word, av):
-    meanings = []
-    pos_word = get_nltk_pos(word, av)
-    defs = Word(word).definitions
-    if defs:
-        print('defs', word, defs)
-        line = ' '.join(defs)
-        blob = get_blob(line)
-        if blob:
-            words_pos = {}
-            for word in line.replace(';', '').replace(',', '').split(' '):
-                pos = get_nltk_pos(word, av)
-                if pos:
-                    words_pos[word] = pos
-            sentiment_assessments = blob.sentiment_assessments
-            if sentiment_assessments:
-                for a in sentiment_assessments.assessments:
-                    meanings.extend(a[0])
-                if len(meanings) > 0:
-                    if pos_word in av['tags']['V']:
-                        if meaning in av['verb_meanings']:
-                            for n in av['negative_meanings']:
-                                if n in meanings:
-                                    if word in av['supported_synonyms']:
-                                        return av['supported_synonyms'][word]
-                                    return word
-                            for p in av['positive_meanings']:
-                                if p in meanings:
-                                    if word in av['supported_synonyms']:
-                                        return av['supported_synonyms'][word]
-                                    return word
-                        if word in av['supported_synonyms'].values():
-                            return word
-            max_words, counts = get_common_words(line, av)
-            if max_words:
-                if len(max_words) > 0:
-                    if len(max_words) == 1:
-                        if max_words[0] in words_pos:
-                            if words_pos[max_words[0]] == pos_word:
-                                ''' if the most common word is also the same pos as original word, return most common word '''
-                                return max_words[0]
+def get_definitions(define_word, av):
+    pos_word = get_nltk_pos(define_word, av)
+    if len(define_word) > 4 and define_word not in av['supported_synonyms'] and define_word not in av['supported_synonyms'].values():
+        meanings = []
+        defs = Word(define_word).definitions
+        if defs:
+            print('defs', define_word, defs)
+            line = ' '.join(defs)
+            blob = get_blob(line)
+            if blob:
+                words_pos = {}
+                for word in line.replace(';', '').replace(',', '').split(' '):
+                    pos = get_nltk_pos(word, av)
+                    if pos:
+                        words_pos[word] = pos
+                sentiment_assessments = blob.sentiment_assessments
+                if sentiment_assessments:
+                    for a in sentiment_assessments.assessments:
+                        meanings.extend(a[0])
+                    if len(meanings) > 0:
+                        for meaning in meanings:
+                            if pos_word in av['tags']['ALL_V']:
+                                if meaning in av['verb_meanings']:
+                                    for n in av['negative_meanings']:
+                                        if n in meanings:
+                                            return define_word
+                                    for p in av['positive_meanings']:
+                                        if p in meanings:
+                                            return define_word
+                max_words, counts = get_common_words(line, 3, av)
+                if max_words:
+                    if len(max_words) > 0:
+                        if len(max_words) == 1:
+                            if max_words[0] in words_pos:
+                                if words_pos[max_words[0]] == pos_word:
+                                    ''' if the most common word is also the same pos as original word, return most common word '''
+                                    return max_words[0]
+                        else:
+                            for mw in max_words:
+                                if mw in words_pos:
+                                    if words_pos[mw] == pos_word:
+                                        ''' if this most common word is also the same pos as original word, return this most common word '''
+                                        return mw
                     else:
-                        for mw in max_words:
-                            if mw in words_pos:
-                                if words_pos[mw] == pos_word:
-                                    ''' if this most common word is also the same pos as original word, return this most common word '''
-                                    return mw
-                else:
-                    ''' if none of the max_words match the original word's pos, revert to any common words '''
-                    for word, count in counts.items():
-                        if word in words_pos:
-                            if words_pos[word] == pos_word:
-                                return word
-            ''' if none of the common words match the original word's pos, revert to any words matching pos '''
-            matching_pos_words = []
-            for word, pos in words_pos.items():
-                if pos == pos_word:
-                    matching_pos_words.append(word)
-            if len(matching_pos_words) > 0:
-                ''' to do: apply sort '''
-                return matching_pos_words[0]
-        ''' if no matching words found, sort defs to find best match '''
-        shortest_def = get_shortest_definition(defs)
-        if shortest_def:
-            return shortest_def
-        return defs
+                        ''' if none of the max_words match the original word's pos, revert to any common words '''
+                        for word, count in counts.items():
+                            if word in words_pos:
+                                if words_pos[word] == pos_word:
+                                    return word
+                ''' if none of the common words match the original word's pos, revert to any words matching pos '''
+                matching_pos_words = []
+                for word, pos in words_pos.items():
+                    if pos == pos_word:
+                        matching_pos_words.append(word)
+                if len(matching_pos_words) > 0:
+                    ''' to do: apply sort '''
+                    return matching_pos_words[0]
+            ''' if no matching words found, sort defs to find best match '''
+            if pos_word not in av['tags']['ALL_V']:
+                shortest_def = get_shortest_definition(defs)
+                if shortest_def:
+                    return shortest_def
+                return defs[0]
+    else:
+        if define_word in av['supported_synonyms']:
+            return av['supported_synonyms'][define_word]
+        if define_word in av['supported_synonyms'].values():
+            return define_word
+        return define_word
+    if pos_word in av['tags']['ALL_V']:
+        return define_word
     return False
 
 def get_definition_keywords(word):
     ''' add option to use local_database/index (phrases, relationships) or pull from a data source '''
-    defs = get_definitions(word, av)
-    if defs:
-        keywords = [w for d in defs for w in d.split(' ')]
+    definition = get_definitions(word, av)
+    if definition:
+        keywords = definition.split(' ')
         if len(keywords) > 0:
             return keywords
     return False
 
 def get_syn_from_definition(word, word_pos):
     candidates = set()
-    defs = get_definitions(word, av)
-    if defs:
-        for d in defs:
-            for w in d:
-                dpos = get_nltk_pos(w, av)
-                if dpos == word_pos:
-                    candidates.add(w)
+    definition = get_definitions(word, av)
+    if definition:
+        for w in definition.split(' '):
+            dpos = get_nltk_pos(w, av)
+            if dpos == word_pos:
+                candidates.add(w)
     if len(candidates) > 0:
         ''' to do: if found other words with same pos in definitions, filter by meaning & similarity to word '''
         return candidates
     return False
 
 def standard_text_processing(text, av):
-    if '.' in text:
-        text = concatenate_species(text.strip())
+    text_words = text.strip().replace('\n', '').replace(';', '').replace(',', '').split(' ')
+    for letter in av['alphabet']:
+        if letter in text_words and letter != 'a' and letter != 'i' and letter != 'x' and letter != 'y':
+            text = concatenate_species(text)
     text = standardize_delimiter(text)
     text = standardize_punctuation(text)
     article_lines = {}
@@ -2024,22 +2007,33 @@ def standard_text_processing(text, av):
         line = ' '.join(new_words) if len(new_words) > 0 else line
         ''' to do: fix mapping '''
         active_line, av = apply_pattern_map(line, 'passive_to_active', av)
+        print('active line', active_line)
         line = active_line if active_line else line
-        if line not in article_lines:
-            article_lines[line] = {}
+        word_map = {}
         for word in line.split(' '):
             pos = get_nltk_pos(word, av)
-            article_lines[line][word] = pos if pos else ''
+            word_map[word] = pos if pos else ''
         #line = remove_stopwords(line, article_lines[line])
-        syn_line, av = replace_with_syns(line.split(' '), article_lines[line], None, av)
+        syn_line, av = replace_with_syns(line.split(' '), word_map, None, av)
         if syn_line:
-            article_lines[syn_line] = article_lines[line]
+            if syn_line not in article_lines:
+                article_lines[syn_line] = {}
+            for word in syn_line.split(' '):
+                pos = get_nltk_pos(word, av)
+                article_lines[syn_line][word] = pos if pos else ''
+        else:
+            if line not in article_lines:
+                article_lines[line] = word_map
     if article_lines:
+        print('article', article_lines)
         return article_lines, av
     return False, av
     
 def get_operator(verb, av):
     ''' this maps a verb ('reduce' or 'inhibit') to an operator like +, -, = '''
+    for charge, values in av['charge'].items():
+        if verb == charge or verb in values:
+            return charge
     blob = get_blob(verb)
     if blob:
         sentiment_assessments = blob.sentiment_assessments
@@ -2057,13 +2051,11 @@ def get_operator(verb, av):
                             return '+'
                     return '='
                     ''' to do: add other operators '''
-    for charge, values in av['charge'].items():
-        if verb == charge or verb in values:
-            return charge
-    if blob:
+        '''
         polarity = blob.polarity
         operator = '-' if polarity < 0.0 else '+' if polarity > 0.0 else '='
         return operator
+        '''
     return False
 
 ''' these functions can be used in get_common_synonym(word) or get_common_score(word) '''
@@ -2103,6 +2095,9 @@ def get_common_word(word, pos, av):
     '''
     if word in av['supported_synonyms']:
         return av['supported_synonyms'][word]
+    definition = get_definitions(word, av)
+    if definition:
+        return definition
     if pos:
         if pos in av['tags']['SYNSET']:
             synsets = get_synsets(word, pos, av)
@@ -2233,13 +2228,8 @@ def get_shortest_definition(defs):
     return False
 
 def find_matching_synonym(word, pos, check_types, exclude_types, av):
+    ''' examples:   biofilm :: membrane,   sympathetic :: synergistic,   irritate :: damage
     '''
-    examples:
-        biofilm :: membrane
-        sympathetic :: synergistic
-        irritate :: damage
-    '''
-
     items = {}
     default_check_types = [
         'standard', 'stem', 'synonym', 'common', 'similarity', 'partial'
@@ -2253,31 +2243,28 @@ def find_matching_synonym(word, pos, check_types, exclude_types, av):
         definition = get_definitions(word, av)
         if definition:   
             return definition, 'definition'
-        if check_types != 'definition':
-            if not check_types:
-                check_types = default_check_types
-            if exclude_types:
-                for exclude_type in exclude_types:
-                    check_types = check_types.remove(exclude_type)
-            match, check_type = iterate_through_synonyms(av, check_types, word, pos)
-            if match and check_type:
-                return match, check_type
+        if not check_types:
+            check_types = default_check_types
+        if exclude_types:
+            for exclude_type in exclude_types:
+                check_types = check_types.remove(exclude_type)
+        match, check_type = iterate_through_synonyms(av, check_types, word, pos)
+        if match and check_type:
+            return match, check_type
         if pos in av['tags']['SYNSET']:
             ''' if no matches found, check for syns of words in definition '''
-            definitions = get_definitions(word, av)
-            if definitions:
-                for d in definitions:
-                    d_row = get_structural_metadata(d, av)
-                    if d_row:
-                        if 'verb' in d_row:
-                            for v in d_row['verb']:
-                                ''' for each verb in the definition, do same synonym check '''
-                                match, check_type = iterate_through_synonyms(av, check_types, v, pos)
-                                if match and check_type:
-                                    print('found matches', word, check_type, match)
-                                    return match, check_type
-                            if pos == 'V' or pos in av['tags']['V']:
-                                return v, check_types[0]
+            if definition:
+                d_row = get_structural_metadata(definition, av)
+                if d_row:
+                    if 'verb' in d_row:
+                        for v in d_row['verb']:
+                            ''' for each verb in the definition, do same synonym check '''
+                            match, check_type = iterate_through_synonyms(av, check_types, v, pos)
+                            if match and check_type:
+                                print('found matches', word, check_type, match)
+                                return match, check_type
+                        if pos == 'V' or pos in av['tags']['V']:
+                            return v, check_types[0]
         return word, check_types[0]
     ''' as a backup, you can query pattern, function, & relationship data to derive standard verb '''
     return False, False
@@ -2342,16 +2329,11 @@ def matches(word, word_pos, k, check_type, word_type, av):
             elif check_type == 'definition':
                 w = get_definitions(w, av)
                 k = get_definitions(k, av)
+                definition_similarity = get_similarity(w, k, av)
                 if w and k:
-                    shortest_w_def = get_definitions(w)
-                    shortest_k_def = get_definitions(k)
-                    if shortest_w_def and shortest_k_def:
-                        missing_words = 0
-                        for dw_word in shortest_w_def.split(' '):
-                            if dw_word not in shortest_k_def.split(' '):
-                                missing_words += 1
-                        if missing_words < 3:
-                            return k, check_type
+                    missing_words = [0 for dw_word in w.split(' ') if dw_word not in k.split(' ')]
+                    if len(missing_words) < 3 or definition_similarity > 0.9:
+                        return k, check_type
             if w and k:
                 if w == k:
                     return k, check_type
@@ -2588,13 +2570,12 @@ def apply_pattern_map(line, pattern_map, av):
             currently its getting overridden by the consecutive verb which also matches the 'V' type but need a more robust way
         - in order to support iterated replacement, you need to make sure your patterns are ordered in the right way
     '''
+    # x of y => 'y x'
     print('apply pattern map:line', line)
     pos_line = get_pos_line(line, av)
     if pos_line:
         if pattern_map in av['pattern_maps']:
             for source_pattern, target_pattern in av['pattern_maps'][pattern_map].items():
-                source_pattern = 'x of y'
-                target_pattern = 'y x'
                 variables, line_with_vars = get_variables_for_pattern(line, source_pattern, av)
                 line_with_vars = line_with_vars if line_with_vars else line
                 pos_line_with_vars = get_pos_line(line_with_vars, av) if line_with_vars else pos_line
@@ -2621,21 +2602,49 @@ def apply_pattern_map(line, pattern_map, av):
 def get_variables_for_pattern(line, pattern, av):
     ''' for a line like 'cat-mouse of dog is a key', and pattern 'x of y', 
         assign variables x = "cat-mouse" and y = "dog is a key" and return line with variables replaced
+
         to do: 
             - support multi-word variables
             - fix pattern mapping of variables to assign position based on positions of non-var sections of pattern, rather than word position 
     '''
+    #line = 'x is ionizs inhibits of y', pattern = 'x of y'
     variables = {}
+    vars_in_pattern = [letter for letter in pattern.split(' ') if letter in av['alphabet']]
     words = line.split(' ')
-    new_line_words = []
-    for i, word in enumerate(pattern.split(' ')):
-        if word in av['alphabet']:
-            variables[word] = words[i]
-            new_line_words.append(word)
-        else:
-            new_line_words.append(words[i])
+    pattern_words = pattern.split(' ')
+    non_var_words = [word for word in pattern_words if word not in av['alphabet']]
+    new_words = []
+    final_line_words = []
+    if len(non_var_words) > 0:
+        if non_var_words[0] == words[0]:
+            ''' if the first word is not a variable, add it & remove from non_var_words '''
+            final_line_words.append(non_var_words[0])
+            non_var_words = non_var_words[1:]
+        for w in words:
+            if w in non_var_words:
+                new_words.append('***')
+            else:
+                new_words.append(w)
+        if len(new_words) > 0:
+            line_variables = ' '.join(new_words).split('***')
+            for i, v in enumerate(line_variables):
+                ''' match up var names with vars from pattern '''
+                if i < len(vars_in_pattern):
+                    var_name = vars_in_pattern[i]
+                    if len(final_line_words) > 0:
+                        if final_line_words[-1] == v.split(' ')[0]:
+                            v = ' '.join(v.split(' ')[1:])
+                        elif final_line_words[-1] in v:
+                            v = v.replace(final_line_words[-1], '')
+                    variables[var_name] = v
+                    final_line_words.append(var_name)
+                    if i < len(non_var_words):
+                        final_line_words.append(non_var_words[i])
+        if non_var_words[-1] == words[-1]:
+            ''' if the last word is not a variable, add it '''
+            final_line_words.append(non_var_words[-1])
     if variables:
-        return variables, ' '.join(new_line_words)
+        return variables, ' '.join(final_line_words)
     return False, False
 
 
@@ -2820,7 +2829,7 @@ def get_pattern_source_subsets(line, pos_line, pattern, get_type, av):
         to do: this prevents users from configuring patterns with numbers like 14alpha-deoxy-enzyme
     '''
     if pattern == pos_line:
-        return [pattern]
+        return [pattern], av
     if pattern in pos_line:
         subsets = []
         if get_type == 'pattern':

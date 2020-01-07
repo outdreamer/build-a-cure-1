@@ -42,6 +42,9 @@
 
   - add subjectivity/polarity + operator pattern function to get_all_versions
 
+  - matches returned for pos pattern includes tags:
+    'combination_pattern': {'x VBZ VBZ VBZ y': ['x VBZ VBZ VBZ y']}
+
   - add function to derive pos == 'verb' from defs like:
     
     defs acts 

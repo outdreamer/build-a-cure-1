@@ -331,9 +331,9 @@ def find_clause(subset, row, av):
                     if w not in cmap['subject']:
                         pos = get_nltk_pos(w, av)
                         blob = get_blob(w)
-                        print('word', w)
-                        all_subjects.append(w)
-                        cmap['subject'] = w # make sure subjects are not repeated across clause entries
+                        if w not in av['tags']['ALL']:
+                            all_subjects.append(w)
+                            cmap['subject'] = w # make sure subjects are not repeated across clause entries
                 if w in row['verb']: # found a verb
                     verb_index = i
                     cmap['statement'] = original_clause_words[(i - 1):len(original_clause_words)]
