@@ -20,6 +20,9 @@ lemmatizer = WordNetLemmatizer()
 stop = set(stopwords.words('english'))
 
 def get_pattern_config(av):
+    av['verb_meanings'] = ['action']
+    av['negative_meanings'] = ['down']
+    av['positive_meanings'] = ['up']
     av['passive'] = [" by ", " from ", " of "]
     ''' to do: assess which operator combinations neutralize or negate a relationship '''
     av['combined_map'] = {
@@ -1512,18 +1515,6 @@ def get_delimiter(line):
 ''' SIMILARITY FUNCTIONS '''
 
 def get_polarity(line):
-    ''' to do: use blob.sentiment_assessments 
-            Sentiment(
-                polarity=-0.008806818181818186, 
-                subjectivity=0.32386363636363635, 
-                assessments=[
-                    (['positive'], 0.22727272727272727, 0.5454545454545454, None), 
-                    (['absence'], -0.0125, 0.0, None), 
-                    (['due'], -0.125, 0.375, None), 
-                    (['other'], -0.125, 0.375, None)
-                ]
-            )
-    '''
     blob = get_blob(line)
     if blob:
         sentiment = blob.sentiment
@@ -1883,16 +1874,112 @@ def replace_with_syns(words, word_map, check_types, av):
         return ' '.join(new_text), av
     return ' '.join(words), av
 
-def get_definitions(word):
+def get_names(line):
+    words = line.split(' ')
+    for w in words:
+        w_upper = w.upper()
+        w_name = w.capitalize()
+        if words.count(w_upper) > 0 and w_upper != words[0]:
+            names.append(w_upper)
+        elif words.count(w_name) > 0 and w_name != words[0]:
+            names.append(w_name)
+    if len(names) > 0:
+        return names
+    return False
+
+def get_common_words(line, av):
+    blob = get_blob(line)
+    if blob:
+        word_counts = blob.word_counts
+        counts = {}
+        for word, wc in word_counts.items():
+            pos = get_nltk_pos(word, av)
+            if pos:
+                if pos not in av['tags']['DPC']:
+                    if word not in counts:
+                        counts[word] = 0
+                    counts[word] += wc
+        max_words = []
+        max_count = max(counts.values())
+        for word, count in counts.items():
+            if count > 1:
+                if (max_count - count) < 3:
+                    max_words.append(word)
+        if len(max_words) > 0 and counts:
+            return max_words, counts
+    return False, False
+
+def get_definitions(word, av):
+    meanings = []
+    pos_word = get_nltk_pos(word, av)
     defs = Word(word).definitions
     if defs:
         print('defs', word, defs)
+        line = ' '.join(defs)
+        blob = get_blob(line)
+        if blob:
+            words_pos = {}
+            for word in line.replace(';', '').replace(',', '').split(' '):
+                pos = get_nltk_pos(word, av)
+                if pos:
+                    words_pos[word] = pos
+            sentiment_assessments = blob.sentiment_assessments
+            if sentiment_assessments:
+                for a in sentiment_assessments.assessments:
+                    meanings.extend(a[0])
+                if len(meanings) > 0:
+                    if pos_word in av['tags']['V']:
+                        if meaning in av['verb_meanings']:
+                            for n in av['negative_meanings']:
+                                if n in meanings:
+                                    if word in av['supported_synonyms']:
+                                        return av['supported_synonyms'][word]
+                                    return word
+                            for p in av['positive_meanings']:
+                                if p in meanings:
+                                    if word in av['supported_synonyms']:
+                                        return av['supported_synonyms'][word]
+                                    return word
+                        if word in av['supported_synonyms'].values():
+                            return word
+            max_words, counts = get_common_words(line, av)
+            if max_words:
+                if len(max_words) > 0:
+                    if len(max_words) == 1:
+                        if max_words[0] in words_pos:
+                            if words_pos[max_words[0]] == pos_word:
+                                ''' if the most common word is also the same pos as original word, return most common word '''
+                                return max_words[0]
+                    else:
+                        for mw in max_words:
+                            if mw in words_pos:
+                                if words_pos[mw] == pos_word:
+                                    ''' if this most common word is also the same pos as original word, return this most common word '''
+                                    return mw
+                else:
+                    ''' if none of the max_words match the original word's pos, revert to any common words '''
+                    for word, count in counts.items():
+                        if word in words_pos:
+                            if words_pos[word] == pos_word:
+                                return word
+            ''' if none of the common words match the original word's pos, revert to any words matching pos '''
+            matching_pos_words = []
+            for word, pos in words_pos.items():
+                if pos == pos_word:
+                    matching_pos_words.append(word)
+            if len(matching_pos_words) > 0:
+                ''' to do: apply sort '''
+                return matching_pos_words[0]
+        ''' if no matching words found, sort defs to find best match '''
+        shortest_def = get_shortest_definition(defs)
+        if shortest_def:
+            return shortest_def
         return defs
     return False
 
 def get_definition_keywords(word):
     ''' add option to use local_database/index (phrases, relationships) or pull from a data source '''
-    defs = get_definitions(word)
+    defs = get_definitions(word, av)
     if defs:
         keywords = [w for d in defs for w in d.split(' ')]
         if len(keywords) > 0:
@@ -1901,7 +1988,7 @@ def get_definition_keywords(word):
 
 def get_syn_from_definition(word, word_pos):
     candidates = set()
-    defs = get_definitions(word)
+    defs = get_definitions(word, av)
     if defs:
         for d in defs:
             for w in d:
@@ -1953,12 +2040,30 @@ def standard_text_processing(text, av):
     
 def get_operator(verb, av):
     ''' this maps a verb ('reduce' or 'inhibit') to an operator like +, -, = '''
+    blob = get_blob(verb)
+    if blob:
+        sentiment_assessments = blob.sentiment_assessments
+        if sentiment_assessments:
+            meanings = []
+            for a in sentiment_assessments.assessments:
+                meanings.extend(a[0])
+            for meaning in meanings:
+                if meaning in verb_meanings:
+                    for n in negative_meanings:
+                        if n in meanings:
+                            return '-'
+                    for p in positive_meanings:
+                        if p in meanings:
+                            return '+'
+                    return '='
+                    ''' to do: add other operators '''
     for charge, values in av['charge'].items():
         if verb == charge or verb in values:
             return charge
-        #polarity = get_polarity(verb)
-        #operator = '-' if polarity < 0.0 else '+' if polarity > 0.0 else '='
-        #return operator
+    if blob:
+        polarity = blob.polarity
+        operator = '-' if polarity < 0.0 else '+' if polarity > 0.0 else '='
+        return operator
     return False
 
 ''' these functions can be used in get_common_synonym(word) or get_common_score(word) '''
@@ -2145,13 +2250,9 @@ def find_matching_synonym(word, pos, check_types, exclude_types, av):
     ]
     if len(word) > 0:
         ''' favor definitions over synonym calculations '''
-        defs = get_definitions(word)
-        if defs:   
-            shortest_def = get_shortest_definition(defs)         
-            if shortest_def:
-                new_def = standardize_words(shortest_def, 'synonym', av)
-                shortest_def = new_def if new_def else shortest_def
-                return shortest_def, 'definition'
+        definition = get_definitions(word, av)
+        if definition:   
+            return definition, 'definition'
         if check_types != 'definition':
             if not check_types:
                 check_types = default_check_types
@@ -2163,7 +2264,7 @@ def find_matching_synonym(word, pos, check_types, exclude_types, av):
                 return match, check_type
         if pos in av['tags']['SYNSET']:
             ''' if no matches found, check for syns of words in definition '''
-            definitions = get_definitions(word)
+            definitions = get_definitions(word, av)
             if definitions:
                 for d in definitions:
                     d_row = get_structural_metadata(d, av)
@@ -2239,11 +2340,11 @@ def matches(word, word_pos, k, check_type, word_type, av):
                     if similarity > 0.9:
                         return k, check_type
             elif check_type == 'definition':
-                w = get_definitions(w)
-                k = get_definitions(k)
+                w = get_definitions(w, av)
+                k = get_definitions(k, av)
                 if w and k:
-                    shortest_w_def = get_shortest_definition(w)
-                    shortest_k_def = get_shortest_definition(k)
+                    shortest_w_def = get_definitions(w)
+                    shortest_k_def = get_definitions(k)
                     if shortest_w_def and shortest_k_def:
                         missing_words = 0
                         for dw_word in shortest_w_def.split(' '):

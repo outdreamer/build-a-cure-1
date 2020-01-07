@@ -40,6 +40,7 @@
 
     ['to put down by force or authority', 'limit the range or extent of', 'limit, block, or decrease the action or function of', 'control and refrain from showing; of emotions, desires, impulses, or behavior']
 
+  - add subjectivity/polarity + operator pattern function to get_all_versions
 
   - add function to derive pos == 'verb' from defs like:
     

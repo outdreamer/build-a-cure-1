@@ -270,17 +270,15 @@ def get_structural_metadata(row, av):
     print('\nword pos line', word_pos_line)
     words = word_pos_line.split(' ')
     new_line = []
+    max_words, counts = get_common_words(row['line'], av)
+    if max_words and counts:
+        row['count'] = counts
+        row['max_words'] = max_words
+    names = get_names(row['line'])
+    if names:
+        row['names'] = names
     for i, w in enumerate(words):
         if len(w) > 0:
-            w_upper = w.upper()
-            w_name = w.capitalize() if w.capitalize() != words[0] else w
-            count = words.count(w)
-            upper_count = words.count(w_upper) # find acronyms, ignoring punctuated acronym
-            count_num = upper_count if upper_count >= count else count
-            count_val = w_upper if upper_count >= count else w 
-            if count_num not in row['count']:
-                row['count'][count_num] = set()
-            row['count'][count_num].add(count_val)
             pos = row['word_map'][w] if row['word_map'] and w in row['word_map'] else get_nltk_pos(w, av)
             if pos:
                 if pos in av['tags']['VC']:
