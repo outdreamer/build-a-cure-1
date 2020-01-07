@@ -314,6 +314,7 @@
 
           - the output insight is: "to control power, control the inputs of power"
 
+
 ## Variable Accretion Patterns
 
   - visualize:
@@ -392,6 +393,96 @@
 
   1. use predictive tools to predict transactions & calculate them in advance to speed up tx
     - this would assess people's known resources to build an index of global demand/supply, then calculating through these resource distributions, economic incentives for trades, social networks, platform dominance, & product availability & findability (search results rankings) - which tx were likely to happen where for which products, then calculate those tx in advance
+
+## Concept Queries
+
+  - get a problem, standardize & define it: 
+    problem: "funds cannot always be verified to exist with existing currencies"
+    standardize: 
+      "there is no way to check prior transaction info to determine funds availability"
+      "transaction info exists in isolation of other transaction info"
+
+  - define solution requirements: 
+    "must be usable by any trader", 
+    "transactions must be verified", 
+    "must be relatively quick to enable normal transactions"
+    + standard currency definition attributes
+
+  - reduce problem into necessary solution boundary:
+      "transaction info exists in isolation of other transaction info"
+      "group transaction info" (transaction log)
+
+  - apply solution requirements to solution boundary to check if its sufficient:
+
+    apply(requirements, "group transaction info") => 
+      still has problem "transactions are still isolated from previous transactions so previous transactions can be faked to give illusion of funds"
+
+  - iterate same process, with new problem "previous transactions can still be faked"
+
+  - standardize:
+    "previous transactions are editable"
+
+  - reduce problem into necessary solution boundary:
+
+    "make previous transactions not-editable"
+
+  - apply solution requirements to solution boundary to check if its sufficient:
+
+    apply(requirements, "make previous transactions not-editable") =>
+      still has problem "cannot check that each transaction is based on a non-edited transaction history"
+
+  - iterate same process, with new problem "cant verify each transaction's transaction history"
+
+  - standardize: "make sure each transaction is using correct transaction history"
+
+  - reduce problem into solution boundary:
+
+    "make sure each transaction is using correct transaction history" => "give software doing each transaction access to correct transaction history"     
+
+  - apply solution requirements to check if its sufficient:
+
+    apply(requirements, "give software doing each transaction access to correct transaction history") =>
+      still has problem "transaction software might not have access to correct transaction history"
+
+  - iterate with new problem "transaction software might not have access to correct transaction history"
+
+  - standardize: "access to transaction history is not guaranteed"
+
+  - reduce problem to solution boundary:
+
+    "include transaction history in each transaction process"
+
+  - apply requirements & check if its sufficient:
+    apply(requirements, "include transaction history in each transaction process") =>
+      still has problem: "if software process cant fetch transaction history, the transaction is not verifiable"
+
+  - iterate with new problem "software process needs guaranteed access to transaction history"
+
+  - standardize: "transaction history needs to be an input to the software process" (do_transaction() function)
+
+  - reduce problem into solution boundary:
+
+    "transaction history needs to be an input to the software process" => "transaction history is a parameter to do_transaction() function"
+
+  - apply requirements & check if sufficient:
+    apply(requirements, "transaction history is a parameter to do_transaction() function") => 
+
+    still has problem: "if param is not populated, transaction cannot be done"
+
+  - iterate with new problem "tx history param is not guaranteed to be populated"
+
+  - standardize "make sure tx history is guaranteed to be populated"
+
+  - reduce to solution boundary:
+
+    "make sure tx history is guaranteed to be populated" => "add tx history further up causal chain so its embedded in guaranteed input to do_transaction(), like the transaction itself"
+
+  - apply & check if sufficient:
+
+    apply(requirements, "add tx history further up causal chain so its embedded in guaranteed input to do_transaction(), like the transaction itself") => solved
+
+  - further requirements can be added to the solution with the same procedure
+
 
 
 ## Vuln potential of a solution
