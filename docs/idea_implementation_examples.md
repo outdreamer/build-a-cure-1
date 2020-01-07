@@ -395,7 +395,8 @@
   1. use predictive tools to predict transactions & calculate them in advance to speed up tx
     - this would assess people's known resources to build an index of global demand/supply, then calculating through these resource distributions, economic incentives for trades, social networks, platform dominance, & product availability & findability (search results rankings) - which tx were likely to happen where for which products, then calculate those tx in advance
 
-## Concept Queries
+
+## Concept Operations
 
   I. Match problem & solution using definition & standardization
 
@@ -498,6 +499,15 @@
           - symmetry
           - relevance
 
+        Input relationship network:
+          - uniqueness on both sides of a symmetry can be used for verification
+          - relevance can organize information where its value is optimized
+          - the value of information is optimized when its distributed
+          - distributing information on both sides of a symmetry would allow verification of new information
+          - symmetries exist between types (two objects of a type, such as a transaction)
+
+        Now we will look for intents & structures that could alert us to problem spaces where this insight network would be useful.
+
         Concept Intents:
           - verification (uniqueness, randomness, symmetry, relevance)
           - distribution (symmetry, relevance)
@@ -544,6 +554,7 @@
           - tx log should match the claim of each transaction
           - ledger has embedded concept of balance in asset trade amounts & assets
           - matching of information supply & demand (allocate tx history to tx metadata, where it has most value)
+
 
 ## Vuln potential of a solution
 
