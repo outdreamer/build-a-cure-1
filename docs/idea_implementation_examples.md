@@ -396,92 +396,115 @@
 
 ## Concept Queries
 
-  - get a problem, standardize & define it: 
-    problem: "funds cannot always be verified to exist with existing currencies"
-    standardize: 
-      "there is no way to check prior transaction info to determine funds availability"
-      "transaction info exists in isolation of other transaction info"
+  I. Match problem & solution using definition & standardization
 
-  - define solution requirements: 
-    "must be usable by any trader", 
-    "transactions must be verified", 
-    "must be relatively quick to enable normal transactions"
-    + standard currency definition attributes
+    - get a problem, standardize & define it: 
+      problem: "funds cannot always be verified to exist with existing currencies"
+      standardize: 
+        "there is no way to check prior transaction info to determine funds availability"
+        "transaction info exists in isolation of other transaction info"
 
-  - reduce problem into necessary solution boundary:
-      "transaction info exists in isolation of other transaction info"
-      "group transaction info" (transaction log)
+    - define solution requirements: 
+      "must be usable by any trader", 
+      "transactions must be verified", 
+      "must be relatively quick to enable normal transactions"
+      + standard currency definition attributes
 
-  - apply solution requirements to solution boundary to check if its sufficient:
+    - reduce problem into necessary solution boundary:
+        "transaction info exists in isolation of other transaction info"
+        "group transaction info" (transaction log)
 
-    apply(requirements, "group transaction info") => 
-      still has problem "transactions are still isolated from previous transactions so previous transactions can be faked to give illusion of funds"
+    - apply solution requirements to solution boundary to check if its sufficient:
 
-  - iterate same process, with new problem "previous transactions can still be faked"
+      apply(requirements, "group transaction info") => 
+        still has problem "transactions are still isolated from previous transactions so previous transactions can be faked to give illusion of funds"
 
-  - standardize:
-    "previous transactions are editable"
+    - iterate same process, with new problem "previous transactions can still be faked"
 
-  - reduce problem into necessary solution boundary:
+    - standardize:
+      "previous transactions are editable"
 
-    "make previous transactions not-editable"
+    - reduce problem into necessary solution boundary:
 
-  - apply solution requirements to solution boundary to check if its sufficient:
+      "make previous transactions not-editable"
 
-    apply(requirements, "make previous transactions not-editable") =>
-      still has problem "cannot check that each transaction is based on a non-edited transaction history"
+    - apply solution requirements to solution boundary to check if its sufficient:
 
-  - iterate same process, with new problem "cant verify each transaction's transaction history"
+      apply(requirements, "make previous transactions not-editable") =>
+        still has problem "cannot check that each transaction is based on a non-edited transaction history"
 
-  - standardize: "make sure each transaction is using correct transaction history"
+    - iterate same process, with new problem "cant verify each transaction's transaction history"
 
-  - reduce problem into solution boundary:
+    - standardize: "make sure each transaction is using correct transaction history"
 
-    "make sure each transaction is using correct transaction history" => "give software doing each transaction access to correct transaction history"     
+    - reduce problem into solution boundary:
 
-  - apply solution requirements to check if its sufficient:
+      "make sure each transaction is using correct transaction history" => "give software doing each transaction access to correct transaction history"     
 
-    apply(requirements, "give software doing each transaction access to correct transaction history") =>
-      still has problem "transaction software might not have access to correct transaction history"
+    - apply solution requirements to check if its sufficient:
 
-  - iterate with new problem "transaction software might not have access to correct transaction history"
+      apply(requirements, "give software doing each transaction access to correct transaction history") =>
+        still has problem "transaction software might not have access to correct transaction history"
 
-  - standardize: "access to transaction history is not guaranteed"
+    - iterate with new problem "transaction software might not have access to correct transaction history"
 
-  - reduce problem to solution boundary:
+    - standardize: "access to transaction history is not guaranteed"
 
-    "include transaction history in each transaction process"
+    - reduce problem to solution boundary:
 
-  - apply requirements & check if its sufficient:
-    apply(requirements, "include transaction history in each transaction process") =>
-      still has problem: "if software process cant fetch transaction history, the transaction is not verifiable"
+      "include transaction history in each transaction process"
 
-  - iterate with new problem "software process needs guaranteed access to transaction history"
+    - apply requirements & check if its sufficient:
+      apply(requirements, "include transaction history in each transaction process") =>
+        still has problem: "if software process cant fetch transaction history, the transaction is not verifiable"
 
-  - standardize: "transaction history needs to be an input to the software process" (do_transaction() function)
+    - iterate with new problem "software process needs guaranteed access to transaction history"
 
-  - reduce problem into solution boundary:
+    - standardize: "transaction history needs to be an input to the software process" (do_transaction() function)
 
-    "transaction history needs to be an input to the software process" => "transaction history is a parameter to do_transaction() function"
+    - reduce problem into solution boundary:
 
-  - apply requirements & check if sufficient:
-    apply(requirements, "transaction history is a parameter to do_transaction() function") => 
+      "transaction history needs to be an input to the software process" => "transaction history is a parameter to do_transaction() function"
 
-    still has problem: "if param is not populated, transaction cannot be done"
+    - apply requirements & check if sufficient:
+      apply(requirements, "transaction history is a parameter to do_transaction() function") => 
 
-  - iterate with new problem "tx history param is not guaranteed to be populated"
+      still has problem: "if param is not populated, transaction cannot be done"
 
-  - standardize "make sure tx history is guaranteed to be populated"
+    - iterate with new problem "tx history param is not guaranteed to be populated"
 
-  - reduce to solution boundary:
+    - standardize "make sure tx history is guaranteed to be populated"
 
-    "make sure tx history is guaranteed to be populated" => "add tx history further up causal chain so its embedded in guaranteed input to do_transaction(), like the transaction itself"
+    - reduce to solution boundary:
 
-  - apply & check if sufficient:
+      "make sure tx history is guaranteed to be populated" => "add tx history further up causal chain so its embedded in guaranteed input to do_transaction(), like the transaction itself"
 
-    apply(requirements, "add tx history further up causal chain so its embedded in guaranteed input to do_transaction(), like the transaction itself") => solved
+    - apply & check if sufficient:
 
-  - further requirements can be added to the solution with the same procedure
+      apply(requirements, "add tx history further up causal chain so its embedded in guaranteed input to do_transaction(), like the transaction itself") => solved
+
+    - further requirements can be added to the solution with the same procedure (hash to make the tx log shorter, etc)
+
+  II. Conceptual Query
+
+    - get a conceptual combination with a query of problem space & find an abstract structure that fits this combination, then find a specific structure that fits the combination
+
+    - example:
+
+        Input concepts:
+        - uniqueness, randomness, symmetry
+
+        Concept Intents:
+          - verification (uniqueness, randomness, symmetry)
+          - distribution (symmetry)
+
+        Output concept-structure matches:
+        - uniqueness: tx log should have a unique hash
+        - randomness: any node can verify, equally likely to be able to verify, have same resources such as tx log & software
+        - symmetry: 
+          - tx log should match the claim of each transaction
+          - ledger has embedded concept of balance in asset trade amounts & assets
+          - matching of information supply & demand (allocate tx history to tx metadata, where it has most value)
 
 
 
