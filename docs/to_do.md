@@ -33,24 +33,10 @@
 # Structural Objects
   - make list of reasons why youre more fun alive
 
-
-  - add function to get common word from defs like:
-
-    defs inhibit 
-
-    ['to put down by force or authority', 'limit the range or extent of', 'limit, block, or decrease the action or function of', 'control and refrain from showing; of emotions, desires, impulses, or behavior']
-
   - add subjectivity/polarity + operator pattern function to get_all_versions
 
   - matches returned for pos pattern includes tags:
     'combination_pattern': {'x VBZ VBZ VBZ y': ['x VBZ VBZ VBZ y']}
-
-  - add function to derive pos == 'verb' from defs like:
-    
-    defs acts 
-
-    ["a New Testament book describing the development of the early church from Christ's Ascension to Paul's sojourn at Rome", 'a legal document codifying the result of deliberations of a committee or society or legislative body', 'something that people do or cause to happen', 'a subdivision of a play or opera or ballet', 'a short theatrical performance that is part of a longer program', 'a manifestation of insincerity', 'perform an action, or work out or perform (an action)', 'behave in a certain manner; show a certain behavior; conduct or comport oneself', 'play a role or part', "discharge one's duties", 'pretend to have certain qualities or state of mind', 'be suitable for theatrical performance', 'have an effect or outcome; often the one desired or expected', 'be engaged in an activity, often for no particular purpose other than pleasure', 'behave unnaturally or affectedly', 'perform on a stage or theater']
-
 
   - adjust metadata with map to related objects for requested metadata
   - do full synonym check vs definition check at beginning with get_all_versions - generate_synonym_patterns

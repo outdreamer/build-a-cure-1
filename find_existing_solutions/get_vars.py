@@ -1364,6 +1364,36 @@ def generate_operator_patterns(pattern, av):
         return new_pattern
     return False
 
+def get_polarity_pattern(pattern, av):
+    new_words = []
+    for word in pattern.split(' '):
+        if word not in av['operator_map']:
+            blob = get_blob(word)
+            if blob:
+                new_words.append(str(round(blob.sentiment_assessments.polarity, 2)))
+            else:
+                new_words.append(word)
+        else:
+            new_words.append(word)
+    if len(new_words) > 0:
+        return ' '.join(new_words)
+    return False   
+
+def get_subjectivity_pattern(pattern, av):
+    new_words = []
+    for word in pattern.split(' '):
+        if word not in av['operator_map']:
+            blob = get_blob(word)
+            if blob:
+                new_words.append(str(round(blob.sentiment_assessments.subjectivity, 2)))
+            else:
+                new_words.append(word)
+        else:
+            new_words.append(word)
+    if len(new_words) > 0:
+        return ' '.join(new_words)
+    return False 
+
 def generate_function_patterns(pattern, av):
     ''' find functions in pattern & replace with their core function decomposition '''
     functions = find_function(pattern)
@@ -1384,7 +1414,7 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
         '||JJ JJR JJS| |WRB RB RBR RBS| VB |VBG VBD||' => '|JJ JJR JJS WRB RB RBR RBS VB VBG VBD|'
     '''
     #corrected_pattern = generate_correct_patterns(pattern, av)
-    pattern_index = {'maps': [], 'standard': [], 'type': [], 'operator': [], 'synonym': [], 'pos': [], 'combination': [], 'pattern_type': []}
+    pattern_index = {'maps': [], 'standard': [], 'type': [], 'operator': [], 'polarity': [], 'subjectivity': [], 'synonym': [], 'pos': [], 'combination': [], 'pattern_type': []}
     version_types = av['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
     pattern_map_keys = pattern_map_keys if pattern_map_keys else av['pattern_maps'].keys()
     if 'maps' in version_types:
@@ -1418,6 +1448,12 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
         if op:
             pattern_index['operator'].append(op)
             final_patterns.add(op)
+            polarity_pattern = get_polarity_pattern(op, av)
+            if polarity_pattern:
+                final_patterns.add(polarity_pattern)
+            subjectivity_pattern = get_subjectivity_pattern(op, av)
+            if subjectivity_pattern:
+                final_patterns.add(subjectivity_pattern)
         pos = get_specific_pos(ap, av)
         if pos:
             pattern_index['pos'].append(pos)
@@ -2663,7 +2699,7 @@ def derive_and_store_patterns(object_type, av):
     to do:
       - use definitions as a data source for relationships if none are found 
     '''
-    pattern_counts = {'maps': {}, 'standard': {}, 'type': {}, 'operator': {}, 'synonym': {}, 'pos': {}, 'combination': {}, 'pattern_type': {}}
+    pattern_counts = {'maps': {}, 'standard': {}, 'type': {}, 'operator': {}, 'polarity': {}, 'subjectivity': {}, 'synonym': {}, 'pos': {}, 'combination': {}, 'pattern_type': {}}
     index = get_empty_index(av)
     if object_type in index:
         source_names = filter_source_list(object_type)
