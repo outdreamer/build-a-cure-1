@@ -225,6 +225,7 @@
       /: standardize by dimension
       *: expand by dimension
       ^: apply to itself
+      =: match (symmetric despite operation type x)
 
     - example of operator -> language:
       1. math rule: 
@@ -492,11 +493,49 @@
     - example:
 
         Input concepts:
-        - uniqueness, randomness, symmetry
+          - uniqueness
+          - randomness
+          - symmetry
+          - relevance
 
         Concept Intents:
-          - verification (uniqueness, randomness, symmetry)
-          - distribution (symmetry)
+          - verification (uniqueness, randomness, symmetry, relevance)
+          - distribution (symmetry, relevance)
+
+        General Structures:
+          - communication structures (internet)
+          - storage structures (log, database, hash function)
+          - combination structures (log, database, function, distance, similarity)
+          - interaction structures (relevant properties, interacting relationship functions between objects)
+
+        Conceptual Solution Boundary Requirements:
+          - in order for uniqueness to be useful as an identifier, it must be paired with each object to identify (tx id + tx)
+
+        Conceptual Boundary Decomposition:
+          - combining unique identifiers enhances uniqueness (tx id + tx log hash)
+          - uniqueness enables using uniqueness symmetries for verification (uniqueness of tx log hash would probably only perfectly match a specific tx log's hash)
+          - verification also requires symmetry in verification ability (all parties involved must have access to info needed to verify)
+          - tx log is an asset everyone has access to
+          - tx log has a unique hash
+          - combining unique tx log hash with tx id pairs information by relevance (each tx has a related tx log history)
+          - each tx also has a required range of tx log histories, that would allow the tx to take place 
+            (any log history enabling the transaction, which allows the transaction to happen - meaning the funds exist & are valid)
+          - each log history used for new tx must have symmetry (match) with log history of other traders (must be accurate)
+
+        Output conceptual relationship structure (this is the network of rules representing the invention):
+          - host information in the object that requires it, for each object to be a source of verification that also uses verification as an input
+          - tx objects need to be symmetric in some way with other tx objects (tx log provides the symmetry to conduct match/check operations)
+          - tx objects need to be unique in some way compared to other tx objects (tx id/tx log hash)
+          - embed the logs needed to verify new tx in each new tx
+          - by combining uniqueness identifiers, aligning information symmetries, or organizing by relevance, the tx funds can be verified using the tx history
+            - three different conceptual paths to arrive at the same conclusion: "include hash of the prior tx log with the new tx log entry"
+  
+        Specific Problem Space Structures:
+          - log
+          - transaction metadata
+          - internet
+          - tx log/ledger/database
+          - hash function
 
         Output concept-structure matches:
         - uniqueness: tx log should have a unique hash
@@ -505,8 +544,6 @@
           - tx log should match the claim of each transaction
           - ledger has embedded concept of balance in asset trade amounts & assets
           - matching of information supply & demand (allocate tx history to tx metadata, where it has most value)
-
-
 
 ## Vuln potential of a solution
 
