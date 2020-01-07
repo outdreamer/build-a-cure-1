@@ -312,6 +312,8 @@
 
           - when we say something like "expand information by power", we're saying, "apply information to every object within power" or "apply power to every object within information"
 
+          - the output insight is: "to control power, control the inputs of power"
+
 ## Variable Accretion Patterns
 
   - visualize:
