@@ -252,19 +252,22 @@ def get_structural_metadata(row, av):
         verb-noun-phrases should be converted into modifiers
         once you have the nouns/modifiers, you can pick a subject from the noun or modifier
     '''
+    print('\n\nget_structural_metadata', row)
     keep_ratios = ['extra', 'high', 'none']
-    structure_types = ['modifier', 'phrase', 'verb_phrase', 'noun_phrase', 'clause']
     corrected_line = correct(row['line'])
     row['line'] = corrected_line if corrected_line else row['line']
     generated_patterns, all_patterns, av = get_all_versions(row['line'], 'all', 'all', av)
     if generated_patterns:
+        print('generated_patterns', generated_patterns)
         for pattern_type, patterns in generated_patterns.items():
             if pattern_type not in row['pattern']:
                 row['pattern'][pattern_type] = set()
             if len(patterns) > 0:
                 for pattern in patterns:
+                    print('pattern', pattern)
                     row['pattern'][pattern_type].add(pattern)
     word_pos_line = ''.join([x for x in row['line'] if x in av['alphanumeric'] or x in av['clause_analysis_chars']])
+    print('\nword pos line', word_pos_line)
     words = word_pos_line.split(' ')
     new_line = []
     for i, w in enumerate(words):
@@ -322,6 +325,7 @@ def get_structural_metadata(row, av):
                     row['noun'].add(w)
                     new_line.append(w)
     row['line'] = ' '.join(new_line) if len(new_line) > 0 else word_pos_line
+    print('\ninterim row', row)
     if len(row['count'].keys()) > 1:
         row['common_word'] = get_most_common_words(row['count'], 3) # get top 3 tiers of common words
     else:
@@ -330,6 +334,8 @@ def get_structural_metadata(row, av):
     if ngrams:
         for k, v in ngrams.items():
             row['ngram'] = row['ngram'].union(v)
+    print('\nngrams', row['ngram'])
+    structure_types = ['modifier', 'phrase', 'verb_phrase', 'noun_phrase', 'clause']
     for i, key in enumerate(structure_types):
         objects, patterns, av = extract_objects_and_patterns_from_index(None, row, key, key, av)
         if objects:
@@ -368,14 +374,18 @@ def get_structural_metadata(row, av):
                         row['pattern'][pattern_type] = set(patterns[pattern_key])
                     else:
                         row['pattern'][pattern_type] = row['pattern'][pattern_type].union(patterns[pattern_key])
+    print('\nafter pattern identification', row)
+    '''
     derived_patterns = derive_and_store_patterns(row['line'], av)
     if derived_patterns:
         for ep in derived_patterns:
             if 'derived_patterns' not in row['pattern']:
                 row['pattern']['derived_patterns'] = set()
             row['pattern']['derived_patterns'].add(ep)
+    '''
     new_row = find_relationship(row['line'], row, av)
     row = new_row if new_row else row
+    print('\nafter relationships', row)
     objects, patterns, av = extract_objects_and_patterns_from_index(row, None, 'relationship', 'relationship', av)
     if objects:
         if 'relationship' in objects:
@@ -388,6 +398,7 @@ def get_structural_metadata(row, av):
     if row:
         for key in row:
             print('key', key, row[key])
+        exit()
         return row
     return False
 

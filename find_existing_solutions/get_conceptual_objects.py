@@ -96,7 +96,7 @@ def find_fact(subset, row, av):
 
 def find_topic(subset, row, av):
     '''
-      this function will be used in remove_unnecessary_words
+      this function will be used in standardize_words
       to filter out words that are either non-medical or too specific to be useful (names)
 
       test cases:

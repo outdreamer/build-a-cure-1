@@ -506,7 +506,7 @@
           - distributing information on both sides of a symmetry would allow verification of new information
           - symmetries exist between types (two objects of a type, such as a transaction)
 
-        Now we will look for intents & structures that could alert us to problem spaces where this insight network would be useful.
+        Now we will look for intents & structures that could alert us to problem spaces where this conceptual insight network would be useful.
 
         Concept Intents:
           - verification (uniqueness, randomness, symmetry, relevance)

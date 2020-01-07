@@ -77,7 +77,6 @@ def find_relationship(subset, row, av):
             row['relationship'] = relationship
     if original_row != row:
         print('row', row)
-        exit()
         return row
     return False
 
@@ -281,7 +280,6 @@ def find_clause(subset, row, av):
     '''
     original_row = row
     variables = {}
-    all_subjects = []
     row['clause'] = []
     split = split_by_delimiters(subset, av)
     new_split = filter_clauses(split, av)
@@ -304,6 +302,14 @@ def find_clause(subset, row, av):
     if new_subset:
         subset = new_subset
     print('subset', subset)
+    '''
+    clauses_by_punctuation ['x acts as agonizing inhibits of y']
+    operator clauses {'x acts as agonizing inhibits of y': {}}
+    new_subset x acts as agonizing inhibits of y
+    subset x acts as agonizing inhibits of y
+    '''
+    all_subjects = [] # there should only be one subject per clause set
+    ''' sentence should be in active voice by now '''
     if operator_clauses:
         print('operator clauses', operator_clauses)
         for operator_clause, clause_variables in operator_clauses.items():
@@ -322,10 +328,13 @@ def find_clause(subset, row, av):
             print('ocw', original_clause_words)
             for i, w in enumerate(original_clause_words):
                 if verb_index == 0:
-                    if w not in all_subjects:
-                        cmap['subject'] = w
-                        all_subjects.append(w) # make sure subjects are not repeated across clause entries
-                if w in row['verb']: # hit the verb, exit
+                    if w not in cmap['subject']:
+                        pos = get_nltk_pos(w, av)
+                        blob = get_blob(w)
+                        print('word', w)
+                        all_subjects.append(w)
+                        cmap['subject'] = w # make sure subjects are not repeated across clause entries
+                if w in row['verb']: # found a verb
                     verb_index = i
                     cmap['statement'] = original_clause_words[(i - 1):len(original_clause_words)]
                     operator_statement, variables = convert_to_operators(cmap['statement'], av)
@@ -361,6 +370,13 @@ def find_clause(subset, row, av):
                 print('found cmap', cmap)
                 row['clause'].append(cmap)
         print('\nall row clauses', row['clause'])
+    '''
+        operator clauses {'x acts as agonizing inhibits of y': {}}
+        parsing operator clause x acts as agonizing inhibits of y variables {}
+        ocw ['x', 'acts', 'as', 'agonizing', 'inhibits', 'of', 'y']
+        found cmap {'type': 'statement', 'variables': {}, 'subject': 'acts', 'conditional': 'x acts as agonizing inhibits of ', 'statement': 'agonizing inhibits of y', 'delimiter': []}
+        all row clauses [{'type': 'statement', 'variables': {}, 'subject': 'acts', 'conditional': 'x acts as agonizing inhibits of ', 'statement': 'agonizing inhibits of y', 'delimiter': []}]
+    '''
     # the process was activated because x was signaling successfully
     # x successful signals activated the process
     # should replace independence operators with 'with' because the next clause is true regardless but retain not ! operator

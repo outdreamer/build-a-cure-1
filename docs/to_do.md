@@ -31,17 +31,34 @@
   - find source of bio keywords & synonyms
 
 # Structural Objects
+  - make list of reasons why youre more fun alive
+
+
+  - add function to get common word from defs like:
+
+    defs inhibit 
+
+    ['to put down by force or authority', 'limit the range or extent of', 'limit, block, or decrease the action or function of', 'control and refrain from showing; of emotions, desires, impulses, or behavior']
+
+
+  - add function to derive pos == 'verb' from defs like:
+    
+    defs acts 
+
+    ["a New Testament book describing the development of the early church from Christ's Ascension to Paul's sojourn at Rome", 'a legal document codifying the result of deliberations of a committee or society or legislative body', 'something that people do or cause to happen', 'a subdivision of a play or opera or ballet', 'a short theatrical performance that is part of a longer program', 'a manifestation of insincerity', 'perform an action, or work out or perform (an action)', 'behave in a certain manner; show a certain behavior; conduct or comport oneself', 'play a role or part', "discharge one's duties", 'pretend to have certain qualities or state of mind', 'be suitable for theatrical performance', 'have an effect or outcome; often the one desired or expected', 'be engaged in an activity, often for no particular purpose other than pleasure', 'behave unnaturally or affectedly', 'perform on a stage or theater']
+
 
   - adjust metadata with map to related objects for requested metadata
   - do full synonym check vs definition check at beginning with get_all_versions - generate_synonym_patterns
   - add common patterns that have more than one index type to all index type lists - 'x of y', 'phrase of phrase', etc
-  - identify lists in sentence and surround with parenthesis if embedded ('such as', 'like', 'as in')
+  - identify lists in sentence and surround with parenthesis if embedded or insert as examples of an object ('such as', 'like', 'as in')
   - 'found in', 'including', 'having'
 
   find functions:
   - finish find_type
   - add if original_row != row: to all find_* functions
   - find functions should have logic to rule out other types & type-specific logic since they're used as a backup to pattern-matching
+    the order of find_* function application can take the place of this, if patterns are comprehensive enough
   - in find_clause, for question sentence_types, standardize verb-subject to subject-verb: 'V DET noun_phrase ... ?' => 'DET noun_phrase V ...'
   - finish function to combine functions by intent get_net_impact(functions) & combined operators
 
