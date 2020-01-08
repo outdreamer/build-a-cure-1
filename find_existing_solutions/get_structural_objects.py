@@ -1,6 +1,57 @@
 from nltk import pos_tag, word_tokenize
 from get_vars import get_blob, get_nltk_pos, convert_to_operators
 
+def index_as_functions(line):
+    ''' this is to convert relationships in line into a function object
+        example: "x could possibly generate y" outputs the following object:
+            function = {
+                input="object(x)", 
+                attribute="possible", 
+                intent="generate", 
+                type="causative",
+                output="object(y)"
+            }
+
+        - functional patterns:
+            - are more complicated than pos/string/type patterns, and are returned from get_functions(line)
+            - rely heavily on the verb or verb phrases and conditional operators
+            - if its a supported type like strategy or insight you dont need to wrap it with object() syntax
+            - each argument to function inputs, relation, and outputs should be another function object
+            - we use relation as a param to the function to differentiate them 
+            - indexing info this way makes storing function pattern_maps & advanced system analysis queries possible
+
+        - syntax: 
+            - y.function(x) indicates its a process of some external object acting on x
+                "pathway regulation" => regulatory_system.regulating(pathway)
+            - a function of x would be indicated similarly:
+                "x.function(a)" => pathway.adapt("receptor_A")
+
+        - example:
+            original_line = 'Understanding how this pathway is regulated could lead to new strategies to treat both diseases'
+                function=(
+                    input=(
+                        function(input="object(pathway)", attribute="pathway.regulation", output="insight")
+                          # ----------------------- Understanding of 'pathway regulation'
+                    ),
+                    relation=(
+                        function(input="relation", attribute="possible", intent="generate", output="function") 
+                    ),    # ----------------------- could generate
+                    output=(
+                        function(
+                            input="object([diabetes, cancer], type=medical_condition)", 
+                            output="strategy(attribute=[new, multiple], intent=treatment)"
+                        ) # ----------------------- strategies to treat both diseases
+                    )
+                )
+            which abstracts to the function pattern:
+                function=(
+                    input=(function(input="object(x)", attribute="y.function(x)", output="insight")),
+                    relation=(function(input="function.name", attribute=function.attribute, intent=function.intent, output=function)),
+                    output=(function(input="object(objects), type=objects.type", output="strategy(attribute=strategy.attributes, intent=strategy.intent)"))
+                )
+    '''
+    return line
+
 def find_relationship(subset, row, av):
     '''
         - now you can generate the relationships based on operator logic stored in our row['clause']['condition'] objects

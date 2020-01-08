@@ -126,14 +126,19 @@ def get_content_from_wiki(keyword, av):
 def get_article_from_id(id_value, source):
     print('get_article_from_id', id_value)
     if id_value:
-        url = ''.join(['https://www.ncbi.nlm.nih.gov/pubmed/', id_value])
+        url = ''.join(['https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=', id_value, '&retmode=xml'])
         response = requests.get(url)
         if response:
             if response.content:
                 print('pubmed content', id_value, response.content)
-                title = None
-                text = response.content
-                return title, text
+                xml_string = xml.dom.minidom.parseString(response.content)
+                if xml_string:
+                    title = xml_string.documentElement.getElementsByTagName(source['title_element'])[0].childNodes[0].nodeValue
+                    text = xml_string.documentElement.getElementsByTagName(source['summary_element'])[0].childNodes[0].nodeValue
+                    print('title', title)
+                    print('text', text)
+                    if title and text:
+                        return title, text
     return False, False
 
 def get_text_from_nodes(entry, element_name):
