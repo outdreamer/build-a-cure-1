@@ -1098,6 +1098,14 @@ def generate_alt_patterns(pattern, av):
     alts = get_alts(pattern, 0, av)
     if alts:
         if len(alts) > 0:
+            if '|' in ' '.join(alts):
+                new_alts = []
+                for a in alts:
+                    new_a = get_alts(a, 0, av)
+                    if new_a:
+                        new_alts.extend(new_a)
+                if len(new_alts) > 0:
+                    alts = new_alts
             ''' now replace optional strings and add that pattern as well '''
             if '__' in pattern:
                 all_patterns = []
@@ -1241,9 +1249,11 @@ def generate_type_patterns(line, av):
     for w in line.split(' '):
         pos = get_nltk_pos(w, av)
         if pos:
-            types = find_type(w, pos, None, None, av)
-            if types:
-                new_pattern.append(types)
+            row = find_type(w, pos, None, None, av)
+            if row:
+                if 'type' in row:
+                    if len(row['type']) > 0:
+                        new_pattern.append(', '.join(row['type']))
             else:
                 new_pattern.append(w)
         else:
@@ -1414,6 +1424,8 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
         '||JJ JJR JJS| |WRB RB RBR RBS| VB |VBG VBD||' => '|JJ JJR JJS WRB RB RBR RBS VB VBG VBD|'
     '''
     #corrected_pattern = generate_correct_patterns(pattern, av)
+    all_to_iterate = []
+    final_patterns = set()
     pattern_index = {'maps': [], 'standard': [], 'type': [], 'operator': [], 'polarity': [], 'subjectivity': [], 'synonym': [], 'pos': [], 'combination': [], 'pattern_type': []}
     version_types = av['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
     pattern_map_keys = pattern_map_keys if pattern_map_keys else av['pattern_maps'].keys()
@@ -1425,10 +1437,10 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
                 pattern_index['maps'].append(new_pattern)
                 if version_types == ['maps']:
                     return pattern_index, [new_pattern], av
-    all_to_iterate = []
     alt_patterns = generate_alt_patterns(pattern, av)
-    print('alt_patterns', alt_patterns)
     if alt_patterns:
+        alt_patterns = set(alt_patterns)
+        print('alt_patterns', pattern, alt_patterns)
         for ap in alt_patterns:
             new_ap = standardize_words(ap, 'synonym', av)
             if new_ap:
@@ -1441,38 +1453,39 @@ def get_all_versions(pattern, version_types, pattern_map_keys, av):
             else:
                 if ap != new_ap:
                     pattern_index['standard'].append(ap)
-    final_patterns = set()
-    print('all_to_iterate', all_to_iterate)
-    for ap in all_to_iterate:
-        op = generate_operator_patterns(ap, av)
-        if op:
-            pattern_index['operator'].append(op)
-            final_patterns.add(op)
-            polarity_pattern = get_polarity_pattern(op, av)
-            if polarity_pattern:
-                final_patterns.add(polarity_pattern)
-            subjectivity_pattern = get_subjectivity_pattern(op, av)
-            if subjectivity_pattern:
-                final_patterns.add(subjectivity_pattern)
-        pos = get_specific_pos(ap, av)
-        if pos:
-            pattern_index['pos'].append(pos)
-            final_patterns.add(pos)
-        cp = get_all_pos(ap, av)
-        if cp:
-            pattern_index['combination'].append(cp)
-            final_patterns.add(cp)
-    tp = generate_type_patterns(pattern, av)
-    if tp:
-        pattern_index['type'].extend(tp)
-        final_patterns = final_patterns.union(set(tp))
-    index_type_pattern = generate_pattern_type_patterns(pattern, pattern_index, final_patterns, av)
-    if index_type_pattern:
-        pattern_index['pattern_type'].append(index_type_pattern)
-        final_patterns.add(index_type_pattern)
-    if len(final_patterns) > 0:
-        print('get_all_versions', pattern, pattern_index)
-        return pattern_index, final_patterns, av
+    if all_to_iterate:
+        all_to_iterate = set(all_to_iterate)
+        print('all_to_iterate', pattern, all_to_iterate)
+        for ap in all_to_iterate:
+            op = generate_operator_patterns(ap, av)
+            if op:
+                pattern_index['operator'].append(op)
+                final_patterns.add(op)
+                polarity_pattern = get_polarity_pattern(op, av)
+                if polarity_pattern:
+                    final_patterns.add(polarity_pattern)
+                subjectivity_pattern = get_subjectivity_pattern(op, av)
+                if subjectivity_pattern:
+                    final_patterns.add(subjectivity_pattern)
+            pos = get_specific_pos(ap, av)
+            if pos:
+                pattern_index['pos'].append(pos)
+                final_patterns.add(pos)
+            cp = get_all_pos(ap, av)
+            if cp:
+                pattern_index['combination'].append(cp)
+                final_patterns.add(cp)
+            tp = generate_type_patterns(ap, av)
+            if tp:
+                pattern_index['type'].extend(tp)
+                final_patterns = final_patterns.union(set(tp))
+            itp = generate_pattern_type_patterns(ap, pattern_index, final_patterns, av)
+            if itp:
+                pattern_index['pattern_type'].append(itp)
+                final_patterns.add(itp)
+        if len(final_patterns) > 0:
+            print('get_all_versions', pattern, pattern_index)
+            return pattern_index, final_patterns, av
     return False, False, av
 
 def convert_to_pos_type(word, nonnumeric_w, pos_type, av):
@@ -2078,11 +2091,11 @@ def get_operator(verb, av):
             for a in sentiment_assessments.assessments:
                 meanings.extend(a[0])
             for meaning in meanings:
-                if meaning in verb_meanings:
-                    for n in negative_meanings:
+                if meaning in av['verb_meanings']:
+                    for n in av['negative_meanings']:
                         if n in meanings:
                             return '-'
-                    for p in positive_meanings:
+                    for p in av['positive_meanings']:
                         if p in meanings:
                             return '+'
                     return '='
@@ -2197,7 +2210,15 @@ def get_synonyms_for_gram(gram, new_words, logged_synonyms, get_type,  av):
     gram = ' '.join(gram) if type(gram) == list else gram
     gram_index = ''.join([x for x in gram if x in '0123456789'])
     nn = get_nonnumeric(gram, av)
-    synonym = get_synonym_word(nn, av) if get_type == 'synonym' else find_type(nn, None, None, None, av)
+    synonym = None
+    if get_type == 'synonym':
+        synonym = get_synonym_word(nn, av) 
+    else:
+        row = find_type(nn, None, None, None, av)
+        if row:
+            if 'type' in row:
+                if len(row['type']) > 0:
+                    synonym = row['type'][0]
     first_word = nn.split(' ')[0]
     previous_logged_synonym_last_word = None
     if len(logged_synonyms) > 0:
@@ -2232,8 +2253,16 @@ def get_synonym_phrase(nn, new_words, logged_synonyms, get_type, av):
     new_nnw = []
     for nnw in nn.split(' '):
         nn_index = ''.join([x for x in nnw if x in '0123456789'])
-        syn = get_synonym_word(nnw, av) if get_type == 'synonym' else find_type(nnw, None, None, None, av)
-        nnw = syn if syn else nnw
+        synonym = None
+        if get_type == 'synonym':
+            synonym = get_synonym_word(nnw, av) 
+        else:
+            row = find_type(nnw, None, None, None, av)
+            if row:
+                if 'type' in row:
+                    if len(row['type']) > 0:
+                        synonym = row['type'][0]
+        nnw = synonym if synonym else nnw
         if len(new_words) > 0:
             if nnw != new_words[-1] and nnw != new_words[-1].split(' ')[-1]:
                 new_nnw.append(''.join([nnw, nn_index]))
@@ -2336,8 +2365,16 @@ def matches(word, word_pos, k, check_type, word_type, av):
                 if w in k or k in w and (len(w) - len(k)) < 6:
                     return k, check_type
             elif check_type == 'type':
-                w = find_type(w, word_pos, None, None, av)
-                k = find_type(k, pos_k, None, None, av)
+                w_row = find_type(w, word_pos, None, None, av)
+                if w_row:
+                    if 'type' in w_row:
+                        if len(w_row['type']) > 0:
+                            w = ', '.join(w_row['type'])
+                k_row = find_type(k, pos_k, None, None, av)
+                if k_row:
+                    if 'type' in k_row:
+                        if len(k_row['type']) > 0:
+                            k = ', '.join(k_row['type'])
             elif check_type == 'pos':
                 w = word_pos
                 k = pos_k
@@ -2684,8 +2721,12 @@ def get_variables_for_pattern(line, pattern, av):
     return False, False
 
 
-def derive_and_store_patterns(object_type, av):
+def derive_and_store_patterns(object_type, index, av):
     ''' this is to identify common patterns in a set of articles pulled from a source list 
+
+    the source list should be items that are likely or guaranteed to contain objects of type 'object_type',
+    because this function is not trying to guess if an object type is in a document, 
+    it's trying to identify patterns of objects of 'object_type' using documents known to contains objects of that type
     
     identify in each line:
     - pos patterns: 'N V |JJ VB|'
@@ -2700,7 +2741,6 @@ def derive_and_store_patterns(object_type, av):
       - use definitions as a data source for relationships if none are found 
     '''
     pattern_counts = {'maps': {}, 'standard': {}, 'type': {}, 'operator': {}, 'polarity': {}, 'subjectivity': {}, 'synonym': {}, 'pos': {}, 'combination': {}, 'pattern_type': {}}
-    index = get_empty_index(av)
     if object_type in index:
         source_names = filter_source_list(object_type)
         if source_names:
@@ -2756,42 +2796,25 @@ def derive_and_store_patterns(object_type, av):
                             if pattern_count > threshold:
                                 new_pattern_type.append('::'.join([pattern, pattern_count]))
                         if len(new_pattern_type) > 0:
-                            filename = ''.join(['pattern_store_', object_type, '_', pattern_type, '.txt'])
+                            filename = ''.join(['derived_patterns_', object_type, '_', pattern_type, '.txt'])
                             save(filename, '\n'.join(new_pattern_type))
     return all_patterns, articles
 
-def match_patterns(line, pattern_key, generated_patterns, all_patterns, av):
+def match_patterns(line, pattern_key, av):
     '''
-    if line is a sequence, get patterns between objects in the list,
-    rather than patterns in a line
-
-    find matches in line for generated patterns 
-    then find matches in line for stored patterns in av[pattern_index][pattern_key]
+    find subsets in a line, matching stored patterns in av[pattern_index][pattern_key]
     '''
     found_patterns = {}
     pos_line = get_pos_line(line, av)
     if pos_line:
-        #found_patterns = get_patterns_between_objects(line) if type(line) == list or type(line) == set else {}
-        if generated_patterns and all_patterns:
-            for pattern_type, patterns in generated_patterns.items():
-                if len(patterns) > 0:
+        for pattern_index in ['type_index', 'pattern_index']:
+            for pattern_type, patterns in av[pattern_index].items():
+                if pattern_type == pattern_key or pattern_key == 'all' or pattern_key is None:
                     for pattern in patterns:
                         found_subsets, av = get_pattern_source_subsets(line, pos_line, pattern, 'pattern', av)
                         if found_subsets:
                             combined_key = ''.join([pattern_type, '_pattern'])
-                            if combined_key not in found_patterns:
-                                found_patterns[combined_key] = {}
-                            found_patterns[combined_key][pattern] = found_subsets
-        for pattern_index in ['pattern_index', 'type_index']:
-            if pattern_key in av[pattern_index]:
-                for pattern in av[pattern_index][pattern_key]:
-                    ''' only want to generate source patterns here, send a flag to not generate target patterns '''
-                    found_subsets, av = get_pattern_source_subsets(line, pos_line, pattern, 'pattern', av)
-                    if found_subsets:
-                        combined_key = ''.join([pattern_key, '_pattern'])
-                        if combined_key not in found_patterns:
-                            found_patterns[combined_key] = {}
-                        found_patterns[combined_key][pattern] = found_subsets
+                            found_patterns[combined_key] = {pattern: found_subsets}
     if found_patterns:
         return found_patterns, av
     return False, av
@@ -3032,50 +3055,50 @@ def get_ngram_combinations(word_list, x):
             return grams
     return False
 
+def get_content_from_wiki(keyword, av):
+    categories = []
+    sections = []
+    suggested = wikipedia.suggest(keyword) if not keyword else keyword
+    try:
+        content = wikipedia.page(suggested).content
+    except Exception as e:
+        print('wiki summary exception', e)
+    if content:
+        sections = [s.strip().replace(' ', '_').lower() for s in content.split('==') if '.' not in s and len(s) < 100]
+        print('sections', sections)
+        categories = wikipedia.page(suggested).categories
+        if len(categories) > 0:
+            print('categories', categories)
+        return content, sections, categories
+    return False, False, False
+
 def find_type(word, pos, title, row, av):
-    types = {}
-    suggested = None
     if pos in av['tags']['ALL_N']:
         ''' make sure this is a noun before querying '''
         if len(word) > 1:
-            '''
             if word[0] == word[0].upper() and word[1] != word[1].upper():
                 suggested = find_generic_medication(word, {}, av)
-                suggested = wikipedia.suggest(word) if not suggested else suggested
                 print('suggested', suggested, word)
-                try:
-                    content = wikipedia.page(suggested).content
-                    section_list = [s.strip().replace(' ', '_').lower() for s in content.split('==') if '.' not in s and len(s) < 100]
-                    print('section list', section_list)
-                    categories = wikipedia.page(suggested).categories
-                    if len(categories) > 0:
-                        print('categories', categories)
-                        row['type'] = row['type'].union(set(categories))
-                        if len(section_list) > 0:
-                            # use section list to determine type first
-                            for key, val in av['section_map'].items():
-                                for section in section_list:
-                                    if key in section:
-                                        index_type =  val
-                        else:
-                            index_type = get_index_type(suggested, av, categories)
-                            if index_type:
-                                print('found index type', index_type, word)
-                                if index_type in row:
-                                    if index_type != 'dependency': # to do: exclude other relationship objects here
-                                        index = {index_type: word}
-                                        generated_patterns, all_patterns, av = get_all_versions(line, 'all', 'all', av)
-                                        matched_objects, av = match_patterns(word, index_type, generated_patterns, all_patterns, av)
-                                        if matched_objects:
-                                            for pattern_type in matched_objects.items():
-                                                if pattern_type not in row:
-                                                    row[pattern_type] = []
-                                                for pattern, matches in matched_objects[pattern_type].items():
-                                                    row[pattern_type].extend(matches)
-                except Exception as e:
-                    print('wiki summary exception', e)
-            '''
-    return word
+                content, sections, categories = get_content_from_wiki(suggested, av)
+                if content and sections and categories:
+                    row['type'] = row['type'].union(set(categories))
+                    index_type = [val for key, val in av['section_map'].items() for section in sections if key in section]
+                    if len(index_type) == 0:
+                        index_type = get_index_type(suggested, av, categories)
+                    print('found index type', index_type, word)
+                    if index_type in row:
+                        if index_type != 'dependency': # to do: exclude other relationship objects here
+                            found_subsets, av = match_patterns(word, index_type, av)
+                            if found_subsets:
+                                for pattern_type in found_subsets.items():
+                                    if pattern_type not in row:
+                                        row[pattern_type] = set()
+                                    for pattern, matches in found_subsets[pattern_type].items():
+                                        if pattern not in row[pattern_type]:
+                                            row[pattern_type][pattern] = set()
+                                        row[pattern_type][pattern] = row[pattern_type][pattern].union(matches)
+                                row['type'].add(index_type)
+    return row
 
 def get_index_type(object_type, av, categories):
     param_map = {
@@ -3091,8 +3114,7 @@ def get_index_type(object_type, av, categories):
         return av['supported_synonyms'][alt_type]
     if len(categories) > 0:
         for c in categories:
-            c_split = c.split(' ')
-            for term in c_split:
+            for term in c.split(' '):
                 index_type = None
                 for k, v in param_map.items():
                     index_type = k if v == term else v if k == term else None

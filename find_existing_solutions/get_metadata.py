@@ -108,7 +108,16 @@ def build_indexes(database, args, filters, av):
     index = database if database else empty_index if empty_index else None
     for arg in args:
         for source in av['sources']:
-            data = get_data_from_source(source, arg, av)
+            data = {}
+            if source == 'wiki':
+                content, sections, categories = get_content_from_wiki(arg, av)
+                if content:
+                    title = arg
+                    article_lines, av = standard_text_processing(content, av)
+                    if article_lines:
+                        data[title] = article_lines # article_lines[line][word] = pos
+            else:
+                data = get_data_from_source(source, arg, av)
             if data:
                 for title, article_lines in data.items():
                     for line, word_map in article_lines.items():
@@ -368,14 +377,6 @@ def get_structural_metadata(row, av):
                     else:
                         row['pattern'][pattern_type] = row['pattern'][pattern_type].union(patterns[pattern_type])
     print('\nafter pattern identification', row)
-    '''
-    derived_patterns = derive_and_store_patterns(row['line'], av)
-    if derived_patterns:
-        for ep in derived_patterns:
-            if 'derived_patterns' not in row['pattern']:
-                row['pattern']['derived_patterns'] = set()
-            row['pattern']['derived_patterns'].add(ep)
-    '''
     new_row = find_relationship(row['line'], row, av)
     row = new_row if new_row else row
     print('\nafter relationships', row)
@@ -391,8 +392,24 @@ def get_structural_metadata(row, av):
     if row:
         for key in row:
             print('key', key, row[key])
-        exit()
         return row
+    return False
+
+def assemble_pattern_indexes(object_types):
+    all_derived_patterns = get_empty_index(av)
+    object_types = object_types if object_types != 'all' else all_derived_patterns.keys()
+    for object_type in object_types:
+        if object_type in all_derived_patterns:
+            print('deriving objects for type', object_type)
+            derived_patterns, articles = derive_and_store_patterns(object_type, av)
+            if derived_patterns:
+                for ep in derived_patterns:
+                    print('derived pattern', ep)
+                    if object_type not in all_derived_patterns:
+                        all_derived_patterns[object_type] = set()
+                    all_derived_patterns[object_type].add(ep)
+    if all_derived_patterns:
+        return all_derived_patterns
     return False
 
 if sys.argv:
