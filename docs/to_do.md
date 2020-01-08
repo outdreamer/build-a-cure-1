@@ -30,6 +30,18 @@
   - find source of bio keywords & synonyms
 
 # Structural Objects
+
+  - resolve which pattern functions in get_all_versions are relevant to words vs. tags for supporting lines & patterns
+
+  - make sure apply_pattern_map explores all versions of line, but returns one new line
+  
+  - find out which way is faster:
+    - generating line patterns with get_all_versions() & checking for matches in pattern_index
+    - running match_patterns() to check existing patterns in pattern_index[search_pattern_key] one at a time
+        generated_patterns, all_patterns, av = get_all_versions(line, 'all', 'all', av)
+        if generated_patterns and all_patterns:
+            found_patterns, av = match_patterns(line, search_pattern_key, av)
+
   - add subjectivity/polarity + operator pattern function to get_all_versions
   - matches returned for pos pattern includes tags: 'combination_pattern': {'x VBZ VBZ VBZ y': ['x VBZ VBZ VBZ y']}
   - adjust metadata with map to related objects for requested metadata
@@ -56,7 +68,7 @@
     - when classifying specific objects, order should be from high to low
     - add ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos - isolate which tags would be identified as other objects first
 
-  clause identification:
+  clause identification: 
   - add ordering logic in find_clause for special clause keywords:
     - 'as' can mean 'like', 'while', or 'because'
     - 'by' can indicate a process/mechanism "it works by doing x", "as"

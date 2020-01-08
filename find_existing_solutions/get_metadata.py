@@ -41,40 +41,100 @@ def get_data_store(index, database, operation, args):
     return False
 
 def get_data_from_source(source, keyword, av):
-    data = {}
-    total = 0
-    max_count = 10
-    for i in range(0, 10):
-        start = i * max_count
-        if total > start or total == 0:
-            url = source['url'].replace('<KEY>', keyword).replace('<START>', str(start)).replace('<MAX>', str(max_count))
-            print('url', url)
-            response = requests.get(url)
-            if response.content:
-                articles = {}
-                if source['response_format'] == 'xml':
-                    xml_string = xml.dom.minidom.parseString(response.content)
-                    if xml_string:
-                        count_tag = xml_string.documentElement.getElementsByTagName(source['count'])
-                        total = int(count_tag[0].childNodes[0].nodeValue)
-                        articles = xml_string.documentElement.getElementsByTagName(source['entries'])
-                else:
-                    articles = json.loads(response.content)
-                if len(articles) > 0:
-                    data = process_articles(entries, data, source, av)
-    if data:                                         
+    articles = get_batch(source, 0, keyword, [])
+    print('articles', len(articles))
+    if articles:
+        if len(articles) > 0:
+            data = process_articles(articles, source, keyword, av) 
+            if data:
+                print('data', len(data.keys()), data.keys())  
         return data
     return False
 
-def process_articles(articles, data, source, av):
+def get_batch(source, start, keyword, articles):
+    print('get batch for source', start, keyword, len(articles))
+    total = 0
+    max_count = 10
+    keyword = keyword.replace(' ', '+')
+    if source['name'] == 'wiki':
+        content, sections, categories = get_content_from_wiki(keyword, av)
+        if content and sections and categories:
+            new_articles = [content]
+    else:
+        url = source['url'].replace('<KEY>', keyword).replace('<START>', str(start)).replace('<MAX>', str(max_count))
+        print('url', url)
+        response = requests.get(url)
+        if response.content:
+            if source['response_format'] == 'xml':
+                xml_string = xml.dom.minidom.parseString(response.content)
+                if xml_string:
+                    count_tag = xml_string.documentElement.getElementsByTagName(source['count'])
+                    if count_tag:
+                        total = int(count_tag[0].childNodes[0].nodeValue)
+                        new_articles = xml_string.documentElement.getElementsByTagName(source['entries'])
+            else:
+                new_articles = json.loads(response.content)
+    if new_articles:
+        if len(new_articles) > 0:
+            articles.extend(new_articles)  
+            if (start + max_count) < total:
+                start = start + max_count
+                if start < 50:
+                    return get_batch(source, start, keyword, articles) 
+            return articles
+    return False
+
+def process_articles(articles, source, keyword, av):
+    data = {}
     for article in articles:
-        title = get_text_from_nodes(article, source['title_element'])
-        article_text = get_text_from_nodes(article, source['summary_element'])
+        title = None
+        article_text = None
+        if source['name'] == 'pubchem':
+            title, article_text = get_article_from_id(article, source)
+        elif source['name'] == 'wiki':
+            title = keyword
+            article_text = article
+        else:
+            title = get_text_from_nodes(article, source['title_element'])
+            article_text = get_text_from_nodes(article, source['summary_element'])
         if title and article_text:
             article_lines, av = standard_text_processing(article_text, av)
             if article_lines:
                 data[title] = article_lines # article_lines[line][word] = pos
-    return data
+    if data:
+        return data
+    return False
+
+def get_content_from_wiki(keyword, av):
+    ''' to do: add support for embedded disambiguation queries returning multiple results '''
+    categories = []
+    sections = []
+    suggested = wikipedia.suggest(keyword) if not keyword else keyword
+    try:
+        content = wikipedia.page(suggested).content
+    except Exception as e:
+        print('wiki summary exception', e)
+    if content:
+        sections = [s.strip().replace(' ', '_').lower() for s in content.split('==') if '.' not in s and len(s) < 100]
+        print('sections', sections)
+        categories = wikipedia.page(suggested).categories
+        if len(categories) > 0:
+            print('categories', categories)
+        return content, sections, categories
+    return False, False, False
+
+def get_article_from_id(id_value, source):
+    print('get_article_from_id', id_value)
+    if id_value:
+        url = ''.join(['https://www.ncbi.nlm.nih.gov/pubmed/', id_value])
+        response = requests.get(url)
+        if response:
+            if response.content:
+                print('pubmed content', id_value, response.content)
+                title = None
+                text = response.content
+                return title, text
+    return False, False
 
 def get_text_from_nodes(entry, element_name):
     nodes = [node for node in entry.childNodes if node.nodeName == element_name]
@@ -108,17 +168,10 @@ def build_indexes(database, args, filters, av):
     index = database if database else empty_index if empty_index else None
     for arg in args:
         for source in av['sources']:
-            data = {}
-            if source == 'wiki':
-                content, sections, categories = get_content_from_wiki(arg, av)
-                if content:
-                    title = arg
-                    article_lines, av = standard_text_processing(content, av)
-                    if article_lines:
-                        data[title] = article_lines # article_lines[line][word] = pos
-            else:
-                data = get_data_from_source(source, arg, av)
+            data = get_data_from_source(source, arg, av)
             if data:
+                print('data', data)
+                exit()
                 for title, article_lines in data.items():
                     for line, word_map in article_lines.items():
                         row = get_metadata(line, title, word_map, av)
@@ -150,7 +203,7 @@ def get_metadata(line, title, word_map, av):
                 for search_pattern_key in av['pattern_index']:
                     # check that this data 'strategy', 'treatment' was requested and is supported in pattern_index
                     print('\nget metadata', object_type, search_pattern_key)
-                    objects, patterns, av = extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, av)
+                    objects, patterns, av = extract_objects_and_patterns(row, object_type, search_pattern_key, av)
                     if objects:
                         if objects[object_type] != row.keys():
                             row[object_type] = set(row[object_type]).union(set(objects[object_type]))
@@ -163,76 +216,75 @@ def get_metadata(line, title, word_map, av):
     print('\nmedical objects', row)
     return row
 
-def extract_objects_and_patterns_from_index(index, row, object_type, search_pattern_key, av):
+def extract_objects_and_patterns(row, object_type, search_pattern_key, av):
     '''
-    - all of your 'find_object' functions need to support params: (subset, row, av)
-    - this function is for meta-analysis
-        1. find any matches from search_pattern_key patterns in index[object_type]/row[object_type] lines
+    - this function finds subsets & objects matching patterns from search_pattern_key patterns in row[object_type] data
+        1. find any matches from search_pattern_key patterns in row[object_type] data
         2. if pattern matches found in lines, 
             find objects in matches with type-specific logic from find_<object_type> function
         3. if no pattern matches found in lines, 
             find objects in lines with type-specific logic from find_<object_type> function
-        for an index or row containing types of elements ('condition', 'symptom', 'strategy')
-        this function is for finding patterns in those index types in the input (index or row['line'])
-    - object_type is the key in object types supported in av['full_params'] to find:
-        ['treatment', 'condition', 'strategy']
-    - search_pattern_key is the key of av['pattern_index'] keys to search: 
-        ['modifier', 'type', 'role']
-    - object_type can equal search_pattern_key
+    - object_type is the key in object types supported in av['full_params'] to find: ['treatment', 'condition', 'strategy']
+    - search_pattern_key is the type of av['pattern_index'] patterns to search: ['modifier', 'type', 'role']
+    - object_type may equal search_pattern_key
     '''
-    patterns = {}
-    objects = { object_type: set() }
-    index = index if index else row if row else None
-    if index:
-        if object_type in av['metadata'] or av['metadata'] == 'all':
-            lines = [index['line']] if 'line' in index else index[object_type] if object_type in index else [] #index[object_type] if object_type in index else
-            for line in lines:
-                found_objects_in_patterns, found_patterns, av = get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, av)
+    object_type = object_type if object_type in row else 'line'
+    if row:
+        if object_type in av['metadata'] or av['metadata'] == 'all' and object_type in row:
+            all_patterns = {}
+            all_objects = {}
+            data = row[object_type] if type(row[object_type]) == list else [row[object_type]]
+            for item in data:
+                found_objects, found_patterns, av = get_patterns_and_objects_in_line(item, search_pattern_key, row, object_type, av)
                 if found_patterns:
-                    patterns = found_patterns
-                if found_objects_in_patterns:
-                    objects[object_type] = objects[object_type].union(found_objects_in_patterns)
-                else:
+                    for pattern_key, patterns in found_patterns.items():
+                        if pattern_key not in all_patterns:
+                            all_patterns[pattern_key] = {}
+                        for pattern, matches in patterns.items():
+                            if pattern not in all_patterns[pattern_key]:
+                                all_patterns[pattern_key][pattern] = set()
+                            all_patterns[pattern_key][pattern] = all_patterns[pattern_key][pattern].union(matches)
+                if not found_objects:
                     ''' 
                     if there are no matches found for object_type patterns, 
                     do a standard object query independent of patterns to apply type-specific logic 
                     '''
-                    found_objects = apply_find_function(object_type, line, index, av)
-                    if found_objects:
-                        print('find function objects', object_type, found_objects)
-                        objects[object_type] = objects[object_type].union(found_objects)
-            if objects or patterns:
-                print('extracted objects', objects, 'patterns', patterns)
-                return objects, patterns, av
+                    found_objects = apply_find_function(object_type, item, row, av)
+                if found_objects:
+                    print('find function objects', object_type, found_objects)
+                    if object_type not in all_objects:
+                        all_objects[object_type] = set()
+                    all_objects[object_type] = all_objects[object_type].union(found_objects)
+            if all_objects or all_patterns:
+                print('extracted objects', all_objects, 'patterns', all_patterns)
+                return all_objects, all_patterns, av
     return False, False, av
 
-def get_patterns_and_objects_in_line(line, search_pattern_key, index, object_type, av):
+def get_patterns_and_objects_in_line(line, search_pattern_key, row, object_type, av):
     ''' the reason we allow search_pattern_key and object_type to differ is to find subset matches 
         example: 
             find 'modifiers' in 'treatment patterns' would have:
             object_type = 'modifier' and search_pattern_key = 'treatment'
     '''
     found_objects = set()
-    generated_patterns, all_patterns, av = get_all_versions(line, 'all', 'all', av)
-    if generated_patterns and all_patterns:
-        found_patterns, av = match_patterns(line, search_pattern_key, generated_patterns, all_patterns, av)
-        if found_patterns and object_type != 'pattern':
-            for pattern_type in found_patterns:
-                for pattern, matches in found_patterns[pattern_type].items():
-                    ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
-                    ''' note: this is not restricting output to found objects '''
-                    for m in matches:
-                        objects_found = apply_find_function(object_type, m, index, av)
-                        if objects_found:
-                            found_objects = found_objects.union(objects_found)
+    found_patterns, av = get_matching_subsets(line, search_pattern_key, av)
+    if found_patterns and object_type != 'pattern':
+        for pattern_type in found_patterns:
+            for pattern, matches in found_patterns[pattern_type].items():
+                ''' filter pattern matches for this type before adding them, with type-specific logic in find_* functions '''
+                ''' note: this is not restricting output to found objects '''
+                for m in matches:
+                    objects_found = apply_find_function(object_type, m, row, av)
+                    if objects_found:
+                        found_objects = found_objects.union(objects_found)
     if found_patterns or found_objects:
         return found_objects, found_patterns, av
     return False, False, av
 
-def apply_find_function(object_type, subset, index, av):
+def apply_find_function(object_type, subset, row, av):
     ''' find functions check for objects of object_type in matches list which match pattern 
         - all find object functions need to support params:
-            - subset, row_index, av
+            - subset, row, av
                 - subsets = 'dog of cat', 'cat of dog' (matches for pattern 'x of y')
     '''
     function_name = ''.join(['find_', object_type])
@@ -246,7 +298,7 @@ def apply_find_function(object_type, subset, index, av):
                     except Exception as e:
                         continue
                 if function:
-                    got_objects = function(subset, index, av)
+                    got_objects = function(subset, row, av)
                     if got_objects:
                         if len(got_objects) > 0:
                             return set([item for item in got_objects])
@@ -264,7 +316,7 @@ def get_structural_metadata(row, av):
     keep_ratios = ['extra', 'high', 'none']
     corrected_line = correct(row['line'])
     row['line'] = corrected_line if corrected_line else row['line']
-    generated_patterns, all_patterns, av = get_all_versions(row['line'], 'all', 'all', av)
+    generated_patterns, all_patterns, av = get_all_versions(row['line'], 'all', av)
     if generated_patterns:
         print('generated_patterns', generated_patterns)
         for pattern_type, patterns in generated_patterns.items():
@@ -339,7 +391,7 @@ def get_structural_metadata(row, av):
     print('\nngrams', row['ngram'])
     structure_types = ['modifier', 'phrase', 'verb_phrase', 'noun_phrase', 'clause']
     for i, key in enumerate(structure_types):
-        objects, patterns, av = extract_objects_and_patterns_from_index(None, row, key, key, av)
+        objects, patterns, av = extract_objects_and_patterns(row, key, key, av)
         if objects:
             print('\n\n\nobjects', key, objects)
             if key in objects:
@@ -365,22 +417,17 @@ def get_structural_metadata(row, av):
                     row[key] = objects[key]
                 else:
                     print('objects key', key)
-                    if objects[key] != row.keys():
-                        row[key] = set(row[key]).union(set(objects[key]))
+                    row[key] = set(row[key]).union(set(objects[key]))
         if patterns:
             for pattern_type in patterns:
                 if pattern_type not in row['pattern']:
-                    row['pattern'][pattern_type] = set(patterns[pattern_type])
-                else:
-                    if len(row['pattern'][pattern_type]) == 0:
-                        row['pattern'][pattern_type] = set(patterns[pattern_type])
-                    else:
-                        row['pattern'][pattern_type] = row['pattern'][pattern_type].union(patterns[pattern_type])
+                    row['pattern'][pattern_type] = set()
+                row['pattern'][pattern_type] = row['pattern'][pattern_type].union(patterns[pattern_type])
     print('\nafter pattern identification', row)
     new_row = find_relationship(row['line'], row, av)
     row = new_row if new_row else row
     print('\nafter relationships', row)
-    objects, patterns, av = extract_objects_and_patterns_from_index(row, None, 'relationship', 'relationship', av)
+    objects, patterns, av = extract_objects_and_patterns(row, 'relationship', 'relationship', av)
     if objects:
         if 'relationship' in objects:
             row['relationship'] = row['relationship'].union(set(objects['relationship']))

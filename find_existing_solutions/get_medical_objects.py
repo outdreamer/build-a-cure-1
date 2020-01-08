@@ -314,7 +314,7 @@ def filter_source_list(object_type):
           - how to trigger genes to switch off a process
           - how to make an organism evolve a particular function
   '''
-  all_sources = ['rxlist', 'drugs', 'wiki', 'forums', 'pubchem', 'code', 'store', 'generator']
+  all_sources = ['rxlist', 'drugs', 'wiki', 'forums', 'pubchem', ] # 'code', 'store', 'generator'
   source_filters = {
     'symptom': ['rxlist', 'drugs', 'wiki', 'forums', 'pubchem', 'generator'],
     'treatment': ['pubchem', 'wiki', 'rxlist', 'drugs','store', 'generator'],
