@@ -1319,6 +1319,52 @@ def generate_correct_patterns(pattern, av):
         return pattern
     return False
 
+
+def get_content_from_wiki(keyword, av):
+    ''' to do: add support for embedded disambiguation queries returning multiple results '''
+    content = None
+    suggested = wikipedia.suggest(keyword) if not keyword else keyword
+    try:
+        content = wikipedia.page(suggested).content
+    except Exception as e:
+        print('wiki summary exception', e)
+    if content:
+        sections = [s.strip().replace(' ', '_').lower() for s in content.split('==') if '.' not in s and len(s) < 100]
+        print('sections', sections)
+        categories = wikipedia.page(suggested).categories
+        if len(categories) > 0:
+            print('categories', categories)
+        return content, sections, categories
+    return False, False, False
+
+def find_type(word, pos, title, row, av):
+    if pos in av['tags']['ALL_N']:
+        ''' make sure this is a noun before querying '''
+        if len(word) > 1:
+            if word[0] == word[0].upper() and word[1] != word[1].upper():
+                suggested = find_generic_medication(word, {}, av)
+                print('suggested', suggested, word)
+                content, sections, categories = get_content_from_wiki(suggested, av)
+                if content and sections and categories:
+                    row['type'] = row['type'].union(set(categories))
+                    index_type = [val for key, val in av['section_map'].items() for section in sections if key in section]
+                    if len(index_type) == 0:
+                        index_type = get_index_type(suggested, av, categories)
+                    print('found index type', index_type, word)
+                    if index_type in row:
+                        if index_type != 'dependency': # to do: exclude other relationship objects here
+                            found_subsets, av = get_matching_subsets(word, index_type, av)
+                            if found_subsets:
+                                for pattern_type in found_subsets.items():
+                                    if pattern_type not in row:
+                                        row[pattern_type] = set()
+                                    for pattern, matches in found_subsets[pattern_type].items():
+                                        if pattern not in row[pattern_type]:
+                                            row[pattern_type][pattern] = set()
+                                        row[pattern_type][pattern] = row[pattern_type][pattern].union(matches)
+                                row['type'].add(index_type)
+    return row
+
 def generate_type_patterns(line, av):
     ''' 
         Cytotoxicity in cancer cells => <component object>-toxicity, 
@@ -2544,6 +2590,7 @@ def apply_pattern_map(line, pattern_map, av):
             line_version_index, av = get_all_versions(line, 'all', av)
             if line_version_index:
                 for line_version_type, versions in line_version_index.items():
+                    print('versions', type(versions), versions)
                     for line_version in versions:
                         print('applying patterns from pattern_map to line version', pattern_map, 'source_pattern', source_pattern, 'line', line_version)
                         variables, line_with_vars = get_variables_for_pattern(line_version, source_pattern, av)
@@ -2984,34 +3031,6 @@ def get_ngram_combinations(word_list, x):
         if len(grams) > 0:
             return grams
     return False
-
-def find_type(word, pos, title, row, av):
-    if pos in av['tags']['ALL_N']:
-        ''' make sure this is a noun before querying '''
-        if len(word) > 1:
-            if word[0] == word[0].upper() and word[1] != word[1].upper():
-                suggested = find_generic_medication(word, {}, av)
-                print('suggested', suggested, word)
-                content, sections, categories = get_content_from_wiki(suggested, av)
-                if content and sections and categories:
-                    row['type'] = row['type'].union(set(categories))
-                    index_type = [val for key, val in av['section_map'].items() for section in sections if key in section]
-                    if len(index_type) == 0:
-                        index_type = get_index_type(suggested, av, categories)
-                    print('found index type', index_type, word)
-                    if index_type in row:
-                        if index_type != 'dependency': # to do: exclude other relationship objects here
-                            found_subsets, av = get_matching_subsets(word, index_type, av)
-                            if found_subsets:
-                                for pattern_type in found_subsets.items():
-                                    if pattern_type not in row:
-                                        row[pattern_type] = set()
-                                    for pattern, matches in found_subsets[pattern_type].items():
-                                        if pattern not in row[pattern_type]:
-                                            row[pattern_type][pattern] = set()
-                                        row[pattern_type][pattern] = row[pattern_type][pattern].union(matches)
-                                row['type'].add(index_type)
-    return row
 
 def get_index_type(object_type, av, categories):
     param_map = {

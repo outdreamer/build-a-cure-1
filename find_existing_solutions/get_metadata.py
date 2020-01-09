@@ -109,25 +109,7 @@ def process_articles(articles, source, keyword, av):
     if data:
         return data
     return False
-
-def get_content_from_wiki(keyword, av):
-    ''' to do: add support for embedded disambiguation queries returning multiple results '''
-    categories = []
-    sections = []
-    suggested = wikipedia.suggest(keyword) if not keyword else keyword
-    try:
-        content = wikipedia.page(suggested).content
-    except Exception as e:
-        print('wiki summary exception', e)
-    if content:
-        sections = [s.strip().replace(' ', '_').lower() for s in content.split('==') if '.' not in s and len(s) < 100]
-        print('sections', sections)
-        categories = wikipedia.page(suggested).categories
-        if len(categories) > 0:
-            print('categories', categories)
-        return content, sections, categories
-    return False, False, False
-
+    
 def get_article_from_id(id_value, source):
     print('get_article_from_id', id_value)
     if id_value:
@@ -472,3 +454,4 @@ def assemble_pattern_indexes(object_types):
 if sys.argv:
     index = get_data_store(None, None, 'build', sys.argv)
     print('get_data_store:index', index)
+
