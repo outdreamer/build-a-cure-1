@@ -294,6 +294,13 @@ def find_treatment(subset, row, av):
                 row['treatments_failed'].add(r)
     return row
 
+def add_related_metadata(object_type, av):
+    if object_type in av['related_metadata']:
+        object_list = av['related_metadata'][object_type]
+        object_list.extend(av['default_objects'])
+        return object_list
+    return False
+
 def filter_source_list(object_type):
   ''' 
     filter sources by target object bc some sources are irrelevant to some intents
@@ -314,15 +321,15 @@ def filter_source_list(object_type):
           - how to trigger genes to switch off a process
           - how to make an organism evolve a particular function
   '''
-  all_sources = ['rxlist', 'drugs', 'wiki', 'forums', 'pubchem', ] # 'code', 'store', 'generator'
+  all_sources = ['rxlist', 'drugs', 'wiki', 'forums', 'pubchem' ] # 'code', 'store', 'generator'
   source_filters = {
-    'symptom': ['rxlist', 'drugs', 'wiki', 'forums', 'pubchem', 'generator'],
-    'treatment': ['pubchem', 'wiki', 'rxlist', 'drugs','store', 'generator'],
-    'compound': ['rxlist', 'drugs', 'wiki', 'pubchem', 'store', 'generator'],
-    'synthesis': ['rxlist', 'drugs', 'wiki', 'pubchem', 'store', 'generator'],
-    'component': ['rxlist', 'drugs', 'wiki', 'pubchem', 'generator'],
-    'condition': ['wiki', 'pubchem', 'rxlist', 'drugs', 'generator'],
-    'organism': ['wiki', 'pubchem', 'rxlist', 'drugs', 'store', 'generator']
+    'symptom': ['rxlist', 'drugs', 'wiki', 'forums', 'pubchem'],
+    'treatment': ['pubchem', 'wiki', 'rxlist', 'drugs'],
+    'compound': ['rxlist', 'drugs', 'wiki', 'pubchem'],
+    'synthesis': ['rxlist', 'drugs', 'wiki', 'pubchem'],
+    'component': ['rxlist', 'drugs', 'wiki', 'pubchem'],
+    'condition': ['wiki', 'pubchem', 'rxlist', 'drugs'],
+    'organism': ['wiki', 'pubchem', 'rxlist', 'drugs']
   }
   if object_type in source_filters:
     return source_filters[object_type]

@@ -25,6 +25,11 @@ def get_data_store(index, database, operation, args):
         ''' if index or database not passed in, fetch the local db if it exists '''
         args, filters, metadata, generate_target, generate_source = get_args(args, av)
         av['metadata'] = metadata if metadata else av['supported_params']
+        for key in metadata:
+            related_metadata = add_related_metadata(key, av)
+            if related_metadata:
+                metadata.extend(related_metadata)
+        metadata = list(set(metadata))
         if operation == 'build':
             database = get_local_database('data', None) if not database else database
             data_store, rows = build_indexes(database, args, filters, av)

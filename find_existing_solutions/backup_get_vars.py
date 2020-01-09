@@ -524,31 +524,32 @@ def get_pattern_config(av):
     }
     av['pattern_vars'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
     av['type_index'] = {
-        'passive_identifier': [
+        'passive': [
             'noun_phrase1 of noun_phrase2' # enzyme inhibitor of protein synthesis
         ],
-        'modifier_identifier': [],
+        'modifier': [],
         'noun_phrase': [],
         'verb_phrase': [],
-        'phrase_identifier': [
-            'modifier_identifier1 DPC modifier_identifier2'
+        'phrase': [
+            'modifier1 DPC modifier2'
         ],
-        'clause_identifier': [
-            'clause_identifier1 DPC clause_identifier2'
+        'clause': [
+            'clause1 DPC clause2'
         ],
-        'relationship_identifier': [
-            'clause_identifier',
-            'phrase_identifier1 phrase_identifier2 V clause_identifier',
+        'relationship': [
+            'clause',
+            'phrase1 phrase2 V clause',
+            'clause1 DPC clause2'
         ],
-        'rule_identifier': [
+        'rule': [
             'if x then y',
         ],
-        'condition_identifier': [],
-        'compound_identifier': [
-            "rule_identifier of compound_identifier",
-            "compound_identifier1 compound_identifier2"
+        'condition': [],
+        'compound': [
+            "rule of compound",
+            "compound1 compound2"
         ],
-        'context_identifier': [
+        'context': [
             'given',
             'when x',
             'if x',
@@ -557,22 +558,22 @@ def get_pattern_config(av):
             'with x',
             'without x'
         ],
-        'symptom_identifier': [
-            'N that gets worse when context_identifier',
-            'x - y & - z even in condition_identifier1 or condition_identifier2'
+        'symptom': [
+            'N that gets worse when context1',
+            'x - y & - z even in condition1 or condition2'
         ]
     }
     av['pattern_index'] = {
-        'passive_identifier': [
+        'passive': [
             '|VB VBP VBN VBD| |VB VBP VBN VBD|', # is done, was done
             'VBG |VB VBP VBN VBD| |VB VBP VBN VBD|', # having been done
             '|VB VBP VBN VBD| |TO IN PP|', # finish by, done by
             '|VBD| VBN VBN |TO IN PP|', # has been done by
         ],
-        'subject_identifier': [
+        'subject': [
             'ALL_N ALL_V',
         ],
-        'modifier_identifier': [
+        'modifier': [
             #'(?)', # add support for an any character 
             '|N V| |N ADV ADJ V|', # compound isolate
             'NNP ALL_N', # Diabetes mellitus
@@ -580,12 +581,12 @@ def get_pattern_config(av):
             'N V',
             'JJ NN'
         ],
-        'phrase_identifier': [
+        'phrase': [
             'ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N', # converter of ionic/ionized/ionizing radiation, necrotizing spondylosis
             'ALL_N DPC ALL_N |VBG VBD|', # metabolite of radiation poisoning
             'ALL_N DPC ALL_N', # metabolite/metabolizer/inhibitor/alkalization of radiation, 
         ],
-        'clause_identifier': [
+        'clause': [
             '|suppose thought assumed| that', 
             'DPC NP VP NP',
             'DPC NP DPC NP',
@@ -605,10 +606,10 @@ def get_pattern_config(av):
             'plays a |VB NN| role',
             '|functions works operates interacts acts| as __a__ |VB NN|'
         ],
-        'type_identifier': [
+        'type': [
             'ADJ N', # Ex: 'chaperone protein' (subtype = 'chaperone', type = 'protein')
         ],
-        'role_position': [
+        'role': [
             'ADV |V N|', # Ex: 'emulsifying protein' (role = 'emulsifier')
         ]
     }
@@ -782,39 +783,13 @@ def get_vars():
         'pos': ['pos', 'verb', 'noun', 'common_word', 'count', 'taken_out', 'clause_marker', 'line', 'prep', 'conj', 'det', 'descriptor', 'original_line', 'word_map'],
         'structure': ['type', 'name', 'ngram', 'modifier', 'phrase', 'noun_phrase', 'verb_phrase', 'clause', 'subject', 'relationship', 'pattern', 'similar_line'], # structural
         'experiment': ['hypothesis', 'test', 'metric', 'property', 'assumption'], # experiment elements
-        'compound': ['compound', 'contraindication', 'interaction', 'side_effect', 'treatment', 'treatment_successful', 'treatment_failed'], # drug elements
+        'compound': ['compound', 'contraindication', 'interaction', 'side_effect', 'treatment_successful', 'treatment_failed'], # drug elements
         'organism': ['gene', 'expression', 'evolution', 'organ', 'cell', 'nutrient'],
         'condition': ['symptom', 'condition', 'diagnosis', 'phase'], # separate diagnosis bc theyre not always accurate so not equivalent to condition
         'context': ['bio_metric', 'bio_symptom', 'bio_condition', 'bio_stressor'], # context elements
         'synthesis': ['instruction', 'parameter', 'optimal_parameter', 'substitute', 'equipment'],
         'relational': ['component', 'related', 'alternate', 'substitute', 'sub', 'adjacent', 'stressor', 'dependency'],
         'conceptual': ['concept', 'variable', 'function', 'causal_stack', 'insight', 'strategy', 'prediction', 'priority', 'intent', 'system']
-    }
-    av['default_objects'] = [
-        'structure', 'type', 'pattern', 'metric', 'property', 'assumption', 'parameter', 
-        'optimal_parameter', 'stressor', 'dependency', 'concept', 'variable', 'function', 
-        'causal_stack', 'insight', 'strategy', 'prediction', 'priority', 'intent', 'system'
-    ]
-    av['related_metadata'] = {
-        'component': ['related', 'alternate', 'substitute', 'sub', 'adjacent'],
-        'experiment': ['hypothesis', 'threshold', 'metric', 'test', 'conclusion'],
-        'test': ['metric', 'equipment', 'measurement', 'accuracy'],
-        'contraindication': ['compound', 'treatment', 'symptom', 'condition'],
-        'interaction': ['compound', 'treatment', 'symptom', 'condition'],
-        'side_effect': ['symptom', 'treatment', 'compound'],
-        'compound': ['formula', 'chemical_properties', 'synthesis', 'treatment', 'condition', 'symptom', 'side_effect', 'interaction', 'contraindication'],
-        'treatment': ['compound', 'contraindication', 'interaction', 'side_effect', 'treatment_successful', 'treatment_failed'],
-        'organism': ['gene', 'organ', 'cell', 'nutrient'],
-        'gene': ['expression'],
-        'evolution': ['gene', 'nutrient'],
-        'organ': ['gene', 'cell', 'nutrient'],
-        'cell': ['organelle', 'gene', 'nutrient'],
-        'symptom': ['condition', 'treatment', 'diagnosis'],
-        'condition': ['symptom', 'treatment', 'diagnosis'],
-        'diagnosis': ['test', 'metric', 'symptom', 'condition', 'phase', 'context'],
-        'phase': ['condition', 'context', 'symptom'],
-        'context': ['bio_metric', 'bio_symptom', 'bio_condition', 'bio_stressor'],
-        'synthesis': ['instruction', 'equipment']
     }
     object_type_keys = {
         'medical_types': ['experiment', 'compound', 'organism', 'condition', 'context', 'synthesis'],
@@ -991,82 +966,57 @@ def is_isolated_alt(subset, av):
             return alt_subset
     return False
 
-def append_list(index_lists, sub_list, av):
-    sub_list = sub_list if type(sub_list) == list else [sub_list]
-    if len(index_lists) == 0:
-        return [item for item in sub_list]
-    new_index_lists = []
-    for i, item in enumerate(sub_list):
-        for index_list in index_lists:
-            index_list = ' '.join(index_list) if type(index_list) != str else index_list
-            new_list = ' '.join([index_list, item])
-            new_index_lists.append(new_list)
-    if len(new_index_lists) > 0:
-        return new_index_lists
-    return False
-
-def get_alts(pattern, index_lists, av):
+def get_alts(pattern, av):
+    print('pattern', pattern)
     pattern = pattern.strip().replace('__', '')
     all_alts, variables = get_alt_sets(pattern, [], av)
     if all_alts:
         if len(all_alts) > 0:
-            print('get_alts: all_alts', all_alts)
-            delimiter_found = False
-            for sub_list in all_alts:
-                if '|' in sub_list:
-                    print('sub list', sub_list)
-                    exit()
-                    delimiter_found = True
-            if delimiter_found:
-                return get_alts(pattern, all_alts, av)
-            all_alts = [item for item in all_alts if item != '']
-            for sub_list in all_alts:
-                index_lists = append_list(index_lists, sub_list, av)
-            index_lists = set([il.replace('  ',' ') for il in index_lists])
-            if len(index_lists) > 0:
-                return index_lists
+            all_lists = append_list(all_alts)
+            print('il', all_lists)
+            if len(all_lists) > 0:
+                return all_lists
     return False
 
-def get_all_combinations(alt_lists):
-    ''' alt_lists = a list of lists [['a', 'b'], ['c', 'd'], 'e'] '''
-    list_lengths = []
-    combination_list = []
-    combination_indexes = []
-    for i, sub_list in enumerate(alt_lists):
+def append_list(all_alts):
+    all_lists = []
+    for i, sub_list in enumerate(all_alts):
         if type(sub_list) == list:
-            if len(sub_list) > 1:
-                combination_list.extend(sub_list)
-                combination_indexes.append(i)
-            list_lengths.append(len(sub_list) - 1)
-    combination_list = list(set(combination_list))
-    ''' build list of all possible options for a combination and select count of output '''
-    permutations = itertools.permutations(combination_list, len(list_lengths))
-    combinations = set()
-    for p in permutations:
-        combinations.add(p)
-    combinations_with_replacement = itertools.combinations_with_replacement(combination_list, len(list_lengths))
-    for p in combinations_with_replacement:
-        combinations.add(p)
-    final_combinations = []
-    for combination in combinations:
-        new_combination = []
-        combination_index = 0
-        skip = False
-        for i, sub_list in enumerate(alt_lists):
-            if type(sub_list) == list:
-                if combination[combination_index] in sub_list:
-                    new_combination.append(combination[combination_index])
-                else:
-                    skip = True
-                combination_index += 1
+            if len(all_lists) == 0:
+                for item in sub_list:
+                    all_lists.append([item])
             else:
-                if skip is False:
-                    new_combination.append(sub_list)
-        if len(new_combination) > 0:
-            final_combinations.append(new_combination)
-    if len(final_combinations) > 0:
-        return final_combinations
-    return False
+                for item in sub_list:
+                    new_all_lists = []
+                    for x in all_lists:
+                        x = x if type(x) == list else x.split(' ')
+                        if len(x) > 1:
+                            x.pop()
+                        new_item = ' '.join([''.join(x), item])
+                        new_all_lists.append(new_item)
+                    if len(new_all_lists) > 0:
+                        if type(new_all_lists[0]) != list:
+                            all_lists.extend(new_all_lists)
+                        else:
+                            all_lists = new_all_lists
+        else:
+            if len(all_lists) == 0:
+                all_lists.append([sub_list])
+            else:
+                new_all_lists = []
+                for x in all_lists:
+                    x = x if type(x) == list else x.split(' ')
+                    if len(x) > 1:
+                        x.pop()
+                    new_item = ' '.join([''.join(x), sub_list])
+                    new_all_lists.append(new_item)
+                if len(new_all_lists) > 0:
+                    if type(new_all_lists[0]) != list:
+                        all_lists.extend(new_all_lists)
+                    else:
+                        all_lists = new_all_lists
+    all_lists = set([sub_list for sub_list in all_lists if type(sub_list) != list])
+    return all_lists
 
 def get_alt_sets(pattern, all_alts, av):
     subsets, variables = get_pattern_subsets(pattern, {}, av)
@@ -1128,19 +1078,7 @@ def get_alt_sets(pattern, all_alts, av):
                                 if nn in av['tags']:
                                     final_alts.append(av['tags'][nn])
                                 elif nn in av['pattern_index']:
-                                    sub_pattern_alts = []
-                                    for sub_pattern in av['pattern_index'][nn]:
-                                        new_item_alts = []
-                                        for word in sub_pattern.split(' '):
-                                            append_item = av['tags'][word] if word in av['tags'] else word
-                                            new_item_alts.append(append_item)
-                                        combinations = get_all_combinations(new_item_alts)
-                                        if combinations:
-                                            if len(combinations) > 0:     
-                                                for c in combinations:
-                                                    sub_pattern_alts.append(' '.join(c))    
-                                    if len(sub_pattern_alts) > 0:
-                                        final_alts.append(sub_pattern_alts)
+                                    final_alts.append(av['pattern_index'][nn])
                                 else:
                                     new_item_list.append(item)
                         if len(new_item_list) > 0:
@@ -1153,19 +1091,7 @@ def get_alt_sets(pattern, all_alts, av):
         if nn in av['tags']:
             final_alts.append(av['tags'][nn])
         elif nn in av['pattern_index']:
-            sub_pattern_alts = []
-            for sub_pattern in av['pattern_index'][nn]:
-                new_item_alts = []
-                for word in sub_pattern.split(' '):
-                    append_item = av['tags'][word] if word in av['tags'] else word
-                    new_item_alts.append(append_item)
-                combinations = get_all_combinations(new_item_alts)
-                if combinations:
-                    if len(combinations) > 0:
-                        for c in combinations:
-                            sub_pattern_alts.append(' '.join(c))
-            if len(sub_pattern_alts) > 0:
-                final_alts.append(sub_pattern_alts)
+            final_alts.append(av['pattern_index'][nn])
         else:
             final_alts.append(word)
     if len(final_alts) > 0:
@@ -1179,12 +1105,7 @@ def generate_alt_patterns(pattern, av):
     - optional strings are indicated by: __option__    
     - pattern = '|VB NN VB&ADV|' means 'VB or NN or VB & ADV'
     '''
-    noun_phrase = [
-            'ALL_N ALL_N',
-            'ALL_N ALL_N ALL_N', # HIV-positive patients => NNP JJ NNS
-    ]
-    #pattern = 'plays a |VB NN| noun_phrase role'
-    alts = get_alts(pattern, [], av)
+    alts = get_alts(pattern, av)
     if alts:
         if len(alts) > 0:
             ''' now replace optional strings and add that pattern as well '''
@@ -1340,7 +1261,10 @@ def generate_type_patterns(line, av):
         else:
             new_pattern.append(w)
     if len(new_pattern) > 0:
-        return new_pattern
+        index_lists = append_list(new_pattern)
+        print('il', index_lists)
+        if len(index_lists) > 0:
+            return index_lists
     return False
 
 def generate_pattern_type_patterns(line, generated_patterns, av):
@@ -2972,6 +2896,7 @@ def get_ngrams_of_type(pos_type, line, av):
     return False
 
 def get_ngram_combinations(word_list, x):
+
     if x > 0 and x < len(word_list):
         grams = []
         combinations = itertools.combinations(word_list, x)

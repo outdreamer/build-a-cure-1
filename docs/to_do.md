@@ -28,12 +28,11 @@
   - find source of bio keywords & synonyms
 
 # Structural Objects
+  - remove words from line/pattern that are not intended as keywords (convert 'role' into 'position' or 'function')
   - remove plural tags once you finish singularize function
   - make sure apply_pattern_map explores all versions of line, but returns one new line
-  - adjust metadata with map to related objects for requested metadata
   - add common patterns that have more than one index type to all index type lists - 'x of y', 'phrase of phrase', etc
   - identify lists in sentence and surround with parenthesis if embedded or insert as examples of an object ('such as', 'like', 'as in'), 'found in', 'including', 'having'
-  - add if original_row != row: to all find_* functions
   - find functions should have logic to rule out other types & type-specific logic since they're used as a backup to pattern-matching
     the order of find_* function application can take the place of this, if patterns are comprehensive enough
   - add pattern to standardize verb-subject to subject-verb: 'V DET noun_phrase ... ?' => 'DET noun_phrase V ...'
@@ -46,7 +45,7 @@
   processing order:
   - examine iterations (lists/if conditions) that determine processing order: (supported_pattern_variables, pos_tags, all_pattern_version_types, reversed keys, etc)
     - when identifying all objects, order can be from low to high
-    - when classifying specific objects, order should be from high to low
+    - when classifying specific objects, order should be from high to low - return first match, or adjust line being analyzed with replacement for each match, starting with longest matches first
     - add ordered pos-tagging pattern_map to apply preference order to correct incorrectly identified word pos - isolate which tags would be identified as other objects first
 
   clause identification: 
