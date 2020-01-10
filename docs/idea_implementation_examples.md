@@ -636,7 +636,25 @@
 
 ## Monster Systems
 
-## Object Layer Identification
+## Object Layer & Interface Identification
+
+  - there may be an optimal layer or other set of objects with which to frame a problem
+    https://twitter.com/remixerator/status/1205700297965727749
+
+  - there may be an optimal interface to solve a problem
+
+## Causal Shapes
+
+  - most causal shapes are cyclical, tensor, layer, or network-shaped rather than one-directional vector-shaped, which is why some existing methods are inherently incapable of producing system-fitted insights that wont break the system when applied (a particular drug that is not evaluated for bio-system impact, just impact on a particular pathogen or process)
+
+  - part of the problem with using a one-directional vector to model a relationship is that the underlying parameter (usually time) may not be relevant for predicting the relationship evolution
+
+  - rather than modeling it by a standard of changes over time, it can be modeled by a standard of changes over variance potentials
+    - will a particular variance source change compoundingly or converge to a constant in all possible parameterizations of that variance source
+    - does a particular variance source have the potential to generate variance or will it eventually become static in all possible implementations, 
+      meaning it either:
+        - doesn't exist (at any time), like a final output that doesnt ever return to interact with other systems as an input
+        - is one of the few things that does exist (across all times), like a concept that never stops influencing variance
 
 ## Predicting Interface Evolution
   
@@ -668,15 +686,19 @@
       - "cloud size" is indirectly related to moon phase (influences wind patterns), sun exposure (influences temperature), pollution (influences elements in air)
       - "cloud size" is very indirectly related to astrology 
         (influences moods, emotions, subconscious, dreams, & market decisions, which influences market trends, which influence side effects of production like pollution)
-      - cloud size is so indirectly related to astrology that it may be considered independent of astrology, despite the fact that every object is inherently related to other objects
+      - cloud size is so indirectly related to astrology that it may be considered independent of astrology, despite the fact that every object is inherently related to all other objects
       - we can say that "cloud size" has a "maximal causative distance" or "minimal dependence" on "astrology"
-      - other ways to get a variable that has a minimal dependence on some other variable is to query its dependent variables 
-        (cloud size is caused by element distribution, so element distribution is independent of cloud size)
-      - in reality this is not real independence, because many dependence relationships are circular, either 
-        - directly (one circular loop between two nodes), or
-        - indirectly (the output dependent node, cloud size, goes through many systems before returning some input requirement of the input independent node, element distribution)
-        - this is because there are very few to zero ways to generate an output that has no side effects on input requirements (input inputs)
-          - an example is "victimless crimes" like ejecting junk into space, which may not impact us immediately but definitely will return some causation (in the form of required inputs to some process) to our species eventually
+      - other ways to find a variable with minimal dependence on some other variable include:
+        - varying abstraction level:
+          - the concept of 'balance' is indirectly related to everything but only specifically related to a small subset of things (justice, symmetry, etc), most of which are either conceptually abstract, or mathematically abstract (specific to mathematics, like a low-level operation or attribute that can be calculated numerically)
+
+        - querying its dependent variables 
+          (cloud size is caused by element distribution, so element distribution is independent of cloud size)
+          - in reality this is not real independence, because many dependence relationships are circular, either 
+            - directly (one circular loop between two nodes), or
+            - indirectly (the output dependent node, cloud size, goes through many systems before returning some input requirement of the input independent node, element distribution)
+            - this is because there are very few to zero ways to generate an output that has no side effects on input requirements (input inputs)
+              - an example is "victimless crimes" like ejecting junk into space, which may not impact us immediately but definitely will return some causation (in the form of required inputs to some process) to our species eventually
       - another example is "corners of a square":
         - each side of the square is equal, so it's equally likely that the "square" system will generate a movement of balls within the square, that pushes a ball to one of its corners
         - the corners represent a maximal variance variable (corner), which are unique in that if a ball is in one corner, it necessarily cannot also be in some other corner
