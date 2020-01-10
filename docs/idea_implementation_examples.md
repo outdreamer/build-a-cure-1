@@ -544,10 +544,13 @@
   III. Solve problem with solution function selection
 
     - for each problem dimension, there is a set of functions that can reduce the problem dimension to a point, by finding the formula for the shape of that problem dimension (like a line)
+
       - there are many ways to build a formula for a line, but the best ways usually:
+
         - fulfill an attribute (such as simplicity, least number of transformation operations, shortest distance between points, definition of similarity such as adjacence)
         - match existing unique formulaic patterns (a unique formula cant be classified as just a transform of another formula)
         - use existing resources (if you have x & y, a solution formula using x & y to reduce problem dimension x is more optimal)
+
       - example:
         - a problem space has several dimensions, one of which is missing information or conflicting incentives
         - a solution formula to reduce these dimensions might be a formula to get or derive information, or a formula to align incentives
@@ -620,6 +623,11 @@
           - ledger has embedded concept of balance in asset trade amounts & assets
           - matching of information supply & demand (allocate tx history to tx metadata, where it has most value)
 
+## Concept Derivation
+
+## Randomness Generator
+
+  - calculate maximal variance points in a system (variables most unrelated to all other variables), and equalize their contributions
 
 ## Vuln potential of a solution
 
