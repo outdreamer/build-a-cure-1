@@ -728,6 +728,12 @@
 
   - designed objects often differ from emergent objects in chaotic ways that produce more variance rather than reduce it, unless design is built on understanding of emergent objects higher up causal chain
 
+## Identifying useful object combinations
+
+  - combine risk, cause, variance, and probability objects (uncertainty, causal loop, variance generator, probability distribution)
+
+  - combine structural & conceptual objects (vector + priority)
+
 ## Risk Shapes
 
   - a chain of risks (uncertainties) is a common structure seen in market patterns (such as trades, product engineering, demand assessment, & prediction markets)
