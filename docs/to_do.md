@@ -28,7 +28,9 @@
   - find source of bio keywords & synonyms
 
 # Structural Objects
-  - remove words from line/pattern that are not intended as keywords (convert 'role' into 'position' or 'function')
+  - fix order of assembled combinations:
+      get_alts: all_alts [['suppose', 'assumed', 'thought'], ['DT', 'PDT', 'WDT', 'TO', 'PP', 'CC', 'IN'], ' that ', ['suppose', 'assumed', 'thought'], ' that']
+      get_all_versions |suppose thought assumed| that DPC |suppose thought assumed| that
   - remove plural tags once you finish singularize function
   - make sure apply_pattern_map explores all versions of line, but returns one new line
   - add common patterns that have more than one index type to all index type lists - 'x of y', 'phrase of phrase', etc

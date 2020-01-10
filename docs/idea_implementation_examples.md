@@ -487,7 +487,20 @@
 
     - further requirements can be added to the solution with the same procedure (hash to make the tx log shorter, etc)
 
-  II. Conceptual Query
+  II. Solve problem with structure fitting
+    - rather than sculpting an invention using an increasing set of limits, you can select or derive a structure that probably matches, then check if it fits
+
+  III. Solve problem with solution function selection
+    - For each problem dimension, there is a set of functions that can reduce the problem dimension to a point, by finding the formula for the shape of that problem dimension (like a line)
+      - there are many ways to build a formula for a line, but the best ways usually:
+        - fulfill an attribute (such as simplicity, least number of transformation operations, shortest distance between points, definition of similarity such as adjacence)
+        - match existing unique formulaic patterns (a unique formula cant be classified as just a transform of another formula)
+        - use existing resources (if you have x & y, a solution formula using x & y to reduce problem dimension x is more optimal)
+      - example:
+        - a problem space has several dimensions, one of which is missing information or conflicting incentives
+        - a solution formula to reduce these dimensions might be a formula to get or derive information, or a formula to align incentives
+
+  IV. Solve problem with Conceptual Query
 
     - get a conceptual combination with a query of problem space & find an abstract structure that fits this combination, then find a specific structure that fits the combination
 
