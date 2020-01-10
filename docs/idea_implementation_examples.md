@@ -638,10 +638,31 @@
 
 ## Object Layer Identification
 
+## Predicting Interface Evolution
+  
+  - given that we currently understand object & system definitions, the object model seems optimal to us right now, with current tech & information
+
+  - what if the assumption that the object exists is flawed?
+    - its not an entity that exists, unless its exerting influence to generate variance in some system & cant be controlled
+    - it only exists according to its relationships to other entities (define an entity using other entities)
+
+  - what if the structure assigned to the object (a separate entity) is flawed? 
+    - should be a type stack, a subset of a network, a formula, etc, rather than a list of attributes & rules
+
+  - what if the idea of a system is flawed?
+    - the assignment of a host system can be so catastrophic to the accurate representation of a problem that it may be better to avoid this & use only rules that apply to all systems
+
+  - what if the idea of a definition is flawed?
+    - if definitions/facts begin to decay the more theyre assumed & depended on, if stretched beyond their capacity
+
+  - what if the idea of interface selection is flawed?
+    - what if there's an optimal interface to represent all information (interface-building formula), rather than a specific one (causal, object, type, function, priority, system, structure interface)
+    - an interface is just a standardizing filter - a formula to generate the right standardizing filter for a particular task would be better than relying on interface definitions
+
 ## Randomness Generator
 
   1. calculate maximal variance points in a system (variables most unrelated to all other variables), and equalize their contributions
-  
+
     example:
       - "cloud size" is directly related to adjacent water, wind patterns, temperature & elements in adjacent air
       - "cloud size" is indirectly related to moon phase (influences wind patterns), sun exposure (influences temperature), pollution (influences elements in air)
