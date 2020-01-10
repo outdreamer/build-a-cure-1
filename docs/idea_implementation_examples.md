@@ -398,7 +398,7 @@
 
 ## Concept Operations
 
-  I. Match problem & solution using definition & standardization
+  I. Match problem & solution using definition & standardization, applying increasing limits until problem & solution match
 
     - get a problem, standardize & define it: 
       problem: "funds cannot always be verified to exist with existing currencies"
@@ -488,10 +488,62 @@
     - further requirements can be added to the solution with the same procedure (hash to make the tx log shorter, etc)
 
   II. Solve problem with structure fitting
+
     - rather than sculpting an invention using an increasing set of limits, you can select or derive a structure that probably matches, then check if it fits
 
+    1. using the requirements of a solution, design a structure (or range of structures) that may match the problem space
+
+    2. check if it fits the problem space
+      - 'fits the problem' means it:
+        - fills in gaps of the problem if the problem root cause is a lack of something (missing info or resources)
+        - corrects alignment of vectors in the problem if the problem root cause is a misalignment (misaligned incentives, priorities, etc)
+        - reduces problem dimension if the problem root cause is complexity (too many factors to measure, doesnt fit existing tools, can be solved if broken into smaller problems)
+
+    example:
+      - derive possible structures given the problem definition & the set of target concepts:
+
+        - problem root cause (problem type) of "requiring trust" is "lack of information"
+        - how can you use concepts (uniqueness, randomness, relevance, trustless) and the standard transaction structure to create a "trustless transaction"?
+        - you already have a standard structure for a transaction (two nodes, exchange of resources each node has using connection between nodes, each node has different information resources)
+
+        - now you can either use general distortion methods & topical distortion methods to design a new structure to solve the problem, or you can add distortions based on which distortions would produce optimized relationships between structure nodes to find the structure that is likeliest to solve problem
+
+          1. query to retrieve common distorting functions of successful inventions (combine, embed, randomize, rotate) or existing alternate transaction types (privatize, encrypt, publish, verify)
+            and apply these and combinations of these and check each output transaction structure to see if it fits problem space
+
+          2. or start with standard structure of a transaction and add distortions based on which distortions would fulfill intents leading to target concept combinations "trustless transaction"
+
+            1. start with standard transaction structure 
+
+            2. which distorting operation might reduce trust (info asymmetries) required in transaction?
+
+               - distribute information by adding it to both sides until its equal (both entities have the information)
+               - distribute information by removing it from both sides until its equal (neither entity has the information)
+               - distribute information to a third party (encrypted or inaccessible information store that can provide zero-knowledge proofs of contents)
+            
+            3. key objects of distorting operations are: information, distribution, balance, sides
+
+            4. find requirements for relationships between distorting operation objects:
+              - which sides need to be balanced in information in the first place?
+                - each participant in a transaction (balance in information between requester & sender of funds)
+                - each third party node verifying & executing transactions (balance in information between transaction log and new transaction)
+            
+            5. find structures to achieve requirements
+
+              - what distorted transaction structure can balance information between transaction log and new transaction?
+
+                - given the standard transaction structure & the distorting operation ("distribute information by adding it to both sides"),
+                  what is the new transaction structure after applying this distorting operation that fulfills the overall priority of "reduce required trust"?
+                    - implementation of distorting operation to problem objects "add information to the transaction that balances its information distribution with the transaction log"
+                    - apply distorting operation implementation to problem space: 
+                      - "which information does the transaction log have that the transaction does not?"
+                      - "transaction log has history of prior transactions, which the standard transaction structure does not"
+                    - check if applied distorting operation implementation moves problem space toward priority (trustless) or reduces problem dimension (info asymmetry):
+                      "does including transaction log (or subset of it) with transactions reduce trust required (info asymmetry between prior & current transactions)?"
+
   III. Solve problem with solution function selection
-    - For each problem dimension, there is a set of functions that can reduce the problem dimension to a point, by finding the formula for the shape of that problem dimension (like a line)
+
+    - for each problem dimension, there is a set of functions that can reduce the problem dimension to a point, by finding the formula for the shape of that problem dimension (like a line)
       - there are many ways to build a formula for a line, but the best ways usually:
         - fulfill an attribute (such as simplicity, least number of transformation operations, shortest distance between points, definition of similarity such as adjacence)
         - match existing unique formulaic patterns (a unique formula cant be classified as just a transform of another formula)
