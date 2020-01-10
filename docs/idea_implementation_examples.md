@@ -688,12 +688,29 @@
     - type stack
     - conceptual query
 
-  - can produce an answer to questions like:
+  - can produce answers to questions like:
     - which interface object combinations can be used to generate an accurate prediction function?
     - which interface object combinations map to which prediction functions?
     - which interface object prediction-function generating networks should be used first on a problem, 
       given that interface layer's higher independence/causation/variance-generation?
     - which problem types (conflict, alignment, asymmetry, lack) map to which interface objects?
+
+  - so instead of doing problem-solving operations like:
+    - get data
+    - apply standard DNN or neural network structure designed by auto ML
+    - use prediction function until no longer valid
+
+  - you can problem-solving automation operations like:
+    - get data point
+    - apply interface object derivation function
+    - check if problem is solved
+    - if not, apply interface-based neural network design function to generate optimal neural network for this problem until problem is solved, 
+      at which point, store this interface object combination in index of solved problems
+      and to make each new prediction, first apply interface object derivation function to each data point to format it 
+      in ways that the neural network trained to identify contribution of interface objects to final classification can interpret
+    - if problem changes:
+      - generate new prediction function, according to previously identified change patterns of derived interface objects if they exist
+      - re-apply whole process to generate the new prediction function or a neural network architecture to generate the new prediction function
 
 ## Object Layer & Interface Identification
 
