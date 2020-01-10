@@ -714,10 +714,50 @@
 
 ## Object Layer & Interface Identification
 
-  - there may be an optimal layer or other set of objects with which to frame a problem
+  - there may be an optimal layer or other set of objects on one layer or across layers with which to frame a problem
+    - when framed in this way, the problem is always solvable 
+      (same operation as selecting a host system to represent a problem space, or selecting structures to represent the problem space objects themselves)
     https://twitter.com/remixerator/status/1205700297965727749
 
-  - there may be an optimal interface to solve a problem
+  - there may be an optimal interface to solve a problem, based on problem type or available resources (info, info-generating, variance-minimization, & other resource types)
+
+    - evaluating solutions for system impact is a key failure point to focus on, to prevent this method from generating same error types as existing methods
+    - this means identifying chains of interacting patterns that can produce variance objects (like a black swan or other types of risk chain) & at which times its likely to do so, based on chained interaction times
+
+  - all interactions that are not predicted in a emergent problem or designed solution space are sources of variance (and also may be exploit opportunities), that can convert a solution into a problem, or occasionally produce a solution by coincidentally interacting order & variance (a mutation that generates a function to protect from a pathogen, by trial & error of which mutations survive)
+
+  - designed objects often differ from emergent objects in chaotic ways that produce more variance rather than reduce it, unless design is built on understanding of emergent objects higher up causal chain
+
+## Risk Shapes
+
+  - a chain of risks (uncertainties) is a common structure seen in market patterns (such as trades, product engineering, demand assessment, & prediction markets)
+
+  - other risk shapes include:
+
+    - asymmetries:
+      - info asymmetry (info being better than no info, all other things being equal)
+      - understanding asymmetry (understanding being better than a prediction hypothesis)
+      - risk chain asymmetry (luck being better than preparation, in edge cases)
+
+    - equivalencies:
+      - randomness (in input identity)
+      - balance (in resource distribution)
+
+    - variance generators:
+      - risk generators (variance-producing variables, such as equal distribution of information, randomizing functions, etc)
+      - complex systems (which have greater complexity than that which can be understood by its observers using existing tools) like markets
+      - boundary-changing variables
+
+    - variance reducers:
+      - risk-reduction structures (using diverse models to check predictions rather than one)
+      - risk-distribution structures (distributing different information to different positions/agents)
+      - probable convergence/divergence points (singularity, filters, constants, etc)
+      - boundaries/limits (minimizing risk & establishing probabilities)
+      - optimization methods
+
+    - variance movers:
+      - categorizing functions (delegating risk to the accuracy of the function combination of variables, constants & operations)
+      - probability distributions (delegating risk to accuracy of distribution selection)
 
 ## Causal Shapes
 
