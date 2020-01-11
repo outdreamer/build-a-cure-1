@@ -1,6 +1,6 @@
 Here are some ways to rearrange society's resources that don't involve huge investments
 
-- college debt: if college grads or current students want to pay off college debt, let them do useful science research or build useful tools out of a national index of tools needed, in return for credit
+- college debt: if college grads or current students want to pay off college debt, let them do useful science research or build useful tools out of a national index of tools needed, in return for college credit
 
 - homeless living situation: 
 	- let homeless people live in the houses the government hires them to build if they're willing to work for a basic salary or be paid in housing when they're done, and they can continue building cheap homes for other people if they want to continue making money
@@ -11,7 +11,7 @@ Here are some ways to rearrange society's resources that don't involve huge inve
 	- tools to convert ice-covered areas or other areas considered non-livable to livable land
 	- reduce land that takes the largest area to produce lowest value goods (vineyards, etc) if those products can be produced in labs or if demand for them can be reduced
 	- tools to distribute land to extend coastlines
-	- tools to make living on ocean cheaper for homeless people
+	- tools to make living on ocean cheaper for homeless people/increasing wildlife or food-generation tools without unbalancing ecosystems
 
 - prizes for the most useful research solutions stored on a website (change.org, etc) such as:
 	- problem-solving automation tools
@@ -22,6 +22,15 @@ Here are some ways to rearrange society's resources that don't involve huge inve
 	- tool to test product quality (medicine, air filter, water quality, etc)
 	- tool to convert harmful product into harmless product (tablet to remove aspartame from coca cola or bpa from contents of a can)
 	- tool to convert products no longer in demand into source materials that can be used to make new products
+
+- solution market management:
+	- in order to make everyone a solution supplier (equally able to solve their own problems or solve problems for other people), they need problem solving tools:
+		- computer/cell phone
+		- electricity
+		- wi-fi
+		- education (comes with wi-fi, if theyre pointed to the right resources)
+		- basic resources to live (shelter, water, medicine)
+	- people with more problems than they can fix themselves (malnourished brains) can contribute as research subjects/solution testers
 
 - debt market management:
 	- debt markets essentially involve trading beliefs in the value of something (someone's earning potential, the value of a degree, the future value of someone's health, or future value of a product, or potential user base/research/product delivery of a company)
@@ -65,3 +74,20 @@ Here are some ways to rearrange society's resources that don't involve huge inve
 	- example:
 		- assuming p-value is a good way to assess study results used to be an insight but now the field has progressed to the point where people recognize the limits of isolated analysis & simplistic metrics that use constants or a single metric to evaluate the accidental potential of an observed relationship, so anyone still using that as an assumption is headed for failure
 
+
+Other cheap ways include:
+- moving people to cities so it's less costly to help them
+- manipulating demand/supply to reward suppliers most in need (advertising their products more or subsidizing their acquisition of resources to make them competitive with privileged suppliers)
+- network analysis to identify demanders/suppliers who can provide the best ROI (influencers, best educators, social network hubs, best adapters, best learners, best sharers, etc)
+- network analysis to identify optimal products/inventions/research/trades/markets to subsidize
+- network analysis to identify best method of increasing value of a good (advertisement, bundled goods, conflict trades, resource allocation/matching/distribution, subsidies, taxes, regulation, investment, idea sharing, optimization/competition/innovation incentive alignment)
+
+Examples of previous methods:
+- global agreements to allocate land & other resources to optimal identified global uses
+- visa allotments to enable labor trades w/ minimal transaction costs
+- reward most efficient suppliers w/ research tools to keep adapting to changing demand
+- allow buy-in to networks of optimized markets output by optimal transport algorithms applied to market objects (resources, demand/supply, laws, etc) which reward users more the more people participate
+	By 'optimized market networks', I mean a system that has determined the optimal set of products/inventions/incentives/labor/research/trades/trade loops/info/laws in an optimal series of problem spaces to optimize resource distribution for the most agents
+- vice markets (allocate terrorists as prison guards to make vices valuable)
+- virtue markets (allocate people who still have patience & desire to help so that this resource is not exhausted & they have time to recharge)
+- applying prior demand cycles to allocate resources to new markets (if demand for meat is declining in industrialized areas, allocate meat products/production to unindustrialized areas until that demand declines, then keep moving market until demand is exhausted)
