@@ -35,7 +35,7 @@
   - make sure apply_pattern_map explores all versions of line, but returns one new line
   - add common patterns that have more than one index type to all index type lists - 'x of y', 'phrase of phrase', etc
   - identify lists in sentence and surround with parenthesis if embedded or insert as examples of an object ('such as', 'like', 'as in'), 'found in', 'including', 'having'
-  - find functions should have logic to rule out other types & type-specific logic since they're used as a backup to pattern-matching
+  - find functions should have definition logic & logic to rule out other types & type-specific logic since they're used as a backup to pattern-matching
     the order of find_* function application can take the place of this, if patterns are comprehensive enough
   - add pattern to standardize verb-subject to subject-verb: 'V DET noun_phrase ... ?' => 'DET noun_phrase V ...'
   - finish function to combine functions by intent get_net_impact(functions) & combined operators

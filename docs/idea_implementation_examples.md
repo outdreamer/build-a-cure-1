@@ -734,6 +734,20 @@
 
   - combine structural & conceptual objects (vector + priority)
 
+## Bio System Analysis
+
+  - nth iteration simulations: analysis that treats cyclical, recursive, cascading & iterative processes as trade loops between positions & systems
+    - example: in addition to analyzing how a drug is metabolized:
+      - how its structure will interact with other structures
+      - how the resulting structures after the nth-interaction will interact with other resulting structures, etc
+      - how the dna of a probiotic or other microorganism treatment could get re-purposed by microorganisms
+      - how the activity of a gene could get accidentally impacted in other pathways & which of those pathways are possible given a treatment
+      - how an interaction can be minimally modified to produce extremely different results
+      - how nth-iteration interactions will be timed with other processes cycling in that time
+      - how causal cascades can cycle to be interactive with the treatment
+      - how functionality gaps or interactions at nth-iteration can provide opportunities for mutation & other randomness sources 
+
+
 ## Risk Shapes
 
   - a chain of risks (uncertainties) is a common structure seen in market patterns (such as trades, product engineering, demand assessment, & prediction markets)

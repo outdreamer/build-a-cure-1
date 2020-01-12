@@ -816,6 +816,9 @@ def get_vars():
         'context': ['bio_metric', 'bio_symptom', 'bio_condition', 'bio_stressor'],
         'synthesis': ['instruction', 'equipment']
     }
+    av['definitions'] = {
+    
+    }
     object_type_keys = {
         'medical_types': ['experiment', 'compound', 'organism', 'condition', 'context', 'synthesis'],
         'conceptual_types': ['conceptual', 'relational'],
