@@ -109,7 +109,7 @@ def process_articles(articles, source, keyword, av):
     if data:
         return data
     return False
-    
+
 def get_article_from_id(id_value, source):
     print('get_article_from_id', id_value)
     if id_value:
@@ -440,7 +440,7 @@ def assemble_pattern_indexes(object_types):
     for object_type in object_types:
         if object_type in all_derived_patterns:
             print('deriving objects for type', object_type)
-            derived_patterns, articles = derive_and_store_patterns(object_type, av)
+            derived_patterns, articles, av = derive_and_store_patterns(object_type, av)
             if derived_patterns:
                 for ep in derived_patterns:
                     print('derived pattern', ep)

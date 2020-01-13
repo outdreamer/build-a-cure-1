@@ -320,8 +320,53 @@ def find_limit(subset, row, av):
     ''' threshold, boundary, rule, metric, edge, limit of range '''
     return row 
 
+def derive_objects_in_network(subset, row, av):
+    ''' derives objects/nodes in a network using limiting rules to identify unique objects accreting variance sets '''
+    return row
+
 def find_definition(subset, row, av):
-    return row 
+    ''' this function:
+    - iterates through list of known objects of object_type
+    - aggregates lists of patterns, pattern attributes, types, and interactions
+    - figures out which are explanatory/determinant variables producing the object
+    - determines which attributes vary across examples of the object
+    - derives network of rules from patterns & pattern attributes
+    - describes rules known to explain variance in object behavior or attributes 
+    - identifies patterns explaining types of the object
+    '''
+    patterns = set()
+    variables = set()
+    rules = set()
+    types = set()
+    objects = row[object_type] if object_type in row else None
+    if objects:
+        pattern_list, articles, av = derive_and_store_patterns(object_type, objects, av)
+        if pattern_list:
+            patterns = set(pattern_list)
+            rules = get_rules_from_patterns(patterns, objects, av)
+            variables = get_variables_from_patterns(patterns, rules, objects, av)
+            types = get_types_from_patterns(patterns, variables, objects, av)
+            extreme_examples = get_extreme_examples(types, patterns, variables, objects, av)
+            ''' get most different examples within calculated possible range or within object list '''
+
+    return row
+
+def get_extreme_examples(types, patterns, variables, objects, av):
+    examples = []
+    return examples
+
+def get_rules_from_patterns(patterns, objects, av):
+    rules = []
+    return rules
+
+def get_types_from_patterns(patterns, variables, objects, av):
+    types = []
+    return types
+
+def get_variables_from_patterns(patterns, rules, objects, av):
+    ''' variables = {var_name: [var_values_from_patterns] } '''
+    variables = {}
+    return variables
 
 def find_filter(subset, row, av):
     return row 

@@ -2775,7 +2775,8 @@ def derive_and_store_patterns(object_type, index, av):
                         if len(new_pattern_type) > 0:
                             filename = ''.join(['derived_patterns_', object_type, '_', pattern_type, '.txt'])
                             save(filename, '\n'.join(new_pattern_type))
-    return all_patterns, articles
+                            ''' to do: update av pattern index with newly derived patterns '''
+    return all_patterns, articles, av
 
 def get_matching_subsets(line, pattern_key, av):
     '''
