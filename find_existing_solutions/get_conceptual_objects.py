@@ -245,6 +245,12 @@ def find_fallacy(subset, row, av):
     '''
     return row
 
+def find_analogy(article, av):
+    return article
+
+def find_argument(subset, row, av):
+    return row 
+
 def find_assumption(subset, row, av):
     return row
 
@@ -263,6 +269,108 @@ def find_counterexample(subset, row, av):
           - https://en.wikipedia.org/wiki/Sertraline#Overdose
     '''
     return row
+
+def find_context(subset, row, av):
+    ''' find the scope/space & associated information objects necessary for an object or process to exist, be true, or activate '''
+    return row
+
+def find_implications(subset, row, av):
+    ''' range of possible additional conclusions given extra assumptions '''
+    return row 
+
+def find_conclusions(subset, row, av):
+    ''' range of possible or adjacent possible conclusions '''
+    return row 
+
+def find_meaning(subset, row, av):
+    ''' relevant version of an object for a purpose 
+    example:
+        - meaning of an analogy is to 'describe something in an understandable way' for purpose of 'understanding', 
+            not to 'describe something in an accurate way' for purpose of 'accuracy'
+    '''
+    return row 
+
+def find_key(subset, row, av):
+    ''' finding relevant layer, subset, network, structure '''
+    return row 
+
+def find_layer(subset, row, av):
+    return row 
+
+def find_network(subset, row, av):
+    return row 
+
+def find_path(subset, row, av):
+    return row 
+
+def find_equivalence(subset, row, av):
+    return row 
+
+def find_combination(subset, row, av):
+    return row 
+
+def find_interface(subset, row, av):
+    ''' standard '''
+    return row 
+
+def find_example(subset, row, av):
+    return row 
+
+def find_limit(subset, row, av):
+    ''' threshold, boundary, rule, metric, edge, limit of range '''
+    return row 
+
+def find_definition(subset, row, av):
+    return row 
+
+def find_filter(subset, row, av):
+    return row 
+
+def find_protocol(subset, row, av):
+    return row 
+
+def find_alternative(subset, row, av):
+    return row 
+
+def find_incentive(subset, row, av):
+    return row 
+
+def find_perspective(subset, row, av):
+    return row 
+
+def find_equilibrium(subset, row, av):
+    return row 
+
+def find_efficiency(subset, row, av):
+    ''' gains retrieved using a path of existing resources '''
+    return row 
+
+def find_potential(subset, row, av):
+    ''' opportunity, gap, possibility, range within structure, '''
+    return row 
+
+def find_structure(subset, row, av):
+    return row 
+
+def find_symmetry(subset, row, av):
+    return row 
+
+def find_difference(subset, row, av):
+    ''' divergence, perpendicular, distance '''
+    return row 
+
+def find_similarity(subset, row, av):
+    ''' convergence, parallel, alignment '''
+    return row 
+
+def find_explanation(subset, row, av):
+    return row 
+
+def find_problem(subset, row, av):
+    return row 
+
+def find_solution(subset, row, av):
+    return row 
 
 def find_priority(subset, row, av):
     return row 
