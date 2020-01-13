@@ -13,7 +13,6 @@ build_new_solutions/__pycache__/
 build_new_solutions/graphs/*.png
 build_new_solutions/*.html
 *.txt
-*.png
 *.dylib
 *.sqlite
 venv/
