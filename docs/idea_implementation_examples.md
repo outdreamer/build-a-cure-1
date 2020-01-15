@@ -625,16 +625,42 @@
 
 ## Concept Derivation
 
+  - identifying unique objects in a system that cant be defined in terms of standard operations on other objects
+
+    example:
+    - power cant be defined as a simple combination of other objects in the networks it participates in, because its an abstract property having many possible implementations, all having one thing in common, which is the role/behavior of "enabler/enabling", and power is therefore occupying more than one semantic layer, as it can be an object, role, function, input/output, depending on which structure is more relevant to the host system for this implementation of power
+
+    - however, defining it in terms of these possible structures it occupies (input, role, function) is too simplistic - for example you cant define power as simply "an input" because while that is true, given its enabling functionality, it leaves out a lot of information and fails to distinguish it from other inputs, which may not be powerful since they are common or easily substituted with alternatives
+
+    - even defining power by its core unifying function "enabling" is too simplistic because often power does more than just enable something, given the connectedness of systems - meaning that enable one thing often disables another thing in the system or an adjacent system, which creates effects other than enabling, as the disabled process may disable the original enabled process down the causal path
+
+  - therefore we can conclude that abstractions are concepts that:
+
+    - can take many structures (the concept of equivalence has many possible implementations)
+
+    - can impact many systems varying by system attributes or system types (abstract, calculatable, variable, understood, types, functional, prioritized, optimized)
+
+    - cannot be perfectly defined as a simple function of other objects, but rather are definable with a set of simple, core boundary rules that differentiate them from other concepts
+      - these boundary rules do not involve other concepts on the same layer, but rather core components
+      - for example, the core components of common shapes are: line, point, curve, corner
+      - the set of common shapes are the uniquely identifiable combinations of these components (circle, square, triangle) that are not identifiable as simple transforms of other common shapes, but rather are composed of simple limit rules based on their core components (line, point, curve, corner)
+
+      - "enablement" doesnt perfectly capture "power", and the concept of "enablement" also relies on the concept of "power", but it does differentiate power from other concepts & unite its possible implementations & meanings
+      - "symmetry" doesnt perfectly capture "balance"
+      - "similarity" or "substitutability" or "identity" doesnt perfectly capture "equivalence"
+
+    - are uniquely identifiable compared to other concepts
+      - balance is related to symmetry so these are not unique concepts but embedded/dependent/overlapping/hierarchical concepts
+      - however balance is clearly differentiable from power, as balance inherently involves equivalence and power doesnt, whereas power inherently involves enablement and balance doesnt
+
+
 ## Selection of optimal generative function
   - see problem-solving section "Solve problem with solution function selection"
 
-## Exploit Opportunities
 
-## Risk Chains
+## Identifying important semantic objects in a problem space
+  - example: exploit opportunities, monster systems/assumptions, risk chains, trade loops, variance cascades/flow, transaction iterations
 
-## Trade Loops
-
-## Monster Systems
 
 ## Standard Neural Network Design for initial complex problem factor identification reduction
   
@@ -712,6 +738,7 @@
       - generate new prediction function, according to previously identified change patterns of derived interface objects if they exist
       - re-apply whole process to generate the new prediction function or a neural network architecture to generate the new prediction function
 
+
 ## Object Layer & Interface Identification
 
   - there may be an optimal layer or other set of objects on one layer or across layers with which to frame a problem
@@ -727,6 +754,7 @@
   - all interactions that are not predicted in a emergent problem or designed solution space are sources of variance (and also may be exploit opportunities), that can convert a solution into a problem, or occasionally produce a solution by coincidentally interacting order & variance (a mutation that generates a function to protect from a pathogen, by trial & error of which mutations survive)
 
   - designed objects often differ from emergent objects in chaotic ways that produce more variance rather than reduce it, unless design is built on understanding of emergent objects higher up causal chain
+
 
 ## Identifying useful object combinations
 
@@ -840,268 +868,3 @@
     https://twitter.com/remixerator/status/1148816151125712896
     https://twitter.com/remixerator/status/1004578257637953537
     https://twitter.com/remixerator/status/1004578256820064257
-
-
-## Vuln potential of a solution
-
-  1. identify conceptual/type interactions of the solution
-    example: explore the interaction of random applied to random (or algorithms applied to themselves, like hash of a hash) for possible interference opportunities
-
-
-## Invention Prediction
-
-  1. Reverse-engineer: apply known useful functions (combine, reduce, standardize, compare, duplicate, randomize) 
-    to fulfill common useful intents (predict, verify, find, etc) & assess value of output product in problem space
-
-  2. Conceptual query: apply structure to conceptual combinations & check matching problem spaces if the output product has value for an agent in that space
-
-
-# Specific Analysis Strategies
-
-## Exploit Opportunity Analysis
-
-  - exploit opportunities involve a divergence between some expected legitimate input/output & actual malicious input/output
-
-  - inputs providing exploit opportunities can involve input assumptions related to:
-    - hardware (memory, CPU, threads, queries)
-    - language (stack/heap implementation)
-    - storage management (cache mechanism, garbage collection mechanism, optimization)
-    - condition (limit, metric)
-    - code (default tool, code, tool version, tool source, tool-management tool)
-    - config (definitions)
-    - permission (intended permissions vs. allowed permissions)
-    - intents (user, dev, protocol)
-    - actions (user (explicit decisions, implicit preferences), dev (auto/forced updates, data corruption fixes), automated (script running past its intended window of use), third party (browser, OS, anti-virus, isp))
-    - functions (retrieved, generated, lack of assumption coverage of input space)
-    - parameter values
-    - outputs (info leaks)
-
-  - exploit opportunity types:
-    - unenforced expectations (protocols)
-    - intent-expectation divergence
-      - expectation: "input intents are legitimate"
-        example: using legitimate input intents (login, use form, retrieve results) to build malicious output (info about data source/query engine/caching mechanism/filter used)
-        (searching big/complex/varied queries to find limits of query engine & matching with known query engine limits)
-      - expectation: "output intents are legitimate"
-        example: using legitimate tools (database query, session, form) to build malicious output intent "retrieve info from unauthorized account"
-        (searching for theorized terms used by other user to find out what other user is seeing in search results that could be used to derive other user's information exposure & habitual use)
-      - expectation: "input content is legitimate"
-        example: sending spam emails with target keywords designed to train theorized spam-detection AI model to target associated keywords in emails
-      - expectation: "input use is legitimate"
-        example: sending legitimate requests to establish pattern of use that can later be exploited 
-          (login from many locations/devices simultaneously from beginning of use to avoid identification as hackers later)
-      - expectation: "inputs cannot be used to get unauthorized info x"
-        example: 
-          - "using system stat/monitoring logs to identify readable folders by logger process"
-          - "injecting rule to remove comment chars in regex filter to activate disabled code not evaluated by tests"
-          - "separating submitted chars with delimiter to accumulate code chars in non-code files to make them eventually identified as code once full code char string is accumulated"
-
-## Communication Object Generation
-
-  ### Joke
-
-    #### Definition
-
-      ##### Attributes
-
-        I. difference
-
-          1. silliness (extreme difference in realism)
-
-            - lack of correct priority distribution (extreme un/importance attached to extremely un/important things - high/low stakes)
-
-            - lack of logic (unconnected assumptions, jumping to conclusions, logical fallacies)
-
-            - lack of probability (categorizing highly unrealistic assertions as fact, categorizing facts as opinions, categorizing product reviews as terrorism)
-
-            - lack of knowledge (implying such a huge lack of information that its silly)
-
-          2. surprise
-
-            - subversion of expectations (diverging vectors)
-
-            - alternate meanings (alternate routes)
-
-          3. relevance (circular or other shapes of intersections)
-
-            - can provide surprise in the joke by being relevant to prior implication of the joke in a surprising way
-
-        II. layers (multiple combinations of other attributes in joke)
-
-          - example:
-            - a joke can subvert expectations of a prior implication, or subvert expectations of the relevance of a prior implication to add another layer
-
-        III. point (implication of joke)
-
-          - a joke can have an underlying point, such as "not all stereotypes are true", or "applying the idea of stereotypes to a dog is funny because dogs cant choose their behavior so the idea of them having stereotypes to overcome is comical"
-
-        IV. brevity
-
-          - short jokes are often more difficult to construct but can be more powerful in surprise impact
-
-        V. route
-
-          - the route to a joke may add to the surprise of the joke
-
-          - example: 
-            - rather than just applying a standard formula like:
-              "replace object with a sillier object" ("my aunt thinks she's my mother" => "my aunt thinks she's my god/accountant/stylist")
-
-              you can add distortions to this standard formula by navigating through other objects first:
-              "replace object with an object that defeats the purpose of a prior object in a surprising way that makes a silly point"
-
-              - "my dog thinks shes my mom" => "my dog thinks she's my chew toy, im always provoking her into a fight with annoying impressions of politicians despite her repeatedly turning the other cheek in peaceful protest, except when she takes all the persecution out on plastic pikachu, continuing the unending cycle of war"
-
-              - "my dog thinks shes my best friend" => "my dog thinks she's my enemy and she's right because a real best friend wouldnt have shinier hair than you without pantene pro-v"
-
-      ##### Rules
-
-        - must be tied to reality in some way
-        - must have some nonzero non-real ratio
-        - must have at least one identifying joke attribute (difference attributes (silliness, surprise, relevance), or another joke attribute) with non-standard value different from a normal sentence
-
-      ##### Types
-
-        - topic (any object forming expectations, such as social group dynamics, norms, religious tenets, assumptions, stereotypes, roles, etc)
-        - style (meta-humor, comedian's comedy, dark humor, sarcasm, high brow, raunchy)
-        - attribute (contextual, political, self-aware, self-referential, fourth-wall breaking, joke commentary)
-
-    - common joke components/functions:
-
-      1. varying value on silliness spectrum:
-
-        - factual (definitely real): cats hate mice
-        - probable: cats hate things that run away
-        - not likely: cats hate things that run fast
-        - unlikely: cats hate things that move on wheels
-        - extremely unlikely: cats hate people in wheelchairs (the disabled)
-        - possible: cats hate people who make money move
-        - impossible: cats hate Jesus Christ, who created physics
-
-      2. silly divergence in expectations
-
-        - "a Mexican and a Jew walk into a bar. The Jew asks the Mexican if he's going to order a margarita. "What you think all Mexicans drink margaritas, ese?" They start fighting, and the Jew accidentally lands a punch on the Mexican, who bleeds a clear liquid that catches fire from a nearby drink. "Ay! Dios mio!" squealed the Mexican. "Watch your fists, holmes - don't you know Mexicans bleed tequila, wey? Not next to the flaming jello shots, amigo!" 
-          - the expectation is that the joke will imply the Jew was being racist, but it ends up implying the opposite of that expectation
-          - another layer of comedy comes from the idea of a Jew being the oppressor of another race, which has some historical context lending silliness to that implication
-
-      3. surprising relevance
-
-        I. relevance circle
-
-          - relevance circles can be funny because they can add a layer of surprise - connecting things that wouldnt normally be connected
-
-          - "the prison guard reminded the convicts that they could be let out early for good behavior, instead of playing dead when it was time to take their medicine, and only peeing on purebred dogs on the basketball court" 
-            - has prison gang (purebred/race supremacist) relevance tied to initial implication of prison guard-criminal dynamic
-
-        II. intersection of alternate meaning waves
-
-          - "the computer disk's memory was corrupted, so it didnt recognize its mother John McAfee and thought he was trying to kill it with antivirus medication, to prevent it from exploiting browser caches for personal gain"
-
-          - has two intersection points of alternate meaning waves for "memory" & "corruption"
-
-            1. memory corruption => amnesia
-            2. memory corruption => paranoia of being caught in corrupt, exploitative transactions, related to memory management
-
-          - also has a relevance circle, tying the end implication "corrupt exploitative memory management" to the first implication "memory was corrupted", and the middle implication "paranoid amnesia"
-
-        III. defeating the purpose
-          
-          - defeating the purpose of a prior implication in the joke (subversion of expectations, in the form of contradicting relevance of prior implication)
-
-          - finding the silliest possible position for an object to occupy, given what the object is
-
-            - "the oreo CEO submitting a flavor suggestion in their next flavor contest"
-            - the implication that "they have no other power to influence that decision" defeats the purpose of "being a CEO"
-
-          - irony: 
-
-            - reversal/perversion of intent & relevant implication
-
-            - framing "bias based on unchosen attributes" (racism, gender bias) as an "unchosen attribute":
-              
-              - example: "racism/gender bias is passed on genetically"
-                intent: "persecution is racist", implication: "racists are persecuted"
-
-              - example: "the tiger conservationist was eaten by a tiger"
-                intent: "protecting tigers", implication: "protecting themselves from tigers"
-
-        IV. topical for recent trends
-
-          - many jokes, like insights, have a time limit of relevance, and are most powerful when new, articulating a previously unarticulated trend that many were feeling was absurd, but none had captured with language
-          - some classic jokes retain power because theyre insightful to most people who encounter them, and not incorporated in the culture as a default assumption yet
-
-      4. comical difference
-
-        - comical differences can be between any object (assumption, definition, adjacent object, implication, topic, type, layer, attribute, rule, etc) in the joke and any other object, if there is an expectation for those objects to distort in the first place
-
-        examples:
-
-        - between one sentence & the next: 
-          "I told my mom I was going to run some errands, so I dog-walked my neighbor."
-
-        - between style & content: 
-          "Mariah Carey believes George Foreman grills to be a relatable & timeless reference. In this essay I will" (style: serious essay writing, content: silly pop music)
-
-        - assumption taken to an exaggerated extreme version of itself:
-          "Yeah friends are cool but ... you ever caught something you dropped before it reached the ground?"
-          (yes it feels good, but this is an extreme exaggeration of how good it feels)
-
-        - extreme realism of a silly assumption
-          "officer wishbone has requested time-off to deal with the loss of his wife, squeaky pikachu toy"
-          (silly assumption: "dog is a police officer", extreme realism: "depression after loss of a loved one, which for a dog might be a squeaky toy")
-
-        - framing something very unlikely as extremely obvious assumption
-          "I took the dog to the barber with me, because it wasnt fair that I got to change my hair style every week. Besides, if I didnt take her to the barber, someone else would cut her hair while I wasnt being vigilant, you have to be careful"
-
-        - mad libs: replacing objects or verb in a normal sentence with silly versions
-          normal sentence: "library study buddy oversold their history class skills"
-          silly sentence: "library study buddy oversold their quiet-chip-eating skills"
-
-        - lists of unrelated things (mixing abstraction level, topic, etc)
-          "the main reason I was late is not just traffic but also grandma gangs, highway lane-switching personal dramas, the Jews who run the media, manipulative billboard copywriters, bank robber getaway chases, Trent Reznor, the liberal media, and the Office franchise making everyone slower on the highway because theyre busy arguing about who Michael should have ended up with instead of focusing on the road"
-
-        - finding silly possibilities (aim for unlikely rather than extremely silly or extremely realistic, because unlikeliness is more surprising, subtler, & difficult to find)
-
-        - mixing extremely different social abstractions (types, identities, positions, relationships, histories, conceptual objects like assumptions/priorities) is often comical because norms & differences between social groups are often silly or pointless or insignificant, so pretending they're important differences is comical
-
-          - "everyone assumes white people cause all of society's problems, and they're partially right, because some goths are white, and so are some Jews, and so are some clowns"
-
-          <img src="Screen Shot 2018-10-24 at 3.41.49 AM.png" />
-
-        - a combination of an assumption & an illogically concluded assumption (misunderstanding) to generate extreme silliness (stupidity):
-          "the stadium rules dont say 'dont feed the players' so that means they want us to throw popcorn at them"
-
-        - juxtaposition of big ego/high stakes with trivial/minor details to generate pettiness:
-          "I called the cops because no one complimented my Xmas sweater"
-
-        - assuming the insanity/stupidity of an agent to generate silliness
-          "is there a mental institution nearby with a recent break-out who would like to speak with you?"
-
-        - acting the role of straight enforcer on a chaotic generator of rule-breaking to generate comical difference, such as framing "regulating others' lack of self-awareness of their misunderstandings" as a "need" rather than an "option", which is how it would normally be classified
-
-          "I can recommend a good therapist, if you genuinely need to keep talking about your dog's unwillingness to match outfits with you"
-
-        - humoring an insane person
-          "I can see why you thought wearing a hijab would make you popular with Muslims, rather than peaceably co-existing with them, which wasnt getting you any personal attention, which is specifically forbidden in the Quran"
-
-        - huge cognitive & semantic distance between previous & current sentence to generate surprise:
-          "yeah I could have taken those bullies - to church, but I didnt have my church bus pass on me because I keep it in my respect-for-Jesus/sinning pants"
-
-
-## Bio System Analysis
-
-  - nth iteration simulations: analysis that treats cyclical, recursive, cascading & iterative processes as trade loops between positions & systems
-    - example: in addition to analyzing how a drug is metabolized:
-      - how its structure will interact with other structures
-      - how the resulting structures after the nth-interaction will interact with other resulting structures, etc
-      - how the dna of a probiotic or other microorganism treatment could get re-purposed by microorganisms
-      - how the activity of a gene could get accidentally impacted in other pathways & which of those pathways are possible given a treatment
-      - how an interaction can be minimally modified to produce extremely different results
-      - how nth-iteration interactions will be timed with other processes cycling in that time
-      - how causal cascades can cycle to be interactive with the treatment
-      - how functionality gaps or interactions at nth-iteration can provide opportunities for mutation & other randomness sources 
-
-
-## Protocol Recommendations
-  
-  1. Auto-update crypto keys/algorithms to use constants that are always guaranteed to be below x% risk that they'll be hacked given common computational resources.
