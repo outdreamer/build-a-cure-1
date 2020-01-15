@@ -978,7 +978,10 @@
 
     - common functions/components:
 
-      - a combination of huge misunderstanding to generate stupidity
+      - a combination of huge misunderstanding to generate stupidity:
+        "the stadium rules dont say 'dont feed the players' so that means they want us to throw popcorn at them"
+
+      - juxtaposition of big ego/high stakes with trivial/minor details to generate pettiness:
         "I called the cops because no one complimented my Xmas sweater"
 
       - assuming the insanity/stupidity of an agent to generate silliness
