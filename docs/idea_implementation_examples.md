@@ -940,6 +940,8 @@
         - lists of unrelated things (mixing abstraction level, topic, etc):
           "the main reason I was late is not just traffic but also grandma gangs, highway lane-switching personal dramas, the Jews who run the media, manipulative billboard copywriters, bank robber getaway chases, Trent Reznor, the liberal media, and the Office franchise making everyone slower on the highway because theyre watching it on their phones"
 
+        - mixing social abstractions (types, identities, positions, relationships, histories, conceptual objects like assumptions/priorities) is often comical because norms & differences between social groups are often silly or pointless or insignificant, so pretending they're important differences is comical
+
     - common functions/components:
       - a combination of huge misunderstanding to generate stupidity
       - assuming the insanity/stupidity of an agent to generate silliness
