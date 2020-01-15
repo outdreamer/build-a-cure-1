@@ -713,7 +713,7 @@
 ## Post Problems
 
   - whats next after automating problem-solving (of problems within a semi-known system)?
-  
+
   - designing systems that have required problem types to achieve some goal, beyond solving a problem within a system
     - the output of problem-solving is not just solutions, but also:
       - objects (insights, insight paths, patterns) used to build them
@@ -735,17 +735,42 @@
       - out of all the problems which are solvable in this universe, there may be a subset that arent supposed to be solved 
         (implying the metric to calculate is whether life in this universe can protect that secret)
 
-    - this means we'll be able to determine if current choices will converge to an intersection/singularity point of no return that exerts a permanent limit
-      - a limit such as a maximum on the potential growth or adaptation of the species, which we can avoid using this analysis
+    - this means we'll be able to determine:
+      
+      I. decision chains to avoid
 
-    - we'll also be able to identify other harmful decision chains
-      - such as those that will create species capable of destroying all other species (like machines or organisms that could destroy us)
+        - which operations on systems will produce absolute universal limits of operations between infinities & the types & concepts generating them
 
-    - we'll also be able to adapt to systems that don't fit existing systems
-      - such as communication with aliens that dont require information because they have their own problem-solving methods in each of their processing centers
+        - such as those that will create species capable of destroying all other species (like machines or organisms that could destroy us)
 
-    - we may also be able to use this analysis to derive priority, complexity & other metadata of the universe to determine its key vulnerabilities, inefficiencies, and position among possible universes
-      - such as a universe where layers or points or variance are the fundamental structure, rather than dimensions or space-time
-      - or universes with different configurations of interface networks
-      - or universes with the same configuration of interface networks, but different structural assignments in information layers
-      - or universes with more information layers than ours (potential information, verified information, prior information, information derivation methods, etc)
+        - if current choices will converge to an intersection/singularity point of no return that exerts a permanent limit
+
+          - a limit such as a maximum on the potential growth or adaptation of the species, which we can avoid using this analysis
+
+        - whether quantum physics may make the universe too computable to exist; the system seems very fragile/dependent on lack of specific entanglements
+
+          - what if the particle of one bomb was entangled w/ a particle in another bomb, & was accidentally set off?
+          - this is why (post-system context problem-solving) there's demand for methods to identify universe-invalidating decision chains
+          - it's not too late to preserve enough variance to allow adaptation to the point of discovery of universal calculation priorities
+
+      II. how to adapt to systems that don't fit existing systems or currently computationally derivable combinations of existing systems
+
+        - such as communication with aliens that dont require information because they have their own problem-solving methods in each of their processing centers
+
+      III. universe priority, complexity & other metadata to determine its key vulnerabilities, inefficiencies, and position among possible universes
+
+        - such as a universe where layers or points or variance are the fundamental structure, rather than dimensions or space-time
+        - or universes with different configurations of interface networks
+        - or universes with the same configuration of interface networks, but different structural assignments in information layers
+        - or universes with more information layers than ours (potential information, verified information, prior information, information derivation methods, etc)
+
+        - it's also important to build tools that can handle the priorities we identify as key to this universe so that our decisions from that point can fulfill those priorities & benefit other universes, so we have the required tools to do so when we reach the tech that can identify them
+
+          - if our universe is supposed to solve a problem & it doesn't, that may have a chain reaction on other universes that we can predict, & then export our prediction mechanism so other universes can also prevent their inhabitants from making sub-optimal decisions for everyone
+
+        - my methods of problem-solving automation in system-context problem-solving can identify the correct ratio of variance to aim for, the correct order of problems to solve (whether to solve encryption or optimal government structure first), which questions or other problem types should be maintained in which positions, etc
+
+          - this translates into post-system context problem-solving spaces to the correct ratio & position of system types to avoid universe boundaries, which change rules to deploy across systems to avoid triggering harmful chain reactions, etc
+
+
+
