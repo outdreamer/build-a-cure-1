@@ -1,7 +1,9 @@
 # Idea Implementations
 
 ## implementation of code selection algorithm to select function combinations according to data structure & priority at function stack run time
-    - example:
+
+  - example:
+
     - select code that is optimized for fewest lines of code/quickest execution time/data storage usage/state storage/memory usage based on input data structure & variance
       - "if input has variance k, allow for conditions checking for parameters of variance"
         - "if input has types [a, b, c], select conditions checking for corresponding types [a1, b1, c1]"
@@ -24,7 +26,8 @@
                   if word_type:
                     type_a.add(word_type)
 
-## implementation of code building algorithm:
+## implementation of code building algorithm
+
     function_metadata = {'input': line, 'output': pattern, 'attribute': {'subtype': 'type'}}
 
     Prerequisites:
@@ -165,15 +168,17 @@
           - generate_correct_patterns() is applied to other patterns before applying get_alts()
           - generate_pattern_type_patterns() is relevant in that it assigns types to generate a pattern so this function could be extra useful for input/output relationship comparison
 
+
 ## Object Model Applications
   
   ### Problem Source Identification
 
-    - example: if a bottle containing juice is the only thing someone drinks regularly and it makes them sick, 
-        how do you figure out that it's bc of a chemical on the inner lining of the bottle, programmatically?
+    - example: if a bottle containing juice is the only thing someone drinks regularly and it makes them sick, how do you figure out that it's most probably bc of a chemical on the inner lining of the bottle, programmatically - ranking less probable causes as well
 
       - query object definitions involved (bottle, juice, person) and relationships involved (containing, drinking)
+
       - query attributes of objects that interact (with output: bottle lining-juice, bottle cap-juice, manufacturing machinery-juice, juice-person, etc)
+
       - query known strategies of implementation - with output:
         - 'aligned supply and demand may not match in quantity, quality, or timing'
         - 'goods are often not purchased immediately because supply and demand matching is imperfect as information is often unavailable'
@@ -184,17 +189,22 @@
         - 'a company usually finds an optimal solution before the sub-optimal units are purchased'
         - 'if a company finds an optimal solution, they often still try to sell the remaining supply of the sub-optimal solution'
         - 'usually the company produces x batches before they find a better solution, if they integrate customer feedback and use third party evaluators'
+
       - query causes of that illness (medication, nausea, food poisoning)
-      - eliminate unlikely causes using filtering rules, for efficiency (reverse later if none found among likely rules):
+
+      - eliminate unlikely causes using filtering rules, for efficiency (reverse later if none found among likely rules)
         - 'regular use of a product can produce sustained or compounding impact'
         - 'toxic chemicals are more likely to be used by large companies with ties to legislators'
         - 'ingesting chemicals is x times more toxic than breathing or touching chemicals'
         - 'the industry producing this product has x lawsuits/reports and z oversight relative to other industries'
         - 'the industry producing this product has a regulation loophole x that would allow exploit y'
         - 'this company's business model doesnt incentivize quality control at the source level'
+
       - after scanning all the objects someone interacts with regularly, this set of interactions should be able to identify the bottle lining as the problem
+
       - if no problem source is found among their current objects, their purchase history & that of those they interact with can be scanned for prior exposure or dietary causes
-      - this uses insight path technology
+
+      - uses insight path technology
 
   ### Interaction Predictions
 
@@ -206,8 +216,13 @@
     - it would also scan the commonly used & potential use cases for possible intentions with the product
       - 'if youre planning on using it for use case "self-treatment", only take x amount for y period of time if youre otherwise healthy'
 
+
 ## Insight Paths
-  - use patterns in network structures & insight paths to predict probable missing pieces of networks or trajectory of insight path
+
+  - use patterns in network structures & insight paths to predict:
+    - probable missing pieces of networks
+    - insight path of a route type (optimal/realistic)
+    - insight path trajectory for a particular assumption set
 
 ## Math/Language translation function
 
@@ -262,6 +277,7 @@
       - math rule
 
     - example of language -> operator:
+
       1. language rule: "control the power of power to control power"
 
       2. operator mapping: "p = x * (p ^ p) + y" (make a function with output: power, built out of inputs: power ^ power)
@@ -335,6 +351,7 @@
   - add examples of variable accretion patterns (how an object like a system or a type becomes influenced by a new variable)
 
     - variable path pattern convergence/divergence and interaction with systems/objects/types/rules
+
       - this should enable you to predict:
         - variable flow (which variables are about to be irrelevant, which variables would disrupt others, which variable types to use)
         - variance flow:
@@ -347,6 +364,7 @@
         - optimal origin positions of concepts to allow successful systems to evolve
 
     - stable variable collisions occur when variables:
+
       - dont disrupt the system interactions
           example:
           - produce metabolites that are handled by existing mechanisms
@@ -363,6 +381,7 @@
           - provide self-repair or self-regenerative capacity to create independence within the system
 
     - unstable variable collisions happen when variables:
+
       - introduce more variance than needed or supported, or enter the system at a point or state where supporting functionality is inaccessible or underivable
           example: 
           - interfering with a gene that is not regulated/protected
@@ -378,11 +397,7 @@
 
     - example:
 
-      - more complex models progress to simpler models with increases in system stability, 
-        which create a system that can interact with more systems without a corresponding degree of change disrupting its functioning, 
-        but rather aggregates logic & fits it in the places where it can enhance stability,
-        as a steadily increasing degree of exposure to new variables allows the system enough time 
-        to produce handlers that standardize chaotic inputs to usable inputs
+      - more complex models progress to simpler models with increases in system stability, which create a system that can interact with more systems without a corresponding degree of change disrupting its functioning, but rather aggregates logic & fits it in the places where it can enhance stability, as a steadily increasing degree of exposure to new variables allows the system enough time to produce handlers that standardize chaotic inputs to usable inputs
 
       - this progression makes it possible to identify:
         - when a simpler model is the future & more useful version of a complex model
@@ -390,13 +405,8 @@
         - the set of reasons why its moving in that direction (system unraveling through interaction with more complex systems its not prepared for, etc)
 
 
-## Crypto
-
-  1. use predictive tools to predict transactions & calculate them in advance to speed up tx
-    - this would assess people's known resources to build an index of global demand/supply, then calculating through these resource distributions, economic incentives for trades, social networks, platform dominance, & product availability & findability (search results rankings) - which tx were likely to happen where for which products, then calculate those tx in advance
-
-
 ## Concept Operations
+
 
   I. Match problem & solution using definition & standardization, applying increasing limits until problem & solution match
 
@@ -487,6 +497,7 @@
 
     - further requirements can be added to the solution with the same procedure (hash to make the tx log shorter, etc)
 
+
   II. Solve problem with structure fitting
 
     - rather than sculpting an invention using an increasing set of limits, you can select or derive a structure that probably matches, then check if it fits
@@ -494,12 +505,15 @@
     1. using the requirements of a solution, design a structure (or range of structures) that may match the problem space
 
     2. check if it fits the problem space
+
       - 'fits the problem' means it:
+
         - fills in gaps of the problem if the problem root cause is a lack of something (missing info or resources)
         - corrects alignment of vectors in the problem if the problem root cause is a misalignment (misaligned incentives, priorities, etc)
         - reduces problem dimension if the problem root cause is complexity (too many factors to measure, doesnt fit existing tools, can be solved if broken into smaller problems)
 
     example:
+
       - derive possible structures given the problem definition & the set of target concepts:
 
         - problem root cause (problem type) of "requiring trust" is "lack of information"
@@ -541,6 +555,7 @@
                     - check if applied distorting operation implementation moves problem space toward priority (trustless) or reduces problem dimension (info asymmetry):
                       "does including transaction log (or subset of it) with transactions reduce trust required (info asymmetry between prior & current transactions)?"
 
+
   III. Solve problem with solution function selection
 
     - for each problem dimension, there is a set of functions that can reduce the problem dimension to a point, by finding the formula for the shape of that problem dimension (like a line)
@@ -554,6 +569,7 @@
       - example:
         - a problem space has several dimensions, one of which is missing information or conflicting incentives
         - a solution formula to reduce these dimensions might be a formula to get or derive information, or a formula to align incentives
+
 
   IV. Solve problem with Conceptual Query
 
@@ -623,6 +639,21 @@
           - ledger has embedded concept of balance in asset trade amounts & assets
           - matching of information supply & demand (allocate tx history to tx metadata, where it has most value)
 
+
+  V. Solve problem with Conceptual Combination Metadata query
+
+  - if you know that a certain configuration of uniqueness & randomness can output a lack of predictability, and you know that a lack of predictability means randomness can be verified (trust in randomness is not required), then for any problem with a target intent of "verifying randomness", or similar intents ("verifying information", "correcting info asymmetry", "not requiring trust"),
+      you can match that configuration of uniqueness & randomness with the problem and see if it reduces the problem dimensions (solves the problem)
+
+  - this can also be abstracted:
+    - rather than storing "uniqueness/randomness config => unpredictability", you can store:
+      - "consistent variance => upredictability"
+      - "consistent variance => randomness"
+      - "distributed variance == randomness"
+    - these abstract rules between conceptual configurations (a combination of concepts in a particular structure, like a system) can generalize the configuration to more problem spaces
+
+  - these abstracted configurations have different metadata (intent, priority, logic flow, variance level, causation) and can therefore be useful in different (possibly meaning "additional") circumstances than the original configuration
+
 ## Concept Derivation
 
   - identifying unique objects in a system that cant be defined in terms of standard operations on other objects
@@ -659,7 +690,7 @@
 
 
 ## Identifying important semantic objects in a problem space
-  - example: exploit opportunities, monster systems/assumptions, risk chains, trade loops, variance cascades/flow, transaction iterations
+  - example: identifying optimal structure, or object identity (exploit opportunities, monster systems/assumptions, risk chains, trade loops, variance cascades/flow, transaction iterations) to understand a particular problem space (markets, function prediction/derivation/reduction, attribute/path optimization, compression, metadata generation (moment-generating function), etc)
 
 
 ## Standard Neural Network Design for initial complex problem factor identification reduction
@@ -762,6 +793,23 @@
 
   - combine structural & conceptual objects (vector + priority)
 
+  - what is the set of interface objects optimal for solving a problem of particular dimension (x, y, z) & shape a?
+
+
+## Variance Shapes
+  
+  - given that variance flows through systems in patterns, what are the common variance shapes, given host system type & structure?
+
+
+## Pattern Shapes
+
+  - given that observed patterns often have patterns, what are the common pattern & pattern-generation shapes, given variance level & observation tools?
+
+
+## Prediction Shapes
+
+  - given that predictions are often between similarly complex systems & target metrics, what the common shapes of predictions, given system type & structure and metric type?
+
 
 ## Risk Shapes
 
@@ -794,6 +842,7 @@
       - categorizing functions (delegating risk to the accuracy of the function combination of variables, constants & operations)
       - probability distributions (delegating risk to accuracy of distribution selection)
 
+
 ## Causal Shapes
 
   - most causal shapes are cyclical, tensor, layer, or network-shaped rather than one-directional vector-shaped, which is why some existing methods are inherently incapable of producing system-fitted insights that wont break the system when applied (a particular drug that is not evaluated for bio-system impact, just impact on a particular pathogen or process)
@@ -806,6 +855,7 @@
       meaning it either:
         - doesn't exist (at any time), like a final output that doesnt ever return to interact with other systems as an input
         - is one of the few things that does exist (across all times), like a concept that never stops influencing variance
+
 
 ## Predicting Interface Evolution
   
@@ -827,44 +877,3 @@
   - what if the idea of interface selection is flawed?
     - what if there's an optimal interface to represent all information (interface-building formula), rather than a specific one (causal, object, type, function, priority, system, structure interface)
     - an interface is just a standardizing filter - a formula to generate the right standardizing filter for a particular task would be better than relying on interface definitions
-
-## Randomness Generator
-
-  1. calculate maximal variance points in a system (variables most unrelated to all other variables), and equalize their contributions
-
-    example:
-      - "cloud size" is directly related to adjacent water, wind patterns, temperature & elements in adjacent air
-      - "cloud size" is indirectly related to moon phase (influences wind patterns), sun exposure (influences temperature), pollution (influences elements in air)
-      - "cloud size" is very indirectly related to astrology 
-        (influences moods, emotions, subconscious, dreams, & market decisions, which influences market trends, which influence side effects of production like pollution)
-      - cloud size is so indirectly related to astrology that it may be considered independent of astrology, despite the fact that every object is inherently related to all other objects
-      - we can say that "cloud size" has a "maximal causative distance" or "minimal dependence" on "astrology"
-      - other ways to find a variable with minimal dependence on some other variable include:
-        - varying abstraction level:
-          - the concept of 'balance' is indirectly related to everything but only specifically related to a small subset of things (justice, symmetry, etc), most of which are either conceptually abstract, or mathematically abstract (specific to mathematics, like a low-level operation or attribute that can be calculated numerically)
-
-        - querying its dependent variables 
-          (cloud size is caused by element distribution, so element distribution is independent of cloud size)
-          - in reality this is not real independence, because many dependence relationships are circular, either 
-            - directly (one circular loop between two nodes), or
-            - indirectly (the output dependent node, cloud size, goes through many systems before returning some input requirement of the input independent node, element distribution)
-            - this is because there are very few to zero ways to generate an output that has no side effects on input requirements (input inputs)
-              - an example is "victimless crimes" like ejecting junk into space, which may not impact us immediately but definitely will return some causation (in the form of required inputs to some process) to our species eventually
-      - another example is "corners of a square":
-        - each side of the square is equal, so it's equally likely that the "square" system will generate a movement of balls within the square, that pushes a ball to one of its corners
-        - the corners represent a maximal variance variable (corner), which are unique in that if a ball is in one corner, it necessarily cannot also be in some other corner
-        - this is the foundation of identifying not just maximal variance-generating independent variables in a system, but also system nodes (gathering points of inputs/outputs) & interfaces (standards)
-
-  2. design systems that optimize the number of independent max variance points
-    - how do you design a system with maximal variance-generating independence points?
-      - take the problem of a square - how would you generate the corners such that:
-        - each corner is unique compared to other corners
-        - each corner exerts the same influence on the ball movements within the square
-        - each additional corner adds to the variance of the ball movements
-      - eventually if you add too many corners, you get a circle - is this the maximal variance implementation of a square, or is there some point between a square and a circle with more variance-generating points than either?
-        - it depends on the variables that youre trying to optimize the randomness of - if they can occupy any point on the circle, a circle may be more appropriate - if they can only occupy a corner, you need to find some combination of corners that is not a circle in order to maximize their variance
-
-  - mentioned here:
-    https://twitter.com/remixerator/status/1148816151125712896
-    https://twitter.com/remixerator/status/1004578257637953537
-    https://twitter.com/remixerator/status/1004578256820064257
