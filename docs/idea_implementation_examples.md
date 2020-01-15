@@ -1013,9 +1013,23 @@
             - "the oreo CEO submitting a flavor suggestion in their next flavor contest"
             - the implication that "they have no other power to influence that decision" defeats the purpose of "being a CEO"
 
+          - irony: 
+
+            - reversal/perversion of intent & relevant implication
+
+            - framing "bias based on unchosen attributes" (racism, gender bias) as an "unchosen attribute":
+              
+              - example: "racism/gender bias is passed on genetically"
+                intent: "persecution is racist", implication: "racists are persecuted"
+
+              - example: "the tiger conservationist was eaten by a tiger"
+                intent: "protecting tigers", implication: "protecting themselves from tigers"
+
       4. comical difference
 
         - comical differences can be between any object (assumption, definition, adjacent object, implication, topic, type, layer, attribute, rule, etc) in the joke and any other object, if there is an expectation for those objects to distort in the first place
+
+        examples:
 
         - between one sentence & the next: 
           "I told my mom I was going to run some errands, so I dog-walked my neighbor."
@@ -1031,16 +1045,23 @@
           "officer wishbone has requested time-off to deal with the loss of his wife, squeaky pikachu toy"
           (silly assumption: "dog is a police officer", extreme realism: "depression after loss of a loved one, which for a dog might be a squeaky toy")
 
+        - framing something very unlikely as extremely obvious assumption
+          "I took the dog to the barber with me, because it wasnt fair that I got to change my hair style every week. Besides, if I didnt take her to the barber, someone else would cut her hair while I wasnt being vigilant, you have to be careful"
+
         - mad libs: replacing objects or verb in a normal sentence with silly versions
           normal sentence: "library study buddy oversold their history class skills"
           silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 
-        - lists of unrelated things (mixing abstraction level, topic, etc):
+        - lists of unrelated things (mixing abstraction level, topic, etc)
           "the main reason I was late is not just traffic but also grandma gangs, highway lane-switching personal dramas, the Jews who run the media, manipulative billboard copywriters, bank robber getaway chases, Trent Reznor, the liberal media, and the Office franchise making everyone slower on the highway because theyre busy arguing about who Michael should have ended up with instead of focusing on the road"
 
-        - mixing social abstractions (types, identities, positions, relationships, histories, conceptual objects like assumptions/priorities) is often comical because norms & differences between social groups are often silly or pointless or insignificant, so pretending they're important differences is comical
+        - finding silly possibilities (aim for unlikely rather than extremely silly or extremely realistic, because unlikeliness is more surprising, subtler, & difficult to find)
+
+        - mixing extremely different social abstractions (types, identities, positions, relationships, histories, conceptual objects like assumptions/priorities) is often comical because norms & differences between social groups are often silly or pointless or insignificant, so pretending they're important differences is comical
 
           - "everyone assumes white people cause all of society's problems, and they're partially right, because some goths are white, and so are some Jews, and so are some clowns"
+
+          <img src="Screen Shot 2018-10-24 at 3.41.49 AM.png" />
 
         - a combination of an assumption & an illogically concluded assumption (misunderstanding) to generate extreme silliness (stupidity):
           "the stadium rules dont say 'dont feed the players' so that means they want us to throw popcorn at them"
