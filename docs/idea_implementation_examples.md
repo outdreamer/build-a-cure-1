@@ -906,7 +906,7 @@
 
         I. difference
 
-          - silliness (extreme difference in realism)
+          1. silliness (extreme difference in realism)
 
             - lack of correct priority distribution (extreme un/importance attached to extremely un/important things - high/low stakes)
 
@@ -916,21 +916,43 @@
 
             - lack of knowledge (implying such a huge lack of information that its silly)
 
-          - surprise
+          2. surprise
 
             - subversion of expectations (diverging vectors)
 
             - alternate meanings (alternate routes)
 
-          - relevance (circular or other shapes of intersections)
+          3. relevance (circular or other shapes of intersections)
 
             - can provide surprise in the joke by being relevant to prior implication of the joke in a surprising way
 
         II. layers (multiple combinations of other attributes in joke)
 
+          - example:
+            - a joke can subvert expectations of a prior implication, or subvert expectations of the relevance of a prior implication to add another layer
+
         III. point (implication of joke)
 
           - a joke can have an underlying point, such as "not all stereotypes are true", or "applying the idea of stereotypes to a dog is funny because dogs cant choose their behavior so the idea of them having stereotypes to overcome is comical"
+
+        IV. brevity
+
+          - short jokes are often more difficult to construct but can be more powerful in surprise impact
+
+        V. route
+
+          - the route to a joke may add to the surprise of the joke
+
+          - example: 
+            - rather than just applying a standard formula like:
+              "replace object with a sillier object" ("my aunt thinks she's my mother" => "my aunt thinks she's my god/accountant/stylist")
+
+              you can add distortions to this standard formula by navigating through other objects first:
+              "replace object with an object that defeats the purpose of a prior object in a surprising way that makes a silly point"
+
+              - "my dog thinks shes my mom" => "my dog thinks she's my chew toy, im always provoking her into a fight with annoying impressions of politicians despite her repeatedly turning the other cheek in peaceful protest, except when she takes all the persecution out on plastic pikachu, continuing the unending cycle of war"
+
+              - "my dog thinks shes my best friend" => "my dog thinks she's my enemy and she's right because a real best friend wouldnt have shinier hair than you without pantene pro-v"
 
       ##### Rules
 
