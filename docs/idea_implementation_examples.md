@@ -724,4 +724,12 @@
       - operations on the problem object, to solve many problems at once, across different systems
       - operations on the solution object, to create self-destructing solutions, solutions that ensure the prevention of their own disablement, solution that stabilize system objects, etc
       - operations on concept combinations: designing, fitting & applying protocols, rule types (change, governing, learning rules), solutions, problem-generators, variance-generators as needed to adapt an object set to fit into other object sets better
-      
+    - this type of analysis is to increase predictive capacity, so the emergent trends many iterations from now can be determined with existing tools
+    - this means we'll be able to determine if current choices will converge to an intersection point that exerts a permanent limit on the potential growth of the species, which we can avoid using this analysis
+    - we'll also be able to identify decision chains that will create species capable of destroying all other species (such as machines or organisms that could destroy us)
+    - we'll also be able to adapt to systems that don't fit existing systems, such as communication with aliens that dont require information because they have their own problem-solving methods in each of their processing centers
+    - we may also be able to use this analysis to derive priority, complexity & other metadata of the universe to determine its key vulnerabilities, inefficiencies, and position among possible universes
+      - such as a universe where layers or points or variance are the fundamental structure, rather than dimensions or space-time
+      - or universes with different configurations of interface networks
+      - or universes with the same configuration of interface networks, but different structural assignments in information layers
+      - or universes with more information layers than ours (potential information, verified information, prior information, information derivation methods, etc)
