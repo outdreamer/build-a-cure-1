@@ -1,6 +1,28 @@
 # Idea Implementations
 
 ## Object Model Applications
+
+  ### Problem Type Prediction for a System
+
+    - given a system structure, which problem types are likely to occur?
+
+    - problem types:
+
+      - conflicts
+        - conflicting inputs/requirements/logic/incentives/assumptions
+
+      - asymmetries
+        - resource asymmetries (misallocated info, cause, power, variance)
+        - emergent patterns created by imbalances in usage patterns
+
+      - variance injections
+        - unrestricted inputs
+        - unhandled error types
+
+      - misaligned incentives 
+        - (monitoring function not given reason to check lib building monitoring function)
+
+      - incorrect position/structure/rule/direction
   
   ### Problem Source Identification
 
