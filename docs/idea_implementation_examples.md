@@ -896,6 +896,37 @@
           - "injecting rule to remove comment chars in regex filter to activate disabled code not evaluated by tests"
           - "separating submitted chars with delimiter to accumulate code chars in non-code files to make them eventually identified as code once full code char string is accumulated"
 
+## Communication Object Generation
+
+  ### Joke
+    - definition: 
+      - silly divergence in expectations
+
+      - levels of silliness:
+        - factual (definitely real): cats hate dogs
+        - probable: cats hate things that run away
+        - not likely: cats hate things that run fast
+        - unlikely: cats hate things that move on wheels
+        - extremely unlikely: cats hate people in wheelchairs (the disabled)
+        - possible: cats hate people who make money move
+        - impossible: cats hate physics
+
+      - surprising relevance
+      
+      - comical difference
+        - between one sentence & the next
+        - between style & content
+        - assumption taken to an exaggerated extreme
+        - extreme realism of a silly assumption
+      - comical combination
+
+    - core functions/components:
+      - a combination of huge misunderstanding to generate stupidity
+      - assuming the insanity/stupidity of an agent to generate silliness
+      - acting the role of straight enforcer on a chaotic generator of rule-breaking to generate comical requirements, such as the need to regulate others' lack of self-awareness of their own comically huge misunderstandings
+      - humoring an insane person
+      - huge cognitive & semantic distance between previous & current sentence to generate surprise
+
 ## Bio System Analysis
 
   - nth iteration simulations: analysis that treats cyclical, recursive, cascading & iterative processes as trade loops between positions & systems
