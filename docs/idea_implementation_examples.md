@@ -900,32 +900,45 @@
 
   ### Joke
 
-    - definition: 
+    #### Definition
 
-      - attributes:
+      ##### Attributes
 
-        - extreme difference:
+        I. difference
 
           - silliness (extreme difference in realism)
 
-            - lack of logic
+            - lack of logic (unconnected assumptions, jumping to conclusions, logical fallacies)
 
-            - lack of probability
+            - lack of probability (categorizing highly unrealistic assertions as fact, categorizing facts as opinions, categorizing product reviews as terrorism)
 
-            - lack of knowledge
+            - lack of knowledge (implying such a huge lack of information that its silly)
 
           - surprise
+
             - subversion of expectations (diverging vectors)
+
             - alternate meanings (alternate routes)
 
           - relevance (circular or other shapes of intersections)
 
-        - layers (multiple combinations of other attributes in joke)
+        II. layers (multiple combinations of other attributes in joke)
 
-      - rules:
+        III. point (implication of joke)
+
+          - a joke can have an underlying point, such as "not all stereotypes are true", or "applying the idea of stereotypes to a dog is funny because dogs cant choose their behavior so the idea of them having stereotypes to overcome is comical"
+
+      ##### Rules
+
         - must be tied to reality in some way
         - must have some nonzero non-real ratio
         - must have at least one identifying joke attribute (difference attributes (silliness, surprise, relevance), or another joke attribute) with non-standard value different from a normal sentence
+
+      ##### Types
+
+        - topic (any object forming expectations, such as social group dynamics, norms, religious tenets, assumptions, stereotypes, roles, etc)
+        - style (meta-humor, comedian's comedy, dark humor, sarcasm, high brow, raunchy)
+        - attribute (contextual, political, self-aware, self-referential, fourth-wall breaking, joke commentary)
 
     - common joke components/functions:
 
