@@ -903,14 +903,29 @@
     - definition: 
 
       - attributes:
-        - silliness (extreme difference in realism)
-        - surprise (diverging vectors)
-        - relevance (circular or other shapes of intersections)
+
+        - extreme difference:
+
+          - silliness (extreme difference in realism)
+
+            - lack of logic
+
+            - lack of probability
+
+            - lack of knowledge
+
+          - surprise
+            - subversion of expectations (diverging vectors)
+            - alternate meanings (alternate routes)
+
+          - relevance (circular or other shapes of intersections)
+
         - layers (multiple combinations of other attributes in joke)
 
       - rules:
         - must be tied to reality in some way
         - must have some nonzero non-real ratio
+        - must have at least one identifying joke attribute (difference attributes (silliness, surprise, relevance), or another joke attribute) with non-standard value different from a normal sentence
 
     - common joke components/functions:
 
@@ -976,25 +991,24 @@
 
           - "everyone assumes white people cause all of society's problems, and they're partially right, because some goths are white, and so are some Jews, and so are some clowns"
 
-    - common functions/components:
+        - a combination of an assumption & an illogically concluded assumption (misunderstanding) to generate extreme silliness (stupidity):
+          "the stadium rules dont say 'dont feed the players' so that means they want us to throw popcorn at them"
 
-      - a combination of huge misunderstanding to generate stupidity:
-        "the stadium rules dont say 'dont feed the players' so that means they want us to throw popcorn at them"
+        - juxtaposition of big ego/high stakes with trivial/minor details to generate pettiness:
+          "I called the cops because no one complimented my Xmas sweater"
 
-      - juxtaposition of big ego/high stakes with trivial/minor details to generate pettiness:
-        "I called the cops because no one complimented my Xmas sweater"
+        - assuming the insanity/stupidity of an agent to generate silliness
+          "is there a mental institution nearby with a recent break-out who would like to speak with you?"
 
-      - assuming the insanity/stupidity of an agent to generate silliness
-        "is there a mental institution nearby with a recent break-out who would like to speak with you?"
+        - acting the role of straight enforcer on a chaotic generator of rule-breaking to generate comical difference, such as framing "regulating others' lack of self-awareness of their misunderstandings" as a "need" rather than an "option", which is how it would normally be classified
 
-      - acting the role of straight enforcer on a chaotic generator of rule-breaking to generate comical requirements, such as the need to regulate others' lack of self-awareness of their own comically huge misunderstandings
-        "I can recommend a good therapist, if you genuinely need to keep talking about your dog's unwillingness to match outfits with you"
+          "I can recommend a good therapist, if you genuinely need to keep talking about your dog's unwillingness to match outfits with you"
 
-      - humoring an insane person
-        "I can see why you thought wearing a hijab would make you popular with Muslims, rather than peaceably co-existing with them, which wasnt getting you any personal attention, which is specifically forbidden in the Quran"
+        - humoring an insane person
+          "I can see why you thought wearing a hijab would make you popular with Muslims, rather than peaceably co-existing with them, which wasnt getting you any personal attention, which is specifically forbidden in the Quran"
 
-      - huge cognitive & semantic distance between previous & current sentence to generate surprise:
-        "yeah I could have taken those bullies - to church, but I didnt have my church bus pass on me because I keep it in my respect-for-Jesus pants"
+        - huge cognitive & semantic distance between previous & current sentence to generate surprise:
+          "yeah I could have taken those bullies - to church, but I didnt have my church bus pass on me because I keep it in my respect-for-Jesus/sinning pants"
 
 
 ## Bio System Analysis
