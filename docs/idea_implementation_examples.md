@@ -712,22 +712,38 @@
 
 ## Post Problems
 
-  - whats next after automating problem-solving?
+  - whats next after automating problem-solving (of problems within a semi-known system)?
+  
   - designing systems that have required problem types to achieve some goal, beyond solving a problem within a system
     - the output of problem-solving is not just solutions, but also:
       - objects (insights, insight paths, patterns) used to build them
       - reduced computation demand
       - convergence of patterns
       - reduced distance between understanding & variance generators
+
     - post-problem-solving in isolation in the system context, the next gen of problem-solving can involve:
       - operations on the system object, to design systems having desired problem types to achieve other problem outputs than just known solutions that reduce those problems
       - operations on the problem object, to solve many problems at once, across different systems
       - operations on the solution object, to create self-destructing solutions, solutions that ensure the prevention of their own disablement, solution that stabilize system objects, etc
       - operations on concept combinations: designing, fitting & applying protocols, rule types (change, governing, learning rules), solutions, problem-generators, variance-generators as needed to adapt an object set to fit into other object sets better
+
     - this type of analysis is to increase predictive capacity, so the emergent trends many iterations from now can be determined with existing tools
-    - this means we'll be able to determine if current choices will converge to an intersection point that exerts a permanent limit on the potential growth of the species, which we can avoid using this analysis
-    - we'll also be able to identify decision chains that will create species capable of destroying all other species (such as machines or organisms that could destroy us)
-    - we'll also be able to adapt to systems that don't fit existing systems, such as communication with aliens that dont require information because they have their own problem-solving methods in each of their processing centers
+
+    - this will involve the math of infinities, to ensure the possibility of priority survival given the most extreme permutations of a potential harmful decision
+      - a decision that limits the full understanding or optimization of the universe in a way that also harms other universes
+      - if finding out some information will harm the calculation priority of this universe, that needs to be determined so we can prevent it from ever being known
+      - out of all the problems which are solvable in this universe, there may be a subset that arent supposed to be solved 
+        (implying the metric to calculate is whether life in this universe can protect that secret)
+
+    - this means we'll be able to determine if current choices will converge to an intersection/singularity point of no return that exerts a permanent limit
+      - a limit such as a maximum on the potential growth or adaptation of the species, which we can avoid using this analysis
+
+    - we'll also be able to identify other harmful decision chains
+      - such as those that will create species capable of destroying all other species (like machines or organisms that could destroy us)
+
+    - we'll also be able to adapt to systems that don't fit existing systems
+      - such as communication with aliens that dont require information because they have their own problem-solving methods in each of their processing centers
+
     - we may also be able to use this analysis to derive priority, complexity & other metadata of the universe to determine its key vulnerabilities, inefficiencies, and position among possible universes
       - such as a universe where layers or points or variance are the fundamental structure, rather than dimensions or space-time
       - or universes with different configurations of interface networks
