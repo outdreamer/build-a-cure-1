@@ -123,6 +123,50 @@
 
 ## Concept Operations
 
+  - this is the set of core conceptual math operations between concepts
+
+  I. combine (add)
+
+    1. merge with override/backup/overlap rules
+      "power merged with information" => 
+        "power as an input to information" => "powerful position can use information at increased scale & impact"
+        "information as an input to power" => "insights"
+        (can continue merging with each object interacting with the other & its attributes/types/rules)
+
+    2. collide (compete for position)
+      "power or information" => "is power different from information in this context" => "do other objects enable functionality, beyond information, or is information the key enabler"
+
+    3. intersection (retain common components)
+      "common components of power & information" => "enablement, context, control, dependence, responsibility"
+
+    4. union (retain all components)
+      "power and information" => "multiple power types, creating a backup system of control if one power source fails"
+
+  II. reduce (find, filter, subtract)
+
+    - x without y
+      - "power without information" => "information-derivation method", "power from non-information source", "limited power"
+
+  III. apply (expand, group, iterate, multiply)
+
+    - apply to another (x * y)
+      - "balance of power" = "symmetry between input & output dependencies"
+
+    - apply to itself (x ^ n)
+      - "power of power" => "the enabler of enabling" => "input", "abstraction", "coordination"
+
+  IV. standardize (simplify, compare, divide)
+
+    - x standardized by y
+      - "power standardized by power" => 
+        "power explained by power" => 
+        "explain power using only objects in power definition (input/output/objects)" =>
+        "enabling happens from providing inputs to a high proportion of other objects or to very important objects (having important, causative, or many connections)" => 
+        "high ratio or symmetry of power object outputs: important object inputs or high causation ratio" 
+          (given that important objects can be powerful just because they enable many other objects, even if they dont provide all of the inputs of other objects)
+
+## Problem Solving Operations
+
   I. Match problem & solution using definition & standardization, applying increasing limits until problem & solution match
 
     - get a problem, standardize & define it: 
@@ -544,6 +588,7 @@
   VII. Intent analysis
     - what intents does this path align with or could be built from?
     - "what is the function linking these variables, given the variable intents a, b, c and the combination intent matrix ab, bc, ca, and the possible output intents of that matrix, and similarity to output intent of y"
+
 
 ## Definition differentiation
 
