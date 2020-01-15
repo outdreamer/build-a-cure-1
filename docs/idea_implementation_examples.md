@@ -918,17 +918,20 @@
 
       - surprising relevance
 
-        - relevance circles:
+        - relevance circle:
+        
+          - "the prison guard reminded the convicts that they could be let out early for good behavior, instead of playing dead when it was time to take their medicine, and only peeing on purebred dogs on the basketball court" 
+            - has prison gang (purebred/race supremacist) relevance tied to initial implication of prison guard-criminal dynamic
 
         - intersection of alternate meaning waves: "the computer disk's memory was corrupted, so it didnt recognize its mother John McAfee and thought he was trying to kill it with antivirus medication, to prevent it from exploiting browser caches for personal gain"
 
-        - has two intersection points of alternate meaning waves for "memory" & "corruption":
-          1. memory corruption => amnesia
-          2. memory corruption => paranoia of being caught in corrupt, exploitative transactions, related to memory management
+          - has two intersection points of alternate meaning waves for "memory" & "corruption":
+            1. memory corruption => amnesia
+            2. memory corruption => paranoia of being caught in corrupt, exploitative transactions, related to memory management
 
-        - also has a relevance circle, tying the end implication "corrupt exploitative memory management" to the first implication "memory was corrupted", and the middle implication "paranoid amnesia"
+          - also has a relevance circle, tying the end implication "corrupt exploitative memory management" to the first implication "memory was corrupted", and the middle implication "paranoid amnesia"
 
-        - relevance circles can be funny because they can add a layer of surprise
+          - relevance circles can be funny because they can add a layer of surprise
 
       - comical difference
         - between one sentence & the next: 
