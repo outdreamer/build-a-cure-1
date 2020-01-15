@@ -917,8 +917,14 @@
         - impossible: cats hate Jesus Christ, who created physics
 
       - surprising relevance
-        - relevance circles
-        - intersection of alternate meaning waves
+
+        - relevance circles:
+
+        - intersection of alternate meaning waves: "the computer disk's memory was corrupted, so it didnt recognize its mother John McAfee and thought he was trying to kill it with antivirus medication, to prevent it from exploiting browser caches for personal gain"
+
+        - has two intersection points of alternate meaning waves for "memory" & "corruption":
+          1. memory corruption => amnesia
+          2. memory corruption => paranoia of being caught in corrupt, exploitative transactions, related to memory management
 
       - comical difference
         - between one sentence & the next: 
@@ -941,6 +947,7 @@
           "the main reason I was late is not just traffic but also grandma gangs, highway lane-switching personal dramas, the Jews who run the media, manipulative billboard copywriters, bank robber getaway chases, Trent Reznor, the liberal media, and the Office franchise making everyone slower on the highway because theyre watching it on their phones"
 
         - mixing social abstractions (types, identities, positions, relationships, histories, conceptual objects like assumptions/priorities) is often comical because norms & differences between social groups are often silly or pointless or insignificant, so pretending they're important differences is comical
+
 
     - common functions/components:
       - a combination of huge misunderstanding to generate stupidity
