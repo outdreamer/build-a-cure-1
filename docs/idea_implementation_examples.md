@@ -908,6 +908,8 @@
 
           - silliness (extreme difference in realism)
 
+            - lack of correct priority distribution (extreme un/importance attached to extremely un/important things - high/low stakes)
+
             - lack of logic (unconnected assumptions, jumping to conclusions, logical fallacies)
 
             - lack of probability (categorizing highly unrealistic assertions as fact, categorizing facts as opinions, categorizing product reviews as terrorism)
@@ -921,6 +923,8 @@
             - alternate meanings (alternate routes)
 
           - relevance (circular or other shapes of intersections)
+
+            - can provide surprise in the joke by being relevant to prior implication of the joke in a surprising way
 
         II. layers (multiple combinations of other attributes in joke)
 
