@@ -899,15 +899,23 @@
 ## Communication Object Generation
 
   ### Joke
+
     - definition: 
 
-      - silly divergence in expectations
+      - attributes:
+        - silliness (extreme difference in realism)
+        - surprise (diverging vectors)
+        - relevance (circular or other shapes of intersections)
+        - layers (multiple combinations of other attributes in joke)
 
-        - "a Mexican and a Jew walk into a bar. The Jew asks the Mexican if he's going to order a margarita. "What you think all Mexicans drink margaritas, ese?" They start fighting, and the Jew accidentally lands a punch on the Mexican, who bleeds a clear liquid that catches fire from a nearby drink. "Ay! Dios mio!" squealed the Mexican. "Watch your fists, holmes - don't you know Mexicans bleed tequila, wey? Not next to the flaming jello shots, amigo!" 
-          - the expectation is that the joke will imply the Jew was being racist, but it ends up implying the opposite of that expectation
-          - another layer of comedy comes from the idea of a Jew being the oppressor of another race, which has some historical context lending silliness to that implication
+      - rules:
+        - must be tied to reality in some way
+        - must have some nonzero non-real ratio
 
-      - levels of silliness:
+    - common joke components/functions:
+
+      1. varying value on silliness spectrum:
+
         - factual (definitely real): cats hate mice
         - probable: cats hate things that run away
         - not likely: cats hate things that run fast
@@ -916,14 +924,20 @@
         - possible: cats hate people who make money move
         - impossible: cats hate Jesus Christ, who created physics
 
-      - surprising relevance
+      2. silly divergence in expectations
 
-        - relevance circle:
-        
+        - "a Mexican and a Jew walk into a bar. The Jew asks the Mexican if he's going to order a margarita. "What you think all Mexicans drink margaritas, ese?" They start fighting, and the Jew accidentally lands a punch on the Mexican, who bleeds a clear liquid that catches fire from a nearby drink. "Ay! Dios mio!" squealed the Mexican. "Watch your fists, holmes - don't you know Mexicans bleed tequila, wey? Not next to the flaming jello shots, amigo!" 
+          - the expectation is that the joke will imply the Jew was being racist, but it ends up implying the opposite of that expectation
+          - another layer of comedy comes from the idea of a Jew being the oppressor of another race, which has some historical context lending silliness to that implication
+
+      3. surprising relevance
+
+        I. relevance circle:
+
           - "the prison guard reminded the convicts that they could be let out early for good behavior, instead of playing dead when it was time to take their medicine, and only peeing on purebred dogs on the basketball court" 
             - has prison gang (purebred/race supremacist) relevance tied to initial implication of prison guard-criminal dynamic
 
-        - intersection of alternate meaning waves: "the computer disk's memory was corrupted, so it didnt recognize its mother John McAfee and thought he was trying to kill it with antivirus medication, to prevent it from exploiting browser caches for personal gain"
+        II. intersection of alternate meaning waves: "the computer disk's memory was corrupted, so it didnt recognize its mother John McAfee and thought he was trying to kill it with antivirus medication, to prevent it from exploiting browser caches for personal gain"
 
           - has two intersection points of alternate meaning waves for "memory" & "corruption":
             1. memory corruption => amnesia
@@ -933,35 +947,52 @@
 
           - relevance circles can be funny because they can add a layer of surprise
 
-      - comical difference
+      4. comical difference
+
+        - comical differences can be between any object (assumption, definition, adjacent object, implication, topic, type, layer, attribute, rule, etc) in the joke and any other object, if there is an expectation for those objects to distort in the first place
+
         - between one sentence & the next: 
           "I told my mom I was going to run some errands, so I dog-walked my neighbor."
+
         - between style & content: 
           "Mariah Carey believes George Foreman grills to be a relatable & timeless reference. In this essay I will" (style: serious essay writing, content: silly pop music)
+
         - assumption taken to an exaggerated extreme version of itself:
           "Yeah friends are cool but ... you ever caught something you dropped before it reached the ground?"
           (yes it feels good, but this is an extreme exaggeration of how good it feels)
+
         - extreme realism of a silly assumption
           "officer wishbone has requested time-off to deal with the loss of his wife, squeaky pikachu toy"
           (silly assumption: "dog is a police officer", extreme realism: "depression after loss of a loved one, which for a dog might be a squeaky toy")
 
-      - comical combination
         - mad libs: replacing objects or verb in a normal sentence with silly versions
           normal sentence: "library study buddy oversold their history class skills"
           silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 
         - lists of unrelated things (mixing abstraction level, topic, etc):
-          "the main reason I was late is not just traffic but also grandma gangs, highway lane-switching personal dramas, the Jews who run the media, manipulative billboard copywriters, bank robber getaway chases, Trent Reznor, the liberal media, and the Office franchise making everyone slower on the highway because theyre watching it on their phones"
+          "the main reason I was late is not just traffic but also grandma gangs, highway lane-switching personal dramas, the Jews who run the media, manipulative billboard copywriters, bank robber getaway chases, Trent Reznor, the liberal media, and the Office franchise making everyone slower on the highway because theyre busy arguing about who Michael should have ended up with instead of focusing on the road"
 
         - mixing social abstractions (types, identities, positions, relationships, histories, conceptual objects like assumptions/priorities) is often comical because norms & differences between social groups are often silly or pointless or insignificant, so pretending they're important differences is comical
 
+          - "everyone assumes white people cause all of society's problems, and they're partially right, because some goths are white, and so are some Jews, and so are some clowns"
 
     - common functions/components:
+
       - a combination of huge misunderstanding to generate stupidity
+        "I called the cops because no one complimented my Xmas sweater"
+
       - assuming the insanity/stupidity of an agent to generate silliness
+        "is there a mental institution nearby with a recent break-out who would like to speak with you?"
+
       - acting the role of straight enforcer on a chaotic generator of rule-breaking to generate comical requirements, such as the need to regulate others' lack of self-awareness of their own comically huge misunderstandings
+        "I can recommend a good therapist, if you genuinely need to keep talking about your dog's unwillingness to match outfits with you"
+
       - humoring an insane person
-      - huge cognitive & semantic distance between previous & current sentence to generate surprise
+        "I can see why you thought wearing a hijab would make you popular with Muslims, rather than peaceably co-existing with them, which wasnt getting you any personal attention, which is specifically forbidden in the Quran"
+
+      - huge cognitive & semantic distance between previous & current sentence to generate surprise:
+        "yeah I could have taken those bullies - to church, but I didnt have my church bus pass on me because I keep it in my respect-for-Jesus pants"
+
 
 ## Bio System Analysis
 
@@ -975,6 +1006,7 @@
       - how nth-iteration interactions will be timed with other processes cycling in that time
       - how causal cascades can cycle to be interactive with the treatment
       - how functionality gaps or interactions at nth-iteration can provide opportunities for mutation & other randomness sources 
+
 
 ## Protocol Recommendations
   
