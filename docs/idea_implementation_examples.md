@@ -903,7 +903,7 @@
       - silly divergence in expectations
 
       - levels of silliness:
-        - factual (definitely real): cats hate dogs
+        - factual (definitely real): cats hate mice
         - probable: cats hate things that run away
         - not likely: cats hate things that run fast
         - unlikely: cats hate things that move on wheels
@@ -912,13 +912,28 @@
         - impossible: cats hate physics
 
       - surprising relevance
-      
+        - relevance circles
+        - intersection of alternate meaning waves
+
       - comical difference
-        - between one sentence & the next
-        - between style & content
-        - assumption taken to an exaggerated extreme
+        - between one sentence & the next: 
+          "I told my mom I was going to run some errands, so I dog-walked my neighbor."
+        - between style & content: 
+          "Mariah Carey believes George Foreman grills to be a relatable & timeless reference. In this essay I will" (style: serious essay writing, content: silly pop music)
+        - assumption taken to an exaggerated extreme version of itself:
+          "Yeah friends are cool but ... you ever caught something you dropped before it reached the ground?"
+          (yes it feels good, but this is an extreme exaggeration of how good it feels)
         - extreme realism of a silly assumption
+          "officer wishbone has requested time-off to deal with the loss of his wife, squeaky pikachu toy"
+          (silly assumption: "dog is a police officer", extreme realism: "depression after loss of a loved one, which for a dog might be a squeaky toy")
+
       - comical combination
+        - mad libs: replacing objects or verb in a normal sentence with silly versions
+          normal sentence: "library study buddy oversold their history class skills"
+          silly sentence: "library study buddy oversold their quiet-chip-eating skills"
+
+        - lists of unrelated things (mixing abstraction level, topic, etc):
+          "the main reason I was late is not just traffic but also grandma gangs, highway lane-switching personal dramas, the Jews who run the media, manipulative billboard copywriters, bank robber getaway chases, Trent Reznor, the liberal media, and the Office franchise making everyone slower on the highway because theyre watching it on their phones"
 
     - core functions/components:
       - a combination of huge misunderstanding to generate stupidity
