@@ -926,6 +926,10 @@
           1. memory corruption => amnesia
           2. memory corruption => paranoia of being caught in corrupt, exploitative transactions, related to memory management
 
+        - also has a relevance circle, tying the end implication "corrupt exploitative memory management" to the first implication "memory was corrupted", and the middle implication "paranoid amnesia"
+
+        - relevance circles can be funny because they can add a layer of surprise
+
       - comical difference
         - between one sentence & the next: 
           "I told my mom I was going to run some errands, so I dog-walked my neighbor."
