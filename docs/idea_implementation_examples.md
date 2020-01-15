@@ -709,3 +709,19 @@
   - what if the idea of interface selection is flawed?
     - what if there's an optimal interface to represent all information (interface-building formula), rather than a specific one (causal, object, type, function, priority, system, structure interface)
     - an interface is just a standardizing filter - a formula to generate the right standardizing filter for a particular task would be better than relying on interface definitions
+
+## Post Problems
+
+  - whats next after automating problem-solving?
+  - designing systems that have required problem types to achieve some goal, beyond solving a problem within a system
+    - the output of problem-solving is not just solutions, but also:
+      - objects (insights, insight paths, patterns) used to build them
+      - reduced computation demand
+      - convergence of patterns
+      - reduced distance between understanding & variance generators
+    - post-problem-solving in isolation in the system context, the next gen of problem-solving can involve:
+      - operations on the system object, to design systems having desired problem types to achieve other problem outputs than just known solutions that reduce those problems
+      - operations on the problem object, to solve many problems at once, across different systems
+      - operations on the solution object, to create self-destructing solutions, solutions that ensure the prevention of their own disablement, solution that stabilize system objects, etc
+      - operations on concept combinations: designing, fitting & applying protocols, rule types (change, governing, learning rules), solutions, problem-generators, variance-generators as needed to adapt an object set to fit into other object sets better
+      

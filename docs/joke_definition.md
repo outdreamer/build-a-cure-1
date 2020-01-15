@@ -183,7 +183,9 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 
 "I can recommend a good therapist, if you genuinely need to keep talking about your dog's unwillingness to match outfits with you"
 
-- humoring an insane person
+- sarcastically agreeing with silly statements as if they're true
+
+- humoring an insane person (where the insane person is the silliness generator, and the contrast between their beliefs & reality is the key difference - related to sarcasm)
 "I can see why you thought wearing a hijab would make you popular with Muslims, rather than peaceably co-existing with them, which wasnt getting you any personal attention, which is specifically forbidden in the Quran"
 
 - huge cognitive & semantic distance between previous & current sentence to generate surprise:
