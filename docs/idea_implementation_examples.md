@@ -900,7 +900,12 @@
 
   ### Joke
     - definition: 
+
       - silly divergence in expectations
+
+        - "a Mexican and a Jew walk into a bar. The Jew asks the Mexican if he's going to order a margarita. "What you think all Mexicans drink margaritas, ese?" They start fighting, and the Jew accidentally lands a punch on the Mexican, who bleeds a clear liquid that catches fire from a nearby drink. "Ay! Dios mio!" squealed the Mexican. "Watch your fists, holmes - don't you know Mexicans bleed tequila, wey? Not next to the flaming jello shots, amigo!" 
+          - the expectation is that the joke will imply the Jew was being racist, but it ends up implying the opposite of that expectation
+          - another layer of comedy comes from the idea of a Jew being the oppressor of another race, which has some historical context lending silliness to that implication
 
       - levels of silliness:
         - factual (definitely real): cats hate mice
@@ -909,7 +914,7 @@
         - unlikely: cats hate things that move on wheels
         - extremely unlikely: cats hate people in wheelchairs (the disabled)
         - possible: cats hate people who make money move
-        - impossible: cats hate physics
+        - impossible: cats hate Jesus Christ, who created physics
 
       - surprising relevance
         - relevance circles
@@ -935,7 +940,7 @@
         - lists of unrelated things (mixing abstraction level, topic, etc):
           "the main reason I was late is not just traffic but also grandma gangs, highway lane-switching personal dramas, the Jews who run the media, manipulative billboard copywriters, bank robber getaway chases, Trent Reznor, the liberal media, and the Office franchise making everyone slower on the highway because theyre watching it on their phones"
 
-    - core functions/components:
+    - common functions/components:
       - a combination of huge misunderstanding to generate stupidity
       - assuming the insanity/stupidity of an agent to generate silliness
       - acting the role of straight enforcer on a chaotic generator of rule-breaking to generate comical requirements, such as the need to regulate others' lack of self-awareness of their own comically huge misunderstandings
