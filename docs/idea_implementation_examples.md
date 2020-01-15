@@ -1025,6 +1025,11 @@
               - example: "the tiger conservationist was eaten by a tiger"
                 intent: "protecting tigers", implication: "protecting themselves from tigers"
 
+        IV. topical for recent trends
+
+          - many jokes, like insights, have a time limit of relevance, and are most powerful when new, articulating a previously unarticulated trend that many were feeling was absurd, but none had captured with language
+          - some classic jokes retain power because theyre insightful to most people who encounter them, and not incorporated in the culture as a default assumption yet
+
       4. comical difference
 
         - comical differences can be between any object (assumption, definition, adjacent object, implication, topic, type, layer, attribute, rule, etc) in the joke and any other object, if there is an expectation for those objects to distort in the first place
