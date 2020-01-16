@@ -714,7 +714,7 @@
 
   - whats next after automating problem-solving (of problems within the context of a semi-knowable system)?
 
-  - being able to solve a problem within a semi-knowable system enables other more complex applications of problem-solving, such as system generation & derivation of host systems from within
+  - being able to solve a problem within a semi-knowable system enables other more complex applications of problem-solving, such as system generation & derivation of host systems from within, calculating problems that shouldnt be solved out of the set of solvable problems, etc
 
   - extensions of predictive capacity for decision chains, enhanced system design & optimization, & derivation of system metadata from inside the system, using analysis of solvable problems & variance sources (deriving universe system configuration & position, to achieve prioritized universe calculations & interact with other universes in a mutually beneficial way as well as preserving & exporting our useful knowledge to them)
 
