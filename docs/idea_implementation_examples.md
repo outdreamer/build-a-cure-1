@@ -74,6 +74,9 @@
 
 ## Variable Accretion Patterns
 
+  - is there a relationship between the potential of energy to produce information (certainty & uncertainty), allocating variance & stasis to either at a time asymmetrically
+    https://en.wikipedia.org/wiki/Introduction_to_eigenstates
+
   - visualize:
 
     - emergent properties as circuits within an object/system/type set
