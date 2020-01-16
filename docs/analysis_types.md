@@ -1,5 +1,14 @@
 # Analysis Strategies for Application in Specific Problem Spaces
 
+## Work distribution & incentivization
+
+  - system users should always be system builders, so their incentives don't crystallize into an irreversibly static state
+
+  - users should be builders by the end of each game
+
+  - when builders have taught enough users, builders should move on to being users of another game, in an alternating cycle
+
+  https://twitter.com/remixerator/status/1217718371816329217
 
 ## Randomness Generator
 

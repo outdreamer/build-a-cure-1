@@ -356,6 +356,8 @@
 
     - the evolution of functional layers (core to interim to output functions) is another source of insights on system development & design
 
+    - determining which interfaces, attributes & concepts determine the biggest difference in function performance (scale physics, logic, metric selection, complexity, etc)
+
 
   IV. Solve problem with Conceptual Query
 
