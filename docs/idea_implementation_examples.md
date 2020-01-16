@@ -72,6 +72,21 @@
       - 'if youre planning on using it for use case "self-treatment", only take x amount for y period of time if youre otherwise healthy'
 
 
+## Evaluating Shape Potentials
+
+  - given an object and the topology of its potential emergent interactions with each other object, what is the set of potential shapes that can interact with (build, coexist, coordinate, use, neutralize, destroy, or be built by) this object, given the full range of interaction topologies and combinations of the same?
+
+  - example: 
+
+    - given a molecule and the topologies of its interactions with other interactable molecules, what is the function generating the set of macromolecules that molecule can contribute to the assembly of in a way that enables a high ratio of component-substitutions or component-derivation from other components in the absence of one?
+
+      - given the full set of these generating functions, which molecules/molecule combinations are the best contributors/collaborators/derivers/substiters/hubs?
+
+    - given a variable and the topologies of its interactions with other interactable variables, what is the function generating the set of functions that variable can contribute to the assembly of in a way that enables a high ratio of variable-substitutions or variable-derivation from other variables in the absence of one?
+
+      - this goes beyond indexing isolated variables by metadata (such as variable type), to incorporate the metadata of variable interactions embedded in a relationship
+
+
 ## Variable Accretion Patterns
 
   - is there a relationship between the potential of energy to produce information (certainty & uncertainty), allocating variance & stasis to either at a time asymmetrically
