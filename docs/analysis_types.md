@@ -6,6 +6,8 @@
 
   - users should be builders by the end of each game
 
+  - the questions of each problem space can be mapped to user tasks within a game, defined by a set of rules creating similar questions answerable in the game
+
   - when builders have taught enough users, builders should move on to being users of another game, in an alternating cycle
 
   https://twitter.com/remixerator/status/1217718371816329217

@@ -14,7 +14,8 @@
       - asymmetries
         - resource asymmetries (misallocated info, cause, power, variance)
         - emergent patterns created by imbalances in usage patterns
-        - symmetries as epicenters/organizers/filters of variance
+        - symmetries as epicenters/organizers/distributers/filters of similarity/variance
+        - limits as an output of symmetries
 
       - variance injections
         - unrestricted inputs
@@ -24,7 +25,7 @@
         - (monitoring function not given reason to check lib building monitoring function)
 
       - incorrect position/structure/rule/direction
-  
+
   ### Problem Source Identification
 
     - example: if a bottle containing juice is the only thing someone drinks regularly and it makes them sick, how do you figure out that it's most probably bc of a chemical on the inner lining of the bottle, programmatically - ranking less probable causes as well
@@ -356,7 +357,8 @@
 
     - the evolution of functional layers (core to interim to output functions) is another source of insights on system development & design
 
-    - determining which interfaces, attributes & concepts determine the biggest difference in function performance (scale physics, logic, metric selection, complexity, etc)
+    - determining which interfaces, attributes & concepts determine the biggest difference in function performance 
+      (scale physics, structure physics, info physics, causal shapes, change physics, logic, types, dimension sets, metric selection, complexity, etc)
 
 
   IV. Solve problem with Conceptual Query
@@ -801,6 +803,10 @@
 
           - this should be able to narrow down the set of alternate explanations for variance patterns, such as whether potential particles exist on a subatomic level, or whether the pre-determination of events is changeable
 
+        - identifying counteracting processes to determine/regulate/reduce variance in required inputs such as optimal resource distribution 
+          (resources including resource metadata(position, count, neighbors, etc))
+          https://phys.org/news/2020-01-diabolical-coupled-cavities-quantum-emitters.html
+      
       VI. generating object-generators for a conceptual intent 
 
         - function-generators include systems, system networks, & functions
