@@ -710,9 +710,11 @@
     - what if there's an optimal interface to represent all information (interface-building formula), rather than a specific one (causal, object, type, function, priority, system, structure interface)
     - an interface is just a standardizing filter - a formula to generate the right standardizing filter for a particular task would be better than relying on interface definitions
 
-## Post Problems
+## Post Problems (in System Context)
 
-  - whats next after automating problem-solving (of problems within a semi-known system)?
+  - whats next after automating problem-solving (of problems within the context of a semi-knowable system)?
+
+  - extensions of predictive capacity for decision chains, enhanced system design & optimization, & derivation of system metadata from inside the system, using analysis of solvable problems & variance sources (deriving universe system configuration & position, to achieve prioritized universe calculations & interact with other universes in a mutually beneficial way as well as preserving & exporting our useful knowledge to them)
 
   - designing systems that have required problem types to achieve some goal, beyond solving a problem within a system
     - the output of problem-solving is not just solutions, but also:
@@ -722,10 +724,11 @@
       - reduced distance between understanding & variance generators
 
     - post-problem-solving in isolation in the system context, the next gen of problem-solving can involve:
-      - operations on the system object, to design systems having desired problem types to achieve other problem outputs than just known solutions that reduce those problems
-      - operations on the problem object, to solve many problems at once, across different systems
+      - operations on the dimension object, to design dimension combinations for optimal next-gen problem-solving like system design, derivation of laws to generate known systems, & enhanced decision chain prediction
+      - operations on the system object, to design systems having desired problem types to achieve other problem outputs than just known solutions reducing those problems
+      - operations on the problem object, to solve many problems at once, across different systems, to generate a cross-system state
       - operations on the solution object, to create self-destructing solutions, solutions that ensure the prevention of their own disablement, solution that stabilize system objects, etc
-      - operations on concept combinations: designing, fitting & applying protocols, rule types (change, governing, learning rules), solutions, problem-generators, variance-generators as needed to adapt an object set to fit into other object sets better
+      - operations on concept combinations: designing, fitting & applying protocols, rule types (change, governing, learning rules), solutions, problem-generators, variance-generators as needed to adapt an object set to better fit into other object sets
 
     - this type of analysis is to increase predictive capacity, so the emergent trends many iterations from now can be determined with existing tools
 
@@ -739,13 +742,13 @@
       
       I. decision chains to avoid
 
-        - which operations on systems will produce absolute universal limits of operations between infinities & the types & concepts generating them
+        - which operations on systems will produce absolute universal limits of operations between infinities & the systems, types & concepts generating them
 
         - such as those that will create species capable of destroying all other species (like machines or organisms that could destroy us)
 
         - if current choices will converge to an intersection/singularity point of no return that exerts a permanent limit
 
-          - a limit such as a maximum on the potential growth or adaptation of the species, which we can avoid using this analysis
+          - a limit such as a maximum on the potential growth/adaptation of the species, given a decision chain & the laws of physics, which we can avoid using this analysis
 
         - whether quantum physics may make the universe too computable to exist; the system seems very fragile/dependent on lack of specific entanglements
 
@@ -757,7 +760,7 @@
 
         - such as communication with aliens that dont require information because they have their own problem-solving methods in each of their processing centers
 
-      III. universe priority, complexity & other metadata to determine its key vulnerabilities, inefficiencies, and position among possible universes
+      III. universe limits, priority, complexity & other metadata to determine its key vulnerabilities, inefficiencies, and position among possible universes
 
         - such as a universe where layers or points or variance are the fundamental structure, rather than dimensions or space-time
         - or universes with different configurations of interface networks
@@ -772,5 +775,14 @@
 
           - this translates into post-system context problem-solving spaces to the correct ratio & position of system types to avoid universe boundaries, which change rules to deploy across systems to avoid triggering harmful chain reactions, etc
 
+      IV. calculating the set of systems that are capable of generating known systems
 
+        - for instance, a system capable of generating known math & physics laws will be able to generate the same type networks, dimension relationships, function patterns, function metadata generating rules, conceptual structure assignments, etc for known systems
 
+        - given this set of systems capable of generating math/physics rules, which system is likelier to be true, and which are possible, and can the configuration be changed?
+
+      V. calculating the positions of variance generators in a system to generate the set of possible & likely variance positions
+
+        - given a set of observed rules, we'll be able to determine which configurations of variables are producing variance, and what positions those variables occupy on the network of determinating variables for that set of rules 
+
+          - this should be able to narrow down the set of alternate explanations for variance patterns, such as whether potential particles exist on a subatomic level, or whether the pre-determination of events is changeable
