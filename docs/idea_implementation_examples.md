@@ -509,7 +509,12 @@
       - balance is related to symmetry so these are not unique concepts but embedded/dependent/overlapping/hierarchical concepts
       - however balance is clearly differentiable from power, as balance inherently involves equivalence and power doesnt, whereas power inherently involves enablement and balance doesnt
 
-
+## Prediction markets
+  - you can influence other people's predictions
+    - providing prediction tools (algorithms, delivery platforms, APIs, tutorials)
+    - tracking usage of those tools
+    - indirect market manipulation, through trust established by making your prior predictions true
+  - directly influence supply/demand & make bets on your influence
 
 ## Identifying important semantic objects in a problem space
 
@@ -517,7 +522,7 @@
 
   - core structure components
 
-      - stack, line, tree, tensor, vector, network, circuit, group, list, unit, interface, combination, permutation, topology, corner, origin, scale, range, spectrum, cascade, trigger, chain, trade, space, dimension, layer, variance, pattern, balance, distribution, evolution, flow, extreme, inflection, symmetry, angle, ratio, degree, constant, distance, point, direction, edge, limit, boundary, order, position, equivalent, alternate, opposite, inverse
+      - stack, line, tree, tensor, vector, network, circuit, group, list, unit, interface, combination, permutation, topology, corner, origin, scale, range, spectrum, cascade, trigger, chain, trade, space, dimension, layer, variance, pattern, balance, distribution, evolution, flow, extreme, inflection, symmetry, angle, ratio, degree, rate, comparison, tangent, diagonal, constant, distance, point, direction, edge, limit, boundary, order, position, equivalent, alternate, opposite, inverse
 
       - shape configurations involve different values of the parameters, which can be core components (number of sides, angle, number type, etc), that accrete into shape types with differentiating derivable/emergent attributes
 

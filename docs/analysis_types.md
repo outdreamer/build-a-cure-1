@@ -139,3 +139,21 @@
 ## Protocol Recommendations
   
   1. Auto-update crypto keys/algorithms to use constants that are always guaranteed to be below x% risk that they'll be hacked given common computational resources.
+
+## Optimal Resource Trades
+
+  - famine, farmland, mine field location data
+  - cost of removing mines
+  - cost of transporting people
+  - which land is for sale & at what cost
+  - how much land is necessary to support a person
+  - set of resource trade sets across projected weather patterns for next 10 years to generate migration paths
+  - which farmland is more optimally used for something else (harvesting other natural resources, water supply, city)
+  - which cities have industries to support new workers moving there
+  - what distribution of cities/farms is optimal for reducing resource transportation cost
+  - how much does it cost to train someone to maintain a garden
+  - what is the configuration of farmland & farm input supply chains that reduces supplies transportation cost
+  - what is the import/export potential of each region (which crops & other resources can they produce)
+  - what distribution of industries should occur by distance from ocean/water source
+  - what infrastructure can optimize farmland at lowest cost
+
