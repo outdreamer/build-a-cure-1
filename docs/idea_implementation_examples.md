@@ -81,7 +81,8 @@
 
   - can you exert control on variance distribution of resources (power, energy, info) to produce changes in default physics at scale?
 
-  - can you exert operations on uncertainties to aggregate uncertainties or produce emergent certainties (aligning sub-atomic uncertainties, variance distribution, superpositions)
+  - can you exert operations on uncertainties (and uncertainty objects & attributes like measurement/calculation potential, changes/patterns in change rules) to aggregate uncertainties or produce emergent certainties
+    - aligning uncertainties (variance/variance generator distribution, superpositions) to produce certainties (measurement threshold, energy concentration, information)
 
   - visualize:
 
