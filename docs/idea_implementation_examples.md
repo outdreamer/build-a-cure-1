@@ -516,7 +516,12 @@
   - example: identifying optimal structure, or object identity (exploit opportunities, monster systems/assumptions, risk chains, trade loops, variance cascades/flow, transaction iterations) to understand a particular problem space (markets, function prediction/derivation/reduction, attribute/path optimization, compression, metadata generation (moment-generating function), etc)
 
   - core structure components
-      - stack, line, tree, tensor, vector, network, circuit, group, list, unit, interface, combination, cascade, trigger, chain, trade, space, dimension, layer, variance, pattern, balance, distribution, evolution, flow, extreme, inflection, symmetry, angle, distance, point, direction, edge, limit, boundary, order, position
+
+      - stack, line, tree, tensor, vector, network, circuit, group, list, unit, interface, combination, permutation, topology, corner, origin, scale, range, spectrum, cascade, trigger, chain, trade, space, dimension, layer, variance, pattern, balance, distribution, evolution, flow, extreme, inflection, symmetry, angle, ratio, degree, constant, distance, point, direction, edge, limit, boundary, order, position, equivalent, alternate, opposite, inverse
+
+      - shape configurations involve different values of the parameters, which can be core components (number of sides, angle, number type, etc), that accrete into shape types with differentiating derivable/emergent attributes
+
+      - how do constants accrete between rules, like caps to keep variance from flowing in to corners or creating openings in systems?
 
 
 ## Standard Neural Network Design for initial complex problem factor identification reduction
