@@ -714,6 +714,8 @@
 
   - whats next after automating problem-solving (of problems within the context of a semi-knowable system)?
 
+  - being able to solve a problem within a semi-knowable system enables other more complex applications of problem-solving, such as system generation & derivation of host systems from within
+
   - extensions of predictive capacity for decision chains, enhanced system design & optimization, & derivation of system metadata from inside the system, using analysis of solvable problems & variance sources (deriving universe system configuration & position, to achieve prioritized universe calculations & interact with other universes in a mutually beneficial way as well as preserving & exporting our useful knowledge to them)
 
   - designing systems that have required problem types to achieve some goal, beyond solving a problem within a system
@@ -781,8 +783,21 @@
 
         - given this set of systems capable of generating math/physics rules, which system is likelier to be true, and which are possible, and can the configuration be changed?
 
-      V. calculating the positions of variance generators in a system to generate the set of possible & likely variance positions
+      V. calculating existing positions of system structures in a system to generate the set of possible/likely/optimal positions
+
+        - system structures include chains, routes, functions, interfaces, limits, & networks (such as variance generators)
 
         - given a set of observed rules, we'll be able to determine which configurations of variables are producing variance, and what positions those variables occupy on the network of determinating variables for that set of rules 
 
           - this should be able to narrow down the set of alternate explanations for variance patterns, such as whether potential particles exist on a subatomic level, or whether the pre-determination of events is changeable
+
+      VI. generating object-generators for a conceptual intent 
+
+        - function-generators include systems, system networks, & functions
+
+        - for example, intents like information security have sub intents: "high computational complexity", "minimal parameter information leakage"
+
+        - calculating optimal systems for a function or calculating function candidates fulfilling a metric & generating new number/function/variable types when existing functions are exhausted
+          - such as finding a new encryption function that leaks minimal information about its parameters but has a calculatable metadata property for verification
+            - the limited supply of these functions implies that the number of good encryption functions in a space is calculatable given the metadata of that space
+            - the information leakage ratio & other function metadata also allows the calculation of exploit potential of an encryption function
