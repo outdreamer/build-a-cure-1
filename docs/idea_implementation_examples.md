@@ -28,6 +28,11 @@
 
       - incorrect position/structure/rule/direction
 
+      - what problems are not solvable?
+
+        - in the universe, if you deployed a perfect computer to every smallest unit of matter/energy/info, what could you not compute?
+          - for example, you couldnt compute the optimal combinations of all the other units in each unit, because the computation would involve observing other units in a way that might require them to do no processing while being observed, and this might prevent the computation from being completed by each unit of matter containing a computation device, such as a superposition
+
   ### Problem Source Identification
 
     - example: if a bottle containing juice is the only thing someone drinks regularly and it makes them sick, how do you figure out that it's most probably bc of a chemical on the inner lining of the bottle, programmatically - ranking less probable causes as well
@@ -505,12 +510,13 @@
       - however balance is clearly differentiable from power, as balance inherently involves equivalence and power doesnt, whereas power inherently involves enablement and balance doesnt
 
 
-## Selection of optimal generative function
-  - see problem-solving section "Solve problem with solution function selection"
-
 
 ## Identifying important semantic objects in a problem space
+
   - example: identifying optimal structure, or object identity (exploit opportunities, monster systems/assumptions, risk chains, trade loops, variance cascades/flow, transaction iterations) to understand a particular problem space (markets, function prediction/derivation/reduction, attribute/path optimization, compression, metadata generation (moment-generating function), etc)
+
+  - core structure components
+      - stack, line, tree, tensor, vector, network, circuit, group, list, unit, interface, combination, cascade, trigger, chain, trade, space, dimension, layer, variance, pattern, balance, distribution, evolution, flow, extreme, inflection, symmetry, angle, distance, point, direction, edge, limit, boundary, order, position
 
 
 ## Standard Neural Network Design for initial complex problem factor identification reduction
@@ -634,7 +640,7 @@
     - given the position between these causal factors, which causal patterns are likeliest?
     - "given that a species occupies an interim position between evolution, efficiency, time, and environment, what is the likeliest causal shape linking a species with its environment?"
       - for more evolved organisms, this is a network causal shape, though species with less developed cognitive ability may have simple or uni-directional shapes with environment
-    - "what is the function linking these variables, given these functions linking other adjacent generating variables/functions further up/down the causal shape (stack/line/tree/network)"
+    - "what is the function linking these variables, given these functions linking other adjacent generating variables/functions further up/down the causal shape"
 
   V. Type stack
     - given a known type stack progression, what is the likeliest position or extension of that stack?
@@ -648,6 +654,7 @@
   VII. Intent analysis
     - what intents does this path align with or could be built from?
     - "what is the function linking these variables, given the variable intents a, b, c and the combination intent matrix ab, bc, ca, and the possible output intents of that matrix, and similarity to output intent of y"
+
 
 
 ## Definition differentiation
