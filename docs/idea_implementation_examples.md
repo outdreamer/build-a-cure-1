@@ -81,6 +81,8 @@
 
   - can you exert control on variance distribution of resources (power, energy, info) to produce changes in default physics at scale?
 
+  - can you exert operations on uncertainties to aggregate uncertainties or produce emergent certainties (aligning sub-atomic uncertainties, variance distribution, superpositions)
+
   - visualize:
 
     - emergent properties as circuits within an object/system/type set
