@@ -15,7 +15,9 @@
         - resource asymmetries (misallocated info, cause, power, variance)
         - emergent patterns created by imbalances in usage patterns
         - symmetries as epicenters/organizers/distributers/filters of similarity/variance
-        - limits as an output of symmetries
+        - limits as an output of symmetries - can you calculate all symmetries, and can you calculate all limits from the set of symmetries?
+        - how do symmetries evolve in a system - do they provide a standard/interface for variance to coordinate efficiently?
+        - how are symmetries related to efficiency?
 
       - variance injections
         - unrestricted inputs
@@ -60,6 +62,7 @@
       - if no problem source is found among their current objects, their purchase history & that of those they interact with can be scanned for prior exposure or dietary causes
 
       - uses insight path technology
+
 
   ### Interaction Predictions
 
