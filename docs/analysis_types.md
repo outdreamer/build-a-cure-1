@@ -96,6 +96,17 @@
   2. Conceptual query: apply structure to conceptual combinations & check matching problem spaces if the output product has value for an agent in that space
 
 
+## Calculating which calculations are optimal
+
+  - given that certain calculations have known cost estimates, which calculations are optimal, in what order/frequency, and given what information?
+
+  - example: when deriving a prediction function, when do you query for function & function generator patterns, when do you request more data, when do you continue assessing regression, when do you apply standardization?
+
+  - is it optimal to solve this problem set or another problem set, or deploy resources to both?
+
+  - solution distribution: should this solution be deployed at run time, in a specific system, should the solution be stored as its generator function, etc
+
+
 ## Bio System Analysis
 
   - nth iteration simulations: analysis that treats cyclical, recursive, cascading & iterative processes as trade loops between positions & systems
@@ -109,6 +120,7 @@
       - how causal cascades can cycle to be interactive with the treatment
       - how functionality gaps or interactions at nth-iteration can provide opportunities for mutation & other randomness sources 
 
+  - given the known vulnerabilities of the bio-system, what problems are solvable (killing pathogen, deploying a substance to a position) with what methods (evolution, medicine, stressor distribution)
 
 ## Protocol Recommendations
   

@@ -11,9 +11,9 @@ As an inventor, you swear to:
 - consider the dependencies created by your inventions (does it empower or create dependence)
 - consider the impact of delegating an invention to a particular industry or corporate entity, given their precedent-established rules for handling inventions
 - calculate exploit opportunities & emergent problems for your inventions pre-release
-- always release a counter-weapon to handle exploits & problems foreseeable with a weaponizable invention that gives power to its posessor
+- release a counter-weapon to handle exploits & problems foreseeable with a weaponizable invention that gives power to its posessor
 - limit the amount of power each invention centralizes in isolation, unless you can distribute it to every agent
 - contribute to tools to predict problems with inventions & interactions with system objects to automate this analysis
 - discuss your inventions pre-release only with other inventors who youve verified are following this oath without explicitly confirming it to avoid monitoring
 - never speak of this oath but execute it mentally so no one can observe your intended coordinations with other inventors until its executed, and keep the innovation govt independent of technology & other governments
-- dont release inventions that will invalidate this oath (inventions to steal/hide information, inventions to reduce variance) until you can release those inventions to every agent at once
+- never release inventions that will invalidate this oath (inventions to steal/hide information, inventions to reduce variance) until you can release those inventions to every agent at once

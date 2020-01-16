@@ -710,6 +710,9 @@
     - what if there's an optimal interface to represent all information (interface-building formula), rather than a specific one (causal, object, type, function, priority, system, structure interface)
     - an interface is just a standardizing filter - a formula to generate the right standardizing filter for a particular task would be better than relying on interface definitions
 
+  - this will involve the physics of scales, filters, and other structures relevant to interface networks 
+  
+
 ## Post Problems (in System Context)
 
   - whats next after automating problem-solving (of problems within the context of a semi-knowable system)?
