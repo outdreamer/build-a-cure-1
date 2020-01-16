@@ -17,3 +17,9 @@ As an inventor, you swear to:
 - discuss your inventions pre-release only with other inventors who youve verified are following this oath without explicitly confirming it to avoid monitoring
 - never speak of this oath but execute it mentally so no one can observe your intended coordinations with other inventors until its executed, and keep the innovation govt independent of technology & other governments
 - never release inventions that will invalidate this oath (inventions to steal/hide information, inventions to reduce variance) until you can release those inventions to every agent at once
+- contribute to the automation of inventing in such a way that this oath is embedded implicitly in the tool
+- release bad ideas to distract inventors youve verified as malicious actors
+- release good ideas (or the components to derive them with) that you dont have time to execute, to ensure theyll be built at some point
+- never get trapped in a particular analysis type
+- regularly check that a definition/method/model is appropriate for a particular intent, problem type, problem space, & specific problem
+- check if definitions/methods/models need updating with new information, removal, or optimization

@@ -14,6 +14,7 @@
       - asymmetries
         - resource asymmetries (misallocated info, cause, power, variance)
         - emergent patterns created by imbalances in usage patterns
+        - symmetries as epicenters/organizers/filters of variance
 
       - variance injections
         - unrestricted inputs
@@ -350,6 +351,10 @@
       - example:
         - a problem space has several dimensions, one of which is missing information or conflicting incentives
         - a solution formula to reduce these dimensions might be a formula to get or derive information, or a formula to align incentives
+
+    - identifying which function combinations are used optimally elsewhere and which function combinations havent been used is another function selection mechanism
+
+    - the evolution of functional layers (core to interim to output functions) is another source of insights on system development & design
 
 
   IV. Solve problem with Conceptual Query
@@ -711,7 +716,7 @@
     - an interface is just a standardizing filter - a formula to generate the right standardizing filter for a particular task would be better than relying on interface definitions
 
   - this will involve the physics of scales, filters, and other structures relevant to interface networks 
-  
+
 
 ## Post Problems (in System Context)
 

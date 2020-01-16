@@ -42,7 +42,6 @@
     https://twitter.com/remixerator/status/1004578257637953537
     https://twitter.com/remixerator/status/1004578256820064257
 
-
 ## Exploit Opportunity Analysis
 
   - exploit opportunities involve a divergence between some expected legitimate input/output & actual malicious input/output
@@ -62,7 +61,7 @@
     - outputs (info leaks)
 
   - exploit opportunity types:
-    - unenforced expectations (protocols)
+    - unenforced expectations of rule implementation methods (protocols)
     - intent-expectation divergence
       - expectation: "input intents are legitimate"
         example: using legitimate input intents (login, use form, retrieve results) to build malicious output (info about data source/query engine/caching mechanism/filter used)
@@ -120,7 +119,11 @@
       - how causal cascades can cycle to be interactive with the treatment
       - how functionality gaps or interactions at nth-iteration can provide opportunities for mutation & other randomness sources 
 
-  - given the known vulnerabilities of the bio-system, what problems are solvable (killing pathogen, deploying a substance to a position) with what methods (evolution, medicine, stressor distribution)
+  - given the known vulnerabilities of the bio-system:
+    - which problems are solvable (killing pathogen, deploying a substance to a position) with what methods (evolution, medicine, stressor distribution)
+    - which problems are inevitable
+    - which problems are solvable with auto-generated vs. external resources
+    - which stressor patterns can prevent which problems
 
 ## Protocol Recommendations
   
