@@ -2,16 +2,21 @@
 ## Variable Accretion Patterns
 
   - is variance a product of gaps in enforcement rules & useful object combinations/permutations that havent yet been combined for a particular intent on a particular interface?
+
+    - example:
+
       - because there was no one to prevent the sun from impacting fur color, the sun was allowed to interact with fur, which made some species develop alternate compounds to handle extra radiation exposure
-          - the fur interface happened to have object permutations that hadnt been activated yet, which when combined with radiation, evolved another dimension of variance, which was fur shade & compounds
-          - the different values of this variable had different matching intents
-          - what was the reason this variable (sun) was able to impact the other variable (fur) to add new dimensions to the impacted variable (shade/compounds)?
-            - fur has components (dna, pigment, proteins) which had latent functions (like skin has vitamin production functions) impacted by components of sun (radiation)
-            - why did these components have reactability with sun components?
-              - scale (dna is a similar scale to radiation metadata)
-              - structure (dna has a structure that can be modified by radiation structure)
-              - variance intersections 
-                (radiation variance in the form of waves causes variability in output structure of dna, which itself is highly variable given number of genes & fragility of expression & repair)
+        - the fur interface happened to have object permutations that hadnt been activated yet, which when combined with radiation, evolved another dimension of variance, which was fur shade & compounds
+        - the different values of this variable had different matching intents
+        - what was the reason this variable (sun) was able to impact the other variable (fur) to add new dimensions to the impacted variable (shade/compounds)?
+          - fur has components (dna, pigment, proteins) which had latent functions (like skin has vitamin production functions) impacted by components of sun (radiation)
+          - why did these components have reactability with sun components?
+            - scale (dna is a similar scale to radiation metadata)
+            - structure (dna has a structure that can be modified by radiation structure)
+            - variance intersections 
+              (radiation variance in the form of waves causes variability in output structure of dna, which itself is highly variable given number of genes & fragility of expression & repair)
+
+    - you can see how it would be possible to generate the possible causes by navigating through trajectories & combinations of interface components
 
   - is there a relationship between the potential of energy to produce information (certainty & uncertainty), allocating variance & stasis to either at a time asymmetrically
     https://en.wikipedia.org/wiki/Introduction_to_eigenstates
@@ -20,8 +25,12 @@
 
   - can you exert control on variance distribution of resources (power, energy, info) to produce changes in default physics at scale?
 
-  - can you exert operations on uncertainties (and uncertainty objects & attributes like measurement/calculation potential, changes/patterns in change rules) to aggregate uncertainties or produce emergent certainties
+  - can you exert operations on uncertainties (and uncertainty objects & attributes like measurement/calculation potential, changes/patterns in change rules) to aggregate uncertainties or produce emergent certainties 
+
+    - combinations of random vars producing predictable vars (due to predictability of randomness property in inputs) - does certainty cascade/accrete like variance does?
+
     - aligning uncertainties (variance/variance generator distribution, divergence, superpositions) to produce certainties (measurement threshold, standardization, energy concentration, information, guaranteed randomness)
+
     - example: this is similar to how you dont need to measure an individual particle's electron position if you assemble a bunch of particles and the output of their electron spins generates adequate measurement potential
 
   - visualize:
