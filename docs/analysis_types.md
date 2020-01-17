@@ -244,6 +244,9 @@
       - surfaces
       - receptors
 
+    - many object types can be an interface in a specific system, in addition to standard abstract interfaces
+      (function/metabolic interface, system//immune interface, structure/cell interface, communication/nerve interface)
+
     - stressor
 
       - change requests, or problems of type 'mismatch' between change demand & change supply
