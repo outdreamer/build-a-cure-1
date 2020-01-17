@@ -81,6 +81,7 @@
               - fairness
 
     - emergent effect prediction:
+
       - example: 
         - if you bend your knee fast enough that you eventually hit a limit, a reflex will kick in (based on speed if you miscalculate your speed based on the limit) to push you up without effort, retaining some momentum in the process, exerting a synergistic effect with standing up
         - given that the spectrums of variance overlap (vertical motion) between variables (reflex motion & bend motion), you can predict that they will either have synergistic/compounding or neutralizing impact, depending on direction of output force
@@ -89,6 +90,12 @@
         - alignment between function metadata (intents, variables, variable metadata)
         - boundaries/limits 
         - variance handlers (boundary protection rule - reflex instinct)
+
+    - predicting state/type change points of an object
+      - states & types follow patterns in the proportion & distribution of variance across variable sets
+        - example: several variables have to be diverging from average in order for a type change to occur, and the output vector & other metadata of these changes will have a point where it becomes clear which type they are leading toward and what probability the transition will continue
+      - the change points will be discernible from these patterns & pattern variables
+        - the patterns in variables, variable sets, variable values, variable types, variable metadata (importance, dependency network) will be able to predict type change points at various variable configurations
 
   ### Identifying important semantic objects in a problem space
 
