@@ -151,6 +151,12 @@
 
   III. Solve problem with solution function selection
 
+    - should be possible to estimate the value added by choosing a path between equivalent-seeming alternatives before its clear which one is correct, 
+      given the variable networks/layers & metadata (structure, complexity) of the variance between alternative paths, 
+      & relative to problem space metadata (path optimization metrics, intent)
+      as well as which path will probably be correct, with increasing certainty given additional metadata,
+      based on variable complexity relationships and other metadata relationships
+
     - lets say youve derived a network of possible functions to achieve a certain goal
       - how do you choose whether to narrow it down further or accept this level of variance in your solution set, requiring a context to select a particular function from the set?
       - if its unclear whether an alternative metric/metric value is optimal 
