@@ -71,14 +71,20 @@
             - relevant interfaces
             - path metadata topology & navigation methods to get from one state to another
 
-          - abstract attributes:
+          - abstract attributes (concepts, properties):
 
             - system attributes:
               - complexity
               - randomness
+              - order (moves occur in chains where order matters)
+              - types (different types of pieces have different rules)
+              - ratio (different ratios of type populations)
+              - limits (moves limit the remaining possible moves)
 
             - game attributes:
               - fairness
+
+    - the matrix of rules/attribute configurations & interactions is an important object for emergent effect/concept & interaction prediction
 
     - emergent effect prediction:
 
@@ -228,12 +234,15 @@
         - closed & open system components within a host closed system
         - system/component boundaries/layers
 
+
   ### Object Layer & Interface Identification
 
     - there may be an optimal layer or other set of objects on one layer or across layers with which to frame a problem
+
       - when framed in this way, the problem is always solvable 
-        (same operation as selecting a host system to represent a problem space, or selecting structures to represent the problem space objects themselves)
-      https://twitter.com/remixerator/status/1205700297965727749
+
+        - same operation as selecting a host system to represent a problem space, or selecting structures to represent the problem space objects themselves
+        https://twitter.com/remixerator/status/1205700297965727749
 
     - there may be an optimal interface to solve a problem, based on problem type or available resources (info, info-generating, variance-minimization, & other resource types)
 
