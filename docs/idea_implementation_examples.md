@@ -36,11 +36,11 @@
 
   ### Identifying important semantic objects in a problem space
 
-    - identifying optimal structure, or object identity 
-      (exploit opportunities, monster systems/assumptions, risk chains, trade loops, error & variance cascades/flow, transaction iterations, trade loops)
+    - identifying optimal structure, or object identity:
+      - exploit opportunities, monster systems/assumptions, risk chains, error & variance cascades/flow, transaction iterations, trade loops
 
-      to understand a particular problem space 
-      (markets, function prediction/derivation/reduction, attribute/path optimization, compression, metadata generation (moment-generating function), etc)
+      to understand a particular problem space:
+      - markets, function prediction/derivation/reduction, attribute/path optimization, compression, metadata generation (moment-generating function), etc
 
     - how would you identify those important objects in a system?
 

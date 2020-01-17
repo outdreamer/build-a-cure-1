@@ -60,6 +60,10 @@
       - intent: generative, filtering, grouping, organization/delegation/distribution/matching/grouping/filtering, classification, differentiation/transformation
       - scope: abstract, contextual
 
+    - are there multiple directions to approach function derivation from?
+      - can patterns in metadata-generators (difference generators) be used to derive the function generators (core functions)?
+      - does it loop around to the start, just like math/structural interface loops around to conceptual interface?
+
   X. Interface analysis
     - determining position/trajectory on interface
     - selecting interface as best standard for comparison
