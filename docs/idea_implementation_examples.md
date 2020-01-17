@@ -91,11 +91,12 @@
         - boundaries/limits 
         - variance handlers (boundary protection rule - reflex instinct)
 
-    - predicting state/type change points of an object
+    - state/type change point prediction
       - states & types follow patterns in the proportion & distribution of variance across variable sets
         - example: several variables have to be diverging from average in order for a type change to occur, and the output vector & other metadata of these changes will have a point where it becomes clear which type they are leading toward and what probability the transition will continue
       - the change points will be discernible from these patterns & pattern variables
         - the patterns in variables, variable sets, variable values, variable types, variable metadata (importance, dependency network) will be able to predict type change points at various variable configurations
+
 
   ### Identifying important semantic objects in a problem space
 

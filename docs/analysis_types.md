@@ -246,6 +246,16 @@
 
     - stressor
 
+      - stressor accretion patterns
+
+      - patterns in stressor handler gaps
+        - which stressor types/handler types are prioritized first
+
+      - variable coordination that produces stressors
+        - repeated interactions from static positions or sources of components
+        - mismatches
+        - allocation of cell division from low priority tasks (maintaining flexibility/elasticity) to high priority tasks (handling excess inflammation)
+        
       - lack of usage by genetically/systemically optimal timing linked to illnesses (hormone production & hormone usage)
         https://medicalxpress.com/news/2020-01-sex-linked-earlier-menopause.html
 
