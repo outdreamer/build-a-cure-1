@@ -766,6 +766,19 @@
     - insight path of a route type (optimal/realistic)
     - insight path trajectory for a particular assumption set
 
+## Logic Shapes
+
+  - logical overlap
+  - logical contradiction
+  - logical limit
+  - logical gap
+  - logical misalignment
+  - logical fallacy (false alternate path with different output metric value than original path)
+  - mismatching intent & logical path (the logical path is valid, but it misses the point)
+  - logical implication (assumption beyond explicit meaning)
+  - logical operations:
+    - building a conclusion out of logical units means each assembly step complies with the rules of the space
+    - "adding a line to a line may produce a square, or an right angle, but it wont produce a circle"
 
 ## Variance Shapes
   

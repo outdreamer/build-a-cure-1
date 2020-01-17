@@ -155,7 +155,26 @@ def find_intent(subset, row, av):
     return intents
     
 def find_function(subset, row, av):
-    ''' for fluconazole, this should be: "antifungal", "inhibits cyp3a4" '''
+    ''' 
+        - logical processing linking input/output
+        - example: for fluconazole, this should be: "antifungal", "inhibits cyp3a4" 
+        - function metadata:
+            - intent
+            - sub-intent links:
+                each line has embedded intents: 
+                - do these intents match up directly in the order the function is coded
+                - do they output the overall function intent
+            - type (position in type network)
+            - abstraction/scope
+            - efficiency/optimization potential
+            - exploit potential (unenforced rule ratio & likelihood of exploits)
+            - replaceability (ratio of steps or step combinations replaceable with other available functions)
+            - generatability (can it be directly compressed/mapped to a set of core functions)
+            - organization (can it be organized better)
+            - logical overlap/holes/misalignments/other logical shapes (excessive if checks, if check that doesnt apply intended filter)
+            - input/output replaceability (can inputs be consolidated, are they sufficient, are there more accessible replacement vars)
+            - requirement of inputs/outputs (are inputs required, do inputs add variation to the output)
+    '''
     return False
 
 def find_strategy(subset, row, av):
@@ -246,12 +265,26 @@ def find_fallacy(subset, row, av):
     return row
 
 def find_analogy(article, av):
+
     return article
 
 def find_argument(subset, row, av):
+    '''
+        - reason, explanation, point, interpretation, logical path
+        - this is similar to the idea of finding the strongest variable relationships to find the variable set 
+          that is likeliest to explain a phenomenon with multiple possible explanatory paths
+        - each person has a different reaosn for why their argument is nearer to the truth 
+          (relevance, similarity, fitting with other truths)
+        - each of these different reasons has different power in different contexts, 
+          and matches different patterns & sets of variables 
+          (which in this case are logical paths, points, & assumptions)
+    '''
     return row 
 
 def find_assumption(subset, row, av):
+    '''
+        - input rule that may not be true
+    '''
     return row
 
 def find_counterexample(subset, row, av):
@@ -280,27 +313,48 @@ def find_implications(subset, row, av):
 
 def find_conclusions(subset, row, av):
     ''' range of possible or adjacent possible conclusions '''
-    return row 
+    return row
 
 def find_meaning(subset, row, av):
     ''' relevant version of an object for a purpose 
+
     example:
         - meaning of an analogy is to 'describe something in an understandable way' for purpose of 'understanding', 
-            not to 'describe something in an accurate way' for purpose of 'accuracy'
+          not to 'describe something in an accurate way' for purpose of 'accuracy'
     '''
     return row 
 
 def find_key(subset, row, av):
-    ''' finding relevant layer, subset, network, structure '''
+    ''' 
+        - find relevant layer, subset, network, structure 
+        - in the absence of other techniques to find important structures,
+          use attributes & patterns in determinant structures (cooperability, adaptability) 
+          to estimate which structures are likeliest to be important
+
+    '''
     return row 
 
 def find_layer(subset, row, av):
+    ''' 
+        - find interaction layer where objects of a set interact 
+        - example:
+            - bio interaction layer: blood, enzymes, genes
+            - molecular interaction layer: electrons, protons, neutrons
+    '''
     return row 
 
 def find_network(subset, row, av):
+    ''' 
+        - find a set of related objects 
+        - apply a function to transform their connecting lines into a semantically relevant shape
+    '''
     return row 
 
 def find_path(subset, row, av):
+    '''
+        - find all connectable paths
+        - apply filter for aggregate metric or route requirements
+    '''
     return row 
 
 def find_equivalence(subset, row, av):
@@ -309,11 +363,8 @@ def find_equivalence(subset, row, av):
 def find_combination(subset, row, av):
     return row 
 
-def find_interface(subset, row, av):
-    ''' standard '''
-    return row 
-
 def find_example(subset, row, av):
+    ''' a structure (usually a more specific one, relative to audience) that fits another structure '''
     return row 
 
 def find_error(subset, row, av):
@@ -341,35 +392,69 @@ def get_variables_from_patterns(patterns, rules, objects, av):
     variables = {}
     return variables
 
-def find_filter(subset, row, av):
-    return row 
-
 def find_protocol(subset, row, av):
+    ''' set of implementation recommendations, often having unenforced rules '''
     return row 
 
 def find_alternative(subset, row, av):
     return row 
 
 def find_incentive(subset, row, av):
+    ''' reason to change position/behavior, given that a useful resource is elsewhere & attainable '''
+    return row 
+
+def find_interface(subset, row, av):
+    ''' - interface: standard/filter
+        - find the interfaces that apply to most entities in the observed set,
+          which allow for comparison of entities & isolate their differences
+    '''
+    return row 
+
+def find_filter(subset, row, av):
+    ''' 
+        - filters are a standard/interface to transform objects to isolate/reveal their differences 
+        - example:
+            - dividing by a number applies that number as a filter
+            - an interface like the "object model" frames everything as an object, 
+                which may not be able to capture interim future/past objects in a state of transition
+                however it does allow for standardized comparison between object attributes, types, & rules
+    '''
     return row 
 
 def find_perspective(subset, row, av):
+    ''' 
+        - the filter used to transform a set of objects to isolate/reveal an attribute/rule/type, given certain related priorities 
+        - example: 
+            - the libertarian ideology distributes strictness to local entities (family) using religion 
+              so that larger entities (corporations) can interact freely (do crimes)
+    '''
     return row 
 
 def find_equilibrium(subset, row, av):
+    ''' the balance structure where two conflicting forces will stabilize in absence of new variables '''
     return row 
 
 def find_efficiency(subset, row, av):
-    ''' gains retrieved using a path of existing resources '''
+    ''' gains retrieved using:
+        - a path of existing resources in existing positions
+        - minimal resource expenditure
+        - shortest path
+    '''
     return row 
 
 def find_potential(subset, row, av):
-    ''' opportunity, gap, possibility, range within structure, '''
+    ''' opportunity, gap, possibility, variance range within structure, structure that can support variance
+
+    - potential occurs with variance (or structures that can support variance) in systems governed by at least one unenforced rule
+    - example: if a safe has a lock, but is not locked, that is an unenforced rule (the lock rule is not applied)
+
+    '''
     return row 
 
 def find_structure(subset, row, av):
     ''' 
-        first compress the structure youre looking for into a combination of component structures (list, line, sequence, chain, tree) 
+        first compress the structure youre looking for into a combination of component structures 
+            (list, line, sequence, chain, tree) 
         then start looking beginning with the least common sub-component structure in the system
     '''
     return row 
@@ -391,7 +476,13 @@ def find_symmetry(subset, row, av):
     return row 
 
 def find_difference(subset, row, av):
-    ''' divergence, perpendicular, distance '''
+    ''' divergence, perpendicular, distance 
+    - use opposites of similarity definitions
+    - 'perpendicular' is the most different a line can be from another line, given the same middle point and occupying a plane
+    - to determine what 'different' means in a system for a particular object, 
+        you need to find how one object/state can maximize its difference from another object/state, 
+        by some metric supported by that dimension like distance/direction
+    '''
     return row 
 
 def find_similarity(subset, row, av):
