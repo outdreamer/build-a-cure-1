@@ -62,7 +62,9 @@
 
     - are there multiple directions to approach function derivation from?
       - can patterns in metadata-generators (difference generators) be used to derive the function generators (core functions)?
-      - does it loop around to the start, just like math/structural interface loops around to conceptual interface?
+      - does it loop around to the start, just like lowest math/structural interface (symmetry, equivalence) loops around to highest conceptual interface (balance, power)?
+      - the shape of the interface nexus should be a circuit feeding itself (fractal inputs to itself)
+      - this means you can select an optimal interface to start from & a direction to navigate in, and an interface-organizing metric (like difference) to arrange next interface to traverse
 
   X. Interface analysis
     - determining position/trajectory on interface
