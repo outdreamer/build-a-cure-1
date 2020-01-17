@@ -84,7 +84,7 @@
 
 # Functions
 
-  - standardize terms: shape/structure, model/perspective/filter/standard/interface, method/function/rule, path/route, attribute/variable/property, object/entity, type/class/category
+  - standardize terms: shape/structure, model/perspective/filter/standard/interface, intent/method/function/rule, path/route, attribute/variable/property, object/entity, type/class/category
   - add variable accretion patterns (how an object becomes influenced by a new variable, complex system interaction patterns, etc)
   - add get_common_properties function to do extra property-based searches after identifying objects with extract
   - write function to identify contradictory information (retracted studies, false information, conspiracy theory (anti-vax), opinion) & selecting least likely to be false

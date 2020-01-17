@@ -76,7 +76,39 @@
 
     - core structure components
 
-        - stack, line, tree, tensor, vector, network, circuit, group, list, unit, interface, combination, permutation, topology, corner, origin, scale, range, spectrum, cascade, trigger, chain, trade, space, dimension, layer, variance, pattern, balance, distribution, evolution, flow, extreme, inflection, symmetry, angle, ratio, degree, rate, comparison, tangent, diagonal, constant, distance, point, direction, edge, limit, boundary, order, position, equivalent, alternate, opposite, inverse
+        - calculatable structures: 
+          - dimension, layer, space
+          - scale, range, spectrum
+          - group, list
+          - corner, arc, stack, line, tree, tensor, vector, network, circuit, topology, manifold, eigenvector, approximation
+          - distance
+          - origin, point
+          - angle, direction, diagonal
+          - boundary, edge, limit, extreme, inflection, tangent
+          - symmetry, ratio, degree, rate, constant
+          - cascade/path, chain, sequence, expansion, progression, series
+          - distribution
+
+        - properties of calculatable structures:
+          - order 
+          - balance
+          - equivalence
+          - similarity
+          - accuracy
+          - complexity
+
+        - combination/contextual/conceptual structures:
+          - unit (isolatable entity)
+          - position (point)
+          - comparison (rate)
+          - combination (group)
+          - permutation
+          - interface (common attribute or attribute set)
+          - trigger, trade, variance, pattern, evolution, flow, comparison
+
+        - is variance a product of gaps in enforcement rules & objects that havent yet been combined for a particular intent on a particular interface?
+
+        - equivalent, alternate, opposite, inverse
 
         - shape configurations involve different values of the parameters, which can be core components (number of sides, angle, number type, etc), that accrete into shape types with differentiating derivable/emergent attributes
 
