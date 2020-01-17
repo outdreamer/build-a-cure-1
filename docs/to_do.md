@@ -18,6 +18,17 @@
     - at some point you need to identify this system of relationships between object types & layers 
       so that generation of additional layer interfaces is possible (physics system, math system, chemical system, in addition to medical/bio system)
 
+- you can work on other tasks for a while before completing relationship/clause/pattern fitting:
+  - insight identifier
+  - dose prediction for a patient
+  - fetch contraindications for a drug (find nth-degree side effects, outputs, high dose impact if not metabolized, conditions, interacting/synergistic/neutralizing drugs)
+  - find most common adjacent compound (to make it likeliest that the person can find the common compound and synthesize the version they need)
+  - fetch synthesis instructions for a drug from most common adjacent compound
+  - treatment component identification function
+  - drug reaction predictor
+  - compound search from smile formula
+
+
 # Sources
 
   - check chembl search if you can search for a condition & return molecules known to treat it
@@ -29,6 +40,9 @@
   - find source of bio keywords & synonyms
 
 # Structural Objects
+  - when evaluating interactions, check for other compounds that interfere with metabolism & de/activation (cytochromes it targets, liver enzymes it assists), 
+    which can increase or decrease blood ratio of a drug
+  - look for processes/intake of nutrients that could combine to form other compounds (berberine) given the output health factors (stable blood sugar)
   - fix order of assembled combinations:
       get_alts: all_alts [['suppose', 'assumed', 'thought'], ['DT', 'PDT', 'WDT', 'TO', 'PP', 'CC', 'IN'], ' that ', ['suppose', 'assumed', 'thought'], ' that']
       get_all_versions |suppose thought assumed| that DPC |suppose thought assumed| that

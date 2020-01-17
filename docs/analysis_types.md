@@ -179,7 +179,7 @@
 
     - https://twitter.com/remixerator/status/1216501559787282432
     - https://twitter.com/remixerator/status/1138707042187661312
-    
+
   ### Interfaces
 
     - system 
@@ -187,12 +187,32 @@
       - deviating from genetically optimal environments as a cause of systemic stressors that lead to cancer
         - if you have night owl genes but force yourself to be a morning person
         - if you have genes that can handle low calcium levels but you eat a lot of calcium
-
       - can you delegate computation to tumor cells to prevent them from splitting
-
       - cancer tends to make use of whatever tools already exist, which means its moves are predictable given available resource combinations
-
       - does cancer also have unpredictable activity in generating new tools, not just adjacent combinations of existing tools but systemic tools like new pathways?
+
+      - from a system that has systemic issues that seem unexplainable by known rules, seek a new object (interface, system, rule, type, attribute, etc)
+        https://medicalxpress.com/news/2019-12-artificial-intelligence-previously-unknown-features.html
+
+    - attribute
+
+      - invalidating
+        - toxicity (invalidates usefulness of a treatment)
+
+      - variance
+        - binding variety
+        - movement types (rotation, density distribution)
+        - adjacent interfaces (receptor, immune, etc)
+
+      - signaling
+        - ionization
+        - surface structure
+        - vocabulary (interpretability of signals)
+        - state change metrics/limits
+
+      - support
+        - metabolism
+        - filtration
 
     - rules
 

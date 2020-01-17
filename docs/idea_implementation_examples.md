@@ -515,12 +515,14 @@
       - balance is related to symmetry so these are not unique concepts but embedded/dependent/overlapping/hierarchical concepts
       - however balance is clearly differentiable from power, as balance inherently involves equivalence and power doesnt, whereas power inherently involves enablement and balance doesnt
 
+
 ## Prediction markets
   - you can influence other people's predictions
     - providing prediction tools (algorithms, delivery platforms, APIs, tutorials)
     - tracking usage of those tools
     - indirect market manipulation, through trust established by making your prior predictions true
   - directly influence supply/demand & make bets on your influence
+
 
 ## Identifying important semantic objects in a problem space
 
@@ -534,6 +536,7 @@
 
       - how do constants accrete between rules, like caps to keep variance from flowing in to corners or creating openings in systems?
 
+  - also fitting known structures & known permutations of structures to explain a possible missing object or combination in a system
 
 ## Standard Neural Network Design for initial complex problem factor identification reduction
   
@@ -671,7 +674,80 @@
     - what intents does this path align with or could be built from?
     - "what is the function linking these variables, given the variable intents a, b, c and the combination intent matrix ab, bc, ca, and the possible output intents of that matrix, and similarity to output intent of y"
 
+  VIII. Variable accretion
 
+    - if there are multiple explanations for various factors, but there are variable relationships connecting different options for different variables, the (more) related variables are likelier to be explanatory
+      
+      - example:
+
+        - the reason for dog ear shape could be for maximizing hearing or for protecting against pests
+        - the reason for dog tail shape could be for maximizing speed or for protecting against pests
+        - the reason for dog paw shape could be for weight distribution or for flexibility or for protecting against predators
+
+        - given these sets of variables in the dog system, which explanation is likeliest to be correct given their relationships, if there are any across variables?
+
+          - the evolutionary position of a dog is relevant: 
+            - is a dog an apex predator or known for being particular fast at running away from predators?
+            - do dogs typically carry excess weight or get some other benefit from paw weight distribution like flexibility?
+            - do dogs have better haering/speed than adjacent species?
+            - are pests/predators a bigger threat than paw injuries from excess weight?
+
+          - the reasons also have relevant patterns:
+            - regardless of position on food chain, most species have a ratio of x protective mechanisms to y functionality/attribute optimization mechanisms
+
+          - look for relationships between all variables
+            - is flexibility of paw manipulation a factor influencing speed? (adapting to terrain)
+            - is tail shape related to weight distribution? (balance)
+
+          - of the two obvious relationships (maximizing & protecting), is hearing/speed more important than protective mechanisms? 
+            (and therefore likely to evolve sooner or be a better identifying trait)
+
+            - given the lack of direct predators for many dog species/environments, variables to defend against predators arent as likely as variables to defend against pests
+            - given the lack of hunting requirements for many dog species, hearing & speed arent as important as if dogs had to find their own food
+            - this leaves 'protecting' as the remaining relationship with the higher impact
+
+          - there are other relationships to analyze:
+
+            specific objects:
+              - senses (hearing)
+              - extremities (paw, tail)
+
+            attributes:
+              - shape
+              - adaptability (flexibility, protective spectrums)
+              - balance (distribution, even number of limbs, spreading out sensory features, extra extremities to improve balance)
+              - backup mechanisms (extra limbs (3 are necessary for similar speed), multiple protective features, multiple senses)
+
+
+    - variables contain variance according to data type & variance source patterns - when a source exceeds the capacity of a variable, how does it spill into the system or other objects?
+     
+      - example: 
+
+        - when a stressor (sharp-edged object or membrane-processing enzyme) becomes too much for a variable (cell membrane strength) to handle, what is the impact on the system?
+
+          - the cell contents become unbounded by the membrane & leak into the bloodstream
+          - the contents interact with other cells expected in blood
+          - those cells are disrupted
+          - regulatory processes may be alerted to clean up the contents
+          - if regulatory processes are not available, the disruption may cascade, distributed by blood flow
+          - mutations & other serious disruptions with minimal triggering requirements may occur as a result of the cascade
+          - if more than one cell was disrupted in this way, the mutations may accrete, and eventually one of them may be a cancer-causing mutation
+
+      - the net impact of a variance spill can be a variance cascade or other variance shapes
+
+    - how do variables accrete in the first place?
+
+      - when different requirements can be built with the same set of core components, each interim set of core component combinations producing those requirements is a variable
+
+      - example:
+
+        - when different required intents (balance, flexibility, senses) can be built with the same set of core components
+          (tissue types, cell types, genes, mutations, microorganisms, shape, nutrients), 
+          each interim set of core component combinations (paw shape, nerve distribution, extremity & feature distribution) producing those requirements is a variable
+      
+        - height: many input variables (nutrients, activity) determine the height variable, and the height variable is an input to many different required intents (hunt, fight, reach, climb)
+
+      - variables act as an interface between input variables & output variables, so the variables we tend to pay attention to are often hubs in the network of variables
 
 ## Definition differentiation
 
