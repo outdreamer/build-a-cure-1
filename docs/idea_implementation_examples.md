@@ -119,12 +119,16 @@
     - also fitting known structures & known permutations of structures to explain a possible missing object or combination in a system
 
     - what parameters apply across interfaces? 
-      - (info, similarity, change, combination, position, structure, concepts, time, other interfaces)
+      - info, similarity, change, combination, position, structure, concepts, time, other interfaces
 
-    - alternate flow
+    - condition/alternate flow
       - what influences the accidental evolution of alternates, other than symmetries (complexity/intent/resource/stressor alignments)?
 
     - what are the patterns of stressor demand/change supply matching?
+      - this is the same problem as intent (gap)-function matching - the stressor demands that you do something new, and you supply change to handle it
+      - look for variable sensitivity (high output change from low input change)
+      - distortion patterns of function-finding, function selection, function estimation, function generation (same for function patterns & variables)
+      - alternate calculation methods & combinations of inputs/conditions/operations/metrics
 
     - system operations:
         - emergent intersecting property (momentum, size, shape) interacting with a closed system (cell)

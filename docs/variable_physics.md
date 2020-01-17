@@ -6,6 +6,7 @@
     - example:
 
       - because there was no one to prevent the sun from impacting fur color, the sun was allowed to interact with fur, which made some species develop alternate compounds to handle extra radiation exposure
+      
         - the fur interface happened to have object permutations that hadnt been activated yet, which when combined with radiation, evolved another dimension of variance, which was fur shade & compounds
         - the different values of this variable had different matching intents
         - what was the reason this variable (sun) was able to impact the other variable (fur) to add new dimensions to the impacted variable (shade/compounds)?
