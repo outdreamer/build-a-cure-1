@@ -171,3 +171,68 @@
           - generate_correct_patterns() is applied to other patterns before applying get_alts()
           - generate_pattern_type_patterns() is relevant in that it assigns types to generate a pattern so this function could be extra useful for input/output relationship comparison
 
+
+
+  ### Another function generation example
+
+    - core functions have the property of being very granular while also being broad function categories bc they represent abstract intents, and functions are indexable by intent
+
+    - you could generate logic manually for a problem like: 
+      "classify which attribute type this attribute is (input, output, type, abstract, internal)"
+
+    - but you could also generate a function programmatically:
+
+      - to generate a function that classifies an object by an attribute (object=attribute, attribute=type), query definitions of those
+
+        - definition of classification involves verb "filter" or "sort" (standardize "sort" to "filter")
+        - filter is a core function, map filter function to classification function using the rest of the definition
+        - from original problem definition, this operation should produce: "filter attributes by attribute.type, given set of possible attribute type values"
+
+        1. identify input requirement: "set of possible attribute type values"
+          - query for input requirement: "input, output, type, abstract, internal"
+          - add variable to contain list of values:
+            'values = ["input", "output", "type", "abstract", "internal"]'
+
+        2. identify required function logic operation: "check if variable value in list of values"
+          'if attribute.type in values'
+
+        3. identify input requirement: "attribute object has type property"
+          - check that requirement is valid across input data, if attribute object definition & usage is accessible
+          - add condition to check for this property in the attribute input
+            "if 'type' in attribute:"
+
+        4. identify that attribute.type check #3 should precede attribute.type value check #2, because if the attribute.type check fails, the attribute.type value check cant be run
+        
+        5. identify that an indexed list is required to store output, and find data structure matching that requirement
+        'outputs = {}'
+
+        6. identify that the indexed list should contain the attribute identifier (attribute.name) (which is the filtered variable) filtered by type, 
+          and that the attribute.type is the indexed list key (filtering variable)
+
+        7. add an insertion of the attribute.name to the indexed list after condition "if 'type' in attribute:"
+          'outputs[attribute.type] = attribute.name'
+
+        8. generate a function name based on intent: 
+          intent (core function): filter
+          inputs: attribute objects
+          identifying logic: filter relevance (type)
+          - filter attribute objects by a standard of 'type'
+          reduce name:
+          - classify attributes by type
+
+        9. now you should have an ordered list:
+          'def classify_attributes_by_type(attribute):'
+          'outputs = {}'
+          'values = ["input", "output", "type", "abstract", "internal"]'
+          "if 'type' in attribute:"
+          'if attribute.type in values'
+          'outputs[attribute.type] = attribute.name'
+
+        10. determine output conditions based on conventions or output possibility elimination rules
+          'if outputs:'
+            'return outputs'
+          'return False'
+
+        11. add output conditions
+
+        12. add indentation to organize logic operation order & selection, given function intent
