@@ -80,6 +80,16 @@
             - game attributes:
               - fairness
 
+    - emergent effect prediction:
+      - example: 
+        - if you bend your knee fast enough that you eventually hit a limit, a reflex will kick in (based on speed if you miscalculate your speed based on the limit) to push you up without effort, retaining some momentum in the process, exerting a synergistic effect with standing up
+        - given that the spectrums of variance overlap (vertical motion) between variables (reflex motion & bend motion), you can predict that they will either have synergistic/compounding or neutralizing impact, depending on direction of output force
+
+      - factors of potential for emergent effects
+        - alignment between function metadata (intents, variables, variable metadata)
+        - boundaries/limits 
+        - variance handlers (boundary protection rule - reflex instinct)
+
   ### Identifying important semantic objects in a problem space
 
     - identifying optimal structure, or object identity:
