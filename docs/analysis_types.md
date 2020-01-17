@@ -185,6 +185,12 @@
         - if you have night owl genes but force yourself to be a morning person
         - if you have genes that can handle low calcium levels but you eat a lot of calcium
 
+      - can you delegate computation to tumor cells to prevent them from splitting
+
+      - cancer tends to make use of whatever tools already exist, which means its moves are predictable given available resource combinations
+
+      - does cancer also have unpredictable activity in generating new tools, not just adjacent combinations of existing tools but systemic tools like new pathways?
+
     - rules
 
       - bind
@@ -209,6 +215,9 @@
 
     - stressor
 
+      - lack of usage by genetically/systemically optimal timing linked to illnesses (hormone production & hormone usage)
+        https://medicalxpress.com/news/2020-01-sex-linked-earlier-menopause.html
+
       - muscles have stressor handler for excess lactate, and cell types in other tissues do not
         https://medicalxpress.com/news/2020-01-lactate-prompt-cancer-formation.html
 
@@ -217,6 +226,11 @@
 
       - required nutrients that are not handled well bc of genes from stressor-handling lineage may act as a stressor
         https://medicalxpress.com/news/2010-06-calcium-consumption-prostate-cancer-chinese.html
+
+      - mental processes that generate stressor requests & handlers (future planning, hope, expectations, pressure, empathy, pain management, & perception of potential as a factor in aging & disease)
+        https://medicalxpress.com/news/2020-01-racial-discrimination-telomere-shortening.html
+
+        - check whether empathy with terminal patients is associated with higher risk of disease in doctors/nurses
 
     - processes
 
@@ -237,14 +251,20 @@
           - can bioluminescence treat cancer
             https://medicalxpress.com/news/2016-03-tumors-cell-electric.html
 
+          - https://medicalxpress.com/news/2016-02-harnessing-power-cancer.html
+
         - lasers
 
         - photosynthesis
 
-      - inflammation
+      - inflammation/irritation
+
       - learning
+
       - competition
+
       - finding/borrowing/generating functionality & other resources
+
       - energy management (storage, sharing, production, source-switching, conversion)
 
       - organization (chromosome position, storage compression, topologically associated domains, binding/accretion rules)
@@ -253,6 +273,12 @@
         - https://medicalxpress.com/news/2020-01-inflammation-game-changer-cellular-death.html
 
       - communication
+
+        - blood flow
+
+        - oxygen supply
+
+        - quick metabolism/distribution of unnecessary clusters
 
         - look for intersection between "happiness" hormones and cell communication 
           https://phys.org/news/2016-07-happy-cows-nutritious.html
