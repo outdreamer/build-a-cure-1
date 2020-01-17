@@ -164,10 +164,84 @@
 
 ## Cancer & Stressors
 
-  - cells experiencing stress cluster together, which reduces cell communication & leads to cancer
-    https://phys.org/news/2020-01-cells-stress.html
+  ### Predictive tools
+    - prediction function for computing which pathogen combination will produce the target antibodies
+    - prediction function for drug impact between species, mapping species transform function to changes in drug impact
+    - prediction function for what ratio of compounds is present in nutrients & drugs with differing success rates
+      https://phys.org/news/2016-07-happy-hormone-calcium-cows-humans.html
+    - functionality prediction functions, indexing genes, structure & sub-components by functionality
 
-  - dairy congests system & interferes with cell communication, leading to higher cancer rates
+  ### Cell communication
 
-  - trigger inflammation in adjacent areas using pathogens with neutralizing effects or competing for same resources to make different cancers fight
-    https://medicalxpress.com/news/2019-12-insights-armies-strategically-stationed-cells.html
+    - look for intersection between "happiness" hormones and cell communication 
+      https://phys.org/news/2016-07-happy-cows-nutritious.html
+
+    - cells experiencing stress cluster together, which reduces cell communication & leads to cancer
+      https://phys.org/news/2020-01-cells-stress.html
+
+    - dairy congests system & interferes with cell communication, leading to higher cancer rates in some cancers, particularly gender-specific or hormonal organs & filtering organs
+      https://medicalxpress.com/news/2019-10-dairy-products-higher-prostate-cancer.html
+      https://medicalxpress.com/news/2013-03-high-fat-dairy-products-linked-poorer.html
+      https://medicalxpress.com/news/2014-11-lactose-intolerants-cancers.html
+      https://medicalxpress.com/news/2011-08-poor-awareness-bowel-cancer.html
+
+  ### Stress response
+
+    - trigger inflammation in adjacent areas using pathogens with neutralizing effects or competing for same resources to make different cancers fight
+      https://medicalxpress.com/news/2019-12-insights-armies-strategically-stationed-cells.html
+
+    - required nutrients that are not handled well bc of genes from stressor-handling lineage may act as a stressor
+      https://medicalxpress.com/news/2010-06-calcium-consumption-prostate-cancer-chinese.html
+
+  ### Idiosyncrasies
+
+    - does cancer eventually try to build its own organ or bio-system, so letting a tumor survive for a period of time could trigger internal tumor immune processes?
+      - tertiary lymphoid structures act as a regulatory system of the tumor, adjusting its pressure & distribution
+      https://medicalxpress.com/news/2020-01-scientists-powerhouses-tumours.html
+
+  ### Interfaces
+
+    - structural
+
+    - stressor
+
+      - muscles have stressor handler for excess lactate, and cell types in other tissues do not
+        https://medicalxpress.com/news/2020-01-lactate-prompt-cancer-formation.html
+
+    - drug
+
+    - proteins, enzymes, lipids
+
+    - electrical
+      https://medicalxpress.com/news/2020-01-evidence-previously-unknown-electrical-property.html
+
+    - inflammation
+
+    - pathogen
+
+    - mutation
+
+    - antibodies
+
+    - memory cells
+
+    - communication
+
+    - competition
+
+    - finding/borrowing functionality & other resources
+
+    - boundaries
+
+    - surfaces
+
+    - organization (chromosome position, storage compression, topologically associated domains, binding/accretion rules)
+
+      - shapes that have rotation-compounding structures (corners/wheels)
+      - https://medicalxpress.com/news/2020-01-inflammation-game-changer-cellular-death.html
+
+    - receptors
+
+    - 
+
+    - 
