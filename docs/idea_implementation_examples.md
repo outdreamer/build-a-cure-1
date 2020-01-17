@@ -538,6 +538,7 @@
 
   - also fitting known structures & known permutations of structures to explain a possible missing object or combination in a system
 
+
 ## Standard Neural Network Design for initial complex problem factor identification reduction
   
   - given that neural networks apply "apply, aggregate, & filter" functions to sort causative information into a standard shape like a tensor or vector set 
@@ -735,6 +736,7 @@
 
       - the net impact of a variance spill can be a variance cascade or other variance shapes
 
+
     - how do variables accrete in the first place?
 
       - when different requirements can be built with the same set of core components, each interim set of core component combinations producing those requirements is a variable
@@ -749,7 +751,52 @@
 
       - variables act as an interface between input variables & output variables, so the variables we tend to pay attention to are often hubs in the network of variables
 
+
     - system constants may temporarily cover gaps in variance explanations during system state changes
+      - how do variables decay into constants?
+      - how do constants interact with variance sources to become variables?
+
+
+    - variable accretion & relationship paths can explain type variance (trajectory through a neural network)
+
+      - the set of protection-intent variables for a dog can explain differences in survival & evolution between dog & adjacent/predator/prey species in extreme conditions
+      - it can also impact the larger ecosystem, unless theres a dog-network substitute about to take its place when it goes extinct, or exacting an opposing stressor on the ecosystem
+        - example: if theres a set of variables higher up the causal chain (adaptability), and that is allowed to interact with other systems in the ecosystem, it will probably generate other domesticatable predators that can take the place of dogs (cats)
+      - the variable sets (learning, energy magagement, mutation patterns, efficiency) generating those two variable sets (protection & adaptability) are the explanatory sets for evolved attributes/rules shared across type layers
+
+
+    - in a system with similar structures having similar complexity, similar variables may evolve that can act as replacements/substitutes/alternatives
+      - example: 
+        - a square may have different but similar uses for its corners, like storing some set of small objects
+        - when it starts to rotate (injected with variance in form of relative internal object position), 
+          the grouping rules for those small objects may be applied adequately to other sets
+
+
+    - from variable accretion patterns, you can derive common variable distortion functions:
+      - ensuring backups/alternatives to test a value for usefulness
+      - applying divide & conquer to variable values, & retaining or requiring useful values
+      - change variable metadata (data type, variance, dependencies, value options)
+      - split/merge/link/unlink/inject/eject a variable
+      - change variable to a constant or eject variable when variance is required in dimensions the original variable cant influence
+          example: if dogs suddenly need to breathe in space, their tail shape may not matter anymore
+      - inject a variable when a system is so orderly it cant handle a particular problem
+          example: 
+          if mutations cant help the dog evolve quickly enough, attack from high-variance interfaces:
+            - function deployment: give it the function to export functionality between cells & a non-hostile microorganism with the functionality to convert the lung to an organ capable of providing it with air
+            - function expansion: add genes/chromosomes/TADs/pathogen that would give it this ability
+            - function hack: design an lung that converts space particles to breathable air & surgically insert the lung
+            - stressor deployment: give it the stressors that would lead to it developing the required function, if buildable from available core functions
+
+
+    - why do variables accrete into sets?
+      - variables organize into object input sets for cooperative differentiation of labor (filtration, regulation, identification, communication, protection) & organize into coordinating systems for layers of functionality/core function types (object health tests, object input deployment)  
+      - input sets: one aggregating factor organizing variables into input sets is their ability to add useful change to achieve outputs from a set of inputs
+        - a function can gather variables useful to it, just like a membrane can gather components useful to the cell
+      - type sets: standard, simple platform structures attract variance across a dimension set (a standard implementation of a paw provides an interface for distortions to occur that may have utility for various intents)
+      - when a particular level of variance is no longer required, variables can consolidate or be ejected 
+          (if dogs' predators were to evolve a better alternative to vision, dogs might stop having different fur colors to disguise themselves to predators or survive in different climates)
+      - when a variable is added that is unnecessary, it creates extra disorder where none is demanded, and this can result in systemic change or destruction
+
 
 ## Definition differentiation
 
@@ -766,6 +813,7 @@
     - insight path of a route type (optimal/realistic)
     - insight path trajectory for a particular assumption set
 
+
 ## Logic Shapes
 
   - logical overlap
@@ -779,6 +827,7 @@
   - logical operations:
     - building a conclusion out of logical units means each assembly step complies with the rules of the space
     - "adding a line to a line may produce a square, or an right angle, but it wont produce a circle"
+
 
 ## Variance Shapes
   
