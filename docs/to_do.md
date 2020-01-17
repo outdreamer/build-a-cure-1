@@ -145,7 +145,7 @@
 # Diagrams
 
 - make diagram for variable accretion patterns
-- finish diagrams for specific concepts, core functions, and concept operations
+- finish diagrams for specific concepts, core functions, concept operations, ethical shapes
 - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
 - consider using dimensionality reduction as a way to identify abstract patterns & functions to explain common deviations from patterns
     https://miro.medium.com/max/1659/1*nQrZmfQE3zmMnCJLb_MNpQ.png

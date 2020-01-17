@@ -1,4 +1,4 @@
-## Problem shape 
+## Problem shapes 
 
       - problems can have multiple dimensions creating the output problem shape, 
         which can occupy a network of related problems (both specific problems and problem types)
