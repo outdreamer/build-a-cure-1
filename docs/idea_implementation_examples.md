@@ -85,6 +85,9 @@
               - fairness
 
     - the matrix of rules/attribute configurations & interactions is an important object for emergent effect/concept & interaction prediction
+      - this stores the full set of interactions & variations possible within the type/object definition
+      - the variations are representable with a topology
+      - the interactions may vary by more than one distance measure, so may require multiple topologies (metric topology of variation topologies)
 
     - emergent effect prediction:
 
