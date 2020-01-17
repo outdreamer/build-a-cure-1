@@ -18,6 +18,7 @@
         - limits as an output of symmetries - can you calculate all symmetries, and can you calculate all limits from the set of symmetries?
         - how do symmetries evolve in a system - do they provide a standard/interface for variance to coordinate efficiently?
         - how are symmetries related to efficiency?
+        - quantum entanglement occurs around symmetries & other aggregators like similarity
 
       - variance injections
         - unrestricted inputs
@@ -393,6 +394,11 @@
 
     - determining which interfaces, attributes & concepts determine the biggest difference in function performance 
       (scale physics, structure physics, info physics, causal shapes, change physics, logic, types, dimension sets, metric selection, complexity, etc)
+
+      - selecting standard model for optimal problem reduction into components 
+        (framing it as a task suitable for organizational, optimal transport, route optimization, distribution, position assignment, sequence ordering model, etc)
+
+      - selecting adjacent models that existing problem structure can be converted/broken into (system molecules forming problem structures)
 
 
   IV. Solve problem with Conceptual Query
