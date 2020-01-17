@@ -88,6 +88,8 @@
       - this stores the full set of interactions & variations possible within the type/object definition
       - the variations are representable with a topology
       - the interactions may vary by more than one distance measure, so may require multiple topologies (metric topology of variation topologies)
+      - representing the emergent properties may involve networks, paths across the topology & between topologies for emergent properties (like relevant interfaces or potential impact of agent creativity)
+      - representing abstract attributes may involve subset topologies (a topology using a subset of vars or another transform like a type/interface/concept transform), networks, paths, layers, cross-sections, circuits & slices for abstract attributes (like power, or balance)
 
     - emergent effect prediction:
 
