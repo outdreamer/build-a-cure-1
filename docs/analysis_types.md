@@ -177,6 +177,9 @@
       - tertiary lymphoid structures act as a regulatory system of the tumor, adjusting its pressure & distribution
       https://medicalxpress.com/news/2020-01-scientists-powerhouses-tumours.html
 
+    - https://twitter.com/remixerator/status/1216501559787282432
+    - https://twitter.com/remixerator/status/1138707042187661312
+    
   ### Interfaces
 
     - system 
@@ -231,6 +234,9 @@
         https://medicalxpress.com/news/2020-01-racial-discrimination-telomere-shortening.html
 
         - check whether empathy with terminal patients is associated with higher risk of disease in doctors/nurses
+
+        - link between mental bias & disease from lack of flexibility
+          https://medicalxpress.com/news/2020-01-long-term-memory-gating.html
 
     - processes
 
