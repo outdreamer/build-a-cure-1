@@ -316,40 +316,13 @@ def find_interface(subset, row, av):
 def find_example(subset, row, av):
     return row 
 
+def find_error(subset, row, av):
+    ''' common error types & core functions explaining how error can deviate from intended behavior '''
+    return row
+
 def find_limit(subset, row, av):
     ''' threshold, boundary, rule, metric, edge, limit of range '''
     return row 
-
-def derive_objects_in_network(subset, row, av):
-    ''' derives objects/nodes in a network using limiting rules to identify unique objects accreting variance sets '''
-    return row
-
-def find_definition(subset, row, av):
-    ''' this function:
-    - iterates through list of known objects of object_type
-    - aggregates lists of patterns, pattern attributes, types, and interactions
-    - figures out which are explanatory/determinant variables producing the object
-    - determines which attributes vary across examples of the object
-    - derives network of rules from patterns & pattern attributes
-    - describes rules known to explain variance in object behavior or attributes 
-    - identifies patterns explaining types of the object
-    '''
-    patterns = set()
-    variables = set()
-    rules = set()
-    types = set()
-    objects = row[object_type] if object_type in row else None
-    if objects:
-        pattern_list, articles, av = derive_and_store_patterns(object_type, objects, av)
-        if pattern_list:
-            patterns = set(pattern_list)
-            rules = get_rules_from_patterns(patterns, objects, av)
-            variables = get_variables_from_patterns(patterns, rules, objects, av)
-            types = get_types_from_patterns(patterns, variables, objects, av)
-            extreme_examples = get_extreme_examples(types, patterns, variables, objects, av)
-            ''' get most different examples within calculated possible range or within object list '''
-
-    return row
 
 def get_extreme_examples(types, patterns, variables, objects, av):
     examples = []
@@ -395,9 +368,26 @@ def find_potential(subset, row, av):
     return row 
 
 def find_structure(subset, row, av):
+    ''' 
+        first compress the structure youre looking for into a combination of component structures (list, line, sequence, chain, tree) 
+        then start looking beginning with the least common sub-component structure in the system
+    '''
     return row 
 
 def find_symmetry(subset, row, av):
+    ''' 
+        - looking for transforms that dont change a particular variable, like distance 
+        - check for symmetry behaviors in variable metadata (variable types, variable relationships, etc)
+        - assess symmetry ratio for permutations of a variable & its types (a network of symmetry ratios)
+            - for example the number of distance variables that are symmetric in a particular dimension set, like a sphere has more symmetric variables than a circle
+        - assess the scope of each symmetry:
+            - a cluster of data points may have contextual symmetries but is unlikely to have even one absolute symmetry unless its very evenly distributed
+        - assess randomness as a way to find symmetries
+        - assess timing similarity of information generation as a way to build quantum entanglements
+            - two agents generate the same information at the same time & these bits of information are entangled until one of them uses it more efficiently
+            - quantum entanglement as a mechanism for maintaining independence (generate information equally across agents)
+        - assess equivalence as a conceptual relationship to the definition of symmetry
+    '''
     return row 
 
 def find_difference(subset, row, av):

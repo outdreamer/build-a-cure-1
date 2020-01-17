@@ -749,6 +749,8 @@
 
       - variables act as an interface between input variables & output variables, so the variables we tend to pay attention to are often hubs in the network of variables
 
+    - system constants may temporarily cover gaps in variance explanations during system state changes
+
 ## Definition differentiation
 
   - given that most conceptual objects are related, how do you identify which are most important in determining another object?
