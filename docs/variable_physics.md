@@ -1,6 +1,15 @@
 
 ## Variable Accretion Patterns
 
+  - do variables with more similarities tend to cooperate or compete more? 
+    - it depends on:
+      - what stage of similarity theyre at, including whether they:
+        - are similar on common or rare metrics
+        - what axss of similarity they have in common (variable rules, metadata, types, combinations, structures, networks)
+        - occupy different systems
+        - evolved in the same system for different reasons/out of different components
+      -  if they have prior or imminent dependency (just diverged or are about to converge or have convergence/divergence potential)
+
   - at what point does a variance accretion become a cascade or another variance shape? it depends on the system structure & the rules governing the development of variance handlers
   - variance handlers can distribute variance across inputs to limit its impact, limit its interaction potential with barriers closing the gaps in rule enforcement, or derive its function so it can be controlled
   - the set of variance handlers that can be generated in a system is calculatable
