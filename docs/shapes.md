@@ -27,13 +27,13 @@
         - for an asymmetry, the solution shape would be:
           - an optimal transport operation set to distribute the resource optimally according to the metric of symmetry
 
-## Ethical physics
+## Ethical Shapes
 
     - if someone attacks their neighbor:
       - the neighbor can retaliate
       - or the neighbor can recognize that the hit was not relevant to them but to prior attack chains, and hit the source of that attack chain that attacked their neighbor,
         so rather than continuing the chain, the neighbor creates a causal circle, directing consequences toward the relevant source of the problem
-
+    - there are ethical shapes for each ethical problem type
 
 ## Insight Shapes (Unit, Paths)
 
@@ -41,6 +41,11 @@
     - probable missing pieces of networks
     - insight path of a route type (optimal/realistic)
     - insight path trajectory for a particular assumption set
+
+## Interface Shapes
+
+  - interface: filter/standard for comparison of specific attribute(s)
+  - interfaces evolve when a unifying attribute (priority, cause, structure) can frame a set of developing variances
 
 ## Type Shapes
 
