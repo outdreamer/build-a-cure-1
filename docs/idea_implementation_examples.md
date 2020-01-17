@@ -36,15 +36,44 @@
 
   ### Identifying important semantic objects in a problem space
 
-    - example: identifying optimal structure, or object identity (exploit opportunities, monster systems/assumptions, risk chains, trade loops, variance cascades/flow, transaction iterations) to understand a particular problem space (markets, function prediction/derivation/reduction, attribute/path optimization, compression, metadata generation (moment-generating function), etc)
+    - example:
+
+      - identifying optimal structure, or object identity 
+        (exploit opportunities, monster systems/assumptions, risk chains, trade loops, error & variance cascades/flow, transaction iterations, trade loops)
+
+        to understand a particular problem space 
+        (markets, function prediction/derivation/reduction, attribute/path optimization, compression, metadata generation (moment-generating function), etc)
+
+    - how would you identify those important objects in a system?
+
+      - you can filter combinations by variance & usefulness, like in the "object model generation" example above
+
+        - "type networks" and "variable networks" are particularly useful combinations, for example
+
+      - but this leaves out a method to identify the combinations of combinations with significant variance interactions:
+
+        - such as connecting the following interacting variance rules to identify that (given these variance rules) an exploit opportunity is an important object in the problem space:
+          - "agents vary by intention"
+          - "intention varies from stated intention"
+          - "rules vary from enforcement rules"
+          - "implementations vary from implementation rules"
+          - "optimal implementation varies from actual implementation"
+          - "beneficiaries of a rule optimization efficiency vary by distribution"
+          - "agents identifying a rule optimization efficiency first can imbalance the distribution of benefits in their favor"
+          - "exploit opportunity"
+        - the existence of this object is dependent on whether each rule in the chain holds (if rules are unenforced, if agents vary by intention, etc)
+
+        - examples of objects:
+          - rule: a path
+          - rule optimization: method to find a path at reduced cost (reduced distance, ie a shorter path)
+          - rule optimization efficiency: the shorter path itself, or a pattern in rule optimization methods
+
 
     - core structure components
 
         - stack, line, tree, tensor, vector, network, circuit, group, list, unit, interface, combination, permutation, topology, corner, origin, scale, range, spectrum, cascade, trigger, chain, trade, space, dimension, layer, variance, pattern, balance, distribution, evolution, flow, extreme, inflection, symmetry, angle, ratio, degree, rate, comparison, tangent, diagonal, constant, distance, point, direction, edge, limit, boundary, order, position, equivalent, alternate, opposite, inverse
 
         - shape configurations involve different values of the parameters, which can be core components (number of sides, angle, number type, etc), that accrete into shape types with differentiating derivable/emergent attributes
-
-        - how do constants accrete between rules, like caps to keep variance from flowing in to corners or creating openings in systems?
 
     - also fitting known structures & known permutations of structures to explain a possible missing object or combination in a system
 

@@ -42,6 +42,8 @@
   VIII. Variable analysis
     - variable accretion
     - at what point does a variable become relevant to another variable interaction layer?
+    - how do constants accrete between rules, like caps to keep variance from flowing in to corners or creating boundary-invalidating openings in a system/component boundary?
+    - what causes variables to cascade across layers, creating fractal variables?
     - delegation of variance into systems/types/functions/variables/constants
 
   IX. Functional analysis 
