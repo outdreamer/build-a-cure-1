@@ -151,6 +151,12 @@
 
   III. Solve problem with solution function selection
 
+    - lets say youve derived a network of possible functions to achieve a certain goal
+      - how do you choose whether to narrow it down further or accept this level of variance in your solution set, requiring a context to select a particular function from the set?
+      - if its unclear whether an alternative metric/metric value is optimal 
+        (metrics or metric values are similar & differences arent clearly relevant to goal)
+        thats a good candidate network for postponing the selection to selection demand time
+
     - for each problem dimension, there is a set of functions that can reduce the problem dimension to a point, by finding the formula for the shape of that problem dimension (like a line)
 
       - there are many ways to build a formula for a line, but the best ways usually:
