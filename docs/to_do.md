@@ -84,6 +84,18 @@
 
 # Functions
 
+  - generating find/build functions:
+    - prioritize defining & assembling type definitions, both with configuration & programmatically using various sources
+      - find source types from which others can be derived
+      - apply get_definition to get the definition of those source types
+      - then apply transform function for each pair to generate a find function for a type given the find function of an adjacent type
+      - find functions use primarily patterns & definitions
+      - create function that uses definition to generate patterns given variable values/types/metadata
+      - build functions can also be generated using the type definition
+      
+  - generating apply functions:
+    - match/align/fit a structure to another structure
+
   - standardize terms: shape/structure, model/perspective/filter/standard/interface, intent/method/function/rule, path/route, metadata/attribute/variable/property, object/entity, type/class/category
   - add variable accretion patterns (how an object becomes influenced by a new variable, complex system interaction patterns, etc)
   - add get_common_properties function to do extra property-based searches after identifying objects with extract
