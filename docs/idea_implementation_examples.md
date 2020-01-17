@@ -42,7 +42,6 @@
       to understand a particular problem space 
       (markets, function prediction/derivation/reduction, attribute/path optimization, compression, metadata generation (moment-generating function), etc)
 
-
     - how would you identify those important objects in a system?
 
       - you can filter combinations by variance & usefulness, like in the "object model generation" example above
@@ -83,6 +82,19 @@
 
     - also fitting known structures & known permutations of structures to explain a possible missing object or combination in a system
 
+    - what parameters apply across interfaces? 
+      - (info, similarity, change, combination, position, structure, concepts, time, other interfaces)
+
+    - alternate flow
+      - what influences the accidental evolution of alternates, other than symmetries (complexity/intent/resource/stressor alignments)?
+
+    - what are the patterns of stressor demand/change supply matching?
+
+    - system operations:
+        - emergent intersecting property (momentum, size, shape) interacting with a closed system (cell)
+        - closed system components within a host closed system (organelles within cell)
+        - closed & open system components within a host closed system
+        - system/component boundaries/layers
 
   ### Object Layer & Interface Identification
 
@@ -163,13 +175,17 @@
         - includes questions and other inequalities
         - emergent patterns created by imbalances in usage patterns
 
+        - example asymmetries with different params:
+          - asymmetry of info (distance between info sources, such as agents specialized for a particular function needing different information)
+          - asymmetry of info across time (prediction, convergence of info sources)
+
         - symmetries as epicenters/organizers/distributers/filters of similarity/variance
           - limits as an output of symmetries - can you calculate all symmetries, and can you calculate all limits from the set of symmetries?
           - how do symmetries evolve in a system - do they provide a standard/interface for variance to coordinate efficiently?
           - how are symmetries related to efficiency?
           - quantum entanglement occurs around symmetries & other aggregators like similarity
 
-        -  resolution configurations
+        - resolution configurations
           - removing resource
           - balancing resource
           - replacing resource
