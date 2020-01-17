@@ -246,12 +246,15 @@
 
     - stressor
 
-      - stressor accretion patterns
+      - change requests, or problems of type 'mismatch' between change demand & change supply
+
+      - stressor accretion/compounding/neutralizing/type patterns
 
       - patterns in stressor handler gaps
         - which stressor types/handler types are prioritized first
+        - what variables influence priority of stressor handlers
 
-      - variable coordination that produces stressors
+      - variable coordination that produces stressors 
         - repeated interactions from static positions or sources of components
         - mismatches
         - allocation of cell division from low priority tasks (maintaining flexibility/elasticity) to high priority tasks (handling excess inflammation)

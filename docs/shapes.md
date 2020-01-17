@@ -1,3 +1,39 @@
+## Problem shape 
+
+      - problems can have multiple dimensions creating the output problem shape, 
+        which can occupy a network of related problems (both specific problems and problem types)
+
+      - the problem space is the system in which the problem is relevant (can be a network of problem spaces)
+
+      - different problem types have different default problem shapes
+
+      - example problem type shapes:
+        - a misalignment problem has at least two vectors differing in direction, where the optimal alignment is calculatable or at least the alignment is clearly improvable
+        - a variance injection problem has a opening in a closed system
+        - an asymmetry has an uneven resource distribution
+
+      - if a problem has a misalignment problem and a variance injection problem, the problem shape can have both shapes in isolation, 
+        or they can be merged, applied, added, mixed, intersecting, or combined in another way
+
+      - example solution shape for problem shape:
+        - for a misalignment problem, the solution shape would be:
+          - a vector aligning them
+          - another adjustment to the system that makes the existing misalignment a correct alignment
+          - a combination of the two
+        - for a variance injection problem, the solution shape would be:
+          - an object (resource, function, constant) to close the opening in the system
+          - an object to prevent further variance injections
+          
+        - for an asymmetry, the solution shape would be:
+          - an optimal transport operation set to distribute the resource optimally according to the metric of symmetry
+
+## Ethical physics
+
+    - if someone attacks their neighbor:
+      - the neighbor can retaliate
+      - or the neighbor can recognize that the hit was not relevant to them but to prior attack chains, and hit the source of that attack chain that attacked their neighbor,
+        so rather than continuing the chain, the neighbor creates a causal circle, directing consequences toward the relevant source of the problem
+
 
 ## Insight Shapes (Unit, Paths)
 
