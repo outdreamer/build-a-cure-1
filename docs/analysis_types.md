@@ -171,29 +171,7 @@
       https://phys.org/news/2016-07-happy-hormone-calcium-cows-humans.html
     - functionality prediction functions, indexing genes, structure & sub-components by functionality
 
-  ### Cell communication
-
-    - look for intersection between "happiness" hormones and cell communication 
-      https://phys.org/news/2016-07-happy-cows-nutritious.html
-
-    - cells experiencing stress cluster together, which reduces cell communication & leads to cancer
-      https://phys.org/news/2020-01-cells-stress.html
-
-    - dairy congests system & interferes with cell communication, leading to higher cancer rates in some cancers, particularly gender-specific or hormonal organs & filtering organs
-      https://medicalxpress.com/news/2019-10-dairy-products-higher-prostate-cancer.html
-      https://medicalxpress.com/news/2013-03-high-fat-dairy-products-linked-poorer.html
-      https://medicalxpress.com/news/2014-11-lactose-intolerants-cancers.html
-      https://medicalxpress.com/news/2011-08-poor-awareness-bowel-cancer.html
-
-  ### Stress response
-
-    - trigger inflammation in adjacent areas using pathogens with neutralizing effects or competing for same resources to make different cancers fight
-      https://medicalxpress.com/news/2019-12-insights-armies-strategically-stationed-cells.html
-
-    - required nutrients that are not handled well bc of genes from stressor-handling lineage may act as a stressor
-      https://medicalxpress.com/news/2010-06-calcium-consumption-prostate-cancer-chinese.html
-
-  ### Idiosyncrasies
+  ### Theories
 
     - does cancer eventually try to build its own organ or bio-system, so letting a tumor survive for a period of time could trigger internal tumor immune processes?
       - tertiary lymphoid structures act as a regulatory system of the tumor, adjusting its pressure & distribution
@@ -201,47 +179,99 @@
 
   ### Interfaces
 
+    - system 
+
+      - deviating from genetically optimal environments as a cause of systemic stressors that lead to cancer
+        - if you have night owl genes but force yourself to be a morning person
+        - if you have genes that can handle low calcium levels but you eat a lot of calcium
+
+    - rules
+
+      - bind
+      - boundary
+      - position
+      - grouping/accretion
+      - distribution
+      - testing/assessment/metric selection
+      - change
+      - regulation
+      - communication
+      - repair
+      - movement
+      - duplication
+      - request/response handling
+
     - structural
+
+      - boundaries
+      - surfaces
+      - receptors
 
     - stressor
 
       - muscles have stressor handler for excess lactate, and cell types in other tissues do not
         https://medicalxpress.com/news/2020-01-lactate-prompt-cancer-formation.html
 
-    - drug
+      - trigger inflammation in adjacent areas using pathogens with neutralizing effects or competing for same resources to make different cancers fight
+        https://medicalxpress.com/news/2019-12-insights-armies-strategically-stationed-cells.html
 
-    - proteins, enzymes, lipids
+      - required nutrients that are not handled well bc of genes from stressor-handling lineage may act as a stressor
+        https://medicalxpress.com/news/2010-06-calcium-consumption-prostate-cancer-chinese.html
 
-    - electrical
-      https://medicalxpress.com/news/2020-01-evidence-previously-unknown-electrical-property.html
+    - processes
 
-    - inflammation
+      - electrical
 
-    - pathogen
+        - charge
+          https://medicalxpress.com/news/2019-02-electrical-prostate-cancer-cells.html
 
-    - mutation
+        - electrical logic processing
+          https://medicalxpress.com/news/2020-01-evidence-previously-unknown-electrical-property.html
 
-    - antibodies
+        - light
 
-    - memory cells
+          - timer triggering
 
-    - communication
+          - hormone impact/production
 
-    - competition
+          - can bioluminescence treat cancer
+            https://medicalxpress.com/news/2016-03-tumors-cell-electric.html
 
-    - finding/borrowing functionality & other resources
+        - lasers
 
-    - boundaries
+        - photosynthesis
 
-    - surfaces
+      - inflammation
+      - learning
+      - competition
+      - finding/borrowing/generating functionality & other resources
+      - energy management (storage, sharing, production, source-switching, conversion)
 
-    - organization (chromosome position, storage compression, topologically associated domains, binding/accretion rules)
+      - organization (chromosome position, storage compression, topologically associated domains, binding/accretion rules)
 
-      - shapes that have rotation-compounding structures (corners/wheels)
-      - https://medicalxpress.com/news/2020-01-inflammation-game-changer-cellular-death.html
+        - shapes that have rotation-compounding structures (corners/wheels)
+        - https://medicalxpress.com/news/2020-01-inflammation-game-changer-cellular-death.html
 
-    - receptors
+      - communication
 
-    - 
+        - look for intersection between "happiness" hormones and cell communication 
+          https://phys.org/news/2016-07-happy-cows-nutritious.html
 
-    - 
+        - cells experiencing stress cluster together, which reduces cell communication & leads to cancer
+          https://phys.org/news/2020-01-cells-stress.html
+
+        - dairy congests system & interferes with cell communication, leading to higher cancer rates in some cancers, particularly gender-specific or hormonal organs & filtering organs
+          https://medicalxpress.com/news/2019-10-dairy-products-higher-prostate-cancer.html
+          https://medicalxpress.com/news/2013-03-high-fat-dairy-products-linked-poorer.html
+          https://medicalxpress.com/news/2014-11-lactose-intolerants-cancers.html
+          https://medicalxpress.com/news/2011-08-poor-awareness-bowel-cancer.html
+
+    - objects
+
+      - drug
+      - proteins, enzymes, lipids
+      - pathogen
+      - mutation
+      - antibodies
+      - memory cells
+
