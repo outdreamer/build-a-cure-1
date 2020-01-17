@@ -156,4 +156,18 @@
   - what is the import/export potential of each region (which crops & other resources can they produce)
   - what distribution of industries should occur by distance from ocean/water source
   - what infrastructure can optimize farmland at lowest cost
+  - which laws are commonly reused across governments & are generally agreed to not be exploitative of citizens
+  - what distribution of courts/police/lawyers is necessary to distribute fairness in markets
+  - what compoments of this can be automated/updated automatically & which should be done with manual input
+  - what tools do they need other than farmland 
+    (water source, sun, cell phone, charger, electricity, portable wi-fi generator, app to track their assets, app to trade by phone, app to request supplies/loans)
 
+## Cancer & Stressors
+
+  - cells experiencing stress cluster together, which reduces cell communication & leads to cancer
+    https://phys.org/news/2020-01-cells-stress.html
+
+  - dairy congests system & interferes with cell communication, leading to higher cancer rates
+
+  - trigger inflammation in adjacent areas using pathogens with neutralizing effects or competing for same resources to make different cancers fight
+    https://medicalxpress.com/news/2019-12-insights-armies-strategically-stationed-cells.html
