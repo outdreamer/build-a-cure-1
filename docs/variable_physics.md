@@ -1,6 +1,18 @@
 
 ## Variable Accretion Patterns
 
+  - is variance a product of gaps in enforcement rules & useful object combinations/permutations that havent yet been combined for a particular intent on a particular interface?
+      - because there was no one to prevent the sun from impacting fur color, the sun was allowed to interact with fur, which made some species develop alternate compounds to handle extra radiation exposure
+          - the fur interface happened to have object permutations that hadnt been activated yet, which when combined with radiation, evolved another dimension of variance, which was fur shade & compounds
+          - the different values of this variable had different matching intents
+          - what was the reason this variable (sun) was able to impact the other variable (fur) to add new dimensions to the impacted variable (shade/compounds)?
+            - fur has components (dna, pigment, proteins) which had latent functions (like skin has vitamin production functions) impacted by components of sun (radiation)
+            - why did these components have reactability with sun components?
+              - scale (dna is a similar scale to radiation metadata)
+              - structure (dna has a structure that can be modified by radiation structure)
+              - variance intersections 
+                (radiation variance in the form of waves causes variability in output structure of dna, which itself is highly variable given number of genes & fragility of expression & repair)
+
   - is there a relationship between the potential of energy to produce information (certainty & uncertainty), allocating variance & stasis to either at a time asymmetrically
     https://en.wikipedia.org/wiki/Introduction_to_eigenstates
 

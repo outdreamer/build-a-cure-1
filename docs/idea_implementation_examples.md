@@ -104,9 +104,13 @@
           - combination (group)
           - permutation
           - interface (common attribute or attribute set)
-          - trigger, trade, variance, pattern, evolution, flow, comparison
-
-        - is variance a product of gaps in enforcement rules & objects that havent yet been combined for a particular intent on a particular interface?
+          - trigger
+          - trade
+          - variance
+          - pattern
+          - change
+          - flow
+          - state
 
         - equivalent, alternate, opposite, inverse
 
