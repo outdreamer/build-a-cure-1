@@ -36,13 +36,12 @@
 
   ### Identifying important semantic objects in a problem space
 
-    - example:
+    - identifying optimal structure, or object identity 
+      (exploit opportunities, monster systems/assumptions, risk chains, trade loops, error & variance cascades/flow, transaction iterations, trade loops)
 
-      - identifying optimal structure, or object identity 
-        (exploit opportunities, monster systems/assumptions, risk chains, trade loops, error & variance cascades/flow, transaction iterations, trade loops)
+      to understand a particular problem space 
+      (markets, function prediction/derivation/reduction, attribute/path optimization, compression, metadata generation (moment-generating function), etc)
 
-        to understand a particular problem space 
-        (markets, function prediction/derivation/reduction, attribute/path optimization, compression, metadata generation (moment-generating function), etc)
 
     - how would you identify those important objects in a system?
 
@@ -68,6 +67,13 @@
           - rule optimization: method to find a path at reduced cost (reduced distance, ie a shorter path)
           - rule optimization efficiency: the shorter path itself, or a pattern in rule optimization methods
 
+      - some of those important objects happen to be interfaces (simplifying standards for comparison)
+
+        - the previous example was generated using the variance interface
+        - some interfaces that are also important objects or direct combinations of important objects include:
+          - trade loops (closed systems are an implementation of a combination of the boundary/type interface and the structure/loop interface)
+          - risk chains are an important object that you could generate using the structure/gap interface, given that risks are uncertainties/info asymmetries
+            risk is also an interface itself, so applying it to the structure/chain interface creates the risk chain object
 
     - core structure components
 
