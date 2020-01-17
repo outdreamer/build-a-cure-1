@@ -1,5 +1,6 @@
 # Analysis Strategies for Application in Specific Problem Spaces
 
+
 ## Work distribution & incentivization
 
   - system users should always be system builders, so their incentives don't crystallize into an irreversibly static state
@@ -11,6 +12,7 @@
   - when builders have taught enough users, builders should move on to being users of another game, in an alternating cycle
 
   https://twitter.com/remixerator/status/1217718371816329217
+
 
 ## Randomness Generator
 
@@ -52,6 +54,7 @@
     https://twitter.com/remixerator/status/1148816151125712896
     https://twitter.com/remixerator/status/1004578257637953537
     https://twitter.com/remixerator/status/1004578256820064257
+
 
 ## Exploit Opportunity Analysis
 
@@ -105,6 +108,8 @@
 
   2. Conceptual query: apply structure to conceptual combinations & check matching problem spaces if the output product has value for an agent in that space
 
+  3. Identify necessary structure and identify interface combinations/trajectories that can generate that structure
+
 
 ## Calculating which calculations are optimal
 
@@ -136,9 +141,11 @@
     - which problems are solvable with auto-generated vs. external resources
     - which stressor patterns can prevent which problems
 
+
 ## Protocol Recommendations
   
   1. Auto-update crypto keys/algorithms to use constants that are always guaranteed to be below x% risk that they'll be hacked given common computational resources.
+
 
 ## Optimal Resource Trades
 
@@ -161,6 +168,7 @@
   - what compoments of this can be automated/updated automatically & which should be done with manual input
   - what tools do they need other than farmland 
     (water source, sun, cell phone, charger, electricity, portable wi-fi generator, app to track their assets, app to trade by phone, app to request supplies/loans)
+
 
 ## Cancer & Stressors
 
