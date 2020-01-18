@@ -1,6 +1,8 @@
 
 ## Concept Operations
 
+  - the reason entropy can evolve on its own is that if order was the default, it wouldnt allow order (in the form of alignments) to be constructed for a particular efficient purpose (like making a trade or cooperating) and then automatically deconstructed by entropy when no longer used. Efficiencies may be rare & temporary enough that order shouldnt be the default so disorder can allow more interactions to occur and more efficiencies can be found naturally. It's similar to the free market allowing companies to organize & operate without regulation to find efficiencies in demand/supply.
+
   - this is the set of core conceptual math operations between concepts
 
   I. combine (add)
