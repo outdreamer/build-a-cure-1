@@ -560,7 +560,7 @@
                 - naturally-determined environment conditions (location.weather)
                 - artificially-determined focus conditions (window.position, room.temperature)
 
-              - logical variable reduction:
+              I. logical variable reduction:
 
                 - origin relationship:
                   location => weather => room => window => student => focus conditions => performance
@@ -605,28 +605,24 @@
                 - if you use a alternate state variable network, you only have to iterate through objects: temperature, sunlight, focus conditions
 
 
-              - if variables have similar variability or have common transformations explaining their variability (like taking one variable to the power of another variable)
-                check if removing them alters output, otherwise they may be directly related rather than independent
+              II. identifying key output variable:
 
+                1. collapse variable links with known mappings (focus conditions & performance => focus conditions)
 
-              - selecting the key output variable:
+                2. collapse variables having common output attribute into standard interface of that output attribute (window, room, location => temperature)
 
-                - collapse variable links with known mappings (focus conditions & performance => focus conditions)
+                3. dont collapse variables being studied as alternatives (keep sunlight & temperature separate, given that we are assuming one or the other is determinant)
 
-                - collapse variables having common output attribute into standard interface of that output attribute (window, room, location => temperature)
-
-                - dont collapse variables being studied as alternatives (keep sunlight & temperature separate, given that we are assuming one or the other is determinant)
-
-                - it can also be determined in other ways that the key output object is "focus conditions"
-
-                - apply dependency analysis:
+                4. apply dependency analysis:
 
                   - without the right focus conditions, the impact of "location => weather => window => room => student" relationship doesnt matter because "student => brain => focus => pass test" relationship is not executable without focus conditions in place
                   - this can be determined by inputs of the "test object", where performance is known to be heavily influenced by focus conditions
                   - this means you can approach this problem from the reverse direction, iterating through focus conditions first & the impact of each variable & relationship on each condition
+                
+                  - if variables have similar variability or have common transformations explaining their variability (like taking one variable to the power of another variable), check if removing them alters output, otherwise they may be directly related rather than independent
 
 
-              - selection key attributes providing interface to evaluate impact on output variable:
+              III. identifying key attributes providing interface to evaluate impact on output variable:
 
                 - how could you automate the selection of the key attributes (sunlight, temperature) providing the best interface for comparison to evaluate impact on the output variable?
 
@@ -657,6 +653,22 @@
                     - energy is a key input/output of many physical systems (bio, chemical, environmental)
                     - temperature is a key factor in energy management (storage/flow)
                     - these rules are key hubs on rule networks because they determine many other rules
+
+                  6. causal shape
+                    - given that causal loops are generally more powerful than causal vectors, and temperature/sunlight are nodes in a causal loop, where sunlight is an input to temperature, its likely that temperature is the determining factor, given that temperature also occupies causal shapes involving other relvant objects
+
+                  7. type
+                    - given that temperature is a variable determined by & influencing many other variables, but that it condenses all of this information into a single point on a single spectrum variable, serving as a two-way bottleneck for aggregating information, it may be indexed as a variable of types: "filter", "information compressor", which are particularly useful variables to use as interfaces
+
+                  8. priority
+                    - given that:
+                      - temperature object has rules & attributes with stronger output priorities like "efficiency" & "path of least resistance"
+                      - window object has strong output priorities "transport" (light) and "filter" (air)
+                      - location has priority "differentiation => efficient gathering of resources by location environment conditions => efficiency"
+                      - room has priority "focus condition maximization => test time reduction => efficiency"
+                      - sunlight object has subcomponent objects like radiation with stronger output priorities like "distribution" than efficiency
+                      - "efficiency" is a more common priority
+                      it may be hypothesized that temperature is the more useful variable to use as an interface
 
           4. Select & apply method of reducing possible relationships
 
