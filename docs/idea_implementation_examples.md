@@ -439,58 +439,73 @@
         - "They measured performance in two southern Californian classrooms—one with big windows, one with small windows—and found that the kids with the bigger windows fared better, confirming [the researchers'] beliefs. But when they repeated the experiment in northern California, where it's cooler, big windows made no difference. It turned out that daylight didn't play a role in performance, but fresh air did—the classes in warmer southern California had their windows open."
         https://phys.org/news/2020-01-teens-climate.html
 
-        problem definition:
+        - problem definition:
 
-          rules:
+          - problem type: "info asymmetry"
 
-            observations:
+            - problem type metadata:
 
-              - rules in terms of hypothesis objects (assumption: "sunlight is relevant/explanatory"):
-                "performance metric increased with more sunlight in south rooms with big windows"
-                "performance metric did not increase with more sunlight in north rooms with big windows"
+              - problem subtype:
+                - "different outcomes for same action, where one outcome was successful, but not for difference hypothesized (sunlight)"
 
-              - rules in terms with hypothesis objects removed (removes assumption that "sunlight is relevant/explanatory"):
-                "performance metric increased with more sunlight in south rooms with big windows"
-                "performance metric did not increase with more sunlight in north rooms with big windows"
+              - missing info (question), given the info asymmetry problem type:
+                - hypothesis: "sunlight improves performance"
+                - question: "which factors determine performance differences between rooms in different locations"
+                  (given the implication of study, which is that "sunlight doesnt appear to improve performance on its own")
 
-            implications:
-              - "sunlight doesnt appear to improve performance on its own"
+              - explicit info:
+                - objects:
+                  - windows
+                  - rooms
+                  - locations
+                  - performance test
+                  - sunlight
+                  - test takers
 
-          problem type: "info asymmetry"
+              - retrievable info:
+                - differences between locations:
+                  - pollution exposure
+                  - weather patterns (temperature)
+                - definitions of objects, including intents
 
-          problem type metadata:
+              - derivable info:
+                - whether known interactions between objects can explain the metric difference, or if additional data is required
+              
+            - rules:
 
-            - problem subtype:
-              - "different outcomes for same action, where one outcome was successful, but not for difference hypothesized (sunlight)"
+              - inputs:
 
-            - missing info (question), given the info asymmetry problem type:
+                assumptions:
+                  - "environment impacts performance"
+                  - "sunlight impacts performance"
 
-              - hypothesis: "sunlight improves performance"
-              - question: "which factors determine performance differences between rooms in different locations"
-                (given the implication of study, which is that "sunlight doesnt appear to improve performance on its own")
+                observations:
+                - rules in terms of hypothesis objects (assumption: "sunlight is relevant/explanatory"):
+                  "performance metric increased with more sunlight in south rooms with big windows"
+                  "performance metric did not increase with more sunlight in north rooms with big windows"
+                - rules in terms with hypothesis objects removed (removes assumption that "sunlight is relevant/explanatory"):
+                  "performance metric increased with more sunlight in south rooms with big windows"
+                  "performance metric did not increase with more sunlight in north rooms with big windows"
 
-            - explicit info:
+              - outputs:
 
-              - objects:
+                interpretations:
+                  - "location impacts performance"
+                    - someone might expect different performance based on location alone, if school districts have different funding or nearby pollution sources
+                    - however location isnt assumed as a causative factor but rather an interface with which to isolate the variables to be studied (sunlight)
 
-                - windows
-                - rooms
-                - locations
-                - performance test
-                - sunlight
-                - test takers
+                implications
+                  - "sunlight doesnt appear to improve performance on its own"
 
-            - derivable info:
+                contra-implications:
+                  - "this doesnt mean sunlight isnt a factor at all"
 
-              - differences between locations:
-
-                - pollution exposure
-                - weather patterns (temperature)
-            
           - relationship-finding vectors:
 
             - iterate through object attributes/rules/types, evaluating them for possible distortions/states or other values that could occur naturally
-              - window object is a tool with multiple values for its position attribute: open/closed
+
+              - window:
+                - window object is a tool with multiple values for its position attribute: open/closed
                 - window.position is a tool to serve various intents:
                   - temperature regulation
                   - pollution protection
@@ -498,8 +513,8 @@
                   - wind route manipulation
                   - alternate to air conditioning systems
 
-              - location object is a place type with key differences in various attributes, like weather, ecology, population & industry
-
+              - location:
+                - location object is a place type with key differences in various attributes, like weather, ecology, population & industry
                 - location.weather attribute differs in temperature attribute values
                   *** 
                   this should be flagged as a particularly interesting possible relationship, 
@@ -507,22 +522,27 @@
                     (window as tool of temperature regulation)
                   ***
 
-              - room object has an intent attribute with multiple values: "focus", "removal of distractions", "work alignment", "performance test"
+              - room:
+                - room object has an intent attribute with multiple values: "focus", "removal of distractions", "work alignment", "performance test"
 
-              - student object has multiple intents: 
-                - "maintain optimal conditions for focus"
-                - "maintain focus so you can remember information you studied"
+              - student:
+                - student object has multiple intents: 
+                  - "maintain optimal conditions for focus"
+                  - "maintain focus so you can remember information you studied"
 
-              - "conditions" objects mention in student object intents should be flagged as a source of variance that can interact with other objects, which are environmental, and therefore it should be queried
-                - conditions with intent "focus" include: water supply, electrolyte balance, temperature regulation
+              - "conditions" objects involved in student object intents should be flagged as a source of variance that can interact with other objects, which are environmental, and therefore it should be queried
+              
+              - condition:
+                - condition objects with output intent "focus" include: "caffeine", "water supply", "electrolyte balance", "sleep", "quiet", "temperature regulation"
                   ***
                   temperature regulation should be flagged as particularly relevant, and store the possible relationship:
-                    student.intents for activity = "test-taking" includes "maintain focus conditions"
+                    student.intents for metric "test performance" includes "maintain focus conditions"
                     conditions where intent = "focus" includes "temperature regulation"
                   ***
 
-            - after iterating, you should have a list of the relevant object definitions
-            - you should also now have the important attributes/rules with possible relationships, organized by their common factor:
+            - after iterating, you should have a list of the relevant object definitions (including intents, types, rules, alternate values, etc)
+
+            - you should also now have the important attributes/rules with possible relationships, organized by their common factors, which may be sources of relevance:
 
               - temperature relationships:
 
@@ -531,34 +551,78 @@
                 - student.intents for activity = "test-taking" includes "maintain focus conditions"
                 - conditions where intent = "focus" includes "temperature regulation"
 
-            - given that you have at least one relationship to explore, iterate through those relationships:
+            - given that you have at least one relevance factor to explore, standardize the relationships:
 
-              - if location differs between samples:
+              - its determinable that the key potential sources of variance are:
+                - naturally-determined environment conditions (location.weather)
+                - artificially-determined focus conditions (window.position, room.temperature)
+                - this means you can remove the student object from the analysis, because we mainly care if the room & location.weather & window.position impact the focus conditions required for performance
+                - you can also remove the room object from the analysis, because we mainly care about the window object in the room, leaving only the room.temperature attribute to link the weather, location, window state, and focus conditions
+                - so you only have to iterate through objects: location, window, weather, focus conditions
+
+              - its also determinable that the key output object is "focus conditions"
+                - without the right focus conditions, the impact of "location => weather => window => room => student" relationship doesnt matter because "student => brain => focus => pass test" relationship is not executable without focus conditions in place
+                - this can be determined by inputs of the "test object", where performance is known to be heavily influenced by focus conditions
+                - this means you can approach this problem from the reverse direction, iterating through focus conditions first & the impact of each variable & relationship on each condition
+
+            - iterate through those relationships:
+
+              - since location differs between samples:
+
                 check if window.position can differ:
-                  if so, alternate window.position across locations:
-                    check if alternate window.position achieves student.intents aligning with location object metadata:
-                      does opening the window achieve anything in south vs. north room?
-                      possible intents: temperature regulation, pollution protection, air dissipation, etc
-                      iterate through possible intents of different window positions:
-                      for each intent of window.position:
-                        check if output intents of intent would differ across locations
-                        would open windows have different output intents in north & south rooms?
-                        yes, because of difference in weather patterns
-                        output intent of open window in south room = "temperature regulation"
-                        output intent of open window in north room = None (no difference in temperature regulation)
-                        given that window.position can serve intent temperature regulation across locations, 
-                        and that temperature regulation was a key relevance factor organizing identified relationships:
-                          check if the different output intents have different impact on other possible relationships under 'temperature':
-                          iterate through possible temperature relationships:
-                            does output intent "temperature regulation" influence student.intents or condition.intents?
-                            yes, it serves the students' "maintain focus conditions" intent, which is served by conditions with "temperature regulation" intent
+                if so, alternate window.position across locations:
+                  check if alternate window.position achieves student.intents aligning with location object metadata: does opening the window achieve anything in south vs. north room?
+
+                  iterate through possible intents of different window positions (temperature regulation, pollution protection, air dissipation, etc)
+                  for each intent of window.position:
+
+                    check if output intents of intent would differ across locations: would open windows have different output intents in north & south rooms?
+                    yes, because of difference in weather patterns:
+                      output intent of open window in hot south room = hot - hot = cool = "temperature regulation"
+                      output intent of open window in cool north room = no difference in temperature regulation = cool - cool = "no temperature regulation"
+
+                      given that window.position can serve intent "temperature regulation" across locations & temperature is the key relevance factor for this relationship set:
+                      check if the different output intents have different impact on other possible relationships under 'temperature':
+
+                      iterate through all remaining temperature relationships (if there are a lot, select for relationships involving known important factors like focus conditions first):
+
+                          does output intent "temperature regulation" influence student.intents or condition.intents?
+
+                          yes, it serves the students' "maintain focus conditions" intent, which is served by conditions with "temperature regulation" intent
+                            (we could reduce this to just analyzing the condition.intent, since the student is aligned with this intent & doesnt add variance for the purposes of this study)
+
                             now that youve identified theres a logical flow between all relationships of a relevance factor (temperature), 
-                              check if the implications of this logical flow match the observed rules:
-                                implications for relevant variable variants (vary temperature):
-                                  - if room is in higher-temperature location, window can be opened to reduce temperature, which is a focus condition intent required by students' test-taking intents
-                                does this match the observed rules:
-                                  - yes, this explains why the two locations had different outcomes for the same action - locations vary by temperature
-                                  - output new theory: "temperature determines performance differences"
+                            check if the implications of this logical flow match the observed rules:
+
+                              implications for relevant variable variants (vary temperature):
+                                - if room is in higher-temperature location, window can be opened to reduce temperature, which is a focus condition intent required by students' test-taking intents
+
+                              does this match the observed rules:
+                                - yes, this explains why the two locations had different outcomes for the same action - locations vary by temperature
+                                - output new theory: "temperature determines performance differences because focus conditions require temperature regulation, which is enabled by window.position changes in high-temperature locations"
+
+            - what order do you iterate through relationships for a relevance factor in?
+              - you can start with objects having known differentiating factors 
+                (different locations were chosen for a reason, and the window is an important object in the hypothesis even with assumptions removed)
+
+              - you can also approach from other known relationships, such as that performance is heavily influenced by focus conditions,
+                in which case youd iterate through focus conditions, and check which alternate states of the other objects could impact each focus condition
+
+            - alternative methods:
+            
+              - you can also generate a matrix of alternate variable values among variables suspected to be relevant & check for output intents, 
+                rather than narrowing down relationship sets with semantic logic conditions between objects like variables & intents
+
+                - what is the output intents of the vectors: 
+
+                  [window = open, location = north, weather = storm, sunlight = low, quiet = low]
+                    - output intent: "contradicts focus conditions = 'quiet'"
+
+                  [window = closed, location = north, weather = hot, sunlight = high, caffeine = high, sleep = low]
+                    - output intent: "contradicts focus conditions = 'sleep', 'temperature regulation'"
+
+                  [window = open, location = south, weather = hot, sunlight = high, caffeine = high]
+                    - output intent: "serves focus conditions = 'caffeine', 'temperature regulation'"
 
       - uses insight path technology
 
