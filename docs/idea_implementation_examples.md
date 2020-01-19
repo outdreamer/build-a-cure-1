@@ -400,7 +400,11 @@
 
   ### Problem Source Identification
 
-    1. example: 
+
+    - uses insight path technology, the interface nexus, object model, and semantic logic through dependency analysis
+    
+
+    1. key variable prediction with rules: 
 
         - if a bottle containing juice is the only thing someone drinks regularly and it makes them sick, how do you figure out that it's most probably bc of a chemical on the inner lining of the bottle, programmatically - ranking less probable causes as well
 
@@ -434,7 +438,7 @@
         - if no problem source is found among their current objects, their purchase history & that of those they interact with can be scanned for prior exposure or dietary causes
 
 
-    2. example:
+    2. key variable prediction with semantic logic iteration & alt state variable network with output intents:
 
         - "They measured performance in two southern Californian classrooms—one with big windows, one with small windows—and found that the kids with the bigger windows fared better, confirming [the researchers'] beliefs. But when they repeated the experiment in northern California, where it's cooler, big windows made no difference. It turned out that daylight didn't play a role in performance, but fresh air did—the classes in warmer southern California had their windows open."
         https://phys.org/news/2020-01-teens-climate.html
@@ -554,7 +558,7 @@
 
             - deriving emergent relationships:
               - from this set of relationships organized by relationship factor, you can also derive emergent relationships by adding/removing/altering variable values & looking for anticipated state change points to see if theres a state change (governed by energy management patterns)
-              
+
 
           3. Standardize variables by relationship metadata (directness, variance maximization, uncertainty)
 
@@ -775,10 +779,6 @@
               - if you pick the right starting variable for the vector's first item, you can reduce the trajectories required in your network of possible variable value combinations
               
               - radiate outward from origin variable node by assigning vector position by variability (high variance attributes come first in vector determining output path in network)
-
-              - 
-
-      - uses insight path technology
 
 
   ### Definition differentiation
