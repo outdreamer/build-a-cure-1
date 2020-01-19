@@ -552,6 +552,10 @@
                 - student.intents for activity = "test-taking" includes "maintain focus conditions"
                 - conditions where intent = "focus" includes "temperature regulation"
 
+            - deriving emergent relationships:
+              - from this set of relationships organized by relationship factor, you can also derive emergent relationships by adding/removing/altering variable values & looking for anticipated state change points to see if theres a state change (governed by energy management patterns)
+              
+
           3. Standardize variables by relationship metadata (directness, variance maximization, uncertainty)
 
             - given that you have at least one relevance factor to explore, standardize the relationships:
@@ -631,6 +635,7 @@
                   1. the highest-variability attributes the objects (window, location, room) have in common: temperature, chemical exposure, radiation exposure
 
                     - then filter that list by which attributes are relevant to the hypothesis objects & available data
+
                       - temperature is derivable from hypothesis objects & data, but chemical & radiation exposure is not
                       - we dont know if windows have uv protection, if students rotated near window throughout test to distribute exposure, how much the sunlight increased room temperature, whether all tests occurred on sunny days, etc
                       - we do know what the temperature was in each combination of (window, room, location) states, or we can derive it based on intent (if a room is too hot and there is a window that can be opened, opening it can reduce temperature, which fulfills a focus condition of "temperature regulation") without even asking the schools if their windows were opened, although to be safe we should check that the windows could be opened, which is an assumption to this analysis that varied object attribute states (window.position) without verifying if they could be varied
@@ -641,34 +646,56 @@
                       - so check if temperature can be calculated by other variables or a combination of variables
 
                   3. variable scope
+
                     - temperature impacts relationships on a molecular level
                     - focus is determined at a molecular & cellular level
 
                   4. system variable network position
+
                     - chemical system variable network has temperature in a hub position
                     - filtration, communication, immune, temperature regulation, & other systems also have temperature in a hub position
                     - input system (relating location, room, window) has an output variable network that interacts with bio system and chemical system
 
                   5. key rules
+
                     - energy is a key input/output of many physical systems (bio, chemical, environmental)
                     - temperature is a key factor in energy management (storage/flow)
                     - these rules are key hubs on rule networks because they determine many other rules
 
-                  6. causal shape
-                    - given that causal loops are generally more powerful than causal vectors, and temperature/sunlight are nodes in a causal loop, where sunlight is an input to temperature, its likely that temperature is the determining factor, given that temperature also occupies causal shapes involving other relvant objects
+                
+                Standard interface network analysis:
 
-                  7. type
-                    - given that temperature is a variable determined by & influencing many other variables, but that it condenses all of this information into a single point on a single spectrum variable, serving as a two-way bottleneck for aggregating information, it may be indexed as a variable of types: "filter", "information compressor", which are particularly useful variables to use as interfaces
+                  1. causal shape
 
-                  8. priority
+                    - given that causal loops are generally more powerful than causal vectors, 
+                      and temperature/sunlight are nodes in a causal loop, where sunlight/window/room/location all impact temperature, 
+                      its likely that temperature is the determining factor, 
+                      especially given that temperature also occupies causal shapes involving other relevant objects (caffeine, quiet, etc)
+
+                  2. type
+
+                    - variable type:
+
+                      - given that temperature is a variable determined by & influencing many other variables, 
+                      but that it condenses all of this information into a single point on a single spectrum variable, 
+                      serving as a two-way bottleneck for aggregating information, 
+                      it may be indexed as a variable of types: 
+                        "filter", "information compressor"
+                      which are particularly useful variables to use as interfaces
+
+                  3. priority
+
                     - given that:
+
                       - temperature object has rules & attributes with stronger output priorities like "efficiency" & "path of least resistance"
                       - window object has strong output priorities "transport" (light) and "filter" (air)
                       - location has priority "differentiation => efficient gathering of resources by location environment conditions => efficiency"
                       - room has priority "focus condition maximization => test time reduction => efficiency"
                       - sunlight object has subcomponent objects like radiation with stronger output priorities like "distribution" than efficiency
                       - "efficiency" is a more common priority
+                      
                       it may be hypothesized that temperature is the more useful variable to use as an interface
+
 
           4. Select & apply method of reducing possible relationships
 
