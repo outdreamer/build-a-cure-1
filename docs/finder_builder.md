@@ -294,6 +294,7 @@
         - you can add data analysis based on generated test data to conduct possible intent sets with various data permutations, which should alert you to exploit opportunities
 
     - given the abstract function intent "find variables explaining target variable", the other intents:
+    
       semantic: "filter subset by iterable subset matching set"
       semantic + objects: "given that variable 1 and variable2 are both variables, vary variable2 and variable1 to get combinations matching target intents"
 

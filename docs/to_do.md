@@ -92,7 +92,8 @@
       - find functions use primarily patterns & definitions
       - create function that uses definition to generate patterns given variable values/types/metadata
       - build functions can also be generated using the type definition
-      
+      - after generating, functions should be checked for non-identifying factors that dont differentiate them across types
+
   - generating apply functions:
     - match/align/fit a structure to another structure
 

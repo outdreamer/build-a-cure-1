@@ -1,11 +1,15 @@
 
 ## Concept Operations
 
+  - meaning comes from attributes like:
+    - reduction of signals (relevance)
+    - matching of signal structures (similarity)
+
   - the reason entropy can evolve on its own is that if order was the default, it wouldnt allow order (in the form of alignments) to be constructed for a particular efficient purpose (like making a trade or cooperating) and then automatically deconstructed by entropy when no longer used. Efficiencies may be rare & temporary enough that order shouldnt be the default so disorder can allow more interactions to occur and more efficiencies can be found naturally. It's similar to the free market allowing companies to organize & operate without regulation to find efficiencies in demand/supply.
 
   - this is the set of core conceptual math operations between concepts
 
-  I. combine (add)
+  I. combine (expand, add, set)
 
     1. merge with override/backup/overlap rules
       "power merged with information" => 
@@ -22,12 +26,12 @@
     4. union (retain all components)
       "power and information" => "multiple power types, creating a backup system of control if one power source fails"
 
-  II. reduce (find, filter, subtract)
+  II. filter (find, reduce, subtract, subset)
 
     - x without y
       - "power without information" => "information-derivation method", "power from non-information source", "limited power"
 
-  III. apply (expand, group, iterate, multiply)
+  III. apply (expand, group, iterate, multiply, set)
 
     - apply to another (x * y)
       - "balance of power" = "symmetry between input & output dependencies"
@@ -35,7 +39,7 @@
     - apply to itself (x ^ n)
       - "power of power" => "the enabler of enabling" => "input", "abstraction", "coordination"
 
-  IV. standardize (simplify, compare, divide)
+  IV. standardize (simplify, compare, divide, subset)
 
     - x standardized by y
       - "power standardized by power" => 

@@ -402,7 +402,7 @@
 
 
     - uses insight path technology, the interface nexus, object model, and semantic logic through dependency analysis
-    
+
 
     1. key variable prediction with rules: 
 
@@ -780,6 +780,7 @@
               
               - radiate outward from origin variable node by assigning vector position by variability (high variance attributes come first in vector determining output path in network)
 
+              - first filter vectors by which are possible, if data is available, or to explore alternate conditions (if windows are not openable because students are too short to reach and if teacher wont open it for them)
 
   ### Definition differentiation
 
