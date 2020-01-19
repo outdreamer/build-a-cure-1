@@ -137,6 +137,19 @@
 # Conceptual
 
   - add error-generation
+    - add diagrams for error types:
+      - misalignment
+      - assumptions without supporting logical/information links
+      - incorrect position/function/structure/scope/limit/range/definition
+
+  - add causal type identification for known solutions:
+    - causal types: direct/indirect, multiple/alternate, hierarchical, replaceable/unique, generatable/emergent
+    - why did something work? because of its:
+      - structure (which piece - the imidazole)?
+      - interactions
+      - other attributes
+      - similarities
+
   - add variable-selection example with separate alts having equivalent outputs:
     - if one alt is disabled, then it would give a false result for anyone checking it for ability to impact the output, even though the alternative was being variably used instead
 

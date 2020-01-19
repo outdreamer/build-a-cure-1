@@ -40,18 +40,28 @@
 		- carvacrol, thymol, eugenol
 		- ecgc
 		- inhibitors of CYP51 (CYP2C9, CYP2C19, CYP3A4)
+		- alternate routes to cyp51 outputs: 
+			- depletion of ergosterol and ergosta-7-enol
+			- accumulation of eburicol, obtusifolione, and lanosterol/obtusifoliol
 		- azole drugs
-		- any other substances that can bind to the fungal cell membrane or process ergosterol into something harmless
 		- imidazoles
 		- sertraline
 		- insight path for serotonin-imidazole:
 			- serotonin, which play an important role in higher animals, are similar to alkaloids in their structure and biosynthesis and are sometimes called alkaloids
+			- amino acids are precursors to some alkaloids
+			- some amino acids have synergistic effects to kill the pathogen (histidine, carnosine, lysine)
+			- alkaloid-related substances as serotonin, dopamine and histamine are important neurotransmitters so may impact meningitis
 			- alkaloids have imidazole ring 
 			- imidazoles are a subset of azoles that have fewer side effects
+
+		- should pull drugs & drug types (like statin/alkylamine/sterol enzyme/terpene) from studies mentioning alternative strategies like: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC89924/
 
 	- treatment strategies should include:
 		- convert ergosterol to vitamin d
 		- bind to ergosterol to break fungal cell membrane
+		- any other substances that can bind with or permeate the fungal cell membrane or process ergosterol into something harmless
+		- inhibit other links in chain allowing ergosterol to be constructed/protected:
+			 "inhibitors of 3-hydroxy-3-methyglutaryl coenzyme A reductase, squalene synthase, squalene epoxidase, squalene epoxide-lanosterol cyclase, lanosterol demethylase, Δ8 to Δ7 isomerase, and S-adenosylmethionine:sterol methyltransferase"
 
 	- insights should include:
 		- inhibits [cytochrome p450] enzyme [14α-demethylase] in fungus but not mammals
