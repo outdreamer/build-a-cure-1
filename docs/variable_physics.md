@@ -1,6 +1,10 @@
 
 ## Variable Accretion Patterns
 
+  - variable interface is the interface of potential
+
+  - variance attracts variance to allocate the task of ordering to the systems that are best at ordering (efficient systems) - entropy
+
   - do variables with more similarities tend to cooperate or compete more? 
     - it depends on:
       - what stage of similarity theyre at, including whether they:
