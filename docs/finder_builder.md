@@ -286,3 +286,15 @@
         4. check each variable2 & variable1 combination for match with any target intents (focus condition intents)
 
         combination intent: "given that variable 1 and variable2 are both variables, vary variable2 and variable1 to get combinations matching target intents"
+        - this leaves out the logic to assess the key emergent variables of variable1 & variable2 combinations (temperature, sunlight), which are the actual attributes that should be used for comparison with target intents, since they have a computable/measurable relationship (temperature maps directly to "temperature regulation")
+
+      - semantic + objects + variable values:
+        - you can add data analysis based on generated test data to conduct possible intent sets with various data permutations, which should alert you to exploit opportunities
+
+    - given the abstract function intent "find variables explaining target variable", the other intents:
+      semantic: "filter subset by iterable subset matching set"
+      semantic + objects: "given that variable 1 and variable2 are both variables, vary variable2 and variable1 to get combinations matching target intents"
+
+      line up with what the function is supposed to do, though they are incomplete and have variance injection opportunities (given the lack of direct mapping between combinations & target intents)
+
+    - you can see how lack of direct intent mapping & alignment can alert you to exploit opportunities, or tell you when a function is not done or sub-optimal as youre building a function
