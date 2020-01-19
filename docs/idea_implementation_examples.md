@@ -639,8 +639,14 @@
                       - we dont know if windows have uv protection, if students rotated near window throughout test to distribute exposure, how much the sunlight increased room temperature, whether all tests occurred on sunny days, etc
                       - we do know what the temperature was in each combination of (window, room, location) states, or we can derive it based on intent (if a room is too hot and there is a window that can be opened, opening it can reduce temperature, which fulfills a focus condition of "temperature regulation") without even asking the schools if their windows were opened, although to be safe we should check that the windows could be opened, which is an assumption to this analysis that varied object attribute states (window.position) without verifying if they could be varied
 
-                  2. the variables likeliest to cause disruptions in focus conditions (variables used in check/vary intents within focus condition functions)
+                  2. the variables likeliest to cause disruptions in focus conditions (variable network hub variables, variables that are used in check/vary intents within focus condition functions)
+
                     - temperature can disrupt (and be disrupted by) various focus conditions: quiet, caffeine, electrolyte balance, water supply, temperature regulation
+                      - so check if temperature can be calculated by other variables or a combination of variables
+
+                  3. variable scope
+                    - temperature impacts relationships on a molecular level
+                    - focus is determined at a molecular & cellular level
 
           4. Select & apply method of reducing possible relationships
 
