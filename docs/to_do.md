@@ -136,6 +136,10 @@
 
 # Conceptual
 
+  - add error-generation
+  - add variable-selection example with separate alts having equivalent outputs:
+    - if one alt is disabled, then it would give a false result for anyone checking it for ability to impact the output, even though the alternative was being variably used instead
+
   - function to identify & remove common article intents with high probability of falsehood to reduce it to just facts
   - add intent matching so you can compare treatment relationships with article intents to see if its actually a sentence with a treatment in it
     - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function

@@ -38,11 +38,16 @@
 
 	- treatments should include:
 		- carvacrol, thymol, eugenol
-		- sertraline
 		- ecgc
-		- inhibitors of CYP2C9, CYP2C19, CYP3A4 
+		- inhibitors of CYP51 (CYP2C9, CYP2C19, CYP3A4)
 		- azole drugs
 		- any other substances that can bind to the fungal cell membrane or process ergosterol into something harmless
+		- imidazoles
+		- sertraline
+		- insight path for serotonin-imidazole:
+			- serotonin, which play an important role in higher animals, are similar to alkaloids in their structure and biosynthesis and are sometimes called alkaloids
+			- alkaloids have imidazole ring 
+			- imidazoles are a subset of azoles that have fewer side effects
 
 	- treatment strategies should include:
 		- convert ergosterol to vitamin d
