@@ -648,6 +648,11 @@
                     - temperature impacts relationships on a molecular level
                     - focus is determined at a molecular & cellular level
 
+                  4. system variable network position
+                    - chemical system variable network has temperature in a hub position
+                    - filtration, communication, immune, temperature regulation, & other systems also have temperature in a hub position
+                    - input system (relating location, room, window) has an output variable network that interacts with bio system and chemical system
+
           4. Select & apply method of reducing possible relationships
 
             I. Method: Semantic logic iteration through related object attributes identified by relationship-finding vectors
