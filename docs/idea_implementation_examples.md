@@ -608,6 +608,7 @@
               - if variables have similar variability or have common transformations explaining their variability (like taking one variable to the power of another variable)
                 check if removing them alters output, otherwise they may be directly related rather than independent
 
+
               - selecting the key output variable:
 
                 - collapse variable links with known mappings (focus conditions & performance => focus conditions)
@@ -624,9 +625,18 @@
                   - this can be determined by inputs of the "test object", where performance is known to be heavily influenced by focus conditions
                   - this means you can approach this problem from the reverse direction, iterating through focus conditions first & the impact of each variable & relationship on each condition
 
+
               - selection key attributes providing interface to evaluate impact on output variable:
 
                 - how could you automate the selection of the key attributes (sunlight, temperature) providing the best interface for comparison to evaluate impact on the output variable?
+
+                - without using the prior method of dependency analysis & consolidation of known directly mapped variables, you can also identify relevant interfaces by:
+
+                  - the highest-variability attributes the objects (window, location, room) have in common: temperature, chemical exposure, radiation exposure
+                  - then filter that list by which attributes are relevant to the hypothesis objects & available data
+                    - temperature is derivable from hypothesis objects & data, but chemical & radiation exposure is not
+                    - we dont know if windows have uv protection, if students rotated near window throughout test to distribute exposure, how much the sunlight increased room temperature, whether all tests occurred on sunny days, etc
+                    - we do know what the temperature was in each combination of (window, room, location) states, or we can derive it based on intent (if a room is too hot and there is a window that can be opened, opening it can reduce temperature, which fulfills a focus condition of "temperature regulation") without even asking the schools if their windows were opened, although to be safe we should check that the windows could be opened, which is an assumption to this analysis that varied object attribute states (window.position) without verifying if they could be varied
 
 
           4. Select & apply method of reducing possible relationships
