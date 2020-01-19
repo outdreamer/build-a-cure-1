@@ -400,7 +400,7 @@
 
   ### Problem Source Identification
 
-    - example: 
+    1. example: 
 
       - if a bottle containing juice is the only thing someone drinks regularly and it makes them sick, how do you figure out that it's most probably bc of a chemical on the inner lining of the bottle, programmatically - ranking less probable causes as well
 
@@ -434,7 +434,7 @@
       - if no problem source is found among their current objects, their purchase history & that of those they interact with can be scanned for prior exposure or dietary causes
 
 
-      - case study: 
+      2. example:
 
         - "They measured performance in two southern Californian classrooms—one with big windows, one with small windows—and found that the kids with the bigger windows fared better, confirming [the researchers'] beliefs. But when they repeated the experiment in northern California, where it's cooler, big windows made no difference. It turned out that daylight didn't play a role in performance, but fresh air did—the classes in warmer southern California had their windows open."
         https://phys.org/news/2020-01-teens-climate.html
@@ -587,9 +587,10 @@
                   we are determining if temperature or sunlight is the greater determining factor
                   (in this particular iteration of variable alts - excluding other variables like motivation/preparation and other temperature variable alts like air conditioning access, etc)
                   
-                  - implicit assumptions:
+                  - implicit causal shape assumptions:
                     - we are assuming they dont both influence performance
                     - we are also ignoring the small correlation between temperature & sunlight (cloudy days & nights can be hot, but sunlight is associated with higher temperature overall)
+                    - we are checking for an isolated direct one-directional relationship, not a causal network or loop
 
                 - you can also reduce alternate variable values explored to focus on those directly impacted by hypothesis objects
 
@@ -607,6 +608,9 @@
                 - without the right focus conditions, the impact of "location => weather => window => room => student" relationship doesnt matter because "student => brain => focus => pass test" relationship is not executable without focus conditions in place
                 - this can be determined by inputs of the "test object", where performance is known to be heavily influenced by focus conditions
                 - this means you can approach this problem from the reverse direction, iterating through focus conditions first & the impact of each variable & relationship on each condition
+
+              - if variables have similar variability or have common transformations explaining their variability (like taking one variable to the power of another variable)
+                check if removing them alters output, otherwise they may be directly related rather than independent
 
 
           4. Select & apply method of reducing possible relationships
@@ -653,8 +657,11 @@
                                 - if room is in higher-temperature location, window can be opened to reduce temperature, which is a focus condition intent required by students' test-taking intents
 
                               does this match the observed rules:
+
                                 - yes, this explains why the two locations had different outcomes for the same action - locations vary by temperature
-                                - output new theory: "temperature determines performance differences because focus conditions require temperature regulation, which is enabled by window.position changes in high-temperature locations"
+                                  - output new theory: "temperature determines performance differences because focus conditions require temperature regulation, which is enabled by window.position changes in high-temperature locations"
+
+                                - no, continue iteration
 
             II. Alternate state variable network
 
@@ -677,12 +684,15 @@
 
               - visuals to visualize a alternate variable state network:
                 - you can assign a radius to each variable, where possible variable values have different positions on the resulting variable circle
-                - the output intents would be outside the last variable circle, and would have an attribute (color/direction) indicating intent value
-                - the goal is to arrange & navigate the variable circles toward the target output intent in such a way that some metric is optimized (least number of steps, most independent variables, etc)
+                - the output intents would be outside the last variable circle, and would have an attribute (color/direction) indicating output intent value:
+                  (negative, neutral, positive impact on focus conditions)
+                - the goal is to arrange & navigate the variable circles toward the target output intent to optimize some metric (least number of steps, most independent variables, etc)
 
               - if you pick the right starting variable for the vector's first item, you can reduce the trajectories required in your network of possible variable value combinations
-                - you can radiate outward from origin variable node by assigning vector position by variability (high variance attributes come first in vector determining output path in network)
+              
+              - radiate outward from origin variable node by assigning vector position by variability (high variance attributes come first in vector determining output path in network)
 
+              - 
 
       - uses insight path technology
 

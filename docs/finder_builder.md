@@ -238,3 +238,51 @@
         12. add indentation to organize logic operation order & selection, given function intent
 
 ## Intent matching
+
+  - if a function has multiple intents, that set should be propagated to the next line
+
+  - you can index intent using various layers of functions, which are assumed to have indexable intents
+
+    - sample intent map (semantic: core: code):
+
+      assume: input: parameters
+      define: assign: variable = value
+      check: condition/filter: if/else/then/switch
+      vary: change: iterate (for)
+      apply: transform: processing functions (format)
+
+  - so in a code sample from the sample logical flow in "Select & apply method of reducing possible relationships" of Problem Source Identification example 2,
+    you can assign intents to each line:
+
+    1. assume: variable1 is variable and in hypothesis_objects and data_is_available(variable1):
+      "since location differs between samples:"
+
+    2. check: condition2 variable2 is variable and in hypothesis_objects and data_is_available(variable2):
+      "if window.position can differ:"
+
+    3. vary: for each value in variable2 in each variable1
+      "if so, alternate window.position across locations:"
+        "if window.position is iterable"
+          "if len(window.position.possible_values) > 0:"
+            "iterate window.position.possible_values"
+            - repeat for location
+
+    4. check: does value match any target directions (focus condition intents)?
+      "check if alternate window.position achieves student.intents aligning with location object metadata: does opening the window achieve anything in south vs. north room?"
+
+  - the output intent of the combination of these four intent sets in order should be symmetric with the overall function intent
+
+    - the output combination intent, by layer:
+
+      - semantic: "assume, check, vary, check"
+        combination intent: "filter subset by iterable subset matching set"
+        - the subset is the set of possible value combinations that pass each filter (in this case, that means only variable values of defined variables & the data type we expect, etc)
+        - you can derive from this simplified intent form that you should have added a check of the set variable (focus condition intents), without which the whole function is invalid, so that condition should be one of the first checks
+
+      - semantic + objects:
+        1. assume variable1 varies (location is a variable)
+        2. check variable2 varies (window is a variable)
+        3. vary variable2 and variable1 to get combinations (location + window values)
+        4. check each variable2 & variable1 combination for match with any target intents (focus condition intents)
+
+        combination intent: "given that variable 1 and variable2 are both variables, vary variable2 and variable1 to get combinations matching target intents"
