@@ -400,7 +400,9 @@
 
   ### Problem Source Identification
 
-    - example: if a bottle containing juice is the only thing someone drinks regularly and it makes them sick, how do you figure out that it's most probably bc of a chemical on the inner lining of the bottle, programmatically - ranking less probable causes as well
+    - example: 
+
+      - if a bottle containing juice is the only thing someone drinks regularly and it makes them sick, how do you figure out that it's most probably bc of a chemical on the inner lining of the bottle, programmatically - ranking less probable causes as well
 
       - query object definitions involved (bottle, juice, person) and relationships involved (containing, drinking)
 
@@ -430,6 +432,133 @@
       - after scanning all the objects someone interacts with regularly, this set of interactions should be able to identify the bottle lining as the problem
 
       - if no problem source is found among their current objects, their purchase history & that of those they interact with can be scanned for prior exposure or dietary causes
+
+
+      - case study: 
+
+        - "They measured performance in two southern Californian classrooms—one with big windows, one with small windows—and found that the kids with the bigger windows fared better, confirming [the researchers'] beliefs. But when they repeated the experiment in northern California, where it's cooler, big windows made no difference. It turned out that daylight didn't play a role in performance, but fresh air did—the classes in warmer southern California had their windows open."
+        https://phys.org/news/2020-01-teens-climate.html
+
+        problem definition:
+
+          rules:
+
+            observations:
+
+              - rules in terms of hypothesis objects (assumption: "sunlight is relevant/explanatory"):
+                "performance metric increased with more sunlight in south rooms with big windows"
+                "performance metric did not increase with more sunlight in north rooms with big windows"
+
+              - rules in terms with hypothesis objects removed (removes assumption that "sunlight is relevant/explanatory"):
+                "performance metric increased with more sunlight in south rooms with big windows"
+                "performance metric did not increase with more sunlight in north rooms with big windows"
+
+            implications:
+              - "sunlight doesnt appear to improve performance on its own"
+
+          problem type: "info asymmetry"
+
+          problem type metadata:
+
+            - problem subtype:
+              - "different outcomes for same action, where one outcome was successful, but not for difference hypothesized (sunlight)"
+
+            - missing info (question), given the info asymmetry problem type:
+
+              - hypothesis: "sunlight improves performance"
+              - question: "which factors determine performance differences between rooms in different locations"
+                (given the implication of study, which is that "sunlight doesnt appear to improve performance on its own")
+
+            - explicit info:
+
+              - objects:
+
+                - windows
+                - rooms
+                - locations
+                - performance test
+                - sunlight
+                - test takers
+
+            - derivable info:
+
+              - differences between locations:
+
+                - pollution exposure
+                - weather patterns (temperature)
+            
+          - relationship-finding vectors:
+
+            - iterate through object attributes/rules/types, evaluating them for possible distortions/states or other values that could occur naturally
+              - window object is a tool with multiple values for its position attribute: open/closed
+                - window.position is a tool to serve various intents:
+                  - temperature regulation
+                  - pollution protection
+                  - air dissipation
+                  - wind route manipulation
+                  - alternate to air conditioning systems
+
+              - location object is a place type with key differences in various attributes, like weather, ecology, population & industry
+
+                - location.weather attribute differs in temperature attribute values
+                  *** 
+                  this should be flagged as a particularly interesting possible relationship, 
+                    because it relates to attributes/rules of other objects already identified 
+                    (window as tool of temperature regulation)
+                  ***
+
+              - room object has an intent attribute with multiple values: "focus", "removal of distractions", "work alignment", "performance test"
+
+              - student object has multiple intents: 
+                - "maintain optimal conditions for focus"
+                - "maintain focus so you can remember information you studied"
+
+              - "conditions" objects mention in student object intents should be flagged as a source of variance that can interact with other objects, which are environmental, and therefore it should be queried
+                - conditions with intent "focus" include: water supply, electrolyte balance, temperature regulation
+                  ***
+                  temperature regulation should be flagged as particularly relevant, and store the possible relationship:
+                    student.intents for activity = "test-taking" includes "maintain focus conditions"
+                    conditions where intent = "focus" includes "temperature regulation"
+                  ***
+
+            - after iterating, you should have a list of the relevant object definitions
+            - you should also now have the important attributes/rules with possible relationships, organized by their common factor:
+
+              - temperature relationships:
+
+                - window.position can be determined by temperature regulation intent
+                - location differs by temperature in weather patterns
+                - student.intents for activity = "test-taking" includes "maintain focus conditions"
+                - conditions where intent = "focus" includes "temperature regulation"
+
+            - given that you have at least one relationship to explore, iterate through those relationships:
+
+              - if location differs between samples:
+                check if window.position can differ:
+                  if so, alternate window.position across locations:
+                    check if alternate window.position achieves student.intents aligning with location object metadata:
+                      does opening the window achieve anything in south vs. north room?
+                      possible intents: temperature regulation, pollution protection, air dissipation, etc
+                      iterate through possible intents of different window positions:
+                      for each intent of window.position:
+                        check if output intents of intent would differ across locations
+                        would open windows have different output intents in north & south rooms?
+                        yes, because of difference in weather patterns
+                        output intent of open window in south room = "temperature regulation"
+                        output intent of open window in north room = None (no difference in temperature regulation)
+                        given that window.position can serve intent temperature regulation across locations, 
+                        and that temperature regulation was a key relevance factor organizing identified relationships:
+                          check if the different output intents have different impact on other possible relationships under 'temperature':
+                          iterate through possible temperature relationships:
+                            does output intent "temperature regulation" influence student.intents or condition.intents?
+                            yes, it serves the students' "maintain focus conditions" intent, which is served by conditions with "temperature regulation" intent
+                            now that youve identified theres a logical flow between all relationships of a relevance factor (temperature), 
+                              check if the implications of this logical flow match the observed rules:
+                                implications for relevant variable variants (vary temperature):
+                                  - if room is in higher-temperature location, window can be opened to reduce temperature, which is a focus condition intent required by students' test-taking intents
+                                does this match the observed rules:
+                                  - yes, this explains why the two locations had different outcomes for the same action - locations vary by temperature
+                                  - output new theory: "temperature determines performance differences"
 
       - uses insight path technology
 

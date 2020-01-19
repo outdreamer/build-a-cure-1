@@ -236,3 +236,5 @@
         11. add output conditions
 
         12. add indentation to organize logic operation order & selection, given function intent
+
+## Intent matching
