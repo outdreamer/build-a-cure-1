@@ -402,39 +402,39 @@
 
     1. example: 
 
-      - if a bottle containing juice is the only thing someone drinks regularly and it makes them sick, how do you figure out that it's most probably bc of a chemical on the inner lining of the bottle, programmatically - ranking less probable causes as well
+        - if a bottle containing juice is the only thing someone drinks regularly and it makes them sick, how do you figure out that it's most probably bc of a chemical on the inner lining of the bottle, programmatically - ranking less probable causes as well
 
-      - query object definitions involved (bottle, juice, person) and relationships involved (containing, drinking)
+        - query object definitions involved (bottle, juice, person) and relationships involved (containing, drinking)
 
-      - query attributes of objects that interact (with output: bottle lining-juice, bottle cap-juice, manufacturing machinery-juice, juice-person, etc)
+        - query attributes of objects that interact (with output: bottle lining-juice, bottle cap-juice, manufacturing machinery-juice, juice-person, etc)
 
-      - query known strategies of implementation - with output:
-        - 'aligned supply and demand may not match in quantity, quality, or timing'
-        - 'goods are often not purchased immediately because supply and demand matching is imperfect as information is often unavailable'
-        - 'to protect goods while waiting for purchase, chemicals are used'
-        - 'to find protective chemicals, companies do research'
-        - 'interim sub-optimal solutions are often used while waiting for optimal solutions'
-        - 'companies often use easiest chemical to find, which are often within a set range of permutations away from or combinations of common chemicals'
-        - 'a company usually finds an optimal solution before the sub-optimal units are purchased'
-        - 'if a company finds an optimal solution, they often still try to sell the remaining supply of the sub-optimal solution'
-        - 'usually the company produces x batches before they find a better solution, if they integrate customer feedback and use third party evaluators'
+        - query known strategies of implementation - with output:
+          - 'aligned supply and demand may not match in quantity, quality, or timing'
+          - 'goods are often not purchased immediately because supply and demand matching is imperfect as information is often unavailable'
+          - 'to protect goods while waiting for purchase, chemicals are used'
+          - 'to find protective chemicals, companies do research'
+          - 'interim sub-optimal solutions are often used while waiting for optimal solutions'
+          - 'companies often use easiest chemical to find, which are often within a set range of permutations away from or combinations of common chemicals'
+          - 'a company usually finds an optimal solution before the sub-optimal units are purchased'
+          - 'if a company finds an optimal solution, they often still try to sell the remaining supply of the sub-optimal solution'
+          - 'usually the company produces x batches before they find a better solution, if they integrate customer feedback and use third party evaluators'
 
-      - query causes of that illness (medication, nausea, food poisoning)
+        - query causes of that illness (medication, nausea, food poisoning)
 
-      - eliminate unlikely causes using filtering rules, for efficiency (reverse later if none found among likely rules)
-        - 'regular use of a product can produce sustained or compounding impact'
-        - 'toxic chemicals are more likely to be used by large companies with ties to legislators'
-        - 'ingesting chemicals is x times more toxic than breathing or touching chemicals'
-        - 'the industry producing this product has x lawsuits/reports and z oversight relative to other industries'
-        - 'the industry producing this product has a regulation loophole x that would allow exploit y'
-        - 'this company's business model doesnt incentivize quality control at the source level'
+        - eliminate unlikely causes using filtering rules, for efficiency (reverse later if none found among likely rules)
+          - 'regular use of a product can produce sustained or compounding impact'
+          - 'toxic chemicals are more likely to be used by large companies with ties to legislators'
+          - 'ingesting chemicals is x times more toxic than breathing or touching chemicals'
+          - 'the industry producing this product has x lawsuits/reports and z oversight relative to other industries'
+          - 'the industry producing this product has a regulation loophole x that would allow exploit y'
+          - 'this company's business model doesnt incentivize quality control at the source level'
 
-      - after scanning all the objects someone interacts with regularly, this set of interactions should be able to identify the bottle lining as the problem
+        - after scanning all the objects someone interacts with regularly, this set of interactions should be able to identify the bottle lining as the problem
 
-      - if no problem source is found among their current objects, their purchase history & that of those they interact with can be scanned for prior exposure or dietary causes
+        - if no problem source is found among their current objects, their purchase history & that of those they interact with can be scanned for prior exposure or dietary causes
 
 
-      2. example:
+    2. example:
 
         - "They measured performance in two southern Californian classrooms—one with big windows, one with small windows—and found that the kids with the bigger windows fared better, confirming [the researchers'] beliefs. But when they repeated the experiment in northern California, where it's cooler, big windows made no difference. It turned out that daylight didn't play a role in performance, but fresh air did—the classes in warmer southern California had their windows open."
         https://phys.org/news/2020-01-teens-climate.html
@@ -494,15 +494,16 @@
                     - someone might expect different performance based on location alone, if school districts have different funding or nearby pollution sources
                     - however location isnt assumed as a causative factor but rather an interface with which to isolate the variables to be studied (sunlight)
 
-                implications
+                implications:
                   - "sunlight doesnt appear to improve performance on its own"
 
                 contra-implications:
                   - "this doesnt mean sunlight isnt a factor at all"
 
+
           2. Relationship-finding vectors
 
-            - iterate through object attributes/rules/types, evaluating them for possible distortions/states or other values that could occur naturally
+            - iterate through object attributes/rules/types, evaluating them for possible distortions/states or other values that could definitively occur or possibly emerge naturally
 
               - window:
                 - window object is a tool with multiple values for its position attribute: open/closed
@@ -603,14 +604,29 @@
                 - so if you use a semantic logic iteration through related object attributes, you only have to iterate through objects: location.weather, window.position, focus conditions
                 - if you use a alternate state variable network, you only have to iterate through objects: temperature, sunlight, focus conditions
 
-              - you can also determine in other ways that the key output object is "focus conditions"
-
-                - without the right focus conditions, the impact of "location => weather => window => room => student" relationship doesnt matter because "student => brain => focus => pass test" relationship is not executable without focus conditions in place
-                - this can be determined by inputs of the "test object", where performance is known to be heavily influenced by focus conditions
-                - this means you can approach this problem from the reverse direction, iterating through focus conditions first & the impact of each variable & relationship on each condition
 
               - if variables have similar variability or have common transformations explaining their variability (like taking one variable to the power of another variable)
                 check if removing them alters output, otherwise they may be directly related rather than independent
+
+              - selecting the key output variable:
+
+                - collapse variable links with known mappings (focus conditions & performance => focus conditions)
+
+                - collapse variables having common output attribute into standard interface of that output attribute (window, room, location => temperature)
+
+                - dont collapse variables being studied as alternatives (keep sunlight & temperature separate, given that we are assuming one or the other is determinant)
+
+                - it can also be determined in other ways that the key output object is "focus conditions"
+
+                - apply dependency analysis:
+
+                  - without the right focus conditions, the impact of "location => weather => window => room => student" relationship doesnt matter because "student => brain => focus => pass test" relationship is not executable without focus conditions in place
+                  - this can be determined by inputs of the "test object", where performance is known to be heavily influenced by focus conditions
+                  - this means you can approach this problem from the reverse direction, iterating through focus conditions first & the impact of each variable & relationship on each condition
+
+              - selection key attributes providing interface to evaluate impact on output variable:
+
+                - how could you automate the selection of the key attributes (sunlight, temperature) providing the best interface for comparison to evaluate impact on the output variable?
 
 
           4. Select & apply method of reducing possible relationships

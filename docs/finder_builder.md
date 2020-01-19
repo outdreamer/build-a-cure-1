@@ -286,7 +286,9 @@
         4. check each variable2 & variable1 combination for match with any target intents (focus condition intents)
 
         combination intent: "given that variable 1 and variable2 are both variables, vary variable2 and variable1 to get combinations matching target intents"
-        - this leaves out the logic to assess the key emergent variables of variable1 & variable2 combinations (temperature, sunlight), which are the actual attributes that should be used for comparison with target intents, since they have a computable/measurable relationship (temperature maps directly to "temperature regulation")
+        - this leaves out the logic to assess the key emergent variables of variable1 & variable2 combinations (temperature, sunlight), 
+          which are the actual attributes that should be used for comparison with target intents, 
+          since they have a computable/measurable relationship (temperature maps directly to "temperature regulation")
 
       - semantic + objects + variable values:
         - you can add data analysis based on generated test data to conduct possible intent sets with various data permutations, which should alert you to exploit opportunities
