@@ -653,6 +653,11 @@
                     - filtration, communication, immune, temperature regulation, & other systems also have temperature in a hub position
                     - input system (relating location, room, window) has an output variable network that interacts with bio system and chemical system
 
+                  5. key rules
+                    - energy is a key input/output of many physical systems (bio, chemical, environmental)
+                    - temperature is a key factor in energy management (storage/flow)
+                    - these rules are key hubs on rule networks because they determine many other rules
+
           4. Select & apply method of reducing possible relationships
 
             I. Method: Semantic logic iteration through related object attributes identified by relationship-finding vectors
