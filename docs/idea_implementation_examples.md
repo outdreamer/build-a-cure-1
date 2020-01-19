@@ -439,7 +439,7 @@
         - "They measured performance in two southern Californian classrooms—one with big windows, one with small windows—and found that the kids with the bigger windows fared better, confirming [the researchers'] beliefs. But when they repeated the experiment in northern California, where it's cooler, big windows made no difference. It turned out that daylight didn't play a role in performance, but fresh air did—the classes in warmer southern California had their windows open."
         https://phys.org/news/2020-01-teens-climate.html
 
-        - problem definition:
+        1. Problem definition
 
           - problem type: "info asymmetry"
 
@@ -500,7 +500,7 @@
                 contra-implications:
                   - "this doesnt mean sunlight isnt a factor at all"
 
-          - relationship-finding vectors:
+          2. Relationship-finding vectors
 
             - iterate through object attributes/rules/types, evaluating them for possible distortions/states or other values that could occur naturally
 
@@ -551,21 +551,76 @@
                 - student.intents for activity = "test-taking" includes "maintain focus conditions"
                 - conditions where intent = "focus" includes "temperature regulation"
 
+          3. Standardize variables by relationship metadata (directness, variance maximization, uncertainty)
+
             - given that you have at least one relevance factor to explore, standardize the relationships:
 
               - its determinable that the key potential sources of variance are:
                 - naturally-determined environment conditions (location.weather)
                 - artificially-determined focus conditions (window.position, room.temperature)
-                - this means you can remove the student object from the analysis, because we mainly care if the room & location.weather & window.position impact the focus conditions required for performance
-                - you can also remove the room object from the analysis, because we mainly care about the window object in the room, leaving only the room.temperature attribute to link the weather, location, window state, and focus conditions
-                - so you only have to iterate through objects: location, window, weather, focus conditions
 
-              - its also determinable that the key output object is "focus conditions"
+              - logical variable reduction:
+
+                - origin relationship:
+                  location => weather => room => window => student => focus conditions => performance
+
+                - you can remove the student object from the analysis, because we mainly care if the room & location.weather & window.position impact the focus conditions required for performance:
+                  location => weather => room => window => focus conditions => performance
+
+                - you can also remove the environment objects from the analysis, because we mainly care about the resulting variable attributes that could interact with focus conditions, leaving only the temperature attribute to link the weather, location, window, and focus conditions, since window, location & weather can be collapsed to variable attributes: sunlight & temperature
+
+                  - temperature || sunlight => focus conditions => performance
+
+                - you can further collapse the focus & performance into one variable:
+
+                  - temperature || sunlight => focus conditions
+
+                  - the reason we wouldnt choose to leave in performance over focus conditions is:
+                    - focus conditions have a known direct link to performance (if its known, it shouldnt be included in data set, which should maximize variance)
+                    - temperature & sunlight may have a direct link to focus conditions, and this direct link is measurable through attribute interactions
+                    - the relationship between temperature & sunlight and performance is unknown and may not be explainable by this causal chain, but we're trying to explain it by proxy, through measuring the theorized relationship between temperature & sunlight and focus conditions, given that focus conditions are a key input of performance
+                    - performance for a set of focus conditions can be checked after the temperature & sunlight => focus conditions relationship is established, since the focus conditions => performance relationship is known (or at least better understood)
+
+                - out of the resulting reduced hypothesized relationship:
+                  "temperature || sunlight => focus conditions"
+
+                  we are determining if temperature or sunlight is the greater determining factor
+                  (in this particular iteration of variable alts - excluding other variables like motivation/preparation and other temperature variable alts like air conditioning access, etc)
+                  
+                  - implicit assumptions:
+                    - we are assuming they dont both influence performance
+                    - we are also ignoring the small correlation between temperature & sunlight (cloudy days & nights can be hot, but sunlight is associated with higher temperature overall)
+
+                - you can also reduce alternate variable values explored to focus on those directly impacted by hypothesis objects
+
+                  - leaving out alternate focus conditions that arent directly impacted by temperature like caffeine & quiet, 
+                    although these arent entirely unrelated as caffeine may increase body temperature 
+                    & a noisy environment may mean people are talking/moving more & that may increase room temperature
+
+                  - in this study we're looking for direct relationships (causal adjacency) rather than indirect relationships
+                
+                - so if you use a semantic logic iteration through related object attributes, you only have to iterate through objects: location.weather, window.position, focus conditions
+                - if you use a alternate state variable network, you only have to iterate through objects: temperature, sunlight, focus conditions
+
+              - you can also determine in other ways that the key output object is "focus conditions"
+
                 - without the right focus conditions, the impact of "location => weather => window => room => student" relationship doesnt matter because "student => brain => focus => pass test" relationship is not executable without focus conditions in place
                 - this can be determined by inputs of the "test object", where performance is known to be heavily influenced by focus conditions
                 - this means you can approach this problem from the reverse direction, iterating through focus conditions first & the impact of each variable & relationship on each condition
 
-            - iterate through those relationships:
+
+          4. Select & apply method of reducing possible relationships
+
+            I. Method: Semantic logic iteration through related object attributes identified by relationship-finding vectors
+
+              - iterate through those relationships for each relevance factor (temperature)
+
+              - what order do you iterate through relationships for a relevance factor in?
+                - you can start with objects having known differentiating factors 
+                  (different locations were chosen for a reason, and the window is an important object in the hypothesis even with assumptions removed)
+
+                - you can also approach from other known relationships, such as that performance is heavily influenced by focus conditions,
+                  in which case youd iterate through focus conditions, and check which alternate states of the other objects could impact each focus condition
 
               - since location differs between samples:
 
@@ -581,7 +636,7 @@
                       output intent of open window in hot south room = hot - hot = cool = "temperature regulation"
                       output intent of open window in cool north room = no difference in temperature regulation = cool - cool = "no temperature regulation"
 
-                      given that window.position can serve intent "temperature regulation" across locations & temperature is the key relevance factor for this relationship set:
+                      given that window.position can serve intent "temperature regulation" across locations & temperature is the key relevance factor for this relationship set,
                       check if the different output intents have different impact on other possible relationships under 'temperature':
 
                       iterate through all remaining temperature relationships (if there are a lot, select for relationships involving known important factors like focus conditions first):
@@ -601,19 +656,12 @@
                                 - yes, this explains why the two locations had different outcomes for the same action - locations vary by temperature
                                 - output new theory: "temperature determines performance differences because focus conditions require temperature regulation, which is enabled by window.position changes in high-temperature locations"
 
-            - what order do you iterate through relationships for a relevance factor in?
-              - you can start with objects having known differentiating factors 
-                (different locations were chosen for a reason, and the window is an important object in the hypothesis even with assumptions removed)
+            II. Alternate state variable network
 
-              - you can also approach from other known relationships, such as that performance is heavily influenced by focus conditions,
-                in which case youd iterate through focus conditions, and check which alternate states of the other objects could impact each focus condition
-
-            - alternative methods:
-            
-              - you can also generate a matrix of alternate variable values among variables suspected to be relevant & check for output intents, 
+              - you can also generate a network of alternate variable values among variables suspected to be relevant & check for output intents, 
                 rather than narrowing down relationship sets with semantic logic conditions between objects like variables & intents
 
-                - what is the output intents of the vectors: 
+                - what are the output intents of the vectors: 
 
                   [window = open, location = north, weather = storm, sunlight = low, quiet = low]
                     - output intent: "contradicts focus conditions = 'quiet'"
@@ -623,6 +671,13 @@
 
                   [window = open, location = south, weather = hot, sunlight = high, caffeine = high]
                     - output intent: "serves focus conditions = 'caffeine', 'temperature regulation'"
+
+                - now you can answer the question:
+                    - "which of these vectors serve/maximize the key variable 'focus conditions'?"
+
+              - if you pick the right starting variable for the vector's first item, you can reduce the trajectories required in your network of possible variable value combinations
+                - you can radiate outward from origin variable node by assigning vector position by variability (high variance attributes come first in vector determining output path in network)
+
 
       - uses insight path technology
 
