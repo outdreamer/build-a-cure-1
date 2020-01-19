@@ -675,6 +675,11 @@
                 - now you can answer the question:
                     - "which of these vectors serve/maximize the key variable 'focus conditions'?"
 
+              - visuals to visualize a alternate variable state network:
+                - you can assign a radius to each variable, where possible variable values have different positions on the resulting variable circle
+                - the output intents would be outside the last variable circle, and would have an attribute (color/direction) indicating intent value
+                - the goal is to arrange & navigate the variable circles toward the target output intent in such a way that some metric is optimized (least number of steps, most independent variables, etc)
+
               - if you pick the right starting variable for the vector's first item, you can reduce the trajectories required in your network of possible variable value combinations
                 - you can radiate outward from origin variable node by assigning vector position by variability (high variance attributes come first in vector determining output path in network)
 
