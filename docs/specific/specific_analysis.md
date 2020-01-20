@@ -111,14 +111,11 @@
   3. Identify necessary structure and identify interface combinations/trajectories that can generate that structure
 
 
-## Calculating which calculations are optimal
+## Determining which queries/calculations are optimal
 
   - given that certain calculations have known cost estimates, which calculations are optimal, in what order/frequency, and given what information?
-
   - example: when deriving a prediction function, when do you query for function & function generator patterns, when do you request more data, when do you continue assessing regression, when do you apply standardization?
-
   - is it optimal to solve this problem set or another problem set, or deploy resources to both?
-
   - solution distribution: should this solution be deployed at run time, in a specific system, should the solution be stored as its generator function, etc
 
 
