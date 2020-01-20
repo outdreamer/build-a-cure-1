@@ -45,6 +45,8 @@
     - how do constants accrete between rules, like caps to keep variance from flowing in to corners or creating boundary-invalidating openings in a system/component boundary?
     - what causes variables to cascade across layers, creating fractal variables?
     - delegation of variance into systems/types/functions/variables/constants
+    - what type of variable is it? (object-differentiating/identifying attribute, emergent specific/abstract property, direct function input/output)
+    - how does the variable relate to other variables? (decisive metric, substitutable alternative, collinear)
 
   IX. Functional analysis 
     - distortion (gap creation, divergence)
