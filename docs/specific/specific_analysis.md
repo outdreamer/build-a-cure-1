@@ -221,19 +221,21 @@
 
     - rules
 
-      - bind
-      - boundary
-      - position
-      - grouping/accretion
-      - distribution
-      - testing/assessment/metric selection
-      - change
-      - regulation
-      - communication
-      - repair
-      - movement
-      - duplication
-      - request/response handling
+      - types
+
+        - bind
+        - boundary
+        - position
+        - grouping/accretion
+        - distribution
+        - testing/assessment/metric selection
+        - change
+        - regulation
+        - communication
+        - repair
+        - movement
+        - duplication
+        - request/response handling
 
     - structural
 
@@ -357,3 +359,9 @@
 
   1. use predictive tools to predict transactions & calculate them in advance to speed up tx
     - this would assess people's known resources to build an index of global demand/supply, then calculating through these resource distributions, economic incentives for trades, social networks, platform dominance, & product availability & findability (search results rankings) - which tx were likely to happen where for which products, then calculate those tx in advance
+
+### ML
+
+  1. not only does ML derive type paths & insight paths, it derives other system/interface metadata such as core functions:
+    - example:
+      https://techxplore.com/news/2020-01-alphafold-protein.html

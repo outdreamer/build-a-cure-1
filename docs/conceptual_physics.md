@@ -1,55 +1,52 @@
+# Concept Operations
 
-## Concept Operations
+
+## Specific Concepts
+
+
+  ### Time
+
+  - time can be defined as:
+    - how many systems are capable of interacting on the same interface layer & the trajectory across the manifold of possible interaction combinations of those systems
+      - whether other layers of interaction are system-adjacent (possible) or whether interface physics prohibits interactions on those layers for this system interaction trajectory (timeline)
+
+    - if a variable changes with time (possible variance), that doesnt mean time (possible variance) caused its variance, 
+      but the system collisions enabling the set of interactions possible in that layer
+
+    - the flow of system molecules follows a physics that should be able to explain system change rules
+    - the key question is: what is the system (set of core functions) that could generate the set of possible systems we assume exist, 
+      and what host system could enable these core functions to result in combinations explaining those systems?
+    - what is the host system in which system molecules exist? its modelable as a network with different states (structural math layer) in a particular interface (core dimension set)
+    - what is the path between the math layer & the others that allows the math layer to contain its own internal rules and also capture all other rules?
+      - the math layer is so important bc its the rules of value & structure, & it's relevant when we can observe/measure other systems to the point of being able to assign value & structure
+      - systems that cannot be measured can be guessed but not proven, unless the set of proofs leaves only one possibility for that system's position
+      - if there is only one possibility left to the question that explains the variance in this universe, then time doesnt exist in this universe
+      - the point wouldnt be to predict future behavior, but to derive source rules of the universe
+        & then optimize them for a universe where time could exist (every question cannot be answered in that universe)
+        & then detail the steps necessary to trace that universe to this one
+      - if there is a universe where every question can be answered, it might poison adjacent universes with its certainty, so they might pool their variance to introduce chaos to that one
+        if there are remaining problems to solve in those other universes (systems with non-determinable winners using info available inside the universe, in that state)
+      - information has to leak to preserve variance in this system
+    - when you standardize the other layers to the position interface, it can be captured in the math layer
+    - what is the causal relationship between these layers? does math cascade into the others or just capture their structure, once it decays into information?
+    - math is the unit system in the system layer, just like information is the unit object in the conceptual layer (unit/key object: out of which all other objects are built)
+
+  - example of a different conceptual system:
+    - if power favored centralization, another core concept like balance would have to favor a chaotic process or not exist at all, or another core concept would need to be added to the network
+
+
+  ### Meaning (Relevance/Structure)
 
   - meaning comes from attributes like:
     - reduction of signals (relevance)
     - matching of signal structures (similarity)
 
+
+  ### Entropy/variance
+
   - the reason entropy can evolve on its own is that if order was the default, it wouldnt allow order (in the form of alignments) to be constructed for a particular efficient purpose (like making a trade or cooperating) and then automatically deconstructed by entropy when no longer used. Efficiencies may be rare & temporary enough that order shouldnt be the default so disorder can allow more interactions to occur and more efficiencies can be found naturally. It's similar to the free market allowing companies to organize & operate without regulation to find efficiencies in demand/supply.
 
-  - this is the set of core conceptual math operations between concepts
-
-  I. combine (expand, add, set)
-
-    1. merge with override/backup/overlap rules
-      "power merged with information" => 
-        "power as an input to information" => "powerful position can use information at increased scale & impact"
-        "information as an input to power" => "insights"
-        (can continue merging with each object interacting with the other & its attributes/types/rules)
-
-    2. collide (compete for position)
-      "power or information" => "is power different from information in this context" => "do other objects enable functionality, beyond information, or is information the key enabler"
-
-    3. intersection (retain common components)
-      "common components of power & information" => "enablement, context, control, dependence, responsibility"
-
-    4. union (retain all components)
-      "power and information" => "multiple power types, creating a backup system of control if one power source fails"
-
-  II. filter (find, reduce, subtract, subset)
-
-    - x without y
-      - "power without information" => "information-derivation method", "power from non-information source", "limited power"
-
-  III. apply (expand, group, iterate, multiply, set)
-
-    - apply to another (x * y)
-      - "balance of power" = "symmetry between input & output dependencies"
-
-    - apply to itself (x ^ n)
-      - "power of power" => "the enabler of enabling" => "input", "abstraction", "coordination"
-
-  IV. standardize (simplify, compare, divide, subset)
-
-    - x standardized by y
-      - "power standardized by power" => 
-        "power explained by power" => 
-        "explain power using only objects in power definition (input/output/objects)" =>
-        "enabling happens from providing inputs to a high proportion of other objects or to very important objects (having important, causative, or many connections)" => 
-        "high ratio or symmetry of power object outputs: important object inputs or high causation ratio" 
-          (given that important objects can be powerful just because they enable many other objects, even if they dont provide all of the inputs of other objects)
-
-
+  
 ## Concept Derivation
 
   - identifying unique objects in a system that cant be defined in terms of standard operations on other objects

@@ -6,7 +6,7 @@ How to decide which layer to choose core functions at?
 - above that, youll have a layer of functions composed of lower operations that apply exclusively to the relevant system you used to derive the core functions 
 	(for a biosystem, functions like "borrow a gene", "learn an attacker profile", "send signal")
 
-# System Analysis applications
+## System Analysis applications
 
 System analysis should be able to answer questions like:
 - what is a way to reduce computation time in a ml model?
@@ -37,49 +37,12 @@ Or questions like:
         - express faith to motivate
 )
 
-# Functions
+## Notes
 
-## Find
-- find(target, data, filters): 
-	- find target type & data type, get relationships between them ('this type is often found at end of document'), apply filters to output
+- exploits -> relevant properties 
+- delegate cost -> efficiency from alignment that goes unregulated (no system rules) where exploit is gap in regulation
 
-## Apply
-- apply(concepts, source_functions, target_function, problem_space):
-	- takes concepts or source_functions & assigns them to structures known to interact in that problem space to achieve that function
-	- in the absence of concepts or source_functions, it pulls those objects from the problem_space definition
-	- example:
-		- apply(['power', 'balance'], [], 'decentralize', 'government') should return an insight: 'give components of government power over each other'
-		- apply([], [], ['give components of government power over each other'], 'government') should return:
-			- a set of insights about the existing & optimal power distribution rules between government agencies:
-				- 'technology-progressive agencies may have more power in the form of information' (tech power must be distributed or otherwise limited)
-				- 'information should be distributed by need' (agencies with more information like intel agencies will have more power)
-				- 'legislative power should be distributed by relevance, intent, & ability' (women should make laws for women, etc)
-				- 'veto power should be by consensus weighted by demonstrated ability' (no one person should get to make important decisions)
-				- 'enforcement should not be biased' (enforcers would otherwise have endless power)
-				- 'enforcement should be automated' (automaters will have more power which must be limited)
-				- 'enforcement should be a backup method to prevention' (agencies that do prevention should work with agencies that automate enforcement)
-		- apply([], ['max', 'count', 'split'], 'find_biggest_number_in_string', 'programming') should return a function: "max([x for x in input.split('') if int(x)])"
-		- apply([], insight, 'strategy', problem_space) would apply that insight to the problem space, 
-			converting it into a usable strategy with an intent 
-			(agent & possible intents would be part of the problem space object)
-
-## Generate
-- generate(type, input_ranges, output_distribution):
-	- gets structures of subtypes within that type
-	- applies input_ranges (limits of variables) to generate the set of type examples with output_distribution
-
-## Derive
-- derive(target_objects, problem_space): 
-	- fetches patterns & functions of the problem space
-	- applies them layer by layer (from abstract like apply_filter() to concrete like count()) to derive relationship between objects in target_objects
-	- if no results, applies system analysis to find gaps in change & functionality explanations & filters this list by target_objects
-
-# Notes
-
-exploits -> relevant properties 
-delegate cost -> efficiency from alignment that goes unregulated (no system rules) where exploit is gap in regulation
-
-core function + core object -> interaction rule of core attributes that aligns with core function + core object priority
+- core function + core object -> interaction rule of core attributes that aligns with core function + core object priority
 - depict core functions on their own direction to indicate a dimension when graphing
 
 - find the rules of which objects can generate key object combinations that are important 
@@ -119,31 +82,6 @@ core function + core object -> interaction rule of core attributes that aligns w
 	- small changes in structure can invalidate functionality - find a list of those change types
 	- each object has a field of potential in which it can be distorted outside its normal boundaries, until it's not recognizable as the same type
 
-minimum information:
-- with a line in a space, you have this information:
-	- the type of change
-	- the change rate
-	- the angle compared to a standard, like an axis
-	- its distance
-- and you need to know the following to find its equation:
-	- whether its a segment or the full line
-	- the space its in
-- with cancer you need to know
-	- its position in the system
-	- its input resources
-	- its limits
-	- its change methods (stress-handling methods, learning methods, etc)
-	- whether it converts to other objects (like other cancers or a pathogen) & how
-	- its history (how did it evolve)
-	- its types
-	- its target priorities
-	- its cooperative agents (which organisms it helps or can receive help from)
-	- how it interacts with other objects (that arent immediately classifiable as resources or targets)
-
-- given different information, you can use different methods
-- some methods are immune to information but most require a clear minimum
-
-
 Apply metadata analysis to each operation
 	properties of an operation:
 	- network of side effects (vectors, value sets, probability distributions, ranges, & complexity)
@@ -158,34 +96,6 @@ Apply metadata analysis to each operation
 		- alternative operations with irrelevant undesirable side effects
 		- reversing operations
 		- optimizing operations
-
-time can be defined as:
-	- how many systems are capable of interacting on the same interface layer & the trajectory across the manifold of possible interaction combinations of those systems
-		- whether other layers of interaction are system-adjacent (possible) or whether interface physics prohibits interactions on those layers for this system interaction trajectory (timeline)
-
-	- if a variable changes with time (possible variance), that doesnt mean time (possible variance) caused its variance, 
-		but the system collisions enabling the set of interactions possible in that layer
-
-	- the flow of system molecules follows a physics that should be able to explain system change rules
-	- the key question is: what is the system (set of core functions) that could generate the set of possible systems we assume exist, 
-		and what host system could enable these core functions to result in combinations explaining those systems?
-	- what is the host system in which system molecules exist? its modelable as a network with different states (structural math layer) in a particular interface (core dimension set)
-	- what is the path between the math layer & the others that allows the math layer to contain its own internal rules and also capture all other rules?
-		- the math layer is so important bc its the rules of value & structure, & it's relevant when we can observe/measure other systems to the point of being able to assign value & structure
-		- systems that cannot be measured can be guessed but not proven, unless the set of proofs leaves only one possibility for that system's position
-		- if there is only one possibility left to the question that explains the variance in this universe, then time doesnt exist in this universe
-		- the point wouldnt be to predict future behavior, but to derive source rules of the universe
-			& then optimize them for a universe where time could exist (every question cannot be answered in that universe)
-			& then detail the steps necessary to trace that universe to this one
-		- if there is a universe where every question can be answered, it might poison adjacent universes with its certainty, so they might pool their variance to introduce chaos to that one
-			if there are remaining problems to solve in those other universes (systems with non-determinable winners using info available inside the universe, in that state)
-		- information has to leak to preserve variance in this system
-	- when you standardize the other layers to the position interface, it can be captured in the math layer
-	- what is the causal relationship between these layers? does math cascade into the others or just capture their structure, once it decays into information?
-	- math is the unit system in the system layer, just like information is the unit object in the conceptual layer (unit/key object: out of which all other objects are built)
-
-- example of a different conceptual system:
-	- if power favored centralization, another core concept like balance would have to favor a chaotic process or not exist at all, or another core concept would need to be added to the network
 
 - "An unsupervised deep-learning algorithm is fed data without labels and sifts through it to find common patterns or representative features"
   System analysis would be able to look at a data set & tell you there's an antecedent variable determining this batch of variables, 
@@ -301,15 +211,12 @@ common types of problems usually considered unsolvable:
 - imperceptible relationship/object considered impossible to verify (what is the structure of other universes' nexuses)
 - conceptual relationships not mapped to math operations
 
-
 find the metadata that is most useful in determining other information:
 - are core functions the best method to derive the system structure?
 - once you have system structure, can all the sub-components be derived? Can other systems be derived?
 Once you have the flow network indicating the derivation dependencies, you'll have a framework for deciding which metadata to use to solve which problem types.
 
-Just like the uncertainty vs. certainty pattern, 
-there are patterns in the minimum information required for certainty (guaranteed that it can be known)
-& patterns in the minimum information required for uncertainty (guaranteed that it cant be known)
+Just like the uncertainty vs. certainty pattern, there are patterns in the minimum information required for certainty (guaranteed that it can be known) & patterns in the minimum information required for uncertainty (guaranteed that it cant be known)
 
 By navigating the certainty interface (angles, distance, order), can you derive the shape of the corresponding object in the uncertainty interface?
 

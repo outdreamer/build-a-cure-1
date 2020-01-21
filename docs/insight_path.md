@@ -1,5 +1,5 @@
+# Insight path
 
-insight path:
 	- with a path relating three objects (a, b, c):
 		a    b   c
 		   \
