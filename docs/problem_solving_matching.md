@@ -1,3 +1,27 @@
+## Determining minimum information to solve a problem
+
+  - with a line in a space, you have this information:
+    - the type of change
+    - the change rate
+    - the angle compared to a standard, like an axis
+    - its distance
+  - and you need to know the following to find its equation:
+    - whether its a segment or the full line
+    - the space its in
+  - with cancer you need to know
+    - its position in the system
+    - its input resources
+    - its limits
+    - its change methods (stress-handling methods, learning methods, etc)
+    - whether it converts to other objects (like other cancers or a pathogen) & how
+    - its history (how did it evolve)
+    - its types
+    - its target priorities
+    - its cooperative agents (which organisms it helps or can receive help from)
+    - how it interacts with other objects (that arent immediately classifiable as resources or targets)
+
+  - given different information, you can use different methods
+  - some methods are immune to information but most require a clear minimum
 
 ## Problem Solving Operations
 
