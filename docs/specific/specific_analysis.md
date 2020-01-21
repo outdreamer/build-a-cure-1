@@ -351,17 +351,79 @@
       - memory cells
 
 
+#### Economic impact/contribution
+
+    - job creation
+
+      - takes the form of releasing stored funds (previously uninvested liquid savings) to laborers
+
+    - job incentivization
+
+      - takes the form of creating an incentive to move from one labor type (low skill, automatable) to another (high skill, more complex)
+
+        - this is what companies usually mean when they claim they "created jobs" - most of their new employees were already employed in other jobs, but the company decided that a project would make them more money than it cost to build, and that the net profit was worth offering a higher salary to these lower-skilled laborers that would incentivize them to switch jobs
+
+          - so the net impact was not actually adding jobs to the economy, but incentivizing job switches
+          - however, if the previous lower-skilled jobs are automated, then the total number of jobs in the economy is usually reduced 
+            (unless all of the workers in the lower-skilled jobs had a 1:1 switch rate to new higher-skilled jobs, meaning no lower-skilled workers are unemployed after their jobs are automated)
+
+    - value maintenace
+      - money: stored labor 
+      - value: relative (stored or potential) labor
+      - relative-value potential: the relative profit potential that can be made in a particular labor type
+        - this can also be framed as the potential gains added by acquiring skills/understanding in a problem space
+          - low-skilled laborers cant add much profit potential in an automated problem space, but high-skilled laborers can
+          - whereas even low-skilled laborers can add some profit potential in a non-automated problem space
+            - low-skilled task example: "identifying problem type" (still in demand because its not automated yet)
+            - high-skilled task example: "automating identifying problem type"
+
+        example: 
+          - automated labor (such as checking the chemical content of a product before shipping it) has low relative-value potential because its rules are well-understood, so the profit potential approaches 0, unless a high-skilled worker can optimize the existing solution or derive abstract problem-solving methods
+          - non-automated labor (like problem-solving) has high relative-value potential because its rules are not well-understood, so the profit potential is high
+
+    - value creation
+
+      - automation
+
+        - reduces the amount of work necessary to solve the total set of problems
+
+          - example:
+            - if a society has problems "find medicine" and "clean water" and someone automates "clean water", then the only work remaining to solve that society's problems is in the "find medicine" problem
+            - so the people who created the "clean water" automation tech have power (can charge exploitative prices for it), unless they decide to use ethical pricing or if the tech is distributed to everyone
+            - the cost of water-cleaning will likely go down long term (if the clean water tech company abuses their power, theyll eventually be overthrown unless they can create economic moats)
+            - therefore the remaining relative-value potential is in the other problem space "find medicine"
+            - the "clean water" problem only has potential relative value in the form of potential optimizations to the existing clean water automation tech (unless they develop abstract problem-solving methods, in which case the potential relative value of labor in that field can re-emerge)
+
+      - innovation
+
+        - offers an opportunity for disrupting resource distribution
+        - uses resources in a new way that is useful to some agent
+
+      - efficiency creation
+
+        - organization
+          - network effects from a community such as a large company can provide compounding value 
+            example: chat tool to ask a question or suggest an idea to many people at once
+
+        - optimization
+          - 
+          
+
 # Ideas
 
+
 ## Solution Type: balance info asymmetry
+
 
 ### Crypto
 
   1. use predictive tools to predict transactions & calculate them in advance to speed up tx
     - this would assess people's known resources to build an index of global demand/supply, then calculating through these resource distributions, economic incentives for trades, social networks, platform dominance, & product availability & findability (search results rankings) - which tx were likely to happen where for which products, then calculate those tx in advance
 
+## Matching
+
 ### ML
 
-  1. not only does ML derive type paths & insight paths, it derives other system/interface metadata such as core functions:
+  1. not only does ML have the potential to derive combinations like type paths & insight paths, it can derive other system/interface metadata such as core functions:
     - example:
       https://techxplore.com/news/2020-01-alphafold-protein.html

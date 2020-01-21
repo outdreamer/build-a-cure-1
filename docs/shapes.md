@@ -144,3 +144,13 @@
     - given a variable and the topologies of its interactions with other interactable variables, what is the function generating the set of functions that variable can contribute to the assembly of in a way that enables a high ratio of variable-substitutions or variable-derivation from other variables in the absence of one?
 
       - this goes beyond indexing isolated variables by metadata (such as variable type), to incorporate the metadata of variable interactions embedded in a relationship
+
+
+## Specific Shapes
+
+### Market Shapes
+
+#### Trade loops
+
+  - independence can be created with closed trade loops
+    - the most basic example is where agent A produces everything agent B needs, and vice versa
