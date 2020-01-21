@@ -2,9 +2,10 @@ import itertools
 from utils import write_csv
 
 def generate_datasets(generate_source, generate_target, index):
+
     '''
-    iterate through all combinations of elements in rows and 
-    generate a dataset for each one to check for relationships
+    1. determine which datasets would likely be relevant for the given generate_target
+    2. generate combination datasets of the identified relevant datasets
 
     - generate combination datasets:
         supervised data:
@@ -28,6 +29,7 @@ def generate_datasets(generate_source, generate_target, index):
         sequential data:
           [past_conditions, future_conditions] # to predict the conditions a patient will likely develop
     '''
+    
     if generate_target and generate_source:
         generate_source = index.keys() if generate_source == 'all' else generate_source.split(',')
         if generate_source:
