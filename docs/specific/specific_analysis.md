@@ -353,11 +353,13 @@
 
 #### Economic impact/contribution
 
-    I. job creation
 
-      - takes the form of releasing stored funds (previously uninvested liquid savings) to laborers
+    I. Solution creation (Job creation from value creation)
 
-    II. job incentivization
+      - takes the form of releasing stored funds (previously uninvested liquid savings) to laborers, ideally to build a new solution out of created value (innovation)
+
+
+    II. Problem switching (Job switch incentivization)
 
       - takes the form of creating an incentive to move from one labor type (low skill, automatable) to another (high skill, more complex)
 
@@ -367,7 +369,45 @@
           - however, if the previous lower-skilled jobs are automated, then the total number of jobs in the economy is usually reduced 
             (unless all of the workers in the lower-skilled jobs had a 1:1 switch rate to new higher-skilled jobs, meaning no lower-skilled workers are unemployed after their jobs are automated)
 
-    III. value maintenace
+
+    III. Problem allocation (Job distribution)
+
+        - problems can be allocated by market forces, by resource limits (info access, skills limits, location, convenience), by inefficiencies/variance, and by automation/innovation
+        - they can also be allocated artificially by organizations like companies/govts
+    
+
+    IV. Problem reduction (Job invalidation/reduction)
+
+        - product demand reduction:
+          - trend phases (if gardening becomes a popular hobby among hikers, replacing hiking activity, so hobby equipment demand changes from hiking equipment to gardening equipment)
+
+        - labor demand reduction:
+          - automation (less labor is necessary to solve the same problem because the solution was automated)
+
+
+    V. Problem creation (Job increase)
+
+        - labor demand increase without value-creation:
+
+          - solution problems (more labor is necessary to solve the same problem because the solution was sub-optimal or incorrect)
+
+            - example: if a vacuum robot starts eating cats, the robot company may have to hire more devs to fix the cat-eating problem, if its complex enough to not be coverable by their existing labor resources
+
+            - this incentivizes devs to create problems to reduce their workload or ensure they have a steady supply of work, and disincentivizes value-creation
+
+          - labor demand for a new job category is artificially created (with sub-optimal logic) that doesnt add value to the labor market or value of the product (project manager)
+
+        - rent-seeking
+
+          - existing resource distribution incentivizes artificial marketing of sub-optimal goods that dont add value to the market but rather allow the suppliers to engage in rent-seeking to build competitive moats:
+            - platform dependency
+            - user base dependency (addictive drugs, product component & version dependencies)
+            - ad dependency to reach customers, vs. direct optimal matching of problem (info demand) and solution (info supply)
+
+          - rent-seeking behavior is only justifiable when the company uses profits to create more benefits than they require in rent (rent-seeking profits invested in successful societal problem-solving)
+
+
+    VI. Value maintenace
 
       - money: stored labor 
 
@@ -386,7 +426,8 @@
           - automated labor (such as checking the chemical content of a product before shipping it) has low relative-value potential because its rules are well-understood, so the profit potential approaches 0, unless a high-skilled worker can optimize the existing solution or derive abstract problem-solving methods
           - non-automated labor (like problem-solving) has high relative-value potential because its rules are not well-understood, so the profit potential is high
 
-    IV. value creation
+
+    VII. Value creation
 
       1. automation
 
