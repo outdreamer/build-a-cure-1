@@ -3,7 +3,10 @@
 ## Conceptual Computer (Interface network)
 
   - look for mapping between the interface network and quantum particles
-
+    - if this exists, its possible the interface network is stored in each superposition/quantum particle network, so that you can derive it at any point if you have the tools to measure it
+    - however, by its nature, it may be designed to be unmeasurable - so youd have to use derivation methods to estimate its structure
+    - this implies the structure of the interface network may also be changeable within the system implementing it
+    - are the superpositions chaotic because theyre the interface where chaos leaks in from other universes?
 
 ## Specific Concepts
 
