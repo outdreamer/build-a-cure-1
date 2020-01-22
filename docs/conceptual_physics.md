@@ -1,5 +1,6 @@
 # Concept Operations
 
+
 ## Conceptual Computer (Interface network)
 
   - look for mapping between the interface network and quantum particles
@@ -7,6 +8,10 @@
     - however, by its nature, it may be designed to be unmeasurable - so youd have to use derivation methods to estimate its structure
     - this implies the structure of the interface network may also be changeable within the system implementing it
     - are the superpositions chaotic because theyre the interface where chaos leaks in from other universes?
+    - if universes attract other universes by order/chaos, we would need to anticipate the impending adjacency to universes that need the order given by interface network understanding the most
+    - interface network manipulation should be the next target once its current structure is understood
+    - you would need to be prepared to handle unknowable system problem-solving (problem-solving in the absence of measurement tools/minimum of information to solve)
+
 
 ## Specific Concepts
 
