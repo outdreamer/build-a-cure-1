@@ -367,3 +367,7 @@
   1. not only does ML have the potential to derive combinations like type paths & insight paths, it can derive other system/interface metadata such as core functions:
     - example:
       https://techxplore.com/news/2020-01-alphafold-protein.html
+
+## Security
+
+  1. one-time use stack (network, os, app) in extension of one-time password

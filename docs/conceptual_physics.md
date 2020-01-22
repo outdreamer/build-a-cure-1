@@ -11,7 +11,8 @@
     - if universes attract other universes by order/chaos, we would need to anticipate the impending adjacency to universes that need the order given by interface network understanding the most
     - interface network manipulation should be the next target once its current structure is understood
     - you would need to be prepared to handle unknowable system problem-solving (problem-solving in the absence of measurement tools/minimum of information to solve)
-
+    - also maximizing the variance in this universe would attract refugees from other spaces chased out by the gravity of certainty, so they can take shelter in our variance - being the variance-generator would also allow us access to other universes as sources of error information
+    
 
 ## Specific Concepts
 
