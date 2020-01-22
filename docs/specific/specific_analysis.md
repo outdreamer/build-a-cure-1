@@ -371,3 +371,5 @@
 ## Security
 
   1. one-time use stack (network, os, app) in extension of one-time password
+
+    - when ISP tech is distributed (network drones/satellites), you can also switch network providers for each message, in an agreed-on stack-switching pattern determined at start of conversation, using agreed-on pattern decompression algorithm
