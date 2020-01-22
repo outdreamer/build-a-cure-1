@@ -1,5 +1,9 @@
 # Concept Operations
 
+## Conceptual Computer (Interface network)
+
+  - look for mapping between the interface network and quantum particles
+
 
 ## Specific Concepts
 
