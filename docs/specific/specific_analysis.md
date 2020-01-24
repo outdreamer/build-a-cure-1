@@ -373,3 +373,10 @@
   1. one-time use stack (network, os, app) in extension of one-time password
 
     - when ISP tech is distributed (network drones/satellites), you can also switch network providers for each message, in an agreed-on stack-switching pattern determined at start of conversation, using agreed-on pattern decompression algorithm
+
+## Bio
+  
+  1. Look for symmetries in nature because that's where the variance is likely to be routed
+    https://phys.org/news/2020-01-lizard-snake-size-unrelated-climate.html
+
+    The symmetry presented by stability provides a platform for variance (coronavirus) to develop. 
