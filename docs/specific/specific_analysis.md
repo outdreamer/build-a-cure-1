@@ -368,6 +368,10 @@
     - example:
       https://techxplore.com/news/2020-01-alphafold-protein.html
 
+  2. you don't have to rely on disorder to detect order if you have an ordered way of generating disorder patterns
+
+    https://techxplore.com/news/2020-01-brain-like-network-disorder.html
+
 ## Security
 
   1. one-time use stack (network, os, app) in extension of one-time password
@@ -379,4 +383,5 @@
   1. Look for symmetries in nature because that's where the variance is likely to be routed
     https://phys.org/news/2020-01-lizard-snake-size-unrelated-climate.html
 
-    The symmetry presented by stability provides a platform for variance (coronavirus) to develop. 
+    The symmetry presented by stability provides a platform for variance (coronavirus) to develop.
+
