@@ -136,8 +136,21 @@
 
 # Conceptual
 
+  - give example of functionality positioning: 
+    - high-traffic routes will involve more adjusted functions
+    - gaps in routes (such as boundaries) will allow functional modules to evolve
+    - progress & computational capacity of the network can be determined from connection ratios:
+      - hub-to-hub distance, maximum trajectory distance, etc
+  - give example of calculating which variable resolutions can be postponed & solved later with information acquired in subsequent analysis
+  - give example of framing variance with different interfaces to highlight predictive information or information that can be structured on other interfaces that simplify the problem
+    - the common goal of 'variance reduction' which maps to 'applying a standard' may not always be the right first step, as 'variance expansion' can offer potential to identify different component interfaces that would highlight hidden variable set ranges
+      - example: if you expand or maintain variance, or frame it as a combination of variances simultaneously framable in multiple standards, you can identify hidden variable gaps where variable sets on different interfaces can fill the gap in a way that doesnt disrupt the original variance
+      - identify example where variance cant be reduced to a common interface but is still solvable with a set of interface positions/trajectories
+
   - give example of map from intent to structural algorithm design
   - give example of mix & match interface assembly given the problem of 'model identification'
+  - explainability as a space limited by inferentiable attributes from data set
+  - threshold mechanics for threshold value selection
   - symmetry => interface 
   - min info => selection of structural layer
   - p-hacking 
