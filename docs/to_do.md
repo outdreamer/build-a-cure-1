@@ -136,6 +136,8 @@
 
 # Conceptual
 
+  - give example of map from intent to structural algorithm design
+  - give example of mix & match interface assembly given the problem of 'model identification'
   - symmetry => interface 
   - min info => selection of structural layer
   - p-hacking 
@@ -148,7 +150,10 @@
   - frame common problems with the standard of variance vs. time (recurrent nn)
   - examine whether new concepts (gaps in network rules) evolve once structure is applied to prior concepts 
   - all problem-solving automation methods have a variance assignment, allowing for variation to be explored in a certain location 
-  - you can either map problems to fit that structure or design new automation methods based on the variance gap necessary to solve a problem 
+  - you can either map problems to fit that structure or design new automation methods based on the variance gap necessary to solve a problem
+
+  - make diagram of potential matrix to display the concept
+    - map parameter sets to potential matrix shapes 
 
   - add error-generation
     - add diagrams for error types:
