@@ -137,10 +137,31 @@
 # Conceptual
 
   - give example of functionality positioning: 
+
     - high-traffic routes will involve more adjusted functions
     - gaps in routes (such as boundaries) will allow functional modules to evolve
     - progress & computational capacity of the network can be determined from connection ratios:
       - hub-to-hub distance, maximum trajectory distance, etc
+
+  - give example of variance transforms
+
+    - adding a new interface for variance to expand into
+      - changing existing interface used as a filter to hold constant
+      - adding new interactions to allow the expansion of new variance
+
+    - moving variance into other interfaces to make the problem more solvable
+      - rather than a species evolving into a new set of sub-species, host the variance in epigenetics rather than inherited mutations
+
+
+  - apply your other solution to election security:
+    - given a range of expected votes in a category, how much does final result deviate from expected votes
+
+      - if an attribute like intelligence is associated with a particular vote, and outcome count deviates from known attribute count to this degree, what set of ratios of deviation can be attributed to noise and what percentage to interference/fraud?
+
+      - what is the path between the determining attribute (intelligence) & the output concept (interference/fraud)?
+        - is lack of intelligence a few transforms away from the output concept
+          - meaning, if stupidity is associated with voting for the x party, is interference actual fraud given that its still indicating the expected stupidity rates in population?
+          - or if stupidity is associated with voting for the x party, is the result inevitable, regardless of how it's achieved (they wouldve voted the same way as the fraudster tricked them into voting or artificially chose their vote with data manipulation)
 
   - navigation model examples:
     - predict variance sources & ratios:
