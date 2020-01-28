@@ -141,6 +141,18 @@
     - gaps in routes (such as boundaries) will allow functional modules to evolve
     - progress & computational capacity of the network can be determined from connection ratios:
       - hub-to-hub distance, maximum trajectory distance, etc
+
+  - navigation model examples:
+    - predict variance sources & ratios:
+      - type/shape/movement/interaction interface variance sources:
+        - is an object that moves in restricted directions likely to be sentient life (delivery robot)
+        - can sentient life move in restricted directions (drug addict, multi-tasking, drunk)
+        - can interactions predict movement types (waving across street, looking at phone, predicting drivers' moves, checking street for cars/behind car before crossing/backing up)
+        - are objects of a certain shape or size associated with different movement types (small objects are faster, larger objects have more obvious momentum physics, smaller objects likelier to be capable of flight)
+      - assumption/hypothesis interface variance sources
+        - are assumptions of a certain variance level given a certain minimum information associated with prediction accuracy
+        - are multiple contradictory starting hypothesis associated with higher prediction accuracy, if so, with what degree of variance between hypotheses?
+
   - give example of calculating which variable resolutions can be postponed & solved later with information acquired in subsequent analysis
   - give example of framing variance with different interfaces to highlight predictive information or information that can be structured on other interfaces that simplify the problem
     - the common goal of 'variance reduction' which maps to 'applying a standard' may not always be the right first step, as 'variance expansion' can offer potential to identify different component interfaces that would highlight hidden variable set ranges
