@@ -136,6 +136,20 @@
 
 # Conceptual
 
+  - symmetry => interface 
+  - min info => selection of structural layer
+  - p-hacking 
+  - nearest neighbors
+  - give example of structuring problem in a certain format (optimal transport)
+  - give example of matching structure 
+  - give example of mapping problem semantically
+  - choosing bio interfaces including electricity as components with a common language
+  - discuss how sub-interfaces can collapse into a super interface (change interfaces) as the default shape of interfaces can be shapes other than networks
+  - frame common problems with the standard of variance vs. time (recurrent nn)
+  - examine whether new concepts (gaps in network rules) evolve once structure is applied to prior concepts 
+  - all problem-solving automation methods have a variance assignment, allowing for variation to be explored in a certain location 
+  - you can either map problems to fit that structure or design new automation methods based on the variance gap necessary to solve a problem 
+
   - add error-generation
     - add diagrams for error types:
       - misalignment
@@ -165,6 +179,11 @@
       (can be a compound with a cutting subcomponent at the right length to target the dna if you can bind it to the first or last gene with another compound)
     - find compound with function = "refolds DNA"
     https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
+
+  - now that youve automated problem-solving, there are still things with variable implementations allowing for innovation in this problem space:
+    - selecting functions (solution methods)
+    - selecting limits (metrics)
+    - prioritizing problem solving order
 
 # ML
   - the full data set should have numerical categories indicating condition(s) treated in the output label so it can be separated into sub-sets by condition treated
