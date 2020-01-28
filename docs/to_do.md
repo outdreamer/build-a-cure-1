@@ -152,6 +152,12 @@
     - moving variance into other interfaces to make the problem more solvable
       - rather than a species evolving into a new set of sub-species, host the variance in epigenetics rather than inherited mutations
 
+  - brain learns through various reward models:
+    - short term rewards: storing useful information
+    - long term rewards: storing useful functions
+    - adaptive/reusable rewards: storing functions by relevance or abstraction
+    - on-demand rewards: storing function-generating methods/interfaces
+    - reward potential-maximization: storing derivation method core functions
 
   - apply your other solution to election security:
     - given a range of expected votes in a category, how much does final result deviate from expected votes
