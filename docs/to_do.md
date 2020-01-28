@@ -136,6 +136,16 @@
 
 # Conceptual
 
+  - surprising patterns often come in the form of:
+    - compounding patterns that go unmeasured (black swan pattern)
+    - compounding patterns that are measured in ways that they dont vary from expected patterns (different dimension as a host of variance)
+    - compounding patterns that are measured in ways that vary from expected patterns but not at point of measurement (wave function & line intersection)
+
+  - expectation vacillation is optimized when neither extreme is expected permanently & expectations gravitate toward local inflection or threshold points
+    - expecting evil & expecting sainthood are both sub-optimal in most situations, 
+      whereas expecting moderation is usually more useful bc it allows more freedom, and more freedom allows more self-optimization than using forced optimization rules, 
+      which change slower than local (self) optimization rules
+
   - give example of functionality positioning: 
 
     - high-traffic routes will involve more adjusted functions
@@ -158,6 +168,14 @@
     - adaptive/reusable rewards: storing functions by relevance or abstraction
     - on-demand rewards: storing function-generating methods/interfaces
     - reward potential-maximization: storing derivation method core functions
+
+  - what does emotion interface map to?
+    - emotion functions involve:
+      - assigning cause
+      - directing intent 
+      - perspective/layer switching
+    - emotions are used as a cause, a standard, and an output, allowing for variance injection due to current lack of measurability
+    - they can capture sub-nets or trajectory nets on the interface network
 
   - apply your other solution to election security:
     - given a range of expected votes in a category, how much does final result deviate from expected votes
