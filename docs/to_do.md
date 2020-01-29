@@ -288,6 +288,20 @@
       - signal layers can be optimized by order
         - images can be altered to highlight differentiating attributes so that bigger filters (splitting more data) are positioned first
 
+    - standard nn structure has unidirectional causal support 
+      - the collapse of sub-networks into a feature on a network with nodes to classify has patterns
+      - the transformation of a classification network (containing nodes representing species) into a set of causally connected networks (containing nodes represent symmetries, types, patterns, functions)
+        can be done if the data set contains a minimum of information needed to derive variance potentials, symmetry paths, type hierarchies, etc
+      - the physics of attribute accretion into types can also be used to derive the set of networks building a classification network
+      - if you have x variables on one interface and y variables on another interface, you can derive the network set to build a classification model for the classification network
+      - the standard nn supports accreting attributes into types
+      - it should also be able to support removing attributes to reveal differentiating factors that are not mimickable with distortion functions or random symmetries possible in the mimicking class
+      - distortion functions are the first line of attack in reducing the set of identifying factors
+      
+    - what about networks with multidirectional causal support?
+      - a species is overloaded with variance the more its compared to another mimicking species, or the mimicking species adopts variance to become a better mimicker
+      - as attributes stabilize into types, its likelier that more interfaces of variance will develop that are not captured by those attributes
+
   - give example of map from intent to structural algorithm design
   - give example of mix & match interface assembly given the problem of 'model identification'
   - explainability as a space limited by inferentiable attributes from data set
