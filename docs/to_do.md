@@ -270,9 +270,23 @@
       - these provide a point of variance reduction
         - shininess is not significant given that a distortion of an attribute in one class can mimic the naturally developed, identifying attribute in another class, so remove shininess from data set
       
+      - therefore given the set of attribute values that can mimic each other, the insignificant symmetries, and the variable potentials left by the differences between significant symmetry paths, you can calculate which variables in a problem space will be capable of having predictive value
+        - after removing false mimicking symmetries like shininess, insignificant symmetries like color schema, common symmetries like distribution, you have a limited set of differentiating features left:
+          - muffin chocolate chips wont have tear ducts
+          - chihuahua eyes wont have chocolate chip texture
+        - therefore if you determine that your data set supports the level of detail required for these remaining attributes, you can use them as a predictor
+
+      - given that a classification problem usually gets more difficult in time, you can also predict ways it will change to reduce the differentiating variables
+        - they may start using candy that looks more like chihuahua eyes
+        - they may start messing with the data set to lure the model into a false sense of security (using raisins which are easier to differentiate) so the actual data is more difficult to differentiate (chocolate chips)
+        - this is a problem of identifying intent to misclassify, which means predicting symmetries in other objects that can be used to trick the algorithm into creating an inaccurate model
+        - if an evil person wants to fool a movie theatre security ai into believing they are bringing their dog to the movie and not an evil reasonably-priced or homemade snack, there are many ways they can do so, but these ways are predictable & involve insignificant symmetries between classes (similar color, similar shape type)
+
+        - how do you make your algorithm robust against these evil tricksters?
+          - you need to be able to identify insignificant symmetries & distortion functions that can exploit them
+
       - signal layers can be optimized by order
         - images can be altered to highlight differentiating attributes so that bigger filters (splitting more data) are positioned first
-
 
   - give example of map from intent to structural algorithm design
   - give example of mix & match interface assembly given the problem of 'model identification'
