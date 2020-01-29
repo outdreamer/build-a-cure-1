@@ -297,10 +297,38 @@
       - the standard nn supports accreting attributes into types
       - it should also be able to support removing attributes to reveal differentiating factors that are not mimickable with distortion functions or random symmetries possible in the mimicking class
       - distortion functions are the first line of attack in reducing the set of identifying factors
-      
+
     - what about networks with multidirectional causal support?
+      - for example:
+        - a classification problem that impacts the classification potential
+        - an assumption set that changes the type evolution
+        - a type structure that determines the attributes that can accrete in it, rather than only the attributes determining the type
+          - example: given that a type has a set of symmetries around which variance accretes up to a limit, which attribute types are possible & which attribute probabilities occur given the level of variance allowed by the initial attribute set?
+            - given that a level of variance occurs, what is the likelihood that a backup alternative variable will evolve?
+            - "given that a particular sense is inherently limited but the demand for senses is not, what is the likelihood that an alternate way of sensing will evolve"
+
+        - other layers of cause can occur before the type influences the attribute set - like a type that influences filters/symmetries that generate attributes
+
+        - the relationship between attributes & types is multi-directional in cause, not to mention other relationships between interfaces
+
+        - where is the potential for feedback from types-to-attributes in the network structure?
       - a species is overloaded with variance the more its compared to another mimicking species, or the mimicking species adopts variance to become a better mimicker
       - as attributes stabilize into types, its likelier that more interfaces of variance will develop that are not captured by those attributes
+
+      - the relationship between the type/pattern/priority interfaces & variance-capturing variables is not unidirectional (one network builds the other, not the other way around or both)
+      - however this network structure can often be used to capture the collapse of attribute sets into types, because types are by definition a collection of attributes, unless:
+        - those types are in a state of convergence/divergence that isnt captured by the data or algorithm
+        - some attributes have an insignificant symmetry with the identifying attributes (illusory correlation)
+        - some attribute variance isnt captured by data set (chihuahua that has been in battle and lost some of its identifying attributes)
+      - also there is a trajectory on the interface network that can build the identifying variable set (variance remaining after reduction by distortion functions & other insignificant symmetry types)
+        which can take the form of a specific interface built for that problem type (filter out attributes that dont differentiate between these classes, leaving the differentiating attributes for comparison)
+        this is what is called the prediction model/function, but usually its built from raw attributes than alternate interface attributes, which may be derivable from a data set that cant capture full identifying variance
+      - an interface-building query for a problem type, integrated with a network algorithm, can therefore be a faster approach than using an information filtering network on its own
+        similar to standardizing problems to optimal transport problems (how do you get to the target information state given initial information)
+      - there may be interim interfaces that are more useful than raw data to determine a collapsed interface
+        rather than using feature data to determine type, use feature pattern & feature evolution pattern data to determine type & type state
+      - there may also be interfaces that allow variance in likelier patterns than another interface
+        rather than using the priority or pattern or type interface, the function interface may capture more variance if the classes being identified are in a state of change
 
   - give example of map from intent to structural algorithm design
   - give example of mix & match interface assembly given the problem of 'model identification'
