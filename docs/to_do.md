@@ -204,6 +204,38 @@
       - example: if you expand or maintain variance, or frame it as a combination of variances simultaneously framable in multiple standards, you can identify hidden variable gaps where variable sets on different interfaces can fill the gap in a way that doesnt disrupt the original variance
       - identify example where variance cant be reduced to a common interface but is still solvable with a set of interface positions/trajectories
 
+  - give example of error types mapped to structural deficits
+
+  - symmetries as a source of misclassification error and efficient/cooperative/optimal attributes
+    - symmetry as a source of limits to restrict variance with
+    - the limits can be common attributes/intents, around which variance develops
+      - separation/delegation symmetry
+      - retaining backup alternatives
+      - organization
+      - abstraction 
+      - uniqueness 
+
+    - symmetries are also where to look for key differentiating factors
+      - the range allowed by a symmetry exists for a reason - to explore possible utility of variance in that range 
+
+    - symmetry types:
+      - functional symmetry: only restricted to find an optimal value, after which it's set to that value (tail shape) or the variance is reduced (remove tails with new design)
+      - random symmetry: insignificant except in that it displays common patterns or efficiencies (independent evolution of intelligence across diverging species)
+      - interface symmetry: allows enough variance that it continues attracting compounding variance (mammal interface, brain interface)
+    
+    - some symmetry types should be removed from data set bc they dont add variance but allow it to develop
+
+    - you can also calculate the variance types to look for given the structure of a symmetry network
+      - given symmetries powering an interface, predict which variable types to look for that could develop in that structure, then try to identify which phase of interface development its at
+        - "given uniqueness and functional symmetries powering the identity interface, predict which variables to look for that could develop, then identify phase of development"
+          
+          - given that you need certain features in order to exist (a way to breathe, a way to sense, a way to communicate, a way to identify other people),
+            predict which variables are likely to vary in the human interface, then identify phase of development
+            - within the scope of features that can vary without impacting required survival functionality, senses for example can vary while still performing communication functions and are likely to vary to introduce testing of utility in different values, so senses are likely to vary
+            - predict which phase of evolution the human interface is at: given the level of variance & optimization achieved on the human interface as well as variance trends, the human interface is likely reaching another explosion of evolution, given how much optimization potential has already been exploited in its existing interfaces (organ differentiation, sense optimization, neuron automation)
+          
+          - so in order to identify one human from another, look for sense variance (facial identification) as well as variance in the interfaces powering existing variance (organ differentiation, sense optimization, neuron automation, etc) when that expected variance occurs (may take the form of variance on other interfaces with less variance (like cellular structure variance, cellular communication variance, gene repair variance) but are likely to be connected by a functionality interface (reusing/sharing/finding functionality) as an identifying feature of the human interface, which now is struggling to be identified compared to its automatons, so efficiencies in processing are the next likely variance-hosting interface, if humans have to compete with machines for identity for example
+
   - give example of map from intent to structural algorithm design
   - give example of mix & match interface assembly given the problem of 'model identification'
   - explainability as a space limited by inferentiable attributes from data set
