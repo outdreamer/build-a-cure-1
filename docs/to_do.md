@@ -236,6 +236,44 @@
           
           - so in order to identify one human from another, look for sense variance (facial identification) as well as variance in the interfaces powering existing variance (organ differentiation, sense optimization, neuron automation, etc) when that expected variance occurs (may take the form of variance on other interfaces with less variance (like cellular structure variance, cellular communication variance, gene repair variance) but are likely to be connected by a functionality interface (reusing/sharing/finding functionality) as an identifying feature of the human interface, which now is struggling to be identified compared to its automatons, so efficiencies in processing are the next likely variance-hosting interface, if humans have to compete with machines for identity for example
 
+    - you can also identify symmetry paths mapping to variance levels
+
+      - in the example of muffin vs. chihuahua, the symmetry paths of a muffin:
+        - common shape (humans gravitate toward simple common shapes so theyre likelier to create tools mimicking these shapes)
+        - distribution (humans can understand concepts like optimization, and one implementation of optimization in the muffin interface is distribution of differentiating components)
+        - humans have sensory preferences in common (texture, flavor), as some flavors are still useful indicators of healthy food (how dogs crave grass & other things when they're sick)
+          so sensory attributes like texture & flavor are likely to converge for food intended as comfort food
+
+      - lead to different variance levels than the symmetry paths of a chihuahua
+        - distribution (dogs' sensory organs are distributed)
+        - communication (dogs sensory organs need to communicate with each other (the mouth can detect if the nose is ok, the nose can detect if the eyes are ok, the ears can tell the eyes if dangerous fists are imminent)
+        - backup alternatives (some organs' functions are so important you need a backup - eyes, kidneys, ears, mouth/nose as a possible airway, lungs)
+        - uniqueness (domesticated dogs are treated like humans with identities, and sensory organs are likely to produce potentially identifying uniqueness due to the lack of functionality present in some sensory variance)
+        - functional variance (some dog sensory organ configurations have utility value)
+
+      - so you can expect variance in the chihuahua that the false chihuahua cannot provide
+        - the chihuahua may vary in ways that a muffin cant given their symmetry paths
+        - the chihuahua will vary along its facial interface (two eyes, mouth, nose) but the muffin distribution of components will be more random, for texture/flavor optimization
+        - the symmetries making it unclear which is which include:
+          - size (chihuahua face and muffin are often the same size)
+          - the fact that visually measurable ingredients are often used in muffins (chocolate chip) and happen to mimic color scheme
+          - the fact that there are only so many positions a chocolate chip can take, given its size, 
+          - the fact that the baker will optimize the distribution metric with pretty good accuracy most of the time, meaning its likely to mimic a chihuahua face
+        - these symmetries can be used as points for variable reduction (ignore size, ignore color scheme, etc)
+        - the routes to these symmetries are insignificant in terms of the identity interface
+
+      - the ways that significant symmetry paths vary can determine possible classification errors
+        - chihuahua eyes can be shiny in different light environments
+        - muffins may be coated with sugar, which may mimic the attribute 'shiny' used as a way to differentiate between muffin/chihuahua
+        - this is a false symmetry, not indicating variance around a common interface, but can still be incorrectly identified as a legitimate symmetry (similarity in shininess means similar class)
+
+      - these provide a point of variance reduction
+        - shininess is not significant given that a distortion of an attribute in one class can mimic the naturally developed, identifying attribute in another class, so remove shininess from data set
+      
+      - signal layers can be optimized by order
+        - images can be altered to highlight differentiating attributes so that bigger filters (splitting more data) are positioned first
+
+
   - give example of map from intent to structural algorithm design
   - give example of mix & match interface assembly given the problem of 'model identification'
   - explainability as a space limited by inferentiable attributes from data set
