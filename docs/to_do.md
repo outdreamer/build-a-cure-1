@@ -136,6 +136,9 @@
 
 # Conceptual
 
+  - useful for computing attribute & variance flow as well as flow between flow of energy into measurement delivery (optimize energy distribution between particle position/spin attributes according to measurement limits)
+    https://en.wikipedia.org/wiki/Partial_differential_equation
+
   - surprising patterns often come in the form of:
     - compounding patterns that go unmeasured (black swan pattern)
     - compounding patterns that are measured in ways that they dont vary from expected patterns (different dimension as a host of variance)
