@@ -163,6 +163,16 @@
       - direction :: potential
       - filter order :: structure (filter orders map to structures that capture variance potential)
 
+    - how would you derive core functions which map to core shapes (combine, direction) from this space?
+      - this space allows:
+        - freedom to interact (there's room to select between equal alternative rules, all rules are not enforced)
+        - freedom to fail (interactions don't have to benefit all entities involved)
+        - freedom to calculate (you can check & verify information)
+        - limits on calculation (you can know some things at cost of not knowing other things)
+        - limits on variance (some rules are enforced but change or assumptions can be concentrated on specific rules to change them or change their enforcement)
+        - limits on structure (you can cooperate to create structure but it will decay according to system rules)
+        - limits on direction (not all decisions are reversible, and some decisions limit future decision potentials)
+
   - useful for computing attribute & variance flow as well as flow between flow of energy into measurement delivery (optimize energy distribution between particle position/spin attributes according to measurement limits)
     https://en.wikipedia.org/wiki/Partial_differential_equation
 
