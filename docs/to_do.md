@@ -40,6 +40,12 @@
 
 # Structural Objects
 
+  - add complications object when querying treatments
+  - resolve \n separator when not used as a new line separator
+  - store definitions
+  - fix conjugation
+  - fix return from type_patterns
+
   - when evaluating interactions, check for other compounds that interfere with metabolism & de/activation (cytochromes it targets, liver enzymes it assists), 
     which can increase or decrease blood ratio of a drug
   - look for processes/intake of nutrients that could combine to form other compounds (berberine) given the output health factors (stable blood sugar)
@@ -135,6 +141,9 @@
           - set of binding/interaction/priority functions for element atoms
 
 # Conceptual
+
+  - algorithm to decide when to use interface query, when to standardize to a particular interface, and when to stack interfaces to isolate variance by applying one interface to another
+    - example: analyzing priority direction once you standardize to variance interface
 
   - useful for computing attribute & variance flow as well as flow between flow of energy into measurement delivery (optimize energy distribution between particle position/spin attributes according to measurement limits)
     https://en.wikipedia.org/wiki/Partial_differential_equation

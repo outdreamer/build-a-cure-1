@@ -1169,9 +1169,17 @@ def get_alt_sets(pattern, all_alts, av):
                             sub_pattern_alts.append(' '.join(c))
             if len(sub_pattern_alts) > 0:
                 final_alts.append(sub_pattern_alts)
+        # to do: adding words to alt list for type_patterns
         else:
             final_alts.append(word)
     if len(final_alts) > 0:
+        if type(final_alts[0]) == str:
+            print('final alts', final_alts)
+            sentence = ' '.join(final_alts)
+            print('sentence', sentence, 'pattern', pattern)
+            if sentence == pattern:
+                ''' if the final_alts consists of original sentence words '''
+                return [sentence], False
         return final_alts, False
     return False, False
 
@@ -1296,9 +1304,9 @@ def correct(line):
         start = line.count('(')
         end = line.count(')')
         if start > end:
-            line = ''.join([line.split(''), ')'])
+            line = ''.join([line, ')'])
         elif start < end:
-            line = ''.join(['(', line.split('')])
+            line = ''.join(['(', line])
         return line.replace('..', '.').replace(',.', '.').replace('.,', '.').replace(';.', ';').replace('.;', ';').replace(':.', ':').replace('.:', ':')
     return False
 
@@ -1347,25 +1355,26 @@ def find_type(word, pos, title, row, av):
             if word[0] == word[0].upper() and word[1] != word[1].upper():
                 suggested = find_generic_medication(word, {}, av)
                 print('suggested', suggested, word)
-                content, sections, categories = get_content_from_wiki(suggested, av)
-                if content and sections and categories:
-                    row['type'] = row['type'].union(set(categories))
-                    index_type = [val for key, val in av['section_map'].items() for section in sections if key in section]
-                    if len(index_type) == 0:
-                        index_type = get_index_type(suggested, av, categories)
-                    print('found index type', index_type, word)
-                    if index_type in row:
-                        if index_type != 'dependency': # to do: exclude other relationship objects here
-                            found_subsets, av = get_matching_subsets(word, index_type, av)
-                            if found_subsets:
-                                for pattern_type in found_subsets.items():
-                                    if pattern_type not in row:
-                                        row[pattern_type] = set()
-                                    for pattern, matches in found_subsets[pattern_type].items():
-                                        if pattern not in row[pattern_type]:
-                                            row[pattern_type][pattern] = set()
-                                        row[pattern_type][pattern] = row[pattern_type][pattern].union(matches)
-                                row['type'].add(index_type)
+                if suggested:
+                    content, sections, categories = get_content_from_wiki(suggested, av)
+                    if content and sections and categories:
+                        row['type'] = row['type'].union(set(categories))
+                        index_type = [val for key, val in av['section_map'].items() for section in sections if key in section]
+                        if len(index_type) == 0:
+                            index_type = get_index_type(suggested, av, categories)
+                        print('found index type', index_type, word)
+                        if index_type in row:
+                            if index_type != 'dependency': # to do: exclude other relationship objects here
+                                found_subsets, av = get_matching_subsets(word, index_type, av)
+                                if found_subsets:
+                                    for pattern_type in found_subsets.items():
+                                        if pattern_type not in row:
+                                            row[pattern_type] = set()
+                                        for pattern, matches in found_subsets[pattern_type].items():
+                                            if pattern not in row[pattern_type]:
+                                                row[pattern_type][pattern] = set()
+                                            row[pattern_type][pattern] = row[pattern_type][pattern].union(matches)
+                                    row['type'].add(index_type)
     return row
 
 def generate_type_patterns(line, av):
@@ -1389,14 +1398,14 @@ def generate_type_patterns(line, av):
         else:
             new_pattern.append(w)
     if len(new_pattern) > 0:
-        return new_pattern
+        return [' '.join(new_pattern)]
     return False
 
+'''
 def generate_pattern_type_patterns(line, generated_patterns, av):
-    ''' transform modifiers/clauses in a line to type names like 'modifier', 'clause', etc 
-        to do: 
-        - identify common alts & consolidate to one pattern with alts wherever possible
-    '''
+    #transform modifiers/clauses in a line to type names like 'modifier', 'clause', etc 
+    #to do: 
+    # - identify common alts & consolidate to one pattern with alts wherever possible
     for pattern_index in ['pattern_index', 'type_index']:
         for pattern_key in av[pattern_index]:
             if generated_patterns:
@@ -1404,12 +1413,13 @@ def generate_pattern_type_patterns(line, generated_patterns, av):
                 if patterns:
                     for pattern_type in patterns:
                         for pattern, matches in pattern_type.items():
-                            ''' replace m with pattern_key '''
+                            # replace m with pattern_key
                             for m in matches:
                                 line = line.replace(m, pattern_key)
     if line:
         return line
     return False
+'''
 
 def consolidate_patterns(all_patterns, av):
     ''' this function identifies possible alt_patterns in a set '''
@@ -1549,18 +1559,23 @@ def get_all_versions(pattern, version_types, av):
     }
     #version_types = av['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
     alt_patterns = generate_alt_patterns(pattern, av)
+    print('alt_patterns', alt_patterns)
     if alt_patterns:
         for ap in alt_patterns:
             word_count = [word for word in ap.split(' ') if word not in av['tags']['ALL'] and get_nltk_pos(word, av) not in av['tags']['DPC']]
             if len(word_count) > 0:
+                '''
                 type_patterns = generate_type_patterns(ap, av)
                 if type_patterns:
+                    print('type_patterns', type_patterns)
                     for tp in type_patterns:
                         type_pattern = standardize_words(tp, 'type', av)
+                        print('type_pattern', type_pattern)
                         if type_pattern:
                             indexed_tp = generate_indexed_patterns(type_pattern, av)
                             if indexed_tp:
-                                pattern_index['type'] = pattern_index['type'].union(indexed_tp)
+                                pattern_index['type'].add(indexed_tp)
+                '''
                 synonym_pattern = standardize_words(ap, 'synonym', av)
                 if synonym_pattern:
                     pattern_index['synonym'].add(synonym_pattern)
@@ -1595,7 +1610,7 @@ def get_all_versions(pattern, version_types, av):
                             pattern_index['combination'].add(cp)
                         pattern_index['standard'].add(ip)
         if len(pattern_index.values()) > 0:
-            print('get_all_versions', pattern, pattern_index)
+            print('got_all_versions', pattern, pattern_index)
             return pattern_index, av
     return False, av
 
@@ -2142,37 +2157,42 @@ def standard_text_processing(text, av):
     article_lines = {}
     lines = text.split('\n')
     for i, line in enumerate(lines):
-        line = replace_quotes_with_parenthesis(line)
-        line = correct(line)
-        new_line = standardize_words(line, 'synonym', av)
-        line = new_line if new_line else line
-        new_words = []
-        for word in line.split(' '):
-            singular_word = singularize_word(word, av)
-            if singular_word:
-                new_words.append(singular_word)
-            else:
-                new_words.append(word)
-        line = ' '.join(new_words) if len(new_words) > 0 else line
-        ''' to do: fix mapping '''
-        active_line, av = apply_pattern_map(line, 'passive_to_active', av)
-        print('active line', active_line)
-        line = active_line if active_line else line
-        word_map = {}
-        for word in line.split(' '):
-            pos = get_nltk_pos(word, av)
-            word_map[word] = pos if pos else ''
-        #line = remove_stopwords(line, article_lines[line])
-        syn_line, av = replace_with_syns(line.split(' '), word_map, None, av)
-        if syn_line:
-            if syn_line not in article_lines:
-                article_lines[syn_line] = {}
-            for word in syn_line.split(' '):
+        if line.strip() != '':
+            print('line', line)
+            replaced_line = replace_quotes_with_parenthesis(line)
+            line = replaced_line if replaced_line else line
+            corrected_line = correct(line)
+            line = corrected_line if corrected_line else line
+            print('corrected line', line)
+            new_line = standardize_words(line, 'synonym', av)
+            line = new_line if new_line else line
+            new_words = []
+            for word in line.split(' '):
+                singular_word = singularize_word(word, av)
+                if singular_word:
+                    new_words.append(singular_word)
+                else:
+                    new_words.append(word)
+            line = ' '.join(new_words) if len(new_words) > 0 else line
+            ''' to do: fix mapping '''
+            active_line, av = apply_pattern_map(line, 'passive_to_active', av)
+            print('active line', active_line)
+            line = active_line if active_line else line
+            word_map = {}
+            for word in line.split(' '):
                 pos = get_nltk_pos(word, av)
-                article_lines[syn_line][word] = pos if pos else ''
-        else:
-            if line not in article_lines:
-                article_lines[line] = word_map
+                word_map[word] = pos if pos else ''
+            #line = remove_stopwords(line, article_lines[line])
+            syn_line, av = replace_with_syns(line.split(' '), word_map, None, av)
+            if syn_line:
+                if syn_line not in article_lines:
+                    article_lines[syn_line] = {}
+                for word in syn_line.split(' '):
+                    pos = get_nltk_pos(word, av)
+                    article_lines[syn_line][word] = pos if pos else ''
+            else:
+                if line not in article_lines:
+                    article_lines[line] = word_map
     if article_lines:
         print('article', article_lines)
         return article_lines, av
@@ -2541,8 +2561,8 @@ def singularize_word(word, av):
         #stem = stemmer.stem(infinitive)
         ''' to do: dont reduce words ending in 'tion' that dont have a root verb or are a verb, like ration '''
         if len(word) > 4:
-            word = ''.join([word[0:-2], 's']) if word[-2:] == 'or' or word[-2:] == 'er' and word[-3:] != 'ter' else word
-            word = ''.join([word[0:-4], 'te']) if len(word) > 8 and word[-4:] == 'tion' else word # creation => creat, ration, function, inhibition -> inhibit
+            #word = ''.join([word[0:-2], 's']) if word[-2:] == 'or' or word[-2:] == 'er' and word[-3:] != 'ter' else word
+            #word = ''.join([word[0:-4], 'te']) if len(word) > 8 and word[-4:] == 'tion' else word # creation => creat, ration, function, inhibition -> inhibit
             penultimate_char = word[-2]
             last_char = word[-1]
             if word[-3] == 'ies':
@@ -2558,7 +2578,8 @@ def singularize_word(word, av):
                     # dont remove 'es' for conjugated verbs or special nouns like diabetes
                     return word
                 else:
-                    return word[0:-1]
+                    return word
+                    #return word[0:-1]
             if penultimate_char in 'aiou' and last_char == 's':
                 return word # analogous
     return word
@@ -2591,9 +2612,9 @@ def apply_pattern_map(line, pattern_map, av):
         for source_pattern, target_pattern in av['pattern_maps'][pattern_map].items():
             ''' recalculate line versions in case line was changed with previous pattern match '''
             line_version_index, av = get_all_versions(line, 'all', av)
+            print('line_version_index', line_version_index)
             if line_version_index:
                 for line_version_type, versions in line_version_index.items():
-                    print('versions', type(versions), versions)
                     for line_version in versions:
                         print('applying patterns from pattern_map to line version', pattern_map, 'source_pattern', source_pattern, 'line', line_version)
                         variables, line_with_vars = get_variables_for_pattern(line_version, source_pattern, av)

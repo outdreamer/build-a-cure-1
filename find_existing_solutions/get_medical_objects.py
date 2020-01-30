@@ -267,6 +267,14 @@ def find_treatment(subset, row, av):
     - https://en.wikipedia.org/wiki/Hyperlipidemia has the word 'estrogens' as a cause, which could mean a side effect of birth control or phytoestrogens or substances that mimic estrogens
     '''
 
+    ''' to do:
+      - add query to other compounds on wiki category templates
+      - add query to nih
+      - add query to identify mechanisms & search for other compounds with those mechanism
+      - add query to identify structure & search for other compounds with similar structure
+      - add query to fetch complications & treatments for those, similar to side effects query
+    '''
+
     polarity = get_polarity(row['line'])
     print("\tline polarity", polarity, "row", row['line'])
     '''

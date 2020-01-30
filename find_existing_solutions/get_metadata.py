@@ -47,13 +47,13 @@ def get_data_store(index, database, operation, args):
 
 def get_data_from_source(source, keyword, av):
     articles = get_batch(source, 0, keyword, [])
-    print('articles', len(articles))
+    print('get_data_from_source: get_batch: articles', len(articles))
     if articles:
         if len(articles) > 0:
             data = process_articles(articles, source, keyword, av) 
+            print('processed articles: data', data)
             if data:
-                print('data', len(data.keys()), data.keys())  
-        return data
+                return data
     return False
 
 def get_batch(source, start, keyword, articles):
@@ -70,6 +70,7 @@ def get_batch(source, start, keyword, articles):
         print('url', url)
         response = requests.get(url)
         if response.content:
+            print('response content', response.content)
             if source['response_format'] == 'xml':
                 xml_string = xml.dom.minidom.parseString(response.content)
                 if xml_string:
@@ -79,6 +80,7 @@ def get_batch(source, start, keyword, articles):
                         new_articles = xml_string.documentElement.getElementsByTagName(source['entries'])
             else:
                 new_articles = json.loads(response.content)
+    print('new articles', len(new_articles))
     if new_articles:
         if len(new_articles) > 0:
             articles.extend(new_articles)  
@@ -96,6 +98,7 @@ def process_articles(articles, source, keyword, av):
         article_text = None
         if source['name'] == 'pubchem':
             title, article_text = get_article_from_id(article, source)
+            print('found pubchem article', article, 'title', title)
         elif source['name'] == 'wiki':
             title = keyword
             article_text = article
