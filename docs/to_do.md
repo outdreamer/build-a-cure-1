@@ -149,6 +149,13 @@
     - when the exploit, optimization, & variance opportunities have been exhausted using all possible combinations of components & core functions, so that the interface has fulfilled its potential usage
     - if there is external system variance, another interface may develop to host the remaining variance
 
+  - interfaces may devolve to their abstract forms once a particular implementation is fulfilled
+    - type :: combination (combination of attributes)
+    - priority :: direction (intent direction)
+    - function :: filter order (functions as an order of filters)
+    - the combination, direction & filter order interfaces hold more variance than their specific implementations in the semantic interface nexus
+    - this implies there are other interface nexuses using those core interfaces
+
   - useful for computing attribute & variance flow as well as flow between flow of energy into measurement delivery (optimize energy distribution between particle position/spin attributes according to measurement limits)
     https://en.wikipedia.org/wiki/Partial_differential_equation
 
