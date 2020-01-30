@@ -153,7 +153,12 @@
     - type :: combination (combination of attributes)
     - priority :: direction (intent direction)
     - function :: filter order (functions as an order of filters)
-    - etc for the other interfaces (pattern, change (and change sub-interfaces like variance/potential/attribute interface), conceptual, structural (information, limit, metric, boundary))
+    - etc for the other interfaces - which have sub-interfaces created with transforms of the original interface:
+      - rule: pattern, function
+      - change: change sub-interfaces like variance/potential/attribute interface
+      - conceptual: problem, question, abstraction
+      - structural: symmetry, shape, similarity, information, limit, metric, boundary
+    - do these transforms have patterns in common?
 
     - the combination, direction & filter order interfaces hold more variance than their specific implementations in the semantic interface nexus
     - this implies there are other interface nexuses using those core interfaces
@@ -162,6 +167,10 @@
       - combination :: network, set, cluster, dimensions
       - direction :: potential
       - filter order :: structure (filter orders map to structures that capture variance potential)
+
+    - sometimes interfaces should be applied at intervals, so variance can develop in between & adjust interface order & identity as needed
+
+    - embedding layers like parameterization have relevance for choosing interface cycle origin points
 
     - how would you derive core functions which map to core shapes (combine, direction) from this space?
       - this space allows:
