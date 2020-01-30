@@ -145,6 +145,10 @@
   - algorithm to decide when to use interface query, when to standardize to a particular interface, and when to stack interfaces to isolate variance by applying one interface to another
     - example: analyzing priority direction once you standardize to variance interface
 
+  - algorithm to decide when its time to retire an interface:
+    - when the exploit, optimization, & variance opportunities have been exhausted using all possible combinations of components & core functions, so that the interface has fulfilled its potential usage
+    - if there is external system variance, another interface may develop to host the remaining variance
+
   - useful for computing attribute & variance flow as well as flow between flow of energy into measurement delivery (optimize energy distribution between particle position/spin attributes according to measurement limits)
     https://en.wikipedia.org/wiki/Partial_differential_equation
 
