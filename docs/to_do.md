@@ -172,6 +172,12 @@
         - limits on variance (some rules are enforced but change or assumptions can be concentrated on specific rules to change them or change their enforcement)
         - limits on structure (you can cooperate to create structure but it will decay according to system rules)
         - limits on direction (not all decisions are reversible, and some decisions limit future decision potentials)
+        
+      - can you derive the core functions/shapes (combine, direction, filter, position) from those opportunities & limits?
+        - filter maps to calculation - when you calculate something, you're reducing your consumption of other information
+        - interaction allows for combination
+        - interaction allows for direction (choosing a path between equal alternatives)
+        - freedoms allow for randomness, which leaves room for variance
 
   - useful for computing attribute & variance flow as well as flow between flow of energy into measurement delivery (optimize energy distribution between particle position/spin attributes according to measurement limits)
     https://en.wikipedia.org/wiki/Partial_differential_equation
