@@ -168,8 +168,12 @@
       - direction :: potential
       - filter order :: structure (filter orders map to structures that capture variance potential)
 
+    - network: known rules of known nodes
+    - interface: gaps in known rules allowing filter to be applied to objects that can occupy the gaps, to identify variance nodes
+    - interfaces should produce a network when their variance is exhausted
+    
+    - examine mixed interfaces: interfaces applied on top of interfaces in various combinations to create a topology of applied filters
     - sometimes interfaces should be applied at intervals, so variance can develop in between & adjust interface order & identity as needed
-
     - embedding layers like parameterization have relevance for choosing interface cycle origin points
 
     - how would you derive core functions which map to core shapes (combine, direction) from this space?
