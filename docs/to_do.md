@@ -153,8 +153,15 @@
     - type :: combination (combination of attributes)
     - priority :: direction (intent direction)
     - function :: filter order (functions as an order of filters)
+    - etc for the other interfaces (pattern, change (and change sub-interfaces like variance/potential))
+
     - the combination, direction & filter order interfaces hold more variance than their specific implementations in the semantic interface nexus
     - this implies there are other interface nexuses using those core interfaces
+    - given that the core functions of a space map to the core interfaces, the space can determine this core interface nexus - derive the core functions in a space and you'll have the original interface nexus to start from
+    - another example implementation of the core interface nexus:
+      - combination :: network, set, cluster, dimensions
+      - direction :: potential
+      - filter order :: structure (filter orders map to structures that capture variance potential)
 
   - useful for computing attribute & variance flow as well as flow between flow of energy into measurement delivery (optimize energy distribution between particle position/spin attributes according to measurement limits)
     https://en.wikipedia.org/wiki/Partial_differential_equation
