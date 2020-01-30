@@ -153,7 +153,7 @@
     - type :: combination (combination of attributes)
     - priority :: direction (intent direction)
     - function :: filter order (functions as an order of filters)
-    - etc for the other interfaces (pattern, change (and change sub-interfaces like variance/potential))
+    - etc for the other interfaces (pattern, change (and change sub-interfaces like variance/potential/attribute interface), conceptual, structural, information)
 
     - the combination, direction & filter order interfaces hold more variance than their specific implementations in the semantic interface nexus
     - this implies there are other interface nexuses using those core interfaces
@@ -172,12 +172,24 @@
         - limits on variance (some rules are enforced but change or assumptions can be concentrated on specific rules to change them or change their enforcement)
         - limits on structure (you can cooperate to create structure but it will decay according to system rules)
         - limits on direction (not all decisions are reversible, and some decisions limit future decision potentials)
-        
+
       - can you derive the core functions/shapes (combine, direction, filter, position) from those opportunities & limits?
         - filter maps to calculation - when you calculate something, you're reducing your consumption of other information
         - interaction allows for combination
         - interaction allows for direction (choosing a path between equal alternatives)
         - freedoms allow for randomness, which leaves room for variance
+
+      - these freedoms & limits can be framed as a set of filters (rules) which generate the core functions/shapes, which can be used to generates various interface networks, including a key generative interface like concepts
+
+      - freedoms can be framed as gaps in limits, so the limits would represent the interface or network structure
+
+      - there may be an optimal interface network, but allowing them to compete could be the optimal filter
+
+      - what shape do these limits restrict? what filter is applied to another interface to leave these limits remaining, that allow core functions like combine to thrive?
+
+        - this could be a meta interface (the interface interface, the limit interface) but that leaves the question of the source interface open rather than resolving it
+
+        - there might not be a calculatable answer (the source is not measurable inside the space) or it's a cyclical answer, where other interfaces generate other interfaces
 
   - useful for computing attribute & variance flow as well as flow between flow of energy into measurement delivery (optimize energy distribution between particle position/spin attributes according to measurement limits)
     https://en.wikipedia.org/wiki/Partial_differential_equation
