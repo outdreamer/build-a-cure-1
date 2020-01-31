@@ -103,4 +103,8 @@
 
         - in this way you can derive which concepts are important to learn to acquire functional understanding for a particular problem
 
+        - how do you score these concepts based on importance, once you find them?
+          - repeated abstract concepts inherent to sub-tools like languages (which is a sub-tool of the security intent) are likelier to be important
+          - concepts with clear differences in intent are likely to be important (caching & latency reduction are sub-tools of data storage/retrieval intent with clearly different intent matrixes)
+
 - how much time do you invest in planning & what are your planning strategies to avoid having to solve problems later?
