@@ -52,13 +52,15 @@ my code optimization tools:
   - over-restrictive conditions that reduce later choices should be carefully examined for necessity
   - if conditions should be in an if/else block rather than consecutive if conditions, if they should never happen concurrently
 
-
 testing basics:
 - acceptance test driven development
 - specification by example (SBE)
 - behavior-driven development (BDD)
 - example-driven development (EDD)
 - support-driven development (story test–driven development)
+- white/black-box analysis
+- structural & functional analysis
+- risk analysis
 
 security tools:
 - config managers & docker to standardize environments
@@ -73,8 +75,9 @@ code coverage:
 - coverage
 
 unit test:
-- assert statements, object mocking for situations where you cant test connections bc your test env isnt locally installable or accessible
+- key concepts: 
+  - assert statements
+  - object mocking 
 - nosetests
 - py.test
 - unittest 
-
