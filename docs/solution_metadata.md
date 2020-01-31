@@ -1,3 +1,13 @@
+- evaluate how tools develop in problem spaces at different layers:
+  - identifying core problems
+  - identifying problems with typical solutions of core problems
+  - identifying problems with typical regulations/conventions that result from typical solutions or problems
+  - evolution of tool types at various levels of implementation & order/phase of problem-solving trajectory:
+    - configuration to regulate solution switching
+    - dependencies to delegate functionality
+    - testing to capture adjacent (one-degree) functionality exploits
+    - protocols to reduce solution space vs. enforcing solution rules
+
 - solution attributes
 
   - solution reusability: how to design/choose solutions for reusability
