@@ -90,6 +90,16 @@
 
 # Functions
 
+
+  - add summarization algorithm converting text to a set of network graphs, then selecting most relevant network graph for headline
+
+    - "people can coordinate votes to prevent coordinating votes"
+    https://www.vox.com/2020/1/29/21094603/supreme-court-decision-on-immigration-neil-gorsuch-democrats
+
+    - "not every combination of constitution system usage (population, distribution, & party identity) is beneficial for every party agenda"
+    https://www.vox.com/policy-and-politics/2020/1/30/20997046/constitution-electoral-college-senate-popular-vote-trump
+      - doesn't mention an improved version of the system that would avoid these sub-optimal combinations
+
   - generating find/build functions:
     - prioritize defining & assembling type definitions, both with configuration & programmatically using various sources
       - find source types from which others can be derived
@@ -171,7 +181,7 @@
     - network: known rules of known nodes
     - interface: gaps in known rules allowing filter to be applied to objects that can occupy the gaps, to identify variance nodes
     - interfaces should produce a network when their variance is exhausted
-    
+
     - examine mixed interfaces: interfaces applied on top of interfaces in various combinations to create a topology of applied filters
     - sometimes interfaces should be applied at intervals, so variance can develop in between & adjust interface order & identity as needed
     - embedding layers like parameterization have relevance for choosing interface cycle origin points
