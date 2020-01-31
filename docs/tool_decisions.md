@@ -1,9 +1,16 @@
+- solution attributes
 
-- solution reusability
+  - solution reusability: how to design/choose solutions for reusability
+  - cost/benefit analysis (such as learning/understanding/integration/implementation/migration/functionality gap cost potential)
+  - abstraction level: choosing the abstraction level that will reduce misunderstandings while optimizing reusability
 
-  - how do they design/choose solutions for reusability
+  - solution types:
+  
+    - tools: as an immediate implementation option
+    - learning (understanding as an alternative to using/selecting existing tools)
+    - problem analysis: calculating probable solution cost, calculating value of problem reduction vs. problem solution (vs. secondary or source problem reduction/solution)
 
-- choosing tools
+- tool selection (tools as a subset of solutions, which also includes learning, calculating solution metadata before investing)
 
   - tool indexing
 
@@ -46,6 +53,11 @@
 
 - inefficient process identification
 
+  - inefficiency attributes:
+
+    - granular/conflicting intent (only serves one intent optimally at sacrifice of another related intent that people often need together)
+    - lack of clarity in cost/benefit structures (bc of abstraction, its not clear how a tool will provide a cost when interacting with another tool)
+
   - how do you minimize inefficiencies in workflow
 
     - translating task into clear requirements to reduce questions
@@ -54,6 +66,12 @@
 - error handling
 
   - what strategies do you use for anticipating problems (of a certain type & in general)
+
+- planning decisions
+
+  - how much time do you invest in planning & what are your planning strategies to avoid having to solve problems later?
+
+- learning decisions
 
   - how do you decide what to invest time learning
     - for instance with splunk, how would you identify what level of expertise is required in order to design optimal queries?
@@ -106,5 +124,3 @@
         - how do you score these concepts based on importance, once you find them?
           - repeated abstract concepts inherent to sub-tools like languages (which is a sub-tool of the security intent) are likelier to be important
           - concepts with clear differences in intent are likely to be important (caching & latency reduction are sub-tools of data storage/retrieval intent with clearly different intent matrixes)
-
-- how much time do you invest in planning & what are your planning strategies to avoid having to solve problems later?
