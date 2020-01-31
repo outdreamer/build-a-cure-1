@@ -102,8 +102,14 @@
     - identify optimal server path to break down task into pieces with operation order that can be done at each communication step to operate under communication cost thresholds
     - storing metadata at definition time to make computation distribution/delegation/communication calculations pre-computed on some level
       - metadata like:
-        - data variance/patterns
         - data computing request potential
+        - data variance/patterns
+        - matching data variance/patterns with sub-structures like value functions:
+          - for compartmentalization & storage optimized for access:
+            - if you can fill a math progression or other function having inherent position with data, you can store progression function & data map, and use that structure to find data quicker
+          - for quick computation:
+            - if you can fill a math progressionw with data, you can access computed values by position (if data is in the 3rd term, you know what the data will be before looking up the data)
+        - data range/data type/data probability distribution & change patterns can be computed after definition time
 
   - add summarization algorithm converting text to a set of network graphs, then selecting most relevant network graph for headline
 
