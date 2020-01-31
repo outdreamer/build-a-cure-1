@@ -90,6 +90,10 @@
 
 # Functions
 
+  - its not important to just identify the best-fit balancing bias/variance for a model, its also important to identify:
+    - the adjacent models that exist with common distortion functions applied to the best fit model
+    - the change patterns applied to the best fit model
+
   - give example of emergent effects of phase/scale transitions across threshold values that exert more variance than systems can hold
 
   - examine when randomness can masquerade as entanglement due to limited options of core function interactions due to the system development being in an initial phase
