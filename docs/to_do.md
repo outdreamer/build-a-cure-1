@@ -90,6 +90,11 @@
 
 # Functions
 
+  - give example of emergent effects of phase/scale transitions across threshold values that exert more variance than systems can hold
+
+  - examine when randomness can masquerade as entanglement due to limited options of core function interactions due to the system development being in an initial phase
+    https://phys.org/news/2020-01-supercomputers-link-quantum-entanglement-cold.html
+
   - add example of optimal map strategies for decision delegation & reduction
     - deciding degree of variance resolution:
       - when to implement a filtering interface to allow abstract variance or a specific filter to allow specific variance
