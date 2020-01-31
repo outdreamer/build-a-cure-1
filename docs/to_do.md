@@ -97,6 +97,10 @@
       - decision-limiting potential of alternates
       - interaction potential indicating a requirement for investment in input (manual input, alerting configuration, test/analysis automation, etc)
 
+  - computing/distribution:
+    - identifying servers that have resources optimized for various pieces of task
+    - identify optimal server path to break down task into pieces with operation order that can be done at each communication step to operate under communication cost thresholds
+
   - add summarization algorithm converting text to a set of network graphs, then selecting most relevant network graph for headline
 
     - isolate unique points, reduce to standard words, identify newest points & create a network graph
