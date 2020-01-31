@@ -100,6 +100,10 @@
   - computing/distribution:
     - identifying servers that have resources optimized for various pieces of task
     - identify optimal server path to break down task into pieces with operation order that can be done at each communication step to operate under communication cost thresholds
+    - storing metadata at definition time to make computation distribution/delegation/communication calculations pre-computed on some level
+      - metadata like:
+        - data variance/patterns
+        - data computing request potential
 
   - add summarization algorithm converting text to a set of network graphs, then selecting most relevant network graph for headline
 
