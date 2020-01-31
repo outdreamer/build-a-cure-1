@@ -14,18 +14,14 @@
 	- monitoring/logging
 
 - test concepts: 
-
 	- ast (abstract syntax trees):
 		- testing code in standardized format
 
 - test intents:
-
 	- static analysis:
 		- pylint (mostly syntax & code conventions)
-
 	- code coverage:
 		- coverage
-
 	- unit test tools:
 		- key concepts: 
 		  - assert statements
@@ -41,4 +37,5 @@
 	- concept drift detection
 
 - distributed computing:
-	- resilient Distributed Dataset
+	- resilient distributed dataset
+	- work division, selection, & delegation (mapreduce)

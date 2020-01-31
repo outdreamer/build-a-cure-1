@@ -90,6 +90,12 @@
 
 # Functions
 
+  - add example of optimal map strategies for decision delegation & reduction
+    - deciding degree of variance resolution:
+      - when to implement a filtering interface to allow abstract variance or a specific filter to allow specific variance
+      - convergence of alternates
+      - decision-limiting potential of alternates
+      - interaction potential indicating a requirement for investment in input (manual input, alerting configuration, test/analysis automation, etc)
 
   - add summarization algorithm converting text to a set of network graphs, then selecting most relevant network graph for headline
 
