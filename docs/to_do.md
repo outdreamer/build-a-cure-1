@@ -93,6 +93,10 @@
 
   - add summarization algorithm converting text to a set of network graphs, then selecting most relevant network graph for headline
 
+    - isolate unique points, reduce to standard words, identify newest points & create a network graph
+
+    - repeat that process for various types of points (different intents, different abstraction layers) and determine probable matching set (intended by author) and the most relevant set (relevant to audience)
+
     - "people can coordinate votes to prevent coordinating votes"
     https://www.vox.com/2020/1/29/21094603/supreme-court-decision-on-immigration-neil-gorsuch-democrats
 
