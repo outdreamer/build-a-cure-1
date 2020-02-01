@@ -32,5 +32,7 @@
 
 ### Treating non-random processes as random
 
-	- Rather than deriving core functions and observing the trajectory of variance from core functions to combinations of them & other normal system rules, they assume each variable is so unrelated to other variables or so impacted by many other variables that it's random, when system analysis would identify it as a clear combination of system functions, gaps, filters, & other components
+	- rather than deriving core functions and observing the trajectory of variance from core functions to combinations of them & other normal system rules like variance accretion patterns, they assume each variable is so unrelated to other variables or so impacted by many other variables that it's random, when system analysis would identify it as a clear combination of system functions, gaps, filters, & other components
+
+	- the trajectory of heat through a system is predictable like the trajectory of variance through a system is predictable
 	- https://phys.org/news/2020-01-supercomputers-link-quantum-entanglement-cold.html
