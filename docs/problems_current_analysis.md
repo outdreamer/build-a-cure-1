@@ -6,6 +6,10 @@
 
 - the variable interactions usually studied aren't normally indexed by causal metadata like causal adjacency (direct vs. indirect cause) or causal shape
 
+- same problem as making risk assessment in isolation & evaluating transactions in isolation
+	- the risk presented to an insurer is not calculatable from metadata of the insured but from the system the insured exists in
+	- the risk in a transaction is calculatable using financial system metadata
+
 - causal shape analysis is crucial for:
 	- identifying variables that can be collapsed into other variables
 	- which variables that can be replaced with others
@@ -20,6 +24,13 @@
 
 - then predictive functions should be quicker to build, because the solution space is drastically reduced by the system analysis identifying probable variable sets
 
+- first create an interface where the filters allow multiple variable sets & metadata, then once you narrow down which variable sets/metadata are possible, narrow it down by likelihood given system config
+
 - example of how variables are examined almost at the level of trial & error, when predicting the likely sets of variable sets would drastically reduce computation requirements
   https://phys.org/news/2020-01-simple-sequence.html
 	
+
+### Treating non-random processes as random
+
+	- Rather than deriving core functions and observing the trajectory of variance from core functions to combinations of them & other normal system rules, they assume each variable is so unrelated to other variables or so impacted by many other variables that it's random, when system analysis would identify it as a clear combination of system functions, gaps, filters, & other components
+	- https://phys.org/news/2020-01-supercomputers-link-quantum-entanglement-cold.html
