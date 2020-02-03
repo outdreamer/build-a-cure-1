@@ -436,6 +436,9 @@
       - add intent matching so you can compare treatment relationships with article intents to see if its actually a sentence with a treatment in it
         - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
 
+  - add to translation/summarization alg:
+    - process translated as "adding dimensions to difference in mass (powers of the base) increases vacillations in wave according to collision momentum transfer rules between limits"
+    https://www.quantamagazine.org/how-pi-connects-colliding-blocks-to-a-quantum-search-algorithm-20200121/
 
 ## Learning models
 

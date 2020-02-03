@@ -394,6 +394,7 @@
           - You figure out which items in the problem space are input variables, interim nodes, and output metrics, then you convert each to vectors & transform the input vector to the output vector using the interim transforming vectors (core functions, concepts, types, priorities) as tools.
 
         - in order to map a semantic object to a vector, you need to identify:
+        
           - which objects can be used as filters to further solution intent (and which objects are key determinating objects & which can be removed)
           - how to arrange those objects as filters to get from starting variables to output metrics/intents
 
