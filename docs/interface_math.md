@@ -2,8 +2,18 @@
     - output rather than input variables (output is a good indicator even though input variable may be preferable)
     - variables less likely to change
 
-  - symmetry => interface (limit on change provides a standard for comparison)
-  
+  - symmetry: "feature of the system that is preserved under some transformation" (as opposed to lost information/irreversible transform) - https://en.wikipedia.org/wiki/Symmetry_(physics)
+  - interface: 
+  - dimension: 
+
+  - symmetry => interface
+    - a limit on change provides a standard for comparison
+    - example: 
+      - given that a circle is symmetric in every axis that crosses its center, you can compare one side of the axis and expect the other side to reflect that, using one side as a standard for comparison
+    - this includes object definitions like common shape definitions 
+      (transforms that maintain the object type can be considered symmetries to explore change within the object without removing its standards for comparison)
+    - 
+
   - give example of framing variance with different interfaces to highlight predictive information or information that can be structured on other interfaces that simplify the problem
     - the common goal of 'variance reduction' which maps to 'applying a standard' may not always be the right first step, as 'variance expansion' can offer potential to identify different component interfaces that would highlight hidden variable set ranges
       - example: if you expand or maintain variance, or frame it as a combination of variances simultaneously framable in multiple standards, you can identify hidden variable gaps where variable sets on different interfaces can fill the gap in a way that doesnt disrupt the original variance

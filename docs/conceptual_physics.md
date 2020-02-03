@@ -44,6 +44,8 @@
     - what is the causal relationship between these layers? does math cascade into the others or just capture their structure, once it decays into information?
     - math is the unit system in the system layer, just like information is the unit object in the conceptual layer (unit/key object: out of which all other objects are built)
 
+  - where does time get expanded in a distorted way when expanded to the fourth dimension after being compressed into the 3rd, like 2d representations of a sphere get expanded in a distorted way?
+
   - example of a different conceptual system:
     - if power favored centralization, another core concept like balance would have to favor a chaotic process or not exist at all, or another core concept would need to be added to the network
 
