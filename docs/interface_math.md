@@ -10,9 +10,11 @@
     - a limit on change provides a standard for comparison
     - example: 
       - given that a circle is symmetric in every axis that crosses its center, you can compare one side of the axis and expect the other side to reflect that, using one side as a standard for comparison
+      - the symmetry is produced by the filter of the set of axes crossing the center, because the center is the key identifying & generative attribute of the object type (radiating outward from center or rotating radius line, holding one point at center - generates the circle shape and can be used as an identifier)
     - this includes object definitions like common shape definitions 
       (transforms that maintain the object type can be considered symmetries to explore change within the object without removing its standards for comparison)
-    - 
+    - therefore key identifying/generative attributes of an object can be used as symmetries 
+      - example: core functions, priorities, types
 
   - give example of framing variance with different interfaces to highlight predictive information or information that can be structured on other interfaces that simplify the problem
     - the common goal of 'variance reduction' which maps to 'applying a standard' may not always be the right first step, as 'variance expansion' can offer potential to identify different component interfaces that would highlight hidden variable set ranges
