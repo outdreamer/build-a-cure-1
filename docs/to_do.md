@@ -90,6 +90,10 @@
 
 # Functions
 
+  - look for new objects in inter-system physics - as an object occupies a current & target system as well as the space in between that isnt classifiable
+    - what physics apply between systems (space-times here)
+      https://arstechnica.com/science/2020/02/white-dwarf-causes-strange-relativity-effect-called-frame-dragging/
+
   - its not important to just identify the best-fit balancing bias/variance for a model, its also important to identify:
     - the adjacent models that exist with common distortion functions applied to the best fit model
     - the change patterns applied to the best fit model
