@@ -400,8 +400,11 @@
             - position    - lines     - words     - meaning     - relevance      - relevant lines      - append rules      - de-duplicated merged file
                                                                 - equivalence    - equivalent lines    - merge rules
 
-          - the vectors connecting these objects represent a solution space
+          - the vectors connecting these objects represent a solution space (network starting from variable layer to target metric/intent layer) 
           - the vectors connecting the specific versions of these objects (using specific definitions & rankings) represent a possible solution
+
+          - you may want to assemble networks logically to allow for other causal shapes
+            - for example, attaching an alternate & feedback network so the metrics can be used to modify the variables
 
         - This frames the problem as an optimization problem from starting variable network nodes to target metric/intent network nodes, as opposed to framing the problem as a shape dimension-reduction problem, splitting the problem into dimensions and applying solutions to reduce dimensions until the problem is a point.
 
