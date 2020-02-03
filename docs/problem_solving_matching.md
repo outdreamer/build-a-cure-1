@@ -23,7 +23,9 @@
   - given different information, you can use different methods
   - some methods are immune to information but most require a clear minimum
 
+
 ## Problem Solving Operations
+
 
   I. Match problem & solution using definition & standardization, applying increasing limits until problem & solution match
 
@@ -129,7 +131,7 @@
         - corrects alignment of vectors in the problem if the problem root cause is a misalignment (misaligned incentives, priorities, etc)
         - reduces problem dimension if the problem root cause is complexity (too many factors to measure, doesnt fit existing tools, can be solved if broken into smaller problems)
 
-    example:
+    - example:
 
       - derive possible structures given the problem definition & the set of target concepts:
 
@@ -286,23 +288,22 @@
           - matching of information supply & demand (allocate tx history to tx metadata, where it has most value)
 
 
-  V. Solve problem with Conceptual Combination Metadata query
+  V. Solve problem with Conceptual Combination Metadata query (different starting point as IV)
 
-  - if you know that a certain configuration of uniqueness & randomness can output a lack of predictability, and you know that a lack of predictability means randomness can be verified (trust in randomness is not required), then for any problem with a target intent of "verifying randomness", or similar intents ("verifying information", "correcting info asymmetry", "not requiring trust"),
-      you can match that configuration of uniqueness & randomness with the problem and see if it reduces the problem dimensions (solves the problem)
+    - if you know that a certain configuration of uniqueness & randomness can output a lack of predictability, and you know that a lack of predictability means randomness can be verified (trust in randomness is not required), then for any problem with a target intent of "verifying randomness", or similar intents ("verifying information", "correcting info asymmetry", "not requiring trust"),
+        you can match that configuration of uniqueness & randomness with the problem and see if it reduces the problem dimensions (solves the problem)
 
-  - this can also be abstracted:
-    - rather than storing "uniqueness/randomness config => unpredictability", you can store:
-      - "consistent variance => upredictability"
-      - "consistent variance => randomness"
-      - "distributed variance == randomness"
-    - these abstract rules between conceptual configurations (a combination of concepts in a particular structure, like a system) can generalize the configuration to more problem spaces
+    - this can also be abstracted:
+      - rather than storing "uniqueness/randomness config => unpredictability", you can store:
+        - "consistent variance => upredictability"
+        - "consistent variance => randomness"
+        - "distributed variance == randomness"
+      - these abstract rules between conceptual configurations (a combination of concepts in a particular structure, like a system) can generalize the configuration to more problem spaces
 
-  - these abstracted configurations have different metadata (intent, priority, logic flow, variance level, causation) and can therefore be useful in different (possibly meaning "additional") circumstances than the original configuration
+    - these abstracted configurations have different metadata (intent, priority, logic flow, variance level, causation) and can therefore be useful in different (possibly meaning "additional") circumstances than the original configuration
 
 
   VI. Vectorization of Problem & Solution Space
-
 
     - example:
 
@@ -390,18 +391,27 @@
         - This means you've vectorized the problem space.
           - From the initial problem definition, you've created a simple network for solution theories to traverse.
           - From here, the automation of this method is calculatable.
-          - You figure out which items in the problem space are input variables, interim nodes, and output metrics, then you convert each to vectors & transform the input vector to the output vector using the interim vectors (core functions, concepts, types, priorities) as tools.
+          - You figure out which items in the problem space are input variables, interim nodes, and output metrics, then you convert each to vectors & transform the input vector to the output vector using the interim transforming vectors (core functions, concepts, types, priorities) as tools.
+
+        - in order to map a semantic object to a vector, you need to identify:
+          - which objects can be used as filters to further solution intent
+          - how to arrange those objects as filters to get from starting variables to output metrics/intents
+
+            - position    - lines     - words     - meaning     - relevance      - relevant lines      - append rules      - de-duplicated merged file
+                                                                - equivalence    - equivalent lines    - merge rules
 
         - This frames the problem as an optimization problem from starting variable network nodes to target metric/intent network nodes, as opposed to framing the problem as a shape dimension-reduction problem, splitting the problem into dimensions and applying solutions to reduce dimensions until the problem is a point.
 
-      B. vectors to solution space
+      B. filtering solution space
 
         I. pre-computation
 
           - rather than trying every trajectory, you'll want to pre-compute some metadata
 
           - for example:
+
             - if there are operations between node layers that point in a direction that is so different from solution intent directions that it couldnt be converted into a solution intent direction with available remaining operations, you'll want to rule out those operations, and possibly the whole node if every operation on it is irrecoverable
+
             - if there are initial steps that reduce a high level of variance/make a high level of progress toward a direction, where the remaining available operations are unlikely to produce an irrecoverable intent direction, those should be prioritized when searching for solution trajectory (which will be the output logic function representing the optimal solution to the problem)
 
         II. out of the remaining options, you can use filtering rules when iterating through the remaining possible combinations of steps 
