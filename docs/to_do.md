@@ -518,6 +518,8 @@
 
 # Diagrams
 
+- make diagram for dimension links that are depictable in the same network space
+  - should show variables that impact other variables, the change rates of these relationships, and overall impact should be calculatable from these relationships
 - make diagram for variable accretion patterns
 - finish diagrams for specific concepts, core functions, concept operations, ethical shapes
 - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
