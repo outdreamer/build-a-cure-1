@@ -438,10 +438,12 @@
 
   - add to translation/summarization alg:
     - process translated as "adding dimensions to difference in mass (powers of the base) increases vacillations in wave according to collision momentum transfer rules between limits"
-    - notice that a vacillation decreasing in momentum would produce a spiral shape with a symmetric transform done - and that could produce a circle under certain conditions
+    - notice that a vacillation decreasing in momentum would produce a fractal/spiral shape with a symmetric transform done - and that could produce a circle under certain conditions
     - vacillation = pendulum swing with only one initial force application 
       - with curvature applied this would be a spiral approaching a center
       - if the curvature transform was balanced in the right way (like an equivalent effect as zooming in), it wouldnt trend toward the center but produce a circle
+
+    - this type of problem can be indexed as 'core function combinations'
     https://www.quantamagazine.org/how-pi-connects-colliding-blocks-to-a-quantum-search-algorithm-20200121/
 
 
