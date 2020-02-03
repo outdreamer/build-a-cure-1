@@ -304,11 +304,11 @@
   VI. Vectorization of Problem & Solution Space
 
 
-    example:
+    - example:
 
-      problem: 'find lines that are duplicates in files and remove duplicates, leaving lines in order'
+      - problem: 'find lines that are duplicates in files and remove duplicates, leaving lines in order'
 
-      1. mapping to vectors
+      1. map to vectors
 
         - variables
 
@@ -349,6 +349,23 @@
             - relevance by order: new sentence should come after original sentence
             - relevance by type: sentence should be positioned in set of other sentences because of common type/meaning/topic
 
+          - priority
+            - when two possible duplicates are unresolvable, how do you decide between them?
+
+          - variable rank
+            - does line position override other variables?
+              - questions are determined without user input:
+                - without a user telling the algorithm which variables are in which ranks, figure out which variables out-rank other by which match problem complexity & intent
+                - given that the problem is 'merging two files, removing duplicate lines':
+                  - the intent is likely not to include two lines with one word difference
+                  - the user probably doesnt intend advanced semantic analysis, or the problem statement would include keywords like 'analyzing sentence meaning'
+                  - so extra computation shouldnt be invested in advanced semantic analysis in the case of deciding between duplicates
+                  - that means less computation-heavy variables should be ranked higher, such as line order 
+                    (two sentences are likelier to be duplicates if they are nearer in order)
+                - now your algorithm has determined rank of a variable compared to another programmatically, without user input other than the problem statement
+                - this means the problem statement has to be well-defined & standardized & reflect user intent
+
+
       A. vectorization
 
         I. identify variables, metrics, concepts (and their metadata like definitions, types, priorities)
@@ -370,18 +387,22 @@
         From the initial problem definition, you've created a simple network for solution theories to traverse.
         From here, the automation of this method is calculatable.
 
-    2. vectors to solution space
+      B. vectors to solution space
 
-      - pre-computation
+        I. pre-computation
 
-        - rather than trying every trajectory, you'll want to pre-compute some metadata
+          - rather than trying every trajectory, you'll want to pre-compute some metadata
 
-        - for example:
-          - if there are operations between node layers that point in a direction that is so different from solution intent directions that it couldnt be converted into a solution intent direction with available remaining operations, you'll want to rule out those operations, and possibly the whole node if every operation on it is irrecoverable
-          - if there are initial steps that reduce a high level of variance/make a high level of progress toward a direction, where the remaining available operations are unlikely to produce an irrecoverable intent direction, those should be prioritized when searching for solution trajectory (which will be the output logic function representing the optimal solution to the problem)
+          - for example:
+            - if there are operations between node layers that point in a direction that is so different from solution intent directions that it couldnt be converted into a solution intent direction with available remaining operations, you'll want to rule out those operations, and possibly the whole node if every operation on it is irrecoverable
+            - if there are initial steps that reduce a high level of variance/make a high level of progress toward a direction, where the remaining available operations are unlikely to produce an irrecoverable intent direction, those should be prioritized when searching for solution trajectory (which will be the output logic function representing the optimal solution to the problem)
 
-      - out of the remaining options, you can use filtering rules when iterating through the remaining possible combinations of steps 
+        II. out of the remaining options, you can use filtering rules when iterating through the remaining possible combinations of steps 
 
-        - is this definition divergence likely to be within the range of potential created by change rules?
+          - is this definition divergence likely to be within the range of potential created by change rules?
 
-        - is this level of computation likely to be required for this problem definition?
+          - is this level of computation likely to be required for this problem definition?
+
+        III. remaining solution (or solution set if irreducible) example:
+
+          - 
