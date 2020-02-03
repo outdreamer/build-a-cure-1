@@ -40,6 +40,12 @@
 
 # Structural Objects
 
+  - add complications object when querying treatments
+  - resolve \n separator when not used as a new line separator
+  - store definitions
+  - fix conjugation
+  - fix return from type_patterns
+
   - when evaluating interactions, check for other compounds that interfere with metabolism & de/activation (cytochromes it targets, liver enzymes it assists), 
     which can increase or decrease blood ratio of a drug
   - look for processes/intake of nutrients that could combine to form other compounds (berberine) given the output health factors (stable blood sugar)
@@ -84,25 +90,9 @@
 
 # Functions
 
-  - generating find/build functions:
-    - prioritize defining & assembling type definitions, both with configuration & programmatically using various sources
-      - find source types from which others can be derived
-      - apply get_definition to get the definition of those source types
-      - then apply transform function for each pair to generate a find function for a type given the find function of an adjacent type
-      - find functions use primarily patterns & definitions
-      - create function that uses definition to generate patterns given variable values/types/metadata
-      - build functions can also be generated using the type definition
-      - after generating, functions should be checked for non-identifying factors that dont differentiate them across types
-
-  - generating apply functions:
-    - match/align/fit a structure to another structure
-
-  - standardize terms: shape/structure, model/perspective/filter/standard/interface, intent/method/function/rule, path/route, metadata/attribute/variable/property, object/entity, type/class/category
+  - standardize terms: shape/structure, model/perspective/filter/standard/interface, intent/method/function/rule, path/route, metadata/attribute/variable/property, object/entity, type/class/category, variance/randomness/chaos/entropy
   - add variable accretion patterns (how an object becomes influenced by a new variable, complex system interaction patterns, etc)
   - add get_common_properties function to do extra property-based searches after identifying objects with extract
-  - write function to identify contradictory information (retracted studies, false information, conspiracy theory (anti-vax), opinion) & selecting least likely to be false
-    - this will be useful when youre pulling non-research study data, like when youre looking up a metric or compound if you dont find anything on wiki
-  - write function to rank & identify authoritative sources (wiki is more trustworthy than a holistic or commercialized blog based on editing metadata)
   - add function to test chemical reactions: https://cheminfo.github.io/openchemlib-js/docs/classes/reaction.html
   - fill in keywords & patterns for objects (strategies/mechanisms used by an organism/on a compound)
   - function to predict a compound for a pathogen/condition requires data:
@@ -122,12 +112,12 @@
           - then test on bio systems:
             - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
             - "isolate a pathogen cell before destroying it so it cant communicate info about what destroyed it to other pathogens to help them evolve resistance"
-      - functions to determine:
+      - functions to determine function system metadata:
         - position/role in a system 
         - function type associated with its core functions (change rules, boundary rules)
         - emergent effects in edge cases, rule change states, & interacting with other system layers
         - solution via conceptual route
-      - function to derive core component functions for any system - then you can write functions to:
+      - function to derive core component functions for any system - then you can write functions to calculate function metadata:
         - determine equivalent functions or more optimal version of a function
         - determine function intent
         - alter core functions used to alter function intent
@@ -136,11 +126,13 @@
 
 # Conceptual
 
-  - add error-generation
-    - add diagrams for error types:
-      - misalignment
-      - assumptions without supporting logical/information links
-      - incorrect position/function/structure/scope/limit/range/definition
+  - explainability as a space limited by derivable attributes from data set
+  - threshold mechanics for threshold value selection
+  - give example of structuring problem in a certain format (optimal transport) as an interface to highlight key differences
+  - give example of matching structure, mapping problem semantically, map from intent to structural algorithm design
+  - examine whether new concepts (gaps in network rules) evolve once structure is applied to prior concepts 
+  - all problem-solving automation methods have a variance assignment, allowing for variation to be explored in a certain location 
+  - you can either map problems to fit that structure or design new automation methods based on the variance gap necessary to solve a problem
 
   - add causal type identification for known solutions:
     - causal types: direct/indirect, multiple/alternate, hierarchical, replaceable/unique, generatable/emergent
@@ -150,21 +142,22 @@
       - other attributes
       - similarities
 
-  - add variable-selection example with separate alts having equivalent outputs:
-    - if one alt is disabled, then it would give a false result for anyone checking it for ability to impact the output, even though the alternative was being variably used instead
-
-  - function to identify & remove common article intents with high probability of falsehood to reduce it to just facts
-  - add intent matching so you can compare treatment relationships with article intents to see if its actually a sentence with a treatment in it
-    - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
   - use distortion patterns of entities like atlases, templates, solution progressions to form a compressed version of the host system
     https://techxplore.com/news/2019-11-medical-image-analysis.html
+
   - add stressor language patterns
+
   - for queries of functions like "disable a gene", you can include intent & function metadata to point to sets of compounds that could do the required edits:
     - find compound (protein, enzyme, etc) that unfolds DNA
     - find compound that modifies (edits, activates, removes) the gene once unfolded as specifically as possible 
       (can be a compound with a cutting subcomponent at the right length to target the dna if you can bind it to the first or last gene with another compound)
     - find compound with function = "refolds DNA"
     https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
+
+  - now that youve automated problem-solving, there are still things with variable implementations allowing for innovation in this problem space:
+    - selecting functions (solution methods)
+    - selecting limits (metrics)
+    - prioritizing problem solving order
 
 # ML
   - the full data set should have numerical categories indicating condition(s) treated in the output label so it can be separated into sub-sets by condition treated
@@ -173,6 +166,17 @@
   - add recurrent nn example code that can be copied & plugged in without modification
 
 # Diagrams
+
+- make diagram of potential matrix to display the concept
+    - map parameter sets to potential matrix shapes 
+
+- make diagram for dimension links higher than 3d that are depictable in the same network space
+  - should show variables that impact other variables, the change rates of these relationships
+  - overall impact should be calculatable from these relationships
+  - should show similar movements for correlated variables
+  - should show skippable/derivable variables (variables that can be resolved later than they normally are)
+  - should show meta forces for overall trends in change rules (direction of combined variable forces)
+  - should show limits of measurability & threshold metrics
 
 - make diagram for variable accretion patterns
 - finish diagrams for specific concepts, core functions, concept operations, ethical shapes

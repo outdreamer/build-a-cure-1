@@ -169,12 +169,15 @@
 
 ## Cancer & Stressors
 
+
   ### Predictive tools
+
     - prediction function for computing which pathogen combination will produce the target antibodies
     - prediction function for drug impact between species, mapping species transform function to changes in drug impact
     - prediction function for what ratio of compounds is present in nutrients & drugs with differing success rates
       https://phys.org/news/2016-07-happy-hormone-calcium-cows-humans.html
     - functionality prediction functions, indexing genes, structure & sub-components by functionality
+
 
   ### Theories
 
@@ -184,6 +187,7 @@
 
     - https://twitter.com/remixerator/status/1216501559787282432
     - https://twitter.com/remixerator/status/1138707042187661312
+
 
   ### Interfaces
 
@@ -353,14 +357,18 @@
 
 # Ideas
 
+
 ## Solution Type: balance info asymmetry
+
 
 ### Crypto
 
   1. use predictive tools to predict transactions & calculate them in advance to speed up tx
     - this would assess people's known resources to build an index of global demand/supply, then calculating through these resource distributions, economic incentives for trades, social networks, platform dominance, & product availability & findability (search results rankings) - which tx were likely to happen where for which products, then calculate those tx in advance
 
+
 ## Matching
+
 
 ### ML
 
@@ -372,11 +380,13 @@
 
     https://techxplore.com/news/2020-01-brain-like-network-disorder.html
 
+
 ## Security
 
   1. one-time use stack (network, os, app) in extension of one-time password
 
     - when ISP tech is distributed (network drones/satellites), you can also switch network providers for each message, in an agreed-on stack-switching pattern determined at start of conversation, using agreed-on pattern decompression algorithm
+
 
 ## Bio
   
@@ -425,6 +435,7 @@
     - function to identify & remove common article intents with high probability of falsehood to reduce it to just facts
       - add intent matching so you can compare treatment relationships with article intents to see if its actually a sentence with a treatment in it
         - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
+
 
 ## Learning models
 
@@ -482,6 +493,10 @@
     (optimize energy distribution between particle position/spin attributes according to measurement limits)
     https://en.wikipedia.org/wiki/Partial_differential_equation
 
+  - look for new objects in inter-system physics - as an object occupies a current & target system as well as the space in between that isnt classifiable
+    - what physics apply between systems (space-times here)
+      https://arstechnica.com/science/2020/02/white-dwarf-causes-strange-relativity-effect-called-frame-dragging/
+
 
 ## Hacking
 
@@ -513,3 +528,8 @@
       whereas expecting moderation is usually more useful bc it allows more freedom, and more freedom allows more self-optimization than using forced optimization rules, 
       which change slower than local (self) optimization rules
 
+  - prediction functions
+
+    - its not important to just identify the best-fit balancing bias/variance for a model, its also important to identify:
+      - the adjacent models that exist with common distortion functions applied to the best fit model
+      - the change patterns applied to the best fit model
