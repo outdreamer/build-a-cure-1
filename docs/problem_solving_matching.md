@@ -318,7 +318,8 @@
 
               - words in line
                 - word positions
-                - standardized words
+                - standardized word form (distortions removed)
+                - standardized word meanings (generic, common)
 
               - expanded content
                 - content types
@@ -353,6 +354,7 @@
             - when two possible duplicates are unresolvable, how do you decide between them?
 
           - variable rank
+
             - does line position override other variables?
               - questions are determined without user input:
                 - without a user telling the algorithm which variables are in which ranks, figure out which variables out-rank other by which match problem complexity & intent
@@ -365,6 +367,8 @@
                 - now your algorithm has determined rank of a variable compared to another programmatically, without user input other than the problem statement
                 - this means the problem statement has to be well-defined & standardized & reflect user intent
 
+            - similar analysis can be done to select variable value-selection or ranking logic:
+              - does generic or common definition come first when selecting better synonym to merge, given a pair of similar words that are clearly alternates in the duplicate sentences
 
       A. vectorization
 
@@ -405,4 +409,32 @@
 
         III. remaining solution (or solution set if irreducible) example:
 
-          - 
+          - iterate through lines in both files by position
+
+          - identify similar sentences 
+
+            - if equivalent, add the sentence & set iterator to next line
+
+            - if similar, evaluate words for equivalence
+
+              - standardize words to common form
+              - assess meaning of words
+              - if there is a clear word pair (similar words with slightly different meanings), 
+                - apply equivalence & relevance definitions to find word that is likelier to fit in sentence
+                - if there isnt a clear likelier fitting word, select the more general/common word
+
+            - if dissimilar, evaluate sentence for relevance (extra information, examples, etc)
+
+              - if relevant sections identified, 
+                set iterator to next line not in relevant section
+                if relevant section not found in other file
+                  append relevant section 
+                otherwise 
+                  iterate through relevant sections, treating them as sub-files
+
+              - if no relevant sections identified, check for advanced semantic equivalence
+
+              - if no advanced semantic equivalence found, add to unique sentence list & append to end of file when done iterating
+                - check every new line for match with these dissimilar & irrelevant sentence list items in case it's a duplicate of a later sentence
+
+            - write new file of merged duplicates, relevant sections, and unique irrelevant sections
