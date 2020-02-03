@@ -3,8 +3,9 @@
     - variables less likely to change
 
   - symmetry: "feature of the system that is preserved under some transformation" (as opposed to lost information/irreversible transform) - https://en.wikipedia.org/wiki/Symmetry_(physics)
-  - interface: 
-  - dimension: 
+  - interface: attribute that highlights differences within a limit when objects are reduced to that attribute, using it as a standard for comparison, that filters out attributes that dont fit its definition
+  - dimension: attribute that describes differences of an isolatable measurable metric in a system that is unique compared to other dimensions 
+    (information described in that dimension is not repeated on other dimensions, although it may correlate with or influence information described in other dimensions)
 
   - symmetry => interface
     - a limit on change provides a standard for comparison
