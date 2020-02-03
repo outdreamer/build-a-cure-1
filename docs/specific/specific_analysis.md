@@ -444,6 +444,12 @@
       - if the curvature transform was balanced in the right way (like an equivalent effect as zooming in), it wouldnt trend toward the center but produce a circle
 
     - this type of problem can be indexed as 'core function combinations'
+      - example: 
+        - the core functions here are 'flip around axis' (similar to inverse, identity matrix, rotate)
+    - how do you identify core functions in a list:
+      - algorithm would look something like this (at definition time):
+        - store central values about which other values vary (like clusters of centrality aggregators)
+        - store operations to generate set of values around that particular central point in each cluster
     https://www.quantamagazine.org/how-pi-connects-colliding-blocks-to-a-quantum-search-algorithm-20200121/
 
 
