@@ -403,15 +403,18 @@
 - transforms:                  - iteration1      - iteration2  - variable                - concept                       - concept-iteration1 & concept-rules                           - aggregate iteration1 output
 - transform intents:           - iterate         - iterate     - alternate               - differentiate                 - apply & apply                                                - aggregate
 
-
           - the vectors connecting these objects represent a solution space (network starting from variable layer to target metric/intent layer) 
           - the vectors connecting the specific versions of these objects (using specific definitions & rankings) represent a possible solution
+
+          - this is different from:
+            - a conceptual query: bc it involves object definitions on other layers than conceptual & fits concepts to a structure first (assigning concepts like equivalence to the word variable similarity comparison)
+            - object definition: bc it involves concept queries
+            - problem shape dimension reduction: bc it queries concepts & object definitions & key problem-solving metadata like metrics, and assembles them in order as filters between variables & intents, and the trajectory between these filters is the output solution
+              whereas problem shape dimension reduction assembles a problem shape as a set of composing dimensions, which each step in the solution should reduce these composing dimensions, and the solution is the order of operations that reduces the problem shape dimensions the best according to some solution metadata (like solution metrics)
 
           - assembling object networks to allow causal shapes:
             - you may want to assemble networks logically to allow for other causal shapes
               - for example, attaching an alternate & feedback network so the metrics can be used to modify the variables
-
-          - 
 
         - This frames the problem as an optimization problem from starting variable network nodes to target metric/intent network nodes, as opposed to framing the problem as a shape dimension-reduction problem, splitting the problem into dimensions and applying solutions to reduce dimensions until the problem is a point.
 
