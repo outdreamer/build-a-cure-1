@@ -394,17 +394,24 @@
           - You figure out which items in the problem space are input variables, interim nodes, and output metrics, then you convert each to vectors & transform the input vector to the output vector using the interim transforming vectors (core functions, concepts, types, priorities) as tools.
 
         - in order to map a semantic object to a vector, you need to identify:
-          - which objects can be used as filters to further solution intent
+          - which objects can be used as filters to further solution intent (and which objects are key determinating objects & which can be removed)
           - how to arrange those objects as filters to get from starting variables to output metrics/intents
 
-            - position    - lines     - words     - meaning     - relevance      - relevant lines      - append rules      - de-duplicated merged file
-                                                                - equivalence    - equivalent lines    - merge rules
+- objects:         - position  - lines           - words       - meaning                 - relevance                     - relevant lines & append rules                                - de-duplicated merged file
+                                                                                         - equivalence                   - equivalent lines & merge rules
+- object intents:  - isolate   - target var loop - compare sub-components of target var  - alt defs of sub-c comparisons - map aggregate output def sub-c matches to target var & rules
+- transforms:                  - iteration1      - iteration2  - variable                - concept                       - concept-iteration1 & concept-rules                           - aggregate iteration1 output
+- transform intents:           - iterate         - iterate     - alternate               - differentiate                 - apply & apply                                                - aggregate
+
 
           - the vectors connecting these objects represent a solution space (network starting from variable layer to target metric/intent layer) 
           - the vectors connecting the specific versions of these objects (using specific definitions & rankings) represent a possible solution
 
-          - you may want to assemble networks logically to allow for other causal shapes
-            - for example, attaching an alternate & feedback network so the metrics can be used to modify the variables
+          - assembling object networks to allow causal shapes:
+            - you may want to assemble networks logically to allow for other causal shapes
+              - for example, attaching an alternate & feedback network so the metrics can be used to modify the variables
+
+          - 
 
         - This frames the problem as an optimization problem from starting variable network nodes to target metric/intent network nodes, as opposed to framing the problem as a shape dimension-reduction problem, splitting the problem into dimensions and applying solutions to reduce dimensions until the problem is a point.
 
