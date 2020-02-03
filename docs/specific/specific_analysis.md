@@ -438,6 +438,7 @@
 
   - add to translation/summarization alg:
     - process translated as "adding dimensions to difference in mass (powers of the base) increases vacillations in wave according to collision momentum transfer rules between limits"
+    - notice that a vacillation decreasing in momentum would produce a spiral shape with a symmetric transform done - and that could produce a circle under certain conditions
     https://www.quantamagazine.org/how-pi-connects-colliding-blocks-to-a-quantum-search-algorithm-20200121/
 
 ## Learning models
