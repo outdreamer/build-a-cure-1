@@ -516,10 +516,25 @@
   - incorporate cosine loss rather than categorical cross entropy
   - add recurrent nn example code that can be copied & plugged in without modification
 
+# Testing
+
+  - non-standard exploit-finding patterns:
+    - faked signals for unrelated purposes
+    - output communication/processing chains mapped to intents
+    - sub-intent combinations/chains as intents, assumptions as exploit opportunities (assume code functions are the primary exploit layer to focus on, rather than systems or processes using functions like 'garbage collection' or 'memory optimization')
+    - indirect intents (actions not clearly benefiting any agent like 'transporting message', which form extra opportunities when combined with other actions not clearly benefiting any agent, like activities considered necessary or default)
+    - matrix of compatible tech & possible alternate intent paths allowed between intent limits/filters
+
 # Diagrams
 
-- make diagram for dimension links that are depictable in the same network space
-  - should show variables that impact other variables, the change rates of these relationships, and overall impact should be calculatable from these relationships
+- make diagram for dimension links higher than 3d that are depictable in the same network space
+  - should show variables that impact other variables, the change rates of these relationships
+  - overall impact should be calculatable from these relationships
+  - should show similar movements for correlated variables
+  - should show skippable/derivable variables (variables that can be resolved later than they normally are)
+  - should show meta forces for overall trends in change rules (direction of combined variable forces)
+  - should show limits of measurability & threshold metrics
+
 - make diagram for variable accretion patterns
 - finish diagrams for specific concepts, core functions, concept operations, ethical shapes
 - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
