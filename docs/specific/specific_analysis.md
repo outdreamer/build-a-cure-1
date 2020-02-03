@@ -450,6 +450,7 @@
       - algorithm would look something like this (at definition time):
         - store central values about which other values vary (like clusters of centrality aggregators)
         - store operations to generate set of values around that particular central point in each cluster
+      - a way to generalize this is to find the symmetries (other than just centrality) to gather points around when generating sets of values to derive core functions from
     https://www.quantamagazine.org/how-pi-connects-colliding-blocks-to-a-quantum-search-algorithm-20200121/
 
 
