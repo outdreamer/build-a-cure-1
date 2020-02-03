@@ -300,3 +300,72 @@
 
   - these abstracted configurations have different metadata (intent, priority, logic flow, variance level, causation) and can therefore be useful in different (possibly meaning "additional") circumstances than the original configuration
 
+
+  VI. Vectorization of Problem & Solution Space
+
+
+    example:
+
+      problem: 'find lines that are duplicates in files and remove duplicates, leaving lines in order'
+
+      1. mapping to vectors
+
+        - variables
+
+          1. meaning
+
+            - line content
+
+              - words in line
+                - word positions
+                - standardized words
+
+              - expanded content
+                - content types
+                  - examples
+                  - extra information
+
+          2. order
+
+            - resolving altered & new lines that are not duplicates
+
+        - metrics
+
+          - duplicate sentences
+          - order in sentence list
+          - position in word list
+          - equivalent meanings
+          - relevant meanings
+
+        - concepts
+
+          - equivalence
+            - synonym
+            - order
+            - alternate meanings of same word
+
+          - relevance
+            - relevance by extension: related information of existing sentence or new sentence
+            - relevance by order: new sentence should come after original sentence
+            - relevance by type: sentence should be positioned in set of other sentences because of common type/meaning/topic
+
+      A. vectorization
+
+        I. identify variables, metrics, concepts (and their metadata like definitions, types, priorities)
+
+        II. from previous objects, identify meaningful level of variance
+          - lines that are equivalent
+
+        III. from level of variance to aim for, identify intent & check that it matches problem solving intent
+          - intent: 'remove one of a pair of lines that are equivalent'
+          - problem solving intent: 'merge files, removing duplicate lines'
+
+        IV. now you should have:
+          - a set of initial nodes (variables)
+          - a set of concept nodes (to evaluate variables like meaning with object definition for equivalence)
+          - a set of final metric nodes (to test variable values)
+          - a set of intent directions (to test trajectory from initial variable nodes, to concept nodes, to final metric nodes, to check that this trajectory aligns with intent direction)
+
+        This means you've vectorized the problem space.
+
+    2. vectors to solution space

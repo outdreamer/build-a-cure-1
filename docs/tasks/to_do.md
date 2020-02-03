@@ -28,7 +28,6 @@
   - drug reaction predictor
   - compound search from smile formula
 
-
 # Sources
 
   - check chembl search if you can search for a condition & return molecules known to treat it
