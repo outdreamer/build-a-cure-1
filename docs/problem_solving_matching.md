@@ -367,5 +367,21 @@
           - a set of intent directions (to test trajectory from initial variable nodes, to concept nodes, to final metric nodes, to check that this trajectory aligns with intent direction)
 
         This means you've vectorized the problem space.
+        From the initial problem definition, you've created a simple network for solution theories to traverse.
+        From here, the automation of this method is calculatable.
 
     2. vectors to solution space
+
+      - pre-computation
+
+        - rather than trying every trajectory, you'll want to pre-compute some metadata
+
+        - for example:
+          - if there are operations between node layers that point in a direction that is so different from solution intent directions that it couldnt be converted into a solution intent direction with available remaining operations, you'll want to rule out those operations, and possibly the whole node if every operation on it is irrecoverable
+          - if there are initial steps that reduce a high level of variance/make a high level of progress toward a direction, where the remaining available operations are unlikely to produce an irrecoverable intent direction, those should be prioritized when searching for solution trajectory (which will be the output logic function representing the optimal solution to the problem)
+
+      - out of the remaining options, you can use filtering rules when iterating through the remaining possible combinations of steps 
+
+        - is this definition divergence likely to be within the range of potential created by change rules?
+
+        - is this level of computation likely to be required for this problem definition?
