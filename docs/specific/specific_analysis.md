@@ -385,3 +385,68 @@
 
     The symmetry presented by stability provides a platform for variance (coronavirus) to develop.
 
+
+## Other
+
+  - computing/distribution:
+
+    - identifying servers that have resources optimized for various pieces of task
+    - identify optimal server path to break down task into pieces with operation order that can be done at each communication step to operate under communication cost thresholds
+    - storing metadata at definition time to make computation distribution/delegation/communication calculations pre-computed on some level
+      - metadata like:
+        - data computing request potential
+        - data variance/patterns
+        - matching data variance/patterns with sub-structures like value functions:
+          - for compartmentalization & storage optimized for access:
+            - if you can fill a math progression or other function having inherent position with data, you can store progression function & data map, and use that structure to find data quicker
+          - for quick computation:
+            - if you can fill a math progressionw with data, you can access computed values by position (if data is in the 3rd term, you know what the data will be before looking up the data)
+        - data range/data type/data probability distribution & change patterns can be computed after definition time
+
+  - summarization algorithm:
+
+    - add summarization algorithm converting text to a set of network graphs, then selecting most relevant network graph for headline
+
+      - isolate unique points, reduce to standard words, identify newest points & create a network graph
+
+      - repeat that process for various types of points (different intents, different abstraction layers) and determine probable matching set (intended by author) and the most relevant set (relevant to audience)
+
+      - "people can coordinate votes to prevent coordinating votes"
+      https://www.vox.com/2020/1/29/21094603/supreme-court-decision-on-immigration-neil-gorsuch-democrats
+
+      - "not every combination of constitution system usage (population, distribution, & party identity) is beneficial for every party agenda"
+      https://www.vox.com/policy-and-politics/2020/1/30/20997046/constitution-electoral-college-senate-popular-vote-trump
+        - doesn't mention an improved version of the system that would avoid these sub-optimal combinations
+
+  - election security:
+
+    - apply your other solution to election security:
+
+      - given a range of expected votes in a category, how much does final result deviate from expected votes
+
+        - if an attribute like intelligence is associated with a particular vote, and outcome count deviates from known attribute count to this degree, what set of ratios of deviation can be attributed to noise and what percentage to interference/fraud?
+
+        - what is the path between the determining attribute (intelligence) & the output concept (interference/fraud)?
+          - is lack of intelligence a few transforms away from the output concept
+            - meaning, if stupidity is associated with voting for the x party, is interference actual fraud given that its still indicating the expected stupidity rates in population?
+            - or if stupidity is associated with voting for the x party, is the result inevitable, regardless of how it's achieved (they wouldve voted the same way as the fraudster tricked them into voting or artificially chose their vote with data manipulation)
+
+  - navigation model examples:
+
+    - predict variance sources & ratios:
+      - type/shape/movement/interaction interface variance sources:
+        - is an object that moves in restricted directions likely to be sentient life (delivery robot)
+        - can sentient life move in restricted directions (drug addict, multi-tasking, drunk)
+        - can interactions predict movement types (waving across street, looking at phone, predicting drivers' moves, checking street for cars/behind car before crossing/backing up)
+        - are objects of a certain shape or size associated with different movement types (small objects are faster, larger objects have more obvious momentum physics, smaller objects likelier to be capable of flight)
+      - assumption/hypothesis interface variance sources
+        - are assumptions of a certain variance level given a certain minimum information associated with prediction accuracy
+        - are multiple contradictory starting hypothesis associated with higher prediction accuracy, if so, with what degree of variance between hypotheses?
+
+  - scale transitions:
+
+    - give example of emergent effects of phase/scale transitions across threshold values that exert more variance than systems can hold
+
+    - quantum scale transitions as delegation of information to optimal/efficient/low-energy positions
+      - appears to be in multiple positions until it determines which position is more efficient or easier to maintain
+    

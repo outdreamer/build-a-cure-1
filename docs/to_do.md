@@ -94,11 +94,11 @@
     - what physics apply between systems (space-times here)
       https://arstechnica.com/science/2020/02/white-dwarf-causes-strange-relativity-effect-called-frame-dragging/
 
-  - its not important to just identify the best-fit balancing bias/variance for a model, its also important to identify:
-    - the adjacent models that exist with common distortion functions applied to the best fit model
-    - the change patterns applied to the best fit model
+  - prediction functions
 
-  - give example of emergent effects of phase/scale transitions across threshold values that exert more variance than systems can hold
+    - its not important to just identify the best-fit balancing bias/variance for a model, its also important to identify:
+      - the adjacent models that exist with common distortion functions applied to the best fit model
+      - the change patterns applied to the best fit model
 
   - examine when randomness can masquerade as entanglement due to limited options of core function interactions due to the system development being in an initial phase
     https://phys.org/news/2020-01-supercomputers-link-quantum-entanglement-cold.html
@@ -109,33 +109,6 @@
       - convergence of alternates
       - decision-limiting potential of alternates
       - interaction potential indicating a requirement for investment in input (manual input, alerting configuration, test/analysis automation, etc)
-
-  - computing/distribution:
-    - identifying servers that have resources optimized for various pieces of task
-    - identify optimal server path to break down task into pieces with operation order that can be done at each communication step to operate under communication cost thresholds
-    - storing metadata at definition time to make computation distribution/delegation/communication calculations pre-computed on some level
-      - metadata like:
-        - data computing request potential
-        - data variance/patterns
-        - matching data variance/patterns with sub-structures like value functions:
-          - for compartmentalization & storage optimized for access:
-            - if you can fill a math progression or other function having inherent position with data, you can store progression function & data map, and use that structure to find data quicker
-          - for quick computation:
-            - if you can fill a math progressionw with data, you can access computed values by position (if data is in the 3rd term, you know what the data will be before looking up the data)
-        - data range/data type/data probability distribution & change patterns can be computed after definition time
-
-  - add summarization algorithm converting text to a set of network graphs, then selecting most relevant network graph for headline
-
-    - isolate unique points, reduce to standard words, identify newest points & create a network graph
-
-    - repeat that process for various types of points (different intents, different abstraction layers) and determine probable matching set (intended by author) and the most relevant set (relevant to audience)
-
-    - "people can coordinate votes to prevent coordinating votes"
-    https://www.vox.com/2020/1/29/21094603/supreme-court-decision-on-immigration-neil-gorsuch-democrats
-
-    - "not every combination of constitution system usage (population, distribution, & party identity) is beneficial for every party agenda"
-    https://www.vox.com/policy-and-politics/2020/1/30/20997046/constitution-electoral-college-senate-popular-vote-trump
-      - doesn't mention an improved version of the system that would avoid these sub-optimal combinations
 
   - generating find/build functions:
     - prioritize defining & assembling type definitions, both with configuration & programmatically using various sources
@@ -189,73 +162,9 @@
 
 # Conceptual
 
-  - algorithm to decide when to use interface query, when to standardize to a particular interface, and when to stack interfaces to isolate variance by applying one interface to another
-    - example: analyzing priority direction once you standardize to variance interface
+  - information organized by relevance & efficiency
 
-  - algorithm to decide when its time to retire an interface:
-    - when the exploit, optimization, & variance opportunities have been exhausted using all possible combinations of components & core functions, so that the interface has fulfilled its potential usage
-    - if there is external system variance, another interface may develop to host the remaining variance
-
-  - interfaces may devolve to their abstract forms once a particular implementation is fulfilled
-    - type :: combination (combination of attributes)
-    - priority :: direction (intent direction)
-    - function :: filter order (functions as an order of filters)
-    - etc for the other interfaces - which have sub-interfaces created with transforms of the original interface:
-      - rule: pattern, function
-      - change: change sub-interfaces like variance/potential/attribute interface
-      - conceptual: problem, question, abstraction
-      - structural: symmetry, shape, similarity, information, limit, metric, boundary
-    - do these transforms have patterns in common?
-
-    - the combination, direction & filter order interfaces hold more variance than their specific implementations in the semantic interface nexus
-    - this implies there are other interface nexuses using those core interfaces
-    - given that the core functions of a space map to the core interfaces, the space can determine this core interface nexus - derive the core functions in a space and you'll have the original interface nexus to start from
-    - another example implementation of the core interface nexus:
-      - combination :: network, set, cluster, dimensions
-      - direction :: potential
-      - filter order :: structure (filter orders map to structures that capture variance potential)
-
-    - network: known rules of known nodes
-    - interface: gaps in known rules allowing filter to be applied to objects that can occupy the gaps, to identify variance nodes
-    - interfaces should produce a network when their variance is exhausted
-
-    - examine mixed interfaces: interfaces applied on top of interfaces in various combinations to create a topology of applied filters
-    - sometimes interfaces should be applied at intervals, so variance can develop in between & adjust interface order & identity as needed
-    - embedding layers like parameterization have relevance for choosing interface cycle origin points
-
-    - how would you derive core functions which map to core shapes (combine, direction) from this space?
-      - this space allows:
-        - freedom to interact (there's room to select between equal alternative rules, all rules are not enforced)
-        - freedom to fail (interactions don't have to benefit all entities involved)
-        - freedom to calculate (you can check & verify information)
-        - limits on calculation (you can know some things at cost of not knowing other things)
-        - limits on variance (some rules are enforced but change or assumptions can be concentrated on specific rules to change them or change their enforcement)
-        - limits on structure (you can cooperate to create structure but it will decay according to system rules)
-        - limits on direction (not all decisions are reversible, and some decisions limit future decision potentials)
-
-      - can you derive the core functions/shapes (combine, direction, filter, position) from those opportunities & limits?
-        - filter maps to calculation - when you calculate something, you're reducing your consumption of other information
-        - interaction allows for combination
-        - interaction allows for direction (choosing a path between equal alternatives)
-        - freedoms allow for randomness, which leaves room for variance
-
-      - these freedoms & limits can be framed as a set of filters (rules) which generate the core functions/shapes, which can be used to generates various interface networks, including a key generative interface like concepts
-
-      - freedoms can be framed as gaps in limits, so the limits would represent the interface or network structure
-
-      - there may be an optimal interface network, but allowing them to compete could be the optimal filter
-
-      - what shape do these limits restrict? what filter is applied to another interface to leave these limits remaining, that allow core functions like combine to thrive?
-
-        1. this could be a meta interface (the interface interface, the limit interface) but that leaves the question of the source interface open rather than resolving it
-
-        2. there might not be a calculatable answer (the source is not measurable inside the space) or it's a cyclical answer, where other interfaces generate other interfaces
-
-        - interfaces overlap & influence each other: structural limits form rules, which are classifiable on the function interface, as well as the type interface, structure maps to core functions, concepts map to structure
-
-        - so the network of rules linking interfaces for a particular core interface nexus implementation may be significant, not just as a generator of the nexus but as the primary interface for variance to develop on
-
-        - and the network of these networks may give informtion about the answer to 2
+  - give example of error types mapped to structural deficits
 
   - useful for computing attribute & variance flow as well as flow between flow of energy into measurement delivery (optimize energy distribution between particle position/spin attributes according to measurement limits)
     https://en.wikipedia.org/wiki/Partial_differential_equation
@@ -295,32 +204,13 @@
 
   - what does emotion interface map to?
     - emotion functions involve:
+      - information indexing
       - assigning cause
       - directing intent 
       - perspective/layer switching
     - emotions are used as a cause, a standard, and an output, allowing for variance injection due to current lack of measurability
     - they can capture sub-nets or trajectory nets on the interface network
 
-  - apply your other solution to election security:
-    - given a range of expected votes in a category, how much does final result deviate from expected votes
-
-      - if an attribute like intelligence is associated with a particular vote, and outcome count deviates from known attribute count to this degree, what set of ratios of deviation can be attributed to noise and what percentage to interference/fraud?
-
-      - what is the path between the determining attribute (intelligence) & the output concept (interference/fraud)?
-        - is lack of intelligence a few transforms away from the output concept
-          - meaning, if stupidity is associated with voting for the x party, is interference actual fraud given that its still indicating the expected stupidity rates in population?
-          - or if stupidity is associated with voting for the x party, is the result inevitable, regardless of how it's achieved (they wouldve voted the same way as the fraudster tricked them into voting or artificially chose their vote with data manipulation)
-
-  - navigation model examples:
-    - predict variance sources & ratios:
-      - type/shape/movement/interaction interface variance sources:
-        - is an object that moves in restricted directions likely to be sentient life (delivery robot)
-        - can sentient life move in restricted directions (drug addict, multi-tasking, drunk)
-        - can interactions predict movement types (waving across street, looking at phone, predicting drivers' moves, checking street for cars/behind car before crossing/backing up)
-        - are objects of a certain shape or size associated with different movement types (small objects are faster, larger objects have more obvious momentum physics, smaller objects likelier to be capable of flight)
-      - assumption/hypothesis interface variance sources
-        - are assumptions of a certain variance level given a certain minimum information associated with prediction accuracy
-        - are multiple contradictory starting hypothesis associated with higher prediction accuracy, if so, with what degree of variance between hypotheses?
 
   - give example of calculating which variable resolutions can be postponed & solved later with information acquired in subsequent analysis
   - give example of framing variance with different interfaces to highlight predictive information or information that can be structured on other interfaces that simplify the problem
@@ -328,7 +218,6 @@
       - example: if you expand or maintain variance, or frame it as a combination of variances simultaneously framable in multiple standards, you can identify hidden variable gaps where variable sets on different interfaces can fill the gap in a way that doesnt disrupt the original variance
       - identify example where variance cant be reduced to a common interface but is still solvable with a set of interface positions/trajectories
 
-  - give example of error types mapped to structural deficits
 
   - symmetries as a source of misclassification error and efficient/cooperative/optimal attributes
     - symmetry as a source of limits to restrict variance with
