@@ -387,9 +387,12 @@
           - a set of final metric nodes (to test variable values)
           - a set of intent directions (to test trajectory from initial variable nodes, to concept nodes, to final metric nodes, to check that this trajectory aligns with intent direction)
 
-        This means you've vectorized the problem space.
-        From the initial problem definition, you've created a simple network for solution theories to traverse.
-        From here, the automation of this method is calculatable.
+        - This means you've vectorized the problem space.
+          - From the initial problem definition, you've created a simple network for solution theories to traverse.
+          - From here, the automation of this method is calculatable.
+          - You figure out which items in the problem space are input variables, interim nodes, and output metrics, then you convert each to vectors & transform the input vector to the output vector using the interim vectors (core functions, concepts, types, priorities) as tools.
+
+        - This frames the problem as an optimization problem from starting variable network nodes to target metric/intent network nodes, as opposed to framing the problem as a shape dimension-reduction problem, splitting the problem into dimensions and applying solutions to reduce dimensions until the problem is a point.
 
       B. vectors to solution space
 
