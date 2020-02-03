@@ -1,3 +1,36 @@
+## General
+
+  - add example of optimal map strategies for decision delegation & reduction
+    - deciding degree of variance resolution:
+      - when to implement a filtering interface to allow abstract variance or a specific filter to allow specific variance
+      - convergence of alternates
+      - decision-limiting potential of alternates
+      - interaction potential indicating a requirement for investment in input (manual input, alerting configuration, test/analysis automation, etc)
+
+  - generating find/build functions:
+    - prioritize defining & assembling type definitions, both with configuration & programmatically using various sources
+      - find source types from which others can be derived
+      - apply get_definition to get the definition of those source types
+      - then apply transform function for each pair to generate a find function for a type given the find function of an adjacent type
+      - find functions use primarily patterns & definitions
+      - create function that uses definition to generate patterns given variable values/types/metadata
+      - build functions can also be generated using the type definition
+      - after generating, functions should be checked for non-identifying factors that dont differentiate them across types
+
+  - generating apply functions:
+    - match/align/fit a structure to another structure
+
+
+  - give example of functionality positioning (brain map):
+
+    - high-traffic routes will involve more adjusted functions
+    - gaps in routes (such as boundaries) will allow functional modules to evolve
+    - progress & computational capacity of the network can be determined from connection ratios:
+      - hub-to-hub distance, maximum trajectory distance, etc
+
+      - signal layers can be optimized by order
+        - images can be altered to highlight differentiating attributes so that bigger filters (splitting more data) are positioned first
+
 
 ## Code selection algorithm
 

@@ -73,9 +73,27 @@
     - translating task into clear requirements to reduce questions
     - identifying information gaps to distribute information where its relevant & needed
 
+
 - error handling
 
   - what strategies do you use for anticipating problems (of a certain type & in general)
+
+  - add error-generation
+
+    - add diagrams for error types:
+      - misalignment
+      - assumptions without supporting logical/information links
+      - incorrect position/function/structure/scope/limit/range/definition
+
+    - examples:
+      - p-hacking 
+        - what range of significance levels do verified processes exhibit (when first noticed/converging/diverging/decaying)?
+
+      - nearest neighbors hacking
+        - 
+
+  - give example of error types mapped to structural deficits
+
 
 - planning decisions
 

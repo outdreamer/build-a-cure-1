@@ -386,9 +386,7 @@
     The symmetry presented by stability provides a platform for variance (coronavirus) to develop.
 
 
-## Other
-
-  - computing/distribution:
+## Computing/distribution
 
     - identifying servers that have resources optimized for various pieces of task
     - identify optimal server path to break down task into pieces with operation order that can be done at each communication step to operate under communication cost thresholds
@@ -403,7 +401,8 @@
             - if you can fill a math progressionw with data, you can access computed values by position (if data is in the 3rd term, you know what the data will be before looking up the data)
         - data range/data type/data probability distribution & change patterns can be computed after definition time
 
-  - summarization algorithm:
+
+## Summarization algorithm
 
     - add summarization algorithm converting text to a set of network graphs, then selecting most relevant network graph for headline
 
@@ -418,20 +417,40 @@
       https://www.vox.com/policy-and-politics/2020/1/30/20997046/constitution-electoral-college-senate-popular-vote-trump
         - doesn't mention an improved version of the system that would avoid these sub-optimal combinations
 
-  - election security:
+    - write function to identify contradictory information (retracted studies, false information, conspiracy theory (anti-vax), opinion) & selecting least likely to be false
+      - this will be useful when youre pulling non-research study data, like when youre looking up a metric or compound if you dont find anything on wiki
 
-    - apply your other solution to election security:
+    - write function to rank & identify authoritative sources (wiki is more trustworthy than a holistic or commercialized blog based on editing metadata)
 
-      - given a range of expected votes in a category, how much does final result deviate from expected votes
+    - function to identify & remove common article intents with high probability of falsehood to reduce it to just facts
+      - add intent matching so you can compare treatment relationships with article intents to see if its actually a sentence with a treatment in it
+        - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
 
-        - if an attribute like intelligence is associated with a particular vote, and outcome count deviates from known attribute count to this degree, what set of ratios of deviation can be attributed to noise and what percentage to interference/fraud?
+## Learning models
 
-        - what is the path between the determining attribute (intelligence) & the output concept (interference/fraud)?
+    - brain learns through various reward models:
+    - short term rewards: storing useful information
+    - long term rewards: storing useful functions
+    - adaptive/reusable rewards: storing functions by relevance or abstraction
+    - on-demand rewards: storing function-generating methods/interfaces
+    - reward potential-maximization: storing derivation method core functions
+
+
+## Election security
+
+  - apply your other solution to election security:
+
+    - given a range of expected votes in a category, how much does final result deviate from expected votes
+
+      - if an attribute like intelligence is associated with a particular vote, and outcome count deviates from known attribute count to this degree, what set of ratios of deviation can be attributed to noise and what percentage to interference/fraud?
+
+      - what is the path between the determining attribute (intelligence) & the output concept (interference/fraud)?
           - is lack of intelligence a few transforms away from the output concept
             - meaning, if stupidity is associated with voting for the x party, is interference actual fraud given that its still indicating the expected stupidity rates in population?
             - or if stupidity is associated with voting for the x party, is the result inevitable, regardless of how it's achieved (they wouldve voted the same way as the fraudster tricked them into voting or artificially chose their vote with data manipulation)
 
-  - navigation model examples:
+
+## Navigation model
 
     - predict variance sources & ratios:
       - type/shape/movement/interaction interface variance sources:
@@ -443,10 +462,54 @@
         - are assumptions of a certain variance level given a certain minimum information associated with prediction accuracy
         - are multiple contradictory starting hypothesis associated with higher prediction accuracy, if so, with what degree of variance between hypotheses?
 
-  - scale transitions:
+
+## Scale transitions
 
     - give example of emergent effects of phase/scale transitions across threshold values that exert more variance than systems can hold
 
     - quantum scale transitions as delegation of information to optimal/efficient/low-energy positions
       - appears to be in multiple positions until it determines which position is more efficient or easier to maintain
     
+
+## Quantum physics
+
+  - examine when randomness can masquerade as entanglement due to limited options of core function interactions due to the system development being in an initial phase
+    https://phys.org/news/2020-01-supercomputers-link-quantum-entanglement-cold.html
+
+  - information organized by relevance & efficiency
+
+  - useful for computing attribute & variance flow as well as flow between flow of energy into measurement delivery 
+    (optimize energy distribution between particle position/spin attributes according to measurement limits)
+    https://en.wikipedia.org/wiki/Partial_differential_equation
+
+
+## Hacking
+
+  - assumption manipulation
+    - threshold/metric/condition manipulation
+    - input manipulation
+    - verification gaps
+
+
+## Testing
+
+  - non-standard exploit-finding patterns:
+    - faked signals for unrelated purposes
+    - output communication/processing chains mapped to intents
+    - sub-intent combinations/chains as intents, assumptions as exploit opportunities (assume code functions are the primary exploit layer to focus on, rather than systems or processes using functions like 'garbage collection' or 'memory optimization')
+    - indirect intents (actions not clearly benefiting any agent like 'transporting message', which form extra opportunities when combined with other actions not clearly benefiting any agent, like activities considered necessary or default)
+    - matrix of compatible tech & possible alternate intent paths allowed between intent limits/filters
+
+
+## Prediction
+
+  - surprising patterns often come in the form of:
+    - compounding patterns that go unmeasured (black swan pattern)
+    - compounding patterns that are measured in ways that they dont vary from expected patterns (different dimension as a host of variance)
+    - compounding patterns that are measured in ways that vary from expected patterns but not at point of measurement (wave function & line intersection)
+
+  - expectation vacillation is optimized when neither extreme is expected permanently & expectations gravitate toward local inflection or threshold points
+    - expecting evil & expecting sainthood are both sub-optimal in most situations, 
+      whereas expecting moderation is usually more useful bc it allows more freedom, and more freedom allows more self-optimization than using forced optimization rules, 
+      which change slower than local (self) optimization rules
+
