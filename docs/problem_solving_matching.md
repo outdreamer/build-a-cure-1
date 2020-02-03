@@ -438,3 +438,9 @@
                 - check every new line for match with these dissimilar & irrelevant sentence list items in case it's a duplicate of a later sentence
 
             - write new file of merged duplicates, relevant sections, and unique irrelevant sections
+
+    - now you can see how building a network of several interface layers (variables, concepts, metrics) allows:
+      - vectorization of the problem
+      - translation of the problem space into solution space (matching intent direction)
+      - filtering of solution space
+      - finding of optimal solution trajectory (or set of solution trajectories)
