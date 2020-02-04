@@ -437,8 +437,11 @@
         - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
 
   - add to translation/summarization alg:
+
     - process translated as "adding dimensions to difference in mass (powers of the base) increases vacillations in wave according to collision momentum transfer rules between limits"
+
     - notice that a vacillation decreasing in momentum would produce a fractal/spiral shape with a symmetric transform done - and that could produce a circle under certain conditions
+
     - vacillation = pendulum swing with only one initial force application 
       - with curvature applied this would be a spiral approaching a center
       - if the curvature transform was balanced in the right way (like an equivalent effect as zooming in), it wouldnt trend toward the center but produce a circle
@@ -446,11 +449,14 @@
     - this type of problem can be indexed as 'core function combinations'
       - example: 
         - the core functions here are 'flip around axis' (similar to inverse, identity matrix, rotate)
+
     - how do you identify core functions in a list:
+
       - algorithm would look something like this (at definition time):
         - store central values about which other values vary (like clusters of centrality aggregators)
         - store operations to generate set of values around that particular central point in each cluster
       - a way to generalize this is to find the symmetries (other than just centrality) to gather points around when generating sets of values to derive core functions from
+
     https://www.quantamagazine.org/how-pi-connects-colliding-blocks-to-a-quantum-search-algorithm-20200121/
 
 
@@ -550,3 +556,35 @@
     - its not important to just identify the best-fit balancing bias/variance for a model, its also important to identify:
       - the adjacent models that exist with common distortion functions applied to the best fit model
       - the change patterns applied to the best fit model
+
+## Code Conversion
+
+  - syntax rules
+    - type declarations (python libs for this)
+    - conditions (try/except => TryOrElse)
+    - returns
+
+  - code conventions (not enforced but still need to be translated per conventions of project)
+
+  - function lookup & mapping:
+    - common function mapping (map, filter, zip)
+    - input/output/intent/use-case matching
+
+## Test Automation
+
+  - test generation
+
+    - unit testing:
+      - assumptions
+      - inputs/outputs
+      - conditions
+      - intents/use cases
+
+    - integration testing: 
+      - function chains
+      - system context
+      - user decision history (visited insecure website/cleared cache)
+
+    - identify objects that need to be mocked bc of security/deployment constraints
+
+    - generate assert statements, conditions, and mock objects as needed
