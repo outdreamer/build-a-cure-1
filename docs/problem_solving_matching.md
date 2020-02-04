@@ -394,7 +394,7 @@
           - You figure out which items in the problem space are input variables, interim nodes, and output metrics, then you convert each to vectors & transform the input vector to the output vector using the interim transforming vectors (core functions, concepts, types, priorities) as tools.
 
         - in order to map a semantic object to a vector, you need to identify:
-        
+
           - which objects can be used as filters to further solution intent (and which objects are key determinating objects & which can be removed)
           - how to arrange those objects as filters to get from starting variables to output metrics/intents
 
@@ -474,3 +474,12 @@
       - translation of the problem space into solution space (matching intent direction)
       - filtering of solution space
       - finding of optimal solution trajectory (or set of solution trajectories)
+
+
+  VII. Modeling gaps in Problem Space System as Solutions
+
+    1. posit the existence & structure of missing objects (like variables, rules, types, intents) by inferring missing objects implied by structures
+
+      - examples:
+        - a square or any shape with symmetries around a central axis implies the existence of a central point
+

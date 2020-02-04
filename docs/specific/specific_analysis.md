@@ -529,7 +529,7 @@
     - verification gaps
 
 
-## Testing
+## Bug Identification
 
   - non-standard exploit-finding patterns:
     - faked signals for unrelated purposes
@@ -557,6 +557,7 @@
       - the adjacent models that exist with common distortion functions applied to the best fit model
       - the change patterns applied to the best fit model
 
+
 ## Code Conversion
 
   - syntax rules
@@ -569,6 +570,7 @@
   - function lookup & mapping:
     - common function mapping (map, filter, zip)
     - input/output/intent/use-case matching
+
 
 ## Test Automation
 
