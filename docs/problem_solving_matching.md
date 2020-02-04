@@ -131,6 +131,23 @@
         - corrects alignment of vectors in the problem if the problem root cause is a misalignment (misaligned incentives, priorities, etc)
         - reduces problem dimension if the problem root cause is complexity (too many factors to measure, doesnt fit existing tools, can be solved if broken into smaller problems)
 
+    - there are multiple ways to represent problem spaces:
+
+      1. dimension stacks:
+
+        - any problem metadata attributes of the problem are represented as dimensions & stacked
+
+          - similar to how adding a dimension to a square makes a cube, stack dimensions in ways that clearly describe the problem
+          - the order of the dimension stack itself may give the solution, if the problem is a variable-ranking problem
+
+      2. shape assigned to problem types
+
+        - problem types (like conflict or missing info or imbalance) have semantic shapes:
+          - competition: a missing shape to create an archetype (a shape with a triangle missing to create a circle), like receptor binding, to indicate competition for a resource (the triangle) between agents (multiple circles looking for a triangle to complete their shape)
+          - conflicting vectors (incentives, intents): vectors leading an agent in conflicting/diverging directions, where each vector starts at the agent or pushes the agent
+          - missing info: lack of enforced rules creating an opening where info can gather
+          - imbalance: different sized vectors creating bias on one side of a symmetry
+
     - example:
 
       - derive possible structures given the problem definition & the set of target concepts:
