@@ -478,9 +478,18 @@
 
   VII. Modeling gaps in Problem Space Systems as Solutions
 
-    1. posit the existence & structure of missing objects (like variables, rules, types, intents) by inferring missing objects implied by structures
+    1. model the openings created by variance
+
+      - example:
+
+        - intersecting variables create an expanded space in which combinations of their possible values can occur
+        - this combination space can fit various structures, so that some combinations are likelier than others
+        - anytime a rule is not enforced or a boundary is not protected, that creates an opening for variance to develop, which means structures reducing or modeling that variance can be inferred given system metadata
+
+    2. posit the existence & structure of missing objects (like variables, rules, types, intents) by inferring missing objects implied by structures
 
       - examples:
+
         - a square or any shape with symmetries around a central axis implies:
           - the existence of a central point, even though that's not explicitly stated by the square structure
           - diagonals connecting opposite corners
@@ -494,7 +503,10 @@
           - a square joined by four tangents of the circle
           - an infinite set of vectors diverging equally from origin
 
-    2. use core functions & attributes of structural mechanics (simplest, fewest, most similar structures) to determine the missing object in the openings created by variance
+    3. use core functions & attributes of structural mechanics (simplest, fewest, most similar structures) to determine the missing object in the openings created by variance
+
+    4. integrate the output of 2 & 3 to generate the likeliest structures in the openings created by variance
+
 
 
     - this differs from vectorizing variables & other objects, as well as problem space dimension reduction as a way to frame solutions, in that it models solutions as objects to find in an opening created by variance
