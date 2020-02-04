@@ -507,6 +507,8 @@
 
     4. integrate the output of 2 & 3 to generate the likeliest structures in the openings created by variance
 
+    - this differs from vectorizing variables & other objects, as well as problem space dimension reduction as a way to frame solutions, in that it models solutions as objects to find in an opening created by variance, which involves deriving as much of the host system structure as possible from the problem statement (intersecting variance creating missing information about the structure of their interactions)
 
+    - for example, several variable combinations could explain a gap - each possible structure & set can be assigned probability based on inferring system structure containing the gap
 
-    - this differs from vectorizing variables & other objects, as well as problem space dimension reduction as a way to frame solutions, in that it models solutions as objects to find in an opening created by variance
+    - in the examples above, the variance gap is the unenforced rules (what can be inside/outside the square & how could it behave) created by intersections of objects/attributes/rules (definition of a square), and the system structure being inferred is the host system with rules like "there is an important point in the center of objects with intersecting symmetries"
