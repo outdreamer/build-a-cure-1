@@ -481,8 +481,18 @@
     1. posit the existence & structure of missing objects (like variables, rules, types, intents) by inferring missing objects implied by structures
 
       - examples:
-        - a square or any shape with symmetries around a central axis implies the existence of a central point
+        - a square or any shape with symmetries around a central axis implies:
+          - the existence of a central point, even though that's not explicitly stated by the square structure
+          - diagonals connecting opposite corners
+          - forces aggregating any internal objects to the corners
+          - slight rotation function if positioned on a surface at an incline & increased by a dimension to a cube
+          - intersections of two sets of parralel lines or two sets of perpendicular lines
 
+        - a circle implies:
+          - a rotation
+          - a square which the circle touches the side midpoints of
+          - a square joined by four tangents of the circle
+          - an infinite set of vectors diverging equally from origin
 
     2. use core functions & attributes of structural mechanics (simplest, fewest, most similar structures) to determine the missing object in the openings created by variance
 
