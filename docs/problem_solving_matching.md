@@ -476,10 +476,15 @@
       - finding of optimal solution trajectory (or set of solution trajectories)
 
 
-  VII. Modeling gaps in Problem Space System as Solutions
+  VII. Modeling gaps in Problem Space Systems as Solutions
 
     1. posit the existence & structure of missing objects (like variables, rules, types, intents) by inferring missing objects implied by structures
 
       - examples:
         - a square or any shape with symmetries around a central axis implies the existence of a central point
 
+
+    2. use core functions & attributes of structural mechanics (simplest, fewest, most similar structures) to determine the missing object in the openings created by variance
+
+
+    - this differs from vectorizing variables & other objects, as well as problem space dimension reduction as a way to frame solutions, in that it models solutions as objects to find in an opening created by variance
