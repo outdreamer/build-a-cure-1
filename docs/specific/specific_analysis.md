@@ -329,6 +329,16 @@
 
         - still relies on distribution of cells for cell communication (enough normal cells around mutated cell to block it from joining other mutated cells)
           and relies on the mutated cell not already having resources to exploit surrounding cells as energy sources
+
+          - dishonest signals that provide some benefit to surrounding healthy cells (pay a toll/tax/bribe for safe passage) have a higher likelihood of preserving cancer growth
+
+          - the advertisement is an inherently false signal that has filters/tests built-in to the bio system so that correct signals can get through
+
+          - legitimate signals are likelier to be:
+            - local (granular function)
+            - verifiable on several metrics (where a false signal would fail)
+            - no side effects that dont have handlers built-in (dont cause mutations for example)
+
           https://medicalxpress.com/news/2020-02-cancer-easy-cell.html
 
         - blood flow
