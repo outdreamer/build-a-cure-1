@@ -344,6 +344,8 @@
               - examine inputs/outputs (required resources)
               - examine labor/energy processing (cooperative can be parasitic or symbiotic, where one agent is delegating more labor to other agents, or where labor is being traded evenly)
 
+            - you can permute the other interface objects & object attributes/rules to generate the full list of possible explanations, starting on the most explanatory interface and traversing to other interfaces based on available/derivable information
+
             https://phys.org/news/2020-02-chemists-unveil-influenza-protein.html
 
       - function types
