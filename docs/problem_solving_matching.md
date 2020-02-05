@@ -192,6 +192,23 @@
                       "does including transaction log (or subset of it) with transactions reduce trust required (info asymmetry between prior & current transactions)?"
 
 
+      - counterexample:
+      
+        - one problem with solving problems on the structure interface is that the analysis becomes over-specific
+      
+        - for example, solving the problem of 'which structures tend to have which effects' solves the problem of drug design in isolation
+        - really you would need to predict good compounds/organisms attacked by a drug structure like useful bacteria cell membranes in addition to the negative compounds/organisms like pathogen cell membranes
+        - in order to predict that, you need to know how similar structures can evolve in a bio-system with different output intents (protect or attack bio-system)
+        - otherwise your drugs will work on the pathogen but also have severe negative consequences that you only find out about after patients die
+        - you can solve this on the structural level by making the drug extra specific to the pathogen, but that is less efficient than finding a drug that only targets the pathogen because it attacks an attribute/mechanism specific to pathogens (not the cell membrane but an energy source or process used only by pathogens)
+
+        - to predict the similar structures with different intents, you need to find structures that generate these structures in the system
+          - example: 
+            - the corners of a cube would likely generate 3-d triangular clusters of any component small enough within the cube, and because the corners are evenly spaced, these triangular clusters would probably have similar functions/intents
+            - but a shape with alternating or intersecting structure-generating structures (like the corner generates the triangular clusters), would probably produce similarly shaped objects with different function/intent, because one corner might be surrounded by waves and another corner might be surrounded by openings, so the triangular clusters would probably still evolve in each corner type but with slight differences that produced different function/intent
+
+
+
   III. Solve problem with solution function selection
 
     - min info => selection of structural layer
