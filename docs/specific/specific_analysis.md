@@ -193,26 +193,35 @@
 
     - attack points
       
-      - attack on causal layer
+      - causal level
 
         - attacking higher up the causal stack means attacking cancer's evolutionary & learning processes, so it cant evolve resistance to drugs
 
-      - attack on object level
+      - object level
 
         - attacking on the mutation level
+
           - how to trigger loss-of-function mutations of cancer mutations
           - how to trigger mutations of mutations (reverting to original state)
+          - if chains of mutations are the combined trigger, can mutations be inserted in that chain to push it in another functional direction
 
-      - attack on system level
+      - system level
 
         - evaluate position as a variable (whether TADs & gene position & adjacent genes can be rearranged to prevent mutations)
-        
+
         - evaluate alternative backups to commonly mutated genes/proteins/enzymes - how do you trigger functionality that evolves backups
 
-        - genetic system level
+        - genetic level
+
           - can genes producing a commonly mutated cancer-causing gene be adjusted to produce functionality without vulnerabilities exploited for cell division
 
+        - functionality level
 
+          - can system structure be changed so variance is increased & so functionality is allowed to accrete to produce backup functionality
+
+        - signaling level 
+
+          - 
 
     - system 
 
