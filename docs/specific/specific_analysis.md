@@ -329,6 +329,13 @@
 
       - communication
 
+        - excess energy allows for acquiring extra resources (borrowing functionality from a bacteria farther away, spending more time computing something or testing variations)
+          just like excess information is distributed according to thermodynamics
+
+          - if energy is efficiently converted into information in a system (like the cancer system or the bacteria system) that system will require less energy & other inputs overall
+
+          https://phys.org/news/2020-01-supercomputers-link-quantum-entanglement-cold.html
+
         - still relies on distribution of cells for cell communication (enough normal cells around mutated cell to block it from joining other mutated cells)
           and relies on the mutated cell not already having resources to exploit surrounding cells as energy sources
 
