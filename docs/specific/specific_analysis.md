@@ -314,6 +314,9 @@
 
       - inflammation/irritation
 
+        - examine routes to delegate/distribution/generate histamine using existing bio system resources as an anti-cancer agent from imidazole
+          https://en.wikipedia.org/wiki/Histamine
+
       - learning
 
       - competition
