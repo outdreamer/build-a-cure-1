@@ -334,6 +334,14 @@
 
           - if energy is efficiently converted into information in a system (like the cancer system or the bacteria system) that system will require less energy & other inputs overall
 
+          - the distribution of structures within a cup of liquid can influence how quickly the energy dissipates
+
+          - information dissipates according to common priorities like efficiency, but it can be overridden by concentrated energy, like when a cancer cell is surrounded by healthy cells so it shouldnt be able to produce legitimate semblance of signals, but if it has better energy usage (like functionality to acquire information as needed), it may be able to override the healthy cell communication, which is almost costless if they are adjacent neighbors in a circle around the cancer cell, but can still be beaten by more efficient energy storage (able to produce or find information as needed)
+
+          - efficiency dissipates in similar ways - if one source process is efficient, other subsequent processes or attributes may also be more efficient - the efficiency dissipates or cascades through the system, possibly in a compounding way
+
+          - energy can produce efficiency, and the government of energy by rules like thermodynamics & chemistry has effects on subsequent process like information retrieval & position (communication & distribution)
+
           https://phys.org/news/2020-01-supercomputers-link-quantum-entanglement-cold.html
 
         - still relies on distribution of cells for cell communication (enough normal cells around mutated cell to block it from joining other mutated cells)
