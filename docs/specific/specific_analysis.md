@@ -322,8 +322,19 @@
 
       - energy management (storage, sharing, production, source-switching, conversion)
 
+      - emergent effects:
+
+        - example of emergent effects 
+
+          - there are intended & unintended ways to activate a process, such as cell death
+
+            - apoptosis (cell stressor & stress-handler are aligned with limited side effects in the cell itself ignoring the outer system, as this is a granular function - it gets the signal to kill the cell, and it activates that process)
+            - variance injection that triggers cell death in unintended ways (over supply of stressors for cell stress-handlers in ways that produce variance that disrupts the cell membrane from the inside)
+
+            https://phys.org/news/2020-02-chemists-unveil-influenza-protein.html
+
       - function types
-      
+
         - explicit function (such as 'convert input energy into output structure')
         - implicit function (such as unintended side effects of outputs, interim functions between input/output, and unpredicted emergent functions at scale or across many linked integrated function chains)
         - provide resources used as inputs to activate other functions (a set of molecules that when detached can activate other processes)
