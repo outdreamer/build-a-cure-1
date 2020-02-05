@@ -207,13 +207,30 @@
             - the corners of a cube would likely generate 3-d triangular clusters of any component small enough within the cube, and because the corners are evenly spaced, these triangular clusters would probably have similar functions/intents
             - but a shape with alternating or intersecting structure-generating structures (like the corner generates the triangular clusters), would probably produce similarly shaped objects with different function/intent, because one corner might be surrounded by waves and another corner might be surrounded by openings, so the triangular clusters would probably still evolve in each corner type but with slight differences that produced different function/intent
 
-        - solving problems with structural analysis also requires predicting change rules with standard physics
+      - solving problems with structural analysis also requires predicting change rules with standard physics
 
           - if you have a triangular cluster, it will probably change into a rounder shape if it has space to interact with other non-triangular shapes, bc its corners will get rounded out
           - similarly, the key variables creating differentiation will evolve on this structural difference interace
             - differentiation has to be consolidated to the interfaces that can change, otherwise a system cant adapt to new conditions
             - if compounds cant get mutated/broken, theres no potential for adaptation
             - so differences are concentrated on the boundary/exterior when functionality requires differentiation (in compounds, receptors, general chemicals, etc)
+          - so if you have a system where an object having corners will be introduced to environments where it will be rotated & allowed to interact with shapes having some degree of difference, you can calculate which shapes would produce this level of difference & the output function of the triangle, which is rotation, as well as its probably future state, which is circular, unless the other shapes are sufficiently different that they break the triangle into smaller triangles or bind to it to form larger shapes
+
+      - structural differentiation output (intent/function) can be calculated once system structure & priorities are known
+
+        - example: 
+          - once its determined that a system prioritizes backup alternatives, you can determine that each differentiated object of a type will have enough similarity to the other types to generate the other alternatives if necessary
+          - once you know that this is the determining factor in differentiation, you can predict the level of differentiation and predict the variations of an object (like proteins or enzymes with different functionality, whose functionality & degree of difference should be predictable given system priorities)
+
+        - the reverse can be true as well - calculating system structure from internal object behaviors, if they follow these patterns so you can posit the existence of system objects like corners/openings
+
+        - similarly you can use the middle interface (system objects) to infer the system structure or the objects in the system
+
+      - system/object requirements can be calculated using this analysis as well
+
+        - once requirements are known, differentiation probabilities can be reduced with that information
+
+          - if its required that every protein has an off-switch, then that wont differentiate the protein definition/template, but if some proteins dont have an off-switch bc theyre so important or difficult to make, that can be used to calculate probable proteins that exist in a system requiring proteins of different functionality to handle various stressors
 
 
   III. Solve problem with solution function selection
