@@ -339,6 +339,11 @@
               - the virus needed to use an inflammatory agent to hide its activity from immune system
               - the immune system evolved a cooperative process with viruses like this to promote inflammation in a cost-efficient way by delegating it to pathogens
 
+            - examples of ways to generate the above list (and the full version):
+              - examine relationships/processes for common priorities (efficiency, reducing cost, cooperation effects, inflammation response)
+              - examine inputs/outputs (required resources)
+              - examine labor/energy processing (cooperative can be parasitic or symbiotic, where one agent is delegating more labor to other agents, or where labor is being traded evenly)
+
             https://phys.org/news/2020-02-chemists-unveil-influenza-protein.html
 
       - function types
