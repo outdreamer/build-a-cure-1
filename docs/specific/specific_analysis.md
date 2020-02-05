@@ -322,6 +322,13 @@
 
       - energy management (storage, sharing, production, source-switching, conversion)
 
+      - function types
+        - explicit function (such as 'convert input energy into output structure')
+        - implicit function (such as unintended side effects of outputs, interim functions between input/output, and unpredicted emergent functions at scale or across many linked integrated function chains)
+        - provide resources used as inputs to activate other functions (a set of molecules that when detached can activate other processes)
+        - connect functionality (binding structures)
+        - provide platform for functionality (variance allowing functionality to develop on foundational structures)
+
       - organization (chromosome position, storage compression, topologically associated domains, binding/accretion rules)
 
         - shapes that have rotation-compounding structures (corners/wheels)
