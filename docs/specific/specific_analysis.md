@@ -250,6 +250,8 @@
     - many object types can be an interface in a specific system, in addition to standard abstract interfaces
       (function/metabolic interface, system//immune interface, structure/cell interface, communication/nerve interface)
 
+    - attacking higher up the causal stack means attacking cancer's evolutionary & learning processes, so it cant evolve resistance to drugs
+
     - stressor
 
       - change requests, or problems of type 'mismatch' between change demand & change supply

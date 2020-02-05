@@ -193,7 +193,7 @@
 
 
       - counterexample:
-      
+
         - one problem with solving problems on the structure interface is that the analysis becomes over-specific
       
         - for example, solving the problem of 'which structures tend to have which effects' solves the problem of drug design in isolation
@@ -207,6 +207,13 @@
             - the corners of a cube would likely generate 3-d triangular clusters of any component small enough within the cube, and because the corners are evenly spaced, these triangular clusters would probably have similar functions/intents
             - but a shape with alternating or intersecting structure-generating structures (like the corner generates the triangular clusters), would probably produce similarly shaped objects with different function/intent, because one corner might be surrounded by waves and another corner might be surrounded by openings, so the triangular clusters would probably still evolve in each corner type but with slight differences that produced different function/intent
 
+        - solving problems with structural analysis also requires predicting change rules with standard physics
+
+          - if you have a triangular cluster, it will probably change into a rounder shape if it has space to interact with other non-triangular shapes, bc its corners will get rounded out
+          - similarly, the key variables creating differentiation will evolve on this structural difference interace
+            - differentiation has to be consolidated to the interfaces that can change, otherwise a system cant adapt to new conditions
+            - if compounds cant get mutated/broken, theres no potential for adaptation
+            - so differences are concentrated on the boundary/exterior when functionality requires differentiation (in compounds, receptors, general chemicals, etc)
 
 
   III. Solve problem with solution function selection
