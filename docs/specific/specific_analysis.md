@@ -329,7 +329,15 @@
           - there are intended & unintended ways to activate a process, such as cell death
 
             - apoptosis (cell stressor & stress-handler are aligned with limited side effects in the cell itself ignoring the outer system, as this is a granular function - it gets the signal to kill the cell, and it activates that process)
+
             - variance injection that triggers cell death in unintended ways (over supply of stressors for cell stress-handlers in ways that produce variance that disrupts the cell membrane from the inside)
+
+            - acidity is a resource for this process, but it can also kill the cell if over-supplied
+
+            - the synergy between histidine & the mechanism of this virus has multiple possible explanations:
+              - the virus needed to use existing system resources to be able to attack host cells
+              - the virus needed to use an inflammatory agent to hide its activity from immune system
+              - the immune system evolved a cooperative process with viruses like this to promote inflammation in a cost-efficient way by delegating it to pathogens
 
             https://phys.org/news/2020-02-chemists-unveil-influenza-protein.html
 
