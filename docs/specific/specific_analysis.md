@@ -333,6 +333,7 @@
           just like excess information is distributed according to thermodynamics
 
           - if energy is efficiently converted into information in a system (like the cancer system or the bacteria system) that system will require less energy & other inputs overall
+            - such as the information of how to acquire information or switch energy sources
 
           - the distribution of structures within a cup of liquid can influence how quickly the energy dissipates
 
@@ -340,7 +341,12 @@
 
           - efficiency dissipates in similar ways - if one source process is efficient, other subsequent processes or attributes may also be more efficient - the efficiency dissipates or cascades through the system, possibly in a compounding way
 
-          - energy can produce efficiency, and the government of energy by rules like thermodynamics & chemistry has effects on subsequent process like information retrieval & position (communication & distribution)
+          - energy can produce efficiency: the government of energy by rules like thermodynamics & chemistry has effects on subsequent process like information retrieval & position (communication & distribution) which can impact energy production
+
+          - summary: 
+            - concentrated energy produces information efficiently 
+            - cancer cells often have concentrated energy in various formats like mutations, functionality, information, etc
+            - the thermodynamics of energy impact how efficiency, communication, information, & other outputs of energy are distributed
 
           https://phys.org/news/2020-01-supercomputers-link-quantum-entanglement-cold.html
 
