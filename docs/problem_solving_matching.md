@@ -233,6 +233,25 @@
           - if its required that every protein has an off-switch, then that wont differentiate the protein definition/template, but if some proteins dont have an off-switch bc theyre so important or difficult to make, that can be used to calculate probable proteins that exist in a system requiring proteins of different functionality to handle various stressors
 
 
+
+
+      - symmetry evolution & stacking in progressions of systems
+
+        - as you add equivalently long lines to the system of 'connect these lines at their ends', you can see the evolution of symmetries that can generate the system
+
+        - the triangle is the first closed shape in the progression of that system, and you can see the symmetry between each corner and the line split by equivalent angles to the other side,
+          making three symmetries total (in raw structural symmetries, not counting attribute/rule/change symmetries)
+
+        - the square has more symmetries than the triangle (not just from corners to opposite corner but side mid-points to opposite side-midpoints) bc of the increase in number of sides, which allows for a corner-to-corner symmetry that the triangle cannot allow given its lack of opposite sides (two corners cant be connected by a shape-crossing line because each line connecting two corners in a triangle is just the side), making four raw structural symmetries total
+          - the square can be generated on the triangle interface (four small triangle building a square, one large triangle with a square inside, etc)
+
+        - the pentagon has more symmetries than the square because of the rotation symmetry on which the other symmetries are built
+          - the opposite corner-midpoint symmetry exists in the pentagon but also the rotation symmetry
+          - with symmetry in angles, you can generate the pentagon from the origin center point & a rotation transform
+          - with two connected lines, you can generate the whole five-sided pentagon
+          - with transforms on the triangle interface, you can also generate the pentagon
+
+
   III. Solve problem with solution function selection
 
     - min info => selection of structural layer
