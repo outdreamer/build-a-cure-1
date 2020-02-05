@@ -22,7 +22,12 @@
       - example: if you expand or maintain variance, or frame it as a combination of variances simultaneously framable in multiple standards, you can identify hidden variable gaps where variable sets on different interfaces can fill the gap in a way that doesnt disrupt the original variance
       - identify example where variance cant be reduced to a common interface but is still solvable with a set of interface positions/trajectories
 
-  - examine how functions accrete into chains - how does one function get selected when it has the same input/output as another function? is it common metrics like efficiency/availability or something more complex?
+  - examine how functions accrete into chains - how does one function get selected when it has the same input/output as another function?
+    - common metrics like efficiency/availability or something more complex
+    - having function metadata similarities beyond input/output
+    - having core functions in common
+    - having common intents
+    - having enough difference to be useful to cooperate with, given inefficiency of regenerating other function on its own
 
   - symmetry evolution & stacking in progressions of systems
 
