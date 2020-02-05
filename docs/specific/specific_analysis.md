@@ -337,7 +337,13 @@
           - legitimate signals are likelier to be:
             - local (granular function)
             - verifiable on several metrics (where a false signal would fail)
-            - no side effects that dont have handlers built-in (dont cause mutations for example)
+            - no side effects that dont have handlers built-in (for example, they dont cause mutations or output toxins without handlers)
+
+          - the reason the system has these filters is to avoid over-handling a stressor, as it occasionally has signals that look like stressors which it has to avoid over-handling, like how the immune response can look like a stressor when its a stress-handler, so these filters exist to make sure the distinction between those categories is determinable most of the time
+
+          - these filters keep some openings functional, but these filters dont make every variance opening safe - for instance with energy sources, which there are few regulations on
+
+          - the insight of the process is 'ensuring output of false signals is an input for legitimate cells to communicate'
 
           https://medicalxpress.com/news/2020-02-cancer-easy-cell.html
 
