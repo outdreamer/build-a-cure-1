@@ -271,6 +271,14 @@
           - efficiency interface
             - if two lines carry more functionality than one (like hitting more nodes), the injection of two lines in place of one can produce efficiencies
 
+        - so you can see how these interfaces stack:
+          - structural: explicit variables (lines), implicit objects (corners)
+          - emergent: rotation, combination
+          - abstract: variance, efficiency
+
+        - the interface stack can be rearranged to optimize relationships when generating objects
+        
+
   III. Solve problem with solution function selection
 
     - min info => selection of structural layer
