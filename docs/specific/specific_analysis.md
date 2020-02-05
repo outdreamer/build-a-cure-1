@@ -327,6 +327,10 @@
 
       - communication
 
+        - still relies on distribution of cells for cell communication (enough normal cells around mutated cell to block it from joining other mutated cells)
+          and relies on the mutated cell not already having resources to exploit surrounding cells as energy sources
+          https://medicalxpress.com/news/2020-02-cancer-easy-cell.html
+
         - blood flow
 
         - oxygen supply
