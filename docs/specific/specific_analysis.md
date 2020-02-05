@@ -191,6 +191,15 @@
 
   ### Interfaces
 
+    - attack points
+      
+      - attacking higher up the causal stack means attacking cancer's evolutionary & learning processes, so it cant evolve resistance to drugs
+      - attack on object level
+        - attacking on the mutation level
+          - how to trigger loss-of-function mutations of cancer mutations
+          - how to trigger mutations of mutations (reverting to original state)
+
+
     - system 
 
       - deviating from genetically optimal environments as a cause of systemic stressors that lead to cancer
@@ -250,8 +259,6 @@
     - many object types can be an interface in a specific system, in addition to standard abstract interfaces
       (function/metabolic interface, system//immune interface, structure/cell interface, communication/nerve interface)
 
-    - attacking higher up the causal stack means attacking cancer's evolutionary & learning processes, so it cant evolve resistance to drugs
-
     - stressor
 
       - change requests, or problems of type 'mismatch' between change demand & change supply
@@ -292,7 +299,7 @@
       - mutations
 
         - compounding mutations can be chained with intent analysis to predict which function chains will cause cancer
-          https://www.bbc.com/news/health-51391151
+          https://medicalxpress.com/news/2020-02-cancer-years-diagnosis-earlier.html
 
         - of the cancers that dont have driver mutations that have been identified, the functionality can accrete randomly, given the host system structure allowing the functionality of cell division to occur
 
