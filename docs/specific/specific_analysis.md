@@ -289,6 +289,13 @@
 
     - processes
 
+      - mutations
+
+        - compounding mutations can be chained with intent analysis to predict which function chains will cause cancer
+          https://www.bbc.com/news/health-51391151
+
+        - of the cancers that dont have driver mutations that have been identified, the functionality can accrete randomly, given the host system structure allowing the functionality of cell division to occur
+
       - electrical
 
         - charge
