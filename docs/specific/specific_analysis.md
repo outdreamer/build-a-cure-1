@@ -641,6 +641,8 @@
 
   - examine how info is being destroyed in black holes & in quantum physics - is this a process that can be used for encryption or is the info irretrievable?
 
+  - are the best encryption functions those with the fewest symmetries?
+
 
 ## Hacking
 
