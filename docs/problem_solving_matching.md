@@ -573,3 +573,9 @@
 
     - you can also derive sub-systems/objects that are likely to occupy the opening, such as systems/objects with adjacent permutations of variables after you derive those variables
       - example: you can derive that a square object has variables "number of sides" (created by examining variations of the explicit corner, angle, & side objects in the 'square' system) and then permute this variable to generate adjacent objects (for example to check if triangular systems/objects would explain openings created by variance) or implicit objects (center, rotation, diagonals)
+
+
+  VIII. interface/symmetry derivation 
+
+    - in order to automate problem-solving, you may need to derive the interfaces/symmetries of a problem space, and then stack/arrange them in order that maximizes their utility as a set of filters that generate solutions from the original problem statement
+
