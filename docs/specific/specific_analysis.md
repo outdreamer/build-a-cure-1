@@ -647,6 +647,9 @@
 
   - tokenizing common content/content-generation functions on clients & in communications
   - calculating computable sub-components & delegating computation to nodes on network trajectory
+    - this means if executing a process on content isnt efficient on the source system, calculate network trajectory to route communication toward servers that are better for that computation & start sending content unprocessed and process it on those servers
+    - if you had a communication protocol that supported common content tokens, sending content to servers that are better at converting content to tokenized form would be better than a random or non-optimized server
+    - sending converted tokenized content & the id of the tokenization map on different routes adds some interim security
   - using neutrinos as a way to speed up communication using them as jumping-off/charging points
 
 ## Hacking
