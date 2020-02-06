@@ -29,15 +29,41 @@
     - having common intents
     - having enough difference to be useful to cooperate with, given inefficiency of regenerating other function on its own
 
-
   - sub interfaces of primary interface layers
 
     - structural interface
-      - dimension
+      - dimension/attribute/variable/property
+        - variables have symmetries with interfaces, since variables are a standard where change can occur within a limit
       - position
       - distance measures
       - set of possible variable values
-      - equivalence is on several interfaces (conceptual & structural) and it ties to the other sub-interfaces of the structural interface, because position is a differentiating attribute that describes difference, so it depends on a definition of equivalence inherent to that space
+      - limit/metric/boundary
+      - equivalence is on several interfaces (conceptual, change, & structural) and it ties to the other sub-interfaces of the structural interface, because position is a differentiating attribute that describes difference, so it depends on a definition of equivalence inherent to that space
+      - similarity
+      - symmetry
+      - shape
+      - information
+      - variable sympathies (cooperation/antagonism/similarity between variables as a way to visualize difference between dimensions, on dimension network)
+
+    - type
+      - combination (combination of attributes)
+    - priority
+      - direction (intent direction)
+    - function
+      - filter order (functions as an order of filters)
+    - rule: 
+      - pattern
+      - function
+      - logic
+    - change: 
+      - variance
+      - potential
+      - attribute
+    - conceptual: 
+      - problem
+      - question
+      - abstraction
+    - causal
 
   - symmetry evolution & stacking in progressions of systems
 
