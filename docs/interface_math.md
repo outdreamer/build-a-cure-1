@@ -29,6 +29,16 @@
     - having common intents
     - having enough difference to be useful to cooperate with, given inefficiency of regenerating other function on its own
 
+
+  - sub interfaces of primary interface layers
+
+    - structural interface
+      - dimension
+      - position
+      - distance measures
+      - set of possible variable values
+      - equivalence is on several interfaces (conceptual & structural) and it ties to the other sub-interfaces of the structural interface, because position is a differentiating attribute that describes difference, so it depends on a definition of equivalence inherent to that space
+
   - symmetry evolution & stacking in progressions of systems
 
         - as you add equivalently long lines to the system of 'connect these lines at their ends', you can see the evolution of symmetries that can generate the system
