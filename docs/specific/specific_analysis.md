@@ -643,6 +643,11 @@
 
   - are the best encryption functions those with the fewest symmetries?
 
+## Communication
+
+  - tokenizing common content/content-generation functions on clients & in communications
+  - calculating computable sub-components & delegating computation to nodes on network trajectory
+  - using neutrinos as a way to speed up communication using them as jumping-off/charging points
 
 ## Hacking
 
