@@ -44,16 +44,14 @@
       - shape
       - information
       - variable sympathies (cooperation/antagonism/similarity between variables as a way to visualize difference between dimensions, on dimension network)
-
     - type
       - combination (combination of attributes)
     - priority
       - direction (intent direction)
-    - function
-      - filter order (functions as an order of filters)
     - rule: 
       - pattern
       - function
+        - filter order (functions as an order of filters)
       - logic
     - change: 
       - variance
@@ -61,9 +59,17 @@
       - attribute
     - conceptual: 
       - problem
-      - question
-      - abstraction
+      - communication concepts:
+        - question: info asymmetry
+      - abstraction (balance, power)
     - causal
+
+  - points to examine:
+
+    - what space are these symmetries derivable in? the spectrum interface is derivable from the chaotic evil matrix - what space makes these symmetries derivable?
+
+    - why do some of the most useful interfaces have semantic values (context like identities of nodes, producing interfaces like priority, which is specific to non-random systems that can have intent) 
+      rather than structural values (type, pattern, change, structural)
 
   - symmetry evolution & stacking in progressions of systems
 
