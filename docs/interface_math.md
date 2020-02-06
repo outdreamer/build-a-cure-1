@@ -110,11 +110,20 @@
             - raw application (alignment): good aligns with order
             - semantic application (context): 'good' in the context of an order spectrum means 'orderly'
 
+        - not every interface will be so clearly mappable & applicable to another interface - these two interfaces have symmetries because theyre built on the same foundation interface
+
         - you'll notice there are variations in optimality when applying these dimensions:
+
           - sometimes chaos aligns with good, and sometimes order aligns with evil - not the usual way we typically see those concepts portrayed - usually we see them portrayed in the opposite alignments, with chaos being evil and order being good
           - but when laws are bad, chaos is good - there is no absolute virtue in chaos or order, just like there's no absolute rule that stays constant when its overloaded with falsehoods like false assumptions
 
         <img src="chaotic_evil.png" title="https://hotlink.popmartian.com/4B10A5B0/chaotic-evil.jpg"/>
+
+        - those arent the only symmetries in this two-dimensional matrix, given the topics at hand
+          - for example, according to these definitions, the neutral evil & chaotic good have a similarity in behavior
+            - the neutral evil person will act in their own interest bc of selfishness
+            - the chaotic good person will act in their own interest if they think its right, and if they think it will produce other good things or enable other good deeds
+            - they act for different reasons (selfishness & ethics) which parse to the same intent (selfish behavior)
 
   - give example of variance transforms
 
