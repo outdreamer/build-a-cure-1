@@ -170,6 +170,7 @@
 ## Cancer & Stressors
 
 
+
   ### Predictive tools
 
     - prediction function for computing which pathogen combination will produce the target antibodies
@@ -192,7 +193,11 @@
 
       - if resources are spent removing toxins like alcohol, fewer resources can be allocated to communication & other tasks that fight cancer
         https://www.therecoveryvillage.com/drug-addiction/health-concerns/
-        
+
+      - cell death => acetaldehyde => inflammation => cell communication
+        - this could be part of why lack of stressor handler usage is linked to cancer
+        - the cells in a certain organ, sub-system, or area arent being used, so they dont die from replacement with new cells
+        - then the cell death => cell communication pathway isnt activated, and cell communication in that region is decreased, leaving the path clear for cancerous processes to spiral out of control
 
   ### Interfaces
 
