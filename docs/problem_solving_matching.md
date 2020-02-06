@@ -579,3 +579,4 @@
 
     - in order to automate problem-solving, you may need to derive the interfaces/symmetries of a problem space, and then stack/arrange them in order that maximizes their utility as a set of filters that generate solutions from the original problem statement
 
+    - by 'interface derivation' I mean finding the symmetries in a problem space, such as finding the 'spectrum interface' in the chaotic-evil matrix, or finding the 'rotation' interface in the shape progression problem space, and then stacking or otherwise arranging them in the order that they are most useful for generating/revealing solutions

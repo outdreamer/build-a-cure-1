@@ -639,6 +639,8 @@
     - what physics apply between systems (space-times here)
       https://arstechnica.com/science/2020/02/white-dwarf-causes-strange-relativity-effect-called-frame-dragging/
 
+  - examine how info is being destroyed in black holes & in quantum physics - is this a process that can be used for encryption or is the info irretrievable?
+
 
 ## Hacking
 
