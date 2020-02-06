@@ -188,6 +188,11 @@
     - https://twitter.com/remixerator/status/1216501559787282432
     - https://twitter.com/remixerator/status/1138707042187661312
 
+    - support for stressor balance, matching, & allocation theory:
+
+      - if resources are spent removing toxins like alcohol, fewer resources can be allocated to communication & other tasks that fight cancer
+        https://www.therecoveryvillage.com/drug-addiction/health-concerns/
+        
 
   ### Interfaces
 
@@ -643,6 +648,7 @@
 
   - are the best encryption functions those with the fewest symmetries?
 
+
 ## Communication
 
   - tokenizing common content/content-generation functions on clients & in communications
@@ -651,6 +657,7 @@
     - if you had a communication protocol that supported common content tokens, sending content to servers that are better at converting content to tokenized form would be better than a random or non-optimized server
     - sending converted tokenized content & the id of the tokenization map on different routes adds some interim security
   - using neutrinos as a way to speed up communication using them as jumping-off/charging points
+
 
 ## Hacking
 
