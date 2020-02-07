@@ -34,6 +34,11 @@
     - structural interface
       - dimension/attribute/variable/property
         - variables have symmetries with interfaces, since variables are a standard where change can occur within a limit
+        - what shapes do attributes take with regard to an object?
+          - can be an edge on the outside (output layer) emerging from internal rules (acidity, phenotype)
+          - can be a circuit on which the object participates or circulates where current position has meaning (starting interface)
+          - can be a set of vectors creating an output intent or a trajectory linking various networks where an attribute shows up (relevance)
+          - can be a metadata attribute of intersecting rules (diagonal attribute in a square formed by perpendicular rules)
       - position
       - distance measures
       - set of possible variable values
