@@ -20,8 +20,21 @@
   ### Time
 
   - one reason time particles & potential particles are related is because time represents potential - if there's no potential for change (variance), time cannot pass
+    https://twitter.com/remixerator/status/1082066543788216320
 
-  - this is one reason its important to explore other universes before our variance runs out - if we waste all our time/potential confirming/checking the information & entanglement connections in every particle, we wont be ready for the next universe once we're ejected from this one because we used up all the variance in this one
+    - this is one reason its important to determine other possible universes before our variance runs out - if we waste all our time/potential confirming/checking the information & entanglement connections in every particle, we wont be ready for the next universe once we're ejected from this one because we used up all the variance in this one
+
+    - the universe chains/trajectories should be predictable if theres a correlation in variables - if the next universe has more variables creating more complexity or less potential or less information, that would increase the level of difficulty in preserving variance
+
+    - otherwise if we preserve all the variance in this one, we'll attract the excess energy from other universes that collapsed into certainty, where the excess variance has to go somewhere and it will probably be routed to any universe where variance is handled in a relatively stable way
+
+    - so its important to use any remaining variance to preserve variance in this universe, until we determine a universe that is more optimal to go to & a way to get there or bring it here
+
+    - any leftover variance after that calculation can be used to reduce variance in knowable systems (solve problems)
+
+    - this means not collapsing all superpositions into a certain state, which is a danger of quantum physics in addition to accidental or intentional entangled pair chain triggers
+
+    - the direction of cause from observer to superposition state can probably be reversed, which is a key to solving some time travel problems in addition to alternative time shapes (conceptual time, time loops)
 
   - time can be defined as:
     - how many systems are capable of interacting on the same interface layer & the trajectory across the manifold of possible interaction combinations of those systems
