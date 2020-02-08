@@ -1,10 +1,10 @@
-## Communication Object Generation
+# Communication Object Generation
 
-### Joke
+## Joke
 
-#### Definition
+### Definition
 
-##### Attributes
+#### Attributes
 
 I. difference
 
@@ -56,19 +56,19 @@ you can add distortions to this standard formula by navigating through other obj
 
 - "my dog thinks shes my best friend" => "my dog thinks she's my enemy and she's right because a real best friend wouldnt have shinier hair than you without pantene pro-v"
 
-##### Rules
+#### Rules
 
 - must be tied to reality in some way
 - must have some nonzero non-real ratio
 - must have at least one identifying joke attribute (difference attributes (silliness, surprise, relevance), or another joke attribute) with non-standard value different from a normal sentence
 
-##### Types
+#### Types
 
 - topic (any object forming expectations, such as social group dynamics, norms, religious tenets, assumptions, stereotypes, roles, etc)
 - style (meta-humor, comedian's comedy, dark humor, sarcasm, high brow, raunchy)
 - attribute (contextual, political, self-aware, self-referential, fourth-wall breaking, joke commentary)
 
-##### Common joke components/functions
+#### Common joke components/functions
 
 1. varying value on silliness spectrum:
 
@@ -102,6 +102,7 @@ II. intersection of alternate meaning waves
 - has two intersection points of alternate meaning waves for "memory" & "corruption"
 
 1. memory corruption => amnesia
+
 2. memory corruption => paranoia of being caught in corrupt, exploitative transactions, related to memory management
 
 - also has a relevance circle, tying the end implication "corrupt exploitative memory management" to the first implication "memory was corrupted", and the middle implication "paranoid amnesia"
@@ -191,3 +192,78 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 - huge cognitive & semantic distance between previous & current sentence to generate surprise:
 "yeah I could have taken those bullies - to church, but I didnt have my church bus pass on me because I keep it in my respect-for-Jesus/sinning pants"
 
+
+
+### Consensus by joke
+
+- using 'friendly fire' jokes to build consensus & inspire confrontation of ridiculous beliefs
+- one way to get people on your side is being extra decent when they expect you to fight them
+- honesty is also important - find a way to make the truth funny, assuming the worst is true & building jokes on that
+
+
+#### Friendly fire humor
+
+
+#### Gun Laws
+
+This means instead of accusing republicans of killing people with their 'ignorance is bliss' approach to guns, you need to use humor to make your points in a way that doesnt antagonize them
+
+In that case an example would mean finding a democrat killed by guns and then you could say 
+- 'ok that guy deserved it, but in general i dont like guns'
+
+And build a joke on top of that like 
+- 'maybe we could have a legal one-person sacrifice once every year and the Garys of the world would be hunted & you all could get out all your gun aggression on that person'
+
+And make it clear youre joking - that would get pro-gun people on your side even without committing to that kind of policy, and anyone who objects just looks stupid for not getting that its a joke. This makes it possible for them to confront the extreme negative possibilities of their own beliefs (that some innocent person who could be them someday gets murdered by a gun) in an honest way that doesnt make them hate you bc you did it in a funny way - it's partly the improv method of 'yes and' but in a way that makes your original point, mixed with their actual beliefs, taken to a comical extreme.
+
+
+#### Abortion
+
+On stuff like abortion you can ask them for scientific proof like:
+- 'we should make babies sign a contract or pass a test proving that theyre not going to torture their parents by being failures or asking for stuff all the time or prove that they came from the holy dimension instead of hell and that they arent possessed by the devil & arent the antichrist, or else they have to get in the dumpster'
+- 'we should have a return policy on babies if you find out theyre the antichrist or the second coming of jesus which would be a lot'
+
+If theyre religious you can do the friendly fire humor again:
+- 'the only reason I didnt get an abortion was I didnt want Jesus looking in there to check me for virtuous behavior' that mixes their beliefs with some ridiculousness that makes your original point and doesnt make them feel bad
+
+
+#### Medical Care
+
+- 'we should make a deal with doctors that they get to kill their most annoying patient once a year if they make a big contribution to science'
+- 'if patients want medical care without the new disability of crippling debt, they should have to prove that theyre below a certain level of annoying'
+- 'if patients want to keep complaining about bills & request unnecessary, they can pay for their doctors' therapy'
+- 'patients can be their own doctors by shooting off the bacteria with their medical rifles'
+- 'patients only get science if theyre willing to protect gun rights with their lives'
+- 'people who get old & acquire an infestation of legal teams arent mentally strong enough to will their medical problems such as aging & legal staff away'
+- 'republicans are hobbits & they need our charity to find a cure'
+- 'republicans hate scientists bc they would figure out they were hobbits'
+
+
+#### Basic Income
+
+- 'imagine the sex robot industry innovations if Trump had had basic income'
+- 'Trumps painting of himself as a ripped superhero would be real if he had had basic income'
+- 'we would be able to hire a 24/7 security team to chase Trump off the golf course if there was basic income bc people would volunteer for that if they didnt have to worry about the basics'
+
+
+### Truth humor
+
+- assume that:
+	- everyone wants to kill you
+	- everyone is evil
+	- everyone is lying
+	- everyone is competing
+
+- and then make it funny:
+
+	- homicidal urges
+		- 'ill pitch in on the casket if you promise to wait until we pass this bill to hire a hitman'
+
+	- ubiquitous evil
+		- 'you can throw me to the rednecks once we take away their guns & ill fight them with a fistfight like a lady would'
+
+	- eternal lies
+		- 'i know by "lets take away the guns" you really mean "lets experiment on citizens after they dont have guns"'
+
+	- competing
+		- petty humor (Larry David style, suspicious & cares about stupid low-stakes things)
