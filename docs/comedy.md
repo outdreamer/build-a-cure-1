@@ -12,6 +12,7 @@ And build a joke on top of that like
 
 And make it clear youre joking - that would get pro-gun people on your side even without committing to that kind of policy, and anyone who objects just looks stupid for not getting that its a joke. This makes it possible for them to confront the extreme negative possibilities of their own beliefs (that some innocent person who could be them someday gets murdered by a gun) in an honest way that doesnt make them hate you bc you did it in a funny way - it's partly the improv method of 'yes and' but in a way that makes your original point, mixed with their actual beliefs, taken to a comical extreme.
 
+
 ## Abortion
 
 On stuff like abortion you can ask them for scientific proof like:
@@ -21,6 +22,7 @@ On stuff like abortion you can ask them for scientific proof like:
 If theyre religious you can do the friendly fire humor again:
 - 'the only reason I didnt get an abortion was I didnt want Jesus looking in there to check me for virtuous behavior' that mixes their beliefs with some ridiculousness that makes your original point and doesnt make them feel bad
 
+
 ## Medical Care
 
 - 'we should make a deal with doctors that they get to kill their most annoying patient once a year if they make a big contribution to science'
@@ -28,10 +30,16 @@ If theyre religious you can do the friendly fire humor again:
 - 'if patients want to keep complaining about bills & request unnecessary, they can pay for their doctors' therapy'
 - 'patients can be their own doctors by shooting off the bacteria with their medical rifles'
 - 'patients only get science if theyre willing to protect gun rights with their lives'
-- 'people who get old & acquire an infestation of legal teams arent mentally strong enough to will their medical problems such as aging away'
+- 'people who get old & acquire an infestation of legal teams arent mentally strong enough to will their medical problems such as aging & legal staff away'
+- 'republicans are hobbits & they need our charity to find a cure'
+- 'republicans hate scientists bc they would figure out they were hobbits'
 
 
 ## Basic Income
+
+- 'imagine the sex robot industry innovations if Trump had had basic income'
+- 'Trumps painting of himself as a ripped superhero would be real if he had had basic income'
+- 'we would be able to hire a 24/7 security team to chase Trump off the golf course if there was basic income bc people would volunteer for that if they didnt have to worry about the basics'
 
 
 ## Consensus
