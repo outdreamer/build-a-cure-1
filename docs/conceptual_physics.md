@@ -19,6 +19,10 @@
 
   ### Time
 
+  - one reason time particles & potential particles are related is because time represents potential - if there's no potential for change (variance), time cannot pass
+
+  - this is one reason its important to explore other universes before our variance runs out - if we waste all our time/potential confirming/checking the information & entanglement connections in every particle, we wont be ready for the next universe once we're ejected from this one because we used up all the variance in this one
+
   - time can be defined as:
     - how many systems are capable of interacting on the same interface layer & the trajectory across the manifold of possible interaction combinations of those systems
       - whether other layers of interaction are system-adjacent (possible) or whether interface physics prohibits interactions on those layers for this system interaction trajectory (timeline)

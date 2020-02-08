@@ -39,6 +39,9 @@
           - can be a circuit on which the object participates or circulates where current position has meaning (starting interface)
           - can be a set of vectors creating an output intent or a trajectory linking various networks where an attribute shows up (relevance)
           - can be a metadata attribute of intersecting rules (diagonal attribute in a square formed by perpendicular rules)
+        - what shapes do attributes take with regard to a system?
+          - 
+
       - position
       - distance measures
       - set of possible variable values
