@@ -1,3 +1,9 @@
+# Consensus
+
+- using 'friendly fire' jokes to build consensus & inspire confrontation of ridiculous beliefs
+- one way to get people on your side is being extra decent when they expect you to fight them
+- honesty is also important - find a way to make the truth funny, assuming the worst is true & building jokes on that
+
 # Friendly fire humor
 
 ## Gun Laws
@@ -42,7 +48,24 @@ If theyre religious you can do the friendly fire humor again:
 - 'we would be able to hire a 24/7 security team to chase Trump off the golf course if there was basic income bc people would volunteer for that if they didnt have to worry about the basics'
 
 
-## Consensus
+# Truth humor
 
-- using 'friendly fire' jokes to build consensus & inspire confrontation of ridiculous beliefs
-- one way to get people on your side is being extra decent when they expect you to fight them
+- assume that:
+	- people want to kill you
+	- everyone is evil
+	- everyone is lying
+	- everyone is competing
+
+- and then make it funny:
+
+	- homicidal urges
+		- 'ill pitch in on the casket if you promise to wait until we pass this bill to hire a hitman'
+
+	- ubiquitous evil
+		- 'you can throw me to the rednecks once we take away their guns & ill fight them with a fistfight like a lady would'
+
+	- eternal lies
+		- 'i know by "lets take away the guns" you really mean "lets experiment on citizens after they dont have guns"'
+
+	- competing:
+		- petty humor (Larry David style, suspicious & cares about stupid low-stakes things)
