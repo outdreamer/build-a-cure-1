@@ -62,10 +62,19 @@
   - real world use case of multiplication:
 
     - when do you apply one variable value to another variable value?
-      - when you want to create x sets of y to create combinations & trajectories of units limited by x & y
-      - given the key interfaces (combinations & trajectories):
-        - to get from origin to point B, you need to know the coordinates of (x, y) in relation to your origin point
-        - the full set of trajectories from origin to point B limited by metric values x & y represents the area of x * y, if overlaps are removed
+      - when you want to create x sets of x to create combinations & trajectories & pairs of units limited by x & x
+      - given the key interfaces (combinations, trajectories, pairs):
+        - to get from origin to point B, you need to know the coordinates of (x, x) in relation to your origin point
+        - the full set of trajectories & pairs from origin to point B limited by metric values x & x represents the area of x * x
+          - if overlaps are removed
+          - if prioritizing efficiency/speed
+          - without extra information about extra dimensions (topology) between origin & point B
+        - in a system limited by four equal sides 
+        - or a variable applied to itself, like layer applied to layer to generate the full set of interface layer (types of type, intents of intent) combinations
+
+      - so you apply one variable value to another variable value when you want to evaluate combinations, pairs, or trajectories in a matrix shape
+
+      - you can see how to map a structural problem (whats the area of x & y) to a semantic problem (how to calculate all possible combinations, pairs, trajectories between two ordered lists)?
 
   - this is an example of how you could map an abstract/structural solution to another interface, like one with agents/positions and intents/directions
 
