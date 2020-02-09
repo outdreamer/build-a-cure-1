@@ -9,7 +9,7 @@
     - prediction function for what ratio of compounds is present in nutrients & drugs with differing success rates
       https://phys.org/news/2016-07-happy-hormone-calcium-cows-humans.html
     - functionality prediction functions, indexing genes, structure & sub-components by functionality
-    - examine joke functions for predictive power in cancer (like testing for signals/functionality)
+    - examine expectation subversion (joke) functions for predictive power in cancer (like testing for signals/functionality)
 
 
   ### Theories
