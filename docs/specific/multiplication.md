@@ -22,6 +22,7 @@
   - system analysis method:
 
     - to multiply x by x
+
       - query for interfaces building object relationships: square inside a circle
 
         - result interfaces:
@@ -36,6 +37,25 @@
         - use circle area to find square area, which is x by x
 
     - this is a tangential method that likely require more operations than multiplying x by x, but if you have that query & results available quicker than lattice or other common methods, it may still be faster
+
+  - deriving existing methods:
+
+    - derive lattice method:
+
+      - identify key concepts:
+        - alignment/position
+        - type subsets (where type differentiates subsets by digit position)
+
+      - identify key variables:
+        - number pairs
+        - digit position
+        - order of addition of subset products
+
+      - identify key intents:
+        - identify subsets (number pairs from each multiplier)
+        - subset products (products of number pairs from each multiplier)
+        - prioritize subsets (smallest or first digit position added first)
+        - add subsets by priority, retaining order of sums
 
 
 # Existing Methods
