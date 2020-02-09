@@ -1,5 +1,6 @@
 # Multiplication Object
 
+
   - strategies:
 
     - break problem into smaller problems:
@@ -8,20 +9,23 @@
         - 'rather than multiple x by y, find out how many x by x subset squares exist in x by y and add the remaining unit squares'
         - 'use subsets of a base like base 2'
 
+
   - method interfaces
 
     - efficient subset thresholds (bases)
     - efficient organization methods (frame subsets in a way that takes advantage of simpler multiplication)
     - efficient filters (reduce distance to final number with filtering operations)
 
+
   - method concepts
 
     - convergence
     - similarity (position/adjacence)
 
-  - system analysis method:
 
-    - to multiply x by x
+  - custom analysis methods:
+
+    - system analysis method to multiply x by x
 
       - query for interfaces building object relationships: square inside a circle
 
@@ -39,7 +43,22 @@
     - this is a tangential method that likely requires more operations than multiplying x by x, but if you have that query & results available quicker than lattice or other common methods, it may still be faster
       - another example is adding two triangles to get the area of the square, if you can derive the triangle dimensions allowing for overlap between triangle perimeter & square perimeter faster than multiplying x by x
       - another example is if you have an expanded version of the expansion (x by x by x) and youve computed the division of x^3 / x and have it cached or a divisor method thats faster than existing multiplication algorithms
-    - a physics simulator could be faster as well - simulating the trajectory of electrons through a square of balls could estimate the number of balls more rapidly than division
+
+    - interface analysis:
+
+      - this involves identifying the key interfaces (trajectory, intersection, angle, alignment) of the problem space 
+
+      - a physics simulator could be faster as well - simulating the trajectory of electrons through a square of balls could estimate the number of balls more rapidly than division
+        - this is an example of applying a filter (trajectory) to solve a problem in a new way
+
+      - trajectory physics could also be faster - which path from (0,0) to (x,y) involves the fewest summing operations
+
+    - a conceptual query could be faster too:
+
+      - applying one symmetry to another
+      - applying one ordered list to another to create an alignment between each pair of values (perpendicular angle) and calculating their intersection (x,y)
+      - applying one ordered list (spectrum) to another at the angle where they provide symmetries for those lists if the list values can be negative (perpendicular angle)
+
 
   - deriving existing methods:
 
