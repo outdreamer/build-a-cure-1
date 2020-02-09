@@ -90,6 +90,7 @@
         - phase shifts are another key interface to evaluate the problem from - how do you find the important thresholds in a problem space?
           - you can use variables like digit position to derive that anything that changes the position is an important threshold, and from there you'd find 10 as a standard
           - the reason 10 is a useful interface is because it makes operations like multiplication more efficient, as rather than apply one number by another (10 x 20) you can just do a phase shift operation (change position of non-zero digit and add a zero in first position)
+        - this is for when you dont have all the information and you dont already know the relationship between these two variables or why & when a phase shift provides an efficiency
 
   - this is an example of how you could map an abstract/structural solution to another interface, like one with agents/positions and intents/directions
 
