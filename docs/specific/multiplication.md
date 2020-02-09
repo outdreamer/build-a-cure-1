@@ -76,6 +76,9 @@
 
       - you can see how to map a structural problem (whats the area of x & y) to a semantic problem (how to calculate all possible combinations, pairs, trajectories between two ordered lists)?
 
+      - just like finding midpoints of square & adding diagonal internal square connected by midpoints & four corner triangles may be faster
+
+      - also like an ordered list (x * y) is the same type as parameters (ordered lists x & y) so mechanics of 'ordered list' type spaces can be exploited to find efficiencies to combine ordered lists with the 'apply method', where metadata (count) of one ordered list is used to generate duplicates of the other, retaining order
 
       - with simple multiplication, identifying key interfaces for efficiency (phase shifts):
           - 4 x 5 (original operation)
