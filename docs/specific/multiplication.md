@@ -36,11 +36,14 @@
 
         - use circle area to find square area, which is x by x
 
-    - this is a tangential method that likely require more operations than multiplying x by x, but if you have that query & results available quicker than lattice or other common methods, it may still be faster
+    - this is a tangential method that likely requires more operations than multiplying x by x, but if you have that query & results available quicker than lattice or other common methods, it may still be faster
+      - another example is adding two triangles to get the area of the square, if you can derive the triangle dimensions allowing for overlap between triangle perimeter & square perimeter faster than multiplying x by x
+      - another example is if you have an expanded version of the expansion (x by x by x) and youve computed the division of x^3 / x and have it cached or a divisor method thats faster than existing multiplication algorithms
+    - a physics simulator could be faster as well - simulating the trajectory of electrons through a square of balls could estimate the number of balls more rapidly than division
 
   - deriving existing methods:
 
-    - derive lattice method:
+    - lattice method:
 
       - identify concepts:
         - alignment/position
@@ -67,7 +70,7 @@
         - add subsets in order, retaining order of sums
         - identify semantic position of sum order (digit position in base 10 number system)
         - position sums in digit positions in order (maps directly to digit position in base 10 number system)
-        
+
 
 # Existing Methods
 
