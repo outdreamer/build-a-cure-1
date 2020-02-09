@@ -76,6 +76,21 @@
 
       - you can see how to map a structural problem (whats the area of x & y) to a semantic problem (how to calculate all possible combinations, pairs, trajectories between two ordered lists)?
 
+
+      - with simple multiplication, identifying key interfaces for efficiency (phase shifts):
+          - 4 x 5 (original operation)
+          - 5 = 1/2 of 10 (symmetry finding of middle value, which may be low cost operation)
+          - 4 x 1/2 = 2 (symmetry finding of middle value, which may be low cost operation)
+          - 2 x 10 = 20 (addition of 10 + 10)
+        - this is finding the proportion of one multiplier to a standard (10)
+        - the reason you'd use 10 is that it standardizes the problem to a simpler problem, which is counting steps (addition of 10 + 10 is simpler than 5 + 5 + 5 + 5)
+        - the interface of 10 is not just significant for its positional value but also because when you reduce everything to the standard of 10, some operations get simple enough to be a phase shift 
+          (20 x 10 shifts 2 to the next digit position and adds a 0)
+        - phase shifts (thresholds/boundaries/intersections of attributes) are an important concept for predictions
+        - phase shifts are another key interface to evaluate the problem from - how do you find the important thresholds in a problem space?
+          - you can use variables like digit position to derive that anything that changes the position is an important threshold, and from there you'd find 10 as a standard
+          - the reason 10 is a useful interface is because it makes operations like multiplication more efficient, as rather than apply one number by another (10 x 20) you can just do a phase shift operation (change position of non-zero digit and add a zero in first position)
+
   - this is an example of how you could map an abstract/structural solution to another interface, like one with agents/positions and intents/directions
 
   - deriving existing methods:
