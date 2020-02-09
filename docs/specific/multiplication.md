@@ -1,7 +1,4 @@
-# Multiplication methods
-
-
-- method object:
+# Multiplication Object
 
   - strategies:
 
@@ -20,14 +17,36 @@
   - method concepts
 
     - convergence
-    - similarity (adjacence)
+    - similarity (position/adjacence)
 
+  - system analysis method:
+
+    - to multiply x by x
+      - query for interfaces building object relationships: square inside a circle
+
+        - result interfaces:
+          - circle/square
+          - threshold (the relative sizes of a circle & square that would allow overlap between meaningful identifying attributes like corners & perimeter)
+          - sets (embedding one shape in another, overlapping their attribute sets)
+
+        - result relationships:
+          - find circle dimensions needed for square of size x
+          - find relationship of circle area to square area if square corners hit circle radius
+
+        - use circle area to find square area, which is x by x
+
+    - this is a tangential method that likely require more operations than multiplying x by x, but if you have that query & results available quicker than lattice or other common methods, it may still be faster
+
+
+# Existing Methods
 
 ## normal modern method
 
   - multiply digits of each number & sum the products
-  - grid method multiplication
+    - grid method multiplication is a way to visualize this
+
   - lattice multiplication
+    - method of organization that involves chained summing of digit-position-aligned subset products, where diagonals represent digit positions
 
 ### adjacent method
 
