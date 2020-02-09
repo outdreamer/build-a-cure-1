@@ -42,21 +42,32 @@
 
     - derive lattice method:
 
-      - identify key concepts:
+      - identify concepts:
         - alignment/position
         - type subsets (where type differentiates subsets by digit position)
 
-      - identify key variables:
-        - number pairs
+      - from concepts, identify conceptual strategies:
+        - break into sub-problem (unit operation: multiplying a pair of digits) to standardize operation objects (adding objects of similar type - one digit at a time) to obtain product sum for digit position
+
+      - from strategies, identify variables:
+        - digit pairs
         - digit position
         - order of addition of subset products
 
-      - identify key intents:
-        - identify subsets (number pairs from each multiplier)
-        - subset products (products of number pairs from each multiplier)
-        - prioritize subsets (smallest or first digit position added first)
-        - add subsets by priority, retaining order of sums
-
+      - from variables, identify intents & intent order, for overall intent (expand x by y)
+        - find structure that allows pairing of digits from each multiplier (matrix)
+        - find sub-structure that allow examination of subsets (perpendicular intersection)
+        - isolate multipliers by digit in matrix (align multipliers across row & column)
+        - identify subsets (digit pairs from each multiplier) by perpendicular intersection
+        - multiply subsets (products of digit pairs from each multiplier)
+        - store subset product in perpendicular intersection
+        - identify property indicating same digit position (adjacency - example: second digit in column 1 is same digit position as first digit in column 2)
+        - modulate adjacency to align digit positions (store subset product diagonally to allow straight line alignment of digit position values)
+        - order/prioritize subsets (smallest or first digit position added first)
+        - add subsets in order, retaining order of sums
+        - identify semantic position of sum order (digit position in base 10 number system)
+        - position sums in digit positions in order (maps directly to digit position in base 10 number system)
+        
 
 # Existing Methods
 
