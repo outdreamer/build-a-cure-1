@@ -59,6 +59,15 @@
       - applying one ordered list to another to create an alignment between each pair of values (perpendicular angle) and calculating their intersection (x,y)
       - applying one ordered list (spectrum) to another at the angle where they provide symmetries for those lists if the list values can be negative (perpendicular angle)
 
+  - real world use case of multiplication:
+
+    - when do you apply one variable value to another variable value?
+      - when you want to create x sets of y to create combinations & trajectories of units limited by x & y
+      - given the key interfaces (combinations & trajectories):
+        - to get from origin to point B, you need to know the coordinates of (x, y) in relation to your origin point
+        - the full set of trajectories from origin to point B limited by metric values x & y represents the area of x * y, if overlaps are removed
+
+  - this is an example of how you could map an abstract/structural solution to another interface, like one with agents/positions and intents/directions
 
   - deriving existing methods:
 
