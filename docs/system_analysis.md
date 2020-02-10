@@ -1,6 +1,6 @@
 # System Analysis
 
-## System Analysis applications
+## Applications
 
 	- system analysis should be able to answer questions like:
 		- what is a way to reduce computation time in a ml model?

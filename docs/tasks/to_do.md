@@ -27,6 +27,8 @@
   - treatment component identification function
   - drug reaction predictor
   - compound search from smile formula
+  - math notes
+  - function/directory organization
 
 # Sources
 
