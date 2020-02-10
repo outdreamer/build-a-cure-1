@@ -24,6 +24,19 @@
   - some methods are immune to information but most require a clear minimum
 
 
+
+## Problem solving core functions
+
+  - insight filter ("extract insight from data, selecting for variance cascades")
+  - pattern finder ("find a pattern with intent x or output y")
+  - pattern generator ("generate probable patterns using known or likely components to explain x")
+  - pattern applier ("apply this pattern to this system", "apply this insight to this solution")
+    - concept combiner ("combine this strategy with this power balance")
+  - selecting strategies
+  - property matching for sub-intents of exploit intent 
+  - perspective switching/transforms
+
+
 ## Problem Solving Operations
 
 

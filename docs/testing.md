@@ -1,10 +1,15 @@
-overall testing strategy:
+# Testing
+
+## Overall testing strategy
+
 - test for each source of variance that can hold embedded assumptions (inputs/outputs, conditions, function & stack metadata such as permissions/context)
 
-concepts:
+## Test concepts
+
 - concepts like relevance are important in security: is there a 'need to know'
 
-integration test:
+## Integration test
+
 - calculating interaction of all objects in code requires analyzing not just classes & functions but:
   - system context (permissions, installed tools, browser settings, antivirus software, firewall configuration)
   - emergent properties
@@ -12,12 +17,14 @@ integration test:
   - consecutive exploits using gaps in multiple chainable objects
   - agent actions/resources (info about stack being used)
 
-- standard questions:
+## Standard test questions
+
   - 'how will program resolve selection between two alternative resources based on tech stack'
   - 'how can functionality/inputs be mimicked'
   - 'how will this user action interact with this user-exposed function'
 
-- non-standard questions:
+## Non-standard test questions
+
   - 'how will this object1.function interact with object2.function under edge conditions'
   - 'can object1.function be tricked into interacting with object2.function'
   - 'how will tool design limits conflict with developer intents' 
@@ -27,12 +34,14 @@ integration test:
       - do embedded assumptions carry hidden advantages for various agent positions
         - does prioritizing most recent data have un/intended advantages, and how could those be exploited
 
-- other testing tools:
+## Existing testing tools
+
   - code generation tools (generate API) to standardize code
   - analyze dependencies & context
     - 'if a third party tool makes this mistake, how will that impact our system'
 
-- my testing tools:
+## Custom testing tools
+
   - intent-matching
     - 'what is the possible & likely reasons for this action'
       - 'why would someone make a request to a third-party site with injected javascript - how could retrieved resource be exploited'
@@ -40,7 +49,8 @@ integration test:
   - test generation
     - parsing code assumptions & generating unit tests by variance/assumptions
 
-my code optimization tools:
+## Code optimization tools
+
 - identifying code snippets with repeated logic (on various interfaces, not just raw code repetition) or too much variance
 - identifying assumptions in code that can be exploited
 - identfiying optimal logic order:
@@ -50,3 +60,22 @@ my code optimization tools:
   - list metadata (location of an item) should be stored during list definition if possible to avoid iteration later
   - over-restrictive conditions that reduce later choices should be carefully examined for necessity
   - if conditions should be in an if/else block rather than consecutive if conditions, if they should never happen concurrently
+
+## Test Generation
+
+    - unit testing:
+
+      - assumptions
+      - inputs/outputs
+      - conditions
+      - intents/use cases
+
+    - integration testing: 
+    
+      - function chains
+      - system context
+      - user decision history (visited insecure website/cleared cache)
+
+    - identify objects that need to be mocked bc of security/deployment constraints
+
+    - generate assert statements, conditions, and mock objects as needed

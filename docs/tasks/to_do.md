@@ -90,6 +90,7 @@
 # Functions
 
 
+  - merge finder & builder notes
   - standardize terms: shape/structure, model/perspective/filter/standard/interface, intent/method/function/rule, path/route, metadata/attribute/variable/property, object/entity, type/class/category, variance/randomness/chaos/entropy
     - differentiate symmetry, interface, filter, & relationship to variables
   - fit group theory
