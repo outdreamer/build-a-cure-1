@@ -224,6 +224,8 @@
         - do you identify the nearest standard shape & derive the transformation function mapping standard shape area/metadata to non-standard shape area/metadata?
         - do you identify the standard shapes that are best at approximating the non-standard shape (easily added objects like rectangles that can approximate an asymmetric curve's underlying positive area)
         - do you identify sub-functions or functions on intervals of the curve & approximate their areas instead, summing them after their areas are found?
+          - can you arrange these sub-component (functions/shapes split by interval) in a way that forms standard (and therefore more calculatable shapes)?
+            - is there a way to arrange sections used to approximate area under the curve in a way that forms parabolas, etc
         - do you identify attributes higher up causal stack that can calculate area faster than approximation functions? 
           - distorting variables of a straight line or rules detailing when standard/type/rule boundaries break
 
