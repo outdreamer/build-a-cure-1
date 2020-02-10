@@ -1,7 +1,16 @@
 ## Identifying Key Objects
 
 
-  ### Generate Important Object Model Interactions
+### Questions
+
+  - How to decide which layer to choose core functions at?
+    - the lowest layer is mathematical, directly operating on numerical values (add, multiply, etc)
+    - then above that you have functions (composed of those lower math operations) having successively emerging intents, starting with functions that are system agnostic & apply to all systems (find, combine, merge, build, etc)
+    - above that, youll have a layer of functions composed of lower operations that apply exclusively to the relevant system you used to derive the core functions 
+      (for a biosystem, functions like "borrow a gene", "learn an attacker profile", "send signal")
+
+
+### Generate Important Object Model Interactions
 
     - how would you generate the useful interfaces/parameters of the object model, if you didnt already know these useful ways to use object/attribute/rule/type definitions?
 
@@ -20,7 +29,7 @@
     - another useful process is identifying unique objects & core functions in a system, which should be run before the above object interaction generating process
 
 
-  ### Identifying important semantic objects in a problem space
+### Identifying important semantic objects in a problem space
 
     - identifying optimal structure, or object identity:
       - exploit opportunities, monster systems/assumptions, risk chains, error & variance cascades/flow, transaction iterations, trade loops
@@ -84,7 +93,7 @@
         - system/component boundaries/layers
 
 
-  ### Object Layer & Interface Identification
+### Object Layer & Interface Identification
 
     - there may be an optimal layer or other set of objects on one layer or across layers with which to frame a problem
 
@@ -115,7 +124,7 @@
       - interfaces involve standardization (removal of variables that dont change) to leave the variables that change
 
 
-  ### Identifying useful object combinations
+### Identifying useful object combinations
 
     - combine risk, cause, variance, and probability objects (uncertainty, causal loop, variance generator, probability distribution)
 

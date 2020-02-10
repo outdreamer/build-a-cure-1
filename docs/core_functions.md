@@ -44,6 +44,9 @@
 
   - this is the set of core conceptual math operations between concepts
 
+  - core function + core object -> interaction rule of core attributes that aligns with core function + core object priority
+  - depict core functions on their own direction to indicate a dimension when graphing
+
   I. combine (expand, add, set)
 
     1. merge with override/backup/overlap rules

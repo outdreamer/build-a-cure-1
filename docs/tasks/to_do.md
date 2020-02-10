@@ -36,6 +36,10 @@
   - pull these properties for compounds on wiki
   - find source of bio keywords & synonyms
 
+# Examples
+
+  - give an example of mapping an invention & insight on the abstract network
+
 
 # Structural Objects
 

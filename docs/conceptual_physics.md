@@ -1,6 +1,14 @@
 # Concept Operations
 
 
+## Applications
+    - discovering functions between nodes, 
+    - matching problem/solution types, 
+    - identifying & leveraging conceptual behavior
+        - use truth to apply pressure
+        - express faith to motivate
+
+
 ## Conceptual Computer (Interface network)
 
   - look for mapping between the interface network and quantum particles
@@ -14,7 +22,50 @@
     - also maximizing the variance in this universe would attract refugees from other spaces chased out by the gravity of certainty, so they can take shelter in our variance - being the variance-generator would also allow us access to other universes as sources of error information
     
 
+## Concept Derivation
+
+  - identifying unique objects in a system that cant be defined in terms of standard operations on other objects
+
+    example:
+    - power cant be defined as a simple combination of other objects in the networks it participates in, because its an abstract property having many possible implementations, all having one thing in common, which is the role/behavior of "enabler/enabling", and power is therefore occupying more than one semantic layer, as it can be an object, role, function, input/output, depending on which structure is more relevant to the host system for this implementation of power
+
+    - however, defining it in terms of these possible structures it occupies (input, role, function) is too simplistic - for example you cant define power as simply "an input" because while that is true, given its enabling functionality, it leaves out a lot of information and fails to distinguish it from other inputs, which may not be powerful since they are common or easily substituted with alternatives
+
+    - even defining power by its core unifying function "enabling" is too simplistic because often power does more than just enable something, given the connectedness of systems - meaning that enable one thing often disables another thing in the system or an adjacent system, which creates effects other than enabling, as the disabled process may disable the original enabled process down the causal path
+
+  - therefore we can conclude that abstractions are concepts that:
+
+    - can take many structures (the concept of equivalence has many possible implementations)
+
+    - can impact many systems varying by system attributes or system types (abstract, calculatable, variable, understood, types, functional, prioritized, optimized)
+
+    - cannot be perfectly defined as a simple function of other objects, but rather are definable with a set of simple, core boundary rules that differentiate them from other concepts
+      - these boundary rules do not involve other concepts on the same layer, but rather core components
+      - for example, the core components of common shapes are: line, point, curve, corner
+      - the set of common shapes are the uniquely identifiable combinations of these components (circle, square, triangle) that are not identifiable as simple transforms of other common shapes, but rather are composed of simple limit rules based on their core components (line, point, curve, corner)
+
+      - "enablement" doesnt perfectly capture "power", and the concept of "enablement" also relies on the concept of "power", but it does differentiate power from other concepts & unite its possible implementations & meanings
+      - "symmetry" doesnt perfectly capture "balance"
+      - "similarity" or "substitutability" or "identity" doesnt perfectly capture "equivalence"
+
+    - are uniquely identifiable compared to other concepts
+      - balance is related to symmetry so these are not unique concepts but embedded/dependent/overlapping/hierarchical concepts
+      - however balance is clearly differentiable from power, as balance inherently involves equivalence and power doesnt, whereas power inherently involves enablement and balance doesnt
+
+
 ## Specific Concepts
+
+
+  ### Solvability
+
+    - examine shape of universe nexus by which problems are solvable & which are not
+    - unsolvable problems are dependent on a conclusion that is not constructable with known information or functions
+    - for the most part, unsolvable problems related to objects that are not understood or not based in our universe, 
+    - so we only see their impact on other objects as they cascade into our perceivable universe or theorize their construction by processes we can perceive
+    - common types of problems usually considered unsolvable:
+      - computationally expensive but not impossible (information-dense, like how many particles are in the universe or how many prime numbers there are)
+      - imperceptible relationship/object considered impossible to verify (what is the structure of other universes' nexuses)
+      - conceptual relationships not mapped to math operations
 
 
   ### Time
@@ -76,36 +127,67 @@
 
   ### Entropy/variance
 
-  - the reason entropy can evolve on its own is that if order was the default, it wouldnt allow order (in the form of alignments) to be constructed for a particular efficient purpose (like making a trade or cooperating) and then automatically deconstructed by entropy when no longer used. Efficiencies may be rare & temporary enough that order shouldnt be the default so disorder can allow more interactions to occur and more efficiencies can be found naturally. It's similar to the free market allowing companies to organize & operate without regulation to find efficiencies in demand/supply.
+    - the reason entropy can evolve on its own is that if order was the default, it wouldnt allow order (in the form of alignments) to be constructed for a particular efficient purpose (like making a trade or cooperating) and then automatically deconstructed by entropy when no longer used. Efficiencies may be rare & temporary enough that order shouldnt be the default so disorder can allow more interactions to occur and more efficiencies can be found naturally. It's similar to the free market allowing companies to organize & operate without regulation to find efficiencies in demand/supply.
 
-  
-## Concept Derivation
+    
+  ### Randomness
 
-  - identifying unique objects in a system that cant be defined in terms of standard operations on other objects
+      High-randomness system properties:
 
-    example:
-    - power cant be defined as a simple combination of other objects in the networks it participates in, because its an abstract property having many possible implementations, all having one thing in common, which is the role/behavior of "enabler/enabling", and power is therefore occupying more than one semantic layer, as it can be an object, role, function, input/output, depending on which structure is more relevant to the host system for this implementation of power
+      - consolidation of variance to an interface
+      - interchangeable inputs
+      - structural similarity across interacting systems (few variables in which they differ) on that interface
+      - variables across different interfaces (system-level variable, intent-level variable, function-level variable)
+      - change physics applies to every layer of the system, its components, and interacting/host systems
+      - compounding stability in structure, compounding variance in content
+      - centrality of random variable as a hub in a causal or interface network
 
-    - however, defining it in terms of these possible structures it occupies (input, role, function) is too simplistic - for example you cant define power as simply "an input" because while that is true, given its enabling functionality, it leaves out a lot of information and fails to distinguish it from other inputs, which may not be powerful since they are common or easily substituted with alternatives
+      In a random (unpredictable) system, it's possible to derive patterns in structure much of the time (whether a function exists), but less feasible to predict patterns in content (how a function is implemented).
 
-    - even defining power by its core unifying function "enabling" is too simplistic because often power does more than just enable something, given the connectedness of systems - meaning that enable one thing often disables another thing in the system or an adjacent system, which creates effects other than enabling, as the disabled process may disable the original enabled process down the causal path
+      Random system concepts:
+      - symmetry
+      - equivalence
+      - uncertainty
+      - variance
+      - binding, change, & boundary physics
 
-  - therefore we can conclude that abstractions are concepts that:
+  #### Randomness Generator
 
-    - can take many structures (the concept of equivalence has many possible implementations)
+    1. calculate maximal variance points in a system (variables most unrelated to all other variables), and equalize their contributions
 
-    - can impact many systems varying by system attributes or system types (abstract, calculatable, variable, understood, types, functional, prioritized, optimized)
+      example:
+        - "cloud size" is directly related to adjacent water, wind patterns, temperature & elements in adjacent air
+        - "cloud size" is indirectly related to moon phase (influences wind patterns), sun exposure (influences temperature), pollution (influences elements in air)
+        - "cloud size" is very indirectly related to astrology 
+          (influences moods, emotions, subconscious, dreams, & market decisions, which influences market trends, which influence side effects of production like pollution)
+        - cloud size is so indirectly related to astrology that it may be considered independent of astrology, despite the fact that every object is inherently related to all other objects
+        - we can say that "cloud size" has a "maximal causative distance" or "minimal dependence" on "astrology"
+        - other ways to find a variable with minimal dependence on some other variable include:
+          - varying abstraction level:
+            - the concept of 'balance' is indirectly related to everything but only specifically related to a small subset of things (justice, symmetry, etc), most of which are either conceptually abstract, or mathematically abstract (specific to mathematics, like a low-level operation or attribute that can be calculated numerically)
 
-    - cannot be perfectly defined as a simple function of other objects, but rather are definable with a set of simple, core boundary rules that differentiate them from other concepts
-      - these boundary rules do not involve other concepts on the same layer, but rather core components
-      - for example, the core components of common shapes are: line, point, curve, corner
-      - the set of common shapes are the uniquely identifiable combinations of these components (circle, square, triangle) that are not identifiable as simple transforms of other common shapes, but rather are composed of simple limit rules based on their core components (line, point, curve, corner)
+          - querying its dependent variables 
+            (cloud size is caused by element distribution, so element distribution is independent of cloud size)
+            - in reality this is not real independence, because many dependence relationships are circular, either 
+              - directly (one circular loop between two nodes), or
+              - indirectly (the output dependent node, cloud size, goes through many systems before returning some input requirement of the input independent node, element distribution)
+              - this is because there are very few to zero ways to generate an output that has no side effects on input requirements (input inputs)
+                - an example is "victimless crimes" like ejecting junk into space, which may not impact us immediately but definitely will return some causation (in the form of required inputs to some process) to our species eventually
+        - another example is "corners of a square":
+          - each side of the square is equal, so it's equally likely that the "square" system will generate a movement of balls within the square, that pushes a ball to one of its corners
+          - the corners represent a maximal variance variable (corner), which are unique in that if a ball is in one corner, it necessarily cannot also be in some other corner
+          - this is the foundation of identifying not just maximal variance-generating independent variables in a system, but also system nodes (gathering points of inputs/outputs) & interfaces (standards)
 
-      - "enablement" doesnt perfectly capture "power", and the concept of "enablement" also relies on the concept of "power", but it does differentiate power from other concepts & unite its possible implementations & meanings
-      - "symmetry" doesnt perfectly capture "balance"
-      - "similarity" or "substitutability" or "identity" doesnt perfectly capture "equivalence"
+    2. design systems that optimize the number of independent max variance points
+      - how do you design a system with maximal variance-generating independence points?
+        - take the problem of a square - how would you generate the corners such that:
+          - each corner is unique compared to other corners
+          - each corner exerts the same influence on the ball movements within the square
+          - each additional corner adds to the variance of the ball movements
+        - eventually if you add too many corners, you get a circle - is this the maximal variance implementation of a square, or is there some point between a square and a circle with more variance-generating points than either?
+          - it depends on the variables that youre trying to optimize the randomness of - if they can occupy any point on the circle, a circle may be more appropriate - if they can only occupy a corner, you need to find some combination of corners that is not a circle in order to maximize their variance
 
-    - are uniquely identifiable compared to other concepts
-      - balance is related to symmetry so these are not unique concepts but embedded/dependent/overlapping/hierarchical concepts
-      - however balance is clearly differentiable from power, as balance inherently involves equivalence and power doesnt, whereas power inherently involves enablement and balance doesnt
-
+    - mentioned here:
+      https://twitter.com/remixerator/status/1148816151125712896
+      https://twitter.com/remixerator/status/1004578257637953537
+      https://twitter.com/remixerator/status/1004578256820064257

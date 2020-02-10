@@ -1,5 +1,4 @@
-
-## Variable Accretion Patterns
+# Variable Accretion Patterns
 
   - variable interface is the interface of potential
 

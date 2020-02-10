@@ -64,6 +64,21 @@
 
 # Questions
 
+  - by navigating the certainty interface (angles, distance, order), can you derive the shape of the corresponding object in the uncertainty interface?
+  
+  - how do different layers of interaction objects emerge? 
+    - why do collections of properties accrete into objects on one layer & other property collections gather on other layers? 
+    - do mostly objects with similar types, functions, attributes, attribute values, or complexity interact?
+    - how do objects of very different types (an attribute & an object) usually interact in systems, or do they not have behaviors defined outside of similarly typed object interactions?
+      example: does a cat respond to teeth (attribute) the same way in any object, or only when attached to certain objects, like a dog, or when it has a certain value (sharpness: high)
+
+  - what happens when a system or space is exhausted and all combinations & interactions have been defined? 
+    - does the interface of variance freeze/stabilize into a network
+    - does its remaining variance gather on other interfaces/layers? 
+
+  - sub-interface interactions:
+    - is it better to standardize to object interface, variable interface, type interface, or function interface?
+
   - what types of variables can be ignored even when theyre good indicators?
     - output rather than input variables (output is a good indicator even though input variable may be preferable)
     - variables less likely to change

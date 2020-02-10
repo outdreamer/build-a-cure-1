@@ -17,49 +17,7 @@
   - the questions of each problem space can be mapped to user tasks within a game, defined by a set of rules creating similar questions answerable in the game
   - when builders have taught enough users, builders should move on to being users of another game, in an alternating cycle
   https://twitter.com/remixerator/status/1217718371816329217
-
-
-## Randomness Generator
-
-  1. calculate maximal variance points in a system (variables most unrelated to all other variables), and equalize their contributions
-
-    example:
-      - "cloud size" is directly related to adjacent water, wind patterns, temperature & elements in adjacent air
-      - "cloud size" is indirectly related to moon phase (influences wind patterns), sun exposure (influences temperature), pollution (influences elements in air)
-      - "cloud size" is very indirectly related to astrology 
-        (influences moods, emotions, subconscious, dreams, & market decisions, which influences market trends, which influence side effects of production like pollution)
-      - cloud size is so indirectly related to astrology that it may be considered independent of astrology, despite the fact that every object is inherently related to all other objects
-      - we can say that "cloud size" has a "maximal causative distance" or "minimal dependence" on "astrology"
-      - other ways to find a variable with minimal dependence on some other variable include:
-        - varying abstraction level:
-          - the concept of 'balance' is indirectly related to everything but only specifically related to a small subset of things (justice, symmetry, etc), most of which are either conceptually abstract, or mathematically abstract (specific to mathematics, like a low-level operation or attribute that can be calculated numerically)
-
-        - querying its dependent variables 
-          (cloud size is caused by element distribution, so element distribution is independent of cloud size)
-          - in reality this is not real independence, because many dependence relationships are circular, either 
-            - directly (one circular loop between two nodes), or
-            - indirectly (the output dependent node, cloud size, goes through many systems before returning some input requirement of the input independent node, element distribution)
-            - this is because there are very few to zero ways to generate an output that has no side effects on input requirements (input inputs)
-              - an example is "victimless crimes" like ejecting junk into space, which may not impact us immediately but definitely will return some causation (in the form of required inputs to some process) to our species eventually
-      - another example is "corners of a square":
-        - each side of the square is equal, so it's equally likely that the "square" system will generate a movement of balls within the square, that pushes a ball to one of its corners
-        - the corners represent a maximal variance variable (corner), which are unique in that if a ball is in one corner, it necessarily cannot also be in some other corner
-        - this is the foundation of identifying not just maximal variance-generating independent variables in a system, but also system nodes (gathering points of inputs/outputs) & interfaces (standards)
-
-  2. design systems that optimize the number of independent max variance points
-    - how do you design a system with maximal variance-generating independence points?
-      - take the problem of a square - how would you generate the corners such that:
-        - each corner is unique compared to other corners
-        - each corner exerts the same influence on the ball movements within the square
-        - each additional corner adds to the variance of the ball movements
-      - eventually if you add too many corners, you get a circle - is this the maximal variance implementation of a square, or is there some point between a square and a circle with more variance-generating points than either?
-        - it depends on the variables that youre trying to optimize the randomness of - if they can occupy any point on the circle, a circle may be more appropriate - if they can only occupy a corner, you need to find some combination of corners that is not a circle in order to maximize their variance
-
-  - mentioned here:
-    https://twitter.com/remixerator/status/1148816151125712896
-    https://twitter.com/remixerator/status/1004578257637953537
-    https://twitter.com/remixerator/status/1004578256820064257
-
+  
 
 ## Optimization
 
