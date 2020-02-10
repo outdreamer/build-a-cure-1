@@ -238,21 +238,42 @@
     - min info => selection of structural layer
 
     - structural example:
+
       - how to identify the correct interface to solve the problem of 'area under curve' for a non-standard shape:
+
         - do you identify the nearest standard shape & derive the transformation function mapping standard shape area/metadata to non-standard shape area/metadata?
+
         - do you identify the standard shapes that are best at approximating the non-standard shape (easily added objects like rectangles that can approximate an asymmetric curve's underlying positive area)
+
         - do you identify sub-functions or functions on intervals of the curve & approximate their areas instead, summing them after their areas are found?
+
           - can you arrange these sub-component (functions/shapes split by interval) in a way that forms standard (and therefore more calculatable shapes)?
+
             - is there a way to arrange sections used to approximate area under the curve in a way that forms parabolas, etc
+
           - matching distortions (matching area above line with area below line so line can be used instead of curve)
+
         - can you map it to another function of variables with similar or equivalent variance & use that to map the area attribute?
+
           - a mapped problem might be: 
+
             - "calculate a metric of expanded dimension (dimension + 1) of a point (meaning a line) differentiating the line from a limit relevant to lines"
-        - calculate in the reverse direction:
-          - how to derive set of lines possible for a particular area?
+
+              - is there a relationship between point & line that mimics the relationship between line & area so calculating the line metric once expanded from a point can give a transformable answer into the area metric for a shape limited by the lines?
+            
             - "calculate a metric of reduced dimension (line) for an area to describe difference between line & limiting line"
+            
+              - is there a relationship between cube & square metrics that can be used to estimate or calculate area if you have volume of shape created by curve expanded by another dimension?
+
+        - calculate in the reverse direction:
+
+          - how to derive set of lines possible for a particular area?
+            - determine if the line described is likely to be a possible output for an input area
+
         - can it be reduced to area of another function with same probability distribution of outputs (y)
+
         - do you identify attributes higher up causal stack that can calculate area faster than approximation functions? 
+
           - distorting variables of a straight line or rules detailing when standard/type/rule boundaries break
 
     - add variable-selection example with separate alts having equivalent outputs:
