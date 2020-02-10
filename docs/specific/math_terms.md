@@ -156,6 +156,10 @@
 					- dy/ d(attribute that is specific to z)
 					- dy/ d(attribute that x & z have in common)
 					- dy/ d(attribute causing x and/or z)
+					- dy/ d(alternate function compressing x & z efficiently)
+					- dy/ d(metadata function describing x & z activities)
+					- dy/ d(approximation function)
+					- dy/ d(emergent variable w that x & z cause)
 
 		- integral: 1/(power + 1) * coefficient * (variable ^ power + 1) to calculate metrics of higher dimensions (area under a curve)
 
