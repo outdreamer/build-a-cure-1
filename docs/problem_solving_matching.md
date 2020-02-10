@@ -17,7 +17,6 @@
   - generate (using limits, interfaces, symmetries, variables)
   - map (physics of limits, combination, calculation, approximation, measurement)
 
-
 ### Alternate structural layers
 
   I. Match problem & solution using definition & standardization, applying increasing limits until problem & solution match
@@ -245,6 +244,8 @@
         - do you identify sub-functions or functions on intervals of the curve & approximate their areas instead, summing them after their areas are found?
           - can you arrange these sub-component (functions/shapes split by interval) in a way that forms standard (and therefore more calculatable shapes)?
             - is there a way to arrange sections used to approximate area under the curve in a way that forms parabolas, etc
+          - matching distortions (matching area above line with area below line so line can be used instead of curve)
+        - can it be reduced to area of another function with same probability distribution of outputs (y)
         - do you identify attributes higher up causal stack that can calculate area faster than approximation functions? 
           - distorting variables of a straight line or rules detailing when standard/type/rule boundaries break
 
