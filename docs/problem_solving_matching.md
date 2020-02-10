@@ -130,6 +130,7 @@
 
           - if you start from a circle of nodes representing default spaces and you permute the operations or number types of that space, you have a set of new spaces
           - in what structure can you arrange these circles & transforming vectors in a way that reveals the semantic overlap of these attributes?
+          - for instance, how can you arrange the objects (vectors, angles) and operations (multiplication) in a way that reveals the emergent attributes (associativity, commutativity) of various combinations/transforms (normal numbers, default vector space, quaternions) - so that their intersections reveal corrollaries in attributes/rules/types?
 
       - derive possible structures given the problem definition & the set of target concepts:
 
