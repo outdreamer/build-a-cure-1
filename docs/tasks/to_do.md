@@ -89,7 +89,10 @@
 
 # Functions
 
+
   - standardize terms: shape/structure, model/perspective/filter/standard/interface, intent/method/function/rule, path/route, metadata/attribute/variable/property, object/entity, type/class/category, variance/randomness/chaos/entropy
+    - differentiate symmetry, interface, filter, & relationship to variables
+  - fit group theory
   - add variable accretion patterns (how an object becomes influenced by a new variable, complex system interaction patterns, etc)
   - add get_common_properties function to do extra property-based searches after identifying objects with extract
   - add function to test chemical reactions: https://cheminfo.github.io/openchemlib-js/docs/classes/reaction.html

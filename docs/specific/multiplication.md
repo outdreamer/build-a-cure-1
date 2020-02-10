@@ -43,6 +43,8 @@
     - this is a tangential method that likely requires more operations than multiplying x by x, but if you have that query & results available quicker than lattice or other common methods, it may still be faster
       - another example is adding two triangles to get the area of the square, if you can derive the triangle dimensions allowing for overlap between triangle perimeter & square perimeter faster than multiplying x by x
       - another example is if you have an expanded version of the expansion (x by x by x) and youve computed the division of x^3 / x and have it cached or a divisor method thats faster than existing multiplication algorithms
+      - just like finding midpoints of square & adding diagonal internal square connected by midpoints & four corner triangles may be faster
+      - also like an ordered list (x * y) is the same type as parameters (ordered lists x & y) so mechanics of 'ordered list' type spaces can be exploited to find efficiencies to combine ordered lists with the 'apply method', where metadata (count) of one ordered list is used to generate duplicates of the other, retaining order
 
     - interface analysis:
 
@@ -62,6 +64,7 @@
   - real world use case of multiplication:
 
     - when do you apply one variable value to another variable value?
+
       - when you want to create x sets of x to create combinations & trajectories & pairs of units limited by x & x
       - given the key interfaces (combinations, trajectories, pairs):
         - to get from origin to point B, you need to know the coordinates of (x, x) in relation to your origin point
@@ -75,10 +78,6 @@
       - so you apply one variable value to another variable value when you want to evaluate combinations, pairs, or trajectories in a matrix shape
 
       - you can see how to map a structural problem (whats the area of x & y) to a semantic problem (how to calculate all possible combinations, pairs, trajectories between two ordered lists)?
-
-      - just like finding midpoints of square & adding diagonal internal square connected by midpoints & four corner triangles may be faster
-
-      - also like an ordered list (x * y) is the same type as parameters (ordered lists x & y) so mechanics of 'ordered list' type spaces can be exploited to find efficiencies to combine ordered lists with the 'apply method', where metadata (count) of one ordered list is used to generate duplicates of the other, retaining order
 
       - with simple multiplication, identifying key interfaces for efficiency (phase shifts):
           - 4 x 5 (original operation)
@@ -178,3 +177,19 @@
   These tables consisted of a list of the first twenty multiples of a certain principal number n: n, 2n, ..., 20n; 
   followed by the multiples of 10n: 30n 40n, and 50n. 
   Then to compute any sexagesimal product, say 53n, one only needed to add 50n and 3n computed from the table."
+
+
+
+## Group theory
+
+  - definitions:
+    - quaternions: 
+      - ratio of two vectors: https://en.wikipedia.org/wiki/Quaternion
+      - quaternion number space is a associative, non-commutative division algebra over real numbers
+      
+    - algebra: 
+      - vector space with a (bilinear) way to multiply two vectors in two vector spaces, like a set with a set of supported operations
+
+  - structures to examine:
+    - rings for interface network
+    - algebras for vertices of a problem space
