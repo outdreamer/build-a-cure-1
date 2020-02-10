@@ -3,16 +3,19 @@
 
 ### Common solution functions/strategies
 
-  - distort
-  - standardize
-  - transform
+  - distort/standardize
   - alternate/stabilize
-  - break/combine
+  - isolate/combine
   - position (arrange)
   - compress/expand
+  - transform (change)
+  - fit (match/contain/fill structure)
+  - differentiate (key points of difference)
   - filter (find: start from everything & reduce)
   - derive (build: start from scratch & build)
   - metadata (minimum information to derive)
+  - generate (using limits, interfaces, symmetries, variables)
+  - map (physics of limits, combination, calculation, approximation, measurement)
 
 
 ### Alternate structural layers
