@@ -219,6 +219,14 @@
 
     - min info => selection of structural layer
 
+    - structural example:
+      - how to identify the correct interface to solve the problem of 'area under curve' for a non-standard shape:
+        - do you identify the nearest standard shape & derive the transformation function mapping standard shape area/metadata to non-standard shape area/metadata?
+        - do you identify the standard shapes that are best at approximating the non-standard shape (easily added objects like rectangles that can approximate an asymmetric curve's underlying positive area)
+        - do you identify sub-functions or functions on intervals of the curve & approximate their areas instead, summing them after their areas are found?
+        - do you identify attributes higher up causal stack that can calculate area faster than approximation functions? 
+          - distorting variables of a straight line or rules detailing when standard/type/rule boundaries break
+
     - add variable-selection example with separate alts having equivalent outputs:
       - if one alt is disabled, then it would give a false result for anyone checking it for ability to impact the output, even though the alternative was being variably used instead
   

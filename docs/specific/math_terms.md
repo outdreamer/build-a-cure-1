@@ -7,23 +7,20 @@
 
     - rings for interface network
     - algebras for vertices of a problem space
-
+    - basis of a space: core functions or nodes
 
 ## Attributes
 
 	- span of two vectors is the range of their scaled addition = linear combination of vectors
-
-			if one vector is linearly dependent on the other (can be produced as a linear combination of the others), it's redundant & doesnt add to the span
-		- basis of a space: the set of linearly independent vectors that span that space
+		- if one vector is linearly dependent on the other (can be produced as a linear combination of the others), it's redundant & doesnt add to the span
+	- basis of a space: the set of linearly independent vectors that span that space
 		- basis vectors i-hat & j-hat are unit vectors of two dimensions x & y
 			column 1 = coordinates where i-hat lands
 			column 2 = coordinates where j-hat lands
-		- transformations keep lines parallel and evenly spaced, and origin is fixed
-		- matrix multiplication is applying two transformations, starting from the right side
-		- determinant is volume of parallelipiped space created by the vectors
-
+	- transformations keep lines parallel and evenly spaced, and origin is fixed
+	- matrix multiplication is applying two transformations, starting from the right side
+	- determinant is volume of parallelipiped space created by the vectors
 	- degrees of freedom: dimensions of phase space including all possible states of a physical system 
-
 	- jacobi identity: a property of binary operations describing impact of order of operations
 
 	- distance
@@ -54,15 +51,16 @@
 
 ## Core Shapes
 
+	- vector: intersection of attributes value & direction
+	- tensor: 
+	- set: accretion of objects
+	- unit: lower-dimensional composable threshold for differentiation, syncing, & aggregation of filters (has overlap with interface)
+	- map: set of possible transform networks connecting two sets
+	- value: difference
+	- boundary: stabilized outer range of combinations produceable with internal components 
+
 	- line
 	- angle
-	- vector
-	- tensor
-	- set
-	- unit
-	- map
-	- value
-	- boundary
 
 	- algebraic structures: a group of operations having finite inputs on a set (the algebra refers to the set itself being operated on)
 
@@ -78,7 +76,7 @@
 			- abelian group: commutative group where applying the group operation to two group elements doesnt depend on order of operation
 			- related concepts:
 				- symmetry
-			- a symmetry group: the set of operations that leave an object unchanged
+			- a symmetry group: the set of operations that leave an object unchanged (operations that can be captured in a system/interface)
 			
 			- a lie group: 
 				- a continuous group described by several real parameters that is a differentiable manifold, with smooth group operations
