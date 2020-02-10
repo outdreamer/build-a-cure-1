@@ -268,3 +268,19 @@
         11. add output conditions
 
         12. add indentation to organize logic operation order & selection, given function intent
+
+
+### Extra Applications
+
+#### Code Conversion
+
+  - syntax rules
+    - type declarations (python libs for this)
+    - conditions (try/except => TryOrElse)
+    - returns
+
+  - code conventions (not enforced but still need to be translated per conventions of project)
+
+  - function lookup & mapping:
+    - common function mapping (map, filter, zip)
+    - input/output/intent/use-case matching

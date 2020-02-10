@@ -39,9 +39,6 @@ Or questions like:
 
 ## Notes
 
-- exploits -> relevant properties 
-- delegate cost -> efficiency from alignment that goes unregulated (no system rules) where exploit is gap in regulation
-
 - core function + core object -> interaction rule of core attributes that aligns with core function + core object priority
 - depict core functions on their own direction to indicate a dimension when graphing
 

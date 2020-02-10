@@ -52,67 +52,14 @@
     https://twitter.com/remixerator/status/1004578256820064257
 
 
-## Exploit Opportunity Analysis
+## Optimization
 
-  - exploit opportunities involve a divergence between some expected legitimate input/output & actual malicious input/output
+  - Determining which queries/calculations are optimal
 
-  - inputs providing exploit opportunities can involve input assumptions related to:
-    - hardware (memory, CPU, threads, queries)
-    - language (stack/heap implementation)
-    - storage management (cache mechanism, garbage collection mechanism, optimization)
-    - condition (limit, metric)
-    - code (default tool, code, tool version, tool source, tool-management tool)
-    - config (definitions)
-    - permission (intended permissions vs. allowed permissions)
-    - intents (user, dev, protocol)
-    - actions (user (explicit decisions, implicit preferences), dev (auto/forced updates, data corruption fixes), automated (script running past its intended window of use), third party (browser, OS, anti-virus, isp))
-    - functions (retrieved, generated, lack of assumption coverage of input space)
-    - parameter values
-    - outputs (info leaks)
-
-  - exploit opportunity types:
-    - unenforced expectations of rule implementation methods (protocols)
-    - intent-expectation divergence
-      - expectation: "input intents are legitimate"
-        example: using legitimate input intents (login, use form, retrieve results) to build malicious output (info about data source/query engine/caching mechanism/filter used)
-        (searching big/complex/varied queries to find limits of query engine & matching with known query engine limits)
-      - expectation: "output intents are legitimate"
-        example: using legitimate tools (database query, session, form) to build malicious output intent "retrieve info from unauthorized account"
-        (searching for theorized terms used by other user to find out what other user is seeing in search results that could be used to derive other user's information exposure & habitual use)
-      - expectation: "input content is legitimate"
-        example: sending spam emails with target keywords designed to train theorized spam-detection AI model to target associated keywords in emails
-      - expectation: "input use is legitimate"
-        example: sending legitimate requests to establish pattern of use that can later be exploited 
-          (login from many locations/devices simultaneously from beginning of use to avoid identification as hackers later)
-      - expectation: "inputs cannot be used to get unauthorized info x"
-        example: 
-          - "using system stat/monitoring logs to identify readable folders by logger process"
-          - "injecting rule to remove comment chars in regex filter to activate disabled code not evaluated by tests"
-          - "separating submitted chars with delimiter to accumulate code chars in non-code files to make them eventually identified as code once full code char string is accumulated"
-
-
-## Vuln potential of a solution
-
-  1. identify conceptual/type interactions of the solution
-    example: explore the interaction of random applied to random (or algorithms applied to themselves, like hash of a hash) for possible interference opportunities
-
-
-## Invention Prediction
-
-  1. Reverse-engineer: apply known useful functions (combine, reduce, standardize, compare, duplicate, randomize) 
-    to fulfill common useful intents (predict, verify, find, etc) & assess value of output product in problem space
-
-  2. Conceptual query: apply structure to conceptual combinations & check matching problem spaces if the output product has value for an agent in that space
-
-  3. Identify necessary structure and identify interface combinations/trajectories that can generate that structure
-
-
-## Determining which queries/calculations are optimal
-
-  - given that certain calculations have known cost estimates, which calculations are optimal, in what order/frequency, and given what information?
-  - example: when deriving a prediction function, when do you query for function & function generator patterns, when do you request more data, when do you continue assessing regression, when do you apply standardization?
-  - is it optimal to solve this problem set or another problem set, or deploy resources to both?
-  - solution distribution: should this solution be deployed at run time, in a specific system, should the solution be stored as its generator function, etc
+    - given that certain calculations have known cost estimates, which calculations are optimal, in what order/frequency, and given what information?
+    - example: when deriving a prediction function, when do you query for function & function generator patterns, when do you request more data, when do you continue assessing regression, when do you apply standardization?
+    - is it optimal to solve this problem set or another problem set, or deploy resources to both?
+    - solution distribution: should this solution be deployed at run time, in a specific system, should the solution be stored as its generator function, etc
 
 
 ## Bio System Analysis
@@ -163,19 +110,20 @@
     (water source, sun, cell phone, charger, electricity, portable wi-fi generator, app to track their assets, app to trade by phone, app to request supplies/loans)
 
 
-# Ideas
+## Ideas
 
 
-## Solution Type: balance info asymmetry
+### To do
+
+  - solution type: balance info asymmetry
+  - matching
 
 
 ### Crypto
 
   1. use predictive tools to predict transactions & calculate them in advance to speed up tx
+
     - this would assess people's known resources to build an index of global demand/supply, then calculating through these resource distributions, economic incentives for trades, social networks, platform dominance, & product availability & findability (search results rankings) - which tx were likely to happen where for which products, then calculate those tx in advance
-
-
-## Matching
 
 
 ### ML
@@ -220,54 +168,6 @@
         - data range/data type/data probability distribution & change patterns can be computed after definition time
 
 
-## Summarization algorithm
-
-    - add summarization algorithm converting text to a set of network graphs, then selecting most relevant network graph for headline
-
-      - isolate unique points, reduce to standard words, identify newest points & create a network graph
-
-      - repeat that process for various types of points (different intents, different abstraction layers) and determine probable matching set (intended by author) and the most relevant set (relevant to audience)
-
-      - "people can coordinate votes to prevent coordinating votes"
-      https://www.vox.com/2020/1/29/21094603/supreme-court-decision-on-immigration-neil-gorsuch-democrats
-
-      - "not every combination of constitution system usage (population, distribution, & party identity) is beneficial for every party agenda"
-      https://www.vox.com/policy-and-politics/2020/1/30/20997046/constitution-electoral-college-senate-popular-vote-trump
-        - doesn't mention an improved version of the system that would avoid these sub-optimal combinations
-
-    - write function to identify contradictory information (retracted studies, false information, conspiracy theory (anti-vax), opinion) & selecting least likely to be false
-      - this will be useful when youre pulling non-research study data, like when youre looking up a metric or compound if you dont find anything on wiki
-
-    - write function to rank & identify authoritative sources (wiki is more trustworthy than a holistic or commercialized blog based on editing metadata)
-
-    - function to identify & remove common article intents with high probability of falsehood to reduce it to just facts
-      - add intent matching so you can compare treatment relationships with article intents to see if its actually a sentence with a treatment in it
-        - finish treatment failure condition - make sure it adds nothing if theres no treatment in the article - this is related to intent function
-
-  - add to translation/summarization alg:
-
-    - process translated as "adding dimensions to difference in mass (powers of the base) increases vacillations in wave according to collision momentum transfer rules between limits"
-
-    - notice that a vacillation decreasing in momentum would produce a fractal/spiral shape with a symmetric transform done - and that could produce a circle under certain conditions
-
-    - vacillation = pendulum swing with only one initial force application 
-      - with curvature applied this would be a spiral approaching a center
-      - if the curvature transform was balanced in the right way (like an equivalent effect as zooming in), it wouldnt trend toward the center but produce a circle
-
-    - this type of problem can be indexed as 'core function combinations'
-      - example: 
-        - the core functions here are 'flip around axis' (similar to inverse, identity matrix, rotate)
-
-    - how do you identify core functions in a list:
-
-      - algorithm would look something like this (at definition time):
-        - store central values about which other values vary (like clusters of centrality aggregators)
-        - store operations to generate set of values around that particular central point in each cluster
-      - a way to generalize this is to find the symmetries (other than just centrality) to gather points around when generating sets of values to derive core functions from
-
-    https://www.quantamagazine.org/how-pi-connects-colliding-blocks-to-a-quantum-search-algorithm-20200121/
-
-
 ## Learning models
 
     - brain learns through various reward models:
@@ -305,14 +205,6 @@
         - are multiple contradictory starting hypothesis associated with higher prediction accuracy, if so, with what degree of variance between hypotheses?
 
 
-## Scale transitions
-
-    - give example of emergent effects of phase/scale transitions across threshold values that exert more variance than systems can hold
-
-    - quantum scale transitions as delegation of information to optimal/efficient/low-energy positions
-      - appears to be in multiple positions until it determines which position is more efficient or easier to maintain
-    
-
 ## Quantum physics
 
   - examine when randomness can masquerade as entanglement due to limited options of core function interactions due to the system development being in an initial phase
@@ -330,8 +222,13 @@
 
   - examine how info is being destroyed in black holes & in quantum physics - is this a process that can be used for encryption or is the info irretrievable?
 
-  - are the best encryption functions those with the fewest symmetries?
+  - scale transitions
 
+      - give example of emergent effects of phase/scale transitions across threshold values that exert more variance than systems can hold
+
+      - quantum scale transitions as delegation of information to optimal/efficient/low-energy positions
+        - appears to be in multiple positions until it determines which position is more efficient or easier to maintain
+      
 
 ## Communication
 
@@ -341,54 +238,3 @@
     - if you had a communication protocol that supported common content tokens, sending content to servers that are better at converting content to tokenized form would be better than a random or non-optimized server
     - sending converted tokenized content & the id of the tokenization map on different routes adds some interim security
   - using neutrinos as a way to speed up communication using them as jumping-off/charging points
-
-
-## Hacking
-
-  - assumption manipulation
-    - threshold/metric/condition manipulation
-    - input manipulation
-    - verification gaps
-
-
-## Bug Identification
-
-  - non-standard exploit-finding patterns:
-    - faked signals for unrelated purposes
-    - output communication/processing chains mapped to intents
-    - sub-intent combinations/chains as intents, assumptions as exploit opportunities (assume code functions are the primary exploit layer to focus on, rather than systems or processes using functions like 'garbage collection' or 'memory optimization')
-    - indirect intents (actions not clearly benefiting any agent like 'transporting message', which form extra opportunities when combined with other actions not clearly benefiting any agent, like activities considered necessary or default)
-    - matrix of compatible tech & possible alternate intent paths allowed between intent limits/filters
-
-
-## Prediction
-
-  - surprising patterns often come in the form of:
-    - compounding patterns that go unmeasured (black swan pattern)
-    - compounding patterns that are measured in ways that they dont vary from expected patterns (different dimension as a host of variance)
-    - compounding patterns that are measured in ways that vary from expected patterns but not at point of measurement (wave function & line intersection)
-
-  - expectation vacillation is optimized when neither extreme is expected permanently & expectations gravitate toward local inflection or threshold points
-    - expecting evil & expecting sainthood are both sub-optimal in most situations, 
-      whereas expecting moderation is usually more useful bc it allows more freedom, and more freedom allows more self-optimization than using forced optimization rules, 
-      which change slower than local (self) optimization rules
-
-  - prediction functions
-
-    - its not important to just identify the best-fit balancing bias/variance for a model, its also important to identify:
-      - the adjacent models that exist with common distortion functions applied to the best fit model
-      - the change patterns applied to the best fit model
-
-
-## Code Conversion
-
-  - syntax rules
-    - type declarations (python libs for this)
-    - conditions (try/except => TryOrElse)
-    - returns
-
-  - code conventions (not enforced but still need to be translated per conventions of project)
-
-  - function lookup & mapping:
-    - common function mapping (map, filter, zip)
-    - input/output/intent/use-case matching

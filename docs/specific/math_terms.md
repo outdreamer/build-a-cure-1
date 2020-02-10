@@ -210,6 +210,9 @@
 		- confidentiality
 		- authenticity
 
+	- questions:
+		- are the best encryption functions those with the fewest symmetries?
+
 	- common core operations:
 		- xor
 		- substitution
