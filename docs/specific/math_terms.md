@@ -167,6 +167,9 @@
 					- dy/ system structures that would leak variance in the shape of x & z
 					- dy/ dimension trajectories/stacks that can lead to or connect x & z
 					- dy/ limiting variables that can reduce potential for not-x and not-z
+					- dy/ filters used to isolate variables
+					- dy/ variables that would give the illusion of x & z at measured points
+					- dy/ change or boundary rules of x & z
 
 		- integral: 1/(power + 1) * coefficient * (variable ^ power + 1) to calculate metrics of higher dimensions (area under a curve)
 
