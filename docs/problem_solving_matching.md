@@ -17,6 +17,7 @@
   - generate (using limits, interfaces, symmetries, variables)
   - map (physics of limits, combination, calculation, approximation, measurement)
 
+
 ### Alternate structural layers
 
   I. Match problem & solution using definition & standardization, applying increasing limits until problem & solution match
@@ -627,3 +628,13 @@
     - in order to automate problem-solving, you may need to derive the interfaces/symmetries of a problem space, and then stack/arrange them in order that maximizes their utility as a set of filters that generate solutions from the original problem statement
 
     - by 'interface derivation' I mean finding the symmetries in a problem space, such as finding the 'spectrum interface' in the chaotic-evil matrix, or finding the 'rotation' interface in the shape progression problem space, and then stacking or otherwise arranging them in the order that they are most useful for generating/revealing solutions
+
+
+  IX. System derivation
+
+    - the paradox of a 'list that contains all lists' seems unsolvable (the list needs to contain itself to be a complete set) until you notice that the list of lists is complete even if its missing one because that can be derived from the variation in the other lists, which describes the variables that can change (similar to listing n - 1 boolean values of different category values instead of n boolean values)
+
+    - these paradoxes are an alternative to interfaces and involve the apparent impossibility of solving a problem without solving the problem from a system perspective (deriving all possible lists in a system) rather than in isolation (listing all things)
+
+    - system derivation is a way to solve problems like:
+      - 
