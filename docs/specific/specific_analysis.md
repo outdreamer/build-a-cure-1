@@ -184,6 +184,12 @@
       - quantum scale transitions as delegation of information to optimal/efficient/low-energy positions
         - appears to be in multiple positions until it determines which position is more efficient or easier to maintain
       
+  - quantum => info => energy dissipation:
+    - when quantum superposition resolves into information, which resolves into efficiency & energy, how does it cycle back into enabling additional variance (more quantum uncertainties)
+    - theres an element of dimensional collapse/compression/removal involved in these processes, releasing the variance from the structures that store it
+    - the dimensions of potential in a superposition collapse into information about particle attributes
+    - the dimensions of information collapse into energy, which can collapse into efficiency (path of least resistance that achieves an intent) if combined with enough other efficiency pathways
+    - examine the pattern of high dimensional objects appearing to have lower dimensions at various points of measurement
 
 ## Communication
 
