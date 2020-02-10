@@ -31,6 +31,20 @@
         - then the cell death => cell communication pathway isnt activated, and cell communication in that region is decreased, leaving the path clear for cancerous processes to spiral out of control
 
 
+  ### Applications
+
+    - cell production
+
+      - experimentation:
+        - applying mutations to use cancer as a testing tool to form mini-labs on the skin to test new drugs created by light (bouncing light off of stem cells in a pattern to create various cell types in cancerous lab) which provide a quick way to inject drugs or form drugs through chemical permutation with light to test a formula against a particular problem created by the source mutation/mutation chain
+
+      - regeneration: 
+        - cancerous processes to create stem cells
+
+      - alternative energy sources:
+        - exporting functionality to switch energy sources in survival scenarios
+
+
   ### Interfaces
 
     - attack points
