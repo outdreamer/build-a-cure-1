@@ -239,7 +239,7 @@
 
     - structural example:
 
-      - how to identify the correct interface to solve the problem of 'area under curve' for a non-standard shape:
+      1. how to identify the correct interface to solve the problem of 'area under curve' for a non-standard shape:
 
         - do you identify the nearest standard shape & derive the transformation function mapping standard shape area/metadata to non-standard shape area/metadata?
 
@@ -262,7 +262,7 @@
               - is there a relationship between point & line that mimics the relationship between line & area so calculating the line metric once expanded from a point can give a transformable answer into the area metric for a shape limited by the lines?
             
             - "calculate a metric of reduced dimension (line) for an area to describe difference between line & limiting line"
-            
+
               - is there a relationship between cube & square metrics that can be used to estimate or calculate area if you have volume of shape created by curve expanded by another dimension?
 
         - calculate in the reverse direction:
@@ -275,6 +275,14 @@
         - do you identify attributes higher up causal stack that can calculate area faster than approximation functions? 
 
           - distorting variables of a straight line or rules detailing when standard/type/rule boundaries break
+
+        - what sets of limits & forces describe the motion between a standard & a distorted function?
+          - how does value accrete when bounded by two points, but unrestricted in one direction (when a line becomes curved)?
+          - what are other limits that can cause a similar accretion (triangle with corner accretion point removed and standardizing to the line?
+          - what impact do these limits have on change/combination rules (to predict impact of transforming curve into line or expanding line by another dimension)?
+
+      2. given these solution functions, how do you select which one is likeliest to produce solution given optimization metrics (accuracy, time)
+
 
     - add variable-selection example with separate alts having equivalent outputs:
       - if one alt is disabled, then it would give a false result for anyone checking it for ability to impact the output, even though the alternative was being variably used instead
