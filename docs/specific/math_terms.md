@@ -160,6 +160,13 @@
 					- dy/ d(metadata function describing x & z activities)
 					- dy/ d(approximation function)
 					- dy/ d(emergent variable w that x & z cause)
+					- dy/ d(concept that x & z interact with, like equivalence in the vector space where equivalence vectors display different types of equivalence)
+					- dy/ d(interface that x & z can be standardized to, like intent)
+					- dy/ d(adjacent functions & transforming variables)
+					- dy/ probability distribution of w that describes x and/or z when transformed to outputs in distribution with symmetric transform)
+					- dy/ system structures that would leak variance in the shape of x & z
+					- dy/ dimension trajectories/stacks that can lead to or connect x & z
+					- dy/ limiting variables that can reduce potential for not-x and not-z
 
 		- integral: 1/(power + 1) * coefficient * (variable ^ power + 1) to calculate metrics of higher dimensions (area under a curve)
 
