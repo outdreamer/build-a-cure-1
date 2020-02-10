@@ -657,7 +657,7 @@
     - the paradox of a 'list that contains all lists' seems unsolvable (the list needs to contain itself to be a complete set) until you notice that the list of lists is complete even if its missing one because that can be derived from the variation in the other lists, which describes the variables that can change
 
       - similar to listing n - 1 boolean values of different category values instead of n boolean values
-      - the list of all lists contains the list of all lists in itself, so describes itself by existing, even if itself is not stored as an item in the list
+      - the list of all lists contains the list of all lists in itself, so its structure/variables/contents each describe itself, even if its not stored as an item in the list
 
     - these paradoxes are an alternative to interfaces and involve the apparent impossibility of solving a problem without solving the problem from a system perspective (deriving all possible lists in a system) rather than in isolation (listing all things)
 
@@ -669,3 +669,10 @@
         - are they misrepresented/not actually contradictory if you correct their system scope/resolve their lack of information/change the variable position
 
       - variable potential: is there room for variables to accrete/overlap/replace/conflict
+
+      - finding set of system/filters where seemingly conflicting rules are possible, to allow a seemingly impossible relationship between variables (definition of truth, ambiguity, scope, implication)
+
+      - finding minimum requirements of host systems (deriving as little about system structure as possible to solve original problem, to avoid over-specifying system structure)
+
+    - paradoxes usually point to areas that need alternate layers/variance injected (variance demand), where your existing system analysis can identify points where variance can develop (variance supply)
+    - paradoxes are a counterpoint to interfaces in that interfaces provide a standard for comparison that leaves out information (reduction), and paradoxes are a false limitation that imply the requirement of variance (expansion)
