@@ -1,6 +1,22 @@
 ## Problem Solving Operations
 
 
+### Common solution functions/strategies
+
+  - distort
+  - standardize
+  - transform
+  - alternate/stabilize
+  - break/combine
+  - position (arrange)
+  - compress/expand
+  - filter (find: start from everything & reduce)
+  - derive (build: start from scratch & build)
+  - metadata (minimum information to derive)
+
+
+### Alternate structural layers
+
   I. Match problem & solution using definition & standardization, applying increasing limits until problem & solution match
 
     - get a problem, standardize & define it: 
