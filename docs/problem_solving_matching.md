@@ -641,7 +641,7 @@
 
           - truth of axioms change according to timing of event, but if the event happens at all, its taken as an absolute contradiction when its really a time-dependent contradiction
 
-          - can occur with mutually exclusive states where conflicting directions are falsely associated
+          - can occur with mutually exclusive states where conflicting directions are falsely associated (falsehood of an interpretation in a scope doesnt mean falsehood of the same interpretation in a different scope)
 
         - self-reference: a lack of information about options
 
@@ -654,9 +654,18 @@
             - can truth exist on a spectrum
             - can truth apply to different sentence attributes ('this sentence' object in the sentence, the whole sentence, & sentence implications
 
-    - the paradox of a 'list that contains all lists' seems unsolvable (the list needs to contain itself to be a complete set) until you notice that the list of lists is complete even if its missing one because that can be derived from the variation in the other lists, which describes the variables that can change (similar to listing n - 1 boolean values of different category values instead of n boolean values)
+    - the paradox of a 'list that contains all lists' seems unsolvable (the list needs to contain itself to be a complete set) until you notice that the list of lists is complete even if its missing one because that can be derived from the variation in the other lists, which describes the variables that can change
+
+      - similar to listing n - 1 boolean values of different category values instead of n boolean values
+      - the list of all lists contains the list of all lists in itself, so describes itself by existing, even if itself is not stored as an item in the list
 
     - these paradoxes are an alternative to interfaces and involve the apparent impossibility of solving a problem without solving the problem from a system perspective (deriving all possible lists in a system) rather than in isolation (listing all things)
 
     - system derivation is a way to solve problems like:
-      - 
+
+      - paradox problems: 
+
+        - is this really two contradictory meanings that invalidate each other, contained in the same consistent system
+        - are they misrepresented/not actually contradictory if you correct their system scope/resolve their lack of information/change the variable position
+
+      - variable potential: is there room for variables to accrete/overlap/replace/conflict
