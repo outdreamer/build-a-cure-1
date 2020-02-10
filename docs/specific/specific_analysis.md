@@ -1,6 +1,15 @@
 # Analysis Strategies for Application in Specific Problem Spaces
 
 
+## Ideas
+
+
+### To do
+
+  - solution type: balance info asymmetry
+  - matching
+
+
 ## Work distribution & incentivization
 
   - system users should always be system builders, so their incentives don't crystallize into an irreversibly static state
@@ -108,15 +117,6 @@
   - what compoments of this can be automated/updated automatically & which should be done with manual input
   - what tools do they need other than farmland 
     (water source, sun, cell phone, charger, electricity, portable wi-fi generator, app to track their assets, app to trade by phone, app to request supplies/loans)
-
-
-## Ideas
-
-
-### To do
-
-  - solution type: balance info asymmetry
-  - matching
 
 
 ### Crypto

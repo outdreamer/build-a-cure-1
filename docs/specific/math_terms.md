@@ -197,7 +197,6 @@
 		- an n-dimensional space where the locality of each point represents a homeomorphism euclidean space of dimension n 
 
 
-
 - examine property map to number types, number fields, spaces, and sets
 
 - encryption algorithms
@@ -227,7 +226,7 @@
 		- permutation :: combination
 		- division :: group
 
-	- attack types:
+	- attack types from wiki:
 		- related key attack
 		- known key distinguishing attack
 		- key recovery attack

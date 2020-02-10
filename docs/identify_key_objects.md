@@ -1,7 +1,7 @@
-## Object Model Applications to Problem Objects
+## Identifying Key Objects
 
 
-  ### Generate Object Model Interactions
+  ### Generate Important Object Model Interactions
 
     - how would you generate the useful interfaces/parameters of the object model, if you didnt already know these useful ways to use object/attribute/rule/type definitions?
 
@@ -115,33 +115,6 @@
       - interfaces involve standardization (removal of variables that dont change) to leave the variables that change
 
 
-  ### Logic Complexity & System Operations
-
-    - evaluate logic complexity calculations for mapping with core/system operations
-
-      - iteration:
-
-        - applying a process to every item in a set = multiplication/distribution or division/standardization depending on the operation (dimension reduction/expansion)
-
-      - conditions:
-
-        - conditions map to branches/divergence (like type-splitting & hub nodes)
-
-        - value added by conditions must be weighed against conditional logic isolation
-
-        - condition order varies by dependency; some conditions must be in a certain order, some condition orders are more flexible, some conditions in a set have no order restrictions (can be in any order)
-
-        - condition ordering rules:
-          - conditions likeliest to be false come first
-          - conditions verifying prerequisites/inputs to other conditions come first
-
-      - layers:
-
-        - embedded for loop = multiplication/distribution, but also has concept of embedding (related to system and its sub-components)
-
-        - embedded conditions = hierarchy or route
-
-
   ### Identifying useful object combinations
 
     - combine risk, cause, variance, and probability objects (uncertainty, causal loop, variance generator, probability distribution)
@@ -149,12 +122,4 @@
     - combine structural & conceptual objects (vector + priority)
 
     - what is the set of interface objects optimal for solving a problem of particular dimension (x, y, z) & shape a?
-    
-
-  ### Definition differentiation
-
-    - given that most conceptual objects are related, how do you identify which are most important in determining another object?
-    - identify that "intent" is highly related to "priority"
-    - identify that "insight" is highly related to "strategy"
-    - identify that "role" is highly related to "function"
 
