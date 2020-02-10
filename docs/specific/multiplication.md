@@ -177,19 +177,3 @@
   These tables consisted of a list of the first twenty multiples of a certain principal number n: n, 2n, ..., 20n; 
   followed by the multiples of 10n: 30n 40n, and 50n. 
   Then to compute any sexagesimal product, say 53n, one only needed to add 50n and 3n computed from the table."
-
-
-
-## Group theory
-
-  - definitions:
-    - quaternions: 
-      - ratio of two vectors: https://en.wikipedia.org/wiki/Quaternion
-      - quaternion number space is a associative, non-commutative division algebra over real numbers
-      
-    - algebra: 
-      - vector space with a (bilinear) way to multiply two vectors in two vector spaces, like a set with a set of supported operations
-
-  - structures to examine:
-    - rings for interface network
-    - algebras for vertices of a problem space
