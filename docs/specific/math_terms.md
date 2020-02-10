@@ -39,7 +39,9 @@
 	- adjacency
 	- cooperation (objects/types/attributes)
 	- scale
-
+	- discriminant: example of calculating properties of solution without calculating solution directly
+		- can tell if solution sub-components (roots) are equal, signed, etc by calculating value of discriminant which is  a function of polynomial coefficients
+	- nilpotent
 
 ## Types
 
@@ -140,6 +142,25 @@
 			- some homeomorphisms arent continuous deformations
 
 		- immersion: a differentiable function between two differentiable manifolds whose derivative is injective (1-to-1)
+
+	- specific functions:
+
+		- derivative: power * coefficient * (variable ^ power - 1)
+			- example: 
+				- x^3 derivative is 3x ^ 2 = three squares, which is the minimum necessary to infer triangle & cube shapes as natural next steps 
+					- despite the missing information of constants indicating cube position, and information about dimensional expansion & associated volume
+
+			- partial derivative: change of y with respect to one of its determining variables, like y = 3x + 4z, a partial derivative dy/dz is change in y produced by change in z
+				- the partial derivative is a good first step to isolating variable influence
+				- however it leaves out other corrollaries between variables:
+					- dy/ d(attribute that is specific to z)
+					- dy/ d(attribute that x & z have in common)
+					- dy/ d(attribute causing x and/or z)
+
+		- integral: 1/(power + 1) * coefficient * (variable ^ power + 1) to calculate metrics of higher dimensions (area under a curve)
+
+			- this is another example of breaking the problem into a more solvable problem:
+				- calculating area under a curve by breaking the curved area into a set of objects with more calculatable area (or area that can be added, like objects at unit limits such as integers)
 
 
 	- intents:

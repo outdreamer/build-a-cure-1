@@ -190,6 +190,10 @@
     - the dimensions of potential in a superposition collapse into information about particle attributes
     - the dimensions of information collapse into energy, which can collapse into efficiency (path of least resistance that achieves an intent) if combined with enough other efficiency pathways
     - examine the pattern of high dimensional objects appearing to have lower dimensions at various points of measurement
+      - this is similar to alternate paths producing the same output from the same input
+      - as variance flows into various dimension sets, the overlap of output with other dimension sets is less likely but not impossible & may occur at predictable intervals,
+        like how integers have more limiting attributes than numbers in between, so boundary physics applies to integers & they can act as a filter
+    - examine when emerging attributes cant be contained within a space & leak into others
 
 ## Communication
 
