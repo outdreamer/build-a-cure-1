@@ -1,10 +1,12 @@
 # Functions
 
 ## Find
+
 - find(target, data, filters): 
 	- find target type & data type, get relationships between them ('this type is often found at end of document'), apply filters to output
 
 ## Apply
+
 - apply(concepts, source_functions, target_function, problem_space):
 	- takes concepts or source_functions & assigns them to structures known to interact in that problem space to achieve that function
 	- in the absence of concepts or source_functions, it pulls those objects from the problem_space definition
@@ -25,11 +27,13 @@
 			(agent & possible intents would be part of the problem space object)
 
 ## Generate
+
 - generate(type, input_ranges, output_distribution):
 	- gets structures of subtypes within that type
 	- applies input_ranges (limits of variables) to generate the set of type examples with output_distribution
 
 ## Derive
+
 - derive(target_objects, problem_space): 
 	- fetches patterns & functions of the problem space
 	- applies them layer by layer (from abstract like apply_filter() to concrete like count()) to derive relationship between objects in target_objects

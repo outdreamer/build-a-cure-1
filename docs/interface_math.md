@@ -61,6 +61,7 @@
     - therefore key identifying/generative attributes of an object can be used as symmetries 
       - example: core functions, priorities, types
 
+
 # Questions
 
   - what types of variables can be ignored even when theyre good indicators?
