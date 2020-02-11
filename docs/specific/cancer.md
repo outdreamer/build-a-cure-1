@@ -51,6 +51,9 @@
       - using its maintenance of stem cell attributes to deploy functionality of self-modification to every cell, which is how it should be
         https://phys.org/news/2020-02-interaction-cancerous-state-cells.html
 
+      - cancer creates functionality through competition - mimicking environment stressors that trigger evolution but in the skin itself, which is what I suggested earlier (mini-labs on skin)
+        https://medicalxpress.com/news/2018-09-scientists-uncover-mutated-cells-skin.html
+
 
   ### Interfaces
 
