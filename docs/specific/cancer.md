@@ -44,6 +44,12 @@
       - alternative energy sources:
         - exporting functionality to switch energy sources in survival scenarios
 
+    - cell distribution
+      - use cancer's density distribution mechanism to distribute cells by adjusting how it calculates density so it propagates without dense clustering
+
+    - cell adaptability
+      - using its maintenance of stem cell attributes to deploy functionality of self-modification to every cell, which is how it should be
+      
 
   ### Interfaces
 
