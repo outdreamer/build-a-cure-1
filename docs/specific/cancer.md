@@ -145,41 +145,59 @@
 
     - stressors
 
+      - change requests are problems of type 'mismatch' between change demand & change supply
       - theres quite a bit of overlap between stressors & handlers bc their role can change depending on contextual usage, but some have clear starting/absolute positions
       - in addition there are objects that stabilize/maintain state rather than help change it
       - one of the reasons these objects help maintain state is because they fill in some of the gaps in the system, preventing exploitative processes from taking over & spreading unrestricted, like a constant
+      - matching these stressors with the right number & type & sequence of handlers is key for bio system health
+      - some handlers are good universal handlers (exercise, brain usage, water) but sometimes external handlers are needed like medicines until we figure out the stressor combination to trigger adaptive mutations (horizontal evolution)
 
-      - change request examples:
+      - change demand (signal to change) examples:
+        - bacteria (hostile)
         - cell damage
         - cell mutation
         - cell communication
+        - emotions/pain
+        - inflammation
         - pathogen
         - oversupply
         - environmental stress (pollution, lack of resources)
         - conflicting intents (competition)
         - hormones
+        - caffeine/stimulants
+        - electricity
         - inefficiencies
 
-      - change supply examples:
+      - change supply (response to signal) examples:
+        - bacteria (attacking hostile bacteria)
         - cell repair
         - cell division
+        - cell death (vitamin a)
         - stem cells
         - nutrients
-        - exercise
-        - immune system
-        - stored energy
-        - filtration/digestion systems
+        - perspective/indexing/organization
+        - learning
+        - exercise/brain usage
+        - immune response
+        - medicines
+        - usage of systems built by hormones (adrenal, growth, reproductive)
+        - stored or excess energy
+        - filtration/digestion systems (breaking into useful components to handle stresors)
         - functionality retrieval/assembly/sharing functions
         - aligned intents (cooperation)
 
-      - stability object examples:
+      - stability/balance object examples:
+        - bacteria (performing neutral tasks)
+        - genes
+        - filtration/digestion (removing unnecessary components)
         - lymph system (interstitial fluid)
         - interstitium
         - blood brain barrier
         - resting states in cycles
         - biological timer
-
-      - change requests, or problems of type 'mismatch' between change demand & change supply
+        - pH/electrolyte balance (an interface on which many systems rely)
+        - heart (stabilizing blood pressure)
+        - understanding (brain networks that store useful functionality)
 
       - stressor accretion/compounding/neutralizing/type patterns
 
