@@ -49,7 +49,8 @@
 
     - cell adaptability
       - using its maintenance of stem cell attributes to deploy functionality of self-modification to every cell, which is how it should be
-      
+        https://phys.org/news/2020-02-interaction-cancerous-state-cells.html
+
 
   ### Interfaces
 
@@ -82,8 +83,6 @@
           - can system structure be changed so variance is increased & so functionality is allowed to accrete to produce backup functionality
 
         - signaling level 
-
-          - 
 
     - system 
 
@@ -141,10 +140,44 @@
       - surfaces
       - receptors
 
-    - many object types can be an interface in a specific system, in addition to standard abstract interfaces
-      (function/metabolic interface, system//immune interface, structure/cell interface, communication/nerve interface)
+      - many object types can be an interface in a specific system, in addition to standard abstract interfaces
+        (function/metabolic interface, system/immune interface, structure/cell interface, communication/nerve interface)
 
-    - stressor
+    - stressors
+
+      - theres quite a bit of overlap between stressors & handlers bc their role can change depending on contextual usage, but some have clear starting/absolute positions
+      - in addition there are objects that stabilize/maintain state rather than help change it
+      - one of the reasons these objects help maintain state is because they fill in some of the gaps in the system, preventing exploitative processes from taking over & spreading unrestricted, like a constant
+
+      - change request examples:
+        - cell damage
+        - cell mutation
+        - cell communication
+        - pathogen
+        - oversupply
+        - environmental stress (pollution, lack of resources)
+        - conflicting intents (competition)
+        - hormones
+        - inefficiencies
+
+      - change supply examples:
+        - cell repair
+        - cell division
+        - stem cells
+        - nutrients
+        - exercise
+        - immune system
+        - stored energy
+        - filtration/digestion systems
+        - functionality retrieval/assembly/sharing functions
+        - aligned intents (cooperation)
+
+      - stability object examples:
+        - lymph system (interstitial fluid)
+        - interstitium
+        - blood brain barrier
+        - resting states in cycles
+        - biological timer
 
       - change requests, or problems of type 'mismatch' between change demand & change supply
 
