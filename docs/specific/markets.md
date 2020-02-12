@@ -33,6 +33,11 @@
       - then more luxury inputs can be financed if necessary
   - prevent the money borrowed being used for high-risk gambling with app coordination
   - loaners can provide gambling apps to increase repayment rates
+    - example of 'switching chains of outputs to inputs to check for quick optimizations' strategy where:
+      - inputs: "borrowers' money"
+      - target output: 'repayment of loans'
+      - function of 'providing gambling app' takes borrowers' money as input
+      - if gambler & loaner objects are merged, 'providing gambling app' can route borrowers' money inputs to target output of 'repayment of loans'
   - gambling apps can be run by borrowers
   - calculate ROI of gambling apps & disclose who will get their money & what they typically use it for & publish data to users before they participate
   - lower interest rate option on loan if borrowers agree to spend ratio of loan on useful inputs, or purchase from other borrowers' businesses, or teach other borrowers skills, or convince other borrowers to uninstall gambling or other borrowing apps for x days or repay their loans

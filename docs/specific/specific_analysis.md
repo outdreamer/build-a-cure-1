@@ -166,7 +166,7 @@
 
   - storing grouped data in different structures according to their value attributes & relationships
     - storing a list as a network structure of values (pairs of connected values, organized by similarity or other metrics to reduce traversal time)
-    - storing a list as a network structure of generators (where hub nodes represent generative functions for the values around it)
+    - storing a list as a network structure of generators/transformation functions (where hub nodes represent generative functions for the values around it)
 
 ## Learning models
 
