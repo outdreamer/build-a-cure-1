@@ -7,6 +7,17 @@
   - directly influence supply/demand & make bets on your influence
 
 
+## Loan markets
+
+  - interest rate is supposed to reflect lower rate than borrower ROI
+  - aggregate loans by purpose
+    - borrowers contribute borrowed funds & price information (how much theyd pay for a solution) to finance research to solve malaria/water cleaning problems that generate inability to pay
+  - competition between loaners creates market for loans between loaners (tala owes m-pesa or vice versa)
+  - optimal transport can be applied to create repayment groups
+    - which borrowers can team up to repay which loans in which order to reduce overall interest rate
+
+  https://www.bloomberg.com/news/features/2020-02-12/tech-startups-are-flooding-kenya-with-apps-offering-high-interest-loans?srnd=premium
+
 
  ## Economic impact/contribution
 
