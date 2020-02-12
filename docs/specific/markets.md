@@ -35,6 +35,9 @@
   - loaners can provide gambling apps to increase repayment rates
   - gambling apps can be run by borrowers
   - calculate ROI of gambling apps & disclose who will get their money & what they typically use it for & publish data to users before they participate
+  - lower interest rate option on loan if borrowers agree to spend ratio of loan on useful inputs, or purchase from other borrowers' businesses, or teach other borrowers skills, or convince other borrowers to uninstall gambling or other borrowing apps for x days
+  - allow loans to buy certain goods that are in demand in their area
+    - allow one borrower to buy a cow at a lower rate if their neighbor needs to buy milk
 
   https://www.bloomberg.com/news/features/2020-02-12/tech-startups-are-flooding-kenya-with-apps-offering-high-interest-loans?srnd=premium
 
