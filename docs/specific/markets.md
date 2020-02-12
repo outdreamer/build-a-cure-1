@@ -25,10 +25,16 @@
     - but if there is an ability to pay, high interest rate loans have value and can be aggregated like an asset
   - dead-end borrowers (resources arent used to create value, so they exit the economy, leaving only information about default data) can be connected with low-risk borrowers to reduce risk of default
   - borrowers shouldnt be borrowing to do things that dont benefit other borrowers & the economy as a whole
-    - dead-end loans to buy food rather than food-production equipment (water cleaner, electricity source, seeds) arent as useful as loans to buy things that enable, so loans for higher distribution of asset contribution should have lower interest rates to incentivize them
+    - dead-end loans to buy food rather than food-production equipment (water cleaner, electricity source, seeds) arent as useful as loans to buy things that enable buying luxury inputs or efficiencies/reusable resources, so loans for higher distribution of asset contribution should have lower interest rates to incentivize them
+    - loans to buy resources should occur in a certain order:
+      - first buy necessary luxury (one-time) inputs (food, medicine)
+      - then a round of value-creating or reusable inputs (seeds, equipment, business inputs, water-cleaning machine, electricity source, education, device)
+      - then require viewing free educational materials to increase skills before a lower-interest rate or extra loan is possible
+      - then more luxury inputs can be financed if necessary
   - prevent the money borrowed being used for high-risk gambling with app coordination
   - loaners can provide gambling apps to increase repayment rates
   - gambling apps can be run by borrowers
+  - calculate ROI of gambling apps & disclose who will get their money & what they typically use it for & publish data to users before they participate
 
   https://www.bloomberg.com/news/features/2020-02-12/tech-startups-are-flooding-kenya-with-apps-offering-high-interest-loans?srnd=premium
 
