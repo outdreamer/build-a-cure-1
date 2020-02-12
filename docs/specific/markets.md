@@ -45,6 +45,7 @@
         - change shape 'z' (loaners send money to borrowers, who send money to gambling app providers, who send money elsewhere) to shape 'circuit' (loaners send money to borrowers, who send money to gambling app providers, who are the loaners)
         - another variant of this is for the loaners to provide a service the gambling app providers want, so they make a profit from that transaction anyway and the money still comes back to them
         - another optimization is for the loaners to invest the money from this transaction to create lower interest rates & other perks for borrowers
+        - loaners can provide the gambling app but store the money in a savings account until the borrower needs it & re-invest in goods/projects that would help the borrower, or directly apply it to the borrowers' account, or store it in one account & use it to help the borrowers most in need like an actual lottery
 
       with problem space metadata:
 
