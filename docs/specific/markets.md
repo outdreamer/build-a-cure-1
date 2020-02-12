@@ -47,6 +47,8 @@
         - another optimization is for the loaners to invest the money from this transaction to create lower interest rates & other perks for borrowers
         - loaners can provide the gambling app but store the money in a savings account until the borrower needs it & re-invest in goods/projects that would help the borrower, or directly apply it to the borrowers' account, or store it in one account & use it to help the borrowers most in need like an actual lottery
 
+        - gambling & other vice apps (scam, hacking, drug dealing apps) can be used to fund social safety net programs, where scams are applied to white collar criminals and exploitative drug dealers who sell narcotics are 'robbed' regularly on the app where the money goes to social safety net funds
+
       with problem space metadata:
 
         - inputs: "borrowers' money"
