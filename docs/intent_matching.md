@@ -4,6 +4,19 @@
 
   - layers of rule gaps can form a possible exploit trajectory to achieve a malicious intent that seems legitimate at various points of validation
 
+  - required functions for each intent:
+    - intent-derivation function (whats the probable intent stack/network of a particular event)
+    - intent-metadata function (does this intent have side effects or is it granular/neutral)
+    - intent-combination function
+    - intent-similarity evaluation function
+
+  - required functions for system intent analysis:
+    - intent-pattern matching
+    - identify gaps in rule enforcement in system
+    - identify gaps in information about rule enforcement in system
+    - identify gaps in computational possibility about intent 
+      (some intents may not be computable, some components may not be predictably interactable until tested or more info is injected)
+
   - if a function has multiple intents, that set should be propagated to the next line
 
   - you can index intent using various layers of functions, which are assumed to have indexable intents
