@@ -155,6 +155,15 @@
             - another subset's handler can be evaluated at runtime if its likeliest to change
             - mixing these on the same dataset may improve performance
 
+    - function chains to predict position
+      - if a list contains integer range from 0 to 10, and the compatible set of operations for the output of the list definition includes split & reverse functions, and the probable parameter of the split function is 2 (split list by midpoint), then the probable position of value 7 is:
+        - position 4 if reverse is applied
+        - position 1.3 if split(2) then reverse is applied
+        - position 3 if split(2) is applied
+
+      - so any call to find index of 7 in the list can check that set of probable positions rather than all positions, or it can check which operations were done in which order on the original list (function chain) to determine position without traversing list
+
+
 ## Learning models
 
     - brain learns through various reward models:

@@ -39,6 +39,7 @@
   - allow loans to buy certain goods that are in demand in their area
     - allow one borrower to buy a cow at a lower rate if their neighbor needs to buy milk
   - offer services estimating best use of resources (if they can make art, tell them which neighborhood cities will offer best price, given bus fare or cost of moving there)
+  - allow borrowers to pay with information about what problems borrowers face or what problems prevent repayment or which tactics work best to secure repayment
 
   https://www.bloomberg.com/news/features/2020-02-12/tech-startups-are-flooding-kenya-with-apps-offering-high-interest-loans?srnd=premium
 
