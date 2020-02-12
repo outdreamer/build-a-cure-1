@@ -150,6 +150,10 @@
           - identifying optimized stack components for computation tasks
             (servers/file systems/folder structures/databases/indexes/metadata/order/organization/languages/algorithm/data structure)
 
+          - identifying mix of processes/computations that can be applied to dataset to optimize a task
+            - one subset can be processed linearly, another can be processed in parallel, another can be pre-computed
+            - another subset's handler can be evaluated at runtime if its likeliest to change
+            - mixing these on the same dataset may improve performance
 
 ## Learning models
 
