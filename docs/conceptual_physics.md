@@ -67,6 +67,8 @@
       - imperceptible relationship/object considered impossible to verify (what is the structure of other universes' nexuses)
       - conceptual relationships not mapped to math operations
 
+    - just like the uncertainty vs. certainty pattern, there are patterns in the minimum information required for certainty (guaranteed that it can be known) & patterns in the minimum information required for uncertainty (guaranteed that it cant be known)
+
 
   ### Time
 

@@ -1,5 +1,9 @@
 ## Intent matching
 
+  - rule gaps are created by trust (lack of enforcement in rules)
+
+  - layers of rule gaps can form a possible exploit trajectory to achieve a malicious intent that seems legitimate at various points of validation
+
   - if a function has multiple intents, that set should be propagated to the next line
 
   - you can index intent using various layers of functions, which are assumed to have indexable intents
