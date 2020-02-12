@@ -123,6 +123,34 @@
         - data range/data type/data probability distribution & change patterns can be computed after definition time
 
 
+    - error types
+
+      - intersections/processes with obvious error opportunities:
+        - data splitting
+        - data merging
+        - data indexing & caching
+        - computation indexing & caching (false positions to answers, false answers)
+        - computation timing
+        - computational order error (non-commutative)
+        - connectivity
+
+      - non-obvious error opportunities or lack of optimization
+
+        - organization method of distributed datasets allows for random or specific task optimization, rather than absolute optimization 
+          (multiple indexes for same dataset or storage of metadata properties & locations in each dataset so many organization methods can be used on same dataset)
+
+          - theres a lot of room for pre-computing, pre-indexing, & pre-combining within & across data set combinations
+
+        - lack of relationship metadata between datasets 
+          (which dataset contains more items of type c, etc)
+
+        - identifying key vertices (factors on an analytical layer) to split the data set beforehand and creating multiple clusters split in different ways likeliest to be needed
+
+          - identifying key splitting order & intervals at query time
+          - identifying optimized stack components for computation tasks
+            (servers/file systems/folder structures/databases/indexes/metadata/order/organization/languages/algorithm/data structure)
+
+
 ## Learning models
 
     - brain learns through various reward models:
@@ -203,3 +231,4 @@
     - if you had a communication protocol that supported common content tokens, sending content to servers that are better at converting content to tokenized form would be better than a random or non-optimized server
     - sending converted tokenized content & the id of the tokenization map on different routes adds some interim security
   - using neutrinos as a way to speed up communication using them as jumping-off/charging points
+
