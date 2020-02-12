@@ -122,7 +122,6 @@
             - if you can fill a math progressionw with data, you can access computed values by position (if data is in the 3rd term, you know what the data will be before looking up the data)
         - data range/data type/data probability distribution & change patterns can be computed after definition time
 
-
     - error types
 
       - intersections/processes with obvious error opportunities:
@@ -155,14 +154,19 @@
             - another subset's handler can be evaluated at runtime if its likeliest to change
             - mixing these on the same dataset may improve performance
 
-    - function chains to predict position
+    - example of using function chains (operations done on an input/object) to predict position & other data structure metadata without traversal
+
       - if a list contains integer range from 0 to 10, and the compatible set of operations for the output of the list definition includes split & reverse functions, and the probable parameter of the split function is 2 (split list by midpoint), then the probable position of value 7 is:
         - position 4 if reverse is applied
         - position 1.3 if split(2) then reverse is applied
         - position 3 if split(2) is applied
 
-      - so any call to find index of 7 in the list can check that set of probable positions rather than all positions, or it can check which operations were done in which order on the original list (function chain) to determine position without traversing list
+      - so any call to find index of 7 in the list can calculate & check that set of probable positions rather than all positions
+      - it can also check which operations were done in which order on the original list (function chain) to determine position without traversing list
 
+  - storing grouped data in different structures according to their value attributes & relationships
+    - storing a list as a network structure of values (pairs of connected values, organized by similarity or other metrics to reduce traversal time)
+    - storing a list as a network structure of generators (where hub nodes represent generative functions for the values around it)
 
 ## Learning models
 
