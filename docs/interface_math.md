@@ -1,15 +1,23 @@
 # sub interfaces of primary interface layers
 
-    - efficiencies can be found in: 
-      - symmetries
-      - similarities
-        - attribute alignments
+    - example of connection between interfaces:
 
-    - emergent attributes can be illusory & created by:
-      - attribute alignments: 
-        - example: direction of growth in similar direction by adjacent objects can create the illusion of an emergent border attribute
+      - symmetric (efficiency & similarity) interfaces:
+        - efficiencies can be found in: 
+          - symmetries
+          - similarities
+            - attribute alignments
+
+          - the efficiency can be any side effect of the similarity, assuming each output is potentially useful until proven otherwise, especially if the relationship occurs from system forces like stabilizing incentives rather than costing something to create
+
+      - structural (adjacency & alignment) interfaces:
+        - emergent attributes can be illusory & created by:
+          - attribute alignments: 
+            - example: direction of growth in similar direction by adjacent objects can create the illusion of an emergent border attribute
+
 
     - structural interface
+
       - dimension/attribute/variable/property
         - variables have symmetries with interfaces, since variables are a standard where change can occur within a limit
         - what shapes do attributes take with regard to an object?
