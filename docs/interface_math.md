@@ -1,5 +1,14 @@
 # sub interfaces of primary interface layers
 
+    - efficiencies can be found in: 
+      - symmetries
+      - similarities
+        - attribute alignments
+
+    - emergent attributes can be illusory & created by:
+      - attribute alignments: 
+        - example: direction of growth in similar direction by adjacent objects can create the illusion of an emergent border attribute
+
     - structural interface
       - dimension/attribute/variable/property
         - variables have symmetries with interfaces, since variables are a standard where change can occur within a limit
