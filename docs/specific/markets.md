@@ -9,12 +9,21 @@
 
 ## Loan markets
 
+  - loan: represents belief in potential future relative value increase during loan term (potential value of their existing resources * work)
   - interest rate is supposed to reflect lower rate than borrower ROI
   - aggregate loans by purpose
-    - borrowers contribute borrowed funds & price information (how much theyd pay for a solution) to finance research to solve malaria/water cleaning problems that generate inability to pay
+    - borrowers contribute borrowed funds & price information (how much theyd pay for a solution) to finance research to solve malaria/water cleaning problems that generate problems leading to inability to pay
   - competition between loaners creates market for loans between loaners (tala owes m-pesa or vice versa)
+    - so exploitative loaners become indebted to less exploitative loaners who offer more money/lower interest rates, bc borrowers have an incentivized out that loaners dont have
   - optimal transport can be applied to create repayment groups
     - which borrowers can team up to repay which loans in which order to reduce overall interest rate
+    - which borrowers can trade work/debt/interest rates in a way that benefits both of them
+    - which borrowers can trade resources to lower risk of repayment-preventing problems (borrowers with malaria medicine, borrowers with electricity) & how to distribute these borrowers in repayment groups
+  - interest rates can be determined from local assessments
+    - local traders can often better assess someone's ability to repay because they have information that the app does not, and might increase the likelihood to repay based on their relationship & by the investment in that relationship, whereas the app has no pre-existing relationship to bank on
+  - high interest rate loans are only more valuable than normal interest rate loans if there is an ability to pay & a lack of competition between loaners
+    - but if there is an ability to pay, high interest rate loans have value and can be aggregated like an asset
+  - dead-end borrowers (resources arent used to create value, so they exit the economy, leaving only information about default data) can be connected with low-risk borrowers to reduce risk of default
 
   https://www.bloomberg.com/news/features/2020-02-12/tech-startups-are-flooding-kenya-with-apps-offering-high-interest-loans?srnd=premium
 
