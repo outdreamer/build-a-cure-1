@@ -24,6 +24,11 @@
   - high interest rate loans are only more valuable than normal interest rate loans if there is an ability to pay & a lack of competition between loaners
     - but if there is an ability to pay, high interest rate loans have value and can be aggregated like an asset
   - dead-end borrowers (resources arent used to create value, so they exit the economy, leaving only information about default data) can be connected with low-risk borrowers to reduce risk of default
+  - borrowers shouldnt be borrowing to do things that dont benefit other borrowers & the economy as a whole
+    - dead-end loans to buy food rather than food-production equipment (water cleaner, electricity source, seeds) arent as useful as loans to buy things that enable, so loans for higher distribution of asset contribution should have lower interest rates to incentivize them
+  - prevent the money borrowed being used for high-risk gambling with app coordination
+  - loaners can provide gambling apps to increase repayment rates
+  - gambling apps can be run by borrowers
 
   https://www.bloomberg.com/news/features/2020-02-12/tech-startups-are-flooding-kenya-with-apps-offering-high-interest-loans?srnd=premium
 
