@@ -3,18 +3,30 @@
     - example of connection between interfaces:
 
       - symmetric (efficiency & similarity) interfaces:
+
         - efficiencies can be found in: 
+
           - symmetries
+            - can be the quickest way to determine relevant/causative variables
+
           - similarities
-            - attribute alignments
-          - aligned incentives & intents
+            - similarity of shape/position can be a quick way to classify or match
+
+          - attribute alignments
+            - alignments between attributes can cause similar systems or emergent rules/attributes, which can provide an interface for comparison or reusing solutions
+
+          - aligned incentives (default rules without exerting force) & intents (structural/conceptual goals)
+
             - if transporting an object where there is a decrease in height along the trajectory, letting it fall at a rate that wont damage it to take advantage of the gravity incentive built-in that aligns with the intent of 'transportation'
 
-          - the efficiency can be any side effect of the similarity, assuming each output is potentially useful until proven otherwise, especially if the relationship occurs from system forces like stabilizing incentives rather than costing something to create
+          - an efficiency can be any side effect, assuming each output is potentially useful until proven otherwise, especially if the relationship occurs from system forces like stabilizing incentives rather than costing something to create
 
       - structural (adjacency & alignment) interfaces:
+
         - emergent attributes can be illusory & created by:
+
           - attribute alignments: 
+
             - example: direction of growth in similar direction by adjacent objects can create the illusion of an emergent border attribute
 
 
