@@ -7,6 +7,8 @@
           - symmetries
           - similarities
             - attribute alignments
+          - aligned incentives & intents
+            - if transporting an object where there is a decrease in height along the trajectory, letting it fall at a rate that wont damage it to take advantage of the gravity incentive built-in that aligns with the intent of 'transportation'
 
           - the efficiency can be any side effect of the similarity, assuming each output is potentially useful until proven otherwise, especially if the relationship occurs from system forces like stabilizing incentives rather than costing something to create
 
