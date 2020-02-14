@@ -632,6 +632,31 @@
 
   IX. System derivation
 
+    - deriving system structure from scratch rather than using system structure to solve problems
+
+    - involves calculating several objects of lack rather than content:
+
+      - gaps: opportunities for variance to fill, patterns to evolve, shapes to converge
+      - emergence: unpredicted items (objects/functions/attributes/interfaces/changes/limits)
+      - paradoxes: conflict implying a requirement for change in system structure or an unknown system structure (pieces missing to explain paradox)
+
+    - emergence:
+
+      - key objects in the emergence prediction problem space:
+
+        - limits
+          - phase/paradism/state shifts
+
+        - unexplored/unused interaction potentials
+
+        - convergence of items (structure, intent, types) to standard emergent products (attributes like relevance, concepts like power or change)
+
+        - causes of emergence:
+          - symmetry (similarity/alignment)
+          - cooperation (when forces cooperate through compounding/synergistic effects, more changes happen & more emergent attributes can occur)
+          - cascading effects (variance triggers)
+          - phase shifts (emergent attribute is measurable above a limit)
+
     - paradox: calculating something that doesnt seem directly calculatable from existing resources
       - https://en.wikipedia.org/wiki/Paradox
 
