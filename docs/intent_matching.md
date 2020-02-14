@@ -1,5 +1,29 @@
 ## Intent matching
 
+  - intent of an object/function/system is 'reason to use it' 
+
+    - intent stack is full set of reasons to use it, based on known/derivable intents
+
+    - unknown intent examples:
+
+      - 'to crash the asteroid into the other asteroid' 
+
+        - isnt a known intent, but it will be in the problem space where space mining is an actual problem relevant to solve & the tech is there to support it, or if alien species are doing this
+        - this is also not a need of any known system (unless theyre already crashing asteroids into other asteroids using explosions, radiation, & gravity manipulation & Im just a fool)
+        
+    - known intent examples: 
+
+      - 'to find the word in the document'
+      - 'to classify the species'
+
+    - derivable intent examples:
+
+      - 'to distribute fault for a problem' is a derivable intent using core functions:
+
+        - 'avoid punishment'
+        - 'minimize effort'
+        - 'ignore error potential'
+
   - rule gaps are created by trust (lack of enforcement in rules)
 
   - layers of rule gaps can form a possible exploit trajectory to achieve a malicious intent that seems legitimate at various points of validation
