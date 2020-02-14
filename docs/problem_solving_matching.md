@@ -692,6 +692,12 @@
                 - the boundary of a circle presents a way to manage growth that has equal opportunity in any direction on the plane
                 - the circle has efficiencies toward equal/random distribution that a cornered shape doesnt
                 - the most efficient path linking four points equidistant from center is possible with a circle, which allows for momentum to add force to the motion, beyond what a square would allow, which requires more effort to maintain than allowing momentum to advance the motion
+                - the square is more linearly derivable than a circle (the square requires a shift of a line in a direction, the circle requires a rotation of a line in all directions), but they can both be transformed into the line interface
+              
+            - conflicting directions (an extra dimension):
+
+              - the evolution of a shape with sides (as opposed to a line) involves conflicts in direction, which adds a dimension to the line object
+              - this allows the creation of closed loops (common shapes like circle/triangle) where a point need to be compared to another point, but within a limited path of divergence that has one or more turning points where the motion begins to point back to the original point (opposite point on a circle or corners)
 
 
     - paradox: calculating something that doesnt seem directly calculatable from existing resources
