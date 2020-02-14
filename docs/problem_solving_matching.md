@@ -645,17 +645,19 @@
       - key objects in the emergence prediction problem space:
 
         - limits
-          - phase/paradism/state shifts
+          - phase/paradigm/state shifts
 
         - unexplored/unused interaction potentials
 
         - convergence of items (structure, intent, types) to standard emergent products (attributes like relevance, concepts like power or change)
 
-        - causes of emergence:
+      - causes of emergence:
           - symmetry (similarity/alignment)
           - cooperation (when forces cooperate through compounding/synergistic effects, more changes happen & more emergent attributes can occur)
           - cascading effects (variance triggers)
           - phase shifts (emergent attribute is measurable above a limit)
+          - need/demand:
+            - emerging shapes of need that fit a demand created by a gap in functionality that is beginning to be required by intersecting items 
 
     - paradox: calculating something that doesnt seem directly calculatable from existing resources
       - https://en.wikipedia.org/wiki/Paradox
