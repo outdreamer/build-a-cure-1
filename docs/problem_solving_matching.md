@@ -653,11 +653,21 @@
 
       - causes of emergence:
           - symmetry (similarity/alignment)
+            - example:
+              - when growth happens in the same direction, an illusion of a limit can emerge (circle or other shape that seems limited but is only appearing to be limited by a circular boundary, and the primary factor creating that shape is the growth in the same directions (away from center)
           - cooperation (when forces cooperate through compounding/synergistic effects, more changes happen & more emergent attributes can occur)
+            - example:
+              - when electrons sync their spin, attributes like energy or charge can emerge
           - cascading effects (variance triggers)
+            - example:
+              - when energy is injected to a system above the rate & distribution it can handle (by storing or using it immediately), energy emerges from the system in various formats (heat, electricity)
           - phase shifts (emergent attribute is measurable above a limit)
+            - example:
+              - when molecules bind at scale, an object like a drop of liquid emerges
           - need/demand:
             - emerging shapes of need that fit a demand created by a gap in functionality that is beginning to be required by intersecting items 
+            - example:
+              - a process that is causing problems by going unrestricted is a functionality gap creating demand for an operation that can detect its required limits, determine the lack of limitations & limit its operation
 
     - paradox: calculating something that doesnt seem directly calculatable from existing resources
       - https://en.wikipedia.org/wiki/Paradox
