@@ -4,6 +4,12 @@
 
     - intent stack is full set of reasons to use it, based on known/derivable intents
 
+    - function metadata should all be assumed to be possible intents:
+      - side effects of a function
+      - non-standard uses of a function
+      - underivability of a particular intent for the function
+      - variance gaps of a function 
+
     - unknown intent examples:
 
       - 'to crash the asteroid into the other asteroid' 
@@ -38,8 +44,13 @@
         - assign/derive position attribute (position has meaning in the input sequence)
         - optimize search (find the meaning within a positioned subset, beyond derivable position meaning)
 
+      - side effect intents are not equivalent to the direct/intended intent of the function, though they can be required sub-steps in creating the function output
+
       - side effect stack:
-        - remove delimiter
+        - remove delimiter/filter from string
+        - create groups of characters
+        - change memory storage/access (string to list)
+        - change interface (string functions to list functions)
 
       - intended/supported/expected:
         - the intended use is that which should be supported by the item, at the supported level of abstraction, and including the network of supported use cases
@@ -52,7 +63,7 @@
         - non-obvious uses of a particular item
 
           - alteration allowed by super type (sequence): 
-          
+
             - if the split function implementation has support for attempting to convert inputs to a sequence of characters (if a character sequence is its only supported type) before throwing an error, then a sequence of bytes or character encodings could theoretically be input to the function
 
           - use of function side effect (removal of delimiter):
@@ -64,6 +75,7 @@
             - if the split function doesnt check its requirements (string data type of input, sequence attributes/methods of input) there's more room for indirect intents
 
               - if a set, tuple, or list can be split by the function, then the function can be used as an organization or division method, creating sub-tuples, sub-sets, and sub-lists
+
               - that intent could be used for other intents not typically associated with the split function, such as optimizing search of a data structure (searching subsets rather than entire sequence)
 
               - the lack of enforcement of data type creates a variance gap, allowing variance to be:
@@ -74,9 +86,35 @@
                 - injected (use function for clearly unintended functionality, like optimizing search of some object)
                   - variance injection uses function for other intents that cant be fully derived from the function itself, which are a system-level exploit
 
-      - underivable
+      - underivable (unless system allows one unique abstract path, which is uncommon in a changing system)
+
         - once you derive the limit of the possible intents of a function (like optimizing search by splitting some group into subsets), deriving intents beyond that may not be derivable
+
         - the reason is that this outer layer of possible derivable intents is abstract, and abstract intents fit many problem types
+
+        - what could they be optimizing the search of? any type of content:
+
+          - the optimal function for an encryption algorithm with a particular intent stack
+          - the password for a user given their decision history
+          - a keyword in a document
+
+        - however you do know some things about their possible intents despite the abstraction layer:
+
+          - the object must be difficult to find 
+            - very similar to other objects
+            - hard to guess given the usual amount of information known about the object when finding it becomes necessary
+            - unfindable with existing filters so that search of it must be optimized
+            - the space to search must be disorganized (not organized by the identifying attributes of the object to find)
+
+          - the object must be important
+            - this implies the object is newly identified as important, like a new prediction signal
+
+          - from there you can derive other intents given these filters
+          
+            - youre looking for a difficult to find object that escapes existing filters which is important, like:
+              - a prediction signal
+              - a search method
+              - an encryption function
 
   - rule gaps are created by trust (lack of enforcement in rules)
 
