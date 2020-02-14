@@ -113,14 +113,17 @@
                 - narrow identifying attributes (clearly that type)
                   - repetition (repeated convergence of values at an interval, like a wave function)
                   - symmetry:
-                    - ambiguity (not clear which parameter path was taken to generate a value using other parameters)
+                    - symmetry in variance:
+                      - ambiguity (not clear which parameter path was taken to generate a value using other parameters)
+                      - lack of clarity in definition of object 
+                        (not a clearly determined & therefore simple shape like a circle, with so few direct parameters (2, radius & origin) that it doesnt allow much ambiguity)
 
                 - wide dis-identifying attributes (clearly not that type)
                   - functions with parameters having 1:1 or other simple relationship types
                     - linear functions
 
                 - space-reduction patterns (clearly or clearly not in this section)
-                
+
                   - non-linearity + ambiguity means circles, waves & circle/wave-adjacent shapes will be relevant to find these functions, 
                     so non-circular shapes can be ignored for finding this particular subset of encryption functions
 
@@ -128,7 +131,8 @@
                     - if you know the radius & origin, you can calculate the circle
                     - if you know the ratio of the circle compared to the unit circle, you can calculate the circle
                     - if you know the square parameters containing the circle with 4 intersection points, you can calculate the circle
- 
+                    - the circle is easily determined by its direct parameters bc of the clarity of its definition, but the derivation of other methods that could be used to calculate the circle is the set of alternative paths that are not directly calculatable
+
                 - base or adjacent functions (and their identifying attributes/rules) to the target function type
                   - prime-finding function (adds uniqueness to the equation)
 
