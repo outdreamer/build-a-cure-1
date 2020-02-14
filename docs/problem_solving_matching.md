@@ -699,6 +699,10 @@
               - the evolution of a shape with sides (as opposed to a line) involves conflicts in direction, which adds a dimension to the line object
               - this allows the creation of closed loops (common shapes like circle/triangle) where a point need to be compared to another point, but within a limited path of divergence that has one or more turning points where the motion begins to point back to the original point (opposite point on a circle or corners)
 
+            - stabilized points between linearly defined shapes
+              - all shapes, even circles, can be reduced to a combination of lines
+              - but the shapes in between these clearly defined maps to line objects have efficiencies that accrete enough energy & momentum to achieve stability, like a wave
+
 
     - paradox: calculating something that doesnt seem directly calculatable from existing resources
       - https://en.wikipedia.org/wiki/Paradox
