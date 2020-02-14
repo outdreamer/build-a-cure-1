@@ -640,6 +640,27 @@
       - emergence: unpredicted items (objects/functions/attributes/interfaces/changes/limits)
       - paradoxes: conflict implying a requirement for change in system structure or an unknown system structure (pieces missing to explain paradox)
 
+    - given core functions (apply x to y) or core variables (x, y) of a system, what are the possible dimensions within that system?
+
+      - example:
+        - given two interacting variables with synced intervals (x & y in euclidean space), what are the dimensions possible within that plane?
+          - interaction rule dimensions:
+            - overlap rules
+          - limit rule dimensions:
+            - the limiting rule on limits that can apply in the plane
+          - isolated motion rule dimensions:
+            - how can a line move through the plane
+          - what objects evolve in the plane:
+            - corners/curves/extremes/origins
+            - patterns (accretion of cooperating/repeated/overlapping rules)
+            - alternatives (many ways to derive a shape)
+            - symmetries (change governed by a limit)
+            - concepts (equivalence/distance/similarity)
+            - transformations/components (series or set of lines/shapes to generate a function)
+
+        - it may seem like those are not dimensions but are attributes within intersecting dimensions, however they provide an interface for change so they can be considered dimensions in different spaces 
+          (where values are graphed against the dimension of equivalence/symmetries/alternatives)
+
     - emergence:
 
       - key objects in the emergence prediction problem space:
@@ -688,21 +709,25 @@
                   - symmetric rotation around a center & symmetric growth of lines intersecting with that center (outward growth direction)
                   - symmetry of two real number variables (x & y)
 
-              - when a limit exists that interacts with symmetries, growth can occur within that limit up until the point where growth needs to break that limit
+              - when a limit exists that interacts with symmetries, growth can occur within that limit, up until the point where growth needs to break that limit
                 - the boundary of a circle presents a way to manage growth that has equal opportunity in any direction on the plane
                 - the circle has efficiencies toward equal/random distribution that a cornered shape doesnt
                 - the most efficient path linking four points equidistant from center is possible with a circle, which allows for momentum to add force to the motion, beyond what a square would allow, which requires more effort to maintain than allowing momentum to advance the motion
                 - the square is more linearly derivable than a circle (the square requires a shift of a line in a direction, the circle requires a rotation of a line in all directions), but they can both be transformed into the line interface
               
-            - conflicting directions (an extra dimension):
+            - conflicting directions (an extra dimension to the line object):
 
               - the evolution of a shape with sides (as opposed to a line) involves conflicts in direction, which adds a dimension to the line object
               - this allows the creation of closed loops (common shapes like circle/triangle) where a point need to be compared to another point, but within a limited path of divergence that has one or more turning points where the motion begins to point back to the original point (opposite point on a circle or corners)
 
-            - stabilized points between linearly defined shapes
-              - all shapes, even circles, can be reduced to a combination of lines
-              - but the shapes in between these clearly defined maps to line objects have efficiencies that accrete enough energy & momentum to achieve stability, like a wave
+            - stabilized equilibria between linearly defined shapes
 
+              - all shapes, even circles, can be reduced to a combination of lines
+              - but the shapes in between the shapes with clearly defined maps to line objects (shapes with corners) have efficiencies that accrete enough energy & momentum within limits to achieve stability
+                - like a wave is limited on either side but maintains its energy to vacillate between extremes with momentum
+                - whereas a shape with corners achieves stability through patterns like:
+                  - periodic pausing of motion (allowing corners to develop)
+                  - interacting lines which have limits in their interaction types (must link at ends, cant overlap)
 
     - paradox: calculating something that doesnt seem directly calculatable from existing resources
       - https://en.wikipedia.org/wiki/Paradox
