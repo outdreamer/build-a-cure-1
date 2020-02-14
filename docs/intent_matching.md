@@ -107,6 +107,8 @@
             - the space to search must be disorganized (not organized by the identifying attributes of the object to find)
               - math functions may use only two dimensions, but searching along these dimensions is costly
               - to find functions of a type (where the type is not clearly defined but its clear when a function is not a member of that type), you need efficient filters to reduce the search space
+
+              - for example, filters for encryption functions can include:
                 
                 - narrow identifying attributes (clearly that type)
                   - repetition (repeated convergence of values at an interval, like a wave function)
@@ -114,10 +116,13 @@
 
                 - wide dis-identifying attributes (clearly not that type)
                   - functions with parameters having 1:1 or other simple relationship types
+                    - linear functions
 
                 - space-reduction patterns (clearly or clearly not in this section)
 
                 - base or adjacent functions (and their identifying attributes/rules) to the target function type
+                  - prime-finding function (adds uniqueness to the equation)
+
 
           - the object must be important
             - this implies the object is newly identified as important, like a new prediction signal
