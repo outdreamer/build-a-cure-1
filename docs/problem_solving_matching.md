@@ -675,9 +675,19 @@
               - a process that is causing problems by going unrestricted is a functionality gap creating demand for an operation that can detect its required limits, determine the lack of limitations & limit its operation
 
           - emergence of non-linear functions:
+
             - exponents:
+            
               - when variables are isolated, they have nothing but themselves to interact with (expanding x by itself = exponents)
+
             - intersecting symmetries:
+
+              - when symmetries intersect in a way that allows a standard for comparison (different spectrums at a perpendicular to indicate application of one variable to another in a way that aligns their unit intervals or their centers), it creates room for repetition & ambiguity aspects of non-linearity as happens in a circle
+
+                - symmetries allowing a circle to happen for example:
+                  - symmetric rotation around a center & symmetric growth of lines intersecting with that center (outward growth direction)
+                  - symmetry of two real number variables (x & y)
+
 
     - paradox: calculating something that doesnt seem directly calculatable from existing resources
       - https://en.wikipedia.org/wiki/Paradox
