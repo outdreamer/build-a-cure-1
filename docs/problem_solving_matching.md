@@ -640,9 +640,10 @@
       - emergence: unpredicted items (objects/functions/attributes/interfaces/changes/limits)
       - paradoxes: conflict implying a requirement for change in system structure or an unknown system structure (pieces missing to explain paradox)
 
-    - given core functions (apply x to y) or core variables (x, y) of a system, what are the possible dimensions within that system?
+    - given core functions (apply x to y) or core variables (x, y) of a known variable interaction, what are the possible dimensions within that interaction?
 
       - example:
+      
         - given two interacting variables with synced intervals (x & y in euclidean space), what are the dimensions possible within that plane?
           - interaction rule dimensions:
             - overlap rules
@@ -660,6 +661,8 @@
 
         - it may seem like those are not dimensions but are attributes within intersecting dimensions, however they provide an interface for change so they can be considered dimensions in different spaces 
           (where values are graphed against the dimension of equivalence/symmetries/alternatives)
+
+        - these dimensions within the interaction of two variables can be used to derive the system where the variable interaction is taking place
 
     - emergence:
 
