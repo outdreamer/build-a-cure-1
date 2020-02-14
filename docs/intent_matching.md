@@ -27,23 +27,57 @@
     - intent types:
 
       - abstract intent:
-        - 
+        - filter
+
+      - abstract intent stack:
+        - filter 
+          - filter by delimiter if input is a string
+          - remove delimiter if split is followed by join (non-standard use of split function)
+        - organize (into subsets)
+        - isolate (examine one subset at a time)
+        - assign/derive position attribute (position has meaning in the input sequence)
+        - optimize search (find the meaning within a positioned subset, beyond derivable position meaning)
+
+      - side effect stack:
+        - remove delimiter
 
       - intended/supported/expected:
         - the intended use is that which should be supported by the item, at the supported level of abstraction, and including the network of supported use cases
-
 
       - direct:
         - obvious uses of a particular item like 'splitting a list of characters' is an obvious use of the split sequence function
 
       - indirect:
-        - non-obvious uses of a particular item
-          - if the split function implementation has support for attempting to convert inputs to a sequence of characters (if a character sequence is its only supported type) before throwing an error, then a sequence of bytes or character encodings could theoretically be input to the function
-          - if the split function doesnt check its requirements (string data type of input, sequence attributes/methods of input) there's more room for indirect intents
-            - if a set, tuple, or list can be split by the function, then the function can be used as an organization or division method, creating sub-tuples, sub-sets, and sub-lists
-            - that intent could be used for other intents not typically associated with the split function, such as optimizing search of a data structure (searching buckets rather than entire sequence)
 
-        
+        - non-obvious uses of a particular item
+
+          - alteration allowed by super type (sequence): 
+          
+            - if the split function implementation has support for attempting to convert inputs to a sequence of characters (if a character sequence is its only supported type) before throwing an error, then a sequence of bytes or character encodings could theoretically be input to the function
+
+          - use of function side effect (removal of delimiter):
+
+            - if the split function is followed by a join, it may used to remove the delimiter or replace the original delimiter with the new delimiter input to the join function
+
+          - use of function side effect & lack of validation (organization):
+
+            - if the split function doesnt check its requirements (string data type of input, sequence attributes/methods of input) there's more room for indirect intents
+
+              - if a set, tuple, or list can be split by the function, then the function can be used as an organization or division method, creating sub-tuples, sub-sets, and sub-lists
+              - that intent could be used for other intents not typically associated with the split function, such as optimizing search of a data structure (searching subsets rather than entire sequence)
+
+              - the lack of enforcement of data type creates a variance gap, allowing variance to be:
+
+                - exploited (alter data type to trigger bug)
+                  - variance exploit is internal to the function & only supports malicious intents
+
+                - injected (use function for clearly unintended functionality, like optimizing search of some object)
+                  - variance injection uses function for other intents that cant be fully derived from the function itself, which are a system-level exploit
+
+      - underivable
+        - once you derive the limit of the possible intents of a function (like optimizing search by splitting some group into subsets), deriving intents beyond that may not be derivable
+        - the reason is that this outer layer of possible derivable intents is abstract, and abstract intents fit many problem types
+
   - rule gaps are created by trust (lack of enforcement in rules)
 
   - layers of rule gaps can form a possible exploit trajectory to achieve a malicious intent that seems legitimate at various points of validation
