@@ -101,16 +101,29 @@
         - however you do know some things about their possible intents despite the abstraction layer:
 
           - the object must be difficult to find 
-            - very similar to other objects
+            - very similar to other objects, of which there are many
             - hard to guess given the usual amount of information known about the object when finding it becomes necessary
             - unfindable with existing filters so that search of it must be optimized
             - the space to search must be disorganized (not organized by the identifying attributes of the object to find)
+              - math functions may use only two dimensions, but searching along these dimensions is costly
+              - to find functions of a type (where the type is not clearly defined but its clear when a function is not a member of that type), you need efficient filters to reduce the search space
+                
+                - narrow identifying attributes (clearly that type)
+                  - repetition (repeated convergence of values at an interval, like a wave function)
+                  - ambiguity (not clear which parameter path was taken to generate a value using other parameters)
+
+                - wide dis-identifying attributes (clearly not that type)
+                  - functions with parameters having 1:1 or other simple relationship types
+
+                - space-reduction patterns (clearly or clearly not in this section)
+
+                - base or adjacent functions (and their identifying attributes/rules) to the target function type
 
           - the object must be important
             - this implies the object is newly identified as important, like a new prediction signal
 
           - from there you can derive other intents given these filters
-          
+
             - youre looking for a difficult to find object that escapes existing filters which is important, like:
               - a prediction signal
               - a search method
