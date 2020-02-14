@@ -643,7 +643,7 @@
     - given core functions (apply x to y) or core variables (x, y) of a known variable interaction, what are the possible dimensions within that interaction?
 
       - example:
-      
+
         - given two interacting variables with synced intervals (x & y in euclidean space), what are the dimensions possible within that plane?
           - interaction rule dimensions:
             - overlap rules
@@ -731,6 +731,10 @@
                 - whereas a shape with corners achieves stability through patterns like:
                   - periodic pausing of motion (allowing corners to develop)
                   - interacting lines which have limits in their interaction types (must link at ends, cant overlap)
+
+            - lack of enforcement of attribute:
+              - when an attribute is not enforced (direction), such as when an object is allowed to spin or otherwise change direction, it can generate non-linearities
+                - for example, when a line is allowed to spin between limits (parallel alignment with dimensional axis), it can generate a parabola or wave through tangential points of its center
 
     - paradox: calculating something that doesnt seem directly calculatable from existing resources
       - https://en.wikipedia.org/wiki/Paradox
