@@ -677,7 +677,7 @@
           - emergence of non-linear functions:
 
             - exponents:
-            
+
               - when variables are isolated, they have nothing but themselves to interact with (expanding x by itself = exponents)
 
             - intersecting symmetries:
@@ -687,6 +687,11 @@
                 - symmetries allowing a circle to happen for example:
                   - symmetric rotation around a center & symmetric growth of lines intersecting with that center (outward growth direction)
                   - symmetry of two real number variables (x & y)
+
+              - when a limit exists that interacts with symmetries, growth can occur within that limit up until the point where growth needs to break that limit
+                - the boundary of a circle presents a way to manage growth that has equal opportunity in any direction on the plane
+                - the circle has efficiencies toward equal/random distribution that a cornered shape doesnt
+                - the most efficient path linking four points equidistant from center is possible with a circle, which allows for momentum to add force to the motion, beyond what a square would allow, which requires more effort to maintain than allowing momentum to advance the motion
 
 
     - paradox: calculating something that doesnt seem directly calculatable from existing resources
