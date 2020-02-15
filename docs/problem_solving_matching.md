@@ -708,7 +708,7 @@
 
             - embedded dimensions
 
-            - randomness:
+            - randomness (equality of influence):
 
               - equivalence between competing alternative forces, generating equal distribution in growth & restriction (circle) or lack of influence on/distortion of natural accretion of motion (momentum)
 
@@ -722,6 +722,8 @@
                 - whether a system like a plane flying to a destination will fail can be determined by two variables (position of luggage & contents of luggage), which allows a variance gap that can be exploited to make sure the plane fails in its primary intent (reaching destination intact) - where the exploit is to make sure luggage is arranged so contents are near enough to trigger a chemical reaction with heat or other environmental attributes during flight
                 - the combination of these two variables have many dimensions between them, which can invalidate the system allowing those variables to interact
                 - this system failure-triggering combination of variable values can also occur randomly, although its less likely to be random with more regulations & enforcement of them
+
+              - the equality of influence that the 'direction' variable has on the tangent line creating a curve produces a smooth curve
 
             - exponents:
 
