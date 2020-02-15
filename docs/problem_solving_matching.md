@@ -640,26 +640,32 @@
       - emergence: unpredicted items (objects/functions/attributes/interfaces/changes/limits)
       - paradoxes: conflict implying a requirement for change in system structure or an unknown system structure (pieces missing to explain paradox)
 
-    - given core functions (apply x to y) or core variables (x, y) of a known variable interaction, what are the possible dimensions within that interaction?
+    - embedded dimensions
 
-      - example:
+      - given core functions (apply x to y) or core variables (x, y) of a known variable interaction, what are the possible dimensions within that interaction?
 
-        - given two interacting variables with synced intervals (x & y in euclidean space), what are the dimensions possible within that plane?
-          - interaction rule dimensions:
-            - overlap rules
-          - limit rule dimensions:
-            - the limiting rule on limits that can apply in the plane
-          - isolated motion rule dimensions:
-            - how can a line move through the plane
-          - what objects evolve in the plane:
-            - corners/curves/extremes/origins
-            - patterns (accretion of cooperating/repeated/overlapping rules)
-            - alternatives (many ways to derive a shape)
-            - symmetries (change governed by a limit)
-            - concepts (equivalence/distance/similarity)
-            - transformations/components (series or set of lines/shapes to generate a function)
+        - example:
 
-        - it may seem like those are not dimensions but are attributes within intersecting dimensions, however they provide an interface for change so they can be considered dimensions in different spaces 
+          - given two interacting variables with synced intervals (x & y in euclidean space), what are the dimensions possible within that plane?
+
+            - interaction rule dimensions:
+              - overlap rules
+
+            - limit rule dimensions:
+              - the limiting rule on limits that can apply in the plane
+
+            - isolated motion rule dimensions:
+              - how can a line move through the plane
+
+            - what objects evolve in the plane:
+              - corners/curves/extremes/origins
+              - patterns (accretion of cooperating/repeated/overlapping rules)
+              - alternatives (many ways to derive a shape)
+              - symmetries (change governed by a limit)
+              - concepts (equivalence/distance/similarity)
+              - transformations/components (series or set of lines/shapes to generate a function)
+
+        - it may seem like these are not dimensions but are attributes within intersecting dimensions, however they provide an interface for change so they can be considered dimensions in different spaces 
           (where values are graphed against the dimension of equivalence/symmetries/alternatives)
 
         - these dimensions within the interaction of two variables can be used to derive the system where the variable interaction is taking place
@@ -700,8 +706,22 @@
 
           - emergence of non-linear functions:
 
+            - embedded dimensions
+
             - randomness:
-              - equivalence between competing alternative forces, generating equal distribution in growth (circle) or lack of influence on/distortion of natural accretion of motion (momentum)
+
+              - equivalence between competing alternative forces, generating equal distribution in growth & restriction (circle) or lack of influence on/distortion of natural accretion of motion (momentum)
+
+              - a system with randomness is one where either no forces or forces with equal & opposite impact are interfering with equal alternatives that are competing in a variance gap
+
+                - example:
+                  - the forces outside the circle pushing in equal the forces inside the circle pushing outward from the origin
+                  - the forces that could influence motion are not (no forces making the motion a straight line)
+                  - the variance gap in a circular shape is the direction of growth from the origin, which is not determined
+
+                - whether a system like a plane flying to a destination will fail can be determined by two variables (position of luggage & contents of luggage), which allows a variance gap that can be exploited to make sure the plane fails in its primary intent (reaching destination intact) - where the exploit is to make sure luggage is arranged so contents are near enough to trigger a chemical reaction with heat or other environmental attributes during flight
+                - the combination of these two variables have many dimensions between them, which can invalidate the system allowing those variables to interact
+                - this system failure-triggering combination of variable values can also occur randomly, although its less likely to be random with more regulations & enforcement of them
 
             - exponents:
 
