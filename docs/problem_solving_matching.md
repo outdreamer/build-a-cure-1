@@ -700,6 +700,9 @@
 
           - emergence of non-linear functions:
 
+            - randomness:
+              - equivalence between competing alternative forces, generating equal distribution in growth (circle) or lack of influence on/distortion of natural accretion of motion (momentum)
+
             - exponents:
 
               - when variables are isolated, they have nothing but themselves to interact with (expanding x by itself = exponents)
