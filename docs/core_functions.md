@@ -1,9 +1,15 @@
 # Functions
 
+
+## Match
+- match(source_structure, target_structure)
+
+
 ## Find
 
 - find(target, data, filters): 
 	- find target type & data type, get relationships between them ('this type is often found at end of document'), apply filters to output
+
 
 ## Apply
 
@@ -26,11 +32,13 @@
 			converting it into a usable strategy with an intent 
 			(agent & possible intents would be part of the problem space object)
 
+
 ## Generate
 
 - generate(type, input_ranges, output_distribution):
 	- gets structures of subtypes within that type
 	- applies input_ranges (limits of variables) to generate the set of type examples with output_distribution
+
 
 ## Derive
 

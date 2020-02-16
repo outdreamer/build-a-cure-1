@@ -4,6 +4,8 @@
 
     - intent stack is full set of reasons to use it, based on known/derivable intents
 
+      - overlapping variance gaps of layered systems in intent_matching.svg create opportunity chains between system variance gaps
+
     - function metadata should all be assumed to be possible intents:
       - side effects of a function
       - non-standard uses of a function
