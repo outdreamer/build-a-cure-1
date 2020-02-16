@@ -236,6 +236,13 @@
 
   III. Solve problem with solution function selection
 
+    - this method is for selecting the best metadata of a solution object:
+      - which interface to start with
+      - which variables are likeliest to be causative
+      - which solution patterns to use as a base
+
+    - this method requires quite a bit of information or derivation potential, if multiple solution methods are going to be an option
+
     - min info => selection of structural layer
 
     - structural example:
@@ -284,7 +291,6 @@
 
       2. given these solution functions, how do you select which one is likeliest to produce solution given optimization metrics (accuracy, time)
 
-
     - add variable-selection example with separate alts having equivalent outputs:
       - if one alt is disabled, then it would give a false result for anyone checking it for ability to impact the output, even though the alternative was being variably used instead
   
@@ -327,7 +333,7 @@
 
   IV. Solve problem with Conceptual Query
 
-    - get a conceptual combination with a query of problem space & find an abstract structure that fits this combination, then find a specific structure that fits the combination
+    - get a conceptual combination with a query of problem space & find an abstract structure that fits this combination, then find a specific structure that fits the combination, then test if that specific structure solves the problem
 
     - example:
 
@@ -396,20 +402,61 @@
 
   V. Solve problem with Conceptual Combination Metadata query (different starting point as IV)
 
-    - if you know that a certain configuration of uniqueness & randomness can output a lack of predictability, and you know that a lack of predictability means randomness can be verified (trust in randomness is not required), then for any problem with a target intent of "verifying randomness", or similar intents ("verifying information", "correcting info asymmetry", "not requiring trust"),
-        you can match that configuration of uniqueness & randomness with the problem and see if it reduces the problem dimensions (solves the problem)
+    - this method is for when you have conceptual rules derived, and you know what concept you're aiming at (like justice), and you want to find the relevant concepts to use to get to the target concept, in your problem space context
+
+    - if you already know that a combination of uniqueness & randomness can output a lack of predictability, and you know that a lack of predictability means randomness can be verified (trust in randomness is not required), then for any problem with a target intent of "verifying randomness", or similar intents ("verifying information", "correcting info asymmetry", "not requiring trust"),
+        you can match that combination of uniqueness & randomness with the problem and see if it reduces the problem dimensions (solves the problem)
+
+    - rather than testing various concept combinations & matching them with structures, this involves deriving which concept combinations would produce the target concept (unpredictability) beforehand or with a derivation method and iterating through those concept combinations
+
+    - so the different piece here is the derivation method linking a set of concept combinations with output concepts (rather than using trial & error with concept combinations & matching structures)
+
+    - for example, how would you derive the relationship between concepts like power & balance, so that relationship could be used to generate other conceptual outputs (like randomness or equivalence) as needed?
+      
+      - first you need the definitions of these concepts, indexed as objects:
+        
+        - then you identify that balance is primarily an attribute and power can be many items (object, function, attribute)
+        - then you apply different combining functions for these two concepts based on their definition metadata:
+
+          - applying an attribute to an object: 'balanced power'
+          - applying an attribute to an attribute: 'balancing power', 'empowering balance'
+          - applying an attribute to a function: 'power that balances', 'balanced power inputs/outputs'
+
+        - identify the relationships of the two concepts
+          - any overlap between their definition metadata
+          - do they impact different interfaces
+          - is one a subtype of the other
+          - can one be used to generate the other
+          - what relative positions do they occupy on the conceptual network (how many nodes in between, does one provide a unique route to the other, acting as a gatekeeper)
+
+        - once you complete this analysis, you have a complete picture of how these two concepts can interact in isolation
+          - for instance, the analysis output would include rules like:
+            - 'power stabilizes at balance'
+
+    - then you can apply a system context like 'government' and watch the impact of the context on the isolated behavior & interaction of the two concepts
+      - given rules like 'power stabilizes at balance', how should you design a government, given priority x & y?
+      - then apply other conceptual rules to generate target concepts like 'fairness' (balance of justice, or vice/punishment & virtue/reward equilibria), given these inputs concepts of power & balance that you know are relevant to the problem space, but you dont know how to fit balance, power, & fairness together in the government system to achieve an intent like fairness
+
+      - the output rules should include:
+        - having multiple routes to justice in case one is compromised, to ensure cases can be brought
+        - having multiple monitoring agents in case delivery of justice is compromised once a case is brought
+        - having a framework abstract enough to cover transgressions but clear enough to prevent loophole exploitation
+            
+      - the conceptual relationships you derived/queried would lead you to these rules in the government context
 
     - this can also be abstracted:
-      - rather than storing "uniqueness/randomness config => unpredictability", you can store:
+      - rather than storing "uniqueness/randomness combination => unpredictability", you can store:
         - "consistent variance => upredictability"
         - "consistent variance => randomness"
         - "distributed variance == randomness"
-      - these abstract rules between conceptual configurations (a combination of concepts in a particular structure, like a system) can generalize the configuration to more problem spaces
+      - these abstract rules between conceptual combinations (a combination of concepts in a particular structure, like a system) can generalize the combination to more problem spaces
 
-    - these abstracted configurations have different metadata (intent, priority, logic flow, variance level, causation) and can therefore be useful in different (possibly meaning "additional") circumstances than the original configuration
+    - these abstracted combinations have different metadata (intent, priority, logic flow, variance level, causation) and can therefore be useful in different (possibly meaning "additional") circumstances than the original combination
 
 
   VI. Vectorization of Problem & Solution Space
+
+    - this method is for when you want to automate solving a clearly structured specific problem, with clear optimization metrics, without deriving the logic manually
 
     - example:
 
@@ -582,7 +629,9 @@
       - finding of optimal solution trajectory (or set of solution trajectories)
 
 
-  VII. Modeling gaps in Problem Space Systems as Solutions
+  VII. Modeling variance gaps in Problem Space Systems as Solutions
+
+    - this method is for decrypting variance, either to describe/derive it (for use in prediction functions), or to use the alternatives allowed by it (for use in alternate comparisons)
 
     1. model the openings created by variance
 
@@ -623,7 +672,9 @@
       - example: you can derive that a square object has variables "number of sides" (created by examining variations of the explicit corner, angle, & side objects in the 'square' system) and then permute this variable to generate adjacent objects (for example to check if triangular systems/objects would explain openings created by variance) or implicit objects (center, rotation, diagonals)
 
 
-  VIII. interface/symmetry derivation 
+  VIII. interface/symmetry derivation
+
+    - this method is for when you want to understand a system, for description or prediction purposes
 
     - in order to automate problem-solving, you may need to derive the interfaces/symmetries of a problem space, and then stack/arrange them in order that maximizes their utility as a set of filters that generate solutions from the original problem statement
 
@@ -631,6 +682,8 @@
 
 
   IX. System derivation
+
+    - this method is for deriving system structure, given information about a subset/component of it
 
     - deriving system structure from scratch rather than using system structure to solve problems
 
