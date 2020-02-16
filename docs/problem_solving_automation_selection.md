@@ -60,7 +60,12 @@
 			- breaking non-linear form into a progression (sum of sub-shapes)
 			- finding area of transformed/adjacent objects
 			- finding area of terms & mapping to influence on original function area
+				- influence can be in the form of original value, term metadata, or set of alternate terms that can create the same output
+				- example:
+					- if theres a x^2 term in the equation, that limits the ways that the area can vary (in relative terms to the function with that term removed, which is less limited)
+
 			- finding relationship between metadata of generating functions of boundaries (generating function for adjacent object boundary & generating function for original object boundary) & relationship between generating function metadata & boundary function output metadata (summed distance to axis standard)
+
 
 - system:
 
