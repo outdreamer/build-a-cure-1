@@ -5,26 +5,33 @@
   - types
 
     - meta solution
+
       - method for evaluating solutions or determining solution starting point (choose between methods in problem_solving_matching.md)
       - method for automating solutions
       - method to update solution definition metadata (a method that can add new solution type when found)
 
     - solution generator
 
+      - function derivation method
+      - solution selection method
+
     - solution framework (limits reducing solution space)
 
-    - problem decomposer (reduces problem dimensions)
+    - problem decomposer (reduces problem dimensions, matching dimensions of solution to dimensions of problem)
+
+    - problem metadata manipulation (changes problem space, postpones solving problem, matching problem with other problem to neutralize both)
 
     - interim solution 
 
       - common components of solutions:
+
         - a granular solution strategy
         - method to determine minimum info needed to solve problem
         - method to determine definition
         - identify objects in data
         - identify important objects/rules/variables/layers/systems
 
-    - problem metadata manipulation (changes problem space, postpones solving problem, matching problem with other problem to neutralize both)
+    - transforms unsolved problem into solved problem (transforms unsolved problem like markets or energy storage or evolution into an optimization/organization problem)
 
     - solution function built on core functions:
 
@@ -43,20 +50,22 @@
       - fit/match
         - structure
 
-    - problem-type scope
+  - limits
+
+    - time limit (only applicable in a certain time window)
+    - abstraction (structural/conceptual or specific to context)
+    - reusability (only applicable once, as with solutions that are easily identified or stop working once you use them the first time)
+    - problem-type & problem-space scope
       - only handles asymmetries or structure-fitting or optimal transport or classification
 
+  - relationships
 
-
-    - transforms unsolved problem into solved problem (transforms unsolved problem into an optimization/organization problem)
-
-  - abstraction
-
-  - reusability
-
-  - composability (cooperates with other solution functions)
-
-  - side effects (closed system or leaks variance)
+    - core solution functions used
+    - adjacent/related solutions
+    - side effects (closed system or leaks variance)
+    - composability (cooperates with other solution functions)
+    - order/position in solution chain/network (if it needs to be used with other solutions)
+    - structures & interface queries that can produce this solution
 
 
 ## Common solution functions/strategies
