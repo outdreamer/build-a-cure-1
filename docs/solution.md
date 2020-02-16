@@ -117,4 +117,25 @@
     - some have requirements that are fulfilled
     - some are more adjacent (require less transforms) to the problem
 
+  - most problems can be translated into a set of solved problems:
 
+    - example:
+
+      - problem definition:
+
+        - find optimal path in unknown system
+          
+      - problem broken into solved problems:
+
+        1. derive structure of complex system
+
+          - identify unique objects
+
+          - identify key objects (interfaces)
+
+            - find object definition (interface = standardizing filter)
+            - find matching structure (find interfaces = intent, structure, type, pattern, system)
+          
+        2. find optimal path (find interface trajectory to achieve intent)
+
+      - the solved problems have automatically determinable optimal or adequate solutions, so the solution in this case would be the set of the optimal solutions for each solved problem, in the order in which they are useful to compose the output solution
