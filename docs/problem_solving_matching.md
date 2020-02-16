@@ -18,9 +18,11 @@
   - map (physics of limits, combination, calculation, approximation, measurement)
 
 
-### Alternate structural layers
+### Alternate structural layers to match structures
 
-  I. Match problem & solution using definition & standardization, applying increasing limits until problem & solution match
+  - this method is for when you have a theory about the limits of the solution, but you need to find the right structure within those solution limits, to decompose the problem
+
+  I. Match problem & solution using definition & standardization, applying increasing limits or transforms until problem & solution match
 
     - get a problem, standardize & define it: 
       problem: "funds cannot always be verified to exist with existing currencies"
@@ -112,7 +114,9 @@
 
   II. Solve problem with structure fitting
 
-    - rather than sculpting an invention using an increasing set of limits, you can select or derive a structure that probably matches, then check if it fits
+    - this method is for when you have a theory about the optimal base/structure of the solution, but you need to find the right attributes/transforms of that base solution to decompose the problem
+
+    - rather than sculpting an invention using an increasing set of limits, you can select or derive a structure that probably matches, then check if it fits & transform it until it does (opposite direction as I.)
 
     1. using the requirements of a solution, design a structure (or range of structures) that may match the problem space
 
@@ -234,12 +238,15 @@
           - if its required that every protein has an off-switch, then that wont differentiate the protein definition/template, but if some proteins dont have an off-switch bc theyre so important or difficult to make, that can be used to calculate probable proteins that exist in a system requiring proteins of different functionality to handle various stressors
 
 
+### Use Solution Metadata
+
   III. Solve problem with solution function selection
 
     - this method is for selecting the best metadata of a solution object:
-      - which interface to start with
+      - which interface to start with (intent, structure, need, variance, imbalances, symmetries)
       - which variables are likeliest to be causative
       - which solution patterns to use as a base
+      - check if solution space of problem space is capable of solving problem, or if problem should be re-framed as a transform applied to the system or problem-space to enable a solution (or an optimized solution)
 
     - this method requires quite a bit of information or derivation potential, if multiple solution methods are going to be an option
 
@@ -330,6 +337,8 @@
 
       - selecting adjacent models that existing problem structure can be converted/broken into (system molecules forming problem structures)
 
+
+### Use Conceptual Network
 
   IV. Solve problem with Conceptual Query
 
@@ -453,6 +462,7 @@
 
     - these abstracted combinations have different metadata (intent, priority, logic flow, variance level, causation) and can therefore be useful in different (possibly meaning "additional") circumstances than the original combination
 
+### Use Intent Mapping
 
   VI. Vectorization of Problem & Solution Space
 
@@ -629,6 +639,8 @@
       - finding of optimal solution trajectory (or set of solution trajectories)
 
 
+### Use Variance Gaps
+
   VII. Modeling variance gaps in Problem Space Systems as Solutions
 
     - this method is for decrypting variance, either to describe/derive it (for use in prediction functions), or to use the alternatives allowed by it (for use in alternate comparisons)
@@ -672,7 +684,9 @@
       - example: you can derive that a square object has variables "number of sides" (created by examining variations of the explicit corner, angle, & side objects in the 'square' system) and then permute this variable to generate adjacent objects (for example to check if triangular systems/objects would explain openings created by variance) or implicit objects (center, rotation, diagonals)
 
 
-  VIII. interface/symmetry derivation
+### Derive
+
+  VIII. Interface/symmetry derivation
 
     - this method is for when you want to understand a system, for description or prediction purposes
 
