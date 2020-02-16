@@ -71,24 +71,22 @@
 				- electricity
 
 
-I. Match problem & solution using definition & standardization, applying increasing limits until problem & solution match
-../docs/problem_solving_matching.md:  II. Solve problem with structure fitting
-../docs/problem_solving_matching.md:  III. Solve problem with solution function selection
-../docs/problem_solving_matching.md:  IV. Solve problem with Conceptual Query
-../docs/problem_solving_matching.md:        Input concepts:
-../docs/problem_solving_matching.md:        Input relationship network:
-../docs/problem_solving_matching.md:        Concept Intents:
-../docs/problem_solving_matching.md:  V. Solve problem with Conceptual Combination Metadata query (different starting point as IV)
-../docs/problem_solving_matching.md:  VI. Vectorization of Problem & Solution Space
-../docs/problem_solving_matching.md:        I. identify variables, metrics, concepts (and their metadata like definitions, types, priorities)
-../docs/problem_solving_matching.md:        II. from previous objects, identify meaningful level of variance
-../docs/problem_solving_matching.md:        III. from level of variance to aim for, identify intent & check that it matches problem solving intent
-../docs/problem_solving_matching.md:        IV. now you should have:
-../docs/problem_solving_matching.md:        I. pre-computation
-../docs/problem_solving_matching.md:        II. out of the remaining options, you can use filtering rules when iterating through the remaining possible combinations of steps 
-../docs/problem_solving_matching.md:        III. remaining solution (or solution set if irreducible) example:
-../docs/problem_solving_matching.md:  VII. Modeling gaps in Problem Space Systems as Solutions
-../docs/problem_solving_matching.md:  VIII. interface/symmetry derivation 
-../docs/problem_solving_matching.md:    - by 'interface derivation' I mean finding the symmetries in a problem space, such as finding the 'spectrum interface' in the chaotic-evil matrix, or finding the 'rotation' interface in the shape progression problem space, and then stacking or otherwise arranging them in the order that they are most useful for generating/revealing solutions
-../docs/problem_solving_matching.md:  IX. System derivation
-../docs/problem_solving_matching.md:          - 'If "this sentence is false" is true, then it is false, but the sentence states that it is false, and if it is false, then it must be true, and so on.' https://en.wikipedia.org/wiki/Liar_paradox
+Based on where the problem is & what type it is, you can start with different methods:
+- if youre trying to invent something, you can start with structure-fitting or a conceptual query
+- if youre trying to figure a system out, you can start with system derivation
+- if youre trying to predict an optimal function of variables in a system, and you have the system knowledge & intents mapped in the system, you can start with vectorization of the problem space
+- if youre trying to find a path across a variance gap or use unused variance, & you have the system knowledge, you can start with modeling gaps in the problem systems as solutions
+- if you need a quick approximation of system understanding and dont have time for system derivation, you can start with interface derivation
+- if you have a lot of specific information about objects in the system and are missing a few relationships, you can use queries on the object model
+
+The methods listed in problem_solving_matching.md use different starting points:
+- matching structures
+- solution/problem/system metadata
+- using conceptual/intent/variance interfaces
+- derivation methods (systems, interfaces, functions, structures)
+
+These differ in:
+- focus/scope/interface
+- info requirements (host system is known, some variable relationship rules are known, some definitions are known, variance gaps are known)
+- tool access (pre-computed conceptual network, access to common solution functions)
+- primary solution function (query, transform, matching)
