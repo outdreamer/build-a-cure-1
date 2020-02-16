@@ -80,8 +80,16 @@
 		- needs
 		- forces
 		- limits
-		- potential (variance, opportunities, unused paths)
+		- paradoxes
+		- distortions
+		- potential (variance, opportunities, unused paths, adjacent states)
 		- conflicts (paradoxes)
+		- layers
+		- vertices (sets of generating functions/objects/attributes/constants/types that determine the system)
+		- hubs
+		- function sets (change rules, boundary rules, stabilizing rules)
+		- relevant interfaces & interface trajectories
+		- applicable spaces
 
 	- examples:
 
