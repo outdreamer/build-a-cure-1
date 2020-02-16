@@ -1,6 +1,16 @@
 ## Problem Object
 
-    - problem space: the system allowing the problem to occur
+    - problem space: the relevant system(s) allowing a problem to occur
+
+    - problem structures:
+
+      - distance/gap
+
+      - intersection
+
+      - overlap
+
+      - shapes (compounding problem dimensions)
 
     - problem attributes
 

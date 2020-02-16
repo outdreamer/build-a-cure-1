@@ -3,6 +3,7 @@
 
 ## Relationships
 
+
 - problem space: 
 
 	- definition: 
@@ -14,7 +15,11 @@
 		- can be a system
 		- is restricted by information thats definitely or possibly relevant to the problem
 
+	- structures:
+		- dimensions containing system structures (network, chain, tree, slice) and problem structures
+
 	- examples:
+
 		- 'how to break a problem into sub-components'
 		- 'how to find information in a data store'
 		- 'given current tech, whats the best way to count votes'
@@ -22,14 +27,17 @@
 		- for a problem like 'conflicting intent with incentives in loan market', the problem space contains:
 			- relevant objects (loans, loaners, borrowers, interest rates, banks, reserve, laws)
 			- relevant variables (market demand & supply for business of borrower, resources of both primary agents)
-			- relevant rules (existing laws, process to get laws passed)
+			- relevant rules (existing laws, process to get laws passed
+
 
 - solution space:
 
 	- definition: 
+
 		- the set of possible combinations of resources that can achieve a demanded intent in the problem space
 
 	- attributes:
+
 		- can be a new trajectory between nodes (ordered combination)
 		- can be the injection of variance or other systems/patterns into the relevant problematic systems
 		- can define a path in an unused/unenforced variance gap
@@ -37,7 +45,22 @@
 			- example: 
 				- a problem shape in a problem space is a shape that doesnt need to exist at all, and is a combination of problem dimensions (conflict, inefficiency, mismatch, missing information) which dont add value to the problem space, so it can be reduced without creating other problems
 
+	- structures:
+
+		- interaction matrix of potential interactions between system components
+		- trajectory
+		- shape filling a gap
+		- map between problem & solved problems
+		- set of decomposing functions for a problem shape
+
 	- examples:
+
+		- solution space for 'finding area under a curve' includes:
+
+			- breaking non-linear form into a progression (sum of sub-shapes)
+			- finding area of transformed/adjacent objects
+			- finding area of terms & mapping to influence on original function area
+			- finding relationship between metadata of generating functions of boundaries (generating function for adjacent object boundary & generating function for original object boundary) & relationship between generating function metadata & boundary function output metadata (summed distance to axis standard)
 
 - system:
 
@@ -80,7 +103,7 @@
 
 ## Choosing automation starting point
 
-- Based on where the problem is & what type it is, you can start with different methods:
+- based on where the problem is & what type it is, you can start with different methods:
 	- if youre trying to invent something, you can start with structure-fitting or a conceptual query
 	- if youre trying to figure a system out, you can start with system derivation
 	- if youre trying to predict an optimal function of variables in a system, and you have the system knowledge & intents mapped in the system, you can start with vectorization of the problem space
@@ -88,16 +111,24 @@
 	- if you need a quick approximation of system understanding and dont have time for system derivation, you can start with interface derivation
 	- if you have a lot of specific information about objects in the system and are missing a few relationships, you can use queries on the object model
 
-- The methods listed in problem_solving_matching.md use different starting points:
+- the methods listed in problem_solving_matching.md use different starting points:
 	- matching structures
 	- solution/problem/system metadata
 	- using conceptual/intent/variance interfaces
 	- derivation methods (systems, interfaces, functions, structures)
 
-- These differ in:
+- these differ in:
 	- focus/scope/interface
 	- info requirements (host system is known, some variable relationship rules are known, some definitions are known, variance gaps are known)
 	- tool access (pre-computed conceptual network, access to common solution functions)
 	- primary solution function (query, transform, matching)
 
 - the methods in problem_solving_matching.md are examples of how to automate problem-solving, not examples of how to solve a particular problem type
+
+- solution methods for specific problem types include:
+	- intent-mapping
+	- interface math
+	- system analysis
+	- derivation methods listed in derivation_methods.md
+
+- solution methods for specific problem types can be used in a solution-automation engine, but theyre not solution-automators themselves
