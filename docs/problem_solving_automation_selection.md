@@ -76,20 +76,39 @@
 		- can interact with multiple problem/solution spaces
 
 	- core components:
-		- intents
-		- needs
 		- forces
-		- limits
-		- paradoxes
-		- distortions
+			- limits/needs/incentives/intents/paradoxes
+			- function sets
+				- change rules
+				- organization rules
+				- interaction rules
+				- binding/combination & separation rules
+				- pattern rules
+				- boundary rules
+				- alternation rules
+				- information rules (storage, replacement, merging, monitoring, indexing)
+				- filtering/matching/application/derivation rules
+				- learning rules
+				- uncertainty/risk/potential rules
+				- variable combination & replacement rules
+				- variance leakage rules 
+					(how does system become overwhelmed, does it have outlets to reduce variance, does it have interfaces with other systems to delegate variance)
+				- solution rules
+					(variance/stressor/error detection, tracing, identification & handler)
+				- stabilizing rules
+				- emergence rules
+				- abstraction rules
 		- potential (variance, opportunities, unused paths, adjacent states)
-		- conflicts (paradoxes)
-		- layers
-		- vertices (sets of generating functions/objects/attributes/constants/types that determine the system)
-		- hubs
-		- function sets (change rules, boundary rules, stabilizing rules)
-		- relevant interfaces & interface trajectories
-		- applicable spaces
+		- conflicts
+		- distortions/differences from standard types or core objects
+		- cooperation/communication/binding sites (openings in system)
+		- structures:
+			- layers
+			- vertices (sets of generating functions/objects/attributes/constants/types that determine the system)
+			- hubs
+		- relationships:
+			- relevant interfaces & interface trajectories
+			- applicable spaces
 
 	- examples:
 

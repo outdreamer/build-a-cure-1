@@ -41,7 +41,7 @@
 		- network of change responses to set of all possibly relevant transforms (capable of impacting at least one attribute or rule of the operation or its inputs) done on the operation itself
 		- relevant maximizing dimensions
 		- structure required to hold info at any given point & full set of info states
-		- structure requried to hold sub-operations (vector shape) 
+		- structure required to hold sub-operations (vector shape) 
 		- position in operation network (starting from origin & navigating outward by minimal incremental steps or attribute improvements)
 		- related operations
 			- alternative operations with no undesirable side effects

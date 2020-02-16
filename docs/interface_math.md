@@ -92,6 +92,8 @@
     - therefore key identifying/generative attributes of an object can be used as symmetries 
       - example: core functions, priorities, types
 
+  - can also generate an interface by the combinations of variables that minimize & maximize change (filters to remove common information to leave differentiating information for comparison)
+
 
 # Questions
 
