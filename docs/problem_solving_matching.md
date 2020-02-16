@@ -643,7 +643,7 @@
 
   VII. Modeling variance gaps in Problem Space Systems as Solutions
 
-    - this method is for decrypting variance, either to describe/derive it (for use in prediction functions), or to use the alternatives allowed by it (for use in alternate comparisons)
+    - this method is for decrypting variance, either to describe/derive it (for use in prediction functions), or to use the alternatives allowed by it (for use in alternate comparisons), or to posit the existence of missing objects (an unknown object explaining variance rather than a function, variable, or system leak)
 
     1. model the openings created by variance
 

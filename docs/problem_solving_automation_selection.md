@@ -38,7 +38,6 @@
 				- a problem shape in a problem space is a shape that doesnt need to exist at all, and is a combination of problem dimensions (conflict, inefficiency, mismatch, missing information) which dont add value to the problem space, so it can be reduced without creating other problems
 
 	- examples:
-		- 
 
 - system:
 
@@ -47,6 +46,14 @@
 
 	- attributes:
 		- can interact with multiple problem/solution spaces
+
+	- core components:
+		- intents
+		- needs
+		- forces
+		- limits
+		- potential (variance, opportunities, unused paths)
+		- conflicts (paradoxes)
 
 	- examples:
 
@@ -71,22 +78,24 @@
 				- electricity
 
 
-Based on where the problem is & what type it is, you can start with different methods:
-- if youre trying to invent something, you can start with structure-fitting or a conceptual query
-- if youre trying to figure a system out, you can start with system derivation
-- if youre trying to predict an optimal function of variables in a system, and you have the system knowledge & intents mapped in the system, you can start with vectorization of the problem space
-- if youre trying to find a path across a variance gap or use unused variance, & you have the system knowledge, you can start with modeling gaps in the problem systems as solutions
-- if you need a quick approximation of system understanding and dont have time for system derivation, you can start with interface derivation
-- if you have a lot of specific information about objects in the system and are missing a few relationships, you can use queries on the object model
+## Choosing automation starting point
 
-The methods listed in problem_solving_matching.md use different starting points:
-- matching structures
-- solution/problem/system metadata
-- using conceptual/intent/variance interfaces
-- derivation methods (systems, interfaces, functions, structures)
+- Based on where the problem is & what type it is, you can start with different methods:
+	- if youre trying to invent something, you can start with structure-fitting or a conceptual query
+	- if youre trying to figure a system out, you can start with system derivation
+	- if youre trying to predict an optimal function of variables in a system, and you have the system knowledge & intents mapped in the system, you can start with vectorization of the problem space
+	- if youre trying to find a path across a variance gap or use unused variance, & you have the system knowledge, you can start with modeling gaps in the problem systems as solutions
+	- if you need a quick approximation of system understanding and dont have time for system derivation, you can start with interface derivation
+	- if you have a lot of specific information about objects in the system and are missing a few relationships, you can use queries on the object model
 
-These differ in:
-- focus/scope/interface
-- info requirements (host system is known, some variable relationship rules are known, some definitions are known, variance gaps are known)
-- tool access (pre-computed conceptual network, access to common solution functions)
-- primary solution function (query, transform, matching)
+- The methods listed in problem_solving_matching.md use different starting points:
+	- matching structures
+	- solution/problem/system metadata
+	- using conceptual/intent/variance interfaces
+	- derivation methods (systems, interfaces, functions, structures)
+
+- These differ in:
+	- focus/scope/interface
+	- info requirements (host system is known, some variable relationship rules are known, some definitions are known, variance gaps are known)
+	- tool access (pre-computed conceptual network, access to common solution functions)
+	- primary solution function (query, transform, matching)
