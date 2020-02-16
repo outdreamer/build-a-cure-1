@@ -1,5 +1,6 @@
 # Solution Object
 
+
 ## Attributes
 
   - types
@@ -83,59 +84,3 @@
   - metadata (minimum information to derive)
   - generate (using limits, interfaces, symmetries, variables)
   - map (physics of limits, combination, calculation, approximation, measurement)
-
-
-## Solved problem types
-
-  - solved optimization problems
-
-    - find optimal path
-
-    - find optimal distribution
-
-    - find matching structure
-
-  - solved filtering problems
-
-    - break problem into smaller problems & combine solutions of sub-problems
-
-    - filter/rank variables (PCA/ICA/dimensionality reduction methods)
-
-    - classify/differentiate/group
-
-
-## Transforming problem into solved problem
-
-  - every time you transform a problem into a solved problem, you risk losing information or using a structure thats inappropriate for that problem 
-
-    - if a problem is in a state of flux & about to become another type, or about to merge with another problem, making the default solution method inadequate
-    - if info is misleading or incomplete
-
-  - every problem can be translated into the common solved problems:
-
-    - some are more optimal than others
-    - some have requirements that are fulfilled
-    - some are more adjacent (require less transforms) to the problem
-
-  - most problems can be translated into a set of solved problems:
-
-    - example:
-
-      - problem definition:
-
-        - find optimal path in unknown system
-          
-      - problem broken into solved problems:
-
-        1. derive structure of complex system
-
-          - identify unique objects
-
-          - identify key objects (interfaces)
-
-            - find object definition (interface = standardizing filter)
-            - find matching structure (find interfaces = intent, structure, type, pattern, system)
-          
-        2. find optimal path (find interface trajectory to achieve intent)
-
-      - the solved problems have automatically determinable optimal or adequate solutions, so the solution in this case would be the set of the optimal solutions for each solved problem, in the order in which they are useful to compose the output solution

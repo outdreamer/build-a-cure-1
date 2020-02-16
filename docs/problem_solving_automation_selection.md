@@ -99,3 +99,5 @@
 	- info requirements (host system is known, some variable relationship rules are known, some definitions are known, variance gaps are known)
 	- tool access (pre-computed conceptual network, access to common solution functions)
 	- primary solution function (query, transform, matching)
+
+- the methods in problem_solving_matching.md are examples of how to automate problem-solving, not examples of how to solve a particular problem type

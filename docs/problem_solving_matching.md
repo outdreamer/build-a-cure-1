@@ -1,10 +1,13 @@
 # Problem Solving Operations
 
+
 ## Fit
+
 
 ### Match structures
 
   - this method is for when you have a theory about the limits of the solution, but you need to find the right structure within those solution limits, to decompose the problem
+
 
 #### I. Match problem & solution using definition & standardization, applying increasing limits or transforms until problem & solution match
 
@@ -222,13 +225,68 @@
           - if its required that every protein has an off-switch, then that wont differentiate the protein definition/template, but if some proteins dont have an off-switch bc theyre so important or difficult to make, that can be used to calculate probable proteins that exist in a system requiring proteins of different functionality to handle various stressors
 
 
+#### III. Transforming problem into solved problem
+
+  - solved problem types:
+
+    - solved optimization problems
+
+      - find optimal path
+
+      - find optimal distribution
+
+      - find matching structure
+
+    - solved filtering problems
+
+      - break problem into smaller problems & combine solutions of sub-problems
+
+      - filter/rank variables (PCA/ICA/dimensionality reduction methods)
+
+      - classify/differentiate/group
+
+  - every time you transform a problem into a solved problem, you risk losing information or using a structure thats inappropriate for that problem 
+
+    - if a problem is in a state of flux & about to become another type, or about to merge with another problem, making the default solution method inadequate
+    - if info is misleading or incomplete
+
+  - every problem can be translated into the common solved problems:
+
+    - some are more optimal than others
+    - some have requirements that are fulfilled
+    - some are more adjacent (require less transforms) to the problem
+
+  - most problems can be translated into a set of solved problems:
+
+    - example:
+
+      - problem definition:
+
+        - find optimal path in unknown system
+          
+      - problem broken into solved problems:
+
+        1. derive structure of complex system
+
+          - identify unique objects
+
+          - identify key objects (interfaces)
+
+            - find object definition (interface = standardizing filter)
+            - find matching structure (find interfaces = intent, structure, type, pattern, system)
+          
+        2. find optimal path (find interface trajectory to achieve intent)
+
+      - the solved problems have automatically determinable optimal or adequate solutions, so the solution in this case would be the set of the optimal solutions for each solved problem, in the order in which they are useful to compose the output solution
+
+
 ## Apply
 
   - apply transforms (map, fill) to objects with definitions (system, object, concept, intent)
 
 ### Apply Solution Definition
 
-#### III. Solve problem with solution function selection
+#### IV. Solve problem with solution function selection
 
     - this method is for selecting the best metadata of a solution object:
       - which interface to start with (intent, structure, need, variance, imbalances, symmetries)
@@ -328,7 +386,7 @@
 
 ### Apply Conceptual Network
 
-#### IV. Solve problem with Conceptual Query
+#### V. Solve problem with Conceptual Query
 
     - get a conceptual combination with a query of problem space & find an abstract structure that fits this combination, then find a specific structure that fits the combination, then test if that specific structure solves the problem
 
@@ -397,7 +455,7 @@
           - matching of information supply & demand (allocate tx history to tx metadata, where it has most value)
 
 
-#### V. Solve problem with Conceptual Combination Metadata query (different starting point as IV)
+#### VI. Solve problem with Conceptual Combination Metadata query (different starting point as IV)
 
     - this method is for when you have conceptual rules derived, and you know what concept you're aiming at (like justice), and you want to find the relevant concepts to use to get to the target concept, in your problem space context
 
@@ -453,7 +511,7 @@
 
 ### Apply Intent Mapping
 
-#### VI. Vectorization of Problem & Solution Space
+#### VII. Vectorization of Problem & Solution Space
 
     - this method is for when you want to automate solving a clearly structured specific problem, with clear optimization metrics, without deriving the logic manually
 
@@ -630,7 +688,7 @@
 
 ## Derive
 
-#### VII. Modeling variance gaps in Problem Space Systems as Solutions
+#### VIII. Modeling variance gaps in Problem Space Systems as Solutions
 
     - this method is for decrypting variance, either to describe/derive it (for use in prediction functions), or to use the alternatives allowed by it (for use in alternate comparisons), or to posit the existence of missing objects (an unknown object explaining variance rather than a function, variable, or system leak)
 
@@ -673,7 +731,7 @@
       - example: you can derive that a square object has variables "number of sides" (created by examining variations of the explicit corner, angle, & side objects in the 'square' system) and then permute this variable to generate adjacent objects (for example to check if triangular systems/objects would explain openings created by variance) or implicit objects (center, rotation, diagonals)
 
 
-#### VIII. Interface/symmetry derivation
+#### IX. Interface/symmetry derivation
 
     - this method is for when you want to understand a system, for description or prediction purposes
 
@@ -682,7 +740,7 @@
     - by 'interface derivation' I mean finding the symmetries in a problem space, such as finding the 'spectrum interface' in the chaotic-evil matrix, or finding the 'rotation' interface in the shape progression problem space, and then stacking or otherwise arranging them in the order that they are most useful for generating/revealing solutions
 
 
-#### IX. System derivation
+#### X. System derivation
 
     - this method is for deriving system structure, given information about a subset/component of it
 
