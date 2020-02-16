@@ -4,23 +4,49 @@
 
   - types
 
+    - meta solution
+      - method for evaluating solutions or determining solution starting point (choose between methods in problem_solving_matching.md)
+      - method for automating solutions
+      - method to update solution definition metadata (a method that can add new solution type when found)
+
     - solution generator
 
     - solution framework (limits reducing solution space)
 
     - problem decomposer (reduces problem dimensions)
 
-    - interim solution (common components of solutions, like a granular solution strategy)
+    - interim solution 
+
+      - common components of solutions:
+        - a granular solution strategy
+        - method to determine minimum info needed to solve problem
+        - method to determine definition
+        - identify objects in data
+        - identify important objects/rules/variables/layers/systems
 
     - problem metadata manipulation (changes problem space, postpones solving problem, matching problem with other problem to neutralize both)
 
     - solution function built on core functions:
 
       - apply
-      - derive
-      - fit/match
+        - transform
+        - rule
 
-    - problem-type specific (only handles asymmetries or structure-fitting or optimal transport or classification)
+      - derive
+        - definition
+        - function
+
+      - find
+        - object
+        - gap
+
+      - fit/match
+        - structure
+
+    - problem-type scope
+      - only handles asymmetries or structure-fitting or optimal transport or classification
+
+
 
     - transforms unsolved problem into solved problem (transforms unsolved problem into an optimization/organization problem)
 
@@ -71,8 +97,15 @@
 
 ## Transforming problem into solved problem
 
-  - every time you transform a problem into a solved problem, you risk losing information or using a structure thats inappropriate for that problem (if a problem is in a state of flux & about to become another type, or about to merge with another problem, making the default solution method inadequate)
+  - every time you transform a problem into a solved problem, you risk losing information or using a structure thats inappropriate for that problem 
 
-  - every problem can be translated into the common solved problems, but some are more optimal than others, some have requirements that are fulfilled, some are more adjacent (require less transforms) to the problem
+    - if a problem is in a state of flux & about to become another type, or about to merge with another problem, making the default solution method inadequate
+    - if info is misleading or incomplete
+
+  - every problem can be translated into the common solved problems:
+
+    - some are more optimal than others
+    - some have requirements that are fulfilled
+    - some are more adjacent (require less transforms) to the problem
 
 
