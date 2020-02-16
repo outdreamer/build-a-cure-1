@@ -84,8 +84,40 @@
           - competition (forces pulling in different directions, limited resources)
 
           - opposition (neutralizing functions)
+
             - misaligned incentives 
               - example: monitoring function not given reason to monitor the lib building the monitoring function
+
+            - paradox: 
+
+              - calculating something that doesnt seem directly calculatable from existing resources (https://en.wikipedia.org/wiki/Paradox)
+
+              - attributes:
+
+                - contradiction: a significant variable misrepresented as insignificant (like time)
+
+                  - truth of axioms change according to timing of event, but if the event happens at all, its taken as an absolute contradiction when its really a time-dependent contradiction
+
+                  - can occur with mutually exclusive states where conflicting directions are falsely associated (falsehood of an interpretation in a scope doesnt mean falsehood of the same interpretation in a different scope)
+
+                - self-reference: a lack of information about options
+
+                  - 'If "this sentence is false" is true, then it is false, but the sentence states that it is false, and if it is false, then it must be true, and so on.' https://en.wikipedia.org/wiki/Liar_paradox
+                    - true in the sense of meaningful equivalence ('this sentence' equals 'false')
+                    - false in the sense of consistency between extrapolated implications ('this sentence' equaling 'false' doesnt equal 'this sentence is false' equaling 'false'
+
+                  - this is usually a lack of information (ambiguities) about scope & alternate variable values
+
+                    - can truth exist on a spectrum
+                    - can truth apply to different sentence attributes ('this sentence' object in the sentence, the whole sentence, & sentence implications
+
+              - the paradox of a 'list that contains all lists' seems unsolvable (the list needs to contain itself to be a complete set) until you notice that the list of lists is complete even if its missing one because that can be derived from the variation in the other lists, which describes the variables that can change
+
+                - similar to listing n - 1 boolean values of different category values instead of n boolean values
+                - the list of all lists contains the list of all lists in itself, so its structure/variables/contents each describe itself, even if its not stored as an item in the list
+
+              - these paradoxes are an opposite object to interfaces and involve the apparent impossibility of solving a problem without solving the problem from a system perspective (deriving all possible lists in a system) rather than in isolation (listing all things)
+
 
         - resolution configurations
             - one competitor winning & replacing the other

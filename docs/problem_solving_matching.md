@@ -1,28 +1,12 @@
-## Problem Solving Operations
+# Problem Solving Operations
 
+## Fit
 
-### Common solution functions/strategies
-
-  - distort/standardize
-  - alternate/stabilize
-  - isolate/combine
-  - position (arrange)
-  - compress/expand
-  - transform (change)
-  - fit (match/contain/fill structure)
-  - differentiate (key points of difference)
-  - filter (find: start from everything & reduce)
-  - derive (build: start from scratch & build)
-  - metadata (minimum information to derive)
-  - generate (using limits, interfaces, symmetries, variables)
-  - map (physics of limits, combination, calculation, approximation, measurement)
-
-
-### Alternate structural layers to match structures
+### Match structures
 
   - this method is for when you have a theory about the limits of the solution, but you need to find the right structure within those solution limits, to decompose the problem
 
-  I. Match problem & solution using definition & standardization, applying increasing limits or transforms until problem & solution match
+#### I. Match problem & solution using definition & standardization, applying increasing limits or transforms until problem & solution match
 
     - get a problem, standardize & define it: 
       problem: "funds cannot always be verified to exist with existing currencies"
@@ -112,7 +96,7 @@
     - further requirements can be added to the solution with the same procedure (hash to make the tx log shorter, etc)
 
 
-  II. Solve problem with structure fitting
+#### II. Solve problem with structure fitting
 
     - this method is for when you have a theory about the optimal base/structure of the solution, but you need to find the right attributes/transforms of that base solution to decompose the problem
 
@@ -238,9 +222,13 @@
           - if its required that every protein has an off-switch, then that wont differentiate the protein definition/template, but if some proteins dont have an off-switch bc theyre so important or difficult to make, that can be used to calculate probable proteins that exist in a system requiring proteins of different functionality to handle various stressors
 
 
-### Use Solution Metadata
+## Apply
 
-  III. Solve problem with solution function selection
+  - apply transforms (map, fill) to objects with definitions (system, object, concept, intent)
+
+### Apply Solution Definition
+
+#### III. Solve problem with solution function selection
 
     - this method is for selecting the best metadata of a solution object:
       - which interface to start with (intent, structure, need, variance, imbalances, symmetries)
@@ -338,9 +326,9 @@
       - selecting adjacent models that existing problem structure can be converted/broken into (system molecules forming problem structures)
 
 
-### Use Conceptual Network
+### Apply Conceptual Network
 
-  IV. Solve problem with Conceptual Query
+#### IV. Solve problem with Conceptual Query
 
     - get a conceptual combination with a query of problem space & find an abstract structure that fits this combination, then find a specific structure that fits the combination, then test if that specific structure solves the problem
 
@@ -409,7 +397,7 @@
           - matching of information supply & demand (allocate tx history to tx metadata, where it has most value)
 
 
-  V. Solve problem with Conceptual Combination Metadata query (different starting point as IV)
+#### V. Solve problem with Conceptual Combination Metadata query (different starting point as IV)
 
     - this method is for when you have conceptual rules derived, and you know what concept you're aiming at (like justice), and you want to find the relevant concepts to use to get to the target concept, in your problem space context
 
@@ -462,9 +450,10 @@
 
     - these abstracted combinations have different metadata (intent, priority, logic flow, variance level, causation) and can therefore be useful in different (possibly meaning "additional") circumstances than the original combination
 
-### Use Intent Mapping
 
-  VI. Vectorization of Problem & Solution Space
+### Apply Intent Mapping
+
+#### VI. Vectorization of Problem & Solution Space
 
     - this method is for when you want to automate solving a clearly structured specific problem, with clear optimization metrics, without deriving the logic manually
 
@@ -639,9 +628,9 @@
       - finding of optimal solution trajectory (or set of solution trajectories)
 
 
-### Use Variance Gaps
+## Derive
 
-  VII. Modeling variance gaps in Problem Space Systems as Solutions
+#### VII. Modeling variance gaps in Problem Space Systems as Solutions
 
     - this method is for decrypting variance, either to describe/derive it (for use in prediction functions), or to use the alternatives allowed by it (for use in alternate comparisons), or to posit the existence of missing objects (an unknown object explaining variance rather than a function, variable, or system leak)
 
@@ -684,9 +673,7 @@
       - example: you can derive that a square object has variables "number of sides" (created by examining variations of the explicit corner, angle, & side objects in the 'square' system) and then permute this variable to generate adjacent objects (for example to check if triangular systems/objects would explain openings created by variance) or implicit objects (center, rotation, diagonals)
 
 
-### Derive
-
-  VIII. Interface/symmetry derivation
+#### VIII. Interface/symmetry derivation
 
     - this method is for when you want to understand a system, for description or prediction purposes
 
@@ -695,7 +682,7 @@
     - by 'interface derivation' I mean finding the symmetries in a problem space, such as finding the 'spectrum interface' in the chaotic-evil matrix, or finding the 'rotation' interface in the shape progression problem space, and then stacking or otherwise arranging them in the order that they are most useful for generating/revealing solutions
 
 
-  IX. System derivation
+#### IX. System derivation
 
     - this method is for deriving system structure, given information about a subset/component of it
 
@@ -827,35 +814,6 @@
             - lack of enforcement of attribute:
               - when an attribute is not enforced (direction), such as when an object is allowed to spin or otherwise change direction, it can generate non-linearities
                 - for example, when a line is allowed to spin between limits (parallel alignment with dimensional axis), it can generate a parabola or wave through tangential points of its center
-
-    - paradox: calculating something that doesnt seem directly calculatable from existing resources
-      - https://en.wikipedia.org/wiki/Paradox
-
-      - attributes:
-
-        - contradiction: a significant variable misrepresented as insignificant (like time)
-
-          - truth of axioms change according to timing of event, but if the event happens at all, its taken as an absolute contradiction when its really a time-dependent contradiction
-
-          - can occur with mutually exclusive states where conflicting directions are falsely associated (falsehood of an interpretation in a scope doesnt mean falsehood of the same interpretation in a different scope)
-
-        - self-reference: a lack of information about options
-
-          - 'If "this sentence is false" is true, then it is false, but the sentence states that it is false, and if it is false, then it must be true, and so on.' https://en.wikipedia.org/wiki/Liar_paradox
-            - true in the sense of meaningful equivalence ('this sentence' equals 'false')
-            - false in the sense of consistency between extrapolated implications ('this sentence' equaling 'false' doesnt equal 'this sentence is false' equaling 'false'
-
-          - this is usually a lack of information (ambiguities) about scope & alternate variable values
-
-            - can truth exist on a spectrum
-            - can truth apply to different sentence attributes ('this sentence' object in the sentence, the whole sentence, & sentence implications
-
-    - the paradox of a 'list that contains all lists' seems unsolvable (the list needs to contain itself to be a complete set) until you notice that the list of lists is complete even if its missing one because that can be derived from the variation in the other lists, which describes the variables that can change
-
-      - similar to listing n - 1 boolean values of different category values instead of n boolean values
-      - the list of all lists contains the list of all lists in itself, so its structure/variables/contents each describe itself, even if its not stored as an item in the list
-
-    - these paradoxes are an alternative to interfaces and involve the apparent impossibility of solving a problem without solving the problem from a system perspective (deriving all possible lists in a system) rather than in isolation (listing all things)
 
     - system derivation is a way to solve problems like:
 
