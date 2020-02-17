@@ -1,5 +1,21 @@
 # System Analysis
 
+## Differences from existing analysis
+
+	- existing analysis:
+
+		- how to build a tool to measure what information is being communicated between cells (isolated analysis, involves measurements of data & data dependence)
+
+	- system analysis:
+
+		- why would a particular cell type with x functionality & attributes need to communicate with the other cell type
+			- what is each cell type lacking that the other type could provide
+			- what common intents do they have which would prompt them to cooperate, share, or trade
+			- are they likelier to cooperate or compete
+
+		- why would an object having these variance gaps need to interact with another object having these variance gaps
+			- missing functionality/adaptabilty in original variance gaps
+
 ## Applications
 
 	- system analysis should be able to answer questions like:
