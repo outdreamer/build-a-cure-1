@@ -157,8 +157,14 @@
             - given that a common problem is 'similarity implying relationship' in the stack of spaces (adjacent/causative dimensions), does that problem show up in this problem space, and if so, where is it likeliest to show up? (where are the similarities that could create a false correlation)
 
           4. you could derive the obvious errors using problem space metadata
-            - given that there's no rule in the problem space prohibiting shapes from repeating, repetition could lead to the illusion of a relationship due to similarity in the repeated shapes
-            
+            - problem space metadata:
+              - allows alignment
+              - allows any shape in coordinate plane
+
+            - problem space anti-metadata:
+              - no rule preventing repetition:
+                - "given that there's no rule in the problem space prohibiting shapes from repeating, and that repeated shapes are possible in space of any dimension greater than 0 (point), repetition could lead to the illusion of a relationship due to similarity in the repeated shapes"
+
 
   - how do you decide what to invest time learning
 
