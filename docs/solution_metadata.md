@@ -131,7 +131,18 @@
           - mistaking indirect cause for direct cause
             - the reason theyre related is a causal relationship they have in common (shape of corners) but its not a direct relationship (movement in corner A determines or is equivalent to movement in corner B)
 
-        - this is an obvious error of the problem type 'determining movement between shapes' with the attribute 'shapes having multiple similar sub-objects like corners which can produce the illusion of relationships'
+        - this is an obvious error of the problem type 'determining movement between shapes' with the attribute:
+          - 'shapes having multiple similar sub-objects like corners which can produce the illusion of relationships'
+          - which is sub-type of the problem type: 'alignment isnt direct relevance'
+
+        - how would you identify this obvious error in the above problem of predicting movement of particles within a shape container?
+          - you could start on a high level by looking for known error types (false positive) or error causes (false assumption)
+          - you could also start on a low level by generating the full set of different shape configuration data within a space & examining them for errors
+            - you can generate the full set of different shape configurations using types, core functions, & interactions:
+              - shape types (square, triangle)
+              - shape core functions (transforms: scale, remove, expand)
+              - shape interactions (combine, collide, oppose)
+              - shape components (corners, inflection points, extremes, arcs, diagonals, angles, edges, centers)
 
   - how do you decide what to invest time learning
 

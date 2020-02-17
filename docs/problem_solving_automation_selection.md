@@ -104,7 +104,9 @@
 		- cooperation/communication/binding sites (openings in system)
 		- structures:
 			- layers
-			- vertices (sets of generating functions/objects/attributes/constants/types that determine the system)
+			- vertices 
+				- sets of generating functions/objects/attributes/constants/types that determine the system
+				- for example, the center is a vertex of a circle
 			- hubs
 		- relationships:
 			- relevant interfaces & interface trajectories
