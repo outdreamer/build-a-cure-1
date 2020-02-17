@@ -235,7 +235,7 @@
 
       - find optimal distribution
 
-      - find matching structure
+      - find matching structures
 
     - solved filtering problems
 

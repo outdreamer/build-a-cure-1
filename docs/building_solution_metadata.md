@@ -1,5 +1,25 @@
 # Building solution space metadata
 
+- solution tool metadata:
+
+  - assumptions
+
+    - 'assumes that similarity means relationship'
+    - 'assumes value above a threshold means difference'
+
+  - context requirements
+    - 'requires that other tests have been eliminated'
+    - 'requires metric value to qualify'
+
+  - intents
+
+    - granular intent:
+      - 'test a metric' (where metric indicates some rule to trigger or a classification/definition)
+
+    - usage intent:
+      - 'assess fit of model to data'
+      - 'assess appropriateness of a test or method'
+
 - evaluate how tools develop in problem spaces at different layers:
 
   - identifying core problems
@@ -11,6 +31,15 @@
     - testing to capture adjacent (one-degree) functionality exploits
     - protocols to reduce solution space vs. enforcing solution rules
 
+  - example of common task that is done in endless incorrect ways (build & secure an api) when there's one clear way to do it:
+    - generate api using latest patches against all known vulns, and adapt logic without adjusting security measures in generated code
+    - even more secure is to generate code as user intents are identified & validated, so no code exists pre-runtime except:
+      - intent-derivation & validation code
+      - code to generate functions to supply resources for a valid intent
+    - as valid intents are identified:
+      - 'request data they have permission to access, which is also validated as relevant to them'
+      code is generated on-demand:
+      - 'generate function to fetch data, using optimal data request function determined by intent-matching, or without that, determined by best manually determined algorithm & with latest manual patches'
 
 - tool selection (tools as a subset of solutions, which also includes learning, calculating solution metadata before investing)
 
