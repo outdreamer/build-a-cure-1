@@ -21,6 +21,7 @@
     - example:
       - viscosity emerges from the interaction of boundary, distribution, pressure, & binding rules, as liquids change states to form higher viscosity states on the spectrum of liquidity
       - as these objects interact without invalidating the original interface (liquid), other attributes emerge from combinations of objects & their interaction chains
+      - from a set of rotated lines, the attributes of a curve can emerge (measurable at visible scale) because of the compounding effects of the incremental rotations at scale
 
   - do variables with more similarities tend to cooperate or compete more? 
     - it depends on:
