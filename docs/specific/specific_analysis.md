@@ -27,7 +27,13 @@
 
     - attributes:
 
-      - specific target attributes:
+      - source variables:
+
+        - equipment state (cleanliness/functionality)
+        - test effectiveness (accuracy/completeness/cost/risk)
+        - operations inefficiencies (variables are not being checked completely due to gap in oversight)
+
+      - target variables:
 
         - budget optimization
           - keeping resources at maintainable/computable level 
@@ -36,12 +42,6 @@
         - patient mortality
         - patient infection rate from equipment
         - patient ratings
-
-      - source variables:
-
-        - equipment state (cleanliness/functionality)
-        - test effectiveness (accuracy/completeness/cost/risk)
-        - operations inefficiencies (variables are not being checked completely due to gap in oversight)
 
       - vertices:
 

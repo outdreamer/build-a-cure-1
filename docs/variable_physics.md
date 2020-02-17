@@ -13,11 +13,12 @@
         - make sure the entangled cells in a system operate on entanglement networks that can break any cascading entanglement chains
       - the goal is to make sub-components as independent as possible (capable of generating/repairing themselves or the system)
           
-  - variable interface is the interface of potential
+  - variable interface is the interface of change/potential & rule evolution
 
   - variance attracts variance to allocate the task of ordering to the systems that are best at ordering (efficient systems) - entropy
 
   - how do attributes emerge:
+    - with intersecting fractals of core functions
     - example:
       - viscosity emerges from the interaction of boundary, distribution, pressure, & binding rules, as liquids change states to form higher viscosity states on the spectrum of liquidity
       - as these objects interact without invalidating the original interface (liquid), other attributes emerge from combinations of objects & their interaction chains
