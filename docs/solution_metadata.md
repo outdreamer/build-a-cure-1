@@ -136,13 +136,29 @@
           - which is sub-type of the problem type: 'alignment isnt direct relevance'
 
         - how would you identify this obvious error in the above problem of predicting movement of particles within a shape container?
-          - you could start on a high level by looking for known error types (false positive) or error causes (false assumption)
-          - you could also start on a low level by generating the full set of different shape configuration data within a space & examining them for errors
+
+          1. you could start on a high level by looking for known error types (false positive) or error causes (false assumption)
+
+          2. you could also start on a low level by generating the full set of different shape configuration data within a space & examining them for errors
+
             - you can generate the full set of different shape configurations using types, core functions, & interactions:
               - shape types (square, triangle)
               - shape core functions (transforms: scale, remove, expand)
               - shape interactions (combine, collide, oppose)
               - shape components (corners, inflection points, extremes, arcs, diagonals, angles, edges, centers)
+
+            - and then examining them for error types & causes, given error type definitions
+              - 'false positive' means 'something that looks like something else but isnt'
+                - this can manifest in the problem space as:
+                  - 'two different relationships seeming like the same or related relationship'
+                    - which in this problem space could be the motion of particles in two similar sub-shapes like corners
+
+          3. you could start with common errors in this & similar problem spaces or space stacks
+            - given that a common problem is 'similarity implying relationship' in the stack of spaces (adjacent/causative dimensions), does that problem show up in this problem space, and if so, where is it likeliest to show up? (where are the similarities that could create a false correlation)
+
+          4. you could derive the obvious errors using problem space metadata
+            - given that there's no rule in the problem space prohibiting shapes from repeating, repetition could lead to the illusion of a relationship due to similarity in the repeated shapes
+            
 
   - how do you decide what to invest time learning
 
