@@ -4,17 +4,29 @@
 
 	- existing analysis:
 
-		- how to build a tool to measure what information is being communicated between cells (isolated analysis, involves measurements of data & data dependence)
+		- this is isolated analysis that involves measurements of data & data dependence
+
+		- example:
+			- how to build a tool to measure what information is being communicated between two cell types
 
 	- system analysis:
 
-		- why would a particular cell type with x functionality & attributes need to communicate with the other cell type
-			- what is each cell type lacking that the other type could provide
-			- what common intents do they have which would prompt them to cooperate, share, or trade
-			- are they likelier to cooperate or compete
+		- this derives the system identity (structure) so that insights about relationships within the system (and corresponding information production) can be derived & their changes predicted on demand
 
-		- why would an object having these variance gaps need to interact with another object having these variance gaps
-			- missing functionality/adaptabilty in original variance gaps
+		- example:
+			- why would a particular cell type with x functionality & attributes need to or accidentally communicate with the other cell type
+				- what is each cell type lacking that the other type could provide
+				- what common intents do they have which would prompt them to cooperate, share, or trade
+				- are they likelier to cooperate or compete, or be governed by neutral rules prioritizing only common priorities across most systems like specialization/distribution/efficiency/potential energy/alternatives/balance (chemistry/physics governing non-intent (accidental) interactions like collisions/merging)
+				- what outputs would that communication produce & what side effects would they produce that we might be able to find in existing data
+					- example:
+						- if the communication results in matching a false information to a signal checker, that might trigger a process that produces measurable side effects
+						- if one of the cell types is commonly found with another type that can use that false information, that may be more measurable or already measured in existing data
+						- if the side effects would propagate to a measurable metric (adjacency to skin barrier might produce visible impact)
+
+			- why would an object having these variance gaps need to interact with another object having these variance gaps
+				- missing functionality/adaptabilty in original variance gaps
+
 
 ## Applications
 

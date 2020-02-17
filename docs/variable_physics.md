@@ -3,6 +3,15 @@
   - mismatch between limits & variance
     - lack of limits: variance gaps from lack of rule enforcement
     - over-limits: too much rule enforcement preventing adaptation
+
+    - variance can accrue from compounding layers/interactions, just like limits can
+
+      - when too many options are hard-coded in a system, that system loses its flexibility
+      - to prevent this:
+        - distribute communication tools (nerves, immune system, blood flow)
+        - distribute functionality-acquisition tools (bacteria, gene-editing)
+        - make sure the entangled cells in a system operate on entanglement networks that can break any cascading entanglement chains
+      - the goal is to make sub-components as independent as possible (capable of generating/repairing themselves or the system)
           
   - variable interface is the interface of potential
 
