@@ -25,26 +25,44 @@
 
   - system analysis:      
 
-    - identify attributes:
+    - attributes:
 
-      - budget optimization
-        - keeping resources at maintainable/computable level 
-          - only have x equipment given y cleaning supplies & z employee hours
-          - only aim for b predictions given budget for c neural network trainings, allowing room for new prediction requirements
-      - patient mortality
-      - patient infection rate from equipment
-      - patient ratings
+      - specific target attributes:
 
-      - identify variables:
+        - budget optimization
+          - keeping resources at maintainable/computable level 
+            - only have x equipment given y cleaning supplies & z employee hours
+            - only aim for b predictions given budget for c neural network trainings, allowing room for new prediction requirements
+        - patient mortality
+        - patient infection rate from equipment
+        - patient ratings
+
+      - source variables:
+
         - equipment state (cleanliness/functionality)
         - test effectiveness (accuracy/completeness/cost/risk)
         - operations inefficiencies (variables are not being checked completely due to gap in oversight)
 
-      - identify vertices:
+      - vertices:
+
         - points of infection
         - points of pathogen resistance to handling methods (medicines, filters, cleaners)
         - points where operations/budget allocation are overwhelmed with handling methods
         - points of information bubbling (false boundary around information, preventing it from being communicated)
+
+      - symmetries:
+
+        - gathering points/spaces/rules/shapes for transformations
+          - limits (potential for change determining which changes can occur, dimensions)
+          - platforms for change (central point around which change can occurs, foundation)
+          - set of operations that doesnt change object metadata (retains original information, transforms are reversible)
+
+        - example:
+          - once you have resources (equipment to last x time period) or a filter applied to resources (resources at a certain hospital), that can be a symmetry if it satisfies the other requirements, and while the original dimensions are intact (equipment is functional, location is intact)
+
+          - hospital symmetries:
+            - protocols (treatments, allocation, testing, feedback integration, reporting)
+            - filters (floor filter provides a platform for equipment position to change)
 
     - identify problems:
 

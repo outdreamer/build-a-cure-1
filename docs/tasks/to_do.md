@@ -98,9 +98,10 @@
 
   - find situations where systems dont act like objects in a system (despite similarities in object/system behavior like variance/definition gaps)
   - merge finder & builder notes
-  
+
   - standardize terms: 
-    -shape/structure
+    - shape/structure
+    - rule/test/metric/limit/threshold/boundary/state change/phase shift
     - model/perspective/filter/standard/interface 
     - intent/method/function/rule
     - path/route
