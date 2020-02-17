@@ -34,6 +34,16 @@
 
     - identify problems:
 
+      - identify variables:
+        - equipment state (cleanliness/functionality)
+        - test effectiveness (accuracy/completeness/cost/risk)
+        - operations inefficiencies (variables are not being checked completely due to gap in oversight)
+
+      - identify vertices:
+        - points of infection
+        - points of pathogen resistance to handling methods
+        - points where operations/budget allocation are overwhelmed with handling methods
+
       - identify priorities:
 
         - budget optimization
