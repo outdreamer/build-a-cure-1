@@ -154,16 +154,24 @@
                     - which in this problem space could be the motion of particles in two similar sub-shapes like corners
 
           3. you could start with common errors in this & similar problem spaces or space stacks
+
             - given that a common problem is 'similarity implying relationship' in the stack of spaces (adjacent/causative dimensions), does that problem show up in this problem space, and if so, where is it likeliest to show up? (where are the similarities that could create a false correlation)
 
           4. you could derive the obvious errors using problem space metadata
+
             - problem space metadata:
               - allows alignment
               - allows any shape in coordinate plane
 
             - problem space anti-metadata:
+
               - no rule preventing repetition:
+
                 - "given that there's no rule in the problem space prohibiting shapes from repeating, and that repeated shapes are possible in space of any dimension greater than 0 (point), repetition could lead to the illusion of a relationship due to similarity in the repeated shapes"
+
+              - how to calculate anti-metadata:
+                - given objects (rules) & their distorted/contextual versions (rule preventing an attribute from emerging) and the set of possible values of objects in the rule ('repetition' is a possible attribute)
+                  - you can determine what's not prevented by the metadata of an object, by what common objects (or distortions of objects or object values) are allowed in the object, even if theyre not referenced in the object definition
 
 
   - how do you decide what to invest time learning
