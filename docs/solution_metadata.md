@@ -1,4 +1,5 @@
 - evaluate how tools develop in problem spaces at different layers:
+
   - identifying core problems
   - identifying problems with typical solutions of core problems
   - identifying problems with typical regulations/conventions that result from typical solutions or problems
@@ -90,7 +91,6 @@
         - what range of significance levels do verified processes exhibit (when first noticed/converging/diverging/decaying)?
 
       - nearest neighbors hacking
-        - 
 
   - give example of error types mapped to structural deficits
 
@@ -99,56 +99,99 @@
 
   - how much time do you invest in planning & what are your planning strategies to avoid having to solve problems later?
 
+
 - learning decisions
 
-  - how do you decide what to invest time learning
-    - for instance with splunk, how would you identify what level of expertise is required in order to design optimal queries?
-      - different query design + latency + data mismatch because of compute/aggregate/cache data strategies that differ from a standard db implementation
-    - the optimal level of learning is where you can identify a clear design intent for deviations from standard implementations
-
   - how do you educate yourself on inherent limitations of a tool 
-    (if its designed for another intent, if its too new for advanced error handling)
 
-  - how do you identify lack of knowledge and translate that into optimal search keywords for learning maximization?
+    - if its designed for another intent
+    - if its too new for advanced error handling
+    - common problems with tool or third party tool integrations in forum posts/issues
+    - corrections/features added by user request in version/release history (to address user identified problems or misunderstandings)
 
-    - identify lack of knowledge:
+  - identify obvious errors possible in a tool
 
-      - there is a level & pattern of complexity that is common to understanding of a tool:
-        - people dont normally develop a solution of complexity 2 for a problem of complexity 1 - there are reasons for the complexity mismatch
-        - so to identify lack of knowledge, look for over-simplification in summarization of a tool
-        - sometimes the lack of knowledge will be on the implementation side rather than the user side, bc of lack of planning/organization
+    - assumptions:
 
-    - how do you identify key objects/terms that are necessary for acquiring a functional level of understanding that is capable of anticipating/minimizing errors in implementing that tool?
+      - in a data visualization tool, an obvious error is data leakage (revealing data that shouldnt be shown to the user)
+      - data that is retrievable is assumed to be relevant to the user
 
-      - a beginner wouldnt know to search for 'abstract syntax tree' when education themselves about testing tools
-      - a beginner wouldnt know to search for 'latency' or 'caching' when learning a new data storage/query tool
+    - example:
 
-    - how do you map lack of knowledge to these terms once you identify lack of knowledge and key terms to acquire functional understanding?
+      - if youre tracking the movement of particles in a square shaped container and two of your variables track the movements between opposite corners, their movement might seem directly related, but the reason theyre moving is not a variable relationship, but the shapes nearest to them determining their motion
 
-      - you can derive key concepts of the problem space and map them to key concepts of solution space
+        - this error (illusion of relationship) has the error stack:
 
-        - key concepts of security problem space:
-          - standardization
+          - mistaking correlation for similarity/equivalence/causation
 
-        - key concepts of security solution space:
-          - standardization applied to code interpretation: formatting/parsing/translation
-            - query for 'code security formatting parsing translation' should lead you to 'abstract syntax tree'
-              - query result keywords:
-                - interpolation, string 
-                  - data type is key concept of string
-                    - machine interpretation of data type by language
-                      - machine language
-                      - query for "code machine language parsing" has suggested related keywords:
-                        - Lexical Analysis
-                        - Compiler
-                        - Backus–Naur Form
-                        - Context-free Grammar
-                        - Code Generation
-                        - query for "code parsing compiler security" or "code parsing lexical security" would then also lead to 'abstract syntax tree' concept in subsequent results
-                      - query for "code machine language parsing" leads to "abstract syntax tree" in first few results
+          - misidentifying variables
+            - there shouldnt be variables for the movement in each corner 
+            - the variables should be the placement/other attributes of influential objects like corners if the shape isnt as simple as a clearly defined archetype like a square, or the function to generate the shapes having those influential objects
 
-        - in this way you can derive which concepts are important to learn to acquire functional understanding for a particular problem
+          - mistaking indirect cause for direct cause
+            - the reason theyre related is a causal relationship they have in common (shape of corners) but its not a direct relationship (movement in corner A determines or is equivalent to movement in corner B)
 
-        - how do you score these concepts based on importance, once you find them?
-          - repeated abstract concepts inherent to sub-tools like languages (which is a sub-tool of the security intent) are likelier to be important
-          - concepts with clear differences in intent are likely to be important (caching & latency reduction are sub-tools of data storage/retrieval intent with clearly different intent matrixes)
+        - this is an obvious error of the problem type 'determining movement between shapes' with the attribute 'shapes having multiple similar sub-objects like corners which can produce the illusion of relationships'
+
+  - how do you decide what to invest time learning
+
+    - example:
+
+      - for instance with splunk, how would you identify what level of expertise is required in order to design optimal queries?
+        - different query design + latency + data mismatch because of compute/aggregate/cache data strategies that differ from a standard db implementation
+
+    - the optimal level of learning is where you can:
+      - identify a clear design intent for deviations from standard implementations
+
+    - how do you identify lack of knowledge and translate that into optimal search keywords for learning maximization?
+
+      - identify priorities & decision algorithm of tool developers
+
+      - identify abstractions with opinionated implementations
+
+      - identify hidden complexity
+
+      - identify errors from cooperative structures (compounding intent/patterns/gaps) 
+
+      - identify lack of knowledge
+
+        - there is a level & pattern of complexity that is common to understanding of a tool:
+
+          - people dont normally develop a solution of complexity 2 for a problem of complexity 1 - there are reasons for the complexity mismatch
+          - so to identify lack of knowledge, look for over-simplification in summarization of a tool
+          - sometimes the lack of knowledge will be on the implementation side rather than the user side, bc of lack of planning/organization
+
+      - how do you identify key objects/terms that are necessary for acquiring a functional level of understanding that is capable of anticipating/minimizing errors in implementing that tool?
+
+        - a beginner wouldnt know to search for 'abstract syntax tree' when education themselves about testing tools
+        - a beginner wouldnt know to search for 'latency' or 'caching' when learning a new data storage/query tool
+
+      - how do you map lack of knowledge to these terms once you identify lack of knowledge and key terms to acquire functional understanding?
+
+        - you can derive key concepts of the problem space and map them to key concepts of solution space
+
+          - key concepts of security problem space:
+            - standardization
+
+          - key concepts of security solution space:
+            - standardization applied to code interpretation: formatting/parsing/translation
+              - query for 'code security formatting parsing translation' should lead you to 'abstract syntax tree'
+                - query result keywords:
+                  - interpolation, string 
+                    - data type is key concept of string
+                      - machine interpretation of data type by language
+                        - machine language
+                        - query for "code machine language parsing" has suggested related keywords:
+                          - Lexical Analysis
+                          - Compiler
+                          - Backus–Naur Form
+                          - Context-free Grammar
+                          - Code Generation
+                          - query for "code parsing compiler security" or "code parsing lexical security" would then also lead to 'abstract syntax tree' concept in subsequent results
+                        - query for "code machine language parsing" leads to "abstract syntax tree" in first few results
+
+          - in this way you can derive which concepts are important to learn to acquire functional understanding for a particular problem
+
+          - how do you score these concepts based on importance, once you find them?
+            - repeated abstract concepts inherent to sub-tools like languages (which is a sub-tool of the security intent) are likelier to be important
+            - concepts with clear differences in intent are likely to be important (caching & latency reduction are sub-tools of data storage/retrieval intent with clearly different intent matrixes)
