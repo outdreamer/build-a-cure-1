@@ -42,20 +42,20 @@
 
       - identify vertices:
         - points of infection
-        - points of pathogen resistance to handling methods
+        - points of pathogen resistance to handling methods (medicines, filters, cleaners)
         - points where operations/budget allocation are overwhelmed with handling methods
 
 
     - identify problems:
 
-      - identify priorities:
+      - identify priorities
 
         - budget optimization
           - equipment cost minimization
         - patient mortality minimization
         - infection from equipment minimization
 
-      - identify rules:
+      - identify rules
 
         - identify incentives
           - keep purchasing x amount of supplies from this supplier to get a discount
@@ -68,7 +68,7 @@
         - output rules
           - cleaning/testing/maintenance methods have x impact on equipment value, functionality & other metadata
 
-      - identify problem types:
+      - identify problem types
 
         - insufficient resources
 
@@ -88,12 +88,52 @@
           - lack of data updating tools/processes (referring to outdated doctor office number/treatment method)
           - lack of process updating tools/processes
 
-        - info asymmetries/miscommunications
-
-          - lack of understanding for reasons (patient doesnt know reasons why a test is being chosen, nurse doesnt know reason for process/limitation or data insight, doctor doesnt know reason why they have to fill out a new report)
-
         - insufficient outlets for variance without handlers
           - delegating excess liability/risk is not supported by existing methods (insurance, consultants, legal contracts, regulations)
+
+        - inefficiencies
+
+          - processes:
+
+            - bottlenecks
+            - phase shifts
+            - scaling
+            - alternatives
+            - sorting
+            - thresholds (a process can only handle x amount of inputs before scale makes a phase shift happen, triggering different rules)
+
+        - variance gaps: gaps that allow variance emergence/injection
+
+          - enforcement
+
+            - delegation of enforcement:
+
+              - staff are allowed to choose whether to implement optimal processes bc enforcement cost is high or not automated yet
+
+            - example: an open system (like a door without a filter in the form of a guard) can let variance into the system (hospital) that may introduce more variance than can be handled
+
+          - communication
+
+            - info asymmetries/miscommunications
+
+            - monitoring
+
+            - lack of communication of reasons to align incentives/motivations with optimal rules:
+              - patient doesnt know reasons why a test is being chosen
+              - nurse doesnt know reason for process/limitation or data insight
+              - doctor doesnt know reason why they have to fill out a new report
+
+          - learning/optimization
+            - no handler to self-optimize or adapt to new systems/problems
+
+        - conflicts:
+
+          - mismatch between stressor & handler 
+            - gathering customer feedback doesnt handle customer feedback, but it may handle customer emotions
+
+          - conflicting incentives
+            - local incentives for doctor, insurer, or consultant contradict global incentives for hospital, industry, government
+
 
     - identify solutions:
 
