@@ -1,5 +1,9 @@
 # Variable Accretion Patterns
 
+  - mismatch between limits & variance
+    - lack of limits: variance gaps from lack of rule enforcement
+    - over-limits: too much rule enforcement preventing adaptation
+          
   - variable interface is the interface of potential
 
   - variance attracts variance to allocate the task of ordering to the systems that are best at ordering (efficient systems) - entropy

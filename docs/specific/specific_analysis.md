@@ -44,7 +44,7 @@
         - points of infection
         - points of pathogen resistance to handling methods (medicines, filters, cleaners)
         - points where operations/budget allocation are overwhelmed with handling methods
-
+        - points of information bubbling (false boundary around information, preventing it from being communicated)
 
     - identify problems:
 
@@ -93,14 +93,19 @@
 
         - inefficiencies
 
-          - processes:
-
-            - bottlenecks
-            - phase shifts
+          - processes
+            
             - scaling
-            - alternatives
-            - sorting
-            - thresholds (a process can only handle x amount of inputs before scale makes a phase shift happen, triggering different rules)
+              - identifying phase shifts
+              - bottlenecks
+                - a process can only handle x amount of inputs before scale makes a phase shift happen, triggering different rules
+
+            - delegation
+              - alternatives
+              - sorting
+              - threshold selection
+                - false boundaries/limits
+                - limit manipulation (staying just under reporting level of expenditure)
 
         - variance gaps: gaps that allow variance emergence/injection
 
