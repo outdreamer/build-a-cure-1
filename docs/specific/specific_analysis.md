@@ -11,7 +11,9 @@
 
   - example: allocate hospital equipment as needed
 
+
   - stat analysis: 
+
     - gather data on suspected variables as best predictors of optimal distribution 
       - patient mortality 
       - patient ratings
@@ -19,6 +21,7 @@
       - employee efficiency
       - patient/employee infection rate
       - equipment costs (cleaning, replacement)
+
 
   - system analysis:      
 
@@ -32,8 +35,6 @@
       - patient infection rate from equipment
       - patient ratings
 
-    - identify problems:
-
       - identify variables:
         - equipment state (cleanliness/functionality)
         - test effectiveness (accuracy/completeness/cost/risk)
@@ -43,6 +44,9 @@
         - points of infection
         - points of pathogen resistance to handling methods
         - points where operations/budget allocation are overwhelmed with handling methods
+
+
+    - identify problems:
 
       - identify priorities:
 
@@ -63,6 +67,33 @@
 
         - output rules
           - cleaning/testing/maintenance methods have x impact on equipment value, functionality & other metadata
+
+      - identify problem types:
+
+        - insufficient resources
+
+        - insufficient resource distribution
+
+          - information distribution (management layers, patient/employee feedback, reporting flaws)
+          - equipment distribution
+          - incentive distribution (no reward/punishment for following/ignoring procedure)
+          - time distribution (inadequate planning/research/budgeting/optimization)
+          - education distribution (no cross-training, no backup training (education on how to do research vs using existing knowledge))
+
+        - insufficient variance handlers
+          - no way for doctors to communicate with website devs
+          - no way for patients to communicate with research teams
+          - no way for doctors to communicate with report builders/budget decision makers
+          - no way for doctors to communicate with other hospitals at various stages of diagnosis/treatment (using another hospital's research/reporting team tools or insights)
+          - lack of data updating tools/processes (referring to outdated doctor office number/treatment method)
+          - lack of process updating tools/processes
+
+        - info asymmetries/miscommunications
+
+          - lack of understanding for reasons (patient doesnt know reasons why a test is being chosen, nurse doesnt know reason for process/limitation or data insight, doctor doesnt know reason why they have to fill out a new report)
+
+        - insufficient outlets for variance without handlers
+          - delegating excess liability/risk is not supported by existing methods (insurance, consultants, legal contracts, regulations)
 
     - identify solutions:
 
