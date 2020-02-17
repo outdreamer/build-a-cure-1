@@ -1,5 +1,16 @@
 # Variable Accretion Patterns
 
+  - optimal variance in a system
+
+    - in general, variance should be preserved when its capable of resolving problems whose solutions are more valuable than the cost of the problems caused by the variance, otherwise it shouldnt be allowed to vary
+    - this will create systems that are robust & good at self-optimization, but the problem-solving methods will be optimized for resolving one uncertainty at a time, because the variance will be delegated to uncertainties, to find out which pattern in the uncertainty space is optimal
+    - the overall system variance needs to be maintained at a level above the sum of the uncertainty spaces (variance gaps) in the system, otherwise it will be incapable of resolving any other questions than those captured in the uncertainty spaces
+    - one way to increase overall system variance is to build connections between uncertainty spaces, and to route variance between them so patterns can coordinate between them, and to inject variance when one uncertainty is resolved
+    
+    - example:
+      - if you determine optimal bio-system implementation & design dna accordingly, your bio-system will be able to handle the problems optimized, but if you dont allow genetic mutations, it wont be able to adapt to new problems (variance sources) with existing evolution methods, so youd need to build extra evolution methods (like functionality finding/acquiring methods in each cell's dna, or a built-in evolution system that cooperates with other systems like the immune system) to make sure variance is injectable on demand or acquirable accidentally from the environment
+
+
   - mismatch between limits & variance
     - lack of limits: variance gaps from lack of rule enforcement
     - over-limits: too much rule enforcement preventing adaptation
