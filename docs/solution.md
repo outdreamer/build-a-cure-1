@@ -20,7 +20,18 @@
 
     - problem decomposer (reduces problem dimensions, matching dimensions of solution to dimensions of problem)
 
-    - problem metadata manipulation (changes problem space, postpones solving problem, matching problem with other problem to neutralize both)
+    - problem metadata manipulation
+      - changes problem space
+      - postpones solving problem
+      - matching problem with other problem to neutralize both
+      - problem analysis: 
+        - calculating probable solution cost
+        - calculating value of problem reduction vs. problem solution (vs. secondary or source problem reduction/solution)
+        - learning: using understanding as an alternative to using/selecting existing tools or solving problem directly
+
+    - solution selector
+
+        - existing tools: as an immediate implementation option
 
     - interim solution 
 
@@ -53,9 +64,20 @@
 
   - limits
 
-    - time limit (only applicable in a certain time window)
-    - abstraction (structural/conceptual or specific to context)
-    - reusability (only applicable once, as with solutions that are easily identified or stop working once you use them the first time)
+    - time limit
+      - only applicable in a certain time window
+
+    - abstraction
+      - structural/conceptual or specific to context
+      - choosing the abstraction level that will reduce misunderstandings while optimizing reusability
+
+    - reusability
+      - only applicable once, as with solutions that are easily identified or stop working once you use them the first time
+      - how to design/choose solutions for reusability
+
+    - cost/benefit analysis 
+      - such as learning/understanding/integration/implementation/migration/functionality gap cost potential
+
     - problem-type & problem-space scope
       - only handles asymmetries or structure-fitting or optimal transport or classification
 

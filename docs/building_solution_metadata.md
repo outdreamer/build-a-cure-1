@@ -1,3 +1,5 @@
+# Building solution space metadata
+
 - evaluate how tools develop in problem spaces at different layers:
 
   - identifying core problems
@@ -9,17 +11,6 @@
     - testing to capture adjacent (one-degree) functionality exploits
     - protocols to reduce solution space vs. enforcing solution rules
 
-- solution attributes
-
-  - solution reusability: how to design/choose solutions for reusability
-  - cost/benefit analysis (such as learning/understanding/integration/implementation/migration/functionality gap cost potential)
-  - abstraction level: choosing the abstraction level that will reduce misunderstandings while optimizing reusability
-
-  - solution types:
-  
-    - tools: as an immediate implementation option
-    - learning (understanding as an alternative to using/selecting existing tools)
-    - problem analysis: calculating probable solution cost, calculating value of problem reduction vs. problem solution (vs. secondary or source problem reduction/solution)
 
 - tool selection (tools as a subset of solutions, which also includes learning, calculating solution metadata before investing)
 
@@ -55,12 +46,14 @@
           what guarantees are offered by the platform provider & by the third party tool provider for implementation side effects
           (third party tool integrated with a secondary platform tool)
 
+
 - choose processes to automate
 
   - automation attributes:
 
     - resource investment (cost/time/security of sending data in a certain format or with a certain procedure)
     - understanding of problem space (are the rules clear enough that we can safely automate with little expectation of variance injection)
+
 
 - inefficient process identification
 
@@ -160,6 +153,7 @@
           4. you could derive the obvious errors using problem space metadata
 
             - problem space metadata:
+
               - allows alignment
               - allows any shape in coordinate plane
 
@@ -168,11 +162,6 @@
               - no rule preventing repetition:
 
                 - "given that there's no rule in the problem space prohibiting shapes from repeating, and that repeated shapes are possible in space of any dimension greater than 0 (point), repetition could lead to the illusion of a relationship due to similarity in the repeated shapes"
-
-              - how to calculate anti-metadata:
-                - given objects (rules) & their distorted/contextual versions (rule preventing an attribute from emerging) and the set of possible values of objects in the rule ('repetition' is a possible attribute)
-                  - you can determine what's not prevented by the metadata of an object, by what common objects (or distortions of objects or object values) are allowed in the object, even if theyre not referenced in the object definition
-
 
   - how do you decide what to invest time learning
 

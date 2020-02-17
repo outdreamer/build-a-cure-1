@@ -12,7 +12,13 @@
 
       - shapes (compounding problem dimensions)
 
-    - problem attributes
+    - problem antimetadata
+
+      - how to calculate anti-metadata:
+        - given objects (rules) & their distorted/contextual versions (rule preventing an attribute from emerging) and the set of possible values of objects in the rule ('repetition' is a possible attribute)
+          - you can determine what's not prevented by the metadata of an object, by what common objects (or distortions of objects or object values) are allowed in the object, even if theyre not referenced in the object definition
+
+    - problem metadata
 
       - core conflict
         - the core mismatch/imbalance creating the cascading mismatches/imbalances for agents in the problem space
