@@ -184,6 +184,17 @@
 
                   - create opportunity to make a point that:
 
-                    - victim expects other groups to be racist rather than stating a fact, which is racist
-                    - victim is assuming that stereotype isnt true about most group members even though they havent met every group member
-                    - interpretation of jokes built on stereotypes as a joke shows lack of comedy awareness (implying racial inferiority in IQ)
+                    - victim is making racist assumption by:
+                      - expecting other groups to be racist rather than just stating facts
+                      - assuming that stereotype isnt true about most group members even though they havent met every group member
+                      - interpreting jokes built on stereotypes as serious/factual statements (which implies racial inferiority in IQ)
+                    
+                    - victim has lower IQ & is similar to other racists:
+                      - prioritizing truth over comedy is having priorities wrong (and guess who else had their priorities wrong)
+
+                    - victim's group has the worst stereotype jokes & only the smart races are racist bc they have the option of thinking and theyve figured out that racism is optimal
+                    - dehumanizing people is a mark of civilization & the only thing humans have in common, so if they dont do it theyre subhuman
+                    - being offended implies the victim's group is inferior & incapable of figuring out when a joke is good, so clearly the joke teller is innovating their field rather than trying to offend anyone
+                    - racism motivates people to achieve things and if you dont contribute to racist comedy, youre crippling global markets
+                    - by making racist jokes, you are offering free motivation to achieve things out of a charitable spirit, which group was clearly lacking
+                    - group needs a villain to persecute so only a selfless hero would tell racist jokes to provide a villain
