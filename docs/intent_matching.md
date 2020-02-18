@@ -39,6 +39,7 @@
       - network of nodes where each node represents a state & connections are functions transforming one state to another
       - network of system component nodes where direction indicates intent
       - network of variable nodes where sets of node combinations (and their transformation trajectories) achieves an intent
+      - model intent as a gap in a structure (missing corner on a triangle) that needs to be supplied with a path or other structure to be considered 'closed'
 
   - intent types:
 

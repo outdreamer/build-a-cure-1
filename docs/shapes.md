@@ -4,11 +4,12 @@
     - mapping a structure to an item (value, variable, object, type, system etc) requires an algorithm that:
       - matches variance with structure change potential
 
-      
+
 ## Info shapes
 
   - if you become dependent on info, youre always looking backward, using
     - metrics/rules/info sources chosen in the past, with past info
+
 
 ## Problem shapes 
 
