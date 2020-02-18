@@ -147,3 +147,32 @@
 
       - to find hidden relevance:
         - vary stakes (to find actually important things among things considered irrelevant/unimportant)
+
+      - to find alternate path:
+
+        - functions to explain relationship:
+          - 'stereotypes and behavior that complies with stereotypes'
+
+          - simple answer: 
+            - 'stereotype is true'
+
+          - complex answer:
+
+            - stereotype creates comically false expectations
+
+              - which makes some groups victimized
+                - which some victims see as exploit opportunities
+                  - to seem like a victim while complying with the expectation
+                  - to act on the expectation to free themselves from making a decision
+
+              - which makes non-group members see exploit opportunity, in the dichotomy between: 
+                - self-awareness in elective compliance with expectations
+                - lack of comedy awareness in interpretation of jokes built on stereotypes as a joke
+
+              - which has the outputs:
+                - complying with stereotype expectations to trigger racist comments to:
+                  - create opportunity to make a point that: 
+                    - only racists would criticize them
+                    - they expect other groups to be racist or offended, which is racist
+                  - trigger a fight to 
+                    - enable criticizing someone of a different group
