@@ -150,17 +150,16 @@
 
       - to find alternate path:
 
-        - functions to explain relationship:
-          - 'stereotypes and behavior that complies with stereotypes'
+        - functions to explain relationship: 'stereotypes & behavior that complies with stereotypes'
 
           - simple answer: 
             - 'stereotype is true'
 
           - complex answer:
 
-            - stereotype creates comically false expectations
+            - 'stereotype creates comically false expectations'
 
-              - which has outputs for agent positions:
+              - which has output paths for agent positions, given example using 'race':
 
                 - victim:
 
@@ -198,3 +197,28 @@
                     - racism motivates people to achieve things and if you dont contribute to racist comedy, youre crippling global markets
                     - by making racist jokes, you are offering free motivation to achieve things out of a charitable spirit, which group was clearly lacking
                     - group needs a villain to persecute so only a selfless hero would tell racist jokes to provide a villain
+                    - if they werent busy villainizing people:
+                      - they would have more time to ask the right questions about why they all act the same way
+                      - they would have time to come up with better jokes mocking other races
+                      - they would have time to change their behavior
+                      - they would have time to think it through, realize there are some good points there, and start mocking their own race better than attacker bc they know more about themselves
+                    - realize that the person who makes racism the funniest wins and therefore theyre not rooting for their own group by failing to come up with the best racist jokes
+
+        - which are alternate paths to explain the original relationship: 'stereotypes & behavior that complies with stereotypes' using distortion functions:
+
+          - remove assumptions:
+            - victim is really the victim
+            - victim is not racist
+            - victim is superior
+            - stereotype is false
+            - people are good
+            - people arent motivated by racism
+            - victim cant control their behavior
+
+          - extend assumption:
+            - given starting assumption, extend it:
+              - 'victim is not racist'
+                - find attributes of someone victim would call a racist
+                  - find similarities between victim's attributes & racists' attributes
+                    - find path to portraying victim's attributes as racist
+                      - complete the circle using functions to build a false relationship 'victim is racist' out of facts or realistic logic
