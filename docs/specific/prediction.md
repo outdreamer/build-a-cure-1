@@ -191,7 +191,7 @@
             - 'stereotype creates comically false expectations'
 
               - which has output paths for agent positions, given example using 'race' 
-                (but only the redneck & clown races, which I hate for valid reasons which Im required to keep to myself - Ill let you figure out who Im talking about - hint: its rednecks who are all clowns though they try to pretend to do computers):
+                (but only the redneck & clown races, which I hate for valid reasons which Im required to keep to myself - Ill let you figure out who Im talking about - hint: its rednecks who are all clowns though they try to pretend to do computers - how sad that I have to clarify this at all):
 
                 - victim:
 
