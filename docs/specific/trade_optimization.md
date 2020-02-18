@@ -1,5 +1,7 @@
 ## Optimization
 
+  - predictions as a path optimization problem, where nodes are variables
+
   - Determining which queries/calculations are optimal
 
     - given that certain calculations have known cost estimates, which calculations are optimal, in what order/frequency, and given what information?
@@ -19,7 +21,8 @@
   - which farmland is more optimally used for something else (harvesting other natural resources, water supply, city)
   - which cities have industries to support new workers moving there
   - what distribution of cities/farms is optimal for reducing resource transportation cost
-  - how much does it cost to train someone to maintain a garden
+  - how much does it cost to train someone to maintain a garden with latest/available tech
+  - what amount of infra investment would it take to empower them to solve their most urgent problems
   - what is the configuration of farmland & farm input supply chains that reduces supplies transportation cost
   - what is the import/export potential of each region (which crops & other resources can they produce)
   - what distribution of industries should occur by distance from ocean/water source

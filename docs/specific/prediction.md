@@ -263,6 +263,7 @@
                       - they would have time to change their behavior
                       - they would have time to think it through, realize there are some good points there, and start mocking their own race better than attacker bc they know more about themselves
                     - realize that the person who makes racism the funniest wins and therefore theyre not rooting for their own group by failing to come up with the best racist jokes
+                    - racism is flattering bc provoking a large group of people means you think (or rather wish) theres a possibility they can beat you as a group, if they all work together for many years
 
         - which are alternate paths to explain the original relationship between 'stereotypes & behavior that complies with stereotypes' using distortion functions:
 
