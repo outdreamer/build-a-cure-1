@@ -107,7 +107,6 @@
         - potential interactions with other systems (sharing electrons & other types of combination)
       - the collision & overlap of these fields of potential generates areas of states varying by probability
 
-
     - emergent effect prediction:
 
       - example: 
@@ -125,11 +124,13 @@
       - the change points will be discernible from these patterns & pattern variables
         - the patterns in variables, variable sets, variable values, variable types, variable metadata (importance, dependency network) will be able to predict type change points at various variable configurations
 
+
 ### Structural objects as prediction tools
 
   - filter
   - network
   - structures of change (direction/distance)
+
 
 ### Information objects as prediction tools
 

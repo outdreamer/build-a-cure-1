@@ -1,3 +1,31 @@
+# Bio
+  
+  - look for symmetries in nature because that's where the variance is likely to be routed
+    https://phys.org/news/2020-01-lizard-snake-size-unrelated-climate.html
+
+    The symmetry presented by stability provides a platform for variance (coronavirus) to develop.
+
+  - system analysis of bio-system
+
+    - iterative analysis: 
+      - analysis that treats cyclical, recursive, cascading & iterative processes as trade loops between positions & systems
+      - example: in addition to analyzing how a drug is metabolized:
+        - how its structure will interact with other structures
+        - how the resulting structures after the nth-interaction will interact with other resulting structures, etc
+        - how the dna of a probiotic or other microorganism treatment could get re-purposed by microorganisms
+        - how the activity of a gene could get accidentally impacted in other pathways & which of those pathways are possible given a treatment
+        - how an interaction can be minimally modified to produce extremely different results
+        - how nth-iteration interactions will be timed with other processes cycling in that time
+        - how causal cascades can cycle to be interactive with the treatment
+        - how functionality gaps or interactions at nth-iteration can provide opportunities for mutation & other randomness sources 
+
+    - given the known vulnerabilities of the bio-system:
+      - which problems are solvable (killing pathogen, deploying a substance to a position) with what methods (evolution, medicine, stressor distribution)
+      - which problems are inevitable
+      - which problems are solvable with auto-generated vs. external resources
+      - which stressor patterns can prevent which problems
+
+
 ## Cancer & Stressors
 
 

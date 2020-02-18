@@ -51,6 +51,10 @@
 
   - interface: filter/standard for comparison of specific attribute(s)
   - interfaces evolve when a unifying attribute (priority, cause, structure) can frame a set of developing variances
+  - interfaces, standards, & perspectives are all filters
+    - an interface can be specific but on the general interface network, it offers a standard for multiple related attributes or causative attributes 
+      (types/intents/patterns offer a way to interact with all layers of a system)
+    - whereas a perspective is focused on a very restricted set of variables, with the intention of distorting reality to highlight information that other perspectives dont make clear
 
 ## Type Shapes
 
@@ -87,7 +91,9 @@
 
 
 ## Certainty Shapes
+
   - while risk shapes store a ratio of shape coverage, certainty shapes store a compression of a shape
+  - uncertainty shapes include variance gaps & questions
 
 
 ## Risk Shapes

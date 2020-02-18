@@ -209,5 +209,8 @@
     https://miro.medium.com/max/462/1*X7dQgs1gsJ0Sktz3t7J21Q.png
     https://towardsdatascience.com/feature-extraction-techniques-d619b56e31be
 
+  - solution type: balance info asymmetry
+  - matching
+
 # Questions
   - are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?

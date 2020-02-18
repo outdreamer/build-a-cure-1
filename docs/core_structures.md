@@ -1,4 +1,4 @@
-# core structure components
+# Core structure components
 
         - calculatable structures: 
           - dimension: variable
@@ -62,6 +62,15 @@
           - change
           - flow
           - state
+          - filter/interface (reduce)
+          - perspective (focus)
 
         - equivalent, alternate, substitute
         - opposite, inverse
+
+
+## Choosing a structure
+
+  - anything that has its own internal gravity can be modeled as a physics system, but if it has its own internal operations like how to traverse the interface network, it also has a description system
+
+  - space math: the math of composing spaces to form spaces where operations are possible
