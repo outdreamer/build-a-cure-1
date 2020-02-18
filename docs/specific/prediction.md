@@ -18,9 +18,14 @@
       - the change patterns applied to the best fit model
 
   - identify maps between:
-    - machine learning: ai algorithms & probability distributions
-    - semantic: filtering gaps, variable sets, & problem types
 
+    - machine learning: ai algorithms & probability distributions
+      - which algorithms output which probability distributions (both in output and in input var sets)
+
+    - semantic: filtering gaps, variable sets, & problem types
+      - which filter sets (filters to capture cascading variance across feature levels) map to which variable sets/variable types/problem types
+
+    - so that you can use the map in reverse, using probability distributions of inputs to identify which algorithm to use, etc
 
 ### Invention Prediction
 
