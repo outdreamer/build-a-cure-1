@@ -125,6 +125,11 @@
       - the change points will be discernible from these patterns & pattern variables
         - the patterns in variables, variable sets, variable values, variable types, variable metadata (importance, dependency network) will be able to predict type change points at various variable configurations
 
+### Structural objects as prediction tools
+
+  - filter
+  - network
+  - structures of change (direction/distance)
 
 ### Information objects as prediction tools
 
@@ -136,16 +141,25 @@
 
   - provide a useful starting point for distortions or combinations of assumptions
 
-#### Perspective
+#### Perspectives
 
   - use biased structures as a starting point for filtering solution space
+  - perspectives are a filtered version of truth that reveals information by what it focuses on & filters out
+    - examples: religious, logical, probability perspectives
+  - the functions generating perspectives are a foundation for truth-distortion methods
 
 #### Intents/Priorities/Reasons/Motivations
 
   - use purpose as an interface for filtering solution space
 
-#### Plans/Intentions
+#### Plans/Intentions/Strategies
+
   - like the other objects, plans are an attempt to create structure in an unstructured space, starting from the agent perspective
+  - plans differ from intents bc intents can be a direction or a function, whereas plans are usually an ordered combination of functions to achieve a move in a direction
+
+#### Insights
+
+  - connecting rules (include core functions determining connecting rules)
 
 #### Incentives
 
@@ -154,6 +168,19 @@
 #### Opportunities
 
   - use opportunities (intersections of unenforced rules) as a way to reduce solution space
+
+#### Questions
+
+  - focus predictions on a particular information asymmetry/direction/layer or other structure that can support information
+
+#### Patterns
+
+  - patterns of common system objects (combination/filter functions, function/attribute objects) are another good starting point, 
+    either standardized across systems or contextual patterns within the system to predict
+
+#### Solutions/Problems
+
+  - maps between solution & problem structures are another useful tool for predictions or reducing solution spaces
 
 #### Lies
 

@@ -3,8 +3,6 @@
   - if you become dependent on info, youre always looking backward, using
     - metrics/rules/info sources chosen in the past, with past info
 
-  - 
-
 ## Problem shapes 
 
       - problems can have multiple dimensions creating the output problem shape, 
