@@ -16,7 +16,7 @@
           - circuit: series of lines moving at angles that allow returning to origin point
           - network: linked points
           - tree: network with direction
-          - stack: layers with values (trajectory between points in layers)
+          - stack: layers representing variables or variants within a type with values (trajectory between points in layers)
           - topology, manifold: permutation set with symmetric properties
           - approximation
           - distance: variance in a similarity measure
@@ -61,7 +61,7 @@
           - pattern
           - change
           - flow
-          - state
+          - state (combination of structure & information)
           - filter/interface (reduce)
           - perspective (focus)
 
