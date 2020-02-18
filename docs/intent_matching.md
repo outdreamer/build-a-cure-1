@@ -34,7 +34,8 @@
 
   - intent visualization
 
-    - whats the right way to model intent:
+    - methods to model intent:
+
       - network of nodes where each node represents a state & connections are functions transforming one state to another
       - network of system component nodes where direction indicates intent
       - network of variable nodes where sets of node combinations (and their transformation trajectories) achieves an intent
