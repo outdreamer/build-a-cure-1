@@ -10,6 +10,8 @@
     - example:
       - if you determine optimal bio-system implementation & design dna accordingly, your bio-system will be able to handle the problems optimized, but if you dont allow genetic mutations, it wont be able to adapt to new problems (variance sources) with existing evolution methods, so youd need to build extra evolution methods (like functionality finding/acquiring methods in each cell's dna, or a built-in evolution system that cooperates with other systems like the immune system) to make sure variance is injectable on demand or acquirable accidentally from the environment
 
+  - all nodes should be able to communicate with all other nodes but it should be a fallback mechanism to enhance independent functioning & warn of impending variance approaching system
+
   - questions
     - if big bang was variance leak from another universe, what info can be derived about a system that was organized & efficient enough to be able to accrue a lot of variance & route it either intentionally or accidentally to one point, but would also leak a large amount of variance at once in an unplanned way
       - did this preserve the original universe or was there other variance remaining that reduced or disseminated pieces of it
