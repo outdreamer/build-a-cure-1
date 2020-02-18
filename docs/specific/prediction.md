@@ -160,19 +160,30 @@
 
             - stereotype creates comically false expectations
 
-              - which makes some groups victimized
-                - which some victims see as exploit opportunities
-                  - to seem like a victim while complying with the expectation
-                  - to act on the expectation to free themselves from making a decision
+              - which has outputs for agent positions:
 
-              - which makes non-group members see exploit opportunity, in the dichotomy between: 
-                - self-awareness in elective compliance with expectations
-                - lack of comedy awareness in interpretation of jokes built on stereotypes as a joke
+                - victim:
 
-              - which has the outputs:
-                - complying with stereotype expectations to trigger racist comments to:
-                  - create opportunity to make a point that: 
-                    - only racists would criticize them
-                    - they expect other groups to be racist or offended, which is racist
-                  - trigger a fight to 
-                    - enable criticizing someone of a different group
+                  - complying with stereotype expectations to trigger racist comments to:
+
+                    - seem like a victim
+
+                    - choose compliance with expectations
+                      - to free themselves from making a decision
+                      - display self-awareness/control
+
+                    - create opportunity to make a point that: 
+                      - only racists would criticize them
+                      - they expect other groups to be offended, which is racist
+
+                    - trigger a fight to: 
+                      - enable criticizing someone of a different group
+                      - deliver a joke about group of attacker
+
+                - attacker:
+
+                  - create opportunity to make a point that:
+
+                    - victim expects other groups to be racist rather than stating a fact, which is racist
+                    - victim is assuming that stereotype isnt true about most group members even though they havent met every group member
+                    - interpretation of jokes built on stereotypes as a joke shows lack of comedy awareness (implying racial inferiority in IQ)
