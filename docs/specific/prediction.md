@@ -134,6 +134,16 @@
     - this makes joke patterns possible tools for determining likelihoods
       - combinations of extreme possibilities occasionally return to fields of probable outcomes
       - reality follows patterns of extremes & relevance to current knowledge
-      
-    - example joke pattern:
-      - 
+
+    - common joke (reality distortion) functions:
+      - switch objects with extreme versions
+      - remove or add assumption
+      - extend assumption to extreme
+
+    - joke patterns by intent:
+
+      - to find overlooked assumptions:
+        - create false question (a question no one would ask) 
+
+      - to find hidden relevance:
+        - vary stakes (to find actually important things among things considered irrelevant/unimportant)
