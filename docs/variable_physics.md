@@ -35,7 +35,7 @@
   - variance attracts variance to allocate the task of ordering to the systems that are best at ordering (efficient systems) - entropy
 
   - how do attributes emerge:
-    - with intersecting fractals of core functions
+    - with intersecting chains (or fractals, a chain subtype that varies scale) of core functions
     - example:
       - viscosity emerges from the interaction of boundary, distribution, pressure, & binding rules, as liquids change states to form higher viscosity states on the spectrum of liquidity
       - as these objects interact without invalidating the original interface (liquid), other attributes emerge from combinations of objects & their interaction chains

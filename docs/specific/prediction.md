@@ -17,6 +17,10 @@
       - the adjacent models that exist with common distortion functions applied to the best fit model
       - the change patterns applied to the best fit model
 
+  - identify maps between:
+    - machine learning: ai algorithms & probability distributions
+    - semantic: filtering gaps, variable sets, & problem types
+
 
 ### Invention Prediction
 
