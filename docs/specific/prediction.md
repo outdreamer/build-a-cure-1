@@ -128,19 +128,50 @@
 
 ### Information objects as prediction tools
 
-  - jokes
+#### Facts
 
-    - jokes are often built with multiple core distortion functions to build an extreme possibility that is built with some true information & is relevant in some way
-    - this makes joke patterns possible tools for determining likelihoods
-      - combinations of extreme possibilities occasionally return to fields of probable outcomes
-      - reality follows patterns of extremes & relevance to current knowledge
+  - provide a useful starting point for predictions
 
-    - common joke (reality distortion) functions:
-      - switch objects with extreme versions
-      - remove or add assumption
-      - extend assumption to extreme
+#### Expectations/Assumptions
 
-    - joke patterns by intent:
+  - provide a useful starting point for distortions
+
+#### Perspective
+
+  - use biased structures as a starting point for filtering solution space
+
+#### Intents/Priorities/Reasons/Motivations
+
+  - use purpose as an interface for filtering solution space
+
+#### Plans/Intentions
+  - like the other objects, plans are an attempt to create structure in an unstructured space, starting from the agent perspective
+
+#### Incentives
+
+  - unlike plans, incentives create structure from the system perspective
+
+#### Opportunities
+
+  - use opportunities (intersections of unenforced rules) as a way to reduce solution space
+
+#### Lies
+
+  - unlike jokes, lies use realistic rather than extreme distortion functions
+
+#### Jokes
+
+  - similar to lies, jokes are often built with multiple core distortion functions to build an extreme possibility that is built with some true information & is relevant in some way
+  - this makes joke patterns possible tools for determining likelihoods
+    - combinations of extreme possibilities occasionally return to fields of probable outcomes
+    - reality follows patterns of extremes & relevance to current knowledge
+
+  - common joke (reality distortion) functions:
+    - switch objects with extreme versions
+    - remove or add assumption
+    - extend assumption to extreme
+
+  - joke patterns by intent:
 
       - to find overlooked assumptions:
         - create false question (a question no one would ask) 
@@ -150,7 +181,7 @@
 
       - to find alternate path:
 
-        - functions to explain relationship: 'stereotypes & behavior that complies with stereotypes'
+        - functions to explain relationship between 'stereotypes & behavior that complies with stereotypes'
 
           - simple answer: 
             - 'stereotype is true'
@@ -204,7 +235,7 @@
                       - they would have time to think it through, realize there are some good points there, and start mocking their own race better than attacker bc they know more about themselves
                     - realize that the person who makes racism the funniest wins and therefore theyre not rooting for their own group by failing to come up with the best racist jokes
 
-        - which are alternate paths to explain the original relationship: 'stereotypes & behavior that complies with stereotypes' using distortion functions:
+        - which are alternate paths to explain the original relationship between 'stereotypes & behavior that complies with stereotypes' using distortion functions:
 
           - remove assumptions:
             - victim is really the victim
