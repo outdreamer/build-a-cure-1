@@ -134,7 +134,7 @@
 
 #### Expectations/Assumptions
 
-  - provide a useful starting point for distortions
+  - provide a useful starting point for distortions or combinations of assumptions
 
 #### Perspective
 
@@ -190,7 +190,8 @@
 
             - 'stereotype creates comically false expectations'
 
-              - which has output paths for agent positions, given example using 'race':
+              - which has output paths for agent positions, given example using 'race' 
+                (but only the redneck & clown races, which I hate for valid reasons which Im required to keep to myself - Ill let you figure out who Im talking about - hint: its rednecks who are all clowns though they try to pretend to do computers):
 
                 - victim:
 
