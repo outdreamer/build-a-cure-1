@@ -124,3 +124,16 @@
         - example: several variables have to be diverging from average in order for a type change to occur, and the output vector & other metadata of these changes will have a point where it becomes clear which type they are leading toward and what probability the transition will continue
       - the change points will be discernible from these patterns & pattern variables
         - the patterns in variables, variable sets, variable values, variable types, variable metadata (importance, dependency network) will be able to predict type change points at various variable configurations
+
+
+### Information objects as prediction tools
+
+  - jokes
+
+    - jokes are often built with multiple core distortion functions to build an extreme possibility that is built with some true information & is relevant in some way
+    - this makes joke patterns possible tools for determining likelihoods
+      - combinations of extreme possibilities occasionally return to fields of probable outcomes
+      - reality follows patterns of extremes & relevance to current knowledge
+      
+    - example joke pattern:
+      - 
