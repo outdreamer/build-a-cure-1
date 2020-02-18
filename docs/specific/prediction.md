@@ -222,3 +222,8 @@
                   - find similarities between victim's attributes & racists' attributes
                     - find path to portraying victim's attributes as racist
                       - complete the circle using functions to build a false relationship 'victim is racist' out of facts or realistic logic
+
+      - the reason this is useful for predictions is:
+        - joke patterns can help find complex reasons (alternative paths) to explain a seemingly simple relationship
+        - joke patterns can help find assumptions that may be false, especially if removing them opens the possibilities for extremely logical alternative paths
+        - joke patterns can help reduce solution space (possible paths to explain relationship between A & B) while finding complex relationships, using distortion functions commonly used to build complex relationships
