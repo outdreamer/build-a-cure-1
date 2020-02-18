@@ -1,4 +1,4 @@
-## Prediction
+# Prediction
 
   - surprising patterns often come in the form of:
   
@@ -26,6 +26,7 @@
       - which filter sets (filters to capture cascading variance across feature levels) map to which variable sets/variable types/problem types
 
     - so that you can use the map in reverse, using probability distributions of inputs to identify which algorithm to use, etc
+
 
 ### Invention Prediction
 
