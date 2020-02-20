@@ -25,12 +25,31 @@
     - if a variable is completely random, is it possible to spot the influence of structures generating it if you have information about a state change in the random variable
 
     - why would a sum of independent variable values converge to a normal distribution?
+
       - this implies that variables that are likelier to have similar averages are likelier to interact later in the system
+
       - this matches the interaction of variables on an interface
         - opinions are likelier to interact with objects on a similar scale (info, other opinions, perspectives) than objects on a different scale (energy, matter, quantum physics, probability)
+
       - the idea of an average is similar to the idea of a symmetry (type of change that stays within a change limit)
-        - example: a point that rotates around an axis has a symmetry of type 'average' or 'center', and further rotations dont change the fundamental attributes of the point, like its rotation axis value
+
+        - example: 
+          - a point that rotates around an axis has a symmetry of type 'average' or 'center', and further rotations dont change the fundamental attributes of the point, like its rotation axis value
+          - a type that changes within the type interface but doesnt transform into another interface object is an example of change about the type symmetry/interface
+
       - so variables with the same symmetries/interfaces are likelier to interact
+
+    - the ways that a set of variables accrete into output variables can be described by a set of possible paths between i/o
+      - the position of variables can be predicted & their likely interactions from this arrangement
+        - "identifying features will be in a similar direction as sensing features" is a prediction about variable arrangement (identifying features & sensing features) based on the i/o attributes of 'relevance', 'alignment', 'distance', and 'difference'
+        - "sensing features can be identifying features" is a prediction about variable position (identifying features & sensing features) based on the i/o attributes of 'relevance', 'function overloading' 
+        - this can reduce the nodes in a network, especially at earlier layers
+        - if a variable can be an output/input or an interim variable, its position should be adjusted
+          - input/output variables should be target variables in an alternate version of the network branching off from original network and & routed back to original input set
+            - i/o variables like 'relevance' should have their own chain of networks starting from inputs & branching off to loop back to original inputs
+          - interim variables should be checked at interim compilation of information layers in the network
+
+      - datasets should be filtered by i/o variables - output variables like 'phenotype' should be the variable to predict in some cases rather than input variables like 'dna'
 
   - all nodes should be able to communicate with all other nodes but it should be a fallback mechanism to enhance independent functioning & warn of impending variance approaching system
 
