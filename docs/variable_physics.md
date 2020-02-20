@@ -60,6 +60,11 @@
 
       - datasets should be filtered by i/o variables - output variables like 'phenotype' should be the variable to predict in some cases rather than input variables like 'dna'
 
+      - sometimes emergent output variables are in the original data set, when they should be predicted
+        - these output variables might correlate with the original target output variable because the neural net (including branches of networks off of the original neural net) can predict both of them
+        - these correlating variables can be used as a proxy for predicting the original target output variable, if there is better data on the alternative emergent output variable
+        - the gaps in variance described by variables can also be used as an input var
+        
 
     - interface variables should be evaluated in branching network loops
 
@@ -105,7 +110,7 @@
         - the position of variables in the vector can imply relevance depending on how its processed (example: size of convolution)
         - the distance of network nodes can imply relevance depending on how theyre processed later (example: pooling)
         - the layer of variable accretion implies interface/interaction layer
-        
+
 
   - all nodes should be able to communicate with all other nodes but it should be a fallback mechanism to enhance independent functioning & warn of impending variance approaching system
 
