@@ -1,7 +1,7 @@
 # Implementation Instructions
 
 
-## Object Model
+## Object Model Analysis
 
 	- this is a simple index of objects as class instances
 
@@ -9,7 +9,9 @@
 
 		- predict interactions & optimal versions of objects/attributes/types/rules
 			- predict emergent objects/attributes/types/rules
-		- problem-solving automation method to query objects/attributes/types/rules and reduce solution space or identify causative factor in problem
+
+		- problem-solving automation method to query objects/attributes/types/rules
+		- reduce solution space or identify causative factor in problem
 
 	- tech debt:
 
@@ -31,9 +33,10 @@
 		- variance (gaps in rule enforcement) & variance sources (gaps in system boundary allowing variance from other systems to leak in)
 		- emerging objects
 		- system errors & error-handlers
-		- vertices (factors that generate or influence the system development), 
+		- vertices (factors that generate or influence the system development)
 		- incentives (forces with a built-in reason lending it extra momentum/gravity pulling agents in that direction)
 		- interface metadata (intent, pattern, types, function, etc)
+		- relationship metadata (related systems, system position in system interface network)
 
 
 ## Intent Analysis
@@ -56,6 +59,10 @@
 
 	- reducing gaps in rule enforcement to shapes or paths has its own set of rules
 
+	- this interface can also be used for specific attribute analysis, of properties that descend from concepts & take form in a specific problem space:
+		- the power concept interface (has implementations that look like trust, info, etc)
+		- the balance concept interface (has implementations that look like symmetry, justice, etc)
+
 
 ## Structural Analysis
 
@@ -77,16 +84,22 @@
 	- some sets are more adjacent than more optimal sets & may be a better investment for short-term gains
 
 
-## Info Object Index
+## Info Analysis
 
 	- on this index, a lot of human & biological problems (problems associated with sentient life) can be clarified
 	- these objects are related to agents & their communication: perspective, strategy, decisions, intent, game, motivation, problems
 
 
-## Problem Index
+## Problem Analysis
 
-	- on this index, problems are mapped to structure
+	- on this index, problems are mapped to structure, once problems have been converted to an information problem, which has a clear mapping to the structural interface
 
+	- problems can always be framed as info problems (missing info, conflicting info, unconnected info, mismatches, imbalances, asymmetries)
+		- finding a prediction function can be framed as an optimal path in a network of variable nodes
+
+	- once you frame a problem as an info problem, you can map info to structure:
+		- conflicts can be vectors with different direction or which overlap
+		
 
 ## Interface Network
 
@@ -121,12 +134,13 @@
 		- variance (change/potential)
 		- cause
 		- conflict (problem/solution)
+		- system
 
 	- a super-interface involves the core functions that can generate the general interface network:
 
 		- filter/find/identify
 		- apply/combine
 		- build/fill
-		- derive
-		- change
+		- derive/predict
+		- change/transform/process
 
