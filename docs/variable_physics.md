@@ -11,6 +11,7 @@
       - if you determine optimal bio-system implementation & design dna accordingly, your bio-system will be able to handle the problems optimized, but if you dont allow genetic mutations, it wont be able to adapt to new problems (variance sources) with existing evolution methods, so youd need to build extra evolution methods (like functionality finding/acquiring methods in each cell's dna, or a built-in evolution system that cooperates with other systems like the immune system) to make sure variance is injectable on demand or acquirable accidentally from the environment
 
   - a variable has an upper limit on what degree of change it can determine in another variable that its not equivalent or directly related to
+
     - sometimes this limit is determinable, like with variables of a known type:
       - an attribute of an object can only have x influence on an emergent system attribute
 
@@ -21,6 +22,9 @@
       - this means the adjacent states can be inferred by randomness change patterns between specific interfaces
 
     - if a variable is completely random, is it possible to spot the influence of structures generating it if you have information about a state change in the random variable
+
+    - why would a sum of independent variable values converge to a normal distribution?
+      - this implies that variables that are likelier to have similar averages are likelier to interact later in the system
 
   - all nodes should be able to communicate with all other nodes but it should be a fallback mechanism to enhance independent functioning & warn of impending variance approaching system
 
