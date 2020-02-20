@@ -44,10 +44,15 @@
         - "identifying features will be in a similar direction as sensing features" is a prediction about variable arrangement (identifying features & sensing features) based on the i/o attributes of 'relevance', 'alignment', 'distance', and 'difference'
         - "sensing features can be identifying features" is a prediction about variable position (identifying features & sensing features) based on the i/o attributes of 'relevance', 'function overloading' 
         - this can reduce the nodes in a network, especially at earlier layers
-        - if a variable can be an output/input or an interim variable, its position should be adjusted
+
+      - if a variable can be an output/input or an interim variable, its position should be adjusted
           - input/output variables should be target variables in an alternate version of the network branching off from original network and & routed back to original input set
             - i/o variables like 'relevance' should have their own chain of networks starting from inputs & branching off to loop back to original inputs
           - interim variables should be checked at interim compilation of information layers in the network
+
+      - format data to use different algorithms:
+        - the measure of distance/position between variables can be changed to use different algorithms
+          - image processing algorithm can be used once difference measure is found in non-image data so that position can be assigned
 
       - datasets should be filtered by i/o variables - output variables like 'phenotype' should be the variable to predict in some cases rather than input variables like 'dna'
 
