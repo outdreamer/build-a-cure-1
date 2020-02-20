@@ -63,8 +63,10 @@
       - sometimes emergent output variables are in the original data set, when they should be predicted
         - these output variables might correlate with the original target output variable because the neural net (including branches of networks off of the original neural net) can predict both of them
         - these correlating variables can be used as a proxy for predicting the original target output variable, if there is better data on the alternative emergent output variable
+        - or the relationship between correlating variables can be calculated & applied to transform predictions of proxy emergent variable to predict the original target variable
         - the gaps in variance described by variables can also be used as an input var
-        
+        - predicting gaps in variables (variable changes that usually have a variable in between them but the variable is missing from the dataset)
+
 
     - interface variables should be evaluated in branching network loops
 
