@@ -3,17 +3,25 @@
   - optimal variance in a system
 
     - in general, variance should be preserved when its capable of resolving problems whose solutions are more valuable than the cost of the problems caused by the variance, otherwise it shouldnt be allowed to vary
+    
     - this will create systems that are robust & good at self-optimization, but the problem-solving methods will be optimized for resolving one uncertainty at a time, because the variance will be delegated to uncertainties, to find out which pattern in the uncertainty space is optimal
+
     - the overall system variance needs to be maintained at a level above the sum of the uncertainty spaces (variance gaps) in the system, otherwise it will be incapable of resolving any other questions than those captured in the uncertainty spaces
+
     - one way to increase overall system variance is to build connections between uncertainty spaces, and to route variance between them so patterns can coordinate between them, and to inject variance when one uncertainty is resolved
 
     - example:
+
       - if you determine optimal bio-system implementation & design dna accordingly, your bio-system will be able to handle the problems optimized, but if you dont allow genetic mutations, it wont be able to adapt to new problems (variance sources) with existing evolution methods, so youd need to build extra evolution methods (like functionality finding/acquiring methods in each cell's dna, or a built-in evolution system that cooperates with other systems like the immune system) to make sure variance is injectable on demand or acquirable accidentally from the environment
 
-  - a variable has an upper limit on what degree of change it can determine in another variable that its not equivalent or directly related to
 
-    - sometimes this limit is determinable, like with variables of a known type:
-      - an attribute of an object can only have x influence on an emergent system attribute
+  - variable interactions
+
+
+    - a variable has an upper limit on what degree of change it can determine in another variable that its not equivalent or directly related to
+      - sometimes this limit is determinable, like with variables of a known type:
+        - an attribute of an object can only have x influence on an emergent system attribute
+
 
     - randomness can occur on any interface layer in a system, but the trajectory between layers leaves traces 
     
@@ -22,39 +30,62 @@
 
       - this means the adjacent states can be inferred by randomness change patterns between specific interfaces
 
-    - if a variable is completely random, is it possible to spot the influence of structures generating it if you have information about a state change in the random variable
+      - if a variable is completely random, is it possible to spot the influence of structures generating it if you have information about a state change in the random variable
 
-    - why would a sum of independent variable values converge to a normal distribution?
+      - why would a sum of independent variable values converge to a normal distribution?
 
-      - this implies that variables that are likelier to have similar averages are likelier to interact later in the system
+        - this implies that variables that are likelier to have similar averages are likelier to interact later in the system
 
-      - this matches the interaction of variables on an interface
-        - opinions are likelier to interact with objects on a similar scale (info, other opinions, perspectives) than objects on a different scale (energy, matter, quantum physics, probability)
+        - this matches the interaction of variables on an interface
+          - opinions are likelier to interact with objects on a similar scale (info, other opinions, perspectives) than objects on a different scale (energy, matter, quantum physics, probability)
 
-      - the idea of an average is similar to the idea of a symmetry (type of change that stays within a change limit)
+        - the idea of an average is similar to the idea of a symmetry (type of change that stays within a change limit)
 
-        - example: 
-          - a point that rotates around an axis has a symmetry of type 'average' or 'center', and further rotations dont change the fundamental attributes of the point, like its rotation axis value
-          - a type that changes within the type interface but doesnt transform into another interface object is an example of change about the type symmetry/interface
+          - example: 
+            - a point that rotates around an axis has a symmetry of type 'average' or 'center', and further rotations dont change the fundamental attributes of the point, like its rotation axis value
+            - a type that changes within the type interface but doesnt transform into another interface object is an example of change about the type symmetry/interface
 
-      - so variables with the same symmetries/interfaces are likelier to interact
+        - so variables with the same symmetries/interfaces are likelier to interact
+
 
     - the ways that a set of variables accrete into output variables can be described by a set of possible paths between i/o
-      - the position of variables can be predicted & their likely interactions from this arrangement
-        - "identifying features will be in a similar direction as sensing features" is a prediction about variable arrangement (identifying features & sensing features) based on the i/o attributes of 'relevance', 'alignment', 'distance', and 'difference'
+
+      - the position of variables can be predicted & their likely interactions from this position
+
+        - "identifying features will be in a similar direction as sensing features" is a prediction about variable position (identifying features & sensing features) based on the i/o attributes of 'relevance', 'alignment', 'distance', and 'difference'
+
         - "sensing features can be identifying features" is a prediction about variable position (identifying features & sensing features) based on the i/o attributes of 'relevance', 'function overloading' 
+
         - this can reduce the nodes in a network, especially at earlier layers
 
+      - datasets should be filtered by i/o variables - output variables like 'phenotype' should be the variable to predict in some cases rather than input variables like 'dna'
+
+
+    - interface variables should be evaluated in branching network loops
+
+      - original network evaluating for output original variable 'type'
+          alternate network evaluating for output interface variable 'relevance'
+            alternate network output
+        ^ back into original network
+
+      - this essentially describes the interface variable with neural nets as nodes, so output relevance can be used for training the original network, as relevance is an input/output variable
+
       - if a variable can be an output/input or an interim variable, its position should be adjusted
+
           - input/output variables should be target variables in an alternate version of the network branching off from original network and & routed back to original input set
+
             - i/o variables like 'relevance' should have their own chain of networks starting from inputs & branching off to loop back to original inputs
+
           - interim variables should be checked at interim compilation of information layers in the network
 
-      - format data to use different algorithms:
+
+    - format data to use different algorithms
+
+      - example:
+
         - the measure of distance/position between variables can be changed to use different algorithms
           - image processing algorithm can be used once difference measure is found in non-image data so that position can be assigned
 
-      - datasets should be filtered by i/o variables - output variables like 'phenotype' should be the variable to predict in some cases rather than input variables like 'dna'
 
   - all nodes should be able to communicate with all other nodes but it should be a fallback mechanism to enhance independent functioning & warn of impending variance approaching system
 
