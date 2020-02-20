@@ -80,7 +80,12 @@
 ## Info Object Index
 
 	- on this index, a lot of human & biological problems (problems associated with sentient life) can be clarified
-	- these objects are related to agents & their communication: perspective, strategy, decisions, intent, game, motivation
+	- these objects are related to agents & their communication: perspective, strategy, decisions, intent, game, motivation, problems
+
+
+## Problem Index
+
+	- on this index, problems are mapped to structure
 
 
 ## Interface Network
@@ -90,10 +95,16 @@
 	- it can refer to a specific set for a specific problem space
 
 		- the specific interface network for the debugging code space could be layers of network filters like:
+
 			- dependencies
 			- logic gaps/order/validity
 			- side effects
 			- types
+
+		- these specific interface networks are often implementations of the general interface network with mapped objects:
+			- dependency interface is a combination of the cause/function interface
+			- types (data, classes, etc) interface is a subset of the general type interface
+			- side effects are a subset of the variance interface (gaps in intent & execution, prediction of emergent attributes after nth iterations of combinations or other operations)
 
 	- whereas the general interface network includes layers of network filters like:
 
@@ -108,12 +119,14 @@
 		- concepts
 		- types
 		- variance (change/potential)
+		- cause
+		- conflict (problem/solution)
 
 	- a super-interface involves the core functions that can generate the general interface network:
-	
+
 		- filter/find/identify
 		- apply/combine
-		- build
+		- build/fill
 		- derive
 		- change
 
