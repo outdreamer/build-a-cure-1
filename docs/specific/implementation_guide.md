@@ -43,6 +43,38 @@
 
 	- alternative index to system/object indexes
 	- indexing objects in a system by intent allows for quick optimization
+	- this kind of analysis is useful for finding bugs
+		- if a function's lines are indexed by intent, it's clearer when an intent has already been handled or when there's a reversal or gap in logical flow
+
+
+## Logic Analysis
+
+	- automating the selection, position, optimization, & implementation of logical rules is possible with this analysis
+
+	- if the following code appears in this order:
+
+		if variable1 is None:
+			return False
+		return operation(variable1)
+
+		- variable1 is not checked for False (theres a gap in enforcement between the None & False definitions) so the operation could fail
+
+		if variable1 <= 0:
+			return False
+		return int(variable1)
+
+		- theres a potential gap in enforcement of data type, where variable1 might not be an integer even if its positive
+
+
+		if not variable1:
+			return False
+		if variable1:
+		
+		- there's an unnecessary condition which is invalidated by prior code (if variable1 is not defined, it would never get to the third line, so the third line is unnecesary)
+
+		if not variable1:
+			return False
+		if variable1:
 
 
 ## Variance Analysis
@@ -87,7 +119,13 @@
 ## Info Analysis
 
 	- on this index, a lot of human & biological problems (problems associated with sentient life) can be clarified
-	- these objects are related to agents & their communication: perspective, strategy, decisions, intent, game, motivation, problems
+
+	- these objects are related to agents & their communication: 
+		- perspective, strategy, decisions, intent, game, motivation, problems
+
+	- these objects can be defined as combinations of general interface objects:
+		- game is a system with conflicting/overlapping intents between agents, usually with low-stakes intents
+		- perspective is a filter produced by chains of distortions
 
 
 ## Problem Analysis
@@ -99,7 +137,7 @@
 
 	- once you frame a problem as an info problem, you can map info to structure:
 		- conflicts can be vectors with different direction or which overlap
-		
+
 
 ## Interface Network
 
@@ -123,7 +161,7 @@
 
 		- intent (priority)
 		- perspective (the unit filter object)
-		- functions (can include patterns, strategies, rules, and any other set of operations/objects that has order)
+		- functions (can include patterns, logic, strategies, rules, and any other set of operations/objects that has order)
 		- structure
 			- sub interfaces of structure include:
 				- difference/position
@@ -144,3 +182,14 @@
 		- derive/predict
 		- change/transform/process
 
+	- like all other sets of objects on an equal interface, any item in the set can be used to find the others
+		- in a set of (4, 6, 2, 3) you can start with 4 to find 2 or 3 to find 4
+
+	- each interface network in the set of interfaces (core function interface network, general interface network, specific interface network) can be used to generate the others
+		- intent interface can be used to generate the type interface
+		- dependency interface can be used to generate the side effect interface
+		- interface network can be used to generate the core function interface
+
+	- finding the starting interface & direction of traversal across the other interfaces in the network is its own interesting problem, beyond just generating the relevant & useful interfaces in a network
+	
+	- framing a conflict of type 'competition' as opposing direction/intent or equivalent direction/intent is a calculation that can be automated using any of these kinds of analysis, but the intent-matching analysis is best at this, and selecting that type of analysis is an important tool to build first
