@@ -18,6 +18,7 @@
     - randomness can occur on any interface layer in a system, but the trajectory between layers leaves traces 
     
       - example: converting randomness between linear operation layer (in direction of rotating line) to continuous function layer (in slope of curve)
+        "any linear combination of a fixed collection of normal deviates is a normal deviate" - https://en.wikipedia.org/wiki/Normal_distribution
 
       - this means the adjacent states can be inferred by randomness change patterns between specific interfaces
 
@@ -27,7 +28,8 @@
       - this implies that variables that are likelier to have similar averages are likelier to interact later in the system
       - this matches the interaction of variables on an interface
         - opinions are likelier to interact with objects on a similar scale (info, other opinions, perspectives) than objects on a different scale (energy, matter, quantum physics, probability)
-      - the idea of an average is similar to the idea of a symmetry (type of change that stays within a limit)
+      - the idea of an average is similar to the idea of a symmetry (type of change that stays within a change limit)
+        - example: a point that rotates around an axis has a symmetry of type 'average' or 'center', and further rotations dont change the fundamental attributes of the point, like its rotation axis value
       - so variables with the same symmetries/interfaces are likelier to interact
 
   - all nodes should be able to communicate with all other nodes but it should be a fallback mechanism to enhance independent functioning & warn of impending variance approaching system
