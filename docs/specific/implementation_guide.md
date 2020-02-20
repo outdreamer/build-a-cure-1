@@ -1,5 +1,8 @@
 # Implementation Instructions
 
+This is the general blueprint for implementing the ideas in this repo, which have more specific blueprints in their own guides.
+Use case & tech debt is included where applicable.
+
 
 ## Object Model Analysis
 
@@ -15,7 +18,7 @@
 
 	- tech debt:
 
-		- identify data sources (code bases defining schema/class definitions)
+		- identify object data sources (code bases defining schema/class definitions, network maps)
 		- implement data sanitization & import
 		- implement identification functions (objects/attributes/types/rules) to gather more data pre-indexed
 		- implement object operation functions (combine, merge, apply, mix, filter)
@@ -213,6 +216,9 @@
 		- intent interface can be used to generate the type interface
 		- dependency interface can be used to generate the side effect interface
 		- interface network can be used to generate the core function interface
+
+	- the filter interface is more clearly usable as a method to generate the others bc most problems can be reduced to a structure that can be filled in different ways for different reasons
+		- it can even generate the change interface, by framing each process as a filter between i/o
 
 	- finding the starting interface & direction of traversal across the other interfaces in the network is its own interesting problem, beyond just generating the relevant & useful interfaces in a network
 	

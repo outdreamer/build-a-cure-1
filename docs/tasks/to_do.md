@@ -185,6 +185,13 @@
   - incorporate stacked autoencoders to leverage unsupervised learning to get initial weights
   - incorporate cosine loss rather than categorical cross entropy
   - add recurrent nn example code that can be copied & plugged in without modification
+  - from a data set, it should be possible to compute which questions can be answered by the data set, with what confidence & specificity - if it matches user intent, you can proceed with the analysis
+  - accretion of data set variables into types using info filters is one relationship that occurs on the interface network
+
+# Programming
+- program to identify optimal use cases 
+- program to delegate optimized use cases to tools optimized for them (languages better at one task than another)
+
 
 # Diagrams
 
