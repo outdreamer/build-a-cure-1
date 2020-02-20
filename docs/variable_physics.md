@@ -25,6 +25,10 @@
 
     - why would a sum of independent variable values converge to a normal distribution?
       - this implies that variables that are likelier to have similar averages are likelier to interact later in the system
+      - this matches the interaction of variables on an interface
+        - opinions are likelier to interact with objects on a similar scale (info, other opinions, perspectives) than objects on a different scale (energy, matter, quantum physics, probability)
+      - the idea of an average is similar to the idea of a symmetry (type of change that stays within a limit)
+      - so variables with the same symmetries/interfaces are likelier to interact
 
   - all nodes should be able to communicate with all other nodes but it should be a fallback mechanism to enhance independent functioning & warn of impending variance approaching system
 
