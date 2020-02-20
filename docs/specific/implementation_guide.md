@@ -51,69 +51,93 @@
 
 	- automating the selection, position, optimization, & implementation of logical rules is possible with this analysis
 
-	- if the following code appears in this order:
+	- use cases:
 
-		if variable1 is None:
-			return False
-		return operation(variable1)
+		- if the following code appears in this order:
 
-		- variable1 is not checked for False (theres a gap in enforcement between the None & False definitions) so the operation could fail
+			if variable1 is None:
+				return False
+			return operation(variable1)
 
-		if variable1 <= 0:
-			return False
-		return int(variable1)
+			- variable1 is not checked for False (theres a gap in enforcement between the None & False definitions) so the operation could fail
 
-		- theres a potential gap in enforcement of data type, where variable1 might not be an integer even if its positive
+			if variable1 <= 0:
+				return False
+			return int(variable1)
+
+			- theres a potential gap in enforcement of data type, where variable1 might not be an integer even if its positive
+
+			if not variable1:
+				return False
+			if variable1:
+			
+			- there's an unnecessary condition which is invalidated by prior code (if variable1 is not defined, it would never get to the third line, so the third line is unnecesary)
 
 
-		if not variable1:
-			return False
-		if variable1:
-		
-		- there's an unnecessary condition which is invalidated by prior code (if variable1 is not defined, it would never get to the third line, so the third line is unnecesary)
+	- tech debt:
 
-		if not variable1:
-			return False
-		if variable1:
+		- analysis & classification of known bug types
+
+		- function to identify new bug types
+
+		- function to identify known bug types in logic
+			- gaps in logic enforcement (variance gaps, assumptions)
+			- overlapping/repeated logic checks (extraneous validation)
+			- side effects that dont match function intent
+
+		- function to identify logic bug resolution methods:
+			- bug 'overlapping logic' has bug resolution method:
+				- identify isolated logic operations
+				- identify scope required of each operation
+				- identify required position of each isolated logic operation
 
 
 ## Variance Analysis
 
 	- alternative index, indexing objects by change/potential/uncertainty
 
-	- this is the problem of adding/fitting/reducing structure from a gap in structure, which can be used to solve problems like:
+	- variance is semantically the opposite index (gap) to the filter index (limit)
 
-		- prediction
-			- which variables are explanatory, given what we can measure
+	- use case:
 
-		- causation
-			- how alternatives can converge to the same level of variance or change patterns
+		- this is the problem of adding/fitting/reducing structure from a gap in structure, which can be used to solve problems like:
 
-	- reducing gaps in rule enforcement to shapes or paths has its own set of rules
+			- prediction
+				- which variables are explanatory, given what we can measure
 
-	- this interface can also be used for specific attribute analysis, of properties that descend from concepts & take form in a specific problem space:
-		- the power concept interface (has implementations that look like trust, info, etc)
-		- the balance concept interface (has implementations that look like symmetry, justice, etc)
+			- causation
+				- how alternatives can converge to the same level of variance or change patterns
+
+		- reducing gaps in rule enforcement to shapes or paths has its own set of rules
+
+		- this interface can also be used for specific attribute analysis, of properties that descend from concepts & take form in a specific problem space:
+			- the power concept interface (has implementations that look like trust, info, etc)
+			- the balance concept interface (has implementations that look like symmetry, justice, etc)
 
 
 ## Structural Analysis
 
 	- indexing objects by structure allows clear matching of useful structures to objects/attributes/types/rules
+	- this allows objects to be graphed in a standard way, which means translating objects like problems into a computable interface
 
-	- answering questions like: 
+	- use cases:
 
 		- which objects are chained (cause, risk, variance, errors, gaps, limits)
 		- which are dimensions (isolatable attributes of change patterns)
 		- which have position
 		- that a type stack (which type values on different type layers) and a network/tree (type hierarchy) are useful structures to capture type relationships
 
-	- this allows objects to be graphed in a standard way, which means translating objects like problems into a computable interface
-
 
 ## Transformation Analysis
 
-	- this regards the potential to break down & format a problem into many different combinations of solved problems (optimal transport, linear algebra, etc) or known interfaces (type, intent)
+	- this regards the potential to break down & format a problem into many different combinations of solved problems (optimal transport, linear algebra, finding prediction function, etc) or known interfaces (type, intent)
 	- some sets are more adjacent than more optimal sets & may be a better investment for short-term gains
+
+	- example:
+		- when approximating area of an object that is similar to a square but has a convex arc instead of a side (like an opened envelope), it may be more efficient to:
+			- calculate the integral of the arc-ed shape and add it to the square area
+			- alternatively, if those functions arent available or if the arc is a very low angle and similar enough to a straight line:
+				- the arc can be broken into sub-lines & the area of those shapes calculated & then added to the square area
 
 
 ## Info Analysis
@@ -192,4 +216,16 @@
 
 	- finding the starting interface & direction of traversal across the other interfaces in the network is its own interesting problem, beyond just generating the relevant & useful interfaces in a network
 	
-	- framing a conflict of type 'competition' as opposing direction/intent or equivalent direction/intent is a calculation that can be automated using any of these kinds of analysis, but the intent-matching analysis is best at this, and selecting that type of analysis is an important tool to build first
+	- framing a conflict of type 'competition' as opposing direction/intent or equivalent direction/intent is a calculation that can be automated using any of these kinds of analysis, but the logic & intent interfaces are best at this, and selecting those type of analysis is an important tool to build
+
+	- other uses of the interface network include:
+
+		- finding explanatory variables on multiple interfaces (a trajectory on the interface network) & translating them to a shared interface where possible
+
+			- maybe you can identify that theres an important type, intent, & conceptual variable to identify an object
+			- then you can decide if its worth storing that info separately, or standardizing those variables to the same interface
+				- if the type variable is explanatory & you need to keep it, you can still standardize it to intent (whats the primary unique function achieved by each type)
+				- concepts can also be standardized to other interfaces (what intents do concepts like 'power' achieve in the system & what position do they occupy)
+			- which interface to standardize to depends on which use you intend to use the information for
+				- if you need to implement it immediately, an interface like intent that is semantically adjacent to the structural & logical interfaces will be more useful
+				- if you need to identify new types, standardizing to the type interface will be more useful
