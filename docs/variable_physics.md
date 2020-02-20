@@ -86,6 +86,19 @@
         - the measure of distance/position between variables can be changed to use different algorithms
           - image processing algorithm can be used once difference measure is found in non-image data so that position can be assigned
 
+    - loss functions need to be more flexible depending on input variables
+
+      - one metric value to assess loss may be enough for training over many iterations but not optimizing training
+      - some predictions that seem inaccurate are:
+        - accurate given the data (requires variables from other systems to determine accurate relationship)
+        - a result of data not reflecting change patterns (data point creating the loss is an outlier indicating prior or future state or side effects of current state)
+
+    - meaning of neural net structure
+      - relevance appears in several positions in this structure:
+        - the inclusion of variable values in the same matrix implies relevance
+        - the position of variables in the tensor can imply relevance depending on how its processed
+
+
 
   - all nodes should be able to communicate with all other nodes but it should be a fallback mechanism to enhance independent functioning & warn of impending variance approaching system
 
