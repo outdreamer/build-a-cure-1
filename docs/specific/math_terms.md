@@ -8,11 +8,15 @@
 	- set: the list of unique object/nodes in a network
 	- space: a network with operations
 	- norm: a function that standardizes (so that vectors can be scaled & added) - may be an interface filtering function
+
+
+	- neighborhood as a metric of adjacence/similarity/distance (how many steps away) if neighborhoods are determined by core functions
 	
 	- core points (vertices - not the same as nodes in a network)
 
 	- core functions
 		- basis: the set of core functions
+		- identity function as the origin function to start from when applying distortions to get other functions
 
 	- core combinations
 		- base: the set of core subsets of a set X that can generate a topology on set X, or whose union can generate set X
@@ -29,9 +33,16 @@
 	- basis: set of vectors that can be linearly combined to create any possible element in the vector space
 	- neighborhood: neighborhood of a point is a set of points containing that point where movement is allowed without leaving the original point's set
 	- algebraic variety: set of solutions to a system of polynomial equations
-		- check other number types for alternate solution paths to set of solutions that are more efficient than across real/complex numbers
 	- simplex: generalization of a triangle
 	- manifold: topological space that resembles euclidean space near each point
+	- identify function: always returns same value as its input
+	- partially ordered set: a binary relation on X that assigns order to items in the set, though not all items need to be comparable
+	- total order: a binary relation on X that is antisymmetric (comparison cant apply in reverse order), transitive (order is extendible), and connex (all items are comparable)
+	- chain: set paired with a total order
+
+	- questions:
+		- check other number types for alternate solution paths to set of solutions that are more efficient than across real/complex numbers
+		- check what differences are created when core functions start at different core points
 
 
 - set theory of spaces:
