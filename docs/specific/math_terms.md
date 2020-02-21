@@ -1,12 +1,56 @@
 # Math terms
 
-- a space is a network: a set with some added structure 
 
-- a topological space:
-	- a set of points, along with a set of neighbourhoods for each point, satisfying a set of axioms relating points and neighbourhoods
+- map of set concepts to system analysis
+
+	- set: the list of unique object/nodes in a network
+	- space: a network with operations
+	- norm: a function that standardizes (so that vectors can be scaled & added) - may be an interface filtering function
+	- basis: the set of core functions
+
+
+- standard terms:
+	- set: list of distinct objects (network of unique nodes)
+	- space: a network of objects with defined functions linking them & operations that can be done on the objects - a set with some added structure 
+	- norm: a function that assigns value to vectors in a space/set & allows for additivity & scalability
+	- base: a collection of subsets of a space/set
+	- basis: set of vectors that can be linearly combined to create any possible element in the vector space
+	- neighborhood: 
+
+- set theory of spaces:
+
+	- topological spaces:
+		- a set of points, along with a set of neighbourhoods for each point, satisfying a set of axioms relating points & neighbourhoods 
+		- base (subset of elements) can be used to generate a topology on a set
+
+	- metric spaces
+
+	- normed vector spaces: 
+		- vector space where norm is defined
+
+	- inner product spaces
+
+
+- topological space:
+
+	- a set of points, along with a set of neighbourhoods for each point, satisfying a set of axioms relating points & neighbourhoods - https://en.wikipedia.org/wiki/Topological_space
+		
 	- is the most general notion of a mathematical space that allows for the definition of concepts such as continuity, connectedness, and convergence
-	- other spaces, such as manifolds and metric spaces, are specializations of topological spaces with extra structures or constraints
-	- what is the topology of spaces called?
+	- other spaces, such as manifolds & metric spaces, are specializations of topological spaces with extra structures or constraints
+	- questions:
+		- what is the topology of spaces called?
+
+
+	 - topological space types:
+	    - metric spaces
+	    	- metric: a precise notion of distance between points
+	    - proximity spaces
+	    - uniform spaces
+	    - function spaces
+	    - cauchy spaces
+	    - convergence spaces
+	    - grothendieck sites
+	    - oher spaces
 
 
 ## Group theory
