@@ -50,6 +50,8 @@
 
     - the ways that a set of variables accrete into output variables can be described by a set of possible paths between i/o
 
+      - the way that a set of attributes accrete into one output attribute (type) follows similar patterns outside of neural nets
+
       - the position of variables can be predicted & their likely interactions from this position
 
         - "identifying features will be in a similar direction as sensing features" is a prediction about variable position (identifying features & sensing features) based on the i/o attributes of 'relevance', 'alignment', 'distance', and 'difference'
@@ -94,9 +96,9 @@
           - image processing algorithm can be used once difference measure is found in non-image data so that position can be assigned
 
 
-    - loss functions need to be more flexible depending on input variables
+    - activation/loss functions need to be more flexible depending on input variables
 
-      - one metric value to assess loss may be enough for training over many iterations but not optimizing training
+      - one metric value to assess activation/loss/difference scores & thresholds may be enough for training over many iterations but not optimizing training
 
       - some predictions that seem inaccurate are:
 

@@ -105,6 +105,7 @@
 		- structures:
 			- layers
 			- vertices 
+				- core points (corrollary of core functions)
 				- sets of generating functions/objects/attributes/constants/types that determine the system
 				- for example, the center is a vertex of a circle
 			- hubs

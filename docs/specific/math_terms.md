@@ -1,5 +1,13 @@
 # Math terms
 
+- a space is a network: a set with some added structure 
+
+- a topological space:
+	- a set of points, along with a set of neighbourhoods for each point, satisfying a set of axioms relating points and neighbourhoods
+	- is the most general notion of a mathematical space that allows for the definition of concepts such as continuity, connectedness, and convergence
+	- other spaces, such as manifolds and metric spaces, are specializations of topological spaces with extra structures or constraints
+	- what is the topology of spaces called?
+
 
 ## Group theory
 

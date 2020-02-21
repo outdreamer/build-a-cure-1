@@ -20,6 +20,10 @@
 
     - problem metadata
 
+      - core points (corrollary of core functions)
+
+      - core functions
+
       - core conflict
         - the core mismatch/imbalance creating the cascading mismatches/imbalances for agents in the problem space
 
