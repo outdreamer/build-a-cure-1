@@ -9,7 +9,6 @@
 	- space: a network with operations
 	- norm: a function that standardizes (so that vectors can be scaled & added) - may be an interface filtering function
 
-
 	- neighborhood as a metric of adjacence/similarity/distance (how many steps away) if neighborhoods are determined by core functions
 	
 	- core points (vertices - not the same as nodes in a network)
@@ -101,7 +100,6 @@
 
     - rings for interface network
     - algebras for vertices of a problem space
-    - basis of a space: core functions or nodes
 
 ## Attributes
 
@@ -126,17 +124,17 @@
 	- continuity
 	- convergence
 	- connectedness
-	- infinity
+	- infinite
 	- adjacency
 	- cooperation (objects/types/attributes)
 	- scale
 	- discriminant: example of calculating properties of solution without calculating solution directly
-		- can tell if solution sub-components (roots) are equal, signed, etc by calculating value of discriminant which is  a function of polynomial coefficients
+		- can tell if solution sub-components (roots) are equal, signed, etc by calculating value of discriminant which is a function of polynomial coefficients
 	- nilpotent
 
 ## Types
 
-	- types are determined by sets of attributes (continuous, host system, reversibility, combinability, measurability)
+	- types are determined by sets of attributes (continuous, host system, reversibility, c  ombinability, measurability)
 
 	- number types
 	- data types
@@ -152,16 +150,14 @@
 	- map: set of possible transform networks connecting two sets
 	- value: difference
 	- boundary: stabilized outer range of combinations produceable with internal components 
-
 	- line
 	- angle
 
 	- algebraic structures: a group of operations having finite inputs on a set (the algebra refers to the set itself being operated on)
 
-		- groups: 
+		- group: 
 
-			- group: 
-				- set including a binary operation that combines any two elements to make a third element that satisfies:
+			- a set including a binary operation that combines any two elements to make a third element that satisfies:
 
 			- closure (operation on a member of the set produces a member of the set
 			- associativity: independence of order property
@@ -185,13 +181,13 @@
 			- finite group:
 				- used in galois theory to model discrete symmetries of algebraic equations 
 
-		- rings: 
+		- ring: 
 			- ring: set including two binary operations generalizing addition & multiplication
 			- rings are also abelian groups with an additional binary operation that is associative & distributive over the abelian group operation, & has an identity element
 			- associative & distributive second binary operation
 			- identity
 
-		- fields: 
+		- field: 
 			- field: a set on which addition, subtraction, division, & multiplication are defined & these operations behave like the corresponding operations do in the fields of real & rational numbers
 			field extension: relationship between fields such that the operations of a subfield are the operations of the extended field, retricted to the subfield
 			examples: field of real numbers, rational numbers, complex numbers
@@ -304,24 +300,6 @@
 			though it does preserve ratios of distances between points lying on a straight line
 
 			- examples: translation, scaling, homothety, similarity transformation, reflection, rotation, shear mapping, and compositions of them in any combination & sequence
-
-	- topological space: 
-
-		- a set of points & neighborhoods for each point with axioms relating neighborhoods & points
-
-		- sufficiently general to allow properties:
-
-			- continuity
-			- convergence
-			- connectedness
-
-		- examples of topological spaces:
-
-			- metric space: a set & a metric function on the set (example: euclidean space where the metric is the distance of the straight line connecting two points)
-
-	- manifold: 
-
-		- an n-dimensional space where the locality of each point represents a homeomorphism euclidean space of dimension n 
 
 
 - examine property map to number types, number fields, spaces, and sets

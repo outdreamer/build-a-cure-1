@@ -888,3 +888,10 @@
 
     - paradoxes usually point to areas that need alternate layers/variance injected (variance demand), where your existing system analysis can identify points where variance can develop (variance supply)
     - paradoxes are a counterpoint to interfaces in that interfaces provide a standard for comparison that leaves out information (reduction), and paradoxes are a false limitation that imply the requirement of variance (expansion)
+
+
+### XI. Traverse
+
+  - similar to a query but using query patterns
+  - insight paths (patterns of functions linking related nodes)
+  - other types include cross-interface traversal & traversal of nodes in an interface (type paths, intent paths)

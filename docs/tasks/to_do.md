@@ -189,35 +189,36 @@
   - accretion of data set variables into types using info filters is one relationship that occurs on the interface network
 
 # Programming
-- program to identify optimal use cases 
-- program to delegate optimized use cases to tools optimized for them (languages better at one task than another)
+
+  - program to identify optimal use cases 
+  - program to delegate optimized use cases to tools optimized for them (languages better at one task than another)
 
 
 # Diagrams
 
-- make diagram of potential matrix to display the concept
+  - make diagram of potential matrix to display the concept
     - map parameter sets to potential matrix shapes 
 
-- make diagram for dimension links higher than 3d that are depictable in the same network space
-  - should show variables that impact other variables, the change rates of these relationships
-  - overall impact should be calculatable from these relationships
-  - should show similar movements for correlated variables
-  - should show skippable/derivable variables (variables that can be resolved later than they normally are)
-  - should show meta forces for overall trends in change rules (direction of combined variable forces)
-  - should show limits of measurability & threshold metrics
+  - make diagram for dimension links higher than 3d that are depictable in the same network space
+    - should show variables that impact other variables, the change rates of these relationships
+    - overall impact should be calculatable from these relationships
+    - should show similar movements for correlated variables
+    - should show skippable/derivable variables (variables that can be resolved later than they normally are)
+    - should show meta forces for overall trends in change rules (direction of combined variable forces)
+    - should show limits of measurability & threshold metrics
 
-- make diagram for variable accretion patterns
-- finish diagrams for specific concepts, core functions, concept operations, ethical shapes
-- finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
-- consider using dimensionality reduction as a way to identify abstract patterns & functions to explain common deviations from patterns
-    https://miro.medium.com/max/1659/1*nQrZmfQE3zmMnCJLb_MNpQ.png
-    https://towardsdatascience.com/step-by-step-signal-processing-with-machine-learning-pca-ica-nmf-8de2f375c422
-- use this or similar as example when describing current state of problem solving: 
-    https://miro.medium.com/max/462/1*X7dQgs1gsJ0Sktz3t7J21Q.png
-    https://towardsdatascience.com/feature-extraction-techniques-d619b56e31be
+  - make diagram for variable accretion patterns
+  - finish diagrams for specific concepts, core functions, concept operations, ethical shapes
+  - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
+  - consider using dimensionality reduction as a way to identify abstract patterns & functions to explain common deviations from patterns
+      https://miro.medium.com/max/1659/1*nQrZmfQE3zmMnCJLb_MNpQ.png
+      https://towardsdatascience.com/step-by-step-signal-processing-with-machine-learning-pca-ica-nmf-8de2f375c422
+  - use this or similar as example when describing current state of problem solving: 
+      https://miro.medium.com/max/462/1*X7dQgs1gsJ0Sktz3t7J21Q.png
+      https://towardsdatascience.com/feature-extraction-techniques-d619b56e31be
 
-  - solution type: balance info asymmetry
-  - matching
+    - solution type: balance info asymmetry
+    - matching
 
 # Questions
   - are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?
