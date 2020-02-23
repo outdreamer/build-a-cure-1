@@ -138,6 +138,8 @@
 
 ## Choosing automation starting point
 
+- the reason the methods are separated & described in problem_solving_matching.md rather than just listing 'problem space model' or 'interface network' as solution automation methods, is that various combinations of objects in these models are useful when used together, and all of the methods can be used to frame the other methods
+
 - based on where the problem is & what type it is, you can start with different methods:
 	- if youre trying to invent something, you can start with structure-fitting or a conceptual query
 	- if youre trying to figure a system out, you can start with system derivation
