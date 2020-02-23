@@ -1,10 +1,10 @@
 # Problem Solving Operations
 
 
-## Fit
+## Fit/Matching
 
 
-### Match structures
+### Apply problem & solution model
 
   - this method is for when you have a theory about the limits of the solution, but you need to find the right structure within those solution limits, to decompose the problem
 
@@ -284,6 +284,7 @@
 
   - apply transforms (map, fill) to objects with definitions (system, object, concept, intent)
 
+
 ### Apply Solution Definition
 
 #### IV. Solve problem with solution function selection
@@ -384,9 +385,27 @@
       - selecting adjacent models that existing problem structure can be converted/broken into (system molecules forming problem structures)
 
 
-### Apply Conceptual Network
+### Apply Interface Network
+
+  - general method for accomplishing a structured task like finding an optimal route/node or resource distribution method (distribution of nodes that optimize traversals) or matching concept & structure
+
+  - can involve a query on a specific interface (type stacks), or use query patterns (insight paths)
+
+  - insight paths (patterns of functions linking related nodes)
+
+  - other types of path usage include cross-interface traversal & traversal of nodes in an interface (type paths, intent paths)
+
+  - this analysis can include questions beyond efficient paths like:
+    - potential: which paths leave the most options open
+    - energy: which paths give output that feed into the next node's input
+    - momentum: which paths align most with system incentives (inherent rules of system at rest)
+
 
 #### V. Solve problem with Conceptual Query
+
+    - subset of traverse with a combination of Concept Paths & Structure Paths
+
+    - iterate through conceptual paths, and find matching structural path
 
     - get a conceptual combination with a query of problem space & find an abstract structure that fits this combination, then find a specific structure that fits the combination, then test if that specific structure solves the problem
 
@@ -455,7 +474,11 @@
           - matching of information supply & demand (allocate tx history to tx metadata, where it has most value)
 
 
-#### VI. Solve problem with Conceptual Combination Metadata query (different starting point as IV)
+#### VI. Solve problem with Conceptual Combination Metadata query (different starting point as IV but using same interface)
+
+    - subset of traverse with a combination of Concept Paths & Structure Paths
+
+    - derive required conceptual path, and find matching structural path
 
     - this method is for when you have conceptual rules derived, and you know what concept you're aiming at (like justice), and you want to find the relevant concepts to use to get to the target concept, in your problem space context
 
@@ -509,9 +532,9 @@
     - these abstracted combinations have different metadata (intent, priority, logic flow, variance level, causation) and can therefore be useful in different (possibly meaning "additional") circumstances than the original combination
 
 
-### Apply Intent Mapping
+#### VII. Intent Mapping: vectorization of Problem & Solution Space, using subset of interface network
 
-#### VII. Vectorization of Problem & Solution Space
+    - this is similar to translating problems into an optimal format that is already solved (get from problem space definition to target output for a task intent)
 
     - this method is for when you want to automate solving a clearly structured specific problem, with clear optimization metrics, without deriving the logic manually
 
@@ -739,6 +762,8 @@
 
     - by 'interface derivation' I mean finding the symmetries in a problem space, such as finding the 'spectrum interface' in the chaotic-evil matrix, or finding the 'rotation' interface in the shape progression problem space, and then stacking or otherwise arranging them in the order that they are most useful for generating/revealing solutions
 
+    - if this is framed correctly, it'll converge to a problem space vertex, where the key factors of a problem are found
+
 
 #### X. System derivation
 
@@ -889,9 +914,3 @@
     - paradoxes usually point to areas that need alternate layers/variance injected (variance demand), where your existing system analysis can identify points where variance can develop (variance supply)
     - paradoxes are a counterpoint to interfaces in that interfaces provide a standard for comparison that leaves out information (reduction), and paradoxes are a false limitation that imply the requirement of variance (expansion)
 
-
-### XI. Traverse
-
-  - similar to a query but using query patterns
-  - insight paths (patterns of functions linking related nodes)
-  - other types include cross-interface traversal & traversal of nodes in an interface (type paths, intent paths)
