@@ -187,8 +187,9 @@
     - etc for the other interfaces - which have sub-interfaces created with transforms of the original interface:
       - rule: pattern, function
       - change: change sub-interfaces like variance/potential/attribute interface
-      - conceptual: problem, question, abstraction
-      - structural: symmetry, shape, similarity, information, limit, metric, boundary
+      - conceptual: problem, question, perspective, abstraction
+      - structural: symmetry, shape, similarity, information, limit, metric, boundary, filter
+      
     - do these transforms have patterns in common?
 
     - the combination, direction & filter order interfaces hold more variance than their specific implementations in the semantic interface nexus

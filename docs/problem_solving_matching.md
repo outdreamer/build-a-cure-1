@@ -396,6 +396,7 @@
   - other types of path usage include cross-interface traversal & traversal of nodes in an interface (type paths, intent paths)
 
   - this analysis can include questions beyond efficient paths like:
+  
     - potential: which paths leave the most options open
     - energy: which paths give output that feed into the next node's input
     - momentum: which paths align most with system incentives (inherent rules of system at rest)
