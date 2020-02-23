@@ -396,7 +396,7 @@
   - other types of path usage include cross-interface traversal & traversal of nodes in an interface (type paths, intent paths)
 
   - this analysis can include questions beyond efficient paths like:
-  
+
     - potential: which paths leave the most options open
     - energy: which paths give output that feed into the next node's input
     - momentum: which paths align most with system incentives (inherent rules of system at rest)
@@ -479,7 +479,7 @@
 
     - subset of traverse with a combination of Concept Paths & Structure Paths
 
-    - derive required conceptual path, and find matching structural path
+    - derive required conceptual path (rather than iterating), and lookup matching structural path
 
     - this method is for when you have conceptual rules derived, and you know what concept you're aiming at (like justice), and you want to find the relevant concepts to use to get to the target concept, in your problem space context
 
@@ -712,7 +712,7 @@
 
 ## Derive
 
-#### VIII. Modeling variance gaps in Problem Space Systems as Solutions
+#### VIII. Modeling overlapping rules or unenforced rules (variance gaps) in Problem Space Systems as Solutions
 
     - this method is for decomposing variance, either to describe/derive it (for use in prediction functions), or to use the alternatives allowed by it (for use in alternate comparisons), or to posit the existence of missing objects (an unknown object explaining variance rather than a function, variable, or system leak)
 
@@ -755,15 +755,30 @@
       - example: you can derive that a square object has variables "number of sides" (created by examining variations of the explicit corner, angle, & side objects in the 'square' system) and then permute this variable to generate adjacent objects (for example to check if triangular systems/objects would explain openings created by variance) or implicit objects (center, rotation, diagonals)
 
 
-#### IX. Interface/symmetry derivation
+#### IX. Interface/symmetry/vertex derivation
 
     - this method is for when you want to understand a system, for description or prediction purposes
+
+    - interface is a filter, symmetry is an origin for distortions, vertex is a key variable
 
     - in order to automate problem-solving, you may need to derive the interfaces/symmetries of a problem space, and then stack/arrange them in order that maximizes their utility as a set of filters that generate solutions from the original problem statement
 
     - by 'interface derivation' I mean finding the symmetries in a problem space, such as finding the 'spectrum interface' in the chaotic-evil matrix, or finding the 'rotation' interface in the shape progression problem space, and then stacking or otherwise arranging them in the order that they are most useful for generating/revealing solutions
 
-    - if this is framed correctly, it'll converge to a problem space vertex, where the key factors of a problem are found
+    - if these are framed correctly, it'll converge to a problem space vertex, where the key factors of a problem are found
+
+    - for example, when categorizing rules, how would you determine that these types of rules were more important:
+      - boundary rules
+      - binding rules
+      - cooperative/sharing rules
+      - finding rules
+
+    - you could derive this from the intersection of other attributes & rules:
+      - at what point do objects on a layer of interaction interact: boundary
+      - what determines cooperative/exploitative combination interactions: binding
+      - what determines how functionality is acquired: cooperation/finding
+
+    - these types of rules determine a large percentage of interaction in a system because theyre at the point of interaction (boundary) and determine which objects are configured to cooperate/exploit the other object, as opposed to compete with by remaining separate
 
 
 #### X. System derivation
