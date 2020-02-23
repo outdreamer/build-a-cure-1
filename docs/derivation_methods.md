@@ -1,35 +1,42 @@
 ## Derivation/fitting methods
 
   I. Pattern analysis
+  
     - what would the path between inputs/output be, given patterns of other paths?
     - "what is the function linking these variables, given common function patterns between variables of these types/topics/ranges/other metadata?"
 
   II. Organization analysis
+
     - optimal path/distribution/states
     - what would the optimal path be, given a certain intent, object identity, & host system?
     - "what is the function linking these variables that is most efficient/involves fewest variables/involves known constants?"
 
   III. Causal analysis
+
     - given the position between these causal factors, which causal patterns are likeliest?
     - "given that a species occupies an interim position between evolution, efficiency, time, and environment, what is the likeliest causal shape linking a species with its environment?"
       - for more evolved organisms, this is a network causal shape, though species with less developed cognitive ability may have simple or uni-directional shapes with environment
     - "what is the function linking these variables, given these functions linking other adjacent generating variables/functions further up/down the causal shape"
 
   IV. Type analysis
+
     - given a known type stack progression, what is the likeliest position or extension of that stack?
     - "given that these species evolved this way, what level of variance is the missing link between them likely to have?"
     - "what is the function linking these variables, given the type stacks of the function objects (dimensions, adjacent functions, identifiable shapes, etc)"
 
   V. System analysis
+
     - what known/potential inputs/outputs available in the system could build the path?
     - "what is the function linking these variables, given the core functions used to build this system?"
     - where are the problem types (gaps, misalignments, mismatches & conflicts)?
 
   VI. Intent analysis
+
     - what intents/directions/priorities does this path align with or could be built from?
     - "what is the function linking these variables, given the variable intents a, b, c and the combination intent matrix ab, bc, ca, and the possible output intents of that matrix, and similarity to output intent of y"
 
   VII. Variable analysis
+
     - includes certainty objects (known variance, metrics, change patterns) as well as uncertainty (potential/risk/opportunity) objects
     - variance accretion
     - what variance is unexplained
@@ -49,6 +56,7 @@
       "what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?"
 
   VIII. Functional analysis 
+
     - distortion (gap creation, divergence)
     - filling (gap closing, convergence)
     - fitting (path/structure derivation, path evolution in isolation & with other factors)
@@ -71,12 +79,14 @@
       - this means you can select an optimal interface to start from & a direction to navigate in on the standard order of interface traversal, and an optional interface-organizing metric (like difference) to order interfaces to traverse
 
   IX. Conceptual analysis
+
     - deriving unique concepts & their relationships
     - deriving output intents of concept combinations
     - fitting concept combinations to structures
     - describing problem space, deriving strategies & perspectives in that space
 
   X. Structural analysis
+
     - identify shape: chain/stack/network/mix/layer
     - identify adjacent shapes
     - identify compression functions of shape given target dimensions
@@ -86,13 +96,14 @@
       node: many connections to many other objects having a similar property, like having a type in common, usually unique
       links: usually many connections between two objects at a time, having many possible variations, can be repeated
 
-
   XI. Market analysis
+
     - the market interface is a standard interface where resources (goods, labor, time, risk, information, expectations, theories, & stored prior labor (currency)) are traded
     - a useful new way to use this is to frame non-resource objects as resources (systems, structures, positions, paths, directions, risk chains, trade loops, markets)
     - then you can apply traditional market analysis (optimal transport) to find, for example, the optimal set of trades to change an industry's position
 
   XII. Interface analysis
+
       - determining position/trajectory on interface
 
       - selecting interface as best standard for comparison

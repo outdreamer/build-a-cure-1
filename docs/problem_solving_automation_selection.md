@@ -138,7 +138,9 @@
 
 ## Choosing automation starting point
 
-- the reason the methods are separated & described in problem_solving_matching.md rather than just listing 'problem space model' or 'interface network' or 'structural interface' or 'conceptual interface' or 'matching methods' as solution automation methods even though all the methods use these to some degree, is that various combinations of objects in these models are useful when used together, and all of the methods can be used to frame the other methods
+- the reason the methods are separated & described in problem_solving_matching.md rather than just listing 'problem space model' or 'interface network' or 'structural interface' or 'conceptual interface' or 'matching methods' as solution automation methods even though all the methods use these to some degree, is that various combinations of objects in these models are useful when used together (for example 'concept', 'match', 'structure'), and all of the methods can be used to frame the other methods
+
+- the full set of combinations of interfaces, models, objects, & functions can also be generated if backup methods are needed
 
 - based on where the problem is & what type it is, you can start with different methods:
 	- if youre trying to invent something, you can start with structure-fitting or a conceptual query
@@ -149,10 +151,9 @@
 	- if you have a lot of specific information about objects in the system and are missing a few relationships, you can use queries on the object model
 
 - the methods listed in problem_solving_matching.md use different starting points:
-	- matching structures
-	- solution/problem/system metadata
-	- using conceptual/intent/variance interfaces
-	- derivation methods (systems, interfaces, functions, structures)
+	- solution/problem model
+	- using interfaces (conceptual/intent/variance/system)
+	- functions -  matching structures & derivation methods (systems, interfaces, structures)
 
 - these differ in:
 	- focus/scope/interface
@@ -168,4 +169,4 @@
 	- system analysis
 	- derivation methods listed in derivation_methods.md
 
-- solution methods for specific problem types can be used in a solution-automation engine, but theyre not solution-automators themselves
+- solution methods for specific problem types (insight paths) can be used in a solution-automation engine, but theyre not solution-automators themselves (interface derivation enabling traversals)
