@@ -1,5 +1,9 @@
 # Math terms
 
+- dont forget to fit these:
+	- ranking/adjacence
+	- outliers
+
 
 - map of set concepts to system analysis
 	- markov chain: where the set of possible new states is determined by current state & change rules (how to move pieces) & system limits (number of open spaces)
@@ -206,6 +210,7 @@
 	- series:
 
 	- matrix:
+		- vector set
 		- related matrices:
 			- transpose
 			- conjugate
@@ -215,6 +220,11 @@
 		- inverse
 
 		- find out method to determine adjacent matrix representations for a particular function, and use it in reverse to determine likely functions for a matrix
+		- alternative methods of framing a matrix:
+			- operator space: 
+				- applying operations to vector sets within the vector set & examining the output metrics
+				- example:
+					- ratio space of a matrix includes the output of vector ratios for properties associated with ratios that can be used to describe the vector set
 
 	- lagrangian: 
 
