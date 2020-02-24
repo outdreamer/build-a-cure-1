@@ -224,7 +224,11 @@
 			- operator space: 
 				- applying operations to vector sets within the vector set & examining the output metrics
 				- example:
-					- ratio space of a matrix includes the output of vector ratios for properties associated with ratios that can be used to describe the vector set
+					- ratio space of a matrix includes the output of vector ratios for properties associated with ratios (like rate of change or similarity) that can be used to describe the vector set
+			- path space:
+				- applying path analysis to find paths across features in the matrix that reflect its properties
+			- data space:
+				- applying statistical analysis to vectors as variable values/data points
 
 	- lagrangian: 
 
