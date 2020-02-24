@@ -400,7 +400,9 @@
     - potential: which paths leave the most options open
     - energy: which paths give output that feed into the next node's input
     - momentum: which paths align most with system incentives (inherent rules of system at rest)
-    - interface math functions: whether a type evolved from an intent (type-intent link) or evolved accidentally due to excess energy in a system (type-random link)
+
+    - cross-interface functions: 
+      whether a type evolved from an intent (type-intent link) or evolved accidentally due to excess energy in a system (type-random link)
 
 
 #### V. Solve problem with Conceptual Query
