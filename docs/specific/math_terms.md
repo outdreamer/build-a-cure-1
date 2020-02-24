@@ -23,6 +23,7 @@
 	- eigenvector/characteristic vector of a linear transformation: a nonzero vector that changes at most by a scalar factor when that linear transformation is applied to it, like the unit vector specific to a transform, where the eigenvalue is the standardization constant
 	- eigenvalue of an eigenvector: the factor by which the eigenvector is scaled
 	- eigenvector stack may be a useful framing object - the eigenvectors in multiple related spaces
+	- the progression of these determining vectors (from likeliest/simplest/most efficient/most common determining vector configurations) may have useful patterns as well
 
 
 - standard terms:
@@ -205,6 +206,15 @@
 	- series:
 
 	- matrix:
+		- related matrices:
+			- transpose
+			- conjugate
+			- identity
+		- diagonal
+		- determinant
+		- inverse
+
+		- find out method to determine adjacent matrix representations for a particular function, and use it in reverse to determine likely functions for a matrix
 
 	- lagrangian: 
 
