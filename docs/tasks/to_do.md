@@ -102,13 +102,13 @@
   - standardize terms: 
     - shape/structure
     - rule/test/metric/limit/threshold/boundary/state change/phase shift
-    - model/perspective/filter/standard/interface 
+    - model/perspective/filter/standard/interface/index
     - intent/method/function/rule
     - path/route
     - metadata/attribute/variable/property 
-    - object/entity
+    - object/entity/item
     - type/class/category
-    - variance/randomness/chaos/entropy
+    - variance/randomness/chaos/entropy/change
     - clarify differences in symmetry, interface, filter, & relationship to variables
 
   - fit group theory

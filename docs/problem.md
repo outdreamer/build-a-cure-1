@@ -33,10 +33,13 @@
       - minimum information
 
         - given different information, you can use different methods: some methods are immune to information but most require a clear minimum
-        - in a system (set of rules & objects) the minimum information can be found with the system vertices
+        - vertices
+
+          - in a system (set of rules & objects) the minimum information can be found with the system vertices
 
           - these vertices can be:
-            - core functions/variables
+            - core/important/generative functions/variables
+            - similar to moments of a distribution or divergence points in a voronoi diagram
             - the intersections between core functions/variables that either reduce the set of possible functions/variables to the actual set or generate them
 
         - with a line in a space, you have this information:

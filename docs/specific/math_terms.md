@@ -8,20 +8,21 @@
 	- set: the list of unique object/nodes in a network
 	- space: a network with operations
 	- norm: a function that standardizes (so that vectors can be scaled & added) - may be an interface filtering function
-
 	- neighborhood as a metric of adjacence/similarity/distance (how many steps away) if neighborhoods are determined by core functions
-	
-	- core points (vertices - not the same as nodes in a network)
-
+	- core points: vertices, not the same as nodes in a network, more like moments in a moment-generating function
 	- core functions
 		- basis: the set of core functions
 		- identity function as the origin function to start from when applying distortions to get other functions
-
 	- core combinations
 		- base: the set of core subsets of a set X that can generate a topology on set X, or whose union can generate set X
-
 	- the layers of possible sets of core functions form the interface network
-
+	- generalization: removing differentiating attributes to navigate up an abstraction layer
+	- ramdomness: 
+		- why do many variables added together often generate randomness?
+			- because their movements within their attribute value ranges aren't coordinated, leading to differences
+			- because objects interact more when their attribute values are at either extreme of their value ranges
+			- because extremes can act as neutralizing/canceling influences, which is a useful stabilization method in a system that tends to evolve
+			- because objects with differentiating/extreme attribute values often need to use lower-variance object attribute values around an average metric as a base, so extreme values cooperate more with neutral values
 
 - standard terms:
 

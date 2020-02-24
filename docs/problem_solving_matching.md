@@ -762,7 +762,7 @@
 
     - this method is for when you want to understand a system, for description or prediction purposes
 
-    - interface is a filter, symmetry is an origin for distortions, vertex is a key variable
+    - interface is a filter, symmetry is an origin for distortions, vertex is a key/generative variable
 
     - in order to automate problem-solving, you may need to derive the interfaces/symmetries of a problem space, and then stack/arrange them in order that maximizes their utility as a set of filters that generate solutions from the original problem statement
 
