@@ -1,5 +1,9 @@
+# Applying solution automation methods in repo
+
+  - what can you use system analysis & interface math to build?
+
 ## Predicting Interface Evolution
-  
+
   - given that we currently understand object & system definitions, the object model seems optimal to us right now, with current tech & information
 
   - what if the assumption that the object exists is flawed?
