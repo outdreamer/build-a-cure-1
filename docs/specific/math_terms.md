@@ -3,7 +3,9 @@
 
 - map of set concepts to system analysis
 
-
+	- markov chain: where the set of possible new states is determined by current state & change rules (how to move pieces) & system limits (number of open spaces)
+		https://www.quantamagazine.org/mathematicians-calculate-how-randomness-creeps-in-20191112/
+				
 	- singleton: unit set with one element
 	- set: the list of unique object/nodes in a network
 	- space: a network with operations
@@ -23,6 +25,10 @@
 			- because objects interact more when their attribute values are at either extreme of their value ranges
 			- because extremes can act as neutralizing/canceling influences, which is a useful stabilization method in a system that tends to evolve
 			- because objects with differentiating/extreme attribute values often need to use lower-variance object attribute values around an average metric as a base, so extreme values cooperate more with neutral values
+		- patterns of randomness/equivalence:
+			- starting from the same origin & diverging at equal angles
+			- converging to the same filter point (system entry point, like inputs to a function)
+			
 
 - standard terms:
 

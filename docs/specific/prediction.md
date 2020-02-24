@@ -95,7 +95,8 @@
               - types (different types of pieces have different rules)
               - ratio (different ratios of type populations)
               - limits (moves limit the remaining possible moves)
-
+              - games
+              
             - game attributes:
               - fairness
 

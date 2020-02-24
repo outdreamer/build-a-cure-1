@@ -135,11 +135,7 @@
 						"if randomness is equal distribution of outcomes across range, how do you guarantee that in a system with other sources of randomness?"
 						- add variables that increase range of possible values without changing distribution
 						- add variables that increase equivalence of distribution
-			- markov chain: where the set of possible new states is determined by current state & change rules (how to move pieces) & system limits (number of open spaces)
-			https://www.quantamagazine.org/mathematicians-calculate-how-randomness-creeps-in-20191112/
-			- randomness usually occurs with the patterns:
-				- starting from the same origin & diverging at equal angles
-				- converging to the same filter point (system entry point, like inputs to a function)
+
 	- find the rules of which objects can generate key object combinations that are important 
 	- find the rules of finding which key object combinations are important
 	- talk about differences between systems & spaces they inhabit

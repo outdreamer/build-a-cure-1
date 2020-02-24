@@ -76,42 +76,60 @@
 		- can interact with multiple problem/solution spaces
 
 	- core components:
-		- forces
-			- limits/needs/incentives/intents/paradoxes
-			- function sets
-				- change rules
-				- organization rules
-				- interaction rules
-				- binding/combination & separation rules
-				- pattern rules
-				- boundary rules
-				- alternation rules
-				- information rules (storage, replacement, merging, monitoring, indexing)
-				- filtering/matching/application/derivation rules
-				- learning rules
-				- uncertainty/risk/potential rules
-				- variable combination & replacement rules
-				- variance leakage rules 
-					(how does system become overwhelmed, does it have outlets to reduce variance, does it have interfaces with other systems to delegate variance)
-				- solution rules
-					(variance/stressor/error detection, tracing, identification & handler)
-				- stabilizing rules
-				- emergence rules
-				- abstraction rules
+
 		- potential (variance, opportunities, unused paths, adjacent states)
 		- conflicts
+		- complexity
+        - randomness
+        - games
 		- distortions/differences from standard types or core objects
 		- cooperation/communication/binding sites (openings in system)
+
 		- structures:
+			- nodes, links, & boundary
 			- layers
 			- vertices 
 				- core points (corrollary of core functions)
 				- sets of generating functions/objects/attributes/constants/types that determine the system
 				- for example, the center is a vertex of a circle
 			- hubs
+			- gaps
+			- limits (needs/incentives/intents/paradoxes)
+
 		- relationships:
 			- relevant interfaces & interface trajectories
-			- applicable spaces
+			- applicable spaces              
+
+		- functions
+				- core functions
+				- initial rules
+				- organization rules
+				- interaction rules
+				- intersection/overlap/conflict resolution rules
+				- binding/combination/cooperation/sharing & competition rules
+				- meta rules (rule-modification/generation rules)
+				- stabilization rules
+				- alternative rules
+				- difference rules (divergence, measures of distance/difference/equivalence)
+				- filtering/matching/application/derivation rules
+				- validation/testing rules
+				- object rules:
+					- incentive rules
+					- change rules
+					- pattern rules
+					- position rules
+					- enforced/unenforced rules
+					- boundary/limit/threshold/metric rules
+					- learning rules
+					- uncertainty/risk/potential rules
+					- emergence rules
+					- information rules (storage, replacement, merging, monitoring, indexing, communication, interpretation, processing)
+					- variable rules (injection, leaks, combination, replacement, causal direction)
+						(how does system become overwhelmed, does it have outlets to reduce variance, does it have interfaces with other systems to delegate variance)
+					- solution rules
+						(variance/stressor/error detection, tracing, identification & handler)
+					- abstraction rules
+					- structure rules (gap, limit, hub, object, link)
 
 	- examples:
 
@@ -135,38 +153,3 @@
 			- physics
 				- electricity
 
-
-## Choosing automation starting point
-
-- the reason the methods are separated & described in problem_solving_matching.md rather than just listing 'problem space model' or 'interface network' or 'structural interface' or 'conceptual interface' or 'matching methods' as solution automation methods even though all the methods use these to some degree, is that various combinations of objects in these models are useful when used together (for example 'concept', 'match', 'structure'), and all of the methods can be used to frame the other methods
-
-- the full set of combinations of interfaces, models, objects, & functions can also be generated if backup methods are needed
-
-- based on where the problem is & what type it is, you can start with different methods:
-	- if youre trying to invent something, you can start with structure-fitting or a conceptual query
-	- if youre trying to figure a system out, you can start with system derivation
-	- if youre trying to predict an optimal function of variables in a system, and you have the system knowledge & intents mapped in the system, you can start with vectorization of the problem space
-	- if youre trying to find a path across a variance gap or use unused variance, & you have the system knowledge, you can start with modeling gaps in the problem systems as solutions
-	- if you need a quick approximation of system understanding and dont have time for system derivation, you can start with interface derivation
-	- if you have a lot of specific information about objects in the system and are missing a few relationships, you can use queries on the object model
-
-- the methods listed in problem_solving_matching.md use different starting points:
-	- solution/problem model
-	- using interfaces (conceptual/intent/variance/system)
-	- functions -  matching structures & derivation methods (systems, interfaces, structures)
-
-- these differ in:
-	- focus/scope/interface
-	- info requirements (host system is known, some variable relationship rules are known, some definitions are known, variance gaps are known)
-	- tool access (pre-computed conceptual network, access to common solution functions)
-	- primary solution function (query, transform, matching)
-
-- the methods in problem_solving_matching.md are examples of how to automate problem-solving, not examples of how to solve a particular problem type
-
-- solution methods for specific problem types include:
-	- intent-mapping
-	- interface math
-	- system analysis
-	- derivation methods listed in derivation_methods.md
-
-- solution methods for specific problem types (insight paths) can be used in a solution-automation engine, but theyre not solution-automators themselves (interface derivation enabling traversals)
