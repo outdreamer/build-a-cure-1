@@ -103,12 +103,19 @@
     - shape/structure
     - rule/test/metric/limit/threshold/boundary/state change/phase shift
     - model/perspective/filter/standard/interface/index
-    - intent/method/function/rule
+    - intent/priority/motivation/incentive
+    - method/function/rule
     - path/route
     - metadata/attribute/variable/property 
     - object/entity/item
     - type/class/category
     - variance/randomness/chaos/entropy/change
+      - randomness is a change trigger
+      - chaos is a state of randomly distributed change
+      - variance is ability for objects to change
+      - entropy is an output of changes
+      - change is differentiation on some layer/attribute/position in comparison to some other object according to some equivalence/similarity definition
+    - independence/unique/orthogonal
     - clarify differences in symmetry, interface, filter, & relationship to variables
 
   - fit group theory

@@ -134,24 +134,37 @@
     
   ### Randomness
 
-      High-randomness system properties:
+      - high-randomness system properties:
 
-      - consolidation of variance to an interface
-      - interchangeable inputs
-      - structural similarity across interacting systems (few variables in which they differ) on that interface
-      - variables across different interfaces (system-level variable, intent-level variable, function-level variable)
-      - change physics applies to every layer of the system, its components, and interacting/host systems
-      - compounding stability in structure, compounding variance in content
-      - centrality of random variable as a hub in a causal or interface network
+        - consolidation of variance to an interface
+        - interchangeable inputs
+        - structural similarity across interacting systems (few variables in which they differ) on that interface
+        - variables across different interfaces (system-level variable, intent-level variable, function-level variable)
+        - change physics applies to every layer of the system, its components, and interacting/host systems
+        - compounding stability in structure, compounding variance in content
+        - centrality of random variable as a hub in a causal or interface network
 
-      In a random (unpredictable) system, it's possible to derive patterns in structure much of the time (whether a function exists), but less feasible to predict patterns in content (how a function is implemented).
+      - in a random (unpredictable) system, it's possible to derive patterns in structure much of the time (whether a function exists), but less feasible to predict patterns in content (how a function is implemented)
 
-      Random system concepts:
-      - symmetry
-      - equivalence
-      - uncertainty
-      - variance
-      - binding, change, & boundary physics
+      - random system concepts:
+        - symmetry
+        - equivalence
+        - uncertainty
+        - variance
+        - binding, change, & boundary rules
+
+      - ramdomness: 
+        - why do many variables added together often generate randomness?
+          - because their movements within their attribute value ranges aren't coordinated, leading to differences
+          - because objects interact more when their attribute values are at either extreme of their value ranges
+          - because extremes can act as neutralizing/canceling influences, which is a useful stabilization method in a system that tends to evolve
+          - because objects with differentiating/extreme attribute values often need to use lower-variance object attribute values around an average metric as a base, so extreme values cooperate more with neutral values
+        - patterns of randomness/equivalence:
+          - starting from the same origin & diverging at equal angles
+          - converging to the same filter point (system entry point, like inputs to a function)
+    
+        https://www.quantamagazine.org/mathematicians-calculate-how-randomness-creeps-in-20191112/
+
 
   #### Randomness Generator
 

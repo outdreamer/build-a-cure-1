@@ -86,7 +86,7 @@
 		- cooperation/communication/binding sites (openings in system)
 
 		- structures:
-			- nodes, links, & boundary
+			- core system structures: network, nodes, links, filters, & boundary
 			- layers
 			- vertices 
 				- core points (corrollary of core functions)
@@ -102,34 +102,36 @@
 
 		- functions
 				- core functions
-				- initial rules
 				- organization rules
 				- interaction rules
 				- intersection/overlap/conflict resolution rules
 				- binding/combination/cooperation/sharing & competition rules
 				- meta rules (rule-modification/generation rules)
 				- stabilization rules
+				- state rules
 				- alternative rules
 				- difference rules (divergence, measures of distance/difference/equivalence)
 				- filtering/matching/application/derivation rules
 				- validation/testing rules
+				- destruction rules (interacts with replacement, demand assessment, testing rules)
+				- governing rules (monitoring, correction, enforcement)
+
 				- object rules:
 					- incentive rules
-					- change rules
-					- pattern rules
 					- position rules
 					- enforced/unenforced rules
+					- interface rules (change, intent, type, pattern, concept)
+					- info object rules (problem, strategy, insight, game, perspective)
 					- boundary/limit/threshold/metric rules
 					- learning rules
 					- uncertainty/risk/potential rules
 					- emergence rules
-					- information rules (storage, replacement, merging, monitoring, indexing, communication, interpretation, processing)
+					- information rules (storage, versioning, replacement, merging, monitoring, indexing, communication, interpretation, processing)
 					- variable rules (injection, leaks, combination, replacement, causal direction)
 						(how does system become overwhelmed, does it have outlets to reduce variance, does it have interfaces with other systems to delegate variance)
 					- solution rules
 						(variance/stressor/error detection, tracing, identification & handler)
-					- abstraction rules
-					- structure rules (gap, limit, hub, object, link)
+					- structure rules (gap, limit, hub, object, link, network, filter)
 
 	- examples:
 

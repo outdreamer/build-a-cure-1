@@ -416,7 +416,9 @@
       (scale physics, structure physics, info physics, causal shapes, change physics, logic, types, dimension sets, metric selection, complexity, etc)
 
       - selecting standard model for optimal problem reduction into components 
-        (framing it as a task suitable for organizational, optimal transport, route optimization, distribution, position assignment, sequence ordering model, etc)
+        (framing it as a task suitable for organizational, optimal transport, route optimization, distribution, position assignment, sequence ordering model, integral transform/kernel function, etc)
+        - existing tools:
+          - https://en.wikipedia.org/wiki/Integral_transform
 
       - selecting adjacent models that existing problem structure can be converted/broken into (system molecules forming problem structures)
 
