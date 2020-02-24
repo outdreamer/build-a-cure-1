@@ -1,7 +1,23 @@
-# Problems with Current Analysis
+# Problems with Current Analysis Methods
+
+## Problems with Set Theory
+
+	- all useful & isolatable spaces/sets should be derived
+
+	- spaces (sets with operators) should be auto-generated and intents should be calculated, so that spaces/sets can be used as functions, linked on a network, and chosen programmatically
 
 
-## Statistics
+## Problems with Calculus
+
+	- should be founded on space-generating operations from a core space so that a trajectory between spaces to solve a particular calculus problem like AUC can be calculated from that space-generating operation set, which has intents mapped, rather than looking for calculation spaces to transform to from the function or from the origin space
+
+
+## Problems with Linear Algebra
+
+	- has inherent limitations due to structure assigned to intersecting concepts of position, relevance, & difference
+
+
+## Problems with Statistics
 
 
 ### Evaluating variables in isolation
