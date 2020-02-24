@@ -1,4 +1,4 @@
-### Resource distribution
+### Example problem space analysis for problem type: resource distribution
 
   - example: allocate hospital equipment as needed
 
