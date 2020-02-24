@@ -1,4 +1,30 @@
-# sub interfaces of primary interface layers
+# Interface
+
+## Definitions
+
+  - symmetry: "feature of the system that is preserved under some transformation" (as opposed to lost information/irreversible transform) - https://en.wikipedia.org/wiki/Symmetry_(physics)
+  - interface: attribute that highlights differences within a limit when objects are reduced to that attribute, using it as a standard for comparison, that filters out attributes that dont fit its definition
+    - gaps in known rules allowing filter to be applied to objects that can occupy the gaps, to identify variance nodes
+    - interfaces should produce a network when their variance is exhausted
+  - dimension: attribute that describes differences of an isolatable measurable metric in a system that is unique compared to other dimensions 
+    (information described in that dimension is not repeated on other dimensions, although it may correlate with or influence information described in other dimensions)
+  - network: known rules of known nodes
+
+  - symmetry => interface
+    - a limit on change provides a standard for comparison
+    - example: 
+      - given that a circle is symmetric in every axis that crosses its center, you can compare one side of the axis and expect the other side to reflect that, using one side as a standard for comparison
+      - the symmetry is produced by the filter of the set of axes crossing the center, because the center is the key identifying & generative attribute of the object type (radiating outward from center or rotating radius line, holding one point at center - generates the circle shape and can be used as an identifier)
+    - this includes object definitions like common shape definitions 
+      (transforms that maintain the object type can be considered symmetries to explore change within the object without removing its standards for comparison)
+    - therefore key identifying/generative attributes of an object can be used as symmetries 
+      - example: core functions, priorities, types
+
+  - can also generate an interface by the combinations of variables that minimize & maximize change (filters to remove common information to leave differentiating information for comparison)
+
+  - filter vs. rule as a structural conflict
+  
+  - framing filters as positions
 
     - example of connection between interfaces:
 
@@ -30,6 +56,8 @@
             - example: direction of growth in similar direction by adjacent objects can create the illusion of an emergent border attribute
 
 
+## Primary interface layers & sub-interfaces
+
     - structural interface
 
       - dimension/attribute/variable/property
@@ -51,48 +79,31 @@
       - shape
       - information
       - variable sympathies (cooperation/antagonism/similarity between variables as a way to visualize difference between dimensions, on dimension network)
+    
     - type
       - combination (combination of attributes)
+
     - priority
       - direction (intent direction)
+
     - rule: 
       - pattern
       - function
         - filter order (functions as an order of filters)
       - logic
+
     - change: 
       - variance
       - potential
       - attribute
+
     - conceptual: 
       - problem
       - communication concepts:
         - question: info asymmetry
       - abstraction (balance, power)
+
     - causal
-
-
-# Definitions
-
-  - symmetry: "feature of the system that is preserved under some transformation" (as opposed to lost information/irreversible transform) - https://en.wikipedia.org/wiki/Symmetry_(physics)
-  - interface: attribute that highlights differences within a limit when objects are reduced to that attribute, using it as a standard for comparison, that filters out attributes that dont fit its definition
-    - gaps in known rules allowing filter to be applied to objects that can occupy the gaps, to identify variance nodes
-    - interfaces should produce a network when their variance is exhausted
-  - dimension: attribute that describes differences of an isolatable measurable metric in a system that is unique compared to other dimensions 
-    (information described in that dimension is not repeated on other dimensions, although it may correlate with or influence information described in other dimensions)
-  - network: known rules of known nodes
-
-  - symmetry => interface
-    - a limit on change provides a standard for comparison
-    - example: 
-      - given that a circle is symmetric in every axis that crosses its center, you can compare one side of the axis and expect the other side to reflect that, using one side as a standard for comparison
-      - the symmetry is produced by the filter of the set of axes crossing the center, because the center is the key identifying & generative attribute of the object type (radiating outward from center or rotating radius line, holding one point at center - generates the circle shape and can be used as an identifier)
-    - this includes object definitions like common shape definitions 
-      (transforms that maintain the object type can be considered symmetries to explore change within the object without removing its standards for comparison)
-    - therefore key identifying/generative attributes of an object can be used as symmetries 
-      - example: core functions, priorities, types
-
-  - can also generate an interface by the combinations of variables that minimize & maximize change (filters to remove common information to leave differentiating information for comparison)
 
 
 # Questions
@@ -189,7 +200,7 @@
       - change: change sub-interfaces like variance/potential/attribute interface
       - conceptual: problem, question, perspective, abstraction
       - structural: symmetry, shape, similarity, information, limit, metric, boundary, filter
-      
+
     - do these transforms have patterns in common?
 
     - the combination, direction & filter order interfaces hold more variance than their specific implementations in the semantic interface nexus

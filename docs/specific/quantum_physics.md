@@ -1,7 +1,7 @@
 # Quantum physics
 
   - finding how to reverse historical filters (great filter) could reverse the initial filter, or create same starting conditions to go in a different direction, looping around to initial filter
-  - filter vs. rule as a structural conflict
+  
   - examine a universe without differentiation (every particle containing universe has the same starting resource point & limits)
 
   - examine when randomness can masquerade as entanglement due to limited options of core function interactions due to the system development being in an initial phase

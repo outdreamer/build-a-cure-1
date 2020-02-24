@@ -1,6 +1,15 @@
 ## Intent matching
 
-  - an intent of an item (object/function/system) is a 'reason to use it' 
+  - an intent of an item (object/function/system) is a 'reason to use it'
+
+    - with human actions, there are good & evil reasons to do anything, although some reasons are more adjacent than others - what matters for deriving intent is the context around the action
+
+      - example: 
+        - action:
+          - good reason:
+          - evil reason:
+
+        - you can see that some reasons are more adjacent (likelier, involving less work) than others - however sometimes functions that required more work in the form of transforms are the correct explanation, when nodes become truly independent so they have to do more work themselves
 
     - intent stack is full set of reasons to use it, based on known/derivable intents
 

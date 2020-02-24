@@ -159,6 +159,14 @@
 	- boundary: stabilized outer range of combinations produceable with internal components 
 	- line
 	- angle
+	- probability:
+		- moment generating function
+		- expected value
+		- cdf/pdf
+		- marginal density
+		- conditional density
+		- joint probability distribution
+		- conditional probability: probability, given a starting point/filter
 
 	- algebraic structures: a group of operations having finite inputs on a set (the algebra refers to the set itself being operated on)
 
@@ -210,25 +218,19 @@
 	- series:
 
 	- matrix:
-		- vector set
+		- alternate interpretations:
+			- vector set
+				- function set
+				- data set
+			- topology
 		- related matrices:
 			- transpose
 			- conjugate
 			- identity
-		- diagonal
-		- determinant
-		- inverse
 
-		- find out method to determine adjacent matrix representations for a particular function, and use it in reverse to determine likely functions for a matrix
-		- alternative methods of framing a matrix:
-			- operator space: 
-				- applying operations to vector sets within the vector set & examining the output metrics
-				- example:
-					- ratio space of a matrix includes the output of vector ratios for properties associated with ratios (like rate of change or similarity) that can be used to describe the vector set
-			- path space:
-				- applying path analysis to find paths across features in the matrix that reflect its properties
-			- data space:
-				- applying statistical analysis to vectors as variable values/data points
+		- diagonal
+
+		- determinant
 
 	- lagrangian: 
 
@@ -236,6 +238,7 @@
       - ratio of two vectors: https://en.wikipedia.org/wiki/Quaternion
       - quaternion number system is a associative, non-commutative division algebra over real numbers
      
+
 
 ## Functions
 

@@ -159,6 +159,8 @@
           - because objects interact more when their attribute values are at either extreme of their value ranges
           - because extremes can act as neutralizing/canceling influences, which is a useful stabilization method in a system that tends to evolve
           - because objects with differentiating/extreme attribute values often need to use lower-variance object attribute values around an average metric as a base, so extreme values cooperate more with neutral values
+          - because the structure containing many variable relationships is equipped to handle variation, but is in a state of change (still determining its optimal rules), so variation is required
+          - because the interacting objects are unique/isolated/independent of each other, meaning theyve repeated a lot of the same work & have similar functionality, possibly indicating that they are equals or operating on the same level of interaction
         - patterns of randomness/equivalence:
           - starting from the same origin & diverging at equal angles
           - converging to the same filter point (system entry point, like inputs to a function)

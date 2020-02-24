@@ -1,6 +1,7 @@
 # Shapes
 
   - assigning shapes
+
     - mapping a structure to an item (value, variable, object, type, system etc) requires an algorithm that:
       - matches variance with structure change potential
 
@@ -166,6 +167,26 @@
 
 
 ## Specific Shapes
+
+### Structure shapes
+
+  - matrix
+
+    - find out method to determine adjacent matrix representations for a particular function, and use it in reverse to determine likely functions for a matrix
+    
+    - alternative methods of framing a matrix
+      - operator space: 
+        - applying operations to vector sets within the vector set & examining the output metrics
+        - example:
+          - ratio space of a matrix includes the output of vector ratios for properties associated with ratios (like rate of change or similarity) that can be used to describe the vector set
+      - path space:
+        - applying path analysis to find paths across features in the matrix that reflect its properties
+      - data space:
+        - applying statistical analysis to vectors as variable values/data points
+        - finding relevant generator functions of matrix
+      - state space:
+        - finding adjacent states that fit a common/useful/relevant transform pathway
+
 
 ### Market Shapes
 
