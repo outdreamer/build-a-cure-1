@@ -22,6 +22,8 @@ I. difference
 
 - subversion of expectations (diverging vectors)
 
+	- adjacency of contradiction matters
+
 - alternate meanings (alternate routes)
 
 3. relevance (circular or other shapes of intersections)
@@ -31,7 +33,7 @@ I. difference
 II. layers (multiple combinations of other attributes in joke)
 
 - example:
-- a joke can subvert expectations of a prior implication, or subvert expectations of the relevance of a prior implication to add another layer
+	- a joke can subvert expectations of a prior implication, or subvert expectations of the relevance of a prior implication to add another layer
 
 III. point (implication of joke)
 
@@ -40,6 +42,8 @@ III. point (implication of joke)
 IV. brevity
 
 - short jokes are often more difficult to construct but can be more powerful in surprise impact
+
+- the best short jokes are those that identify an existing simple relationship (whether real or fake) between two well-known objects
 
 V. route
 
@@ -210,9 +214,15 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 
 - “This shirt is dry-clean only, which means it’s dirty.”
 
+	- subverting implication:
+		- if you bring up a topic like "how to take care of a shirt", that implies you do take care of it
+		- but "comically", much to the surprise of your audience, you do not
 
 - “I don’t have a girlfriend. I just know a girl who would get really mad if she heard me say that.”
 
+	- subverting the definition of a 'girlfriend' using common stereotypes/rules associated with that definition
+
+	- comically scenic alternate route to the 'girlfriend' definition through 'knowing someone who would get really mad if she heard me say that'
 
 - “I like the escalator, because the escalator cannot break. It just becomes stairs.”
 
@@ -231,6 +241,17 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 	
 	- joke type based on assumption: reification fallacy/anthropomorphization (assigning agency to inanimate objects or concepts)
 
+
+- “I like rice. Rice is great when you’re hungry and you want 2,000 of something.”
+	- irrelevance: using irrelevant metadata of a meal (how many units are in it) as (comically) the primary intention for it
+
+- “I don’t have a microwave oven, but I do have a clock that occasionally cooks shit.” 
+	- subverting the intent of a microwave oven (cooking) for one of its side effects (showing numbers in a time format), which is "comically" misunderstood
+
+- “I used to do drugs. I still do, but I used to, too.”
+	- subverting the implication of 'i used to do drugs' which implies it was in the past and is over now, by "comically" surprising the audience by adding that it's also happening in the present tense
+
+	- adding brevity & adjacency of contradiction ('used to do drugs' is immediately followed by 'still do')
 
 ### Consensus by joke
 
