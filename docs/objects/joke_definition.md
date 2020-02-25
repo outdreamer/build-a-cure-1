@@ -60,6 +60,24 @@ you can add distortions to this standard formula by navigating through other obj
 
 - "my dog thinks shes my best friend" => "my dog thinks she's my enemy and she's right because a real best friend wouldnt have shinier hair than you without pantene pro-v"
 
+- the more in-depth the distortions within a context are, the funnier it will be when you switch it with an absurd object
+	
+	- "I would say to know me is to also know that Sonic the Hedgehog was my first childhood crush." https://www.vulture.com/2020/02/ilana-michelle-rubin-best-up-and-coming-comedian.html
+
+		- adding extra distortions that are valid in the context of a 'crush' would make this funnier
+
+		- things youd normally say about a 'crush' or a similar context, which is 'coming out as gay'
+			- 'and that has been validated by the latest <in topical cultural artifacts>' (the latest Sonic the Hedgehog movie)
+			- 'but ive gotten over it and have accepted that we can never be together bc of <society>' (bc Ive realized Tails is better, both as a character, a competitor, and a life partner)
+
+		- contextual distortions (within the 'relationship' context) that can be left as-is, so no object-switching is required:
+			- 'but hes playing games and isnt texting back right away' 
+			- 'but then I went on Xanax and it made me realize it was all a chemical imbalance'
+			- 'but then the MDMA high wore off and I had to go to the hospital'
+				- briefer alternative: 'but then my doctor/nurse took me off the morphine'
+			- 'but then I realized he was using me to get famous'
+			- 'but then I realized he was golddigging me' (using relevance in the form of Sonic the Hedgehog being a known collector of gold rings, and also the absurdity of a character known to be good at collecting gold rings to be someone who is unlikely to be a golddigger, and the absurdity of a cartoon removed from most physical considerations needing money - like to buy a higher resolution or more super-powered version of himself)
+
 VI. safety
 
 - jokes that are reassuring in some way or produce psychological safety of the audience are funnier bc there's no threat implied by the joke
@@ -67,12 +85,12 @@ VI. safety
 - this can overlap with relatability, bc if a joke is relatable, it will make the audience feel less judged/attacked
 
 
+
 #### Rules
 
-- must be tied to reality in some way
-- must have some nonzero non-real ratio
+- must be tied to reality in some way (must have some nonzero non-real ratio)
 - must have at least one identifying joke attribute (difference attributes (silliness, surprise, relevance), or another joke attribute) with non-standard value different from a normal sentence
-
+- more joke types, layers, rules, & attributes usually make it funnier
 
 #### Types
 
@@ -300,7 +318,7 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 	- relevance in re-using the implication of 'common location' from the party definition to permute that attribute with the expected behavior from the insecure definition ('should be at home')
 
 
-### Consensus by joke
+### Building consensus with jokes
 
 - using 'friendly fire' jokes to build consensus & inspire confrontation of ridiculous beliefs
 - one way to get people on your side is being extra decent when they expect you to fight them
