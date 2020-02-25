@@ -263,7 +263,13 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 	- non-standard organizing principle: the idea of 'all the people who cant be pleased' being at one show is absurd, as people dont usually organize themselves in that way (theres no explicit 'people who cant be pleased' organization)
 	- subverting the intent of a comedy show, which is to please people
 	- stakes: only a petty person who knew they couldnt be pleased would go to a comedy show anyway just to criticize it
-	
+
+- "ill put up with anything": https://www.youtube.com/watch?v=tHwKmZnc7l4
+	- framing an object of a type (fact) as another type (joke) is a "comical" difference
+	- taking premise to extreme (adding more relatable things airlines do)
+	- subverting intent of things airlines do (normal business operations, making money) with "comically" different intents (persecuting one individual, exploiting their power just to feel powerful)
+	- subverting definition of 'man' with stereotypically 'girly' behaviors
+
 
 ### Consensus by joke
 
