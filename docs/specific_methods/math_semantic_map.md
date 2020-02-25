@@ -16,7 +16,9 @@
 
     - key relationship:
       - comparison of standard deviation & k as being different parameters used to create the total probability 1
-
+      - whether standard deviation & k are different (and how different they are) determines the relationship
+      - this is non-trivial but derivable from the original formula, which also has two other variables
+      - the reason this is non-trivial is it detects an expectation of a similarity/relationship between k & standard deviation
 
   - build math logic/plain language translation function - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
     - in order to implement this, you need to:
