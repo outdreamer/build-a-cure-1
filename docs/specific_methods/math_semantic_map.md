@@ -8,20 +8,55 @@
 
           - target matrix metadata attributes include:
 
+            - difference potential of matrix
+
+              2. find differentiating parameters of matrix:
+
+                  - position
+                  - element sets
+
+              2. find difference potential of matrix
+
+                - this problaem can be framed as answering the question:
+
+                  - how different can the matrix become, if you permute position, which has the effect:
+                    - alternating possible element values without replacement & exmaining differences in the output combination space
+
+                  - differences between element sets in a matrix, as determined by space created by difference in transformed version of matrix 
+                    - vector sets can be collapsed to a point
+                    - a way to measure differences between points is product of distance between points on each dimension (area, volume)
+
+
+                - if you apply transform 'permute position of elements of matrix across semantic objects' (each row meaning a function) to a matrix, what is the shape of the differentiating space created between the original & transformed version?
+
+                - the shape is a parallelepiped, whose volume can be described by the key vertices of the matrix (eigenvalues)
+
+              - this is similar to the general strategy of 'switching parameter values and seeing how much influence they have on the output', where the parameter is 'position', and this parameter is used to determine which coefficients are assigned to which variables
+
+              - the permutations alternate their positive/negative signs because they are attempts to find differentiating factors betweeen alternatives, so they rotate around the origin to find neutralizing/canceling pairs
+
+              - side note: 
+                - the application of matrix structure in describing functions or function sets can be derived by concept 'position' produced by the matrix structure, which aligns with the position attribute of algebraic functions
+
+
             - matrix polynomial eigenvalues (scalars of explanatory factors of matrix polynomial)
 
               2. to get this target attribute, the following route can be used:
 
-                - applies remaining element of excluded vector to change descriptor of vector subset
+                3. identify target insight: derive necessary information to describe matrix metadata attribute
 
-                - applies change descriptor of vector subset + change added by remaining element of excluded vector
+                4. identify component combination that can build that insight:
 
-                - generate adjacent combinations of elements given matrix rules
-                  - alternative of type 'permutation'
-                  - with permutation value 'one constant element at a time'
-                  - with input intent 'use one element as scalar' (meaning 'adding a dimension', 'expanding with multiplication')
-                  - with output intent 'apply one constant element as scalar to other subset elements'
+                  - applies remaining element of excluded vector to change descriptor of vector subset
 
+                  5. map component combination to math objects:
+
+                    - generate adjacent combinations of elements given matrix rules
+
+                      - alternative of type 'permutation'
+                      - with permutation value 'one constant element at a time'
+                      - with input intent 'use one element as scalar' (meaning 'adding a dimension', 'expanding with multiplication')
+                      - with output intent 'apply one constant element as scalar to other subset elements'
 
         - which gives info about target matrix metadata attributes:
 
