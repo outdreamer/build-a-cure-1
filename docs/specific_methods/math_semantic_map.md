@@ -1,5 +1,11 @@
 ## Math/Language translation function
 
+  - example: derive math method, starting from problem statement in structured language:
+
+      - generate the solution of 'matrix determinant' for problem statement: 'describing matrix generative metadata'
+        - combines partial change of vector subset with remaining variable of excluded vector
+        - applies transform of two variables + change added by remaining variable of excluded vector
+
   - example: chebyshev's inequality
 
     - initial formula:
@@ -19,6 +25,8 @@
       - whether standard deviation & k are different (and how different they are) determines the relationship
       - this is non-trivial but derivable from the original formula, which also has two other variables
       - the reason this is non-trivial is it detects an expectation of a similarity/relationship between k & standard deviation
+
+      - this key relationship is an example of an important metadata attribute of the original function and is derivable (programmatically)
 
   - build math logic/plain language translation function - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
     - in order to implement this, you need to:

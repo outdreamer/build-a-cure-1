@@ -227,6 +227,7 @@
 			- transpose
 			- conjugate
 			- identity
+			- orthogonal
 
 		- diagonal
 
