@@ -19,31 +19,40 @@
 
               5. find difference potential of matrix permutations
 
+                - map target attribute to structures:
+
+                  - possible states: different parameter sets
+                  - potential: what possible states can the matrix have (combination space)
+                  - difference potential: how different can the combination space be
+
                 6. find key question to answer
 
-                  - question: how different can the matrix become, if you permute either parameter (position or element sets), which has the effect: "alternating possible positions/element sets & examining differences in the output combination space"
+                  - question: if you alternate element positions/sets, how different can the output combination space be?
 
-                       - differences between the output combination space can be determined by:
-                          A. the differences in permuted element sets
-                          B. assign elements to vectors so they can be collapsed to a metric for comparison
-                          C. vector sets can be collapsed to a descriptor metric (vector combination point)
-                          D. a basic way to collapse measurements of differences between multiple point pairs into a single measurement is "product of distance between points on each dimension" (area, volume)
-                            - if you apply transform 'permute position of elements of matrix across semantic objects' (each row meaning a function) to a matrix, what is the shape of the differentiating space created between the original & transformed version if you collapse vector sets to a point, and what might that shapes' parameters describe?
-                              - the shape is a parallelepiped, whose "product of distance between points on each dimension" can be described by the matrix metadata (eigenvalues)
-                              - at this point we have collapsed the matrix's difference potential into a single descriptive set of values (the metadata of the shape in between the element set points)
+                       - differences between the output combination space can be determined as follows:
+                          A. find the differences in permuted element sets (all possible states in combination space)
+                          B. assign elements to vectors so they can be collapsed to a metric for comparison of vector sets
+                          C. collapse vector sets to a descriptor metric (vector combination point) for comparison of vector sets
+                          D. compare vector sets using vector combination point
+                            - a basic way to collapse measurements of differences between multiple point sets into a single measurement is "product of distance between points on each dimension" (area, volume)
+                            - the output shape of the difference potential is a parallelepiped, whose "product of distance between points on each dimension" can be described by the a single set of values within the matrix metadata (eigenvalues)
+                            - at this point we have collapsed the matrix's difference potential into a single descriptive set of values (the metadata of the shape in between the vector combination points)
 
-                        - so to get the difference potential of a matrix, apply the excluded element of the excluded vector as a scalar of the difference potential of the vector subset
+                        - so to get the difference potential of a matrix, apply the excluded element of the excluded vector as a scalar of the difference potential of the other element subsets, recursively
 
                         - now we have a possible linguistic route from original matrix to the target metadata 'difference potential'
                           (our program might not know the definition of eigenvalues at this point but it knows we want a difference potential description)
 
                         7. also need to derive other relevant info:
                             - the need for recursion 
+                              - the positioned scalars (embedded/executed with a particular order) should be based on a standard unit of difference potential, which is the smallest possible unit of a matrix that can have a difference potential (a 2 x 2 matrix)
                             - the permutations alternate their positive/negative signs because they are attempts to find differentiating factors betweeen alternatives, so they rotate around the origin to find neutralizing/canceling pairs
 
-                        8. this can be clearly translated into a set of math operations, so we map component combinations in logical steps A, B, C, & D to math objects
+                        8. this can be clearly translated into a set of math operations, as the logical steps A, B, C, & D have either a clear mapping or direct reference to math objects
 
               - this strategy is similar to the general strategy of 'switching parameter values and seeing how much influence they have on the output', where the parameter is 'position', and this parameter is used to determine which coefficients are assigned to which variables
+
+              - this is one way to automate the finding of a method like 'determinant' to solve problems like "finding matrix metadata such as 'difference potential'"
                 
         - alternative paths include:
 
