@@ -2,9 +2,37 @@
 
   - example: derive math method, starting from problem statement in structured language:
 
-      - generate the solution of 'matrix determinant' for problem statement: 'describing matrix generative metadata'
-        - combines partial change of vector subset with remaining variable of excluded vector
-        - applies transform of two variables + change added by remaining variable of excluded vector
+      - generate the solution of 'square matrix determinant' for problem statement: 'describing square matrix generative metadata'
+
+        1. pull definitions & determine target matrix metadata attributes
+
+          - target matrix metadata attributes include:
+
+            - matrix polynomial eigenvalues (scalars of explanatory factors of matrix polynomial)
+
+              2. to get this target attribute, the following route can be used:
+
+                - applies remaining element of excluded vector to change descriptor of vector subset
+
+                - applies change descriptor of vector subset + change added by remaining element of excluded vector
+
+                - generate adjacent combinations of elements given matrix rules
+                  - alternative of type 'permutation'
+                  - with permutation value 'one constant element at a time'
+                  - with input intent 'use one element as scalar' (meaning 'adding a dimension', 'expanding with multiplication')
+                  - with output intent 'apply one constant element as scalar to other subset elements'
+
+
+        - which gives info about target matrix metadata attributes:
+
+        - alternative paths include:
+
+          - attribute derivation: 'square matrixes (equivalence in dimensions) imply attributes cascade across dimension values' 
+            (given equivalence of organizing dimensions, what applies to original matrix can be applied to matrix permutations with lower dimensions, which are subsets of the original matrix)
+          - 'recursive operations down to unit operation' strategy route
+          - 'subset alternative/permutation' strategy route
+          - eigenvalue definition route
+
 
   - example: chebyshev's inequality
 
