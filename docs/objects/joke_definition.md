@@ -270,6 +270,14 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 	- subverting intent of things airlines do (normal business operations, making money) with "comically" different intents (persecuting one individual, exploiting their power just to feel powerful)
 	- subverting definition of 'man' with stereotypically 'girly' behaviors
 
+- “I don’t care if someone’s black, white, green, or purple. Actually if they’re purple, you should care. They’re choking to death.”
+	- subverting the implication: including 'green' and 'purple' in a set of real colors implies the idea of 'all possible colors', which is removing the color attribute from the set of important attributes (if it includes all values of the color attribute, the color attribute is non-determining), and then assigning importance to one color
+
+	- comical difference between implication & tone of one statement (teamwork/coexistence/tolerance, caring tone) with implication of the next statement (emergency rescue advice)
+
+	- a better joke would have been if the comedian had implied someone was white and then said something like: 'actually if theyre black you should care, theyre doing blackface & are about to be trolled to internet death'
+		- this is better because it doesnt rely on silliness to add humor, because it stays within the set of real colors people can be
+		
 
 ### Consensus by joke
 
