@@ -56,17 +56,26 @@ you can add distortions to this standard formula by navigating through other obj
 
 - "my dog thinks shes my best friend" => "my dog thinks she's my enemy and she's right because a real best friend wouldnt have shinier hair than you without pantene pro-v"
 
+VI. safety
+
+- jokes that are reassuring in some way or produce psychological safety of the audience are funnier bc there's no threat implied by the joke
+
+- this can overlap with relatability, bc if a joke is relatable, it will make the audience feel less judged/attacked
+
+
 #### Rules
 
 - must be tied to reality in some way
 - must have some nonzero non-real ratio
 - must have at least one identifying joke attribute (difference attributes (silliness, surprise, relevance), or another joke attribute) with non-standard value different from a normal sentence
 
+
 #### Types
 
 - topic (any object forming expectations, such as social group dynamics, norms, religious tenets, assumptions, stereotypes, roles, etc)
 - style (meta-humor, comedian's comedy, dark humor, sarcasm, high brow, raunchy)
 - attribute (contextual, political, self-aware, self-referential, fourth-wall breaking, joke commentary)
+
 
 #### Common joke components/functions
 
@@ -192,6 +201,35 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 - huge cognitive & semantic distance between previous & current sentence to generate surprise:
 "yeah I could have taken those bullies - to church, but I didnt have my church bus pass on me because I keep it in my respect-for-Jesus/sinning pants"
 
+
+
+### Existing joke explanation examples
+
+
+- source: https://www.vulture.com/2020/02/best-mitch-hedberg-jokes.html?utm_source=fark&utm_medium=website&utm_content=link&ICID=ref_fark
+
+- “This shirt is dry-clean only, which means it’s dirty.”
+
+
+- “I don’t have a girlfriend. I just know a girl who would get really mad if she heard me say that.”
+
+
+- “I like the escalator, because the escalator cannot break. It just becomes stairs.”
+
+	- popular pattern of 'epic power-up' for comedic effect when taken to extreme: 
+		- it 'becomes stairs' by choice like it's no big deal ('just'), bc it has the power to do that, which is funny bc it implies agency is accessible to all, which adds psychological safety to the joke
+		- the escalator defies the idea of being breakable by subverting the definition of breaking, as its very powerful
+
+	- brevity in the way that an escalator cannot break (four words 'it just becomes stairs') - this implies its an existing simple relationship that wasnt identified/articulated by other people, which is inherently funny
+
+	- subversion of the implication of an escalator breaking being a 'bad thing' to make it seem a neutral thing 'it may seem like a bad thing, but it just becomes stairs'
+
+	- high stakes situation 'breaking' converted to low stakes situation 'becoming stairs'
+
+
+- “I’m sick of following my dreams, man. I’m just going to ask them where they’re going, and hook up with them later.”
+	
+	- joke type based on assumption: reification fallacy/anthropomorphization (assigning agency to inanimate objects or concepts)
 
 
 ### Consensus by joke
