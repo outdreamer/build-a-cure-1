@@ -6,68 +6,60 @@
 
         1. pull definitions & determine target matrix metadata attributes
 
-          - target matrix metadata attributes include:
+          2. target matrix metadata attributes include:
 
             - difference potential of matrix
 
-              2. find differentiating parameters of matrix:
+          3. identify component combination that can build that attribute information
+
+              4. find differentiating parameters of matrix
 
                   - position
                   - element sets
 
-              2. find difference potential of matrix
+              5. find difference potential of matrix permutations
 
-                - this problaem can be framed as answering the question:
+                6. find key question to answer
 
-                  - how different can the matrix become, if you permute position, which has the effect:
-                    - alternating possible element values without replacement & exmaining differences in the output combination space
+                  - question: how different can the matrix become, if you permute either parameter (position or element sets), which has the effect: "alternating possible positions/element sets & examining differences in the output combination space"
 
-                  - differences between element sets in a matrix, as determined by space created by difference in transformed version of matrix 
-                    - vector sets can be collapsed to a point
-                    - a way to measure differences between points is product of distance between points on each dimension (area, volume)
+                       - differences between the output combination space can be determined by:
+                          A. the differences in permuted element sets
+                          B. assign elements to vectors so they can be collapsed to a metric for comparison
+                          C. vector sets can be collapsed to a descriptor metric (vector combination point)
+                          D. a basic way to collapse measurements of differences between multiple point pairs into a single measurement is "product of distance between points on each dimension" (area, volume)
+                            - if you apply transform 'permute position of elements of matrix across semantic objects' (each row meaning a function) to a matrix, what is the shape of the differentiating space created between the original & transformed version if you collapse vector sets to a point, and what might that shapes' parameters describe?
+                              - the shape is a parallelepiped, whose "product of distance between points on each dimension" can be described by the matrix metadata (eigenvalues)
+                              - at this point we have collapsed the matrix's difference potential into a single descriptive set of values (the metadata of the shape in between the element set points)
 
+                        - so to get the difference potential of a matrix, apply the excluded element of the excluded vector as a scalar of the difference potential of the vector subset
 
-                - if you apply transform 'permute position of elements of matrix across semantic objects' (each row meaning a function) to a matrix, what is the shape of the differentiating space created between the original & transformed version?
+                        - now we have a possible linguistic route from original matrix to the target metadata 'difference potential'
+                          (our program might not know the definition of eigenvalues at this point but it knows we want a difference potential description)
 
-                - the shape is a parallelepiped, whose volume can be described by the key vertices of the matrix (eigenvalues)
+                        7. also need to derive other relevant info:
+                            - the need for recursion 
+                            - the permutations alternate their positive/negative signs because they are attempts to find differentiating factors betweeen alternatives, so they rotate around the origin to find neutralizing/canceling pairs
 
-              - this is similar to the general strategy of 'switching parameter values and seeing how much influence they have on the output', where the parameter is 'position', and this parameter is used to determine which coefficients are assigned to which variables
+                        8. this can be clearly translated into a set of math operations, so we map component combinations in logical steps A, B, C, & D to math objects
 
-              - the permutations alternate their positive/negative signs because they are attempts to find differentiating factors betweeen alternatives, so they rotate around the origin to find neutralizing/canceling pairs
-
-              - side note: 
-                - the application of matrix structure in describing functions or function sets can be derived by concept 'position' produced by the matrix structure, which aligns with the position attribute of algebraic functions
-
-
-            - matrix polynomial eigenvalues (scalars of explanatory factors of matrix polynomial)
-
-              2. to get this target attribute, the following route can be used:
-
-                3. identify target insight: derive necessary information to describe matrix metadata attribute
-
-                4. identify component combination that can build that insight:
-
-                  - applies remaining element of excluded vector to change descriptor of vector subset
-
-                  5. map component combination to math objects:
-
-                    - generate adjacent combinations of elements given matrix rules
-
-                      - alternative of type 'permutation'
-                      - with permutation value 'one constant element at a time'
-                      - with input intent 'use one element as scalar' (meaning 'adding a dimension', 'expanding with multiplication')
-                      - with output intent 'apply one constant element as scalar to other subset elements'
-
-        - which gives info about target matrix metadata attributes:
-
+              - this strategy is similar to the general strategy of 'switching parameter values and seeing how much influence they have on the output', where the parameter is 'position', and this parameter is used to determine which coefficients are assigned to which variables
+                
         - alternative paths include:
 
+          - eigenvalue definition route
           - attribute derivation: 'square matrixes (equivalence in dimensions) imply attributes cascade across dimension values' 
             (given equivalence of organizing dimensions, what applies to original matrix can be applied to matrix permutations with lower dimensions, which are subsets of the original matrix)
           - 'recursive operations down to unit operation' strategy route
           - 'subset alternative/permutation' strategy route
-          - eigenvalue definition route
+          - generate adjacent combinations of elements given matrix rules
+              - alternative of type 'permutation'
+              - with permutation value 'one constant element at a time'
+              - with input intent 'use one element as scalar' (meaning 'adding a dimension', 'expanding with multiplication')
+              - with output intent 'apply one constant element as scalar to other subset elements'
 
+        - other derivable info:
+          - the application of matrix structure in describing functions or function sets can be derived by concept 'position' produced by the matrix structure, which aligns with the position attribute of algebraic functions
 
   - example: chebyshev's inequality
 
