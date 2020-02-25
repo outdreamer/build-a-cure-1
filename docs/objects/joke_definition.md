@@ -210,7 +210,9 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 ### Existing joke explanation examples
 
 
-- source: https://www.vulture.com/2020/02/best-mitch-hedberg-jokes.html?utm_source=fark&utm_medium=website&utm_content=link&ICID=ref_fark
+- source: 
+	- https://www.vulture.com/2020/02/best-mitch-hedberg-jokes.html?utm_source=fark&utm_medium=website&utm_content=link&ICID=ref_fark
+	- https://www.vulture.com/article/comedians-reveal-jokes-theyd-like-to-steal.html
 
 - “This shirt is dry-clean only, which means it’s dirty.”
 
@@ -265,19 +267,38 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 	- stakes: only a petty person who knew they couldnt be pleased would go to a comedy show anyway just to criticize it
 
 - "ill put up with anything": https://www.youtube.com/watch?v=tHwKmZnc7l4
+
 	- framing an object of a type (fact) as another type (joke) is a "comical" difference
 	- taking premise to extreme (adding more relatable things airlines do)
 	- subverting intent of things airlines do (normal business operations, making money) with "comically" different intents (persecuting one individual, exploiting their power just to feel powerful)
 	- subverting definition of 'man' with stereotypically 'girly' behaviors
 
 - “I don’t care if someone’s black, white, green, or purple. Actually if they’re purple, you should care. They’re choking to death.”
+
 	- subverting the implication: including 'green' and 'purple' in a set of real colors implies the idea of 'all possible colors', which is removing the color attribute from the set of important attributes (if it includes all values of the color attribute, the color attribute is non-determining), and then assigning importance to one color
 
-	- comical difference between implication & tone of one statement (teamwork/coexistence/tolerance, caring tone) with implication of the next statement (emergency rescue advice)
+	- "comical" difference between implication & tone of one statement (teamwork/coexistence/tolerance, caring tone) with implication of the next statement (emergency rescue advice)
 
 	- a better joke would have been if the comedian had implied someone was white and then said something like: 'actually if theyre black you should care, theyre doing blackface & are about to be trolled to internet death'
 		- this is better because it doesnt rely on silliness to add humor, because it stays within the set of real colors people can be
-		
+
+- 'a-a-ron': https://youtu.be/Dd7FixvoKBw
+	- subverting assumption of a non-standard name structure being too silly to be real
+	- using standard name patterns in a sub-culture to emphasize "comical" difference between definitions of absurdity in names from exploited & privileged subcultures
+	- using frame of 'classroom attendance call by a substitute teacher' which is a common/real context for listing/discussing names by someone who is unfamiliar with them
+	- using comical associations with 'trolling substitute teacher'
+
+- "getting a wax is like an animal being chased by a cheetah & immediately being eaten": https://youtu.be/111Ggf3jMq8
+	- comical difference between expectations ('Ill easily survive being chased by the cheetah') with reality ('no I wont')
+	- stupidity of having no chance at survival but still trying
+	- comical difference of 'survival' & 'waxing'
+
+- you’re like, “That guy’s an asshole,” and your friend is like, “No, he’s not an asshole, he’s just insecure.” And you’re like, “If he’s so insecure, then why is he drunk and throwing raisins at me? Shouldn’t he be at home doubting himself?”
+	- subverting definition of asshole & insecurity
+	- comical difference between insecure & asshole rules
+	- weird/silly attribute of 'throwing raisins' which is not a normal behavioral rule for either of those definitions, nor is it associated with the drunk definition
+	- relevance in re-using the implication of 'common location' from the party definition to permute that attribute with the expected behavior from the insecure definition ('should be at home')
+
 
 ### Consensus by joke
 
