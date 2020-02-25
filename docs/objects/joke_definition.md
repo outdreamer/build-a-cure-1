@@ -236,11 +236,11 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 
 	- high stakes situation 'breaking' converted to low stakes situation 'becoming stairs'
 
-
 - “I’m sick of following my dreams, man. I’m just going to ask them where they’re going, and hook up with them later.”
 	
 	- joke type based on assumption: reification fallacy/anthropomorphization (assigning agency to inanimate objects or concepts)
 
+	- contrast of mundane experience (boredom) and rare or fortunate experience (interaction with dreams)
 
 - “I like rice. Rice is great when you’re hungry and you want 2,000 of something.”
 	- irrelevance: using irrelevant metadata of a meal (how many units are in it) as (comically) the primary intention for it
@@ -252,6 +252,18 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 	- subverting the implication of 'i used to do drugs' which implies it was in the past and is over now, by "comically" surprising the audience by adding that it's also happening in the present tense
 
 	- adding brevity & adjacency of contradiction ('used to do drugs' is immediately followed by 'still do')
+
+- “I saw a commercial on late-night TV that said ‘Forget everything you know about slipcovers.’ So I did. It was a load off my mind. Then the commercial tried to sell slipcovers and I didn’t know what the hell they were.” 
+	- "comical" impact ('invalidating intent of ad, which is to inform & sell') of trusting instructions ('forget everything') of people claiming expertise ('the experts in slipcovers') & delegating your agency to them 
+
+	- "comical" difference between intentions & outcome (also an example of defeating the purpose): the advice of experts should inform you, but this removed the information, invalidating their intent
+
+- “You can’t please all the people all the time, and last night, all those people were at my show.”
+
+	- non-standard organizing principle: the idea of 'all the people who cant be pleased' being at one show is absurd, as people dont usually organize themselves in that way (theres no explicit 'people who cant be pleased' organization)
+	- subverting the intent of a comedy show, which is to please people
+	- stakes: only a petty person who knew they couldnt be pleased would go to a comedy show anyway just to criticize it
+	
 
 ### Consensus by joke
 
