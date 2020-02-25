@@ -1,5 +1,23 @@
 ## Math/Language translation function
 
+  - example: chebyshev's inequality
+
+    - initial formula:
+      - (probability of (absolute value of (x - mean))) >= k * standard deviation <= (1 / (k ^ 2))
+
+    - standard translation:
+      - (probability of positive x-mean difference being greater than or equal to k applied to standard deviation) is less than or equal to 1 applied to the standard of k applied to itself once
+      
+    - first semantic translation:
+      - standard deviation => standard difference ('put term in same terms as existing semantic terms used elsewhere')
+        - (probability of positive x-mean difference being greater than or equal to k * standard difference) is less than or equal to 1 applied to the standard of k applied to itself once
+
+    - more translations should remove all objects except standard deviation & k
+
+    - key relationship:
+      - comparison of standard deviation & k as being different parameters used to create the total probability 1
+
+
   - build math logic/plain language translation function - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
     - in order to implement this, you need to:
       - implement function to break_into_core_functions
