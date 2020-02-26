@@ -1,19 +1,9 @@
 ## Problem Object
 
-  - problem space: the relevant system(s) allowing a problem to occur
-
-      - problem space metadata:
-        - allows alignment
-        - allows any shape in coordinate plane
-
-      - problem space anti-metadata:
-        - no rule preventing repetition:
-          - "given that there's no rule in the problem space prohibiting shapes from repeating, and that repeated shapes are possible in space of any dimension greater than 0 (point), repetition could lead to the illusion of a relationship due to similarity in the repeated shapes"
-
   - attributes:
 
     - solvability: whether the problem space changes faster than existing tools can solve problems in that space
-    
+
     - structures:
       - distance/gap
       - intersection
@@ -25,13 +15,6 @@
 
     - stable state
       - whether the problem can solve itself if another problem is solved or if its left alone
-
-    - problem network position
-    - host spaces/systems
-    - positions in host systems
-    - limits
-    - adjacent objects/conversion potential (what can it be transformed into using available functions)
-    - how it interacts with other objects (that arent immediately classifiable as resources or targets)
 
     - minimum information
 
@@ -47,8 +30,6 @@
           - the change rate
           - the angle compared to a standard, like an axis
           - its distance
-      
-
 
   - antimetadata
 
@@ -56,20 +37,14 @@
 
       - example:
 
-        - what could a problem be?
-          - a dependency
-          - a limit
-          - a lack
-          - a mismatch
-          - a conflict
+        - what could a problem be? (dependency, limit, lack, mismatch, conflict)
 
         - what is a problem definitely not?
 
           - interim objects that dont add to causation: enabling objects that allow other objects to exist but are not causative:
             - core functions that evolve in a system (caused by the system structure) that allow other functions to be built from them, but are not causative (the cause is the system structure)
-          
-          - an abstract concept without a particular contextual implementation/structure
 
+          - an abstract concept without a particular contextual implementation/structure
 
     - problem questions (filters):
       

@@ -58,7 +58,6 @@
   VIII. Functional analysis 
 
     - are there multiple directions to approach function derivation from?
-
       - can patterns in metadata-generators (difference generators) be used to derive the function generators (core functions)?
       - does it loop around to the start, just like lowest math/structural interface (symmetry, equivalence) loops around to highest conceptual interface (balance, power, random)?
       - the shape of the interface nexus should be a circuit feeding itself 

@@ -3,7 +3,7 @@
         - structures: 
           - dimension: variable
           - layer: parameter determining variance accretion interfaces
-          - space: dimension set
+          - space: dimeésion set
           - scale, range, spectrum
           - group: set, potentially across dimensions (cluster of data points)
           - list: set, potentially organized in a dimension (line of points)

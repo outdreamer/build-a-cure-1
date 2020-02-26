@@ -8,6 +8,7 @@
 
 	- definition: 
 		- relevant information to solving a problem, or info describing a system with problems
+		- the set of system(s) allowing a problem to occur
 
 	- attributes:
 		- can interact with multiple systems (bio, chemistry, markets)
@@ -28,6 +29,9 @@
 			- relevant objects (loans, loaners, borrowers, interest rates, banks, reserve, laws)
 			- relevant variables (market demand & supply for business of borrower, resources of both primary agents)
 			- relevant rules (existing laws, process to get laws passed
+
+	- anti-metadata:
+	    - no rule preventing repetition: "given that there's no rule in the problem space prohibiting shapes from repeating, and that repeated shapes are possible in space of any dimension greater than 0 (point), repetition could lead to the illusion of a relationship due to similarity in the repeated shapes"
 
 
 - solution space:
@@ -73,9 +77,8 @@
 
 	- attributes:
 		- can interact with multiple systems/problem/solution spaces
+		- cooperation/communication/binding sites (openings in system)
 
-    - randomness
-	- cooperation/communication/binding sites (openings in system)
 	- structures:
 		- core system structures: network, nodes, links, filters, & boundary
 		- layers
