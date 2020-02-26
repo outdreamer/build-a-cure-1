@@ -2,7 +2,7 @@
 
 ## Problems with Set Theory
 
-	- all useful & isolatable spaces/sets should be derived
+	- all useful & isolatable spaces/sets should be derived, as well as their attributes (core, emergent & otherwise)
 
 	- spaces (sets with operators) should be auto-generated and intents should be calculated, so that spaces/sets can be used as functions, linked on a network, and chosen programmatically
 
@@ -27,6 +27,8 @@
 	- same problem as making risk assessment in isolation & evaluating transactions in isolation
 		- the risk presented to an insurer is not calculatable from metadata of the insured but from the system the insured exists in
 		- the risk in a transaction is calculatable using financial system metadata
+
+	- causal shape of the relationship is assumed to be independent/input vars => dependent/output vars, where in reality the dependence between the output & inputs is likelier to be nonzero & the framework for specifying causal distance is not formalized
 
 	- causal shape analysis is crucial for:
 		- identifying variables that can be collapsed into other variables

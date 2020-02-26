@@ -238,7 +238,17 @@
     - structure-fitting solution: solution that matches the gaps/limits in a problem structure to neutralize them
 
 - concept
-  - definition: 
+
+  - definition: set of unique objects remaining once objects from other spaces have their context & contradictory attributes removed
+
+    - example: power is the object left when objects implementing it
+    
+      - resources => energy => input => potential) have their context removed, navigating up the abstraction stack from:
+        - the info layer (resources & energy), removing their contextual attributes/rules
+        - to the abstract structural layer (input)
+        - to the abstract layer (potential, which is a related concept of power)
+      - so that the final object is defined in terms of other abstract objects on the top layer
+
   - attributes:
   - rules:
   - types:

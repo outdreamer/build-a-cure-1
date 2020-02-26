@@ -12,6 +12,8 @@
 ## Map of set concepts to system analysis
 
 	- the layers of possible sets of core functions form the interface network
+	- all accreted attribute sets can be collapsed to a point (type) and visualized on a graph to indicate difference between attribute sets, but which attribute set is most informative and should be used as a default base to start from when seeking more attributes (is there a spherical topology where the origin represents this default base attribute set)
+
 	- vector: intersection of attributes value & direction
 		- vectors are a useful structure to store intents, ordered lists of objects having a common attribute, & variable value sets
 	- unit: lower-dimensional composable threshold for differentiation, syncing, & aggregation of filters (has overlap with interface)
@@ -31,6 +33,18 @@
 
 
 ## Standard terms
+
+	- representation space: executing linear transforms on vector spaces to represent algebraic structure elements
+
+	- vector:
+
+	- spinor:
+		- elements of a complex vector space that can be associated with Euclidean space
+		- like geometric vectors & tensors, spinors transform linearly when the Euclidean space is subjected to an incremental rotation
+		- when a sequence of such small rotations is composed to form a final rotation, the resulting spinor transformation depends on which sequence of small rotations was used
+		- unlike vectors and tensors, a spinor transforms to its negative when the space is continuously rotated through a complete turn from 0° to 360° 
+		- spinors can be viewed as the "square roots" of vectors
+		- lends an attribute of adjacence to otherwise opposing values, crystallizing the concept of a shortcut (a metadata hack) to an operation
 	
 	- set: collection of distinct objects
 
@@ -123,12 +137,14 @@
 	- singleton: unit set with one element
 
 	- algebraic object metadata:
-		- a representation of a lie group: a linear action of a lie group on a vector space; a smooth homomorphism of the group into the group of invertible operators on the vector space
+		- a representation of a group: where elements of a group are represented by invertible matrices in such a way that the group operation is matrix multiplication
+			- a representation of a lie group: a linear action of a lie group on a vector space; a smooth homomorphism of the group into the group of invertible operators on the vector space
 		- presentation of a group: comprises a set S of generators—so that every element of the group can be written as a product of powers of some of these generators—and a set R of relations among those generators
 		- field extension: relationship between fields such that the operations of a subfield are the operations of the extended field, retricted to the subfield
 
 	- algebraic structures: a group of operations having finite inputs on a set (the algebra refers to the set itself being operated on) - includes groups, rings, fields, lattices	
-	- homomorphism: a structure-preserving map between two algebraic structures of the same type		
+	- homomorphism: a structure-preserving map between two algebraic structures of the same type
+	- endomorphism: a map of a mathematical object to itself		
 	- category: a collection of objects linked by arrows, having two basic properties: 
 		- the ability to compose the arrows associatively
 		- the existence of an identity arrow for each object
@@ -160,18 +176,22 @@
 	- bilinear map: function combining elements of two vector spaces to produce a vector in a third vector space, where each argument in linear
 		- example: matrix multiplication
 
+	- directed graph: a graph with vertices/nodes & edges (ordered pairs) having direction
+	- transpose graph: a directed graph with its edges reversed
+	- skew-symmetric graph: a directed graph that is isomorphic to its transpose graph, over an isomorphism that is an involution without fixed points
+	- involution: function that is its own inverse
     - algebra (over a field): a vector space with a bilinear product to multiply two vectors in two vector spaces
     	- a set with operations of multiplication, addition, & scalar multiplication by elements of the field
     	- satisfies the axioms of a vector space and bilinearity of the product
     	- types:
-    		- lie algebra: a vector space with a non-associative operation called the lie bracket (an alternating bilinear map satisfying the jacobi order of operations identity)
+    		- lie algebra: a vector space with a non-associative operation (the lie bracket)
 			- poisson algebra: associative algebra & a lie bracket that satisfies liebniz's law, formed by the tensor algebra of a Lie algebra
 
 	- group: a set including a binary operation that combines any two elements to make a third element that satisfies closure, associativity, identity, reversibility
 		- types:
 			- abelian group: commutative group where applying the group operation to two group elements doesnt depend on order of operation
 			- a symmetry group: the set of operations that leave an object unchanged (operations that can be captured in a system/interface)
-			- a lie group: a continuous group described by several real parameters that is a differentiable manifold, with smooth group operations
+			- a lie group: a continuous group described by several real parameters that is a differentiable (smooth) manifold, with smooth group operations
 				- used for modeling continuous symmetry, like symmetry of rotating a sphere in three dimensions, & for modeling continuous symmetries of differential equations
 				- types:
 					- orthogonal groups:
@@ -185,7 +205,8 @@
 				- R-module: a module taking its scalars from a ring R
 
 	- bracket:
-		- lie bracket:
+
+		- lie bracket: an alternating bilinear map satisfying the jacobi operation order identity
 		- Poisson bracket: a binary operation that distinguishes a certain class of coordinate transformations (canonical transformations, which map canonical coordinate systems into canonical coordinate systems)
 			- canonical coordinate system: canonical position & momentum variables that satisfy canonical Poisson bracket relations
 
@@ -196,6 +217,8 @@
 
 	- field: a set on which addition, subtraction, division, & multiplication are defined & these operations behave like the corresponding operations do in the fields of real & rational numbers
 		- examples: field of real numbers, rational numbers, complex numbers
+		- physics: a physical quantity, represented by a number or tensor, that has a value for each point in space-time
+		- field theory: mathematical descriptions of how field values change in space & time or other independent variables
 
 	- affine transformation: a function between affine spaces which preserves points, straight lines and planes
 		- sets of parallel lines remain parallel after an affine transformation
