@@ -92,6 +92,8 @@
 
       - this key relationship is an example of an important metadata attribute of the original function and is derivable (programmatically)
 
+      - another key relationship is the relationship between the sample difference (x - mean) and the standard deviation, which are expected to be different - you could also derive this key relationship from definitions of the objects in the formula (the difference between a sample and the mean is clearly related by definition to the average difference between samples and the mean)
+
   - build math logic/plain language translation function - example: https://adventuresinmachinelearning.com/improve-neural-networks-part-1/
     - in order to implement this, you need to:
       - implement function to break_into_core_functions
