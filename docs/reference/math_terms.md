@@ -27,7 +27,8 @@
 		- is attribute or rule interface better when condensing objects for comparison
 		- if a sphere is symmetric with respect to the origin when rotated around an axis, that means its exact previous state cant be derived once its rotation position is measured, but the previous state space can
 			- measuring the output of a symmetric transform cannot reveal specific information about original position (reduce solution space of possible original positions)
-			- the output of symmetric transforms might disrupt other systems (adjacent objects to sphere), so to reveal information about a symmetric transform history on an object, youd need to position that object next to objects that would respond to the output of that symmetric transform
+			- the output of symmetric transforms (spin, momentum) might disrupt other systems (adjacent objects to sphere), so to reveal information about a symmetric transform history on an object to derive original position, youd need to position that object next to objects that would respond to the output of that symmetric transform, or in spaces where its output would have an impact on objects that could respond as needed
+			- the set of adjacent objects & spaces where the symmetric transform output could be used to derive original position can be used as a parameter to obfuscate the original position (algorithm uses different element in the set each time)
 
 ## Map of set concepts to system analysis
 

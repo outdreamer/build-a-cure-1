@@ -5,6 +5,10 @@
   - clarify terms perspective/filter/standard/index & relationship to variables/operations on the interface
 
   - symmetry: "feature of the system that is preserved under some transformation" (as opposed to lost information/irreversible transform) - https://en.wikipedia.org/wiki/Symmetry_(physics)
+
+    - a sphere is symmetric with respect to the origin when a rotation transform is applied, producing attributes for comparison (spin, momentum, speed, direction) while others are held constant (origin on axis of rotation)
+    - this is an example of standardizing an object (sphere) to the variance or interaction interface (leaked energy of an object, which also leads to interactions with other objects)
+
   - interface: attribute that highlights differences within a limit when objects are reduced to that attribute, using it as a standard for comparison, that filters out attributes that dont fit its definition
     - gaps in known rules allowing filter to be applied to objects that can occupy the gaps, to identify variance nodes
     - interfaces should produce a network when their variance is exhausted
