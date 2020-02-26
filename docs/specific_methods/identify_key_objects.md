@@ -139,3 +139,44 @@
 
     - what is the set of interface objects optimal for solving a problem of particular dimension (x, y, z) & shape a?
 
+
+## Determining optimal search terms for learning automation
+
+  - deciding what to invest time learning, after it's clear that you need more information
+
+    - example:
+      - for instance with splunk, how would you identify what level of expertise is required in order to design optimal queries?
+        - different query design + latency + data mismatch because of compute/aggregate/cache data strategies that differ from a standard db implementation
+
+    - the optimal level of learning is where you can:
+      - identify a clear design intent for deviations from standard implementations in a tool
+
+    - identify gaps in understanding & translate into optimal search keywords for learning automation
+
+      - identify priorities & decision algorithm of solution design, abstractions with opinionated implementations, hidden complexity, errors from interacting structures (compounding intent/patterns/gaps) 
+      - identify lack of understanding
+        - there is a level & pattern of complexity that is common to understanding of a tool:
+          - people dont normally develop a solution of complexity 2 for a problem of complexity 1 - there are reasons for the complexity mismatch
+          - so to identify lack of understanding, look for over-simplification in summarization of a tool
+          - sometimes the lack of understanding will be on the implementation side rather than the user side, bc of lack of planning/organization
+      - how do you identify key objects/terms that are necessary for acquiring a functional level of understanding that is capable of anticipating/minimizing errors in implementing that tool?
+        - a beginner wouldnt know to search for 'abstract syntax tree' when education themselves about testing tools, or 'latency' or 'caching' when learning a new data storage/query tool
+      - how do you map lack of understanding to these terms once you identify lack of understanding and key terms to acquire functional understanding?
+        - you can derive key concepts of the problem space and map them to key concepts of solution space
+          - key concepts of security problem space:
+            - standardization
+          - key concepts of security solution space:
+            - standardization applied to code interpretation: formatting/parsing/translation
+              - query for 'code security formatting parsing translation' should lead you to 'abstract syntax tree'
+                - query result keywords:
+                  - interpolation, string 
+                    - data type is key concept of string
+                      - machine interpretation of data type by language
+                        - machine language
+                        - keywords: query for "code machine language parsing" has suggested related keywords: Lexical Analysis, Compiler, Backus–Naur Form, Context-free Grammar, Code Generation
+                          - keyword results: query for "code parsing compiler security" or "code parsing lexical security" would then also lead to 'abstract syntax tree' concept in subsequent results
+                        - top results: query for "code machine language parsing" leads to "abstract syntax tree" in first few results
+          - in this way you can derive which concepts are important to learn to acquire functional understanding for a particular problem
+          - how do you score these concepts based on importance, once you find them?
+            - repeated abstract concepts inherent to sub-tools like languages (which is a sub-tool of the security intent) are likelier to be important
+            - concepts with clear differences in intent are likely to be important (caching & latency reduction are sub-tools of data storage/retrieval intent with clearly different intent matrixes)

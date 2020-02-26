@@ -3,16 +3,19 @@
 
 ## Match
 
-- match(source_structure, target_structure)
-
+- fit
 
 ## Find
+
+- filter (rule, gap)
 
 - find(target, data, filters): 
 	- find target type & data type, get relationships between them ('this type is often found at end of document'), apply filters to output
 
 
 ## Apply
+
+- transform/rule
 
 - apply(concepts, source_functions, target_function, problem_space):
 	- takes concepts or source_functions & assigns them to structures known to interact in that problem space to achieve that function

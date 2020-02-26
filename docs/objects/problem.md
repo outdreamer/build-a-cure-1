@@ -1,68 +1,79 @@
 ## Problem Object
 
-    - problem space: the relevant system(s) allowing a problem to occur
+  - problem space: the relevant system(s) allowing a problem to occur
 
-    - problem structures:
+      - problem space metadata:
+        - allows alignment
+        - allows any shape in coordinate plane
 
+      - problem space anti-metadata:
+        - no rule preventing repetition:
+          - "given that there's no rule in the problem space prohibiting shapes from repeating, and that repeated shapes are possible in space of any dimension greater than 0 (point), repetition could lead to the illusion of a relationship due to similarity in the repeated shapes"
+
+  - attributes:
+
+    - solvability: whether the problem space changes faster than existing tools can solve problems in that space
+    - structures:
       - distance/gap
-
       - intersection
-
       - overlap
-
       - shapes (compounding problem dimensions)
-
-    - problem antimetadata
-
-      - how to calculate anti-metadata:
-        - given objects (rules) & their distorted/contextual versions (rule preventing an attribute from emerging) and the set of possible values of objects in the rule ('repetition' is a possible attribute)
-          - you can determine what's not prevented by the metadata of an object, by what common objects (or distortions of objects or object values) are allowed in the object, even if theyre not referenced in the object definition
-
-    - problem metadata
-
       - core points (corrollary of core functions)
-
       - core functions
-
       - core conflict
         - the core mismatch/imbalance creating the cascading mismatches/imbalances for agents in the problem space
 
-      - stable state
-        - whether the problem can solve itself if another problem is solved or if its left alone
+    - stable state
+      - whether the problem can solve itself if another problem is solved or if its left alone
 
-      - minimum information
+    - problem network position
+    - host spaces/systems
+    - positions in host systems
+    - limits
+    - adjacent objects/conversion potential (what can it be transformed into using available functions)
 
-        - given different information, you can use different methods: some methods are immune to information but most require a clear minimum
-        - vertices
+    - minimum information
 
+      - given different information, you can use different methods: some methods are immune to information but most require a clear minimum
+      - vertices
           - in a system (set of rules & objects) the minimum information can be found with the system vertices
-
           - these vertices can be:
             - core/important/generative functions/variables
             - similar to moments of a distribution or divergence points in a voronoi diagram
             - the intersections between core functions/variables that either reduce the set of possible functions/variables to the actual set or generate them
-
         - with a line in a space, you have this information:
           - the type of change
           - the change rate
           - the angle compared to a standard, like an axis
           - its distance
-
         - and you need to know the following to find its equation:
           - whether its a segment or the full line
           - the space its in
 
-        - with cancer you need to know
-          - its position in the system
-          - its input resources
-          - its limits
-          - its change methods (stress-handling methods, learning methods, etc)
           - whether it converts to other objects (like other cancers or a pathogen) & how
-          - its history (how did it evolve)
-          - its types
-          - its target priorities
           - its cooperative agents (which organisms it helps or can receive help from)
           - how it interacts with other objects (that arent immediately classifiable as resources or targets)
+
+
+  - antimetadata
+
+      - given objects (rules) & their distorted/contextual versions (rule preventing an attribute from emerging) and the set of possible values of objects in the rule ('repetition' is a possible attribute), you can determine what's not prevented by the metadata defining an object's structure, by what common objects (or distortions of objects or object values) are allowed in the object, even if theyre not referenced in the object definition
+
+      - example:
+
+        - what could a problem be?
+          - a dependency
+          - a limit
+          - a lack
+          - a mismatch
+          - a conflict
+
+        - what is a problem definitely not?
+
+          - interim objects that dont add to causation: enabling objects that allow other objects to exist but are not causative:
+            - core functions that evolve in a system (caused by the system structure) that allow other functions to be built from them, but are not causative (the cause is the system structure)
+          
+          - an abstract concept without a particular contextual implementation/structure
 
 
     - problem questions (filters):
@@ -89,10 +100,6 @@
 
     - problem types:
 
-      - solvability
-
-        - whether the problem space changes faster than existing tools can solve problems in that space
-
       - conflicts
 
         - interaction objects
@@ -118,19 +125,14 @@
               - attributes:
 
                 - contradiction: a significant variable misrepresented as insignificant (like time)
-
                   - truth of axioms change according to timing of event, but if the event happens at all, its taken as an absolute contradiction when its really a time-dependent contradiction
-
                   - can occur with mutually exclusive states where conflicting directions are falsely associated (falsehood of an interpretation in a scope doesnt mean falsehood of the same interpretation in a different scope)
 
                 - self-reference: a lack of information about options
-
                   - 'If "this sentence is false" is true, then it is false, but the sentence states that it is false, and if it is false, then it must be true, and so on.' https://en.wikipedia.org/wiki/Liar_paradox
                     - true in the sense of meaningful equivalence ('this sentence' equals 'false')
                     - false in the sense of consistency between extrapolated implications ('this sentence' equaling 'false' doesnt equal 'this sentence is false' equaling 'false'
-
                   - this is usually a lack of information (ambiguities) about scope & alternate variable values
-
                     - can truth exist on a spectrum
                     - can truth apply to different sentence attributes ('this sentence' object in the sentence, the whole sentence, & sentence implications
 
@@ -188,3 +190,86 @@
           - breaking variance into subsets that match existing variance handlers
           - combining variance handlers to match variance source
           - combining variance sources to match variance handlers
+
+
+## Problem examples
+
+- common task that is done in endless incorrect ways bc of lack of rule enforcement (like building & securing an api) when there's one clear way to do it:
+  - generate api using latest patches against all known vulns, and adapt logic without adjusting security measures in generated code
+  - even more secure is to generate code as user intents are identified & validated, so no code exists pre-runtime except:
+    - intent-derivation & validation code
+    - code to generate functions to supply resources for a valid intent
+  - as valid intents are identified:
+    - 'request data they have permission to access, which is also validated as relevant to them'
+  - code is generated on-demand:
+    - 'generate function to fetch data, using optimal data request function determined by intent-matching, or without that, determined by best manually determined algorithm & with latest manual patches'
+  
+- inefficiency problem
+  - attributes:
+    - granular/conflicting intent (only serves one intent optimally at sacrifice of another related intent that people often need together)
+    - lack of clarity in cost/benefit structures (bc of abstraction, its not clear how a tool will provide a cost when interacting with another tool)
+  - how do you minimize inefficiencies in workflow
+    - translating task into clear requirements to reduce questions
+    - identifying information gaps to distribute information where its relevant & needed
+
+- problem-handling problem
+  - what strategies do you use for anticipating problems (of a certain type & in general)
+  - add error-generation
+    - add diagrams for error types:
+      - misalignment
+      - assumptions without supporting logical/information links
+      - incorrect position/function/structure/scope/limit/range/definition
+    - examples:
+      - p-hacking 
+        - what range of significance levels do verified processes exhibit (when first noticed/converging/diverging/decaying)?
+      - nearest neighbors hacking
+  - give example of error types mapped to structural deficits
+
+- planning problem
+  - how much time do you invest in planning & what are your planning strategies to avoid having to solve problems later?
+
+- learning problem
+
+  - how do you educate yourself on inherent limitations of a tool 
+    - if its designed for another intent
+    - if its too new for advanced error handling
+    - common problems with tool or third party tool integrations in forum posts/issues
+    - corrections/features added by user request in version/release history (to address user identified problems or misunderstandings)
+
+
+## Identify obvious errors possible in a solution
+
+    - assumptions:
+      - in a data visualization tool, an obvious error is data leakage (revealing data that shouldnt be shown to the user)
+      - data that is retrievable is assumed to be relevant to the user
+
+    - example:
+
+      - if youre tracking the movement of particles in a square shaped container and two of your variables track the movements between opposite corners, their movement might seem directly related, but the reason theyre moving is not a variable relationship, but the shapes nearest to them determining their motion
+        - this error (illusion of relationship) has the error stack:
+          - mistaking correlation for similarity/equivalence/causation
+          - misidentifying variables
+            - there shouldnt be variables for the movement in each corner 
+            - the variables should be the placement/other attributes of influential objects like corners if the shape isnt as simple as a clearly defined archetype like a square, or the function to generate the shapes having those influential objects
+          - mistaking indirect cause for direct cause
+            - the reason theyre related is a causal relationship they have in common (shape of corners) but its not a direct relationship (movement in corner A determines or is equivalent to movement in corner B)
+        - this is an obvious error of the problem type 'determining movement between shapes' with the attribute:
+          - 'shapes having multiple similar sub-objects like corners which can produce the illusion of relationships'
+          - which is sub-type of the problem type: 'alignment isnt direct relevance'
+        - how would you identify this obvious error in the above problem of predicting movement of particles within a shape container?
+          1. you could start on a high level by looking for known error types (false positive) or error causes (false assumption)
+          2. you could also start on a low level by generating the full set of different shape configuration data within a space & examining them for errors
+            - you can generate the full set of different shape configurations using types, core functions, & interactions:
+              - shape types (square, triangle)
+              - shape core functions (transforms: scale, remove, expand)
+              - shape interactions (combine, collide, oppose)
+              - shape components (corners, inflection points, extremes, arcs, diagonals, angles, edges, centers)
+            - and then examining them for error types & causes, given error type definitions
+              - 'false positive' means 'something that looks like something else but isnt'
+                - this can manifest in the problem space as:
+                  - 'two different relationships seeming like the same or related relationship'
+                    - which in this problem space could be the motion of particles in two similar sub-shapes like corners
+          3. you could start with common errors in this & similar problem spaces or space stacks
+            - given that a common problem is 'similarity implying relationship' in the stack of spaces (adjacent/causative dimensions), does that problem show up in this problem space, and if so, where is it likeliest to show up? (where are the similarities that could create a false correlation)
+          4. you could derive the obvious errors using problem space metadata
+            
