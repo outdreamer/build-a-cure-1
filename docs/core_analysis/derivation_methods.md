@@ -57,19 +57,6 @@
 
   VIII. Functional analysis 
 
-    - distortion (gap creation, divergence)
-    - filling (gap closing, convergence)
-    - fitting (path/structure derivation, path evolution in isolation & with other factors)
-    - function types
-      - change functions (applicable to all other function types)
-      - limit/boundary functions
-      - intent functions
-    - function attributes
-      - alignment: enforced/optional, core, required, emergent/output (built from core functions, with or without associated intent)
-      - interaction: cooperative/conflicting
-      - intent: generative, filtering, grouping, organization/delegation/distribution/matching/grouping/filtering, classification, differentiation/transformation
-      - scope: abstract, contextual
-
     - are there multiple directions to approach function derivation from?
 
       - can patterns in metadata-generators (difference generators) be used to derive the function generators (core functions)?

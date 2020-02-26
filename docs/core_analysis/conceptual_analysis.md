@@ -151,7 +151,7 @@
         - equivalence
         - uncertainty
         - variance
-        - binding, change, & boundary rules
+        - binding, change, & boundary
 
       - ramdomness: 
         - why do many variables added together often generate randomness?

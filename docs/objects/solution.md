@@ -12,35 +12,16 @@
   - relationships
     - problem types matching solution or adjacent/alternative solutions
 
-  - functions/rules
+  - functions
 
     - core functions
-
-      - distort/standardize
-      - alternate/stabilize
-      - isolate/combine
-      - position (arrange)
-      - compress/expand
-      - transform (change)
-      - fit (match/contain/fill structure)
-      - differentiate (key points of difference)
-      - filter (find: start from everything & reduce)
-      - derive (build: start from scratch & build)
-      - metadata (minimum information to derive)
-      - generate (using limits, interfaces, symmetries, variables)
-      - map (physics of limits, combination, calculation, approximation, measurement)
 
     - metadata functions
 
       - find minimum info needed to solve problem
-      - definition
-      - find objects in data
-      - find important objects/rules/variables/layers/systems
 
     - change functions
 
-      - attribute/rule update strategy: when is solution object updated
-      - maintenance rules
       - typical solution change pattern (at various levels of implementation & order/phase of problem-solving trajectory):
         1. configuration to regulate solution switching
         2. combination on top of dependencies to delegate functionality
@@ -49,7 +30,7 @@
 
     - limit functions
 
-      - scope limit (use case, relevance, lifecycle, self-destruct triggers, context, range)
+      - scope (use case, relevance, lifecycle, self-destruct triggers, context, range)
         - time limit
           - only applicable in a certain time window
         - context limit
@@ -59,9 +40,7 @@
           - how to design/choose solutions for reusability
         - cost/benefit analysis 
           - such as learning/understanding/integration/implementation/migration/functionality gap cost potential
-  
-      - boundary limits
-
+          
       - problem-type & problem-space scope
         - only handles asymmetries or structure-fitting or optimal transport or classification
 

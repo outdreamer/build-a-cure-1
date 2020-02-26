@@ -126,7 +126,7 @@
 
       - this is a similar problem to identifying symmetries
 
-      - symmetries involve variables that dont change when another variable changes
+      - symmetries involve variables that obey limits when another variable changes
 
       - interfaces involve standardization (removal of variables that dont change) to leave the variables that change
 

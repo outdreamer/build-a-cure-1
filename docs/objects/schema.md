@@ -11,6 +11,7 @@
   - optimization
   - completeness
   - reusability
+  - equivalence/similarity metrics
   - abstraction: abstraction level should reduce misunderstandings while optimizing reusability
   - cooperativeness: integration capacity
   - complexity: is logic available/understandable/evaluatable
@@ -22,6 +23,8 @@
   - limits
   - types
   - state
+  - potential (variance, opportunities, unused paths, adjacent states)
+  - games
   - side effects (closed system or leaks variance)
   - dependencies that can build this object
   - gaps where this object can evolve
@@ -42,13 +45,32 @@
 ## Common functions
 
   - core
+    - distort/standardize
+    - alternate/stabilize
+    - isolate/combine
+    - position (arrange)
+    - compress/expand
+    - transform (change)
+    - fit (match/contain/fill structure)
+    - differentiate (key points of difference)
+    - filter (find: start from everything & reduce)
+    - derive (build: start from scratch & build)
+    - metadata (minimum information to derive)
+    - generate (using limits, interfaces, symmetries, variables)
+    - map (physics of limits, combination, calculation, approximation, measurement)
+
   - metadata
+    - find definition
+    - find objects in data
+    - find important objects/rules/variables/layers/systems
+
   - change
-    - update
+
   - limit
       - scope limit (use case, context, range)
-      - boundary limits
+
   - automation
+
   - dependency
     - assumption/expectation
     - context
@@ -58,15 +80,92 @@
 ## Objects
 
 - function
+
   - definition: a set of inputs, a list of rules or rule lists (logic tree) applied to the input set, an output set created by changes to the input set, and side effects from execution
     - side effect examples: 
       - before execution: pre-computing
       - during: memory access/overflow
       - after: process re-starting
+
   - attributes:
+    - alignment: enforced/optional, core, required, emergent/output (built from core functions, with or without associated intent)
+    - interaction: cooperative/conflicting
+    - intent: generative, filtering, grouping, organization/delegation/distribution/matching/grouping/filtering, classification, differentiation/transformation
+    - scope: abstract, contextual
+
   - rules:
+
   - types:
-    - neutralizing functions
+
+    - core functions
+
+    - meta (rule-modification/generation rules)
+
+    - attribute rules:
+      - state
+      - scope (use case, relevance, lifecycle, self-destruct triggers, context, range)
+
+    - interaction rules:
+      - competition
+      - binding/combination/cooperation/sharing
+      - intersection/overlap/conflict resolution rules
+      - trade
+      - emergence
+      - interactions with unclassified objects (that arent immediately classifiable as resources or targets)
+
+    - assessment rules:
+      - metric
+      - difference (divergence, measures of distance/difference/equivalence)
+      - validation/testing
+      - attribute testing rules:
+        - enforced/unenforced 
+        - position
+
+    - processing rules:
+
+      - change
+        - transformation within type
+        - transformation to other types
+        - distorting (gap creation, divergence)
+        - maintenance
+
+      - filtering
+        - finding
+        - identification
+        - definition
+        - alternative
+        - organizing
+        - learning
+
+      - matching
+        - fitting (path/structure derivation, path evolution in isolation & with other factors)
+        - filling (gap closing, convergence)
+
+      - application
+
+      - derivation
+
+      - destruction (interacts with replacement, demand assessment, testing rules)
+      - enforcement/governing (monitoring, correction, enforcement)
+      - neutralizing/canceling
+      - stabilizing/maintenance
+
+    - object rules:
+      - variable
+      - system
+      - type
+      - incentive
+      - interface (change, intent, type, pattern, concept)
+      - info (problem, strategy, insight, game, perspective)
+      - boundary/limit
+      - uncertainty/risk/potential/prediction
+      - information handling (storage, versioning, replacement, merging, monitoring, indexing, communication, interpretation, processing)
+      - variance (injection, leaks, combination, replacement, causal direction)
+        (how does system become overwhelmed, does it have outlets to reduce variance, does it have interfaces with other systems to delegate variance)
+      - solution
+        (variance/stressor/error detection, tracing, identification & handler)
+      - structure (gap, limit, hub, object, link, network, filter)
+
 
 - variable
   - definition: 
@@ -145,6 +244,18 @@
   - types:
 
 - structure
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+
+- prediction
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+
+- cause
   - definition: 
   - attributes:
   - rules:

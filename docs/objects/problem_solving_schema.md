@@ -69,69 +69,29 @@
 
 - system:
 
-	- definition: 
-		- set of rules & objects
+	- definition: set of rules & objects
 
 	- attributes:
-		- can interact with multiple problem/solution spaces
+		- can interact with multiple systems/problem/solution spaces
 
-	- core components:
+    - randomness
+	- cooperation/communication/binding sites (openings in system)
+	- structures:
+		- core system structures: network, nodes, links, filters, & boundary
+		- layers
+		- vertices 
+			- core points (corrollary of core functions)
+			- sets of generating functions/objects/attributes/constants/types that determine the system
+			- for example, the center is a vertex of a circle
+		- hubs
+		- gaps
+		- limits (dependencies/incentives/intents/paradoxes)
 
-		- potential (variance, opportunities, unused paths, adjacent states)
-		- conflicts
-		- complexity
-        - randomness
-        - games
-		- distortions/differences from standard types or core objects
-		- cooperation/communication/binding sites (openings in system)
+	- relationships:
+		- relevant interfaces & interface trajectories
+		- applicable spaces              
 
-		- structures:
-			- core system structures: network, nodes, links, filters, & boundary
-			- layers
-			- vertices 
-				- core points (corrollary of core functions)
-				- sets of generating functions/objects/attributes/constants/types that determine the system
-				- for example, the center is a vertex of a circle
-			- hubs
-			- gaps
-			- limits (needs/incentives/intents/paradoxes)
-
-		- relationships:
-			- relevant interfaces & interface trajectories
-			- applicable spaces              
-
-		- functions
-				- core functions
-				- organization rules
-				- interaction rules
-				- intersection/overlap/conflict resolution rules
-				- binding/combination/cooperation/sharing & competition rules
-				- meta rules (rule-modification/generation rules)
-				- stabilization rules
-				- state rules
-				- alternative rules
-				- difference rules (divergence, measures of distance/difference/equivalence)
-				- filtering/matching/application/derivation rules
-				- validation/testing rules
-				- destruction rules (interacts with replacement, demand assessment, testing rules)
-				- governing rules (monitoring, correction, enforcement)
-
-				- object rules:
-					- incentive rules
-					- position rules
-					- enforced/unenforced rules
-					- interface rules (change, intent, type, pattern, concept)
-					- info object rules (problem, strategy, insight, game, perspective)
-					- boundary/limit/threshold/metric rules
-					- learning rules
-					- uncertainty/risk/potential rules
-					- emergence rules
-					- information rules (storage, versioning, replacement, merging, monitoring, indexing, communication, interpretation, processing)
-					- variable rules (injection, leaks, combination, replacement, causal direction)
-						(how does system become overwhelmed, does it have outlets to reduce variance, does it have interfaces with other systems to delegate variance)
-					- solution rules
-						(variance/stressor/error detection, tracing, identification & handler)
-					- structure rules (gap, limit, hub, object, link, network, filter)
+	- functions
 
 	- examples:
 
@@ -149,9 +109,7 @@
 				- memory optimization
 				- computation (space/time tradeoff, parallel execution, pre-computation, queuing)
 
-			- chemistry
-				- materials science
+			- chemistry: materials science
 
-			- physics
-				- electricity
+			- physics: electricity
 

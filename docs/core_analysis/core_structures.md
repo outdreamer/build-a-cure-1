@@ -1,6 +1,6 @@
 # Core structure components
 
-        - calculatable structures: 
+        - structures: 
           - dimension: variable
           - layer: parameter determining variance accretion interfaces
           - space: dimension set
@@ -40,7 +40,7 @@
           - cascade/path, chain, sequence, expansion, progression, series
           - distribution
 
-        - properties of calculatable structures:
+        - properties of structures:
           - order 
           - balance
           - equivalence

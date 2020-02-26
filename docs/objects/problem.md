@@ -13,15 +13,15 @@
   - attributes:
 
     - solvability: whether the problem space changes faster than existing tools can solve problems in that space
+    
     - structures:
       - distance/gap
       - intersection
       - overlap
       - shapes (compounding problem dimensions)
-      - core points (corrollary of core functions)
-      - core functions
-      - core conflict
-        - the core mismatch/imbalance creating the cascading mismatches/imbalances for agents in the problem space
+
+    - core conflict
+      - the core mismatch/imbalance creating the cascading mismatches/imbalances for agents in the problem space
 
     - stable state
       - whether the problem can solve itself if another problem is solved or if its left alone
@@ -31,6 +31,7 @@
     - positions in host systems
     - limits
     - adjacent objects/conversion potential (what can it be transformed into using available functions)
+    - how it interacts with other objects (that arent immediately classifiable as resources or targets)
 
     - minimum information
 
@@ -46,13 +47,7 @@
           - the change rate
           - the angle compared to a standard, like an axis
           - its distance
-        - and you need to know the following to find its equation:
-          - whether its a segment or the full line
-          - the space its in
-
-          - whether it converts to other objects (like other cancers or a pathogen) & how
-          - its cooperative agents (which organisms it helps or can receive help from)
-          - how it interacts with other objects (that arent immediately classifiable as resources or targets)
+      
 
 
   - antimetadata
