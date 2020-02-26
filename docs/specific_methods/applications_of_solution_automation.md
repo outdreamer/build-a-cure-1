@@ -2,6 +2,11 @@
 
   - what can you use system analysis & interface math to build?
 
+  - solutions with variable implementations allowing for innovation in this problem space:
+      - selecting functions (solution methods)
+      - selecting limits (metrics)
+      - prioritizing problem solving order & selecting set of alternative strategies to start with
+
 ## Predicting Interface Evolution
 
   - given that we currently understand object & system definitions, the object model seems optimal to us right now, with current tech & information

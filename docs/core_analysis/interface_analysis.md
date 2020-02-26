@@ -2,6 +2,8 @@
 
 ## Definitions
 
+  - clarify terms perspective/filter/standard/index & relationship to variables/operations on the interface
+
   - symmetry: "feature of the system that is preserved under some transformation" (as opposed to lost information/irreversible transform) - https://en.wikipedia.org/wiki/Symmetry_(physics)
   - interface: attribute that highlights differences within a limit when objects are reduced to that attribute, using it as a standard for comparison, that filters out attributes that dont fit its definition
     - gaps in known rules allowing filter to be applied to objects that can occupy the gaps, to identify variance nodes

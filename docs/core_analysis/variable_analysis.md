@@ -1,5 +1,12 @@
 # Variable Accretion Patterns
 
+  - randomness: a change base or trigger
+  - chaos: a state of randomly distributed change
+  - variance: ability for objects to change
+  - entropy: an output of changes
+  - change: differentiation on some layer/attribute/position in comparison to some other object according to some equivalence/similarity definition
+  - dimension: space where variables can occur
+    - give example of deriving variable types possible in a dimension given combinations of variable attribute values
   - optimal variance in a system
 
     - in general, variance should be preserved when its capable of resolving problems whose solutions are more valuable than the cost of the problems caused by the variance, otherwise it shouldnt be allowed to vary

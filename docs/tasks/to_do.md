@@ -93,43 +93,35 @@
   - make sure youre not assigning scores or other calculated numbers as dict keys or other identifiers anywhere 
   - add keyword processing to apply_find_function 
 
+
 # Functions
 
-
-  - find situations where systems dont act like objects in a system (despite similarities in object/system behavior like variance/definition gaps)
-  - merge finder & builder notes
-
-  - standardize terms: 
-    - shape/structure
-    - rule/test/metric/limit/threshold/boundary/state change/phase shift
-    - model/perspective/filter/standard/interface/index
-    - intent/priority/motivation/incentive
-    - method/function/rule
-    - path/route
-    - metadata/attribute/variable/property 
-    - object/entity/item
-    - type/class/category
-    - variance/randomness/chaos/entropy/change
-      - randomness is a change trigger
-      - chaos is a state of randomly distributed change
-      - variance is ability for objects to change
-      - entropy is an output of changes
-      - change is differentiation on some layer/attribute/position in comparison to some other object according to some equivalence/similarity definition
-    - independence/unique/orthogonal
-    - clarify differences in symmetry, interface, filter, & relationship to variables
-
-  - fit group theory
-  - add variable accretion patterns (how an object becomes influenced by a new variable, complex system interaction patterns, etc)
-  - add get_common_properties function to do extra property-based searches after identifying objects with extract
-  - add function to test chemical reactions: https://cheminfo.github.io/openchemlib-js/docs/classes/reaction.html
-  - fill in keywords & patterns for objects (strategies/mechanisms used by an organism/on a compound)
   - function to predict a compound for a pathogen/condition requires data:
       - compound & pathogen attributes (compound metadata like metabolism/dose/interactions/effects)
       - variable/state impact (gene expression)
       - interaction rules with expected object types (in the bloodstream if taken orally, in the lungs if inhaled)
       - sub-components that could be altered through interaction to neutralize its functionality
       - dependency scope (volume of layers of relevance)
-      - add identification functions:
+  - add get_common_properties function to do extra property-based searches after identifying objects with extract
+  - add function to test chemical reactions: https://cheminfo.github.io/openchemlib-js/docs/classes/reaction.html
+  - fill in keywords & patterns for objects (strategies/mechanisms used by an organism/on a compound)
+  - find situations where systems dont act like objects in a system (despite similarities in object/system behavior like variance/definition gaps)
+  - merge finder & builder notes
+  - resolve terms that can be conflated: 
+    - shape/structure
+    - rule/test/metric/limit/threshold/boundary/state change/phase shift
+    - intent/priority/motivation/incentive
+    - method/function/rule/pattern
+    - path/route/trajectory/traversal/order/list
+    - metadata/attribute/variable/parameter/property 
+    - object/entity/item
+    - type/class/category/subset
+    - independence/unique/orthogonal
+    - model/perspective/filter/standard/interface/index/symmetry/dimension/variable
+
+  - add variable accretion patterns (how an object becomes influenced by a new variable, complex system interaction patterns, etc)
+
+  - add identification functions:
           - types (['structure', 'life form', 'organic molecule'] from 'protein')
           - topic/problem domain
           - objects (nouns like 'protein')
@@ -140,11 +132,13 @@
           - then test on bio systems:
             - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
             - "isolate a pathogen cell before destroying it so it cant communicate info about what destroyed it to other pathogens to help them evolve resistance"
+
       - functions to determine function system metadata:
-        - position/role in a system 
+        - position/role in a system
+        - function to derive role (intended subset of intent stack)
         - function type associated with its core functions (change rules, boundary rules)
-        - emergent effects in edge cases, rule change states, & interacting with other system layers
-        - solution via conceptual route
+        - emergent side effects in edge cases, rule change states, & interacting with other system layers
+
       - function to derive core component functions for any system - then you can write functions to calculate function metadata:
         - determine equivalent functions or more optimal version of a function
         - determine function intent
@@ -152,9 +146,10 @@
         - when generating solutions, change core functions to vary to describe any function set that builds any other function set in a system
           - set of binding/interaction/priority functions for element atoms
 
+
 # Conceptual
 
-  - explainability as a space limited by derivable attributes from data set
+  - explainability as a space limited by derivable attributes from data set & cross-system similarity
   - threshold mechanics for threshold value selection
   - give example of structuring problem in a certain format (optimal transport) as an interface to highlight key differences
   - give example of matching structure, mapping problem semantically, map from intent to structural algorithm design
@@ -162,16 +157,7 @@
   - all problem-solving automation methods have a variance assignment, allowing for variation to be explored in a certain location 
   - you can either map problems to fit that structure or design new automation methods based on the variance gap necessary to solve a problem
 
-  - add causal type identification for known solutions:
-    - causal types: direct/indirect, multiple/alternate, hierarchical, replaceable/unique, generatable/emergent
-    - why did something work? because of its:
-      - structure (which piece - the imidazole)?
-      - interactions
-      - other attributes
-      - similarities
-
-  - use distortion patterns of entities like atlases, templates, solution progressions to form a compressed version of the host system
-    https://techxplore.com/news/2019-11-medical-image-analysis.html
+  - use distortion patterns of entities like atlases, templates, solution progressions to form a compressed version of the host system - https://techxplore.com/news/2019-11-medical-image-analysis.html
 
   - add stressor language patterns
 
@@ -182,10 +168,6 @@
     - find compound with function = "refolds DNA"
     https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
 
-  - now that youve automated problem-solving, there are still things with variable implementations allowing for innovation in this problem space:
-    - selecting functions (solution methods)
-    - selecting limits (metrics)
-    - prioritizing problem solving order
 
 # ML
   - the full data set should have numerical categories indicating condition(s) treated in the output label so it can be separated into sub-sets by condition treated
@@ -195,10 +177,85 @@
   - from a data set, it should be possible to compute which questions can be answered by the data set, with what confidence & specificity - if it matches user intent, you can proceed with the analysis
   - accretion of data set variables into types using info filters is one relationship that occurs on the interface network
 
+
 # Programming
 
   - program to identify optimal use cases 
   - program to delegate optimized use cases to tools optimized for them (languages better at one task than another)
+
+
+# Schema
+
+- function
+  - definition: a set of inputs, a list of rules or rule lists (logic tree) applied to the input set, an output set created by changes to the input set, and side effects from execution
+    - side effect examples: 
+      - before execution: pre-computing
+      - during: memory access/overflow
+      - after: process re-starting
+  - attributes:
+  - rules:
+  - types:
+    - neutralizing functions
+- variable
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+- dimension
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+- type
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+- system
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+- filter
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+- intent
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+- strategy
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+- insight
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+- problem
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+- solution
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+- concept
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+- structure
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
 
 
 # Diagrams
@@ -215,17 +272,21 @@
     - should show limits of measurability & threshold metrics
 
   - make diagram for variable accretion patterns
+
   - finish diagrams for specific concepts, core functions, concept operations, ethical shapes
+  - finish schema for objects
   - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
+
   - consider using dimensionality reduction as a way to identify abstract patterns & functions to explain common deviations from patterns
       https://miro.medium.com/max/1659/1*nQrZmfQE3zmMnCJLb_MNpQ.png
       https://towardsdatascience.com/step-by-step-signal-processing-with-machine-learning-pca-ica-nmf-8de2f375c422
+
   - use this or similar as example when describing current state of problem solving: 
       https://miro.medium.com/max/462/1*X7dQgs1gsJ0Sktz3t7J21Q.png
       https://towardsdatascience.com/feature-extraction-techniques-d619b56e31be
 
-    - solution type: balance info asymmetry
-    - matching
+  - solution type: balance info asymmetry
+  - matching
 
 # Questions
   - are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?

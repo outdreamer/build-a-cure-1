@@ -3,38 +3,39 @@
 
 ## Choosing automation starting point
 
-- the reason the methods are separated & described in problem_solving_matching.md rather than just listing 'problem space model' or 'interface network' or 'structural interface' or 'conceptual interface' or 'matching methods' as solution automation methods even though all the methods use these to some degree, is that various combinations of objects in these models are useful when used together (for example 'concept', 'match', 'structure'), and all of the methods can be used to frame the other methods
+  - the reason the methods are separated & described in problem_solving_matching.md rather than just listing 'problem space model' or 'interface network' or 'structural interface' or 'conceptual interface' or 'matching methods' as solution automation methods even though all the methods use these to some degree, is that various combinations of objects in these models are useful when used together (for example 'concept', 'match', 'structure'), and all of the methods can be used to frame the other methods
 
-- the full set of combinations of interfaces, models, objects, & functions can also be generated if backup methods are needed
+  - the full set of combinations of interfaces, models, objects, & functions can also be generated if backup methods are needed
 
-- based on where the problem is & what type it is, you can start with different methods:
-  - if youre trying to invent something, you can start with structure-fitting or a conceptual query
-  - if youre trying to figure a system out, you can start with system derivation
-  - if youre trying to predict an optimal function of variables in a system, and you have the system knowledge & intents mapped in the system, you can start with vectorization of the problem space
-  - if youre trying to find a path across a variance gap or use unused variance, & you have the system knowledge, you can start with modeling gaps in the problem systems as solutions
-  - if you need a quick approximation of system understanding and dont have time for system derivation, you can start with interface derivation
-  - if you have a lot of specific information about objects in the system and are missing a few relationships, you can use queries on the object model
+  - based on where the problem is & what type it is, you can start with different methods:
+    - if youre trying to invent something, you can start with structure-fitting or a conceptual query
+    - if youre trying to figure a system out, you can start with system derivation
+    - if youre trying to predict an optimal function of variables in a system, and you have the system knowledge & intents mapped in the system, you can start with vectorization of the problem space
+    - if youre trying to find a path across a variance gap or use unused variance, & you have the system knowledge, you can start with modeling gaps in the problem systems as solutions
+    - if you need a quick approximation of system understanding and dont have time for system derivation, you can start with interface derivation
+    - if you have a lot of specific information about objects in the system and are missing a few relationships, you can use queries on the object model
 
-- the methods listed in problem_solving_matching.md use different starting points:
-  - solution/problem model
-  - using interfaces (conceptual/intent/variance/system)
-  - functions -  matching structures & derivation methods (systems, interfaces, structures)
+  - the methods listed in problem_solving_matching.md use different starting points:
+    - solution/problem model
+    - using interfaces (conceptual/intent/variance/system)
+    - functions - matching structures & derivation methods (systems, interfaces, structures)
+      - a sub-problem of selecting structures: selecting limits (metrics)
 
-- these differ in:
-  - focus/scope/interface
-  - info requirements (host system is known, some variable relationship rules are known, some definitions are known, variance gaps are known)
-  - tool access (pre-computed conceptual network, access to common solution functions)
-  - primary solution function (query, transform, matching)
+  - these differ in:
+    - focus/scope/interface
+    - info requirements (host system is known, some variable relationship rules are known, some definitions are known, variance gaps are known)
+    - tool access (pre-computed conceptual network, access to common solution functions)
+    - primary solution function (query, transform, matching)
 
-- the methods in problem_solving_matching.md are examples of how to automate problem-solving, not examples of how to solve a particular problem type
+  - the methods in problem_solving_matching.md are examples of how to automate problem-solving, not examples of how to solve a particular problem type
 
-- solution methods for specific problem types include:
-  - intent-mapping
-  - interface math
-  - system analysis
-  - derivation methods listed in derivation_methods.md
+  - solution methods for specific problem types include:
+    - intent-mapping
+    - interface math
+    - system analysis
+    - derivation methods listed in derivation_methods.md
 
-- solution methods for specific problem types (insight paths) can be used in a solution-automation engine, but theyre not solution-automators themselves (interface derivation enabling traversals)
+  - solution methods for specific problem types (insight paths) can be used in a solution-automation engine, but theyre not solution-automators themselves (interface derivation enabling traversals)
 
 
 ## Fit/Matching
@@ -330,6 +331,7 @@
       - which variables are likeliest to be causative
       - which solution patterns to use as a base
       - check if solution space of problem space is capable of solving problem, or if problem should be re-framed as a transform applied to the system or problem-space to enable a solution (or an optimized solution)
+      - prioritizing problem solving order & selecting set of alternative strategies to start with
 
     - this method requires quite a bit of information or derivation potential, if multiple solution methods are going to be an option
 
