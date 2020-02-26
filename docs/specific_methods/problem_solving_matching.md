@@ -40,7 +40,6 @@
 
 ## Fit/Matching
 
-
 ### Apply problem & solution model
 
   - this method is for when you have a theory about the limits of the solution, but you need to find the right structure within those solution limits, to decompose the problem
@@ -810,11 +809,7 @@
 
     - if these are framed correctly, it'll converge to a problem space vertex, where the key factors of a problem are found
 
-    - for example, when categorizing rules, how would you determine that these types of rules were more important:
-      - boundary rules
-      - binding rules
-      - cooperative/sharing rules
-      - finding rules
+    - for example, when categorizing rules, how would you determine that these types of rules were more important: boundary/binding/cooperative/sharing/finding rules
 
     - you could derive this from the intersection of other attributes & rules:
       - at what point do objects on a layer of interaction interact: boundary

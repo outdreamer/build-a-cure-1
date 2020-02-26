@@ -17,11 +17,9 @@
     - core functions
 
     - metadata functions
-
       - find minimum info needed to solve problem
 
     - change functions
-
       - typical solution change pattern (at various levels of implementation & order/phase of problem-solving trajectory):
         1. configuration to regulate solution switching
         2. combination on top of dependencies to delegate functionality
@@ -29,8 +27,7 @@
         4. protocols to reduce solution space vs. enforcing solution rules or reconstructing problem space & rebuilding solutions on top
 
     - limit functions
-
-      - scope (use case, relevance, lifecycle, self-destruct triggers, context, range)
+      - scope rules (use case, relevance, lifecycle, self-destruct triggers, context, range)
         - time limit
           - only applicable in a certain time window
         - context limit
@@ -40,31 +37,26 @@
           - how to design/choose solutions for reusability
         - cost/benefit analysis 
           - such as learning/understanding/integration/implementation/migration/functionality gap cost potential
-          
       - problem-type & problem-space scope
         - only handles asymmetries or structure-fitting or optimal transport or classification
 
     - dependency functions
-
       - assumptions
         - 'assumes that similarity means relationship'
         - 'assumes value above a threshold means difference'
-
       - context
         - 'requires that other tests have been eliminated'
         - 'requires metric value to qualify'
-
       - standards
         - which standards does it implement (code conventions, protocols, design patterns)
 
     - automation functions
 
-
   - intents
 
     - granular intent:
       - 'test a metric' (where metric indicates some rule to trigger or a classification/definition)
-    
+
     - usage intent:
       - 'assess fit of model to data'
       - 'assess appropriateness of a test or method'

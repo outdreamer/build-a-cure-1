@@ -8,6 +8,7 @@
   - core structures (points, filters, limits, boundaries)
   - core objects
   - core functions
+  - minimum object identification information
   - optimization
   - completeness
   - randomness
@@ -26,6 +27,8 @@
   - state
   - potential (variance, opportunities, unused paths, adjacent states)
   - games
+  - use cases
+  - extreme/edge cases
   - side effects: whether it's a closed system or leaks variance
     - function side effect example:
       - before execution: pre-computing
@@ -55,6 +58,7 @@
     - incorrect metric
     - dependency
     - limit
+
 
 ## Common functions
 

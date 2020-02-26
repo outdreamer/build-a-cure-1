@@ -14,10 +14,9 @@
 	- the layers of possible sets of core functions form the interface network
 	- vector: intersection of attributes value & direction
 		- vectors are a useful structure to store intents, ordered lists of objects having a common attribute, & variable value sets
-	- tensor: 
 	- unit: lower-dimensional composable threshold for differentiation, syncing, & aggregation of filters (has overlap with interface)
 	- map: set of possible transform networks connecting two sets
-	- value: relative difference
+	- value: position (relative difference)
 	- boundary: stabilized outer range of combinations produceable with internal components 
 	- norm: a function that standardizes (so that vectors can be scaled & added) - may be an interface filtering function
 		- a function that assigns value to vectors in a space/set & allows for additivity & scalability
@@ -32,8 +31,8 @@
 
 
 ## Standard terms
-
-	- set: list of distinct objects
+	
+	- set: collection of distinct objects
 
 	- space: a network of objects with defined functions linking them & operations that can be done on the objects - a set with some added structure 
 
@@ -41,23 +40,13 @@
 		- finding the right space to frame a problem in can start with euclidean space
 		- examine the progression of spaces in the evolution of systems for patterns
 
+		- space set:
+			- topological space
+			- metric space
+			- normed vector space
+			- inner product space
+
 		- types:
-
-			- topological space: a set of points, along with a set of neighbourhoods for each point, satisfying a set of axioms relating points & neighbourhoods
-
-			- metric spaces
-
-			- normed vector spaces: vector space where norm is defined
-
-			- inner product spaces
-
-			- hilbert space: generalization of euclidean space, extending vector algebra & calculus methods to infinite dimensions
-
-			- affine space: a structure that removes the concept of distance & angle measure, but keeps the parallelism & ratio of lengths for parallel line segments
-				- generalizes euclidean space properties
-				- an affine space has no origin so no vector can be associated to a point
-				- an affine space consists of displacement vectors, indicating translations to get from one point to another, & which can be added to a point
-				- any vector space may be represented as an affine space
 
 			- topological space: a set of points, along with a set of neighbourhoods for each point, satisfying a set of axioms relating points & neighbourhoods - https://en.wikipedia.org/wiki/Topological_space
 
@@ -89,29 +78,55 @@
 				    	- categories with extra data axiomatizing whether a family of arrows covers an object, for defining sheaves
 				    - other spaces
 
+			- metric spaces
+			- normed vector spaces: vector space where norm is defined
+			- inner product spaces
+			- hilbert space: generalization of euclidean space, extending vector algebra & calculus methods to infinite dimensions
+			- affine space: a structure that removes the concept of distance & angle measure, but keeps the parallelism & ratio of lengths for parallel line segments
+				- generalizes euclidean space properties
+				- an affine space has no origin so no vector can be associated to a point
+				- an affine space consists of displacement vectors, indicating translations to get from one point to another, & which can be added to a point
+				- any vector space may be represented as an affine space
+
 	- base: a collection of subsets of a space/set
 	- span: the span of two vectors is the range of their scaled addition = linear combination of vectors
 		- if one vector is linearly dependent on the other (can be produced as a linear combination of the others), it's redundant & doesnt add to the span
 	- basis of a space: set of linearly independent vectors which spans the space (can be linearly combined to create any possible element in the vector space)
 		- basis vectors i-hat & j-hat are unit vectors of two dimensions x & y, where column 1 = coordinates where i-hat lands, & column 2 = coordinates where j-hat lands
-	- degrees of freedom: dimensions of phase space including all possible states of a physical system 
-	- jacobi identity: a property of binary operations describing impact of order of operations
 	- discriminant: example of calculating properties of solution without calculating solution directly
 		- can tell if solution sub-components (roots) are equal, signed, etc by calculating value of discriminant which is a function of polynomial coefficients
 	- neighborhood: a neighborhood of a point is a set of points containing that point where movement is allowed without leaving the original point's set
 	- algebraic variety: set of solutions to a system of polynomial equations
-	- simplex: generalization of a triangle
-	- manifold: topological space that resembles euclidean space near each point
 	- partially ordered set: a binary relation on X that assigns order to items in the set, though not all items need to be comparable
 	- total order: a binary relation on X that is antisymmetric (comparison cant apply in reverse order), transitive (order is extendible), and connex (all items are comparable)
 	- chain: set paired with a total order
 	- markov chain: where the set of possible new states is determined by current state & change rules (how to move pieces) & system limits (number of open spaces)
-	- lagrangian: 
+	- differential: change in y due to incremental change in x
+	- degrees of freedom: 
+		- a single scalar numerical independent parameter indicating the dimensions of a system's phase space (the set of all possible system states)
+		- standard movement in 3d space requires 3 position params & 3 velocity params describing speed & direction 
 	- jacobian:
+		- jacobi identity: operation order impact of binary operations
+	- lagrangian: 
+		- Lagrangian density: a scalar can be constructed from a field tensor φ and its derivatives
+			- evaluate the derivative of the Lagrangian density with respect to the field components & and the derivatives of the field components
+		- from this density, the action functional can be constructed by integrating over spacetime, where -g ^ 1/2 is viewed as the 'jacobian' in curved spacetime: integral of Lagrangian density * jacobian d4x
+		- lagrangian: the integral of the Lagrangian density over all space
+	- hamiltonian: 
+		- physics quantity describing total energy of a system (sum of potential/kinetic energy of particles in system) - collapsing one set of variables to another
+		- Hamiltonian mechanics aims to replace the generalized velocity variables with generalized momentum variables, also known as conjugate momenta
+	- fourier transform
+	- functional: a linear mapping from a vector space V into its field of scalars - an element of the dual space which is created by mapping the vector space with transforms to the scalar field
     - quaternions: 
       - ratio of two vectors: https://en.wikipedia.org/wiki/Quaternion
       - quaternion number system is a associative, non-commutative division algebra over real numbers    
 	- singleton: unit set with one element
+
+	- algebraic object metadata:
+		- a representation of a lie group: a linear action of a lie group on a vector space; a smooth homomorphism of the group into the group of invertible operators on the vector space
+		- presentation of a group: comprises a set S of generators—so that every element of the group can be written as a product of powers of some of these generators—and a set R of relations among those generators
+		- field extension: relationship between fields such that the operations of a subfield are the operations of the extended field, retricted to the subfield
+
 	- algebraic structures: a group of operations having finite inputs on a set (the algebra refers to the set itself being operated on) - includes groups, rings, fields, lattices	
 	- homomorphism: a structure-preserving map between two algebraic structures of the same type		
 	- category: a collection of objects linked by arrows, having two basic properties: 
@@ -121,27 +136,72 @@
 	- series:
 	- progression:
 	- lattice:
+	- tensor: an algebraic object describing a multilinear relationship between algebraic object sets on a vector space
+		- defined independently of any basis
+		- tensors may map between objects like vectors, scalars, & recursively other tensors
+		- tensors can take several different forms:
+			- scalars and vectors (which are the simplest tensors)
+			- dual vectors
+			- multi-linear maps between vector spaces
+			- some operations such as the dot product
+	- monoid: algebraic structure with a single associative operation and a identity element
+	- domain: set of inputs for which a function is defined (the function produces an output for each element in the domain)
+	- partial function: where every possible x is not forced to map to a value of y
+	- codomain: set limiting the outputs of a function 
+	- binary operation: a calculation that combines two elements to produce another element
+		- an operation of arity (input number) two
+		- binary operation on a set: a binary operation whose two domains and the codomain are the same set
+			- examples: addition, subtraction, multiplication, vector addition, matrix multiplication and conjugation in groups
+		- may involve several sets:
+			- scalar multiplication of vector spaces takes a scalar & a vector to produce a vector
+			- a scalar product takes two vectors to produce a scalar 
+	- simplex: generalization of a triangle
+	- manifold: topological space that resembles euclidean space near each point
+	- bilinear map: function combining elements of two vector spaces to produce a vector in a third vector space, where each argument in linear
+		- example: matrix multiplication
+
+    - algebra (over a field): a vector space with a bilinear product to multiply two vectors in two vector spaces
+    	- a set with operations of multiplication, addition, & scalar multiplication by elements of the field
+    	- satisfies the axioms of a vector space and bilinearity of the product
+    	- types:
+    		- lie algebra: a vector space with a non-associative operation called the lie bracket (an alternating bilinear map satisfying the jacobi order of operations identity)
+			- poisson algebra: associative algebra & a lie bracket that satisfies liebniz's law, formed by the tensor algebra of a Lie algebra
+
 	- group: a set including a binary operation that combines any two elements to make a third element that satisfies closure, associativity, identity, reversibility
-	- abelian group: commutative group where applying the group operation to two group elements doesnt depend on order of operation
-	- a symmetry group: the set of operations that leave an object unchanged (operations that can be captured in a system/interface)
-	- a lie group: a continuous group described by several real parameters that is a differentiable manifold, with smooth group operations
-		- used for modeling continuous symmetry, like symmetry of rotating a sphere in three dimensions, & for modeling continuous symmetries of differential equations
 		- types:
-			- orthogonal groups:
-			- unitary groups:
-	- a representation of a lie group: a linear action of a lie group on a vector space; a smooth homomorphism of the group into the group of invertible operators on the vector space
-	- lie algebra: a vector space with a non-associative operation called the lie bracket (an alternating bilinear map satisfying the jacobi order of operations identity)
-	- finite group: used in galois theory to model discrete symmetries of algebraic equations 
+			- abelian group: commutative group where applying the group operation to two group elements doesnt depend on order of operation
+			- a symmetry group: the set of operations that leave an object unchanged (operations that can be captured in a system/interface)
+			- a lie group: a continuous group described by several real parameters that is a differentiable manifold, with smooth group operations
+				- used for modeling continuous symmetry, like symmetry of rotating a sphere in three dimensions, & for modeling continuous symmetries of differential equations
+				- types:
+					- orthogonal groups:
+					- unitary groups:
+			- finite group: used in galois theory to model discrete symmetries of algebraic equations 
+			- module (over a ring): 
+				- an additive abelian group (like a vector space)
+				- a product is defined between elements of the ring & the module that is distributive over each parameter's addition operation & is compatible with the ring multiplication
+				- generalization of a vector space over a field
+				- the corresponding scalars are the elements of a ring with identity & a multiplication is defined between elements of the ring & the module
+				- R-module: a module taking its scalars from a ring R
+
+	- bracket:
+		- lie bracket:
+		- Poisson bracket: a binary operation that distinguishes a certain class of coordinate transformations (canonical transformations, which map canonical coordinate systems into canonical coordinate systems)
+			- canonical coordinate system: canonical position & momentum variables that satisfy canonical Poisson bracket relations
+
+	- liebniz's law: cannot be separate objects or entities that have all their properties in common
+
 	- ring: set (and an abelian group with commutativity) including two binary operations generalizing addition & multiplication, with an identity element
 		- rings have an additional binary operation that is associative & distributive over the abelian group operation
+
 	- field: a set on which addition, subtraction, division, & multiplication are defined & these operations behave like the corresponding operations do in the fields of real & rational numbers
 		- examples: field of real numbers, rational numbers, complex numbers
-	- field extension: relationship between fields such that the operations of a subfield are the operations of the extended field, retricted to the subfield
-    - algebra: vector space with a (bilinear) way to multiply two vectors in two vector spaces, like a set with a set of supported operations
+
 	- affine transformation: a function between affine spaces which preserves points, straight lines and planes
 		- sets of parallel lines remain parallel after an affine transformation
 		- an affine transformation does not necessarily preserve angles between lines or distances between points, though it does preserve ratios of distances between points lying on a straight line
 		- examples: translation, scaling, homothety, similarity transformation, reflection, rotation, shear mapping, and compositions of them in any combination & sequence
+	
 	- matrix:
 		- transformations keep lines parallel and evenly spaced, and origin is fixed
 		- matrix multiplication is applying two transformations, starting from the right side
@@ -196,7 +256,7 @@
 	- associativity: independence of order property
 	- identity: identity element leaves any element unchanged when combined with it
 	- invertibility: reversibility
-
+	- note that T is a function of p alone, while V is a function of q alone (i.e., T and V are scleronomic)
 
 ## Types
 

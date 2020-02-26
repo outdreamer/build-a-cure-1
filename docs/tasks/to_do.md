@@ -29,6 +29,8 @@
   - compound search from smile formula
   - math notes
   - function/directory organization
+    - ideally functionality would be organized by intent folders so permissions could be granted according to intent assessment
+
 
 # Sources
 
@@ -37,6 +39,7 @@
   - resolve local_database, get_data_store, derive_pattern, get_data_from_source logic & calls
   - pull these properties for compounds on wiki
   - find source of bio keywords & synonyms
+
 
 # Examples
 
@@ -183,6 +186,7 @@
   - program to identify optimal use cases 
   - program to delegate optimized use cases to tools optimized for them (languages better at one task than another)
 
+
 # Diagrams
 
   - make diagram of potential matrix to display the concept
@@ -212,6 +216,7 @@
 
   - solution type: balance info asymmetry
   - matching
+
 
 # Questions
   - are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?

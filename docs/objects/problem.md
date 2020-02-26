@@ -19,6 +19,7 @@
     - minimum information
 
       - given different information, you can use different methods: some methods are immune to information but most require a clear minimum
+      
       - vertices
           - in a system (set of rules & objects) the minimum information can be found with the system vertices
           - these vertices can be:
@@ -46,7 +47,7 @@
 
           - an abstract concept without a particular contextual implementation/structure
 
-    - problem questions (filters):
+    - questions (filters):
       
       - problem type prediction for a system: given a system structure, which problem types are likely to occur?
 
