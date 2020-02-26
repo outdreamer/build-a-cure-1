@@ -1,18 +1,34 @@
 # Math terms
 
 
-## Questions
+## Points/Questions
 
 	- check other number types for alternate solution paths to set of solutions that are more efficient than across real/complex numbers
 	- check what differences are created when core functions start at different core points
 	- what is the topology of spaces called?
 	- are the best encryption functions those with the fewest symmetries?
-
+	- the layers of possible sets of core functions form the interface network
+	- all accreted attribute sets can be collapsed to a point (type) and visualized on a graph to indicate difference between attribute sets, but which attribute set is most informative and should be used as a default base to start from when seeking more attributes (is there a spherical topology where the origin represents this default base attribute set)
+	- with the example of an ideal: 
+		- given subsets of the integer set having absorption & closure properties, they created an algebraic subtype to encapsulate these properties on that set
+		- deriving functions to produce important emergent attributes/objects/rules (emergent attributes of an ideal), given subsets (even numbers) of a set (integers) having attributes (absorption, closure) using a trajectory across function/attribute/set topologies
+		- real numbers
+			- unit (integers)
+				- multiples
+					- subset of multiples of 2
+						- absorption 				
+						- closure
+							- ideal
+					- subset of multiples of 3
+						- absorption 
+						- closure
+							- ideal
+		- the progression from real numbers, to the ideal object, to the attributes/rules of the ideal objects on the attribute/rule topology (jacobson radical) & distance to ring & set object attribute sets, should be describable
+		- are attributes or rules usually better when condensing objects for comparison?
+		
 
 ## Map of set concepts to system analysis
 
-	- the layers of possible sets of core functions form the interface network
-	- all accreted attribute sets can be collapsed to a point (type) and visualized on a graph to indicate difference between attribute sets, but which attribute set is most informative and should be used as a default base to start from when seeking more attributes (is there a spherical topology where the origin represents this default base attribute set)
 
 	- vector: intersection of attributes value & direction
 		- vectors are a useful structure to store intents, ordered lists of objects having a common attribute, & variable value sets
@@ -214,6 +230,10 @@
 
 	- ring: set (and an abelian group with commutativity) including two binary operations generalizing addition & multiplication, with an identity element
 		- rings have an additional binary operation that is associative & distributive over the abelian group operation
+
+		- ideal: subset of a ring with closure & absorption attributes, generalizing certain subsets of the integers like multiples of 2 or 3
+			- absorption: addition & subtraction of even numbers preserves evenness
+			- closure: multiplying an even number by any other integer produces another even number
 
 	- field: a set on which addition, subtraction, division, & multiplication are defined & these operations behave like the corresponding operations do in the fields of real & rational numbers
 		- examples: field of real numbers, rational numbers, complex numbers
