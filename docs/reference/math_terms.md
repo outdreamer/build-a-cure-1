@@ -13,6 +13,7 @@
 
 	- the layers of possible sets of core functions form the interface network
 	- vector: intersection of attributes value & direction
+		- vectors are a useful structure to store intents, ordered lists of objects having a common attribute, & variable value sets
 	- tensor: 
 	- unit: lower-dimensional composable threshold for differentiation, syncing, & aggregation of filters (has overlap with interface)
 	- map: set of possible transform networks connecting two sets
@@ -141,7 +142,6 @@
 		- sets of parallel lines remain parallel after an affine transformation
 		- an affine transformation does not necessarily preserve angles between lines or distances between points, though it does preserve ratios of distances between points lying on a straight line
 		- examples: translation, scaling, homothety, similarity transformation, reflection, rotation, shear mapping, and compositions of them in any combination & sequence
-
 	- matrix:
 		- transformations keep lines parallel and evenly spaced, and origin is fixed
 		- matrix multiplication is applying two transformations, starting from the right side

@@ -879,6 +879,8 @@
 
       - causes of emergence:
 
+          - intersection of multiple objects with compounding effects on same dimensions or attributes (units emerge into a type when aggregated)
+
           - symmetry (similarity/alignment)
             - example:
               - when growth happens in the same direction, an illusion of a limit can emerge (circle or other shape that seems limited but is only appearing to be limited by a circular boundary, and the primary factor creating that shape is the growth in the same directions (away from center)
