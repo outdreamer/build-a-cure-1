@@ -24,11 +24,12 @@
 						- closure
 							- ideal
 		- the progression from real numbers, to the ideal object, to the attributes/rules of the ideal objects on the attribute/rule topology (jacobson radical) & distance to ring & set object attribute sets, should be describable
-		- are attributes or rules usually better when condensing objects for comparison?
-		
+		- is attribute or rule interface better when condensing objects for comparison
+		- if a sphere is symmetric with respect to the origin when rotated around an axis, that means its exact previous state cant be derived once its rotation position is measured, but the previous state space can
+			- measuring the output of a symmetric transform cannot reveal specific information about original position (reduce solution space of possible original positions)
+			- the output of symmetric transforms might disrupt other systems (adjacent objects to sphere), so to reveal information about a symmetric transform history on an object, youd need to position that object next to objects that would respond to the output of that symmetric transform
 
 ## Map of set concepts to system analysis
-
 
 	- vector: intersection of attributes value & direction
 		- vectors are a useful structure to store intents, ordered lists of objects having a common attribute, & variable value sets
@@ -159,15 +160,23 @@
 		- field extension: relationship between fields such that the operations of a subfield are the operations of the extended field, retricted to the subfield
 
 	- algebraic structures: a group of operations having finite inputs on a set (the algebra refers to the set itself being operated on) - includes groups, rings, fields, lattices	
+	
 	- homomorphism: a structure-preserving map between two algebraic structures of the same type
 	- endomorphism: a map of a mathematical object to itself		
+	
 	- category: a collection of objects linked by arrows, having two basic properties: 
 		- the ability to compose the arrows associatively
 		- the existence of an identity arrow for each object
 		- example: a simple example is the category of sets, whose objects are sets and whose arrows are functions 
+	
 	- series:
 	- progression:
-	- lattice:
+
+	- lattice: a partially ordered set in which every two elements have a unique supremum (a least upper bound or join) and a unique infimum (a greatest lower bound or meet)
+		- example: the natural numbers, partially ordered by divisibility, for which the unique supremum is the least common multiple and the unique infimum is the greatest common divisor
+		- least common multiple: smallest positive integer divisible by a & b
+		- greatest common divisor: largest positive integer that can be multiplied to generate a & b
+	
 	- tensor: an algebraic object describing a multilinear relationship between algebraic object sets on a vector space
 		- defined independently of any basis
 		- tensors may map between objects like vectors, scalars, & recursively other tensors
