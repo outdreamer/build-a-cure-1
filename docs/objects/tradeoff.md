@@ -18,20 +18,39 @@
 
       - how many steps/requirements and integrations with other exploits are necessary before something is converted into an exploit
 
-    - many tradeoffs are false dichotomies because:
+    - many tradeoffs are false dichotomies
 
-      - when either side is a type class, both types can often apply at the same time
-      - when either side is a decision (as in a decision tree), one decision path may converge to the other decision path
-      - either path may produce attributes that seem similar enough to be indistinguishable from the other
-    
-    - within the bias (underfitting due to inflexible algorithm assumptions that miss features) vs. variance (overfitting to an inflexible data set) trade-off
+      - conceptual examples
 
-      - https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff
+        - when either side is a type class, both types can often apply at the same time
+        - when either side is an alternate decision (as in a decision tree), one decision path may converge to the other decision path, or produce the same effects
+        - either path may produce attributes that seem similar enough to be indistinguishable from the other
+        - this is an example of a false paradox - two assertions that seem to contradict each other while being simultaneously true, but actually dont contradict each other or arent simultaneously true
+      
+      - bias (underfitting due to inflexible algorithm assumptions that miss features) vs. variance (overfitting to an inflexible data set) trade-off example
+
+        - https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff
         
-      - being adaptable to variance may be a form of bias, in that it may be unnecessary variance that should be hardcoded and is just creating problems by remaining variable
-      - the opposite is also true, bias towards adaptability may be a form of variance, if the bias produces random change
-      - bias doesnt inherently contradict variance as the definitions imply
-      - in the stat example:
-        - bias from assumptions may only miss features that are in flux & being phased out, so they dont produce error by the time it gets pushed to production
-        - there may be noise along the accurate prediction function
-        - the data set may be an average sample, so overfitting it doesnt produce error
+        - standard errors
+          - missing features (underfitting) from biased assumptions
+          - adding noise as features (overfitting) to variance of a training data set
+
+        - errors of accidental accuracy (context that neutralizes a standard error)
+          - bias from assumptions may only miss features that are in flux & being phased out, so they dont produce error by the time it gets pushed to production
+          - there may be noise along the accurate prediction function
+          - the data set may be an average sample, so overfitting it doesnt produce error
+          - the features that the bias misses shouldnt/neednt have been in the data set in the first place (collinear/correlated, uncorrelated, etc)
+        
+        - errors of false dichotomy
+          - being adaptable to variance may be a form of bias, in that it may be unnecessary variance that should be hardcoded and is just creating problems by remaining variable
+          - the opposite is also true, bias towards adaptability may be a form of variance, if the bias produces random change
+          - bias doesnt inherently contradict variance as the definitions imply
+
+    - given these error types, you can assess whether the 'dichotomy' definition actually applies to the data youre working with or whether it might be a sub-optimal structure for that data
+
+    - verify whether a structure fits data:
+        - check that observable attributes & emergent attributes match expected versions
+        - check that problem/error types of an object are possible for the data 
+          - if a data set cant be an average sample among data sets, or cant be subject to noise, the data set might not fit the concepts of bias/variance
+        - unit: check that object rules match observable behaviors
+        - integration: check that relationship rules match observable behaviors
