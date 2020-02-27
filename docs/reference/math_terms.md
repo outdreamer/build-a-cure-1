@@ -30,6 +30,7 @@
 			- the output of symmetric transforms (spin, momentum) might disrupt other systems (adjacent objects to sphere), so to reveal information about a symmetric transform history on an object to derive original position, youd need to position that object next to objects that would respond to the output of that symmetric transform, or in spaces where its output would have an impact on objects that could respond as needed
 			- the set of adjacent objects & spaces where the symmetric transform output could be used to derive original position can be used as a parameter to obfuscate the original position (algorithm uses different element in the set each time)
 
+
 ## Map of set concepts to system analysis
 
 	- vector: intersection of attributes value & direction
@@ -51,6 +52,17 @@
 
 
 ## Standard terms
+
+## Stats
+
+    - bias error (missing features) is from erroneous assumptions in the learning algorithm
+    	- high bias can cause an algorithm to miss the relevant relations between features & target outputs (underfitting)
+
+    - variance error (doesnt generalize well) is from sensitivity to small fluctuations in the training set
+    	- high variance can cause an algorithm to model the random noise in the training data, rather than the intended outputs (overfitting)
+
+
+## Set/category theory
 
 	- representation space: executing linear transforms on vector spaces to represent algebraic structure elements
 

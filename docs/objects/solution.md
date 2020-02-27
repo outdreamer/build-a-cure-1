@@ -2,6 +2,11 @@
 
 ## Attributes
 
+  - vuln potential of a solution
+
+    - identify conceptual/type interactions of the solution
+      - example: explore the interaction of random applied to random (or algorithms applied to themselves, like hash of a hash) for possible interference opportunities
+
   - granularity/abstraction: 
     - needs to do one specific task really well
     - needs to cover an abstract problem gap with minimal impact/side effects
