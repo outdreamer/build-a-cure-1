@@ -54,10 +54,6 @@
     - state
     - problems
     - potential
-      - variance
-      - opportunities/gaps
-      - unused paths/energy
-      - adjacent states accessible with existing/available resources
     - games
     - context
       - use cases
@@ -105,6 +101,53 @@
 
 
 ## Objects
+
+- prediction
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+
+- cause
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+
+- potential
+  - types:
+      - variance
+      - gaps
+        - variable (range of possible values indicating a gap structure that can be filled with those values)
+        - opportunity
+        - risk
+        - exploit
+      - unused paths/energy/combinations
+      - adjacent states accessible with existing/available resources
+
+- variable
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+    - input
+    - output
+    - required
+    - emergent (aggregate, compounding, aligned)
+    - conceptual
+    - type
+
+- type
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
+
+- dimension
+  - definition: 
+  - attributes:
+  - rules:
+  - types:
 
 - function
 
@@ -174,46 +217,6 @@
       - solution (variance/stressor/error detection, tracing, identification & handler)
       - structure (gap, boundary, system, limit, hub, object, link, network, filter)
 
-
-- variable
-  - definition: 
-  - attributes:
-  - rules:
-  - types:
-
-- dimension
-  - definition: 
-  - attributes:
-  - rules:
-  - types:
-
-- type
-  - definition: 
-  - attributes:
-  - rules:
-  - types:
-
-- system
-  - definition: 
-  - attributes:
-  - rules:
-  - types:
-
-- game 
-  - a set of intents/alternatives/limits/incentives/exploits/rules/risk & a definition of distance from intent fulfillment (position), usually resulting in the resolution of a clearly optimal route
-  - a game is a type of system & a mixed set, which can exist as a component of a system
-  - games can have many different structures like:
-    - a directed graph with a vector set representing possible agent intents/functions/resources
-    - a system of nodes & links where agents need function input resources to traverse
-    - a decision tree where certain tree info becomes accessible only at certain nodes (adding uncertainty/risk)
-    - a set of trade options between nodes with different info change/update rules in a system to optimize a resource/trade/market metric
-
-- filter
-  - definition: 
-  - attributes:
-  - rules:
-  - types:
-
 - intent
   - definition: 
   - attributes:
@@ -232,17 +235,24 @@
   - rules:
   - types:
 
+- game 
+  - a set of intents/alternatives/limits/incentives/exploits/rules/risk & a definition of distance from intent fulfillment (position), usually resulting in the resolution of a clearly optimal route
+  - a game is a type of system & a mixed set, which can exist as a component of a system
+  - games can have many different structures like:
+    - a directed graph with a vector set representing possible agent intents/functions/resources
+    - a system of nodes & links where agents need function input resources to traverse
+    - a decision tree where certain tree info becomes accessible only at certain nodes (adding uncertainty/risk)
+    - a set of trade options between nodes with different info change/update rules in a system to optimize a resource/trade/market metric
+
 - problem
 
   - definition: 
   - attributes:
   - rules:
   - types:
-
       - dependency
       - leaks (variance, resource/info)
       - injection (assumptions/variance/control/randomness)
-
       - mismatches
         - conflicts
         - imbalances
@@ -252,19 +262,16 @@
         - misidentification
         - gaps
         - limits
-
       - side effects: whether it's a closed system or leaks variance
         - function side effect example:
           - before execution: pre-computing
           - during: memory access/overflow
           - after: process re-starting
-
       - specific problems:
         - enforcement gap (should have enforced rule but didnt)
         - unintended use (involves integrated third party tech not under review)
         - malicious alternative route to get same output
         - legitimate/alternative route to get malicious output
-
 
 - solution
   - definition: 
@@ -300,13 +307,13 @@
   - rules:
   - types:
 
-- prediction
+- system
   - definition: 
   - attributes:
   - rules:
   - types:
 
-- cause
+- filter
   - definition: 
   - attributes:
   - rules:

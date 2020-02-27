@@ -1,12 +1,14 @@
 # Variable Accretion Patterns
 
-  - randomness: a change base or trigger
-  - chaos: a state of randomly distributed change
-  - variance: ability for objects to change
-  - entropy: an output of changes
-  - change: differentiation on some layer/attribute/position in comparison to some other object according to some equivalence/similarity definition
-  - dimension: space where variables can occur
-    - give example of deriving variable types possible in a dimension given combinations of variable attribute values
+  - terms:
+    - randomness: a change base or trigger
+    - chaos: a state of randomly distributed change
+    - variance: ability for objects/rules/attributes/values to change
+    - entropy: an output of changes
+    - change: differentiation on some layer/attribute/position in comparison to some other object according to some equivalence/similarity definition
+    - dimension: space where variables can occur
+      - give example of deriving variable types possible in a dimension given combinations of variable attribute values
+
   - optimal variance in a system
 
     - in general, variance should be preserved when its capable of resolving problems whose solutions are more valuable than the cost of the problems caused by the variance, otherwise it shouldnt be allowed to vary
@@ -21,22 +23,11 @@
 
       - if you determine optimal bio-system implementation & design dna accordingly, your bio-system will be able to handle the problems optimized, but if you dont allow genetic mutations, it wont be able to adapt to new problems (variance sources) with existing evolution methods, so youd need to build extra evolution methods (like functionality finding/acquiring methods in each cell's dna, or a built-in evolution system that cooperates with other systems like the immune system) to make sure variance is injectable on demand or acquirable accidentally from the environment
 
-
-  - variable types
-    - input
-    - output
-    - required
-    - emergent (aggregate, compounding, aligned)
-    - conceptual
-    - type
-
   - variable interactions
-
 
     - a variable has an upper limit on what degree of change it can determine in another variable that its not equivalent or directly related to
       - sometimes this limit is determinable, like with variables of a known type:
         - an attribute of an object can only have x influence on an emergent system attribute
-
 
     - randomness can occur on any interface layer in a system, but the trajectory between layers leaves traces 
     

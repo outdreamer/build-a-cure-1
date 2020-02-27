@@ -1,7 +1,6 @@
+# System
 
-- system:
-
-	- definition: set of rules & objects
+	- definition: set of rules & objects, usually with a boundary unless rules emerge as a boundary
 
 	- attributes:
 		- can interact with multiple systems/problem/solution spaces
