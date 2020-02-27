@@ -4,8 +4,6 @@
   
   - some structures are clear tradeoffs/dichotomies, and other structures seem like clear dis/advantages
 
-  - everything can be used for malicious intents, but some structures are more exploitable than others, when there's a gap between logic & intent
-
   - example of false tradeoff:
 
     - features as exploits & vice versa
@@ -47,10 +45,3 @@
           - bias doesnt inherently contradict variance as the definitions imply
 
     - given these error types, you can assess whether the 'dichotomy' definition actually applies to the data youre working with or whether it might be a sub-optimal structure for that data
-
-    - verify whether a structure fits data:
-        - check that observable attributes & emergent attributes match expected versions
-        - check that problem/error types of an object are possible for the data 
-          - if a data set cant be an average sample among data sets, or cant be subject to noise, the data set might not fit the concepts of bias/variance
-        - unit: check that object rules match observable behaviors
-        - integration: check that relationship rules match observable behaviors

@@ -141,6 +141,13 @@
 
     - rather than sculpting an invention using an increasing set of limits, you can select or derive a structure that probably matches, then check if it fits & transform it until it does (opposite direction as I.)
 
+    - to verify whether a structure fits information:
+        - check that observable attributes & emergent attributes match expected versions
+        - check that problem/error types of an object are possible for the data 
+          - if a data set cant be an average sample among data sets, or cant be subject to noise, the data set might not fit the concepts of bias/variance
+        - unit: check that object rules match observable behaviors
+        - integration: check that relationship rules match observable behaviors
+
     1. using the requirements of a solution, design a structure (or range of structures) that may match the problem space
 
     2. check if it fits the problem space
