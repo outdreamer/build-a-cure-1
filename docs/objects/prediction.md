@@ -58,9 +58,7 @@
       - example:
 
         - given that a chess piece can move according to certain rules & given certain input chess pieces with position, the set of all possible moves is calculatable
-        - given the set of all possible moves (and resulting paths), you should be able to calculate emerging attributes of the game of chess
-          
-          - such as:
+        - given the set of all possible moves (and resulting paths), you should be able to calculate emerging attributes of the game of chess, such as:
 
             - ratio between optimal paths and possible paths
             - maximum path-limiting potential of a non-final move
@@ -138,8 +136,10 @@
 
 ### Structural objects as prediction tools
 
+  - set
   - filter
   - network
+  - system (network with boundary)
   - structures of change (direction/distance)
 
 

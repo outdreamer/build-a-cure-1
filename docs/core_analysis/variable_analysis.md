@@ -22,6 +22,14 @@
       - if you determine optimal bio-system implementation & design dna accordingly, your bio-system will be able to handle the problems optimized, but if you dont allow genetic mutations, it wont be able to adapt to new problems (variance sources) with existing evolution methods, so youd need to build extra evolution methods (like functionality finding/acquiring methods in each cell's dna, or a built-in evolution system that cooperates with other systems like the immune system) to make sure variance is injectable on demand or acquirable accidentally from the environment
 
 
+  - variable types
+    - input
+    - output
+    - required
+    - emergent (aggregate, compounding, aligned)
+    - conceptual
+    - type
+
   - variable interactions
 
 
