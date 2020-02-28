@@ -7,9 +7,7 @@
     - compounding patterns that are measured in ways that vary from expected patterns but not at point of measurement (wave function & line intersection)
 
   - expectation vacillation is optimized when neither extreme is expected permanently & expectations gravitate toward local inflection or threshold points
-    - expecting evil & expecting sainthood are both sub-optimal in most situations, 
-      whereas expecting moderation is usually more useful bc it allows more freedom, and more freedom allows more self-optimization than using forced optimization rules, 
-      which change slower than local (self) optimization rules
+    - expecting evil & expecting sainthood are both sub-optimal in most situations, whereas expecting moderation is usually more useful bc it allows more freedom, and more freedom allows more self-optimization than using forced optimization rules, which change slower than local (self) optimization rules
 
   - prediction functions
 
