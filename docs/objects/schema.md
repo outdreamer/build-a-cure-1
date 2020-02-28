@@ -222,6 +222,7 @@
   - attributes:
   - rules:
   - types:
+    - intent direction can be a priority (abstract goal with position, like fairness)
 
 - strategy
   - definition: 
