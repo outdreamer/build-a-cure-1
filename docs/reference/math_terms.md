@@ -66,6 +66,7 @@
 					- a dimension resulting from 0th dimension with the dimension reduction operation applied (-1th dimension, etc)
 
 				- what is the concept associated with:
+
 					- angle: anchored difference
 					- position: unanchored difference
 
@@ -74,6 +75,10 @@
 					- angle measures difference in direction starting from same origin
 
 					- what type of object measures difference in equivalence?
+
+						- is there an "angle" object between anchored (position-dependent) & unanchored (position-independent) difference measures?
+
+						- in what space can you frame anchored differences (angles) and unanchored differences (positions) as dimensions so the angle between them reflects their relationships?
 
 			- as you can see the metadata of each space can be calculated from its definition, as can the extensions of that space
 
