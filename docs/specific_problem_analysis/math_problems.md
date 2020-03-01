@@ -38,6 +38,8 @@
 		- if variation is about to converge or expand
 		- if variation is concentrated in a sub-system (trade loop) that is largely independent from the host system and can be ignored in many cases
 
+	- statistics is dependent on data & gives a temporary snapshot of a relationship
+
 
 ### Checking variables for predictive power instead of predicting variable metadata & sets first
 

@@ -32,6 +32,39 @@
 	- interface analysis translates geometry & algebra to interface layer objects
 
 
+## Spaces as attribute generators
+
+	- euclidean space example
+
+		- core inputs
+			- position
+			- angle
+
+		- core functions
+			- in Euclidean space, the core functions operate on the position attribute:
+				- shifting (1-d position transform)
+				- rotating (2-d position transform)
+				- shift & rotate (3-d position transform)
+
+		- definition of equivalence:
+			- "if one object can be transformed into the other by some sequence of translations, rotations & reflections, theyre considered equivalent"
+			- the definition of equivalence can be framed in terms of the core functions
+
+		- system analysis:
+
+			- how would you derive/reduce the likely/possible emergent attributes of euclidean space given this metadata?
+				- identify the possible change types
+				- identify which parameters explain change within these change types (position, angle)
+				- identify the core functions, given the sequence of dimension numbers (0,1,2,3 in 3-d space) & the change types possible on each dimension or combination of dimensions
+
+			- extension:
+				- what is the operation associated with:
+					- dimension reduction
+
+				- what is the extreme version of combined attributes/functions?
+					- a dimension resulting from 0th dimension with the dimension reduction operation applied (-1th dimension)
+
+
 ## Map of set concepts to system analysis
 
 	- vector: intersection of attributes value & direction
