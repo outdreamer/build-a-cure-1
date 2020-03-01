@@ -336,19 +336,37 @@
 											- given the relevance of the concept of 'dimension reduction', apply a dimension reduction to get the unit operation (1/x), so you can multiply it by dx to get area
 											- use that unit operation to relate the function (of the generalized cube volume produced by side length e & side_count y) to the area under the unit operation function 1/x (area up to x = a is y, from e^y = a)
 
-										- this is an alternative to knowing that ln a = area under 1/x from x = 1 to x = a
+										- this is an alternative to knowing that ln a = area under 1/x from x = 1 to x = a, and an alternative to deriving the relationship a classical way
+										- this method uses concepts/objects/attributes/functions of the space, their definitions, & combinations of them to generate sets of probable important items and to derive probable important relationships
 
 
 								- to do:
+									- above we adjust the function a bit to get:
+										e ^ y * x^-1 = 1
+
+									- how would we get euler's identity from that, without knowing that e & pi are inherently related?
+
+									- eulers identity:
+										e ^ pi(i) = -1
+										e ^ pi(-1 ^ 1/2) = -1
+
+									- in a unit circle of radius 1, the hypotenuse of a right triangle whose corner intersects with the circle = 1 ^ 1/2
+
+									- the inverse of that would be -1 ^ 1/2
+
+										e ^ pi(inverse (hypotenuse concept)) = -1
+										e ^ pi(inverse (radius concept)) = -1
+
+									- with the original equation, e ^ 0 = 1
+
+									- if pi is the y-value in this situation, there may be a relationship between pi and 0 that is relevant here - maybe a relationship between 0 & pi from the unit circle metadata
+									
 									- now that weve established why e ^ (i * pi) = -1, given that we know that the unit circle also intersects with -1 and has pi as a parameter, is there a relationship between e ^ (i * pi) and any combination of the cos & sin functions that can produce the unit circle
 
-
 				- reference:
-					- ln a = log (base e) of a = (e^x = a) = (area under x^-1 from 1 to a) = (integral of x^-1 dx, from 1 to a)
 					- eulers equation: e ^ (i * pi) + 1 = 0
 					- e ^ ix = cos x + i sin x
 					- cos = adjacent/hypotenuse, sin = opposite/hypotenuse
-					- i = -1 ^ 1/2
 
 ## Map of set concepts to system analysis
 
