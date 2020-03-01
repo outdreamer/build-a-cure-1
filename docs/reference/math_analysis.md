@@ -287,9 +287,11 @@
 										- rotation operation
 
 									- e ^ y = a generalized cube of side length e multiplied by itself y times = area under 1/x
+
 									- you can either:
 										- compare the area under e ^ y = a to the area under the curve of 1/x from 1 to a (the standard influence measuring function) to check for relationships
 										- compare another metric of e ^ y = a to standardized version of 1/x from 1 to a to check for relationships
+
 									- area under 1/x = sum of subcomponents of (1/x (the inverse of x, influence of the x standard on the unit value of 1) * change in x at each subcomponent)
 									
 									- why would the y value produced by ln a (e ^ y = a) be equal to the area under 1/x from 1 to a
@@ -329,7 +331,9 @@
 
 										- so to get the fact that ln a = the area under the curve 1/x from x=1 to x=a, you could:
 											- identify the key attributes of the natural log (including intersections)
-											- apply a dimension reduction to get the unit operation (1/x)
+											- identify that the key operation of the natural log is the exponent (dimension increase)
+											- the opposite of 'dimension increase' (adding another side to the cube) is 'dimension reduction'
+											- given the relevance of the concept of 'dimension reduction', apply a dimension reduction to get the unit operation (1/x), so you can multiply it by dx to get area
 											- use that unit operation to relate the function (of the generalized cube volume produced by side length e & side_count y) to the area under the unit operation function 1/x (area up to x = a is y, from e^y = a)
 
 										- this is an alternative to knowing that ln a = area under 1/x from x = 1 to x = a
