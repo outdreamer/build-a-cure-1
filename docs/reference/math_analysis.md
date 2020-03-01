@@ -123,6 +123,40 @@
 						- why would momentum have an inherent connection to value-anchored distance?
 
 					- the constant forming the natural log (e) is also related to the constant forming the circle (pi * r ^ 2)
+						- ln a = log (base e) of a = (e^x = a) = integral under x^-1 from 1 to a = x^-1 dx, from 1 to a
+
+					- eulers equation: 
+						e ^ (i * pi) + 1 = 0
+
+					- e ^ ix = cos x + i sin x
+
+					- cos = adjacent/hypotenuse
+
+					- sin = opposite/hypotenuse
+
+					- i = -1 ^ 1/2
+
+				- you could start with basic metadata that you do know bc its inherent to the definition of the space:
+
+					- core attributes: 
+						- position
+						- angle
+
+					- what are some core objects in this space?
+						- axis
+						- unit
+						- point
+						- line
+						- unanchored difference & anchored difference are two important objects that can be generated from the metadata attributes position & angle
+					
+					- the idea of an 'anchor' is a 'starting point'
+
+					- what are some relationships between core objects/attributes/functions?
+						- two axes in euclidean space have an intersection point, where they both have equal value to base their scales on
+
+
+					- using that intersection point as a starting point, or anchor (position attribute value), what values could the other primary attribute (angle) take, or what core functions (rotation) can be applied to core objects (line) that adjust the other primary attribute (angle)?
+
 
 
 ## Map of set concepts to system analysis
