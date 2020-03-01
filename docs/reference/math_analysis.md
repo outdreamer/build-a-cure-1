@@ -123,17 +123,12 @@
 						- why would momentum have an inherent connection to value-anchored distance?
 
 					- the constant forming the natural log (e) is also related to the constant forming the circle (pi * r ^ 2)
-						- ln a = log (base e) of a = (e^x = a) = integral under x^-1 from 1 to a = x^-1 dx, from 1 to a
-
-					- eulers equation: 
-						e ^ (i * pi) + 1 = 0
-
+						
+					- ln a = log (base e) of a = (e^x = a) = integral under x^-1 from 1 to a = x^-1 dx, from 1 to a
+					- eulers equation: e ^ (i * pi) + 1 = 0
 					- e ^ ix = cos x + i sin x
-
 					- cos = adjacent/hypotenuse
-
 					- sin = opposite/hypotenuse
-
 					- i = -1 ^ 1/2
 
 				- you could start with basic metadata that you do know bc its inherent to the definition of the space:
@@ -143,21 +138,41 @@
 						- angle
 
 					- what are some core objects in this space?
-						- axis
-						- unit
-						- point
-						- line
+						- axis: measurement standard of a variable (in which value difference can be measured)
+						- unit: accretion of value into an identifiable object (whole)
+						- point: set of parameter values
+						- line: connection between points
+						- anchor: starting point held fixed
+						
 						- unanchored difference & anchored difference are two important objects that can be generated from the metadata attributes position & angle
 					
-					- the idea of an 'anchor' is a 'starting point'
-
 					- what are some relationships between core objects/attributes/functions?
 						- two axes in euclidean space have an intersection point, where they both have equal value to base their scales on
 
+					- what are some emergent concepts/attributes/functions?
+						- the concept of zero, positive & negative are inherent to the definitions, but can also be derived if not included in the definitions (and just the origin point overlapping at zero for both axes is included in the definition)
+						- the concept of infinity emerges from identifying the axis as representing the set of real numbers (if your program didnt already know about infinity from the available space metadata)
 
 					- using that intersection point as a starting point, or anchor (position attribute value), what values could the other primary attribute (angle) take, or what core functions (rotation) can be applied to core objects (line) that adjust the other primary attribute (angle)?
 
+						- we are trying to generate the idea of a circle using the metadata we have (position/angle, rotation/shift, point/line)
 
+						- this is where having multiple ways to generate an object comes in handy
+							- having more than one way to generate a circle (rotation of anchored line and relationship to a square having overlapping midpoints/corners with the circle) allows you to use fewer assumptions, like if you didnt want to assume knowledge of the rotation function
+
+						- if you rotate an anchored line around a fixed point, what kind of motion can you expect?
+							- the length of an anchored line during a rotation would not change, & it also wouldnt form a straight line between two points on the shape traced by the unanchored endpoint of the line
+
+						- if you traversed a square formed by four equivalent lines along the axes, what kind of motion can you expect?
+							- this is where momentum should emerge from any prediction model
+								- four lines along the axes forming a square whose corners intersected with the circle's boundary would also be able to generate that circle on rotation
+								- if you only had the square, and traversed the square with an object, the object would have momentum once it reached a corner that made it difficult to pivot exactly 90 degrees to the next straight line
+								- if you allowed deviation from the square at corner pivots, the square would have a bubble shape
+								- if you continued allowing deviation from the square, a circle would emerge, as the momentum at each corner decreased with each pivot
+								- eventually it might stay constant at a circle, unless the forces overrode it to make it alternate between convex & concave over-corrections to a straight line
+
+						- now that we have the idea of a circle from multiple routes (just by combining inherent & derived core space metadata), can we arrive at either of the above constants or their relationships using these definitions & the shape we've derived?
+						
 
 ## Map of set concepts to system analysis
 
