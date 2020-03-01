@@ -273,8 +273,28 @@
 										- decreases quickly to - infinity as x decreases to 0
 
 									- given these metadata, possible relationships with other objects include:
-										- the key arc of the natural log function resembles an arc of the unit circle in radius ratio
+										- the key arc of the natural log function between its key metadata points (at x = 0 and x = e) resembles an arc of the unit circle in radius ratio
 
+									- regardless, we can also derive the relationship between e ^ y = x and area under x ^ - 1 from 1 to a given the relationship between the objects:
+										- inverse
+										- ratio (side_count) between generalized side length & volume
+										- multiplication = add x, b times (shape of side lengths x & b)
+										- multiplication by itself = add x, x times (square of side length x)
+										- multiplication = addition of dimension
+										- intent of multiplication is to get generalized higher-dimension volume (area for 2d)
+										- hypotenuse
+										- hypotenuse roots
+										- circle
+										- pi
+										- imaginary unit
+										- rotation operation
+
+									- e ^ y = a generalized cube of side length e multiplied by itself y times = x = area under 1/x
+									- you can either compare the area under e ^ y = x to the area under the curve of 1/x (the standard influence measuring function) to check for a relationship
+									- or you can compare another metric of e ^ y = x to a transformed version of the area under the curve of 1/x to check for a relationship
+
+									- area under 1/x = sum of subcomponents of (1/x (the inverse of x, influence of the x standard on the unit value of 1) * change in x at each subcomponent)
+									
 								- now that weve established why e ^ (i * pi) = -1, given that we know that the unit circle also intersects with -1 and has pi as a parameter, is there a relationship between e ^ (i * pi) and any combination of the cos & sin functions that can produce the unit circle
 
 
