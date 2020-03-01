@@ -58,11 +58,24 @@
 				- identify the core functions, given the sequence of dimension numbers (0,1,2,3 in 3-d space) & the change types possible on each dimension or combination of dimensions
 
 			- extension:
+
 				- what is the operation associated with:
 					- dimension reduction
 
 				- what is the extreme version of combined attributes/functions?
-					- a dimension resulting from 0th dimension with the dimension reduction operation applied (-1th dimension)
+					- a dimension resulting from 0th dimension with the dimension reduction operation applied (-1th dimension, etc)
+
+				- what is the concept associated with:
+					- angle: anchored difference
+					- position: unanchored difference
+
+					- both are measures of equivalence
+
+					- angle measures difference in direction starting from same origin
+
+					- what type of object measures difference in equivalence?
+
+			- as you can see the metadata of each space can be calculated from its definition, as can the extensions of that space
 
 
 ## Map of set concepts to system analysis
