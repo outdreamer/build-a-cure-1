@@ -194,6 +194,22 @@
 
 								- back to our original motion type combination that produced the idea of a circle, how would that idea of a circle interact with a way to calculate the ratio between a side length x and the number of sides of length x to generate a volume y?
 
+								- also what other relationships are inherent to the core objects?
+
+									- with a square (another core object formed with equal side lengths), are any properties related between the side length and the other objects?
+
+										- a diagonal emerges, connecting opposite corners
+
+											- the concept of a right angle emerges from the square
+
+												- at various configurations of a four-sided object and its diagonal (triangle formed by diagonal), the outer corner of the triangle intersects with the unit circle of radius 1
+												- the points of overlap include key angles forming the diagonal (hypotenuse of a right triangle) like pi/2, pi/6, etc
+												- that circle's radius correlates with the ratios between the diagonal-generated (triangular) object's side lengths (sin, cos) - meaning pi/2, pi/6, etc - this correlation produces the constant of pi
+
+									- now we have a relationship between diagonals, right triangles, angle, and circles - just by varying & combining core objects (square, circle, corner, angle) and core concepts (unit, intersection, distance, origin)
+
+									- we've also identified a constant (pi) locking the relationship between the diagonal of a four-sided object anchored at the origin & the unit circle anchored at the origin
+
 
 					- ln a = log (base e) of a = (e^x = a) = integral under x^-1 from 1 to a = x^-1 dx, from 1 to a
 					- eulers equation: e ^ (i * pi) + 1 = 0
