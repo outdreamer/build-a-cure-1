@@ -32,6 +32,38 @@
 	- interface analysis translates geometry & algebra to interface layer objects
 
 
+## Function conceptual metadata
+
+	- a wave function has metadata:
+		- conceptual attributes:
+			- repeatability
+			- vacillation
+			- spectrum
+			- limits (extremes)
+			- momentum
+			- intersections with axes
+			- change rule phase shifts
+			- parameter change points
+			- charge points (attracting motion beyond standard forces, when motion begins to stabilize to constant or no motion, to re-charge it/continue the pattern) 
+
+		- structural attributes
+			- inflection points
+			- maxima, minima, range
+			- zeros
+			- continuity
+
+		- adjacent functions
+			- polynomials
+			- rotation
+			- opposing force conflict (propulsion, gravity)
+
+		- equivalent functions (with scalar/shifting transforms)
+			- sine function
+
+		- contradictory functions
+			- reversal of parabolas with asymptotes rather than intersections with x-axis
+
+
 ## Spaces as attribute generators
 
 	- euclidean space example
