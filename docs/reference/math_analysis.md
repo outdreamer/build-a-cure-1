@@ -238,7 +238,7 @@
 
 									- the relationship between (a * 1 & b * 1) and (a * i & b * i) has a rotation or reflection operation depending on the axis - rotation being a core operation, so we know this is likely important, given its relationship not just to core objects like the hypotenuse but also the implications of those core objects (two roots possible to produce c ^ 2)
 
-								- area under 1/x from 1 to a = ln a
+								- area under 1/x from 1 to a) = ln a    (where ln a indicates e ^ y = a)
 
 								- within the function family of (x ^ b = y), what are the patterns with negative values of b? (how many times do you multiply x by itself and divide 1 by that (inverse of generalized volume), to get y) 
 
@@ -259,9 +259,6 @@
 										- it multiplies that subcomponent area by the inverse of the new power value (dimension_count/side_count) * the original coefficient because this is a subcomponent of the area, not the whole area, and its proportion needs to be adjusted to represent that
 
 											- scaling each subcomponent area by the inverse of the increased dimension_count adjusts the subcomponent area's contribution, according to the new dimension
-
-
-									- why would the inverse of a generalized cube volume have an (area under x ^ - 1 from 1 to a), where a = e ^ x
 
 									- 1/x is the function where the standard changes but the number being evaluated stays the same - it basically measures the power exacted by each standard
 
@@ -289,13 +286,57 @@
 										- imaginary unit
 										- rotation operation
 
-									- e ^ y = a generalized cube of side length e multiplied by itself y times = x = area under 1/x
-									- you can either compare the area under e ^ y = x to the area under the curve of 1/x (the standard influence measuring function) to check for a relationship
-									- or you can compare another metric of e ^ y = x to a transformed version of the area under the curve of 1/x to check for a relationship
-
+									- e ^ y = a generalized cube of side length e multiplied by itself y times = area under 1/x
+									- you can either:
+										- compare the area under e ^ y = a to the area under the curve of 1/x from 1 to a (the standard influence measuring function) to check for relationships
+										- compare another metric of e ^ y = a to standardized version of 1/x from 1 to a to check for relationships
 									- area under 1/x = sum of subcomponents of (1/x (the inverse of x, influence of the x standard on the unit value of 1) * change in x at each subcomponent)
 									
-								- now that weve established why e ^ (i * pi) = -1, given that we know that the unit circle also intersects with -1 and has pi as a parameter, is there a relationship between e ^ (i * pi) and any combination of the cos & sin functions that can produce the unit circle
+									- why would the y value produced by ln a (e ^ y = a) be equal to the area under 1/x from 1 to a
+
+										- unit inverse (one-iteration dimension reduction) of a generalized cube volume from 1 to a (from e ^ 0 to e ^ a), where a = e ^ y
+										- 1/x from 1 to a (from e ^ 0 to e ^ x), where a = e ^ y
+
+										- for ln a, a = multiply e by itself y times (y = side count of the generalized cube volume with side length e) to produce generalized volume a (value of x)
+										- for 1/x, y = inverse of x (x reduced by itself, or 1 applied to the standard of x - to neutralize anything multiplied by x, like a cube volume with side length x)
+
+										- when you take the integral of 1/x (sum of subcomponents of (1/x * change in x within subcomponent)), raising the exponent of x (starting from x ^ -1) would be x ^ 0, which is 1
+										- this is a hint that the imaginary unit is relevant, which we'll find out later is relevant to e
+										
+										- why would the number of sides y of a cube of side length e & volume a be related to the sum of the inverse of x (applied from e ^ 0 to e ^ a)?
+
+											e^y = generalized cube volume of side count y & side length e
+											e^y ~ sum of (1/1 + 1/(1 + dx) + ... + 1/(e ^ a))
+											e^y ~ sum of (1/e^0 + ... + 1/(e^a))
+											e^y ~ sum of (inverse of generalized cube volume of side count 0 & side length e + ... + inverse of generalized cube volume of side count a & side length e )
+											e^y ~ sum of (standard influence from generalized cube volume of side count 0 & side length e + ... + standard influence of generalized cube volume of side count a & side length e)
+											e^y ~ sum of (standard influence from 1 to a (the influence of 1 as a standard (trivial) to the influence of a as a standard (non-trivial)))
+
+											- youre adding standardizing influence of generalized cube volumes with base (side length) e & number of sides y (from x-value 1 to x-value a) to get e^y (ln a)
+											- the inverse of x, x^-1 removes a dimension of x from the standard x
+											- removing a unit from a dimension & multiplying by previous power is done with derivatives to find change in a variable with respect to another variable
+
+											- removing a unit from dimension x from "e^y = x":
+												e ^ y * x^-1 = x^1 * x^-1
+												e ^ y * x^-1 = 1
+												e ^ y * 1/x = 1
+
+												= "apply inverse of x to e^y to get 1"
+												= "apply x standard to e^y to get 1"
+												this is a unit relationship (at what point do x & y produce 1, if any): when y = 0, x = 1
+													e ^ 0 = 1
+												- taking this unit relationship-producing step (removing unit from x dimension) across the x-range from 1 to a produces the function to multiply x by when taking subcomponents to add to get the generalized cube volume
+
+										- so to get the fact that ln a = the area under the curve 1/x from x=1 to x=a, you could:
+											- identify the key attributes of the natural log (including intersections)
+											- apply a dimension reduction to get the unit operation (1/x)
+											- use that unit operation to relate the function (of the generalized cube volume produced by side length e & side_count y) to the area under the unit operation function 1/x (area up to x = a is y, from e^y = a)
+
+										- this is an alternative to knowing that ln a = area under 1/x from x = 1 to x = a
+
+
+								- to do:
+									- now that weve established why e ^ (i * pi) = -1, given that we know that the unit circle also intersects with -1 and has pi as a parameter, is there a relationship between e ^ (i * pi) and any combination of the cos & sin functions that can produce the unit circle
 
 
 				- reference:
