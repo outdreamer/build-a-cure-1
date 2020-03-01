@@ -209,8 +209,7 @@
 
 									- we've also identified a constant (pi) locking the relationship between the diagonal of a four-sided object anchored at the origin & the unit circle anchored at the origin
 
-
-								- back to our original motion type combination that produced the idea of a circle, how would that idea of a circle interact with a way to calculate the ratio between a side length x and the number of sides of length x to generate a volume y?
+								- back to our original motion type combination that produced the idea of a circle, how would that idea of a circle interact with a way to calculate the ratio between a side length x and the number of sides of length x to generate a volume y, or a particular configuration of that function using e as a base?
 
 								- the exponent relationship between base x & target y (x ^ b = y) is related to the idea of multiplication (x * y = add x y times), which is related to the idea of an integral (iterate over each point in x range, which is a line of distance y, and add each y-distance value to get the integral, or area under the curve)
 
@@ -218,12 +217,66 @@
 
 								- now we have a theoretical relationship between angle, circle, pi, generalized cube side length/volume exponent relationship
 
-								- the remaining items to identify are:
+								- right triangles are important bc they help calculate slope (hypotenuse representing change and opposite & adjacent sides representing components of that change) 
+
+								- at this point, the remaining items to identify are:
+									- the importance of the imaginary unit i, square root of -1
 									- the importance of the natural log base (the constant e)
-									- the important of the imaginary unit i, square root of -1
 									- the relationship between ln a and integral under x^-1 from 1 to a
-									- euler's equation relating natural log constant and pi: e ^ (i * pi) + 1 = 0
+									- euler's equation relating natural log constant and pi: e ^ (i * pi) = -1
 									- bonus relationship between pi proxy functions sin/cos and the natural log base e: e ^ ix = cos x + i sin x
+
+								- we should iterate through all the core operations (rotate, root, log), core objects (unit, 1, 0), core attributes (positive/negative), etc, which should produce many concepts, attributes, & functions, among them the idea of the square root of negative 1, the imaginary unit
+
+								- the idea of the imaginary unit is a number which when multiplied by itself (taken as the side of a square) produces -1 (the area of the square with sides of length i is -1)
+
+								- how does this imaginary unit object relate to the other objects?
+
+									- hypotenuse c (length of diagonal of a right triangle) = (a ^ 2 + b ^ 2) = c ^ 2
+
+									- the hypotenuse has two solutions, c & -c
+
+									- the relationship between (a * 1 & b * 1) and (a * i & b * i) has a rotation or reflection operation depending on the axis - rotation being a core operation, so we know this is likely important, given its relationship not just to core objects like the hypotenuse but also the implications of those core objects (two roots possible to produce c ^ 2)
+
+								- area under 1/x from 1 to a = ln a
+
+								- within the function family of (x ^ b = y), what are the patterns with negative values of b? (how many times do you multiply x by itself and divide 1 by that (inverse of generalized volume), to get y) 
+
+									- this points to the concept of an inverse, which has a neutralizing impact to its original form, when the operation is reversed (multiplication by original distortion)
+
+									- the generalized cube volume exponentially increases as side length x increases - when you take the inverse of a generalized cube volume, the core object 'generalized cube volume' approaches a limit such as 0
+
+									- what about the unit version of an inverse generalized cube volume, x ^ -1, or 1/x - how does this relate to the other objects?
+
+									- a negative exponent produces a reduction of the dimension of the generalized cube, like dividing a volume by the side length to get an area
+
+									- this is related to the idea of a integral, which increases the exponent by one & multiplies the term by the inverse of the new power, to get a metric of higher dimension (like area under curve function in range)
+
+										- integral: 1/(power + 1) * coefficient * (variable ^ power + 1) 
+
+										- the integral is increasing the power in order to get the area of a subcomponent of the area under the curve, by increasing the generalized cube dimension by another side to get the metric of the higher dimension (multiplying x by itself another time to get the generalized volume of x ^ (b + 1))
+
+										- it multiplies that subcomponent area by the inverse of the new power value (dimension_count/side_count) * the original coefficient because this is a subcomponent of the area, not the whole area, and its proportion needs to be adjusted to represent that
+
+											- scaling each subcomponent area by the inverse of the increased dimension_count adjusts the subcomponent area's contribution, according to the new dimension
+
+
+									- why would the inverse of a generalized cube volume have an (area under x ^ - 1 from 1 to a), where a = e ^ x
+
+									- 1/x is the function where the standard changes but the number being evaluated stays the same - it basically measures the power exacted by each standard
+
+									- one reason the natural log function might be significant is a subset of its metadata:
+										- intersection with y-axis at x = 0
+										- intersection with y = 1 at x = e
+										- aymptote at x = 0
+										- increases slowly to infinity as x increases
+										- decreases quickly to - infinity as x decreases to 0
+
+									- given these metadata, possible relationships with other objects include:
+										- the key arc of the natural log function resembles an arc of the unit circle in radius ratio
+
+								- now that weve established why e ^ (i * pi) = -1, given that we know that the unit circle also intersects with -1 and has pi as a parameter, is there a relationship between e ^ (i * pi) and any combination of the cos & sin functions that can produce the unit circle
+
 
 				- reference:
 					- ln a = log (base e) of a = (e^x = a) = (area under x^-1 from 1 to a) = (integral of x^-1 dx, from 1 to a)
