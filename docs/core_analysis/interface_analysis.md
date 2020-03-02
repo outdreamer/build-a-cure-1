@@ -5,9 +5,14 @@
   - clarify terms perspective/filter/standard/index & relationship to variables/operations on the interface
 
   - to do:
-    - include how interfaces develop & how core functions can be derived for each interface
+    - include interface physics: how interfaces develop & how core functions can be derived for each interface
     - interfaces will attract other attributes until a new interface is necessary to capture extra attributes, acting like centers:
       https://phys.org/news/2020-03-theory-link-class-complex.html
+
+      - "growth rate of the number of points in the geometric object is packed into a function called the inverse Mellin transform of the L-function as the concept of numbers is extended"
+      - number concept growth rate function (Mellin transform) is invariant under certain operations, showing its a modular form, just like the property of superstring theory where the geometric object is the target space
+
+  - filter vs. rule is a similar question to attribute vs. rule - sometimes one format is better based on the info you have, sometimes its worth it to transform the format
 
   - symmetry: "feature of the system that is preserved under some transformation" (as opposed to lost information/irreversible transform) - https://en.wikipedia.org/wiki/Symmetry_(physics)
 

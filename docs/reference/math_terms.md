@@ -32,17 +32,7 @@
 
 	- representation space: executing linear transforms on vector spaces to represent algebraic structure elements
 
-	- vector:
-
-	- spinor:
-		- elements of a complex vector space that can be associated with Euclidean space
-		- like geometric vectors & tensors, spinors transform linearly when the Euclidean space is subjected to an incremental rotation
-		- when a sequence of such small rotations is composed to form a final rotation, the resulting spinor transformation depends on which sequence of small rotations was used
-		- unlike vectors and tensors, a spinor transforms to its negative when the space is continuously rotated through a complete turn from 0° to 360° 
-		- spinors can be viewed as the "square roots" of vectors
-		- lends an attribute of adjacence to otherwise opposing values, crystallizing the concept of a shortcut (a metadata hack) to an operation
-	
-	- set: collection of distinct objects
+	- functional analysis: study of vector spaces endowed with some kind of limit-related structure (inner product, norm, topology, etc.) and the linear functions defined on these spaces and respecting these structures in a suitable sense
 
 	- space: a network of objects with defined functions linking them & operations that can be done on the objects - a set with some added structure 
 
@@ -98,13 +88,94 @@
 				- an affine space consists of displacement vectors, indicating translations to get from one point to another, & which can be added to a point
 				- any vector space may be represented as an affine space
 
-	- base: a collection of subsets of a space/set
-	- span: the span of two vectors is the range of their scaled addition = linear combination of vectors
+	- vector:
+
+	- spinor:
+		- elements of a complex vector space that can be associated with Euclidean space
+		- like geometric vectors & tensors, spinors transform linearly when the Euclidean space is subjected to an incremental rotation
+		- when a sequence of such small rotations is composed to form a final rotation, the resulting spinor transformation depends on which sequence of small rotations was used
+		- unlike vectors and tensors, a spinor transforms to its negative when the space is continuously rotated through a complete turn from 0° to 360° 
+		- spinors can be viewed as the "square roots" of vectors
+		- lends an attribute of adjacence to otherwise opposing values, crystallizing the concept of a shortcut (a metadata hack) to an operation
+	
+	- cartesian plane: where a pair of points are specified uniquely by coordinates which represent signed distances to the point from two fixed perpendicular lines with the same unit length
+
+	- upper half of the complex plane: points in the cartesian plane with y > 0
+
+	- homomorphism: a map between two objects of the same algebraic structure type
+		- fundamental theorem on homomorphisms involves the quotient object (quotient algebra/cokernel) defined by the kernel
+
+	- special linear groups: 
+		- special linear group SL of degree n over field F is the set of square n x n matrixes with determinant 1, having the group operations of matrix multiplication/inversion
+		- the normal subgroup of the general linear group given by the kernel of the determinant
+
+	- classical groups: special linear groups over the reals R, the complex numbers C, and the quaternions H with special automorphism groups of symmetric/skew-symmetric bilinear forms & Hermitian/skew-Hermitian sesqui-linear forms defined on real, complex, and quaternionic finite-dimensional vector spaces
+
+		- rotation group SO(3) is a symmetry of Euclidean space and all fundamental laws of physics
+		- Lorentz group O(3,1) is a symmetry group of spacetime of special relativity
+		- special unitary group SU(3) is the symmetry group of quantum chromodynamics
+		- symplectic group Sp(m) finds application in hamiltonian mechanics and quantum mechanical versions of it
+
+	- unit two-sphere: 
+
+	- root of unity: any complex number that is 1 when raised to some positive integer power
+
+	- kernel of a homomorphism: 
+		- measurement of the degree to which the homomorphism is not injective
+		- the kernel is trivial if the homomorphism is injective
+		- kernel of a matrix (null space): the kernel of the matrix's linear map
+		- kernel of a linear map: the set of vectors in the mapping's domain that map to the zero vector
+
+	- set of projective space relationships: https://en.wikipedia.org/wiki/File:PSL-PGL.svg
+			Z = F*
+			(F*)^n = Z/SZ = F*/SZ
+			PGL = GL/Z
+			PSL = SL/SZ
+			F*/(F*)^n
+			F*/(F*)^n = PGL/PSL
+		each row & column in this matrix is a short exact sequence
+
+	- projective linear group: 
+		- the quotient group PGL = GL/Z = general linear group of V / subgroup of all nonzero scalar transformations of V
+		- induced action of the general linear group of a vector space V on the associated projective space P(V)
+		- the subgroup of all nonzero scalar transformations of V acts trivially on the projective space & form the kernel of the action, so theyre removed
+		- Z reflects that the scalar transformations form the center of the general linear group
+
+	- projective special linear group:
+		- the induced action of the special linear group on the associated projective space
+		- PSL = SL/SZ
+		- SL is the special linear group over V
+		- SZ is the subgroup of scalar transformations with unit determinant; SZ is also the center of SL, and is identified with the group of nth roots of unity in F, where n is the dimension of V, and F is the base field
+
+	- dimension of a vector space: the number of basis vectors of V over its base field
+
+	- mobius transformations: 
+		- the projective transformations of the complex projective line. They form a group called the Möbius group, which is the projective linear group PGL(2,C)
+		- functions of the form f(z) = (az + b)/(cz + d) where ab - cd is not 0 and a, b, c, & d are complex numbers
+		- can be formed by stereographic projection of the plane to the unit two-sphere, rotating & moving it, and then doing stereographic projection from its new position/orientation to the plane
+		- these transformations preserve angles, so every circle & straight line is mapped to a line or circle
+
+	- modular group: group of mobius transformations of the upper half of the complex plane
+
+	- modular form: invariant with respect to the modular group
+
+	- set: collection of distinct objects
+
+	- base: 
+		- a collection of subsets of a space/set
+	- span: 
+		- the span of two vectors is the range of their scaled addition = linear combination of vectors
 		- if one vector is linearly dependent on the other (can be produced as a linear combination of the others), it's redundant & doesnt add to the span
-	- basis of a space: set of linearly independent vectors which spans the space (can be linearly combined to create any possible element in the vector space)
-		- basis vectors i-hat & j-hat are unit vectors of two dimensions x & y, where column 1 = coordinates where i-hat lands, & column 2 = coordinates where j-hat lands
-	- discriminant: example of calculating properties of solution without calculating solution directly
+	
+	- basis of a vector space: 
+		- set of linearly independent vectors which spans the space (can be linearly combined to create any possible element in the vector space)
+		- components/coordinates on the basis are the coefficients used to multiply these core vectors to get another vector
+			- basis vectors i-hat & j-hat are unit vectors of two dimensions x & y, where column 1 = coordinates where i-hat lands, & column 2 = coordinates where j-hat lands
+
+	- discriminant: 
+		- example of calculating properties of solution without calculating solution directly
 		- can tell if solution sub-components (roots) are equal, signed, etc by calculating value of discriminant which is a function of polynomial coefficients
+
 	- neighborhood: a neighborhood of a point is a set of points containing that point where movement is allowed without leaving the original point's set
 	- algebraic variety: set of solutions to a system of polynomial equations
 	- partially ordered set: a binary relation on X that assigns order to items in the set, though not all items need to be comparable
@@ -233,6 +304,7 @@
 		- an affine transformation does not necessarily preserve angles between lines or distances between points, though it does preserve ratios of distances between points lying on a straight line
 		- examples: translation, scaling, homothety, similarity transformation, reflection, rotation, shear mapping, and compositions of them in any combination & sequence
 	
+	- vector-valued function: a function whose range is the set of multidimensional or infinite-dimensional vectors, whose inputs could be a scalar or a vector
 	- matrix:
 		- transformations keep lines parallel and evenly spaced, and origin is fixed
 		- matrix multiplication is applying two transformations, starting from the right side
@@ -245,8 +317,28 @@
 			- transpose
 			- conjugate
 			- identity
-			- orthogonal
-		- determinant: volume of parallelipiped space created by the vectors
+			- orthogonal: 
+				- determinant of an orthogonal matrix is always plus or minus one
+			- hermitian:
+				- determinant of a complex Hermitian matrix is always real
+			- jacobian:
+				- jacobian matrix of a vector-valued function in several variables is the matrix of all its first-order partial derivatives
+				- when the jacobian matrix is square, the determinant is the jacobian determinant
+
+		- determinant: 
+			- a scalar values computed from a square matrix that describes properties of the linear transformations specified by the matrix
+			- volume of n-dimensional parallelipiped space created by the vectors
+			- volume scaling factor of the linear transformation described by the matrix
+			- is positive or negative based on if the linear mapping preserves or reverses n-space orientation
+			- can be used to solve a system of linear equations defined by the matrix
+			- a matrix (with entries in a field) is singular (not invertible) if and only if its determinant is zero
+			- determinants are used to define the characteristic polynomial of a matrix, whose roots are the eigenvalues
+			- determinants express the signed n-dimensional volumes of n-dimensional parallelepipeds
+			- Jacobian determinant is used in the change of variables rule for integrals of functions of several variables, when the number of input variables is the same as the number of output vector components
+			- multiplicativity:
+				- the determinant of a product of matrices is equal to the product of determinants
+			- determinant of an orthogonal matrix is always plus or minus one, and the determinant of a complex Hermitian matrix is always real
+
 	- kernel function: similarity function over pairs of data points in raw representation
 		- "Any linear model can be turned into a non-linear model by applying the kernel trick to the model: replacing its features (predictors) by a kernel function"
 		- "Most kernel algorithms are based on convex optimization or eigenproblems" - https://en.wikipedia.org/wiki/Kernel_method
@@ -316,6 +408,8 @@
 		- immersion: a differentiable function between two differentiable manifolds whose derivative is injective (1-to-1)
 
 		- injective function: one-to-one function
+
+		- surjective:
 
 		- identify function: always returns same value as its input
 
