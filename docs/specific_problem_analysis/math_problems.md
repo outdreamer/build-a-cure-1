@@ -28,17 +28,24 @@
 		- the risk presented to an insurer is not calculatable from metadata of the insured but from the system the insured exists in
 		- the risk in a transaction is calculatable using financial system metadata
 
-	- causal shape of the relationship is assumed to be independent/input vars => dependent/output vars, where in reality the dependence between the output & inputs is likelier to be nonzero & the framework for specifying causal distance is not formalized
+	- causal shape of the relationship is assumed to be independent/input vars => dependent/output vars, where in reality the dependence between the output & inputs is likelier to be nonzero
+
+	- the framework for specifying causal distance is not formalized
 
 	- causal shape analysis is crucial for:
 		- identifying variables that can be collapsed into other variables
 		- which variables that can be replaced with others
+		- if there's a one-to-one direct variable relationship in the causal chain
+		- if there's an interface variable in the causal chain (a filter where other variables accrue)
+		- if there's a set of causal shapes elimination rules that can be applied without gathering more info
 		- if there are likely sets of variables that influence the target variable
 		- if a variable is an end leaf rather than a causal branch variable
 		- if variation is about to converge or expand
 		- if variation is concentrated in a sub-system (trade loop) that is largely independent from the host system and can be ignored in many cases
 
 	- statistics is dependent on data & gives a temporary snapshot of a relationship
+
+	- similar problem to game theory, which tries to isolate a game unit with the context of other games
 
 
 ### Checking variables for predictive power instead of predicting variable metadata & sets first
