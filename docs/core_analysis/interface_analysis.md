@@ -4,6 +4,11 @@
 
   - clarify terms perspective/filter/standard/index & relationship to variables/operations on the interface
 
+  - to do:
+    - include how interfaces develop & how core functions can be derived for each interface
+    - interfaces will attract other attributes until a new interface is necessary to capture extra attributes, acting like centers:
+      https://phys.org/news/2020-03-theory-link-class-complex.html
+
   - symmetry: "feature of the system that is preserved under some transformation" (as opposed to lost information/irreversible transform) - https://en.wikipedia.org/wiki/Symmetry_(physics)
 
     - a sphere is symmetric with respect to the origin when a rotation transform is applied, producing attributes for comparison (spin, momentum, speed, direction) while others are held constant (origin on axis of rotation)
