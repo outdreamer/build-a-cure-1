@@ -3,23 +3,7 @@
 ## Standard terms
 
 
-## Algebra
-
-	- natural log:
-		- area under the curve y = 1/x from 1 to a
-		- ln x = e^y = x (how many times do you multiply e by itself to get x)
-
-
-## Stats
-
-    - bias error (missing features) is from erroneous assumptions in the learning algorithm
-    	- high bias can cause an algorithm to miss the relevant relations between features & target outputs (underfitting)
-
-    - variance error (doesnt generalize well) is from sensitivity to small fluctuations in the training set
-    	- high variance can cause an algorithm to model the random noise in the training data, rather than the intended outputs (overfitting)
-
-
-## Set/category theory
+### Math field terms
 
 	- geometry: study of structure
 	- algebra: study of mathematical relationships
@@ -32,7 +16,44 @@
 
 	- representation space: executing linear transforms on vector spaces to represent algebraic structure elements
 
-	- functional analysis: study of vector spaces endowed with some kind of limit-related structure (inner product, norm, topology, etc.) and the linear functions defined on these spaces and respecting these structures in a suitable sense
+	- functional analysis
+
+		- study of vector spaces endowed with some kind of limit-related structure (inner product, norm, topology, etc.) and the linear functions defined on these spaces and respecting these structures in a suitable sense
+		- the study of function spaces & function property transformations
+		- study of vector spaces having a topology, in spaces possibly having infinite dimensions (where linear algebra doesnt use a topology & covers mostly finite-dimensions)
+
+		- infinite dimensional analysis: extension of functional analysis with measuring, integrating, and assessing probability in infinite dimensional spaces
+
+
+### Algebra/Geometry
+
+	- natural log:
+		- area under the curve y = 1/x from 1 to a
+		- ln x = e^y = x (how many times do you multiply e by itself to get x)
+
+	- series/progression:
+
+	- algebraic variety: set of solutions to a system of polynomial equations
+
+	- discriminant: 
+		- example of calculating properties of solution without calculating solution directly
+		- can tell if solution sub-components (roots) are equal, signed, etc by calculating value of discriminant which is a function of polynomial coefficients
+
+
+### Stats
+
+    - bias error (missing features) is from erroneous assumptions in the learning algorithm
+    	- high bias can cause an algorithm to miss the relevant relations between features & target outputs (underfitting)
+
+    - variance error (doesnt generalize well) is from sensitivity to small fluctuations in the training set
+    	- high variance can cause an algorithm to model the random noise in the training data, rather than the intended outputs (overfitting)
+
+	- degrees of freedom: 
+		- a single scalar numerical independent parameter indicating the dimensions of a system's phase space (the set of all possible system states)
+		- standard movement in 3d space requires 3 position params & 3 velocity params describing speed & direction 
+
+
+### Space
 
 	- space: a network of objects with defined functions linking them & operations that can be done on the objects - a set with some added structure 
 
@@ -77,6 +98,7 @@
 				    - grothendieck sites
 				    	- categories with extra data axiomatizing whether a family of arrows covers an object, for defining sheaves
 				    - other spaces
+				    	- manifold: topological space that resembles euclidean space near each point
 
 			- metric spaces
 			- normed vector spaces: vector space where norm is defined
@@ -88,6 +110,31 @@
 				- an affine space consists of displacement vectors, indicating translations to get from one point to another, & which can be added to a point
 				- any vector space may be represented as an affine space
 
+	- quaternions: ratio of two vectors: https://en.wikipedia.org/wiki/Quaternion
+      - quaternion number system is a associative, non-commutative division algebra over real numbers  
+	- cartesian plane: where a pair of points are specified uniquely by coordinates which represent signed distances to the point from two fixed perpendicular lines with the same unit length
+	- upper half of the complex plane: points in the cartesian plane with y > 0
+
+
+### Linear Algebra & Set theory
+
+	- algebraic object metadata:
+		- a representation of a group: where elements of a group are represented by invertible matrices in such a way that the group operation is matrix multiplication
+			- a representation of a lie group: a linear action of a lie group on a vector space; a smooth homomorphism of the group into the group of invertible operators on the vector space
+		- presentation of a group: comprises a set S of generators—so that every element of the group can be written as a product of powers of some of these generators—and a set R of relations among those generators
+		- field extension: relationship between fields such that the operations of a subfield are the operations of the extended field, retricted to the subfield
+
+	- algebraic structures: a group of operations having finite inputs on a set (the algebra refers to the set itself being operated on) - includes groups, rings, fields, lattices	
+	
+	- simplex: generalization of a triangle
+
+	- domain: set of inputs for which a function is defined (the function produces an output for each element in the domain)
+	- codomain: set limiting the outputs of a function 
+	- image of a function: set of all output values a function can produce
+
+
+#### Vectors
+
 	- vector:
 
 	- spinor:
@@ -98,12 +145,70 @@
 		- spinors can be viewed as the "square roots" of vectors
 		- lends an attribute of adjacence to otherwise opposing values, crystallizing the concept of a shortcut (a metadata hack) to an operation
 	
-	- cartesian plane: where a pair of points are specified uniquely by coordinates which represent signed distances to the point from two fixed perpendicular lines with the same unit length
+	- base: 
+		- a collection of subsets of a space/set
+	- span: 
+		- the span of two vectors is the range of their scaled addition = linear combination of vectors
+		- if one vector is linearly dependent on the other (can be produced as a linear combination of the others), it's redundant & doesnt add to the span
 
-	- upper half of the complex plane: points in the cartesian plane with y > 0
+	- basis of a vector space: 
+		- set of linearly independent vectors which spans the space (can be linearly combined to create any possible element in the vector space)
+		- components/coordinates on the basis are the coefficients used to multiply these core vectors to get another vector
+			- basis vectors i-hat & j-hat are unit vectors of two dimensions x & y, where column 1 = coordinates where i-hat lands, & column 2 = coordinates where j-hat lands
 
-	- homomorphism: a map between two objects of the same algebraic structure type
-		- fundamental theorem on homomorphisms involves the quotient object (quotient algebra/cokernel) defined by the kernel
+	- vector space dimension: the number of basis vectors of V over its base field
+
+	- eigenvector/characteristic vector of a linear transformation: 
+		- a nonzero vector that changes at most by a scalar factor when that linear transformation is applied to it, like the unit vector specific to a transform, where the eigenvalue is the standardization constant
+		- eigenvector stack may be a useful framing object - the eigenvectors in multiple related spaces
+		- the progression of these determining vectors (from likeliest/simplest/most efficient/most common determining vector configurations) may have useful patterns as well
+
+	- eigenvalue of an eigenvector: the factor by which the eigenvector is scaled
+
+	- vector space V quotient by a subspace N (V/N): a vector space produced by collapsing N to 0
+
+	- cokernel: 
+		- partition of algebraic structure elements using a congruence relation
+		- the cokernel of a linear mapping f between vector spaces X -> Y is the quotient space (Y / im(f)) of f's codomain (output space) by f's image
+		- the dimension of the cokernel is the corank of f
+		- cokernels correspond to the kernels in that the kernel is a subobject of the domain, while the cokernel is a quotient object of the codomain
+		- measures the constraints of y in order for f(x) = y to have a solution (solution filters)
+		- kernel measures the solution's degrees of freedom if one exists
+
+		- for abelian groups/vector spaces/modules, the cokernel of the homomorphism f = the quotient of Y by the image of f
+		- in topological settings (bounded linear operators between Hilbert spaces) you take the image closure before passing to the quotient
+
+
+#### Sets
+
+	- set: collection of distinct objects
+	- neighborhood: a neighborhood of a point is a set of points containing that point where movement is allowed without leaving the original point's set
+	- partially ordered set: a binary relation on X that assigns order to items in the set, though not all items need to be comparable
+	- total order: a binary relation on X that is antisymmetric (comparison cant apply in reverse order), transitive (order is extendible), and connex (all items are comparable)
+	- chain: set paired with a total order
+	- markov chain: where the set of possible new states is determined by current state & change rules (how to move pieces) & system limits (number of open spaces)  
+	- singleton: unit set with one element
+	- category: a collection of objects linked by arrows, having two basic properties: 
+		- the ability to compose the arrows associatively
+		- the existence of an identity arrow for each object
+		- example: a simple example is the category of sets, whose objects are sets and whose arrows are functions 
+	
+#### Graphs
+
+	- directed graph: a graph with vertices/nodes & edges (ordered pairs) having direction
+	- transpose graph: a directed graph with its edges reversed
+	- skew-symmetric graph: a directed graph that is isomorphic to its transpose graph, over an isomorphism that is an involution without fixed points
+
+
+#### Groups
+
+	- unit two-sphere: 
+
+	- root of unity: any complex number that is 1 when raised to some positive integer power
+
+	- modular group: group of mobius transformations of the upper half of the complex plane
+
+	- modular form: invariant with respect to the modular group
 
 	- special linear groups: 
 		- special linear group SL of degree n over field F is the set of square n x n matrixes with determinant 1, having the group operations of matrix multiplication/inversion
@@ -115,16 +220,6 @@
 		- Lorentz group O(3,1) is a symmetry group of spacetime of special relativity
 		- special unitary group SU(3) is the symmetry group of quantum chromodynamics
 		- symplectic group Sp(m) finds application in hamiltonian mechanics and quantum mechanical versions of it
-
-	- unit two-sphere: 
-
-	- root of unity: any complex number that is 1 when raised to some positive integer power
-
-	- kernel of a homomorphism: 
-		- measurement of the degree to which the homomorphism is not injective
-		- the kernel is trivial if the homomorphism is injective
-		- kernel of a matrix (null space): the kernel of the matrix's linear map
-		- kernel of a linear map: the set of vectors in the mapping's domain that map to the zero vector
 
 	- set of projective space relationships: https://en.wikipedia.org/wiki/File:PSL-PGL.svg
 			Z = F*
@@ -147,7 +242,8 @@
 		- SL is the special linear group over V
 		- SZ is the subgroup of scalar transformations with unit determinant; SZ is also the center of SL, and is identified with the group of nth roots of unity in F, where n is the dimension of V, and F is the base field
 
-	- dimension of a vector space: the number of basis vectors of V over its base field
+
+#### Transformations
 
 	- mobius transformations: 
 		- the projective transformations of the complex projective line. They form a group called the Möbius group, which is the projective linear group PGL(2,C)
@@ -155,72 +251,28 @@
 		- can be formed by stereographic projection of the plane to the unit two-sphere, rotating & moving it, and then doing stereographic projection from its new position/orientation to the plane
 		- these transformations preserve angles, so every circle & straight line is mapped to a line or circle
 
-	- modular group: group of mobius transformations of the upper half of the complex plane
-
-	- modular form: invariant with respect to the modular group
-
-	- set: collection of distinct objects
-
-	- base: 
-		- a collection of subsets of a space/set
-	- span: 
-		- the span of two vectors is the range of their scaled addition = linear combination of vectors
-		- if one vector is linearly dependent on the other (can be produced as a linear combination of the others), it's redundant & doesnt add to the span
-	
-	- basis of a vector space: 
-		- set of linearly independent vectors which spans the space (can be linearly combined to create any possible element in the vector space)
-		- components/coordinates on the basis are the coefficients used to multiply these core vectors to get another vector
-			- basis vectors i-hat & j-hat are unit vectors of two dimensions x & y, where column 1 = coordinates where i-hat lands, & column 2 = coordinates where j-hat lands
-
-	- discriminant: 
-		- example of calculating properties of solution without calculating solution directly
-		- can tell if solution sub-components (roots) are equal, signed, etc by calculating value of discriminant which is a function of polynomial coefficients
-
-	- neighborhood: a neighborhood of a point is a set of points containing that point where movement is allowed without leaving the original point's set
-	- algebraic variety: set of solutions to a system of polynomial equations
-	- partially ordered set: a binary relation on X that assigns order to items in the set, though not all items need to be comparable
-	- total order: a binary relation on X that is antisymmetric (comparison cant apply in reverse order), transitive (order is extendible), and connex (all items are comparable)
-	- chain: set paired with a total order
-	- markov chain: where the set of possible new states is determined by current state & change rules (how to move pieces) & system limits (number of open spaces)
-	- differential: change in y due to incremental change in x
-	- degrees of freedom: 
-		- a single scalar numerical independent parameter indicating the dimensions of a system's phase space (the set of all possible system states)
-		- standard movement in 3d space requires 3 position params & 3 velocity params describing speed & direction 
 	- jacobian:
 		- jacobi identity: operation order impact of binary operations
+	
 	- lagrangian: 
 		- Lagrangian density: a scalar can be constructed from a field tensor φ and its derivatives
 			- evaluate the derivative of the Lagrangian density with respect to the field components & and the derivatives of the field components
 		- from this density, the action functional can be constructed by integrating over spacetime, where -g ^ 1/2 is viewed as the 'jacobian' in curved spacetime: integral of Lagrangian density * jacobian d4x
 		- lagrangian: the integral of the Lagrangian density over all space
+	
 	- hamiltonian: 
 		- physics quantity describing total energy of a system (sum of potential/kinetic energy of particles in system) - collapsing one set of variables to another
 		- Hamiltonian mechanics aims to replace the generalized velocity variables with generalized momentum variables, also known as conjugate momenta
+	
 	- fourier transform
-	- functional: a linear mapping from a vector space V into its field of scalars - an element of the dual space which is created by mapping the vector space with transforms to the scalar field
-    - quaternions: 
-      - ratio of two vectors: https://en.wikipedia.org/wiki/Quaternion
-      - quaternion number system is a associative, non-commutative division algebra over real numbers    
-	- singleton: unit set with one element
 
-	- algebraic object metadata:
-		- a representation of a group: where elements of a group are represented by invertible matrices in such a way that the group operation is matrix multiplication
-			- a representation of a lie group: a linear action of a lie group on a vector space; a smooth homomorphism of the group into the group of invertible operators on the vector space
-		- presentation of a group: comprises a set S of generators—so that every element of the group can be written as a product of powers of some of these generators—and a set R of relations among those generators
-		- field extension: relationship between fields such that the operations of a subfield are the operations of the extended field, retricted to the subfield
+	- affine transformation: a function between affine spaces which preserves points, straight lines and planes
+		- sets of parallel lines remain parallel after an affine transformation
+		- an affine transformation does not necessarily preserve angles between lines or distances between points, though it does preserve ratios of distances between points lying on a straight line
+		- examples: translation, scaling, homothety, similarity transformation, reflection, rotation, shear mapping, and compositions of them in any combination & sequence
 
-	- algebraic structures: a group of operations having finite inputs on a set (the algebra refers to the set itself being operated on) - includes groups, rings, fields, lattices	
-	
-	- homomorphism: a structure-preserving map between two algebraic structures of the same type
-	- endomorphism: a map of a mathematical object to itself		
-	
-	- category: a collection of objects linked by arrows, having two basic properties: 
-		- the ability to compose the arrows associatively
-		- the existence of an identity arrow for each object
-		- example: a simple example is the category of sets, whose objects are sets and whose arrows are functions 
-	
-	- series:
-	- progression:
+
+#### Algebraic structures
 
 	- lattice: a partially ordered set in which every two elements have a unique supremum (a least upper bound or join) and a unique infimum (a greatest lower bound or meet)
 		- example: the natural numbers, partially ordered by divisibility, for which the unique supremum is the least common multiple and the unique infimum is the greatest common divisor
@@ -235,26 +287,9 @@
 			- dual vectors
 			- multi-linear maps between vector spaces
 			- some operations such as the dot product
-	- monoid: algebraic structure with a single associative operation and a identity element
-	- domain: set of inputs for which a function is defined (the function produces an output for each element in the domain)
-	- partial function: where every possible x is not forced to map to a value of y
-	- codomain: set limiting the outputs of a function 
-	- binary operation: a calculation that combines two elements to produce another element
-		- an operation of arity (input number) two
-		- binary operation on a set: a binary operation whose two domains and the codomain are the same set
-			- examples: addition, subtraction, multiplication, vector addition, matrix multiplication and conjugation in groups
-		- may involve several sets:
-			- scalar multiplication of vector spaces takes a scalar & a vector to produce a vector
-			- a scalar product takes two vectors to produce a scalar 
-	- simplex: generalization of a triangle
-	- manifold: topological space that resembles euclidean space near each point
-	- bilinear map: function combining elements of two vector spaces to produce a vector in a third vector space, where each argument in linear
-		- example: matrix multiplication
 
-	- directed graph: a graph with vertices/nodes & edges (ordered pairs) having direction
-	- transpose graph: a directed graph with its edges reversed
-	- skew-symmetric graph: a directed graph that is isomorphic to its transpose graph, over an isomorphism that is an involution without fixed points
-	- involution: function that is its own inverse
+	- monoid: algebraic structure with a single associative operation and a identity element
+
     - algebra (over a field): a vector space with a bilinear product to multiply two vectors in two vector spaces
     	- a set with operations of multiplication, addition, & scalar multiplication by elements of the field
     	- satisfies the axioms of a vector space and bilinearity of the product
@@ -280,8 +315,7 @@
 				- R-module: a module taking its scalars from a ring R
 
 	- bracket:
-
-		- lie bracket: an alternating bilinear map satisfying the jacobi operation order identity
+		- Lie bracket: an alternating bilinear map satisfying the jacobi operation order identity
 		- Poisson bracket: a binary operation that distinguishes a certain class of coordinate transformations (canonical transformations, which map canonical coordinate systems into canonical coordinate systems)
 			- canonical coordinate system: canonical position & momentum variables that satisfy canonical Poisson bracket relations
 
@@ -299,13 +333,8 @@
 		- physics: a physical quantity, represented by a number or tensor, that has a value for each point in space-time
 		- field theory: mathematical descriptions of how field values change in space & time or other independent variables
 
-	- affine transformation: a function between affine spaces which preserves points, straight lines and planes
-		- sets of parallel lines remain parallel after an affine transformation
-		- an affine transformation does not necessarily preserve angles between lines or distances between points, though it does preserve ratios of distances between points lying on a straight line
-		- examples: translation, scaling, homothety, similarity transformation, reflection, rotation, shear mapping, and compositions of them in any combination & sequence
-	
-	- vector-valued function: a function whose range is the set of multidimensional or infinite-dimensional vectors, whose inputs could be a scalar or a vector
 	- matrix:
+
 		- transformations keep lines parallel and evenly spaced, and origin is fixed
 		- matrix multiplication is applying two transformations, starting from the right side
 		- adjacent structures:
@@ -339,14 +368,8 @@
 				- the determinant of a product of matrices is equal to the product of determinants
 			- determinant of an orthogonal matrix is always plus or minus one, and the determinant of a complex Hermitian matrix is always real
 
-	- kernel function: similarity function over pairs of data points in raw representation
-		- "Any linear model can be turned into a non-linear model by applying the kernel trick to the model: replacing its features (predictors) by a kernel function"
-		- "Most kernel algorithms are based on convex optimization or eigenproblems" - https://en.wikipedia.org/wiki/Kernel_method
-	- eigenvector/characteristic vector of a linear transformation: 
-		- a nonzero vector that changes at most by a scalar factor when that linear transformation is applied to it, like the unit vector specific to a transform, where the eigenvalue is the standardization constant
-		- eigenvector stack may be a useful framing object - the eigenvectors in multiple related spaces
-		- the progression of these determining vectors (from likeliest/simplest/most efficient/most common determining vector configurations) may have useful patterns as well
-	- eigenvalue of an eigenvector: the factor by which the eigenvector is scaled
+#### Probability
+
 	- probability:
 		- moment generating function
 		- expected value
@@ -356,54 +379,59 @@
 		- joint probability distribution
 		- conditional probability: probability, given a starting point/filter
 
-
-## Attributes
-
-	- angle: direction
-	- distance
-	- uniqueness
-	- equivalence (homeomorphism)
-	- intersection (tangent, overlap, collision, cooperation, etc)
-	- homogeneity
-	- isotropic	
-	- continuity
-	- convergence
-	- connectedness
-	- infinite
-	- adjacency
-	- cooperation (objects/types/attributes)
-	- scale
-	- nilpotent
-	- ranking
-	- closure: operation on a member of the set produces a member of the set
-	- associativity: independence of order property
-	- identity: identity element leaves any element unchanged when combined with it
-	- invertibility: reversibility
-	- note that T is a function of p alone, while V is a function of q alone (i.e., T and V are scleronomic)
-
-## Types
-
-	- types are determined by sets of attributes (continuous, host system, reversibility, c  ombinability, measurability)
-	- number types
-	- data types
-	- variable types
-	- outliers
-
 	
 ## Functions
 
 	- types:
-		- differential equation: a function linking a function & its rates of change
+		- differential equation: 
+			- a function linking a function & its rates of change
+			- example: change in y due to incremental change in x
 			- types: 
 				- ordinary/partial
 				- linear/non-linear
 				- homogeneous/heterogeneous
 		- polynomial:
+
+	- specific functions:
+
+		- functional: a linear mapping from a vector space V into its field of scalars - an element of the dual space which is created by mapping the vector space with transforms to the scalar field
+		
+		- partial function: where every possible x is not forced to map to a value of y
+		
+		- binary operation: a calculation that combines two elements to produce another element
+			- an operation of arity (input number) two
+			- binary operation on a set: a binary operation whose two domains and the codomain are the same set
+				- examples: addition, subtraction, multiplication, vector addition, matrix multiplication and conjugation in groups
+			- may involve several sets:
+				- scalar multiplication of vector spaces takes a scalar & a vector to produce a vector
+				- a scalar product takes two vectors to produce a scalar 
+		
+		- bilinear map: function combining elements of two vector spaces to produce a vector in a third vector space, where each argument in linear
+			- example: matrix multiplication
+
+		- homomorphism: 
+			- a structure-preserving map between two algebraic structures of the same type
+			- fundamental theorem on homomorphisms involves the quotient object (quotient algebra/cokernel) defined by the kernel
+			
 		- homeomorphism: a continuous function linking topological spaces that preserves the properties of each space & the inverse function is also continuous
 			- continuous deformation arent always homeomorphisms (deforming a line into a point)
 			- some homeomorphisms arent continuous deformations
 
-	- specific functions:
+		- endomorphism: a map of a mathematical object to itself		
+
+		- kernel of a homomorphism: 
+			- measurement of the degree to which the homomorphism is not injective
+			- the kernel is trivial if the homomorphism is injective
+			- kernel of a matrix (null space): the kernel of the matrix's linear map
+			- kernel of a linear map: vector set in the mapping domain that map to the zero vector
+
+		- vector-valued function: a function whose range is the set of multidimensional or infinite-dimensional vectors, whose inputs could be a scalar or a vector
+
+		- kernel function: similarity function over pairs of data points in raw representation
+			- "Any linear model can be turned into a non-linear model by applying the kernel trick to the model: replacing its features (predictors) by a kernel function"
+			- "Most kernel algorithms are based on convex optimization or eigenproblems" - https://en.wikipedia.org/wiki/Kernel_method
+		
+		- involution: function that is its own inverse
 
 		- immersion: a differentiable function between two differentiable manifolds whose derivative is injective (1-to-1)
 
@@ -445,15 +473,45 @@
 				- calculating area under a curve by breaking the curved area into a set of objects with more calculatable area (or area that can be added, like objects at unit limits such as integers)
 
 	- intents:
-
 		- decompositions/alternate forms
 		- description methods/minimum of information
 		- function conversion methods
 		- proofs
 			- rule of replacement (associativity/distributivity)
 
+## Attributes
 
-- encryption algorithms
+	- angle: direction
+	- distance
+	- uniqueness
+	- equivalence (homeomorphism)
+	- intersection (tangent, overlap, collision, cooperation, etc)
+	- homogeneity
+	- isotropic	
+	- continuity
+	- convergence
+	- connectedness
+	- infinite
+	- adjacency
+	- cooperation (objects/types/attributes)
+	- scale
+	- nilpotent
+	- ranking
+	- closure: operation on a member of the set produces a member of the set
+	- associativity: independence of order property
+	- identity: identity element leaves any element unchanged when combined with it
+	- invertibility: reversibility
+	- note that T is a function of p alone, while V is a function of q alone (i.e., T and V are scleronomic)
+
+## Types
+
+	- types are determined by sets of attributes (continuous, host system, reversibility, c  ombinability, measurability)
+	- number types
+	- data types
+	- variable types
+	- outliers
+
+## Encryption algorithms
 
 	- attributes:
 		- one computationally expensive operation (find prime or curve used to calculate a number, longer key sizes)
