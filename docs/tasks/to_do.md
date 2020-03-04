@@ -202,7 +202,12 @@
 
   - make diagram for variable accretion patterns
 
-  - finish diagrams for specific concepts, core functions, concept operations, ethical shapes
+  - finish diagrams for specific concepts, core functions, concept operations (combine, collide, connect, merge, apply), ethical shapes
+
+  - finish diagrams for intent (more examples of matching structure with intent), cause (shapes & ambiguity), concept (evolution of concepts, networks, distortion functions)
+
+  - diagram for argument
+
   - finish schema for objects
   - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
 
