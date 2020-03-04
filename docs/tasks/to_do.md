@@ -204,24 +204,17 @@
 
   - finish diagrams for specific concepts, core functions, concept operations (combine, collide, connect, merge, apply), ethical shapes
 
+    - chaos & ethics graph
+
   - finish diagrams for intent (more examples of matching structure with intent), cause (shapes & ambiguity), concept (evolution of concepts, networks, distortion functions)
 
   - diagram for argument
 
   - finish schema for objects
+
   - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
 
-  - consider using dimensionality reduction as a way to identify abstract patterns & functions to explain common deviations from patterns
-      https://miro.medium.com/max/1659/1*nQrZmfQE3zmMnCJLb_MNpQ.png
-      https://towardsdatascience.com/step-by-step-signal-processing-with-machine-learning-pca-ica-nmf-8de2f375c422
-
-  - use this or similar as example when describing current state of problem solving: 
-      https://miro.medium.com/max/462/1*X7dQgs1gsJ0Sktz3t7J21Q.png
-      https://towardsdatascience.com/feature-extraction-techniques-d619b56e31be
-
   - solution type: balance info asymmetry
-  - matching
-
 
 # Questions
   - are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?
