@@ -40,7 +40,7 @@ You have responsibilities if you use this tool, including but not limited to:
 
 ### "What will happen if I copy your work, Joni?"
 
-	- Find out.
+	- Find out. (Generally, I destroy you with very funny insults & then automate you but I might customize this if I'm bored)
 
 ### "Please have mercy on me, Joni! I have a sob story!"
 
