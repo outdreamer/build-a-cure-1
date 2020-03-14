@@ -99,6 +99,16 @@
 
 # Functions
 
+  - coexist with definition
+  - waves
+  - superficial cause
+  - framing on interfaces, decomposing causation, then identifying parameters of problem on layer & matching solution
+  - addressing input/output causes
+  - memory cell alternative
+  - independence (closed trade loops) as time storage
+
+  - function to create graph from article
+
   - function to predict a compound for a pathogen/condition requires data:
       - compound & pathogen attributes (compound metadata like metabolism/dose/interactions/effects)
       - variable/state impact (gene expression)

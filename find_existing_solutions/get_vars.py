@@ -1340,7 +1340,7 @@ def get_content_from_wiki(keyword, av):
     except Exception as e:
         print('wiki summary exception', e)
     if content:
-        sections = [s.strip().replace(' ', '_').lower() for s in content.split('==') if '.' not in s and len(s) < 100]
+        sections = {s.strip().replace(' ', '_').lower() for s in content.split('==') if '.' not in s and len(s) < 100}
         print('sections', sections)
         categories = wikipedia.page(suggested).categories
         if len(categories) > 0:
@@ -2175,9 +2175,11 @@ def standard_text_processing(text, av):
                     new_words.append(word)
             line = ' '.join(new_words) if len(new_words) > 0 else line
             ''' to do: fix mapping '''
+            ''' remove call to apply_pattern_map & nested calls to get_all_versions
             active_line, av = apply_pattern_map(line, 'passive_to_active', av)
             print('active line', active_line)
             line = active_line if active_line else line
+            '''
             word_map = {}
             for word in line.split(' '):
                 pos = get_nltk_pos(word, av)
