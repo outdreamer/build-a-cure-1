@@ -107,6 +107,8 @@
   - memory cell alternative
   - independence (closed trade loops) as time storage
 
+  - give example of problem-solving workflow
+
   - function to create graph from article
 
   - function to predict a compound for a pathogen/condition requires data:
