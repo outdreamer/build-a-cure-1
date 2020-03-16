@@ -101,13 +101,16 @@
 
   - coexist with definition
   - waves
-  - superficial cause
+  - superficial cause, alternate cause in the case of a function
   - framing on interfaces, decomposing causation, then identifying parameters of problem on layer & matching solution
   - addressing input/output causes
   - memory cell alternative
   - independence (closed trade loops) as time storage
+  - intent organization example
 
-  - give example of problem-solving workflow
+  - give example of each type of problem-solving workflows
+
+  - vertex as a pivot point for an interface
 
   - function to create graph from article
 
