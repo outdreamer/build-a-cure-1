@@ -136,6 +136,25 @@
 
           - these trade-offs are important to identify up front so they can be used as a filtering rule
 
+          - the limits represented by each trade-off can act as a proxy for determining the trade-off itself
+
+            - example: 
+              - the variance vs. bias trade-off can be represented as a limit on the value added by each initial information/assumption unit
+              - the size vs. value trade-off is a false trade-off but can be embodied by some objects in the set (some objects may increase in value while decreasing in size), which can be represented as a limit on the value added by each increase in size units
+
+        - conflicts
+
+          - the key conflicts of the problem need to be identified before investing time in summation
+
+            - the conflict between assumptions of value change rules & actual change rules
+            - the conflict between core distortion functions & actual implemenations of combined distortions
+            - the conflict between marginal value & absolute value
+            - the conflict between relative value & imminent value
+
+        - layers
+
+          - the layers of the problem represented by phase shifts, state changes, etc can postpone the original problem solving (first you can use general insights like 'gather all the smallest high-value objects first if there are any', but then you will actually need to calculate the optimal combination of remaining objects given remaining space)
+
         - interactions
 
             - intersections of different attribute sets leading to a value conflict or a similar value
@@ -154,3 +173,50 @@
   - interface query of most valuable objects (what combination & path between interfaces produces most valuable objects, other than already known valuable objects like gems, weapons, stories, mysteries, markets/inflation value increases)
 
 - this may seem like the solution is specific to manmade objects, but numbers can be evaluated on the interface network as well
+
+- for example, if high-value numbers like primes are calculatable (you can find all the primes in a range quickly), those might be the gemstones in your numerical example - or identifying other high-value information like number types/relationships (finding all the valuable number types/relationships represented in a set) might be the best way to gather valuable information the quickest in a numerical example
+
+  - numerical examples:
+
+    - "can 25 be represented as a sum of these private key numbers?"
+      (structural version: which curves have an area indicated by the sum of these numbers)
+    - "can 25 be factored by these numbers?" 
+      (structural version: is there a rectangle with this area having side lengths composed of a pair of numbers in the set)
+
+  - corresponding analysis for numerical example:
+
+    - identifying common numbers
+
+    - identifying cooperative numbers without going over a limit (complementary numbers)
+
+    - identifying the numbers around which other numbers gravitate (such as bases used in summation or the means of subsets - by identifying the mean of a subset lets you add the mean multiplied by the number of items in the subset rather than individual values)
+
+    - identifying the numbers that are most influential for that metric (largest numbers for a sum-maximization metric)
+
+    - attribute patterns of number combinations (which attributes emerge when you combine numbers having these attributes, using which combination methods)
+
+    - trade-offs 
+
+      - when you use these number combinations to reduce the remaining options (value distance to the target sum or product), in what ways & which patterns does it reduce your options for additional combinations?
+
+      - example: if the target sum is 10 and you can only add 1, 2 or 3:
+
+        1 + 1 = original problem, but reduced (you cant choose a set that doesnt use 1)
+
+        1 + 1 + 2 = original problem, but reduced (you cant choose a set that repeats 3)
+
+        3 + 3 + 1 = original problem, with reduction in operation (you cant choose a set that uses 2 squared, which is a key pivot point of the repetition attribute emerging from the addition operation)
+
+        3 + 3 + 1 + 1 = a phase shift to produce a fractal version of the initial problem (which is "fill out remaining distance to the sum", a fractal version of the initial problem, "fill out the sum starting from 0")
+          - the phase shift occurs bc at this point you cant use 3 anymore (an exclusionary phase shift) so your options are drastically reduced, representing a difference in the problem space 
+          (now you're evaluating a pair of alternatives, which is significant because the core operation "addition" involves adding a pair of numbers, so there is alignment between attributes that produces a collision & a subsequent limit)
+
+        1 + 1 + 2 + 3 = a phase shift to produce a fractal version of the initial problem, which can be generated as a sequence
+
+      - as you add more numbers, you reduce your options:
+        - trade-off between value choices & value options
+        - trade-off between value choices & phase shifts/trade-offs/pivot points available
+        - trade-off between value choices & available operations
+        - trade-off between value choices & emergent priorities 
+          (adding increasing numbers has the emerging priorities of 'starting with units' or 'starting with lowest value' or 'increasing')
+
