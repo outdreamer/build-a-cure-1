@@ -172,7 +172,7 @@
 
   - interface query of most valuable objects (what combination & path between interfaces produces most valuable objects, other than already known valuable objects like gems, weapons, stories, mysteries, markets/inflation value increases)
 
-- this may seem like the solution is specific to manmade objects, but numbers can be evaluated on the interface network as well
+- it may seem like the solution is specific to manmade objects, but numbers can be evaluated on the interface network as well
 
 - for example, if high-value numbers like primes are calculatable (you can find all the primes in a range quickly), those might be the gemstones in your numerical example - or identifying other high-value information like number types/relationships (finding all the valuable number types/relationships represented in a set) might be the best way to gather valuable information the quickest in a numerical example
 
@@ -219,4 +219,14 @@
         - trade-off between value choices & available operations
         - trade-off between value choices & emergent priorities 
           (adding increasing numbers has the emerging priorities of 'starting with units' or 'starting with lowest value' or 'increasing')
+        - trade-off between value choices & different problem/solution types available
+        - trade-off between value choices & different representation options available 
+          (problem can be represented as a sum of area under a curve at all points, but can be represented as a calculation of difference (selection between alternative directions) at the final choice, assuming prior choices can't be changed)
 
+    - incentives
+
+      - if there are numbers incentivized by a particular implementation of random definition, that should be determined prior to investing in summation or other pre-summation operations like searches/filters
+
+    - missing numbers/number sets (opposite of subsets)
+
+      - if certain number sets are not present, does that reveal information about the other subsets
