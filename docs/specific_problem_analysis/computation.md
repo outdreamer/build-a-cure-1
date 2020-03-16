@@ -58,3 +58,6 @@
   - storing grouped data in different structures according to their value attributes & relationships
     - storing a list as a network structure of values (pairs of connected values, organized by similarity or other metrics to reduce traversal time)
     - storing a list as a network structure of generators/transformation functions (where hub nodes represent generative functions for the values around it)
+
+
+- idea; recomputing new encryption key pair & re-encrypting any content at rest using algorithm stored on systems legitimately using the key so that attackers have a limited time window to use that key pair even if they crack it
