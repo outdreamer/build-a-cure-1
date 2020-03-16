@@ -236,6 +236,29 @@ def find_drug(subset, row, av):
 
 def find_treatment(subset, row, av):
     '''
+
+    - organization of analysis:
+
+      1. condition
+        - symptoms
+
+      2. condition metric extreme value 
+        - symptoms
+
+      3. strategy:
+        - impact on metrics of condition
+
+      4. strategy:
+        - impact on symptoms
+
+      5. strategy:
+        - impact on condition
+
+    - you can use combinations to create trajectories
+        - combine 1 (condition:symptom relationship) & 4 (strategy:symptom relationship) to programatically create trajectory between strategy & impact on condition
+
+    - you can also automate identifying intersections, vertexes, layers, & phase shifts to avoid combinations that will damage the system
+
     hypothesis & intent can be Null for now 
 
     this function will process a relationship like:
