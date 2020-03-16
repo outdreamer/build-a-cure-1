@@ -54,7 +54,7 @@
 
     - structure:
 
-      - valuable subsets (objects that are more valuable when combined)
+      - valuable subsets (objects that are more/less valuable when combined)
 
       - valuable matches of subsets (objects that fit with other subsets/objects in the bag shape)
 
@@ -88,11 +88,13 @@
 
     - problem:
 
-      - conflicting attribute sets/pairs that neutralize each other's value
+      - conflicting attribute sets/pairs that neutralize each other's value or weight (gemstones with electric fields)
 
     - pattern:
 
       - what pattern of combinations of object values/weights created the most valuable sets in other cases 
+
+      - phase shifts in value
 
     - cause:
 
@@ -106,17 +108,47 @@
 
         - what force can the object exert on the container (can an object distort the container in any way, influencing its boundaries/size/shape)
 
-      - tradeoffs
+    - specific interfaces/causal objects:
 
-        - which tradeoffs (in the target metric, value) occur at which intersections of which attribute sets?
+        - state types
 
-          - when a high-value, low-size object interacts with a higher-value, larger-size object (of proportional increase on both attributes), what does the trade-off space look like in various states of the knapsack being filled?
+          - the sets of likely state types (fill state of the knapsack, weight/value distributions, distortion functions available, distortion information (value of combining certain items if the items have identities)) should be identified from the beginning, before investing time in summation
 
-            - for example, if the smaller object is worth 5 points and the slightly larger object is worth 10 points (and the weights are proportional), then adding the smaller object may be better, unless adding the smaller object would prevent adding other objects to make up for the difference in value, because the smaller object has a shape that is likely to prevent other objects from being added (has too many corners or takes up space despite being smaller weight)
+            - the state where a knapsack only has room left for one of each conflicting items of similar high value, so that you have to choose between alternatives (or neither, instead filling it with many smaller objects which invalidates the forced choice)
 
-            - on the other hand, the larger object would normally not be higher value, because it would inherently prevent smaller objects from being added, so the larger object would inherently be less optimal unless there was a shape distortion that meant the larger object would fit in the remaining space whereas the smaller object wouldnt
+            - the state where the knapsack is empty, at which point the problem is a search problem
 
-        - these trade-offs are important to identify up front so they can be used as a filtering rule
+            - the state where the knapsack is full, at which point the problem is deciding whether to continue searching for high-value items or evaluating the current selection for optimization potential in position
+
+            - the state where the knapsack has been filled with all the clearly high-value items (gems) and has room left for many other combinations of lower-value items
+
+        - tradeoffs
+
+          - which tradeoffs (in the target metric, value) occur at which intersections of which attribute sets?
+
+            - when a high-value, low-size object interacts with a higher-value, larger-size object (of proportional increase on both attributes), what does the trade-off space look like in various states of the knapsack being filled?
+
+              - for example, if the smaller object is worth 5 points and the slightly larger object is worth 10 points (and the weights are proportional), then adding the smaller object may be better, unless adding the smaller object would prevent adding other objects to make up for the difference in value, because the smaller object has a shape that is likely to prevent other objects from being added (has too many corners or takes up space despite being smaller weight)
+
+              - on the other hand, the larger object would normally not be higher value, because it would inherently prevent smaller objects from being added, so the larger object would inherently be less optimal unless there was a shape distortion that meant the larger object would fit in the remaining space whereas the smaller object wouldnt
+
+            - the marginal value of adding a particular object across many situations would approach a particular expected value, which can replace its normal monetary value
+
+          - these trade-offs are important to identify up front so they can be used as a filtering rule
+
+        - interactions
+
+            - intersections of different attribute sets leading to a value conflict or a similar value
+
+              - example: high-value objects intersect with objects that are about to increase in value
+
+            - compound interactions
+
+              - attribute sets that are cooperative & create exponential value changes (such as uncertainty, importance, relevance, complexity)
+
+            - changeable interactions
+
+              - attribute sets that are volatile & likely to cause or be changed by a variance injection
 
 
   - interface query of most valuable objects (what combination & path between interfaces produces most valuable objects, other than already known valuable objects like gems, weapons, stories, mysteries, markets/inflation value increases)
