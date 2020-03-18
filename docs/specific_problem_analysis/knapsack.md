@@ -230,3 +230,9 @@
     - missing numbers/number sets (opposite of subsets)
 
       - if certain number sets are not present, does that reveal information about the other subsets
+
+    - limits
+
+      - built-in limits: a maximum of 10 numbers in the sequence, using one of three possible values for each position, where value & position are the key variables
+
+    - layers
