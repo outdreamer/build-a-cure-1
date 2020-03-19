@@ -145,6 +145,16 @@
 
 	- apoptosis
 
+
+### energy processes
+
+	- ATP hydrolysis: releasing chemical energy in phosphoanhydride bonds of adenoside triphosphate (ATP) by splitting the phosphoanhydride bonds
+		- produces adenosine diphosphate (ADP) & an inorganic phosphate (orthophosphate)
+		- ADP produces energy, adenosine monophosphate (AMP) and another orthophosphate
+		- ATP hydrolysis is the last step in converting energy like food or sunlight into useful work like:
+			- muscle contraction
+			- establishing electrochemical gradient (solute & charge distribution across a membrane), usually for an ion's movement across a membrane
+
 ### DNA processes
 
 	- genetic recombination: occurs in meiosis
@@ -166,9 +176,7 @@
 			- T cell receptors (TCRs)
 		
 		- final product is new amino acid sequences in antigen-binding regions of antibody proteins & t-cell receptors
-		
 		- these new amino acid sequences enable antibodies & t-cells to recognize antigens (from pathogens, cancerous cells, allergens & healthy host cells)
-		
 			- variable, joining, & diversity gene segment types influence variable sections of antibody proteins & t-cell receptors
 		- when building lymphocytes, recombination occurs to generate new Variable/Diversity/Joining gene segments of the antibody's fragment antigen-binding region or the t-cell's receptor, so that new antibodies or t-cell receptors are generated which can handle new antigens
 
@@ -186,9 +194,81 @@
 			- bone marrow for b cells
 			- thymus for t cells
 
+		- overall process:
+
+			1. VDJ recombinase (RAG1 enzyme) binds a recombination signal sequence around a VDJ segment
+			2. creates a nick on one strand of the DNA between the first base of the Recombination signal sequence just before the heptamer & the coding segment of the RSS
+				- ATP hydrolysis (conversion into energy, ADP, AMP, or orthophosphates to enable work) is not necessary bc its energetically neutral
+			3. a free 3' hydroxyl group and a 5' phosphate group is formed on the same strand
+			4. the recombinase positions the hydroxyl group to attack the phosphodiester bond of the opposite strand
+			5. two DNA ends are formed from this attack:
+				- the hairpin stem-loop on the coding segment
+				- a blunt end on the signal segment
+			6. a recombination center executes the DNA nicking & hairpin formation simultaneously
+			7. prior to ligation, the blunt signals ends are processed more, leading to junctional diversity (relationship type variation)
+				- DNA-PK binds to each broken DNA end
+				- recruits other proteins including artemis, xrcc4, dna ligase iv, cernunnos, & certain DNA polymerases
+				- DNA-PK forms a complex, leading to its autophosphorylation
+				- the autophosphorylation of DNA-PK activates artemis
+				- artemis's activity opens the coding end hairpin segments
+				- if the coding end hairpin segments are opened at the center, a blunt DNA end will result
+				- usually its not at the center and one strand has extra bases
+				- when DNA repair enzymes resolve the discrepancy in extra bases, the palindromic sequences produced are the reason why the corrected strand are called palindromic nucleotides
+				- the Artemis hairpin opening process is crucial to VDJ recombination success
+ 				- XRCC4, cernunnos, and DNA-PK align the DNA ends and use terminal deoxynucleotidyl transferase enzyme to add non-templated nucleotides to the coding end
+				- exonucleases remove bases from the coding ends, including palidromic (P) or non-templated (N) nucleotides that may have formed
+				- DNA polymerases lambda & mu then add nucleotides as needed to make the two ends compatible for joining
+				- the process of 1, exonucleolytic removal of bases & P/N nucleotides & 2, adding nucleotides for compatibility, is possible but not enforced
+				- the processed coding ends are ligated together using DNA ligase IV
+
+			8. the blunt signal ends are flush-ligated together to form a signal joint (all the interim pieces between coding segments - a circle DNA segment of the intervening sequences between the coding segments)
+				- signal joints may re-enter the genome and activate oncogenes or interrupting regulation gene function
+
+			9. this process results in high variability in the antigen-binding region, even with the same gene segments as components, allowing new immunoglobulin antibodies or t-cell receptors to be generated even if the bio system hasnt encountered the corresponding pathogen antigens or a new version of an encountered pathogen before
+
+			- this costly process can only work if the DNA remains in-frame (continuous segment) to maintain the right amino acid sequence in the final protein product - otherwise the cell development will stop & die - so this process has strict limits to succeed
+
 		- components:
 
-			- recombinant signal sequences: 
+			- recombination signal sequences: protected sequences of noncoding DNA recognized by RAG1/2 enzymes during VDJ recombination in B/T cells
+
+				- RSS components:
+					- a heptamer of seven conserved nucleotides
+					- a spacer region of 12/23 basepairs in length
+					- a nonamer of 9 conserved nucleotides
+
+				- Recombination signal sequences allow specific recombinations to be executed, by communicating position of VDJ gene segments
+				- VDJ recombination enzymes recognize & bind to recombination signal sequences around the VDJ gene segments
+
+				- RSS vary in sequence but have constant heptamer & nonamer sequences (heptamer: CACAGTG and nonamer: ACAAAAACC)
+				- the sequence of the spacer region sequence is often lost
+				- the length of the spacer region sequence is rarely lost
+				- the spacer region length is usually about 1 or 2 turns of the DNA strand (1 turn = 12 basepairs, 2 turns = 23 basepairs)
+
+				- 12/23 rule: gene segments to be recombined are usually adjacent to Recombination signal sequences of various spacer lengths (one has a "12 RSS" and one has a "23 RSS") 
+
+					- to do: clarify which configuration this rule allows:
+						12 RSS - V D J - 23 RSS
+						12 RSS - V - 23 RSS
+						V - 12 RSS - D J - 23 RSS
+
+			- enzymes:
+				- VDJ recombinase: a diverse collection of enzymes
+
+				- DNA-dependent protein kinase (DNA-PK)
+				- X-ray repair cross-complementing protein 4 (XRCC4)
+				- DNA ligase IV
+				- non-homologous end-joining factor 1 (NHEJ1), aka Cernunnos, XRCC4-like factor [XLF], the Paralog of XRCC4 & XLF (PAXX)
+				- DNA polymerases λ & μ
+
+				- enzymes specific to lymphocytes (RAG, TdT)
+					- recombination activating genes 1 & 2 (RAG)
+					- terminal deoxynucleotidyl transferase (TdT): a template-independent DNA polymerase that adds non-templated (N) nucleotides to the coding end during VDJ recombination, exhibiting a tendency to use G/C nucleotides, though the process of TdT adding nucleotides to the coding end is mostly random
+						- like all DNA polymerases, Tdt adds nucleotides to a strand in a 5-3 direction
+
+				- other enzymes found in other cell types or everywhere:
+					- Artemis nuclease, a member of the ubiquitous non-homologous end joining (NHEJ) pathway for DNA repair
+
 
 		- systems where recombination occurs:
 
