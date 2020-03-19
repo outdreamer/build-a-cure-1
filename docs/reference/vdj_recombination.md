@@ -5,73 +5,125 @@
 
 	- variables
 
+		- system
+			- b/t-cell
+			- bone marrow/lymphatic system
+			- adaptive immune system
+
 		- components
 
-			- availability of enzymes
-			- availability of the required variable, joining, diversity, & constant gene segments of chromosomes
-			- availability of chromosomes of DNA to be recombined
+			- DNA
+			- enzymes
+			- variable, joining, diversity, & constant gene segments of chromosomes
+			- chromosomes of DNA to be recombined
+
+		- points for rule injection
+			- target antigen structure
+			- input components
+			- processes
 
 		- processes
 
 			- key processes known to create failure:
-				- Artemis opening hairpin process
+				- Artemis hairpin opening process
 
+			- optional processes/inputs
+				- resolving discrepancy between number of bases (removing/adding nucleotides)
 
+			- relevant external/subsequent processes
+				- somatic recombination inheritance: once a recombination is done, any daughter cells will have same recombinated DNA so the process doesnt have to be applied to every cell generated from recombined DNA cells
+				- ligation process using DNA ligase IV to ligate coding ends once processed
+				- XRCC4, cernunnos, & DNA-PK alignment of DNA ends 
+				- XRCC4, cernunnos, & DNA-PK recruitment of terminal deoxynucleotidyl transferase (TdT)
+				- TdT adding nucleotides to strands in 5-3 direction
+				- polymerase adding nucleotides to strands in 5-3 direction
+				- DNA-PK autophosphorylation
+				- DNA-PK binding to each broken DNA end
+				- DNA-PK recruits other proteins including artemis, xrcc4, dna ligase iv, cernunnos, & certain DNA polymerases
+				- artemis activation
+				- artemis hairpin opening
+				- DNA enzyme repair process
+					- enzyme nucleotide adjustments for compatibility, in case center of hairpin segment is not opened & sides are unequal
+					- creating palindromic nucleotides from off-center opening of hairpin segment
+					- exonucleases removing bases from coding ends
+					- template-independent TdT adding non-templated nucleotides
+
+			- mechanism of action:
+				- binds to antigen to alert immune system to attack pathogen with that antigen
+				- binds to antigen to interfere with pathogen cell activity or survival
 
 	- rules/types generating failure points:
 
-		- missing/faulty core process (copying, nicking, applying enzyme, identifying signal)
+		- missing requirement
 
-		- missing/distorted requirement
-			- DNA does not remain in-frame (continuous segment) 
+			- missing attributes
+				- continuity: DNA does not remain in-frame (continuous segment) 
 
-		- processes not structurally determined to be inevitable (1-1 mapping between structure & process)
+			- missing types
 
-		- variation of constants:
-			- RSS are supposed to have constant heptamer & nonamer sequences (heptamer: CACAGTG and nonamer: ACAAAAACC)
-			- constant gene segments are converted to variable, joining, diversity gene segments in transit/mutation/copying error
+			- missing objects (groups, limits, connections, information)
 
-		- constants of variables:
+			- missing core/system process (copying, nicking, applying enzyme, identifying signal)
 
-			- RSS are supposed to vary in sequence
-			- variable, joining, diversity gene segments are converted to a constant in transit/mutation/copying error
+		- mismatched requirement (invalidating variation)
 
-		- functionality that emerges directly from structure is distorted when structure is distorted
-			- blunt end/hairpin ends are distorted, so their function is deactivated
-			- the replacement of a subset is deactivated if the subset is not made compatible in length or other structural attributes
-			- signals are deactivated when information in the signal is distorted
+			- mismatch in enforcement (rule & variance allowed) 
+				- processes not structurally determined to be inevitable (1-1 mapping between structure & process)
 
-		- assumption invalidation
-			- atp hydrolysis is necessary
-				- atp hydrolysis process fails & creates errors
+			- variation of constants:
+				- RSS are supposed to have constant heptamer & nonamer sequences (heptamer: CACAGTG and nonamer: ACAAAAACC)
+				- constant gene segments are converted to variable, joining, diversity gene segments in transit/mutation/copying error
 
-		- similarity between swapped components
-			- the swap operation is supposed to generate variation
-			- similarity between existing & created antibody antigen-binding regions or t-cell receptors (the process is optimal for creating new antibodies/t-cell receptors, so creating the same ones is not an optimal implementation of the process unless there's a deficit of those)
+			- constants of variables:
+				- RSS are supposed to vary in sequence
+				- variable, joining, diversity gene segments are converted to a constant in transit/mutation/copying error
 
-		- intra-type variation
-			- variation exceeding the limits of a type to create a new type may not be useful for a process with strict limits (creating a new type of immunoglobulin)
+			- structure that emerges/enables other functionality is distorted
+				- the hydroxyl & phosphate groups are distorted, so the hydroxyl group cant attack the phosphodiester bond of the other strand
 
-		- false test result
-			- the test to tell if the generated antibody antigen-binding region or t-cell receptor will attack a host cell fails when it should pass
-				- the host cell antigen is faulty
-				- the AIRE activation process is faulty
-				- the testing process is faulty
-				- the similarity to a host cell is irrelevant or wouldnt happen outside the test zone
-				- the thymus or bone marrow testing zone is faulty
-				- its occurring outside of normal testing zones
-				- the antigen was damaged in production or transport to the thymus
-				- apoptosis was triggered by another attribute/rule and the antigen was rejected irrelevantly
+			- position is distorted:
+				- the hairpin stem-loop is supposed to be on the coding segment
+				- a blunt end is supposed to be on the signal segment
 
-		- incompliance with subtypes
-			- antibodies are supposed to have heavy & light chains
-			- most t-cell receptors are supposed to have alpha & beta chains 
-			- antibody proteins are supposed to have antigen-binding regions
-			- t-cells are supposed to have receptors
+			- functionality enabling other functionality is distorted
+				- autophosphorylation doesnt occur, so artemis isnt activated and hairpin segment isnt opened
 
-	- optional processes/inputs
+			- functionality that emerges directly from structure is distorted when structure is distorted
+				- blunt end/hairpin ends are distorted, so their function is deactivated
+				- the replacement of a subset is deactivated if the subset is not made compatible in length or other structural attributes
+				- signals are deactivated when information in the signal is distorted
 
-		- resolving discrepancy between number of bases (removing/adding nucleotides)
+			- intra-type/sub-type variation
+				- variation exceeding the limits of a type to create a new type may not be useful for a process with strict limits (creating a new type of immunoglobulin)
+				- antibodies are supposed to have heavy & light chains
+				- most t-cell receptors are supposed to have alpha & beta chains 
+				- antibody proteins are supposed to have antigen-binding regions
+				- t-cells are supposed to have receptors
+				- the DNA is supposed to have coding/signal segments
+
+			- invalid requirement (assumption)
+				- assumption: atp hydrolysis is not necessary
+					- atp hydrolysis process fails & creates errors due to lack of enforcement of non-necessity of atp hydrolysis
+
+			- variation in metric/test accuracy (false test result when it should have passed)
+				- the test to tell if the generated antibody antigen-binding region or t-cell receptor will attack a host cell fails when it should pass
+					- the host cell antigen is faulty
+					- the AIRE activation process is faulty
+					- the testing process is faulty
+					- the similarity to a host cell is irrelevant or wouldnt happen outside the test zone
+					- the thymus or bone marrow testing zone is faulty
+					- its occurring outside of normal testing zones
+					- the antigen was damaged in production or transport to the thymus
+					- apoptosis was triggered by another attribute/rule and the antigen was rejected irrelevantly
+
+			- side effect outputs are not destroyed or re-used
+				- signal joint is not destroyed & can alter DNA further
+
+		- invalidating condition of process:
+
+			- similarity between swapped components
+				- the swap operation is supposed to generate variation
+				- similarity between existing & created antibody antigen-binding regions or t-cell receptors (the process is optimal for creating new antibodies/t-cell receptors, so creating the same ones is not an optimal implementation of the process unless there's a deficit of those)
 
 
 # Process
@@ -80,9 +132,9 @@
 
 - antibody (immunoglobulin): 
 
-- y-shaped protein produced by plasma cells that neutralizes pathogens, either by binding to tag an antigen so the immune system attacks the pathogen with the antigen, or by binding to interfere with pathogenic activity
+	- y-shaped protein produced by plasma cells that neutralizes pathogens, either by binding to tag an antigen so the immune system attacks the pathogen with the antigen, or by binding to interfere with pathogenic activity
 
-- a typical antibody is composed of two immunoglobulin (Ig) heavy chains & two Ig light chains
+	- a typical antibody is composed of two immunoglobulin (Ig) heavy chains & two Ig light chains
 
 - ATP hydrolysis: releasing chemical energy in phosphoanhydride bonds of adenoside triphosphate (ATP) by splitting the phosphoanhydride bonds
 	- produces adenosine diphosphate (ADP) & an inorganic phosphate (orthophosphate)
@@ -140,7 +192,7 @@
 		6. a recombination center executes the DNA nicking & hairpin formation simultaneously
 		7. prior to ligation, the blunt signals ends are processed more, leading to junctional diversity (relationship type variation)
 			- DNA-PK binds to each broken DNA end
-			- recruits other proteins including artemis, xrcc4, dna ligase iv, cernunnos, & certain DNA polymerases
+			- DNA-PK recruits other proteins including artemis, xrcc4, dna ligase iv, cernunnos, & certain DNA polymerases
 			- DNA-PK forms a complex, leading to its autophosphorylation
 			- the autophosphorylation of DNA-PK activates artemis
 			- artemis's activity opens the coding end hairpin segments
