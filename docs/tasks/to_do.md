@@ -110,6 +110,7 @@
   - buildable conclusions/figuring out
   - emergent combinations of core functions (include derivation of invalidating contexts for core functions)
   - development of key decision metrics
+  - asking the key questions to filter attention/info-gathering/solution
 
   - apply system analysis to VDJ recombination
 

@@ -283,6 +283,7 @@
 		- affinity 
 			- connection potential between key objects (pathogen & immune cell)
 				- ability of t-cell receptor or antigen-binding antibody region to bind to antigens
+				
 
 
 ## Variable-diversity-joining (VDJ) recombination process
