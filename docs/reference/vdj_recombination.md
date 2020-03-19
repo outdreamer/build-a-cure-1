@@ -139,13 +139,15 @@
 				- what structure of the boundary is needed
 				- what sources of single-chain variable fragments are available
 				- is the short linker peptide required to bind the single-chain variable fragments to the heavy/light chain variable segments, or are there other available resources to bind them?
-				- can single-chain variable fragments be generated in a second region limited by a boundary, then merged with the heterodimeric bounded region when the heterodimeric bounded region is ready for single-chain variable fragments
-				- can you place both of these bounded regions in another system boundary to contain their output
-				- can you apply filters or neutralizing components inside the system boundary, before the output is released to the host system
-				- if so, its possible to generate a bio-system component to generate antibodies
+
+				- bounded system:
+					- can single-chain variable fragments be generated in a second region limited by a boundary, then merged with the heterodimeric bounded region when the heterodimeric bounded region is ready for single-chain variable fragments
+					- can you place both of these bounded regions in another system boundary to contain their output
+					- can you apply filters or neutralizing components inside the system boundary, before the output is released to the host system
+					- if so, its possible to generate a bio-system component to generate antibodies
 
 			- component questions
-				- what can be used as a filter to prevent certain antibodies from leaving the system boundary? (pathogens, immune cells, filter structures)
+				- what can be used as a filter to prevent certain antibodies from leaving the system boundary? (pathogens, antigens, immune cells, lymph fluid, sub-cellular or macromolecular filter structures)
 				- what can be used as a system boundary (chitin, existing membranes, existing fungal/viral cells)
 
 			- alternative questions
@@ -168,9 +170,17 @@
 
 				- is local cellular application of this process the right implementation (does it produce useful or harmful variance, given variance injection points)
 
+				- what influences development of sub-systems of immune system (immune organs, humoral, cell-mediated, adaptive), which interfaces dont have a corresponding sub-system of the immune system, and how to apply immune processes to that interface?
+
+				- what permutations of the immune system could produce a bounded system as described above in immune-related organs
+
 				- is there another process that can replace the antigen-tagging solution produced by antibodies, such as adjacent systemic attribute collisions producing local contexts that invalidate pathogens of various types
 					- aligning molecular motion to create pathways large enough for light to pass through, organizing pathogens to be in its path, applied to subsets of pathogens at a time
 					- altering DNA to create output attributes that invalidate pathogen cell structures
+					- flow reversal (like lymph fluid flow reversal) to distribute molecules to a part of system demanding them where they wouldn't normally be bc of flow direction
+					- flow optimization (creating motion types in various contexts to inject variance in structure that isnt being generated optimally, like increasing speed of blood flow in bone marrow to inject variance in antibody structures)
+					- layering testing zones or tools as filtering boundaries radiating outward from the process output
+					- mimicking generative conditions of inputs required for processes (mimicking thymus testing zone once its not there)
 
 		- process order
 			- should tests be applied after potential output is created or earlier in the creation process
