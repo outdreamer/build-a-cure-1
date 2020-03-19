@@ -189,10 +189,20 @@
 
 				- is it more efficient to find sequences that are optimal than to generate them?
 
+				- why cant pathogens like viruses be engineered with original host DNA so original DNA is copied to every cell to help delete mutations as a therapeutic regular treatment
+
 				- is it more efficient to generate sub-components of common successful antibodies & package/deploy these components or their generative functions) than to generate specific antibodies?
 
 				- is there another process that can replace the antigen-tagging solution produced by antibodies, such as adjacent systemic attribute collisions producing local contexts that invalidate pathogens of various types
+
 					- aligning molecular motion to create pathways large enough for light to pass through, organizing pathogens to be in its path, applied to subsets of pathogens at a time
+
+						- this may be why acupuncture has worked occasionally - it distributes stress so its not concentrated, it alerts the immune system to pay attention to distributed regions - it doesnt deliver medicine/light/heat but a signal to the immune system, and it can break apart concentrated clusters with which immune cells cant communicate - the same reason exercise may fix or prevent some problems caused by lack of cell communication
+
+						- rather than using acupuncture, you can also distribute pain to alert the immune system - a bruise can serve the same purpose, and the rest of the body doesnt have to experience it, just the area in question, to prevent tumors in a susceptible area, without risk of infection from needles
+
+					- molecular motion is also a way to generate variation in cellular structures - what else can you use to increase speed of flow to create different structures, and which areas would that work in so that the errors wouldnt be corrected or filtered out as waste?
+
 					- altering DNA to create output attributes that invalidate pathogen cell structures
 					- flow reversal (like lymph fluid flow reversal) to distribute molecules to a part of system demanding them where they wouldn't normally be bc of flow direction
 					- flow optimization (creating motion types in various contexts to inject variance in structure that isnt being generated optimally, like increasing speed of blood flow in bone marrow to inject variance in antibody structures)
@@ -283,7 +293,7 @@
 		- affinity 
 			- connection potential between key objects (pathogen & immune cell)
 				- ability of t-cell receptor or antigen-binding antibody region to bind to antigens
-				
+
 
 
 ## Variable-diversity-joining (VDJ) recombination process
