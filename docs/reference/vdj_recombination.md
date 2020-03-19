@@ -1,7 +1,7 @@
 # VDJ Recombination
 
 
-- system analysis:
+## system analysis
 
 	- points for variance injection
 		- target output structure (antigen-binding region or t-cell receptor for a specific pathogen antigen)
@@ -37,12 +37,29 @@
 				- cooperation
 					- protein/enzyme
 
+				- identification
+					- RSS recognition by RAG1 enzyme
+
 			- structure
+
+				- layers
+					- host system (t-cell, b-cell)
+					- system object (cell)
+					- host process (cell development)
+					- system process (recombination)
+					- relationship (position in cell system object)
+					- resource to alter (DNA)
+					- subset (of resource to be altered, DNA)
+					- sequence (of resource to be altered, DNA)
+					- units (of resource to be altered & processors - amino acids/nucleotides/bases)
+					- processors (enzymes, proteins)
+					- limit (validation/protection/regulation) processes (testing, apoptosis)
 
 				- position
 					- chromosome position
 					- gene segment position
 					- enzyme position
+					- signal joint position (re-enters the genome to cause changes that are not optimal)
 
 				- component
 					- phosphorus is a key component providing an interface to frame the process on
@@ -62,20 +79,7 @@
 				- limits
 					- continuity requirement for final protein sequence
 					- structural inevitability (1-1 relationship) is injected at various points of the process
-					- ratios (5-3, 2 heavy :: 2 light, etc)
-
-				- layers
-					- host system (t-cell, b-cell)
-					- system object (cell)
-					- host process (cell development)
-					- system process (recombination)
-					- position (in cell system object)
-					- resource to alter (DNA)
-					- subset (of resource to be altered, DNA)
-					- sequence (of resource to be altered, DNA)
-					- units (of resource to be altered & processors - amino acids/nucleotides/bases)
-					- processors (enzymes, proteins)
-					- limit (validation/protection/regulation) processes (testing, apoptosis)
+					- ratios (5-3, 12:23 rule, 2 heavy :: 2 light, etc)
 
 		- system
 
@@ -87,7 +91,7 @@
 
 			- resource: DNA
 			- change rule execution objects: enzymes
-			- subset types: variable, joining, diversity, & constant gene segments of chromosomes
+			- subset types: variable, joining, diversity, & constant gene segments on chains in chromosome loci
 			- position: subset type DNA chromosome subsets
 
 		- intents
@@ -120,12 +124,13 @@
 					- creating palindromic nucleotides from off-center opening of hairpin segment
 					- exonucleases removing bases from coding ends
 					- template-independent TdT adding non-templated nucleotides
+				- DNA copying, marking/nicking, identification/recognition, deletion, synthesis, connection, ordering, mutation, activation, transcription, translation, conversion, rearrangement, assembly, expression
 
 			- output processes (mechanism of action)
 				- binds to antigen to alert immune system to attack pathogen with that antigen
 				- binds to antigen to interfere with pathogen cell activity or survival
 
-	- rules/types generating failure points:
+	- rules/types generating failure points
 
 		- missing requirement
 
@@ -153,6 +158,8 @@
 
 			- structure that emerges/enables other functionality is distorted
 				- the hydroxyl & phosphate groups are distorted, so the hydroxyl group cant attack the phosphodiester bond of the other strand
+				- the chain is distorted
+					- a heavy/light/alpha/beta chain doesnt have all the gene segment regions (variable, joining, diversity, constant) it should
 
 			- position is distorted:
 				- the hairpin stem-loop is supposed to be on the coding segment
@@ -199,60 +206,148 @@
 				- similarity between existing & created antibody antigen-binding regions or t-cell receptors (the process is optimal for creating new antibodies/t-cell receptors, so creating the same ones is not an optimal implementation of the process unless there's a deficit of those)
 
 
-# Process
+## Variable-diversity-joining (VDJ) recombination process
 
-- antigen: any molecule or linear molecular fragment that can be identified by a t-cell receptor
 
-- antibody (immunoglobulin): 
+	- definition
 
-	- y-shaped protein produced by plasma cells that neutralizes pathogens, either by binding to tag an antigen so the immune system attacks the pathogen with the antigen, or by binding to interfere with pathogenic activity
+		- process that rearranges variable, joining & diversity gene segments
 
-	- a typical antibody is composed of two immunoglobulin (Ig) heavy chains & two Ig light chains
 
-- ATP hydrolysis: releasing chemical energy in phosphoanhydride bonds of adenoside triphosphate (ATP) by splitting the phosphoanhydride bonds
-	- produces adenosine diphosphate (ADP) & an inorganic phosphate (orthophosphate)
-	- ADP produces energy, adenosine monophosphate (AMP) and another orthophosphate
-	- ATP hydrolysis is the last step in converting energy like food or sunlight into useful work like:
-		- muscle contraction
-		- establishing electrochemical gradient (solute & charge distribution across a membrane), usually for an ion's movement across a membrane
+	- attributes
 
-- somatic recombination: 
-
-	- a somatic cell DNA change that is inherited by its daughter cells, usually in large-scale chromosomal translocations/deletions, not point mutations
-	- relevant to the assembly of the B/T-cell receptor genes, the class-switching of immunoglobulins, & carcinogenesis
-	- can target specific genes, like the gene for the amyloid precursor protein
-
-- variable-diversity-joining (VDJ) recombination: 
-
-	- process that rearranges variable, joining & diversity gene segments
-	- occurs only in developing lymphocytes during the early stages of T & B cell maturation
-	- involves somatic recombination
-
-	- produces a variety of: 
-		- b cell antibodies/immunoglobulins
-		- T cell receptors (TCRs)
-	
-	- final product is new amino acid sequences in antigen-binding regions of antibody proteins & t-cell receptors
-	- these new amino acid sequences enable antibodies & t-cells to recognize antigens (from pathogens, cancerous cells, allergens & healthy host cells)
-		- variable, joining, & diversity gene segment types influence variable sections of antibody proteins & t-cell receptors
+		- frequency: 
+			- occurs only in developing lymphocytes during the early stages of T & B cell maturation
 		
-	- when building lymphocytes, recombination occurs to generate new Variable/Diversity/Joining gene segments of the antibody's fragment antigen-binding region or the t-cell's receptor, so that new antibodies or t-cell receptors are generated which can handle new antigens
+		- related process: 
+			- somatic recombination
 
-	- DNA rearrangement causes copies of each gene segment type (variable gene segment copy + diversity gene segment copy + joining gene segment copy) to go in any given lymphocyte, generating many possible antibodies 
-	   	- there are around 3×10^11 combinations
-	   	- some combinations are removed due to self reactivity, determined by testing in the thymus against host cell antigens, expressed using the autoimmune regulator protein (AIRE)
+		- impact
+			- variation
 
-	- a t-cell's receptor is like an antibody's fragment antigen-binding region, both being part of the antibody superfamily
-	- antibodies have heavy & light chains, whereas most t-cell receptors have alpha & beta chains
-	- each chain has some of the gene segment regions (variable, joining, diversity, constant)
-	- lymphocytes are tested against host antigens expressed by autoimmune regulatory protein (AIRE) in the thymus
-	- lymphocytes that self-react are eliminated with apoptosis to prevent autoimmunity
+		- output:
 
-	- occurs in lymphoid organs:
-		- bone marrow for b cells
-		- thymus for t cells
+			- output object:
+				- general:
+					- b cell antibodies/immunoglobulins
+					- T cell receptors (TCRs)
+				- specific:
+					- final product is new amino acid sequences in antigen-binding regions of antibody proteins & t-cell receptors
 
-	- overall process:
+			- output function: 
+				- these new amino acid sequences enable antibodies & t-cells to recognize antigens (from pathogens, cancerous cells, allergens & healthy host cells)
+			
+		- inputs
+
+			- VDJ types
+
+				- variable, joining, & diversity gene segment types influence variable sections of antibody proteins & t-cell receptors
+				
+			- components:
+
+				- recombination signal sequences: protected sequences of noncoding DNA recognized by RAG1/2 enzymes during VDJ recombination in B/T cells
+
+					- components of recombination signal sequences:
+						- a heptamer of seven conserved nucleotides
+						- a spacer region of 12/23 basepairs in length
+						- a nonamer of 9 conserved nucleotides
+
+					- Recombination signal sequences allow specific recombinations to be executed, by communicating position of VDJ gene segments
+					- VDJ recombination enzymes recognize & bind to recombination signal sequences around the VDJ gene segments
+
+					- RSS vary in sequence but have constant heptamer & nonamer sequences (heptamer: CACAGTG and nonamer: ACAAAAACC)
+					- the sequence of the spacer region sequence is often lost
+					- the length of the spacer region sequence is rarely lost
+					- the spacer region length is usually about 1 or 2 turns of the DNA strand (1 turn = 12 basepairs, 2 turns = 23 basepairs)
+
+					- 12/23 rule: gene segments to be recombined are usually adjacent to Recombination signal sequences of various spacer lengths (one has a "12 RSS" and one has a "23 RSS") 
+
+						- to do: clarify which configuration this rule allows:
+							12 RSS - V D J - 23 RSS
+							12 RSS - V - 23 RSS
+							V - 12 RSS - D J - 23 RSS
+
+				- enzymes:
+
+					- VDJ recombinase: a diverse collection of enzymes
+
+						- DNA-dependent protein kinase (DNA-PK)
+						- X-ray repair cross-complementing protein 4 (XRCC4)
+						- DNA ligase IV
+						- Cernunnos: non-homologous end-joining factor 1 (NHEJ1), aka XRCC4-like factor [XLF], the Paralog of XRCC4 & XLF (PAXX)
+						- DNA polymerases λ & μ
+
+						- enzymes specific to lymphocytes (RAG, TdT)
+							- recombination activating genes 1 & 2 (RAG)
+							- terminal deoxynucleotidyl transferase (TdT): a template-independent DNA polymerase that adds non-templated (N) nucleotides to the coding end during VDJ recombination, exhibiting a tendency to use G/C nucleotides, though the process of TdT adding nucleotides to the coding end is mostly random
+								- like all DNA polymerases, Tdt adds nucleotides to a strand in a 5-3 direction
+
+						- other enzymes found in other cell types or everywhere:
+							- Artemis nuclease, a member of the ubiquitous non-homologous end joining (NHEJ) pathway for DNA repair
+
+		- context
+
+			- when building lymphocytes, recombination occurs to generate new variable/diversity/joining gene segments of the antibody's fragment antigen-binding region or the t-cell's receptor, so that new antibodies or t-cell receptors are generated which can handle new antigens
+
+			- occurs in lymphoid organs:
+				- bone marrow for b cells
+				- thymus for t cells
+
+			- systems where recombination occurs:
+
+				- antibody (specifically immunoglobulin):
+
+					- composed of heavy & light chains
+					- these chains contain constant (C) & variable (V) regions encoded on three antibody DNA loci (heavy, kappa, lambda)
+					- fragment antibody-binding (Fab) region: section of an antibody protein that is variable & binds to different antigens
+
+					- heavy chain: large polypeptide subunit of the antibody 
+						- defines the antibody isotype (constant gene segments)
+						- humans have five heavy chain isotypes
+					    - on antibody DNA's chromosome 14's heavy locus (IGH)
+					   	- 2 Constant (Cμ & Cδ) gene segments
+					   	- 44 Variable (V) gene segments
+					   	- 27 Diversity (D) gene segments
+					   	- 6 Joining (J) gene segments
+
+					- light chain: small polypeptide subunit of the antibody 
+				    	- on antibody DNA's chromosome 2's kappa locus (IGK) & chromosome 22's lambda (λ) locus (IGL)
+					   	- 2 Constant (Cλ & Cκ) gene segments 
+					   	- Variable & Joining gene segments
+					   	- do not have D gene segments
+					   	- has protein-coding genes that can be lost during rearrangement
+
+				- t-cell receptors:
+
+					- like antibody genes, most T cell receptor genes contain:
+						- beta chains (V, D, & J gene segments)
+						- alpha chains (V & J gene segments)
+
+		- variance source
+
+			- DNA rearrangement causes copies of each gene segment type (variable gene segment copy + diversity gene segment copy + joining gene segment copy) to go in any given lymphocyte, generating many possible antibodies 
+			   	- there are around 3×10^11 combinations
+			   	- some combinations are removed due to self reactivity, determined by testing in the thymus against host cell antigens, expressed using the autoimmune regulator protein (AIRE)
+
+		- validation
+
+			- lymphocytes are tested against host antigens expressed by autoimmune regulatory protein (AIRE) in the thymus
+			- lymphocytes that self-react are eliminated with apoptosis to prevent autoimmunity
+
+
+	- types
+
+		- system object type connection:
+			- a t-cell's receptor is like an antibody's fragment antigen-binding region, both being part of the antibody superfamily
+		
+		- contextual types:
+			- antibodies have heavy & light chains, whereas most t-cell receptors have alpha & beta chains
+		
+		- input types:
+			- each chain has some of the gene segment regions (variable, joining, diversity, constant)
+
+
+	- process:
 
 		1. VDJ recombinase (RAG1 enzyme) binds a recombination signal sequence around a VDJ segment
 		2. creates a nick on one strand of the DNA between the first base of the Recombination signal sequence just before the heptamer & the coding segment of the RSS
@@ -273,7 +368,7 @@
 			- usually its not at the center and one strand has extra bases
 			- when DNA repair enzymes resolve the discrepancy in extra bases, the palindromic sequences produced are the reason why the corrected strand are called palindromic nucleotides
 			- the Artemis hairpin opening process is crucial to VDJ recombination success
- 				- XRCC4, cernunnos, and DNA-PK align the DNA ends and use terminal deoxynucleotidyl transferase enzyme to add non-templated nucleotides to the coding end
+ 				- XRCC4, cernunnos, & DNA-PK align the DNA ends and use terminal deoxynucleotidyl transferase enzyme to add non-templated nucleotides to the coding end
 			- exonucleases remove bases from the coding ends, including palidromic (P) or non-templated (N) nucleotides that may have formed
 			- DNA polymerases lambda & mu then add nucleotides as needed to make the two ends compatible for joining
 			- the process of 1, exonucleolytic removal of bases & P/N nucleotides & 2, adding nucleotides for compatibility, is possible but not enforced
@@ -286,79 +381,8 @@
 
 		- this costly process can only work if the DNA remains in-frame (continuous segment) to maintain the right amino acid sequence in the final protein product - otherwise the cell development will stop & die - so this process has strict limits to succeed
 
-	- components:
 
-		- recombination signal sequences: protected sequences of noncoding DNA recognized by RAG1/2 enzymes during VDJ recombination in B/T cells
-
-			- components of recombination signal sequences:
-				- a heptamer of seven conserved nucleotides
-				- a spacer region of 12/23 basepairs in length
-				- a nonamer of 9 conserved nucleotides
-
-			- Recombination signal sequences allow specific recombinations to be executed, by communicating position of VDJ gene segments
-			- VDJ recombination enzymes recognize & bind to recombination signal sequences around the VDJ gene segments
-
-			- RSS vary in sequence but have constant heptamer & nonamer sequences (heptamer: CACAGTG and nonamer: ACAAAAACC)
-			- the sequence of the spacer region sequence is often lost
-			- the length of the spacer region sequence is rarely lost
-			- the spacer region length is usually about 1 or 2 turns of the DNA strand (1 turn = 12 basepairs, 2 turns = 23 basepairs)
-
-			- 12/23 rule: gene segments to be recombined are usually adjacent to Recombination signal sequences of various spacer lengths (one has a "12 RSS" and one has a "23 RSS") 
-
-				- to do: clarify which configuration this rule allows:
-					12 RSS - V D J - 23 RSS
-					12 RSS - V - 23 RSS
-					V - 12 RSS - D J - 23 RSS
-
-		- enzymes:
-			- VDJ recombinase: a diverse collection of enzymes
-
-			- DNA-dependent protein kinase (DNA-PK)
-			- X-ray repair cross-complementing protein 4 (XRCC4)
-			- DNA ligase IV
-			- non-homologous end-joining factor 1 (NHEJ1), aka Cernunnos, XRCC4-like factor [XLF], the Paralog of XRCC4 & XLF (PAXX)
-			- DNA polymerases λ & μ
-
-			- enzymes specific to lymphocytes (RAG, TdT)
-				- recombination activating genes 1 & 2 (RAG)
-				- terminal deoxynucleotidyl transferase (TdT): a template-independent DNA polymerase that adds non-templated (N) nucleotides to the coding end during VDJ recombination, exhibiting a tendency to use G/C nucleotides, though the process of TdT adding nucleotides to the coding end is mostly random
-					- like all DNA polymerases, Tdt adds nucleotides to a strand in a 5-3 direction
-
-			- other enzymes found in other cell types or everywhere:
-				- Artemis nuclease, a member of the ubiquitous non-homologous end joining (NHEJ) pathway for DNA repair
-
-
-	- systems where recombination occurs:
-
-		- antibody (specifically immunoglobulin):
-
-			- composed of heavy & light chains
-			- these chains contain constant (C) & variable (V) regions encoded on three antibody DNA loci (heavy, kappa, lambda)
-			- fragment antibody binding (Fab) region: section of an antibody protein that is variable & binds to different antigens
-
-			- heavy chain: large polypeptide subunit of the antibody 
-				- defines the antibody isotype (constant gene segments)
-				- humans have five heavy chain isotypes
-			    - on antibody DNA's chromosome 14's heavy locus (IGH)
-			   	- 2 Constant (Cμ & Cδ) gene segments
-			   	- 44 Variable (V) gene segments
-			   	- 27 Diversity (D) gene segments
-			   	- 6 Joining (J) gene segments
-
-			- light chain: small polypeptide subunit of the antibody 
-		    	- on antibody DNA's chromosome 2's kappa locus (IGK) & chromosome 22's lambda (λ) locus (IGL)
-			   	- 2 Constant (Cλ & Cκ) gene segments 
-			   	- Variable & Joining gene segments
-			   	- do not have D gene segments
-			   	- has protein-coding genes that can be lost during rearrangement
-
-		- t-cell receptors:
-
-			- like antibody genes, most T cell receptor genes contain:
-				- beta chains (V, D, & J gene segments)
-				- alpha chains (V & J gene segments)
-
-	- process order:
+	- sub-process:
 
 		- b-cell process
 
