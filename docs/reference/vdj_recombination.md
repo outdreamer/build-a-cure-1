@@ -1,21 +1,7 @@
 # VDJ Recombination
 
 
-## system analysis
-
-	- points for variance injection
-		- target output structure (antigen-binding region or t-cell receptor for a specific pathogen antigen)
-		- input components
-		- processes
-		- intents
-		- constants
-		- assumptions
-		- limits
-		- requirements
-		- variable metadata (position, application, connection)
-		- order of processes
-			- should tests be applied after potential output is created or earlier in the creation process
-
+## System Analysis
 
 	- variables
 
@@ -24,7 +10,40 @@
 			- signal joint
 			- functional type (VDJ gene segments, enzyme types, immunoglobulin types)
 
-		- interfaces
+		- system
+
+			- b/t-cell
+			- bone marrow/lymphatic system
+			- adaptive immune system
+
+		- components
+
+			- resource: DNA
+			- change rule execution objects: enzymes
+			- subset types: variable, joining, diversity, & constant gene segments on chains in chromosome loci
+			- position: subset type DNA chromosome subsets
+
+		- intents
+
+			- protecting host by attacking pathogens
+			- notifying immune system by tagging pathogens
+
+		- processes
+
+			- key processes known to create overall process failure:
+				- Artemis hairpin opening process
+
+			- optional processes/inputs
+				- resolving discrepancy between number of bases (removing/adding nucleotides)
+
+			- relevant external/subsequent/sub processes
+				- somatic recombination inheritance: once a recombination is done, any daughter cells will have same recombinated DNA so the process doesnt have to be applied to every cell generated from recombined DNA cells
+
+			- output processes (mechanism of action)
+				- binds to antigen to alert immune system to attack pathogen with that antigen
+				- binds to antigen to interfere with pathogen cell activity or survival
+
+		- specific system interfaces
 
 			- communication
 
@@ -81,56 +100,21 @@
 					- structural inevitability (1-1 relationship) is injected at various points of the process
 					- ratios (5-3, 12:23 rule, 2 heavy :: 2 light, etc)
 
-		- system
-
-			- b/t-cell
-			- bone marrow/lymphatic system
-			- adaptive immune system
-
-		- components
-
-			- resource: DNA
-			- change rule execution objects: enzymes
-			- subset types: variable, joining, diversity, & constant gene segments on chains in chromosome loci
-			- position: subset type DNA chromosome subsets
-
-		- intents
-
-			- protecting host by attacking pathogens
-			- notifying immune system by tagging pathogens
-
+	- variance injection points
+		- target output structure (antigen-binding region or t-cell receptor for a specific pathogen antigen)
+		- input components
 		- processes
+		- intents
+		- constants
+		- assumptions
+		- limits
+		- requirements
+		- variable metadata (position, application, connection)
+		- order of processes
+			- should tests be applied after potential output is created or earlier in the creation process
 
-			- key processes known to create overall process failure:
-				- Artemis hairpin opening process
 
-			- optional processes/inputs
-				- resolving discrepancy between number of bases (removing/adding nucleotides)
-
-			- relevant external/subsequent/sub processes
-				- somatic recombination inheritance: once a recombination is done, any daughter cells will have same recombinated DNA so the process doesnt have to be applied to every cell generated from recombined DNA cells
-				- ligation process using DNA ligase IV to ligate coding ends once processed
-				- XRCC4, cernunnos, & DNA-PK alignment of DNA ends 
-				- XRCC4, cernunnos, & DNA-PK recruitment of terminal deoxynucleotidyl transferase (TdT)
-				- TdT adding nucleotides to strands in 5-3 direction
-				- polymerase adding nucleotides to strands in 5-3 direction
-				- DNA-PK autophosphorylation
-				- DNA-PK binding to each broken DNA end
-				- DNA-PK recruits other proteins including artemis, xrcc4, dna ligase iv, cernunnos, & certain DNA polymerases
-				- artemis activation
-				- artemis hairpin opening
-				- DNA enzyme repair process
-					- enzyme nucleotide adjustments for compatibility, in case center of hairpin segment is not opened & sides are unequal
-					- creating palindromic nucleotides from off-center opening of hairpin segment
-					- exonucleases removing bases from coding ends
-					- template-independent TdT adding non-templated nucleotides
-				- DNA copying, marking/nicking, identification/recognition, deletion, synthesis, connection, ordering, mutation, activation, transcription, translation, conversion, rearrangement, assembly, expression
-
-			- output processes (mechanism of action)
-				- binds to antigen to alert immune system to attack pathogen with that antigen
-				- binds to antigen to interfere with pathogen cell activity or survival
-
-	- rules/types generating failure points
+	- problem types (rules/types generating failure points)
 
 		- missing requirement
 
@@ -210,129 +194,117 @@
 
 
 	- definition
-
 		- process that rearranges variable, joining & diversity gene segments
 
+	- frequency: 
+		- occurs only in developing lymphocytes during the early stages of T & B cell maturation
 
-	- attributes
+	- inputs
 
-		- frequency: 
-			- occurs only in developing lymphocytes during the early stages of T & B cell maturation
-		
-		- related process: 
-			- somatic recombination
+		- components:
 
-		- impact
-			- variation
+			- recombination signal sequences: protected sequences of noncoding DNA recognized by RAG1/2 enzymes during VDJ recombination in B/T cells
 
-		- output:
+				- components of recombination signal sequences:
+					- a heptamer of seven conserved nucleotides
+					- a spacer region of 12/23 basepairs in length
+					- a nonamer of 9 conserved nucleotides
 
-			- output object:
-				- general:
-					- b cell antibodies/immunoglobulins
-					- T cell receptors (TCRs)
-				- specific:
-					- final product is new amino acid sequences in antigen-binding regions of antibody proteins & t-cell receptors
+				- Recombination signal sequences allow specific recombinations to be executed, by communicating position of VDJ gene segments
+				- VDJ recombination enzymes recognize & bind to recombination signal sequences around the VDJ gene segments
 
-			- output function: 
-				- these new amino acid sequences enable antibodies & t-cells to recognize antigens (from pathogens, cancerous cells, allergens & healthy host cells)
-			
-		- inputs
+				- RSS vary in sequence but have constant heptamer & nonamer sequences (heptamer: CACAGTG and nonamer: ACAAAAACC)
+				- the sequence of the spacer region sequence is often lost
+				- the length of the spacer region sequence is rarely lost
+				- the spacer region length is usually about 1 or 2 turns of the DNA strand (1 turn = 12 basepairs, 2 turns = 23 basepairs)
 
-			- VDJ types
+				- 12/23 rule: gene segments to be recombined are usually adjacent to Recombination signal sequences of various spacer lengths (one has a "12 RSS" and one has a "23 RSS") 
 
-				- variable, joining, & diversity gene segment types influence variable sections of antibody proteins & t-cell receptors
-				
-			- components:
+					- to do: clarify which configuration this rule allows:
+						12 RSS - V D J - 23 RSS
+						12 RSS - V - 23 RSS
+						V - 12 RSS - D J - 23 RSS
 
-				- recombination signal sequences: protected sequences of noncoding DNA recognized by RAG1/2 enzymes during VDJ recombination in B/T cells
+			- enzymes & proteins:
 
-					- components of recombination signal sequences:
-						- a heptamer of seven conserved nucleotides
-						- a spacer region of 12/23 basepairs in length
-						- a nonamer of 9 conserved nucleotides
+				- VDJ recombinase: a diverse collection of enzymes
 
-					- Recombination signal sequences allow specific recombinations to be executed, by communicating position of VDJ gene segments
-					- VDJ recombination enzymes recognize & bind to recombination signal sequences around the VDJ gene segments
+					- DNA-dependent protein kinase (DNA-PK)
+					- X-ray repair cross-complementing protein 4 (XRCC4)
+					- DNA ligase IV
+					- Cernunnos: non-homologous end-joining factor 1 (NHEJ1), aka XRCC4-like factor [XLF], the Paralog of XRCC4 & XLF (PAXX)
+					- DNA polymerases λ & μ
 
-					- RSS vary in sequence but have constant heptamer & nonamer sequences (heptamer: CACAGTG and nonamer: ACAAAAACC)
-					- the sequence of the spacer region sequence is often lost
-					- the length of the spacer region sequence is rarely lost
-					- the spacer region length is usually about 1 or 2 turns of the DNA strand (1 turn = 12 basepairs, 2 turns = 23 basepairs)
+					- enzymes specific to lymphocytes (RAG, TdT)
+						- recombination activating genes 1 & 2 (RAG)
+						- terminal deoxynucleotidyl transferase (TdT): a template-independent DNA polymerase that adds non-templated (N) nucleotides to the coding end during VDJ recombination, exhibiting a tendency to use G/C nucleotides, though the process of TdT adding nucleotides to the coding end is mostly random
+							- like all DNA polymerases, Tdt adds nucleotides to a strand in a 5-3 direction
 
-					- 12/23 rule: gene segments to be recombined are usually adjacent to Recombination signal sequences of various spacer lengths (one has a "12 RSS" and one has a "23 RSS") 
+					- other enzymes found in other cell types or everywhere:
+						- Artemis nuclease, a member of the ubiquitous non-homologous end joining (NHEJ) pathway for DNA repair
 
-						- to do: clarify which configuration this rule allows:
-							12 RSS - V D J - 23 RSS
-							12 RSS - V - 23 RSS
-							V - 12 RSS - D J - 23 RSS
 
-				- enzymes:
+	- context
 
-					- VDJ recombinase: a diverse collection of enzymes
+		- when building lymphocytes, recombination occurs to generate new variable/diversity/joining gene segments of the antibody's fragment antigen-binding region or the t-cell's receptor, so that new antibodies or t-cell receptors are generated which can handle new antigens
 
-						- DNA-dependent protein kinase (DNA-PK)
-						- X-ray repair cross-complementing protein 4 (XRCC4)
-						- DNA ligase IV
-						- Cernunnos: non-homologous end-joining factor 1 (NHEJ1), aka XRCC4-like factor [XLF], the Paralog of XRCC4 & XLF (PAXX)
-						- DNA polymerases λ & μ
+		- occurs in immune/lymphoid systems
 
-						- enzymes specific to lymphocytes (RAG, TdT)
-							- recombination activating genes 1 & 2 (RAG)
-							- terminal deoxynucleotidyl transferase (TdT): a template-independent DNA polymerase that adds non-templated (N) nucleotides to the coding end during VDJ recombination, exhibiting a tendency to use G/C nucleotides, though the process of TdT adding nucleotides to the coding end is mostly random
-								- like all DNA polymerases, Tdt adds nucleotides to a strand in a 5-3 direction
+			- antibody (specifically immunoglobulin in bone marrow for b cells):
 
-						- other enzymes found in other cell types or everywhere:
-							- Artemis nuclease, a member of the ubiquitous non-homologous end joining (NHEJ) pathway for DNA repair
+				- composed of heavy & light chains
+				- these chains contain constant (C) & variable (V) regions encoded on three antibody DNA loci (heavy, kappa, lambda)
+				- fragment antibody-binding (Fab) region: section of an antibody protein that is variable & binds to different antigens
 
-		- context
+				- heavy chain: large polypeptide subunit of the antibody 
+					- defines the antibody isotype (constant gene segments)
+					- humans have five heavy chain isotypes
+				    - on antibody DNA's chromosome 14's heavy locus (IGH)
+				   	- 2 Constant (Cμ & Cδ) gene segments
+				   	- 44 Variable (V) gene segments
+				   	- 27 Diversity (D) gene segments
+				   	- 6 Joining (J) gene segments
 
-			- when building lymphocytes, recombination occurs to generate new variable/diversity/joining gene segments of the antibody's fragment antigen-binding region or the t-cell's receptor, so that new antibodies or t-cell receptors are generated which can handle new antigens
+				- light chain: small polypeptide subunit of the antibody 
+			    	- on antibody DNA's chromosome 2's kappa locus (IGK) & chromosome 22's lambda (λ) locus (IGL)
+				   	- 2 Constant (Cλ & Cκ) gene segments 
+				   	- Variable & Joining gene segments
+				   	- do not have D gene segments
+				   	- has protein-coding genes that can be lost during rearrangement
 
-			- occurs in lymphoid organs:
-				- bone marrow for b cells
-				- thymus for t cells
+			- t-cell receptors (in thymus for t cells):
 
-			- systems where recombination occurs:
+				- like antibody genes, most T cell receptor genes contain:
+					- beta chains (V, D, & J gene segments)
+					- alpha chains (V & J gene segments)
 
-				- antibody (specifically immunoglobulin):
 
-					- composed of heavy & light chains
-					- these chains contain constant (C) & variable (V) regions encoded on three antibody DNA loci (heavy, kappa, lambda)
-					- fragment antibody-binding (Fab) region: section of an antibody protein that is variable & binds to different antigens
+	- related processes
 
-					- heavy chain: large polypeptide subunit of the antibody 
-						- defines the antibody isotype (constant gene segments)
-						- humans have five heavy chain isotypes
-					    - on antibody DNA's chromosome 14's heavy locus (IGH)
-					   	- 2 Constant (Cμ & Cδ) gene segments
-					   	- 44 Variable (V) gene segments
-					   	- 27 Diversity (D) gene segments
-					   	- 6 Joining (J) gene segments
+		- somatic recombination
+		- ligation process using DNA ligase IV to ligate coding ends once processed
+		- XRCC4, cernunnos, & DNA-PK alignment of DNA ends 
+		- XRCC4, cernunnos, & DNA-PK recruitment of terminal deoxynucleotidyl transferase (TdT)
+		- TdT adding nucleotides to strands in 5-3 direction
+		- polymerase adding nucleotides to strands in 5-3 direction
+		- DNA-PK autophosphorylation
+		- DNA-PK binding to each broken DNA end
+		- DNA-PK recruits other proteins including artemis, xrcc4, dna ligase iv, cernunnos, & certain DNA polymerases
+		- artemis activation
+		- artemis hairpin opening
+		- DNA enzyme repair process
+			- enzyme nucleotide adjustments for compatibility, in case center of hairpin segment is not opened & sides are unequal
+			- creating palindromic nucleotides from off-center opening of hairpin segment
+			- exonucleases removing bases from coding ends
+			- template-independent TdT adding non-templated nucleotides
+		- DNA copying, marking/nicking, identification/recognition, deletion, synthesis, connection, ordering, mutation, activation, transcription, translation, conversion, rearrangement, assembly, expression
 
-					- light chain: small polypeptide subunit of the antibody 
-				    	- on antibody DNA's chromosome 2's kappa locus (IGK) & chromosome 22's lambda (λ) locus (IGL)
-					   	- 2 Constant (Cλ & Cκ) gene segments 
-					   	- Variable & Joining gene segments
-					   	- do not have D gene segments
-					   	- has protein-coding genes that can be lost during rearrangement
 
-				- t-cell receptors:
+	- explanatory interface/variance source
 
-					- like antibody genes, most T cell receptor genes contain:
-						- beta chains (V, D, & J gene segments)
-						- alpha chains (V & J gene segments)
-
-		- variance source
-
-			- DNA rearrangement causes copies of each gene segment type (variable gene segment copy + diversity gene segment copy + joining gene segment copy) to go in any given lymphocyte, generating many possible antibodies 
-			   	- there are around 3×10^11 combinations
-			   	- some combinations are removed due to self reactivity, determined by testing in the thymus against host cell antigens, expressed using the autoimmune regulator protein (AIRE)
-
-		- validation
-
-			- lymphocytes are tested against host antigens expressed by autoimmune regulatory protein (AIRE) in the thymus
-			- lymphocytes that self-react are eliminated with apoptosis to prevent autoimmunity
+		- DNA rearrangement causes copies of each gene segment type (variable gene segment copy + diversity gene segment copy + joining gene segment copy) to go in any given lymphocyte, generating many possible antibodies 
+			- there are around 3×10^11 combinations
+			- some combinations are removed due to self reactivity, determined by testing in the thymus against host cell antigens, expressed using the autoimmune regulator protein (AIRE)
 
 
 	- types
@@ -345,6 +317,28 @@
 		
 		- input types:
 			- each chain has some of the gene segment regions (variable, joining, diversity, constant)
+			- VDJ types: variable, joining, & diversity gene segment types influence variable sections of antibody proteins & t-cell receptors
+			
+
+	- output:
+
+		- output object
+			- general:
+				- b cell antibodies/immunoglobulins
+				- T cell receptors (TCRs)
+			- specific:
+				- final product is new amino acid sequences in antigen-binding regions of antibody proteins & t-cell receptors
+
+		- output function
+			- these new amino acid sequences enable antibodies & t-cells to recognize antigens (from pathogens, cancerous cells, allergens & healthy host cells)
+			
+		- output filters
+			- validation
+				- lymphocytes are tested against host antigens expressed by autoimmune regulatory protein (AIRE) in the thymus
+				- lymphocytes that self-react are eliminated with apoptosis to prevent autoimmunity
+		
+		- output impact
+			- variation in resource combination
 
 
 	- process:
@@ -419,3 +413,4 @@
 
 			- the rearrangement of the alpha (α) chain of the TCR follows β chain rearrangement, & resembles Ig light chain V-to-J rearrangement
 			- the assembly of the beta & alpha chains results in formation of the alpha-beta-TCR that is expressed on a majority of T cells
+
