@@ -174,6 +174,19 @@
 
 				- what permutations of the immune system could produce a bounded system as described above in immune-related organs
 
+				- should the control be injected at the antibody object or the antigen object or another object
+					- rather than generating the right antibody, convert the antigen into an antigen for which there is an existing available antibody or an antigen that is adjacent to existing resources (an antibody can definitely be generated for the converted antigen
+
+				- is there a combination of the existing system (immunoglobulin types, processing functions, enzyme usage) that if adjusted could optimize some metric of antibody production
+
+				- is there a cell type that would neutralize the pathogen, but the problem is its not exposed to the pathogen, so the problem is an identification/finding/transport problem rather than an antibody-building problem
+
+				- is there a cell transform that can be executed to make them immune to pathogens temporarily while the pathogens move through the system (toughening of cell membrane, attachment/development of projections or other structures like macromolecules to keep pathogens moving rather than attaching or disrupting cell)
+
+				- can a variance injection point transform be executed to reduce points of entry of pathogens (a transform on skin, lungs, mucus membranes)
+
+				- is an interface transform accessible that could prevent damage of a certain type without changing other system relationships (adjust priority/incentive/type/variance/function of some layer to prevent attacks on a caused layer)
+
 				- is there another process that can replace the antigen-tagging solution produced by antibodies, such as adjacent systemic attribute collisions producing local contexts that invalidate pathogens of various types
 					- aligning molecular motion to create pathways large enough for light to pass through, organizing pathogens to be in its path, applied to subsets of pathogens at a time
 					- altering DNA to create output attributes that invalidate pathogen cell structures
