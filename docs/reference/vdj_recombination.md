@@ -3,34 +3,80 @@
 
 - system analysis:
 
+	- points for variance injection
+		- target output structure (antigen-binding region or t-cell receptor for a specific pathogen antigen)
+		- input components
+		- processes
+		- intents
+		- constants
+		- assumptions
+		- limits
+		- requirements
+		- variable metadata (position, application, connection)
+
+
 	- variables
 
+		- concepts
+			- relationship type variation (junctional diversity)
+			- signal joint
+			- functional type (VDJ gene segments, enzyme types, immunoglobulin types)
+
+		- interfaces
+
+			- communication
+
+				- signaling
+					- receptor/antigen-binding region
+
+				- hub
+					- DNA-PK is a hub for other proteins & enzymes (artemis, xrcc4, dna ligase iv, cernunnos, & certain DNA polymerases)
+
+
+			- structure
+				- position (chromosome position, gene segment position, enzyme position)
+				- component
+					- phosphorus is a key component providing an interface to frame the process on
+					- DNA
+					- amino acid
+				- groups
+					- base pairs
+					- sequences
+					- segments
+					- DNA-PK recruitment network
+				- limits
+					- continuity requirement for final protein sequence
+					- structural inevitability (1-1 relationship) is injected at various points of the process
+					- ratios (5-3, 2 heavy :: 2 light, etc)
+				- layers
+
 		- system
+
 			- b/t-cell
 			- bone marrow/lymphatic system
 			- adaptive immune system
 
 		- components
 
-			- DNA
-			- enzymes
-			- variable, joining, diversity, & constant gene segments of chromosomes
-			- chromosomes of DNA to be recombined
+			- resource: DNA
+			- change rule execution objects: enzymes
+			- subset types: variable, joining, diversity, & constant gene segments of chromosomes
+			- position: subset type DNA chromosome subsets
 
-		- points for rule injection
-			- target antigen structure
-			- input components
-			- processes
+		- intents
+
+			- protecting host by attacking pathogens
+			- notifying immune system by tagging pathogens
 
 		- processes
 
-			- key processes known to create failure:
+			- key processes known to create overall process failure:
 				- Artemis hairpin opening process
 
 			- optional processes/inputs
 				- resolving discrepancy between number of bases (removing/adding nucleotides)
 
-			- relevant external/subsequent processes
+			- relevant external/subsequent/sub processes
 				- somatic recombination inheritance: once a recombination is done, any daughter cells will have same recombinated DNA so the process doesnt have to be applied to every cell generated from recombined DNA cells
 				- ligation process using DNA ligase IV to ligate coding ends once processed
 				- XRCC4, cernunnos, & DNA-PK alignment of DNA ends 
@@ -48,7 +94,7 @@
 					- exonucleases removing bases from coding ends
 					- template-independent TdT adding non-templated nucleotides
 
-			- mechanism of action:
+			- output processes (mechanism of action)
 				- binds to antigen to alert immune system to attack pathogen with that antigen
 				- binds to antigen to interfere with pathogen cell activity or survival
 
