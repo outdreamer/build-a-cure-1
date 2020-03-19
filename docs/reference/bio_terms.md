@@ -113,20 +113,43 @@
 
 ## Cell Types
 
+- humoral immunity: immunity conducted by macromolecules in extracellular fluid, such as:
+	- secreted antibodies
+	- complement proteins
+	- certain antimicrobial peptides
+
+- cell-mediated immunity: immune response that doesnt involve antibodies
+
 - lymphocyte: white blood cell type with a large nucleus including nk & t & b cells, the main cell type in lymph fluid
 	 - natural killer (nk) cells (for cell-mediated, cytotoxic innate immunity)
 	 - T cells (for cell-mediated, cytotoxic adaptive immunity)
 	 - B cells (for humoral, antibody-driven adaptive immunity)
 
-- t-cell:
+- blast cell:
+	- stem cell transformed into a partially differentiated cell
 
-- b-cell:
+- t-cell: a type of lymphocyte that develops in the thymus
+	- t-cells start out as precursor/blast cells from bone marrow
+	- the t-cell receptor is on the cell surface
+	- t-cells differentiate even after leaving the thymus
+
+- b-cell: a white blood cell type of the lymphocyte subtype
+	- b-cells are antigen-presenting cells
+	- b-cells secrete cytokines
+	- b-cells mature in the bone marrow in mammals
+	- b-cells express receptors on their membrane, unlike NK cells or t-cells
+
+- cytokines: small proteins important in cell signaling
 
 - plasma:
 
 - memory cell:
 
 - antigen: any molecule or linear molecular fragment that can be identified by a t-cell receptor
+
+	- epitope: part of the antigen that is recognized/binded to by antibody
+		- a linear epitope: a amino acid sequence or structure recognizable by an antibody
+		- a conformational epitode: a 3-d amino acid structure or associated protein structure recognizable by an antibody
 
 - macrophage: white blood cell type
 
@@ -135,6 +158,8 @@
 	- y-shaped protein produced by plasma cells that neutralizes pathogens, either by binding to tag an antigen so the immune system attacks the pathogen with the antigen, or by binding to interfere with pathogenic activity
 
 	- a typical antibody is composed of two immunoglobulin (Ig) heavy chains & two Ig light chains
+
+	- paratope: the part of the antibody that binds to the antigen
 
 
 ## Processes
