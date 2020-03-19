@@ -108,8 +108,10 @@
   - independence (closed trade loops) as time storage
   - intent organization example
   - buildable conclusions/figuring out
-  - emergent combinations of core functions
+  - emergent combinations of core functions (include derivation of invalidating contexts for core functions)
   - development of key decision metrics
+
+  - apply system analysis to VDJ recombination
 
   - give example of each type of problem-solving workflows
 
