@@ -162,6 +162,16 @@
 
 				- how much & what types of difference are tolerated from the starting structure to the final protein structure of the antibody antigen-binding or t-cell receptor regions?
 
+				- what role do amino acid residues play in the functionality (other than recognition) & are they causative of side effects
+
+				- is there a way to automate testing of combinations of these bounded sub-systems in the bio-system (on a place that is accessible like the skin or not used like the appendix)
+
+				- is local cellular application of this process the right implementation (does it produce useful or harmful variance, given variance injection points)
+
+				- is there another process that can replace the antigen-tagging solution produced by antibodies, such as adjacent systemic attribute collisions producing local contexts that invalidate pathogens of various types
+					- aligning molecular motion to create pathways large enough for light to pass through, organizing pathogens to be in its path, applied to subsets of pathogens at a time
+					- altering DNA to create output attributes that invalidate pathogen cell structures
+
 		- process order
 			- should tests be applied after potential output is created or earlier in the creation process
 
