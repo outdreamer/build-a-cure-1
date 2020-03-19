@@ -13,6 +13,8 @@
 		- limits
 		- requirements
 		- variable metadata (position, application, connection)
+		- order of processes
+			- should tests be applied after potential output is created or earlier in the creation process
 
 
 	- variables
@@ -32,23 +34,48 @@
 				- hub
 					- DNA-PK is a hub for other proteins & enzymes (artemis, xrcc4, dna ligase iv, cernunnos, & certain DNA polymerases)
 
+				- cooperation
+					- protein/enzyme
 
 			- structure
-				- position (chromosome position, gene segment position, enzyme position)
+
+				- position
+					- chromosome position
+					- gene segment position
+					- enzyme position
+
 				- component
 					- phosphorus is a key component providing an interface to frame the process on
 					- DNA
 					- amino acid
+
 				- groups
 					- base pairs
 					- sequences
 					- segments
 					- DNA-PK recruitment network
+
+				- links
+					- DNA-PK binding relationship to DNA ends
+					- DNA-PK activation of artemis
+
 				- limits
 					- continuity requirement for final protein sequence
 					- structural inevitability (1-1 relationship) is injected at various points of the process
 					- ratios (5-3, 2 heavy :: 2 light, etc)
+
 				- layers
+					- host system (t-cell, b-cell)
+					- system object (cell)
+					- host process (cell development)
+					- system process (recombination)
+					- position (in cell system object)
+					- resource to alter (DNA)
+					- subset (of resource to be altered, DNA)
+					- sequence (of resource to be altered, DNA)
+					- units (of resource to be altered & processors - amino acids/nucleotides/bases)
+					- processors (enzymes, proteins)
+					- limit (validation/protection/regulation) processes (testing, apoptosis)
 
 		- system
 
