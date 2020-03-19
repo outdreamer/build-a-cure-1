@@ -24,6 +24,15 @@
 			- innate
 			- adaptive
 
+	- types:
+	
+		- humoral immunity: immunity conducted by macromolecules in extracellular fluid, such as:
+			- secreted antibodies
+			- complement proteins
+			- certain antimicrobial peptides
+
+		- cell-mediated immunity: immune response that doesnt involve antibodies
+
 		- concepts:
 			- autoimmunity: immune system attacking healthy cells/the host
 			- allergen
@@ -112,13 +121,6 @@
 
 
 ## Cell Types
-
-- humoral immunity: immunity conducted by macromolecules in extracellular fluid, such as:
-	- secreted antibodies
-	- complement proteins
-	- certain antimicrobial peptides
-
-- cell-mediated immunity: immune response that doesnt involve antibodies
 
 - lymphocyte: white blood cell type with a large nucleus including nk & t & b cells, the main cell type in lymph fluid
 	 - natural killer (nk) cells (for cell-mediated, cytotoxic innate immunity)

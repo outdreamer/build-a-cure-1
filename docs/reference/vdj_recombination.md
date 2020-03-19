@@ -185,7 +185,11 @@
 
 				- can a variance injection point transform be executed to reduce points of entry of pathogens (a transform on skin, lungs, mucus membranes)
 
-				- is an interface transform accessible that could prevent damage of a certain type without changing other system relationships (adjust priority/incentive/type/variance/function of some layer to prevent attacks on a caused layer)
+				- is an interface transform accessible that could prevent damage of a certain type without changing other system relationships (adjust priority/incentive/type/variance/function/binding/symmetry/position of some layer to prevent attacks on a caused layer)
+
+				- is it more efficient to find sequences that are optimal than to generate them?
+
+				- is it more efficient to generate sub-components of common successful antibodies & package/deploy these components or their generative functions) than to generate specific antibodies?
 
 				- is there another process that can replace the antigen-tagging solution produced by antibodies, such as adjacent systemic attribute collisions producing local contexts that invalidate pathogens of various types
 					- aligning molecular motion to create pathways large enough for light to pass through, organizing pathogens to be in its path, applied to subsets of pathogens at a time
