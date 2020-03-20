@@ -91,7 +91,7 @@
 				"identify incentives to stay in current position",
 				"identify inability of accessible functions to move to target position",
 			],
-			"interaction_functions": [
+			"interactions": [
 
 				"communicate_to_subject",
 
@@ -103,7 +103,11 @@
 				"differentiate_objects",
 
 				"convert_resources_to_position",
-				"change_position",
+				"change_position": {
+					"input": {
+						"required": ["incentive", "efficiency", "intent"]
+					}
+				},
 				"get_position_alignment_with_intent",
 				"get_intent_direction",
 				"find_distance_between_positions",
