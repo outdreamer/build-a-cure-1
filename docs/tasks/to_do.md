@@ -103,15 +103,15 @@
   - superficial cause, alternate cause in the case of a function
   - framing on interfaces, decomposing causation, then identifying parameters of problem on layer & matching solution
   - addressing input/output causes
-  - memory cell alternative
   - independence (closed trade loops) as time storage
   - intent organization example
   - emergent combinations of core functions (include derivation of invalidating contexts for core functions)
   - development of key decision metrics
   - asking the key questions to filter attention/info-gathering/solution
-  - apply system analysis to VDJ recombination
+  - apply system analysis to VDJ recombination - find other relevant immune processes to analyze
   - give example of each type of problem-solving workflows
   - vertex as a pivot point for an interface
+
   - function to create graph from article
   - function to predict a compound for a pathogen/condition requires data:
       - compound & pathogen attributes (compound metadata like metabolism/dose/interactions/effects)

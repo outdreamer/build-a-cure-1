@@ -195,6 +195,13 @@
 
 				- is there another process that can replace the antigen-tagging solution produced by antibodies, such as adjacent systemic attribute collisions producing local contexts that invalidate pathogens of various types
 
+					- alternate processes & ways to trigger them
+						- using communication/tissue repair processes as an editing function
+						- using wound-healing as a building process (fill a gap)
+						- using scar tissue as boundaries (tougher than normal tissue)
+						- using partially closed structures and openings as filters
+						- using projections, speed, electricity, & boundaries as formatters
+
 					- aligning molecular motion to create pathways large enough for light to pass through, organizing pathogens to be in its path, applied to subsets of pathogens at a time
 
 						- this may be why acupuncture has worked occasionally - it distributes stress so its not concentrated, it alerts the immune system to pay attention to distributed regions - it doesnt deliver medicine/light/heat but a signal to the immune system, and it can break apart concentrated clusters with which immune cells cant communicate - the same reason exercise may fix or prevent some problems caused by lack of cell communication
