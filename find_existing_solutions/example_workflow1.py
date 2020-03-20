@@ -117,7 +117,6 @@ def apply_solution_to_problem(problem_metadata, solution):
 	return False
 
 def apply_solution_type(problem_metadata, solution_type):
-	solution = None
 	'''
 		- get solution & problem definition
 		if solution_type = 'balance_info_asymmetry', you can implement this solution_type to get a solution for a problem space:
@@ -141,12 +140,11 @@ def apply_solution_type(problem_metadata, solution_type):
 					- balance information
 						- map some reason to change (safety) with some reason to stay (safety)
 	'''
-
 	problem_solution_object_map = {}
 	if solution and problem_metadata:
 		''' solution_type should have a function and an object '''
 		solution_metadata = get_solution_metadata(solution_type)
-		# solution_metadata = {'object': 'info_asymmetry', 'function': 'balance'
+		# solution_metadata = {'object': 'info_asymmetry', 'function': 'balance'}
 		if solution_type == 'balance_info_asymmetry':
 			if 'objects' in problem:
 				solution_objects = get_objects(solution_metadata['object'])
@@ -173,9 +171,17 @@ def apply_solution_type(problem_metadata, solution_type):
 				'align reason to change & reason to stay so subject identifies misclassification error', # if misclassification of reason is the problem
 			]
 		'''
-		if problem_solution_object_map:
-			''' apply solution for solution type to problem_solution_object_map '''
 
+		''' solution type steps
+			- find information
+			- balance information
+		'''
+		solution_type['steps'] = [
+			'find_information',
+			'balance_information'
+		]
+		if problem_solution_object_map:
+			''' apply solution for solution type to problem_solution_object_map if modifiers dont already map the problem_object to the solution '''
 			'''
 			- with matching problem objects, apply solution_type to get solution (solution being a list of specific operations to execute)
 				- 'balance the info asymmetry' in a problem like 'persuasion' translates to the steps:
@@ -185,8 +191,16 @@ def apply_solution_type(problem_metadata, solution_type):
 					- balance information
 						- map some reason to change (safety) with some reason to stay (safety)
 			'''
-			
-	return solution
+
+			''' since we already applied modifiers, we need to classify the problem operations with the solution operations & check that theyre in the right position '''
+			solution_steps = []
+			for step in solution_type['steps']:
+				for problem_object in problem_solution_object_map:
+					if approximately_equal(problem_object, step):
+						solution_steps.append(problem_object)
+			if len(solution_steps) > 0:
+				return solution_steps
+	return False
 
 def get_object_metadata(object_name):
 	return object_metadata
@@ -232,21 +246,21 @@ def find_matching_object_in_problem_space(problem_metadata, solution_object):
 
 		'''
 		- most objects in the problem match this solution_type object 'info' bc this is already converted to an information problem type, so little work is required to check for a relationship 
-		matched_problem_objects = {
-			'efficiency': [],
-			'incentive': [],
-			'intent': [],
-			'cost': [],
-			'benefit': []
-		}
+			matched_problem_objects = {
+				'efficiency': [],
+				'incentive': [],
+				'intent': [],
+				'cost': [],
+				'benefit': []
+			}
 		'''
 
-		'''
-		- find solution_object = 'info' in problem objects ['efficiency', 'intent', 'incentive', 'cost', 'benefit', 'position']
-		'''
+		''' find solution_object = 'info' in problem objects ['efficiency', 'intent', 'incentive', 'cost', 'benefit', 'position'] '''
 
 		''' apply relevance modifiers to matching problem objects '''
+		
 		''' once you have the matched_problem_objects, you need to find relevant modifiers/functions applied to them that are relevant to the problem/solution '''
+
 		relevant_problem_objects = ['required_function']
 		matching_modified_problem_objects = []
 		for problem_object, attributes in matched_problem_objects.items():
