@@ -4,6 +4,25 @@
 		This version skips the problem type analysis & just fetches a solution for common problem types with which other problems can be framed
 '''
 
+''' the problem type for this example: persuasion (make an argument that changes a behavior metric (like direction) '''
+
+insights = {
+	"insights": [
+		"persuasion is successful when benefits are clear",
+		"an example efficiency is: removing unnecessary middlemen"
+	],
+	"solutions": [
+		["list benefits", "find efficiencies", "apply efficiencies", "list reduced costs"]
+	],
+	"related_problems": [
+		# persuasion problem super-type
+		"identify optimal path to target",
+		# these are related problems of this problem's insights
+		"differentiating objects (cost/benefits)"
+	]
+}
+
+problem_metadata = {}
 problem_def = {}
 problem_path = 'problem.json'
 with open(problem_path, 'r') as f:

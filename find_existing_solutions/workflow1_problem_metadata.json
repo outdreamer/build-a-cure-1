@@ -1,0 +1,78 @@
+{
+	"problem_space": {
+		"dimensions": [],
+	},
+	"problem_definition": {
+		"statement": ""
+	},
+	"problem_metadata": {
+		"types": {
+			"default": "connecting points to form an argument",
+			# to be filled in with insights['related_problems'], since insights are relationships between objects
+			"interface": [],
+			"related": [], 
+			"component": [
+				"make point",
+				"draw conclusion",
+				"connect points",
+				# incentives reward staying in low-cost position, so they may be efficiencies, which reduce cost
+				"differentiate incentives & efficiencies",
+				"check if point complies with intent",
+				"check if point complies with contrary/neutralizing intents",
+				"check if point emphasizes benefit or cost"
+			],
+			"adjacent": [
+				"forming a cohesive system",
+				"checking a point for compliance with system such as logic or common sense or facts"
+			]
+		},
+		"dependencies": {
+			"variables": [],
+			"assumptions": [],
+			"requirements": [],
+			"inputs": [],
+			"outputs": []
+		},
+		"functions": {
+			"intents": [
+				"connect",
+				"move",
+				"identify incentives",
+				"subvert incentives",
+				"find path to target with core functions",
+				"find efficiencies",
+				"apply efficiencies",
+				"highlight benefits"
+			],
+			"generation_function": [
+				# to generate the 'persuasion' problem
+				"convert conclusions to positions",
+				# identify target
+				"identify optimal position",
+				# check that source & target positions arent the same
+				"differentiate optimal & source position",
+				# there has to be a reason why persuasion is difficult, or they'd already be moving to the optimal position, rather than stabilizing in the current position
+				"identify incentives to stay in current position",
+				# if it was easy to move to the other position, they would be able to do it with low-degree combinations of accessible/core functions
+				"identify inability of accessible functions to move to target position",
+			]
+		},
+		"cause": {
+			"intent": {},
+			"function": {},
+			"structures": {
+				"network": {},
+				"loop": {},
+				"alternate": {},
+				"hub": {},
+				"gap": {},
+				"limit": {},
+				"direction": {
+					"one-way": {},
+					"two-way": {}
+				}
+			}
+		}	
+	}
+
+}

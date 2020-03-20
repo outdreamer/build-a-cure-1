@@ -1,0 +1,31 @@
+{
+	"insights": [
+		"persuasion is successful when benefits are clear",
+		"clarity is achieved by applying structure",
+		"an example structure is a list",
+		"persuasion is successful when costs are minimized or unclear",
+		"lack of clarity is lack of structure",
+		"efficiencies minimize cost",
+		"efficiencies are shorter routes to a target, where routes represent cost",
+		"an example efficiency is: removing unnecessary middlemen",
+		"persuasion is relevant when there are incentives to stay in the current position",
+		"difficulty occurs when a solution cant be built with accessible/core functions"
+	],
+	"solutions": [
+		["list benefits", "verify incentives", "find efficiencies", "apply efficiencies", "list reduced costs"]
+	],
+	"related_problems": [
+		"identify optimal path to target (persuasion problem super-type)",
+		"differentiating objects (cost/benefits)",
+		"identifying key objects (an inefficiency is a key object of cost)",
+		"mapping structure to information",
+		"finding dependent objects/attributes/functions (what does structure produce)",
+		"what enables a function/object/attribute (what are the required inputs of persuasion)",
+		"optimization of a metric (minimizing cost)",
+		"finding related objects (what is lack of clarity equal to, are incentives/efficiencies related)",
+		"defining a function/attribute/object (what is an efficiency, what is a cost/benefit, what is persuasion, what is clarity)",
+		"framing a definition in relevant terms (what is the most relevant definition/frame of an efficiency definition)",
+		"finding an example of a function/attribute/object (whats an example efficiency)",
+		"finding relevant context of an object (persuasion is relevant when there are incentive objects)"
+	]
+}
