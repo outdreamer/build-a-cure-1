@@ -5,6 +5,7 @@
 
     The symmetry presented by stability provides a platform for variance (coronavirus) to develop.
 
+
 ## Cancer & Stressors
 
 
@@ -44,10 +45,8 @@
 
       - experimentation:
         - applying mutations to use cancer as a testing tool to form mini-labs on the skin to test new drugs created by light (bouncing light off of stem cells in a pattern to create various cell types in cancerous lab) which provide a quick way to inject drugs or form drugs through chemical permutation with light to test a formula against a particular problem created by the source mutation/mutation chain
-
       - regeneration: 
         - cancerous processes to create stem cells
-
       - alternative energy sources:
         - exporting functionality to switch energy sources in survival scenarios
 
@@ -57,7 +56,6 @@
     - cell adaptability
       - using its maintenance of stem cell attributes to deploy functionality of self-modification to every cell, which is how it should be
         https://phys.org/news/2020-02-interaction-cancerous-state-cells.html
-
       - cancer creates functionality through competition - mimicking environment stressors that trigger evolution but in the skin itself, which is what I suggested earlier (mini-labs on skin)
         https://medicalxpress.com/news/2018-09-scientists-uncover-mutated-cells-skin.html
 
@@ -120,10 +118,6 @@
         - examine routes to delegate/distribute/generate histamine using existing bio system resources as an anti-cancer agent from imidazole
           https://en.wikipedia.org/wiki/Histamine
 
-      - learning
-      - competition
-      - finding/borrowing/generating functionality & other resources
-      - energy management (storage, sharing, production, source-switching, conversion)
       - emergent effects:
         - example of emergent effects 
           - there are intended & unintended ways to activate a process, such as cell death

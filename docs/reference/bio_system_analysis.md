@@ -21,18 +21,20 @@
       - which problems are solvable with auto-generated vs. external resources
       - which stressor patterns can prevent which problems
 
+
 ## Interfaces
 
-## Core
 
-### Core structures
+### Core interface
+
+#### Core structures
 
 	- core structures (chain, network, sequence, group, boundary)
 
-### Core concepts
+#### Core concepts
 
 
-### Core objects
+#### Core objects
 
 	- elements
 		- common: oxygen, carbon, hydrogen, nitrogen, calcium, phosphorus
@@ -53,7 +55,7 @@
       - antibodies
       - memory cells
 
-### Core functions
+#### Core functions
 
 	- immune functions
 		- tagging
@@ -107,7 +109,7 @@
         - duplication
         - request/response handling
 
-	- combination structures 
+	- combination 
 		- anomaly/counterexample
 		- neutralizing/opposing
 		- promoting/synergistic
@@ -116,11 +118,26 @@
 		- circle
 		- core structure combinations
 
-	- distribution structures
+	- distribution
 		- network
 
-	- organization structures
+	- organization
 		- filters
+		- position
+		- storage/compression
+		- adjacence
+		- grouping rules
+		- binding rules
+		- boundary rules
+
+	- emergent/interaction layer functions
+
+	    - learning
+	    - competition
+	    - finding/borrowing/generating functionality & other resources
+	    - energy management (storage, sharing, production, source-switching, conversion)
+	    - inflammation/irritation
+
 
     - explicit function (such as 'convert input energy into output structure')
     - implicit function (such as unintended side effects of outputs, interim functions between input/output, and unpredicted emergent functions at scale or across many linked integrated function chains)
@@ -192,7 +209,15 @@
         - signaling level 
 
 
+### Interface interface
+
+	- identifying sub-interfaces (electricity, potential, similarity) is an important first step before doing other analysis, because if you can identify the important/causative interfaces right away, you can ignore a lot of information
+
+
 ### System interface
+
+	- sub-systems can be organized by interaction layer, attributes (relevance), structure (position), & other interfaces
+
 
 #### Stressor system
 
