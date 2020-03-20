@@ -135,55 +135,68 @@ def apply_solution_type(problem_metadata, solution_type):
 						- match (reason to change position) with (intent (need, incentive) to change position)
 			- with matching problem objects, apply solution_type to get solution (solution being a list of specific operations to execute)
 				- 'balance the info asymmetry' in a problem like 'persuasion' translates to the steps:
-					- find reasons to change position
-					- find reasons to stay in current position
-					- map some reason to change (safety) with some reason to stay (safety)
+					- find information
+						- find reasons to change position
+						- find reasons to stay in current position
+					- balance information
+						- map some reason to change (safety) with some reason to stay (safety)
 	'''
 
 	problem_solution_object_map = {}
-
 	if solution and problem_metadata:
-
 		''' solution_type should have a function and an object '''
 		solution_metadata = get_solution_metadata(solution_type)
-		# solution_metadata = {'object': 'info_asymmetry', 'function': 'balance'}
-
+		# solution_metadata = {'object': 'info_asymmetry', 'function': 'balance'
 		if solution_type == 'balance_info_asymmetry':
-
 			if 'objects' in problem:
-
 				solution_objects = get_objects(solution_metadata['object'])
 				# solution_objects = ['info', 'asymmetry', 'info_asymmetry']
-
 				if solution_objects:
-
 					for so in solution_objects:
 						matched_problem_object = find_matching_object_in_problem_space(problem_metadata, so)
-						problem_solution_object_map[so] = matched_problem_object
+						if matched_problem_object:
+							problem_solution_object_map[so] = matched_problem_object
 
+		'''
+		- target output for info-persuasion object map (problem_solution_object_map):
+			'info': [
+				'incentive/intent to change positions',
+				'incentives/inefficiencies preventing position change',
+				'benefits/costs of position change'
+			],
+			'info_asymmetry': [
+				'subject does not have information of reasons to change position'
+			],
+			'balance': [
+				'distribute reasons to change to subject', # if lack of reasons is the problem
+				'distribute information to enable access of change position functions to subject so subject finds it easier to move', # if lack of function accessibility is the problem
+				'align reason to change & reason to stay so subject identifies misclassification error', # if misclassification of reason is the problem
+			]
+		'''
 		if problem_solution_object_map:
-			''' with this map, apply solution(s) for this solution type '''
+			''' apply solution for solution type to problem_solution_object_map '''
 
-
-	'''
+			'''
 			- with matching problem objects, apply solution_type to get solution (solution being a list of specific operations to execute)
 				- 'balance the info asymmetry' in a problem like 'persuasion' translates to the steps:
-					- find reasons to change position
-					- find reasons to stay in current position
-					- map some reason to change (safety) with some reason to stay (safety)
-	'''
+					- find information
+						- find reasons to change position
+						- find reasons to stay in current position
+					- balance information
+						- map some reason to change (safety) with some reason to stay (safety)
+			'''
+			
 	return solution
 
 def get_object_metadata(object_name):
 	return object_metadata
 
 def find_matching_object_in_problem_space(problem_metadata, solution_object):
-
 	''' for a solution_object like 'info', find the corresponding object in the problem like 'reasons to change position' '''
 	solution_object = 'info'
-
 	''' find 'info' in problem '''
 	matched_problem_objects = {}
+	new_problem_solution_object_map = {}
 	solution_object_metadata = get_object_metadata(solution_object)
 	for o in problem['objects']:
 		for problem_attribute in problem_metadata:
@@ -194,70 +207,90 @@ def find_matching_object_in_problem_space(problem_metadata, solution_object):
 						matched_problem_objects[o].append(problem_attribute)
 						''' add problem object like incentive/efficiency/reason to map indicating relationship to solution object 'info' '''
 
-	print('matched_problem_objects', matched_problem_objects)
-
-	'''
-	- most objects in the problem match this solution_type object 'info' bc this is already converted to an information problem type, so little work is required to check for a relationship 
-	matched_problem_objects = {
-		'efficiency': [],
-		'incentive': [],
-		'intent': [],
-		'cost': [],
-		'benefit': []
-	}
-	'''
-
-	'''
-	- find solution_object = 'info' in problem objects ['efficiency', 'intent', 'incentive', 'cost', 'benefit', 'position']
-
-	- once you have the matched_problem_objects, you need to find relevant modifiers/functions applied to them that are relevant to the problem/solution: 
-
-	- how is 'incentive' related to problem of 'persuasion'?
-		- input to 'change_position' function of 'persuasion' problem metadata (in 'workflow1_problem_metadata.json')
-			- intent
-			- incentive
-
-	- target output for info-persuasion object map:
-
-		- 'incentive/intent to change positions'
-		- 'incentives/inefficiencies preventing position change'
-		- 'benefits/costs of position change'
-		
-	'''
-
-	if matched_problem_objects:
-		''' now that youve verified these objects match in some way, you need to check if mapping this solution object & this problem object makes sense with the problem definition '''
-		sense = {} ''' keep track of sense score for each problem object '''
-
-		for problem_object, matching_attributes in matched_problem_objects.items():
-
+		if o in matched_problem_objects:
+			''' now that youve verified these objects match in some way, you need to check if mapping this solution object & this problem object makes sense with the problem definition '''
 			''' check that mapping 'reason' to 'info' makes sense '''
 			attributes_to_check = ['type']
-
-			sense[problem_object] = 0
-			for attribute in attributes_to_check:
+			sense = 0
+			for attribute in matched_problem_objects[o]:
 				if attribute in problem_metadata:
 					''' standard definition validation '''
 					if solution_object in problem_metadata[attribute]:
 						''' is 'info' included in problem['type'] list? '''
-						sense[problem_object] += 1
-
-					''' to do: add function to stringify metadata dict '''
+						sense += 1
 					if solution_object in stringify_metadata(problem_metadata):
 						''' is 'reason' in 'info' solution object metadata? '''
-						sense[problem_object] += 1
-
+						sense += 1
 					if problem_object in stringify_metadata(solution_object_metadata)
 						''' is 'reason' in 'info' solution object metadata? '''
-						sense[problem_object] += 1
+						sense += 1
+			if sense > 0:
+				new_problem_solution_map[o] = matched_problem_objects[o]
 
-		if sense:
-			new_problem_solution_map = {}
-			for problem_object, score in sense.items():
-				if score > 0:
-					new_problem_solution_map[problem_object] = matched_problem_objects[problem_object]
-			if new_problem_solution_map:
-				return new_problem_solution_map.keys()
+	if new_problem_solution_object_map:
+		print('new_problem_solution_object_map', new_problem_solution_object_map)
+
+		'''
+		- most objects in the problem match this solution_type object 'info' bc this is already converted to an information problem type, so little work is required to check for a relationship 
+		matched_problem_objects = {
+			'efficiency': [],
+			'incentive': [],
+			'intent': [],
+			'cost': [],
+			'benefit': []
+		}
+		'''
+
+		'''
+		- find solution_object = 'info' in problem objects ['efficiency', 'intent', 'incentive', 'cost', 'benefit', 'position']
+		'''
+
+		''' apply relevance modifiers to matching problem objects '''
+		''' once you have the matched_problem_objects, you need to find relevant modifiers/functions applied to them that are relevant to the problem/solution '''
+		relevant_problem_objects = ['required_function']
+		matching_modified_problem_objects = []
+		for problem_object, attributes in matched_problem_objects.items():
+			''' how is 'incentive' related to problem of 'persuasion'? '''
+			modified_problem_object = None
+			''' 
+			to do: 
+				- add formatting for modifiers of a certain type, like:
+					"problem_object [relationship_to_function "input" ] required_problem_function"
+				- add check for relevance of modifying attribute/object in relevant_problem_objects
+			 '''
+			for key, values in problem_metadata.items():
+				if problem_object == key:
+					modified_problem_object = '_'.join([problem_object])
+				else:
+					if problem_object in values:
+						modified_problem_object = '_'.join([key, problem_object])
+					if type(values) == dict:
+						for k, v in values.items():
+							if type(v) == dict:
+								if problem_object in v.keys():
+									modified_problem_object = '_'.join([key, k, v[problem_object]])
+								elif problem_object in v.values():
+									modified_problem_object = '_'.join([key, k, problem_object])
+					elif type(values) == list:
+						if problem_object in values:
+							modified_problem_object = '_'.join([key, problem_object])
+					elif type(values) == str:
+						modified_problem_object = '_'.join([key, problem_object, values])
+				if modified_problem_object is not None:
+					''' modified_problem_object should be 'incentive to change position' for a problem_object of 'incentive' ''' 
+					matching_modified_problem_objects.append(modified_problem_object)
+					'''
+					- inputs to 'change_position' function of 'persuasion' problem metadata (in 'workflow1_problem_metadata.json')
+						- intent
+						- incentive
+					- incentive is an input to the change_position function of the 'persuasion' problem, and 'change_position' is a required function for solving the problem 
+					- an input of a function increases possibility of calling that function
+					- so the 'information' of 'incentive' is the modified problem object (applying problem relevance to object):
+					- this indicates why we would include 'incentive' in our mapping to 'info' solution type:
+						- 'incentive to change position' is required/important information to solve the problem
+					'''
+		if len(matching_modified_problem_objects) > 0:
+			return matching_modified_problem_objects
 	return False
 
 def stringify_metadata(metadata_object):
