@@ -5,27 +5,6 @@
 
     The symmetry presented by stability provides a platform for variance (coronavirus) to develop.
 
-  - system analysis of bio-system
-
-    - iterative analysis: 
-      - analysis that treats cyclical, recursive, cascading & iterative processes as trade loops between positions & systems
-      - example: in addition to analyzing how a drug is metabolized:
-        - how its structure will interact with other structures
-        - how the resulting structures after the nth-interaction will interact with other resulting structures, etc
-        - how the dna of a probiotic or other microorganism treatment could get re-purposed by microorganisms
-        - how the activity of a gene could get accidentally impacted in other pathways & which of those pathways are possible given a treatment
-        - how an interaction can be minimally modified to produce extremely different results
-        - how nth-iteration interactions will be timed with other processes cycling in that time
-        - how causal cascades can cycle to be interactive with the treatment
-        - how functionality gaps or interactions at nth-iteration can provide opportunities for mutation & other randomness sources 
-
-    - given the known vulnerabilities of the bio-system:
-      - which problems are solvable (killing pathogen, deploying a substance to a position) with what methods (evolution, medicine, stressor distribution)
-      - which problems are inevitable
-      - which problems are solvable with auto-generated vs. external resources
-      - which stressor patterns can prevent which problems
-
-
 ## Cancer & Stressors
 
 
@@ -85,36 +64,6 @@
 
   ### Interfaces
 
-    - attack points
-      
-      - causal level
-
-        - attacking higher up the causal stack means attacking cancer's evolutionary & learning processes, so it cant evolve resistance to drugs
-
-      - object level
-
-        - attacking on the mutation level
-
-          - how to trigger loss-of-function mutations of cancer mutations
-          - how to trigger mutations of mutations (reverting to original state)
-          - if chains of mutations are the combined trigger, can mutations be inserted in that chain to push it in another functional direction
-
-      - system level
-
-        - evaluate position as a variable (whether TADs & gene position & adjacent genes can be rearranged to prevent mutations)
-
-        - evaluate alternative backups to commonly mutated genes/proteins/enzymes - how do you trigger functionality that evolves backups
-
-        - genetic level
-
-          - can genes producing a commonly mutated cancer-causing gene be adjusted to produce functionality without vulnerabilities exploited for cell division
-
-        - functionality level
-
-          - can system structure be changed so variance is increased & so functionality is allowed to accrete to produce backup functionality
-
-        - signaling level 
-
     - system 
 
       - deviating from genetically optimal environments as a cause of systemic stressors that lead to cancer
@@ -123,124 +72,11 @@
       - can you delegate computation to tumor cells to prevent them from splitting
       - cancer tends to make use of whatever tools already exist, which means its moves are predictable given available resource combinations
       - does cancer also have unpredictable activity in generating new tools, not just adjacent combinations of existing tools but systemic tools like new pathways?
-
       - from a system that has systemic issues that seem unexplainable by known rules, seek a new object (interface, system, rule, type, attribute, etc)
         https://medicalxpress.com/news/2019-12-artificial-intelligence-previously-unknown-features.html
 
-    - attribute
-
-      - invalidating
-        - toxicity (invalidates usefulness of a treatment)
-
-      - variance
-        - binding variety
-        - movement types (rotation, density distribution)
-        - adjacent interfaces (receptor, immune, etc)
-
-      - signaling
-        - ionization
-        - surface structure
-        - vocabulary (interpretability of signals)
-        - state change metrics/limits
-
-      - support
-        - metabolism
-        - filtration
-
-    - rules
-
-      - types
-
-        - bind
-        - boundary
-        - position
-        - grouping/accretion
-        - distribution
-        - testing/assessment/metric selection
-        - change
-        - regulation
-        - communication
-        - repair
-        - movement
-        - duplication
-        - request/response handling
-
-    - structural
-
-      - boundaries
-      - surfaces
-      - receptors
-
-      - many object types can be an interface in a specific system, in addition to standard abstract interfaces
-        (function/metabolic interface, system/immune interface, structure/cell interface, communication/nerve interface)
-
     - stressors
 
-      - change requests are problems of type 'mismatch' between change demand & change supply
-      - theres quite a bit of overlap between stressors & handlers bc their role can change depending on contextual usage, but some have clear starting/absolute positions
-      - in addition there are objects that stabilize/maintain state rather than help change it
-      - one of the reasons these objects help maintain state is because they fill in some of the gaps in the system, preventing exploitative processes from taking over & spreading unrestricted, like a constant
-      - matching these stressors with the right number & type & sequence of handlers is key for bio system health
-      - some handlers are good universal handlers (exercise, brain usage, water) but sometimes external handlers are needed like medicines until we figure out the stressor combination to trigger adaptive mutations (horizontal evolution)
-
-      - change demand (signal to change) examples:
-        - bacteria (hostile)
-        - cell damage
-        - cell mutation
-        - cell communication
-        - emotions/pain
-        - inflammation
-        - pathogen
-        - oversupply
-        - environmental stress (pollution, lack of resources)
-        - conflicting intents (competition)
-        - hormones
-        - caffeine/stimulants
-        - electricity
-        - inefficiencies
-
-      - change supply (response to signal) examples:
-        - bacteria (attacking hostile bacteria)
-        - cell repair
-        - cell division
-        - cell death (vitamin a)
-        - stem cells
-        - nutrients
-        - perspective/indexing/organization
-        - learning
-        - exercise/brain usage
-        - immune response
-        - medicines
-        - usage of systems built by hormones (adrenal, growth, reproductive)
-        - stored or excess energy
-        - filtration/digestion systems (breaking into useful components to handle stresors)
-        - functionality retrieval/assembly/sharing functions
-        - aligned intents (cooperation)
-
-      - stability/balance object examples:
-        - bacteria (performing neutral tasks)
-        - genes
-        - filtration/digestion (removing unnecessary components)
-        - lymph system (interstitial fluid)
-        - interstitium
-        - blood brain barrier
-        - resting states in cycles
-        - biological timer
-        - pH/electrolyte balance (an interface on which many systems rely)
-        - heart (stabilizing blood pressure)
-        - understanding (brain networks that store useful functionality)
-
-      - stressor accretion/compounding/neutralizing/type patterns
-
-      - patterns in stressor handler gaps
-        - which stressor types/handler types are prioritized first
-        - what variables influence priority of stressor handlers
-
-      - variable coordination that produces stressors 
-        - repeated interactions from static positions or sources of components
-        - mismatches
-        - allocation of cell division from low priority tasks (maintaining flexibility/elasticity) to high priority tasks (handling excess inflammation)
-        
       - lack of usage by genetically/systemically optimal timing linked to illnesses (hormone production & hormone usage)
         https://medicalxpress.com/news/2020-01-sex-linked-earlier-menopause.html
 
@@ -264,35 +100,19 @@
     - processes
 
       - mutations
-
-        - compounding mutations can be chained with intent analysis to predict which function chains will cause cancer
-          https://medicalxpress.com/news/2020-02-cancer-years-diagnosis-earlier.html
-
+        - compounding mutations can be chained with intent analysis to predict which function chains will cause cancer - https://medicalxpress.com/news/2020-02-cancer-years-diagnosis-earlier.html
         - of the cancers that dont have driver mutations that have been identified, the functionality can accrete randomly, given the host system structure allowing the functionality of cell division to occur
-
           - for a simplistic example, if the cancer-causing mutation had a triangular shape, then cancerous functionality could be generated by function chains forming a triangular shape, and could also emerge from a corner of the host system where unused functionality accreted
 
       - electrical
-
-        - charge
-          https://medicalxpress.com/news/2019-02-electrical-prostate-cancer-cells.html
-
-        - electrical logic processing
-          https://medicalxpress.com/news/2020-01-evidence-previously-unknown-electrical-property.html
-
+        - charge - https://medicalxpress.com/news/2019-02-electrical-prostate-cancer-cells.html
+        - electrical logic processing - https://medicalxpress.com/news/2020-01-evidence-previously-unknown-electrical-property.html
         - light
-
           - timer triggering
-
           - hormone impact/production
-
-          - can bioluminescence treat cancer
-            https://medicalxpress.com/news/2016-03-tumors-cell-electric.html
-
+          - can bioluminescence treat cancer - https://medicalxpress.com/news/2016-03-tumors-cell-electric.html
           - https://medicalxpress.com/news/2016-02-harnessing-power-cancer.html
-
         - lasers
-
         - photosynthesis
 
       - inflammation/irritation
@@ -301,46 +121,24 @@
           https://en.wikipedia.org/wiki/Histamine
 
       - learning
-
       - competition
-
       - finding/borrowing/generating functionality & other resources
-
       - energy management (storage, sharing, production, source-switching, conversion)
-
       - emergent effects:
-
         - example of emergent effects 
-
           - there are intended & unintended ways to activate a process, such as cell death
-
             - apoptosis (cell stressor & stress-handler are aligned with limited side effects in the cell itself ignoring the outer system, as this is a granular function - it gets the signal to kill the cell, and it activates that process)
-
             - variance injection that triggers cell death in unintended ways (over supply of stressors for cell stress-handlers in ways that produce variance that disrupts the cell membrane from the inside)
-
             - acidity is a resource for this process, but it can also kill the cell if over-supplied
-
             - the synergy between histidine & the mechanism of this virus has multiple possible explanations:
               - the virus needed to use existing system resources to be able to attack host cells
               - the virus needed to use an inflammatory agent to hide its activity from immune system
               - the immune system evolved a cooperative process with viruses like this to promote inflammation in a cost-efficient way by delegating it to pathogens
-
             - examples of ways to generate the above list (and the full version):
               - examine relationships/processes for common priorities (efficiency, reducing cost, cooperation effects, inflammation response)
               - examine inputs/outputs (required resources)
               - examine labor/energy processing (cooperative can be parasitic or symbiotic, where one agent is delegating more labor to other agents, or where labor is being traded evenly)
-
-            - you can permute the other interface objects & object attributes/rules to generate the full list of possible explanations, starting on the most explanatory interface and traversing to other interfaces based on available/derivable information
-
-            https://phys.org/news/2020-02-chemists-unveil-influenza-protein.html
-
-      - function types
-
-        - explicit function (such as 'convert input energy into output structure')
-        - implicit function (such as unintended side effects of outputs, interim functions between input/output, and unpredicted emergent functions at scale or across many linked integrated function chains)
-        - provide resources used as inputs to activate other functions (a set of molecules that when detached can activate other processes)
-        - connect functionality (binding structures)
-        - provide platform for functionality (variance allowing functionality to develop on foundational structures)
+            - you can permute the other interface objects & object attributes/rules to generate the full list of possible explanations, starting on the most explanatory interface and traversing to other interfaces based on available/derivable information - https://phys.org/news/2020-02-chemists-unveil-influenza-protein.html
 
       - organization (chromosome position, storage compression, topologically associated domains, binding/accretion rules)
 
@@ -407,13 +205,3 @@
           https://medicalxpress.com/news/2013-03-high-fat-dairy-products-linked-poorer.html
           https://medicalxpress.com/news/2014-11-lactose-intolerants-cancers.html
           https://medicalxpress.com/news/2011-08-poor-awareness-bowel-cancer.html
-
-    - objects
-
-      - drug
-      - proteins, enzymes, lipids
-      - pathogen
-      - mutation
-      - antibodies
-      - memory cells
-
