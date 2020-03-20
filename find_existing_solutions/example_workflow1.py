@@ -1,5 +1,61 @@
-import nltk
+import nltk, os, json
 from nltk import pos_tag, word_tokenize
+
+def get_data(file_path):
+	if os.path.exists(file_path):
+		objects = None
+		with open(file_path, 'r') as f:
+			objects = json.load(f)
+			f.close()
+		if objects:
+			return objects
+	return False
+
+''' OBJECT DEFINITION '''
+
+def get_problem_metadata(problem_def):
+	'''
+		1. Identify problem metadata
+				- problem type
+				- default/original problem type (position on problem type network)
+				- adjacent problem types
+				- component problem types
+				- related problem types
+				- combination problem types
+
+			- problem structure
+				- space (output dimensions to measure solutions)
+				- structure (gap/limit/force/conflict/intersection)
+
+			- problem attributes
+				- interfaces (dimensions that frame or highlight variable value change rules)
+	'''
+	''' to do: add metadata id functions '''
+	problem_metadata_path = 'workflow1_problem_metadata.json'
+	problem_metadata = get_data(problem_metadata_path)
+	if problem_metadata:
+		return problem_metadata
+	return problem_def
+
+def condense_problem_statement(problem_metadata):
+	'''
+		to do:
+			- we want to output 'change_position_of_subject' from the problem statement:
+				"statement": "move other agent to new position (despite dis-incentives like inefficiencies & costs)"
+
+			- we also want to include the aspect 'voluntary' by emphasizing that the move should be done by the subject, not the persuader: 
+				- the persuader should not exert force to persuade, 
+				 	- otherwise the definition of 'persuade' does not apply, which is:
+				 		- 'give subject a reason to move to target position that persuader has assigned to them as an optimal move',
+				 	- and does not allow for the use of force, 
+				 		- since the persuader is specifically applying the 'giving' function, not applying just any function
+	'''
+	condensed_problem_statement = 'change_position_of_subject'
+	if 'problem_definition' in problem_metadata:
+		if 'statement' in problem_metadata['problem_definition']:
+			if condensed_problem_statement:
+					return condensed_problem_statement
+	return False
 
 '''
 	Workflow 1a: Transform into combination of solved problems
@@ -62,33 +118,6 @@ from nltk import pos_tag, word_tokenize
 	}
 }
 '''
-
-problem_def = get_data('problem.json')
-problem_metadata = get_problem_metadata(problem_def)
-if problem_metadata:
-	condensed_problem_statement = condense_problem_statement(problem_metadata)
-	solved = solve_problem_with_problem_type_conversion(problem_metadata)
-	print('solved', solved)
-
-def condense_problem_statement(problem_metadata):
-	'''
-		to do:
-			- we want to output 'change_position_of_subject' from the problem statement:
-				"statement": "move other agent to new position (despite dis-incentives like inefficiencies & costs)"
-
-			- we also want to include the aspect 'voluntary' by emphasizing that the move should be done by the subject, not the persuader: 
-				- the persuader should not exert force to persuade, 
-				 	- otherwise the definition of 'persuade' does not apply, which is:
-				 		- 'give subject a reason to move to target position that persuader has assigned to them as an optimal move',
-				 	- and does not allow for the use of force, 
-				 		- since the persuader is specifically applying the 'giving' function, not applying just any function
-	'''
-	condensed_problem_statement = 'change_position_of_subject'
-	if 'problem_definition' in problem_metadata:
-		if 'statement' in problem_metadata['problem_definition']:
-			if condensed_problem_statement:
-					return condensed_problem_statement
-	return False
 
 def solve_problem_with_problem_type_conversion(problem_metadata):
 	converted_problem = None
@@ -167,6 +196,7 @@ def apply_solution_to_problem(problem_metadata, solution_def):
 	'''
 	solution = ["find information", "find info_asymmetry", "balance information"]
 	'''
+	solution = None
 	solved_problem = {}
 	solution_type = get_solution_type(solution_def)
 	if solution_type == 'type':
@@ -517,7 +547,7 @@ def makes_sense(problem_metadata, problem_object, matched_problem_objects):
 			if solution_object in stringify_metadata(problem_metadata):
 				''' is 'reason' in 'info' solution object metadata? '''
 				sense += 1
-			if problem_object in stringify_metadata(solution_object_metadata)
+			if problem_object in stringify_metadata(solution_object_metadata):
 				''' is 'reason' in 'info' solution object metadata? '''
 				sense += 1
 	if sense > 0:
@@ -558,15 +588,21 @@ def apply_solution(problem_metadata, solution):
 			'find_information': 'find_incentives_to_change_position'
 		}
 	'''
-
-	solved_problem = apply_solution(problem_metadata, solution)
-	return solved_problem
+	solved_problem = None
+	for abstract_step, relevant_problem_step in solution.items():
+		new_problem_metadata = apply_step(problem_metadata, relevant_problem_step)
+		if new_problem_metadata:
+			problem_metadata = new_problem_metadata
+	if solved_problem:
+		return solved_problem
+	return problem_metadata
 
 def get_solution_type(solution):
 	type_words = get_type_words()
-	solution_words = len(set(' '.join(solution).split(' ')))
+	solution_words = ' '.join(solution).split(' ')
+	solution_word_count = len(set(solution_words))
 	union = len(type_words.union(solution_words))
-	if (solution_words - union)/solution_words < 0.3:
+	if (solution_word_count - union)/solution_word_count < 0.3:
 		return True
 	return False
 
@@ -574,34 +610,6 @@ def get_type_words():
 	''' return list of abstract/interface/structural words '''
 	type_words = ['info', 'symmetry']
 	return set(type_words)
-
-
-''' OBJECT DEFINITION '''
-
-def get_problem_metadata(problem_def):
-	'''
-		1. Identify problem metadata
-				- problem type
-				- default/original problem type (position on problem type network)
-				- adjacent problem types
-				- component problem types
-				- related problem types
-				- combination problem types
-
-			- problem structure
-				- space (output dimensions to measure solutions)
-				- structure (gap/limit/force/conflict/intersection)
-
-			- problem attributes
-				- interfaces (dimensions that frame or highlight variable value change rules)
-	'''
-	''' to do: add metadata id functions '''
-	problem_metadata_path = 'workflow1_problem_metadata.json'
-	problem_metadata = get_data(problem_metadata_path)
-	if problem_metadata:
-		return problem_metadata
-	return problem_def
-
 
 ''' QUERY '''
 
@@ -678,18 +686,6 @@ def stringify_metadata(metadata_object):
 	stringified = '_'.join([metadata_object.values()])
 	return stringified
 
-def get_data(file_path):
-	if os.path.exists(file_path):
-		objects = None
-		with open(file_path, 'r') as f:
-			objects = f.read()
-			f.close()
-		if objects:
-			json_objects = json.load(objects)
-			if json_objects:
-				return json_objects
-	return False
-
 def get_function_in_string(string):
 	function_list = get_data('functions.json')
 	words = string.replace('_',' ').split(' ')
@@ -723,3 +719,10 @@ def get_pos(word):
 		else:
 			return 'noun'
 	return False
+
+problem_def = get_data('problem.json')
+problem_metadata = get_problem_metadata(problem_def)
+if problem_metadata:
+	condensed_problem_statement = condense_problem_statement(problem_metadata)
+	solved = solve_problem_with_problem_type_conversion(problem_metadata)
+	print('solved', solved)

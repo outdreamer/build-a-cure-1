@@ -1,9 +1,8 @@
 {
 	"problem_space": {
-		"dimensions": [],
+		"dimensions": []
 	},
 	"variables": [],
-	"conversion_function": [],
 	"problem_definition": {
 		"statement": ""
 	},
@@ -22,8 +21,7 @@
 			"outputs": []
 		},
 		"functions": {
-			"intents": [],
-
+			"intents": []
 		},
 		"cause": {
 			"intent": {},
@@ -42,5 +40,4 @@
 			}
 		}	
 	}
-
 }

@@ -37,7 +37,7 @@
 				"persuader_costs_current_position",
 				"incentives",
 				"efficiencies",
-				"system",
+				"system"
 			],
 			"objects": [
 				"persuader agent",
@@ -89,38 +89,32 @@
 				"identify optimal position",
 				"differentiate optimal & source position",
 				"identify incentives to stay in current position",
-				"identify inability of accessible functions to move to target position",
+				"identify inability of accessible functions to move to target position"
 			],
-			"interactions": [
+			"interactions": {
 
-				"communicate_to_subject",
+				"communicate_to_subject": {},
+				"get_object_definition": {},
+				"get_system_definition": {},
+				"get_system_incentives": {},
+				"get_system_functions": {},
 
-				"get_object_definition",
-				"get_system_definition",
-				"get_system_incentives",
-				"get_system_functions",
+				"differentiate_objects": {},
 
-				"differentiate_objects",
+				"convert_resources_to_position": {},
+				"change_position": {"input": {"required": ["incentive", "efficiency", "intent"]}},
+				"get_position_alignment_with_intent": {},
+				"get_intent_direction": {},
+				"find_distance_between_positions": {},
 
-				"convert_resources_to_position",
-				"change_position": {
-					"input": {
-						"required": ["incentive", "efficiency", "intent"]
-					}
-				},
-				"get_position_alignment_with_intent",
-				"get_intent_direction",
-				"find_distance_between_positions",
-
-				"get_position_definition",
-				"get_position_benefits",
-				"get_position_costs",
-				"get_position_incentives",
-				"get_position_efficiencies",
-				"get_position_inefficiencies",
-				"get_position_functions"
-
-			],
+				"get_position_definition": {},
+				"get_position_benefits": {},
+				"get_position_costs": {},
+				"get_position_incentives": {},
+				"get_position_efficiencies": {},
+				"get_position_inefficiencies": {},
+				"get_position_functions": {}
+			}
 		},
 		"cause": {
 			"system": [
