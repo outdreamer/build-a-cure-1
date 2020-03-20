@@ -9,6 +9,15 @@
     - dimension: space where variables can occur
       - give example of deriving variable types possible in a dimension given combinations of variable attribute values
 
+  - attributes: different aspects of an object
+    - variable: a change type
+    - property: a description of a change type output
+    - metric: proxy/shortcut to measuring a variable (metrics are by definition measurable, whereas not all attributes are)
+    - metadata: 
+      - cross-object attributes (type, position, attribute sets, etc)
+      - can refer to all attributes
+      - can refer to meta attributes (attribute pattern, attribute type)
+
   - optimal variance in a system
 
     - in general, variance should be preserved when its capable of resolving problems whose solutions are more valuable than the cost of the problems caused by the variance, otherwise it shouldnt be allowed to vary

@@ -25,10 +25,9 @@
   - find most common adjacent compound (to make it likeliest that the person can find the common compound and synthesize the version they need)
   - fetch synthesis instructions for a drug from most common adjacent compound
   - treatment component identification function
-  - drug reaction predictor
-  - compound search from smile formula
-  - math notes
+  - drug reaction predictor & compound search from smile formula
   - function/directory organization
+    - first list & organize functions
     - ideally functionality would be organized by intent folders so permissions could be granted according to intent assessment
 
 
@@ -59,7 +58,6 @@
   - look for processes/intake of nutrients that could combine to form other compounds (berberine) given the output health factors (stable blood sugar)
   - fix order of assembled combinations:
       get_alts: all_alts [['suppose', 'assumed', 'thought'], ['DT', 'PDT', 'WDT', 'TO', 'PP', 'CC', 'IN'], ' that ', ['suppose', 'assumed', 'thought'], ' that']
-      get_all_versions |suppose thought assumed| that DPC |suppose thought assumed| that
   - remove plural tags once you finish singularize function
   - make sure apply_pattern_map explores all versions of line, but returns one new line
   - add common patterns that have more than one index type to all index type lists - 'x of y', 'phrase of phrase', etc
@@ -99,17 +97,22 @@
 
 # Functions
 
-  - coexist with definition
-  - superficial cause, alternate cause in the case of a function
-  - framing on interfaces, decomposing causation, then identifying parameters of problem on layer & matching solution
-  - addressing input/output causes
-  - independence (closed trade loops) as time storage
-  - intent organization example
-  - emergent combinations of core functions (include derivation of invalidating contexts for core functions)
-  - development of key decision metrics
-  - asking the key questions to filter attention/info-gathering/solution
-  - apply system analysis to VDJ recombination - find other relevant immune processes to analyze
   - give example of each type of problem-solving workflows
+  - emergent combinations of core functions (include derivation of invalidating contexts for core functions)
+  - apply system analysis to VDJ recombination - find other relevant immune processes to analyze
+
+  - need to find some content:
+    - optimal combination interfaces to start from when solving problems
+    - key questions to filter attention/info-gathering/solution
+    - key functions to solve common problem types
+    - research implementing your solution type (constructing structures (made of boundary/filter/resource sets) to produce substances like antibodies, using bio system stressors)
+    
+  - coexist with definition
+  - change phases for causal analysis (interim, changing, diverging, converging, on the verge of obsolescence, outlier, etc)
+  - superficial cause, alternate cause in the case of a function, addressing input/output causes
+  - framing on interfaces, decomposing causation, then identifying parameters of problem on layer & matching solution
+  - independence (closed trade loops) as time storage
+  - development of key decision metrics (bias towards more measurable/different metrics rather than the right metric)
   - vertex as a pivot point for an interface
 
   - function to create graph from article
@@ -125,16 +128,19 @@
   - find situations where systems dont act like objects in a system (despite similarities in object/system behavior like variance/definition gaps)
   - merge finder & builder notes
   - resolve terms that can be conflated: 
-    - shape/structure
+    - replace:
+      - shape/structure
     - rule/test/metric/limit/threshold/boundary/state change/phase shift
     - intent/priority/motivation/incentive
-    - method/function/rule/pattern
-    - path/route/trajectory/traversal/order/list
-    - metadata/attribute/variable/parameter/property 
+    - method/function/rule/pattern (pattern is a sequence of specific objects)
+    - path/route/trajectory/traversal/order/list/sequence
     - object/entity/item
-    - type/class/category/subset
-    - independence/unique/orthogonal
-    - model/perspective/filter/standard/interface/index/symmetry/dimension/variable
+    - type/class/category/group/subset
+    - closed/isolated/independence/unique/orthogonal
+    - model/perspective/filter
+    - standard/interface/index/symmetry
+    - dimension/variable/axis
+    - space/system/context
 
   - add variable accretion patterns (how an object becomes influenced by a new variable, complex system interaction patterns, etc)
 
