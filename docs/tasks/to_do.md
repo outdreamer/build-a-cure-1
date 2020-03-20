@@ -102,6 +102,8 @@
   - finish system analysis for VDJ recombination 
   - find other relevant immune processes to analyze
 
+  - structure notes particularly object definitions as dict so you can import them
+
   - need to fill in content:
     - finish intent tree
     - optimal combination interfaces to start from when solving problems

@@ -31,26 +31,52 @@ Workflow 1: Identify problem metadata (like type), query for relevant insights &
 	
 	Example: solving a multiplication problem can be framed as an adjacent multiplication problem with a pre-computed solution & an addition/subtraction problem to convert to original multiplication problem.
 
-'''
+	Steps:
 
-	'''
+		1. identify problem metadata
+			- problem type
+				- default/original problem type (position on problem type network)
+				- adjacent problem types
+				- component problem types
+				- related problem types
+				- combination problem types
+
+			- problem structure
+				- space (output dimensions to measure solutions)
+				- structure (gap/limit/force/conflict/intersection)
+
+			- problem attributes
+				- interfaces (dimensions that frame or highlight variable value change rules)
+
+		2. are there insights related to objects in problem metadata?
+			- fetch common cross-system insights
+			- are there related solution types for the problem, the problem type, the problem components, or related problem types?
+
+		3. if related solution types are found for original/related problem types, how to convert between original & solved problem
+			- fetch insights on converting problems to a target problem 
+			- if no insights found, apply default process:
+				- query source & target problem metadata for common attributes & check for a space that could frame their differentiating attributes 
+					(the original problem sapce, the target problem space, or an interim/other dimensional space for conversion)
+
+		4. apply solution for converted problem type
+
+		5. convert to original problem type
+
+		6. test if solution actually reduces or solves original problem
+
 	Workflow 1a: Transform into combination of solved problems.
-
 		Example: social inequality can be framed as a logistics problem (optimal transport of resources like money/laws/info/tools, efficiency-creation)
 
-	'''
-
-	'''
 	Workflow 1b: Transform into an interface problem type (problem type that can frame all problems, like route optimization, a market trade problem, an inefficiency, or a filtering problem)
-
 		- like a combination of insights that, when combined, can solve the problem framed as a trajectory between A & B nodes on the insight network
-
 		Example: the problem of persuasion can be framed as a:
 			- route optimization: which conversation nodes to hit in what sequence to achieve target intent of persuasion
 			- a market/trade problem: which trades to make in conversation (assumptions, concessions, points, examples) to achieve target intent
 			- inefficiency: the inefficiency in the persuasion problem space is the misalignment between their understanding & facts, the facts & the benefit to them, and their lack of information vs. the optimal level of information that would persuade most people
 			- a filtering problem: which filters to use to frame information so the benefit of the recommendation is clear
-	'''
+
+'''
+
 
 '''
 Transform, Identify, Find, Apply, Transform

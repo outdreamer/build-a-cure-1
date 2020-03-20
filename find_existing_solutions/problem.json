@@ -1,0 +1,46 @@
+{
+	"problem_space": {
+		"dimensions": [],
+	},
+	"variables": [],
+	"conversion_function": [],
+	"problem_definition": {
+		"statement": ""
+	},
+	"problem_metadata": {
+		"types": {
+			"default": "",
+			"related": [],
+			"component": [],
+			"interface": [],
+			"adjacent": []
+		},
+		"dependencies": {
+			"assumptions": [],
+			"requirements": [],
+			"inputs": [],
+			"outputs": []
+		},
+		"functions": {
+			"intents": [],
+
+		},
+		"cause": {
+			"intent": {},
+			"function": {},
+			"structures": {
+				"network": {},
+				"loop": {},
+				"alternate": {},
+				"hub": {},
+				"gap": {},
+				"limit": {},
+				"direction": {
+					"one-way": {},
+					"two-way": {}
+				}
+			}
+		}	
+	}
+
+}
