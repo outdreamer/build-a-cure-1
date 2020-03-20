@@ -193,6 +193,18 @@
 
 				- is it more efficient to generate sub-components of common successful antibodies & package/deploy these components or their generative functions) than to generate specific antibodies?
 
+				- do the standard processes & their reversal processes need to match up in number/direction? Does cell differentiation need a cell-de-differentiation function available - would that offer more systemic benefits if all functions had a reversing function, or is the system nearer to optimality where such a drastic change would be disruptive rather than conducive to demanded adaptation
+
+				- is there a chain of inputs/outputs not being exploited that could be aligned in the system to reduce system misuse/non-use of resources, or create independent closed trade loops with fewer side effects
+
+				- which nodes in the system are most replaceable/destructible with fewest side effects (so they can be removed or used for high-risk methods like in-system experimentation)
+
+				- which layers & causal shapes are best to attack from (organ, cellular, immune, sub-system, input (most distant root cause accessible), functional, instruction, communication, physics, electricity, chemistry)
+
+				- can you install temporary receptors on cells to act in place of permanent/genetically produced receptors
+
+				- which sub-systems would benefit the system if copied to or communicating with another sub-system (an antibody-production system in major organs or filtration organs for testing)
+
 				- is there another process that can replace the antigen-tagging solution produced by antibodies, such as adjacent systemic attribute collisions producing local contexts that invalidate pathogens of various types
 
 					- alternate processes & ways to trigger them
