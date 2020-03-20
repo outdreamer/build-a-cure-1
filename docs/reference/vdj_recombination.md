@@ -202,6 +202,13 @@
 				- which layers & causal shapes are best to attack from (organ, cellular, immune, sub-system, input (most distant root cause accessible), functional, instruction, communication, physics, electricity, chemistry)
 
 				- can you install temporary receptors on cells to act in place of permanent/genetically produced receptors
+					- which elements are often used in chemical bonds
+						- o-h bonds
+						- carbon is often a hub for other bonds to gather & connects well with itself
+						- phosphorus
+					- what other methods are used to create bonds
+						- charge matching/ionization
+						- cadherin proteins
 
 				- which sub-systems would benefit the system if copied to or communicating with another sub-system (an antibody-production system in major organs or filtration organs for testing)
 
