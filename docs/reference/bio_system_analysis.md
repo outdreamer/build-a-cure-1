@@ -59,6 +59,11 @@
 					- predict common valuable states or components and aim for producing those rather than covering all situations
 					- keep resources to build handler in every cell or a system that interacts with every cell, so it can build its own as needed
 					- predict changes up to n degrees away and handle those at build time
+					- store altered & original versions in memory cells, or store their common structure/components in memory cells (dont store pieces likely to be altered to evade detection)
+					- rather than identifying raw structure, identify patterns of signal manipulation (methods to evade detection, like distortion patterns of macromolecules assembled to signal a different pathogen)
+						- can these signal evasion tactics be used to actually convert the pathogen to a handled pathogen, or attach temporary receptors to tag it with?
+							- store receptors & attach them to any cell that doesnt pass a host cell filter (displaying cooperative functionality, or identity of host cell type), rather than storing methods of recognizing receptors
+							- rather than check if its a pathogen, check if its not a host cell - where can you inject filters that wouldnt disrupt systemic functionality (filters that are temporary & dissolve in blood stream, filters around existing boundaries, filters at build-time)
 
 		- system questions
 			
