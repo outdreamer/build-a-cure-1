@@ -14,6 +14,7 @@
 		"difficulty occurs when a solution cant be built with accessible/core functions"
 	],
 	"solutions": [
+		["find information", "find info_asymmetry", "balance information"],
 		["list benefits", "verify incentives", "find efficiencies", "apply efficiencies", "list reduced costs"]
 	],
 	"related_problems": [

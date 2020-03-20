@@ -4,7 +4,7 @@
 			"position",
 			"system_impact",
 			"efficiency"
-		],
+		]
 	},
 	"problem_definition": {
 		"statement": "move other agent to new position (despite dis-incentives like inefficiencies & costs)"
@@ -12,7 +12,6 @@
 	"problem_metadata": {
 		"types": {
 			"default": "connecting points to form an argument",
-			# to be filled in with insights['related_problems'], since insights are relationships between objects
 			"related": [], 
 			"component": [
 				"make point",
@@ -23,7 +22,6 @@
 				"check if point complies with contrary/neutralizing intents",
 				"check if point emphasizes benefit or cost"
 			],
-			# adjacent problems are low-degree transforms away from this problem 
 			"adjacent": [
 				"forming a cohesive system",
 				"checking a point for compliance with system such as logic or common sense or facts"
@@ -87,15 +85,10 @@
 				"highlight benefits"
 			],
 			"generation_function": [
-				# to generate the 'persuasion' problem
 				"convert conclusions to positions",
-				# identify target
 				"identify optimal position",
-				# check that source & target positions arent the same
 				"differentiate optimal & source position",
-				# there has to be a reason why persuasion is difficult, or they'd already be moving to the optimal position, rather than stabilizing in the current position
 				"identify incentives to stay in current position",
-				# if it was easy to move to the other position, they would be able to do it with low-degree combinations of accessible/core functions
 				"identify inability of accessible functions to move to target position",
 			],
 			"interaction_functions": [
@@ -128,7 +121,6 @@
 		"cause": {
 			"system": [
 				"sometimes sub-optimal positions that hurt agents or systems are so safe/efficient/beneficial/low-cost/optimal that agents dont leave those positions until its impossible to leave"
-				# example: hurricane/volcano-adjacent residents
 			],
 			"intent": [
 				"systems dont always prioritize intents that protect all their agents",
