@@ -102,7 +102,8 @@
   - finish system analysis for VDJ recombination 
   - find other relevant immune processes to analyze
 
-  - need to find some content:
+  - need to fill in content:
+    - finish intent tree
     - optimal combination interfaces to start from when solving problems
     - key questions to filter attention/info-gathering/solution
     - key functions to solve common problem types

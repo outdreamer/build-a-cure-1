@@ -7,6 +7,8 @@ This file contains example problem-solving automation workflows & example data f
 
 To do:
 
+	- assign core function chain to each method
+
 	- select a specific problem to solve with these methods, ideally as similar a problem as possible, with different starting information in the initial problem statement.
 	
 	- show how to convert each solution automation method to its:
@@ -34,15 +36,20 @@ Workflow 1: Identify problem metadata (like type), query for relevant insights &
 	'''
 	Workflow 1a: Transform into combination of solved problems.
 
-		Example: social inequality can be framed as a logistics problem (optimal transport, efficiency-creation)
+		Example: social inequality can be framed as a logistics problem (optimal transport of resources like money/laws/info/tools, efficiency-creation)
 
 	'''
 
 	'''
-	Workflow 1b: Transform into combination of insights that, when combined, can solve the problem framed as a trajectory between A & B nodes on the insight network.
+	Workflow 1b: Transform into an interface problem type (problem type that can frame all problems, like route optimization, a market trade problem, an inefficiency, or a filtering problem)
 
-		Example: social inequality can be framed as a logistics problem (optimal transport, efficiency-creation)
+		- like a combination of insights that, when combined, can solve the problem framed as a trajectory between A & B nodes on the insight network
 
+		Example: the problem of persuasion can be framed as a:
+			- route optimization: which conversation nodes to hit in what sequence to achieve target intent of persuasion
+			- a market/trade problem: which trades to make in conversation (assumptions, concessions, points, examples) to achieve target intent
+			- inefficiency: the inefficiency in the persuasion problem space is the misalignment between their understanding & facts, the facts & the benefit to them, and their lack of information vs. the optimal level of information that would persuade most people
+			- a filtering problem: which filters to use to frame information so the benefit of the recommendation is clear
 	'''
 
 '''

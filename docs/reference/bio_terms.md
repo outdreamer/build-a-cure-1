@@ -36,7 +36,7 @@
 		- concepts:
 			- autoimmunity: immune system attacking healthy cells/the host
 			- allergen
-			- memory cellƒ
+			- memory cell
 
 		- components:
 			- thymus: a specialized primary lymphoid organ of the immune system where T cells mature
@@ -64,20 +64,24 @@
 
 ## Components
 
-- protein:
+### macromolecules
 
-- enzyme:
+	- protein:
 
-	- transferase
-	- polymerase
-	- protease
-	- amylase
+	- enzyme:
 
-- receptor:
+		- transferase
+		- polymerase
+		- protease
+		- amylase
 
-- DNA:
+	- amino acid:
 
-- amino acid:
+### cell components
+
+	- receptor:
+
+	- DNA:
 
 - electrolyte:
 
@@ -153,7 +157,6 @@
 
 	- apoptosis
 
-
 ### energy processes
 
 	- ATP hydrolysis: releasing chemical energy in phosphoanhydride bonds of adenoside triphosphate (ATP) by splitting the phosphoanhydride bonds
@@ -178,7 +181,6 @@
 		- process that rearranges variable, joining & diversity gene segments
 		- occurs only in developing lymphocytes during the early stages of T & B cell maturation
 		- involves somatic recombination
-
 		- produces a variety of: 
 			- b cell antibodies/immunoglobulins
 			- T cell receptors (TCRs)
