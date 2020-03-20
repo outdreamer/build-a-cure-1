@@ -82,6 +82,18 @@
     - many object types can be an interface in a specific system, in addition to standard abstract interfaces
       (function/metabolic interface, system/immune interface, structure/cell interface, communication/nerve interface)
 
+#### Limits
+
+	- boundaries:
+
+		- cortex: outermost layer of an organ
+			- kidneys, brain, lymph, adrenal glands, thymus have well-defined cortices
+
+#### Layers
+
+	- organ
+		- cortex: outermost layer of an organ
+
 
 ### Type interface
 
@@ -94,56 +106,114 @@
 
 #### Relationship types
 
+	- attribute-based relationship types
+    	- explicit (such as 'convert input energy into output structure')
+    	- implicit (such as unintended side effects of outputs, interim functions between input/output, and unpredicted emergent functions at scale or across many linked integrated function chains)
+   
 	- core relationships
-        - bind
-        - boundary
-        - position
-        - grouping/accretion
-        - distribution
-        - testing/assessment/metric selection
+
+        - build
+        	- copy/replace/remove
+        	- combine
+        		- group
+        		- merge
+        		- connect/bind
+        		    - communication
+			        	- mark/identify/recognize
+			        	- find path
+			        	- find map (common language)
+        	- boundary
+        	- fit/fill
+        	- match
+        	    - request/response handling
+        	- position
+        		- move
+        		- rearrange
+        		- distribution
+        		- order
+
         - change
-        - regulation
-        - communication
-        - repair
-        - movement
-        - duplication
-        - request/response handling
+	        - change prevention (regulation)
+	        	- testing/assessment/metric selection
+	        	- repair
+        	- change variable metadata (type/value)
+        	- change process/variable status (activate)
+        	- convert/translate/format
+        	- change reversal/compounding
+        	- differentiation (commitment to a state from a core state)
 
-	- combination 
-		- anomaly/counterexample
-		- neutralizing/opposing
-		- promoting/synergistic
-		- symmetry
-		- conflict
-		- circle
-		- core structure combinations
+    - definitions of core structure functions
 
-	- distribution
-		- network
+    	- connect
+    		- concepts
+    		- functions
 
-	- organization
-		- filters
-		- position
-		- storage/compression
-		- adjacence
-		- grouping rules
-		- binding rules
-		- boundary rules
+    	- limit
+    		- concepts
+    		- functions
 
-	- emergent/interaction layer functions
+    	- change
+    		- concepts
+    		- functions
 
-	    - learning
-	    - competition
-	    - finding/borrowing/generating functionality & other resources
-	    - energy management (storage, sharing, production, source-switching, conversion)
-	    - inflammation/irritation
+		- combine
+			- concepts:
+				- anomaly/counterexample/outlier
+				- conflict
+				- symmetry
+				- common shape (circle)
 
+			- functions:
+				- neutralizing/opposing
+				- promoting/synergistic
+				- core structure combinations
 
-    - explicit function (such as 'convert input energy into output structure')
-    - implicit function (such as unintended side effects of outputs, interim functions between input/output, and unpredicted emergent functions at scale or across many linked integrated function chains)
-    - provide resources used as inputs to activate other functions (a set of molecules that when detached can activate other processes)
-    - connect functionality (binding structures)
-    - provide platform for functionality (variance allowing functionality to develop on foundational structures)
+		- distribute
+			- concepts:
+				- network
+			- functions:
+
+		- filter
+			- concepts:
+				- network
+			- functions:
+
+		- organize
+			- concepts:
+				- filters
+				- position
+				- adjacence
+
+			- functions:
+				- info rules (storage/compression)
+				- specific structural core intent rules (combine/connect/filtering/boundary)
+
+	- other function types
+
+		- emergent/interaction layer functions (outer functions built by core functions relevant to certain interaction layers)
+
+		    - learning (built by change function)
+		    - competition (built by change/find/test functions)
+		    - finding/borrowing/generating functionality & other resources (built by find/build functions)
+
+		    - specific bio interaction layer functions
+			    - energy management (storage, sharing, production, source-switching, conversion)
+			    	- built by functions that allow a system to develop so that its inputs/outputs are arranged to create efficiencies for demanded/supplied input/outputs & their target connections
+			    - inflammation/irritation (build by communication functions)
+
+		- relationships with varying intents
+			- direct/indirect intent
+			- multiple/single intents
+			- certain/uncertain intent
+			- abstract/neutral/specific intent
+			- intent-related intents (intent-modification intent)
+
+	    - interim functions
+	    	- provide resources used as inputs to activate other functions (a set of molecules that when detached can activate other processes)
+	    	- these functions may be cross-system, or may be unnecessary middlemen in a function chain whose functionality should be merged with other functions
+	    
+	    - platform functions
+	    	- provide platform for functionality (variance allowing functionality to develop on foundational structures)
 
 
 #### Attribute types
@@ -166,6 +236,7 @@
     - support
         - metabolism
         - filtration
+        
 
 #### Causal types
 

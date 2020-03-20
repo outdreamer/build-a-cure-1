@@ -25,7 +25,7 @@
 			- adaptive
 
 	- types:
-	
+
 		- humoral immunity: immunity conducted by macromolecules in extracellular fluid, such as:
 			- secreted antibodies
 			- complement proteins
@@ -60,25 +60,6 @@
 #### fungus
 
 #### parasites
-
-
-## Interfaces
-
-### Structure
-
-#### Limits
-
-	- boundaries:
-
-		- cortex: outermost layer of an organ
-
-			- kidneys, brain, lymph, adrenal glands, thymus have well-defined cortices
-
-#### Layers
-
-	- organ
-
-		- cortex: outermost layer of an organ
 
 
 ## Components
