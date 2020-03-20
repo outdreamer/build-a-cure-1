@@ -66,8 +66,29 @@ from nltk import pos_tag, word_tokenize
 problem_def = get_data('problem.json')
 problem_metadata = get_problem_metadata(problem_def)
 if problem_metadata:
+	condensed_problem_statement = condense_problem_statement(problem_metadata)
 	solved = solve_problem_with_problem_type_conversion(problem_metadata)
 	print('solved', solved)
+
+def condense_problem_statement(problem_metadata):
+	'''
+		to do:
+			- we want to output 'change_position_of_subject' from the problem statement:
+				"statement": "move other agent to new position (despite dis-incentives like inefficiencies & costs)"
+
+			- we also want to include the aspect 'voluntary' by emphasizing that the move should be done by the subject, not the persuader: 
+				- the persuader should not exert force to persuade, 
+				 	- otherwise the definition of 'persuade' does not apply, which is:
+				 		- 'give subject a reason to move to target position that persuader has assigned to them as an optimal move',
+				 	- and does not allow for the use of force, 
+				 		- since the persuader is specifically applying the 'giving' function, not applying just any function
+	'''
+	condensed_problem_statement = 'change_position_of_subject'
+	if 'problem_definition' in problem_metadata:
+		if 'statement' in problem_metadata['problem_definition']:
+			if condensed_problem_statement:
+					return condensed_problem_statement
+	return False
 
 def solve_problem_with_problem_type_conversion(problem_metadata):
 	converted_problem = None
@@ -252,8 +273,11 @@ def get_problem_solution_steps(object_map, solution_metadata_steps):
 	return False
 
 def get_relevant_solution(abstract_solution, problem_metadata):
-	''' convert abstract_solution = 'find_incentives' into modified relevant solution like 'find incentives to change position', which is relevant to the problem definition '''
-	''' how is 'incentive' related to problem of 'persuasion'? '''
+	''' convert abstract_solution = 'find_incentives' into modified relevant solution like 'find incentives to change position', 
+		which is highly relevant to the condensed problem definition ("change_position_of_subject")
+		- by adding modifiers, we are answering the question: 
+			- how is 'find_incentive' related to the problem of 'persuasion' (change position of subject)?
+	'''
 	''' 
 		to do: 
 			- add formatting for modifiers of a certain type, like:
