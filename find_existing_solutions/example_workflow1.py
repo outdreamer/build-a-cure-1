@@ -82,6 +82,12 @@ def solve_problem_with_problem_type_conversion(problem_def):
 
 def	apply_solutions(problem_metadata, solutions):
 	''' to do: decide if you want to return multiple solutions if there are any '''
+
+	'''
+	solutions = [
+		["list benefits", "find efficiencies", "apply efficiencies", "list reduced costs"]
+	]
+	'''
 	solved_problems = {}
 	solved_problem = None
 	for s in solutions:
@@ -93,6 +99,9 @@ def	apply_solutions(problem_metadata, solutions):
 def apply_solution_to_problem(problem_metadata, solution):
 	'''
 		4. apply solution for converted problem type
+	'''
+	'''
+	solution = ["list benefits", "find efficiencies", "apply efficiencies", "list reduced costs"]
 	'''
 	solved_problem = {}
 	if 'solution_type' in solution:
@@ -106,6 +115,163 @@ def apply_solution_to_problem(problem_metadata, solution):
 		if solved_problem:
 			return solved_problem
 	return False
+
+def apply_solution_type(problem_metadata, solution_type):
+	solution = None
+	'''
+		- get solution & problem definition
+		if solution_type = 'balance_info_asymmetry', you can implement this solution_type to get a solution for a problem space:
+			- find objects in problem that match solution_type objects
+				- find information
+					- 'reason to change positions'
+					- 'incentives/inefficiencies preventing position change'
+					- 'benefits/costs of position change'
+				- find information asymmetry 
+					- 'interaction of (reason to change positions) and (subjects' (current information or focus))'
+					# focus can act as a proxy for information, making a change seem important/relevant just by enabling the subject to focus on some benefit rather than a cost
+				- find balance implementation in problem 
+					(what does balance mean for this problem - equal distribution? removal of information? distributing info derivation methods?)
+					- balance as 'matching' or 'alignment'
+						- match (reason to change position) with (intent (need, incentive) to change position)
+			- with matching problem objects, apply solution_type to get solution (solution being a list of specific operations to execute)
+				- 'balance the info asymmetry' in a problem like 'persuasion' translates to the steps:
+					- find reasons to change position
+					- find reasons to stay in current position
+					- map some reason to change (safety) with some reason to stay (safety)
+	'''
+
+	problem_solution_object_map = {}
+
+	if solution and problem_metadata:
+
+		''' solution_type should have a function and an object '''
+		solution_metadata = get_solution_metadata(solution_type)
+		# solution_metadata = {'object': 'info_asymmetry', 'function': 'balance'}
+
+		if solution_type == 'balance_info_asymmetry':
+
+			if 'objects' in problem:
+
+				solution_objects = get_objects(solution_metadata['object'])
+				# solution_objects = ['info', 'asymmetry', 'info_asymmetry']
+
+				if solution_objects:
+
+					for so in solution_objects:
+						matched_problem_object = find_matching_object_in_problem_space(problem_metadata, so)
+						problem_solution_object_map[so] = matched_problem_object
+
+		if problem_solution_object_map:
+			''' with this map, apply solution(s) for this solution type '''
+
+
+	'''
+			- with matching problem objects, apply solution_type to get solution (solution being a list of specific operations to execute)
+				- 'balance the info asymmetry' in a problem like 'persuasion' translates to the steps:
+					- find reasons to change position
+					- find reasons to stay in current position
+					- map some reason to change (safety) with some reason to stay (safety)
+	'''
+	return solution
+
+def get_object_metadata(object_name):
+	return object_metadata
+
+def find_matching_object_in_problem_space(problem_metadata, solution_object):
+
+	''' for a solution_object like 'info', find the corresponding object in the problem like 'reasons to change position' '''
+	solution_object = 'info'
+
+	''' find 'info' in problem '''
+	matched_problem_objects = {}
+	solution_object_metadata = get_object_metadata(solution_object)
+	for o in problem['objects']:
+		for problem_attribute in problem_metadata:
+			if problem_attribute in solution_object_metadata:
+				if problem_attribute in solution_object_metadata['requirements']:
+					''' this attribute is a required input to the solution object, increasing the likelihood that these objects match '''
+					if o not in matched_problem_objects:
+						matched_problem_objects[o].append(problem_attribute)
+						''' add problem object like incentive/efficiency/reason to map indicating relationship to solution object 'info' '''
+
+	print('matched_problem_objects', matched_problem_objects)
+
+	'''
+	- most objects in the problem match this solution_type object 'info' bc this is already converted to an information problem type, so little work is required to check for a relationship 
+	matched_problem_objects = {
+		'efficiency': [],
+		'incentive': [],
+		'intent': [],
+		'cost': [],
+		'benefit': []
+	}
+	'''
+
+	'''
+	- find solution_object = 'info' in problem objects ['efficiency', 'intent', 'incentive', 'cost', 'benefit', 'position']
+
+	- once you have the matched_problem_objects, you need to find relevant modifiers/functions applied to them that are relevant to the problem/solution: 
+
+	- how is 'incentive' related to problem of 'persuasion'?
+		- input to 'change_position' function of 'persuasion' problem metadata (in 'workflow1_problem_metadata.json')
+			- intent
+			- incentive
+
+	- target output for info-persuasion object map:
+
+		- 'incentive/intent to change positions'
+		- 'incentives/inefficiencies preventing position change'
+		- 'benefits/costs of position change'
+		
+	'''
+
+	if matched_problem_objects:
+		''' now that youve verified these objects match in some way, you need to check if mapping this solution object & this problem object makes sense with the problem definition '''
+		sense = {} ''' keep track of sense score for each problem object '''
+
+		for problem_object, matching_attributes in matched_problem_objects.items():
+
+			''' check that mapping 'reason' to 'info' makes sense '''
+			attributes_to_check = ['type']
+
+			sense[problem_object] = 0
+			for attribute in attributes_to_check:
+				if attribute in problem_metadata:
+					''' standard definition validation '''
+					if solution_object in problem_metadata[attribute]:
+						''' is 'info' included in problem['type'] list? '''
+						sense[problem_object] += 1
+
+					''' to do: add function to stringify metadata dict '''
+					if solution_object in stringify_metadata(problem_metadata):
+						''' is 'reason' in 'info' solution object metadata? '''
+						sense[problem_object] += 1
+
+					if problem_object in stringify_metadata(solution_object_metadata)
+						''' is 'reason' in 'info' solution object metadata? '''
+						sense[problem_object] += 1
+
+		if sense:
+			new_problem_solution_map = {}
+			for problem_object, score in sense.items():
+				if score > 0:
+					new_problem_solution_map[problem_object] = matched_problem_objects[problem_object]
+			if new_problem_solution_map:
+				return new_problem_solution_map.keys()
+	return False
+
+def stringify_metadata(metadata_object):
+	stringified = '_'.join([metadata_object.values()])
+	return stringified
+
+def get_solution_metadata(solution_type):
+	solution_metadata = {'object': 'info_asymmetry', 'function': 'balance'}
+	return solution_metadata
+
+def get_objects(solution_type):
+	''' solution_type = 'info_asymmetry' '''
+	solution_objects = []
+	return solution_objects
 
 def apply_solution(problem_metadata, solution):
 	return solved_problem
