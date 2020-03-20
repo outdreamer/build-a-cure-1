@@ -9,6 +9,8 @@
 		"efficiencies are shorter routes to a target, where routes represent cost",
 		"an example efficiency is: removing unnecessary middlemen",
 		"persuasion is relevant when there are incentives to stay in the current position",
+		"incentives are rewards for staying in low-cost positions",
+		"incentives may also be efficiencies",
 		"difficulty occurs when a solution cant be built with accessible/core functions"
 	],
 	"solutions": [

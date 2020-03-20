@@ -6,62 +6,52 @@
 
 ''' the problem type for this example: persuasion (make an argument that changes a behavior metric (like direction) '''
 
-insights = {
-	"insights": [
-		"persuasion is successful when benefits are clear",
-		"an example efficiency is: removing unnecessary middlemen"
-	],
-	"solutions": [
-		["list benefits", "find efficiencies", "apply efficiencies", "list reduced costs"]
-	],
-	"related_problems": [
-		# persuasion problem super-type
-		"identify optimal path to target",
-		# these are related problems of this problem's insights
-		"differentiating objects (cost/benefits)"
-	]
-}
-
 problem_metadata = {}
-problem_def = {}
 problem_path = 'problem.json'
-with open(problem_path, 'r') as f:
-	problem_def = f.read()
-	f.close()
+problem_def = get_data(problem_path)
 if problem_def:
 	solved = solve_problem_with_problem_type_conversion(problem_def)
 	print('solved', solved)
 
 def solve_problem_with_problem_type_conversion(problem_def):
 
+	solved_problem = None
+	converted_problem = None
+
 	if problem_def:
 
 		problem_metadata = get_problem_metadata(problem_def)
-		insights = fetch_related_insights(problem_metadata)
-		related_solutions = []
-		related_problems = []
-		solved_problem = None
-		converted_problem = None
 
 		''' fetch insights related to this problem '''
-		if insights:
-
-			if 'solutions' in insights:
-				''' found insights about solutions for this problem type '''
-				related_solutions = insights['solutions']
-
-			if 'related_problems' in insights:
-				related_problems = insights['related_problems']
+		insights = fetch_related_insights(problem_metadata)
+		'''
+		insights = {
+			"insights": [
+				"persuasion is successful when benefits are clear",
+				"an example efficiency is: removing unnecessary middlemen"
+			],
+			"solutions": [
+				["list benefits", "find efficiencies", "apply efficiencies", "list reduced costs"]
+			],
+			"related_problems": [
+				# persuasion problem super-type
+				"identify optimal path to target",
+				# these are related problems of this problem's insights
+				"differentiating objects (cost/benefits)"
+			]
+		}
+		'''
 
 		''' try solutions identified as related to this problem or problem type before converting '''
-		if related_solutions:
-			solved_problem = apply_solutions(problem_metadata, related_solutions)
+		if 'solutions' in insights:
+			''' found insights about solutions for this problem type '''
+			solved_problem = apply_solutions(problem_metadata, insights['solutions'])
 			if solved_problem:
 				return solved_problem 
 
 		''' if solutions of this problem type didnt work, try solutions of related problems '''
-		if related_problems:
-			for p in related_problems:
+		if 'related_problems' in insights:
+			for p in insights['related_problems']:
 				converted_problem = convert_to_solved_problem(problem_metadata, p)
 
 		''' if there are no related problem types/related problems, convert to an interface problem type '''
@@ -154,7 +144,9 @@ def get_problem_metadata(problem_def):
 			- problem attributes
 				- interfaces (dimensions that frame or highlight variable value change rules)
 	'''
-	problem_metadata = {}
+	''' to do: add metadata id functions '''
+	problem_metadata_path = 'workflow1_problem_metadata.json'
+	problem_metadata = get_data(problem_metadata_path)
 	return problem_metadata
 
 
@@ -167,6 +159,8 @@ def fetch_related_insights(problem_metadata):
 			- are there related solution types for the problem, the problem type, the problem components, or related problem types?
 	'''
 	insights = {'insights': [], 'solutions': []}
+	insight_path = 'insights.json'
+	insights = get_data(insight_path)
 	return insights
 
 
@@ -200,4 +194,15 @@ def convert_problem_to_problem_type(source_problem_type_metadata, target_problem
 	converted_problem = {}
 	if converted_problem:
 		return converted_problem
+	return False
+
+
+''' PROCESSING '''
+
+def get_data(file_path):
+	if os.path.exists(file_path):
+		with open(file_path, 'r') as f:
+		objects = f.read()
+		f.close()
+		return objects
 	return False
