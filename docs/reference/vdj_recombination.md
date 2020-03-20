@@ -122,6 +122,7 @@
 		- requirements
 		- variable metadata (position, application, connection)
 		- order of processes
+		
 
 	- solution types
 

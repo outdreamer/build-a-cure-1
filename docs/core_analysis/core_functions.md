@@ -1,5 +1,127 @@
 # Functions
 
+## Function interface
+
+  - rule: static function
+  - function: rule tree, composed of:
+    - conditions (if/for/while/validation/organization)
+    - assignments/relationships (equate an attribute with a value)
+    - processes (format/return)
+  - operation: sub-function or function step
+  - intent: purpose for a function (at granular layers or in strict environments, purpose can be tightly aligned with the function logic, with no side effects)
+  - role: function & a position in a system
+  - pattern: sequence of specific/identified objects
+  - connection: causal relationship (some type of interaction occurs)
+  - insight: important/relevant/new/unique/abstract/cross-system relationship
+  - strategy: insight & a plan intent on how to implement it, usually to achieve a specific goal intent
+
+
+## Functions Types
+
+    - core functions
+
+        - build
+          - copy/replace/remove
+          - combine
+            - group
+            - merge
+            - connect/bind
+                - communication
+                - mark/identify/recognize
+                - find path
+                - find map (common language)
+          - boundary
+          - fit/fill
+          - match
+              - request/response handling
+          - position
+            - move
+            - rearrange
+            - distribution
+            - order
+
+        - change
+          - change prevention (regulation)
+            - testing/assessment/metric selection
+            - repair
+          - change variable metadata (type/value)
+          - change process/variable status (activate)
+          - convert/translate/format
+          - change reversal/compounding
+          - differentiation (commitment to a state from a core state)
+
+
+    - core structure function definitions
+
+      - connect
+        - concepts
+        - functions
+
+      - limit
+        - concepts
+        - functions
+
+      - change
+        - concepts
+        - functions
+
+      - combine
+        - concepts:
+          - anomaly/counterexample/outlier
+          - conflict
+          - symmetry
+          - common shape (circle)
+        - functions:
+          - neutralizing/opposing
+          - promoting/synergistic
+          - core structure combinations
+
+      - distribute
+        - concepts:
+          - network
+        - functions:
+
+      - filter
+        - concepts:
+          - network
+        - functions:
+
+      - organize
+        - concepts:
+          - filters
+          - position
+          - adjacence
+        - functions:
+          - info rules (storage/compression)
+          - specific structural core intent rules (combine/connect/filtering/boundary)
+
+
+    - emergent/interaction layer functions
+
+        - learning (built by change function)
+        - competition (built by change/find/test functions)
+        - finding/borrowing/generating functionality & other resources (built by find/build functions)
+
+    - sub-system functions
+
+    - interim functions
+        - provide resources used as inputs to activate other functions (a set of molecules that when detached can activate other processes)
+        - these functions may be cross-system, or may be unnecessary middlemen in a function chain whose functionality should be merged with other functions
+      
+    - platform functions
+        - provide platform for functionality (variance allowing functionality to develop on foundational structures)
+
+    - intent functions
+      - direct/indirect intent
+      - multiple/single intents
+      - certain/uncertain intent
+      - abstract/neutral/specific intent
+      - intent-related intents (intent-modification intent)
+
+    - attribute-based relationship types
+        - explicit (such as 'convert input energy into output structure')
+        - implicit (such as unintended side effects of outputs, interim functions between input/output, and unpredicted emergent functions at scale or across many linked integrated function chains)
+     
 
 ## Match
 

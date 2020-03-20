@@ -123,7 +123,7 @@
 				- which sub-systems would benefit the system if copied to or communicating with another sub-system (an antibody-production system in major organs or filtration organs for testing)
 
 		
-		- alternatives
+		- system/component alternatives
 
 			- is there another process that can replace the antigen-tagging solution produced by antibodies, such as adjacent systemic attribute collisions producing local contexts that invalidate pathogens of various types
 
@@ -156,9 +156,11 @@
 
 ### Core interface
 
+
 #### Core structures
 
 	- core structures (chain, network, sequence, group, boundary)
+
 
 #### Core concepts
 
@@ -184,6 +186,7 @@
       - antibodies
       - memory cells
 
+
 #### Core functions
 
 	- immune functions
@@ -208,10 +211,20 @@
     - power interface
 
 
+### Function interface
+
+	- function
+
+	- intent
+
+	- role
+
+
 ### Structure interface
 
     - many object types can be an interface in a specific system, in addition to standard abstract interfaces
       (function/metabolic interface, system/immune interface, structure/cell interface, communication/nerve interface)
+
 
 #### Limits
 
@@ -228,6 +241,7 @@
 
 ### Type interface
 
+
 #### Structure types
 
 	- membranes
@@ -235,89 +249,14 @@
     - receptors
     - instructions
 
+
 #### Relationship types
 
 	- attribute-based relationship types
     	- explicit (such as 'convert input energy into output structure')
     	- implicit (such as unintended side effects of outputs, interim functions between input/output, and unpredicted emergent functions at scale or across many linked integrated function chains)
    
-	- core relationships
-
-        - build
-        	- copy/replace/remove
-        	- combine
-        		- group
-        		- merge
-        		- connect/bind
-        		    - communication
-			        	- mark/identify/recognize
-			        	- find path
-			        	- find map (common language)
-        	- boundary
-        	- fit/fill
-        	- match
-        	    - request/response handling
-        	- position
-        		- move
-        		- rearrange
-        		- distribution
-        		- order
-
-        - change
-	        - change prevention (regulation)
-	        	- testing/assessment/metric selection
-	        	- repair
-        	- change variable metadata (type/value)
-        	- change process/variable status (activate)
-        	- convert/translate/format
-        	- change reversal/compounding
-        	- differentiation (commitment to a state from a core state)
-
-    - definitions of core structure functions
-
-    	- connect
-    		- concepts
-    		- functions
-
-    	- limit
-    		- concepts
-    		- functions
-
-    	- change
-    		- concepts
-    		- functions
-
-		- combine
-			- concepts:
-				- anomaly/counterexample/outlier
-				- conflict
-				- symmetry
-				- common shape (circle)
-
-			- functions:
-				- neutralizing/opposing
-				- promoting/synergistic
-				- core structure combinations
-
-		- distribute
-			- concepts:
-				- network
-			- functions:
-
-		- filter
-			- concepts:
-				- network
-			- functions:
-
-		- organize
-			- concepts:
-				- filters
-				- position
-				- adjacence
-
-			- functions:
-				- info rules (storage/compression)
-				- specific structural core intent rules (combine/connect/filtering/boundary)
+   	- core relationship functions
 
 	- other function types
 
@@ -326,30 +265,16 @@
 		    - learning (built by change function)
 		    - competition (built by change/find/test functions)
 		    - finding/borrowing/generating functionality & other resources (built by find/build functions)
-
 		    - specific bio interaction layer functions
 			    - energy management (storage, sharing, production, source-switching, conversion)
 			    	- built by functions that allow a system to develop so that its inputs/outputs are arranged to create efficiencies for demanded/supplied input/outputs & their target connections
 			    - inflammation/irritation (build by communication functions)
 
-		- relationships with varying intents
-			- direct/indirect intent
-			- multiple/single intents
-			- certain/uncertain intent
-			- abstract/neutral/specific intent
-			- intent-related intents (intent-modification intent)
-
-	    - interim functions
-	    	- provide resources used as inputs to activate other functions (a set of molecules that when detached can activate other processes)
-	    	- these functions may be cross-system, or may be unnecessary middlemen in a function chain whose functionality should be merged with other functions
-	    
-	    - platform functions
-	    	- provide platform for functionality (variance allowing functionality to develop on foundational structures)
-
 
 #### Attribute types
 
 	- input/output
+
     - invalidating
         - toxicity (invalidates usefulness of a treatment)
 
@@ -358,7 +283,7 @@
         - movement types (rotation, density distribution)
         - adjacent interfaces (receptor, immune, etc)
 
-    - signaling
+    - communication
         - ionization
         - surface structure
         - vocabulary (interpretability of signals)
@@ -390,8 +315,6 @@
 
 ### Interaction level interface
 
-	- interaction level is determined by which objects are marked as equals so they interact with each other, forming an interaction level/layer, such as the macromolecule layer or the pathogen layer
-
     - causal level
         - attacking higher up the causal stack means attacking cancer's evolutionary & learning processes, so it cant evolve resistance to drugs
     
@@ -411,9 +334,10 @@
         - signaling level 
 
 
-### Interface interface
+### Intent interface
 
-	- identifying sub-interfaces (electricity, potential, similarity) is an important first step before doing other analysis, because if you can identify the important/causative interfaces right away, you can ignore a lot of information
+
+### Interface interface
 
 
 ### System interface

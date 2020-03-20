@@ -99,7 +99,8 @@
 
   - give example of each type of problem-solving workflows
   - emergent combinations of core functions (include derivation of invalidating contexts for core functions)
-  - apply system analysis to VDJ recombination - find other relevant immune processes to analyze
+  - finish system analysis for VDJ recombination 
+  - find other relevant immune processes to analyze
 
   - need to find some content:
     - optimal combination interfaces to start from when solving problems

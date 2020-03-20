@@ -76,6 +76,16 @@
             - example: direction of growth in similar direction by adjacent objects can create the illusion of an emergent border attribute
 
 
+### Interaction level interface
+
+  - interaction level is determined by which objects are marked as equals so they interact with each other, forming an interaction level/layer, such as the macromolecule layer or the pathogen layer
+
+
+### Interface interface
+
+  - identifying sub-interfaces (electricity, potential, similarity) is an important first step before doing other analysis, because if you can identify the important/causative interfaces right away, you can ignore a lot of information
+
+
 ## Primary interface layers & sub-interfaces
 
     - structural interface
