@@ -1,16 +1,8 @@
 import nltk, os, json, itertools
 from nltk import pos_tag, word_tokenize
-
-def get_data(file_path):
-	print('function::get_data', file_path)
-	if os.path.exists(file_path):
-		objects = None
-		with open(file_path, 'r') as f:
-			objects = json.load(f)
-			f.close()
-		if objects:
-			return objects
-	return False
+from textblob import TextBlob, Sentence, Word, WordList
+from textblob.wordnet import VERB, NOUN, ADJ, ADV
+from textblob.wordnet import Synset
 
 ''' OBJECT DEFINITION '''
 
@@ -181,43 +173,52 @@ def solve_problem_with_problem_type_conversion(problem_metadata):
 
 def apply_solution_to_problem(problem_metadata, abstract_solution_type):
 	print('function::apply_solution_to_problem', abstract_solution_type)
-
-	''' to do: decide if you want to return multiple solutions if there are any '''
-	'''
-	solutions = [
-		["find info", "find info_asymmetry", "balance info"],
-		["list benefits", "find efficiencies", "apply efficiencies", "list reduced costs"]
-	]
-	'''
-	'''
-		1b/4. apply solution for converted problem type
-	'''
-	'''
-	solution = ["find info", "find info_asymmetry", "balance info"]
+	''' 1b/4. apply solution for converted problem type
+		to do: 
+		- decide if you want to return multiple solutions if there are any
+		- make sure solution step lists are handled differently than abstract solution types 
+		- filter solution steps
 	'''
 	solution_metadata = get_object_metadata(abstract_solution_type, 'solution')
-	solution_steps = None
-	solved_problem = {}
-	''' to do: make sure solution step lists are handled differently than abstract solution types '''
 	solution_type = get_solution_type(abstract_solution_type)
 	if solution_type == 'type':
 		# this is a solution type, not a specific solution
-		solution_steps = get_solution_steps_from_solution_type(problem_metadata, abstract_solution_type, solution_metadata)
-		print('solution steps from type', abstract_solution_type, solution_steps)
+		solution_steps = get_steps_from_solution_type(abstract_solution_type, solution_metadata)		
 		'''
 			abstract_solution_type = 'balance_info_asymmetry'
 			solution = ['find info', 'find info asymmetry', 'balance info']
-			solution = relevant_steps = {
+			problem_steps = {
 				'find_info': 'find_incentives_to_change_position'
 			}
 		'''
-	if solution_steps and not solved_problem:
-		problem_steps = convert_solution_steps_to_problem_steps(problem_metadata, solution_steps)
-		print('problem_steps', problem_steps)
-		if problem_steps:
-			solved_problem = apply_solution(problem_metadata, problem_steps)
-			if solved_problem:
-				return solved_problem
+		if solution_steps:
+			print('solution steps from type', abstract_solution_type, '\n', solution_steps)
+			solution_metadata['steps'] = solution_steps
+			problem_steps = convert_solution_steps_to_problem_steps(problem_metadata, solution_metadata)
+			print('\nproblem_steps', problem_steps)
+			if problem_steps:
+				solved_problem = apply_solution(problem_metadata, problem_steps)
+				if solved_problem:
+					return solved_problem
+	return False
+
+def get_functions_for_object_combination(solution_object, solution_functions):
+	object_functions = []
+	solution_object = solution_object if type(solution_object) == str else ' '.join(solution_object) 
+	function_order = get_data('function_order.json')
+	if function_order:
+		if solution_functions:
+			for function in solution_functions:
+				new_relationship = ' '.join([function, solution_object])
+				prereqs = get_function_prerequisites(function, function_order)
+				if prereqs:
+					for pr in prereqs:
+						new_relationship.replace(function, pr)
+				object_functions.append(new_relationship)
+		else:
+			object_functions.append(solution_object)	
+		if len(object_functions) > 0:
+			return object_functions
 	return False
 
 def get_steps_from_solution_type(abstract_solution_type, solution_metadata):
@@ -233,54 +234,46 @@ def get_steps_from_solution_type(abstract_solution_type, solution_metadata):
 	}
 	'''
 	print('solution_metadata', solution_metadata)
-	combined_object_list = set(solution_metadata['objects'])
-	object_combinations = itertools.product(solution_metadata['objects'])
-	for c in object_combinations:
-		combined_object_list.add(c)
-	if len(combined_object_list) > 0:
-		combined_relationships = []
-		for so in combined_object_list:
-			combined_object = ''.join(so)
-			if solution_metadata['function']:
-				for function in solution_metadata['function']:
-					object_function = ' '.join([function, combined_object])
-					combined_relationships.append(object_function)
+	all_relationships = []
+	for solution_object in solution_metadata['objects']:
+		object_functions = get_functions_for_object_combination(solution_object, solution_metadata['functions'])
+		if object_functions:
+			all_relationships.extend(object_functions)
+	if len(solution_metadata['objects']) > 1:
+		object_combinations = itertools.permutations(solution_metadata['objects'], 2)
+		for object_combination in object_combinations:
+			if solution_metadata['functions']:
+				object_functions = get_functions_for_object_combination(object_combination, solution_metadata['functions'])
+				if object_functions:
+					all_relationships.extend(object_functions)
 			else:
-				combined_relationships.append(combined_object)
-		print('combined_relationships', combined_relationships)
-		all_relationships = []
-		''' now find predecessors/assumptions and apply to objects, then add new relationship to index '''
-		if len(combined_relationships) > 0:
-			prereqs = get_function_prerequisites(solution_metadata['function'])
-			if prereqs:
-				for cr in combined_relationships:
-					if solution_metadata['function'] in cr:
-						for pr in prereqs:
-							print('pr', pr)
-							new_relationship = cr.replace(solution_metadata['function'], pr)
-							all_relationships.append(new_relationship)
-					all_relationships.append(cr)
-			print('all_relationships', all_relationships)
-			original_relationship = abstract_solution_type.replace('_', ' ') if type(abstract_solution_type) == str else ' '.join(abstract_solution_type)
-			print('original_relationship', original_relationship)
-			if original_relationship in all_relationships:
-				all_relationships.remove(original_relationship)
-			return all_relationships
-			'''
+				all_relationships.append(object_combination)			
+	original_relationship = abstract_solution_type.replace('_', ' ') if type(abstract_solution_type) == str else ' '.join(abstract_solution_type)
+	print('original_relationship', original_relationship)
+	if original_relationship in all_relationships:
+		all_relationships.remove(original_relationship)
+	if len(all_relationships) > 0:
+		return all_relationships
+
+	'''
+	abstract_solution_type = 'balance_info_asymmetry' 
+	1. derive solution type steps with get_object_metadata():
+		solution_steps = ["find info", "find info_asymmetry", "balance info"]
+
+	to do: 
+		- this should converte balance_info_asymmetry to list above, currently stored in insights.json under solutions 
+		- if balance isn't included in solution_type, its derivable from core object set, which is 'info' and 'imbalance'
 			combined_relationships = [balance info, balance info_asymmetry, balance asymmetry]
 			now filter this list, 
 				- removing any that are too abstract to have a clear structural meaning or other metrics of relevance
 				- identifying where a relationship could use further structuring
 				- identifying where a relationship doesnt have its inputs covered (balance info requires first finding info)
-			assumptions = get_assumptions(step)
-			if assumptions:
-				for assumption in assumptions:
-					# assumption = 'info exists', 'info is known' for step 'balance info'
-					# info exists isnt an assumption likely to be calculatable, but info is known is calculatable
-			'''
+			# assumption = 'info exists', 'info is known' for step 'balance info'
+			# info exists isnt an assumption likely to be calculatable, but info is known is calculatable
+		'''
 	return False
 
-def get_function_prerequisites(function_name):
+def get_function_prerequisites(function_name, function_order):
 	'''
 		function_order = {
 			"find": "process",
@@ -289,7 +282,6 @@ def get_function_prerequisites(function_name):
 		to do: add iteration for additional degrees of prerequisites
 	'''
 	prerequisites = []
-	function_order = get_data('function_order.json')
 	if function_order:
 		for key, value in function_order.items():
 			if function_name == value:
@@ -302,38 +294,23 @@ def get_function_prerequisites(function_name):
 			return prerequisites
 	return False
 
-def get_solution_steps_from_solution_type(problem_metadata, abstract_solution_type, solution_metadata):
-	print('function::get_solution_steps_from_solution_type')
-	'''
-	abstract_solution_type = 'balance_info_asymmetry' 
-	1. derive solution type steps with get_object_metadata():
-		solution_steps = ["find info", "find info_asymmetry", "balance info"]
-	to do: 
-		- this should converte balance_info_asymmetry to list above, currently stored in insights.json under solutions 
-	'''
-	solution_steps = get_steps_from_solution_type(abstract_solution_type, solution_metadata)
-	if solution_steps:
-		return solution_steps
-	''' to do: if balance isn't included in solution_type, its derivable from core object set, which is 'info' and 'imbalance' '''
-	return False
-
-def convert_solution_steps_to_problem_steps(problem_metadata, solution_steps):
-	print('function::convert_solution_steps_to_problem_steps', solution_steps)
+def convert_solution_steps_to_problem_steps(problem_metadata, solution_metadata):
+	print('function::convert_solution_steps_to_problem_steps', solution_metadata)
 	'''
 	2. then find map between solution & problem objects with get_object_map():
 		object_map['info'] = {
-			'reasons': [], # list of attributes they have in common or deemed relevant/important
-			'incentives': [],
-			'efficiencies': []
+			'reasons', # list of attributes they have in common or deemed relevant/important
+			'incentives',
+			'efficiencies'
 		}
 	'''
-	if 'objects' in problem_metadata and 'objects' in solution_steps:
-		object_map = get_object_map(problem_metadata, solution_steps)
-		object_map = {'info': ['incentives', 'efficiencies', 'intents']}
+	print('problem objects', problem_metadata['problem_metadata']['dependencies'])
+	if 'objects' in problem_metadata['problem_metadata']['dependencies'] and 'objects' in solution_metadata:
+		object_map = get_object_map(problem_metadata, solution_metadata)
+		print('object_map', object_map)
 		if object_map:
 			problem_steps = []
-			for solution_step in solution_steps:
-
+			for solution_step in solution_metadata['steps']:
 				'''
 				3. then apply solution_type_steps to object_map to get abstract_problem_steps:
 					object_map = {'info': 'incentives'}
@@ -348,15 +325,27 @@ def convert_solution_steps_to_problem_steps(problem_metadata, solution_steps):
 						]
 					}
 				'''
+				print('solution_step', solution_step)
 				abstract_problem_step = get_problem_solution_step(object_map, solution_step)
-				relevant_step = get_specific_step(solution_step, abstract_problem_step)
+				relevant_step = get_specific_step(solution_step, abstract_problem_step, problem_metadata)
 				if relevant_step:
 					problem_steps.append(relevant_step)
 			if len(problem_steps) > 0:
 				return problem_steps
 	return False
 
-def get_specific_step(solution_step, abstract_problem_step):
+def get_problem_solution_step(object_map, solution_step):
+	problem_step = []
+	for solution_word in solution_step.split(' '):
+		if solution_word in object_map:
+			problem_step.append(object_map[solution_word])
+		else:
+			problem_step.append(solution_word)
+	if len(problem_step) > 0:
+		return ' '.join(problem_step)
+	return False
+
+def get_specific_step(solution_step, abstract_problem_step, problem_metadata):
 	'''
 		to do: decide if you want to return interim version in dict structure 
 		4. then apply modifiers to make abstract_problem_steps relevant to problem with get_relevant_solution():
@@ -373,7 +362,8 @@ def get_specific_step(solution_step, abstract_problem_step):
 					- map some reason to change (safety) with some reason to stay (safety)
 	'''
 	specific_steps = {}
-	specific_problem_step = get_relevant_solution(abstract_problem_step)
+	specific_problem_step = get_relevant_solution(abstract_problem_step, problem_metadata)
+	print('specific_problem_step', specific_problem_step)
 	if specific_problem_step:
 		specific_steps[solution_step] = specific_problem_step
 	'''
@@ -451,52 +441,53 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 			we want to return function name "change_position"
 	'''
 	abstract_solution_words = abstract_solution.split('_')
-	relevant_solution = None
 	relevance_filter = ['required', 'functions']
-	flattened = flatten_dict(problem_metadata)
+	other_filters = relevance_filter
+	''' get relevant items from flattened & order in relevant_list '''
 	relevant_list = []
-	for rf in relevance_filter:
-		''' get relevant items from flattened & order in relevant_list '''
-		relevant_dict = {}
-		if rf in flattened:
-			relevant_list.append(rf)
-			first_word = flattened[rf]
-			relevant_list.append(first_word)
-			if first_word in flattened:
-				second_word = flattened[first_word]
-				relevant_list.append(second_word)
-				if second_word in flattened:
-					third_word = flattened[second_word]
-					relevant_list.append(third_word)
-					if third_word in flattened:
-						fourth_word = flattened[third_word]
-						relevant_list.append(fourth_word)
-	print('relevant_dict', relevant_dict)
-	'''
-		relevant_dict = {
-			"functions": "interactions",
-			"interactions": "change_position",
-			"change_position": "input",
-			"input": "required",
-			"required": ["incentive", "efficiency", "intent"]
-		}
-		relevant_list = ['functions', 'interactions', 'change_position', 'input', 'required']
-	'''
+	last_item_values = []
+	for key, value in problem_metadata['problem_metadata'].items():
+		if key in relevance_filter: # functions or whichever filtering key comes first in dict
+			other_filters.remove(key)
+			if type(value) == dict:
+				for function_type, functions in value.items():
+					if type(functions) == dict:
+						flattened_sub_dict = flatten_dict(functions)
+						for rf in other_filters:
+							if rf in flattened_sub_dict.keys() or rf in flattened_sub_dict.values():
+								''' check if dict can cast to str or dump json, check that this sub-dict is worth pursuing '''
+								for function_name, function_metadata in functions.items():
+									if type(function_metadata) == dict:
+										flattened_function = flatten_dict(function_metadata)
+										if flattened_function:
+											if rf in flattened_function:
+												for attribute, attribute_metadata in function_metadata.items():
+													if type(attribute_metadata) == dict:
+														for attribute_name, attribute_values in attribute_metadata.items():
+															if attribute_name == rf: # required
+																if type(attribute_values) == list:
+																	relevant_list = [key, function_type, function_name, attribute, attribute_name]
+																	last_item_values = attribute_values
+	''' relevant_list = ['functions', 'interactions', 'change_position', 'input', 'required'] '''
+	print('relevant_list', relevant_list)
+	relevant_solution = None
 	if len(relevant_list) > 0:
-		last_item_values = flattened[relevant_list[-1]]
 		''' find the adjacent object name for the target object (required function inputs) which should be at the end of this list '''
 		for item in relevance_filter:
-			relevant_list.remove(item)
+			if item in relevant_list:
+				relevant_list.remove(item)
 		''' to do: given that the object of interest is a function (highest level key of problem_metadata), we should be able to derive that you wouldnt want to use the function type name '''
 		# relevant_list is now ['interactions', 'change_position', 'input']
 		''' remove object types from relevant_list, because we're trying to isolate a specific name that is most adjacent to object of interest (required function inputs) '''
 		for item in relevant_list:
 			item_object = get_objects_in_string(item)
-			if item == item_object or item in item_object:
-				relevant_list.remove(item)
+			if item_object:
+				if item == item_object or item in item_object:
+					if item in relevant_list:
+						relevant_list.remove(item)
 		# relevant_list is now ['interactions', 'change_position']
 		''' given that we know the target is at the end of the list, the most adjacent object to the target is the last item in the list with objects & relevance filters removed '''
-		adjacent_name = relevant_list[-1]
+		adjacent_name = relevant_list[-1] if len(relevant_list) > 0 else None
 		for abstract_solution_word in abstract_solution_words: # [find, incentive]
 			if abstract_solution_word in last_item_values:
 				'''
@@ -510,9 +501,12 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 					- given that this is an input, the relationship function between an input and a function is 'in order to', or briefly 'to'
 				'''
 				join_keyword = get_relationship_between_objects('input', 'function')
-				relevant_solution = '_'.join([abstract_solution_words, join_keyword, adjacent_name])
-				''' relevant_solution = 'find_incentives_to_change_position" '''
-				return relevant_solution
+				if adjacent_name is not None:
+					relevant_solution = '_'.join([abstract_solution_words, join_keyword, adjacent_name])
+					''' relevant_solution = 'find_incentives_to_change_position" '''
+					print('relevant_solution', relevant_solution)
+					return relevant_solution
+				return abstract_solution_words
 	''' 
 		alternate methods to find modifiers to make this abstract solution more relevant to the problem:
 		- apply relevance_filter [function, required] to problem_metadata 
@@ -528,7 +522,7 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 			input_position = 3
 			required_position = 4
 	'''
-	return False
+	return abstract_solution
 
 def get_relationship_between_objects(source, target):
 	print('function::get_relationship_between_objects')
@@ -552,7 +546,7 @@ def flatten_dict(problem_metadata):
 
 def iterate_dict(key, values, flattened):
 	if type(values) == dict:
-		print('dict values', key, values.keys())
+		# print('dict values', key, values.keys())
 		for k, v in values.items():
 			if type(v) != dict:
 				flattened[k] = v
@@ -560,7 +554,7 @@ def iterate_dict(key, values, flattened):
 				flattened = iterate_dict(k, v, flattened)
 	else:
 		''' to do: add support for nested items other than dicts '''
-		print('list values', key)
+		# print('list values', key)
 		flattened[key] = values
 	return flattened
 
@@ -568,16 +562,16 @@ def get_object_map(problem_metadata, solution_metadata):
 	print('function::get_object_map')
 	# solution_objects = ['info', 'asymmetry', 'info_asymmetry']
 	object_map = {}
-	for so in solution_metadata['objects']:
-		matched_problem_object = find_matching_object_in_problem_space(problem_metadata, so, solution_metadata)
-		if matched_problem_object:
-			object_map[so] = matched_problem_object
-	for f in solution_metadata['function']:
-		matched_problem_object = find_matching_object_in_problem_space(problem_metadata, f, solution_metadata)
-		if matched_problem_object:
-			object_map[f] = matched_problem_object
+	for problem_object in problem_metadata['problem_metadata']['dependencies']['objects']:
+		matched_solution_object = find_matching_object_in_problem_space(problem_metadata, problem_object, solution_metadata)
+		if matched_solution_object:
+			object_map[matched_solution_object] = problem_object
+	for problem_function in problem_metadata['problem_metadata']['functions']:
+		matched_solution_function = find_matching_object_in_problem_space(problem_metadata, problem_function, solution_metadata)
+		if matched_solution_function:
+			object_map[matched_solution_function] = problem_function
 	print('object_map', object_map)
-	object_map = {'info': ['incentives', 'efficiencies', 'intents']}
+	#object_map = {'info': ['incentives', 'efficiencies', 'intents']}
 	'''
 		- target output for info-persuasion object map (object_map):
 			'info': [
@@ -596,37 +590,75 @@ def get_object_map(problem_metadata, solution_metadata):
 	'''
 	return object_map
 
-def find_matching_object_in_problem_space(problem_metadata, solution_object, solution_metadata):
+def find_type(problem_object, solution_objects):
+	''' find that 'incentive' is a type of 'info' 
+		- to do:
+			- this assumes the solution object is the type/more abstract than the problem object
+	'''
+	for solution_object in solution_objects:
+		matched = match_type(solution_object, problem_object)
+		if matched:
+			return solution_object
+	return False
+
+def match_type(solution_object, problem_object):
+	''' solution_object = 'info', problem_object = 'incentive' 
+
+	- the optimal implementation would:
+		- derive 'reason' from 'incentive',
+		- get 'reward' from 'reason', 
+		- then match the context of reward to optimization language or markets, 
+			both of which are frequently modeled using info about the systems, like in agent-based algorithms or game theory
+		- then match the context of the solution_object 'info' based on this connection
+
+	- or it'd rule out the other solution objects like 'asymmetry' in this example, which isnt relevant on its own without the info_asymmetry term, 
+		although info_asymmetry matches the 'incentive' problem_object, because:
+			- there is implied but not explicit info that the incentivized behavior is good (incentivized behaviors are sometimes just defaults or emerging incentives that are unplanned)
+			- there is implied but not explicit info about costs/side effects of the incentivized behavior (incentives can come with costs like lack of variation)
+		but the 'info' object is a closer match, and we're looking for 1-1 relationships to reduce complexity
+	'''
+	problem_defs = Word(problem_object).definitions
+	solution_defs = Word(solution_object).definitions
+	print('problem_defs', problem_object, problem_defs)
+	print('solution_defs', solution_object, solution_defs)
+	''' add filtering of words in defs '''
+	if solution_defs and problem_defs:
+		problem_definition_string = remove_stopwords(' '.join(problem_defs))
+		if solution_object in problem_definition_string:
+			return solution_object
+		solution_definition_string = remove_stopwords(' '.join(solution_defs))
+		if problem_object in solution_definition_string:
+			return solution_object
+		for solution_def in solution_defs:
+			for solution_word in solution_def.split(' '):
+				if solution_word in problem_definition_string:
+					return solution_object
+		problem_synsets = Word(problem_object).get_synsets(pos=NOUN)
+		solution_synsets = Word(solution_object).get_synsets(pos=NOUN)
+		print('synset', dir(problem_synsets))
+		print('problem_synsets', problem_synsets)
+		print('solution_synsets', solution_synsets)
+	return False
+
+def remove_stopwords(definition):
+	return definition
+
+def find_matching_object_in_problem_space(problem_metadata, problem_object, solution_metadata):
 	print('function::find_matching_object_in_problem_space')
-	''' for a solution_object like 'info', find the corresponding object in the problem like 'reasons to change position' '''
-	# solution_object = 'info'
-	''' find solution_object 'info' in problem '''
+	''' for a solution_object like 'info', find the corresponding object in the problem like 'incentives/reasons/intents/efficiencies/cost/benefit' 
+		- to do: 
+			- add solution_function support
+			- add type checking support, either to problem index or add a derivation function
+			- add check if problem attribute is a required input to the solution object, increasing likelihood that objects match
+	'''
+	solution_object = find_type(problem_object, solution_metadata['objects'])
+	if solution_object:
+		return solution_object
 	matched_problem_objects = {}
-	new_problem_solution_map = {}
-	for problem_object in problem_metadata['objects']:
-		for problem_attribute in problem_metadata:
-			if problem_attribute in solution_metadata:
-				if 'requirements' in solution_metadata:
-					if problem_attribute in solution_metadata['requirements']:
-						''' this attribute is a required input to the solution object, increasing the likelihood that these objects match '''
-						if problem_object not in matched_problem_objects:
-							matched_problem_objects[problem_object].append(problem_attribute)
-							''' add problem object like incentive/efficiency/reason to map indicating relationship to solution object 'info' '''
-		if problem_object in matched_problem_objects:
-			new_problem_solution_map = makes_sense(problem_metadata, problem_object, matched_problem_objects)
-	if new_problem_solution_map:
-		print('new_problem_solution_map', new_problem_solution_map)
-		'''
-		- most objects in the problem match this solution_type object 'info' bc this is already converted to an info problem type, so little work is required to check for a relationship 
-			problem_objects = {
-				'efficiency': [],
-				'incentive': [],
-				'intent': [],
-				'cost': [],
-				'benefit': []
-			}
-		'''
-		''' find solution_object = 'info' in problem objects ['efficiency', 'intent', 'incentive', 'cost', 'benefit', 'position'] '''
+	if matched_problem_objects:
+		new_problem_solution_map = makes_sense(problem_metadata, problem_object, matched_problem_objects)
+		if new_problem_solution_map:
+			return new_problem_solution_map
 	return False
 
 def makes_sense(problem_metadata, problem_object, matched_problem_objects):
@@ -669,12 +701,8 @@ def get_object_metadata(object_name, object_type):
 		if objects:
 			object_metadata = {
 				'objects': objects, #'info_asymmetry', 
-				'function': functions, 
-				'steps': [
-					'find_info',
-					'find_info_asymmetry',
-					'balance_info'
-				]
+				'functions': functions, 
+				'steps': []
 			}
 		return object_metadata
 	object_type_path = ''.join([object_type, '.json'])
@@ -695,15 +723,20 @@ def apply_solution(problem_metadata, solution):
 			'find_info': 'find_incentives_to_change_position'
 		}
 	'''
-	solved_problem = None
 	for relevant_problem_step in solution:
 		new_problem_metadata = apply_step(problem_metadata, relevant_problem_step)
 		if new_problem_metadata:
 			problem_metadata = new_problem_metadata
 	''' problem_metadata['state'] should be changed at this point '''
-	if solved_problem:
-		return solved_problem
-	return problem_metadata
+	if problem_metadata:
+		return problem_metadata
+	return False
+
+def apply_step(problem_metadata, problem_step):
+	''' this function applies a step like 'balance incentives' to a problem definition
+		for example, 'balance incentives' would rearrange incentives in one of the balancing implementations (evenly distribute, remove from all positions, etc)
+	''' 
+	return False
 
 def get_solution_type(solution_step):
 	print('function::get_solution_type')
@@ -846,6 +879,17 @@ def get_objects_in_string(string):
 			objects = set(objects)
 			if len(objects) > 0:
 				return objects
+	return False
+
+def get_data(file_path):
+	print('function::get_data', file_path)
+	if os.path.exists(file_path):
+		objects = None
+		with open(file_path, 'r') as f:
+			objects = json.load(f)
+			f.close()
+		if objects:
+			return objects
 	return False
 
 def get_pos(word):
