@@ -14,14 +14,15 @@
 		"difficulty occurs when a solution cant be built with accessible/core functions"
 	],
 	"solutions": [
-		["find information", "find info_asymmetry", "balance information"],
-		["list benefits", "verify incentives", "find efficiencies", "apply efficiencies", "list reduced costs"]
+		"balance_info_asymmetry",
+		["find_info", "find_info_asymmetry", "balance_info"],
+		["list_benefits", "verify_incentives", "find_efficiencies", "apply_efficiencies", "list_reduced_costs"]
 	],
 	"related_problems": [
 		"identify optimal path to target (persuasion problem super-type)",
 		"differentiating objects (cost/benefits)",
 		"identifying key objects (an inefficiency is a key object of cost)",
-		"mapping structure to information",
+		"mapping structure to info",
 		"finding dependent objects/attributes/functions (what does structure produce)",
 		"what enables a function/object/attribute (what are the required inputs of persuasion)",
 		"optimization of a metric (minimizing cost)",

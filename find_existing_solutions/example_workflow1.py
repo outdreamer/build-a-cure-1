@@ -2,6 +2,7 @@ import nltk, os, json
 from nltk import pos_tag, word_tokenize
 
 def get_data(file_path):
+	print('function::get_data', file_path)
 	if os.path.exists(file_path):
 		objects = None
 		with open(file_path, 'r') as f:
@@ -14,14 +15,15 @@ def get_data(file_path):
 ''' OBJECT DEFINITION '''
 
 def get_problem_metadata(problem_def):
+	print('function::get_problem_metadata')
 	'''
 		1. Identify problem metadata
-				- problem type
-				- default/original problem type (position on problem type network)
-				- adjacent problem types
-				- component problem types
-				- related problem types
-				- combination problem types
+			- problem type
+			- default/original problem type (position on problem type network)
+			- adjacent problem types
+			- component problem types
+			- related problem types
+			- combination problem types
 
 			- problem structure
 				- space (output dimensions to measure solutions)
@@ -38,6 +40,7 @@ def get_problem_metadata(problem_def):
 	return problem_def
 
 def condense_problem_statement(problem_metadata):
+	print('function::condense_problem_statement')
 	'''
 		to do:
 			- we want to output 'change_position_of_subject' from the problem statement:
@@ -97,7 +100,7 @@ def condense_problem_statement(problem_metadata):
 			"variables": ["subject_position"],
 			"objects": ["persuader agent"],
 			"assumptions": ["source and target position are different"],
-			"requirements": ["information about the subject's resources, incentives, intents, and functions"],
+			"requirements": ["info about the subject's resources, incentives, intents, and functions"],
 			"inputs": ["subject"],
 			"outputs": ["path_from_source_to_target_position"]
 		},
@@ -120,6 +123,8 @@ def condense_problem_statement(problem_metadata):
 '''
 
 def solve_problem_with_problem_type_conversion(problem_metadata):
+	print('function::solve_problem_with_problem_type_conversion')
+
 	converted_problem = None
 	if problem_metadata:
 		''' 1a. get insights, including any related solutions '''
@@ -131,6 +136,7 @@ def solve_problem_with_problem_type_conversion(problem_metadata):
 				"an example efficiency is: removing unnecessary middlemen"
 			],
 			"solutions": [
+				["find_info", "find_info_asymmetry", "balance_info"],
 				["list benefits", "find efficiencies", "apply efficiencies", "list reduced costs"]
 			],
 			"related_problems": [
@@ -143,7 +149,7 @@ def solve_problem_with_problem_type_conversion(problem_metadata):
 		if 'solutions' in problem_metadata['insights']:
 			''' found insights about solutions for this problem type '''
 			for s in problem_metadata['insights']['solutions']:
-				solved_problem = apply_solutions(problem_metadata, s)
+				solved_problem = apply_solution_to_problem(problem_metadata, s)
 				if solved_problem:
 					return solved_problem 
 
@@ -163,7 +169,7 @@ def solve_problem_with_problem_type_conversion(problem_metadata):
 			if 'solutions' in converted_problem['insights']:
 				''' found insights about solutions for related problem type '''
 				for rps in converted_problem['insights']['solutions']:
-					solved_converted_problem = apply_solutions(converted_problem, rps)
+					solved_converted_problem = apply_solution_to_problem(converted_problem, rps)
 					if solved_converted_problem:
 						solved_original_problem = convert_solved_problem_to_problem_type(solved_converted_problem, problem_metadata)
 						if solved_original_problem:
@@ -173,58 +179,148 @@ def solve_problem_with_problem_type_conversion(problem_metadata):
 
 ''' APPLY DEFINITION '''
 
-def	apply_solutions(problem_metadata, solutions):
+def apply_solution_to_problem(problem_metadata, abstract_solution_type):
+	print('function::apply_solution_to_problem', abstract_solution_type)
+
 	''' to do: decide if you want to return multiple solutions if there are any '''
 	'''
 	solutions = [
-		["find information", "find info_asymmetry", "balance information"],
+		["find info", "find info_asymmetry", "balance info"],
 		["list benefits", "find efficiencies", "apply efficiencies", "list reduced costs"]
 	]
 	'''
-	solved_problems = {}
-	solved_problem = None
-	for s in solutions:
-		solved_problem = apply_solution_to_problem(problem_metadata, s)
-		if solved_problem:
-			return solved_problem 
-	return False
-
-def apply_solution_to_problem(problem_metadata, solution_def):
 	'''
 		1b/4. apply solution for converted problem type
 	'''
 	'''
-	solution = ["find information", "find info_asymmetry", "balance information"]
+	solution = ["find info", "find info_asymmetry", "balance info"]
 	'''
-	solution = None
+	solution_metadata = get_object_metadata(abstract_solution_type, 'solution')
+	solution_steps = None
 	solved_problem = {}
-	solution_type = get_solution_type(solution_def)
+	''' to do: make sure solution step lists are handled differently than abstract solution types '''
+	solution_type = get_solution_type(abstract_solution_type)
 	if solution_type == 'type':
 		# this is a solution type, not a specific solution
-		solution = get_solution_from_type(problem_metadata, solution_def)
-		if solution:
-			'''
+		solution_steps = get_solution_steps_from_solution_type(problem_metadata, abstract_solution_type, solution_metadata)
+		print('solution steps from type', abstract_solution_type, solution_steps)
+		'''
+			abstract_solution_type = 'balance_info_asymmetry'
+			solution = ['find info', 'find info asymmetry', 'balance info']
+		'''
+		'''
 			solution = relevant_steps = {
-				'find_information': 'find_incentives_to_change_position'
+				'find_info': 'find_incentives_to_change_position'
 			}
-			'''
-			solved_problem = apply_solution(problem_metadata, solution)
-	if not solved_problem:
-		solved_problem = apply_solution(problem_metadata, solution)
-	if solved_problem:
-		return solved_problem
+		'''
+	if solution_steps and not solved_problem:
+		problem_steps = convert_solution_steps_to_problem_steps(problem_metadata, solution_steps)
+		print('problem_steps', problem_steps)
+		if problem_steps:
+			solved_problem = apply_solution(problem_metadata, problem_steps)
+			if solved_problem:
+				return solved_problem
 	return False
 
-def get_solution_from_type(problem_metadata, solution_type):
+def get_steps_from_solution_type(abstract_solution_type, solution_metadata):
 	'''
-	1. derive solution type steps with get_object_metadata():
-		solution_metadata['steps'] = ["find information", "find info_asymmetry", "balance information"]
+	solution_metadata = {
+		'objects': objects, ['info', 'asymmetry']
+		'function': 'balance', 
+		'steps': [
+			'find_info',
+			'find_info_asymmetry',
+			'balance_info'
+		]
+	}
 	'''
-	solution_type = 'balance_info_asymmetry'
-	solution_metadata = get_object_metadata(solution_type, 'solution')
-	# solution_metadata = {'objects': ['info', 'info_asymmetry'], 'function': 'balance', 'steps': ['find_info', 'find_info_asymmetry', 'balance_info']}
-	''' to do: if balance isn't included in solution_type, its derivable from core object set, which is 'info' and 'imbalance' '''
+	print('solution_metadata', solution_metadata)
+	combined_object_list = [solution_metadata['objects']]
+	import itertools
+	object_combinations = itertools.combinations(solution_metadata['objects'], len(combined_object_list))
+	for c in object_combinations:
+		combined_object_list.append(c)
+	if len(combined_object_list) > 0:
+		combined_relationships = []
+		for so in combined_object_list:
+			print('so', so)
+			combined_object = ' '.join(so)
+			if solution_metadata['function']:
+				object_function = ' '.join([solution_metadata['function'], combined_object])
+			else:
+				object_function = combined_object
+			combined_relationships.append(object_function)
+		print('combined_relationships', combined_relationships)
+		all_relationships = []
+		''' now find predecessors/assumptions and apply to objects, then add new relationship to index '''
+		if len(combined_relationships) > 0:
+			prereqs = get_function_prerequisites(solution_metadata['function'])
+			if prereqs:
+				for cr in combined_relationships:
+					if solution_metadata['function'] in cr:
+						for pr in prereqs:
+							new_relationship = cr.replace(solution_metadata['function'], pr)
+							all_relationships.append(new_relationship)
+					all_relationships.append(cr)
+			print('all_relationships', all_relationships)
+			original_relationship = abstract_solution_type.replace('_', ' ') if type(abstract_solution_type) == str else ' '.join(abstract_solution_type)
+			print('original_relationship', original_relationship)
+			if original_relationship in all_relationships:
+				all_relationships.remove(original_relationship)
+			return all_relationships
+			'''
+			combined_relationships = [balance info, balance info_asymmetry, balance asymmetry]
+			now filter this list, 
+				- removing any that are too abstract to have a clear structural meaning or other metrics of relevance
+				- identifying where a relationship could use further structuring
+				- identifying where a relationship doesnt have its inputs covered (balance info requires first finding info)
+			assumptions = get_assumptions(step)
+			if assumptions:
+				for assumption in assumptions:
+					# assumption = 'info exists', 'info is known' for step 'balance info'
+					# info exists isnt an assumption likely to be calculatable, but info is known is calculatable
+			'''
+	return False
 
+def get_function_prerequisites(function_name):
+	'''
+		function_order = {
+			"find": "process",
+			"process": "balance",
+		}
+		to do: add iteration for additional degrees of prerequisites
+	'''
+	prerequisites = []
+	function_order = get_data('function_order.json')
+	if function_order:
+		for key, value in function_order.items():
+			if function_name == value:
+				''' if its in the value, that means theres a predecessor '''
+				if key in function_order.values():
+					for k, v in function_order.items():
+						if v == key:
+							prerequisites.append(k)
+		if len(prerequisites) > 0:
+			return prerequisites
+	return False
+
+def get_solution_steps_from_solution_type(problem_metadata, abstract_solution_type, solution_metadata):
+	print('function::get_solution_steps_from_solution_type')
+	'''
+	abstract_solution_type = 'balance_info_asymmetry' 
+	1. derive solution type steps with get_object_metadata():
+		solution_steps = ["find info", "find info_asymmetry", "balance info"]
+	to do: 
+		- this should converte balance_info_asymmetry to list above, currently stored in insights.json under solutions 
+	'''
+	solution_steps = get_steps_from_solution_type(abstract_solution_type, solution_metadata)
+	if solution_steps:
+		return solution_steps
+	''' to do: if balance isn't included in solution_type, its derivable from core object set, which is 'info' and 'imbalance' '''
+	return False
+
+def convert_solution_steps_to_problem_steps(problem_metadata, solution_steps):
+	print('function::convert_solution_steps_to_problem_steps', solution_steps)
 	'''
 	2. then find map between solution & problem objects with get_object_map():
 		object_map['info'] = {
@@ -233,76 +329,70 @@ def get_solution_from_type(problem_metadata, solution_type):
 			'efficiencies': []
 		}
 	'''
-	if 'objects' in problem_metadata and 'objects' in solution_metadata:
-		object_map = get_object_map(problem_metadata, solution_metadata)
+	if 'objects' in problem_metadata and 'objects' in solution_steps:
+		object_map = get_object_map(problem_metadata, solution_steps)
 		object_map = {'info': ['incentives', 'efficiencies', 'intents']}
 		if object_map:
-			'''
-			3. then apply solution_type_steps to object_map to get abstract_problem_steps:
-				object_map = {'information': 'incentives'}
-				abstract_problem_steps = {
-					'find_information': [
-						'find reasons/efficiencies/incentives/intents'
-					]
-				}
-				abstract_problem_steps = {
-					'solution_type_step': [
-						'abstract_problem_step'
-					]
-				}
-			'''
-			abstract_problem_steps = get_problem_solution_steps(object_map, solution_metadata['steps'])
-			'''
-				to do: decide if you want to return interim version in dict structure 
-				4. then apply modifiers to make abstract_problem_steps relevant to problem with get_relevant_solution():
-					relevant_problem_step = 'find reasons/efficiencies/incentives/intents to change position'
-			'''
-			relevant_steps = {}
-			for solution_step, abstract_problem_step in abstract_problem_steps.items():
-				relevant_problem_step = get_relevant_solution(abstract_problem_step)
-				if relevant_problem_step:
-					relevant_steps[solution_step] = relevant_problem_step
+			problem_steps = []
+			for solution_step in solution_steps:
+
 				'''
-					5. return problem-related modified specific solution steps
-						return modified_specific_solution_steps
+				3. then apply solution_type_steps to object_map to get abstract_problem_steps:
+					object_map = {'info': 'incentives'}
+					abstract_problem_steps = {
+						'find_info': [
+							'find reasons/efficiencies/incentives/intents'
+						]
+					}
+					abstract_problem_steps = {
+						'solution_type_step': [
+							'abstract_problem_step'
+						]
+					}
 				'''
-				relevant_steps = {
-					'find_information': 'find_incentives_to_change_position'
-				}
-				if relevant_steps:
-					return relevant_steps
-				''' apply solution for solution type to object_map, if modifiers dont already map the problem_object to the solution '''
-			''' since we already applied modifiers, we need to classify the problem operations with the solution operations & check that theyre in the right position '''
-			'''
-			- with matching problem objects, apply solution_type to get solution
-				- the solution type 'balance the info asymmetry' applied to a problem like 'persuasion' translates to the solution:
-					# find information
-						- find reasons to change position
-						- find reasons to stay in current position
-					# find information asymmetry
-						- subject doesnt have information (reasons, incentives) to call change_position function
-					# balance information
-						- map some reason to change (safety) with some reason to stay (safety)
-			'''
+				abstract_problem_step = get_problem_solution_step(object_map, solution_step)
+				relevant_step = get_specific_step(solution_step, abstract_problem_step)
+				if relevant_step:
+					problem_steps.append(relevant_step)
+			if len(problem_steps) > 0:
+				return problem_steps
 	return False
 
-def get_problem_solution_steps(object_map, solution_metadata_steps):
-	#solution_metadata_steps = ['find_info', 'find_info_asymmetry', 'balance_info']
-	#object_map = {'info': ['incentives', 'efficiencies', 'intents']}
-	problem_solution_steps = {}
-	for abstract_step in solution_metadata_steps:
-		problem_step_words = abstract_step.split('_')
-		for i, problem_step_word in enumerate(problem_step_words):
-			for key, value in object_map.items():
-				if step_word == key:
-					problem_step_words[i] = ','.join(values)
-		if len(problem_step_words) > 0:
-			problem_solution_steps[abstract_step] = ' '.join(problem_step_words)
-	if problem_solution_steps:
-		return problem_solution_steps
+def get_specific_step(solution_step, abstract_problem_step):
+	'''
+		to do: decide if you want to return interim version in dict structure 
+		4. then apply modifiers to make abstract_problem_steps relevant to problem with get_relevant_solution():
+			relevant_problem_step = 'find reasons/efficiencies/incentives/intents to change position'
+
+		- with matching problem objects, apply solution_type to get solution
+			- the solution type 'balance the info asymmetry' applied to a problem like 'persuasion' translates to the solution:
+				# find info
+					- find reasons to change position
+					- find reasons to stay in current position
+				# find info asymmetry
+					- subject doesnt have info (reasons, incentives) to call change_position function
+				# balance info
+					- map some reason to change (safety) with some reason to stay (safety)
+	'''
+	specific_steps = {}
+	specific_problem_step = get_relevant_solution(abstract_problem_step)
+	if specific_problem_step:
+		specific_steps[solution_step] = specific_problem_step
+	'''
+	solution_steps = ['find_info', 'find_info_asymmetry', 'balance_info']
+	object_map = {'info': ['incentives', 'efficiencies', 'intents']}
+	specific_steps = {
+		'find_info': 'find_incentives_to_change_position'
+	}
+	'''
+	if specific_steps:
+		return specific_steps
 	return False
+
 
 def get_relevant_solution(abstract_solution, problem_metadata):
+	print('function::get_relevant_solution')
+
 	''' convert abstract_solution = 'find_incentives' into modified relevant solution like 'find incentives to change position', 
 		which is highly relevant to the condensed problem definition ("change_position_of_subject")
 		- by adding modifiers, we are answering the question: 
@@ -317,7 +407,7 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 			- generate relevant modifiers/functions/filters for a particular abstract solution step
 
 				- this means generating a relevance filter ['required', 'function'] to find modifiers for an abstract solution step like 'find_incentive' 
-					(which was converted to relevant to problem from 'find_information')
+					(which was converted to relevant to problem from 'find_info')
 
 				- how would you know that 'required', and 'function' are the right combination to apply as a relevance filter, to find modifiers for 'find_incentive'?
 
@@ -340,7 +430,7 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 					- incentive is an input to the change_position function of the 'persuasion' problem, and 'change_position' is a required function for solving the problem 
 					- an input of a function increases possibility of calling that function, a required input even more so
 					- this indicates why we would include the function_name ('change_position') in our modified/relevant version of the solution_step (find_info/find_incentive):
-						- 'incentive to change position' is required/important information to solve the problem
+						- 'incentive to change position' is required/important info to solve the problem
 						- we want to add info that increases the relevance of the solution step, 
 							so we dont forget why we are implementing a particular solution step, 
 							and so the impact of that step is clearer/more measurable
@@ -443,6 +533,8 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 	return False
 
 def get_relationship_between_objects(source, target):
+	print('function::get_relationship_between_objects')
+
 	join_keyword = 'in order to'
 	brief_join_keyword = get_brief_keyword(join_keyword)
 	if brief_join_keyword:
@@ -450,9 +542,13 @@ def get_relationship_between_objects(source, target):
 	return join_keyword
 
 def get_brief_keyword(keyword):
+	print('function::get_brief_keyword')
+
 	return 'to'
 
 def flatten_dict(problem_metadata):
+	print('function::flatten_dict')
+
 	flattened = {}
 	for key, values in problem_metadata.items():
 		flattened = iterate_dict(values, flattened)
@@ -461,6 +557,8 @@ def flatten_dict(problem_metadata):
 	return False
 
 def iterate_dict(values, flattened):
+	print('function::iterate_dict')
+
 	for k, v in values.items():
 		if type(v) != dict:
 			flattened[k] = v
@@ -469,14 +567,16 @@ def iterate_dict(values, flattened):
 	return flattened
 
 def get_object_map(problem_metadata, solution_metadata):
+	print('function::get_object_map')
+
 	# solution_objects = ['info', 'asymmetry', 'info_asymmetry']
 	object_map = {}
 	for so in solution_metadata['objects']:
-		matched_problem_object = find_matching_object_in_problem_space(problem_metadata, so)
+		matched_problem_object = find_matching_object_in_problem_space(problem_metadata, so, solution_metadata)
 		if matched_problem_object:
 			object_map[so] = matched_problem_object
 	for f in solution_metadata['function']:
-		matched_problem_object = find_matching_object_in_problem_space(problem_metadata, f)
+		matched_problem_object = find_matching_object_in_problem_space(problem_metadata, f, solution_metadata)
 		if matched_problem_object:
 			object_map[f] = matched_problem_object
 	print('object_map', object_map)
@@ -489,28 +589,29 @@ def get_object_map(problem_metadata, solution_metadata):
 				'benefits/costs of position change'
 			],
 			'info_asymmetry': [
-				'subject does not have information of reasons to change position'
+				'subject does not have info of reasons to change position'
 			],
 			'balance': [
 				'distribute reasons to change to subject', # if lack of reasons is the problem
-				'distribute information to enable access of change position functions to subject so subject finds it easier to move', # if lack of function accessibility is the problem
+				'distribute info to enable access of change position functions to subject so subject finds it easier to move', # if lack of function accessibility is the problem
 				'align reason to change & reason to stay so subject identifies misclassification error', # if misclassification of reason is the problem
 			]
 	'''
 	return object_map
 
-def find_matching_object_in_problem_space(problem_metadata, solution_object):
+def find_matching_object_in_problem_space(problem_metadata, solution_object, solution_metadata):
+	print('function::find_matching_object_in_problem_space')
+
 	''' for a solution_object like 'info', find the corresponding object in the problem like 'reasons to change position' '''
-	solution_object = 'info'
-	solution_object_metadata = get_object_metadata(solution_object, 'solution')
+	# solution_object = 'info'
 	''' find solution_object 'info' in problem '''
 	matched_problem_objects = {}
 	new_problem_solution_map = {}
 	for problem_object in problem_metadata['objects']:
 		for problem_attribute in problem_metadata:
-			if problem_attribute in solution_object_metadata:
-				if 'requirements' in solution_object_metadata:
-					if problem_attribute in solution_object_metadata['requirements']:
+			if problem_attribute in solution_metadata:
+				if 'requirements' in solution_metadata:
+					if problem_attribute in solution_metadata['requirements']:
 						''' this attribute is a required input to the solution object, increasing the likelihood that these objects match '''
 						if problem_object not in matched_problem_objects:
 							matched_problem_objects[problem_object].append(problem_attribute)
@@ -520,7 +621,7 @@ def find_matching_object_in_problem_space(problem_metadata, solution_object):
 	if new_problem_solution_map:
 		print('new_problem_solution_map', new_problem_solution_map)
 		'''
-		- most objects in the problem match this solution_type object 'info' bc this is already converted to an information problem type, so little work is required to check for a relationship 
+		- most objects in the problem match this solution_type object 'info' bc this is already converted to an info problem type, so little work is required to check for a relationship 
 			problem_objects = {
 				'efficiency': [],
 				'incentive': [],
@@ -533,9 +634,16 @@ def find_matching_object_in_problem_space(problem_metadata, solution_object):
 	return False
 
 def makes_sense(problem_metadata, problem_object, matched_problem_objects):
+	print('function::makes_sense')
+
 	new_problem_solution_map = {}
-	''' now that youve verified these objects match in some way, you need to check if mapping this solution object & this problem object makes sense with the problem definition '''
-	''' check that mapping 'reason' to 'info' makes sense '''
+	''' 
+		to do: 
+			- convert to structure-fitting function
+
+		now that youve verified these objects match in some way, you need to check if mapping this solution object & this problem object makes sense with the problem definition
+		check that mapping 'reason' to 'info' makes sense 
+	'''
 	attributes_to_check = ['type']
 	sense = 0
 	for attribute in matched_problem_objects[problem_object]:
@@ -547,7 +655,7 @@ def makes_sense(problem_metadata, problem_object, matched_problem_objects):
 			if solution_object in stringify_metadata(problem_metadata):
 				''' is 'reason' in 'info' solution object metadata? '''
 				sense += 1
-			if problem_object in stringify_metadata(solution_object_metadata):
+			if problem_object in stringify_metadata(solution_metadata):
 				''' is 'reason' in 'info' solution object metadata? '''
 				sense += 1
 	if sense > 0:
@@ -557,20 +665,23 @@ def makes_sense(problem_metadata, problem_object, matched_problem_objects):
 	return False
 
 def get_object_metadata(object_name, object_type):
+	print('function::get_object_metadata')
+	''' object_name can be an abstract solution type string, or a solution step list '''
+	object_name = object_name if type(object_name) == str else ' '.join(object_name)
 	if object_type == 'solution':
-		solution_objects = get_objects_in_string(solution_type)
-		solution_function = get_function_in_string(solution_type)
-		if solution_objects:
-			solution_metadata = {
-				'objects': solution_objects, #'info_asymmetry', 
-				'function': solution_function, 
+		objects = get_objects_in_string(object_name)
+		function = get_function_in_string(object_name)
+		if objects:
+			object_metadata = {
+				'objects': objects, #'info_asymmetry', 
+				'function': function, 
 				'steps': [
-					'find_information',
-					'find_information_asymmetry',
-					'balance_information'
+					'find_info',
+					'find_info_asymmetry',
+					'balance_info'
 				]
 			}
-		return solution_metadata
+		return object_metadata
 	object_type_path = ''.join([object_type, '.json'])
 	if os.path.exists(object_type_path):
 		object_metadata = get_data(object_type_path)
@@ -583,13 +694,14 @@ def get_object_metadata(object_name, object_type):
 	return False
 
 def apply_solution(problem_metadata, solution):
+	print('function::apply_solution', solution)
 	'''
 		solution = relevant_steps = {
-			'find_information': 'find_incentives_to_change_position'
+			'find_info': 'find_incentives_to_change_position'
 		}
 	'''
 	solved_problem = None
-	for abstract_step, relevant_problem_step in solution.items():
+	for relevant_problem_step in solution:
 		new_problem_metadata = apply_step(problem_metadata, relevant_problem_step)
 		if new_problem_metadata:
 			problem_metadata = new_problem_metadata
@@ -598,16 +710,19 @@ def apply_solution(problem_metadata, solution):
 		return solved_problem
 	return problem_metadata
 
-def get_solution_type(solution):
+def get_solution_type(solution_step):
+	print('function::get_solution_type')
 	type_words = get_type_words()
-	solution_words = ' '.join(solution).split(' ')
+	solution_words = ' '.join(solution_step).split(' ')
 	solution_word_count = len(set(solution_words))
-	union = len(type_words.union(solution_words))
-	if (solution_word_count - union)/solution_word_count < 0.3:
-		return True
-	return False
+	union_count = len(type_words.union(solution_words))
+	''' if difference ratio between total solution step words & common words with type words is small '''
+	if union_count / len(type_words) > 0.5:
+		return 'type'
+	return 'specific'
 
 def get_type_words():
+	print('function::get_type_words')
 	''' return list of abstract/interface/structural words '''
 	type_words = ['info', 'symmetry']
 	return set(type_words)
@@ -615,6 +730,8 @@ def get_type_words():
 ''' QUERY '''
 
 def get_insights(problem_metadata):
+	print('function::get_insights')
+
 	''''
 		2. are there insights related to objects in problem metadata?
 			- fetch common cross-system insights
@@ -629,6 +746,8 @@ def get_insights(problem_metadata):
 ''' CONVERSION '''
 
 def convert_to_solved_problem(problem_metadata, target_problem_type):
+	print('function::convert_to_solved_problem')
+
 	'''
 		3. if related solution types are found for original/related problem types, how to convert between original & solved problem
 			- fetch insights on converting problems to a target problem 
@@ -640,10 +759,14 @@ def convert_to_solved_problem(problem_metadata, target_problem_type):
 	return solved_problem
 
 def convert_to_interface_problem(problem_metadata):
+	print('function::convert_to_interface_problem')
+
 	interface_problem = {}
 	return interface_problem
 
 def convert_solved_problem_to_problem_type(solved_converted_problem, original_problem_metadata):
+	print('function::convert_solved_problem_to_problem_type')
+
 	'''
 		5. convert to original problem type
 	'''
@@ -653,6 +776,8 @@ def convert_solved_problem_to_problem_type(solved_converted_problem, original_pr
 	return False
 
 def convert_problem_to_problem_type(source_problem_type_metadata, target_problem_type_metadata):
+	print('function::convert_problem_to_problem_type')
+
 	converted_problem = {}
 	if converted_problem:
 		return converted_problem
@@ -662,6 +787,8 @@ def convert_problem_to_problem_type(source_problem_type_metadata, target_problem
 ''' TEST '''
 
 def test_solution(solved_original_problem, problem_metadata):
+	print('function::test_solution')
+
 	'''
 		6. test if solution actually reduces or solves original problem
 	'''
@@ -669,6 +796,8 @@ def test_solution(solved_original_problem, problem_metadata):
 	return passed
 
 def is_problem_reduced(problem_metadata, solved_original_problem):
+	print('function::is_problem_reduced')
+
 	passed = False
 	return passed
 
@@ -676,6 +805,8 @@ def is_problem_reduced(problem_metadata, solved_original_problem):
 ''' PROCESSING '''
 
 def build_object(object_type, object_name):
+	print('function::build_object')
+
 	''' check for example objects in database '''
 	''' check for definition of object type '''
 	''' check for examples of related object types '''
@@ -684,10 +815,13 @@ def build_object(object_type, object_name):
 	return False
 
 def stringify_metadata(metadata_object):
+	print('function::stringify_metadata')
+
 	stringified = '_'.join([metadata_object.values()])
 	return stringified
 
 def get_function_in_string(string):
+	print('function::get_function_in_string')
 	function_list = get_data('functions.json')
 	words = string.replace('_',' ').split(' ')
 	if function_list:
@@ -697,6 +831,7 @@ def get_function_in_string(string):
 	return False
 
 def get_objects_in_string(string):
+	print('function::get_objects_in_string')
 	''' solution_type = 'balance_info_asymmetry' '''
 	function_list = get_data('functions.json')
 	if function_list:
@@ -704,15 +839,17 @@ def get_objects_in_string(string):
 		objects = []
 		words = string.split('_')
 		if len(words) > 0:
-			pos_type = get_pos(word)
 			for word in words:
-				if word not in function_list or pos_type != 'verb':
+				pos_type = get_pos(word)
+				if word not in function_list and pos_type != 'verb':
 					objects.append(word)
 			if len(objects) > 0:
 				return objects
 	return False
 
 def get_pos(word):
+	print('function::get_pos')
+
 	tagged = pos_tag(word_tokenize(word))
 	for item in tagged:
 		if 'V' in item[1]:
