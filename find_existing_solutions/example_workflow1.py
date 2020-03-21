@@ -593,6 +593,7 @@ def apply_solution(problem_metadata, solution):
 		new_problem_metadata = apply_step(problem_metadata, relevant_problem_step)
 		if new_problem_metadata:
 			problem_metadata = new_problem_metadata
+	''' problem_metadata['state'] should be changed at this point '''
 	if solved_problem:
 		return solved_problem
 	return problem_metadata
