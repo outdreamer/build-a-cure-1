@@ -1,5 +1,15 @@
 # Computing/distribution
 
+    - a universe may not be meant to support much certainty, if its an approximation or filtering universe
+      - the metric to optimize for is change, not certainty - but the more you optimize for change, the more change you'll attract, meaning this one may not be used as a filter anymore
+      - if you acquire certainty faster than the universe can change, would it be invalidated, neutralized, closed, or would it start to leak, and in what direction
+      - if its a neutral/abstract metric (like abstract/structural/interim metrics like power/potential which can be neutral/positive/negative), 
+        it may be unclear/uncalculatable what impact this universe function has on other universes or what position it occupies
+
+      - the same goes for other systems
+
+    - limiting change ratio/change types on a system to avoid hostile system takeovers given change patterns of malware/exploits, and differentiating them from variance injections which can be neutral
+
     - identifying servers that have resources optimized for various pieces of task
     - identify optimal server path to break down task into pieces with operation order that can be done at each communication step to operate under communication cost thresholds
     - storing metadata at definition time to make computation distribution/delegation/communication calculations pre-computed on some level

@@ -104,22 +104,25 @@
       - finish apply_solution
 
   - trajectory between core & important objects
+  - representation of a function/attribute in isolation with respect to time (snapshot or section)
 
   - emergent combinations of core functions (include derivation of invalidating contexts for core functions)
   - finish system analysis for VDJ recombination 
   - find other relevant immune processes to analyze
+  - structure-finding function for an attribute/rule/information set
 
-  - structure notes particularly object definitions as dict so you can import them
+  - structure schema notes particularly object definitions as dict so you can import them
 
   - need to fill in content:
     - finish intent tree
-    - optimal combination interfaces to start from when solving problems
+    - optimal combination interfaces to start from when solving problems 
+      (how many degrees away from core functions, specific layers or sub-systems, what position on causal structures)
     - key questions to filter attention/info-gathering/solution
     - key functions to solve common problem types
     - research implementing your solution type (constructing structures (made of boundary/filter/resource sets) to produce substances like antibodies, using bio system stressors)
     
   - coexist with definition
-  - change phases for causal analysis (interim, changing, diverging, converging, on the verge of obsolescence, outlier, etc)
+  - change phases for causal analysis (interim, changing, diverging, standard, efficient state, constant, interacting, converging, on the verge of obsolescence, outlier, etc)
   - superficial cause, alternate cause in the case of a function, addressing input/output causes
   - framing on interfaces, decomposing causation, then identifying parameters of problem on layer & matching solution
   - independence (closed trade loops) as time storage
