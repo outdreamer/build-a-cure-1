@@ -1,4 +1,4 @@
-import nltk, os, json
+import nltk, os, json, itertools
 from nltk import pos_tag, word_tokenize
 
 def get_data(file_path):
@@ -223,7 +223,7 @@ def apply_solution_to_problem(problem_metadata, abstract_solution_type):
 def get_steps_from_solution_type(abstract_solution_type, solution_metadata):
 	'''
 	solution_metadata = {
-		'objects': objects, ['info', 'asymmetry']
+		'objects': ['info', 'asymmetry']
 		'function': 'balance', 
 		'steps': [
 			'find_info',
@@ -233,21 +233,20 @@ def get_steps_from_solution_type(abstract_solution_type, solution_metadata):
 	}
 	'''
 	print('solution_metadata', solution_metadata)
-	combined_object_list = [solution_metadata['objects']]
-	import itertools
-	object_combinations = itertools.combinations(solution_metadata['objects'], len(combined_object_list))
+	combined_object_list = set(solution_metadata['objects'])
+	object_combinations = itertools.product(solution_metadata['objects'])
 	for c in object_combinations:
-		combined_object_list.append(c)
+		combined_object_list.add(c)
 	if len(combined_object_list) > 0:
 		combined_relationships = []
 		for so in combined_object_list:
-			print('so', so)
-			combined_object = ' '.join(so)
+			combined_object = ''.join(so)
 			if solution_metadata['function']:
-				object_function = ' '.join([solution_metadata['function'], combined_object])
+				for function in solution_metadata['function']:
+					object_function = ' '.join([function, combined_object])
+					combined_relationships.append(object_function)
 			else:
-				object_function = combined_object
-			combined_relationships.append(object_function)
+				combined_relationships.append(combined_object)
 		print('combined_relationships', combined_relationships)
 		all_relationships = []
 		''' now find predecessors/assumptions and apply to objects, then add new relationship to index '''
@@ -257,6 +256,7 @@ def get_steps_from_solution_type(abstract_solution_type, solution_metadata):
 				for cr in combined_relationships:
 					if solution_metadata['function'] in cr:
 						for pr in prereqs:
+							print('pr', pr)
 							new_relationship = cr.replace(solution_metadata['function'], pr)
 							all_relationships.append(new_relationship)
 					all_relationships.append(cr)
@@ -532,7 +532,6 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 
 def get_relationship_between_objects(source, target):
 	print('function::get_relationship_between_objects')
-
 	join_keyword = 'in order to'
 	brief_join_keyword = get_brief_keyword(join_keyword)
 	if brief_join_keyword:
@@ -541,12 +540,9 @@ def get_relationship_between_objects(source, target):
 
 def get_brief_keyword(keyword):
 	print('function::get_brief_keyword')
-
 	return 'to'
 
 def flatten_dict(problem_metadata):
-	print('function::flatten_dict')
-
 	flattened = {}
 	for key, values in problem_metadata.items():
 		flattened = iterate_dict(key, values, flattened)
@@ -555,8 +551,8 @@ def flatten_dict(problem_metadata):
 	return False
 
 def iterate_dict(key, values, flattened):
-	print('function::iterate_dict')
 	if type(values) == dict:
+		print('dict values', key, values.keys())
 		for k, v in values.items():
 			if type(v) != dict:
 				flattened[k] = v
@@ -564,13 +560,12 @@ def iterate_dict(key, values, flattened):
 				flattened = iterate_dict(k, v, flattened)
 	else:
 		''' to do: add support for nested items other than dicts '''
-		print('values', key, values)
+		print('list values', key)
 		flattened[key] = values
 	return flattened
 
 def get_object_map(problem_metadata, solution_metadata):
 	print('function::get_object_map')
-
 	# solution_objects = ['info', 'asymmetry', 'info_asymmetry']
 	object_map = {}
 	for so in solution_metadata['objects']:
@@ -603,7 +598,6 @@ def get_object_map(problem_metadata, solution_metadata):
 
 def find_matching_object_in_problem_space(problem_metadata, solution_object, solution_metadata):
 	print('function::find_matching_object_in_problem_space')
-
 	''' for a solution_object like 'info', find the corresponding object in the problem like 'reasons to change position' '''
 	# solution_object = 'info'
 	''' find solution_object 'info' in problem '''
@@ -637,7 +631,6 @@ def find_matching_object_in_problem_space(problem_metadata, solution_object, sol
 
 def makes_sense(problem_metadata, problem_object, matched_problem_objects):
 	print('function::makes_sense')
-
 	new_problem_solution_map = {}
 	''' 
 		to do: 
@@ -672,11 +665,11 @@ def get_object_metadata(object_name, object_type):
 	object_name = object_name if type(object_name) == str else ' '.join(object_name)
 	if object_type == 'solution':
 		objects = get_objects_in_string(object_name)
-		function = get_function_in_string(object_name)
+		functions = get_function_in_string(object_name)
 		if objects:
 			object_metadata = {
 				'objects': objects, #'info_asymmetry', 
-				'function': function, 
+				'function': functions, 
 				'steps': [
 					'find_info',
 					'find_info_asymmetry',
@@ -733,7 +726,6 @@ def get_type_words():
 
 def get_insights(problem_metadata):
 	print('function::get_insights')
-
 	''''
 		2. are there insights related to objects in problem metadata?
 			- fetch common cross-system insights
@@ -749,7 +741,6 @@ def get_insights(problem_metadata):
 
 def convert_to_solved_problem(problem_metadata, target_problem_type):
 	print('function::convert_to_solved_problem')
-
 	'''
 		3. if related solution types are found for original/related problem types, how to convert between original & solved problem
 			- fetch insights on converting problems to a target problem 
@@ -762,13 +753,11 @@ def convert_to_solved_problem(problem_metadata, target_problem_type):
 
 def convert_to_interface_problem(problem_metadata):
 	print('function::convert_to_interface_problem')
-
 	interface_problem = {}
 	return interface_problem
 
 def convert_solved_problem_to_problem_type(solved_converted_problem, original_problem_metadata):
 	print('function::convert_solved_problem_to_problem_type')
-
 	'''
 		5. convert to original problem type
 	'''
@@ -779,18 +768,15 @@ def convert_solved_problem_to_problem_type(solved_converted_problem, original_pr
 
 def convert_problem_to_problem_type(source_problem_type_metadata, target_problem_type_metadata):
 	print('function::convert_problem_to_problem_type')
-
 	converted_problem = {}
 	if converted_problem:
 		return converted_problem
 	return False
 
-
 ''' TEST '''
 
 def test_solution(solved_original_problem, problem_metadata):
 	print('function::test_solution')
-
 	'''
 		6. test if solution actually reduces or solves original problem
 	'''
@@ -799,16 +785,13 @@ def test_solution(solved_original_problem, problem_metadata):
 
 def is_problem_reduced(problem_metadata, solved_original_problem):
 	print('function::is_problem_reduced')
-
 	passed = False
 	return passed
-
 
 ''' PROCESSING '''
 
 def build_object(object_type, object_name):
 	print('function::build_object')
-
 	''' check for example objects in database '''
 	''' check for definition of object type '''
 	''' check for examples of related object types '''
@@ -821,41 +804,51 @@ def stringify_metadata(metadata_object):
 	stringified = '_'.join([metadata_object.values()])
 	return stringified
 
+def get_function_list():
+	function_list = []
+	functions = get_data('functions.json')
+	if functions:
+		new_functions = flatten_dict(functions)
+		for key, values in new_functions.items():
+			function_list.extend(values)
+		if len(function_list) > 0:
+			function_list = set(function_list)
+			return function_list
+	return False
+
 def get_function_in_string(string):
 	print('function::get_function_in_string')
-	function_list = get_data('functions.json')
+	found_functions = []
+	function_list = get_function_list()
 	if function_list:
-		new_function_list = flatten_dict(function_list)
-		function_list = set(new_function_list) if new_function_list else function_list
-	if function_list:
-		words = string.replace('_',' ').split(' ')
-		for function in function_list:
-			if function in words:
-				return function
+		words = string.replace(' ','_').split('_')
+		if len(words) > 0:
+			for word in words:
+				if word in function_list:
+					found_functions.append(word)
+	found_functions = set(found_functions)
+	if len(found_functions) > 0:
+		return found_functions
 	return False
 
 def get_objects_in_string(string):
 	print('function::get_objects_in_string')
 	''' solution_type = 'balance_info_asymmetry' '''
-	function_list = get_data('functions.json')
+	function_list = get_function_list()
 	if function_list:
-		new_function_list = flatten_dict(function_list)
-		function_list = set(new_function_list) if new_function_list else function_list
-		# function_list = ['balance', 'distribute', 'allocate']
-		objects = []
-		words = string.split('_')
+		words = string.replace(' ', '_').split('_')
 		if len(words) > 0:
+			objects = []
 			for word in words:
 				pos_type = get_pos(word)
 				if word not in function_list and pos_type != 'verb':
 					objects.append(word)
+			objects = set(objects)
 			if len(objects) > 0:
 				return objects
 	return False
 
 def get_pos(word):
-	print('function::get_pos')
-
 	tagged = pos_tag(word_tokenize(word))
 	for item in tagged:
 		if 'V' in item[1]:

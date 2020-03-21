@@ -112,7 +112,8 @@
   - structure-finding function for an attribute/rule/information set
 
   - structure schema notes particularly object definitions as dict so you can import them
-
+  - add example of common sense check 
+  
   - need to fill in content:
     - finish function index & add to functions.json
     - finish intent tree
