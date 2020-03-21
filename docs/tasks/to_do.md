@@ -114,7 +114,9 @@
   - structure schema notes particularly object definitions as dict so you can import them
 
   - need to fill in content:
+    - finish function index & add to functions.json
     - finish intent tree
+    - finish intent/change type calculation for a system intent
     - optimal combination interfaces to start from when solving problems 
       (how many degrees away from core functions, specific layers or sub-systems, what position on causal structures)
     - key questions to filter attention/info-gathering/solution

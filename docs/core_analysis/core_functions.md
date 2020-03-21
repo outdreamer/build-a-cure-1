@@ -15,11 +15,19 @@
   - insight: important/relevant/new/unique/abstract/cross-system relationship
   - strategy: insight & a plan intent on how to implement it, usually to achieve a specific goal intent
 
+  - why are position & charge able to determine phase shift change rules?
 
 ## Functions Types
 
-    - core functions
+    - function generators:
+        structural shapes (subset, limit, gap) & operations are all functions
+        movement functions
+        shape functions
+        relationship functions
+        type functions
+        changing structural attributes (position) generates functions (move, polish, align, combine, etc)
 
+    - core functions
         - build
           - copy/replace/remove
           - combine
@@ -39,7 +47,6 @@
             - rearrange
             - distribution
             - order
-
         - change
           - change prevention (regulation)
             - testing/assessment/metric selection
@@ -49,7 +56,6 @@
           - convert/translate/format
           - change reversal/compounding
           - differentiation (commitment to a state from a core state)
-
 
     - core structure function definitions
 
@@ -94,7 +100,6 @@
         - functions:
           - info rules (storage/compression)
           - specific structural core intent rules (combine/connect/filtering/boundary)
-
 
     - emergent/interaction layer functions
 

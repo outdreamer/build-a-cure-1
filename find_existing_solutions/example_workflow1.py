@@ -207,8 +207,6 @@ def apply_solution_to_problem(problem_metadata, abstract_solution_type):
 		'''
 			abstract_solution_type = 'balance_info_asymmetry'
 			solution = ['find info', 'find info asymmetry', 'balance info']
-		'''
-		'''
 			solution = relevant_steps = {
 				'find_info': 'find_incentives_to_change_position'
 			}
@@ -551,19 +549,23 @@ def flatten_dict(problem_metadata):
 
 	flattened = {}
 	for key, values in problem_metadata.items():
-		flattened = iterate_dict(values, flattened)
+		flattened = iterate_dict(key, values, flattened)
 	if flattened:
 		return flattened
 	return False
 
-def iterate_dict(values, flattened):
+def iterate_dict(key, values, flattened):
 	print('function::iterate_dict')
-
-	for k, v in values.items():
-		if type(v) != dict:
-			flattened[k] = v
-		else:
-			flattened = iterate_dict(v, flattened)
+	if type(values) == dict:
+		for k, v in values.items():
+			if type(v) != dict:
+				flattened[k] = v
+			else:
+				flattened = iterate_dict(k, v, flattened)
+	else:
+		''' to do: add support for nested items other than dicts '''
+		print('values', key, values)
+		flattened[key] = values
 	return flattened
 
 def get_object_map(problem_metadata, solution_metadata):
@@ -816,15 +818,17 @@ def build_object(object_type, object_name):
 
 def stringify_metadata(metadata_object):
 	print('function::stringify_metadata')
-
 	stringified = '_'.join([metadata_object.values()])
 	return stringified
 
 def get_function_in_string(string):
 	print('function::get_function_in_string')
 	function_list = get_data('functions.json')
-	words = string.replace('_',' ').split(' ')
 	if function_list:
+		new_function_list = flatten_dict(function_list)
+		function_list = set(new_function_list) if new_function_list else function_list
+	if function_list:
+		words = string.replace('_',' ').split(' ')
 		for function in function_list:
 			if function in words:
 				return function
@@ -835,6 +839,8 @@ def get_objects_in_string(string):
 	''' solution_type = 'balance_info_asymmetry' '''
 	function_list = get_data('functions.json')
 	if function_list:
+		new_function_list = flatten_dict(function_list)
+		function_list = set(new_function_list) if new_function_list else function_list
 		# function_list = ['balance', 'distribute', 'allocate']
 		objects = []
 		words = string.split('_')

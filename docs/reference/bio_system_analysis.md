@@ -214,9 +214,7 @@
 ### Function interface
 
 	- function
-
 	- intent
-
 	- role
 
 
@@ -365,7 +363,7 @@
         - emotions/pain
         - inflammation
         - pathogen
-        - emotions: sadness (restore balance, trigger release of salt), fear (change), disgust (avoid stimulus), anger (switch circuits, focus attention), hope (potential), happiness (maintain alternative options, delegate)
+        - emotions: sadness (restore balance, trigger release of salt), fear (change), disgust (avoid stimulus), anger (switch circuits, focus attention), hope (potential), happiness (stressor-handler match, maintain alternative options, organize to enable delegation)
         - oversupply
         - environmental stress (pollution, lack of resources)
         - conflicting intents (competition)
