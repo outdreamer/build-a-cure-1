@@ -98,6 +98,13 @@
 # Functions
 
   - give example of each type of problem-solving workflows
+
+    - workflow 1:
+      - finish apply_solution_type
+      - finish apply_solution
+
+  - trajectory between core & important objects
+
   - emergent combinations of core functions (include derivation of invalidating contexts for core functions)
   - finish system analysis for VDJ recombination 
   - find other relevant immune processes to analyze
