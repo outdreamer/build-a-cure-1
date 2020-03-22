@@ -3,6 +3,8 @@ from nltk import pos_tag, word_tokenize
 from textblob import TextBlob, Sentence, Word, WordList
 from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
+from get_conceptual_objects import *
+from get_structural_objects import *
 
 ''' OBJECT DEFINITION '''
 
@@ -195,7 +197,11 @@ def apply_solution_to_problem(problem_metadata, abstract_solution_type):
 			print('solution steps from type', abstract_solution_type, '\n', solution_steps)
 			solution_metadata['steps'] = solution_steps
 			problem_steps = convert_solution_steps_to_problem_steps(problem_metadata, solution_metadata)
-			print('\nproblem_steps', problem_steps)
+			''' replaced 'asymmetry' with 'interactions' 
+				should replace 'info' with 'incentives'
+				then should add 'to change position'
+			'''
+			print('\nproblem_steps', problem_steps, '\n')
 			if problem_steps:
 				solved_problem = apply_solution(problem_metadata, problem_steps)
 				if solved_problem:
@@ -203,6 +209,7 @@ def apply_solution_to_problem(problem_metadata, abstract_solution_type):
 	return False
 
 def get_functions_for_object_combination(solution_object, solution_functions):
+	print('solution_functions', solution_functions)
 	object_functions = []
 	solution_object = solution_object if type(solution_object) == str else ' '.join(solution_object) 
 	function_order = get_data('function_order.json')
@@ -213,7 +220,8 @@ def get_functions_for_object_combination(solution_object, solution_functions):
 				prereqs = get_function_prerequisites(function, function_order)
 				if prereqs:
 					for pr in prereqs:
-						new_relationship.replace(function, pr)
+						replaced_relationship = new_relationship.replace(function, pr)
+						object_functions.append(replaced_relationship)
 				object_functions.append(new_relationship)
 		else:
 			object_functions.append(solution_object)	
@@ -335,15 +343,18 @@ def convert_solution_steps_to_problem_steps(problem_metadata, solution_metadata)
 	return False
 
 def get_problem_solution_step(object_map, solution_step):
+	''' fix processing '''
 	problem_step = []
 	for solution_word in solution_step.split(' '):
-		if solution_word in object_map:
-			problem_step.append(object_map[solution_word])
-		else:
-			problem_step.append(solution_word)
+		for key, value in object_map.items():
+			if solution_word in value:
+				problem_step.append(key)
+			else:
+				if solution_word not in problem_step:
+					problem_step.append(solution_word)
 	if len(problem_step) > 0:
 		return ' '.join(problem_step)
-	return False
+	return solution_step
 
 def get_specific_step(solution_step, abstract_problem_step, problem_metadata):
 	'''
@@ -562,16 +573,17 @@ def get_object_map(problem_metadata, solution_metadata):
 	print('function::get_object_map')
 	# solution_objects = ['info', 'asymmetry', 'info_asymmetry']
 	object_map = {}
-	for problem_object in problem_metadata['problem_metadata']['dependencies']['objects']:
+	problem_objects = problem_metadata['problem_metadata']['dependencies']['objects']
+	for problem_object in problem_objects:
 		matched_solution_object = find_matching_object_in_problem_space(problem_metadata, problem_object, solution_metadata)
 		if matched_solution_object:
-			object_map[matched_solution_object] = problem_object
-	for problem_function in problem_metadata['problem_metadata']['functions']:
+			object_map[problem_object] = matched_solution_object
+	problem_functions = problem_metadata['problem_metadata']['functions']
+	for problem_function in problem_functions:
 		matched_solution_function = find_matching_object_in_problem_space(problem_metadata, problem_function, solution_metadata)
 		if matched_solution_function:
-			object_map[matched_solution_function] = problem_function
+			object_map[problem_function] = matched_solution_function
 	print('object_map', object_map)
-	#object_map = {'info': ['incentives', 'efficiencies', 'intents']}
 	'''
 		- target output for info-persuasion object map (object_map):
 			'info': [
@@ -591,20 +603,12 @@ def get_object_map(problem_metadata, solution_metadata):
 	return object_map
 
 def find_type(problem_object, solution_objects):
-	''' find that 'incentive' is a type of 'info' 
-		- to do:
-			- this assumes the solution object is the type/more abstract than the problem object
-	'''
-	for solution_object in solution_objects:
-		matched = match_type(solution_object, problem_object)
-		if matched:
-			return solution_object
-	return False
+	''' solution_objects = ['info', 'asymmetry'], problem_object = 'incentive'
 
-def match_type(solution_object, problem_object):
-	''' solution_object = 'info', problem_object = 'incentive' 
+	- to do:
+		- this assumes the solution object is the type/more abstract than the problem object
 
-	- the optimal implementation would:
+	- the optimal implementation to match_type would:
 		- derive 'reason' from 'incentive',
 		- get 'reward' from 'reason', 
 		- then match the context of reward to optimization language or markets, 
@@ -616,35 +620,83 @@ def match_type(solution_object, problem_object):
 			- there is implied but not explicit info that the incentivized behavior is good (incentivized behaviors are sometimes just defaults or emerging incentives that are unplanned)
 			- there is implied but not explicit info about costs/side effects of the incentivized behavior (incentives can come with costs like lack of variation)
 		but the 'info' object is a closer match, and we're looking for 1-1 relationships to reduce complexity
+
+	- other routes to identify 'incentive' as info:
+		- lookup definition of info (standard definition: 'message received an understood', or system schema definition, which is 'structure')
+		- derive or look up that info object has core operations (derive, apply, find) 
+			from common relationships ('find information' is a common phrase) 
+			or definition 'structure has common operations like find, match, fill'
+		- classify functions that serve each operation (get is a function type used for find functionality)
+		- query for get/find functions
+		- api functions could retrieve info objects (query codebase for functions that get objects & check for an incentive object or attribute, indicating this is a type of information
 	'''
-	problem_defs = Word(problem_object).definitions
+
+	''' this is a specific solution given that we have a system object 'info' defined and find_* functions for various info types, as a placeholder for codebase queries '''
+	system_defs = {'info': 'structure'}
+	core_operations = {'structure': ['find', 'match', 'apply', 'fill']}
+	abstract_specific_function_type_map = {'find': 'get'}
+	for solution_object in solution_objects:
+		print('solution_object', solution_object, 'problem_object', problem_object)
+		if solution_object in system_defs:
+			solution_definition = system_defs[solution_object]
+			if solution_definition in core_operations:
+				for solution_operation in core_operations[solution_definition]:
+					# function_type = get_function_type(solution_operation)
+					if solution_operation in abstract_specific_function_type_map:
+						specific_operation = abstract_specific_function_type_map[solution_operation]
+						global_functions = globals()
+						for function_name in global_functions:
+							if specific_operation in function_name or solution_operation in function_name:
+								function_code = 'query'
+								function_params = 'object_id'
+								''' found a get/find function '''
+								if problem_object in function_name or problem_object in function_code or problem_object in function_params:
+									''' this problem_object 'incentive' is a type of system object 'info' '''
+									return solution_object
+	return False
 	solution_defs = Word(solution_object).definitions
-	print('problem_defs', problem_object, problem_defs)
 	print('solution_defs', solution_object, solution_defs)
-	''' add filtering of words in defs '''
-	if solution_defs and problem_defs:
-		problem_definition_string = remove_stopwords(' '.join(problem_defs))
-		if solution_object in problem_definition_string:
-			return solution_object
-		solution_definition_string = remove_stopwords(' '.join(solution_defs))
-		if problem_object in solution_definition_string:
-			return solution_object
-		for solution_def in solution_defs:
-			for solution_word in solution_def.split(' '):
-				if solution_word in problem_definition_string:
-					return solution_object
-		problem_synsets = Word(problem_object).get_synsets(pos=NOUN)
-		solution_synsets = Word(solution_object).get_synsets(pos=NOUN)
-		print('synset', dir(problem_synsets))
-		print('problem_synsets', problem_synsets)
-		print('solution_synsets', solution_synsets)
+	if solution_defs:
+		matching_problem_objects = {}
+		problem_defs = Word(problem_object).definitions
+		''' add filtering of words in defs '''
+		if problem_defs:
+			print('problem_defs', problem_object, problem_defs)
+			problem_definition_string = remove_stopwords(' '.join(problem_defs))
+			''' 'info' in 'incentive' definition '''
+			if solution_object in problem_definition_string:
+				return solution_object
+			solution_definition_string = remove_stopwords(' '.join(solution_defs))
+			''' 'incentive' in 'info' definition '''
+			if problem_object in solution_definition_string:
+				return solution_object
+			matching_problem_words = 0
+			for solution_def in solution_defs:
+				for solution_word in solution_def.split(' '):
+					''' 'info' definition word in 'incentive' definition '''
+					if solution_word in problem_definition_string:
+						matching_problem_words += 1
+			if (matching_problem_words/solution_definition_string.count(' ')) > 0.5:
+				return solution_object
+			''' 'info' synonyms similar to 'incentive' synonyms '''
+			problem_synsets = Word(problem_object).get_synsets(pos=NOUN)
+			solution_synsets = Word(solution_object).get_synsets(pos=NOUN)
+			print('problem_synsets', problem_synsets)
+			print('solution_synsets', solution_synsets)
+			matching_synsets = 0
+			for ps in problem_synsets:
+				print('problem synsets', dir(ps))
+				ps = ps.name.split('.')[-1]
+				if ps in solution_synsets:
+					matching_synsets += 1
+			if matching_synsets/len(solution_synsets) > 0.5:
+				return solution_object
 	return False
 
 def remove_stopwords(definition):
 	return definition
 
 def find_matching_object_in_problem_space(problem_metadata, problem_object, solution_metadata):
-	print('function::find_matching_object_in_problem_space')
 	''' for a solution_object like 'info', find the corresponding object in the problem like 'incentives/reasons/intents/efficiencies/cost/benefit' 
 		- to do: 
 			- add solution_function support
@@ -654,14 +706,14 @@ def find_matching_object_in_problem_space(problem_metadata, problem_object, solu
 	solution_object = find_type(problem_object, solution_metadata['objects'])
 	if solution_object:
 		return solution_object
-	matched_problem_objects = {}
-	if matched_problem_objects:
-		new_problem_solution_map = makes_sense(problem_metadata, problem_object, matched_problem_objects)
+	matched_problem_object = {}
+	if matched_problem_object:
+		new_problem_solution_map = makes_sense(problem_metadata, problem_object, matched_problem_object)
 		if new_problem_solution_map:
 			return new_problem_solution_map
 	return False
 
-def makes_sense(problem_metadata, problem_object, matched_problem_objects):
+def makes_sense(problem_metadata, problem_object, matched_problem_object):
 	print('function::makes_sense')
 	new_problem_solution_map = {}
 	''' 
@@ -673,7 +725,7 @@ def makes_sense(problem_metadata, problem_object, matched_problem_objects):
 	'''
 	attributes_to_check = ['type']
 	sense = 0
-	for attribute in matched_problem_objects[problem_object]:
+	for attribute in matched_problem_object[problem_object]:
 		if attribute in problem_metadata:
 			''' standard definition validation '''
 			if solution_object in problem_metadata[attribute]:
@@ -686,7 +738,7 @@ def makes_sense(problem_metadata, problem_object, matched_problem_objects):
 				''' is 'reason' in 'info' solution object metadata? '''
 				sense += 1
 	if sense > 0:
-		new_problem_solution_map[problem_object] = matched_problem_objects[o]
+		new_problem_solution_map[problem_object] = matched_problem_object[o]
 	if new_problem_solution_map:
 		return new_problem_solution_map 
 	return False
@@ -865,7 +917,6 @@ def get_function_in_string(string):
 	return False
 
 def get_objects_in_string(string):
-	print('function::get_objects_in_string')
 	''' solution_type = 'balance_info_asymmetry' '''
 	function_list = get_function_list()
 	if function_list:
@@ -882,7 +933,6 @@ def get_objects_in_string(string):
 	return False
 
 def get_data(file_path):
-	print('function::get_data', file_path)
 	if os.path.exists(file_path):
 		objects = None
 		with open(file_path, 'r') as f:
