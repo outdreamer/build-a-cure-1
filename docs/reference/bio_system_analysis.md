@@ -115,6 +115,13 @@
 						- gene movement functions
 							- another example is common gene switching/traveling operations, like transposones, which often change position in the genome, or chromosomes aligning different gene segments by adjacence using its storage method
 
+						- gene group functions
+							- are there almost-full domains in the genome that are still developing in the evolutionary phase but which if completed would add useful functionality
+
+						- is there a structure that can generate certain DNA once nucleic acids are processed, like a filter set in a closed system?
+							- for example, putting some core components of DNA in an 'obstacle course' of filters so that they generate the full genome of an organism once the course is complete would be a good backup method implemented as a nanobot if the system cant be minimally adjusted to do that, if there arent existing compression methods storing DNA in related ways
+							- this could be used to restore cell DNA after invasion by a pathogen, adding a deletion function to remove the original DNA after it's compromised
+
 
 					- virus system analysis:
 						- questions:

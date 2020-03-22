@@ -208,6 +208,9 @@
 
 ## Cell Types
 
+- phagoctyes
+- hemoctyes
+
 - lymphocyte: white blood cell type with a large nucleus including nk & t & b cells, the main cell type in lymph fluid
 	 - natural killer (nk) cells (for cell-mediated, cytotoxic innate immunity)
 	 - T cells (for cell-mediated, cytotoxic adaptive immunity)
@@ -271,7 +274,7 @@
 
 		
 	- serotype
-	
+
 	- genetic recombination: occurs in meiosis
 
 	- somatic recombination: 
