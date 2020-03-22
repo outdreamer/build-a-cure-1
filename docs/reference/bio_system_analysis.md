@@ -67,11 +67,13 @@
 
 		- system questions
 
+			- "memory cells became more diverse after measles wiped out B memory cells" - can you isolate sets of similar b memory cells in a membrane boundary (or other signal to the immune system that stores are depleted) with enough room to grow and they'll develop distortions, or did the wiping out of cells just delete copies so it evened the playing field for other memory cell types to grow?
+
 			- the core objects (DNA, cell types), functions (copy), and sets (amino acids, base pairs, TADs), arent optimal to attack from, since minor changes can break the whole system
 			- similarly, the output isnt optimal to attack from, since it doesnt address the root problem & requires repeated application of the solution, which turns it into a monitoring/supply/timing problem
 			
 			- the interim layers are usually better to start from when considering systemic adjustments to add/change/remove a particular function (memory cell generation), attribute (cell membrane strength), or object set (memory cells)
-			
+
 				- the interim layers are where functions with high implementation variation occur (repair) and their interactions arent necessarily aligned by strict limits (repair is not enforced, and may not have a backup mechanism if one of its inputs is missing)
 				- any systemic changes need to allow enough variation to preserve adaptation using existing adaptive systems, while still addressing the problem being solved
 				- this means a simplistic solution like 'kill any cell with mutations' cant be implemented, bc that would prevent evolution, and some state of a legitimate deletion/change process might be misinterpreted as a mutation
