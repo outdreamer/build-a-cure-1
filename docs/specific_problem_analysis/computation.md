@@ -1,6 +1,18 @@
 # Computing/distribution
 
     - store position on network map or map trajectory matching word, then switch maps every interval period - when password is sent, check position of password in map using rotated position-calculation function, then if its trajectory/position matches what is stored, that can be used as a password rather than storing the hash (similar to the concept of a hash but using maps/dicts to generate trajectories/networks of words)
+      
+      - for password 'abc123', the trajectory might be:
+        map1.positionA, map2.positionZ
+
+        the maps are searched for a trajectory matching 'abc123', using the function to compute a word from the maps (which can be as simple as word dicts or letter dicts but ideally would be more complicated)
+
+        if this trajectory is stored in the database record for that user, it passes
+
+        then after the interval passes, the maps are recalculated:
+          - map1.positionA is now in map2.positionZ
+
+        and the database entry for that user is updated after the maps are recalculated & the password trajectories on the new maps are recalculated from them
 
     - a universe may not be meant to support much certainty, if its an approximation or filtering universe
       - the metric to optimize for is change, not certainty - but the more you optimize for change, the more change you'll attract, meaning this one may not be used as a filter anymore
