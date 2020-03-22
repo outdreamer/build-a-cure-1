@@ -12,7 +12,6 @@ for dirname in os.listdir(path):
 	full_dirname = ''.join([path, '/', dirname])
 	print('full_dirname', full_dirname)
 	if os.path.isdir(full_dirname):
-		
 		for filename in os.listdir(full_dirname):
 			print('filename', filename)
 			if '.md' in filename:
@@ -29,8 +28,6 @@ for dirname in os.listdir(path):
 							else:
 								repeated_lines[line] = [filename]
 					f.close()
-
-
 new_repeated_lines = {}
 for line in repeated_lines:
 	if len(repeated_lines[line]) > 1:
@@ -40,3 +37,9 @@ print('\n\n\nlength', len(new_repeated_lines.keys()))
 
 for line in new_repeated_lines:
 	print(line, new_repeated_lines[line])
+
+
+''' compile function names '''
+import subprocess
+cmd = ["""grep -r 'def ' . --include='*.py' >> code_function_names.txt"""]
+subprocess.check_output(cmd,shell=True)

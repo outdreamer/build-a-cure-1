@@ -632,27 +632,25 @@ def find_type(problem_object, solution_objects):
 	'''
 
 	''' this is a specific solution given that we have a system object 'info' defined and find_* functions for various info types, as a placeholder for codebase queries '''
-	system_defs = {'info': 'structure'}
-	core_operations = {'structure': ['find', 'match', 'apply', 'fill']}
-	abstract_specific_function_type_map = {'find': 'get'}
-	for solution_object in solution_objects:
-		print('solution_object', solution_object, 'problem_object', problem_object)
-		if solution_object in system_defs:
-			solution_definition = system_defs[solution_object]
-			if solution_definition in core_operations:
-				for solution_operation in core_operations[solution_definition]:
-					# function_type = get_function_type(solution_operation)
-					if solution_operation in abstract_specific_function_type_map:
-						specific_operation = abstract_specific_function_type_map[solution_operation]
-						global_functions = globals()
-						for function_name in global_functions:
-							if specific_operation in function_name or solution_operation in function_name:
-								function_code = 'query'
-								function_params = 'object_id'
-								''' found a get/find function '''
+	object_defs = get_data('object_schema.md')
+	if object_defs:
+		for solution_object in solution_objects:
+			if solution_object in object_defs:
+				solution_def = object_defs[solution_object]
+				system_definition = solution_def['system_definition'] if 'system_definition' in solution_def else None
+				if 'core_functions' in solution_def:
+					for abstract_operation, specific_operations in solution_def['core_functions'].items():
+						for function_name in globals():
+							function_code = 'query' # to do: get codebase function code
+							function_params = 'object_id' # to do: get codebase function code
+							if abstract_operation in function_name:
 								if problem_object in function_name or problem_object in function_code or problem_object in function_params:
-									''' this problem_object 'incentive' is a type of system object 'info' '''
 									return solution_object
+							for specific_operation in specific_operations:
+								if specific_operation in function_name:
+									if problem_object in function_name or problem_object in function_code or problem_object in function_params:
+										''' this problem_object 'incentive' is a type of system object 'info' '''
+										return solution_object
 	return False
 	solution_defs = Word(solution_object).definitions
 	print('solution_defs', solution_object, solution_defs)
