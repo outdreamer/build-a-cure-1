@@ -67,6 +67,7 @@
 - Antiviral drugs are often nucleoside analogues (fake DNA building-blocks), which viruses mistakenly incorporate into their genomes during replication
 - The life-cycle of the virus is halted because the newly synthesised DNA is inactive, because analogues lack the hydroxyl groups, which, along with phosphorus atoms, link together to form the structure of the DNA molecule (DNA chain termination), so the linking can't continue
 
+- retrovirus inserts its own RNA into the cell DNA
 
 #### bacteria
 

@@ -81,6 +81,10 @@
 
 					- immune system analysis:
 
+						- is there a way to tip the system in favor of repair/regeneration/recovery functions rather than deletion or error-prone functions, such as making repair processes happen more often or making those processes more aggressive, in a way that the copying function isnt interfered with, or can protective membranes & other protective tools be used to ensure fewer errors occur, or that copying is done slower or at larger scales and error-heavy versions are destroyed in a competitive filter, so correct copies survive
+
+						- which part of the immune system can wrap/isolate a pathogen with a membrane that is identified as a waste product
+
 						- the immune system can be hijacked, either by a pathogen or by accident, to identify host cell antigens to build antibodies for
 
 							- this is the problem type:
@@ -111,7 +115,7 @@
 							- can immune/stem cells be turned into a virus or borrow its functionality, so they are more accessible & common
 
 							- can a cell or its DNA be embedded/compressed in another cell to activate/build when its needed, so that immune/stem cells can be generated as needed, making cells more independent of the immune system (such as a compressed version of an immune cell whose membrane slowly erodes, so that if its not used/attacked/removed by the host cell, it will eventually activate anyway or be removed anyway once its components/metabolites leak, which will activate or signal an immune process
-								
+
 
 					- dna system analysis
 
