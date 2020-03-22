@@ -179,7 +179,7 @@ def apply_solution_to_problem(problem_metadata, abstract_solution_type):
 		to do: 
 		- decide if you want to return multiple solutions if there are any
 		- make sure solution step lists are handled differently than abstract solution types 
-		- filter solution steps
+		- filter solution steps, removing repeated combinations of the same step
 	'''
 	solution_metadata = get_object_metadata(abstract_solution_type, 'solution')
 	solution_type = get_solution_type(abstract_solution_type)
