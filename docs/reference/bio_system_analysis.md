@@ -80,7 +80,7 @@
 				- example:
 
 					- immune system analysis:
-					
+
 						- the immune system can be hijacked, either by a pathogen or by accident, to identify host cell antigens to build antibodies for
 
 							- this is the problem type:
@@ -91,6 +91,29 @@
 								- the system should be aligned by intent, so this process can only be accessed once an antigen has passed filters proving that its not a host cell antigen, which means there is a legitimate intent to protect against that antigen
 
 								- or in the case of host cells hurting other host cells of another type, in which case some host cells need to be destroyed but normal destruction processes arent activated - the host-cell antigen identification content function can be accessed for that intent
+
+					- dna system analysis
+
+						- functions from gene position
+						- the dna system allows for mutations because functionality isnt linked or enforced in every possible way, to allow for adaptation
+							- positioning genes differently could enforce optimal gene combinations, even when edited or when sections between two genes are deleted
+							- for example, if the genes are in a sequence of functions where neither copy or delete requires activation:
+								activation copy delete
+							  and the copy gene is deleted during a legitimate recombination operation, the combination of the activation function & the delete function will still only activate the delete function, which didnt require activation, so theres no systemic impact from a mutation or recombination deleting the copy function (in isolation of other factors)
+
+							- 'activation copy splice delete' might have a different impact, because if copy is removed and the splice function is activated by adjacence, the activated splice function may be able to remove the deletion function
+
+							- this is how position can influence genetic functionality - so finding the optimal position of genes where probable combinations/applications (such as adjacence) are anticipated and used as a filter for possible adjacent/grouped genes
+
+						- storage methods
+							- another example would be organization patterns of gene chains
+								- are chains of gene segments often stored in an organized shape, or just any shape that fits inside a particular membrane? 
+									- what are the likely interactions between two DNA segments that are accidentally grouped together by the DNA strand curling or being distorted in normal ways due to pressure/membranes/other processes?
+									- can this organization be streamlined with minimal impact?
+									- does the variation in storage of DNA chains produce any functionality that is currently used by the system?
+
+						- gene movement functions
+							- another example is common gene switching/traveling operations, like transposones, which often change position in the genome, or chromosomes aligning different gene segments by adjacence using its storage method
 
 
 					- virus system analysis:
