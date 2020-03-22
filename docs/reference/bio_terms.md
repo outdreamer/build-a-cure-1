@@ -72,7 +72,74 @@
 
 ## Components
 
+### molecule objects
+
+	- chiral: if a molecule cannot be superimposed on its mirror image by any number of transformations or rotations
+	- stereocenter: a particular instance of a stereogenic element that is any point in a molecule (can be an atom) having different subcomponents, so interchanging any two subcomponents leads to a stereoisomer
+	- stereoisomer: molecule with different orientations but the same formula & sequence
+		- enantiomer: one of two stereoisomers (differently oriented versions) that are mirror images (almost identical object reflected about a perpendicular symmetry) of each other that are non-superposable (not identical)
+			- rotating a right hand will not produce a left hand bc of finger order transformation (thumb is on opposite side)
+			- the orientation of the finger order is opposite, even though the hand itself is generated similarly
+			- so because the finger sub-system order attribute was already superimposed on its mirror image (reversed), the whole system of the hand cannot be superimposed on its mirror image with perfect alignment
+			- the rotation about the finger order symmetry on the finger interface invalides some alignments across symmetries applied to the platform hand interface
+			- this is a good example of an identification attribute emerging from an interface/symmetry stack and a transformation set
+
+	- chirality center: a stereocenter consisting of an atom holding a set of ligands (atoms or atom sets) in an arrangement which is not superimposable on its mirror image
+		- example: asymmetric carbon atom (a carbon atom bonded to four different entities) such that interchanging any two groups creates an enantiomer
+		- chiral center with definition substitution: 
+			- a molecule/component having different subcomponents, so interchanging any two subcomponents leads to a stereoisomer (differently oriented version), consisting of an atom with an atom set arranged so it can be superimposed on its mirror image
+			- like an interface or point for change in orientation of subcomponents
+
+
 ### macromolecules
+
+	- acid
+	- ester: a chemical compound derived from an acid (organic or inorganic) in which at least one OH hydroxyl group is replaced by an O–alkyl alkoxy group
+	- monomer: unit of polymer 
+	- oligomer
+	- polymer: macromolecule created by many repeated units
+		- peptide: amino acid chain linked by peptide bonds 
+		- oligosaccharide
+		- polysaccharide
+		- nucleic acid:
+			- term used to refer to the set of DNA & RNA (ribonucleic acid & deoxyribonucleic acid)
+			- small biopolymers composed of nucleotides
+			- nucleotide: 
+
+				- the components of the nucleotide are unit blocks, two of which are highly stable, two of which are core structure (phosphate & sugar) with core distortions (orientation, form (linear/cycle state), & attachable groups) that are useful to build other structures, and one of which is a unit bond (nitrogenous base)
+
+				- monomer made from:
+					- a 5-carbon sugar (pentose)
+						- stability source:
+							- in the cell, pentoses have a higher metabolic stability than hexoses
+						- processes:
+							- Phosphorylated pentoses are important products of the pentose phosphate pathway, most importantly ribose 5-phosphate (R5P), which is used in the synthesis of nucleotides and nucleic acids, and erythrose 4-phosphate (E4P), which is used in the synthesis of aromatic amino acids
+						
+						- types:
+							- if the sugar is a compound ribose, the polymer is RNA
+							- if the sugar is derived from ribose (deoxyribose), the polymer is DNA
+							- deoxyribose is created from ribose by the replacement of one/multiple hydroxyl groups with hydrogen
+
+						- states:
+							- open-chain/linear: usually only in solvents, easily converted to two versions of a closed-chain pentose & back
+							- closed-chain/cyclic: formed when the carbonyl group interacts with a hydroxyl in another carbon, 
+								turning the carbonyl into a hydroxyl & connecting the two carbons with an ether bridge containing an interim oxygen
+								so the carboxyl carbon becomes a chiral center with two possible orientations depending on the new hydroxyl position
+
+					- a phosphate group: an anion, salt, functional group or ester derived from a phosphoric acid. It most commonly means orthophosphate, a derivative of orthophosphoric acid by removing three protons, so that other organic groups can be attached in place of the hydrogen
+
+						- many phosphates are not soluble in water at standard temperature and pressure, but the sodium, potassium, rubidium, caesium, and ammonium phosphates are all water-soluble, and hydrogen/dihydrogen phosphates are slightly soluble
+						- tetrahedron form, similar to planar form of nitrogenous base but with another dimension and slight angle applied - useful as a hub
+
+					- a nitrogenous base: an organic molecule with a nitrogen atom with the chemical properties of a base, whose nitrogen's electron pair binds the other nucleic acid components
+						- usually derivatives of two parent compounds, pyrimidine & purine
+						- flat shape
+						- planar (one central molecule with multiple bonds all in one plane) due to their aromaticity (property leading to high stability)
+							- supports change in multiple directions restricted to two dimensions
+							- useful in combination operations
+						- stability source:
+							- non-polar
+							- both pyrimidines & purines resemble pyridine, are thus weak bases, relatively unreactive to electrophilic aromatic substitution
 
 	- protein:
 
@@ -95,6 +162,8 @@
 
 	- topologically associated domains
 	- major histocompatibility complex (MHC): large DNA region coding for cell surface proteins (essential to the acquired immune system), specific to vertebrates
+		- closely linked polymorphic gene set 
+		- cell surface MHC molecules display a small peptide (a molecular fraction of a protein called an epitope)
 	- DNA
 	- RNA
 
