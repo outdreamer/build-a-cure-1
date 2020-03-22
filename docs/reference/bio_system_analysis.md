@@ -73,19 +73,45 @@
 				- if this is possible to trigger, what routing mechanisms can redirect inputs to alternate systems?
 				- how adjacent/similar does the other function have to be for this to be possible? (lungs can filter out different things than the liver & kidneys)
 
+			- what are the costs of a more active/distributed immune system? do other processes/objects need to be removed or reduced on some attribute for that to be survivable?
+
 			- what combination of elements forms a successful system in the human bio-system?
 
-				- example: the measles system has: 
-					- a membrane, which acts as a launch platform for surface proteins, its external binding tools, linked to the genome & copying enzyme by internal binding tools matrix proteins
-					- many backup copies of its genome
-					- nucleoprotein as a protective coating of each copy of its genome
-					- the protective coating and the genome it protects are chained
-					- this chain is flexible, ensuring each copy & coating in the chain are linked to other copies/coatings
-					- an RNA-based RNA copying enzyme (so in theory DNA-based enzymes wouldnt have the same impact on the RNA)
-					- the copying enzyme is at the outside or ends of the genome/protective nucleoprotein chain but can switch to another part of the chain due to having alternative loops available & a membrane to force interaction with the chain
-					- a disordered phosphoprotein in between the copying enzyme and the genome chain, to inject some variation for adaptation in times of trouble
+				- example:
 
-				- this system may appear in other pathogens, but the specific measles implementation of this system only hurts humans
+					- immune system analysis:
+					
+						- the immune system can be hijacked, either by a pathogen or by accident, to identify host cell antigens to build antibodies for
+
+							- this is the problem type:
+								- a system that matches shapes with shapes doesnt have content-filtering rules built in, only structure-filtering rules
+
+							- to apply a content filtering rule to exclude host cells from this antibody/receptor building process for host cell antigens:
+
+								- the system should be aligned by intent, so this process can only be accessed once an antigen has passed filters proving that its not a host cell antigen, which means there is a legitimate intent to protect against that antigen
+
+								- or in the case of host cells hurting other host cells of another type, in which case some host cells need to be destroyed but normal destruction processes arent activated - the host-cell antigen identification content function can be accessed for that intent
+
+
+					- virus system analysis:
+						- questions:
+							- what strategies to convert pathogens from non-treatable type to a treatable type have been used?
+
+					- measles system analysis: 
+						- components, their functions, & relationships to other components:
+							- a lipid membrane, the lipid possibly allowing it to travel faster
+							- the membrane acts as a platform for surface proteins, its external binding tools, linked to the genome & copying enzyme by internal binding tools matrix proteins
+							- surface proteins (hemagglutinin and fusion proteins)
+							- hemagglutinin glycoprotein allows red blood cells to group together
+							- many backup copies of its genome
+							- nucleoprotein as a protective coating of each copy of its genome
+							- the protective coating and the genome it protects are chained
+							- this chain is flexible, ensuring each copy & coating in the chain are linked to other copies/coatings
+							- an RNA-based RNA copying enzyme (so in theory DNA-based enzymes wouldnt have the same impact on the RNA)
+							- the copying enzyme is at the outside or ends of the genome/protective nucleoprotein chain but can switch to another part of the chain due to having alternative loops available & a membrane to force interaction with the chain
+							- a disordered phosphoprotein in between the copying enzyme and the genome chain, to inject some variation for adaptation in times of trouble
+
+					- this system may appear in other pathogens, but the specific measles implementation of this system only hurts humans
 
 			- "memory cells became more diverse after measles wiped out B memory cells" - can you isolate sets of similar b memory cells in a membrane boundary (or other signal to the immune system that stores are depleted) with enough room to grow and they'll develop distortions, or did the wiping out of cells just delete copies so it evened the playing field for other memory cell types to grow?
 
