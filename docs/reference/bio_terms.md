@@ -106,7 +106,7 @@
 			- small biopolymers composed of nucleotides
 			- nucleotide: 
 
-				- the components of the nucleotide are unit blocks, two of which are highly stable, two of which are core structure (phosphate & sugar) with core distortions (orientation, form (linear/cycle state), & attachable groups) that are useful to build other structures, and one of which is a unit bond (nitrogenous base)
+				- the components of the nucleotide are unit blocks, two of which are highly stable, two of which are core structure (phosphate & sugar) with core distortions (orientation, form (linear/cycle state), & attachable groups, solvent in core system context like water) that are useful to build other structures, and one of which is a unit bond (nitrogenous base)
 
 				- monomer made from:
 					- a 5-carbon sugar (pentose)
@@ -126,9 +126,12 @@
 								turning the carbonyl into a hydroxyl & connecting the two carbons with an ether bridge containing an interim oxygen
 								so the carboxyl carbon becomes a chiral center with two possible orientations depending on the new hydroxyl position
 
-					- a phosphate group: an anion, salt, functional group or ester derived from a phosphoric acid. It most commonly means orthophosphate, a derivative of orthophosphoric acid by removing three protons, so that other organic groups can be attached in place of the hydrogen
+					- a phosphate group: an anion, salt, functional group or ester derived from a phosphoric acid, most commonly referring to orthophosphate
+
+						- orthophosphate: a derivative of orthophosphoric acid by removing three protons, so that other organic groups can be attached in place of the hydrogen
 
 						- many phosphates are not soluble in water at standard temperature and pressure, but the sodium, potassium, rubidium, caesium, and ammonium phosphates are all water-soluble, and hydrogen/dihydrogen phosphates are slightly soluble
+
 						- tetrahedron form, similar to planar form of nitrogenous base but with another dimension and slight angle applied - useful as a hub
 
 					- a nitrogenous base: an organic molecule with a nitrogen atom with the chemical properties of a base, whose nitrogen's electron pair binds the other nucleic acid components

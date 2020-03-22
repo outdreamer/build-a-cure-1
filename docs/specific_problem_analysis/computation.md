@@ -1,5 +1,7 @@
 # Computing/distribution
 
+    - store position on network map or map trajectory matching word, then switch maps every interval period - when password is sent, check position of password in map using rotated position-calculation function, then if its trajectory/position matches what is stored, that can be used as a password rather than storing the hash (similar to the concept of a hash but using maps/dicts to generate trajectories/networks of words)
+
     - a universe may not be meant to support much certainty, if its an approximation or filtering universe
       - the metric to optimize for is change, not certainty - but the more you optimize for change, the more change you'll attract, meaning this one may not be used as a filter anymore
       - if you acquire certainty faster than the universe can change, would it be invalidated, neutralized, closed, or would it start to leak, and in what direction
