@@ -92,6 +92,16 @@
 
 								- or in the case of host cells hurting other host cells of another type, in which case some host cells need to be destroyed but normal destruction processes arent activated - the host-cell antigen identification content function can be accessed for that intent
 
+						- can a copy operation be injected into antibody development so every time a change is applied, the whole antibody is copied again with the new change to speed up testing
+
+						- does the antibody production process need to be done in that direction (build a receptor/binding fragment for an antigen and test it, or can core functions or function chains of successful receptor/binding fragment genes be injected in that process to reduce the solution space to try
+
+						- which types of antigens arent coverable (or not efficiently coverable) by the set of components used in VDJ recombination - would another operation be useful or a good replacement for one of those types of gene segments, such as a DNA storage function to align genetic regions that are likelier to build antibodies, or a DNA functionality identification/finding function
+
+						- would it be better to have regions of cells that cant be altered (where all unknown cells are assumed to be pathogens & destroyed), surrounded by or surrounding variable cell groups that can be infected/mutated but which are limited by deactivating membranes & filters which are designed to protect against known pathogens or pathogen patterns
+
+						- can immune cells create decoy cells to test if an unknown compound/pathogen is hostile, encasing the pathogen & decoy cell in a boundary in case the decoy cell is damaged/destroyed by the unknown component, which would identfy it as a pathogen, at which point the immune system would generate antibodies for that component
+
 					- dna system analysis
 
 						- functions from gene position

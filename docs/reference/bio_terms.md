@@ -235,6 +235,7 @@
 - memory cell:
 
 - antigen: any molecule or linear molecular fragment that can be identified by a t-cell receptor
+	- most large molecules, including virtually all proteins and many polysaccharides, can serve as antigens
 
 	- epitope: part of the antigen that is recognized/binded to by antibody
 		- a linear epitope: a amino acid sequence or structure recognizable by an antibody
