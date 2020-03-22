@@ -14,6 +14,7 @@
 
 		- concepts:
 			- signal joint: when blunt signal ends are flush ligated together to form a circular piece of DNA containing all of the intervening sequences between the coding segments known as a signal joint 
+			- transposome: DNA section that can change its position, often creating/reversing mutations or creating duplicate DNA sections
 
 	- lymph
 		- a system composed of lymph vessels (channels) and intervening lymph nodes whose function, like the venous system, is to return fluid from the tissues to the central circulation
@@ -23,6 +24,10 @@
 		- sub-systems:
 			- innate
 			- adaptive
+				- b-cells & t-cells can become memory cells
+				- memory cells of a type create backup copies of themselves
+				- measles can wipe out memory cells
+				- the immune system can attack two pathogens at once
 
 	- types:
 
@@ -164,7 +169,7 @@
 ### DNA
 
 	- topologically associated domains
-	- major histocompatibility complex (MHC): large DNA region coding for cell surface proteins (essential to the acquired immune system), specific to vertebrates
+	- major histocompatibility complex (MHC): large DNA region coding for cell surface proteins (essential to the adaptive immune system), specific to vertebrates
 		- closely linked polymorphic gene set 
 		- cell surface MHC molecules display a small peptide (a molecular fraction of a protein called an epitope)
 	- DNA
@@ -172,16 +177,11 @@
 
 ### cell components
 
-	- receptor:
-
+	- receptor
 	- nucleus:
-
 	- mitochondria
-
 	- surface
-
 	- membrance
-
 	- fluid/pressure
 
 - electrolyte:
