@@ -102,18 +102,19 @@
     - workflow 1:
       - finish apply_solution_type
       - finish apply_solution
+      - finish get_type function
+      - add function to determine relevance filter for a problem definition to modify problem_steps to be more specific to the problem definition
+      - then add functions to derive metadata
+      - add example of common sense check 
 
   - trajectory between core & important objects
   - representation of a function/attribute in isolation with respect to time (snapshot or section)
-
   - emergent combinations of core functions (include derivation of invalidating contexts for core functions)
   - finish system analysis for VDJ recombination 
   - find other relevant immune processes to analyze
   - structure-finding function for an attribute/rule/information set
-
   - structure schema notes particularly object definitions as dict so you can import them
-  - add example of common sense check 
-  
+
   - need to fill in content:
     - finish function index & add to functions.json
     - finish intent tree
@@ -131,6 +132,7 @@
   - independence (closed trade loops) as time storage
   - development of key decision metrics (bias towards more measurable/different metrics rather than the right metric)
   - vertex as a pivot point for an interface
+  - example of choosing inefficiencies/exploit combinations in a system
 
   - function to create graph from article
   - function to predict a compound for a pathogen/condition requires data:
