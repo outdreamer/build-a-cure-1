@@ -55,6 +55,14 @@
 
 #### virus
 
+- Vaccines can consist of live-attenuated or dead viruses, or viral proteins (antigens)
+- Live vaccines contain weakened forms of the virus (live-attenuated viruses), which dont cause the disease but still confer immunity
+- Subunit vaccines use only the capsid proteins of the virus
+
+- Antiviral drugs are often nucleoside analogues (fake DNA building-blocks), which viruses mistakenly incorporate into their genomes during replication
+- The life-cycle of the virus is halted because the newly synthesised DNA is inactive, because analogues lack the hydroxyl groups, which, along with phosphorus atoms, link together to form the structure of the DNA molecule (DNA chain termination), so the linking can't continue
+
+
 #### bacteria
 
 #### fungus
@@ -68,20 +76,41 @@
 
 	- protein:
 
-	- enzyme:
+		- types
 
+			- amino acid
+			- cytokines: small proteins important in cell signaling, used for communication between cells to trigger the protective defenses of the immune system
+				- interferons: proteins released to signal presence of viruses
+					- interferons activate immune cells (nk cells & macrophages)
+					- increase host defenses by up-regulating (increasing gene expression for) antigen presentation, by increasing expression of major histocompatibility complex (MHC) antigens
+
+
+	- enzyme:
 		- transferase
 		- polymerase
 		- protease
 		- amylase
 
-	- amino acid:
+### DNA
+
+	- topologically associated domains
+	- major histocompatibility complex (MHC): large DNA region coding for cell surface proteins (essential to the acquired immune system), specific to vertebrates
+	- DNA
+	- RNA
 
 ### cell components
 
 	- receptor:
 
-	- DNA:
+	- nucleus:
+
+	- mitochondria
+
+	- surface
+
+	- membrance
+
+	- fluid/pressure
 
 - electrolyte:
 
@@ -125,8 +154,6 @@
 	- b-cells secrete cytokines
 	- b-cells mature in the bone marrow in mammals
 	- b-cells express receptors on their membrane, unlike NK cells or t-cells
-
-- cytokines: small proteins important in cell signaling
 
 - plasma:
 
