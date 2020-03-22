@@ -102,6 +102,17 @@
 
 						- can immune cells create decoy cells to test if an unknown compound/pathogen is hostile, encasing the pathogen & decoy cell in a boundary in case the decoy cell is damaged/destroyed by the unknown component, which would identfy it as a pathogen, at which point the immune system would generate antibodies for that component
 
+						- or can it generate many different antibodies, based on a subset of the solution space given the unknown component's matching ratio with existing antibody/receptor structures, deleting any that dont show immediate signs of prevention of cell invasion/destruction, and adjusting the semi-successful preventing antibodies until they're successful against the pathogen
+
+						- can a viral cell be converted to an antibody by replacing its DNA with the antibody's DNA or another useful cell type
+
+							- what functions do pathogens & host/immune cells have in common, so that this process can remove the non-standard functions
+
+							- can immune/stem cells be turned into a virus or borrow its functionality, so they are more accessible & common
+
+							- can a cell or its DNA be embedded/compressed in another cell to activate/build when its needed, so that immune/stem cells can be generated as needed, making cells more independent of the immune system (such as a compressed version of an immune cell whose membrane slowly erodes, so that if its not used/attacked/removed by the host cell, it will eventually activate anyway or be removed anyway once its components/metabolites leak, which will activate or signal an immune process
+								
+
 					- dna system analysis
 
 						- functions from gene position
