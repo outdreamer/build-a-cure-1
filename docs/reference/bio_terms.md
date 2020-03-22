@@ -255,6 +255,8 @@
 ### cell processes
 
 	- apoptosis
+	- bind
+		- ligand: ligand is an ion or molecule (functional group) that binds to a central metal atom to form a coordination complex, usually involving formal donation of one or more of the ligand's electron pairs
 
 ### energy processes
 
@@ -267,6 +269,9 @@
 
 ### DNA processes
 
+		
+	- serotype
+	
 	- genetic recombination: occurs in meiosis
 
 	- somatic recombination: 
