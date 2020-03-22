@@ -75,11 +75,25 @@
 
 			- what are the costs of a more active/distributed immune system? do other processes/objects need to be removed or reduced on some attribute for that to be survivable?
 
+			- what other filters exist to build/format components besides:
+				- membranes/bonds
+				- checkpoints
+				- pressure
+				- neutralizing processes
+				- competition
+
+
+			- does evolution favor specific solutions, reactive solutions, stable/efficient solutions, or other attributes/types like high-variance solutions?
+
+				- are evolved mechanisms typically a response to one repeated process or many different processes with similar attributes, or are evolved mechanisms just efficient storage units of variation?
+
 			- what combination of elements forms a successful system in the human bio-system?
 
 				- example:
 
 					- immune system analysis:
+
+						- should high-mutation generating processes like somatic hypermutation be derived from a compressed format, so its functionality is applied under stricter conditions requiring the use of instructions to derive it from its compressed form, and is less likely to be misused or accidentally used by hostile processes/pathogens
 
 						- is there a way to tip the system in favor of repair/regeneration/recovery functions rather than deletion or error-prone functions, such as making repair processes happen more often or making those processes more aggressive, in a way that the copying function isnt interfered with, or can protective membranes & other protective tools be used to ensure fewer errors occur, or that copying is done slower or at larger scales and error-heavy versions are destroyed in a competitive filter, so correct copies survive
 

@@ -15,6 +15,7 @@
 		- concepts:
 			- signal joint: when blunt signal ends are flush ligated together to form a circular piece of DNA containing all of the intervening sequences between the coding segments known as a signal joint 
 			- transposome: DNA section that can change its position, often creating/reversing mutations or creating duplicate DNA sections
+			- affinity maturation: where antibodies are increasingly successful against an antigen in successive iterations of an immune response to the same pathogen
 
 	- lymph
 		- a system composed of lymph vessels (channels) and intervening lymph nodes whose function, like the venous system, is to return fluid from the tissues to the central circulation
