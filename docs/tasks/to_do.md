@@ -101,6 +101,8 @@
     - workflow 1:
       - finish apply_solution_type
 
+      - add a function to get all codebase functions & store them in a dict with their name, params, class, context/usage, and intents, just like functions are stored in the problem_metadata.json example for workflow 1
+
       - add function to map conceptual object to structural object
 
         - mapping 'info' to 'structure' can be done with a conceptual route:
@@ -156,19 +158,31 @@
 
                 - you can do extra testing on the intent interface:
                   - does 'improve' fulfill 'enhance' intents or just a subset of them, and is that subset the more valid subset in a set of alternatives, or are the other subsets required for the definition?
-                  - do 'improve' intents apply to the objects in the original context or do some of them not fit? 
+                  - do 'improve' intents apply to the objects in the original context or do some of them not fit?
+
+      - the concept-to-structure mapping functions can be used in other problem-solving automation workflows
 
       - finish apply_solution to problem_definition using problem_steps
         - involves adding a function to evenly distribute information types given problem positions/agents/objects
-      - add function to determine relevance filter for a problem definition to modify problem_steps to be more specific to the problem definition
+      
+      - add function to determine relevance filter ('functions', 'required') from a problem_step ('find incentives') for a problem definition, to modify problem_steps with extra functions/attributes ('change_position') to be more specific to the problem definition ('find_incentives_to_change_position') for problem_steps involving 'incentives', so you know to use the function_name to modify the problem step if it's between the type 'functions' and the object searched for 'incentives'
+
+        - as an alternative to traversing the dictionary, you can identify gaps in problem_step intents and look for functions to fill those gaps
+
+          - if the preceding problem_step function is 'check new position (list object attributes)' and the next problem_step is the same function, you know there's a missing step to change position after the initial check, otherwise the repetition would be pointless, ignoring verification intents
+
+          - if there's a function 'use incentives to change position' or if incentives are an input to 'change_position' function, you can derive that 'find incentives' is a prerequisite step to the change position function, which is how you can derive the 'find incentives' part of the missing step before applying the 'to change position' modifier
+      
       - then add functions to derive metadata 
         - need dicts for this, including:
           - function chain intent relationships (in addition to function dependency relationships stored in function_order.json)
           - type hierarchies/network structures
+
       - add example of common sense check 
       - convert schema.md to object_schema.json
-      - add function dict structure by type
-      - finish get_type function to map info to structure
+      - add organization to functions.json by type, with mapping between general intent functions like 'find' to specific info-relevant terms like 'get'
+      - finish get_type function to map info to structure using the new functions.json organization
+
       - add common phrase check & filter problem steps by repeated combinations with common phrase check
 
   - trajectory between core & important objects
