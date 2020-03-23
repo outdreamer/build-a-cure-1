@@ -53,7 +53,9 @@
 				- what are the limits of chaining single-chain variable fragments when connecting them to heavy/light chain constant domains to increase binding scope
 
 		- change questions
-				- how can the system manage nth-degree changes in pathogens to evade existing stressor handlers
+			- evaluate DNA by its median/average values rather than just original values, given compounding & local system mutations
+			
+			- how can the system manage nth-degree changes in pathogens to evade existing stressor handlers
 					- convert pathogen to its original state that is covered by stressor handlers
 					- keep handler in stem state or component state, and add changes at run-time (when it encounters a pathogen rather than at build-time in the immune system process)
 					- predict common valuable states or components and aim for producing those rather than covering all situations
@@ -66,6 +68,8 @@
 							- rather than check if its a pathogen, check if its not a host cell - where can you inject filters that wouldnt disrupt systemic functionality (filters that are temporary & dissolve in blood stream, filters around existing boundaries, filters at build-time)
 
 		- system questions
+
+			- inject variance sources to handle change types on change platforms
 
 			- for conditions that harm a set of filtration organs, can other filtration organs be converted to fulfill its functions temporarily 
 				- some kidney functions like fluid balance can be done by other processes like mucus removal (sneezing), salt removal (crying), or fluid removal (vomiting, sweating) - or with chemical processes like evaporation or non-water topical solvents
