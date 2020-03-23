@@ -98,18 +98,21 @@
 # Functions
 
   - give example of each type of problem-solving workflows
+
     - workflow 1:
-      - finish apply_solution_type
 
       - add a function to get all codebase functions & store them in a dict with their name, params, class, context/usage, and intents, just like functions are stored in the problem_metadata.json example for workflow 1
 
       - add function to map conceptual object to structural object
 
         - mapping 'info' to 'structure' can be done with a conceptual route:
-          - info => clarify intent => structure
+          - info => clarify => structure
+            concept intent     structure
 
         - or a layer-traversing route, adding structure with each additional transform:
-          - info => remove uncertainty => achieve constant state => structure
+          - info => remove uncertainty => resolve conflicts/alternatives => isolate =>                    achieve constant state => structure
+            concept sub-concept           potential                         limit/measure                 match function/object     structure
+            info    data set              remove duplicate/correlated vars  remove non-explanatory vars   fit function              fit structure (find semantic map this information fits on as an object/attribute/rule)
 
       - add function to map conceptual function to structural step:
 
@@ -125,6 +128,7 @@
           - this would create two steps to achieve the 'equal distribution' intent state derived from the step:
             - check if distribution is equal
             - if not, change it
+            
           - then it would be derived that 'iteration' intent applies here since one change may not achieve the 'equal distribution' intent state, either by querying for insights about changes producing a state, or by checking if the goal is reached after one iteration, and then applying any available functions again (the same ones or a combination of other functions available, which is more computationally expensive and may not be allowed by the definition of 'improve') if not
 
           - the original options for 'evenly distribute' would be used as testing metrics, checking that either all objects were removed or that the remaining objects were distributed evenly
@@ -162,9 +166,6 @@
 
       - the concept-to-structure mapping functions can be used in other problem-solving automation workflows
 
-      - finish apply_solution to problem_definition using problem_steps
-        - involves adding a function to evenly distribute information types given problem positions/agents/objects
-      
       - add function to determine relevance filter ('functions', 'required') from a problem_step ('find incentives') for a problem definition, to modify problem_steps with extra functions/attributes ('change_position') to be more specific to the problem definition ('find_incentives_to_change_position') for problem_steps involving 'incentives', so you know to use the function_name to modify the problem step if it's between the type 'functions' and the object searched for 'incentives'
 
         - as an alternative to traversing the dictionary, you can identify gaps in problem_step intents and look for functions to fill those gaps
@@ -185,6 +186,11 @@
 
       - add common phrase check & filter problem steps by repeated combinations with common phrase check
 
+      - finish apply_solution_type
+
+      - finish apply_solution to problem_definition using problem_steps
+        - involves building a function to evenly distribute objects (like information/types), given problem positions/agents/objects
+      
   - trajectory between core & important objects
   - representation of a function/attribute in isolation with respect to time (snapshot or section)
   - emergent combinations of core functions (include derivation of invalidating contexts for core functions)
