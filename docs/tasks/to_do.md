@@ -97,6 +97,22 @@
 
 # Functions
 
+  - attribute identification function
+    - identify an object's attributes by:
+      - attribute metadata
+        - which attributes are:
+          - isolatable/unique
+          - descriptive/generative/differentiating
+        - which attributes have: 
+          - change that doesnt align with other changes
+          - a position separate from other positions in a network
+          - type stacks different from other stacks
+          - ability to differentiate/identify an object of similar attributes or within the same type
+          - causation (caused by something as an output, or an input cause of something else)
+          - potential for change
+          - alignment with concepts (relevance aligning with similarity/equivalence)
+      - information left over that is not captured by other attributes or describable by randomness
+
   - give example of each type of problem-solving workflows
 
     - workflow 1:
@@ -128,7 +144,7 @@
           - this would create two steps to achieve the 'equal distribution' intent state derived from the step:
             - check if distribution is equal
             - if not, change it
-            
+
           - then it would be derived that 'iteration' intent applies here since one change may not achieve the 'equal distribution' intent state, either by querying for insights about changes producing a state, or by checking if the goal is reached after one iteration, and then applying any available functions again (the same ones or a combination of other functions available, which is more computationally expensive and may not be allowed by the definition of 'improve') if not
 
           - the original options for 'evenly distribute' would be used as testing metrics, checking that either all objects were removed or that the remaining objects were distributed evenly
