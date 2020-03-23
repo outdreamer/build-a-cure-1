@@ -98,14 +98,55 @@
 # Functions
 
   - give example of each type of problem-solving workflows
-
     - workflow 1:
       - finish apply_solution_type
-      - finish apply_solution
-      - finish get_type function
+      - add concept to structure mapping function:
+        - in addition to mapping objects like 'info' to cohesive terms like 'structure' using the schema or definition derivation, 
+          we also want to map concepts like 'balance' to structural terms like 'evenly distribute',
+          and map modifiers like 'evenly' to calculation operations like 'check equal' so that 'evenly distribute' is translated to several options:
+            - 'remove all'
+            - 'change distribution until equal for all positions'
+
+          - in order to do this, we need:
+            - standard language maps & definitions
+            - a function (or a dictionary) to standardize language to this system's terms (so distribute is converted to 'change position of objects in group until objects are not in the same position')
+            - a function to convert non-supported functions into combinations of supported functions (standardize 'enhance' to 'improve' or 'increase')
+              - you can create a 'definition' function and then apply it to test its impact to see if it matches
+              - or you can also map intent to create a network for each definition, then see if you can optimize/standardize the network, and map it to a supported function network
+                - enhance function:
+                  - 'apply some process to improve or increase some attribute or process'
+                  - intents: change, move in the direction of increasing a metric/object/process or minimizing distance to goal 
+                - improve function:
+                  - 'apply an optimization process to fulfill a metric' 
+                  - intents: minimizing distance to goal, minimizing distance to metric, increase likelihood of minimizing distance to goal (optimize)
+                - increase function:
+                  - 'apply the add process until the quantity of an object is higher'
+
+                - it also has similarity to 'compound' (which adds extra meaning of applying similar objects/functions to other objects/functions and synergy),
+                  but 'improve' and 'increase' are supported core functions and we're trying to standardize the word to a combination or set of these
+                - its clear that enhance has some relationship to both of the other functions, which would be even clearer with a network version of each definition
+
+                - given the example input context 'enhance process A to produce a byproduct', we can derive that this is about achieving a goal that doesnt have increase connotations, leaving 'improve' as the likely core function to map 'enhance' to for this context
+                - you can test the 'improve' definition on the input objects 'process A' and if it moves in the direction of the other object 'byproduct', it's a better candidate for the standardized function
+                  - does 'improving' the objects in the original context have the same output as 'enhancing them'? which types of improvement produce an enhancing effect? 
+                  - is there a way to improve some attribute of the objects in a way that doesnt improve the object enhanced in the original context?
+
+                - you can do extra testing on the intent interface:
+                  - does 'improve' fulfill 'enhance' intents or just a subset of them, and is that subset the more valid subset in a set of alternatives, or are the other subsets required for the definition?
+                  - do 'improve' intents apply to the objects in the original context or do some of them not fit? 
+
+      - finish apply_solution to problem_definition using problem_steps
+        - involves adding a function to evenly distribute information types given problem positions/agents/objects
       - add function to determine relevance filter for a problem definition to modify problem_steps to be more specific to the problem definition
-      - then add functions to derive metadata
+      - then add functions to derive metadata 
+        - need dicts for this, including:
+          - function chain intent relationships (in addition to function dependency relationships stored in function_order.json)
+          - type hierarchies/network structures
       - add example of common sense check 
+      - convert schema.md to object_schema.json
+      - add function dict structure by type
+      - finish get_type function to map info to structure
+      - add common phrase check & filter problem steps by repeated combinations with common phrase check
 
   - trajectory between core & important objects
   - representation of a function/attribute in isolation with respect to time (snapshot or section)
