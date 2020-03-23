@@ -100,19 +100,41 @@
   - give example of each type of problem-solving workflows
     - workflow 1:
       - finish apply_solution_type
-      - add concept to structure mapping function:
-        - in addition to mapping objects like 'info' to cohesive terms like 'structure' using the schema or definition derivation, 
-          we also want to map concepts like 'balance' to structural terms like 'evenly distribute',
-          and map modifiers like 'evenly' to calculation operations like 'check equal' so that 'evenly distribute' is translated to several options:
-            - 'remove all'
-            - 'change distribution until equal for all positions'
 
-          - in order to do this, we need:
-            - standard language maps & definitions
+      - add function to map conceptual object to structural object
+
+        - mapping 'info' to 'structure' can be done with a conceptual route:
+          - info => clarify intent => structure
+
+        - or a layer-traversing route, adding structure with each additional transform:
+          - info => remove uncertainty => achieve constant state => structure
+
+      - add function to map conceptual function to structural step:
+
+        - in addition to mapping objects like 'info' to supported objects like 'structure' using the schema or definition derivation, 
+          we also want to map concept functions like 'balance' to structural terms like 'evenly distribute',
+          and map modifiers like 'evenly' to calculation operations like 'check distribution equal' so that 'evenly distribute' is translated to several options:
+            - 'change distribution until equal for all positions'
+            - 'remove all' (specific case which is a shortcut implementation of the 'change distribution until equal' operation
+
+          - then 'check equal distribute' would be converted to 'check equal distribution'
+          - then reversed to 'check distribution equal' since the 'equal' attribute applies to the 'distribution' object
+          - the dependency for 'check' would be found to be 'change' if theres no other process changing it
+          - this would create two steps to achieve the 'equal distribution' intent state derived from the step:
+            - check if distribution is equal
+            - if not, change it
+          - then it would be derived that 'iteration' intent applies here since one change may not achieve the 'equal distribution' intent state, either by querying for insights about changes producing a state, or by checking if the goal is reached after one iteration, and then applying any available functions again (the same ones or a combination of other functions available, which is more computationally expensive and may not be allowed by the definition of 'improve') if not
+
+          - the original options for 'evenly distribute' would be used as testing metrics, checking that either all objects were removed or that the remaining objects were distributed evenly
+
+          - in order to build this concept-to-structure function, we need:
+            - stored standard language maps & definitions
             - a function (or a dictionary) to standardize language to this system's terms (so distribute is converted to 'change position of objects in group until objects are not in the same position')
             - a function to convert non-supported functions into combinations of supported functions (standardize 'enhance' to 'improve' or 'increase')
+
               - you can create a 'definition' function and then apply it to test its impact to see if it matches
-              - or you can also map intent to create a network for each definition, then see if you can optimize/standardize the network, and map it to a supported function network
+
+              - or you can also map intent to create a network for each stored definition, then see if you can optimize/standardize the network, and map it to a supported function network
                 - enhance function:
                   - 'apply some process to improve or increase some attribute or process'
                   - intents: change, move in the direction of increasing a metric/object/process or minimizing distance to goal 
@@ -126,7 +148,8 @@
                   but 'improve' and 'increase' are supported core functions and we're trying to standardize the word to a combination or set of these
                 - its clear that enhance has some relationship to both of the other functions, which would be even clearer with a network version of each definition
 
-                - given the example input context 'enhance process A to produce a byproduct', we can derive that this is about achieving a goal that doesnt have increase connotations, leaving 'improve' as the likely core function to map 'enhance' to for this context
+                - given the example input context 'enhance process A to produce a byproduct', we can derive that this is about achieving a goal that doesnt specifically or exclusively have 'increase' connotations, leaving 'improve' as the likely core function to map 'enhance' to, for this context
+
                 - you can test the 'improve' definition on the input objects 'process A' and if it moves in the direction of the other object 'byproduct', it's a better candidate for the standardized function
                   - does 'improving' the objects in the original context have the same output as 'enhancing them'? which types of improvement produce an enhancing effect? 
                   - is there a way to improve some attribute of the objects in a way that doesnt improve the object enhanced in the original context?
