@@ -97,6 +97,17 @@
 
 # Functions
 
+  - system analysis function
+
+  - function to map function type/set/chain to a function shape for linking nodes
+
+  - function to identify interface trajectory (most efficient path, and destination in same position on other interface) between conceptual/structural interfaces
+
+    - info => clarify => structure
+    - info => remove uncertainty => resolve conflicts/alternatives in variable values => isolate => achieve constant state => structure
+
+    - info is a hub between several objects as structure is a hub for the corresponding objects, occupying both the same position type (hub) and the same position on corresponding interface networks
+
   - attribute identification function
     - identify an object's attributes by:
       - attribute metadata
@@ -126,9 +137,9 @@
             concept intent     structure
 
         - or a layer-traversing route, adding structure with each additional transform:
-          - info => remove uncertainty => resolve conflicts/alternatives => isolate =>                    achieve constant state => structure
-            concept sub-concept           potential                         limit/measure                 match function/object     structure
-            info    data set              remove duplicate/correlated vars  remove non-explanatory vars   fit function              fit structure (find semantic map this information fits on as an object/attribute/rule)
+          - info => remove uncertainty => resolve conflicts/alternatives in variable values =>  isolate =>                    achieve constant state => structure
+            concept sub-concept           potential                                             limit/measure                 match function/object     structure
+            info    data set              remove duplicate/correlated vars                      remove non-explanatory vars   fit function              fit structure (find semantic map this information fits on as an object/attribute/rule)
 
       - add function to map conceptual function to structural step:
 
