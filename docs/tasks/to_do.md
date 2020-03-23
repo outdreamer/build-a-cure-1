@@ -99,6 +99,18 @@
 
   - system analysis function
 
+  - function to identify alternative routes to an object
+
+    - randomness has multiple routes:
+    
+      - lack of information
+      - lack of bias
+      - equivalence between alternatives
+      - equivalent distribution
+      - diversity of inputs
+      
+    - this function should describe those routes - other functions can rank them & select the best one for a particular intent 
+
   - function to map function type/set/chain to a function shape for linking nodes
 
   - function to identify interface trajectory (most efficient path, and destination in same position on other interface) between conceptual/structural interfaces
@@ -115,7 +127,7 @@
           - isolatable/unique
           - descriptive/generative/differentiating
         - which attributes have: 
-          - change that doesnt align with other changes
+          - change that doesnt align with other changes on the same interaction layer
           - a position separate from other positions in a network
           - type stacks different from other stacks
           - ability to differentiate/identify an object of similar attributes or within the same type
