@@ -8,7 +8,27 @@
   - if the interface network is not static (you can change the position of power with respect to balance, you can change base interfaces), then information should be standardized to a set of filtering interfaces, because the filters will host the most changes & changes to the filters will cause other changes
 
   - give example of selecting a space (dimension set) for framing changes of a certain type
-  
+
+    - selecting a space involves selecting a representation of information by intent
+
+      - various representations of a function between x & y exist, each with their own intent (hide information, emphasize information, distort information)
+
+        - the selected space should be that which aligns with the intent of the target space (displaying a representative sample, displaying the most diverse variety of samples)
+
+      - changing the base is a way to change the interface used to represent information
+
+      - adding dimensions changes intent of switching spaces (adding complexity or clarity)
+
+      - certain change types have certain intents associated
+        
+        - potential-based change is aligned with intents like prediction (finding patterns like convergence or cascades)
+
+      - some changes are complex (changing many different things) that cannot be clearly depicted as an increase or decrease, but are still noteworthy as they are adjacent to an increase or decrease (increase the probability of an increase or decrease) even if they dont register on that dimension set
+
+        - in this case, a set or network of related spaces can be used to represent the change
+
+        - for example, a change may not directly/measurably increase the potential of a system, but it could be similar to changes that preceded an increase in potential of a system, so it should be represented on a pattern dimension set (representing the similarity to the other pattern) or a similarity dimension set (depicting the similarity to that other preceding pattern's intra-differences within itself), even if it can only be represented as a point rather than a change on the potential dimension set
+
 
 ## Examples
 
