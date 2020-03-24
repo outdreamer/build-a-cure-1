@@ -33,8 +33,10 @@
 
       - with regard to graphing potential itself, it's more useful to use position as a base rather than time
         - how does potential change with respect to starting position?
-        - if a starting position is isolated, there is less potential for dependence & more potential for independence (the net impact on overal potential is variable)
+        - if a starting position is isolated, there is less potential for dependence & more potential for independence (the net impact on overall potential is variable)
         - this reveals more information about actual potential change types by placing useful limits on value ranges
+
+      - identifying the variance structures (gaps/cascades/filters) in a system will help identify the best dimension sets to frame certain change types in
 
 
 ## Examples
