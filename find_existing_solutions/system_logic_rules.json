@@ -1,0 +1,17 @@
+logical_rules = [
+	"if two objects are different, they are in different positions",
+	"if two objects are different, there must be functions connecting them",
+	"difference can mean different object states",
+	"outputs match inputs of functions applied to outputs",
+	"system-wide attributes apply to all objects in the system",
+	"objects include function objects and attribute objects",
+	"objects can evolve within the system using core functions like combination, to produce combined objects like sub-systems",
+	"systems have state because they are a type of object",
+	"systems often have a standard set of states (efficient, low-cost, resting, valid)",
+	"systems often have unhandled variance",
+	"systems may develop variance handlers",
+	"types evolves in a system as a set of attributes commonly found together",
+	"valid intents may logically develop from a system which invalidate the system",
+	"sub-systems must follow the same rules as the system",
+	"sub-systems may have extra rules applicable just within the sub-system"
+]

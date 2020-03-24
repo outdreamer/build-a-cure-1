@@ -99,24 +99,11 @@
 
   - abstract functions
 
-      - object identification function
-        - membranes/bonds
-        - checkpoints
-        - pressure
-        - neutralizing processes
-        - competition
-        
-      - attribute identification function
-
-      - function identification function
-
-      - attribute (like similarity) testing function
-
+      - attribute/object/function identification functions
       - interface identification function (this can pull from interface_networks.json if it exists)
       - function to map function type/set/chain to a function shape when linking nodes in a network
       - network framing function to describe a system as a network & position each object, identifying connecting functions
       - function to map object/function to a shape
-
       - function to identify interface trajectory between conceptual/structural interfaces
         - trajectories such as: most efficient path, and destination in same position on other interface)
         - uses interface_networks.json if it exists and if not, interface identification, network mapping, and similarity testing
@@ -125,7 +112,6 @@
         - definition_routes.json can be generated from the paths in interface_networks.json, which just describes the links in networks of concepts/intents & other interface networks
       - add function to map conceptual object to structural object
       - add function to map conceptual function to structural step
-
       - system analysis function
 
   - add structure to allow multiple items as keys in json for interface network paths
@@ -139,8 +125,6 @@
       - the concept-to-structure mapping functions can be used in other problem-solving automation workflows
 
       - add function to determine relevance filter ('functions', 'required') from a problem_step ('find incentives') for a problem definition, to modify problem_steps with extra functions/attributes ('change_position') to be more specific to the problem definition ('find_incentives_to_change_position') for problem_steps involving 'incentives', so you know to use the function_name to modify the problem step if it's between the type 'functions' and the object searched for 'incentives'
-
-      - then add functions to derive metadata 
 
       - add example of common sense check 
 

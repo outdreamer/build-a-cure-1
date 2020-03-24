@@ -713,32 +713,35 @@ def find_matching_object_in_problem_space(problem_metadata, problem_object, solu
 
 def makes_sense(problem_metadata, problem_object, matched_problem_object):
 	print('function::makes_sense')
-	new_problem_solution_map = {}
 	''' 
-		to do: 
-			- convert to structure-fitting function
-
+		this is basically a system structure-fitting function, with logically consistency/validity checks
+		- if its logically consistent with known logical rules, 
+			- it matches known logical rules using known connections between them (inputs/outputs/paths)
+			- it has no missing components or gaps in logic
 		now that youve verified these objects match in some way, you need to check if mapping this solution object & this problem object makes sense with the problem definition
 		check that mapping 'reason' to 'info' makes sense 
 	'''
-	attributes_to_check = ['type']
-	sense = 0
-	for attribute in matched_problem_object[problem_object]:
-		if attribute in problem_metadata:
-			''' standard definition validation '''
-			if solution_object in problem_metadata[attribute]:
-				''' is 'info' included in problem['type'] list? '''
-				sense += 1
-			if solution_object in stringify_metadata(problem_metadata):
-				''' is 'reason' in 'info' solution object metadata? '''
-				sense += 1
-			if problem_object in stringify_metadata(solution_metadata):
-				''' is 'reason' in 'info' solution object metadata? '''
-				sense += 1
-	if sense > 0:
-		new_problem_solution_map[problem_object] = matched_problem_object[o]
-	if new_problem_solution_map:
-		return new_problem_solution_map 
+	logical_rules = get_data('system_logic_rules.json')
+	if logical_rules:
+		new_problem_solution_map = {}
+		attributes_to_check = ['type']
+		sense = 0
+		for attribute in matched_problem_object[problem_object]:
+			if attribute in problem_metadata:
+				''' standard definition validation '''
+				if solution_object in problem_metadata[attribute]:
+					''' is 'info' included in problem['type'] list? '''
+					sense += 1
+				if solution_object in stringify_metadata(problem_metadata):
+					''' is 'reason' in 'info' solution object metadata? '''
+					sense += 1
+				if problem_object in stringify_metadata(solution_metadata):
+					''' is 'reason' in 'info' solution object metadata? '''
+					sense += 1
+		if sense > 0:
+			new_problem_solution_map[problem_object] = matched_problem_object[o]
+		if new_problem_solution_map:
+			return new_problem_solution_map 
 	return False
 
 def get_object_metadata(object_name, object_type):
