@@ -60,11 +60,19 @@
       - what is divergence distance between generative paths for each object
       - example: "what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?"
 
+    - example of potential-based change:
+        - as potential (possible change) increases,
+          - what probabilities/possibilities become possible
+          - what possibilities become adjacent/distant
+          
+        - as potential changes, how do potential objects/types vary based on the unit of potential (possibility distance, distance between required limits & optional steps)
+        - this can be framed on a base of time, because time is a related object to potential (if there is no potential, there is no time)
+
     - example of variance-based change:
         - changing stabilization based on randomness
         - changing interface development based on randomness
         - changing systematization based on randomness
-        - as change increases
+        - as change increases, what change objects (types/rules/rates/direction) alter position/connection/distance/existence?
           - what else changes
           - what aspects of change are altered
           - what core change functions develop or change
@@ -75,9 +83,19 @@
           - what change cascades are triggered
           - what changes develop into randomness
           - what change combinations produce change rate/type/interface changes
+        
+        - this is a removal of the time parameter, by assigning distance to change types/rates/other metadata, so that any change is framed in terms of a base unit of change (how much change it produces, by making other objects nearer, creating other objects, and connecting with other objects)
+
+        - this can be framed on a base of potential, because potential is a related object to change (if there is no potential, there is no change)
+        - this can be framed on a base of time, because time is a related object to change (if there is no time, there is no change)
 
     - example of time-based change:
-      - changing position based on time 
+      - as time increases, what changes:
+        - position
+        - value (position on a dimension)
+        - distance (position from a base point)
+      - changing position based on time
+
 
   VIII. Functional analysis 
 
