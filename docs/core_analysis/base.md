@@ -27,6 +27,8 @@
 
         - in this case, a set or network of related spaces can be used to represent the change
 
+        - other spaces can also change what value means in that space, to represent more complex attributes like concepts (potential), where a change alters several metadata attributes of that base concept (potential direction/reversibility/alternative count/probability of alternatives leading to more potential)
+
         - for example, a change may not directly/measurably increase the potential of a system, but it could be similar to changes that preceded an increase in potential of a system, so it should be represented on a pattern dimension set (representing the similarity to the other pattern) or a similarity/change dimension set (depicting the similarity to that other preceding pattern's intra-differences within itself), even if it can only be represented as a point rather than a change on the potential dimension set
 
         - patterns are related to potential bc if something is too compliant with patterns, its less likely to change, which is an object of potential
