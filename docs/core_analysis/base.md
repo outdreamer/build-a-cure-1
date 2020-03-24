@@ -9,6 +9,14 @@
 
 ## Examples
 
+    - other standard structural bases as alternatives to time, where change is on a y-axis, and these parameters are on the x-axis
+      - order: changes are framed based on order (the unit value is the standard order)
+      - position: changes are framed based on difference from previous position, starting from the standard unit position (default) - for examining degree of distortion
+      - distance: changes are framed based on distance type (value, number type, pattern distance) - for examining degree of difference
+      - value: changes are framed based on value type (exponential, constant, pattern value, symmetric value, origin value) - for examining value change patterns
+      - group: changes are framed based on group membership (number type (prime), pattern (progression), distance (adjacent groups)) - for examining group change patterns
+      - space: changes are framed based on spaces where that change can be framed (topologies, dimensions, vector spaces)
+
     - example of power-based change:
 
         - as power (degree of dependency) changes, what else changes:
@@ -32,7 +40,7 @@
         - changing interface development based on randomness
         - changing systematization based on randomness
         - changing object change based on a changeable interface (change stack, like changing orientation of an object within a system that is changing)
-        - changing change types
+        - changing change types (variance leak, variance cascades/activation, variance injection, compounding variance, variance approaching an interface, variance distribution)
 
         - as change increases, what change objects (types/rules/rates/direction) alter position/connection/distance/existence?
           - what else changes
