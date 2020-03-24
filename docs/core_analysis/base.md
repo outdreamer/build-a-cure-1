@@ -40,6 +40,14 @@
 
       - identifying the variance structures (gaps/cascades/filters) in a system will help identify the best dimension sets to frame certain change types in
 
+    - this allows different representations of a multi-variable dimension like change in visually representable space without using topologies or parallel dimension lines:
+      - vectors representing directions as types of change according to the unit base vectors (units of change types) and scalar as the degree of change
+      - the perimeter of the changes to these vectors as a shape, and the function for that shape as the overall change function, and difference in area calculated the normal way to represent degree of change
+      - the network of change represented as a traditional graph, but the degree of change is treated like momentum and a function is graphed according to the momentum to connect the change nodes
+      - these are ways to graph aggregate change/other bases having different types without resorting to non-standard spaces
+      - the vectorized form of all change type features (a matrix) applied to objects in a standard shape
+        (dimensions are mapped to shape objects like sub-systems, so a dimension like a particular change type would be applied to a shape object like an angle/corner, if their change types align)
+
 
 ## Examples
 
