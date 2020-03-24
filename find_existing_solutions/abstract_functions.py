@@ -138,4 +138,27 @@
           - function chain intent relationships (in addition to function dependency relationships stored in function_order.json)
           - type hierarchies/network structures
 
+  - system analysis function
+
+    - function to apply system analysis to produce examples like in bio_system_analysis.md system questions
+
+      - this function identifies the objects, functions, & attributes of a system
+        - then identifies key interfaces (symmetries, change platforms, filters, etc)
+        - then identifies:
+          - important objects/functions/attributes
+          - generative objects/functions/attributes
+          - important structures (layers, limits, groups, chains, networks, gaps)
+          - important unanswered questions/intents/problems & their structures
+          - variance sources
+          - efficient permutations (switching position, removing boundary, etc)
+          - solved & unsolved problems in the system (info problems that match or are combinations of solved problems)
+          - system solutions & their optimality
+          - shapes matching system objects/functions/attributes/structures
+
+  - core tools
+  
+      - network framing function to describe a system as a network & position each object, identifying connecting functions
+      - interface identification function
+      - attribute (like similarity) testing function
+
 '''

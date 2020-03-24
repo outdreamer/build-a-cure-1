@@ -97,46 +97,34 @@
 
 # Functions
 
-  - system analysis function
+  - abstract functions
 
-    - function to apply system analysis to produce examples like in bio_system_analysis.md system questions
+      - interface identification function
+      - attribute (like similarity) testing function
+      - attribute identification function
 
-      - this function identifies the objects, functions, & attributes of a system
-        - then identifies key interfaces (symmetries, change platforms, filters, etc)
-        - then identifies:
-          - important objects/functions/attributes
-          - generative objects/functions/attributes
-          - important structures (layers, limits, groups, chains, networks, gaps)
-          - important unanswered questions/intents/problems & their structures
-          - variance sources
-          - efficient permutations (switching position, removing boundary, etc)
-          - solved & unsolved problems in the system (info problems that match or are combinations of solved problems)
-          - system solutions & their optimality
-          - shapes matching system objects/functions/attributes/structures
+      - function to map function type/set/chain to a function shape when linking nodes in a network
+      - network framing function to describe a system as a network & position each object, identifying connecting functions
+      - function to map object/function to a shape
+
+      - function to identify interface trajectory between conceptual/structural interfaces
+        - trajectories such as: most efficient path, and destination in same position on other interface)
+        - uses interface_networks.json if it exists and if not, interface identification, network mapping, and similarity testing
+        - function to identify alternative routes to an object (create & retrieve info from definition_routes.json if its already in interface_networks.json)
+          - a system applicable to this function would be a process or object like a particular pathogen - complex enough to qualify as a system
+        - definition_routes.json can be generated from the paths in interface_networks.json, which just describes the links in networks of concepts/intents & other interface networks
+      - add function to map conceptual object to structural object
+      - add function to map conceptual function to structural step
+
+      - system analysis function
 
   - add structure to allow multiple items as keys in json for interface network paths
-
-  - function to identify alternative routes to an object (create & retrieve info from definition_routes.json)
-      
-  - definition_routes.json can be generated from the paths in interface_networks.json, which just describes the links in networks of concepts/intents & other interface networks
-  
-  - function to map object to a function shape
-
-  - function to map function type/set/chain to a function shape for linking nodes
-
-  - function to identify interface trajectory (most efficient path, and destination in same position on other interface) between conceptual/structural interfaces
-
-  - attribute identification function
 
   - give example of each type of problem-solving workflows
 
     - workflow 1:
 
       - add a function to get all codebase functions & store them in a dict with their name, params, class, context/usage, and intents, just like functions are stored in the problem_metadata.json example for workflow 1
-
-      - add function to map conceptual object to structural object
-
-      - add function to map conceptual function to structural step:
 
       - the concept-to-structure mapping functions can be used in other problem-solving automation workflows
 
