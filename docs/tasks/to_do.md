@@ -126,7 +126,7 @@
 
       - add function to determine relevance filter ('functions', 'required') from a problem_step ('find incentives') for a problem definition, to modify problem_steps with extra functions/attributes ('change_position') to be more specific to the problem definition ('find_incentives_to_change_position') for problem_steps involving 'incentives', so you know to use the function_name to modify the problem step if it's between the type 'functions' and the object searched for 'incentives'
 
-      - add example of common sense check 
+      - finish common sense check
 
       - convert schema.md to object_schema.json
 

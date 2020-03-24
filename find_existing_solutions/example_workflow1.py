@@ -720,6 +720,14 @@ def makes_sense(problem_metadata, problem_object, matched_problem_object):
 			- it has no missing components or gaps in logic
 		now that youve verified these objects match in some way, you need to check if mapping this solution object & this problem object makes sense with the problem definition
 		check that mapping 'reason' to 'info' makes sense 
+
+		- this function requires that the system being checked against is already formatted by its metadata (object/function/attributes)
+		- we're looking for the first violation of problem space (problem_metadata) logic rules that the solution_object 
+			(object like 'incentive', attribute like 'relevance or function like 'combine') 
+			has when applied to the problem_metadata system
+
+		- in addition to the system object rules, specific rules of problem space logic can apply
+			- the success metric of the problem needs to be improved by the solution, if the solution makes sense when applied to that problem space
 	'''
 	logical_rules = get_data('system_logic_rules.json')
 	if logical_rules:
