@@ -10,12 +10,14 @@
 ## Examples
 
     - other standard structural bases as alternatives to time, where change is on a y-axis, and these parameters are on the x-axis
-      - order: changes are framed based on order (the unit value is the standard order)
-      - position: changes are framed based on difference from previous position, starting from the standard unit position (default) - for examining degree of distortion
-      - distance: changes are framed based on distance type (value, number type, pattern distance) - for examining degree of difference
-      - value: changes are framed based on value type (exponential, constant, pattern value, symmetric value, origin value) - for examining value change patterns
-      - group: changes are framed based on group membership (number type (prime), pattern (progression), distance (adjacent groups)) - for examining group change patterns
+      - order: changes are framed based on order - to examine change patterns with respect to order (where unit order is original/standard and highest order is most different order possible)
+      - position: changes are framed based on difference from previous position, starting from the standard unit position (default) - for examining change patterns with respect to position distortion
+      - distance: changes are framed based on distance type (distance from value, distance from number type, distance from pattern) - for examining change patterns with respect to distance type
+      - value: changes are framed based on value type (exponential, constant, pattern value, symmetric value, origin value) - for examining change patterns with respect to value
+      - set: changes are framed based on set membership (number type (prime), pattern (progression), distance (adjacent groups)) - for examining change patterns with respect to sets
       - space: changes are framed based on spaces where that change can be framed (topologies, dimensions, vector spaces)
+
+      - types should be represented as directions (going farther from origin goes further up type stack, where similar types are adjacent)
 
     - example of power-based change:
 
@@ -23,6 +25,7 @@
           - previously distant points become equal to adjacent points as power increases
           - value reverts a concept & the information of the value loses its meaning
           - dimension space can be determined by the degree of dependency
+          - does a change increase or reduce power?
 
         - this can be framed based on potential (bc power can change with respect to options), variance (because power can change with respect to change), and time (bc power can change over time)
 
@@ -31,7 +34,8 @@
         - as potential (possible change) increases,
           - what probabilities/possibilities become possible (findable/generatable in structural dimensions/on the structural interface)
           - what possibilities become adjacent/distant
-          
+          - does a change increase or reduce potential options?
+
         - as potential changes, how do potential objects/types vary based on the unit of potential (possibility distance, distance between required limits & optional steps)
         - this can be framed on a base of time, because time is a related object to potential (if there is no potential, there is no time)
 
@@ -41,6 +45,8 @@
         - changing systematization based on randomness
         - changing object change based on a changeable interface (change stack, like changing orientation of an object within a system that is changing)
         - changing change types (variance leak, variance cascades/activation, variance injection, compounding variance, variance approaching an interface, variance distribution)
+
+        - does a change increase or reduce change sources?
 
         - as change increases, what change objects (types/rules/rates/direction) alter position/connection/distance/existence?
           - what else changes
@@ -58,6 +64,16 @@
 
         - this can be framed on a base of potential, because potential is a related object to change (if there is no potential, there is no change)
         - this can be framed on a base of time, because time is a related object to change (if there is no time, there is no change)
+
+    - example of cause-based change:
+      - change with respect to cause
+
+      - the classic parabola of a ball's motion when thrown from the ground has two primary cause-values:
+        - origin force until the peak x-value change rate, and gravity force after the peak x-value change rate
+        - if the y-value starts changing more from gravity than from origin force, the gravity force becomes determining
+
+      - additional cause values travel farther up the causal stack:
+        - forces causing the emergence of gravity & origin forces are other causes
 
     - example of time-based change:
       - as time increases, what changes:
