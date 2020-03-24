@@ -1,0 +1,9 @@
+{
+	"randomness": [
+		["lack", "info"],
+		["lack", "bias"],
+		["equal", "alternatives"],
+		["equal", "distribution"],
+		["diverse", "input"]
+	]
+}

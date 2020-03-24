@@ -99,19 +99,44 @@
 
   - system analysis function
 
-  - function to identify alternative routes to an object
+  - add structure to allow multiple items as keys in json for interface network paths
 
-    - randomness has multiple routes:
-    
-      - lack of information
-      - lack of bias
-      - equivalence between alternatives
-      - equivalent distribution
-      - diversity of inputs
+  - function to identify alternative routes to an object (create & retrieve info from definition_routes.json)
       
-    - this function should describe those routes - other functions can rank them & select the best one for a particular intent 
+    - this function should find/describe those routes - other functions can rank them & select the best one for a particular intent 
+
+  - definition_routes.json can be generated from the paths in interface_networks.json, which just describes the link in networks of concepts/intents & other interface networks
+  
+  - function to map object to a function shape
+    - this is particularly useful for graphing concepts like 'power' or 'dependence', so these concepts can have structure applied for computation
 
   - function to map function type/set/chain to a function shape for linking nodes
+
+    - a three-function chain can be framed as a set of functions with linked inputs & outputs, but what does 2-d direction indicate? difference from standard function forming the straight one-function link between the nodes? does 3-d direction add a priority dimension?
+
+      - reverse can be framed as a function chain:
+        - determine key metric (direction or starting/ending object)
+        - determine direction (first/last item in the sequence)
+        - make copy of object or empty object of the same type
+        - permute starting point to reverse direction (last/first switch)
+        - fill copy of object from new starting point
+
+      - the short version of 'reverse' would be less abtract:
+        - list sequence, starting from end
+
+      - what are the intents/priorities of each function, in each method to form 'reverse' function?
+        - 'list sequence' has the intents 'describing a sequence' and 'iterate'
+        - 'determine key metric' has intents 'determine identifier of reversed object', 'abstract'
+        - 'make copy' has intents 'backup', 'adjust with minor changes', 'compare', 'apply process for comparison with original'
+        
+      - when youre graphing the network of nodes such as object states, like original sequence and reversed sequence, the connecting function between state nodes could vary by these intents, and the 2-d version could indicate:
+        - difference of function chain from standard efficient function link
+        - abstraction
+        - intent alignment (no variance injection points)
+
+      - so the function could look different if graphed on different interfaces
+
+      - the aggregate version of the function might be able to collapse some of the corresponding/aligning differences, bc the aggregate version might not vary on all interfaces (type or causation changes might line up with intent changes, so both arent necessary)
 
   - function to identify interface trajectory (most efficient path, and destination in same position on other interface) between conceptual/structural interfaces
 
