@@ -1,4 +1,4 @@
-def identify_interface(system):
+def identify_interfaces(system):
 	''' identify interfaces in a system 
 		this includes:
 			- identifying relevant abstract interfaces
@@ -6,7 +6,7 @@ def identify_interface(system):
 			- identifying relevant specific interfaces
 	'''
 	return False
-	
+
 def define_interface(system):
 	''' once an interface is identified, describe its generative objects/functions & store the definition 
 		the standard metadata for an interface:
@@ -17,11 +17,13 @@ def define_interface(system):
 	'''
 	return False
 
-def convert_to_interface(system):
+def convert_to_interface(system, interface):
 	''' 
-	convert a system to an interface, deriving the interface-relevant objects for each system object/attribute/function,
-	and returning the set of derived objects as a converted system 
-		- this means applying the filter set in the definition of the interface 
+	- convert a system to an interface, 
+		deriving the interface-relevant objects for each system object/attribute/function,
+		and returning the set of derived objects as a converted system 
+	
+	- this means applying the filter set in the definition of the interface 
 
 	'''
 	return False

@@ -22,6 +22,10 @@
   - modularity: is it dependent on other objects, can it be swapped out & replaced seamlessly or does it have other dependencies making replacing it a complex calculation
   - delegation/trust: what can be delegated safely to this object
 
+  - automation
+    - resource investment (cost/time/security of sending data in a certain format or with a certain procedure)
+    - understanding of host space (are the rules clear enough that we can safely automate with little expectation of variance injection)
+  
   - equivalence definition
 
     - equivalent
@@ -61,10 +65,6 @@
     - dependencies: required objects or alternative object sets that can build this object
     - examples
 
-  - automation
-    - resource investment (cost/time/security of sending data in a certain format or with a certain procedure)
-    - understanding of host space (are the rules clear enough that we can safely automate with little expectation of variance injection)
-  
 
 ## Common functions
 
