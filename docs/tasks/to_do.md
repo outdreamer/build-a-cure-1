@@ -105,14 +105,17 @@
       
     - this function should find/describe those routes - other functions can rank them & select the best one for a particular intent 
 
-  - definition_routes.json can be generated from the paths in interface_networks.json, which just describes the link in networks of concepts/intents & other interface networks
+  - definition_routes.json can be generated from the paths in interface_networks.json, which just describes the links in networks of concepts/intents & other interface networks
   
   - function to map object to a function shape
     - this is particularly useful for graphing concepts like 'power' or 'dependence', so these concepts can have structure applied for computation
+      - this requires:
+        - descriptions of shape metadata
+        - concept metadata from interface_networks.json and concepts.json
 
   - function to map function type/set/chain to a function shape for linking nodes
 
-    - a three-function chain can be framed as a set of functions with linked inputs & outputs, but what does 2-d direction indicate? difference from standard function forming the straight one-function link between the nodes? does 3-d direction add a priority dimension?
+    - a n-function chain can be framed as a set of functions with linked inputs & outputs, but what does 2-d direction indicate? difference from standard function forming the straight one-function link between the nodes? does 3-d direction add a priority dimension?
 
       - reverse can be framed as a function chain:
         - determine key metric (direction or starting/ending object)

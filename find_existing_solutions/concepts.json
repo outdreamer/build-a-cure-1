@@ -1,0 +1,24 @@
+{
+
+	"power": {
+		"types": [],
+		"definitions": {
+			"definition_as_concept": ["potential", "freedom", "independence"],
+			"definition_as_structure": "alternatives",
+			"definition_as_info": "energy",
+			"definition_as_intent": "activate",
+			"definition_as_type": "input",
+			"definition_as_cause": "source"
+		},
+		"attributes": {
+			"inputs": ["excess", "efficiency", "storage", "energy"],
+			"outputs": ["change"]
+		},
+		"functions": [
+			"organization",
+			"distribution",
+			"cause",
+			"activation"
+		]
+	}
+}
