@@ -1,18 +1,26 @@
 # Bases
 
+
   - there are conceptual bases (power), intent bases (motion, increase, efficiency), type bases (number type, variable type), structural bases (value, position, distance, set), change bases (rate, possibility/opportunity difference, randomness ratio, change interface stack, change type)
 
   - if the interface network (position of power with respect to balance, interfaces like intent/concept/structure) is static, there is a limited supply of change/potential/power in the universe/system, and change should be allocated non-randomly (priorities matter)
 
   - if the interface network is not static (you can change the position of power with respect to balance, you can change base interfaces), then information should be standardized to a set of filtering interfaces, because the filters will host the most changes & changes to the filters will cause other changes
 
+  - give example of selecting a space (dimension set) for framing changes of a certain type
+  
 
 ## Examples
 
 
     - example of interface-based change:
 
-      - as change increases, which interfaces are more/less adjacent, where interfaces are represented as a set of filters, each additional filter being a unit of change on the x-axis
+      - as change increases, which interfaces are more/less adjacent, where interfaces are represented as a set of filters, each additional filter being a unit of change on the x-axis, and each subsequent filter being one distortion away from the previous filter, where the origin is the most standard filter
+
+
+    - example of context-based change:
+
+      - as change increases, how does context change (where unit of context are additional conditions)
 
 
     - example of structure-based change:
