@@ -99,10 +99,20 @@
 
   - abstract functions
 
-      - interface identification function
-      - attribute (like similarity) testing function
+      - object identification function
+        - membranes/bonds
+        - checkpoints
+        - pressure
+        - neutralizing processes
+        - competition
+        
       - attribute identification function
 
+      - function identification function
+
+      - attribute (like similarity) testing function
+
+      - interface identification function (this can pull from interface_networks.json if it exists)
       - function to map function type/set/chain to a function shape when linking nodes in a network
       - network framing function to describe a system as a network & position each object, identifying connecting functions
       - function to map object/function to a shape

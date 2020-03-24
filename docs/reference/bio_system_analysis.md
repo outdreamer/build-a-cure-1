@@ -86,7 +86,6 @@
 				- neutralizing processes
 				- competition
 
-
 			- does evolution favor specific solutions, reactive solutions, stable/efficient solutions, or other attributes/types like high-variance solutions?
 
 				- are evolved mechanisms typically a response to one repeated process or many different processes with similar attributes, or are evolved mechanisms just efficient storage units of variation?
