@@ -60,6 +60,15 @@
       - what is divergence distance between generative paths for each object
       - example: "what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?"
 
+    - example of power-based change:
+
+      - as degree of dependency changes, what else changes:
+        - previously distant points become equal to adjacent points as power increases
+        - value reverts a concept & the information of the value loses its meaning
+        - dimension space can be determined by the degree of dependency
+
+      - this can be framed based on potential (bc power can change with respect to options), variance (because power can change with respect to change), and time (bc power can change over time)
+
     - example of potential-based change:
         - as potential (possible change) increases,
           - what probabilities/possibilities become possible
