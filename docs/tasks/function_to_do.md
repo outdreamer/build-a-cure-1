@@ -33,6 +33,7 @@
       - finish apply_solution to problem_definition using problem_steps
         - involves building a function to evenly distribute objects (like information/types), given problem positions/agents/objects
       
+  - types should be represented as directions (going farther from origin goes further up type stack, where similar types are adjacent)
   - finish system analysis for VDJ recombination 
   - find other relevant immune processes to analyze
 
