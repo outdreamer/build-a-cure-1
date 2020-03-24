@@ -7,7 +7,7 @@
 
   - if the interface network is not static (you can change the position of power with respect to balance, you can change base interfaces), then information should be standardized to a set of filtering interfaces, because the filters will host the most changes & changes to the filters will cause other changes
 
-  - give example of selecting a space (dimension set) for framing changes of a certain type
+  - selecting a space (dimension set) for framing changes of a certain type
 
     - selecting a space involves selecting a representation of information by intent
 
@@ -27,7 +27,14 @@
 
         - in this case, a set or network of related spaces can be used to represent the change
 
-        - for example, a change may not directly/measurably increase the potential of a system, but it could be similar to changes that preceded an increase in potential of a system, so it should be represented on a pattern dimension set (representing the similarity to the other pattern) or a similarity dimension set (depicting the similarity to that other preceding pattern's intra-differences within itself), even if it can only be represented as a point rather than a change on the potential dimension set
+        - for example, a change may not directly/measurably increase the potential of a system, but it could be similar to changes that preceded an increase in potential of a system, so it should be represented on a pattern dimension set (representing the similarity to the other pattern) or a similarity/change dimension set (depicting the similarity to that other preceding pattern's intra-differences within itself), even if it can only be represented as a point rather than a change on the potential dimension set
+
+        - patterns are related to potential bc if something is too compliant with patterns, its less likely to change, which is an object of potential
+
+      - with regard to graphing potential itself, it's more useful to use position as a base rather than time
+        - how does potential change with respect to starting position?
+        - if a starting position is isolated, there is less potential for dependence & more potential for independence (the net impact on overal potential is variable)
+        - this reveals more information about actual potential change types by placing useful limits on value ranges
 
 
 ## Examples
@@ -53,6 +60,7 @@
           - distance (position from a base point)
 
         - changing position based on time
+
 
       - example of structure-based change:
 
@@ -89,7 +97,7 @@
 
       - example of potential-based change:
       
-          - as potential (possible change) increases:
+          - as change increases, how does potential (possible change) increase:
 
             - what probabilities/possibilities become possible (findable/generatable in structural dimensions/on the structural interface)
             - what possibilities become adjacent/distant
