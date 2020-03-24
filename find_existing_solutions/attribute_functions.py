@@ -54,6 +54,12 @@ def identify_objects(system):
 		functions = [neutralize, press/apply pressure, check, limit, connect, process, compete]
 	'''
 
+	''' methods to identify objects:
+		- start by applying general system patterns to theorize existence of objects and see if any are found in expected positions
+		- replace theorized objects with other object keywords and see if the system still makes sense (is logically consistent, with no invalid rules)
+		- rule out functions/attributes
+	'''
+
 	return False
 
 def identify_attributes(system):
