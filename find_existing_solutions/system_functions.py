@@ -1,11 +1,17 @@
 '''
+    - function metadata:
+        - position/role in a system
+        - function to derive role (intended subset of intent stack)
+        - function type
+        - emergent side effects in edge cases, rule change states, & interacting with other system layers
+'''
+'''
     - object identification function
         - membranes/bonds
         - checkpoints
         - pressure
         - neutralizing processes
         - competition
-        
     - attribute identification function
     - function identification function
     - attribute (like similarity) testing function

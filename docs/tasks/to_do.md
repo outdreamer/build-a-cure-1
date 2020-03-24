@@ -120,53 +120,38 @@
 
     - workflow 1:
 
-      - add a function to get all codebase functions & store them in a dict with their name, params, class, context/usage, and intents, just like functions are stored in the problem_metadata.json example for workflow 1
-
-      - the concept-to-structure mapping functions can be used in other problem-solving automation workflows
-
       - add function to determine relevance filter ('functions', 'required') from a problem_step ('find incentives') for a problem definition, to modify problem_steps with extra functions/attributes ('change_position') to be more specific to the problem definition ('find_incentives_to_change_position') for problem_steps involving 'incentives', so you know to use the function_name to modify the problem step if it's between the type 'functions' and the object searched for 'incentives'
-
+      - add a function to get all codebase functions & store them in a dict with their name, params, class, context/usage, and intents, just like functions are stored in the problem_metadata.json example for workflow 1
       - finish common sense check
-
-      - convert schema.md to object_schema.json
-
-      - add organization to functions.json by type, with mapping between general intent functions like 'find' to specific info-relevant terms like 'get'
-
-      - finish get_type function to map info to structure using the new functions.json organization
-
+      - define objects in object_schema.json
+      - finish organizing functions.json by type, with mapping between general intent functions like 'find' to specific info-relevant terms like 'get'
       - add common phrase check & filter problem steps by repeated combinations with common phrase check
-
+      - finish get_type function to map info to structure using the new functions.json organization
       - finish apply_solution_type
-
       - finish apply_solution to problem_definition using problem_steps
         - involves building a function to evenly distribute objects (like information/types), given problem positions/agents/objects
       
-  - trajectory between core & important objects
   - representation of a function/attribute in isolation with respect to time (snapshot or section)
   - emergent combinations of core functions (include derivation of invalidating contexts for core functions)
   - finish system analysis for VDJ recombination 
   - find other relevant immune processes to analyze
-  - structure-finding function for an attribute/rule/information set
-  - structure schema notes particularly object definitions as dict so you can import them
 
   - need to fill in content:
-    - finish function index & add to functions.json
-    - finish intent tree
     - finish intent/change type calculation for a system intent
-    - optimal combination interfaces to start from when solving problems 
+    - selecting optimal combination interfaces to start from when solving problems 
       (how many degrees away from core functions, specific layers or sub-systems, what position on causal structures)
     - key questions to filter attention/info-gathering/solution
     - key functions to solve common problem types
+    - development of key decision metrics (bias towards more measurable/different metrics rather than the right metric)
+    - trajectory between core & important objects
+        - example of choosing inefficiencies/exploit combinations in a system
     - research implementing your solution type (constructing structures (made of boundary/filter/resource sets) to produce substances like antibodies, using bio system stressors)
     
-  - coexist with definition
   - change phases for causal analysis (interim, changing, diverging, standard, efficient state, constant, interacting, converging, on the verge of obsolescence, outlier, etc)
   - superficial cause, alternate cause in the case of a function, addressing input/output causes
   - framing on interfaces, decomposing causation, then identifying parameters of problem on layer & matching solution
   - independence (closed trade loops) as time storage
-  - development of key decision metrics (bias towards more measurable/different metrics rather than the right metric)
   - vertex as a pivot point for an interface
-  - example of choosing inefficiencies/exploit combinations in a system
 
   - function to create graph from article
   - function to predict a compound for a pathogen/condition requires data:
@@ -209,19 +194,12 @@
             - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
             - "isolate a pathogen cell before destroying it so it cant communicate info about what destroyed it to other pathogens to help them evolve resistance"
 
-      - functions to determine function system metadata:
-        - position/role in a system
-        - function to derive role (intended subset of intent stack)
-        - function type associated with its core functions (change rules, boundary rules)
-        - emergent side effects in edge cases, rule change states, & interacting with other system layers
-
       - function to derive core component functions for any system - then you can write functions to calculate function metadata:
         - determine equivalent functions or more optimal version of a function
         - determine function intent
         - alter core functions used to alter function intent
         - when generating solutions, change core functions to vary to describe any function set that builds any other function set in a system
           - set of binding/interaction/priority functions for element atoms
-
 
 # Conceptual
 
@@ -262,9 +240,6 @@
 
 # Diagrams
 
-  - make diagram of potential matrix to display the concept
-    - map parameter sets to potential matrix shapes 
-
   - make diagram for dimension links higher than 3d that are depictable in the same network space
     - should show variables that impact other variables, the change rates of these relationships
     - overall impact should be calculatable from these relationships
@@ -273,21 +248,15 @@
     - should show meta forces for overall trends in change rules (direction of combined variable forces)
     - should show limits of measurability & threshold metrics
 
-  - make diagram for variable accretion patterns
-
   - finish diagrams for specific concepts, core functions, concept operations (combine, collide, connect, merge, apply), ethical shapes
-
     - chaos & ethics graph
-
-  - finish diagrams for intent (more examples of matching structure with intent), cause (shapes & ambiguity), concept (evolution of concepts, networks, distortion functions)
-
-  - diagram for argument
-
-  - finish schema for objects
-
+    - variable accretion patterns
+    - make diagram of potential matrix to display the concept
+      - map parameter sets to potential matrix shapes 
+    - finish diagrams for intent (more examples of matching structure with intent), cause (shapes & ambiguity), concept (evolution of concepts, networks, distortion functions)
+    - diagram for argument
+    
   - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
-
-  - solution type: balance info asymmetry
 
 # Questions
   - are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?
