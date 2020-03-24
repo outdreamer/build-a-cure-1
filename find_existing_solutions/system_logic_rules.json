@@ -18,5 +18,8 @@
 	],
 	"problem_rules": [
 		"if the solution makes sense when applied to that problem space, the success metric of the problem needs to be improved by the solution"
-	]
+	],
+	"sub_system_rules": [
+		"sub-systems tend to generate false signals"
+	],
 }

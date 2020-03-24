@@ -4,6 +4,9 @@
 
   - clarify terms perspective/filter/standard/index & relationship to variables/operations on the interface
 
+  - symmetry implies reversibility, so when a natural process is asymmetrical that implies its leaving the range of reversibility, which may mean leaving a space or an interface
+    is time the unit base of change or is it an interim base between variance and potential?
+
   - to do:
     - include interface physics: how interfaces develop & how core functions can be derived for each interface
     - interfaces will attract other attributes until a new interface is necessary to capture extra attributes, acting like centers:

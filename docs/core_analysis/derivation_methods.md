@@ -60,6 +60,25 @@
       - what is divergence distance between generative paths for each object
       - example: "what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?"
 
+    - example of variance-based change:
+        - changing stabilization based on randomness
+        - changing interface development based on randomness
+        - changing systematization based on randomness
+        - as change increases
+          - what else changes
+          - what aspects of change are altered
+          - what core change functions develop or change
+          - where does change go if there isnt enough time to contain it
+          - what change rates change
+          - what stabilizes
+          - what patterns emerge
+          - what change cascades are triggered
+          - what changes develop into randomness
+          - what change combinations produce change rate/type/interface changes
+
+    - example of time-based change:
+      - changing position based on time 
+
   VIII. Functional analysis 
 
     - are there multiple directions to approach function derivation from?
