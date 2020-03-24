@@ -1,8 +1,10 @@
 # Bases
 
-  - there are conceptual bases (power), intent bases (motion, increase, efficiency), type bases (number type, variable type), structural bases (value, position, distance, set)
+  - there are conceptual bases (power), intent bases (motion, increase, efficiency), type bases (number type, variable type), structural bases (value, position, distance, set), change bases (rate, possibility/opportunity difference, randomness ratio, change interface stack, change type)
 
   - if the interface network (position of power with respect to balance, interfaces like intent/concept/structure) is static, there is a limited supply of change/potential/power in the universe/system, and change should be allocated non-randomly (priorities matter)
+
+  - if the interface network is not static (you can change the position of power with respect to balance, you can change base interfaces), then information should be standardized to a set of filtering interfaces, because the filters will host the most changes & changes to the filters will cause other changes
 
 
 ## Examples
@@ -19,7 +21,7 @@
     - example of potential-based change:
     
         - as potential (possible change) increases,
-          - what probabilities/possibilities become possible
+          - what probabilities/possibilities become possible (findable/generatable in structural dimensions/on the structural interface)
           - what possibilities become adjacent/distant
           
         - as potential changes, how do potential objects/types vary based on the unit of potential (possibility distance, distance between required limits & optional steps)
@@ -29,6 +31,9 @@
         - changing stabilization based on randomness
         - changing interface development based on randomness
         - changing systematization based on randomness
+        - changing object change based on a changeable interface (change stack, like changing orientation of an object within a system that is changing)
+        - changing change types
+
         - as change increases, what change objects (types/rules/rates/direction) alter position/connection/distance/existence?
           - what else changes
           - what aspects of change are altered
