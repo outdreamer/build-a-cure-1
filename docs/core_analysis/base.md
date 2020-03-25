@@ -48,8 +48,17 @@
       - the vectorized form of all change type features (a matrix) applied to objects in a standard shape
         (dimensions are mapped to shape objects like sub-systems, so a dimension like a particular change type would be applied to a shape object like an angle/corner, if their change types align)
 
-
     - this is in a space where time has been removed, indicating potential - is one type of change capable of being transformed into another? then point a can be connected to point b on the x-axis
+
+    - this is using potential as a proxy variable for embedded time, since if change is not possible, time cannot pass, so types of change or changes or change states that are causally linked & possible are adjacent, so changes in the x-axis indicate changes in type/state, but they may not be chronological, according to corresponding changes in time (if they dont change the set of possible events, time may not have passed, even if the change or change state or change type may have changed due to physics indicating probable transformations if left unattended or if some force is applied)
+
+    - two adjacent change states may not be chronological in time, if a lot of time is required to offset the loss of potential represented by one change state turning into another, or it may be impossible to get from one change state to another despite adjacence in the change interface, given amounts of time still possible in a system with that change applied
+
+    - one change state turning into another may require more time than can be injected, removal of time, reversal, or symmetry violation of time
+
+    - in euclidean space where the y-axis represents position, adjacence represents possibility as well - indicating that an object has to traverse every point on a continuous path between two points in order to get there - the same cant be said for the change interface, where one point may not be able to get to another point no matter how many transformations are done
+
+    - there may be symmetries and limits preventing certain changes from being possible, given a starting point, so each point on the change interface has a set of possible starting points, and traversing the change interface often means a set of points rather than a continuous function, so the set of points needs to be converted to a space where they can be a continuous function to describe time-based change
 
 
 ## Examples
