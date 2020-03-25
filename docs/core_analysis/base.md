@@ -78,7 +78,9 @@
         - map all positions/interfaces in prior state to current state to remove time that has passed since then
         - change definition of distance so all combinations are possible and adjacent to remove time cost to travel to them
         - remove filter determining loss of potential/change by mapping that filter to another one
-        - add variance-handlers to remove loss of potential executed by change cascades that take up time (buy more time by handling current & anticipating imminent change)
+        - add variance-handlers to restore potential lost bc of change cascades that take up time (buy more time by handling current & anticipating imminent change)
+        - acquire power (understanding) which is a proxy for potential (range of alternative options)
+        - remove limits (movement, information, boundaries, rules, structure, attributes) to enable new combinations
 
     - order-independent processes can be modeled in other spaces (generative functions where it doesnt matter which function you start with bc each function can generate the others)
 
