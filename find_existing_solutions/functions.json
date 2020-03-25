@@ -37,7 +37,7 @@
                     "differentiate",
                     "connect"
                 ],
-                "network": [],
+                "network": []
             },
             "boundary": {
                 "limit": [],
@@ -143,7 +143,7 @@
             },
             "compare": {
                 "differentiate": [],
-                "equalize": [],
+                "equalize": []
             }
         },
         "test_functions": {
@@ -163,7 +163,7 @@
         "incentive": [],
         "plan": [],
         "intend": [],
-        "theorize": [ "assume", "expect"],
+        "theorize": ["assume", "expect"],
         "strategize": [],
         "select": [],
         "explore": [],
@@ -226,7 +226,7 @@
             "angle"
         ],
         "interact": [
-            "cooperate"
+            "cooperate",
             "borrow",
             "trade",
             "share",
@@ -242,7 +242,7 @@
             "resolve",
             "clarify",
             "calculate",
-            "approximate",
+            "approximate"
         ],
         "dependency": [
             "require",
@@ -255,7 +255,7 @@
             "abstract": "generalize",
             "identify": "contextualize",
             "find": "filter/match",
-            "derive": "fit",
+            "derive": "fit"
         },
         "structure": [
             "group",
@@ -303,7 +303,7 @@
         "organize": [
             "delegate",
             "distribute",
-            "rearrange"
+            "rearrange",
             "structure",
             "standardize",
             "convert",

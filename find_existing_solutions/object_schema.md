@@ -12,7 +12,7 @@
 			"random": "",
 			"complex": "",
 			"trust": "",
-			"certainty": "",
+			"certainty": ""
 		},
 		"potential": {
 			"risk": "",
@@ -55,7 +55,7 @@
 			"balance": {},
 			"limit": {},
 			"filter": {},
-			"select": {},
+			"select": {}
 		},
 		"problem": {
 			"dependency": {},
@@ -73,8 +73,8 @@
 				"metric": {},
 				"identification": {},
 				"gap": {},
-				"limit": {},
-			},
+				"limit": {}
+			}
 		},
 		"question": {},
 		"answer": {},
