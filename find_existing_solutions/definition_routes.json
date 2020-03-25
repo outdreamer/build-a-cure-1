@@ -1,9 +1,20 @@
 {
-	"randomness": [
-		["lack", "info"],
-		["lack", "bias"],
-		["equal", "alternatives"],
-		["equal", "distribution"],
-		["diverse", "input"]
-	]
+	"randomness": {
+		"info": ["lack info", "lack bias"],
+		"structure": ["equal alternatives", "equal distribution", "diverse input"]
+	},
+	"power": {
+		"structure": ["alternatives", "connection hub", "input"],
+		"concept_structure": ["potential", "change potential", "change activation", "truth source", "truth access point", "truth access path"],
+		"concept": ["freedom", "independence"],
+		"info": ["energy"]
+	},
+	"equal": {
+		"structure": ["conditionally interchangeable", "absolutely interchangeable", "approximately interchangeable", "specifically interchangeable", "minimally distant", "efficiently convertable"]
+	},
+	"truth": {
+		"info": ["constant info", "aggregate info", "average info", "testable info", "measurable info", "storable info", "not impossible info"],
+		"intent": ["useful info", "relevant info", "maintainable info"],
+		"structure": ["adjacent info"]
+	},
 }

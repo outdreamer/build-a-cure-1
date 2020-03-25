@@ -3,7 +3,12 @@
 		"info": "power",
 		"info": "change",
 		"info": "constant",
-		"info": "potential"
+		"info": "potential",
+		"info": "resource",
+		"resource": "energy",
+		"energy": "input",
+		"input": "potential",
+		"potential": "power"
 	},
 	"function": {
 		"clarify": "resolve",

@@ -1,13 +1,17 @@
 def identify_interfaces(system):
 	''' identify interfaces in a system 
-		this includes:
-			- identifying relevant abstract interfaces
-			- identifying relevant general interfaces expected for a type 
-			- identifying relevant specific interfaces
 		- here we are identifying common inputs to functions in a system, which are candidates for interfaces
 		- to do:
+			- interface: a standard or base which highlights differences of a certain type for comparison, 
+				hosting changes within the range of that type so further changes within that type range can be compared,
+				frameable as a filter set
 			- add filters to identify variables that cause or provide a platform for other variables for develop
 	'''
+	''' identify abstract interface objects '''
+
+	''' identify general interfaces likely for this system '''
+
+	''' identify specific interfaces in a system '''
 	function_inputs = set()
 	object_dependencies = set()
 	if 'objects' in system:
