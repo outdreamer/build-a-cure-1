@@ -117,14 +117,11 @@ def get_codebase_functions():
 	if os.path.exists(output_name):
 		function_defs = get_data(output_name)
 		if function_defs:
-			print('type defs', type(function_defs))
 			if len(function_defs) > 0:
 				removed = True # remove_file(output_name) remove if you need to re-generate every time
 				if removed:
-					print('removed', removed)
 					new_defs = []
 					for fdef in function_defs.split('\n'):
-						print('fdef', fdef)
 						delimiter = '.py:def '
 						if delimiter in fdef:
 							''' validate that this is a function definition '''

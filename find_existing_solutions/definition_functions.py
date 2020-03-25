@@ -1,5 +1,33 @@
 from utils import *
 
+def get_object_metadata(object_name, object_type):
+	print('function::get_object_metadata')
+	''' object_name can be an abstract solution type string, or a solution step list '''
+	object_name = object_name if type(object_name) == str else ' '.join(object_name)
+	object_metadata = {
+		'objects': [], #'info_asymmetry', 
+		'functions': [], 
+		'steps': []
+	}
+	objects = get_objects_in_string(object_name)
+	functions = get_function_in_string(object_name)
+	if objects:
+		object_metadata['objects'] = objects #'info_asymmetry'
+	if functions:
+		object_metadata['functions'] = functions
+	if object_type == 'solution':
+		return object_metadata
+	object_type_path = ''.join([object_type, '.json'])
+	if os.path.exists(object_type_path):
+		object_metadata = get_data(object_type_path)
+		if object_metadata:
+			return object_metadata
+	''' otherwise construct the object '''
+	constructed_object = build_object(object_type, object_name)
+	if constructed_object:
+		return constructed_object
+	return False
+
 def get_concept_metadata(concept_name):
 	concepts = get_data('concepts.json')
 	if concepts:

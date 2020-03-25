@@ -94,3 +94,53 @@ def stringify_metadata(metadata_object):
 	print('function::stringify_metadata')
 	stringified = '_'.join([metadata_object.values()])
 	return stringified
+
+def get_function_in_string(string):
+	print('function::get_function_in_string')
+	found_functions = []
+	function_list = get_function_list()
+	if function_list:
+		words = string.replace(' ','_').split('_')
+		if len(words) > 0:
+			for word in words:
+				if word in function_list:
+					found_functions.append(word)
+	found_functions = set(found_functions)
+	if len(found_functions) > 0:
+		return found_functions
+	return False
+
+def get_objects_in_string(string):
+	''' solution_type = 'balance_info_asymmetry' '''
+	function_list = get_function_list()
+	if function_list:
+		words = string.replace(' ', '_').split('_')
+		if len(words) > 0:
+			objects = []
+			for word in words:
+				pos_type = get_pos(word)
+				if word not in function_list and pos_type != 'verb':
+					objects.append(word)
+			objects = set(objects)
+			if len(objects) > 0:
+				return objects
+	return False
+
+def get_function_list():
+	function_list = []
+	functions = get_data('functions.json')
+	if functions:
+		new_functions = flatten_dict(functions)
+		for key, values in new_functions.items():
+			function_list.append(key)
+			function_list.extend(values)
+		if len(function_list) > 0:
+			function_list = set(function_list)
+			return function_list
+	return False
+
+def get_type_words():
+	print('function::get_type_words')
+	''' return list of abstract/interface/structural words '''
+	type_words = ['info', 'symmetry']
+	return set(type_words)
