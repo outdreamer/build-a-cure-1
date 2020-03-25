@@ -1,0 +1,11 @@
+{
+	"problem": {
+		"specificity": [
+			["required", "functions"]
+		],
+		"intent": [
+			["required", "functions"],
+			["intents", "functions"]
+		]
+	}
+}

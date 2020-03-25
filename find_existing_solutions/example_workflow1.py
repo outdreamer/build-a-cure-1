@@ -557,19 +557,24 @@ def get_relevance_filters(relevance_intents, problem_object):
 			such as the name/function intents of functions using incentives as an input,
 			where the 'reason for the problem_step' is the item we've identified as relevant for the goal of 'find specific intent' for the problem_step
 	'''
-	search_intents = {
-		'specificity': [
-			['required', 'functions']
-		],
-		'intent': [
-			['required', 'functions'],
-			['intents', 'functions']
-		]
-	}
-	for relevance_intent in relevance_intents:
-		if relevance_intent in search_intents:
-			if type(search_intents[relevance_intent]) == list:
-				return search_intents[relevance_intent]
+	search_intents = get_data('search_intents.json')
+	if search_intents:
+		if 'problem' in search_intents:
+			'''
+			problem_search_intents = {
+				'specificity': [
+					['required', 'functions']
+				],
+				'intent': [
+					['required', 'functions'],
+					['intents', 'functions']
+				]
+			}
+			'''
+			for relevance_intent in relevance_intents:
+				if relevance_intent in search_intents['problem']:
+					if type(search_intents['problem'][relevance_intent]) == list:
+						return search_intents['problem'][relevance_intent]
 	return False
 
 def get_relationship_between_objects(source, target):
@@ -669,25 +674,34 @@ def find_type(problem_object, solution_objects):
 	'''
 
 	''' this is a specific solution given that we have a system object 'info' defined and find_* functions for various info types, as a placeholder for codebase queries '''
-	object_defs = get_data('object_schema.md')
-	if object_defs:
-		for solution_object in solution_objects:
-			if solution_object in object_defs:
-				solution_def = object_defs[solution_object]
-				system_definition = solution_def['system_definition'] if 'system_definition' in solution_def else None
-				if 'core_functions' in solution_def:
-					for abstract_operation, specific_operations in solution_def['core_functions'].items():
-						for function_name in globals():
-							function_code = 'query' # to do: get codebase function code
-							function_params = 'object_id' # to do: get codebase function code
-							if abstract_operation in function_name:
-								if problem_object in function_name or problem_object in function_code or problem_object in function_params:
-									return solution_object
-							for specific_operation in specific_operations:
-								if specific_operation in function_name:
-									if problem_object in function_name or problem_object in function_code or problem_object in function_params:
-										''' this problem_object 'incentive' is a type of system object 'info' '''
-										return solution_object
+
+	codebase_functions = get_codebase_functions()
+	if codebase_functions:
+		print('get_codebase_functions', codebase_functions)
+		object_defs = get_data('object_schema.json')
+		if object_defs:
+			print('object_defs', object_defs)
+			for solution_object in solution_objects:
+				for key, values in object_defs.items():
+					''' key = 'interface_objects' '''
+					for k, v in values.items():
+						if k == solution_object:
+							print('solution_object', solution_object)
+							solution_def = object_defs[key][solution_object]
+							print('solution_def', solution_def)
+							system_definition = solution_def['definition_system'] if 'definition_system' in solution_def else None
+							if 'core_functions' in solution_def:
+								for abstract_operation, specific_operations in solution_def['core_functions'].items():
+									for function in codebase_functions: # globals():
+										for item in ['name', 'params', 'code']:
+											if item in function:
+												if abstract_operation in function[item] and problem_object in function[item]:
+													return solution_object
+												for specific_operation in specific_operations:
+													if specific_operation in function[item]:
+														if problem_object in function[item]:
+															''' this problem_object 'incentive' is a type of system object 'info' '''
+															return solution_object
 	return False
 	solution_defs = Word(solution_object).definitions
 	print('solution_defs', solution_object, solution_defs)
@@ -941,6 +955,7 @@ def get_function_list():
 	if functions:
 		new_functions = flatten_dict(functions)
 		for key, values in new_functions.items():
+			function_list.append(key)
 			function_list.extend(values)
 		if len(function_list) > 0:
 			function_list = set(function_list)
@@ -982,7 +997,7 @@ def get_data(file_path):
 	if os.path.exists(file_path):
 		objects = None
 		with open(file_path, 'r') as f:
-			objects = json.load(f)
+			objects = json.load(f) if '.json' in file_path else f.read()
 			f.close()
 		if objects:
 			return objects
@@ -996,6 +1011,45 @@ def get_pos(word):
 		else:
 			return 'noun'
 	return False
+
+def get_codebase_functions():
+	import subprocess
+	cwd = os.getcwd()
+	output_name = '/'.join([cwd, 'code_function_names.txt'])
+	cmd = [f"""grep -r 'def ' {cwd} --include='*.py' >> {output_name}"""]
+	output = subprocess.check_output(cmd,shell=True)
+	''' /Users/jjezewski/Documents/build_a_cure/find_existing_solutions/get_vars.py:def get_partial_match(av, word, match_type): '''
+	if os.path.exists(output_name):
+		function_defs = get_data(output_name)
+		if function_defs:
+			print('type defs', type(function_defs))
+			if len(function_defs) > 0:
+				removed = remove_file(output_name)
+				if removed:
+					print('removed', removed)
+					new_defs = []
+					for fdef in function_defs.split('\n'):
+						print('fdef', fdef)
+						delimiter = '.py:def '
+						if delimiter in fdef:
+							''' validate that this is a function definition '''
+							function_items = fdef.split(delimiter)
+							function = function_items[1].replace('):', '')
+							print('function', function)
+							function_items = function.split('(')
+							if len(function_items) == 2:
+								function = {'name': function_items[0], 'params': function_items[1].replace(' ','').split(',')}
+								new_defs.append(function)
+					if len(new_defs) > 0:
+						return new_defs
+	return False
+
+def remove_file(file_path):
+	if os.path.exists(file_path):
+		os.remove(file_path)
+		if os.path.exists(file_path):
+			return False
+	return True
 
 problem_def = get_data('problem.json')
 problem_metadata = get_problem_metadata(problem_def)

@@ -248,15 +248,6 @@
             "require",
             "alternate"
         ],
-        "core": {
-            "build": "fulfill",
-            "apply": "inject/depend",
-            "change": "process",
-            "abstract": "generalize",
-            "identify": "contextualize",
-            "find": "filter/match",
-            "derive": "fit"
-        },
         "structure": [
             "group",
             "split",

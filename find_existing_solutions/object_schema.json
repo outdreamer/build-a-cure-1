@@ -34,7 +34,17 @@
 		},
 		"info": {
 			"definition_system": "structure",
-			"core_functions": {"find": ["get"], "match": [], "apply": [], "fill": []}
+			"core_functions": {"find": ["get"], "match": [], "apply": [], "fill": []},
+			"core_definitions": {
+	            "build": "fulfill",
+	            "apply": "inject/depend",
+	            "change": "process",
+	            "organize": "structure",
+	            "abstract": "generalize",
+	            "identify": "contextualize",
+	            "find": "filter/match",
+	            "derive": "fit"
+	        }
 		},
 		"system": {
 			"system": {},
