@@ -5,6 +5,43 @@ from textblob import TextBlob, Sentence, Word, WordList
 from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
 
+def find_subdict_in_dict(function_dict, found_dict, search_term):
+	for k, v in function_dict.items():
+		if search_term in k:
+			found_dict[k] = v
+		else:
+			if type(v) == list:
+				for value in v:
+					if search_term in value:
+						found_dict[k] = value
+			elif type(v) == str:
+				if search_term in v:
+					found_dict[k] = v
+			elif type(v) == dict:
+				found_dict = find_subdict_in_dict(v, found_dict, search_term)
+	if found_dict:
+		return found_dict
+	return False
+
+def find_functions_in_dict(function_dict, found_functions, search_term):
+	for k, v in function_dict.items():
+		if search_term in k:
+			found_functions.append(k)
+		else:
+			if type(v) == list:
+				for value in v:
+					if search_term in value:
+						found_functions.append(value)
+			elif type(v) == str:
+				if search_term in v:
+					found_functions.append(v)
+			elif type(v) == dict:
+				found_functions = find_functions_in_dict(v, found_functions, search_term)
+	if found_functions:
+		if len(found_functions) > 0:
+			return found_functions
+	return False
+
 def flatten_dict(problem_metadata):
 	flattened = {}
 	for key, values in problem_metadata.items():

@@ -1,4 +1,7 @@
 {
+	"info": {
+		"system": "structure"
+	},
 	"randomness": {
 		"info": ["lack info", "lack bias"],
 		"structure": ["equal alternatives", "equal distribution", "diverse input"]

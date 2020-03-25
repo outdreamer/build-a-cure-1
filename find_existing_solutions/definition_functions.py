@@ -1,11 +1,40 @@
 from utils import *
 
+def get_concept_metadata(concept_name):
+	concepts = get_data('concepts.json')
+	if concepts:
+		if concept_name in concepts:
+			concept = concepts[concept_name]
+			''' get definition for concept '''
+			definitions = get_data('definition_routes.json')
+			if definitions:
+				if concept_name in definitions:
+					concept['definitions'] = definitions[concept_name]
+			if 'functions' not in concept:
+				concept['functions'] = []
+			functions = get_data('functions.json')
+			if functions:
+				if concept_name in functions['interface_functions']['concept_functions']:
+					concept['functions'].extend(functions['interface_functions']['concept_functions'][concept_name])
+				rules = get_data('system_logic_rules.json')
+				if rules:
+					if concept_name in ' '.join(rules.keys()):
+						for key, val in rules.items():
+							if concept_name in key:
+								if type(val) == list:
+									concept['functions'].extend(val)
+				concept_functions = find_functions_in_dict(functions, [], search_term)
+				if concept_functions:
+					concept['functions'].extend(concept_functions)
+			return concept
+	''' to do: make call to define concept if no definition is found '''
+	return False
+
 def get_function_metadata(fdef, delimiter):
 	function_items = fdef.split(delimiter)
 	if len(function_items) > 0:
 		function = function_items[1].replace('):', '').split('(')
 		if len(function) > 1:
-			print('function', function)
 			function_name = function[0]
 			syntax_function_name = ''.join(['def ', function_name, '('])
 			function_params = function[1].replace(' ','').split(',')

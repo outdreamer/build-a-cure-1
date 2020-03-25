@@ -3,41 +3,37 @@
 		"dimensions": []
 	},
 	"variables": [],
-	"problem_definition": {
-		"statement": ""
+	"definition_statement": "",
+	"types": {
+		"default": "",
+		"related": [],
+		"component": [],
+		"interface": [],
+		"adjacent": []
 	},
-	"problem_metadata": {
-		"types": {
-			"default": "",
-			"related": [],
-			"component": [],
-			"interface": [],
-			"adjacent": []
-		},
-		"dependencies": {
-			"assumptions": [],
-			"requirements": [],
-			"inputs": [],
-			"outputs": []
-		},
-		"functions": {
-			"intents": []
-		},
-		"cause": {
-			"intent": {},
-			"function": {},
-			"structures": {
-				"network": {},
-				"loop": {},
-				"alternate": {},
-				"hub": {},
-				"gap": {},
-				"limit": {},
-				"direction": {
-					"one-way": {},
-					"two-way": {}
-				}
+	"dependencies": {
+		"assumptions": [],
+		"requirements": [],
+		"inputs": [],
+		"outputs": []
+	},
+	"functions": {
+		"intents": []
+	},
+	"cause": {
+		"intent": {},
+		"function": {},
+		"structures": {
+			"network": {},
+			"loop": {},
+			"alternate": {},
+			"hub": {},
+			"gap": {},
+			"limit": {},
+			"direction": {
+				"one-way": {},
+				"two-way": {}
 			}
-		}	
+		}
 	}
 }

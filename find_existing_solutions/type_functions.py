@@ -46,9 +46,9 @@ def find_type(problem_object, solution_objects):
 							print('solution_object', solution_object)
 							solution_def = object_defs[key][solution_object]
 							print('solution_def', solution_def)
-							system_definition = solution_def['definition_system'] if 'definition_system' in solution_def else None
-							if 'core_functions' in solution_def:
-								for abstract_operation, specific_operations in solution_def['core_functions'].items():
+							system_definition = solution_def['definitions']['system'] if 'definitions' in solution_def and 'system' in solution_def['definitions'] else None
+							if 'functions' in solution_def:
+								for abstract_operation, specific_operations in solution_def['functions'].items():
 									for function in codebase_functions: # globals():
 										for item in ['name', 'params', 'code']:
 											if item in function:
@@ -107,6 +107,10 @@ def get_codebase_functions():
 	import subprocess
 	cwd = os.getcwd()
 	output_name = '/'.join([cwd, 'code_function_names.txt'])
+	if os.path.exists(output_name):
+		function_defs = get_data(output_name)
+		if function_defs:
+			return function_defs
 	cmd = [f"""grep -r 'def ' {cwd} --include='*.py' >> {output_name}"""]
 	output = subprocess.check_output(cmd,shell=True)
 	''' /Users/jjezewski/Documents/build_a_cure/find_existing_solutions/get_vars.py:def get_partial_match(av, word, match_type): '''
@@ -115,7 +119,7 @@ def get_codebase_functions():
 		if function_defs:
 			print('type defs', type(function_defs))
 			if len(function_defs) > 0:
-				removed = remove_file(output_name)
+				removed = True # remove_file(output_name) remove if you need to re-generate every time
 				if removed:
 					print('removed', removed)
 					new_defs = []

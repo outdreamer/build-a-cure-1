@@ -1,0 +1,12 @@
+{
+	"core": {
+	    "build": "fulfill",
+	    "apply": "inject/depend",
+	    "change": "process",
+	    "organize": "structure",
+	    "abstract": "generalize",
+	    "identify": "contextualize",
+	   	"find": "filter/match",
+	    "derive": "fit"
+	}
+}

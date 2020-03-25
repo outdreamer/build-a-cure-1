@@ -7,7 +7,18 @@ from type_functions import *
 from function_functions import get_functions_for_object_combination, get_function_prerequisites
 from definition_functions import get_problem_metadata
 
-''' OBJECT DEFINITION '''
+'''
+	Workflow 1a: Transform into combination of solved problems
+	Workflow 1b: Transform into an interface problem type (problem type that can frame all problems, like route optimization, a market trade problem, an inefficiency, or a filtering problem)
+		This version skips the problem type analysis & just fetches a solution for common problem types with which other problems can be framed
+'''
+
+''' to do:
+	- finish apply_solutions
+	- abstract method of mapping problem-solution object
+	- write insight-application function 
+	- then do convert_to_solved_problem
+'''
 
 def condense_problem_statement(problem_metadata):
 	print('function::condense_problem_statement')
@@ -24,27 +35,12 @@ def condense_problem_statement(problem_metadata):
 				 		- since the persuader is specifically applying the 'giving' function, not applying just any function
 	'''
 	condensed_problem_statement = 'change_position_of_subject'
-	if 'problem_definition' in problem_metadata:
-		if 'statement' in problem_metadata['problem_definition']:
-			if condensed_problem_statement:
-					return condensed_problem_statement
+	if 'definition_statement' in problem_metadata:
+		if condensed_problem_statement:
+			return condensed_problem_statement
 	return False
 
-'''
-	Workflow 1a: Transform into combination of solved problems
-	Workflow 1b: Transform into an interface problem type (problem type that can frame all problems, like route optimization, a market trade problem, an inefficiency, or a filtering problem)
-		This version skips the problem type analysis & just fetches a solution for common problem types with which other problems can be framed
-'''
-
-''' to do:
-	- finish apply_solutions
-	- abstract method of mapping problem-solution object
-	- write insight-application function 
-	- then do convert_to_solved_problem
-'''
-
 ''' the problem type for this example: persuasion (make an argument that changes a behavior metric (like direction) '''
-
 '''
 {
 	"problem_space": {
@@ -54,27 +50,24 @@ def condense_problem_statement(problem_metadata):
 			"efficiency"
 		]
 	},
-	"problem_definition": {
-		"statement": "move other agent to new position (despite dis-incentives like inefficiencies & costs)"
-	},
-	"problem_metadata": {
-		"types": {
+	"definition_statement": "move other agent to new position (despite dis-incentives like inefficiencies & costs)"
+	"types": {
 			"default": "connecting points to form an argument",
 			# related problems to be filled in with insights['related_problems'] of insights, since insights are relationships between objects
 			"related": [], 
 			"component": ["make point"],
 			# adjacent problems are low-degree transforms away from this problem 
 			"adjacent": ["forming a cohesive system"]
-		},
-		"dependencies": {
+	},
+	"dependencies": {
 			"variables": ["subject_position"],
 			"objects": ["persuader agent"],
 			"assumptions": ["source and target position are different"],
 			"requirements": ["info about the subject's resources, incentives, intents, and functions"],
 			"inputs": ["subject"],
 			"outputs": ["path_from_source_to_target_position"]
-		},
-		"functions": {
+	},
+	"functions": {
 			"intents": ["connect"],
 			"generation_function": [
 				"convert conclusions to positions", # to generate the 'persuasion' problem
@@ -86,15 +79,13 @@ def condense_problem_statement(problem_metadata):
 				"identify inability of accessible functions to move to target position"
 			],
 			"interaction_functions": ["change_position"]
-		},
-		"cause": {}	
-	}
+	},
+	"cause": {}	
 }
 '''
 
 def solve_problem_with_problem_type_conversion(problem_metadata):
 	print('function::solve_problem_with_problem_type_conversion')
-
 	converted_problem = None
 	if problem_metadata:
 		''' 1a. get insights, including any related solutions '''
@@ -146,8 +137,6 @@ def solve_problem_with_problem_type_conversion(problem_metadata):
 							solved = test_solution(problem_metadata, solved_original_problem)
 							return solved
 	return False
-
-''' APPLY DEFINITION '''
 
 def apply_solution_to_problem(problem_metadata, abstract_solution_type):
 	print('function::apply_solution_to_problem', abstract_solution_type)
@@ -246,8 +235,8 @@ def convert_solution_steps_to_problem_steps(problem_metadata, solution_metadata)
 			'efficiencies'
 		}
 	'''
-	print('problem objects', problem_metadata['problem_metadata']['dependencies'])
-	if 'objects' in problem_metadata['problem_metadata']['dependencies'] and 'objects' in solution_metadata:
+	print('problem objects', problem_metadata)
+	if 'objects' in problem_metadata and 'objects' in solution_metadata:
 		object_map = get_object_map(problem_metadata, solution_metadata)
 		print('object_map', object_map)
 		if object_map:
@@ -268,15 +257,17 @@ def convert_solution_steps_to_problem_steps(problem_metadata, solution_metadata)
 					}
 				'''
 				print('solution_step', solution_step)
-				abstract_problem_step = get_problem_solution_step(object_map, solution_step)
-				relevant_step = get_specific_step(solution_step, abstract_problem_step, problem_metadata)
-				if relevant_step:
-					problem_steps.append(relevant_step)
+				abstract_problem_step = convert_solution_to_problem_step(object_map, solution_step)
+				if abstract_problem_step:
+					specific_problem_step = get_specific_solution(abstract_problem_step, problem_metadata)
+					if specific_problem_step:
+						print('specific_problem_step', specific_problem_step)
+						problem_steps.append(specific_problem_step)
 			if len(problem_steps) > 0:
 				return problem_steps
 	return False
 
-def get_problem_solution_step(object_map, solution_step):
+def convert_solution_to_problem_step(object_map, solution_step):
 	''' fix processing '''
 	problem_step = []
 	for solution_word in solution_step.split(' '):
@@ -290,10 +281,11 @@ def get_problem_solution_step(object_map, solution_step):
 		return ' '.join(problem_step)
 	return solution_step
 
-def get_specific_step(solution_step, abstract_problem_step, problem_metadata):
+def get_specific_solution(abstract_solution, problem_metadata):
+	print('function::get_specific_solution')
 	'''
 		to do: decide if you want to return interim version in dict structure 
-		4. then apply modifiers to make abstract_problem_steps relevant to problem with get_relevant_solution():
+		4. then apply modifiers to make abstract_problem_steps relevant to problem with get_specific_solution():
 			relevant_problem_step = 'find reasons/efficiencies/incentives/intents to change position'
 
 		- with matching problem objects, apply solution_type to get solution
@@ -306,11 +298,6 @@ def get_specific_step(solution_step, abstract_problem_step, problem_metadata):
 				# balance info
 					- map some reason to change (safety) with some reason to stay (safety)
 	'''
-	specific_steps = {}
-	specific_problem_step = get_relevant_solution(abstract_problem_step, problem_metadata)
-	print('specific_problem_step', specific_problem_step)
-	if specific_problem_step:
-		specific_steps[solution_step] = specific_problem_step
 	'''
 	solution_steps = ['find_info', 'find_info_asymmetry', 'balance_info']
 	object_map = {'info': ['incentives', 'efficiencies', 'intents']}
@@ -318,14 +305,6 @@ def get_specific_step(solution_step, abstract_problem_step, problem_metadata):
 		'find_info': 'find_incentives_to_change_position'
 	}
 	'''
-	if specific_steps:
-		return specific_steps
-	return False
-
-
-def get_relevant_solution(abstract_solution, problem_metadata):
-	print('function::get_relevant_solution')
-
 	''' convert abstract_solution = 'find_incentives' into modified relevant solution like 'find incentives to change position', 
 		which is highly relevant to the condensed problem definition ("change_position_of_subject")
 		- by adding modifiers, we are answering the question: 
@@ -369,13 +348,11 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 							and so the impact of that step is clearer/more measurable
 
 	problem_metadata = {
-		"problem_metadata": {
-			"functions": {
-				"interactions": {
-					"change_position": {
-						"input": {
-							"required": ["incentive", "efficiency", "intent"]
-						}
+		"functions": {
+			"interactions": {
+				"change_position": {
+					"input": {
+						"required": ["incentive", "efficiency", "intent"]
 					}
 				}
 			}
@@ -390,74 +367,51 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 
 	'''
 	relevant_solutions = []
-	abstract_solution_words = abstract_solution.split('_')
 	relevance_intents = ['specificity', 'intent']
 	relevance_filters = get_relevance_filters(relevance_intents, problem_metadata) # getting filters for a certain type of modification
 	if relevance_filters:
 		for relevance_filter in relevance_filters:
-			other_filters = relevance_filter
-			''' get relevant items from flattened & order in relevant_list '''
-			relevant_list = []
-			last_item_values = []
-			for key, value in problem_metadata['problem_metadata'].items():
-				if key in relevance_filter: # functions or whichever filtering key comes first in dict
-					other_filters.remove(key)
-					if type(value) == dict:
-						for function_type, functions in value.items():
-							if type(functions) == dict:
-								flattened_sub_dict = flatten_dict(functions)
-								for rf in other_filters:
-									if rf in flattened_sub_dict.keys() or rf in flattened_sub_dict.values():
-										''' check if dict can cast to str or dump json, check that this sub-dict is worth pursuing '''
-										for function_name, function_metadata in functions.items():
-											if type(function_metadata) == dict:
-												flattened_function = flatten_dict(function_metadata)
-												if flattened_function:
-													if rf in flattened_function:
-														for attribute, attribute_metadata in function_metadata.items():
-															if type(attribute_metadata) == dict:
-																for attribute_name, attribute_values in attribute_metadata.items():
-																	if attribute_name == rf: # required
-																		if type(attribute_values) == list:
-																			relevant_list = [key, function_type, function_name, attribute, attribute_name]
-																			last_item_values = attribute_values
-			''' relevant_list = ['functions', 'interactions', 'change_position', 'input', 'required'] '''
-			print('relevant_list', relevant_list)
-			if len(relevant_list) > 0:
-				''' find the adjacent object name for the target object (required function inputs) which should be at the end of this list '''
-				for item in relevance_filter:
-					if item in relevant_list:
-						relevant_list.remove(item)
-				''' to do: given that the object of interest is a function (highest level key of problem_metadata), we should be able to derive that you wouldnt want to use the function type name '''
-				# relevant_list is now ['interactions', 'change_position', 'input']
-				''' remove object types from relevant_list, because we're trying to isolate a specific name that is most adjacent to object of interest (required function inputs) '''
-				for item in relevant_list:
-					item_object = get_objects_in_string(item)
-					if item_object:
-						if item == item_object or item in item_object:
-							if item in relevant_list:
-								relevant_list.remove(item)
-				# relevant_list is now ['interactions', 'change_position']
-				''' given that we know the target is at the end of the list, the most adjacent object to the target is the last item in the list with objects & relevance filters removed '''
-				if len(relevant_list) > 0:
-					adjacent_name = relevant_list[-1]
-					for abstract_solution_word in abstract_solution_words: # [find, incentive]
-						if abstract_solution_word in last_item_values:
-							'''
-							if 'incentive' in ["incentive", "efficiency", "intent"],
-								then we found a word from the abstract solution "incentive" 
-								in the problem_metadata last_item_values (required inputs to change_position function), 
-								therefore fulfilling the relevance_filter ["required", "functions"]
-							'''
-							''' to do: 
-								- save object_type items for this call to get_relationship_between_objects()
-								- given that this is an input, the relationship function between an input and a function is 'in order to', or briefly 'to'
-							'''
-							join_keyword = get_relationship_between_objects('input', 'function')
-							if adjacent_name is not None:
-								relevant_solution = '_'.join([abstract_solution_words, join_keyword, adjacent_name])
+			''' get relevant items from flattened & order in relevant_path '''
+			relevant_path, specific_attribute_values = get_relevant_path(problem_metadata, relevance_filters)
+			if relevant_path and specific_attribute_values:
+				print('relevant_path', relevant_path)
+				if len(relevant_path) > 0:
+					''' find the adjacent object name for the target object (required function inputs) which should be at the end of this list '''
+					for item in relevance_filter:
+						if item in relevant_path:
+							relevant_path.remove(item)
+					''' to do: given that the object of interest is a function (highest level key of problem_metadata), 
+						we should be able to derive that you wouldnt want to use the function type name '''
+					# relevant_path is now ['interactions', 'change_position', 'input']
+					''' remove object types from relevant_path, because we're trying to isolate a specific name 
+						that is most adjacent to object of interest (required function inputs) '''
+					for item in relevant_path:
+						item_object = get_objects_in_string(item)
+						if item_object:
+							if item == item_object or item in item_object:
+								if item in relevant_path:
+									relevant_path.remove(item)
+					# relevant_path is now ['interactions', 'change_position']
+					''' given that we know the target is at the end of the list, 
+					the most adjacent object to the target is the last item in the list with objects & relevance filters removed '''
+					if len(relevant_path) > 0:
+						abstract_solution_words = abstract_solution.split('_')
+						for abstract_solution_word in abstract_solution_words: # [find, incentive]
+							if abstract_solution_word in specific_attribute_values:
+								'''
+								if 'incentive' in ["incentive", "efficiency", "intent"],
+									then we found a word from the abstract solution "incentive" 
+									in the problem_metadata specific_attribute_values (required inputs to change_position function), 
+									fulfilling the relevance_filter ["required", "functions"] for ['specificity', 'intent'] with specific intents
+								'''
+								''' to do: 
+									- save object_type items for this call to get_relationship_between_objects()
+									- given that this is an input, the relationship function between an input and a function is 'in order to', or briefly 'to'
+								'''
+								join_keyword = get_relationship_between_objects('input', 'function') 
+								# the input's intent is to apply the function, so 'incentive' is to 'change_position', so return 'to'
+								relevant_solution = '_'.join([abstract_solution_words, join_keyword, relevant_path[-1]])
 								''' relevant_solution = 'find_incentives_to_change_position" '''
-								print('relevant_solution', relevant_solution)
 								relevant_solutions.append(relevant_solution)
 	if len(relevant_solutions) > 0:
 		return relevant_solutions
@@ -477,6 +431,41 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 			input_position = 3
 			required_position = 4
 	'''
+
+def get_relevant_path(problem_metadata, relevance_filters):
+	other_filters = relevance_filters
+	relevant_path = []
+	specific_attribute_values = []
+	for key, value in problem_metadata.items():
+		if key in relevance_filters: # functions or whichever filtering key comes first in dict
+			other_filters.remove(key)
+			if type(value) == dict:
+				for function_type, functions in value.items():
+					if type(functions) == dict:
+						flattened_sub_dict = flatten_dict(functions)
+						for rf in other_filters:
+							''' if rf = 'required' in functions '''
+							if rf in ' '.join(flattened_sub_dict.keys()) or rf in ' '.join(flattened_sub_dict.values()):
+								''' check if dict can cast to str or dump json, check that this sub-dict is worth pursuing '''
+								for function_name, function_metadata in functions.items():
+									''' function_name = change_position '''
+									if type(function_metadata) == dict:
+										flattened_function = flatten_dict(function_metadata)
+										if flattened_function:
+											if rf in ' '.join(flattened_function.keys()) or rf in ' '.join(flattened_function.values()):
+												''' if rf = 'required' in {"input": {"required": ["incentive", "efficiency", "intent"]}} '''
+												for attribute, attribute_metadata in function_metadata.items():
+													''' attribute = 'input' '''
+													if type(attribute_metadata) == dict:
+														for attribute_name, specific_attribute_values in attribute_metadata.items():
+															''' attribute_name = 'required' '''
+															if attribute_name == rf: # required
+																if type(specific_attribute_values) == list:
+																	relevant_path = [key, function_type, function_name, attribute, attribute_name]
+																	''' relevant_path = ['functions', 'interactions', 'change_position', 'input', 'required'] '''
+	if len(relevant_path) > 0 and len(specific_attribute_values) > 0:
+		return relevant_path, specific_attribute_values
+	return False, False
 
 def get_relevance_filters(relevance_intents, problem_object):
 
@@ -521,18 +510,19 @@ def get_relationship_between_objects(source, target):
 
 def get_brief_keyword(keyword):
 	print('function::get_brief_keyword')
+	''' whats the relationship between keywords 'function' and 'input'? intent (you use the input to trigger the function) '''
 	return 'to'
 
 def get_object_map(problem_metadata, solution_metadata):
 	print('function::get_object_map')
 	# solution_objects = ['info', 'asymmetry', 'info_asymmetry']
 	object_map = {}
-	problem_objects = problem_metadata['problem_metadata']['dependencies']['objects']
+	problem_objects = problem_metadata['objects']
 	for problem_object in problem_objects:
 		matched_solution_object = find_matching_object_in_problem_space(problem_metadata, problem_object, solution_metadata)
 		if matched_solution_object:
 			object_map[problem_object] = matched_solution_object
-	problem_functions = problem_metadata['problem_metadata']['functions']
+	problem_functions = problem_metadata['functions']
 	for problem_function in problem_functions:
 		matched_solution_function = find_matching_object_in_problem_space(problem_metadata, problem_function, solution_metadata)
 		if matched_solution_function:
@@ -568,12 +558,12 @@ def find_matching_object_in_problem_space(problem_metadata, problem_object, solu
 		return solution_object
 	matched_problem_object = {}
 	if matched_problem_object:
-		new_problem_solution_map = makes_sense(problem_metadata, problem_object, matched_problem_object)
+		new_problem_solution_map = makes_sense(problem_metadata, problem_object, matched_problem_object, solution_metadata['objects'])
 		if new_problem_solution_map:
 			return new_problem_solution_map
 	return False
 
-def makes_sense(problem_metadata, problem_object, matched_problem_object):
+def makes_sense(problem_metadata, problem_object, matched_problem_object, solution_objects):
 	print('function::makes_sense')
 	''' 
 		this is basically a system structure-fitting function, with logically consistency/validity checks
@@ -586,47 +576,51 @@ def makes_sense(problem_metadata, problem_object, matched_problem_object):
 		- this function requires that the system being checked against is already formatted by its metadata (object/function/attributes)
 		- we're looking for the first violation of problem space (problem_metadata) logic rules that the solution_object 
 			(object like 'incentive', attribute like 'relevance or function like 'combine') 
-			has when applied to the problem_metadata system
+			has when applied to the problem_metadata system according to its matching problem object
 
 		- in addition to the system object rules, specific rules of problem space logic can apply
 			- the success metric of the problem needs to be improved by the solution, if the solution makes sense when applied to that problem space
 	'''
-	logical_rules = get_data('system_logic_rules.json')
-	if logical_rules:
-		new_problem_solution_map = {}
-		attributes_to_check = ['type']
-		sense = 0
-		for attribute in matched_problem_object[problem_object]:
-			if attribute in problem_metadata:
-				''' standard definition validation '''
-				if solution_object in problem_metadata[attribute]:
-					''' is 'info' included in problem['type'] list? '''
-					sense += 1
-				if solution_object in stringify_metadata(problem_metadata):
-					''' is 'reason' in 'info' solution object metadata? '''
-					sense += 1
-				if problem_object in stringify_metadata(solution_metadata):
-					''' is 'reason' in 'info' solution object metadata? '''
-					sense += 1
-		if sense > 0:
-			new_problem_solution_map[problem_object] = matched_problem_object[o]
-		if new_problem_solution_map:
-			return new_problem_solution_map 
+	for solution_object in solution_objects:
+		logical_rules = get_data('system_logic_rules.json')
+		if logical_rules:
+			new_problem_solution_map = {}
+			attributes_to_check = ['type']
+			sense = 0
+			for attribute in matched_problem_object[problem_object]:
+				if attribute in problem_metadata:
+					''' standard definition validation '''
+					if solution_object in problem_metadata[attribute]:
+						''' is 'info' included in problem['type'] list? '''
+						sense += 1
+					if solution_object in stringify_metadata(problem_metadata):
+						''' is 'reason' in 'info' solution object metadata? '''
+						sense += 1
+					if problem_object in stringify_metadata(solution_metadata):
+						''' is 'reason' in 'info' solution object metadata? '''
+						sense += 1
+			if sense > 0:
+				new_problem_solution_map[problem_object] = matched_problem_object[o]
+			if new_problem_solution_map:
+				return new_problem_solution_map 
 	return False
 
 def get_object_metadata(object_name, object_type):
 	print('function::get_object_metadata')
 	''' object_name can be an abstract solution type string, or a solution step list '''
 	object_name = object_name if type(object_name) == str else ' '.join(object_name)
+	object_metadata = {
+		'objects': [], #'info_asymmetry', 
+		'functions': [], 
+		'steps': []
+	}
+	objects = get_objects_in_string(object_name)
+	functions = get_function_in_string(object_name)
+	if objects:
+		object_metadata['objects'] = objects #'info_asymmetry'
+	if functions:
+		object_metadata['functions'] = functions
 	if object_type == 'solution':
-		objects = get_objects_in_string(object_name)
-		functions = get_function_in_string(object_name)
-		if objects:
-			object_metadata = {
-				'objects': objects, #'info_asymmetry', 
-				'functions': functions, 
-				'steps': []
-			}
 		return object_metadata
 	object_type_path = ''.join([object_type, '.json'])
 	if os.path.exists(object_type_path):

@@ -6,163 +6,155 @@
 			"efficiency"
 		]
 	},
-	"problem_definition": {
-		"statement": "move other agent to new position (despite dis-incentives like inefficiencies & costs)"
+	"definition_statement": "move other agent to new position (despite dis-incentives like inefficiencies & costs)",
+	"types": {
+		"default": "connecting points to form an argument",
+		"related": [], 
+		"component": [
+			"make point",
+			"draw conclusion",
+			"connect points",
+			"differentiate incentives & efficiencies",
+			"check if point complies with intent",
+			"check if point complies with contrary/neutralizing intents",
+			"check if point emphasizes benefit or cost"
+		],
+		"adjacent": [
+			"forming a cohesive system",
+			"checking a point for compliance with system such as logic or common sense or facts"
+		]
 	},
-	"problem_metadata": {
-		"types": {
-			"default": "connecting points to form an argument",
-			"related": [], 
-			"component": [
-				"make point",
-				"draw conclusion",
-				"connect points",
-				"differentiate incentives & efficiencies",
-				"check if point complies with intent",
-				"check if point complies with contrary/neutralizing intents",
-				"check if point emphasizes benefit or cost"
-			],
-			"adjacent": [
-				"forming a cohesive system",
-				"checking a point for compliance with system such as logic or common sense or facts"
-			]
-		},
-		"dependencies": {
-			"variables": [
-				"subject_position",
-				"subject_benefits_current_position",
-				"subject_costs_current_position",
-				"persuader_position",
-				"persuader_benefits_current_position",
-				"persuader_costs_current_position",
-				"incentives",
-				"efficiencies",
-				"system"
-			],
-			"objects": [
-				"persuader agent",
-				"subject agent",
-				"position",
-				"benefit",
-				"cost", 
-				"incentive",
-				"efficiency"
-			],
-			"assumptions": [
-				"source and target position are different",
-				"its possible to move the subject to the target position",
-				"theres a reason why the subject hasnt already moved to the target position",
-				"the subject cant get to the target position with accessible/core functions",
-				"there is some benefit to move the subject to the target position",
-				"there is some cost to move the subject to the target position",
-				"the movement benefit is greater than the movement cost, for the persuader and/or the subject"
-			],
-			"requirements": [
-				"information about the subject's resources, incentives, intents, and functions",
-				"information about the system efficiencies and incentives",
-				"information about source and target positions"
-			],
-			"inputs": [
-				"subject",
-				"persuader",
-				"system",
-				"source_position",
-				"target_position"
-			],
-			"outputs": [
-				"path_from_source_to_target_position"
-			]
-		},
-		"functions": {
-			"intents": [
-				"connect",
-				"move",
-				"identify incentives",
-				"subvert incentives",
-				"find path to target with core functions",
-				"find efficiencies",
-				"apply efficiencies",
-				"highlight benefits"
-			],
-			"generation_function": [
-				"convert conclusions to positions",
-				"identify optimal position",
-				"differentiate optimal & source position",
-				"identify incentives to stay in current position",
-				"identify inability of accessible functions to move to target position"
-			],
-			"interactions": {
+	"variables": [
+		"subject_position",
+		"subject_benefits_current_position",
+		"subject_costs_current_position",
+		"persuader_position",
+		"persuader_benefits_current_position",
+		"persuader_costs_current_position",
+		"incentives",
+		"efficiencies",
+		"system"
+	],
+	"objects": [
+		"persuader agent",
+		"subject agent",
+		"position",
+		"benefit",
+		"cost", 
+		"incentive",
+		"efficiency"
+	],
+	"assumptions": [
+		"source and target position are different",
+		"its possible to move the subject to the target position",
+		"theres a reason why the subject hasnt already moved to the target position",
+		"the subject cant get to the target position with accessible/core functions",
+		"there is some benefit to move the subject to the target position",
+		"there is some cost to move the subject to the target position",
+		"the movement benefit is greater than the movement cost, for the persuader and/or the subject"
+	],
+	"requirements": [
+		"information about the subject's resources, incentives, intents, and functions",
+		"information about the system efficiencies and incentives",
+		"information about source and target positions"
+	],
+	"inputs": [
+		"subject",
+		"persuader",
+		"system",
+		"source_position",
+		"target_position"
+	],
+	"outputs": [
+		"path_from_source_to_target_position"
+	],
+	"functions": {
+		"intents": [
+			"connect",
+			"move",
+			"identify incentives",
+			"subvert incentives",
+			"find path to target with core functions",
+			"find efficiencies",
+			"apply efficiencies",
+			"highlight benefits"
+		],
+		"generation": [
+			"convert conclusions to positions",
+			"identify optimal position",
+			"differentiate optimal & source position",
+			"identify incentives to stay in current position",
+			"identify inability of accessible functions to move to target position"
+		],
+		"interactions": {
+			"communicate_to_subject": {},
+			"get_object_definition": {},
+			"get_system_definition": {},
+			"get_system_incentives": {},
+			"get_system_functions": {},
 
-				"communicate_to_subject": {},
-				"get_object_definition": {},
-				"get_system_definition": {},
-				"get_system_incentives": {},
-				"get_system_functions": {},
+			"differentiate_objects": {},
 
-				"differentiate_objects": {},
+			"convert_resources_to_position": {},
+			"change_position": {"input": {"required": ["incentive", "efficiency", "intent"]}},
+			"get_position_alignment_with_intent": {},
+			"get_intent_direction": {},
+			"find_distance_between_positions": {},
 
-				"convert_resources_to_position": {},
-				"change_position": {"input": {"required": ["incentive", "efficiency", "intent"]}},
-				"get_position_alignment_with_intent": {},
-				"get_intent_direction": {},
-				"find_distance_between_positions": {},
-
-				"get_position_definition": {},
-				"get_position_benefits": {},
-				"get_position_costs": {},
-				"get_position_incentives": {},
-				"get_position_efficiencies": {},
-				"get_position_inefficiencies": {},
-				"get_position_functions": {}
+			"get_position_definition": {},
+			"get_position_benefits": {},
+			"get_position_costs": {},
+			"get_position_incentives": {},
+			"get_position_efficiencies": {},
+			"get_position_inefficiencies": {},
+			"get_position_functions": {}
+		}
+	},
+	"cause": {
+		"system": [
+			"sometimes sub-optimal positions that hurt agents or systems are so safe/efficient/beneficial/low-cost/optimal that agents dont leave those positions until its impossible to leave"
+		],
+		"intent": [
+			"systems dont always prioritize intents that protect all their agents",
+			"some agents act against their best interests",
+			"some agents dont check if they should change positions or dont have the ability to check",
+			"some agents cannot move because of information limits",
+			"some agents cannot evaluate incentives, benefits/costs, efficiencies, or alternatives",
+			"some agents always select defaults or adjacent efficiencies"
+		],
+		"function": {},
+		"problems": [
+			"will making this argument/revealing benefit/efficiency/incentive information allow the subject to make the same/similar argument to the persuaders' detriment after the position change"
+		],
+		"structures": {
+			"network": [
+				"if a network could use an agents resources, they will try to persuade that agent to change positions"
+			],
+			"loop": [
+				"agents have incentives to persuade themselves to make optimal changes, and the best information about their own position",
+				"sometimes persuaders cant reveal persuasive information until after the subject agrees to change positions"
+			],
+			"alternate": [
+				"subject functions may be causing the lack of position change rather than inefficiencies disincentivizing position change, such as aversion to change or risk"
+			],
+			"hub": [
+				"efficiency acts as a hub linking other causes"
+			],
+			"gap": [
+				"inefficiencies create gaps between positions (its inefficient for the subject to move)"
+			],
+			"limit": [
+				"the subject has limited information or information-finding/deriving potential",
+				"the subject has limited change potential"
+			],
+			"direction": {
+				"one-way": [
+					"if the position change only benefits the persuader, the benefits are not shared or delegated to the agent that did the work of movement"
+				],
+				"two-way": [
+					"if the position change only benefits the subject, the subject might not be able to allocate benefits to the persuader"
+				]
 			}
-		},
-		"cause": {
-			"system": [
-				"sometimes sub-optimal positions that hurt agents or systems are so safe/efficient/beneficial/low-cost/optimal that agents dont leave those positions until its impossible to leave"
-			],
-			"intent": [
-				"systems dont always prioritize intents that protect all their agents",
-				"some agents act against their best interests",
-				"some agents dont check if they should change positions or dont have the ability to check",
-				"some agents cannot move because of information limits",
-				"some agents cannot evaluate incentives, benefits/costs, efficiencies, or alternatives",
-				"some agents always select defaults or adjacent efficiencies"
-			],
-			"function": {},
-			"problems": [
-				"will making this argument/revealing benefit/efficiency/incentive information allow the subject to make the same/similar argument to the persuaders' detriment after the position change"
-			],
-			"structures": {
-				"network": [
-					"if a network could use an agents resources, they will try to persuade that agent to change positions"
-				],
-				"loop": [
-					"agents have incentives to persuade themselves to make optimal changes, and the best information about their own position",
-					"sometimes persuaders cant reveal persuasive information until after the subject agrees to change positions"
-				],
-				"alternate": [
-					"subject functions may be causing the lack of position change rather than inefficiencies disincentivizing position change, such as aversion to change or risk"
-				],
-				"hub": [
-					"efficiency acts as a hub linking other causes"
-				],
-				"gap": [
-					"inefficiencies create gaps between positions (its inefficient for the subject to move)"
-				],
-				"limit": [
-					"the subject has limited information or information-finding/deriving potential",
-					"the subject has limited change potential"
-				],
-				"direction": {
-					"one-way": [
-						"if the position change only benefits the persuader, the benefits are not shared or delegated to the agent that did the work of movement"
-					],
-					"two-way": [
-						"if the position change only benefits the subject, the subject might not be able to allocate benefits to the persuader"
-					]
-				}
-			}
-		}	
+		}
 	}
-
 }

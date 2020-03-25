@@ -4,19 +4,23 @@
 
       - network framing function to describe a system as a network & position each object, identifying connecting functions
       - attribute/object/function identification functions
-      - interface identification function (this can pull from interface_networks.json if it exists)
+      - interface identification function
       - function to map function type/set/chain to a function shape when linking nodes in a network
       - function to map object/function to a shape
       - representation of a function/attribute changes in isolation with respect to position or time (snapshot or section)
 
       - function to identify interface trajectory between conceptual/structural interfaces
+        - may involve navigating sub-networks within an interface, not just mapping between interfaces
         - trajectories such as: most efficient path, and destination in same position on other interface)
         - uses interface_networks.json if it exists and if not, interface identification, network mapping, and similarity testing
         - function to identify alternative routes to an object (create & retrieve info from definition_routes.json if its already in interface_networks.json)
           - a system applicable to this function would be a process or object like a particular pathogen - complex enough to qualify as a system
         - definition_routes.json can be generated from the paths in interface_networks.json, which just describes the links in networks of concepts/intents & other interface networks
-      - add function to map conceptual object to structural object
-      - add function to map conceptual function to structural step
+        
+        - then add function to map:
+          - conceptual object to structural object
+          - conceptual function to structural step
+      
       - system analysis function (identify boundaries, gaps, limits, layers, & other system objects)
 
   - give example of each type of problem-solving workflows
@@ -25,7 +29,7 @@
       - finish function to determine relevance filter ('functions', 'required') from a problem_step ('find incentives') for a problem definition, to modify problem_steps with extra functions/attributes ('change_position') to be more specific to the problem definition ('find_incentives_to_change_position') for problem_steps involving 'incentives', so you know to use the function_name to modify the problem step if it's between the type 'functions' and the object searched for 'incentives'
       - finish function to get all codebase functions & store them in a dict with their type, context/usage, and intents, just like functions are stored in the problem_metadata.json example for workflow 1
       - finish common sense check
-      - define objects in object_schema.json
+      - finish defining objects in object_schema.json
       - finish organizing functions.json by type, with mapping between general intent functions like 'find' to specific info-relevant terms like 'get'
       - add common phrase check & filter problem steps by repeated combinations with common phrase check
       - finish get_type function to map info to structure using the new functions.json organization

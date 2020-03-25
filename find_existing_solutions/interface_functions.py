@@ -7,6 +7,7 @@ def identify_interfaces(system, interface_type):
 				frameable as a filter set
 			- add filters to identify variables that cause or provide a platform for other variables for develop
 			- transfer key checks to validation
+			- pull from interface_networks.json if it exists
 	'''
 	abstract_interfaces = set()
 	abstract_interface_objects = {}
