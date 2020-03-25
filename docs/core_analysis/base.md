@@ -60,6 +60,17 @@
 
     - there may be symmetries and limits preventing certain changes from being possible, given a starting point, so each point on the change interface has a set of possible starting points, and traversing the change interface often means a set of points rather than a continuous function, so the set of points needs to be converted to a space where they can be a continuous function to describe time-based change
 
+    - when there's no more potential in a system, the system cant be represented based on potential or change, and collapses to a constant/measurable shape in 3-d irrespective of time, like an assumption core to 3-d space
+
+    - order-dependent processes can be modeled in time-based spaces
+      - in order for liquid to be irreversibly dispersed according to the time symmetry, the liquid has to be in the cup 
+
+      - change according to time-adjacent variables (potential, change) can be modeled rather than time, to increasingly remove the meaning of order/prior position
+
+      - removing more conditions of time would eventually lead to the symmetric state where functions producing change would be equivalent to/generative of each other (the theoretical liquid can generate the theoretical cup in that space if it needs to, injecting more time/potential in a prior position on its timeline to further current goals, which require less change/time/potential than anticipated)
+
+    - order-independent processes can be modeled in other spaces (generative functions where it doesnt matter which function you start with bc each function can generate the others)
+
 
 ## Examples
 
