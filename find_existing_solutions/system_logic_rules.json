@@ -22,4 +22,7 @@
 	"sub_system_rules": [
 		"sub-systems tend to generate false signals"
 	],
+	"general_interfaces": [
+		"bio systems are likely to have one-directional interface chains, communication interfaces, & certain priority interfaces like efficiency"
+	]
 }

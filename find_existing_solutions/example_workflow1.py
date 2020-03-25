@@ -447,77 +447,87 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 			}
 		}
 	}
-	given that relevance_filter = ["required", "function"], 
+	given that relevance_filter = ["required", "functions"], 
 		if the abstract solution keyword is in the required function inputs,
-			we want to return function name "change_position"
+			we want to return function name "change_position" rather than function_type ("interactions") 
+			bc the name is more specific & we're trying to add specificity
+
+	- to get intent of a problem_step, find required inputs of functions
+
 	'''
+	relevant_solutions = []
 	abstract_solution_words = abstract_solution.split('_')
-	relevance_filter = ['required', 'functions']
-	other_filters = relevance_filter
-	''' get relevant items from flattened & order in relevant_list '''
-	relevant_list = []
-	last_item_values = []
-	for key, value in problem_metadata['problem_metadata'].items():
-		if key in relevance_filter: # functions or whichever filtering key comes first in dict
-			other_filters.remove(key)
-			if type(value) == dict:
-				for function_type, functions in value.items():
-					if type(functions) == dict:
-						flattened_sub_dict = flatten_dict(functions)
-						for rf in other_filters:
-							if rf in flattened_sub_dict.keys() or rf in flattened_sub_dict.values():
-								''' check if dict can cast to str or dump json, check that this sub-dict is worth pursuing '''
-								for function_name, function_metadata in functions.items():
-									if type(function_metadata) == dict:
-										flattened_function = flatten_dict(function_metadata)
-										if flattened_function:
-											if rf in flattened_function:
-												for attribute, attribute_metadata in function_metadata.items():
-													if type(attribute_metadata) == dict:
-														for attribute_name, attribute_values in attribute_metadata.items():
-															if attribute_name == rf: # required
-																if type(attribute_values) == list:
-																	relevant_list = [key, function_type, function_name, attribute, attribute_name]
-																	last_item_values = attribute_values
-	''' relevant_list = ['functions', 'interactions', 'change_position', 'input', 'required'] '''
-	print('relevant_list', relevant_list)
-	relevant_solution = None
-	if len(relevant_list) > 0:
-		''' find the adjacent object name for the target object (required function inputs) which should be at the end of this list '''
-		for item in relevance_filter:
-			if item in relevant_list:
-				relevant_list.remove(item)
-		''' to do: given that the object of interest is a function (highest level key of problem_metadata), we should be able to derive that you wouldnt want to use the function type name '''
-		# relevant_list is now ['interactions', 'change_position', 'input']
-		''' remove object types from relevant_list, because we're trying to isolate a specific name that is most adjacent to object of interest (required function inputs) '''
-		for item in relevant_list:
-			item_object = get_objects_in_string(item)
-			if item_object:
-				if item == item_object or item in item_object:
+	relevance_intents = ['specificity', 'intent']
+	relevance_filters = get_relevance_filters(relevance_intents, problem_metadata)
+	if relevance_filters:
+		for relevance_filter in relevance_filters:
+			other_filters = relevance_filter
+			''' get relevant items from flattened & order in relevant_list '''
+			relevant_list = []
+			last_item_values = []
+			for key, value in problem_metadata['problem_metadata'].items():
+				if key in relevance_filter: # functions or whichever filtering key comes first in dict
+					other_filters.remove(key)
+					if type(value) == dict:
+						for function_type, functions in value.items():
+							if type(functions) == dict:
+								flattened_sub_dict = flatten_dict(functions)
+								for rf in other_filters:
+									if rf in flattened_sub_dict.keys() or rf in flattened_sub_dict.values():
+										''' check if dict can cast to str or dump json, check that this sub-dict is worth pursuing '''
+										for function_name, function_metadata in functions.items():
+											if type(function_metadata) == dict:
+												flattened_function = flatten_dict(function_metadata)
+												if flattened_function:
+													if rf in flattened_function:
+														for attribute, attribute_metadata in function_metadata.items():
+															if type(attribute_metadata) == dict:
+																for attribute_name, attribute_values in attribute_metadata.items():
+																	if attribute_name == rf: # required
+																		if type(attribute_values) == list:
+																			relevant_list = [key, function_type, function_name, attribute, attribute_name]
+																			last_item_values = attribute_values
+			''' relevant_list = ['functions', 'interactions', 'change_position', 'input', 'required'] '''
+			print('relevant_list', relevant_list)
+			if len(relevant_list) > 0:
+				''' find the adjacent object name for the target object (required function inputs) which should be at the end of this list '''
+				for item in relevance_filter:
 					if item in relevant_list:
 						relevant_list.remove(item)
-		# relevant_list is now ['interactions', 'change_position']
-		''' given that we know the target is at the end of the list, the most adjacent object to the target is the last item in the list with objects & relevance filters removed '''
-		adjacent_name = relevant_list[-1] if len(relevant_list) > 0 else None
-		for abstract_solution_word in abstract_solution_words: # [find, incentive]
-			if abstract_solution_word in last_item_values:
-				'''
-				if 'incentive' in ["incentive", "efficiency", "intent"],
-					then we found a word from the abstract solution "incentive" 
-					in the problem_metadata last_item_values (required inputs to change_position function), 
-					therefore fulfilling the relevance_filter ["required", "functions"]
-				'''
-				''' to do: 
-					- save object_type items for this call to get_relationship_between_objects()
-					- given that this is an input, the relationship function between an input and a function is 'in order to', or briefly 'to'
-				'''
-				join_keyword = get_relationship_between_objects('input', 'function')
-				if adjacent_name is not None:
-					relevant_solution = '_'.join([abstract_solution_words, join_keyword, adjacent_name])
-					''' relevant_solution = 'find_incentives_to_change_position" '''
-					print('relevant_solution', relevant_solution)
-					return relevant_solution
-				return abstract_solution_words
+				''' to do: given that the object of interest is a function (highest level key of problem_metadata), we should be able to derive that you wouldnt want to use the function type name '''
+				# relevant_list is now ['interactions', 'change_position', 'input']
+				''' remove object types from relevant_list, because we're trying to isolate a specific name that is most adjacent to object of interest (required function inputs) '''
+				for item in relevant_list:
+					item_object = get_objects_in_string(item)
+					if item_object:
+						if item == item_object or item in item_object:
+							if item in relevant_list:
+								relevant_list.remove(item)
+				# relevant_list is now ['interactions', 'change_position']
+				''' given that we know the target is at the end of the list, the most adjacent object to the target is the last item in the list with objects & relevance filters removed '''
+				if len(relevant_list) > 0:
+					adjacent_name = relevant_list[-1]
+					for abstract_solution_word in abstract_solution_words: # [find, incentive]
+						if abstract_solution_word in last_item_values:
+							'''
+							if 'incentive' in ["incentive", "efficiency", "intent"],
+								then we found a word from the abstract solution "incentive" 
+								in the problem_metadata last_item_values (required inputs to change_position function), 
+								therefore fulfilling the relevance_filter ["required", "functions"]
+							'''
+							''' to do: 
+								- save object_type items for this call to get_relationship_between_objects()
+								- given that this is an input, the relationship function between an input and a function is 'in order to', or briefly 'to'
+							'''
+							join_keyword = get_relationship_between_objects('input', 'function')
+							if adjacent_name is not None:
+								relevant_solution = '_'.join([abstract_solution_words, join_keyword, adjacent_name])
+								''' relevant_solution = 'find_incentives_to_change_position" '''
+								print('relevant_solution', relevant_solution)
+								relevant_solutions.append(relevant_solution)
+	if len(relevant_solutions) > 0:
+		return relevant_solutions
+	return abstract_solution
 	''' 
 		alternate methods to find modifiers to make this abstract solution more relevant to the problem:
 		- apply relevance_filter [function, required] to problem_metadata 
@@ -533,7 +543,34 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 			input_position = 3
 			required_position = 4
 	'''
-	return abstract_solution
+
+def get_relevance_filters(relevance_intents, problem_object):
+
+	''' for an intent like 'specificity', which we interpret as 'add conditions/modifiers',
+		and a sub-intent like 'find reason/intent', 
+			we look up:
+				- required inputs 
+				- specific intents
+
+		to get guaranteed aspects of the problem object that can be used to modify a general problem step like 'find incentives'
+			to add a reason for that step, 
+			such as the name/function intents of functions using incentives as an input,
+			where the 'reason for the problem_step' is the item we've identified as relevant for the goal of 'find specific intent' for the problem_step
+	'''
+	search_intents = {
+		'specificity': [
+			['required', 'functions']
+		],
+		'intent': [
+			['required', 'functions'],
+			['intents', 'functions']
+		]
+	}
+	for relevance_intent in relevance_intents:
+		if relevance_intent in search_intents:
+			if type(search_intents[relevance_intent]) == list:
+				return search_intents[relevance_intent]
+	return False
 
 def get_relationship_between_objects(source, target):
 	print('function::get_relationship_between_objects')
