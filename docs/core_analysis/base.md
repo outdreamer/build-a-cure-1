@@ -74,6 +74,8 @@
         - add potential as needed: remove traces of resolution into a choice by undoing the root cause up the causal stack (like removing an attribute can restore an object to an undifferentiated type)
         - change in other dimensions that dont impact 3-d space, but which are collapsible or transferable into 3-d space as needed
         - chain superpositions so that collapsing one can cause a collapse of another out of reach bc its in a prior time
+        - map prior state to current state to remove time that has passed since then
+        - change definition of distance so all combinations are possible and adjacent to remove time cost to travel to them
 
     - order-independent processes can be modeled in other spaces (generative functions where it doesnt matter which function you start with bc each function can generate the others)
 
