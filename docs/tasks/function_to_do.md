@@ -23,6 +23,7 @@
 
     - workflow 1:
 
+      - update existing workflow to use new structure in functions.josn
       - add function to determine relevance filter ('functions', 'required') from a problem_step ('find incentives') for a problem definition, to modify problem_steps with extra functions/attributes ('change_position') to be more specific to the problem definition ('find_incentives_to_change_position') for problem_steps involving 'incentives', so you know to use the function_name to modify the problem step if it's between the type 'functions' and the object searched for 'incentives'
       - add a function to get all codebase functions & store them in a dict with their name, params, class, context/usage, and intents, just like functions are stored in the problem_metadata.json example for workflow 1
       - finish common sense check

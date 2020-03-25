@@ -28,7 +28,8 @@
 
       - this is useful for determining where change can be stored/routed in a system
         - if there is demand for change (stressors demanding new functionality) but all components but one are maximizing their change handlers, then you know theres one potential variable where change will gather/be routed, if its possible to route change from the variance injection point to that variable's causal stack at some layer/point
-        
+
+      - its also useful for determining interface trajectories/adjacent interfaces
 
   - selecting a space (dimension set) for framing changes of a certain type
 
