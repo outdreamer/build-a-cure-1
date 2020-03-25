@@ -73,9 +73,12 @@
         - dont execute a decision change until needed: allow potential to maintain its superposition (not resolved to a certain structure/path/point) so when you need to, you can choose an aligning path from that potential that fits the post-selection trajectory
         - add potential as needed: remove traces of resolution into a choice by undoing the root cause up the causal stack (like removing an attribute can restore an object to an undifferentiated type)
         - change in other dimensions that dont impact 3-d space, but which are collapsible or transferable into 3-d space as needed
+          - host changes external to or beyond measurement/prediction potential (host on interface that doesnt register the change so time cannot be said to have passed)
         - chain superpositions so that collapsing one can cause a collapse of another out of reach bc its in a prior time
-        - map prior state to current state to remove time that has passed since then
+        - map all positions/interfaces in prior state to current state to remove time that has passed since then
         - change definition of distance so all combinations are possible and adjacent to remove time cost to travel to them
+        - remove filter determining loss of potential/change by mapping that filter to another one
+        - add variance-handlers to remove loss of potential executed by change cascades that take up time (buy more time by handling current & anticipating imminent change)
 
     - order-independent processes can be modeled in other spaces (generative functions where it doesnt matter which function you start with bc each function can generate the others)
 
