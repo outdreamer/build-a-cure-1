@@ -2,11 +2,13 @@
 
   - abstract functions
 
+      - network framing function to describe a system as a network & position each object, identifying connecting functions
       - attribute/object/function identification functions
       - interface identification function (this can pull from interface_networks.json if it exists)
       - function to map function type/set/chain to a function shape when linking nodes in a network
-      - network framing function to describe a system as a network & position each object, identifying connecting functions
       - function to map object/function to a shape
+      - representation of a function/attribute changes in isolation with respect to position or time (snapshot or section)
+
       - function to identify interface trajectory between conceptual/structural interfaces
         - trajectories such as: most efficient path, and destination in same position on other interface)
         - uses interface_networks.json if it exists and if not, interface identification, network mapping, and similarity testing
@@ -15,8 +17,7 @@
         - definition_routes.json can be generated from the paths in interface_networks.json, which just describes the links in networks of concepts/intents & other interface networks
       - add function to map conceptual object to structural object
       - add function to map conceptual function to structural step
-      - system analysis function
-      - representation of a function/attribute in isolation with respect to time (snapshot or section)
+      - system analysis function (identify boundaries, gaps, limits, layers, & other system objects)
 
   - give example of each type of problem-solving workflows
 

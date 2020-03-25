@@ -14,7 +14,9 @@
 		"difficulty occurs when a solution cant be built with accessible/core functions"
 	],
 	"solutions": [
-		"balance_info_asymmetry"
+		"balance_info_asymmetry",
+		["find_info", "find_info_asymmetry", "balance_info"],
+		["list_benefits", "verify_incentives", "find_efficiencies", "apply_efficiencies", "list_reduced_costs"]
 	],
 	"related_problems": [
 		"identify optimal path to target (persuasion problem super-type)",

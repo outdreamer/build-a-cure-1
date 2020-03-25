@@ -7,6 +7,16 @@
 
   - if the interface network is not static (you can change the position of power with respect to balance, you can change base interfaces), then information should be standardized to a set of filtering interfaces, because the filters will host the most changes & changes to the filters will cause other changes
 
+  - other embedded parameters than time:
+    - prior, adjacent, probable states
+    - convergence to inevitable causes/patterns/interactions/changes/limits based on system position
+
+  - some spaces have embedded concepts like core/unit and relevance, and others have embedded concepts like type & potential 
+    (adjacence is assumed to indicate potential field in some spaces so its not explicitly represented)
+    
+  - whether to frame other bases as the independent or dependent variable in a pair:
+    - you usually want to find the impact of a variable (change, position, value, distance) on the interface (potential, change), rather than the impact of the interface (potential) on a variable (distance), but either can be useful depending on needed intents (finding causal direction, emphasizing certain change types)
+
   - selecting a space (dimension set) for framing changes of a certain type
 
     - selecting a space involves selecting a representation of information by intent
@@ -90,6 +100,7 @@
           - remove filter determining loss of potential/change by mapping that filter to another one
           - create efficiencies (shortcuts) to allow existing objects to interact in new ways 
             - change definition of distance so all combinations are possible and adjacent to remove time cost to travel to them
+          - change faster than other changes so other changes could never catch up without your change methods, which youve left information out of so they'd all need to be used together to build your change rate from a different trajectory
 
         - alter dimension to avoid reducing potential directly
           - frame change in dimension that collapses to potential in its default low-cost state
@@ -126,7 +137,7 @@
           - value (position on a dimension)
           - distance (position from a base point)
 
-        - changing position based on time
+        - changing position based on embedded time
 
 
       - example of structure-based change:
