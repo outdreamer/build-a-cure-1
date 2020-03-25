@@ -26,6 +26,10 @@
 
       - the interim interfaces & variables may not add change to this relationship so they dont need to be depicted or stored in this context
 
+      - this is useful for determining where change can be stored/routed in a system
+        - if there is demand for change (stressors demanding new functionality) but all components but one are maximizing their change handlers, then you know theres one potential variable where change will gather/be routed, if its possible to route change from the variance injection point to that variable's causal stack at some layer/point
+        
+
   - selecting a space (dimension set) for framing changes of a certain type
 
     - selecting a space involves selecting a representation of information by intent
