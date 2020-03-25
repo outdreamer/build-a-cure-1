@@ -15,7 +15,16 @@
     (adjacence is assumed to indicate potential field in some spaces so its not explicitly represented)
     
   - whether to frame other bases as the independent or dependent variable in a pair:
+
     - you usually want to find the impact of a variable (change, position, value, distance) on the interface (potential, change), rather than the impact of the interface (potential) on a variable (distance), but either can be useful depending on needed intents (finding causal direction, emphasizing certain change types)
+
+  - sometimes you'll be able to skip interim variables/interfaces
+
+      - depict the spine variable & the finger position variable to demonstrate/identify chirality, skipping the connecting functions, because there are multiple connecting functions (endpoint/side selection, extremity development) and they dont determine change in either variable, as the key important relationship is the spine symmetry and the orientation transformed about the finger position interface being reversed according to the spine symmetry
+
+        - the spine isnt symmetric from the side, which implies a bias toward the front, which is a platform where features are concentrated, so the development of limbs (using derivable intents like duplicate, backups, protective, flexible, movement, alternative, balance intents) & their focus toward the front is derivable from the spine features, so we can skip to the finger order interface to identify the concept of chirality or an example of it/its patterns in the system
+
+      - the interim interfaces & variables may not add change to this relationship so they dont need to be depicted or stored in this context
 
   - selecting a space (dimension set) for framing changes of a certain type
 
