@@ -49,6 +49,9 @@
         (dimensions are mapped to shape objects like sub-systems, so a dimension like a particular change type would be applied to a shape object like an angle/corner, if their change types align)
 
 
+    - this is in a space where time has been removed, indicating potential - is one type of change capable of being transformed into another? then point a can be connected to point b on the x-axis
+
+
 ## Examples
 
 
