@@ -62,6 +62,14 @@
 
     - when there's no more potential in a system, the system cant be represented based on potential or change, and collapses to a constant/measurable shape in 3-d irrespective of time, like an assumption core to 3-d space
 
+    - time involves meaning attached to order, where order is a fundamental base to frame changes on, and when order is reversed/removed, different rules apply
+      - this may indicate that particles have a 'probable next state' or 'probable change type/rate' stored with them, given their motion, and reversal of order, when combined with other reversals on other interfaces, doesnt erase this information right away, so different prior states can be generated - if a particle is isolated from its motion by adding potential/uncertainty, other rules may apply
+      - the range of possible orders can be generated, and the set can be filtered by various rule sets to generate the set of probable orders, so order may not be capable of capturing all information
+      - what about position/distance, set, space or other structural bases for change?
+      - does order only matter if its order is synchronized with other ordered processes, generating loss of potential from dependence between synchronized processes
+      - time can be framed as independence, and where dependence crystallizes into a measurable rule, time/potential are not possible
+      - 4-d time as typically represented is an illusion of time, capturing a prior rule/moment - these isolated dependency rules are unlikely to build time without the independence of understanding, which can generate the rules & add potential as needed - each prior rule can be used to build time/understanding/independence but some prior rules are likelier than others, and abstract rules are likeliest
+
     - order-dependent processes can be modeled in time-based spaces
       - in order for liquid to be irreversibly dispersed according to the time symmetry, the liquid has to be in the cup 
 
