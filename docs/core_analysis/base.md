@@ -70,17 +70,28 @@
       - removing more conditions of time (order, irreversibility, possibility, measurability) would eventually lead to the symmetric state where functions producing change would be equivalent to/generative of each other (the theoretical liquid can generate the theoretical cup in that space if it needs to, injecting more time/potential in a prior position on its timeline to further current goals (based on change potential - the set of possible moves given by its current position), which require less change/time/potential than anticipated)
 
       - reverse time to a prior state:
-        - dont execute a decision change until needed: allow potential to maintain its superposition (not resolved to a certain structure/path/point) so when you need to, you can choose an aligning path from that potential that fits the post-selection trajectory
-        - add potential as needed: remove traces of resolution into a choice by undoing the root cause up the causal stack (like removing an attribute can restore an object to an undifferentiated type)
-        - change in other dimensions that dont impact 3-d space, but which are collapsible or transferable into 3-d space as needed
-          - host changes external to or beyond measurement/prediction potential (host on interface that doesnt register the change so time cannot be said to have passed)
-        - chain superpositions so that collapsing one can cause a collapse of another out of reach bc its in a prior time
-        - map all positions/interfaces in prior state to current state to remove time that has passed since then
-        - change definition of distance so all combinations are possible and adjacent to remove time cost to travel to them
-        - remove filter determining loss of potential/change by mapping that filter to another one
-        - add variance-handlers to restore potential lost bc of change cascades that take up time (buy more time by handling current & anticipating imminent change)
-        - acquire power (understanding) which is a proxy for potential (range of alternative options)
-        - remove limits (movement, information, boundaries, rules, structure, attributes) to enable new combinations
+
+        - maintain potential:
+          - dont execute a decision change until needed: allow potential to maintain its superposition (not resolved to a certain structure/path/point) so when you need to, you can choose an aligning path from that potential that fits the post-selection trajectory
+        
+        - add potential as needed: 
+          - remove traces of resolution into a choice by undoing the root cause up the causal stack (like removing an attribute can restore an object to an undifferentiated type)
+          - add variance-handlers to restore potential lost bc of change cascades that take up time (buy more time by handling current & anticipating imminent change)
+          - remove limits (movement, information, boundaries, rules, structure, attributes) to enable new combinations
+          - acquire power (understanding) which is a proxy for potential (range of alternative options)
+          - remove filter determining loss of potential/change by mapping that filter to another one
+          - create efficiencies (shortcuts) to allow existing objects to interact in new ways 
+            - change definition of distance so all combinations are possible and adjacent to remove time cost to travel to them
+
+        - alter dimension to avoid reducing potential directly
+          - frame change in dimension that collapses to potential in its default low-cost state
+          - change in other dimensions that dont impact 3-d space, but which are collapsible or transferable into 3-d space as needed
+            - host changes external to or beyond measurement/prediction potential (host on interface that doesnt register the change so time cannot be said to have passed)
+
+        - organize potential so it can survive or increase
+          - chain superpositions so that collapsing one can cause a collapse of another out of reach bc its in a prior time
+          - map all positions/interfaces in prior state to current state to remove time that has passed since then
+        
 
     - order-independent processes can be modeled in other spaces (generative functions where it doesnt matter which function you start with bc each function can generate the others)
 
