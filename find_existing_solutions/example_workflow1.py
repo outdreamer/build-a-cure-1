@@ -703,6 +703,7 @@ def find_type(problem_object, solution_objects):
 															''' this problem_object 'incentive' is a type of system object 'info' '''
 															return solution_object
 	return False
+
 	solution_defs = Word(solution_object).definitions
 	print('solution_defs', solution_object, solution_defs)
 	if solution_defs:
@@ -1033,15 +1034,40 @@ def get_codebase_functions():
 						delimiter = '.py:def '
 						if delimiter in fdef:
 							''' validate that this is a function definition '''
-							function_items = fdef.split(delimiter)
-							function = function_items[1].replace('):', '')
-							print('function', function)
-							function_items = function.split('(')
-							if len(function_items) == 2:
-								function = {'name': function_items[0], 'params': function_items[1].replace(' ','').split(',')}
-								new_defs.append(function)
+							function_metadata = get_function_metadata(fdef, delimiter)
+							if function_metadata:
+								new_defs.append(function_metadata)
 					if len(new_defs) > 0:
 						return new_defs
+	return False
+
+def get_function_metadata(fdef, delimiter):
+	function_items = fdef.split(delimiter)
+	if len(function_items) > 0:
+		function = function_items[1].replace('):', '').split('(')
+		if len(function) > 1:
+			print('function', function)
+			function_name = function[0]
+			syntax_function_name = ''.join(['def ', function_name, '('])
+			function_params = function[1].replace(' ','').split(',')
+			function_code = []
+			start_adding = False
+			function_path = ''.join([function_items[0], '.py'])
+			if os.path.exists(function_path):
+				code = get_data(function_path)
+				if code:
+					for line in code.split('\n'):
+						if syntax_function_name in line:
+							start_adding = True
+						else:
+							if start_adding:
+								if 'def ' in line:
+									start_adding = False
+								else:
+									''' to do: add filter for comments '''
+									function_code.append(line)
+				function_def = {'name': function_name, 'params': function_params, 'code': function_code}
+				return function_def
 	return False
 
 def remove_file(file_path):
