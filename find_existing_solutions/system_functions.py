@@ -1,17 +1,11 @@
+from interface_functions import identify_interfaces
 '''
     - function metadata:
         - position/role in a system
         - function to derive role (intended subset of intent stack)
         - function type
         - emergent side effects in edge cases, rule change states, & interacting with other system layers
-'''
-'''
     - object identification function
-        - membranes/bonds
-        - checkpoints
-        - pressure
-        - neutralizing processes
-        - competition
     - attribute identification function
     - function identification function
     - attribute (like similarity) testing function
@@ -41,9 +35,24 @@ random_set = [
 	attributes = [limit, pressure, force, neutral, opposing]
 	functions = [neutralize, press/apply pressure, check, limit, connect, process, compete]
 '''
+def define_system(system):
+	''' system can be an object or a function or a set, like functions extracted from a paragraph describing the system '''
+	system_def = {'objects': [], 'attributes': [], 'functions': [], 'interfaces': []}
+	objects = identify_objects(system)
+	if objects:
+		system_def['objects'] = objects
+	attributes = identify_attributes(system)
+	if attributes:
+		system_def['attributes'] = attributes
+	functions = identify_functions(system)
+	if functions:
+		system_def['functions'] = functions
+	interfaces = identify_interfaces(system, interface_type=None)
+	if interfaces:
+		system_def['interfaces'] = interfaces
+	return system_def
 
 def identify_objects(system):
-	''' system can be an object or a function or a set, like functions extracted from a paragraph describing the system '''
 	modifiers = ['processing']
 	agency_keywords = ['acts', 'exerts']
 	''' 
@@ -66,14 +75,16 @@ def identify_objects(system):
 	return False
 
 def identify_attributes(system):
-	''' system can be an object or a function '''
 	''' attributes may need to be derived and arent as explicitly defined as often as objects '''
 
 	return False
 
 def identify_functions(system):
-	''' system can be an object or a function '''
 	''' functions may be easily mapped to verbs, but emerging functions need to be derived '''
 
 	return False
+
+def identify_sub_systems(system):
+	return False
+
 

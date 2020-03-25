@@ -83,8 +83,9 @@ def identify_interfaces(system, interface_type):
 			''' to do: 
 				- apply filters based on the definition of interface:
 					- causes other changes
-					- system-wide attribute 
+					- system-wide or common attribute 
 					- standard for comparison
+					- used as an anchor or platform for change
 			'''
 		if interface_type == 'all':
 			all_interfaces = abstract_interfaces.union(general_interfaces).union(common_specific_interfaces)

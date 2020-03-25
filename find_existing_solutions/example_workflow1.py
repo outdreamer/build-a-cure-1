@@ -1,37 +1,13 @@
-import nltk, os, json, itertools
-from nltk import pos_tag, word_tokenize
-from textblob import TextBlob, Sentence, Word, WordList
-from textblob.wordnet import VERB, NOUN, ADJ, ADV
-from textblob.wordnet import Synset
+import os, itertools
 from get_conceptual_objects import *
 from get_structural_objects import *
 
+from utils import *
+from type_functions import *
+from function_functions import get_functions_for_object_combination, get_function_prerequisites
+from definition_functions import get_problem_metadata
+
 ''' OBJECT DEFINITION '''
-
-def get_problem_metadata(problem_def):
-	print('function::get_problem_metadata')
-	'''
-		1. Identify problem metadata
-			- problem type
-			- default/original problem type (position on problem type network)
-			- adjacent problem types
-			- component problem types
-			- related problem types
-			- combination problem types
-
-			- problem structure
-				- space (output dimensions to measure solutions)
-				- structure (gap/limit/force/conflict/intersection)
-
-			- problem attributes
-				- interfaces (dimensions that frame or highlight variable value change rules)
-	'''
-	''' to do: add metadata id functions '''
-	problem_metadata_path = 'workflow1_problem_metadata.json'
-	problem_metadata = get_data(problem_metadata_path)
-	if problem_metadata:
-		return problem_metadata
-	return problem_def
 
 def condense_problem_statement(problem_metadata):
 	print('function::condense_problem_statement')
@@ -208,27 +184,6 @@ def apply_solution_to_problem(problem_metadata, abstract_solution_type):
 					return solved_problem
 	return False
 
-def get_functions_for_object_combination(solution_object, solution_functions):
-	print('solution_functions', solution_functions)
-	object_functions = []
-	solution_object = solution_object if type(solution_object) == str else ' '.join(solution_object) 
-	function_order = get_data('function_order.json')
-	if function_order:
-		if solution_functions:
-			for function in solution_functions:
-				new_relationship = ' '.join([function, solution_object])
-				prereqs = get_function_prerequisites(function, function_order)
-				if prereqs:
-					for pr in prereqs:
-						replaced_relationship = new_relationship.replace(function, pr)
-						object_functions.append(replaced_relationship)
-				object_functions.append(new_relationship)
-		else:
-			object_functions.append(solution_object)	
-		if len(object_functions) > 0:
-			return object_functions
-	return False
-
 def get_steps_from_solution_type(abstract_solution_type, solution_metadata):
 	'''
 	solution_metadata = {
@@ -279,27 +234,6 @@ def get_steps_from_solution_type(abstract_solution_type, solution_metadata):
 			# assumption = 'info exists', 'info is known' for step 'balance info'
 			# info exists isnt an assumption likely to be calculatable, but info is known is calculatable
 		'''
-	return False
-
-def get_function_prerequisites(function_name, function_order):
-	'''
-		function_order = {
-			"find": "process",
-			"process": "balance",
-		}
-		to do: add iteration for additional degrees of prerequisites
-	'''
-	prerequisites = []
-	if function_order:
-		for key, value in function_order.items():
-			if function_name == value:
-				''' if its in the value, that means theres a predecessor '''
-				if key in function_order.values():
-					for k, v in function_order.items():
-						if v == key:
-							prerequisites.append(k)
-		if len(prerequisites) > 0:
-			return prerequisites
 	return False
 
 def convert_solution_steps_to_problem_steps(problem_metadata, solution_metadata):
@@ -458,7 +392,7 @@ def get_relevant_solution(abstract_solution, problem_metadata):
 	relevant_solutions = []
 	abstract_solution_words = abstract_solution.split('_')
 	relevance_intents = ['specificity', 'intent']
-	relevance_filters = get_relevance_filters(relevance_intents, problem_metadata)
+	relevance_filters = get_relevance_filters(relevance_intents, problem_metadata) # getting filters for a certain type of modification
 	if relevance_filters:
 		for relevance_filter in relevance_filters:
 			other_filters = relevance_filter
@@ -589,28 +523,6 @@ def get_brief_keyword(keyword):
 	print('function::get_brief_keyword')
 	return 'to'
 
-def flatten_dict(problem_metadata):
-	flattened = {}
-	for key, values in problem_metadata.items():
-		flattened = iterate_dict(key, values, flattened)
-	if flattened:
-		return flattened
-	return False
-
-def iterate_dict(key, values, flattened):
-	if type(values) == dict:
-		# print('dict values', key, values.keys())
-		for k, v in values.items():
-			if type(v) != dict:
-				flattened[k] = v
-			else:
-				flattened = iterate_dict(k, v, flattened)
-	else:
-		''' to do: add support for nested items other than dicts '''
-		# print('list values', key)
-		flattened[key] = values
-	return flattened
-
 def get_object_map(problem_metadata, solution_metadata):
 	print('function::get_object_map')
 	# solution_objects = ['info', 'asymmetry', 'info_asymmetry']
@@ -643,108 +555,6 @@ def get_object_map(problem_metadata, solution_metadata):
 			]
 	'''
 	return object_map
-
-def find_type(problem_object, solution_objects):
-	''' solution_objects = ['info', 'asymmetry'], problem_object = 'incentive'
-
-	- to do:
-		- this assumes the solution object is the type/more abstract than the problem object
-
-	- the optimal implementation to match_type would:
-		- derive 'reason' from 'incentive',
-		- get 'reward' from 'reason', 
-		- then match the context of reward to optimization language or markets, 
-			both of which are frequently modeled using info about the systems, like in agent-based algorithms or game theory
-		- then match the context of the solution_object 'info' based on this connection
-
-	- or it'd rule out the other solution objects like 'asymmetry' in this example, which isnt relevant on its own without the info_asymmetry term, 
-		although info_asymmetry matches the 'incentive' problem_object, because:
-			- there is implied but not explicit info that the incentivized behavior is good (incentivized behaviors are sometimes just defaults or emerging incentives that are unplanned)
-			- there is implied but not explicit info about costs/side effects of the incentivized behavior (incentives can come with costs like lack of variation)
-		but the 'info' object is a closer match, and we're looking for 1-1 relationships to reduce complexity
-
-	- other routes to identify 'incentive' as info:
-		- lookup definition of info (standard definition: 'message received an understood', or system schema definition, which is 'structure')
-		- derive or look up that info object has core operations (derive, apply, find) 
-			from common relationships ('find information' is a common phrase) 
-			or definition 'structure has common operations like find, match, fill'
-		- classify functions that serve each operation (get is a function type used for find functionality)
-		- query for get/find functions
-		- api functions could retrieve info objects (query codebase for functions that get objects & check for an incentive object or attribute, indicating this is a type of information
-	'''
-
-	''' this is a specific solution given that we have a system object 'info' defined and find_* functions for various info types, as a placeholder for codebase queries '''
-
-	codebase_functions = get_codebase_functions()
-	if codebase_functions:
-		print('get_codebase_functions', codebase_functions)
-		object_defs = get_data('object_schema.json')
-		if object_defs:
-			print('object_defs', object_defs)
-			for solution_object in solution_objects:
-				for key, values in object_defs.items():
-					''' key = 'interface_objects' '''
-					for k, v in values.items():
-						if k == solution_object:
-							print('solution_object', solution_object)
-							solution_def = object_defs[key][solution_object]
-							print('solution_def', solution_def)
-							system_definition = solution_def['definition_system'] if 'definition_system' in solution_def else None
-							if 'core_functions' in solution_def:
-								for abstract_operation, specific_operations in solution_def['core_functions'].items():
-									for function in codebase_functions: # globals():
-										for item in ['name', 'params', 'code']:
-											if item in function:
-												if abstract_operation in function[item] and problem_object in function[item]:
-													return solution_object
-												for specific_operation in specific_operations:
-													if specific_operation in function[item]:
-														if problem_object in function[item]:
-															''' this problem_object 'incentive' is a type of system object 'info' '''
-															return solution_object
-	return False
-
-	solution_defs = Word(solution_object).definitions
-	print('solution_defs', solution_object, solution_defs)
-	if solution_defs:
-		matching_problem_objects = {}
-		problem_defs = Word(problem_object).definitions
-		''' add filtering of words in defs '''
-		if problem_defs:
-			print('problem_defs', problem_object, problem_defs)
-			problem_definition_string = remove_stopwords(' '.join(problem_defs))
-			''' 'info' in 'incentive' definition '''
-			if solution_object in problem_definition_string:
-				return solution_object
-			solution_definition_string = remove_stopwords(' '.join(solution_defs))
-			''' 'incentive' in 'info' definition '''
-			if problem_object in solution_definition_string:
-				return solution_object
-			matching_problem_words = 0
-			for solution_def in solution_defs:
-				for solution_word in solution_def.split(' '):
-					''' 'info' definition word in 'incentive' definition '''
-					if solution_word in problem_definition_string:
-						matching_problem_words += 1
-			if (matching_problem_words/solution_definition_string.count(' ')) > 0.5:
-				return solution_object
-			''' 'info' synonyms similar to 'incentive' synonyms '''
-			problem_synsets = Word(problem_object).get_synsets(pos=NOUN)
-			solution_synsets = Word(solution_object).get_synsets(pos=NOUN)
-			print('problem_synsets', problem_synsets)
-			print('solution_synsets', solution_synsets)
-			matching_synsets = 0
-			for ps in problem_synsets:
-				print('problem synsets', dir(ps))
-				ps = ps.name.split('.')[-1]
-				if ps in solution_synsets:
-					matching_synsets += 1
-			if matching_synsets/len(solution_synsets) > 0.5:
-				return solution_object
-	return False
-
-def remove_stopwords(definition):
-	return definition
 
 def find_matching_object_in_problem_space(problem_metadata, problem_object, solution_metadata):
 	''' for a solution_object like 'info', find the corresponding object in the problem like 'incentives/reasons/intents/efficiencies/cost/benefit' 
@@ -846,7 +656,8 @@ def apply_solution(problem_metadata, solution):
 	return False
 
 def apply_step(problem_metadata, problem_step):
-	''' this function applies a step like 'balance incentives' to a problem definition
+	''' this function applies a step like 'balance incentives' to a problem definition,
+		removing all remaining ambiguities by pulling specific functions for each abstract function, specific objects for each type, etc
 		for example, 'balance incentives' would rearrange incentives in one of the balancing implementations (evenly distribute, remove from all positions, etc)
 	''' 
 	return False
@@ -861,14 +672,6 @@ def get_solution_type(solution_step):
 	if union_count / len(type_words) > 0.5:
 		return 'type'
 	return 'specific'
-
-def get_type_words():
-	print('function::get_type_words')
-	''' return list of abstract/interface/structural words '''
-	type_words = ['info', 'symmetry']
-	return set(type_words)
-
-''' QUERY '''
 
 def get_insights(problem_metadata):
 	print('function::get_insights')
@@ -945,11 +748,6 @@ def build_object(object_type, object_name):
 	object_instance = {}
 	return False
 
-def stringify_metadata(metadata_object):
-	print('function::stringify_metadata')
-	stringified = '_'.join([metadata_object.values()])
-	return stringified
-
 def get_function_list():
 	function_list = []
 	functions = get_data('functions.json')
@@ -962,6 +760,12 @@ def get_function_list():
 			function_list = set(function_list)
 			return function_list
 	return False
+
+def get_type_words():
+	print('function::get_type_words')
+	''' return list of abstract/interface/structural words '''
+	type_words = ['info', 'symmetry']
+	return set(type_words)
 
 def get_function_in_string(string):
 	print('function::get_function_in_string')
@@ -994,91 +798,8 @@ def get_objects_in_string(string):
 				return objects
 	return False
 
-def get_data(file_path):
-	if os.path.exists(file_path):
-		objects = None
-		with open(file_path, 'r') as f:
-			objects = json.load(f) if '.json' in file_path else f.read()
-			f.close()
-		if objects:
-			return objects
-	return False
-
-def get_pos(word):
-	tagged = pos_tag(word_tokenize(word))
-	for item in tagged:
-		if 'V' in item[1]:
-			return 'verb'
-		else:
-			return 'noun'
-	return False
-
-def get_codebase_functions():
-	import subprocess
-	cwd = os.getcwd()
-	output_name = '/'.join([cwd, 'code_function_names.txt'])
-	cmd = [f"""grep -r 'def ' {cwd} --include='*.py' >> {output_name}"""]
-	output = subprocess.check_output(cmd,shell=True)
-	''' /Users/jjezewski/Documents/build_a_cure/find_existing_solutions/get_vars.py:def get_partial_match(av, word, match_type): '''
-	if os.path.exists(output_name):
-		function_defs = get_data(output_name)
-		if function_defs:
-			print('type defs', type(function_defs))
-			if len(function_defs) > 0:
-				removed = remove_file(output_name)
-				if removed:
-					print('removed', removed)
-					new_defs = []
-					for fdef in function_defs.split('\n'):
-						print('fdef', fdef)
-						delimiter = '.py:def '
-						if delimiter in fdef:
-							''' validate that this is a function definition '''
-							function_metadata = get_function_metadata(fdef, delimiter)
-							if function_metadata:
-								new_defs.append(function_metadata)
-					if len(new_defs) > 0:
-						return new_defs
-	return False
-
-def get_function_metadata(fdef, delimiter):
-	function_items = fdef.split(delimiter)
-	if len(function_items) > 0:
-		function = function_items[1].replace('):', '').split('(')
-		if len(function) > 1:
-			print('function', function)
-			function_name = function[0]
-			syntax_function_name = ''.join(['def ', function_name, '('])
-			function_params = function[1].replace(' ','').split(',')
-			function_code = []
-			start_adding = False
-			function_path = ''.join([function_items[0], '.py'])
-			if os.path.exists(function_path):
-				code = get_data(function_path)
-				if code:
-					for line in code.split('\n'):
-						if syntax_function_name in line:
-							start_adding = True
-						else:
-							if start_adding:
-								if 'def ' in line:
-									start_adding = False
-								else:
-									''' to do: add filter for comments '''
-									function_code.append(line)
-				function_def = {'name': function_name, 'params': function_params, 'code': function_code}
-				return function_def
-	return False
-
-def remove_file(file_path):
-	if os.path.exists(file_path):
-		os.remove(file_path)
-		if os.path.exists(file_path):
-			return False
-	return True
-
-problem_def = get_data('problem.json')
-problem_metadata = get_problem_metadata(problem_def)
+problem_def_path = 'problem.json'
+problem_metadata = get_problem_metadata(problem_def_path)
 if problem_metadata:
 	condensed_problem_statement = condense_problem_statement(problem_metadata)
 	solved = solve_problem_with_problem_type_conversion(problem_metadata)
