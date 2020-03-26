@@ -71,6 +71,8 @@
 
 			- inject variance sources to handle change types on change platforms
 
+			- salt kills microbes of many kinds, can it be used internally to kill specific microbes of certain structures
+
 			- for conditions that harm a set of filtration organs, can other filtration organs be converted to fulfill its functions temporarily 
 				- some kidney functions like fluid balance can be done by other processes like mucus removal (sneezing), salt removal (crying), or fluid removal (vomiting, sweating) - or with chemical processes like evaporation or non-water topical solvents
 				- what system relationships exist to fulfill functions of other systems?
