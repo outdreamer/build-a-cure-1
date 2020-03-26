@@ -27,13 +27,13 @@
 
     - workflow 1:
       - finish function to determine relevance filter ('functions', 'required') from a problem_step ('find incentives') for a problem definition, to modify problem_steps with extra functions/attributes ('change_position') to be more specific to the problem definition ('find_incentives_to_change_position') for problem_steps involving 'incentives', so you know to use the function_name to modify the problem step if it's between the type 'functions' and the object searched for 'incentives'
+
       - finish function to get all codebase functions & store them in a dict with their type, context/usage, and intents, just like functions are stored in the problem_metadata.json example for workflow 1
       - finish common sense check
       - finish defining objects in object_schema.json
       - finish organizing functions.json by type, with mapping between general intent functions like 'find' to specific info-relevant terms like 'get'
       - add common phrase check & filter problem steps by repeated combinations with common phrase check
       - finish get_type function to map info to structure using the new functions.json organization
-      - finish apply_solution_type
       - finish apply_solution to problem_definition using problem_steps
         - involves building a function to evenly distribute objects (like information/types), given problem positions/agents/objects
       

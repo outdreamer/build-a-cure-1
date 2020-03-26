@@ -1,5 +1,10 @@
 # Quantum physics
 
+  - entanglement occurring from:
+    - rotating around a symmetry
+    - finding nearest unused/unentangled particle
+    - same interface network query (same position in a system)
+
   - finding how to reverse historical filters (great filter) could reverse the initial filter, or create same starting conditions to go in a different direction, looping around to initial filter
   
   - examine a universe without differentiation (every particle containing universe has the same starting resource point & limits)
