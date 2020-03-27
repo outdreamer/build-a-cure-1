@@ -6,6 +6,9 @@
 		"info": ["lack info", "lack bias"],
 		"structure": ["equal alternatives", "equal distribution", "diverse input"]
 	},
+	"trust": {
+		"structure": ["depend on limited/specific inputs", "check at intervals"]
+	},
 	"power": {
 		"structure": ["alternatives", "connection hub", "input"],
 		"concept_structure": ["potential", "change potential", "change activation", "truth source", "truth access point", "truth access path"],

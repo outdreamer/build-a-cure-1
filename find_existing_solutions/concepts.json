@@ -13,5 +13,12 @@
 			"cause",
 			"activation"
 		]
+	},
+	"trust": {
+		"types": [],
+		"definitions": {},
+		"objects": {},
+		"attributes": {},
+		"functions": []
 	}
 }

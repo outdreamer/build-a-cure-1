@@ -1,0 +1,183 @@
+{
+	"square": {
+		"definitions": {
+			"circle": [
+				"connecting tangents at n equidistant points of circle, where n = 4"
+			],
+			"connection": [
+				"connecting four equidistant lines at endpoints",
+				"connecting four external barrier shapes with equidistant adjacent inner sides & taking the subset of their inner space"
+			],
+			"triangle": [
+				"copying equilateral triangle & flipping"
+			],
+			"rotation": [
+				"rotating a line three times & connecting the endpoints"
+			],
+			"square": [
+				"use corners of smaller square as midpoints on larger square"
+			]
+		},
+		"types": [
+			"four-sided objects",
+			"objects with sides of equal length & equal angles",
+			"objects that look the same on 90 degree rotation",
+			"objects with corners",
+			"objects with diagonals",
+			"objects with no inner space crossing lines",
+			"unit rectangle"
+		],
+		"attributes": {
+			"input": [
+				["number of sides", "angle"],
+				["number of sides", "connection point"],
+				["number of triangles", "number of transforms", "transform type=flip"],
+				["number of lines", "number of transforms", "transform type=rotation", "connection point"],
+				["number of tangents", "tangent point", "connection point"],
+				["number of barrier shapes", "connection point", "area of focus"]
+			],
+			"output": [
+				"four-sided shape of equal side length & connection angle, connected at the endpoints"
+			]
+		},
+		"objects": {
+			"input": [
+				"line",
+				"angle"
+			],
+			"output": [
+				"center",
+				"diagonal",
+				"corners"
+			]
+		},
+		"functions": {
+			"input": [
+				"rotate",
+				"connect",
+				"flip"
+			],
+			"output": [
+				"gather",
+				"contain"
+			]
+		},
+		"relationships": {
+			"unit": ["euclidean space", "area", "exponent"]
+		}
+	},
+
+	"triangle": {
+		"definitions": {
+			"circle": [
+				"connecting tangents at n equidistant points of circle, where n = 3"
+			],
+			"rotation": [
+				"rotating a line three times & connecting the endpoints"
+			],
+			"connection": [
+				"connecting three equidistant lines at endpoints",
+				"connecting three external barrier shapes with equidistant adjacent inner sides & taking the subset of their inner space"
+			],
+			"triangle": [
+				"copying right triangle & flipping",
+				"use corners of smaller triangle as midpoints on larger triangle"
+			]
+		},
+		"types": [
+			"three-sided objects",
+			"objects with sides of equal length & equal angles",
+			"objects that look the same on n degree rotation",
+			"objects with corners",
+			"objects with no inner space crossing lines"
+		],
+		"attributes": {
+			"input": [
+				["number of sides", "angle"],
+				["number of sides", "connection point"],
+				["number of triangles", "number of transforms", "transform type=flip"],
+				["number of lines", "number of transforms", "transform type=rotation", "connection point"],
+				["number of barrier shapes", "connection point", "area of focus"]
+			],
+			"output": [
+				"three-sided shape of equal side length & connection angle, connected at the endpoints"
+			]
+		},
+		"objects": {
+			"input": [
+				"line",
+				"angle"
+			],
+			"output": [
+				"center",
+				"corners"
+			]
+		},
+		"functions": {
+			"input": [
+				"rotate",
+				"connect",
+				"flip"
+			],
+			"output": [
+				"find hypotenuse"
+			]
+		},
+		"relationships": {
+			"unit": ["change rate", "2-d object"]
+		}
+	},
+
+	"circle": {
+		"definitions": {
+			"line": [
+				"rotating line anchored at a point"
+			],
+			"triangle": [
+				"connecting midpoints of triangle using rotated line anchored at center",
+				"rotate triangle anchored at center, tracing trajectory of corner"
+			],
+			"square": [
+				"connecting midpoints of square using rotated line anchored at center",
+				"rotate square anchored at center, tracing trajectory of corner"
+			]
+		},
+		"types": [
+			"zero-sided objects",
+			"objects with equal distribution of points according to angle from origin",
+			"objects that look the same on any rotation",
+			"objects without corners",
+			"objects with no inner space crossing lines"
+		],
+		"attributes": {
+			"input": [
+				["number of shapes", "type of shape", "number of transforms", "transform type=rotation", "anchor point"]
+			],
+			"output": [
+				"zero-sided shape of equal distribution of points according to angle from origin, indistinguishable across all rotations about the origin"
+			]
+		},
+		"objects": {
+			"input": [
+				"line",
+				"angle"
+			],
+			"output": [
+				"center"
+			]
+		},
+		"functions": {
+			"input": [
+				"rotate",
+				"anchor"
+			],
+			"output": [
+				"equally distribute",
+				"contain"
+			]
+		},
+		"relationships": {
+			"unit": ["right triangle angle relationship patterns", "non-linear function"]
+		}
+	}
+}
