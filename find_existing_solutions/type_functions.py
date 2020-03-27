@@ -8,13 +8,13 @@ def find_type(problem_object, solution_objects):
 		- this assumes the solution object is the type/more abstract than the problem object
 
 	- the optimal implementation to match_type would:
-		- derive 'reason' from 'incentive',
-		- get 'reward' from 'reason', 
-		- then match the context of reward to optimization language or markets, 
+		- derive 'reason' from 'incentive'
+		- get 'reward' from 'reason'
+		- then match the context of reward to optimization language or markets
 			both of which are frequently modeled using info about the systems, like in agent-based algorithms or game theory
 		- then match the context of the solution_object 'info' based on this connection
 
-	- or it'd rule out the other solution objects like 'asymmetry' in this example, which isnt relevant on its own without the info_asymmetry term, 
+	- or it'd rule out the other solution objects like 'asymmetry' in this example, which isnt relevant on its own without the info_asymmetry term
 		although info_asymmetry matches the 'incentive' problem_object, because:
 			- there is implied but not explicit info that the incentivized behavior is good (incentivized behaviors are sometimes just defaults or emerging incentives that are unplanned)
 			- there is implied but not explicit info about costs/side effects of the incentivized behavior (incentives can come with costs like lack of variation)

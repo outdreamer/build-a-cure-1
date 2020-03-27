@@ -5,12 +5,54 @@ def get_concepts():
 		return concepts
 	return False
 
+def get_shapes():
+	''' retrieve shape definitions '''
+	shapes = get_data('shapes.json')
+	if shapes:
+		return shapes
+	return False
+
 def identify_concepts(system):
 	''' identify the concepts in a system, explicit and emerging '''
 	return False
 
-def get_structures_for_system(system):
-	''' this function maps a system to a structure like a common shape '''
+def get_structures_in_system(system):
+	''' this function gets all the component objects, games, sub-systems & sub-structures forming a system '''
+	return False 
+
+def find_shape_for_system(system):
+	''' this function maps a system to a structure like a common shape 
+
+		- first pull the definitions of common shapes
+		- check objects for mappable object relationships
+		- once you have object mappings, convert structure attributes to shape attributes
+		- check if converted shape attributes hold
+		- if any shape attributes apply, convert structure functions to shape functions
+		- check if converted shape functions hold
+		- if converted shape attributes & functions hold, check for other relationships that may fail 
+			- check if sub-systems & sub-objects fail
+			- check if contextual containing systems fail 
+			- check if type relationships fail
+
+	- partial matches may be sufficient in some ways, if the related structures to apply operations on with this structure occupy matching dimensions
+	'''
+	structure_shape_map = {
+		'independent_variable': 'input',
+		'dependent_variable': 'output',
+		'type': ['attribute set'],
+		'function': 'function',
+		'specific_structures': {
+			'one_dimensional_independent_change': 'angle',
+			'intersecting_change': 'corner',
+			'symmetry_sources': ['origin', 'average'],
+			'boundary_input': 'side',
+			'change_metric_input': 'point',
+			'unit_change': 'line',
+			'measurable_dimensional_similarity': 'equal',
+			'importance': 'adjacence'
+		}
+	}
+
 	return False
 
 def derive_concepts_from_structure(structure):
@@ -58,9 +100,7 @@ def apply_filter(structure, filter_rule):
 			- injecting the structure to the filtering rule in this case
 
 		- example:
-			- filtering a structure like 'square' by the rule 'convert angles to parallel' should convert the square into four parallel lines
-
-
+			- filtering a structure like 'square' by the rule 'convert angles to parallel' should convert the square into four parallel lines		
 	'''
 	return False
 
