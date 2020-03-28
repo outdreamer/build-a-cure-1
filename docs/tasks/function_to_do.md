@@ -1,9 +1,15 @@
   
   - add formatting to allow multiple items as keys in json and maintain order for interface network paths
 
-  
-
   - abstract functions
+
+      - derive combinations & make sure you have full function coverage of all important combinations
+        operations = ['find', 'get', 'update', 'apply', 'build', 'combine', 'connect', 'convert', 'balance', 'map', 'match', 'fit', 'filter', 'derive']
+        objects = ['strategies', 'questions', 'incentives', 'efficiencies', 'metadata', 'definitions']
+        structures = ['paths', 'limits', 'boundaries', 'bonds', 'gaps', 'layers']
+        system_objects = ['attributes', 'objects', 'systems', 'sub_systems', 'types', 'functions']
+        - check codebase function index for combinations
+        - check that you have sample data in json for each combination
 
       - network framing function to describe a system as a network & position each object, identifying connecting functions
       - attribute/object/function identification functions
