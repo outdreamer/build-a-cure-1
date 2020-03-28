@@ -22,6 +22,15 @@
 	"sub_system_rules": [
 		"sub-systems tend to generate false signals"
 	],
+	"system_questions": [
+		"is this the best interaction layer for this object/function",
+		"is this the most efficient path",
+		"is this the best structure for this object/function",
+		"is this the only object/function/sub-system where this could be useful",
+		"does this make a useful/efficient combination with anything else",
+		"is this adjacent to an error or optimal combination/state",
+		"is this lack of enforcement necessary or can it be restricted"
+	],
 	"general_interfaces": [
 		"bio systems are likely to have one-directional interface chains, communication interfaces, & certain priority interfaces like efficiency"
 	]

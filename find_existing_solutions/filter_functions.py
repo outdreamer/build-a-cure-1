@@ -23,12 +23,16 @@ def find_efficiencies(system):
 	''' an origin about which change occurs can be useful for finding interfaces '''
 	alternatives = get_alternatives(system)
 	''' an alternative thats lower cost can be useful for reducing overall cost '''
+	alternate_intent_paths = get_alternative_intent_paths(system)
+	''' other combinations that do the same thing are useful for using lower-cost paths '''
 	opposites = get_opposites(system)
 	''' opposites can be useful for finding neutralizing or preventative processes for a solution '''
 	complements = get_complementary_objects(system)
 	''' two halves that make a whole can be useful for building objects '''
 	matches = get_matching_objects(system)
 	''' a receptor and a pathogen can be useful for building connections '''
+	inefficiencies = get_inefficiencies(system)
+	''' the inefficiencies can be used to filter the list of possible efficiencies & organize by priority '''
 	return efficiencies
 
 def identify_concepts(system):
