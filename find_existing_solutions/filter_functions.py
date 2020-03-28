@@ -15,6 +15,10 @@ def get_shapes():
 def find_efficiencies(system):
 	''' this function uses key objects to combine resources in efficient, lower-cost ways '''
 	efficiencies = []
+	incentives = get_incentives(system)
+	''' incentives in a system are important for evaluating change potential & solution cost '''
+	intents = get_intents(system)
+	''' intents are important for finding similarities & alignments to coordinate cooperation/conflict '''
 	similarities = get_similarities(system)
 	''' similar attributes can be useful for finding or building units of cooperation '''
 	alignments = get_alignments(system)
@@ -31,8 +35,10 @@ def find_efficiencies(system):
 	''' two halves that make a whole can be useful for building objects '''
 	matches = get_matching_objects(system)
 	''' a receptor and a pathogen can be useful for building connections '''
-	inefficiencies = get_inefficiencies(system)
-	''' the inefficiencies can be used to filter the list of possible efficiencies & organize by priority '''
+	inefficiencies = get_inefficiencies(system) # inefficiencies are a problem type
+	''' the inefficiencies can be used to filter the list of possible efficiencies & organize by priority 
+	then filter by cost/benefit to make sure its better than existing solutions
+	'''
 	return efficiencies
 
 def identify_concepts(system):
