@@ -12,6 +12,25 @@ def get_shapes():
 		return shapes
 	return False
 
+def find_efficiencies(system):
+	''' this function uses key objects to combine resources in efficient, lower-cost ways '''
+	efficiencies = []
+	similarities = get_similarities(system)
+	''' similar attributes can be useful for finding or building units of cooperation '''
+	alignments = get_alignments(system)
+	''' similar directions/intents can be useful for coordinating goals or increasing change/momentum '''
+	symmetries = get_symmetries(system)
+	''' an origin about which change occurs can be useful for finding interfaces '''
+	alternatives = get_alternatives(system)
+	''' an alternative thats lower cost can be useful for reducing overall cost '''
+	opposites = get_opposites(system)
+	''' opposites can be useful for finding neutralizing or preventative processes for a solution '''
+	complements = get_complementary_objects(system)
+	''' two halves that make a whole can be useful for building objects '''
+	matches = get_matching_objects(system)
+	''' a receptor and a pathogen can be useful for building connections '''
+	return efficiencies
+
 def identify_concepts(system):
 	''' identify the concepts in a system, explicit and emerging '''
 	return False
