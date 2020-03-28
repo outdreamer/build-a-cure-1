@@ -21,22 +21,23 @@ system = [
 	objects = [variable segment, diversity segment, joining segment, constant segment, antibodies, t-cell receptors, receptors, t-cells]
 	attributes = [constant, variable, diverse, joined, involved, core, like, possible/can, with]
 	functions = [vdj recombination, delete copy, recombine, combine, use/apply, apply process, create/form]
+	system_rules = [full set of rules filled in by system analysis to describe probable system dynamics given input rule subset]
 '''
-random_set = [
-	'membranes',
-	'bonds',
-	'checkpoints',
-	'pressure',
-	'neutralizing process',
-	'competition'
-]
+random_set = ['membranes', 'bonds', 'checkpoints', 'pressure', 'neutralizing process', 'competition']
 ''' out of this system described as a set of different type instances:
 	objects = [membranes, bonds, checkpoints, points, checks, pressure]
 	attributes = [limit, pressure, force, neutral, opposing]
 	functions = [neutralize, press/apply pressure, check, limit, connect, process, compete]
 '''
 def define_system(system):
-	''' system can be an object or a function or a set, like functions extracted from a paragraph describing the system '''
+	''' system can be an object or a function or a set, like functions extracted from a paragraph describing the system 
+	      - system analysis function (identify boundaries, gaps, limits, layers, & other system objects)
+	'''
+	system_analysis_questions = []
+	rules = get_data('system_logic_rules.json')
+	if rules:
+		if 'system_analysis_questions' in rules:
+			system_analysis_questions = rules['system_analysis_questions'] 
 	system_def = {'objects': [], 'attributes': [], 'functions': [], 'interfaces': []}
 	objects = identify_objects(system)
 	if objects:

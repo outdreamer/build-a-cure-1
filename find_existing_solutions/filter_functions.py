@@ -1,17 +1,3 @@
-def get_concepts():
-	''' retrieve concept definitions '''
-	concepts = get_data('concepts.json')
-	if concepts:
-		return concepts
-	return False
-
-def get_shapes():
-	''' retrieve shape definitions '''
-	shapes = get_data('shapes.json')
-	if shapes:
-		return shapes
-	return False
-
 def find_efficiencies(system):
 	''' this function uses key objects to combine resources in efficient, lower-cost ways '''
 	efficiencies = []

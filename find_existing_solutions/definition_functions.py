@@ -1,5 +1,17 @@
 from utils import *
 
+def get_shapes():
+	''' retrieve shape definitions 
+	get functions can:
+		- retrieve stored objects
+		- find objects in a system
+		- call get_object_metadata to describe the metadata of a stored/found object
+	'''
+	shapes = get_data('shapes.json')
+	if shapes:
+		return shapes
+	return False
+
 def get_object_metadata(object_name, object_type):
 	print('function::get_object_metadata')
 	''' object_name can be an abstract solution type string, or a solution step list '''
