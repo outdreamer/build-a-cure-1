@@ -72,15 +72,38 @@ def identify_objects(system):
 		- rule out functions/attributes
 	'''
 
+	'''
+		functions & attributes can be framed as objects, how to differentiate from actual objects:
+			- objects have state that is operated on by associated functions
+			- objects have types which are determined by associated attribute sets & values
+			- attributes can describe many other objects/attributes/functions 
+			- functions can be applied to other objects/attributes/functions to change them
+	'''
+
 	return False
 
 def identify_attributes(system):
-	''' attributes may need to be derived and arent as explicitly defined as often as objects '''
+	''' attributes may need to be derived and arent as explicitly defined as often as objects 
+
+	attributes & functions can both describe objects' behavior & identity, how to differentiate:
+		- attributes are often defined as a combination of other attributes 
+		- if you define functions in terms of attributes, there will usually be differences in implementation
+		- functions may directly change the structure/state of an object (whereas an 'importance' attribute might not)
+		- attributes may describe the state of an object (charged)
+		- attributes referring to functionality (an 'ionizing' substance) can be directly mapped to functions
+		- attributes have an associated value, like function parameters can have an associated value
+		- functions have clearly defined inputs/outputs and an attribute might not
+	'''
 
 	return False
 
 def identify_functions(system):
-	''' functions may be easily mapped to verbs, but emerging functions need to be derived '''
+	''' functions may be easily mapped to verbs, but emerging functions need to be derived 
+
+	functions & objects both have inputs & outputs & internal logic, how to differentiate:
+		- functions are treated as a means to an end rather than a destination, unless its a system to find the right function
+		- functions will have more similarities to paths/lines than points
+	'''
 
 	return False
 
