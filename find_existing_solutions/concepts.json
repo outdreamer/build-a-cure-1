@@ -25,11 +25,11 @@
 		"structure": ["gap", "limit", "boundary", "shape", "layer", "set", "path", "position", "intersection", "base"],
 		"reason": ["incentive", "intent", "efficiency", "logic", "rule compliance", "matches"],
 		"attribute": ["similarity", "balance", "equal"],
-		"function": ["order"],
+		"function": ["order", "alternatives", "combinations"],
 		"information": ["assumption", "implication", "definition", "pattern", "probability"],
 		"unit": ["core functions", "core objects", "core attributes", "core types"],
-		"emergence": ["structure development", "interaction development", "attribute development"],
+		"change_rules": ["core", "structural", "system", "interface"],
 		"alternatives": ["paths", "metrics", "priorities", "filters"],
-		"certainty": ["risk", "randomness", "variance", "inevitability", "impossibility", "possibility", "likely"]
+		"certainty": ["risk", "randomness", "variance", "inevitability", "impossibility", "possibility", "probability"]
 	}
 }
