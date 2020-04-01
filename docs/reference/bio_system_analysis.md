@@ -40,6 +40,22 @@
 			- for pathogens with boundaries that cant be handled with existing immune stressors, they can be relocated to a location with functionality to handle them (acidic environments) or that environment can be locally re-created for the duration it takes to kill the pathogen (acidosis)
 
 
+		- kidney:
+		
+			- the idea of having a concentration loop for each filtering capsule rather than a network of interchangeable filtering capsules and a network of loops is very fragile
+			- the chain of medulla is also extremely fragile
+			- the kidney should be more like a series of highways but it's structured like a one-way road & a set of cul de sacs
+			- its also extremely sensitive to pressure changes if its impaired at all
+			- the pressure-managing function should be isolated from filtering functions bc theyre both crucial, impacting the whole system
+			- there needs to be an optimization of this filtering component to make it a series of highways rather than single paths, an extra filtering or pressure system that can get rid of waste products or pathogens when the kidneys & liver & immune system are impaired, which is frequently as theyre very delicate, extra filtering organ stem cells grown in case of damage, or a regenerative function installed
+			- whats the benefit from the glomeruli and the other capillary networks have such fragile looping structures - would they be better off as a series of embedded structures with membranes designed to filter substances & eject any unfilterable substances after wrapping them in boundaries or storing them in other cells (like skin cells marked for apoptosis) with endocytosis
+			- why does urine need to be concentrated by looping structures at all
+			- which enzymes could be injected at which points in the process to increase filtering capacity (breaking up proteins to work with the existing filter system)
+			- would ability to produce charge, ionization, or homeostasis-related compounds like sodium or hormones to apply pressure & motion as needed improve filtering functionality
+			- why cant more waste products be safely taken to skin as sweat for excretion, what is requiring unhandle-able substances like toxic substances to be routed to kidneys if they cant handle them
+			- what happens when capillaries have thicker cell walls, does it hide problems from the immune system or is it just too big for the places theyre usually needed & their size is an advantage, or theyre joined with other capillaries in networks which are prepared to handle blood flow in the event that one capillary is broken
+	
+
 		- optimization questions
 				- what small/large swaps are optimal for attaching single-chain variable fragments
 				- what structure of the boundary is needed

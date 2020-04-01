@@ -9,7 +9,28 @@
 
 
 ## Systems
-	
+
+	- kidney system
+
+		- objects:
+			- nephron: unit containining set of glomeruli & loops to push small molecules (water, glucose, amino acids, salt & urea) through filters to clean blood & produce concentrated urine (with large proteins & blood cells removed) through the collection duct taking input from nephrons
+
+				- not filtered into Bowman's capsule: blood proteins, red blood cells, white blood cells and platelets
+				- Substances reabsorbed: water, sodium chloride, glucose, amino acids, lactate, magnesium, calcium phosphate, uric acid, and bicarbonate
+				- Substances secreted: urea, creatinine, potassium, hydrogen, and uric acid
+				- hormones signaling the tubules to alter reabsorption/secretion rate to maintain homeostasis
+					- antidiuretic hormone (affects water)
+					- aldosterone (affects sodium, potassium)
+					- parathyroid hormone (affects calcium, phosphate)
+					- atrial natriuretic peptide (affects sodium)
+					- brain natriuretic peptide (affects sodium)
+
+			- glomerulus: blood vessel network (with capillaries composed of endothelial cells), of which there are multiple for each bowmans capsule
+			- arterioles: input & output blood vessels that carry blood to & from the bowmans capsule for filtering
+			- loop of henle: concentrates urine output
+			- mesangial cells: remove waste products & protein in capsule from the bowmans capsule membrane
+			- bowmans capsule: filtering unit within nephrons, containing glomerular filters & mesangial cells, paired with a loop of henle & routed output to the collection duct
+
 	- dna system
 
 		- concepts:
