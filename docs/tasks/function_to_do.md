@@ -1,6 +1,10 @@
   
   - add formatting to allow multiple items as keys in json and maintain order for interface network paths
 
+  - make tutorial for interface analysis or at least reading list of posts & docs
+
+  - add more function maps
+
   - abstract functions
 
       - derive combinations & make sure you have full function coverage of all important combinations
