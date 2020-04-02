@@ -17,27 +17,13 @@
         - check codebase function index for combinations
         - check that you have sample data in json for each combination
 
-      - attribute/object/function identification functions
-      - interface identification function
+      - attribute/object/function match functions
+      - specific interface identification function
+      - standardization network-framing function to describe a system as a network (the standard structure) & position each object, identifying connecting functions
+      - system analysis function (identify boundaries, gaps, limits, layers, incentives/intents/questions, & other system objects)
+      - isolation function, representating function/attribute changes independent of system context with respect to position or time (snapshot/state or subset)
+      - function to define (isolate an object/concept/function for identification, identify definition routes)
 
-      - network framing function to describe a system as a network & position each object, identifying connecting functions
-      - function to map object/system/function type/set/chain to a shape in various contexts (linking nodes, depicting an attribute set, etc)
-
-      - representation of a function/attribute changes in isolation with respect to position or time (snapshot or section)
-
-      - function to identify interface trajectory between conceptual/structural interfaces
-        - may involve navigating sub-networks within an interface, not just mapping between interfaces
-        - trajectories such as: most efficient path, and destination in same position on other interface)
-        - uses interface_networks.json if it exists and if not, interface identification, network mapping, and similarity testing
-        - function to identify alternative routes to an object (create & retrieve info from definition_routes.json if its already in interface_networks.json)
-          - a system applicable to this function would be a process or object like a particular pathogen - complex enough to qualify as a system
-        - definition_routes.json can be generated from the paths in interface_networks.json, which just describes the links in networks of concepts/intents & other interface networks
-        
-        - then add function to map:
-          - conceptual object to structural object
-          - conceptual function to structural step
-      
-      - system analysis function (identify boundaries, gaps, limits, layers, & other system objects)
 
   - give example of each type of problem-solving workflows
 
@@ -53,9 +39,7 @@
       - finish apply_solution to problem_definition using problem_steps
         - involves building a function to evenly distribute objects (like information/types), given problem positions/agents/objects
       
-  - types should be represented as directions (going farther from origin goes further up type stack, where similar types are adjacent)
-  - finish system analysis for VDJ recombination 
-  - find other relevant immune processes to analyze
+  - types can be represented as directions (going farther from origin goes further up type stack, where similar types are adjacent)
 
   - need to fill in content:
     - finish intent/change type calculation for a system intent
@@ -74,5 +58,3 @@
   - framing on interfaces, decomposing causation, then identifying parameters of problem on layer & matching solution
   - independence (closed trade loops) as time storage
   - vertex as a pivot point for an interface
-
-  - function to create graph from article

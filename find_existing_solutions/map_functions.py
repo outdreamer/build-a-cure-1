@@ -1,10 +1,35 @@
 from type_functions import *
 
 '''
-      - network framing function to describe a system as a network & position each object, identifying connecting functions
-      - function to map object/system/function type/set/chain to a shape in various contexts (linking nodes, depicting an attribute set, etc)
 
-      
+	mapping requires:
+	
+      - attribute/object/function match functions
+
+      - specific interface identification function
+
+      - standardization network-framing function to describe a system as a network (the standard structure) & position each object, identifying connecting functions
+
+      - system analysis function (identify boundaries, gaps, limits, layers, incentives/intents/questions, & other system objects)
+
+      - isolation function, representating function/attribute changes independent of system context with respect to position or time (snapshot/state or subset)
+
+      - function to define (isolate an object/concept/function for identification, identify definition routes)
+
+          - alternative routes to an object (create & retrieve info from definition_routes.json if its already in interface_networks.json or definition_routes.json)
+          - definition_routes.json can be generated from the paths in interface_networks.json, which just describes the links in networks of concepts/intents & other interface networks
+        
+          - identify definition routes:
+            - function to map non-structural interface object/function/system to structural object/function/system
+              - function to map object/system/function type/set/chain to a shape in various contexts (linking nodes, depicting an attribute set, etc)
+
+          - identify interface trajectory between other interfaces
+            - may involve navigating sub-networks within an interface, not just mapping between interfaces
+            - trajectories such as: most efficient path, and destination in same position on other interface)
+            - uses interface_networks.json if it exists and if not, interface identification, network mapping, and similarity testing
+          
+            - this is an extension of the system analysis function, adding structure to the system definition as well as efficient paths, generative paths, identifying paths, etc
+
       - to map a function/object/system to a structure, you need:
         - the definition
         - system analysis of the definition
