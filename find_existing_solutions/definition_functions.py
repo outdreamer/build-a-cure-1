@@ -68,6 +68,92 @@ def get_concept_metadata(concept_name):
 					concept['functions'].extend(concept_functions)
 			return concept
 	''' to do: make call to define concept if no definition is found '''
+	abstract_system = get_system('abstract.json')
+	all_attributes = get_attributes(abstract_system, ['all'])
+	concept['attributes'] = {'unique': {}}
+	for attribute in all_attributes:
+		has_attribute = has_attribute(concept, attribute)
+		if has_attribute:
+			''' get objects with similar attributes & attribute values because these are the objects to differentiate from '''
+			concept['attributes'][attribute] = {'value': None, 'objects': {}}
+			attribute_value = get_attribute_value(abstract_system, concept, attribute)
+			if attribute_value:
+				concept['attributes'][attribute]['value'] = attribute_value
+			objects_with_attribute = get_objects_with_attribute(abstract_system, attribute)
+			if objects_with_attribute:
+				objects_with_attribute_value = get_objects_with_attribute_value(abstract_system, attribute, attribute_value)
+				for object_with_attribute in objects_with_attribute:
+					concept['attributes'][attribute]['objects'][object_with_attribute] = None
+					if object_with_attribute in objects_with_attribute_value:
+						if objects_with_attribute_value[object_with_attribute] == attribute_value:
+							''' this object attribute value equals that of the concept we're isolating '''
+							concept['attributes']['equal'][object_with_attribute] = {attribute: attribute_value}
+						else:
+							''' this object's attribute value is not equal to the concept's attribute value, so log its own value in the objects array '''
+							concept['attributes'][attribute]['objects'][object_with_attribute] = objects_with_attribute_value[object_with_attribute]
+			else:
+				''' no other objects with this attribute '''
+				concept['attributes']['unique'][attribute] = attribute_value
+	print('attributes', concept['attributes'])
+	''' 
+		once you have the related objects with equal attribute values or attributes that are unique to this concept, 
+		and a list of related objects with the same attributes, you can differentiate this concept further
+
+		the objects with equal attributes may be a prior version or causal object for this concept, 
+		in which case this concept may be definable using a path between those objects, 
+		if this concept's unique attributes can emerge from that path
+	'''
+	return False
+
+def get_attribute_value(system, concept, attribute):
+	return False
+
+def get_objects_with_attribute(system, attribute):
+	return False
+
+def get_objects_with_attribute_value(system, attribute, attribute_value):
+	return False
+
+def get_system(system_name, system):
+	''' to do: add support for assembling system if system attributes/components are passed in rather than system name '''
+	system_definition = get_data(system_name)
+	if system_definition:
+		return system_definition
+	if system_attributes:
+		assembled_system = build_system(system)
+		if assembled_system:
+			return assembled_system
+	return False
+
+def build_system(system):
+	return False
+
+def describe_system(system, description_type):
+	''' description_type can support all, attributes, functions, generative, filters, etc '''
+	return False
+
+def get_attributes(system, attribute_types):
+	''' to do: add support for getting attributes specific to an object/function/system 
+
+	attribute_types can be a list of types like:
+	- direct/indirect
+	- hub 
+	- causal
+	- input/output
+	- variable
+	- descriptive
+	- functional
+	- type
+	- cross system (difference, importance)
+	- abstract
+	- alternate/substitute
+	'''
+	attributes = get_data('attributes.json')
+	if attributes:
+		return attributes
+	described_system = describe_system_attributes(system)
+	if described_system:
+		return described_system
 	return False
 
 def get_function_metadata(fdef, delimiter):

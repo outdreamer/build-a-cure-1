@@ -3,7 +3,7 @@
 
   - make tutorial for interface analysis or at least reading list of posts & docs
 
-  - add concept maps & system maps
+  - add more concept map & system map examples
 
   - abstract functions
 
@@ -19,6 +19,9 @@
 
       - attribute/object/function identification functions
       - interface identification function
+
+      - network framing function to describe a system as a network & position each object, identifying connecting functions
+      - function to map object/system/function type/set/chain to a shape in various contexts (linking nodes, depicting an attribute set, etc)
 
       - representation of a function/attribute changes in isolation with respect to position or time (snapshot or section)
 
