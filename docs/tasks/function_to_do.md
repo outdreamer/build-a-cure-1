@@ -8,10 +8,12 @@
   - abstract functions
 
       - derive combinations & make sure you have full function coverage of all important combinations
+
         operations = ['find', 'get', 'update', 'apply', 'build', 'combine', 'connect', 'convert', 'balance', 'map', 'match', 'fit', 'filter', 'derive']
         objects = ['strategies', 'questions', 'incentives', 'efficiencies', 'metadata', 'definitions']
         structures = ['paths', 'limits', 'boundaries', 'bonds', 'gaps', 'layers']
         system_objects = ['attributes', 'objects', 'systems', 'sub_systems', 'types', 'functions']
+
         - check codebase function index for combinations
         - check that you have sample data in json for each combination
 
@@ -27,6 +29,23 @@
           - as a set of shape structures (indicating how the object's logic works internally (how attributes are related to functions, as in a shape)
           - as a set of embedded dimensions (where an embedded graph indicates internal or subset processing/objects)
           - as a set of related graphs (where each graph depicts structure of some attribute set of the original object/function/system)
+
+      - to map attributes (identifying/differentiating measurable properties of an object like relevance or connectivity), you need:
+        - a base object structure 
+        - a dimension to frame values & their differences added by the attribute
+        - the attribute can be in an embedded dimension set (to indicate differences in value on multiple parameters of the attribute, like when the differences offered by an attribute vary by change type & change rate), but the base object should be included in the structural representation if possible
+
+      - to map a system, you need:
+        - nodes with boundaries, indicating objects & components of objects
+        - functions linking nodes:
+          - vectors with direction, indicating causal direction, input/output flow, intent direction, and other direction-structurable attributes
+          - functions whose shape indicates relationship type 
+        - system boundaries/layers/gaps/potential and other system structures if they exist
+
+      - to map a type, you need:
+        - subset shapes to indicate attribute sets, and structures linked to each attribute to indicate attribute value, range, type & other metadata
+        - nodes indicating types 
+        - links indicating any causal directions between types
 
       - network framing function to describe a system as a network & position each object, identifying connecting functions
       - attribute/object/function identification functions
