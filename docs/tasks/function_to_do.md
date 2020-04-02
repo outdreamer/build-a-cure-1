@@ -3,7 +3,7 @@
 
   - make tutorial for interface analysis or at least reading list of posts & docs
 
-  - add more function maps
+  - add concept maps & system maps
 
   - abstract functions
 
@@ -14,6 +14,19 @@
         system_objects = ['attributes', 'objects', 'systems', 'sub_systems', 'types', 'functions']
         - check codebase function index for combinations
         - check that you have sample data in json for each combination
+
+      - to map a function/object/system to a structure, you need:
+        - the definition
+        - system analysis of the definition
+        - objects from system analysis like implication
+        - structures/functions mapped to the objects (like copy implication is that position of the duplicate object must be different from the original object)
+        
+        - these objects can be framed in many structural ways:
+          - as a set of filters (generating the object/function/system)
+          - as a set of vectors (indicating the key attributes or functions generating/determining the object/function/system)
+          - as a set of shape structures (indicating how the object's logic works internally (how attributes are related to functions, as in a shape)
+          - as a set of embedded dimensions (where an embedded graph indicates internal or subset processing/objects)
+          - as a set of related graphs (where each graph depicts structure of some attribute set of the original object/function/system)
 
       - network framing function to describe a system as a network & position each object, identifying connecting functions
       - attribute/object/function identification functions
