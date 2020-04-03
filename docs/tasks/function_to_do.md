@@ -1,4 +1,3 @@
-  
   - add formatting to allow multiple items as keys in json and maintain order for interface network paths
 
   - make tutorial for interface analysis or at least reading list of posts & docs
@@ -24,7 +23,6 @@
       - isolation function, representating function/attribute changes independent of system context with respect to position or time (snapshot/state or subset)
       - function to define (isolate an object/concept/function for identification, identify definition routes)
 
-
   - give example of each type of problem-solving workflows
 
     - workflow 1:
@@ -49,7 +47,7 @@
     - key functions to solve common problem types
     - development of key decision metrics (bias towards more measurable/different metrics rather than the right metric)
     - trajectory between core & important objects
-        - example of choosing inefficiencies/exploit combinations in a system
+      - example of choosing inefficiencies/exploit combinations in a system
     - research implementing your solution type (constructing structures (made of boundary/filter/resource sets) to produce substances like antibodies, using bio system stressors)
     - emergent combinations of core functions (include derivation of invalidating contexts for core functions)
 
