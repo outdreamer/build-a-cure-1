@@ -4,6 +4,10 @@
 
   - add more concept map & system map examples
 
+Idea: smart contracts for browser, to grant permissions to various web events/user actions for a particular session
+
+When you log in, you create a mini contract saying what you intend to do, and if behavior deviates outside of what the contract supports, the session is terminated
+
   - abstract functions
 
       - derive combinations & make sure you have full function coverage of all important combinations
