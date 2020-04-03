@@ -5,6 +5,11 @@ from textblob import TextBlob, Sentence, Word, WordList
 from textblob.wordnet import VERB, NOUN, ADJ, ADV
 from textblob.wordnet import Synset
 
+from get_pos import *
+from get_vars import *
+from get_structural_objects import *
+from get_metadata import get_metadata, get_structural_metadata, get_data_from_source
+
 def find_subdict_in_dict(function_dict, found_dict, search_term):
 	for k, v in function_dict.items():
 		if search_term in k:
@@ -144,3 +149,36 @@ def get_type_words():
 	''' return list of abstract/interface/structural words '''
 	type_words = ['info', 'symmetry']
 	return set(type_words)
+
+def convert_sentence(sentence, av):
+    word_map = {}
+    word_map, av = standard_text_processing(sentence, av)
+    if word_map:
+        print('word_map', word_map)
+    row = get_empty_index(av)                   
+    row['line'] = sentence
+    row['word_map'] = word_map
+    row['original_line'] = sentence
+    #row = replace_names(row, av)
+    #row = get_similarity_to_title(title, row)
+    row = get_structural_metadata(row, av)
+    print('metadata', row)
+    
+
+'''
+av = get_vars()
+sentence = 'first find clause, then find second'
+convert_sentence(sentence, av)
+
+to do:
+	- fix conjugate
+	- plural: 'line': 'firsts finds claus thens finds seconds'
+	- unaltered: 'operator': {'first find1 clause, then find4 second'}
+
+defs first [
+	'the first element in a countable series'
+]
+defs clause [
+	'(grammar) an expression including a subject and predicate but not constituting a complete sentence'
+]
+'''

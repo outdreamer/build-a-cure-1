@@ -945,13 +945,19 @@ def get_specific_pos(pattern, av):
     for subset in pattern.split('|'):
         new_words = []
         for word in subset.split(' '):
-            nn = get_nonnumeric(word, av)        
+            nn = get_nonnumeric(word, av)
             if nn:
-                tag_list = [x for k, v in av['tags'].items() for x in v] if nn == 'ALL' else av['tags'][nn] if nn in av['tags'] else None
+                tag_list = [x for k, v in av['tags'] for x in v] if nn == 'ALL' else av['tags'][nn] if nn in av['tags'] else None
                 if tag_list:
                     new_words.append(''.join(['|', ' '.join(tag_list), '|']))
-                else:
+                elif nn in av['tags']['ALL']:
                     new_words.append(word)
+                else:
+                    pos = get_nltk_pos(nn, av)
+                    if pos:
+                        new_words.append(pos)
+                    else:
+                        new_words.append(word)
             else:
                 new_words.append(word)
         if len(new_words) > 0:
@@ -960,8 +966,9 @@ def get_specific_pos(pattern, av):
         return '|'.join(new_subsets)
     return False
 
+
 def get_all_pos(pattern, av):
-    ''' convert 'ALL_N' => |NN JJ JJR NNS NNP NNPS RB], 'dog' => 'NN' '''
+    ''' convert 'ALL_N' => |N JJ JJR NNS NNP NNPS RB], 'dog' => 'N' '''
     new_subsets = []
     for subset in pattern.split('|'):
         new_words = []
@@ -974,7 +981,7 @@ def get_all_pos(pattern, av):
                 elif nn in av['tags']['ALL']:
                     new_words.append(word)
                 else:
-                    pos = get_nltk_pos(word, av)
+                    pos = get_nltk_pos(nn, av)
                     if pos:
                         new_words.append(pos)
                     else:
@@ -982,7 +989,18 @@ def get_all_pos(pattern, av):
             else:
                 new_words.append(word)
         if len(new_words) > 0:
-            new_subsets.append(' '.join(new_words))
+            final_words = []
+            for word in new_words:
+                all_type = ''.join(['ALL_', word])
+                if all_type in av['tags']:
+                    final_words.append(word)
+                else:
+                    for tag in av['tags']:
+                        tag_type = tag.replace('ALL_','')
+                        if word in av['tags'][tag] and tag_type == tag_type.upper() and tag_type != 'SYNSET':
+                            final_words.append(tag_type)
+                            break
+            new_subsets.append(' '.join(final_words))
     if len(new_subsets) > 0:
         return '|'.join(new_subsets)
     return False
@@ -1009,6 +1027,8 @@ def append_list(index_lists, sub_list, av):
     return False
 
 def get_alts(pattern, index_lists, av):
+    print('pattern', pattern)
+    pattern = '\n'.join([p for p in pattern]) if type(pattern) != str else pattern
     pattern = pattern.strip().replace('__', '')
     all_alts, variables = get_alt_sets(pattern, [], av)
     if all_alts:
@@ -1018,7 +1038,6 @@ def get_alts(pattern, index_lists, av):
             for sub_list in all_alts:
                 if '|' in sub_list:
                     print('sub list', sub_list)
-                    exit()
                     delimiter_found = True
             if delimiter_found:
                 return get_alts(pattern, all_alts, av)
@@ -1195,6 +1214,7 @@ def generate_alt_patterns(pattern, av):
             'ALL_N ALL_N ALL_N', # HIV-positive patients => NNP JJ NNS
     ]
     #pattern = 'plays a |VB NN| noun_phrase role'
+    print('generate_alt_patterns', pattern)
     alts = get_alts(pattern, [], av)
     if alts:
         if len(alts) > 0:
@@ -1558,6 +1578,7 @@ def get_all_versions(pattern, version_types, av):
         'synonym': set(), 'pos': set(), 'combination': set(), 'pattern_type': set()
     }
     #version_types = av['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
+    print('get all versions', pattern)
     alt_patterns = generate_alt_patterns(pattern, av)
     print('alt_patterns', alt_patterns)
     if alt_patterns:
@@ -1578,9 +1599,9 @@ def get_all_versions(pattern, version_types, av):
                 '''
                 synonym_pattern = standardize_words(ap, 'synonym', av)
                 if synonym_pattern:
-                    pattern_index['synonym'].add(synonym_pattern)
                     ip = generate_indexed_patterns(synonym_pattern, av)
                     if ip:
+                        pattern_index['synonym'].add(ip)
                         if ip.count(' ') == ap.count(' '):
                             op = generate_operator_patterns(ip, av)
                             if op:
@@ -2185,6 +2206,8 @@ def standard_text_processing(text, av):
                 pos = get_nltk_pos(word, av)
                 word_map[word] = pos if pos else ''
             #line = remove_stopwords(line, article_lines[line])
+            '''
+            to do: fix word replacement 'find' => 'test'
             syn_line, av = replace_with_syns(line.split(' '), word_map, None, av)
             if syn_line:
                 if syn_line not in article_lines:
@@ -2193,8 +2216,9 @@ def standard_text_processing(text, av):
                     pos = get_nltk_pos(word, av)
                     article_lines[syn_line][word] = pos if pos else ''
             else:
-                if line not in article_lines:
-                    article_lines[line] = word_map
+            '''
+            if line not in article_lines:
+                article_lines[line] = word_map
     if article_lines:
         print('article', article_lines)
         return article_lines, av
@@ -2549,8 +2573,6 @@ def conjugate(word, target_pos, av):
         word_stem = ''.join([stem, endings[target_pos]]) if stem != infinitive and stem[-1] != 's' else stem
         singular_word = singularize_word(word_stem, av)
         if singular_word:
-            if singular_word[-1] != 's':
-                return ''.join([singular_word, 's'])
             return singular_word
         return word_stem
     return False

@@ -3,7 +3,7 @@ from type_functions import *
 '''
 
 	mapping requires:
-	
+
       - attribute/object/function match functions
 
       - specific interface identification function
@@ -130,7 +130,7 @@ def makes_sense(problem_metadata, problem_object, matched_problem_object, soluti
 			- the success metric of the problem needs to be improved by the solution, if the solution makes sense when applied to that problem space
 	'''
 	for solution_object in solution_objects:
-		logical_rules = get_data('system_logic_rules.json')
+		logical_rules = get_data('rules.json')
 		if logical_rules:
 			new_problem_solution_map = {}
 			attributes_to_check = ['type']

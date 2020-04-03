@@ -42,7 +42,7 @@ def identify_interfaces(system, interface_type):
 			''' for example, bio systems are likely to have one-directional interface chains, communication interfaces, & certain priority interfaces like efficiency '''
 			''' first pull rules about system interfaces for this system type '''
 			general_interfaces = set()
-			logic_rules = get_data('system_logic_rules.json')
+			logic_rules = get_data('rules.json')
 			if logic_rules:
 				if 'general_interfaces' in logic_rules:
 					for rule in logic_rules['general_interfaces']:

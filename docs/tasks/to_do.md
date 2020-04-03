@@ -203,3 +203,8 @@
 # Questions
   - are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?
 
+
+# Planned features
+
+  - smart contracts for browser, to grant permissions to various web events/user actions for a particular session
+    When you log in, you create a mini contract saying what you intend to do, and if behavior deviates outside of what the contract supports, the session is terminated

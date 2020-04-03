@@ -2,11 +2,9 @@
 
   - make tutorial for interface analysis or at least reading list of posts & docs
 
-  - add more concept map & system map examples
-
-Idea: smart contracts for browser, to grant permissions to various web events/user actions for a particular session
-
-When you log in, you create a mini contract saying what you intend to do, and if behavior deviates outside of what the contract supports, the session is terminated
+  - finish pos, clause, modifiers code from find implementation
+  - finish network creation function
+  - then go back to identification functions
 
   - abstract functions
 
@@ -30,6 +28,7 @@ When you log in, you create a mini contract saying what you intend to do, and if
   - give example of each type of problem-solving workflows
 
     - workflow 1:
+
       - finish function to determine relevance filter ('functions', 'required') from a problem_step ('find incentives') for a problem definition, to modify problem_steps with extra functions/attributes ('change_position') to be more specific to the problem definition ('find_incentives_to_change_position') for problem_steps involving 'incentives', so you know to use the function_name to modify the problem step if it's between the type 'functions' and the object searched for 'incentives'
 
       - finish function to get all codebase functions & store them in a dict with their type, context/usage, and intents, just like functions are stored in the problem_metadata.json example for workflow 1
@@ -60,3 +59,4 @@ When you log in, you create a mini contract saying what you intend to do, and if
   - framing on interfaces, decomposing causation, then identifying parameters of problem on layer & matching solution
   - independence (closed trade loops) as time storage
   - vertex as a pivot point for an interface
+

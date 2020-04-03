@@ -310,127 +310,135 @@ def get_structural_metadata(row, av):
     print('\n\nget_structural_metadata', row)
     keep_ratios = ['extra', 'high', 'none']
     corrected_line = correct(row['line'])
+    print('row', row)
     row['line'] = corrected_line if corrected_line else row['line']
-    generated_patterns, all_patterns, av = get_all_versions(row['line'], 'all', av)
-    if generated_patterns:
-        print('generated_patterns', generated_patterns)
-        for pattern_type, patterns in generated_patterns.items():
-            if pattern_type not in row['pattern']:
-                row['pattern'][pattern_type] = set()
-            if len(patterns) > 0:
-                for pattern in patterns:
-                    print('pattern', pattern)
-                    row['pattern'][pattern_type].add(pattern)
-    word_pos_line = ''.join([x for x in row['line'] if x in av['alphanumeric'] or x in av['clause_analysis_chars']])
-    print('\nword pos line', word_pos_line)
-    words = word_pos_line.split(' ')
-    new_line = []
-    max_words, counts = get_common_words(row['line'], 3, av)
-    if max_words and counts:
-        row['count'] = counts
-        row['common_word'] = max_words
-    names = get_names(row['line'])
-    if names:
-        row['names'] = names
-    for i, w in enumerate(words):
-        if len(w) > 0:
-            pos = row['word_map'][w] if row['word_map'] and w in row['word_map'] else get_nltk_pos(w, av)
-            if pos:
-                if pos in av['tags']['VC']:
-                    row['clause_marker'].add(w)
-                if pos in av['tags']['ALL_N'] or w in av['alphabet'] or pos == 'N':
-                    ''' format nouns like 'inhibitor' or 'catalyzer' as a verb '''
-                    present_verb = conjugate(w, 'VBZ', av)
-                    if present_verb:
-                        row['verb'].add(present_verb)
-                        new_line.append(present_verb)
-                    else:
-                        row['noun'].add(w)
-                        new_line.append(w)
-                elif pos in av['tags']['ALL_V'] or pos == 'V':
-                    ''' dont conjugate '-ing' to preserve verb-noun modifier phrases '''
-                    present_verb = conjugate(w, 'VBZ', av)
-                    if present_verb:
-                        row['verb'].add(present_verb)
-                        new_line.append(present_verb)
-                    else:
-                        row['verb'].add(w)
-                        new_line.append(w)
-                elif pos in av['tags']['D'] or pos == 'D':
-                    ratio = get_determiner_ratio(w)
-                    if ratio:
-                        if ratio in keep_ratios:
-                            row['det'].add(str(ratio))
-                            new_line.append(str(ratio))
-                elif pos in av['tags']['P'] or pos == 'P':
-                    row['prep'].add(w)
-                    new_line.append(w)
-                elif pos in av['tags']['C'] or pos == 'C':
-                    row['conj'].add(w)
-                    new_line.append(w)
-                elif pos in av['tags']['ADV'] or pos in av['tags']['ADJ'] or pos == 'ADJ' or pos in av['tags']['ADV'] or pos in av['tags']['ADV'] or pos == 'ADV':
-                    row['descriptor'].add(w)
-                    new_line.append(w)
-                else:
-                    row['taken_out'].add('_'.join([w, str(pos)]))
-            else:
-                if w in av['alphabet']:
-                    row['noun'].add(w)
-                    new_line.append(w)
-    row['line'] = ' '.join(new_line) if len(new_line) > 0 else word_pos_line
-    print('\ninterim row', row)
-    ngrams = find_ngrams(row['line'], av) # 'even with', 'was reduced', 'subject position'
-    if ngrams:
-        for k, v in ngrams.items():
-            row['ngram'] = row['ngram'].union(v)
-    print('\nngrams', row['ngram'])
-    structure_types = ['modifier', 'phrase', 'verb_phrase', 'noun_phrase', 'clause']
-    for i, key in enumerate(structure_types):
-        objects, patterns, av = extract_objects_and_patterns(row, key, key, av)
-        if objects:
-            print('\n\n\nobjects', key, objects)
-            if key in objects:
-                if key == 'verb_phrase':
-                    for item in objects[key]:
-                        new_list = []
-                        for w in item.split(' '):
-                            pos = get_nltk_pos(w, av)
-                            if pos:
-                                present_verb = conjugate(w, 'VBZ', av)
-                                if present_verb:
-                                    new_list.append(present_verb)
-                                else:
-                                    new_list.append(w)
-                            else:
-                                new_list.append(w)
-                        if len(new_list) > 0:
-                            row[key].add(' '.join(new_list))
-                elif key == 'subject':
-                    for item in objects[key]:
-                        row[key].add(item.split(' ')[0]) # to do: remove trailing verb in 'N V' subject pattern
-                elif key == 'clause':
-                    row[key] = objects[key]
-                else:
-                    print('objects key', key)
-                    row[key] = set(row[key]).union(set(objects[key]))
-        if patterns:
-            for pattern_type in patterns:
+    if row['line'] != '':
+        generated_patterns, av = get_all_versions(row['line'], 'all', av)
+        if generated_patterns:
+            print('generated_patterns', generated_patterns)
+            for pattern_type, patterns in generated_patterns.items():
                 if pattern_type not in row['pattern']:
                     row['pattern'][pattern_type] = set()
-                row['pattern'][pattern_type] = row['pattern'][pattern_type].union(patterns[pattern_type])
-    print('\nafter pattern identification', row)
-    new_row = find_relationship(row['line'], row, av)
-    row = new_row if new_row else row
-    print('\nafter relationships', row)
-    objects, patterns, av = extract_objects_and_patterns(row, 'relationship', 'relationship', av)
-    if objects:
-        if 'relationship' in objects:
-            row['relationship'] = row['relationship'].union(set(objects['relationship']))
-        if patterns:
-            for pattern_key in patterns:
-                if pattern_key not in row['pattern']:
-                    row['pattern'][pattern_key] = set()
-                row['pattern'][pattern_key] = row['pattern'][pattern_key].union(patterns[pattern_key])
+                if len(patterns) > 0:
+                    for pattern in patterns:
+                        print('pattern', pattern)
+                        row['pattern'][pattern_type].add(pattern)
+        word_pos_line = ''.join([x for x in row['line'] if x in av['alphanumeric'] or x in av['clause_analysis_chars']])
+        print('\nword pos line', word_pos_line)
+        words = word_pos_line.split(' ')
+        new_line = []
+        max_words, counts = get_common_words(row['line'], 3, av)
+        if max_words and counts:
+            row['count'] = counts
+            row['common_word'] = max_words
+        names = get_names(row['line'])
+        if names:
+            row['names'] = names
+        for i, w in enumerate(words):
+            if len(w) > 0:
+                pos = row['word_map'][w] if row['word_map'] and w in row['word_map'] else get_nltk_pos(w, av)
+                if pos:
+                    if pos in av['tags']['VC']:
+                        row['clause_marker'].add(w)
+                    if pos in av['tags']['ALL_N'] or w in av['alphabet'] or pos == 'N':
+                        ''' format nouns like 'inhibitor' or 'catalyzer' as a verb '''
+                        present_verb = conjugate(w, 'VBZ', av)
+                        if present_verb:
+                            row['verb'].add(present_verb)
+                            new_line.append(present_verb)
+                        else:
+                            row['noun'].add(w)
+                            new_line.append(w)
+                    elif pos in av['tags']['ALL_V'] or pos == 'V':
+                        ''' dont conjugate '-ing' to preserve verb-noun modifier phrases '''
+                        present_verb = conjugate(w, 'VBZ', av)
+                        if present_verb:
+                            row['verb'].add(present_verb)
+                            new_line.append(present_verb)
+                        else:
+                            row['verb'].add(w)
+                            new_line.append(w)
+                    elif pos in av['tags']['D'] or pos == 'D':
+                        ratio = get_determiner_ratio(w)
+                        if ratio:
+                            if ratio in keep_ratios:
+                                row['det'].add(str(ratio))
+                                new_line.append(str(ratio))
+                    elif pos in av['tags']['P'] or pos == 'P':
+                        row['prep'].add(w)
+                        new_line.append(w)
+                    elif pos in av['tags']['C'] or pos == 'C':
+                        row['conj'].add(w)
+                        new_line.append(w)
+                    elif pos in av['tags']['ADV'] or pos in av['tags']['ADJ'] or pos == 'ADJ' or pos in av['tags']['ADV'] or pos in av['tags']['ADV'] or pos == 'ADV':
+                        row['descriptor'].add(w)
+                        new_line.append(w)
+                    else:
+                        row['taken_out'].add('_'.join([w, str(pos)]))
+                else:
+                    if w in av['alphabet']:
+                        row['noun'].add(w)
+                        new_line.append(w)
+        row['line'] = ' '.join(new_line) if len(new_line) > 0 else word_pos_line
+        print('\ninterim row', row)
+        ngrams = find_ngrams(row['line'], av) # 'even with', 'was reduced', 'subject position'
+        if ngrams:
+            for k, v in ngrams.items():
+                row['ngram'] = row['ngram'].union(v)
+        print('\nngrams', row['ngram'])
+        for key, value in row.items():
+            print('key', key, value)
+        structure_types = ['modifier', 'phrase', 'verb_phrase', 'noun_phrase', 'clause']
+        for i, key in enumerate(structure_types):
+            if len(row[key]) > 0:
+                objects, patterns, av = extract_objects_and_patterns(row, key, key, av)
+                if objects:
+                    print('\n\n\nobjects', key, objects)
+                    if key in objects:
+                        if key == 'verb_phrase':
+                            for item in objects[key]:
+                                new_list = []
+                                for w in item.split(' '):
+                                    pos = get_nltk_pos(w, av)
+                                    if pos:
+                                        present_verb = conjugate(w, 'VBZ', av)
+                                        if present_verb:
+                                            new_list.append(present_verb)
+                                        else:
+                                            new_list.append(w)
+                                    else:
+                                        new_list.append(w)
+                                if len(new_list) > 0:
+                                    row[key].add(' '.join(new_list))
+                        elif key == 'subject':
+                            for item in objects[key]:
+                                row[key].add(item.split(' ')[0]) # to do: remove trailing verb in 'N V' subject pattern
+                        elif key == 'clause':
+                            row[key] = objects[key]
+                        else:
+                            print('objects key', key)
+                            row[key] = set(row[key]).union(set(objects[key]))
+                if patterns:
+                    for pattern_type in patterns:
+                        if pattern_type not in row['pattern']:
+                            row['pattern'][pattern_type] = set()
+                        row['pattern'][pattern_type] = row['pattern'][pattern_type].union(patterns[pattern_type])
+        print('\nafter pattern identification')
+        for key, value in row.items():
+            print('key', key, value)
+        new_row = find_relationship(row['line'], row, av)
+        row = new_row if new_row else row
+        print('\nafter relationships', row)
+        if len(row['relationship']) > 0:
+            objects, patterns, av = extract_objects_and_patterns(row, 'relationship', 'relationship', av)
+            if objects:
+                if 'relationship' in objects:
+                    row['relationship'] = row['relationship'].union(set(objects['relationship']))
+                if patterns:
+                    for pattern_key in patterns:
+                        if pattern_key not in row['pattern']:
+                            row['pattern'][pattern_key] = set()
+                        row['pattern'][pattern_key] = row['pattern'][pattern_key].union(patterns[pattern_key])
     if row:
         for key in row:
             print('key', key, row[key])
