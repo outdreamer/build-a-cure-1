@@ -6,6 +6,9 @@
   - finish network creation function
   - then go back to identification functions
 
+  - processes with time irreversibility:
+    - allow a state change within a symmetry's transformation space, without passing time (no change has occurred except law obedience) - a unit of required order
+
   - abstract functions
 
       - derive combinations & make sure you have full function coverage of all important combinations
