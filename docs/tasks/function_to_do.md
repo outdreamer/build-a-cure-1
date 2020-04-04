@@ -8,6 +8,10 @@
 
   - processes with time irreversibility:
     - allow a state change within a symmetry's transformation space, without passing time (no change has occurred except law obedience) - a unit of required order
+    - guarantees distribution of resources (energy)
+    - guarantees destructibility of intelligent energy-hoarding systems (biological life)
+    - prevents some powerful energy sources from being accidentally created by intelligent energy-hoarding systems (black holes)
+    - allows for variance cascades
 
   - abstract functions
 
