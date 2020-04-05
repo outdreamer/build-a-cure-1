@@ -12,6 +12,7 @@
     - guarantees destructibility of intelligent energy-hoarding systems (biological life)
     - prevents some powerful energy sources from being accidentally created by intelligent energy-hoarding systems (black holes)
     - allows for variance cascades
+    - information increases potential for reversibility, so irreversible processes probably destroy information or evade information (never converge to measurability through alternatives)
 
   - abstract functions
 

@@ -40,6 +40,43 @@
 			- for pathogens with boundaries that cant be handled with existing immune stressors, they can be relocated to a location with functionality to handle them (acidic environments) or that environment can be locally re-created for the duration it takes to kill the pathogen (acidosis)
 
 
+		- medicine:
+
+			- why would a medicine have a side effect?
+
+				- structure:
+					- alignment: some intent or attribute aligns with another system object attribute or intent and they coordinate or cluster
+					- matching: the medicine's structure matches some other bio system object so it takes the place of that object, causing functionality to be applied that triggers other functions, and invalidating the function of the replaced object
+					- neutralization: the medicine's structure neutralizes some bio system function/object
+					- conflict: the medicine's structure competes with some bio system function/object
+					- layer: the medicine causes objects from one layer to switch layers
+					- collision: the medicine has a structure that collides with other structures in a way that disrupts their structure, leading to mutations or cell death
+
+				- cause:
+					- the medicine injects or alters causation, taking the place of a causative object, providing an alternative causal path, or blocking/preventing a causal path
+
+				- function:
+					- the medicine causes emerging functionality that the system is unprepared for, or misinterprets as a valid process while the artificial activation of that process is missing required inputs
+
+					- intent:
+						- the medicine causes one intent to be strengthened (gene deletion) - in backup functions/causes or in defense/protective mechanisms, which causes other intents to be unfulfilled (gene copying)
+
+					- pattern:
+						- the medicine causes new patterns of mutations that create unsupported gene expressions (rearranging gene sequences that depend on position)
+
+				- type:
+					- the medicine causes a type divergence or other change which the system is unprepared for (gene changes, new cell types to evolve, new antibodies to evolve)
+
+				- system:
+					- the medicine fills a variance gap (some potential for flexibility) or other system object like boundary conditions that need to exist for the system to work, like spaces in cells to allow for growth or other separations
+
+					- the medicine triggers a variance cascade disrupting the system on multiple interaction layers, or disrupting cross-system interfaces (DNA, energy source, defense mechanisms), attributes (structure, flexibility), objects (cell types, membranes)
+
+				- potential:
+					- the medicine changes potential objects (causes stem cells to differentiate, causes DNA to become uneditable, causes irreversible changes)
+					- the medicine alters probabilities necessary for system functioning: likelihood of types, likelihood of interaction
+					
+
 		- kidney:
 		
 			- the idea of having a concentration loop for each filtering capsule rather than a network of interchangeable filtering capsules and a network of loops is very fragile
