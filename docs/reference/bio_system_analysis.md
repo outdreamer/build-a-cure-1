@@ -68,14 +68,34 @@
 					- the medicine causes a type divergence or other change which the system is unprepared for (gene changes, new cell types to evolve, new antibodies to evolve)
 
 				- system:
-					- the medicine fills a variance gap (some potential for flexibility) or other system object like boundary conditions that need to exist for the system to work, like spaces in cells to allow for growth or other separations
+					- the medicine removes a difference/distance/node/fills a variance gap (some potential for flexibility) or other system object like boundary conditions that need to exist for the system to work, like spaces in cells to allow for growth or other separations
 
 					- the medicine triggers a variance cascade disrupting the system on multiple interaction layers, or disrupting cross-system interfaces (DNA, energy source, defense mechanisms), attributes (structure, flexibility), objects (cell types, membranes)
 
 				- potential:
 					- the medicine changes potential objects (causes stem cells to differentiate, causes DNA to become uneditable, causes irreversible changes)
 					- the medicine alters probabilities necessary for system functioning: likelihood of types, likelihood of interaction
-					
+					- the medicine distributes un/certainty where it can be harmful (variables, input/output direction) & interfere with other processes
+
+				- change:
+					- the medicine may upset the stressor balance in the system, either for a particular patient or for most patients, and a stressor protocol must be applied with the medication to offset this change
+					- the medicine may trigger changes that may eventually produce positive mutations, but occur too quick for the system to fulfill with change supply (stem cells, energy)
+
+			- given this analysis you can infer that:
+
+				- certain layers are sub-optimal for interference (delicate interfaces like DNA on the gene layer are highly volatile, and often change on their own from physics or chemical/bio processes, and small changes can cause whole system shut down)
+
+					- however these fragile layers are also sometimes highly causative, and so many solutions can be found on those layers/interfaces, including strengthening this layer (optimizing editing processes, keeping more DNA backups, adding functionality to store & regenerate original DNA sequences, optimizing current storage patterns)
+
+				- certain interfaces are more important than others to analyze for each change (structure/functionality/causation)
+
+				- some strategies are clearly better than others
+					- removing a resource-hogging middleman node that has one direct connection between the source & target node is the best possible change to minimize side effects, and other changes are increasingly sub-optimal due to more impact 
+
+					- integrating feedback loops may improve the accuracy of some processes
+
+				- structural damage is the most important thing to prevent (DNA mutations, irrepairable cell types, pathogen invasion)
+
 
 		- kidney:
 		
