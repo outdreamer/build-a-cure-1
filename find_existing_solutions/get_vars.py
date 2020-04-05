@@ -523,6 +523,8 @@ def get_pattern_config(av):
         'into': 'to'
     }
     av['pattern_vars'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
+
+    ''' the type_index is to store combinations of other type variables like noun_phrase & general variables like x '''
     av['type_index'] = {
         'passive_identifier': [
             'noun_phrase1 of noun_phrase2' # enzyme inhibitor of protein synthesis - to do: there are some examples where this structure adds clarity rather than just adding words, like where modifier relationships arent clear
@@ -651,6 +653,7 @@ def update_patterns(av):
         & generate patterns for source/target patters in pattern maps 
         and save all generated patterns in 'data/all_patterns.txt'
     '''
+    print('function::update_patterns')
     all_pattern_filename = ''.join([os.getcwd(), '/data/all_patterns.txt'])
     if os.path.exists(all_pattern_filename):
         pattern_contents = read(all_pattern_filename)
@@ -658,6 +661,9 @@ def update_patterns(av):
             for line in pattern_contents.split('\n'):
                 pattern_split = line.split('::')
                 if len(pattern_split) > 0:
+                    if len(pattern_split[0]) == 1:
+                        print('pattern split 0', pattern_split[0])
+                        exit()
                     pattern_index = pattern_split[0]
                     pattern_key = pattern_split[1]
                     pattern = pattern_split[2]
@@ -665,6 +671,9 @@ def update_patterns(av):
                         av[pattern_index][pattern_key] = []
                     if pattern_index == 'pattern_maps':
                         pattern_map = pattern.split(':')
+                        if len(pattern_map[0]) == 1:
+                            print('pattern map 0', pattern_map[0])
+                            exit()
                         av[pattern_index][pattern_key][pattern_map[0]] = pattern_map[1]
                     else:
                         av[pattern_index][pattern_key].append(pattern)
@@ -674,6 +683,7 @@ def update_patterns(av):
             new_pattern_index = {}
             for pattern_key, patterns in av[pattern_index].items():
                 for original_pattern in patterns:
+                    print('function::update_patterns - get_all_versions in original_pattern', original_pattern)
                     generated_patterns, av = get_all_versions(original_pattern, 'all', av) 
                     if generated_patterns:
                         all_patterns = [pattern for pattern_type, patterns in generated_patterns.items() for pattern in patterns]
@@ -692,6 +702,7 @@ def update_patterns(av):
         for pattern_map_key, pattern_map in av['pattern_maps'].items():
             new_pattern_map = {}
             for sp, tp in pattern_map.items():
+                print('function::update_patterns - get_all_versions in sp', sp, 'tp', tp)
                 sp_pattern_index, av = get_all_versions(sp, version_types, av) 
                 tp_pattern_index, av = get_all_versions(tp, version_types, av) 
                 sp_patterns = [pattern for pattern_type, patterns in sp_pattern_index.items() for pattern in patterns]
@@ -966,7 +977,6 @@ def get_specific_pos(pattern, av):
         return '|'.join(new_subsets)
     return False
 
-
 def get_all_pos(pattern, av):
     ''' convert 'ALL_N' => |N JJ JJR NNS NNP NNPS RB], 'dog' => 'N' '''
     new_subsets = []
@@ -1012,87 +1022,76 @@ def is_isolated_alt(subset, av):
             return alt_subset
     return False
 
-def append_list(index_lists, sub_list, av):
-    sub_list = sub_list if type(sub_list) == list else [sub_list]
-    if len(index_lists) == 0:
-        return [item for item in sub_list]
-    new_index_lists = []
-    for i, item in enumerate(sub_list):
-        for index_list in index_lists:
-            index_list = ' '.join(index_list) if type(index_list) != str else index_list
-            new_list = ' '.join([index_list, item])
-            new_index_lists.append(new_list)
-    if len(new_index_lists) > 0:
-        return new_index_lists
-    return False
-
 def get_alts(pattern, index_lists, av):
-    print('pattern', pattern)
+    print('get_alts::pattern', pattern)
+    all_alts = []
     pattern = '\n'.join([p for p in pattern]) if type(pattern) != str else pattern
     pattern = pattern.strip().replace('__', '')
-    all_alts, variables = get_alt_sets(pattern, [], av)
+    ''' treat vars like 'noun_phrase' similarly to wrapped lists with '|' '''
+    for var_name in av['pattern_vars']:
+        if var_name in pattern and var_name in av['pattern_index']:
+            for var_pattern_item in av['pattern_index'][var_name]:
+                ''' one noun_phrase pattern at a time '''
+                var_pattern_item_words = var_pattern_item.split(' ')
+                new_words = []
+                for word in var_pattern_item_words:
+                    if word in av['tags']:
+                        sub_list = ''.join(['|', ' '.join(av['tags'][word]), '|'])
+                        new_words.append(sub_list)
+                    else:
+                        new_words.append(word)
+                if len(new_words) > 0:
+                    var_pattern_item = ''.join(['|', ' '.join(new_words), '|'])
+                var_name_pattern = ''.join(['|', var_pattern_item, '|'])
+                pattern_with_var_name = pattern.replace(var_name, var_name_pattern)
+                var_all_alts, variables = get_alt_sets(pattern_with_var_name, [], av)
+                if var_all_alts:
+                    if len(var_all_alts) > 0:
+                        all_alts.extend(var_all_alts)
+    if len(all_alts) == 0:
+        var_all_alts, variables = get_alt_sets(pattern, [], av)
+        if var_all_alts:
+            if len(var_all_alts) > 0:
+                all_alts.extend(var_all_alts)
     if all_alts:
         if len(all_alts) > 0:
-            print('get_alts: all_alts', all_alts)
-            delimiter_found = False
-            for sub_list in all_alts:
-                if '|' in sub_list:
-                    print('sub list', sub_list)
-                    delimiter_found = True
-            if delimiter_found:
-                return get_alts(pattern, all_alts, av)
-            all_alts = [item for item in all_alts if item != '']
-            for sub_list in all_alts:
-                index_lists = append_list(index_lists, sub_list, av)
-            index_lists = set([il.replace('  ',' ') for il in index_lists])
-            if len(index_lists) > 0:
-                return index_lists
+            return all_alts
     return False
 
 def get_all_combinations(alt_lists):
     ''' alt_lists = a list of lists [['a', 'b'], ['c', 'd'], 'e'] '''
-    list_lengths = []
+    alt_lists_lists = [item for item in alt_lists if type(item) == list]
     combination_list = []
-    combination_indexes = []
     for i, sub_list in enumerate(alt_lists):
         if type(sub_list) == list:
-            if len(sub_list) > 1:
-                combination_list.extend(sub_list)
-                combination_indexes.append(i)
-            list_lengths.append(len(sub_list) - 1)
+            combination_list.extend(sub_list)
+        else:
+            combination_list.extend([sub_list])
     combination_list = list(set(combination_list))
     ''' build list of all possible options for a combination and select count of output '''
-    permutations = itertools.permutations(combination_list, len(list_lengths))
-    combinations = set()
+    permutations = itertools.product(combination_list, repeat=len(alt_lists))
+    combinations = []
     for p in permutations:
-        combinations.add(p)
-    combinations_with_replacement = itertools.combinations_with_replacement(combination_list, len(list_lengths))
-    for p in combinations_with_replacement:
-        combinations.add(p)
-    final_combinations = []
-    for combination in combinations:
-        new_combination = []
-        combination_index = 0
-        skip = False
+        new_items = []
         for i, sub_list in enumerate(alt_lists):
             if type(sub_list) == list:
-                if combination[combination_index] in sub_list:
-                    new_combination.append(combination[combination_index])
-                else:
-                    skip = True
-                combination_index += 1
+                if i < len(p):
+                    if p[i] in sub_list:
+                        new_items.append(p[i])
             else:
-                if skip is False:
-                    new_combination.append(sub_list)
-        if len(new_combination) > 0:
-            final_combinations.append(new_combination)
-    if len(final_combinations) > 0:
-        return final_combinations
+                if p[i] == sub_list:
+                    new_items.append(p[i])
+        if len(new_items) == len(alt_lists):
+            combinations.append(new_items)
+    if len(combinations) > 0:
+        return combinations
     return False
 
 def get_alt_sets(pattern, all_alts, av):
+    print('get alt sets pattern', pattern, 'all_alts', all_alts)
     subsets, variables = get_pattern_subsets(pattern, {}, av)
     all_alts = all_alts if all_alts else []
+    print('subsets', subsets, 'variables', variables)
     if subsets:
         for item in subsets:
             if item != '':
@@ -1118,89 +1117,58 @@ def get_alt_sets(pattern, all_alts, av):
                 else:
                     all_alts.append(item)
         if len(all_alts) > 0:
-            new_alts = []
-            for sub_list in all_alts:
-                if type(sub_list) == list:
-                    total_set = list(set([word for sub_list_item in sub_list for word in sub_list_item.split(' ')]))
-                    new_alts.append(total_set)
-                else:
-                    new_alts.append(sub_list)
-            if len(new_alts) > 0:
-                final_alts = []
-                for sub_list in new_alts:
-                    if type(sub_list) == list:
-                        new_item_list = []
-                        for item in sub_list:
-                            if item in variables:
-                                new_item_list.extend(variables[item].replace('|', '').split(' '))
-                            else:
-                                new_item_list.append(item)
-                        if len(new_item_list) > 0:
-                            final_alts.append(new_item_list)
-                    else:
-                        new_item_list = []
-                        for item in sub_list.split(' '):
-                            if item in variables:
-                                if len(new_item_list) > 0:
-                                    final_alts.append(' '.join(new_item_list))
-                                    new_item_list = []
-                                final_alts.append(variables[item].replace('|', '').split(' '))
-                            else:
-                                nn = get_nonnumeric(item, av)
-                                if nn in av['tags']:
-                                    final_alts.append(av['tags'][nn])
-                                elif nn in av['pattern_index']:
-                                    sub_pattern_alts = []
-                                    for sub_pattern in av['pattern_index'][nn]:
-                                        new_item_alts = []
-                                        for word in sub_pattern.split(' '):
-                                            append_item = av['tags'][word] if word in av['tags'] else word
-                                            new_item_alts.append(append_item)
-                                        combinations = get_all_combinations(new_item_alts)
-                                        if combinations:
-                                            if len(combinations) > 0:     
-                                                for c in combinations:
-                                                    sub_pattern_alts.append(' '.join(c))    
-                                    if len(sub_pattern_alts) > 0:
-                                        final_alts.append(sub_pattern_alts)
-                                else:
-                                    new_item_list.append(item)
-                        if len(new_item_list) > 0:
-                            final_alts.append(' '.join(new_item_list))
-                return final_alts, variables
+            combinations = get_all_combinations(all_alts)
+            if combinations:
+                if len(combinations) > 0:     
+                    all_alts = set([' '.join(c) for c in combinations])
+            if len(all_alts) > 0:
+                return all_alts, variables
     ''' replace type_index keywords with sets of patterns from pattern_index '''
     final_alts = []
     for word in pattern.split(' '):
-        nn = get_nonnumeric(word, av)
-        if nn in av['tags']:
-            final_alts.append(av['tags'][nn])
-        elif nn in av['pattern_index']:
-            sub_pattern_alts = []
-            for sub_pattern in av['pattern_index'][nn]:
-                new_item_alts = []
-                for word in sub_pattern.split(' '):
-                    append_item = av['tags'][word] if word in av['tags'] else word
-                    new_item_alts.append(append_item)
-                combinations = get_all_combinations(new_item_alts)
-                if combinations:
-                    if len(combinations) > 0:
-                        for c in combinations:
-                            sub_pattern_alts.append(' '.join(c))
-            if len(sub_pattern_alts) > 0:
-                final_alts.append(sub_pattern_alts)
-        # to do: adding words to alt list for type_patterns
+        new_sub_alts = get_sub_alts(word, final_alts, av)
+        if new_sub_alts:
+            final_alts.extend(new_sub_alts)
         else:
+            # to do: adding words to alt list for type_patterns
             final_alts.append(word)
     if len(final_alts) > 0:
-        if type(final_alts[0]) == str:
-            print('final alts', final_alts)
+        str_found = ['str' for sub_list in final_alts if type(sub_list) == str]
+        if len(str_found) == len(final_alts):
             sentence = ' '.join(final_alts)
-            print('sentence', sentence, 'pattern', pattern)
             if sentence == pattern:
                 ''' if the final_alts consists of original sentence words '''
                 return [sentence], False
-        return final_alts, False
+        combinations = get_all_combinations(final_alts)
+        if combinations:
+            if len(combinations) > 0:   
+                final_alts = set([' '.join(c) for c in combinations])
+        if len(final_alts) > 0:
+            return final_alts, False
     return False, False
+
+def get_sub_alts(item, final_alts, av):
+    new_sub_alts = []
+    nn = get_nonnumeric(item, av)
+    if nn in av['tags']:
+        new_sub_alts.append(av['tags'][nn])
+    elif nn in av['pattern_index']:
+        sub_pattern_alts = []
+        for sub_pattern in av['pattern_index'][nn]:
+            new_item_alts = []
+            for word in sub_pattern.split(' '):
+                append_item = av['tags'][word] if word in av['tags'] else word
+                new_item_alts.append(append_item)
+            combinations = get_all_combinations(new_item_alts)
+            if combinations:
+                if len(combinations) > 0:     
+                    for c in combinations:
+                        sub_pattern_alts.append(' '.join(c))    
+        if len(sub_pattern_alts) > 0:
+            new_sub_alts.append(sub_pattern_alts)
+    if len(new_sub_alts) > 0:
+        return new_sub_alts
+    return False
 
 def generate_alt_patterns(pattern, av):
     ''' 
@@ -1209,12 +1177,7 @@ def generate_alt_patterns(pattern, av):
     - optional strings are indicated by: __option__    
     - pattern = '|VB NN VB&ADV|' means 'VB or NN or VB & ADV'
     '''
-    noun_phrase = [
-            'ALL_N ALL_N',
-            'ALL_N ALL_N ALL_N', # HIV-positive patients => NNP JJ NNS
-    ]
-    #pattern = 'plays a |VB NN| noun_phrase role'
-    print('generate_alt_patterns', pattern)
+    print('generate_alt_patterns::pattern', pattern)
     alts = get_alts(pattern, [], av)
     if alts:
         if len(alts) > 0:
@@ -1236,7 +1199,6 @@ def get_pattern_subsets(pattern, variables, av):
     first iterate and replace all isolated alts with vars, 
         then iterate over replaced pattern looking for new isolated alts 
         if any found, assign new var containing original string
-
     '''
     variables = variables if variables else {}
     indexes = {}
@@ -1578,9 +1540,12 @@ def get_all_versions(pattern, version_types, av):
         'synonym': set(), 'pos': set(), 'combination': set(), 'pattern_type': set()
     }
     #version_types = av['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
-    print('get all versions', pattern)
+    print('function::get_all_versions for pattern', pattern)
     alt_patterns = generate_alt_patterns(pattern, av)
-    print('alt_patterns', alt_patterns)
+    print('generated alt_patterns', alt_patterns)
+    ''' for each generated pattern of alternative permutations from a pattern including | alts, 
+        calculate versions of each generated pattern like semantic/operator/synonym 
+    '''
     if alt_patterns:
         for ap in alt_patterns:
             word_count = [word for word in ap.split(' ') if word not in av['tags']['ALL'] and get_nltk_pos(word, av) not in av['tags']['DPC']]
@@ -2631,10 +2596,11 @@ def apply_pattern_map(line, pattern_map, av):
         - in order to support iterated replacement, you need to make sure your patterns are ordered in the right way
     '''
     # x of y => 'y x'
-    print('apply pattern map:line', line)
+    print('function::apply pattern map for line', line)
     if pattern_map in av['pattern_maps']:
         for source_pattern, target_pattern in av['pattern_maps'][pattern_map].items():
             ''' recalculate line versions in case line was changed with previous pattern match '''
+            print('function::apply pattern map - get_all_versions for line', line)
             line_version_index, av = get_all_versions(line, 'all', av)
             print('line_version_index', line_version_index)
             if line_version_index:
@@ -2760,6 +2726,7 @@ def derive_and_store_patterns(object_type, index, av):
       - use definitions as a data source for relationships if none are found 
     '''
 
+    print('function::derive_and_store_patterns')
     all_patterns = set()
     pattern_counts = {'standard': {}, 'type': {}, 'operator': {}, 'polarity': {}, 'subjectivity': {}, 'synonym': {}, 'pos': {}, 'combination': {}, 'pattern_type': {}}
     if object_type in index:
@@ -2776,6 +2743,7 @@ def derive_and_store_patterns(object_type, index, av):
                                 article = [title]
                                 for line, word_map in article_lines.items():
                                     article.append(line)
+                                    print('function::derive_and_store_patterns - get_all_versions for line', line)
                                     generated_patterns, av = get_all_versions(line, 'all', av)
                                     if generated_patterns:
                                         for pattern_type, patterns in generated_patterns.items():
@@ -2827,6 +2795,7 @@ def get_matching_subsets(line, pattern_key, av):
     '''
     find subsets in a line, matching stored patterns in av[pattern_index][pattern_key]
     '''
+    print('function::get_matching_patterns - get_all_versions in line', line)
     found_patterns = {}
     line_versions, av = get_all_versions(line, 'all', av)
     if line_versions:
