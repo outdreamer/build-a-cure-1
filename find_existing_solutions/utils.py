@@ -165,8 +165,12 @@ def convert_sentence(sentence, av):
     print('metadata', row)
     
 
-'''
+
 av = get_vars()
+for key in av:
+	print('\n\nkey', key, av[key])
+
+'''
 sentence = 'first find clause, then find second'
 convert_sentence(sentence, av)
 

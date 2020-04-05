@@ -1,5 +1,13 @@
 # Quantum physics
 
+  - processes with time irreversibility:
+    - allow a state change within a symmetry's transformation space, without passing time (no change has occurred except law obedience) - a unit of required order
+    - guarantees distribution of resources (energy)
+    - guarantees destructibility of intelligent energy-hoarding systems (biological life)
+    - prevents some powerful energy sources from being accidentally created by intelligent energy-hoarding systems (black holes)
+    - allows for variance cascades
+    - information increases potential for reversibility, so irreversible processes probably destroy information or evade information (never converge to measurability through alternatives)
+
   - entanglement occurring from:
     - rotating around a symmetry
     - finding nearest unused/unentangled particle

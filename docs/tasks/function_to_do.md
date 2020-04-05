@@ -2,26 +2,34 @@
 
   - make tutorial for interface analysis or at least reading list of posts & docs
 
+  - fix supported stem assignment (endings like 'is': {'functions a', 'acts a', 'plays a', 'operates a', 'works a'})
+  - fix charge function ('edit' is assigned positive score)
+  - fix type_index split adding chars
+  - fix assignment of pattern_maps to computed patterns
+      key pattern_maps {'passive_to_active': 
+      {
+        'x of y': 'y', 
+        'x was VBD by y': 'B', 
+        'x that has y': 'x', 'the N1 VBD VBN IN the N2': 'the N2 VBZ the N1', 'x VBD VBD IN y': 'N', 'x VBD VBN by y': 'B', 'x VBZ VBN by y': 'x', 'x that y z': 'z', 'x that does VBG': 'Z', 'x with y functionality': 'y', 'x has ability to do y': '0.0 0.0', 
+
+  - store alternate patterns from pattern_index separately once alts are computed
+  
+      key pattern_index {'passive_identifier': ['|VB VBP VBN VBD| |VB VBP VBN VBD|', 'VBG |VB VBP VBN VBD| |VB VBP VBN VBD|', '|VB VBP VBN VBD| |TO IN PP|', '|VBD| VBN VBN |TO IN PP|', 'ALL_N ALL_N of ALL_N ALL_N', 'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N', 'JJR RB NNS2 IN NNS4 NNP5 NNP6', 'NNPS0 RB NNPS2 of NN NNS JJ', 'JJR0 JJR1 IN NNP JJ', 'RB0 NNP1 JJ of JJR RB5 NNP6', 'NNS0 RB NNS2 of NNS4 NNP NNPS', 'NNPS NN NNS of NNP4 NNP5 JJ',
+
+  - add core clause patterns 
+  - fix pattern matching functions
   - finish pos, clause, modifiers code from find implementation
   - finish network creation function
   - then go back to identification functions
-
-  - processes with time irreversibility:
-    - allow a state change within a symmetry's transformation space, without passing time (no change has occurred except law obedience) - a unit of required order
-    - guarantees distribution of resources (energy)
-    - guarantees destructibility of intelligent energy-hoarding systems (biological life)
-    - prevents some powerful energy sources from being accidentally created by intelligent energy-hoarding systems (black holes)
-    - allows for variance cascades
-    - information increases potential for reversibility, so irreversible processes probably destroy information or evade information (never converge to measurability through alternatives)
 
   - abstract functions
 
       - derive combinations & make sure you have full function coverage of all important combinations
 
-        operations = ['find', 'get', 'update', 'apply', 'build', 'combine', 'connect', 'convert', 'balance', 'map', 'match', 'fit', 'filter', 'derive']
-        objects = ['strategies', 'questions', 'incentives', 'efficiencies', 'metadata', 'definitions']
-        structures = ['paths', 'limits', 'boundaries', 'bonds', 'gaps', 'layers']
-        system_objects = ['attributes', 'objects', 'systems', 'sub_systems', 'types', 'functions']
+          operations = ['find', 'get', 'update', 'apply', 'build', 'combine', 'connect', 'convert', 'balance', 'map', 'match', 'fit', 'filter', 'derive']
+          objects = ['strategies', 'questions', 'incentives', 'efficiencies', 'metadata', 'definitions']
+          structures = ['paths', 'limits', 'boundaries', 'bonds', 'gaps', 'layers']
+          system_objects = ['attributes', 'objects', 'systems', 'sub_systems', 'types', 'functions']
 
         - check codebase function index for combinations
         - check that you have sample data in json for each combination
@@ -32,6 +40,7 @@
       - system analysis function (identify boundaries, gaps, limits, layers, incentives/intents/questions, & other system objects)
       - isolation function, representating function/attribute changes independent of system context with respect to position or time (snapshot/state or subset)
       - function to define (isolate an object/concept/function for identification, identify definition routes)
+
 
   - give example of each type of problem-solving workflows
 

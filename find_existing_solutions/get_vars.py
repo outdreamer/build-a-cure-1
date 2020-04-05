@@ -525,7 +525,7 @@ def get_pattern_config(av):
     av['pattern_vars'] = ['N', 'ALL_N', 'V', 'ALL_V', 'ADJ', 'ADV', 'DPC', 'C', 'D', 'P']
     av['type_index'] = {
         'passive_identifier': [
-            'noun_phrase1 of noun_phrase2' # enzyme inhibitor of protein synthesis
+            'noun_phrase1 of noun_phrase2' # enzyme inhibitor of protein synthesis - to do: there are some examples where this structure adds clarity rather than just adding words, like where modifier relationships arent clear
         ],
         'modifier_identifier': [],
         'noun_phrase': [],
