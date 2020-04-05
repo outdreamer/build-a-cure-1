@@ -1,3 +1,21 @@
+  - added var_names to pattern alts functionality
+
+  - make sure patterns without pos are complete
+
+    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose  that
+    ./data/all_patterns.txt:pattern_index::clause_identifier::thought 1 that2 DPC 4 suppose 6 that7
+    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose 1 that2 DPC 4 assumed 6 that7
+    ./data/all_patterns.txt:pattern_index::clause_identifier::assumed 1 that2 DPC 4 suppose 6 that7
+    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose0 1 that2 DPC 4 suppose5 6 that7
+    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose 1 that2 DPC 4 thought 6 that7
+    ./data/all_patterns.txt:pattern_index::verb_phrase::operates 1 as 3 NN
+    ./data/all_patterns.txt:pattern_index::verb_phrase::operates 1 as a 4 VB
+    ./data/all_patterns.txt:pattern_index::verb_phrase::operates 1 as a 4 NN
+    ./data/all_patterns.txt:pattern_index::verb_phrase::operates 1 as 3 VB
+
+
+  - make sure nested variables are re-iterated until there are no alt sets left
+
   - add formatting to allow multiple items as keys in json and maintain order for interface network paths
 
   - make tutorial for interface analysis or at least reading list of posts & docs

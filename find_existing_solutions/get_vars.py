@@ -535,11 +535,8 @@ def get_pattern_config(av):
         'phrase_identifier': [
             'modifier_identifier1 DPC modifier_identifier2'
         ],
-        'clause_identifier': [
-            'clause_identifier1 DPC clause_identifier2'
-        ],
+        'clause_identifier': [],
         'relationship_identifier': [
-            'clause_identifier',
             'phrase_identifier1 phrase_identifier2 V clause_identifier',
         ],
         'rule_identifier': [
@@ -661,9 +658,6 @@ def update_patterns(av):
             for line in pattern_contents.split('\n'):
                 pattern_split = line.split('::')
                 if len(pattern_split) > 0:
-                    if len(pattern_split[0]) == 1:
-                        print('pattern split 0', pattern_split[0])
-                        exit()
                     pattern_index = pattern_split[0]
                     pattern_key = pattern_split[1]
                     pattern = pattern_split[2]
@@ -671,9 +665,6 @@ def update_patterns(av):
                         av[pattern_index][pattern_key] = []
                     if pattern_index == 'pattern_maps':
                         pattern_map = pattern.split(':')
-                        if len(pattern_map[0]) == 1:
-                            print('pattern map 0', pattern_map[0])
-                            exit()
                         av[pattern_index][pattern_key][pattern_map[0]] = pattern_map[1]
                     else:
                         av[pattern_index][pattern_key].append(pattern)
@@ -705,25 +696,20 @@ def update_patterns(av):
                 print('function::update_patterns - get_all_versions in sp', sp, 'tp', tp)
                 sp_pattern_index, av = get_all_versions(sp, version_types, av) 
                 tp_pattern_index, av = get_all_versions(tp, version_types, av) 
-                sp_patterns = [pattern for pattern_type, patterns in sp_pattern_index.items() for pattern in patterns]
-                tp_patterns = [pattern for pattern_type, patterns in tp_pattern_index.items() for pattern in patterns]
-                if sp_patterns:
-                    if sp_pattern_index:
+                if sp_pattern_index and tp_pattern_index:
+                    if 'standard' in sp_pattern_index and 'standard' in tp_pattern_index:
                         for pattern_type, patterns in sp_pattern_index.items():
                             if pattern_type not in av[pattern_index]:
                                 av[pattern_index][pattern_type] = []
                             av[pattern_index][pattern_type].extend(patterns)
-                    for sp_item in sp_patterns:
-                        if tp_patterns:
-                            for tp_item in tp_patterns:
-                                new_pattern_lines.append('::'.join(['pattern_maps', pattern_map_key, ':'.join([sp_item, tp_item])]))
-                                new_pattern_map[sp_item] = tp_item
-                if tp_patterns:
-                    if tp_pattern_index:
                         for pattern_type, patterns in tp_pattern_index.items():
                             if pattern_type not in av[pattern_index]:
                                 av[pattern_index][pattern_type] = []
                             av[pattern_index][pattern_type].extend(patterns)
+                        for sp_item in sp_pattern_index['standard']:
+                            for tp_item in tp_pattern_index['standard']:
+                                new_pattern_lines.append('::'.join(['pattern_maps', pattern_map_key, ':'.join([sp_item, tp_item])]))
+                                new_pattern_map[sp_item] = tp_item
             av['pattern_maps'][pattern_map_key] = new_pattern_map if new_pattern_map else {}
         if len(new_pattern_lines) > 0:
             av['all_patterns'] = list(set(reversed(sorted(new_pattern_lines))))
@@ -1120,7 +1106,7 @@ def get_alt_sets(pattern, all_alts, av):
             combinations = get_all_combinations(all_alts)
             if combinations:
                 if len(combinations) > 0:     
-                    all_alts = set([' '.join(c) for c in combinations])
+                    all_alts = set([' '.join(c).replace('  ',' ') for c in combinations])
             if len(all_alts) > 0:
                 return all_alts, variables
     ''' replace type_index keywords with sets of patterns from pattern_index '''
@@ -1135,14 +1121,14 @@ def get_alt_sets(pattern, all_alts, av):
     if len(final_alts) > 0:
         str_found = ['str' for sub_list in final_alts if type(sub_list) == str]
         if len(str_found) == len(final_alts):
-            sentence = ' '.join(final_alts)
+            sentence = ' '.join(final_alts).replace('  ',' ')
             if sentence == pattern:
                 ''' if the final_alts consists of original sentence words '''
                 return [sentence], False
         combinations = get_all_combinations(final_alts)
         if combinations:
             if len(combinations) > 0:   
-                final_alts = set([' '.join(c) for c in combinations])
+                final_alts = set([' '.join(c).replace('  ',' ') for c in combinations])
         if len(final_alts) > 0:
             return final_alts, False
     return False, False
@@ -1539,6 +1525,8 @@ def get_all_versions(pattern, version_types, av):
         'standard': set(), 'type': set(), 'operator': set(), 'polarity': set(), 'subjectivity': set(), 
         'synonym': set(), 'pos': set(), 'combination': set(), 'pattern_type': set()
     }
+    #pattern = '|functions works operates interacts acts| as __a__ |VB NN|'
+    #pattern = '|suppose thought assumed| that'
     #version_types = av['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
     print('function::get_all_versions for pattern', pattern)
     alt_patterns = generate_alt_patterns(pattern, av)
