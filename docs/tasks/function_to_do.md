@@ -1,18 +1,31 @@
   - added var_names to pattern alts functionality
 
   - make sure patterns without pos are complete
+    ./data/all_patterns.txt:pattern_index::clause_identifier::thought that2 DPC suppose that7
+    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose that2 DPC assumed that7
+    ./data/all_patterns.txt:pattern_index::clause_identifier::assumed that2 DPC suppose that7
+    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose0 that2 DPC suppose5 that7
+    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose that2 DPC thought that7
 
-    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose  that
-    ./data/all_patterns.txt:pattern_index::clause_identifier::thought 1 that2 DPC 4 suppose 6 that7
-    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose 1 that2 DPC 4 assumed 6 that7
-    ./data/all_patterns.txt:pattern_index::clause_identifier::assumed 1 that2 DPC 4 suppose 6 that7
-    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose0 1 that2 DPC 4 suppose5 6 that7
-    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose 1 that2 DPC 4 thought 6 that7
-    ./data/all_patterns.txt:pattern_index::verb_phrase::operates 1 as 3 NN
-    ./data/all_patterns.txt:pattern_index::verb_phrase::operates 1 as a 4 VB
-    ./data/all_patterns.txt:pattern_index::verb_phrase::operates 1 as a 4 NN
-    ./data/all_patterns.txt:pattern_index::verb_phrase::operates 1 as 3 VB
+  - strategy/insight graph
 
+    - fix nested variables
+      generate_alt_patterns::pattern ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N
+      get_alts::pattern ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N
+      get alt sets pattern ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N all_alts []
+      subset NN JJ JJR NNS NNP NNPS RB
+      subset  
+      subset DT PDT WDT TO PP CC IN
+      subset  
+      subset ADJ 
+      subset WRB RB RBR RBS
+      subset  VB VBG VBD
+      subset  
+      subset NN JJ JJR NNS NNP NNPS RB
+      subset ADJ ww VB VBG VBD
+      subset cc
+      subsets ['xjj', 'dd', 'zz'] variables {'x': '|NN JJ JJR NNS NNP NNPS RB|', 'jj': '|DT PDT WDT TO PP CC IN|', 'ww': '|WRB RB RBR RBS|', 'cc': '|NN JJ JJR NNS NNP NNPS RB|', 'dd': '|ADJ ww VB VBG VBD|', 'zz': '|cc|'}
+      generated alt_patterns {'xjj VBG cc', 'xjj VBD cc', 'xjj VB cc', 'xjj ADJ cc', 'xjj ww cc'}
 
   - make sure nested variables are re-iterated until there are no alt sets left
 
