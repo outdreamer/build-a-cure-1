@@ -1,3 +1,5 @@
+  - if something can generate a change predictably/consistently, it's a change supply - otherwise it's a change request, so output as well as causal position relative to the output is important when determining category
+  
   - added var_names to pattern alts functionality
 
   - make sure patterns without pos are complete
@@ -13,17 +15,6 @@
       generate_alt_patterns::pattern ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N
       get_alts::pattern ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N
       get alt sets pattern ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N all_alts []
-      subset NN JJ JJR NNS NNP NNPS RB
-      subset  
-      subset DT PDT WDT TO PP CC IN
-      subset  
-      subset ADJ 
-      subset WRB RB RBR RBS
-      subset  VB VBG VBD
-      subset  
-      subset NN JJ JJR NNS NNP NNPS RB
-      subset ADJ ww VB VBG VBD
-      subset cc
       subsets ['xjj', 'dd', 'zz'] variables {'x': '|NN JJ JJR NNS NNP NNPS RB|', 'jj': '|DT PDT WDT TO PP CC IN|', 'ww': '|WRB RB RBR RBS|', 'cc': '|NN JJ JJR NNS NNP NNPS RB|', 'dd': '|ADJ ww VB VBG VBD|', 'zz': '|cc|'}
       generated alt_patterns {'xjj VBG cc', 'xjj VBD cc', 'xjj VB cc', 'xjj ADJ cc', 'xjj ww cc'}
 
