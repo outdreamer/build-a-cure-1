@@ -492,6 +492,7 @@ def get_pattern_config(av):
             - |a b c| : a set of alternatives, each of which will be selected one at a time in the output patterns
             - if you include 'N' in your pattern, it'll replace it with all the noun pos tags, like |NN NNS NNP NNPS| etc
     '''
+    av['computed_pattern_maps'] = {}
     av['pattern_maps'] = {
         'passive_to_active': {
             'x of y': 'y x', # to do: add support for new characters in target_pattern like 'y-x'
@@ -525,6 +526,8 @@ def get_pattern_config(av):
     av['pattern_vars'] = [item for item in av['tags'].keys()]
 
     ''' the type_index is to store combinations of other type variables like noun_phrase & general variables like x '''
+    av['computed_type_index'] = {}
+    av['computed_pattern_index'] = {}
     av['type_index'] = {
         'passive_identifier': [
             'noun_phrase1 of noun_phrase2' # enzyme inhibitor of protein synthesis - to do: there are some examples where this structure adds clarity rather than just adding words, like where modifier relationships arent clear
@@ -672,8 +675,6 @@ def update_patterns(av):
         new_pattern_lines = []
         for pattern_index in ['pattern_index', 'type_index']:
             pattern_index_name = ''.join(['computed_', pattern_index])
-            if pattern_index_name not in av:
-                av[pattern_index_name] = {}
             for pattern_key, patterns in av[pattern_index].items():
                 for original_pattern in patterns:
                     print('function::update_patterns - get_all_versions in original_pattern', original_pattern)
@@ -1142,12 +1143,8 @@ def get_pattern_subsets(pattern, av):
                 else:
                     replacement_subsets.append(substring)
         if last_index < (len(pattern) - 1) and len(replacement_subsets) > 0:
-            prev_item = replacement_subsets[-1].split(' ')[-1]
-            replacement_string = ''.join(replacement_subsets)
-            if replacement_string.count('|') == 0:
-                replacement_subsets.append(pattern[last_index:].replace('|',''))
-            else:
-                replacement_subsets.append(pattern[last_index:])
+            last_item = pattern[last_index:].replace('|', '')
+            replacement_subsets.append(last_item)
         if len(replacement_subsets) > 0:
             final_combinations = get_all_combinations(replacement_subsets)
             if final_combinations:
@@ -1451,7 +1448,7 @@ def get_all_versions(pattern, version_types, av):
     #pattern = '|VBD| VBN VBN |TO IN PP|'
     print('function::get_all_versions for pattern', pattern)
     alt_patterns = generate_alt_patterns(pattern, av)
-    print('generated alt_patterns', alt_patterns, len(alt_patterns))
+    print('generated alt_patterns', alt_patterns)
     ''' for each generated pattern of alternative permutations from a pattern including | alts, 
         calculate versions of each generated pattern like semantic/operator/synonym 
     '''

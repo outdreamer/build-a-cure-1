@@ -1,29 +1,15 @@
   - if something can generate a change predictably/consistently, it's a change supply - otherwise it's a change request, so output as well as causal position relative to the output is important when determining category
-  
-  - added var_names to pattern alts functionality
 
   - make sure patterns without pos are complete
     ./data/all_patterns.txt:pattern_index::clause_identifier::thought that2 DPC suppose that7
-    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose that2 DPC assumed that7
-    ./data/all_patterns.txt:pattern_index::clause_identifier::assumed that2 DPC suppose that7
-    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose0 that2 DPC suppose5 that7
-    ./data/all_patterns.txt:pattern_index::clause_identifier::suppose that2 DPC thought that7
-
 
   - add precomputing if a sub-pattern was already computed:
            'ALL_N ALL_N of ALL_N ALL_N'
      'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
 
-    - |ADJ |WRB RB RBR RBS| VB VBG VBD| should be standardized to |ADJ WRB RB RBR RBS VB VBG VBD| in validation before finding alt_sets
-
   - strategy/insight graph
 
-    - fix nested variables
-      generate_alt_patterns::pattern ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N
-      get_alts::pattern ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N
-      get alt sets pattern ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N all_alts []
-      subsets ['xjj', 'dd', 'zz'] variables {'x': '|NN JJ JJR NNS NNP NNPS RB|', 'jj': '|DT PDT WDT TO PP CC IN|', 'ww': '|WRB RB RBR RBS|', 'cc': '|NN JJ JJR NNS NNP NNPS RB|', 'dd': '|ADJ ww VB VBG VBD|', 'zz': '|cc|'}
-      generated alt_patterns {'xjj VBG cc', 'xjj VBD cc', 'xjj VB cc', 'xjj ADJ cc', 'xjj ww cc'}
+    - fix nested variables - generate_alt_patterns::pattern ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N
 
   - make sure nested variables are re-iterated until there are no alt sets left
 
@@ -40,10 +26,6 @@
         'x of y': 'y', 
         'x was VBD by y': 'B', 
         'x that has y': 'x', 'the N1 VBD VBN IN the N2': 'the N2 VBZ the N1', 'x VBD VBD IN y': 'N', 'x VBD VBN by y': 'B', 'x VBZ VBN by y': 'x', 'x that y z': 'z', 'x that does VBG': 'Z', 'x with y functionality': 'y', 'x has ability to do y': '0.0 0.0', 
-
-  - store alternate patterns from pattern_index separately once alts are computed
-  
-      key pattern_index {'passive_identifier': ['|VB VBP VBN VBD| |VB VBP VBN VBD|', 'VBG |VB VBP VBN VBD| |VB VBP VBN VBD|', '|VB VBP VBN VBD| |TO IN PP|', '|VBD| VBN VBN |TO IN PP|', 'ALL_N ALL_N of ALL_N ALL_N', 'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N', 'JJR RB NNS2 IN NNS4 NNP5 NNP6', 'NNPS0 RB NNPS2 of NN NNS JJ', 'JJR0 JJR1 IN NNP JJ', 'RB0 NNP1 JJ of JJR RB5 NNP6', 'NNS0 RB NNS2 of NNS4 NNP NNPS', 'NNPS NN NNS of NNP4 NNP5 JJ',
 
   - add core clause patterns 
   - fix pattern matching functions
