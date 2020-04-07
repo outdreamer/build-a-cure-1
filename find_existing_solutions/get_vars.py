@@ -522,7 +522,7 @@ def get_pattern_config(av):
         'had been done': 'did',
         'into': 'to'
     }
-    av['pattern_vars'] = av['tags'].keys()
+    av['pattern_vars'] = [item for item in av['tags'].keys()]
 
     ''' the type_index is to store combinations of other type variables like noun_phrase & general variables like x '''
     av['type_index'] = {
@@ -672,6 +672,8 @@ def update_patterns(av):
         new_pattern_lines = []
         for pattern_index in ['pattern_index', 'type_index']:
             pattern_index_name = ''.join(['computed_', pattern_index])
+            if pattern_index_name not in av:
+                av[pattern_index_name] = {}
             for pattern_key, patterns in av[pattern_index].items():
                 for original_pattern in patterns:
                     print('function::update_patterns - get_all_versions in original_pattern', original_pattern)
@@ -999,39 +1001,43 @@ def get_all_pos(pattern, av):
         return '|'.join(new_subsets)
     return False
 
+def append_list(starting_list, add_list):
+    all_lists = []
+    if len(starting_list) > 0:
+        for sub_list in starting_list:
+            for add_item in add_list:
+                sub_list_copy = [item for item in sub_list]
+                sub_list_copy.append(add_item)
+                all_lists.append(sub_list_copy)
+    else:
+        for sub_item in add_list:
+            if type(sub_item) == list:
+                all_lists.append(sub_item)
+            else:
+                all_lists.append([sub_item])
+    if len(all_lists) > 0:
+        return all_lists
+    return False
+
 def get_all_combinations(alt_lists):
-    ''' alt_lists = a list of lists [['a', 'b'], ['c', 'd'], 'e'] '''
-    alt_lists_lists = [item for item in alt_lists if type(item) == list]
+    '''
+    alt_lists = a list of lists [['a', 'b'], ['c', 'd'], 'e'] 
+    build list of all possible options for a combination and select count of output 
+    '''
+    alt_counts = []
     strings = {}
-    combination_list = []
+    lists = {}
+    sub_lists = []
+    total_possibilities = 1
+    all_lists = []
     for i, sub_list in enumerate(alt_lists):
         if type(sub_list) == list:
-            combination_list.extend(sub_list)
+            new_all_lists = append_list(all_lists, sub_list)
         else:
-            combination_list.extend([sub_list])
-            strings[i] = sub_list
-    combination_list = list(set(combination_list))
-    ''' build list of all possible options for a combination and select count of output '''
-    permutations = itertools.product(combination_list, repeat=len(alt_lists))
-    combinations = []
-    for p in permutations:
-        new_items = []
-        for i, sub_list in enumerate(alt_lists):
-            if i in strings:
-                if strings[i] == p[i]:
-                    new_items.append(p[i])
-            else:
-                if type(sub_list) == list:
-                    if i < len(p):
-                        if p[i] in sub_list:
-                            new_items.append(p[i])
-                else:
-                    if p[i] == sub_list:
-                        new_items.append(p[i])
-        if len(new_items) == len(alt_lists):
-            combinations.append(new_items)
-    if len(combinations) > 0:
-        return combinations
+            new_all_lists = append_list(all_lists, [sub_list])
+        all_lists = new_all_lists if new_all_lists else all_lists
+    if len(all_lists) > 0:
+        return all_lists
     return False
 
 def get_alt_sets(pattern, all_alts, av):
@@ -1143,9 +1149,7 @@ def get_pattern_subsets(pattern, av):
             else:
                 replacement_subsets.append(pattern[last_index:])
         if len(replacement_subsets) > 0:
-            print('replacement_subsets', replacement_subsets)
             final_combinations = get_all_combinations(replacement_subsets)
-            print('final_combinations', final_combinations)
             if final_combinations:
                 final_subsets = []
                 for fc in final_combinations:
