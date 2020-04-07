@@ -9,6 +9,13 @@
     ./data/all_patterns.txt:pattern_index::clause_identifier::suppose0 that2 DPC suppose5 that7
     ./data/all_patterns.txt:pattern_index::clause_identifier::suppose that2 DPC thought that7
 
+
+  - add precomputing if a sub-pattern was already computed:
+           'ALL_N ALL_N of ALL_N ALL_N'
+     'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
+
+    - |ADJ |WRB RB RBR RBS| VB VBG VBD| should be standardized to |ADJ WRB RB RBR RBS VB VBG VBD| in validation before finding alt_sets
+
   - strategy/insight graph
 
     - fix nested variables

@@ -195,7 +195,7 @@ def get_metadata(line, title, word_map, av):
     for metadata_type in ['medical_types', 'conceptual_types']:
         for object_type in av[metadata_type]:
             if object_type in av['metadata']:
-                for search_pattern_key in av['pattern_index']:
+                for search_pattern_key in av['computed_pattern_index']:
                     # check that this data 'strategy', 'treatment' was requested and is supported in pattern_index
                     print('\nget metadata', object_type, search_pattern_key)
                     objects, patterns, av = extract_objects_and_patterns(row, object_type, search_pattern_key, av)
