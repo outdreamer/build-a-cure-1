@@ -7,6 +7,12 @@
            'ALL_N ALL_N of ALL_N ALL_N'
      'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
 
+  - fix indexing 'NNP NN NNS1 of JJ JJ JJ2' or postpone to pattern evaluation time
+
+  - fix missing alts 'ALL_N' and 'N' in output
+
+  - fix incomplete alts noun_phrase::N
+
   - strategy/insight graph
 
     - fix nested variables - generate_alt_patterns::pattern ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N
