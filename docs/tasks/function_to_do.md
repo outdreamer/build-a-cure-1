@@ -2,36 +2,19 @@
 
   - make sure patterns without pos are complete
     ./data/all_patterns.txt:pattern_index::clause_identifier::thought that2 DPC suppose that7
-
   - add precomputing if a sub-pattern was already computed:
-           'ALL_N ALL_N of ALL_N ALL_N'
-     'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
-
+             'ALL_N ALL_N of ALL_N ALL_N'
+       'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
   - fix indexing 'NNP NN NNS1 of JJ JJ JJ2' or postpone to pattern evaluation time
-
-  - fix missing alts 'ALL_N' and 'N' in output
-
-  - fix incomplete alts noun_phrase::N
-
+  - fix incomplete alts noun_phrase::N, f, 'works a NN', 'interacts as NN', 'a NN role'
   - strategy/insight graph
-
-    - fix nested variables - generate_alt_patterns::pattern ALL_N DPC |ADJ ADV VB VBG VBD| ALL_N
-
   - make sure nested variables are re-iterated until there are no alt sets left
-
   - add formatting to allow multiple items as keys in json and maintain order for interface network paths
-
   - make tutorial for interface analysis or at least reading list of posts & docs
 
   - fix supported stem assignment (endings like 'is': {'functions a', 'acts a', 'plays a', 'operates a', 'works a'})
   - fix charge function ('edit' is assigned positive score)
-  - fix type_index split adding chars
   - fix assignment of pattern_maps to computed patterns
-      key pattern_maps {'passive_to_active': 
-      {
-        'x of y': 'y', 
-        'x was VBD by y': 'B', 
-        'x that has y': 'x', 'the N1 VBD VBN IN the N2': 'the N2 VBZ the N1', 'x VBD VBD IN y': 'N', 'x VBD VBN by y': 'B', 'x VBZ VBN by y': 'x', 'x that y z': 'z', 'x that does VBG': 'Z', 'x with y functionality': 'y', 'x has ability to do y': '0.0 0.0', 
 
   - add core clause patterns 
   - fix pattern matching functions
