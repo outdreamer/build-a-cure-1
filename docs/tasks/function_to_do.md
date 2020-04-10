@@ -1,6 +1,6 @@
   - if something can generate a change predictably/consistently, it's a change supply - otherwise it's a change request, so output as well as causal position relative to the output is important when determining category
     - time may be a variance gap (a space where change is possible) to resolve a question/problem set - so not resolving it can preserve time, unless resolving it will allow for more potential or moving on to other variance gaps
-
+    
   - make sure patterns without pos are complete
     ./data/all_patterns.txt:pattern_index::clause_identifier::thought that2 DPC suppose that7
   - add precomputing if a sub-pattern was already computed:
