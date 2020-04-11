@@ -24,27 +24,49 @@
         - angle of change
         - space/dimension set
 
-      - equivalence types
+      - core definitions
+
         - equal
-        - intersecting
+          - all attributes/state/values match, irrelevant to the path to the object
+  
         - similar
-        - adjacent
-        - approximate
-        - functional
-        - alternative
-        - interchangeable
-        - duplicate
-        - version
-        - conditional (equal with conditions)
-        - matching (opposite matching structures)
+
+      - equivalence types
+        - structural
+          - origin/destination (given a particular definition of change & a value for that change type, how does motion create the object or emerge from the object) 
+          - shape
+          - path (same pattern between origin/destination)
+          - set (same set of generative/output/determining objects or interface objects)
+          - intersecting (y = f(x))
+          - adjacent (one transform away in the form of a shift operation)
+          - dimension (variable set, space definitions/conditions)
+        - subset equivalence
+          - approximate
+          - functional
+          - alternative
+          - interchangeable
+        - processed equivalence
+          - duplicate
+          - version
+          - iteration
+          - combination
+          - standardized equivalence
+        - conditional equivalence
+          - equal with conditions/context
+        - type equivalence
+        - matching
+          - opposite matching structures, opposite being an adjacent object to the original, and matching object being a fit of an object, indicating an opposite transform
         - symmetric
           - transformable/reversible transforms
 
       - equivalence attributes
         - degree of equivalence
-        - conditions
+        - conditions/filters
+        - definitions
 
       - related object definitions
+        - change
+        - value
         - distance
         - position
         - scale
@@ -64,7 +86,7 @@
           - equal in system position (occupies same resource set in system or same role)
           - equal in system context (emergent output will be the same)
         - change:
-          - equal in change type/rate
+          - equal in change type/rate/pattern/definition
         - intent:
           - equal in granular intent fulfilled/neutralized
           - equal in output priority direction
@@ -73,6 +95,9 @@
         - potential:
           - equal in range of potential
 
+      - visualizing equivalence across definitions & types:
+        - if you can standard objects to attribute sets, you can visualize as a graph of attribute sets where shapes map to attribute sets and visible or highlighted shape attributes are equivalent
+        - you need to incorporate objects like conditions & definitions as system/space attributes
 
   - after identification functions
 
