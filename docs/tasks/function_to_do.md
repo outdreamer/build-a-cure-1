@@ -18,6 +18,80 @@
     - change types (rule types like binding rules, boundary rules) can be used to generate different variations of a concept
 
     - power:
+      - core structural factors
+        - order
+        - sequence
+
+      - core definitions
+        - input
+        - cause
+        - possible
+
+      - core functions
+        - enable
+        - fulfill
+        - change
+        - force
+        - cause
+
+      - types
+
+        - potential (freedom in options)
+
+          - change power
+            - can change many things
+            - can transform to many things
+            - can reverse/distort many types of change
+            - can use many alternatives
+
+          - cause power
+            - can cause/create many things
+
+        - structural
+          - change rules (binding/boundary/interaction rules)
+          - dimension set (determining which value/change types are possible)
+          - connection (connection count, changeability, origin/destination/path potential as measurements of power)
+          - set (powerful as a set)
+          - intersecting (power from compounding/aligning attributes/objects/functions)
+          - adjacent (power from interaction potential)
+
+        - conditional power
+          - powerful with conditions/context
+
+        - possible power
+          - stored power
+          - formatted power
+
+        - illusory power (appearance of power, from missing information)
+
+      - attributes
+        - abstraction/irrelevance/independence (context doesnt reduce/change power)
+        - commonness (repetition can increase power)
+
+      - related object definitions
+        - option
+        - alternative
+        - input
+
+      - interface definitions
+        - the different definitions of 'power' types should be mappable with this attribute set
+          - system:
+            - powerful attribute sets
+            - power in terms of system metadata like position (occupies powerful resource set or role in system like hub or filter)
+          - change:
+            - powerful regardless of applied change types/rates/patterns/definitions
+          - intent:
+            - executes a core power function intent (intent of change is optimize/correct)
+          - function:
+            - powerful in function/function metadata (enables a core operation like find/apply/build)
+          - potential:
+            - powerful in potential
+          - cause
+            - causative position
+
+      - visualization
+        - power indicates potential which may map to a lack of information (lack of filters/limits) or powerful information (common input, common activator)
+
 
     - truth:
       - core structural factors
@@ -29,6 +103,7 @@
         - importance
         - relevance
         - possible
+        - certainty
 
       - core functions
         - calculate/estimate
