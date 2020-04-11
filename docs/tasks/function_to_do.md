@@ -1,27 +1,79 @@
-  - if something can generate a change predictably/consistently, it's a change supply - otherwise it's a change request, so output as well as causal position relative to the output is important when determining category
-    - time may be a variance gap (a space where change is possible) to resolve a question/problem set - so not resolving it can preserve time, unless resolving it will allow for more potential or moving on to other variance gaps
-    
-  - make sure patterns without pos are complete
-    ./data/all_patterns.txt:pattern_index::clause_identifier::thought that2 DPC suppose that7
-  - add precomputing if a sub-pattern was already computed:
-             'ALL_N ALL_N of ALL_N ALL_N'
-       'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
+
   - fix indexing 'NNP NN NNS1 of JJ JJ JJ2' or postpone to pattern evaluation time
   - fix incomplete alts noun_phrase::N, f, 'works a NN', 'interacts as NN', 'a NN role'
-  - strategy/insight graph
-  - make sure nested variables are re-iterated until there are no alt sets left
   - add formatting to allow multiple items as keys in json and maintain order for interface network paths
-  - make tutorial for interface analysis or at least reading list of posts & docs
 
   - fix supported stem assignment (endings like 'is': {'functions a', 'acts a', 'plays a', 'operates a', 'works a'})
   - fix charge function ('edit' is assigned positive score)
-  - fix assignment of pattern_maps to computed patterns
 
   - add core clause patterns 
   - fix pattern matching functions
   - finish pos, clause, modifiers code from find implementation
   - finish network creation function
-  - then go back to identification functions
+  - strategy/insight graph
+
+  - map core concepts to structures for use when building other concepts/objects
+
+    - equivalence: 
+
+      - core dimensions of difference:
+        - position of determining points (for a line this is either endpoint)
+        - distance/length/scalar
+        - unit object/attributes/functions (what is the standard form, what core operations does it support)
+        - potential field (what positions can it occupy with adjacent transforms)
+        - angle of change
+        - space/dimension set
+
+      - different definitions of equivalence
+        - equal
+        - intersecting
+        - similar
+        - adjacent
+        - transformable/reversible transforms
+
+      - the different definitions of 'equivalence' types should be mappable with this attribute set
+        - system:
+          - equal on an attribute set
+            - differences
+            - emergent output
+            - required inputs
+            - types
+            - output probability distribution
+          - equal in system position (occupies same resource set in system or same role)
+          - equal in system context (emergent output will be the same)
+        - change:
+          - equal in change type/rate
+        - intent:
+          - equal in granular intent fulfilled/neutralized
+          - equal in output priority direction
+        - function:
+          - equal in function/function metadata
+        - potential:
+          - equal in range of potential
+
+  - after identification functions
+
+    - import rules for selecting interfaces to solve a problem on
+
+      Function helped find unused functions
+      Intent helped predict system priorities & find exploit opportunities
+      System helped find efficiencies
+      Pattern helped find insight paths/similarities
+
+    - once you build function/attribute identification function
+      - import insight history data to identify insight paths 
+        - info insight paths like 'lie => joke => distortion => insight'
+        - system insight paths like 'three core functions + combine function with this definition + n distortions to nearest hub'
+
+    - make tutorial for interface analysis or at least reading list of posts & docs
+
+
+  - extra tasks
+
+    - add precomputing if a sub-pattern was already computed:
+               'ALL_N ALL_N of ALL_N ALL_N'
+         'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
+
 
   - abstract functions
 
@@ -78,3 +130,9 @@
   - independence (closed trade loops) as time storage
   - vertex as a pivot point for an interface
 
+
+
+- notes
+
+    - if something can generate a change predictably/consistently, it's a change supply - otherwise it's a change request, so output as well as causal position relative to the output is important when determining category
+      - time may be a variance gap (a space where change is possible) to resolve a question/problem set - so not resolving it can preserve time, unless resolving it will allow for more potential or moving on to other variance gaps

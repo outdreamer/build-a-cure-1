@@ -711,11 +711,6 @@ def update_patterns(av):
                             if pattern_type not in av['computed_pattern_index']:
                                 av['computed_pattern_index'][pattern_type] = []
                             av['computed_pattern_index'][pattern_type].extend(tp_patterns)
-                        for i, sp_item in enumerate(sp_pattern_index['standard']):
-                            if i < len(tp_pattern_index['standard']):
-                                tp_item = tp_pattern_index['standard'][i]
-                                new_pattern_lines.append('::'.join(['pattern_maps', pattern_map_key, ':'.join([sp_item, tp_item])]))
-                                av['computed_pattern_maps'][pattern_map_key][sp_item] = tp_item
         if len(new_pattern_lines) > 0:
             av['all_patterns'] = list(set(reversed(sorted(new_pattern_lines))))
             save(all_pattern_filename, av['all_patterns'])
