@@ -16,7 +16,7 @@
 
     - equivalence: 
 
-      - core dimensions of difference:
+      - core structural factors:
         - position of determining points (for a line this is either endpoint)
         - distance/length/scalar
         - unit object/attributes/functions (what is the standard form, what core operations does it support)
@@ -24,12 +24,34 @@
         - angle of change
         - space/dimension set
 
-      - different definitions of equivalence
+      - equivalence types
         - equal
         - intersecting
         - similar
         - adjacent
-        - transformable/reversible transforms
+        - approximate
+        - functional
+        - alternative
+        - interchangeable
+        - duplicate
+        - version
+        - conditional (equal with conditions)
+        - matching (opposite matching structures)
+        - symmetric
+          - transformable/reversible transforms
+
+      - equivalence attributes
+        - degree of equivalence
+        - conditions
+
+      - related object definitions
+        - distance
+        - position
+        - scale
+        - unit
+        - angle
+        - degree
+        - space
 
       - the different definitions of 'equivalence' types should be mappable with this attribute set
         - system:
@@ -50,6 +72,7 @@
           - equal in function/function metadata
         - potential:
           - equal in range of potential
+
 
   - after identification functions
 
