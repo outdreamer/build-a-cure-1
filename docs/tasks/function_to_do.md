@@ -15,7 +15,19 @@
   - map core concepts to structures for use when building other concepts/objects
 
     - similar definition structures apply to similarly abstract concepts
+
     - change types (rule types like binding rules, boundary rules) can be used to generate different variations of a concept
+      - power can be in the form of a connection hub (binding rules with an extreme value of the connection count attribute)
+
+    - position is an important attribute in many abstract concepts (powerful position, power occupying the input position, position as an attribute of equivalence)
+      - other core structural attributes can be used to generate the other concepts
+
+    - concept definitions are useful so you can answer questions like:
+      - is this system robust to change
+      - what potential does this system have
+      - can this system impact many others (is it powerful)?
+      - does this system produce a conceptual attribute/object like trust?
+      - what concepts (determining, generative, emergent, prioritized, optimized) do these systems have in common?
 
     - power:
       - core structural factors
@@ -46,6 +58,9 @@
 
           - cause power
             - can cause/create many things
+
+          - interaction power
+            - binding/limiting/filtering/coordination potential
 
         - structural
           - change rules (binding/boundary/interaction rules)
