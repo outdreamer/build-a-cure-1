@@ -1,5 +1,9 @@
   - fix indexing 'NNP NN NNS1 of JJ JJ JJ2' or postpone to pattern evaluation time
-  - fix incomplete alts noun_phrase::N, f
+  - fix missing alts
+      pattern_index::verb_phrase::plays a |VB NN| role::a NN role
+  - fix one-letter alts
+      pattern_index::phrase_identifier::ALL_N DPC ALL_N |VBG VBD|::N D N V
+
   - add formatting to allow multiple items as keys in json and maintain order for interface network paths
 
   - fix supported stem assignment (endings like 'is': {'functions a', 'acts a', 'plays a', 'operates a', 'works a'})

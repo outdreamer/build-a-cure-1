@@ -167,7 +167,7 @@ def update_patterns(av):
                     if generated_patterns:
                         all_patterns = [pattern for pattern_type, patterns in generated_patterns.items() for pattern in patterns]
                         for pattern in all_patterns:
-                            new_pattern_lines.append('::'.join([pattern_index, pattern_key, pattern]))
+                            new_pattern_lines.append('::'.join([pattern_index, pattern_key, original_pattern, pattern]))
                         for pattern_type, patterns in generated_patterns.items():
                             if pattern_type not in av[pattern_index_name]:
                                 av[pattern_index_name][pattern_type] = []
@@ -933,18 +933,21 @@ def get_pattern_subsets(pattern, av):
                 new_lists.append(ns)
     new_subsets = new_lists if len(new_lists) > 0 else new_subsets
     print('new subsets', new_subsets)
-    '''
-        sub lists in new subsets should be a single-item list of a joined string if no variables are in the sub list
-    '''
     new_subset_lists = []
     for sublist in new_subsets:
         ''' to do: make sure pattern_vars reflects supported pattern variables '''
         var_count = [item for item in sublist if item in av['pattern_vars']]
         if len(var_count) == 0:
-            ''' variables not found, convert to single-item list of a joined string'''
+            ''' to do: variables not found, convert to single-item list of a joined string - 'plays a |VB NN| role' '''
             joined_string = ''.join([' ', ' '.join(sublist), ' '])
+            first_space = ''.join([' ', ' '.join(sublist)])
+            last_space = ''.join([' '.join(sublist), ' '])
             if joined_string in pattern:
                 new_subset_lists.append([joined_string])
+            elif first_space in pattern:
+                new_subset_lists.append([first_space])
+            elif last_space in pattern:
+                new_subset_lists.append([last_space])
             else:
                 new_subset_lists.append(sublist)
         else:
@@ -979,10 +982,11 @@ def get_all_versions(pattern, version_types, av):
         'synonym': set(), 'pos': set(), 'combination': set(), 'pattern_type': set()
     }
     #pattern = 'modifier_identifier'
-    #pattern = '||NNP |NN JJ JJR NNS NNP NNPS RB|||' # to do: fix break from extra wrapper delimiters
+    #pattern = '|NNP |NN JJ JJR NNS NNP NNPS RB||' # to do: fix break from extra wrapper delimiters
     #pattern = 'JJ NN'
     #pattern = '|functions works operates interacts acts| as __a__ |VB NN| role'
-    #pattern = '|suppose thought assumed| that'
+    #pattern = "plays a |VB NN| role"
+    #pattern = '|suppose thought assumed| DPC that'
     #version_types = av['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
     #pattern = 'modifier_identifier even when modifier_identifier'
     #pattern = 'first ALL_N DPC |ADJ ADV| and ALL_N |ADJ ADV| but'
