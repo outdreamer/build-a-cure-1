@@ -678,6 +678,22 @@ def generate_function_patterns(pattern, av):
                     pattern = pattern.replace(function, cf)
     return [pattern]
 
+def get_all_combinations(alt_lists):
+    '''
+    alt_lists = a list of lists [['a', 'b'], ['c', 'd'], 'e'] 
+    build list of all possible options for a combination and select count of output 
+    '''
+    all_lists = []
+    for i, sub_list in enumerate(alt_lists):
+        if type(sub_list) == list:
+            new_all_lists = append_list(all_lists, sub_list)
+        else:
+            new_all_lists = append_list(all_lists, [sub_list])
+        all_lists = new_all_lists if new_all_lists else all_lists
+    if len(all_lists) > 0:
+        return all_lists
+    return False
+
 def generate_alt_patterns(pattern, av):
     ''' 
     this functions returns ['VB NN D1 D2', 'VB JJ D1 D2'] from pattern = 'VB |NN JJ| D1 D2' 
@@ -690,23 +706,20 @@ def generate_alt_patterns(pattern, av):
     ''' treat vars like 'noun_phrase' similarly to wrapped lists with '|' '''
     for var_name in av['pattern_vars']:
         if var_name in pattern and var_name in av['pattern_index']:
+            ''' to do: this replaces the modifier_identifier variable with one modifier at a time '''
             for var_pattern_item in av['pattern_index'][var_name]:
-                var_pattern_item_words = var_pattern_item.split(' ')
                 new_words = []
-                for word in var_pattern_item_words:
-                    replaced_option_word = word.replace('__', '')
-                    if replaced_option_word in av['tags']:
-                        sub_list = ''.join(['|', ' '.join(av['tags'][replaced_option_word]), '|'])
-                        new_words.append(sub_list)
+                for word in var_pattern_item.split(' '):
+                    word_tag = word.replace('__', '')
+                    if word_tag in av['tags']:
+                        new_words.append(''.join(['|', ' '.join(av['tags'][word_tag]), '|']))
                     else:
                         new_words.append(word)
                 if len(new_words) > 0:
-                    var_pattern_item = ''.join(['|', ' '.join(new_words), '|'])
-                var_name_pattern = ''.join(['|', var_pattern_item, '|'])
-                pattern_with_var_name = pattern.replace(var_name, var_name_pattern)
-                var_all_alts = get_alt_sets(pattern_with_var_name, [], av)
-                if var_all_alts:
-                    all_alts.extend(var_all_alts)
+                    pattern_with_var_value = pattern.replace(var_name, ' '.join(new_words))
+                    var_all_alts = get_alt_sets(pattern_with_var_value, [], av)
+                    if var_all_alts:
+                        all_alts.extend(var_all_alts)
     if len(all_alts) == 0:
         var_all_alts = get_alt_sets(pattern, [], av)
         if var_all_alts:
@@ -724,22 +737,6 @@ def generate_alt_patterns(pattern, av):
             if len(all_patterns) > 0:
                 return set(all_patterns)
         return set([alt.strip().replace('&', ' & ') for alt in all_alts])
-    return False
-
-def get_all_combinations(alt_lists):
-    '''
-    alt_lists = a list of lists [['a', 'b'], ['c', 'd'], 'e'] 
-    build list of all possible options for a combination and select count of output 
-    '''
-    all_lists = []
-    for i, sub_list in enumerate(alt_lists):
-        if type(sub_list) == list:
-            new_all_lists = append_list(all_lists, sub_list)
-        else:
-            new_all_lists = append_list(all_lists, [sub_list])
-        all_lists = new_all_lists if new_all_lists else all_lists
-    if len(all_lists) > 0:
-        return all_lists
     return False
 
 def get_alt_sets(pattern, all_alts, av):
@@ -825,6 +822,7 @@ def get_pattern_subsets(pattern, av):
                             new_subsets.append(sub_item)
                     else:
                         new_subsets.append(item)
+    print('pattern', pattern)
     print('new_subsets 1', new_subsets)
     print('adjacent_pairs', adjacent_pairs)
     if len(adjacent_pairs) > 1:
@@ -980,36 +978,18 @@ def get_all_versions(pattern, version_types, av):
         'standard': set(), 'type': set(), 'operator': set(), 'polarity': set(), 'subjectivity': set(), 
         'synonym': set(), 'pos': set(), 'combination': set(), 'pattern_type': set()
     }
-    '''
-        'phrase_identifier': [
-            'modifier_identifier DPC modifier_identifier'
-        ],
-        'modifier_identifier': [
-            #'(?)', # add support for an any character 
-            '|ALL_N ALL_V| |ALL_N ADV ADJ ALL_V|', # compound isolate
-            'NNP ALL_N', # Diabetes mellitus
-            'ALL_N ALL_N', # the second noun may have a verb root, ie "enzyme-inhibitor"
-            'ALL_N ALL_V',
-            'JJ NN'
-        ]
-    '''
-    av['pattern_index']['modifier_identifier'] = [
-        'NNP ALL_N', # Diabetes mellitus
-        'ALL_N ALL_V',
-        'JJ NN'
-    ]
-    pattern = 'modifier_identifier'
+    #pattern = 'modifier_identifier'
+    #pattern = '||NNP |NN JJ JJR NNS NNP NNPS RB|||' # to do: fix break from extra wrapper delimiters
     #pattern = 'JJ NN'
     #pattern = '|functions works operates interacts acts| as __a__ |VB NN| role'
     #pattern = '|suppose thought assumed| that'
     #version_types = av['all_pattern_version_types'] if version_types == 'all' or len(version_types) == 0 else version_types
-    #pattern = 'modifier_identifier DPC modifier_identifier'
+    #pattern = 'modifier_identifier even when modifier_identifier'
     #pattern = 'first ALL_N DPC |ADJ ADV| and ALL_N |ADJ ADV| but'
-    #pattern = '|VBD| VBN VBN |TO IN PP|' to do: fix consecutive strings in between
+    #pattern = '|VBD| VBN VBN |TO IN PP|' # to do: fix consecutive strings in between
     print('function::get_all_versions for pattern', pattern)
     alt_patterns = generate_alt_patterns(pattern, av)
     print('generated alt_patterns', alt_patterns)
-    exit()
     ''' for each generated pattern of alternative permutations from a pattern including | alts, 
         calculate versions of each generated pattern like semantic/operator/synonym 
     '''
