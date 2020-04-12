@@ -1,4 +1,3 @@
-
   - fix indexing 'NNP NN NNS1 of JJ JJ JJ2' or postpone to pattern evaluation time
   - fix incomplete alts noun_phrase::N, f, 'works a NN', 'interacts as NN', 'a NN role'
   - add formatting to allow multiple items as keys in json and maintain order for interface network paths
@@ -23,11 +22,14 @@
       - other core structural attributes can be used to generate the other concepts
 
     - concept definitions are useful so you can answer questions like:
-      - is this system robust to change
+      - is this system balanced/robust to change/have distributed power
       - what potential does this system have
-      - can this system impact many others (is it powerful)?
-      - does this system produce a conceptual attribute/object like trust?
-      - what concepts (determining, generative, emergent, prioritized, optimized) do these systems have in common?
+      - what priorities does this system have
+      - can this system impact many others (is it powerful)
+      - does this system produce a conceptual attribute/object like trust/equality
+      - what concepts (determining, generative, emergent, prioritized, optimized) do these systems have in common
+
+      without translating them into structure yourself
 
     - power:
       - core structural factors

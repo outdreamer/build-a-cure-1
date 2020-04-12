@@ -1,0 +1,99 @@
+{
+        "route": {
+            "attention": "distract",
+            "assumption": "project"
+        },
+        "find": {
+            "interaction": "relevance",
+            "alternative": {},
+            "limit": {},
+            "relationship": {
+                "condition": {
+                    "treat": ["compound", "method"],
+                    "diagnose": ["method"]
+                },
+                "symptom": {
+                    "check": "condition"
+                },
+                "compound": {
+                    "synthesize": ["method"]
+                }
+            }
+        },
+        "change": {
+            "subject": "deflect",
+            "negative": {
+                "statement": "contradict",
+                "accusation": "deny"
+            },
+            "assumption": "counter-argue",
+            "add": {
+                "doubt": "question",
+                "noise": "obfuscate",
+                "contradiction": "confuse",
+                "nonsense": "entertain"
+            },
+            "align": {
+                "incentive": "provoke"
+            },
+            "remove": {
+                "doubt": "imply",
+                "ambiguity": "clarify",
+                "credibility": "criticize",
+                "alignment": "conflict"
+            }
+        },
+        "reveal": {
+            "priority": "persuade",
+            "benefit": "persuade",
+            "cost": "persuade"
+        },
+        "organize": {
+            "example": "",
+            "introduce": "",
+            "exception": "",
+            "list": {
+                "property": "compare"
+            },  
+            "categorize": "", 
+            "summarize": "",
+            "compare": {
+                "review": ["meta", "peer", "alternative"]
+            },
+            "verify": ["retract", "replicate"]
+        },
+        "fit": {
+            "structure": {
+                "model": "test",
+                "explore": "",
+                "network": {
+                    "system": "understand",
+                    "system_path": "educate"
+                },
+                "path": {
+                    "perspective": "interpret",
+                    "understanding": "explain",
+                    "protocol": "evaluate",
+                    "logic": "conclude",
+                    "logic": "argume",
+                    "logic": "function",
+                    "logic": "justify",
+                    "intent": "justify"
+                }
+            }
+        },
+        "frame": {
+            "question": "implication",
+            "opinion": "fact",
+            "lie": "fact",
+            "opinion": "joke",
+            "lie": "joke",
+            "opinion": "insight",
+            "lie": "insight",
+            "excuse": "reason",
+            "lie": "reason",
+            "lie": "excuse",
+            "intent": "excuse",
+            "info_asymmetry": "excuse"
+        }
+}

@@ -22,5 +22,5 @@
 		"info": ["constant info", "aggregate info", "average info", "testable info", "measurable info", "storable info", "not impossible info"],
 		"intent": ["useful info", "relevant info", "maintainable info"],
 		"structure": ["adjacent info"]
-	},
+	}
 }
