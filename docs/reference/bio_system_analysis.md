@@ -39,8 +39,8 @@
 
 			- for pathogens with boundaries that cant be handled with existing immune stressors, they can be relocated to a location with functionality to handle them (acidic environments) or that environment can be locally re-created for the duration it takes to kill the pathogen (acidosis)
 
-			- what happens to viruses with glycoprotein shells in the digestive system when they encounter glycoside bond-breaking enzymes like that found in e coli? could you move certain pathogens to the digestive system to be broken?
-			https://en.wikipedia.org/wiki/Glycoside_hydrolase
+				- what happens to viruses with glycoprotein shells in the digestive system when they encounter glycoside bond-breaking enzymes like that found in e coli? could you move certain pathogens to the digestive system to be broken?
+				https://en.wikipedia.org/wiki/Glycoside_hydrolase
 
 			- what would the optimal set of filters be for any routes for pathogens to enter a host, where the pathogen would have to prove its harmlessness or usefulness to be allowed general access to the bloodstream? are there any structural filters (enzymes, openings) like this in existing organs?
 
@@ -48,11 +48,18 @@
 
 			- which viruses use glycoproteins or other virus components for energy sources? what host processes could be changed to require viral glycoproteins/components? can endocytosis be induced so glycoproteins are processed in cell organelles
 
-			- can light/heat/salt/alcohol be produced locally by cellular reactions to kill viruses in waves throughout the system
+			- can light/electricity/force/heat/salt/alcohol be produced locally by cellular reactions to kill viruses in waves throughout the system
 
 			- can a virus that attacks other viruses be engineered to convert other viruses into those the immune system can fight or create a change supply that the host needs (another change supply like stem cells or other resources, or change demand like building new cells)
 
 			- a calculation virus would be an interpreter of other viral DNA to determine which stressor handlers the host needs to supply to fight the viruses they have & manipulate their gut bacteria to communicate that information to their brain
+
+			- rather than immune cells which tag different cells, there could be feedback loops installed in the process so that a set of useful functions is tested for in foreign cells and if none are found, then its tagged for attack
+
+			- rather than attacking viruses, can you make host cells more competitive/stronger 
+				(more aggressive in using foreign cells for energy, more robust DNA editing, more restricted access to cell functions/organelles, make plasmids less accessible to be hijacked so viruses cant adapt using other DNA, make more resources generatable rather than requiring input & the associated openings, strengthening system maintenance so fewer cell transactions/divisions are required)
+
+				or use viruses for host functionality (use viruses to store things that require protection like DNA copies or stored energy formats, since theyre not always permeable)
 
 
 		- medicine:
