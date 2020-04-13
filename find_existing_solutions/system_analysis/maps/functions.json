@@ -4,12 +4,10 @@
         "apply",
         "build",
         "change",
-        "cause",
+        "cause/depend",
         "connect",
-        "depend",
-        "intend",
+        "aim",
         "align",
-        "equal",
         "compare",
         "conflict",
         "combine",
@@ -87,6 +85,12 @@
             "index": [],
             "version": [],
             "merge": []
+        },
+        "search_functions": {
+            "iterate": [],
+            "shift": [],
+            "split": [],
+            "aggregate": []
         }
     },
     "system_functions": {

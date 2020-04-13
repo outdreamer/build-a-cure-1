@@ -7,7 +7,6 @@
     - conditions (if/for/while/validation/organization)
     - assignments/relationships (equate an attribute with a value)
     - processes (format/return)
-  - operation: sub-function or function step
   - intent: purpose for a function (at granular layers or in strict environments, purpose can be tightly aligned with the function logic, with no side effects)
   - role: function & a position in a system
   - pattern: sequence of specific/identified objects

@@ -2,7 +2,7 @@
 
 In the patterns from system_analysis.json, you have example filters to use when reducing a problem before trying specific methods to solve it.
 
-These are the objects to look for in order to:
+These are the objects to look for in order to quickly:
 	- identify causes of system error
 	- understand a system quickly
 	- optimize a system
@@ -15,7 +15,7 @@ Examples of each filter follow:
 		"attribute similarity": "location/agents (hospitals & staff/patients) with isolated conditions to prevent overuse of resource needed (cleaning supplies) for mixed condition (non-isolated hospitals/staff), where isolated conditions align with invalidation of cleaning supplies for that condition",
 		"attribute alignment": "rotation force aligned with input force creates momentum",
 		"attribute matching": "stacking objects that can make cubes in the knapsack problem to reduce unused space between objects",
-		"emergent attribute": ""
+		"attribute accretion": "symmetry stacking occurs to develop granular features (symmetries in the bio system like the spine/limbs)"
 	},
 	"concept": {
 		"definition route": "",
@@ -26,7 +26,8 @@ Examples of each filter follow:
 		"false contradiction": "",
 		"false potential": "",
 		"false constant": "",
-		"false conflict": ""
+		"false conflict": "",
+		"false category": ""
 	},
 	"state": {
 		"state permutation": "thermostat that switches off if natural temperature is equal to set involves permuting state of temperature variable to find a case where AC/heat wouldnt be needed for intent of conserving resources"
@@ -38,6 +39,8 @@ Examples of each filter follow:
 		"conflict": "",
 		"competition": "",
 		"distribution": "",
+		"routing": "",
+		"grouping": "",
 		"organization": "",
 		"imbalance": "",
 		"catalyst": ""
@@ -45,7 +48,8 @@ Examples of each filter follow:
 	"logic": {
 		"implication": "",
 		"contradiction": "",
-		"condition": ""
+		"condition": "",
+		"equivalence": ""
 	},
 	"pattern": {
 		"repetition": "",
@@ -53,16 +57,23 @@ Examples of each filter follow:
 		"position": "",
 		"function distortion": ""
 	},
-	"intent': {
-		"intent ambiguity": "",
+	"intent": {
+		"intent ambiguity": ""
 	},
 	"potential": {
 		"enforced rules": "",
-		"boundary gaps": ""
+		"boundary gaps": "",
+		"possibility spectrum": ""
+	},
+	"system": {
+		"scale": ""
 	},
 	"change": {
+		"symmetry": "",
+		"balance": "",
+		"power": "",
 		"variance injection": "",
-		"attribute accretion": "",
+		"variance accretion": "",
 		"change demand/supply": "change occurs from triggers (phase shift, threshold, interaction) and the structures that can support them (matter state)"
 	},
 	"cause": {
