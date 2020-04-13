@@ -3,7 +3,7 @@
       pattern_index::verb_phrase::plays a |VB NN| role::a NN role
   - fix one-letter alts
       pattern_index::phrase_identifier::ALL_N DPC ALL_N |VBG VBD|::N D N V
-
+  - generalize alt logic to use embedded pair finding
   - add formatting to allow multiple items as keys in json and maintain order for interface network paths
 
   - fix supported stem assignment (endings like 'is': {'functions a', 'acts a', 'plays a', 'operates a', 'works a'})

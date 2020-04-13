@@ -39,6 +39,21 @@
 
 			- for pathogens with boundaries that cant be handled with existing immune stressors, they can be relocated to a location with functionality to handle them (acidic environments) or that environment can be locally re-created for the duration it takes to kill the pathogen (acidosis)
 
+			- what happens to viruses with glycoprotein shells in the digestive system when they encounter glycoside bond-breaking enzymes like that found in e coli? could you move certain pathogens to the digestive system to be broken?
+			https://en.wikipedia.org/wiki/Glycoside_hydrolase
+
+			- what would the optimal set of filters be for any routes for pathogens to enter a host, where the pathogen would have to prove its harmlessness or usefulness to be allowed general access to the bloodstream? are there any structural filters (enzymes, openings) like this in existing organs?
+
+			- would it be worth the investment to engineer strains of useful bacteria to have different structures than known pathogens so pathogens are more identifiable
+
+			- which viruses use glycoproteins or other virus components for energy sources? what host processes could be changed to require viral glycoproteins/components? can endocytosis be induced so glycoproteins are processed in cell organelles
+
+			- can light/heat/salt/alcohol be produced locally by cellular reactions to kill viruses in waves throughout the system
+
+			- can a virus that attacks other viruses be engineered to convert other viruses into those the immune system can fight or create a change supply that the host needs (another change supply like stem cells or other resources, or change demand like building new cells)
+
+			- a calculation virus would be an interpreter of other viral DNA to determine which stressor handlers the host needs to supply to fight the viruses they have & manipulate their gut bacteria to communicate that information to their brain
+
 
 		- medicine:
 
