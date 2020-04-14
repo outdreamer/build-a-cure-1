@@ -50,7 +50,7 @@ Go over:
 					- if above, the system is 'robust'
 
 	- mapping problem to structure (asymmetry, conflict)
-		- for a conflict like vectors aiming at a corner of a closed shape, the structural way to solve that problem is 
+		- for a conflict like vectors aiming at a corner of a closed shape (where the shape is formed by the intersections of limiting attributes), the structural way to solve that problem is:
 			- reducing the angle of the corner 
 				which reduces the difference between corners (and the incentive to aim for a corner) & adds extra alternatives
 				- the solution is an example of 'false limit' - the limit of there being a finite supply of corners or the limit of one route occupying a position at a given time can be surmounted with extra resources

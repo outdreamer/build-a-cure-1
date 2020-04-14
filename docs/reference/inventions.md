@@ -12,7 +12,6 @@
 		- insight path
 		- insight search
 		- insight graph
-		- insight extraction
 		- using questions as insight extraction query filters
 		- insight filter
 		- invention automation/prediction
@@ -23,14 +22,23 @@
 		- 'finding the right question'
 		- 'converting to an info problem'
 		- 'speed of insight'
-		- mine: 
-			- https://harvest.pagedemo.co
-		- stolen:
-			https://techcrunch.com/2019/11/04/you-can-now-ask-excel-questions-about-your-data/
-			https://cloud.google.com/looker
-			https://altman.ai/
+		- https://harvest.pagedemo.co
+
+		- insight identification/extraction
+		
+			- https://altman.ai/
+
+			- https://cloud.google.com/looker
+
+			- https://aws.amazon.com/comprehend/?c=14&pt=4
+			- https://aws.amazon.com/quicksight/?c=1&pt=8
 
 	- info
+
+		- question
+			- automated question answering
+				https://techcrunch.com/2019/11/04/you-can-now-ask-excel-questions-about-your-data/
+
 		- data
 			- missing data derivation
 			- graph search results from plain language variable relationship queries (harvest)
@@ -39,19 +47,32 @@
 				https://phys.org/news/2020-04-global-uncertainty-businesses-flexibility-efficiency.html
 				https://phys.org/news/2018-08-methods-dynamic.html
 
+			- insight extraction diagram included derivation of missing labels
+
+		- malicious intent detection
+
+			- map user actions to intents
+				- pausing when typing password = 'copying someone elses password' or 'bad memory'
+				- events following a pattern too perfectly or buildable with a set of common/simple patterns are likely to be fraud 
+					(images that comply with an 'average' function are likelier to be fake)
+
+			- to do: examine for intent & risk gaps between dev expectation/user intent
+				https://aws.amazon.com/fraud-detector/?c=14&pt=7
+
 		- info organization/indexing/metadata
 
 		- translation
 			- language-math map
 			- plain language query translation
+				https://aws.amazon.com/kendra/?c=14&pt=8
 			- plain language function translation
 			- plain language math translation
+			- plain language config translation
+				- 'i need to build a web app' = 'cft template for that'
+
 			- translating a context (like a game) to the audience's context to build understanding
 
 		- query prediction/pre-caching by commonly requested data
-
-		- question
-			- automated question answering
 
 		- work automation
 			- mapping games to tasks to turn work into a game
@@ -76,6 +97,10 @@
 		- stolen:
 			https://phys.org/news/2017-03-auto-logic-checker-solution-fake.html
 
+	- compute
+		- building servers optimized for certain functions (blog in 2015)
+		- pre-computed operations & shared storage for computations (so referring to a matrix with particular populated values would involve storing its id & checking for prior computations to avoid re-computing)
+
 	- intent
 		- intent organization
 		- intent permission
@@ -89,11 +114,22 @@
 
 	- problem
 		- automated problem solving
+
+			- pitched automated steps to solve problems at NJI in 2015 in an email:
+				https://aws.amazon.com/step-functions/?c=2&pt=1
+
 		- problem graph
+
 		- problem solution matching
+
 		- problem combination
+
 		- use existing methods for sub-problems
+
 		- solution selection
+
+	- graphify logic
+		https://aws.amazon.com/xray/?c=10&pt=12
 
 	- power dynamics
 
@@ -105,18 +141,23 @@
 
 		- causal analysis
 
-		- mine:
+		- https://phys.org/news/2019-02-causal-disentanglement-frontier-ai.html
 
-		- stolen:
-			https://phys.org/news/2019-02-causal-disentanglement-frontier-ai.html
+	- decision impact visualizer
 
+		- bankpsych - http://bankpsych.herokuapp.com/
+
+	- to do: examine for server-build automation for certain tasks
+		https://aws.amazon.com/compute-optimizer/?c=15&pt=7
+
+	- to do: examine for automated configuration recommendations (in slack messages)
+		https://aws.amazon.com/premiumsupport/technology/trusted-advisor/
+		https://aws.amazon.com/well-architected-tool/?c=15&pt=20
 	
 	- automated code building/generation/ordering/finding/testing (finder/builder)
 
-		- mine:
-
-		- stolen:
-			https://twitter.com/KirkDBorne/status/1147724864448598017
+		- https://twitter.com/KirkDBorne/status/1147724864448598017
+		- https://aws.amazon.com/codeguru/?c=14&pt=3
 
 	- joke
 		- subverted/permuted expectations
@@ -170,7 +211,19 @@
 		- security through automated recalculation of keys/maps on server/client
 		- server processing maximization for security
 		- democratization of hacking tools (GUI assignment) to prevent sybil attacks
+
 		- user decision history/algorithm as a password
+
+			- to do: examine notes on user decision algorithm for personalization
+				- https://aws.amazon.com/personalize/?c=14&pt=10
+
+			- user decision history as a site-customization tool
+				- if they click slowly, show fewer animations & simplify design
+				- if they use tab to navigate, show less styling/animations & organize info into groups
+
+		- to do: examine security recommendations for automated threat detection (slack message)
+			https://aws.amazon.com/detective/?c=22&pt=3
+
 		- session checking index
 		- blockchain for user requests
 
@@ -216,13 +269,11 @@
 		- Trump has been in favor of certain visas for educated workers ever since he found out about some of my recent coworkers who were nice & smart at Capital One.
 		- AOC used my argument in one of her debates in a context in which it wouldn't work because she didnt want to admit I had good ideas & arguments
 
-## References influenced by me
+
+## Influenced
 
 	- uncertainty
 		https://phys.org/news/2018-11-climate-storm-uncertainty.html
-
-	- system variance
-		https://phys.org/news/2017-11-ghost-uncertainty-complex-dynamic.html
 
 	- ratio
 		- the 'metrics of meaning'
@@ -243,3 +294,9 @@
 	- structure index
 
 	- meaning
+
+
+## Alignments
+
+	- system variance
+		https://phys.org/news/2017-11-ghost-uncertainty-complex-dynamic.html

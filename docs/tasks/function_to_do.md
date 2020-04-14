@@ -17,6 +17,16 @@
   - add a standard system diagram with radiating layer diagram
   - add other causal structures
 
+  - add diagram for question derivation for service list
+
+    - deriving the questions customers will ask for a set of services
+
+      - which processes are complicated or not optimized (need to be in person for certain transactions that people would rather do online)
+      - which processes involve changing information (account balance, transaction approval)
+      - which processes are likely to have errors (auth)
+      - which processes people will likely be interested in using the most
+      
+
   - map core concepts to structures for use when building other concepts/objects
 
     - similar definition structures apply to similarly abstract concepts
