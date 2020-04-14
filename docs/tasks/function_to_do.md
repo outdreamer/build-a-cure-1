@@ -14,6 +14,8 @@
   - finish pos, clause, modifiers code from find implementation
   - finish network creation function
   - strategy/insight graph
+  - add a standard system diagram with radiating layer diagram
+  - add other causal structures
 
   - map core concepts to structures for use when building other concepts/objects
 
