@@ -224,6 +224,12 @@
 		- to do: examine security recommendations for automated threat detection (slack message)
 			https://aws.amazon.com/detective/?c=22&pt=3
 
+		- to do: examine security recommendations to find sensitive data (slack message)
+			https://aws.amazon.com/macie/?c=22&pt=6
+
+		- service rotator for tool rotation (pitched at booz in 2016)
+			https://aws.amazon.com/secrets-manager/?c=22&pt=14
+
 		- session checking index
 		- blockchain for user requests
 
@@ -247,8 +253,6 @@
 	- logistics
 		- supply chain optimization
 		- selling adjacent products
-
-	- service rotator
 
 	- web
 		- api/css generation from schema/template
