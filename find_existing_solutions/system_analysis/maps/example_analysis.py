@@ -1,16 +1,22 @@
 '''
 
 Go over:
+
 	- object model
 	- abstract network
 	- interfaces
 	- core functions
+
 	- useful structures
 		- system diagram
 		- function diagram
 		- problem diagram
 		- insight path
 		- info problem type
+		- intent of alternate paths
+		- causal structures
+		- variance gaps
+		- perspective
 
 	- mapping concept to structure
 		- create a program that checks if a system is robust automatically, regardless of which system
@@ -40,7 +46,18 @@ Go over:
 			(incentives that organize motion to create an oversupply of resources (motion vectors) that cant be supported by a resource (position))
  
 	- graphing solution for a problem space
+
 	- the right questions to ask to reduce time to solve a problem (see example filters as problem-reducing questions)
+
+	- limitations
+		- depends on queryable information (the system must be discoverable)
+		- the set of dictionaries used may need updating to build the right queries (there may be more core functions or interfaces to add) but it will discover that during the query
+		- some query sets/chains will be more efficient than others, but that will become clear with meta-analysis of queries after its used, so query analysis needs to be done regularly to update query-building logic
+		- it will generate possible solutions as it runs and the first generated solution is unlikely to be the most optimal
+		- some calculations may need to be made before query can be run (minimum information to solve a problem, relevant insight paths to select interface trajectories, problem solving cost analysis) which can add to solve time
+		- some problems are inefficient to solve (resources should be allocated elsewhere bc solving the problem is too costly or efficiencies are imminent in the host system)
+		- standard queries (example filters) may beat custom queries for some problems but it may be clear after, so both may be optimal to run
+
 
 In the patterns from system_analysis.json, you have example filters to use when reducing a problem before trying specific methods to solve it.
 
