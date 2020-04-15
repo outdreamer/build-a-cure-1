@@ -101,12 +101,17 @@
 		- building servers optimized for certain functions (blog in 2015)
 		- pre-computed operations & shared storage for computations (so referring to a matrix with particular populated values would involve storing its id & checking for prior computations to avoid re-computing)
 
+	- task translation
+		- structuring task definitions so converting them to code is trivial
+
 	- intent
 		- intent organization
 		- intent permission
 		- intent matching
 		- intent prediction
 			- data set intent derivation (predicting which variable)
+
+		- synonyms: purpose, motive, motivation, intention, expectation, goal, objective
 
 	- object model
 		- object collision/merging/combination/interaction
@@ -151,13 +156,57 @@
 		https://aws.amazon.com/compute-optimizer/?c=15&pt=7
 
 	- to do: examine for automated configuration recommendations (in slack messages)
+		https://azure.microsoft.com/en-us/services/advisor/
+		https://azure.microsoft.com/en-us/services/security-center/
 		https://aws.amazon.com/premiumsupport/technology/trusted-advisor/
 		https://aws.amazon.com/well-architected-tool/?c=15&pt=20
+
+	- sub-task derivation from a task definition
+
+	- intent 
+		https://azure.microsoft.com/en-us/services/cognitive-services/language-understanding-intelligent-service/
+
+	- automated addition of data sources
+		https://azure.microsoft.com/en-us/services/search/#documentation
+		https://azure.microsoft.com/en-us/services/cognitive-services/bing-custom-search/
+
+		other search ideas:
+			- inferring useful search filters based on customer usage history & intent
+			- automated attribute extraction/addition to search as a filter
+			- search results as graphs: variables entered in search to display relationships found in data or graph images or graphetized articles
+			- processed (aggregated) results - find the average/combined or plain language definition when searching for a definition
 	
 	- automated code building/generation/ordering/finding/testing (finder/builder)
 
 		- https://twitter.com/KirkDBorne/status/1147724864448598017
 		- https://aws.amazon.com/codeguru/?c=14&pt=3
+
+		https://twitter.com/remixerator/status/802890346434850816
+
+		- automated integration
+			https://azure.microsoft.com/en-us/services/logic-apps/
+
+	- problem-solving (solution) machine
+		mention of a problem-solving device: 
+			https://twitter.com/remixerator/status/368896666847301633
+			https://twitter.com/remixerator/status/368896961409077248
+		shape of abstract idea: 
+			https://twitter.com/remixerator/status/368896088855420928
+		definition of a problem: 
+			https://twitter.com/remixerator/status/368897141512482816
+		resource problem: 
+			https://twitter.com/remixerator/status/368889889716043776
+		how to generate creativity:
+			https://twitter.com/remixerator/status/367814167316549635
+		perspective-switching
+			https://twitter.com/remixerator/status/367813951561547776
+		structural problem types
+			https://twitter.com/remixerator/status/196520523973410816
+		power dynamics
+			https://twitter.com/remixerator/status/196520210579202048
+
+	- remote rendering
+		https://azure.microsoft.com/en-us/services/remote-rendering/
 
 	- joke
 		- subverted/permuted expectations
