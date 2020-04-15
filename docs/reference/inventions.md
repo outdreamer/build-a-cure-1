@@ -175,16 +175,42 @@
 			- automated attribute extraction/addition to search as a filter
 			- search results as graphs: variables entered in search to display relationships found in data or graph images or graphetized articles
 			- processed (aggregated) results - find the average/combined or plain language definition when searching for a definition
+			- predicting what questions theyll ask next and adding those search results (or a summary) on the side
+			- intent-based search guidance:
+				- usually people who search for an answer are studying for a test, so additional widgets like suggested content could include snapshots of/links to: 'study guides', 'summaries', 'tutorials'
+				- people searching for recipes are hosting a party & cooking other things, so suggested content could include snapshots of/links to: 'flavor graphs'
+				- people searching for symptoms are trying to diagnose themselves or someone else, so suggested content could include links to diagnostic tools or graphs of symptom set frequency for conditions
+
+	- automated info organization (identifying info objects like strategies, insights, questions automatically)
+
+		https://azure.microsoft.com/en-us/services/cognitive-services/form-recognizer/#features
+		https://azure.microsoft.com/en-us/services/cognitive-services/qna-maker/
+
+		https://twitter.com/remixerator/status/780948660901249028
+		https://twitter.com/remixerator/status/850786694974590977
+
+	- sharing data to avoid repeated storage
+		https://azure.microsoft.com/en-us/services/open-datasets/#overview
+
+	- automated info optimization (optimal version of an argument, summary, etc)
+
+	- idea market
+		https://twitter.com/remixerator/status/215463952308637696
+
+	- insight blockchain
 	
 	- automated code building/generation/ordering/finding/testing (finder/builder)
 
 		- https://twitter.com/KirkDBorne/status/1147724864448598017
 		- https://aws.amazon.com/codeguru/?c=14&pt=3
+		- https://www.businessinsider.com/microsoft-cambridge-ai-deepcoder-programs-software-combining-stolen-code-2017-2
+
 
 		https://twitter.com/remixerator/status/802890346434850816
 
 		- automated integration
 			https://azure.microsoft.com/en-us/services/logic-apps/
+
 
 	- problem-solving (solution) machine
 		mention of a problem-solving device: 
@@ -265,6 +291,7 @@
 
 			- to do: examine notes on user decision algorithm for personalization
 				- https://aws.amazon.com/personalize/?c=14&pt=10
+				- https://azure.microsoft.com/en-us/services/cognitive-services/personalizer/#overview
 
 			- user decision history as a site-customization tool
 				- if they click slowly, show fewer animations & simplify design
