@@ -185,9 +185,16 @@
 
 		https://azure.microsoft.com/en-us/services/cognitive-services/form-recognizer/#features
 		https://azure.microsoft.com/en-us/services/cognitive-services/qna-maker/
+		https://cloud.ibm.com/catalog/services/discovery?location=eu-gb#about
 
 		https://twitter.com/remixerator/status/780948660901249028
 		https://twitter.com/remixerator/status/850786694974590977
+
+	- identify problem/error type automatically
+		https://azure.microsoft.com/en-us/services/azure-sentinel/#features
+
+	- automation of selecting solutions & resource distribution problem type
+		https://github.com/facebook/FAI-PEP
 
 	- sharing data to avoid repeated storage
 		https://azure.microsoft.com/en-us/services/open-datasets/#overview
@@ -198,12 +205,20 @@
 		https://twitter.com/remixerator/status/215463952308637696
 
 	- insight blockchain
+
+	- experiment automation
+		https://github.com/facebook/planout
 	
 	- automated code building/generation/ordering/finding/testing (finder/builder)
 
 		- https://twitter.com/KirkDBorne/status/1147724864448598017
 		- https://aws.amazon.com/codeguru/?c=14&pt=3
 		- https://www.businessinsider.com/microsoft-cambridge-ai-deepcoder-programs-software-combining-stolen-code-2017-2
+		- https://developer.apple.com/documentation/code_diagnostics
+		- https://github.com/facebook/facebook-business-sdk-codegen
+
+		- identifying code usage automatically (granular calling/called functions, high-level impacted services) to predict impact of a change
+			https://github.com/facebook/codemod
 
 
 		https://twitter.com/remixerator/status/802890346434850816
