@@ -203,6 +203,9 @@
 
 	- idea market
 		https://twitter.com/remixerator/status/215463952308637696
+		https://twitter.com/remixerator/status/743224678320316420
+
+	- favor market
 
 	- insight blockchain
 

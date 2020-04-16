@@ -25,7 +25,27 @@
       - which processes involve changing information (account balance, transaction approval)
       - which processes are likely to have errors (auth)
       - which processes people will likely be interested in using the most
+
+  - whats after dependence market (value in exploiting people's positions)? 
+
+    - an independence market (value in setting others free of their positions)
+
+  - whats after an information market (value in certainty)? 
+
+    - a potential market
       
+      - value in managing/arranging/creating uncertainty, manipulating/protecting time/change/potential, ensuring time/change enables information that benefits people
+
+  - whats after a chaotic society with voluntary organization that allows corruption to gather & hide to advance other governments (feelings)?
+
+    - a society organized by intelligence (as a proxy for potential), with alternatives to:
+    
+      - use stressors to create intelligence
+      - generate intelligence using system/interface analysis
+      - teach/share intelligence
+      - find intelligence in a data source like the internet
+      - install intelligence (learning models/maps, regression tools, logic tools like decision trees, prediction tools like a simulation/imagination engine)
+
 
   - map core concepts to structures for use when building other concepts/objects
 
