@@ -120,18 +120,21 @@ But specific concepts evolve within a system given unique combinations of core o
 When a system is totally unknown, you should diversify across all interfaces at first - example of finding value in a set:
 
 	- analyze a set from the:
-		- core interface: what core functions determine set generation/selection/aggregation/interaction
+		- core interface: what core functions determine set generation/selection/aggregation/interaction/organization
 		- causal interface: what functions were used to generate the set
 		- intent interface: what is this set for
 		- structure interface: randomness, endpoints, subsets/split
-		- potential interface: what are the limits on this set
+		- potential interface: what are the limits on this set, what is the set of possible outcomes
 		- change interface: where is the change concentrated/distributed in the set from a standard set
 		- pattern interface: what patterns do sets in this position (determined by attributes or sample subset) normally follow
 		- function interface: what functions are adjacent to the set if it has a sequence or clear function map
+		- concept interface: what specific tradeoffs/mismatches/alignments/symmetries are inherent to the problem/problem space? (specific concept filter) where is the power distributed in the set? (abstract concept filter)
+		- system interface: what variance injection points are in the set generation/selection/aggregation/interaction/organization
 
 	- then when you find a pattern match on an interface set, you can restrict the search to those
 
-	- key concepts of this problem (like the tradeoff of search start point/split function/organization vs. performance) should be found quickly from various interfaces:
+	- key concepts of this problem (like the "tradeoff of search start point/split function/organization vs. performance", "subset gains", "pattern matching", and "potential worst/best case scenario of solution") 
+		should be found quickly from various interfaces:
 
 		- structure interface: 
 			- position (sequence in the set problem space) is a determinant of adjacence/distance
@@ -140,7 +143,22 @@ When a system is totally unknown, you should diversify across all interfaces at 
 			- limits on number of processes involve ability to read a value at a given position at a time
 			- maximizing start-found adjacence requires more work (higher search processes) to produce a possible metric "lower search time"
 			- "search time" and "start point count" have a tradeoff structure
-			
+
+		- potential interface:
+			- the set of possible outcomes (possible positions of value) is equal to the set's positions (indexes)
+			- how do you reduce the set of possible outcomes if the possible outcomes are an integer sequence equal to the set length
+			- subsets are a potential interim unit (based on the value count attribute) between the outcome data type (one value index) and the input data type (set)
+			- the potential of subsets of equivalent length to contain the value could be equally likely (adding randomness to search)
+			- potential injection point for pattern interface: skipping equivalent valued subsets could reduce solve time (if subsets with a certain split follow patterns as determined at search time)
+			- best case scenario in standard search (random or endpoint) is the first value in the set is the target value
+			- does subset search offer gains to random search?
+			- best case scenario of unit solution type (iterate check of value)in subset search is first value after first subset split (split in half) is the target value
+			- next best case scenario type (if the unit solution type best case scenario doesnt occur iteratively) is pattern found & used to reduce solution/search space
+			- splitting requires multiple processes
+			- pattern logging/searching requires multiple processes
+			- depending on set, either can reduce solution space with extra work
+			- there is a trade-off between work invested in pattern-checking, subset-splitting & solution space reduction potential
+
 
 Examples of each filter follow:
 
