@@ -91,6 +91,56 @@ These are the objects to look for in order to quickly:
 	- understand a system quickly
 	- optimize a system
 
+All systems will have core abstract concept implementations:
+
+"concept_structure_map": {
+	"power": "position",
+	"balance": "equivalent",
+	"efficiency": "path",
+	"change": "distance",
+	"potential": "unoccupied accessible adjacence",
+	"relative change": "ratio",
+	"base/standard/interface": "origin change",
+	"symmetry": "origin",
+	"information": "structure",
+	"truth": "match",
+	"priority": "direction",
+	"intent": "output",
+	"position": "input"
+}
+
+But specific concepts evolve within a system given unique combinations of core objects.
+	Example:
+		A "signal joint" evolves as a concept in the gene system because it's an output of an important combination of core processes that is not matched with an equivalent handler, so it can cause further complexity bc its allowed to interact with other systems instead of decomposing it after it's used.
+
+- cause cant be traced when:
+	- when inputs/system/measurement tools decays/changes before it can be measured
+	- when change/decay outputs dont follow patterns or have multiple alternative possible patterns
+
+When a system is totally unknown, you should diversify across all interfaces at first - example of finding value in a set:
+
+	- analyze a set from the:
+		- core interface: what core functions determine set generation/selection/aggregation/interaction
+		- causal interface: what functions were used to generate the set
+		- intent interface: what is this set for
+		- structure interface: randomness, endpoints, subsets/split
+		- potential interface: what are the limits on this set
+		- change interface: where is the change concentrated/distributed in the set from a standard set
+		- pattern interface: what patterns do sets in this position (determined by attributes or sample subset) normally follow
+		- function interface: what functions are adjacent to the set if it has a sequence or clear function map
+
+	- then when you find a pattern match on an interface set, you can restrict the search to those
+
+	- key concepts of this problem (like the tradeoff of search start point/split function/organization vs. performance) should be found quickly from various interfaces:
+
+		- structure interface: 
+			- position (sequence in the set problem space) is a determinant of adjacence/distance
+			- adjacence between start search position and final found value position is a key metric
+			- start-found adjacence can be maximized by changing input (number of start points)
+			- limits on number of processes involve ability to read a value at a given position at a time
+			- maximizing start-found adjacence requires more work (higher search processes) to produce a possible metric "lower search time"
+			- "search time" and "start point count" have a tradeoff structure
+			
 
 Examples of each filter follow:
 
@@ -153,12 +203,19 @@ Examples of each filter follow:
 	},
 	"potential": {
 		"enforced rules": "",
+		"breakable rules": "",
 		"boundary gaps": "",
-		"possibility spectrum": ""
+		"possibility spectrum": "",
+		"interaction space": ""
 	},
 	"system": {
-		"scale": ""
-	},
+		"scale": "",
+		"localized/mismatched complexity",
+		"difference from random configuration",
+		"difference from unit configuration",
+		"alignment/efficiency ratio",
+		"sub-system interactions"
+	}
 	"change": {
 		"symmetry": "",
 		"balance": "",

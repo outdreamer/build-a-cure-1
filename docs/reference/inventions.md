@@ -248,6 +248,8 @@
 			https://twitter.com/remixerator/status/196520523973410816
 		power dynamics
 			https://twitter.com/remixerator/status/196520210579202048
+		causal shape
+			https://twitter.com/remixerator/status/647380929237925888
 
 	- remote rendering
 		https://azure.microsoft.com/en-us/services/remote-rendering/
