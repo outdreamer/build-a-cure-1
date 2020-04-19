@@ -128,7 +128,9 @@ When a system is totally unknown, you should diversify across all interfaces at 
 		- change interface: where is the change concentrated/distributed in the set from a standard set
 		- pattern interface: what patterns do sets in this position (determined by attributes or sample subset) normally follow
 		- function interface: what functions are adjacent to the set if it has a sequence or clear function map
-		- concept interface: what specific tradeoffs/mismatches/alignments/symmetries are inherent to the problem/problem space? (specific concept filter) where is the power distributed in the set? (abstract concept filter)
+		- concept interface: 
+			- what specific tradeoffs/mismatches/alignments/symmetries/combinations/interactions are inherent to the problem/problem space? (specific concept filter) 
+			- where is the power distributed in the set? (abstract concept filter)
 		- system interface: what variance injection points are in the set generation/selection/aggregation/interaction/organization
 
 	- then when you find a pattern match on an interface set, you can restrict the search to those
@@ -255,5 +257,24 @@ Examples of each filter follow:
 		"core function": ""
 	}
 }
+
+How to generate this list of useful filters to evaluate a system:
+
+You apply core concepts to core components on core interfaces until you reach a function/object/attribute that explains/generates/determines/summarizes a system:
+
+"filter_generation_map": {
+	"equivalence of core structure": "alignment"
+}
+
+"equivalence" is the core concept, the core interface is "structure", and the core structure metric is "direction"
+"equivalence of direction on the structure interface" parses to "alignment", which is a useful filter for evaluating a system.
+
+This filter can be applied to generate the next outer layer of filters:
+
+{
+	"alignment of core system component": "attribute alignment"
+}
+
+which is a "core concept (filters.alignment) of core component (attribute) on a core interface (system)"
 
 '''
