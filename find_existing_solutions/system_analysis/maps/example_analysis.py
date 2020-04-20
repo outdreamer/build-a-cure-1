@@ -219,7 +219,14 @@ Examples of each filter follow:
 		"function distortion": ""
 	},
 	"intent": {
-		"intent ambiguity": ""
+		"intent ambiguity": {
+			"unanchored/unmatched intent",
+			"non-standard distortion",
+			"distortions without intent",
+			"neutral intent",
+			"unknowable intent",
+			"alternate intent"
+		}
 	},
 	"potential": {
 		"enforced rules": "",
@@ -276,5 +283,13 @@ This filter can be applied to generate the next outer layer of filters:
 }
 
 which is a "core concept (filters.alignment) of core component (attribute) on a core interface (system)"
+
+What kind of information can you apply to a system once its framed as a set of generative filters to highlight its inconsistencies:
+- randomness
+- change
+- average
+- extremes
+- balance
+- completeness (in combinations)
 
 '''
