@@ -193,9 +193,41 @@ Go over:
 			- a theory of how types evolve is a useful tool to use when implementing a method of automating problem-solving, if you are restricted to type data
 			- my system has a component that involves deriving & analyzing core functions/objects/attributes and how they interact & evolve, but is not restricted to the object relationships defined in that theory,
 				as real object interactions dont involve adding an attribute at a time or combining two defined objects but rather:
+				
 					- deriving definition routes to capture an object
 					- transforming attributes to functions & back
 					- trends & interactions like attribute accretion into types, attribute collisions/conflicts, attribute potential, etc
+
+
+		- how is this different from machine learning
+
+			- in addition to the dependencies of machine learning (info & compute) vs. the dependencies for interface analysis for insight extraction (concept/logic maps & dictionaries), this differs in various ways
+
+			- machine learning uses a network of functions which filter information for patterns according to input data
+
+			- interface analysis uses function (core function), causal (causal shape), potential (interaction space), interface (symmetry), concept (structure maps), & system (variance gaps) analysis 
+			  to identify missing semantic information, like:
+
+				- probable sources of error
+				- efficiencies
+				- insights about the variables producing an output variable
+				- intent & optimizations of the system containing the relationship being studied
+
+			- that doesnt mean you cant use system analysis to improve machine learning methods or integrate it with machine learning, to produce:
+
+				- a network with every common type of core function represented in the method of filtering weights in a weight path (a hybrid network with various input passing/aggregation strategies represented)
+				- calls to other networks containing insights or pattern information when a particular pattern is identified
+				- networks using standardized data across the supported interfaces (data standardized for the causal, structural, system, potential, change interfaces)
+
+				- and you could also use machine learning to make prediction functions for sub-tasks in interface analysis, in the absence of the concept/logic maps/definitions
+
+			- machine learning is specifically for 'figuring out a variable relationship/prediction function', with an alternate intent of 'finding patterns', which is why its useful across a variety of problem types
+			- but like category theory, property graphs, & concept networks, it also doesnt have a concept of:
+
+				- translating abstract interface objects like cause/intent to structure
+				- identifying object types (concepts, functions, attributes, systems)
+				- deriving relationships using core functions & patterns
+				- switching between various analysis methods in the absence of information
 
 
 		- what is an interface 
