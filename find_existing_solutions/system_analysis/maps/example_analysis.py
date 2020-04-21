@@ -83,14 +83,14 @@ Go over:
 		- standard queries (example filters) may beat custom queries for some problems but it may be clear after, so both may be optimal to run
 
 	- faq
-	
-		- whats the need for mapping information problems to structure (math) problems? isnt an information asymmetry already structural?
+
+		- whats the need for mapping information problems to structure (math) problems? for example, isnt an information asymmetry already structural?
 
 			- yes and no. 
 
-				the problemm is already captured on a layer of abstraction above the agent layer (what you could call 3-d space), 
-			which is what I often mean by the structural/math layer, where most problems should be transformed to unless you have existing solutions or 
-			a complete interface map so you can query for a solution on other interfaces.
+				the problemm is already captured on a layer of abstraction above the agent layer (what you could call 3-d space or physical reality), 
+			which is what I sometimes mean when I say the structural/math layer though I should really say the physical information layer, 
+			where most problems should be transformed to unless you have existing solutions or a complete interface map so you can query for a solution on other interfaces.
 
 				but the information asymmetry is an abstract problem has many solutions, and applying each solution would look different between different problem spaces.
 
@@ -111,13 +111,53 @@ Go over:
 
 				whats the solution that causes the fewest risks & subsequent info asymmetries? that depends on the problem space.
 
-		to answer the question - does every object need to be mapped to a shape like a square or circle?
+
+		- does every object need to be mapped to a common shape (like a square or circle) with your system?
 
 			- that strategy can be used to compare attribute sets that match these common structures, to find structural solutions that can then be applied to the original problem 
 
 			- in the absence of other problem-solving methods, finding structures with problem-solution matches already indexed can be an efficient method of solving the original problem.
 
+			- that doesnt mean there arent cases where finding a new structure (like a core function combination circle layer system or a function system) isnt useful for depicting information in ways that will reveal problem cause & other important info, 
+			  even revealing solutions if the information is organized in the right structure
 
+
+		- whats the difference between your system/interface/abstract network and a typical concept map?
+
+			- good question, there are a lot of points to make here.
+
+				- when I say the abstract network, I mean the correct network indicating the actual positions of abstract concepts (like balance, power) that have their own sub-networks of other concept versions,
+					where the concepts differ from & connect to each other given how they really interact in other spaces, given their definitions
+					
+					- these concepts emerge in the structural layer (power is ability/options, so power comes from inputs/connections, etc) so the difference between the concepts that qualify for the abstract network
+					and core structures in the structural layer is minimal.
+
+				- a concept map typically won't assign meaning to the position of each concept, contain the other versions of the concept, or organize the concepts without a structural method to differentiate & connect them.
+
+			- whats the difference between the abstract/interface network and an attribute/property graph?
+
+				- that type of graph is useful for finding connections between various specific attributes of objects - they typically leave out other considerations like 
+				  cause, system structures (boundaries, sub-systems), intent, function (functionality emerging from attributes), potential  (interaction space), concepts (trajectory on abstract network used by system)
+
+				  - those graphs also even leave out attribute metadata like attribute type (input/output, emergent, possible, requirement, dependency, type), as well as alternate states of the attribute,
+				  	- attribute position on the host object/system (causing interactions between attributes)
+
+				 - the attribute graphs dont reveal much about the problem types in the system of object interactions or how they evolved and what direction the attributes are headed in 
+				 (about to converge with other attributes or create a new type)
+
+				 - attribute graphs dont typically acknowledge the importance of attribute sets as a definition of types (showing which attributes are related to types)
+
+				 - attribute graphs also focus on known attribute values, rather than isolating or deriving determinating/generative attributes
+
+			- also the structures I use require other shapes than a network, which is useful for displaying connections but can't display every connection or relationship type, 
+				requiring a layered network like the interface network
+
+			- some networks will display relationships' most simple attributes, like which objects are connected, the direction of the relationship input/output, or inheritance relationships,
+			  but the function interface will display connections between objects given their actual relating function shapes
+
+		- what is an interface 
+
+			- its a standard for comparison - in my system its a standard that reduces systems so they can be compared
 
 
 In the patterns from system_analysis.json, you have example filters to use when reducing a problem before trying specific methods to solve it.
