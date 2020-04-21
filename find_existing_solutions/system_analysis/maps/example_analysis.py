@@ -193,7 +193,7 @@ Go over:
 			- a theory of how types evolve is a useful tool to use when implementing a method of automating problem-solving, if you are restricted to type data
 			- my system has a component that involves deriving & analyzing core functions/objects/attributes and how they interact & evolve, but is not restricted to the object relationships defined in that theory,
 				as real object interactions dont involve adding an attribute at a time or combining two defined objects but rather:
-				
+
 					- deriving definition routes to capture an object
 					- transforming attributes to functions & back
 					- trends & interactions like attribute accretion into types, attribute collisions/conflicts, attribute potential, etc
@@ -228,6 +228,29 @@ Go over:
 				- identifying object types (concepts, functions, attributes, systems)
 				- deriving relationships using core functions & patterns
 				- switching between various analysis methods in the absence of information
+
+
+		- is this too abstract to be useful? how would you implement this?
+
+			- the fact that we can imagine what a concept is means it can have structure, & interfaces act like standardizing filters:
+			  while they are abstract terms, they have intrinsic physical attributes & map to structures even when they are abstract enough to have few physical attributes
+
+			- the docs for some implementation strategies are here:
+				https://github.com/outdreamer/build-a-cure/blob/master/docs/core_analysis/derivation_methods.md
+				https://github.com/outdreamer/build-a-cure/blob/master/docs/specific_methods/problem_solving_matching.md
+
+			- most of my implementation strategies vary on:
+
+				- the starting point of the analysis (which interface the query starts from)
+				- the structures relevant (which structures or type of graphing method to use)
+				- the intent (create a prediction function, reduce solution space, compare solutions, or match problem with solution)
+				- the core abstract function represented (is it a find method, an apply method, a combination)
+				- the models used (object model, interface query)
+
+			- but they have in common:
+				- using core objects & patterns
+				- using info objects like problems/incentives/sub-systems/efficiencies & concepts like probability/relevance to create prediction functions
+				- applying structure to unstructured information
 
 
 		- what is an interface 
