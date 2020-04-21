@@ -4,14 +4,18 @@ Go over:
 
 	- object model
 
+
 	- abstract network
+
 
 	- interfaces
 		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/interface.svg
 
+
 	- core functions
 		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/solution.svg
 		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/insight.svg
+
 
 	- useful structures
 		- system diagram	
@@ -36,6 +40,7 @@ Go over:
 		- perspective
 			https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/perspective.svg
 
+
 	- mapping concept to structure
 		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/concept.svg
 
@@ -48,6 +53,7 @@ Go over:
 					- assign a ratio to 'strong' adjective
 					- check if the change type handled ratio is above or below the strong ratio
 					- if above, the system is 'robust'
+
 
 	- mapping problem to structure (asymmetry, conflict)
 		- for a conflict like vectors aiming at a corner of a closed shape (where the shape is formed by the intersections of limiting attributes), the structural way to solve that problem is:
@@ -65,13 +71,16 @@ Go over:
 		- the way to assign 'conflict' problem type to the closed shape structure with internal vectors is by aligning attributes 
 			(incentives that organize motion to create an oversupply of resources (motion vectors) that cant be supported by a resource (position))
  
+
 	- graphing solution for a problem space
 		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/function_map.svg
 		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/map.svg
 		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/prediction.svg
 		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/problem_space.svg
 
+
 	- the right questions to ask to reduce time to solve a problem (see example filters as problem-reducing questions)
+
 
 	- limitations
 		- depends on queryable information (the system must be discoverable) and definitions (for efficiency, although the definitions should be derivable if the system information is accessible)
@@ -81,6 +90,7 @@ Go over:
 		- some calculations may need to be made before query can be run (minimum information to solve a problem, relevant insight paths to select interface trajectories, problem solving cost analysis) which can add to solve time
 		- some problems are inefficient to solve (resources should be allocated elsewhere bc solving the problem is too costly or efficiencies are imminent in the host system)
 		- standard queries (example filters) may beat custom queries for some problems but it may be clear after, so both may be optimal to run
+
 
 	- faq
 
@@ -124,7 +134,7 @@ Go over:
 
 		- whats the difference between your system/interface/abstract network and a typical concept map?
 
-			- good question, there are a lot of points to make here.
+			- good question, there are a lot of points to make here
 
 				- when I say the abstract network, I mean the correct network indicating the actual positions of abstract concepts (like balance, power) that have their own sub-networks of other concept versions,
 					where the concepts differ from & connect to each other given how they really interact in other spaces, given their definitions
@@ -134,33 +144,36 @@ Go over:
 
 				- a concept map typically won't assign meaning to the position of each concept, contain the other versions of the concept, or organize the concepts without a structural method to differentiate & connect them.
 
-			- whats the difference between the abstract/interface network and an attribute/property graph?
+		- whats the difference between the abstract/interface network and an attribute/property graph?
 
-				- that type of graph is useful for finding connections between various specific attributes of objects - they typically leave out other considerations like 
-				  	- cause
-				  	- system structures (boundaries, sub-systems)
-				  	- intent
-				  	- function (functionality building or emerging from attributes)
-				  	- potential (interaction space)
-				  	- concepts (trajectory on abstract network used by system)
+			- attributes arent the only useful object to consider (consider types, which are attribute sets) and dont support more complex analysis 
+				(like changing attributes, attributes that are likely to interact, etc)
 
-				 - the attribute graphs dont reveal much about the problem types in the system of object interactions or how they evolved and what direction the attributes are headed in 
+			- that type of graph is useful for finding connections between various specific attributes of objects - they typically leave out other considerations like 
+				- cause
+				- system structures (boundaries, sub-systems)
+				- intent
+				- function (functionality building or emerging from attributes)
+				- potential (interaction space)
+				- concepts (trajectory on abstract network used by system)
+
+			- the attribute graphs dont reveal much about the problem types in the system of object interactions or how they evolved and what direction the attributes are headed in 
 				 (about to converge with other attributes or create a new type)
 
-				 - like other information depicting methods, attribute graphs:
-				 	- dont focus on or derive generative/determining/causative/equivalent attributes
-				 	- dont have a concept of alternate attribute paths, system boundaries, governing system rules, a way to convert between functions/attributes, or a method to derive missing attributes
-				 	- leave out attribute metadata like attribute type (input/output, emergent, possible, requirement, dependency, type)
-				 	- attribute states/trends
-				 	- predict attribute interactions
-				 	- dont have system analysis across the whole set of objects described 
-				 	- dont include pattern analysis from prior queries of other graphs
-				 	- dont have a method to find causative attributes automatically
-				 	- dont typically acknowledge the importance of attribute sets as a definition of types (showing which attributes are related to types)
-				 	- dont tell you which attribute sets influence other sets to cause a correlation n degrees away
-				 	- are typically used with specific objects
-				 	- dont reveal the core functions building an attribute set, which are the causes of the attribute values
-				 	- dont have a concept of symmetries, interfaces, potential, change, etc
+			- like other information depicting methods, attribute graphs:
+				 - dont focus on or derive generative/determining/causative/equivalent attributes
+				 - dont have a concept of alternate attribute paths, system boundaries, governing system rules, a way to convert between functions/attributes, or a method to derive missing attributes
+				 - leave out attribute metadata like attribute type (input/output, emergent, possible, requirement, dependency, type)
+				 - attribute states/trends
+				 - predict attribute interactions
+				 - dont have system analysis across the whole set of objects described 
+				 - dont include pattern analysis from prior queries of other graphs
+				 - dont have a method to find causative attributes automatically
+				 - dont typically acknowledge the importance of attribute sets as a definition of types (showing which attributes are related to types)
+				 - dont tell you which attribute sets influence other sets to cause a correlation n degrees away
+				 - are typically used with specific objects
+				 - dont reveal the core functions building an attribute set, which are the causes of the attribute values
+				 - dont have a concept of symmetries, interfaces, potential, change, etc
 
 
 			- also the structures I use require other shapes than a network (symmetry stack, trade circuit, potential field) which is useful for showing connections but can't display all connection/relationship types, 
@@ -169,10 +182,22 @@ Go over:
 			- some networks will display relationships' most simple attributes, like which objects are connected, the direction of the relationship input/output, or inheritance relationships,
 			  but the function interface will display connections between objects given their actual relating function shapes
 
+			- however most things can be framed as a set of attributes, just like most things can be framed as a network, a set of filters, a function, a system, etc
+
+			- even concepts can map directly to attributes & be framed as a network of attributes or a route on a network,
+				and the most abstract concepts like power map to core structures like inputs or high-connectivity nodes in a network, which are core attributes of a system (hubs, injection points, gaps, etc)
+
 
 		- what is an interface 
 
 			- its a standard for comparison - in my system its a standard that reduces systems so they can be compared
+
+
+		- what is a problem space
+
+			- its the space where youd graph all the info relevant to a problem - I often use tech as a key determinant of a problem space bc which tech you have often determines which strategies you can use 
+			  but it includes all the other resources you might have access to (info, potential, energy, physical assets, etc)
+
 
 
 In the patterns from system_analysis.json, you have example filters to use when reducing a problem before trying specific methods to solve it.
