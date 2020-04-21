@@ -137,23 +137,38 @@ Go over:
 			- whats the difference between the abstract/interface network and an attribute/property graph?
 
 				- that type of graph is useful for finding connections between various specific attributes of objects - they typically leave out other considerations like 
-				  cause, system structures (boundaries, sub-systems), intent, function (functionality emerging from attributes), potential  (interaction space), concepts (trajectory on abstract network used by system)
-
-				  - those graphs also even leave out attribute metadata like attribute type (input/output, emergent, possible, requirement, dependency, type), as well as alternate states of the attribute,
-				  	- attribute position on the host object/system (causing interactions between attributes)
+				  	- cause
+				  	- system structures (boundaries, sub-systems)
+				  	- intent
+				  	- function (functionality building or emerging from attributes)
+				  	- potential (interaction space)
+				  	- concepts (trajectory on abstract network used by system)
 
 				 - the attribute graphs dont reveal much about the problem types in the system of object interactions or how they evolved and what direction the attributes are headed in 
 				 (about to converge with other attributes or create a new type)
 
-				 - attribute graphs dont typically acknowledge the importance of attribute sets as a definition of types (showing which attributes are related to types)
+				 - like other information depicting methods, attribute graphs:
+				 	- dont focus on or derive generative/determining/causative/equivalent attributes
+				 	- dont have a concept of alternate attribute paths, system boundaries, governing system rules, a way to convert between functions/attributes, or a method to derive missing attributes
+				 	- leave out attribute metadata like attribute type (input/output, emergent, possible, requirement, dependency, type)
+				 	- attribute states/trends
+				 	- predict attribute interactions
+				 	- dont have system analysis across the whole set of objects described 
+				 	- dont include pattern analysis from prior queries of other graphs
+				 	- dont have a method to find causative attributes automatically
+				 	- dont typically acknowledge the importance of attribute sets as a definition of types (showing which attributes are related to types)
+				 	- dont tell you which attribute sets influence other sets to cause a correlation n degrees away
+				 	- are typically used with specific objects
+				 	- dont reveal the core functions building an attribute set, which are the causes of the attribute values
+				 	- dont have a concept of symmetries, interfaces, potential, change, etc
 
-				 - attribute graphs also focus on known attribute values, rather than isolating or deriving determinating/generative attributes
 
-			- also the structures I use require other shapes than a network, which is useful for displaying connections but can't display every connection or relationship type, 
+			- also the structures I use require other shapes than a network (symmetry stack, trade circuit, potential field) which is useful for showing connections but can't display all connection/relationship types, 
 				requiring a layered network like the interface network
 
 			- some networks will display relationships' most simple attributes, like which objects are connected, the direction of the relationship input/output, or inheritance relationships,
 			  but the function interface will display connections between objects given their actual relating function shapes
+
 
 		- what is an interface 
 
