@@ -82,6 +82,43 @@ Go over:
 		- some problems are inefficient to solve (resources should be allocated elsewhere bc solving the problem is too costly or efficiencies are imminent in the host system)
 		- standard queries (example filters) may beat custom queries for some problems but it may be clear after, so both may be optimal to run
 
+	- faq
+	
+		- whats the need for mapping information problems to structure (math) problems? isnt an information asymmetry already structural?
+
+			- yes and no. 
+
+				the problemm is already captured on a layer of abstraction above the agent layer (what you could call 3-d space), 
+			which is what I often mean by the structural/math layer, where most problems should be transformed to unless you have existing solutions or 
+			a complete interface map so you can query for a solution on other interfaces.
+
+				but the information asymmetry is an abstract problem has many solutions, and applying each solution would look different between different problem spaces.
+
+				one way to solve it is by distributing all information to all agents - another way is by splitting hte information and sharing it equally - another way is removing the information.
+
+				these solutions would look different depending on the problem space - distributing all information or removing it may not be possible depending on what resources you have.
+
+				but once you have the problem matched to these solution structures, you can apply the solution structures to 3-d space, looking for objects that could fulfill the definition of solution terms.
+
+				what does 'distribute' mean for a particular problem space? these are the questions that can be answered on the 3-d space layer.
+
+					if you have info tech, you can distribute information that way, at risk of the info being hacked
+					if you have social networks, you can distribute it that way, at risk of distorting it
+
+				different solutions comes with different intents & problems like risks, and these objects are also automatically identifiable once the solution is applied
+
+				distributing information may give conflicting agents power over each other - but only one of them may use it - thats an information problem as well, which can also be framed as an info asymmetry.
+
+				whats the solution that causes the fewest risks & subsequent info asymmetries? that depends on the problem space.
+
+		to answer the question - does every object need to be mapped to a shape like a square or circle?
+
+			- that strategy can be used to compare attribute sets that match these common structures, to find structural solutions that can then be applied to the original problem 
+
+			- in the absence of other problem-solving methods, finding structures with problem-solution matches already indexed can be an efficient method of solving the original problem.
+
+
+
 
 In the patterns from system_analysis.json, you have example filters to use when reducing a problem before trying specific methods to solve it.
 
@@ -110,8 +147,11 @@ All systems will have core abstract concept implementations:
 }
 
 But specific concepts evolve within a system given unique combinations of core objects.
+
 	Example:
-		A "signal joint" evolves as a concept in the gene system because it's an output of an important combination of core processes that is not matched with an equivalent handler, so it can cause further complexity bc its allowed to interact with other systems instead of decomposing it after it's used.
+		- a "signal joint" evolves as a concept in the gene system because it's an output of an important combination of core processes that is not matched with an equivalent handler, so it can cause further complexity bc its allowed to interact with other systems instead of decomposing it after it's used.
+		- an "improvisation" is a change given a starting position and new problem information that doesnt match an existing solution
+
 
 - cause cant be traced when:
 	- when inputs/system/measurement tools decays/changes before it can be measured
@@ -188,7 +228,8 @@ Examples of each filter follow:
 		"false constant": "",
 		"false conflict": "",
 		"false category": "",
-		"false assymption": ""
+		"false assymption": "",
+		"false paradox": ""
 	},
 	"state": {
 		"state permutation": "thermostat that switches off if natural temperature is equal to set involves permuting state of temperature variable to find a case where AC/heat wouldnt be needed for intent of conserving resources"
@@ -210,7 +251,8 @@ Examples of each filter follow:
 		"implication": "",
 		"contradiction": "",
 		"condition": "",
-		"equivalence": ""
+		"equivalence": "",
+		"assumption": ""
 	},
 	"pattern": {
 		"repetition": "",
@@ -241,15 +283,23 @@ Examples of each filter follow:
 		"difference from random configuration",
 		"difference from unit configuration",
 		"alignment/efficiency ratio",
-		"sub-system interactions"
+		"sub-system interactions",
+		"threshold adjacence chains",
 	}
 	"change": {
 		"symmetry": "",
 		"balance": "",
 		"power": "",
-		"variance injection": "",
+		"variance injection": "point where a rule can be broken or has an enforcement gap",
 		"variance accretion": "",
-		"change demand/supply": "change occurs from triggers (phase shift, threshold, interaction) and the structures that can support them (matter state)"
+		"change demand/supply": "change occurs from triggers (phase shift, threshold, interaction) and the structures that can support them (matter state)",
+		"error_types": {
+			"rule change",
+			"direction change",
+			"threshold change",
+			"definition change",
+			"phase shift"
+		}
 	},
 	"cause": {
 		"cause direction": "",
@@ -261,9 +311,13 @@ Examples of each filter follow:
 		"filter": ""
 	},
 	"function": {
-		"core function": ""
+		"core function": "",
+		"filter": "",
+		"equivalence": "",
+		"route": ""
 	}
 }
+
 
 How to generate this list of useful filters to evaluate a system:
 

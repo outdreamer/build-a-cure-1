@@ -46,6 +46,11 @@
       - find intelligence in a data source like the internet
       - install intelligence (learning models/maps, regression tools, logic tools like decision trees, prediction tools like a simulation/imagination engine)
 
+  - whats after time-based change assessment? interface & variance & default-based change assessment
+
+  - whats after system derivation & management? predicting systems from a boundary, the core input (boundary/limit management) - the goal is filter management, as filters can generate other objects
+
+  - whats after humiliation/criticism & problem avoidance markets? achievement, solution automation, and solution-sharing markets
 
   - map core concepts to structures for use when building other concepts/objects
 
