@@ -144,6 +144,7 @@ Go over:
 
 				- a concept map typically won't assign meaning to the position of each concept, contain the other versions of the concept, or organize the concepts without a structural method to differentiate & connect them.
 
+
 		- whats the difference between the abstract/interface network and an attribute/property graph?
 
 			- attributes arent the only useful object to consider (consider types, which are attribute sets) and dont support more complex analysis 
@@ -186,6 +187,15 @@ Go over:
 
 			- even concepts can map directly to attributes & be framed as a network of attributes or a route on a network,
 				and the most abstract concepts like power map to core structures like inputs or high-connectivity nodes in a network, which are core attributes of a system (hubs, injection points, gaps, etc)
+
+
+		- how is this different from category theory
+			- a theory of how types evolve is a useful tool to use when implementing a method of automating problem-solving, if you are restricted to type data
+			- my system has a component that involves deriving & analyzing core functions/objects/attributes and how they interact & evolve, but is not restricted to the object relationships defined in that theory,
+				as real object interactions dont involve adding an attribute at a time or combining two defined objects but rather:
+					- deriving definition routes to capture an object
+					- transforming attributes to functions & back
+					- trends & interactions like attribute accretion into types, attribute collisions/conflicts, attribute potential, etc
 
 
 		- what is an interface 
