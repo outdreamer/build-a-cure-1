@@ -230,6 +230,24 @@ Go over:
 				- switching between various analysis methods in the absence of information
 
 
+		- whats the difference between this & existing system analysis:
+
+			- the more accurate term for my project is interface analysis, but a subset of that involves my own implementation of system analysis that can derive, identify, & optimize important system objects like:
+				- problems (conflicts, false assumptions, unenforced rules, system-invalidating errors)
+				- variance injection/accretion/interaction points
+				- misaligned intents
+				- attribute collisions
+				- incentives/efficiencies/paradoxes
+
+				using the problem-solving automation methods described in the docs, after converting the system to a standardized format & including metadata with the system objects
+
+			- as far as I know, classical system analysis:
+				- applies to systems with an existing physical structure like circuits or cells (rather than finding semantic objects like problems in a system graph of info objects)
+				- involves mapping the system objects & their interactions & looking for a standard set of error types (rather than describing the interface trajectory of the system after standardizing it)
+				- correcting errors manually rather than automatically
+				- analyzing the system on the physical information interface rather than other interfaces like intent/cause
+
+
 		- is this too abstract to be useful? how would you implement this?
 
 			- the fact that we can imagine what a concept is means it can have structure, & interfaces act like standardizing filters:
