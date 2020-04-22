@@ -232,7 +232,8 @@ Go over:
 
 		- whats the difference between this & existing system analysis:
 
-			- the more accurate term for my project is interface analysis, but a subset of that involves my own implementation of system analysis that can derive, identify, & optimize important system objects like:
+			- the more accurate term for my project is interface analysis (to automate problem-solving), 
+			  but a subset of that involves my own implementation of system analysis that can derive, identify, & optimize important system objects like:
 				- problems (conflicts, false assumptions, unenforced rules, system-invalidating errors)
 				- variance injection/accretion/interaction points
 				- misaligned intents
@@ -291,6 +292,34 @@ Go over:
 			  but it includes all the other resources you might have access to (info, potential, energy, physical assets, etc)
 
 
+		- why improve problem-solving at all?
+
+			- the problems with current solution methods:
+
+				- solutions that are slow to implement, static, not shared, not organized, not generalized, & include repeated work
+				- solutions often dont use prior knowledge (insights/patterns) to inform new solutions
+				- known/discoverable systems with known/discoverable rules are treated as unknowns
+				- errors are found with common known or easily derived rules ("change/remove assumptions") or causes ("misaligned attributes")
+				- problems of the same type persist across systems
+				- problems can be standardized to info/structural problems, which have associated solutions, and can be used as building blocks of solutions
+				- work devoted to repeating a solution could be work devoted to innovating problem-solving
+				- problem-solving isnt automated
+			
+			- current methods are focused heavily on information - if people become too focused on information (what is true at a given time), they'll never change again & time will end,
+				they'll just calculate everything from the point that they find a way to do so
+
+				- instead of focusing on information as the priority, they need to focus on preserving variance potential, so there are still questions to answer
+
+				- outrunning the onset of the information calculation singularity involves:
+
+					- creating self-sustaining variance sources & protecting existing ones (maintaining ambiguity/alternative options)
+					- automating what can be & also automating the update of automation tools
+					- evaluating information on the basis of change/potential
+					- analyzing reason/cause rather than information
+					- this means avoiding optimizing everything
+					- there should always be at least two comparable alternatives so a decision is difficult & not certain
+						- at least two systems, at least two perspectives, at least two metrics, at least two intents, etc - the ark requires differentiation to sustain potential
+						
 
 In the patterns from system_analysis.json, you have example filters to use when reducing a problem before trying specific methods to solve it.
 
