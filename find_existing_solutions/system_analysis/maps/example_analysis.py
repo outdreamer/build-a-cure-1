@@ -248,6 +248,15 @@ Go over:
 				- analyzing the system on the physical information interface rather than other interfaces like intent/cause
 
 
+		- whats the difference between this and simulations of agent-based games
+
+			- some of my methods involve making changes to object positions & assessing the impact of that change, which is where the similarity ends
+			- simulating info object (incentive, question, problem, system) combination types (merge, collide, compete, inject, etc) is not the same as simulating the combination of physical objects
+			- my methods to find the cause of a phenomenon impacting various objects (like deriving that a bottle was the source of contamination causing an illness) involves using cross-system insight paths
+				(like those found below, including finding the "attribute alignment" and "high-connectivity hub nodes"), which determine most emergent interaction patterns that occur in the physical world
+			- my system analyzes agent position based on info & physical assets rather than just physical assets
+
+
 		- is this too abstract to be useful? how would you implement this?
 
 			- the fact that we can imagine what a concept is means it can have structure, & interfaces act like standardizing filters:
