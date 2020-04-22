@@ -333,6 +333,10 @@
          'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
 
 
+  - prediction model trained on conversations as encryption key/alg parameters, updated with new messages
+
+  - shared custom meaning/dictionary maps so communication can be queries on their shared custom dictionary map - or a common map where queries specify pattern & sub-set to apply pattern to, and sub-sets are rotated
+
   - abstract functions
 
       - derive combinations & make sure you have full function coverage of all important combinations
