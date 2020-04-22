@@ -420,6 +420,8 @@
 
 						- this may be why acupuncture has worked occasionally - it distributes stress so its not concentrated, it alerts the immune system to pay attention to distributed regions - it doesnt deliver medicine/light/heat but a signal to the immune system, and it can break apart concentrated clusters with which immune cells cant communicate - the same reason exercise may fix or prevent some problems caused by lack of cell communication
 
+						- an alternative is using acupuncture & light to kill cancer cells - so uv rays are delivered to center of tumor with a needle
+
 						- rather than using acupuncture, you can also distribute pain to alert the immune system - a bruise can serve the same purpose, and the rest of the body doesnt have to experience it, just the area in question, to prevent tumors in a susceptible area, without risk of infection from needles
 
 					- molecular motion is also a way to generate variation in cellular structures - what else can you use to increase speed of flow to create different structures, and which areas would that work in so that the errors wouldnt be corrected or filtered out as waste?
