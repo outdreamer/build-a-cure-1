@@ -210,6 +210,10 @@
 						- does DNA operate more as a set of limits/filters than functions/attributes, or is it somewhere in between, or including other structures (paths, subsets, position, system context)
 							https://phys.org/news/2020-04-dna-life-bookjust-jumbled-ingredients.html
 
+							- 'what organism ranges are produceable with a specific set of DNA' is a similar question to 'what inner shapes are compatible with a square boundary', where the DNA acts as the boundary
+
+						- the concept of temporary evolution (epigentics changing gene expressions, mutations from structure, stressors & evolved handlers, viruses altering DNA) differs from horizontal & intergenerational evolution
+
 
 					- virus system analysis:
 
