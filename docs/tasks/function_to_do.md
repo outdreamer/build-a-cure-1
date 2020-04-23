@@ -383,6 +383,11 @@
     - machine learning can be used for initial conversion, then tweaked with coded filters like priorities, logic, organization, output
     - system analysis can be used to optimize beyond those standard filters
     - this needs to identify existing rules (or specific versions of abstract rules, distorted versions of standard rules) & filter them out
+    - this is an alternative & and an interim step to raw code-generation given a set of intents
+
+  - data viz can be automated using:
+    - lie core function layer graph or individual lie type graphs, with an output intent layer (hide information, layer information, minimize information, obfuscate information)
+    - intent-structure maps (this graph structure serves this intent stack, just like a function serves an intent stack)
 
   - shared custom meaning/dictionary maps so communication can be queries on their shared custom dictionary map - or a common map where queries specify pattern & sub-set to apply pattern to, and sub-sets are rotated
 
