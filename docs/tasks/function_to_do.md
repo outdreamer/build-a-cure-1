@@ -337,7 +337,8 @@
     - auto-configuring the network with common or data pattern-specific weight path patterns rather than random or equal could speed up training
     - reverse logic can be beneficial here - given the complexity of a problem, which features with which differences would have to occur for the training to be useful (or for the problem to be solvable)? check the data for those variable types/differences
     - use prior knowledge of patterns (insights like 'differentiating variables tend to cluster') as a way to organize analysis of the corresponding feature data pointed to by the insight (adjacent features)
-    - 
+    - different network or node sets can represent different problem-solving automation insights (one node can represent a 'differentiating variables' filter, another node can represent a 'cluster' verb/function filter)
+      - if none of these node sets finds a pattern, the node sets can be recombined into new options (like another outer layer of a core function diagram) and re-trained
 
   - prediction model trained on conversations as encryption key/alg parameters, updated with new messages
 
