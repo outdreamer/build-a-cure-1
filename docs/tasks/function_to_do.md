@@ -332,6 +332,10 @@
                'ALL_N ALL_N of ALL_N ALL_N'
          'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
 
+  - neural network nodes as facets of additional complexity/dimensions - calculating the complexity of a prediction function-determining problem (based on which distortions are likely from prediction function patterns) would allow selection of the necessary nodes
+    - higher complexity requires that more combinations of weight path patterns be experimented on, and more nodes allow room for more experimentation
+    - auto-configuring the network with common or data pattern-specific weight path patterns rather than random or equal could speed up training
+    - reverse logic can be beneficial - given the complexity of a problem, which features with which differences would have to occur for the training to be useful? check the data for those variable types/differences
 
   - prediction model trained on conversations as encryption key/alg parameters, updated with new messages
 
