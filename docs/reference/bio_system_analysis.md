@@ -207,6 +207,9 @@
 
 						- can non-coding/unused genes produce useful functionality with extra genes added or with position changes?
 
+						- does DNA operate more as a set of limits/filters than functions/attributes, or is it somewhere in between, or including other structures (paths, subsets, position, system context)
+							https://phys.org/news/2020-04-dna-life-bookjust-jumbled-ingredients.html
+
 
 					- virus system analysis:
 
