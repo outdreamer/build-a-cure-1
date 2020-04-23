@@ -219,7 +219,24 @@
 							- there are overlaps between the categories: a virus can be considered temporary, horizontal, & vertical evolution
 
 							- temporary evolution may also be localized - genes edited in a certain subset or sub component to conduct experiments or acquire temporary functionality to fix a problem (producing new cells to repair a wound)
-							
+
+							- systemic evolution can be produced when a gene change set triggers a system-wide change
+
+							- pandemic evolution can be produced when a gene change set triggers a pandemic that mutates the species
+
+							- whats the next interface for change in DNA? it already changes on:
+								- sets
+								- position
+								- processing functions (edit, deploy, delete, cluster)
+								- emergent functions
+								- organization
+								- storage
+								- usage
+								- expression
+
+						- system position questions
+							- which genes are most powerful in a system
+							- which genes are unnecessary (have backups/alternates or arent used or dont produce useful functionality)
 
 					- virus system analysis:
 
