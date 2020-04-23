@@ -336,9 +336,13 @@
     - higher complexity requires that more combinations of weight path patterns be experimented on, and more nodes allow room for more experimentation
     - auto-configuring the network with common or data pattern-specific weight path patterns rather than random or equal could speed up training
     - reverse logic can be beneficial here - given the complexity of a problem, which features with which differences would have to occur for the training to be useful (or for the problem to be solvable)? check the data for those variable types/differences
-    - use prior knowledge of patterns (insights like 'differentiating variables tend to cluster') as a way to organize analysis of the corresponding feature data pointed to by the insight (adjacent features)
+    - use prior knowledge of patterns (insights like 'differentiating variables tend to cluster') as a way to organize analysis of the corresponding feature data pointed to by the insight (adjacent features are passed in to higher weighted node sets or node sets equipped to handle subtler differences)
     - different network or node sets can represent different problem-solving automation insights (one node can represent a 'differentiating variables' filter, another node can represent a 'cluster' verb/function filter)
       - if none of these node sets finds a pattern, the node sets can be recombined into new options (like another outer layer of a core function diagram) and re-trained
+    - adjacent networks are created for stacked variables (like symmetry stacks, where features differ on a symmetry and symmetries are layered (like the hand-limb-spine symmetry stack)
+    - phase shift points are identified first & the data is standardized around them - so when one type has extreme/compounding attribute values emerging as another type, that threshold is built in to the data (data near to that threshold is transformed to be higher to differentiate the types, or you add a third output category like 'transforming' or 'interim type')
+    - possible causal shapes are identified first & the network is organized to fit them
+      - for example, weight paths trained to highlight one attribute set are applied to other alternative equivalent attribute sets (an alternate causal route to the output)
 
   - prediction model trained on conversations as encryption key/alg parameters, updated with new messages
 
