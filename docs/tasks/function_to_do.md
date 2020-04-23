@@ -372,6 +372,15 @@
   - prediction model trained on conversations as encryption key/alg parameters, updated with new messages
   - multiple servers/processors in one computer with one-way data transfers, so one server can be for local communication, one can be for offline work, one can be for browsing internet, and local/offline can communicate to internet-browing processor but not the other way around
 
+  - code translation tool - translating domain-specific plain language rules to robot code can be short-term useful for automation of service industry tasks like:
+    - converting recipes/flavor-mixing strategies to cooking robot code (chefs can use a tool like this to make money short-term, if they have unique strategies)
+    - converting new plant designs to genome editing code
+    - converting routing mechanisms/optimizations to drone code (short-term human insights like 'avoiding a particular street bc of construction' that data isnt adequate for)
+    - the general task of converting rule sets (systems) or visuals (graphs, blueprints) to code
+
+    - machine learning can be used for initial conversion, then tweaked with coded filters like priorities, logic, organization, output
+    - system analysis can be used to optimize beyond those standard filters
+
   - shared custom meaning/dictionary maps so communication can be queries on their shared custom dictionary map - or a common map where queries specify pattern & sub-set to apply pattern to, and sub-sets are rotated
 
   - abstract functions
