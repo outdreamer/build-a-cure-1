@@ -214,6 +214,12 @@
 
 						- the concept of temporary evolution (epigentics changing gene expressions, mutations from structure, stressors & evolved handlers, viruses altering DNA) differs from horizontal & intergenerational evolution
 
+							- temporary evolution may or may not be passed on, whereas horizontal & vertical evolution are likelier to be
+
+							- there are overlaps between the categories: a virus can be considered temporary, horizontal, & vertical evolution
+
+							- temporary evolution may also be localized - genes edited in a certain subset or sub component to conduct experiments or acquire temporary functionality to fix a problem (producing new cells to repair a wound)
+							
 
 					- virus system analysis:
 
