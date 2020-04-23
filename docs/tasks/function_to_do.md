@@ -370,6 +370,7 @@
 
 
   - prediction model trained on conversations as encryption key/alg parameters, updated with new messages
+  - multiple servers/processors in one computer with one-way data transfers, so one server can be for local communication, one can be for offline work, one can be for browsing internet, and local/offline can communicate to internet-browing processor but not the other way around
 
   - shared custom meaning/dictionary maps so communication can be queries on their shared custom dictionary map - or a common map where queries specify pattern & sub-set to apply pattern to, and sub-sets are rotated
 
