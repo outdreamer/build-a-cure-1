@@ -234,6 +234,10 @@
 								- usage
 								- expression
 
+							- does DNA inclusion fade with lack of use
+							- how does DNA compare to other memory storage mechanisms - when is it used as a guide, a set of limits, a set of options, or a checking/validation mechanism, and in which situations?
+							- when is DNA an output, an interim cause (middleman), or a catalyst within a living host
+
 						- system position questions
 							- which genes are most powerful in a system
 							- which genes are unnecessary (have backups/alternates or arent used or dont produce useful functionality)
