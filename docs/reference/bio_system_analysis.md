@@ -211,6 +211,8 @@
 					- virus system analysis:
 						- questions:
 							- what strategies to convert pathogens from non-treatable type to a treatable type have been used?
+							- what degree of evolution is necessary for a virus to be a useful virus rather than a hostile pathogen? can this evolution be triggered horizontally by stressor patterns?
+								https://phys.org/news/2020-04-defense-viruses-harmless-beneficial.html
 
 						- measles system analysis: 
 							- components, their functions, & relationships to other components:
