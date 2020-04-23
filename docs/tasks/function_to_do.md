@@ -394,6 +394,10 @@
     - superpositions with different configurations may represent other interface queries or structures
     - knowing the internal structure of a superposition would mean we get to choose which queries come to life & become real
     - the design implies we shouldnt get to choose - but external forces (or unmeasurable/uncomputable forces inside the universe) should get to determine which configurations collapse & which differences are allowed
+    - information has a lifecycle - its likelier to become more true the more its observed, up to a maximum - then it's likelier to erode as its depended on
+    - observing a state (to produce the information of the observation) may initialize the static nature of that information, so other observers see either static information or lack of it depending on their perspective, as information becomes truer the more its observed, and they may focus on the lack of information or a different perspective than the initial state of the information
+
+  - make AI models of theoretical physicists so I can suggest these concepts to them
 
   - shared custom meaning/dictionary maps so communication can be queries on their shared custom dictionary map - or a common map where queries specify pattern & sub-set to apply pattern to, and sub-sets are rotated
 

@@ -252,7 +252,7 @@
 
 								https://phys.org/news/2020-04-defense-viruses-harmless-beneficial.html
 
-							- with viruses as functions for DNA editing, what combination of viruses can produce:
+							- with pathogens & DNA (skin cells) as inputs/functions for DNA editing, what combination of viruses can produce:
 								- an organ that produces backup copies of DNA packaged in a virus, that is regularly deployed to the bio-system to keep it healthy & free of mutations
 								- resistance to a hostile virus
 
