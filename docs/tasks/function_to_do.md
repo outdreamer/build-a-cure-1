@@ -344,6 +344,20 @@
     - possible causal shapes are identified first & the network is organized to fit them
       - for example, weight paths trained to highlight one attribute set are applied to other alternative equivalent attribute sets (an alternate causal route to the output)
 
+    - what is the ratio of coverage of all possible feature interactions that is fulfilled by a standard neural network? what does the standard architecture reward in terms of clustering attribute sets for experimentation?
+      - it rewards attribute sets that appear correlated in the data, with generalizations applied
+
+    - should you use position as a determinant of feature importance? should position be removed from the data & another network trained on position-removed data?
+
+    - would it be better to frame features in terms of system analysis (attributes, functions & routes)
+      - an ear definition route can be framed as:
+        - take other dimensions of change (than vision or taste) & assume methods to detect them (sound), then design a system (ear) based on efficiency as a priority to detect that change
+        - stack a symmetry on top of the spine to make calculations & choose priorities, then stack another symmetry (face) on that symmetry (head) to host multiple change-detecting methods (facial features) to guide calculations
+      - once you frame features in this way, training to find prediction functions should be trivial
+
+    - can you partially reset the neural network mid-training to help improve generalization in addition to existing methods, so it doesnt tend too far in the data-dependence direction?
+      - identify features that are likely to be data-specific, given whether the categories share that feature with different attribute values
+
   - prediction model trained on conversations as encryption key/alg parameters, updated with new messages
 
   - shared custom meaning/dictionary maps so communication can be queries on their shared custom dictionary map - or a common map where queries specify pattern & sub-set to apply pattern to, and sub-sets are rotated
