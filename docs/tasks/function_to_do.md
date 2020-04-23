@@ -358,6 +358,17 @@
     - can you partially reset the neural network mid-training to help improve generalization in addition to existing methods, so it doesnt tend too far in the data-dependence direction?
       - identify features that are likely to be data-specific, given whether the categories share that feature with different attribute values
 
+    - training prediction functions on system data rather than data for objects within the system would add other gains
+    ` - by knowing the structure of a system, you can infer insights like:
+        - which object shapes are most compatible with the system
+        - which forces/interactions are likely to evolve in the system
+        - system metadata (stability, priorities, potential)
+        - system info objects (assumptions, inputs, efficiencies, incentives, phase shifts)
+      - for the dog vs. cat classification, training on causal system data (the evolution system, the bio system, or the DNA system) might be a better target for the prediction function than training on images of the outputs of those systems
+      - this analysis would help predict ambiguities (dogs & cats will have very similar features sometimes given how DNA & evolution works) and how to differentiate them (check for specific attribute sets in data, otherwise indicate that data is insufficient but here's the data you should gather for this problem type)
+      - you might also be able to identify a sub-system that has the most valuable data for this prediction (mutation sub-system as a sub-system with a distortion function applied to the DNA system)
+
+
   - prediction model trained on conversations as encryption key/alg parameters, updated with new messages
 
   - shared custom meaning/dictionary maps so communication can be queries on their shared custom dictionary map - or a common map where queries specify pattern & sub-set to apply pattern to, and sub-sets are rotated
