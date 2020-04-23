@@ -389,6 +389,12 @@
     - lie core function layer graph or individual lie type graphs, with an output intent layer (hide information, layer information, minimize information, obfuscate information)
     - intent-structure maps (this graph structure serves this intent stack, just like a function serves an intent stack)
 
+  - each superposition contains components representing different possible filters for the physical laws they create at scale
+    - some superpositions collapse into a particular attribute set
+    - superpositions with different configurations may represent other interface queries or structures
+    - knowing the internal structure of a superposition would mean we get to choose which queries come to life & become real
+    - the design implies we shouldnt get to choose - but external forces (or unmeasurable/uncomputable forces inside the universe) should get to determine which configurations collapse & which differences are allowed
+
   - shared custom meaning/dictionary maps so communication can be queries on their shared custom dictionary map - or a common map where queries specify pattern & sub-set to apply pattern to, and sub-sets are rotated
 
   - abstract functions
