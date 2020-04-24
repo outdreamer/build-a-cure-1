@@ -372,8 +372,17 @@
   - prediction model trained on conversations as encryption key/alg parameters, updated with new messages
 
   - how to check if a data set is similar to one that has already been trained, to avoid re-training to save CPU
+
     - store metadata about the data set like shape (groups/clusters, linear, random) and the metadata for those shapes (radius & overlap for clusters, distortion patterns & outliers for linear, starting point for random)
-    - derive info metadata like type, cause, change patterns & check if determining/generative structures match across the two data sets
+
+    - derive info metadata like type, cause, change patterns & check if determining/generative structures (core functions, symmetries, false similarities) match across the two data sets
+
+    - identify patterns of variation once a similarity has been found, to avoid checking the whole data set
+      - example: once you identify that both data sets have two output categories, what are the patterns of difference in the internal points of those categories (patterns in overlaps, misidentifications, corrupt/incomplete data, differentiating variables) - usually youre applying a categorization model to two categories that are very different (so its important to identify them correctly) but have some illusory similarities or features in common, making the categorization task non-trivial - so you'd look for patterns of differentiation within categories, to check if the data sets are approximately equivalent so you can use the same model without training - either specifically, storing patterns of differentiation for specific categories, in the model metadata, or generally, for general category differentiation patterns
+
+    - store adjacent functions or specify a parameter range generated from the original function to identify functions that can be generated with accessible transforms or functions that are usually generated for similar variable sets (using common function patterns), to identify similarity in parameter values (using various types of parameters, at various layers on the causal stack, such as preceding functions like the function producing this function as its derivative, alternate functions like the series sum, or descriptive parameters like moment-generating functions)
+
+    - identify function/data vertices, which are determining points like maxima/minima/inflection points as well as the minimum number of points necessary to identify the momentum of the curve, or points that indicate phase shifts in general
 
   - multiple servers/processors in one computer with one-way data transfers, so one server can be for local communication, one can be for offline work, one can be for browsing internet, and local/offline can communicate to internet-browing processor but not the other way around
 
