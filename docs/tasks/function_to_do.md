@@ -397,7 +397,9 @@
     - information has a lifecycle - its likelier to become more true the more its observed, up to a maximum - then it's likelier to erode as its depended on
     - observing a state (to produce the information of the observation) may initialize the static nature of that information, so other observers see either static information or lack of it depending on their perspective, as information becomes truer the more its observed, and they may focus on the lack of information or a different perspective than the initial state of the information
 
-  - make AI models of theoretical physicists so I can suggest these concepts to them
+  - make AI models/graph databases of theoretical physicists opinions so I can suggest these concepts to them
+
+  - linked searches/user data with type/intent identification - if they are in a location with a certain pathogen and they search for cleaners, theyre probably trying to clean that pathogen so cleaners should be specific or at least an optional search results set should be linked to
 
   - shared custom meaning/dictionary maps so communication can be queries on their shared custom dictionary map - or a common map where queries specify pattern & sub-set to apply pattern to, and sub-sets are rotated
 
