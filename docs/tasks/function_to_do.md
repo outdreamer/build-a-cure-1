@@ -370,6 +370,11 @@
 
 
   - prediction model trained on conversations as encryption key/alg parameters, updated with new messages
+
+  - how to check if a data set is similar to one that has already been trained, to avoid re-training to save CPU
+    - store metadata about the data set like shape (groups/clusters, linear, random) and the metadata for those shapes (radius & overlap for clusters, distortion patterns & outliers for linear, starting point for random)
+    - derive info metadata like type, cause, change patterns & check if determining/generative structures match across the two data sets
+
   - multiple servers/processors in one computer with one-way data transfers, so one server can be for local communication, one can be for offline work, one can be for browsing internet, and local/offline can communicate to internet-browing processor but not the other way around
 
   - rules-to-code translation tool - translating domain-specific plain language rules to robot code can be short-term useful for automation of service industry tasks like:
@@ -399,7 +404,17 @@
 
   - make AI models/graph databases of theoretical physicists opinions so I can suggest these concepts to them
 
-  - linked searches/user data with type/intent identification - if they are in a location with a certain pathogen and they search for cleaners, theyre probably trying to clean that pathogen so cleaners should be specific or at least an optional search results set should be linked to
+  - search ideas:
+      - inferring useful search filters based on customer usage history & intent
+        - linked searches/user data with type/intent identification - if they are in a location with a certain pathogen and they search for cleaners, theyre probably trying to clean that pathogen so cleaners should be specific or at least an optional search results set should be linked to
+      - automated attribute extraction/addition to search as a filter
+      - search results as graphs: variables entered in search to display relationships found in data or graph images or graphetized articles
+      - processed (aggregated) results - find the average/combined or plain language definition when searching for a definition
+      - predicting what questions theyll ask next and adding those search results (or a summary) on the side
+      - intent-based search guidance:
+        - usually people who search for an answer are studying for a test, so additional widgets like suggested content could include snapshots of/links to: 'study guides', 'summaries', 'tutorials'
+        - people searching for recipes are hosting a party & cooking other things, so suggested content could include snapshots of/links to: 'flavor graphs'
+        - people searching for symptoms are trying to diagnose themselves or someone else, so suggested content could include links to diagnostic tools or graphs of symptom set frequency for conditions
 
   - shared custom meaning/dictionary maps so communication can be queries on their shared custom dictionary map - or a common map where queries specify pattern & sub-set to apply pattern to, and sub-sets are rotated
 

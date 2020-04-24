@@ -170,17 +170,6 @@
 		https://azure.microsoft.com/en-us/services/search/#documentation
 		https://azure.microsoft.com/en-us/services/cognitive-services/bing-custom-search/
 
-		other search ideas:
-			- inferring useful search filters based on customer usage history & intent
-			- automated attribute extraction/addition to search as a filter
-			- search results as graphs: variables entered in search to display relationships found in data or graph images or graphetized articles
-			- processed (aggregated) results - find the average/combined or plain language definition when searching for a definition
-			- predicting what questions theyll ask next and adding those search results (or a summary) on the side
-			- intent-based search guidance:
-				- usually people who search for an answer are studying for a test, so additional widgets like suggested content could include snapshots of/links to: 'study guides', 'summaries', 'tutorials'
-				- people searching for recipes are hosting a party & cooking other things, so suggested content could include snapshots of/links to: 'flavor graphs'
-				- people searching for symptoms are trying to diagnose themselves or someone else, so suggested content could include links to diagnostic tools or graphs of symptom set frequency for conditions
-
 	- automated info organization (identifying info objects like strategies, insights, questions automatically)
 
 		https://azure.microsoft.com/en-us/services/cognitive-services/form-recognizer/#features
