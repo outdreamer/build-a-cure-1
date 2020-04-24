@@ -384,6 +384,8 @@
 
     - identify function/data vertices, which are determining points like maxima/minima/inflection points as well as the minimum number of points necessary to identify the momentum of the curve, or points that indicate phase shifts in general
 
+    - store semi-trained models and use them as vectors to create a complete trained model, without training
+
   - multiple servers/processors in one computer with one-way data transfers, so one server can be for local communication, one can be for offline work, one can be for browsing internet, and local/offline can communicate to internet-browing processor but not the other way around
 
   - rules-to-code translation tool - translating domain-specific plain language rules to robot code can be short-term useful for automation of service industry tasks like:
