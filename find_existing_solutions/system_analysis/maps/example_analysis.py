@@ -322,16 +322,20 @@ Go over:
 
 		- what do you mean by 'using potential as a base rather than time'
 
+			- time as a base for assessing change is useful in solving information problems
 			- im using potential as a proxy for the time variable, just like using the derivative rather than the function
 			- potential is an important input of time - if there is potential for change, time can occur 
 			- focusing on time over-focuses on information, which is the result of a measurement, and measurements have unintended side effects like over-dependence on the measurement
 			- potential also captures a lot of potential information:
 				- whether something is about to happen (whether a function is about to change)
 				- whether something is possible or unverifiably possible
+				- whether something deviates from or complies with known patterns (whether it's likely to be new or not)
+				- how similar something is to output of known generators (adjacence to functions as a analytical metric, rather than the prediction function itself)
 				- possibilities & ambiguities (where information is lost like in a black hole or uncalculatable like where there are too many alternatives) 
 			- evaluating change with respect to potential measures whether you're increasing the number of possibilities (enabling information to occur as time passes) or decreasing them
-			- if you make a decision that closes too many doors, potential, change, & time will be permanently lost, if the door goes with it
-			- other types of time are useful to evaluate change - whether youve changed in conceptual time, causal time, potential time, or information time
+			- if you make a decision that closes too many doors, potential, change, & time will be permanently lost, if the door goes with it (if it's irreversible)
+			- other types of time are useful to evaluate change 
+				- whether youve changed in conceptual time, causal time, potential time, or information time, & whether the change is absolute/specific - did you change everyone's time or just yours?
 				- these metrics differ in how other types of time pass
 
 In the patterns from system_analysis.json, you have example filters to use when reducing a problem before trying specific methods to solve it.
