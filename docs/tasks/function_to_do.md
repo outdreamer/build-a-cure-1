@@ -17,6 +17,8 @@
   - add a standard system diagram with radiating layer diagram
   - add other causal structures
 
+  - analyzing just by change rate makes it less likely to spot other patterns like overlap/intersection of patterns
+
   - add diagram for question derivation for service list
 
     - deriving the questions customers will ask for a set of services
@@ -30,7 +32,7 @@
 
     - an independence market (value in setting others free of their positions)
 
-  - whats after love? 
+  - whats after a love/emotion-based society? 
 
     - a problem-solving society based on potential, independence, and understanding, where everyone can self-motivate
 
@@ -50,7 +52,9 @@
       - find intelligence in a data source like the internet
       - install intelligence (learning models/maps, regression tools, logic tools like decision trees, prediction tools like a simulation/imagination engine)
 
-  - whats after time-based change assessment? interface & variance & default-based change assessment
+  - is math causative (rules to describe information of certain types, structures, & potential), or is physics causative of which information can be generated with stability, enabling measurements & therefore allowing it to be described?
+
+  - whats after time-based change assessment? interface, variance/potential, default-based change assessment
 
   - whats after system derivation & management? predicting systems from a boundary, the core input (boundary/limit management) - the goal is filter management, as filters can generate other objects
 

@@ -350,6 +350,7 @@
 	13. what do you mean by 'using potential as a base rather than time'
 
 		- time as a base for assessing change is useful in solving information problems
+		- time occurs when there are no symmetries allowing for reversibility - in order for something to be reversible, symmetries have to align to allow for efficient organization of energy flow so a system can form to be a platform for the change
 		- potential is the ability to change, time is the realization of change
 		- im using potential as a proxy for the time variable, just like using the derivative rather than the function
 		- potential is an important input of time - if there is potential for change, time can occur 
