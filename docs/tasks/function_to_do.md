@@ -52,7 +52,15 @@
       - find intelligence in a data source like the internet
       - install intelligence (learning models/maps, regression tools, logic tools like decision trees, prediction tools like a simulation/imagination engine)
 
+
   - is math causative (rules to describe information of certain types, structures, & potential), or is physics causative of which information can be generated with stability, enabling measurements & therefore allowing it to be described?
+
+    - why are there numerical symmetries that attract information & values?
+
+    - which physics filters beyond the set of constants could generate the math system?
+
+    - if the math system is causative, is it also changeable (can you generate different physics rules by changing it)
+
 
   - whats after time-based change assessment? interface, variance/potential, default-based change assessment
 
