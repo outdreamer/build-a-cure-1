@@ -55,11 +55,19 @@
 
   - is math causative (rules to describe information of certain types, structures, & potential), or is physics causative of which information can be generated with stability, enabling measurements & therefore allowing it to be described?
 
-    - why are there numerical symmetries that attract information & values?
+    - why are there numerical symmetries that attract information & values? this implies they're true or continue to be true, if they keep generating information
 
-    - which physics filters beyond the set of constants could generate the math system?
+    - which physics filters (forces, particles, states) beyond the set of constants could generate the math system?
 
     - if the math system is causative, is it also changeable (can you generate different physics rules by changing it)
+
+    - make a number type/attribute layer graph to fill in gaps in combinations
+
+    - if physics generates information like fuel exhaust, and math can decrypt the exhaust into useful patterns, and those patterns have potential to predict & control physics movements, the math system could have power over the physics system
+
+    - can the math system capture every different type of distance, time, value, etc that the physics system can generate? if one lags behind the other that implies some level of causation
+
+    - do physics concepts like true/false (of an attribute captured in a superposition) leak into the math system as valid/invalid for that space
 
 
   - whats after time-based change assessment? interface, variance/potential, default-based change assessment
