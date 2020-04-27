@@ -67,7 +67,9 @@
 
     - can the math system capture every different type of distance, time, value, etc that the physics system can generate? if one lags behind the other that implies some level of causation
 
-    - do physics concepts like true/false (of an attribute captured in a superposition) leak into the math system as valid/invalid for that space
+    - do physics concepts like cause, time, & mutually exclusive alternatives (true/false, of an attribute captured in a superposition) leak into the math system as sequence/adjacence, position/change, or valid/invalid for that space
+
+    - do concepts like cause emerge logically from a system where interactions (through forces creating adjacence) & time (state changes are persistent & stable till next iteration of time unit) are possible
 
 
   - whats after time-based change assessment? interface, variance/potential, default-based change assessment
