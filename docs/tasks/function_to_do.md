@@ -71,6 +71,16 @@
 
     - do concepts like cause emerge logically from a system where interactions (through forces creating adjacence) & time (state changes are persistent & stable till next iteration of time unit) are possible
 
+    - how does a topology of a number's attribute sets (related complex numbers, adjacent functions/relevant formulas, core generating objects, factors, etc) collapse to a number?
+
+    - are there gaps in an incomplete topology depicting numbers, as dictated by physics rules?
+
+    - what core objects generate a space where circles & squares are fundamental or standard objects
+
+    - what objects describe lack of information like ambiguities or lost information, other than randomness (difficult to identify randomness), variance (lack of patterns), and infinities (lack of information being difficulty of computing the sequence except in terms of other infinities if it doesnt converge, or lack of guarantees that the sequence can be maintained/stabilized to continue)
+
+    - do components that can be used to build real numbers map to conceptual network (complex numbers), just like structural-conceptual objects have clear mappings, or are complex numbers more like perspective facets of a number? which types of alternate numbers are missing from the type set given combinable attributes?
+
 
   - whats after time-based change assessment? interface, variance/potential, default-based change assessment
 
