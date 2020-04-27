@@ -569,6 +569,11 @@ When a system is totally unknown, you should diversify across all interfaces at 
 		"standard": "",
 		"filter": ""
 	},
+	"point": {
+		"injection points",
+		"decision points",
+		"limit points"
+	},
 	"function": {
 		"core function": "",
 		"filter": "",

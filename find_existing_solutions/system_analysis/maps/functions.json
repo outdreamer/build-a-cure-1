@@ -112,11 +112,7 @@
             }
         },
         "object_functions": {
-            "solve": [],
-            "question": [],
-            "answer": [],
-            "frame": [],
-            "gamify": [],
+            "component": [],
             "sub-system": []
         }
     },
