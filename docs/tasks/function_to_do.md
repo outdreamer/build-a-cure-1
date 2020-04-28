@@ -138,6 +138,9 @@
 
               - if the motion of the x variable looks like the group motion, either the x variable has the group's information as an input, or its a false similarity, or the motion of an isolated variable can mimic the group motion under certain circumstances, like when physics applies (physics of an isolated variable like throwing a ball up in a system with gravity, and the physics of group decisions differing from a standard averaage decision, where gravity/forces and lack of restrictions both exert a tempering influence on the motion as with a lack of restrictions, trends tend to gravitate toward the average with minor deviations from it in either direction)
 
+    - what percent of changes are just from finding efficiencies, using those as a foundation for common distortion types (random change, directed change, connecting change, etc)
+
+
     - algorithms
 
       - when sorting or finding, use vertices & probability to split the list to traverse - a list of length 20 can have vertices at 3 - 5 different points where the value is likely to be within one traversal with x% likelihood - this is related to minimum information to solve

@@ -61,6 +61,9 @@
 							- store receptors & attach them to any cell that doesnt pass a host cell filter (displaying cooperative functionality, or identity of host cell type), rather than storing methods of recognizing receptors
 							- rather than check if its a pathogen, check if its not a host cell - where can you inject filters that wouldnt disrupt systemic functionality (filters that are temporary & dissolve in blood stream, filters around existing boundaries, filters at build-time)
 
+			- when theres an oversupply of stress handlers (unrestricted cell division), is it better to delegate stress adjacent to but not in the location of the oversupply to distribute it & alert regulating systems to it (through the blood supply & immune system) - so if someone has cancer in one organ, delegate stress adjacent to that organ & then continue distributing it, bc if you stress that organ (request new changes like cell division to replace old cells) it'll just compound the oversupply
+
+
 		- system questions
 
 			- inject variance sources to handle change types on change platforms
