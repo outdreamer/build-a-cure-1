@@ -67,7 +67,33 @@
 
     - can the math system capture every different type of distance, time, value, etc that the physics system can generate? if one lags behind the other that implies some level of causation
 
+      - what definitions of distance, position, value are missing in the network of definitions
+
     - do physics concepts like cause, time, & mutually exclusive alternatives (true/false, of an attribute captured in a superposition) leak into the math system as sequence/adjacence, position/change, or valid/invalid for that space
+
+      - these can be classified as physics concepts bc logic has rules/physics describing it, and is a unit interface of other change interfaces
+
+      - the physics/rule sets of a system describe its potential to generate information - the physics of math determine what information is describable in the set of system-generated information
+      
+      - example with the math system:
+        - the physics/rule sets of the math system can generate information
+        - the physics of math determine what information is describable in the set of math-generatable information (generated information is input to generation functions)
+        - there's a logical loop between generatable information rules & describable information rules
+
+      - explore physics of math determining spaces (sets that can be coverted, spaces that are possible) that evolve around symmetries/interfaces enabling those spaces
+
+      - intents of function types:
+
+        - wave functions to model a spectrum of stable alts
+
+        - log functions to model a boolean decision
+
+        - univariate polynomials to model isolated motion (same independent variable applied to itself rather than just a constant like linear functions)
+
+      - what system would need to be kept in place by these universal constants (which can be inputs or interim tools used to connect/stabilize the other elements of the math space)
+
+      - try swapping value definitions (quantity, position, scale, direction) in different spaces to test for symmetries & patterns that can be used as predictors
+
 
     - do concepts like cause emerge logically from a system where interactions (through forces creating adjacence) & time (state changes are persistent & stable till next iteration of time unit) are possible
 
