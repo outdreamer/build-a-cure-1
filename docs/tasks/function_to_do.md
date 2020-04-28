@@ -98,6 +98,40 @@
 
           - log functions to model a boolean decision
 
+            - if a log function represents each fork and the aggregate output function amounts to the decision tree, are composite log functions reflective of common patterns in aggregated decision tree output functions
+            - or the other way around, so a decision tree can usually be modeled with a logistic function once the variables are formatted the right way, like in sets of attribute sets/paths for 0/1 values
+
+          - decision trees 
+            - are a good frame for symmetry stacks
+            - need dead-end nodes that represent unanswerable decisions (where information doesnt contain minimum required features, is unclear/corrupted, or points to all possible categories with an ambiguous level of equivalence)
+
+          - support vector machine
+            - can be applied to causes on various causal layers, after clustering them to differentiate them 
+            - similar to the problem of finding a symmetry, also finding an average
+
+          - clustering
+            - in addition to centroids/SVMs, you can infer the inherited group data set, & the core functions to get to the original data set groups, and check for variables used in/output by those core functions
+
+          - combining these methods could be used to allocate methods by complexity & type 
+
+            - start with decision trees, use clustering to differentiate between remaining type group features (attribute sets), use inherited type inference & core function derivation to model any remaining features
+
+            - start on the data layer, navigate up to infer types, trace causal functions connecting them as well as output branches that dont become types
+
+            - start with the core objects, combination types, limits, layers, & filters that are most powerful in explaining interactions & design a custom algorithm based on those or other common interaction objects
+
+          - use new data & change patterns to improve the model prediction method - if two clusters tend to evolve sideways (forming a square) and then converge to other corners, that can be used to improve the predictor early on with a small amount of new data once you know what direction the changes are headed in, vs. waiting for a lot of new data to confirm its not just noise
+
+          - noise patterns can be used to reduce data variance to probable isolatable relationships
+
+          - specify a definition of range of degrees of dependence that is classifiable as 'independent' from another variable
+
+          - use probability in selecting assumptions - how often are variables independent (in two separate sub-systems that are isolated & only interact indirectly up to n degrees of interactions away)
+
+          - is there a better standard assumption set that describes more relationships between variables that create complex relationships justifying analysis?
+
+          - is there a variable type that clarifies relationships, which can be applied before gathering data, or which can be removed to generate complexity?
+
           - univariate polynomials to model isolated motion (same independent variable applied to itself rather than just a constant like linear functions)
 
             - when does isolated motion (parabola like x^2) look like group motion (normal distribution), and what does this mean?
