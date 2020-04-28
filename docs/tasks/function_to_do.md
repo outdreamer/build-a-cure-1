@@ -82,18 +82,27 @@
 
       - explore physics of math determining spaces (sets that can be coverted, spaces that are possible) that evolve around symmetries/interfaces enabling those spaces
 
-      - intents of function types:
-
-        - wave functions to model a spectrum of stable alts
-
-        - log functions to model a boolean decision
-
-        - univariate polynomials to model isolated motion (same independent variable applied to itself rather than just a constant like linear functions)
+      - what other outer layers of spaces can be useful/generated with known operations on known spaces?
 
       - what system would need to be kept in place by these universal constants (which can be inputs or interim tools used to connect/stabilize the other elements of the math space)
 
-      - try swapping value definitions (quantity, position, scale, direction) in different spaces to test for symmetries & patterns that can be used as predictors
+      - apply system analysis to math
 
+        - try swapping value definitions (quantity, position, scale, direction) in different spaces to test for symmetries & patterns that can be used as predictors
+
+        - look for system patterns (attribute alignments, etc) and objects (efficiencies, incentives) such as where something is more calculatable
+
+        - intents of function types:
+
+          - wave functions to model a spectrum of stable alts
+
+          - log functions to model a boolean decision
+
+          - univariate polynomials to model isolated motion (same independent variable applied to itself rather than just a constant like linear functions)
+
+            - when does isolated motion (parabola like x^2) look like group motion (normal distribution), and what does this mean?
+
+              - if the motion of the x variable looks like the group motion, either the x variable has the group's information as an input, or its a false similarity, or the motion of an isolated variable can mimic the group motion under certain circumstances, like when physics applies (physics of an isolated variable like throwing a ball up in a system with gravity, and the physics of group decisions differing from a standard averaage decision, where gravity/forces and lack of restrictions both exert a tempering influence on the motion as with a lack of restrictions, trends tend to gravitate toward the average with minor deviations from it in either direction)
 
     - do concepts like cause emerge logically from a system where interactions (through forces creating adjacence) & time (state changes are persistent & stable till next iteration of time unit) are possible
 
