@@ -138,6 +138,13 @@
 
               - if the motion of the x variable looks like the group motion, either the x variable has the group's information as an input, or its a false similarity, or the motion of an isolated variable can mimic the group motion under certain circumstances, like when physics applies (physics of an isolated variable like throwing a ball up in a system with gravity, and the physics of group decisions differing from a standard averaage decision, where gravity/forces and lack of restrictions both exert a tempering influence on the motion as with a lack of restrictions, trends tend to gravitate toward the average with minor deviations from it in either direction)
 
+    - algorithms
+
+      - when sorting or finding, use vertices & probability to split the list to traverse - a list of length 20 can have vertices at 3 - 5 different points where the value is likely to be within one traversal with x% likelihood - this is related to minimum information to solve
+
+        - 'minimum information to detect pattern' is another key metric - how many nodes do you need to check in a list of length n before you can be reasonably certain if there's a function generating it or if that function applies within subsets or other structures?
+
+
     - do concepts like cause emerge logically from a system where interactions (through forces creating adjacence) & time (state changes are persistent & stable till next iteration of time unit) are possible
 
     - how does a topology of a number's attribute sets (related complex numbers, adjacent functions/relevant formulas, core generating objects, factors, etc) collapse to a number?
