@@ -2,6 +2,8 @@
 
 	- function
 		- core functions
+			- 'primitive operations', searching algorithms for successful algorithm patterns 
+			- https://techxplore.com/news/2020-04-automating-curiosity-algorithms.html
 		- emergent functions
 		- changing function prediction
 		- function patterns

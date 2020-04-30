@@ -63,6 +63,10 @@
 
 			- when theres an oversupply of stress handlers (unrestricted cell division), is it better to delegate stress adjacent to but not in the location of the oversupply to distribute it & alert regulating systems to it (through the blood supply & immune system) - so if someone has cancer in one organ, delegate stress adjacent to that organ & then continue distributing it, bc if you stress that organ (request new changes like cell division to replace old cells) it'll just compound the oversupply
 
+				- in order for this to work there need to be backups that can take over functionality of every other organ if theyre compromised, otherwise its a weak system
+
+				- adjacent meaning structurally or causally (as near positions can produce interactivity, which is causal adjacence where one is a dependency acting on the other)
+
 
 		- system questions
 
