@@ -1,3 +1,10 @@
+# ideas
+
+  - vitamin 3-d printer to print vitamins so that you can design your own multivitamin that:
+    - fits your bio conditions & requirements
+    - is released in the right order & timing
+    - excludes interactions that are contradictory (antimicrobials & probiotics)
+
   - multiple servers/processors in one computer with one-way data transfers, so one server can be for local communication, one can be for offline work, one can be for browsing internet, and local/offline can communicate to internet-browing processor but not the other way around
 
   - rules-to-code translation tool - translating domain-specific plain language rules to robot code can be short-term useful for automation of service industry tasks like:

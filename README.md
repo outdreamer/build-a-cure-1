@@ -462,7 +462,9 @@ When a system is totally unknown, you should diversify across all interfaces at 
 
 ## System info objects
 
-	- why is it so useful to use system info objects like inefficiency or asymmetry as a way to frame & solve problems automatically? bc these objects offer the most flexibility and occupy an interim interface between physical reality & conceptual networks, so its a good interface to standardize those interfaces to
+	- why is it so useful to use system info objects like inefficiency or asymmetry as a way to frame & solve problems automatically? 
+
+		bc these objects offer the most flexibility and occupy an interim interface between physical reality & conceptual networks, so its a good interface to standardize those interfaces to, theyre standard core objects with high interaction potential on similar interaction layers
 
 	- how to generate interface filters (system, type, function), starting with unit interfaces function & attribute:
 
