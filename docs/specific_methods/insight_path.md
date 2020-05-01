@@ -2,6 +2,44 @@
 
 	- example
 
+	  - finding which combinations of objects produce the most important errors to avoid (such as intent misalignment or minimizing risk to important objects/functions)
+
+	  	- for example, if a button triggers a weapons, how do you identify which errors are important to minimize 
+	  		(programmatically, if your program has no insights like 'avoid accidental button pushes' stored in its rule set)
+
+	  		- there are many different definition routes of an error like 'accidental button push', such as:
+			  	- unintentional event (assume everything can be unintentional - meaning 'having no intent stack')
+			  	- false assumption (assumption that 'every button push is intentional')
+			  	- intent mismatch (agent intent to 'protect agent against structural damage' and weapon intent to 'cause structural damage' dont align)
+			  	- illusory intent ('intent to move' can look like 'intent to push button')
+			
+			- how would you identify an 'accidental button push' as an important error to avoid programmatically:
+
+				- one route is:
+					- query for 'important' definition ('lack of it puts metrics of potential (like life) at risk')
+					- query for 'accident' definition ('unintended side effect')
+					- query agent intents (like 'protecting agent from structural damage')
+					- identify all the types of that agent intent (structural damage to the agent: boundary damage, frame damage, scale-specific damage, etc)
+					- check if the weapon has any objects/functions/attributes that can exert that agent intent type (switching it on)
+					- check if there is any benefit to that event interfering with the agent intent (does it fulfill a more important agent intent)
+					- if not, its an error type
+
+				- now we've found an important error type to avoid ('accidental trigger of the button push', which is important bc it puts the agent's intent to protect themselves from structural damage at risk)
+				- a solution route for that error type is:
+
+					- if so, query for all the direct events that can trigger those objects/functions/attributes (push button)
+					- query for any agent intents that would trigger a direct event or execute the direct event
+						- direct intents like 'moving weapon'
+						- indirect intents like 'having a defensive reaction while holding weapon'
+					- check if there's a way to prevent those agent intents in the weapon design 
+						- adding validation checks (automating rules like 'button must be pushed multiple times')
+						- analyzing intent before execution (is intent implied by metadata of event, like number of button pushes)
+					- check if the functionality triggered is necessary to the weapon intents 
+
+			- this is an insight path to solve a problem like 'design a tool optimally the first time rather than after creating errors'
+
+			- another example is the thermometer design path in the readme, which uses an insight path including 'attribute alignment'
+
 
       - example of deriving which object combinations are useful given the full set & definition alignment
 
