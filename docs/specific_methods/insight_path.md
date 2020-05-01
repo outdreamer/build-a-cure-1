@@ -1,5 +1,69 @@
 # Insight path
 
+	- example
+
+
+      - example of deriving which object combinations are useful given the full set & definition alignment
+
+          operations = ['find', 'get', 'update', 'apply', 'build', 'combine', 'connect', 'convert', 'balance', 'map', 'match', 'fit', 'filter', 'derive']
+          objects = ['strategies', 'questions', 'incentives', 'efficiencies', 'metadata', 'definitions']
+          structures = ['paths', 'limits', 'boundaries', 'bonds', 'gaps', 'layers']
+          system_objects = ['attributes', 'objects', 'systems', 'sub_systems', 'types', 'functions']
+
+        - example: how would you determine that problem & solution are complementary objects that provide a useful relationship in the set of combinations of objects in the above list
+          - problem definition: one object in the set of (conflict, mismatch, ambiguity)
+          - solution definition: one object in the set of (conflict/ambiguity resolution, mismatch/imbalance correction)
+          - aside from the common terms, you can determine their useful relationship from the definition of 'resolution' or 'correction':
+            - resolution definition: 
+                - structural definition: clarifying an ambiguity
+                - alternate specific definition: decomposing a problem
+            - correction definition:
+                - structural definition: restoring an original attribute used as a metric of success, such as direction
+            - both 'resolution' and 'correction' involve reducing a metric (either by adding information or using definition of success/intent & applying it)
+            - a problem normally interacts with agents, specifically by interfering with their intents
+            - agents intend to reduce problems
+            - 'reducing a metric' could be applied to the 'problem' object as 'reducing number of problems or inputs causing a problem'
+            - so we can see why 'reducing a problem' would be useful in the sense of adding efficiency to agents' work toward their intents
+            - we can also tell that it could be useful bc it involves a common interaction type like 'reduce' on core objects (problem, solution)
+            - so matching problems & solutions is an important relationship in the full set of combinations of core objects above
+
+        - generalized insight path of above:
+
+          - find definition routes of objects
+          - isolated interaction types between definition routes of one object ('resolution' or 'correction'), removing references to the other (which is trivial to compute)
+            - find definition routes of isolated interaction types (resolution, correction)
+            - find common objects/functions/attributes of isolated interaction type definition routes (solutions add information to information asymmetries & ambiguities, solutions align direction to resolve conflicts)
+            - translate common objects to core objects (solutions reduce metrics of problems & problems)
+            - check for agent interactions with original objects/functions (problems interfere with agent intents, agents sometimes have intent to 'reduce problems')
+            - get definition of 'useful' (optimizing/increasing a success metric)
+            - check if those core objects/functions are useful to agents (solutions are useful when agents have intent to 'reduce problems')
+            - apply core definition (solution defined as 'reducing a metric') to check if it is useful to agents when applied to the other object (problem) - 'reducing a problem' is useful for agent intents when they encounter problems
+            - output agent intents fulfilled by useful object combination (matching solution with problem by 'reducing problem metric or problem' is useful for agents with intent to 'reduce problems')
+            - add rules specific to insight path if successful at finding useful combination (solution definition was adjacent to 'reduce' core functions, so store 'rules that are adjacent to core functions are likelier to be useful' as an insight)
+
+
+	  - insight path to find out that the error is the goal in a curiosity algorithm, where the primary intent is 'maximize learning', defined by 'maximum number of new rules added to rule set'
+	    - curiosity definition is 'finding new things and how they work'
+	    - 'finding out how they work' can be reduced to 'derive' function
+	    - a related term to 'derive' is 'learn'
+	    - example of learning in an agent space occurs when 'new information doesnt match existing information'
+	    - definition of error is 'when measured information doesnt match predicted information'
+	    - 'new information not matching existing information' can be classified as an error, if 'new information' is replaced by 'measured information' and 'existing information' replaces 'predicted information' (predicted by existing rule sets)
+	    - so 'maximized error' is the goal as a proxy for 'maximized learning'
+
+	  - other routes to automate solving the problem (of 'which objects/functions/attributes should be maximized in order to maximize learning')
+	    - an insight path that derives that differences/mismatches/imbalances/asymmetries are associated with learning (rather than just errors) & maximizes those
+	    - an insight path that derives the full set of likely combinations in a space (like the full set of species combinations) and aims at the most different combination to maximize learning
+
+	  - the above is a specific insight route composed of insights - generalizable to the insight path:
+	    - lookup definition of algorithm type (curiosity), given that the algorithm type includes associated intents
+	    - decrypt definition to core functions/objects/attributes
+	    - find related terms to core function terms that are relevant to the problem space (learning is a relevant term to machine learning algorithms that automate finding/discovering/predicting) in order to take advantage of related term definitions as a method of finding objects/functions to automate the solution, given that related terms provide alternate routes/interpretations of a process
+	    - translate the related term to the problem space (make it relevant to agents & information)
+	    - find related terms that match the relevant related term definition (definition of error, definition of surprise, definition of change)
+	    - classify related term (learn) as the most similar relevant related term (error)
+	    - replace term in target intent with relevant related term (target of a curiosity algorithm is to maximize learning/error)
+
 	- with a path relating three objects (a, b, c):
 		a    b   c
 		   \
