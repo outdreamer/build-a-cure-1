@@ -40,6 +40,25 @@
 
 			- another example is the thermometer design path in the readme, which uses an insight path including 'attribute alignment'
 
+	  - so its clear how to apply definition routes to build a path between problem space & a solution
+
+	  - how would you identify the right objects to check for to filter the solution space, such as 'invalidating rules' or 'counter examples' or 'benefits of an error'
+
+	  - in the case of checking for 'benefits of an error', you have insights like:
+	  	- there are very few absolute rules
+	  	- if youre about to apply an absolute rule, dont apply it automatically (dont hard code it or set it as default)
+	  	- to tell if a rule is absolute, check for coutnerexamples where it might not apply or be optimal
+
+	  - if you didnt have those insights, how could you derive that checking for objects like 'benefits of an error' is important before executing rule to 'automate a rule to prevent that error'?
+
+	  	- you could derive the above three insights, and order them to create an insight path
+
+	  	- you could implement 'cost-benefit analysis' or 'automate as few rules as possible' or 'dont assume' or 'dont generalize without good support from data' as an absolute filter before automating any rule
+
+	  	- you could store insights about other errors that have some usefulness & query for those insights instead (an alternate insight path to the three-insight path above)
+
+	  	- you could query for core objects (including info objects like 'counterpoint' or 'counter-example') and check if they're relevant (a counter-example would be good to avoid automating the wrong rule)
+
 
       - example of deriving which object combinations are useful given the full set & definition alignment
 
