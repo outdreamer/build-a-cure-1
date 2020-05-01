@@ -93,6 +93,7 @@
       - finish get_type function to map info to structure using the new functions.json organization
       - finish apply_solution to problem_definition using problem_steps
         - involves building a function to evenly distribute objects (like information/types), given problem positions/agents/objects
+        
       
   - types can be represented as directions (going farther from origin goes further up type stack, where similar types are adjacent)
 

@@ -40,7 +40,7 @@
 
 			- another example is the thermometer design path in the readme, which uses an insight path including 'attribute alignment'
 
-	  - so its clear how to apply definition routes to build a path between problem space & a solution
+	  - so its clear how to apply definition routes & common transforms to build a path between problem space & a solution
 
 	  - how would you identify the right objects to check for to filter the solution space, such as 'invalidating rules' or 'counter examples' or 'benefits of an error'
 
@@ -59,6 +59,10 @@
 
 	  	- you could query for core objects (including info objects like 'counterpoint' or 'counter-example') and check if they're relevant (a counter-example would be good to avoid automating the wrong rule)
 
+	  	- you could query for problem type objects (info asymmetry or mismatch, like the mismatch between a rule about to get automated & the assumption that the rule applies to an absolute scope) and check for each problem type when its structure is applied to the problem space
+
+	  	- you could query for common patterns (like an anomaly) and check if those patterns interfere with the automation of the error-preventing rule
+	  
 
       - example of deriving which object combinations are useful given the full set & definition alignment
 
