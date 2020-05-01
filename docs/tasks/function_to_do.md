@@ -38,6 +38,27 @@
 
     - what objects describe lack of information like ambiguities or lost information, other than randomness (difficult to identify randomness), variance (lack of patterns), and infinities (lack of information being difficulty of computing the sequence except in terms of other infinities if it doesnt converge, or lack of guarantees that the sequence can be maintained/stabilized to continue)
 
+  - insight path to find out that the error is the goal in a curiosity algorithm, where the target metric is 'maximized learning', defined by 'maximum number of new rules added to rule set'
+    - curiosity definition is 'finding new things and how they work'
+    - 'finding out how they work' can be reduced to 'derive' function
+    - a related term to 'derive' is 'learn'
+    - example of learning in an agent space occurs when 'new information doesnt match existing information'
+    - definition of error is 'when measured information doesnt match predicted information'
+    - 'new information not matching existing information' can be classified as an error, if 'new information' is replaced by 'measured information' and 'existing information' replaces 'predicted information' (predicted by existing rule sets)
+    - so 'maximized error' is the goal as a proxy for 'maximized learning'
+
+  - the above is a specific insight route composed of insights - generalizable to the insight path:
+    - lookup definition of algorithm type (curiosity), given that the algorithm type includes associated intents
+    - decrypt definition to core functions/objects/attributes
+    - find related terms to core function terms that are relevant to the problem space (learning is a relevant term to machine learning algorithms that automate finding/discovering/predicting) in order to take advantage of related term definitions as a method of finding objects/functions to automate the solution, given that related terms provide alternate routes/interpretations of a process
+    - translate the related term to the problem space (make it relevant to agents & information)
+    - find related terms that match the relevant related term definition (definition of error, definition of surprise, definition of change)
+    - classify related term (learn) as the most similar relevant related term (error)
+    - replace term in target intent with relevant related term (target of a curiosity algorithm is to maximize learning/error)
+
+  - now youve described core methods to decrypt changes within systems, high-level tasks that are next:
+    - 
+
   - after identification functions
 
     - import rules for selecting interfaces to solve a problem on

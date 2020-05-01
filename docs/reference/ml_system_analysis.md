@@ -1,3 +1,4 @@
+  - if weight path patterns are a wave or other function - extra nodes between them add to the curvature, which is why adding extra nodes can add complexity
 
   - neural network nodes as facets of additional complexity/dimensions - calculating the complexity of a prediction function-determining problem (based on which distortions are likely from prediction function patterns) would allow selection of the necessary nodes
     - higher complexity requires that more combinations of weight path patterns be experimented on, and more nodes allow room for more experimentation
