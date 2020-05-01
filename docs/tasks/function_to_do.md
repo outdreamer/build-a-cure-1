@@ -38,6 +38,7 @@
 
     - what objects describe lack of information like ambiguities or lost information, other than randomness (difficult to identify randomness), variance (lack of patterns), and infinities (lack of information being difficulty of computing the sequence except in terms of other infinities if it doesnt converge, or lack of guarantees that the sequence can be maintained/stabilized to continue)
 
+
   - now youve described core methods to decrypt changes within systems, high-level tasks that are next (after building core functions like attribute identification function)
     - mapping function to map problems to structures
     - solution decomposition function

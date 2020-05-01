@@ -460,10 +460,28 @@ When a system is totally unknown, you should diversify across all interfaces at 
 			- there is a trade-off between work invested in pattern-checking, subset-splitting & solution space reduction potential
 
 
+## System info objects
+
+	- why is it so useful to use system info objects like inefficiency or asymmetry as a way to frame & solve problems automatically? bc these objects offer the most flexibility and occupy an interim interface between physical reality & conceptual networks, so its a good interface to standardize those interfaces to
+
+	- how to generate interface filters (system, type, function), starting with unit interfaces function & attribute:
+
+			abstract    pattern
+
+			set 		system
+
+			subset 		filter
+
+	function    
+
+			intersect   change (convert attribute to function)
+
+	attribute
+
+			set  		type
+
+
 ## Examples of insight paths (specifically system filters)
-
-
-	- why is it so useful to use info objects like inefficiency or asymmetry as a way to frame & solve problems automatically? bc these objects offer the most flexibility and occupy an interim interface between physical reality & conceptual networks, so its a good interface to standardize those interfaces to
 
 
 ```
