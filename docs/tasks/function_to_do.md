@@ -43,6 +43,24 @@
     - solution decomposition function
     - solution aggregation function
 
+  - identify attribute
+
+    - attributes can be reduced to 'position', implemented as a:
+
+      - relationship type (relative difference/importance)
+      - structure type (shape)
+      - change type (generators of difference)
+
+    - the structural network can frame these position differences to capture all attributes
+
+  - identify function
+
+    - a function can be reduced to a 'change unit'
+
+  - identify object
+
+    - an object has attributes/functions and is not itself either of those (for standard definition of object, even though both attributes/functions can be framed as objects)
+
   - after identification functions
 
     - import rules for selecting interfaces to solve a problem on
@@ -63,7 +81,6 @@
                'ALL_N ALL_N of ALL_N ALL_N'
          'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
 
-
   - abstract functions
 
       - derive combinations & make sure you have full function coverage of all important combinations
@@ -77,7 +94,6 @@
       - system analysis function (identify boundaries, gaps, limits, layers, incentives/intents/questions, & other system objects)
       - isolation function, representating function/attribute changes independent of system context with respect to position or time (snapshot/state or subset)
       - function to define (isolate an object/concept/function for identification, identify definition routes)
-
 
   - give example of each type of problem-solving workflows
 
@@ -93,7 +109,7 @@
       - finish get_type function to map info to structure using the new functions.json organization
       - finish apply_solution to problem_definition using problem_steps
         - involves building a function to evenly distribute objects (like information/types), given problem positions/agents/objects
-        
+
       
   - types can be represented as directions (going farther from origin goes further up type stack, where similar types are adjacent)
 
