@@ -25,6 +25,38 @@
 
     - so that you can use the map in reverse, using probability distributions of inputs to identify which algorithm to use, etc
 
+    - predictions can be generated from radiating layer graphs
+
+      - whats after time-based change assessment? interface, variance/potential, default-based change assessment
+
+      - whats after system derivation & management? predicting systems from a boundary, the core input (boundary/limit management) - the goal is filter management, as filters can generate other objects
+
+      - whats after humiliation/criticism & problem avoidance markets? achievement, solution automation, and solution-sharing markets
+
+      - whats after dependence market (value in exploiting people's positions)? 
+
+        - an independence market (value in setting others free of their positions)
+
+      - whats after a love/emotion-based society? 
+
+        - a problem-solving society based on potential, independence, and understanding, where everyone can self-motivate
+
+      - whats after an information market (value in certainty)? 
+
+        - a potential market
+          
+          - value in managing/arranging/creating uncertainty, manipulating/protecting time/change/potential, ensuring time/change enables information that benefits people
+
+      - whats after a chaotic society with voluntary organization that allows corruption to gather & hide to advance other governments (feelings)?
+
+        - a society organized by intelligence (as a proxy for potential), with alternatives to:
+        
+      - use stressors to create intelligence
+      - generate intelligence using system/interface analysis
+      - teach/share intelligence
+      - find intelligence in a data source like the internet
+      - install intelligence (learning models/maps, regression tools, logic tools like decision trees, prediction tools like a simulation/imagination engine)
+
 
 ### Invention Prediction
 

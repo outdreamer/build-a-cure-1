@@ -1,5 +1,9 @@
 # Bio system analysis
 
+- use other vectors of immunity like tolerance to chemical compounds which builds over exposure - just like arranging four objects at their tangents creates the shape of an inner object - use chemical tolerance (structure) to build immunity to pathogens (inner content)
+
+- trigger production of salicylic acid near tumors
+
 
 ## Key Questions
 
