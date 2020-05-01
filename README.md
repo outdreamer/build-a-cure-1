@@ -462,6 +462,10 @@ When a system is totally unknown, you should diversify across all interfaces at 
 
 ## Examples of insight paths (specifically system filters)
 
+
+	- why is it so useful to use info objects like inefficiency or asymmetry as a way to frame & solve problems automatically? bc these objects offer the most flexibility and occupy an interim interface between physical reality & conceptual networks, so its a good interface to standardize those interfaces to
+
+
 ```
 {
 	"attribute": {

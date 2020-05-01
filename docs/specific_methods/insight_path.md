@@ -1,5 +1,6 @@
 # Insight path
 
+
 	- example
 
 	  - finding which combinations of objects produce the most important errors to avoid (such as intent misalignment or minimizing risk to important objects/functions)
@@ -62,7 +63,7 @@
 	  	- you could query for problem type objects (info asymmetry or mismatch, like the mismatch between a rule about to get automated & the assumption that the rule applies to an absolute scope) and check for each problem type when its structure is applied to the problem space
 
 	  	- you could query for common patterns (like an anomaly) and check if those patterns interfere with the automation of the error-preventing rule
-	  
+
 
       - example of deriving which object combinations are useful given the full set & definition alignment
 
