@@ -38,7 +38,7 @@
 
     - what objects describe lack of information like ambiguities or lost information, other than randomness (difficult to identify randomness), variance (lack of patterns), and infinities (lack of information being difficulty of computing the sequence except in terms of other infinities if it doesnt converge, or lack of guarantees that the sequence can be maintained/stabilized to continue)
 
-  - insight path to find out that the error is the goal in a curiosity algorithm, where the target metric is 'maximized learning', defined by 'maximum number of new rules added to rule set'
+  - insight path to find out that the error is the goal in a curiosity algorithm, where the primary intent is 'maximize learning', defined by 'maximum number of new rules added to rule set'
     - curiosity definition is 'finding new things and how they work'
     - 'finding out how they work' can be reduced to 'derive' function
     - a related term to 'derive' is 'learn'
@@ -46,6 +46,10 @@
     - definition of error is 'when measured information doesnt match predicted information'
     - 'new information not matching existing information' can be classified as an error, if 'new information' is replaced by 'measured information' and 'existing information' replaces 'predicted information' (predicted by existing rule sets)
     - so 'maximized error' is the goal as a proxy for 'maximized learning'
+
+  - other routes to automate solving the problem (of 'which objects/functions/attributes should be maximized in order to maximize learning')
+    - an insight path that derives that differences/mismatches/imbalances/asymmetries are associated with learning (rather than just errors) & maximizes those
+    - an insight path that derives the full set of likely combinations in a space (like the full set of species combinations) and aims at the most different combination to maximize learning
 
   - the above is a specific insight route composed of insights - generalizable to the insight path:
     - lookup definition of algorithm type (curiosity), given that the algorithm type includes associated intents
@@ -56,8 +60,10 @@
     - classify related term (learn) as the most similar relevant related term (error)
     - replace term in target intent with relevant related term (target of a curiosity algorithm is to maximize learning/error)
 
-  - now youve described core methods to decrypt changes within systems, high-level tasks that are next:
-    - 
+  - now youve described core methods to decrypt changes within systems, high-level tasks that are next (after building core functions like attribute identification function)
+    - mapping function to map problems to structures
+    - solution decomposition function
+    - solution aggregation function
 
   - after identification functions
 
