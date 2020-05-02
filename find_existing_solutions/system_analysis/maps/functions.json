@@ -1,17 +1,23 @@
 {
     "core_functions": [
-        "find", 
-        "apply",
+        "find",
+        "move",
+        "embed",
+        "filter",
         "build",
         "change",
-        "cause/depend",
         "connect",
+        "separate",
         "aim",
         "align",
         "compare",
-        "conflict",
+        "compete",
         "combine",
-        "learn"
+        "share",
+        "store",
+        "return",
+        "remove",
+        "compress"
     ],
     "interface_functions": {
         "type_functions": {},

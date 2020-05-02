@@ -61,6 +61,7 @@
 	  - state (combination of structure & information)
 	  - filter/interface (reduce)
 	  - perspective (focus)
+	  
     - symmetry
 
 	- equivalent, alternate, substitute, opposite, inverse

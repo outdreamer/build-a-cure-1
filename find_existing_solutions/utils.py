@@ -164,12 +164,13 @@ def convert_sentence(sentence, av):
     row = get_structural_metadata(row, av)
     print('metadata', row)
     
-
+'''
 av = get_vars()
 for key in av:
 	if 'index' in key:
 		print('\n\nkey', key, av[key])
 
+'''
 '''
 sentence = 'first find clause, then find second'
 convert_sentence(sentence, av)
@@ -186,3 +187,52 @@ defs clause [
 	'(grammar) an expression including a subject and predicate but not constituting a complete sentence'
 ]
 '''
+
+#functions = get_data('system_analysis/maps/functions.json')
+#structures = get_data('system_analysis/maps/structures.json')
+core_functions = [
+        "find",
+        "move",
+        "embed",
+        "filter",
+        "build",
+        "wrap",
+        "change",
+        "connect",
+        "separate",
+        "aim",
+        "align",
+        "compare",
+        "compete",
+        "combine",
+        "share",
+        "store",
+        "return",
+        "remove",
+        "compress"
+]
+core_objects = ['function', 'attribute']
+function_pairs = set()
+object_pairs = set()
+mixed_pairs = set()
+
+combinations = itertools.combinations(core_objects, 2)
+for cl in combinations:
+	object_pairs.add(' '.join(cl))
+
+combinations = itertools.combinations(core_functions, 2)
+for cl in combinations:
+	function_pairs.add(' '.join(cl))
+
+core_functions.extend(core_objects)
+combinations = itertools.combinations(core_functions, 2)
+for cl in combinations:
+	mixed_pairs.add(' '.join(cl))
+
+print('object_pairs', object_pairs)
+
+print('function_pairs', function_pairs)
+
+print('mixed_pairs', mixed_pairs)
+
+''' in this layer you should have common objects like 'variable' (an attribute with a change function) '''
