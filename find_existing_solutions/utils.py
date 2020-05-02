@@ -296,7 +296,8 @@ print('\nmixed_function_object_pairs', mixed_function_object_pairs)
 
 	- iterated versions included more sophisticated objects like:
 	'variable' ('attribute change apply' meaning an attribute with a change function that can be applied to it)
-	'variable' ('attribute value change' meaning a change to the attribute value)
+	'variable version' ('attribute value change' meaning a change to the attribute value)
+	'variable state' ('attribute change position' meaning a specific version of the attribute value)
 
 	this is how we can produce definition routes to an object
 
@@ -345,12 +346,97 @@ print('\nmixed_function_object_pairs', mixed_function_object_pairs)
 				- attribute function
 					- a function that generates or describes an attribute
 
-			- these involve:
-				- embedding one object in the other (an attribute of a function means an attribute contained in the function object)
-				- applying one object to the other
-				- causing/depending on the other
+		- these involve:
+			- embedding one object in the other (an attribute of a function means an attribute contained in the function object)
+			- applying one object to the other
+			- causing/depending on the other
+			- one following the other in a sequence
+			- one acting as a function on the other, by qualifying/modifying the other ('a change change' = 'a change type of change')
 
-	- mixed combination of functions/objects
+	- mixed combination of functions/objects/attributes 
+
+		- attribute function
+
+			- 'dependency change':
+				- injection: a change applied to the dependency or one of its components
+				- type: a change applied to all dependencies or the definition of dependencies
+				- sequential: change the dependency attribute (to something else) 
+					- which, given its definition, could mean a reversal of cause (a related object of dependencies), or a type change (to another attribute or converting it to a function)
+
+		- function attribute object 
+
+			- 'change position tree' could refer to:
+				- an object: 'a tree storing change positions'
+				- a function: 'change the position tree'
+				- an attribute: 'a tree attribute of the change position object'
+
+
+	- how could you identify useful objects like a pattern intersection, an unenforced rule, or an attribute alignment, once you generate the set of n-degree combinations of core components?
+
+	- an 'unenforced rule' is an 'attribute object' and would have the definition combinations:
+
+		- 'subset rule' (a partially implemented rule)
+		- 'function without limit' or 'function without filter' (a rule without validation)
+		- 'intent condition mismatch' (a function whose intent doesnt match the conditions in it)
+
+	- how would you identify that object of an unenforced rule as a particularly important one, even if you didnt know that it was causing errors?
+
+		- first you would try to identify which implementations of the 'subset rule' are valid
+
+			- valid in this context means "what is 'subset rule' referring to" - a partially implemented rule, or a subset of the complete rule
+
+			- system analysis questions about the generated 'subset rule' object:
+
+				- intent: what are subsets used for?
+
+					- does this fall in one of those categories (find, separate, identify)
+
+						- find:
+							- given that the 'find' intent could be applied to errors (a related function object), is there an error in the subset
+
+						- identify:
+							- is there something unique about the subset
+
+						- separate:
+							- should the subset not interact with the other subset 
+							- is the other subset supposed to be derived from this subset
+							- what information is lost if the other subset is not stored or derived
+
+					- is it premature to store a subset object separately, without something to find/identify in the set, or a reason to separate the subsets
+
+					- is the other subset automatically stored or is it lost
+
+				- change: how are subsets usually changed?
+
+					- would this ever be restored to the full set
+					- are there rules to ensure that will happen
+
+				- definition: is a subset of a rule just another rule set?
+
+					- is there a reason to make a distinction between
+
+		- then youd identify how a 'subset rule' could happen
+
+			- lack of resources to implement the full rule set to complete a function
+
+		- then identify the intent of the target output (function)
+
+			- you build a function to automate a process, to reduce non-natural (manmade) errors
+
+		- then youd identify the causes of those ways it could occur
+
+			- lack of planning/organization (adjacent to randomness)
+
+		- 'injecting randomness into a non-natural system intended to be organized' is associated with objects like experiments
+
+		- if the intent of 'function building' is non-randomness, there is a mismatch between: 
+			- the 'subset rule' object cause (lack of planning - randomness) 
+			- the 'function building' intent (organized ordered processes)
+
+		- a mismatch could be important, especially if 'lack of planning' or 'randomness' is a common occurrences (which we'd know if we derived where randomness could occur given its definition)
+
+		- edge case: if your function is to generate randomness, this process would have to examine other metadata, to find that:
+			- a partially implemented randomness function (with errors) doesnt generate the target randomness type (evenly distributed output probabilities)
 
 '''
 
