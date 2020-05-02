@@ -482,6 +482,10 @@ When a system is totally unknown, you should diversify across all interfaces at 
 
 			set  		type
 
+	- you could extend this to find new objects on the next outer layer after another transform/combination
+
+	
+
 
 ## Examples of insight paths (specifically system filters)
 
@@ -605,6 +609,15 @@ When a system is totally unknown, you should diversify across all interfaces at 
 		"route": ""
 	}
 }
+
+
+The most common sets are:
+- boundary rules
+- attribute alignments
+- causal direction
+- embedding direction (do you use a tree of networks or a network of trees to frame a pattern)
+
+
 ```
 
 
