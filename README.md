@@ -484,7 +484,7 @@ When a system is totally unknown, you should diversify across all interfaces at 
 
 	- you could extend this to find new objects on the next outer layer after another transform/combination
 
-	
+
 
 
 ## Examples of insight paths (specifically system filters)
@@ -611,11 +611,22 @@ When a system is totally unknown, you should diversify across all interfaces at 
 }
 
 
-The most common sets are:
-- boundary rules
+The most common useful sets are:
+- core functions
+- boundary rules (enforced & unenforced)
+- variance injection points
 - attribute alignments
-- causal direction
+- causal direction/degree
 - embedding direction (do you use a tree of networks or a network of trees to frame a pattern)
+- symmetry stacks
+- intersecting patterns
+- interaction space
+- potential field
+
+
+
+Other useful objects:
+- optimality topology (optimizing in one direction as a tradeoff or adjacent to optimizing in another)
 
 
 ```

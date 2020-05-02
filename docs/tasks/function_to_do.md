@@ -17,6 +17,8 @@
   - add a standard system diagram with radiating layer diagram
   - add other causal structures
 
+  - if the point of the universe is not to find the initial filters but to prevent that information from being discovered, that could keep open options for other change sources
+
   - analyzing just by change rate makes it less likely to spot other patterns like overlap/intersection of patterns
 
   - add diagram for question derivation for service list
