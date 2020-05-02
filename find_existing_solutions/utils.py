@@ -191,48 +191,80 @@ defs clause [
 #functions = get_data('system_analysis/maps/functions.json')
 #structures = get_data('system_analysis/maps/structures.json')
 core_functions = [
-        "find",
-        "move",
-        "embed",
-        "filter",
-        "build",
-        "wrap",
-        "change",
-        "connect",
-        "separate",
-        "aim",
-        "align",
-        "compare",
-        "compete",
-        "combine",
-        "share",
-        "store",
-        "return",
-        "remove",
-        "compress"
+    "find",
+    "move",
+    "embed",
+    "filter",
+    "build",
+    "wrap",
+    "change",
+    "connect",
+    "separate",
+    "aim",
+    "align",
+    "compare",
+    "compete",
+    "combine",
+    "share",
+    "activate", 
+    "store",
+    "return",
+    "remove",
+    "compress",
+    "chain",
+    "stack",
+    "split"
 ]
 core_objects = ['function', 'attribute']
 function_pairs = set()
 object_pairs = set()
 mixed_pairs = set()
 
-combinations = itertools.combinations(core_objects, 2)
+combinations = itertools.product(core_objects, core_objects)
 for cl in combinations:
 	object_pairs.add(' '.join(cl))
 
-combinations = itertools.combinations(core_functions, 2)
+combinations = itertools.product(core_functions, core_functions)
 for cl in combinations:
 	function_pairs.add(' '.join(cl))
 
 core_functions.extend(core_objects)
-combinations = itertools.combinations(core_functions, 2)
+combinations = itertools.product(core_functions, core_functions)
 for cl in combinations:
 	mixed_pairs.add(' '.join(cl))
 
 print('object_pairs', object_pairs)
-
 print('function_pairs', function_pairs)
-
 print('mixed_pairs', mixed_pairs)
 
-''' in this layer you should have common objects like 'variable' (an attribute with a change function) '''
+''' 
+	- in this layer you should have common objects like 'variable' ('attribute change' meaning an attribute with a change function) and 'type' ('attribute combine' meaning an attribute set)
+	now we can filter the list to identify certain objects that are more useful
+
+	- iterated versions included more sophisticated objects like:
+	'variable' ('attribute change apply' meaning an attribute with a change function that can be applied to it)
+	'variable' ('attribute value change' meaning a change to the attribute value)
+
+	this is how we can produce definition routes to an object
+
+	- various ways to interpret a chain of functions
+
+		- 'change change':
+
+			- injection: a change applied to a change/a direction to apply a change to a change
+			- sequential: change the first way, then change the second way
+			- type: an unexpected value in a change, all relevant changes, or the definition of change (a change type added)
+
+			- this function combination could be used to assess change rates, change types, or change ratios
+			
+		- 'share embed'
+
+			- sequential: share, then embed
+			- injection: share the embedding, embed the share
+			
+			- you could use this function combination for more sophisticated functions like 'deploy' or 'distribute'
+
+	- 
+
+'''
+
