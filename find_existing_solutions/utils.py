@@ -215,10 +215,16 @@ core_functions = [
     "stack",
     "split"
 ]
+core_attributes = ['dependency', 'importance', 'position']
 core_objects = ['function', 'attribute']
 function_pairs = set()
 object_pairs = set()
+attribute_pairs = set()
+
 mixed_pairs = set()
+mixed_function_object_pairs = set()
+mixed_function_attribute_pairs = set()
+mixed_attribute_object_pairs = set()
 
 combinations = itertools.product(core_objects, core_objects)
 for cl in combinations:
@@ -228,16 +234,58 @@ combinations = itertools.product(core_functions, core_functions)
 for cl in combinations:
 	function_pairs.add(' '.join(cl))
 
-core_functions.extend(core_objects)
-combinations = itertools.product(core_functions, core_functions)
+combinations = itertools.product(core_attributes, core_attributes)
+for cl in combinations:
+	attribute_pairs.add(' '.join(cl))
+
+''' functions, attributes '''
+fa_copy = core_functions
+fa_copy.extend(core_attributes)
+combinations = itertools.product(fa_copy, fa_copy)
+for cl in combinations:
+	functions_found = [item for item in cl if item in core_functions]
+	attributes_found = [item for item in cl if item not in core_functions]
+	if len(functions_found) == 1 and len(attributes_found) == 1:
+		mixed_function_attribute_pairs.add(' '.join(cl))
+
+''' attributes, objects '''
+ao_copy = core_attributes
+ao_copy.extend(core_objects)
+combinations = itertools.product(ao_copy, ao_copy)
+for cl in combinations:
+	objects_found = [item for item in cl if item in core_objects]
+	attributes_found = [item for item in cl if item not in core_objects]
+	if len(objects_found) == 1 and len(attributes_found) == 1:
+		mixed_attribute_object_pairs.add(' '.join(cl))
+
+''' functions, objects '''
+fo_copy = core_functions
+fo_copy.extend(core_objects)
+combinations = itertools.product(fo_copy, fo_copy)
+for cl in combinations:
+	functions_found = [item for item in cl if item in core_functions]
+	objects_found = [item for item in cl if item not in core_functions]
+	if len(functions_found) == 1 and len(objects_found) == 1:
+		mixed_function_object_pairs.add(' '.join(cl))
+
+all_pairs = core_functions
+all_pairs.extend(core_objects)
+all_pairs.extend(core_attributes)
+
+combinations = itertools.product(all_pairs, all_pairs)
 for cl in combinations:
 	mixed_pairs.add(' '.join(cl))
 
-print('object_pairs', object_pairs)
-print('function_pairs', function_pairs)
-print('mixed_pairs', mixed_pairs)
+print('\nobject_pairs', object_pairs)
+print('\nfunction_pairs', function_pairs)
+print('\nattribute_pairs', attribute_pairs)
 
-''' 
+print('\nmixed_pairs', mixed_pairs)
+print('\nmixed_function_attribute_pairs', mixed_function_attribute_pairs)
+print('\nmixed_attribute_object_pairs', mixed_attribute_object_pairs)
+print('\nmixed_function_object_pairs', mixed_function_object_pairs)
+
+'''
 	- in this layer you should have common objects like 'variable' ('attribute change' meaning an attribute with a change function) and 'type' ('attribute combine' meaning an attribute set)
 	now we can filter the list to identify certain objects that are more useful
 
@@ -264,7 +312,28 @@ print('mixed_pairs', mixed_pairs)
 			
 			- you could use this function combination for more sophisticated functions like 'deploy' or 'distribute'
 
-	- 
+	- chain of objects:
+
+		- standard definitions:
+
+			- function attribute:
+				- an attribute of a function
+
+			- function function
+				- a function that applies to, can be activated by, or can generate a function
+
+			- attribute attribute
+				- an attribute that describes an attribute (attribute metadata)
+
+			- attribute function
+				- a function that generates or describes an attribute
+
+		- these involve:
+			- embedding one object in the other (an attribute of a function means an attribute contained in the function object)
+			- applying one object to the other
+			- causing/depending on the other
+
+	- mixed combination of functions/objects
 
 '''
 
