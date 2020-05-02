@@ -220,12 +220,14 @@ core_objects = ['function', 'attribute']
 function_pairs = set()
 object_pairs = set()
 attribute_pairs = set()
-
 mixed_pairs = set()
 mixed_function_object_pairs = set()
 mixed_function_attribute_pairs = set()
 mixed_attribute_object_pairs = set()
 
+new_cf_copy = [item for item in core_functions]
+new_co_copy = [item for item in core_objects]
+new_ca_copy = [item for item in core_attributes]
 combinations = itertools.product(core_objects, core_objects)
 for cl in combinations:
 	object_pairs.add(' '.join(cl))
@@ -239,13 +241,16 @@ for cl in combinations:
 	attribute_pairs.add(' '.join(cl))
 
 ''' functions, attributes '''
+
 fa_copy = core_functions
 fa_copy.extend(core_attributes)
 combinations = itertools.product(fa_copy, fa_copy)
+
+print('new_cf_copy', new_cf_copy)
 for cl in combinations:
-	functions_found = [item for item in cl if item in core_functions]
-	attributes_found = [item for item in cl if item not in core_functions]
-	if len(functions_found) == 1 and len(attributes_found) == 1:
+	ff = [item for item in cl if item in new_cf_copy]
+	atf = [item for item in cl if item not in new_cf_copy]
+	if len(ff) == 1 and len(atf) == 1:
 		mixed_function_attribute_pairs.add(' '.join(cl))
 
 ''' attributes, objects '''
@@ -253,9 +258,9 @@ ao_copy = core_attributes
 ao_copy.extend(core_objects)
 combinations = itertools.product(ao_copy, ao_copy)
 for cl in combinations:
-	objects_found = [item for item in cl if item in core_objects]
-	attributes_found = [item for item in cl if item not in core_objects]
-	if len(objects_found) == 1 and len(attributes_found) == 1:
+	of = [item for item in cl if item in new_co_copy]
+	af = [item for item in cl if item not in new_co_copy]
+	if len(of) == 1 and len(af) == 1:
 		mixed_attribute_object_pairs.add(' '.join(cl))
 
 ''' functions, objects '''
@@ -263,14 +268,14 @@ fo_copy = core_functions
 fo_copy.extend(core_objects)
 combinations = itertools.product(fo_copy, fo_copy)
 for cl in combinations:
-	functions_found = [item for item in cl if item in core_functions]
-	objects_found = [item for item in cl if item not in core_functions]
+	functions_found = [item for item in cl if item in new_cf_copy]
+	objects_found = [item for item in cl if item not in new_cf_copy]
 	if len(functions_found) == 1 and len(objects_found) == 1:
 		mixed_function_object_pairs.add(' '.join(cl))
 
-all_pairs = core_functions
-all_pairs.extend(core_objects)
-all_pairs.extend(core_attributes)
+all_pairs = [item for item in core_functions]
+all_pairs.extend(new_co_copy)
+all_pairs.extend(new_ca_copy)
 
 combinations = itertools.product(all_pairs, all_pairs)
 for cl in combinations:
@@ -295,43 +300,55 @@ print('\nmixed_function_object_pairs', mixed_function_object_pairs)
 
 	this is how we can produce definition routes to an object
 
-	- various ways to interpret a chain of functions
+	- interpretations of combinations
 
-		- 'change change':
+		- chain of attributes:
 
-			- injection: a change applied to a change/a direction to apply a change to a change
-			- sequential: change the first way, then change the second way
-			- type: an unexpected value in a change, all relevant changes, or the definition of change (a change type added)
+			- 'position position'
 
-			- this function combination could be used to assess change rates, change types, or change ratios
-			
-		- 'share embed'
+				- embedding: 'a position of a position'
 
-			- sequential: share, then embed
-			- injection: share the embedding, embed the share
-			
-			- you could use this function combination for more sophisticated functions like 'deploy' or 'distribute'
+				- type: 'a position type of position'
 
-	- chain of objects:
 
-		- standard definitions:
+		- chain of functions:
 
-			- function attribute:
-				- an attribute of a function
+			- 'change change':
 
-			- function function
-				- a function that applies to, can be activated by, or can generate a function
+				- injection: a change applied to a change/a direction to apply a change to a change
+				- sequential: change the first way, then change the second way
+				- type: an unexpected value in a change, all relevant changes, or the definition of change (a change type added)
 
-			- attribute attribute
-				- an attribute that describes an attribute (attribute metadata)
+				- this function combination could be used to assess change rates, change types, or change ratios
+				
+			- 'share embed'
 
-			- attribute function
-				- a function that generates or describes an attribute
+				- sequential: share, then embed
+				- injection: share the embedding, embed the share
+				
+				- you could use this function combination for more sophisticated functions like 'deploy' or 'distribute'
 
-		- these involve:
-			- embedding one object in the other (an attribute of a function means an attribute contained in the function object)
-			- applying one object to the other
-			- causing/depending on the other
+
+		- chain of objects:
+
+			- standard definitions:
+
+				- function attribute:
+					- an attribute of a function
+
+				- function function
+					- a function that applies to, can be activated by, or can generate a function
+
+				- attribute attribute
+					- an attribute that describes an attribute (attribute metadata)
+
+				- attribute function
+					- a function that generates or describes an attribute
+
+			- these involve:
+				- embedding one object in the other (an attribute of a function means an attribute contained in the function object)
+				- applying one object to the other
+				- causing/depending on the other
 
 	- mixed combination of functions/objects
 
