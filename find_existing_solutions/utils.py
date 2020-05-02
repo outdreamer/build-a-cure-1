@@ -381,7 +381,7 @@ print('\nmixed_function_object_pairs', mixed_function_object_pairs)
 
 	- how would you identify that object of an unenforced rule as a particularly important one, even if you didnt know that it was causing errors?
 
-		- first you would try to identify which implementations of the 'subset rule' are valid
+		- first you would try to identify which structures of the 'subset rule' are valid
 
 			- valid in this context means "what is 'subset rule' referring to" - a partially implemented rule, or a subset of the complete rule
 
@@ -413,30 +413,49 @@ print('\nmixed_function_object_pairs', mixed_function_object_pairs)
 
 				- definition: is a subset of a rule just another rule set?
 
-					- is there a reason to make a distinction between
+					- is there a reason to make a distinction between the subset and the rule
 
-		- then youd identify how a 'subset rule' could happen
 
-			- lack of resources to implement the full rule set to complete a function
+		- the output of that analysis should include: 'partially implemented function' or 'function with errors' or 'function without validation checks'
+
+		- iterate through the different structures of 'subset rule'
 
 		- then identify the intent of the target output (function)
 
 			- you build a function to automate a process, to reduce non-natural (manmade) errors
 
+		- then youd identify how a 'subset rule' structured as a 'partially implemented function' could happen
+
+			- lack of resources to implement the full rule set to complete a function
+
 		- then youd identify the causes of those ways it could occur
 
-			- lack of planning/organization (adjacent to randomness)
+			- lack of planning/organization (adjacent to lack of bias, or randomness)
 
-		- 'injecting randomness into a non-natural system intended to be organized' is associated with objects like experiments
+		- 'injecting randomness into an ordered system' is associated with objects like experiments
 
-		- if the intent of 'function building' is non-randomness, there is a mismatch between: 
+		- if the enabled intent of 'subset rule' structure 'partially implemented function' (enabled intent meaning 'function building') is not randomness, there is a mismatch between the objects/attributes of:
 			- the 'subset rule' object cause (lack of planning - randomness) 
-			- the 'function building' intent (organized ordered processes)
+			- the enabled 'function building' intent (organized ordered processes)
 
-		- a mismatch could be important, especially if 'lack of planning' or 'randomness' is a common occurrences (which we'd know if we derived where randomness could occur given its definition)
+		- a mismatch could be important bc its a common problem type, especially if 'lack of planning' or 'randomness' is a common occurrences 
+			(which we'd know if we derived where randomness could occur given its definition)
 
 		- edge case: if your function is to generate randomness, this process would have to examine other metadata, to find that:
 			- a partially implemented randomness function (with errors) doesnt generate the target randomness type (evenly distributed output probabilities)
 
-'''
 
+		- the general overview of this method to filter the most important objects in core object combinations is:
+
+			- derive metadata of the core object combination (subset rule) with system analysis
+			- find & iterate through structures of core object combination intents (structure in which it would be found, like 'partially implemented function')
+			- find & iterate through metadata of structures
+				- target intents like 'function-building' have intents like 'reducing manmade error')
+				- causes like 'lack of organization'
+			- pull any related definitions (randomness definition)
+			- iterate through problem types like mismatch, and iterate through metadata of the objects, looking for inconsistencies, assuming that the structure is intentional 
+				(youd intentionally implement a 'partially implemented function' in order to do what intents - to 'inject randomness in an ordered system'?
+			- check if each problem type instance found is useful in some way (does it generate randomness, and is that the intent of the function?)
+			- if not, and if this is an important problem type to avoid, the object 'subset rule' is probably an important specific instance of that problem type 
+				('function missing validation', or an 'unenforced rule')
+'''
