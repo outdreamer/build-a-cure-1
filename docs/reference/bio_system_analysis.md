@@ -4,6 +4,10 @@
 
 - trigger production of salicylic acid near tumors
 
+- the question of 'can cancer cells provide energy/cell division to the bio system' determines whether cancer cells can be killed with stressor-handler matching, or whether there's structural rules that need to change (location of change-regulating genes), or whether cancer can be used to evolve antivirus DNA in a temporary state of unrestricted mutation
+
+- receptor installation is a potentially useful target - a nanobot or cell that has receptors with the desired shape on the inner end and the binding shape on the outer end, so the binding shape can attach to pathogens and once attached, the inner end will be the pathogen's new receptor
+
 
 ## Key Questions
 
