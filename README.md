@@ -622,6 +622,7 @@ The most common useful sets are:
 - intersecting patterns
 - interaction space
 - potential field
+- neutralizing/invalidating rules
 
 
 

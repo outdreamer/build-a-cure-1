@@ -84,6 +84,24 @@
                'ALL_N ALL_N of ALL_N ALL_N'
          'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
 
+  - causal shapes integrated with networks (patterns of aggregation matching causal shapes like trees & circuits)
+
+    - integrating system analysis with networks
+      https://twitter.com/remixerator/status/1150578597339340805
+      https://twitter.com/remixerator/status/1205724743741014018
+
+    - system of causal types (integrated with type path example as a version of weight paths)
+      https://twitter.com/remixerator/status/1156860484294852609
+
+    - causal types
+      twitter.com/remixerator/status/1126040476023279616
+
+    - applying causal shapes to a network
+      https://twitter.com/remixerator/status/1004579263507566592
+
+    - position on causal type network
+      https://twitter.com/remixerator/status/1018540899859607552
+
   - abstract functions
 
       - derive combinations & make sure you have full function coverage of all important combinations
