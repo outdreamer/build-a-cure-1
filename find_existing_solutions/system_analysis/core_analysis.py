@@ -280,7 +280,6 @@ print('\nmixed_function_object_pairs', mixed_function_object_pairs)
 
 	- this analysis can be used to derive the full set of attributes (relevance, connectedness, variation, etc) and concepts (equivalence)
 
-
 	- example of deriving attribute:
 
 		- core component combinations like 'distance between nodes' or 'number of connections between nodes' would be output by the above combinations if you included the full set of core structures & other components
@@ -315,5 +314,11 @@ print('\nmixed_function_object_pairs', mixed_function_object_pairs)
 				"structure": ["conditionally interchangeable", "absolutely interchangeable", "approximately interchangeable", "minimally distant", "efficiently convertable"]
 
 			- these definition routes can be derived with core component combinations & permutations like applying filters (conditions), intents (approximate), or attribute modifiers (efficient)
+
+	- in general a system concept will be:
+		- a repeated pattern that cannot be left out when describing/generating the system
+		- a pattern repeated across sub-systems of the system 
+		- a structure in the system with causal system impact
+		- a combination of components that is non-trivial to derive, with unique structure or output, which if you described as just a set of its components, information about its impact or the system would be lost
 
 '''
