@@ -276,4 +276,44 @@ print('\nmixed_function_object_pairs', mixed_function_object_pairs)
 		- check if each problem type instance found is useful in some way (does it generate randomness, and is that the intent of the function?)
 		- if not, and if this is an important problem type to avoid, the object 'subset rule' is probably an important specific instance of that problem type 
 			('function missing validation', or an 'unenforced rule')
+
+
+	- this analysis can be used to derive the full set of attributes (relevance, connectedness, variation, etc) and concepts (equivalence)
+
+
+	- example of deriving attribute:
+
+		- core component combinations like 'distance between nodes' or 'number of connections between nodes' would be output by the above combinations if you included the full set of core structures & other components
+
+	- example of deriving concept:
+
+		- once you have patterns with multiple attributes in common, you know there is a possibility that a new concept is identifiable
+
+		- identifying two attributes with similar or equal values and identifying two functions with similar or equal routes would alert you to the possibility that this pattern is a concept
+
+		- how would you derive the concept of equal from 'similar' (meaning 'similar in value' or 'adjacent in distance')
+
+			- 'similar in value' has a point where the two objects are the same, not requiring qualification of their similarity - its the unit case in a comparison problem space
+				- to get there you'd need to permute the two objects or apply the concept of balance to them if they start out as unequal
+
+			- 'adjacent in distance' has a point where the two objects occupy the same position, overlap, or merge depending on potential for occupying a point, 
+				which is also the unit case in the graphing problem space, related to the comparison problem space
+				- to get there you could change their positions until they were the same, identifying the boundary between the unit case and the next 'not equal' or 'adjacent' case
+
+			- the fact that this attribute describes two different systems (differing in number of dimensions or structures applied) implies its an abstract concept 
+
+			- the more different the systems described by the attribute, the more abstract the concept that the attribute is an implementation of
+
+			- to get from similar/adjacent to equivalence, which is a network of different types of equal, you could add permutations like the point (structure) differs from the value (number)
+
+			- example permutations:
+				- adding a dimension
+				- converting to a different space
+				- change an attribute value beyond a phase shift
+
+			- the full set of equivalence definitions includes definitions on different interfaces, like:
+				"structure": ["conditionally interchangeable", "absolutely interchangeable", "approximately interchangeable", "minimally distant", "efficiently convertable"]
+
+			- these definition routes can be derived with core component combinations & permutations like applying filters (conditions), intents (approximate), or attribute modifiers (efficient)
+
 '''

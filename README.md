@@ -28,7 +28,7 @@
 	https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/insight.svg
 
 
-## useful structures
+## useful diagrams
 
 	- system diagram	
 		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/system.svg
@@ -79,7 +79,7 @@
 				- if above, the system is 'robust'
 
 
-## mapping problem to structure (asymmetry, conflict)
+## mapping problem to structure (asymmetry, conflict, lack, mismatch)
 
 	- for a conflict like vectors aiming at a corner of a closed shape (where the shape is formed by the intersections of limiting attributes), the structural way to solve that problem is:
 
@@ -485,8 +485,6 @@ When a system is totally unknown, you should diversify across all interfaces at 
 	- you could extend this to find new objects on the next outer layer after another transform/combination
 
 
-
-
 ## Examples of insight paths (specifically system filters)
 
 
@@ -618,12 +616,11 @@ The most common useful sets are:
 - attribute alignments
 - causal direction/degree
 - embedding direction (do you use a tree of networks or a network of trees to frame a pattern)
-- symmetry stacks
+- symmetry stacks (example: diverging in position, then diverging in shape, then diverging in color)
 - intersecting patterns
 - interaction space
 - potential field
 - neutralizing/invalidating rules
-
 
 
 Other useful objects:
@@ -631,8 +628,6 @@ Other useful objects:
 
 
 ```
-
-
 How to generate this list of useful filters to evaluate a system:
 
 	You apply core concepts to core components on core interfaces until you reach a function/object/attribute that explains/generates/determines/summarizes a system:

@@ -24,6 +24,7 @@
 	  - point: value set of dimensions
 	  - angle: comparative measure of divergence between paths with same starting point
 	  - direction: output attribute from input origin given a space-traversal object (line)
+	  - barrier: prohibiting rule
 	  - boundary/edge/limit: extremes of resource combination generative potential
 	  - inflection: metric change limit (maxima/minima of rate of change)
 	  - intersection: conflict/overlap
@@ -61,7 +62,7 @@
 	  - state (combination of structure & information)
 	  - filter/interface (reduce)
 	  - perspective (focus)
-	  
+
     - symmetry
 
 	- equivalent, alternate, substitute, opposite, inverse

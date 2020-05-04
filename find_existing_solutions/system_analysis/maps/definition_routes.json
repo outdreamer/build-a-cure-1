@@ -16,7 +16,7 @@
 		"info": ["energy"]
 	},
 	"equal": {
-		"structure": ["conditionally interchangeable", "absolutely interchangeable", "approximately interchangeable", "specifically interchangeable", "minimally distant", "efficiently convertable"]
+		"structure": ["conditionally interchangeable", "absolutely interchangeable", "approximately interchangeable", "minimally distant", "efficiently convertable"]
 	},
 	"truth": {
 		"info": ["constant info", "aggregate info", "average info", "testable info", "measurable info", "storable info", "not impossible info"],
