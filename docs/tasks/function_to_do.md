@@ -127,11 +127,21 @@
 
       - random can also mean 'difference is default' - difference in this case represents the efficiency, and the distortions from that efficiency represent the outlier values
 
-      - so in random functions, there are biases rewarding:
+      - so in random functions, given the definition of random, there are biases rewarding:
         - difference between adjacent values (only 1/6 probability of the next value being the same value, and 2/6 (1 and 6) values have only a 1/6 probability of the next value being one unit away)
         - similarity to default/efficient value
         - difference in set type (average vs. extreme)
         - compliance with common patterns (like 'many symmetry origin values (like an average) plus few extreme/different values')
+
+      - violation of randomness about a symmetry:
+
+        - a random variable will change if another symmetry is adjacent enough to exert gravity on the variable, at which point the random variable will conver to & be distorted around the new symmetry
+
+          - if a fly gravitates around one light but in their random motion, they encounter the edge of the light's reach, and another light is more nearby at that limit point than the original light, they may gravitate toward the new light - same with symmetries that are sufficiently adjacent as to be nearer to another symmetry's limit than the original symmetry's radius
+
+          - this either must not happen much in nature or these trends arent often described
+
+          - this is an object called an 'efficiency overlap', where radii (or the equivalent semantic object) provide an intersection between symmetries
 
       - how would you generate an independent variable? 
 
