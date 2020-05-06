@@ -96,6 +96,8 @@
 
       - generated varied data with permutations of data objects (loops, sets, alternates) can be used to make the tree more robust to adjacent/likely changes
 
+  - algorithms should identify mismatches (in complexity, variance, completeness & other metrics) & other problem types between the data/algorithm/problem type
+
   - algorithms should produce a set of solutions (an obvious/simple answer, a pattern-compliant answer, a common answer, a robust answer)
 
     - example of why youd want an 'obvious solution' tag on the output:
