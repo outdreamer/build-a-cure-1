@@ -166,6 +166,7 @@
       - a ratio of randomness is allowed in nature because the rules limiting interactions are finite
 
     - why do symmetries evolve in complex systems? so that differences can develop/stack within the symmetry range, leading to more differences when those differences interact with differences from other symmetries
+    
 
   - structural mismatches of solutions & problems
 
@@ -196,6 +197,15 @@
     3. brain analysis structures: structural biases in human brains prevent us from seeing the truth - we're biased toward objects we understand or which are simple to derive
 
     - algorithms should identify mismatches (in complexity, variance, completeness & other metrics) & other problem types between the data/algorithm/problem type
+
+    4. prediction method structures: 
+
+      - bayesian probability has the incorrect structure for solving a problem of predicting the dependent variable if its not actually the dependent variable
+
+      - meaning if the input is actually an output, like a southern dialect is an output of location, so predicting criminal activity for a location based on whether they have a southern dialect may correlate with some location-crime data bc of hot weather increasing emotions, but southerners can move while retaining their manner of speech & can change their emotion-based behavior from the new cold weather
+
+      - probability of (criminal activity | dialect) should be probability of (criminal activity | weather), since weather is the more causative reason why location is a significant factor in criminal activity
+
 
   - algorithms should produce a set of solutions (an obvious/simple answer, a pattern-compliant answer, a common answer, a robust answer)
 
