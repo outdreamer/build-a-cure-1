@@ -133,6 +133,8 @@
         - difference in set type (average vs. extreme)
         - compliance with common patterns (like 'many symmetry origin values (like an average) plus few extreme/different values')
 
+        which favors difference (given the concepts of limits which have limited directions of difference, averages which have more limited difference degrees, difference types (extreme vs. average), difference in probability of various adjacent pairs, & the number of options), even though the difference is not enforced (theres no rule guaranteeing the next value will be different or a specific degree of difference)
+
       - violation of randomness about a symmetry:
 
         - a random variable will change if another symmetry is adjacent enough to exert gravity on the variable, at which point the random variable will conver to & be distorted around the new symmetry
@@ -166,7 +168,9 @@
       - a ratio of randomness is allowed in nature because the rules limiting interactions are finite
 
     - why do symmetries evolve in complex systems? so that differences can develop/stack within the symmetry range, leading to more differences when those differences interact with differences from other symmetries
-    
+
+  - explore how to map position to variable structures like networks/loops/trees (like how rank assigns standardized relative position to values - how would you assign a position to nodes in a network in a similarly standardized way - an attribute like connection count or node type, or a trajectory position, or another method)
+
 
   - structural mismatches of solutions & problems
 
