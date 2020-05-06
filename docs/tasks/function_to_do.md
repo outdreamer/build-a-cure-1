@@ -78,25 +78,50 @@
         - info insight paths like 'lie => joke => distortion => insight'
         - system insight paths like 'three core functions + combine function with this definition + n distortions to nearest hub'
 
-  - theres an inherent structural mismatch between some algorithms (decision tree, neural net) and some problem types (prediction) given the intent & abstraction layer 
 
-    - example: 
+  - stat problem: "Sunrise problem: What is the probability that the sun will rise tomorrow? Very different answers arise depending on the methods used and assumptions made"
 
-      - some algorithms are too specific or have a structural mismatch (decision tree has structural split, specify & direction intents) with the problem type (predicting a set of variables that is about to change)
+    - interface analysis questions:
 
-      - the decision tree occupies a very low-level, neutral, granular, abstract/structural position - that means it can be used for many intents 
+      - what are the shapes & patterns of errors in assumptions & selection/generation of methods? (what ratio of incorrect are people with each additional assumption, given the level of certainty per assumption & complexity of problem)
+      - what are the consequences of not correcting those errors? (how wrong will the predictions be)
+      - what are the shapes of cause in generating/selecting assumptions & methods
+      - what is the usual correct assumption pattern once false assumptions are corrected, and whats the insight path to transform the incorrect to the correct version?
+      - whats the rate of discovery of new sub-systems, objects, or variables in related systems like physics
+      - whats the likelihood we created certainty out of what ratio of our assumptions (over-relying on assumptions to make them conditionally true)
+      - whats the possible causative impact of measurements & application of science knowledge on other knowledge
+      - whats the possibility that a subset/state of physics rules gathers in increasingly isolated space-times, but outside of it, the rules are more flexible
+      - whats the possibility that every science rule we take as certain is a false similarity or other false object?
 
-      - the decision tree can be hacked with various edge case, phase shift & boundary manipulations
+  - structural mismatches of solutions & problems
 
-        - if two variables on different layers are about to converge, they should have been on the same layer or in the opposite causal direction or treated as one variable - the model will be increasingly wrong until it's updated or until these ambiguities and likely relationships are accounted for in the design
+    1. algorithm structures: theres an inherent structural mismatch between some algorithms (decision tree, neural net) and some problem types (prediction) given the intent & abstraction layer 
 
-        - the reason algorithms can be hacked is bc of the structural mismatch between the algorithm and the problem type
+      - example: 
 
-      - the intents resulting from the decision tree's layers, direction, and thresholds can only contain so much variation in the data 
+        - some algorithms are too specific or have a structural mismatch (decision tree has structural split, specify & direction intents) with the problem type (predicting a set of variables that is about to change)
 
-      - generated varied data with permutations of data objects (loops, sets, alternates) can be used to make the tree more robust to adjacent/likely changes
+        - the decision tree occupies a very low-level, neutral, granular, abstract/structural position - that means it can be used for many intents 
 
-  - algorithms should identify mismatches (in complexity, variance, completeness & other metrics) & other problem types between the data/algorithm/problem type
+        - the decision tree can be hacked with various edge case, phase shift & boundary manipulations
+
+          - if two variables on different layers are about to converge, they should have been on the same layer or in the opposite causal direction or treated as one variable - the model will be increasingly wrong until it's updated or until these ambiguities and likely relationships are accounted for in the design
+
+          - the reason algorithms can be hacked is bc of the structural mismatch between the algorithm and the problem type
+
+        - the intents resulting from the decision tree's layers, direction, and thresholds can only contain so much variation in the data 
+
+        - generated varied data with permutations of data objects (loops, sets, alternates) can be used to make the tree more robust to adjacent/likely changes
+
+    2. test structures: a similar problem is when the test/method will identify false similarities or other objects & return the false version, limiting the potential for the correct version to be identified
+
+      - the structure of the test can be a barrier to the truth, if its over simplified or excludes too much information
+
+      - a test that's done iteratively on new data without changing the function according to new information would fail if the data changes more than the function can handle
+
+    3. brain analysis structures: structural biases in human brains prevent us from seeing the truth - we're biased toward objects we understand or which are simple to derive
+
+    - algorithms should identify mismatches (in complexity, variance, completeness & other metrics) & other problem types between the data/algorithm/problem type
 
   - algorithms should produce a set of solutions (an obvious/simple answer, a pattern-compliant answer, a common answer, a robust answer)
 
@@ -186,6 +211,8 @@
           - then it can move on to identifying specific social games (initial crimes, bullying) that remove inputs of pro-societal decisions (complying with rules), creating a 'reason to do crime'
 
           - then it can look for outputs of those games (stress, difference) and make an attempt to translate that to the data features (facial expressions, signs of addiction, signs of aging)
+
+        - this requires that society-wide data needs to be integrated into the algorithms (like genetic variance) as well as data on criminal activity
 
 
   - rather than using data & the training process as an indicator of consensus, they can use patterns (patterns of data, patterns of change, patterns of variables) as an indicator of consensus
