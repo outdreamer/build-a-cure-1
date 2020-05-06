@@ -80,13 +80,23 @@
 
   - theres an inherent structural mismatch between some algorithms (decision tree, neural net) and some problem types (prediction) given the intent & abstraction layer 
 
-    - example: some algorithms are too specific (decision tree has a direction intent component) for the problem type (predicting a set of variables that is about to change)
+    - example: 
+
+      - some algorithms are too specific or have a structural mismatch (decision tree has structural split, specify & direction intents) with the problem type (predicting a set of variables that is about to change)
 
       - the decision tree can be hacked with various edge case, phase shift & boundary manipulations
 
         - if two variables on different layers are about to converge, they should have been on the same layer or in the opposite causal direction or treated as one variable - the model will be increasingly wrong until it's updated or until these ambiguities and likely relationships are accounted for in the design
 
-      - the intents resulting from the decision tree's layers, direction, and thresholds can only contain so much variation in the data - generated varied data with permutations of data objects like loops & sets & alternates can be used to make the tree more robust to adjacent/likely changes
+        - the reason algorithms can be hacked is bc of the structural mismatch between the algorithm and the problem type
+
+      - the intents resulting from the decision tree's layers, direction, and thresholds can only contain so much variation in the data 
+
+      - generated varied data with permutations of data objects (loops, sets, alternates) can be used to make the tree more robust to adjacent/likely changes
+
+  - algorithms should produce a set of solutions (an obvious/simple answer, a pattern-compliant answer, a common answer, a robust answer)
+
+  - rather than using data & the training process as an indicator of consensus, they can use patterns as an indicator of consensus
 
   - algorithm based on problematic adaptive systems like cancer bc theyre learning faster than the host system
 
