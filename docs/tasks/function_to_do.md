@@ -111,7 +111,10 @@
 
       - alternatively, it could use interface analysis:
 
-        - use inference & intent (to predict) to arrive at insights like 'if the answer is obvious, it must not be true bc otherwise I wouldnt have been asked to predict it, unless this is a test situation'
+        - use inference & intent (to predict) to arrive at insights like:
+
+          - 'if the answer is obvious, it must not be true bc otherwise I wouldnt have been asked to predict it, unless this is a test situation'
+          - 'if the attribute value is common across the population, it must not be a predictor bc there are many people with that attribute value who are not in this data set bc they didnt commit a crime'
 
         - hard-code insights like above to be consulted if a variable is mistakenly identified as significant
 
@@ -127,19 +130,60 @@
 
       - most algorithms dont have the complexity to identify complex sub-systems or related systems like social information games, communities, economies, or cultures
 
-      - a really smart algorithm would identify immediately a few insights like:
+      - a really smart algorithm would immediately identify a few insights like:
 
-        - 'people who have lack of justice (or other types of meaning) are likelier to do crimes'
-        - 'which people dont have justice - persecuted people'
-        - 'which people are persecuted - different people, excellent people'
-        - 'some privileged people with justice/meaning do crimes anyway just for fun to see how much they can get away with'
+        - example of deriving a social game like bullying:
+          - with a priority of 'avoiding criticism'
+            - most nodes would deserve criticism, because avoiding it is easy, especially at scale
+            - this incentivizes criticizing nodes who dont deserve criticism
 
-        - how would you build an algorithm to identify those insights from mugshot data? 
+        - 'there are different reasons people do crimes'
+        - 'some reasons they do crimes include need (resource acquisition, asset/reputation protection), goal attainment (enable a career), culture (avoiding crimes isnt a priority), social games (dares, threats, bullying, corruption, group dynamics), enjoyment (test if anyones paying attention, test how fragile the system is, rebel against authority)'
+        - 'randomness is the biggest distributor of those reasons' (luck)
+        - 'randomness can lead to lack of justice or other types of meaning'
+        - 'people who have lack of justice are likelier to do crimes'
+        - 'which people dont have justice - unfairly persecuted people'
+        - 'which people are unfairly persecuted - different people, excellent people'
+        - 'some privileged people with justice/meaning do crimes anyway just for fun to see how much they can get away with' (counterpoint - other reasons to do crimes than need, culture, social games)
+        - 'which facial expressions are associated with the criminal reasons we're trying to prevent'
+        - 'which factors do we need to complete the prediction function'
+        - 'which expressions are often false signals despite being good predictors in subsets'
 
-          the point is invalid once you have those insights, bc the answer is clearly not predicting who will do crimes but figuring out:
-          - a system of social rules to prevent those situations from happening in society
-          - at what point people start trying to have fun rather than contribute
-          - deriving intent (either mechanically or with a prediction tool)
+        - how would you build an algorithm to identify those insights just from maps & from mugshot data? 
+
+          - the point is invalid once you have those insights, bc the answer is clearly not predicting who will do crimes but figuring out:
+            - a system of social rules to prevent those situations from happening in society
+            - at what point people start trying to have fun rather than contribute
+            - deriving intent (either mechanically or with a prediction tool)
+
+          - the algorithm would identify a high-variance data set and derive that its not the obvious visible attributes that will be predictors (except a few like visible signs of crack addiction, which will only predict the ratio that are crack addicts) but the subtle visible attributes, which will necessarily be incomplete without data about each person's specific traversal of the maps
+
+          - the algorithm would identify that certain facial expressions are associated with criminal activity, such as:
+            - dead eyed hopeless expression (lost hope of good treatment)
+            - crazy expression (went on a rant after putting up with some stressor)
+            - shocked expression (cant believe this happened to them)
+
+          - most of them would also have signs of stress destructuring their faces, except resilient criminals, bosses, or some first-time offenders
+
+          - the different routes to each expression should show up in traversals of social game, community, & culture maps as their status & decisions change, and cross concepts like randomness (in which ideas people encounter, which skills they learn, which social games they play), equivalence (in resource distribution), justice (as a counter object to randomness), & meaning (group belonging, goal attainment, success)
+
+          - the output would be a set of paths that leave traces, some of which would show up in mugshots, some of which would require questions
+
+        - identifying a concept (like 'reason to do crime') can be as trivial as exploring combinations of core functions
+
+          - once the algorithm identifies the concept of language (from input data or insight maps) as 'information trades formatted as paths', it should be able to identify the concept of lies, as it will know that 'information can be inaccurately described' from its own errors
+
+          - once it identifies lies, it can identify the concept of social games (reward from coordinating a lie with another node, reward from a successful lie, reward from adding a distant transform to another node's information)
+
+          - once it identifies social games, it can derive their intent (the point of social games is to control other people or to get resources like enjoyment or funds)
+
+          - then it can identify specific social games as anti-societal behavior that hurts the group
+
+          - the counter-object is pro-societal rule compliance that helps the group
+
+          - then it can move on to identifying specific social games (initial crimes, bullying) that remove inputs of pro-societal decisions (complying with rules)
+
+          - then it can look for outputs of those games (stress, difference) and make an attempt to translate that to the data features (facial expressions, signs of addiction, signs of aging)
 
 
   - rather than using data & the training process as an indicator of consensus, they can use patterns (patterns of data, patterns of change, patterns of variables) as an indicator of consensus
