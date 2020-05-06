@@ -93,6 +93,12 @@
       - whats the possibility that a subset/state of physics rules gathers in increasingly isolated space-times, but outside of it, the rules are more flexible
       - whats the possibility that every science rule we take as certain is a false similarity or other false object?
 
+  - why are randomness & symmetry often found together, like with the central limit theorem or circles? 
+
+    - because symmetries are a default object that develop in complex systems, and growth on those symmetries is random (undirected) because symmetries dont typically come with default filters/limits directing the output
+
+    - why do symmetries evolve in complex systems? so that differences can develop/stack within the symmetry range, leading to more differences when those differences interact with differences from other symmetries
+
   - structural mismatches of solutions & problems
 
     1. algorithm structures: theres an inherent structural mismatch between some algorithms (decision tree, neural net) and some problem types (prediction) given the intent & abstraction layer 
