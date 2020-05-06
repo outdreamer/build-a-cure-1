@@ -78,6 +78,10 @@
         - info insight paths like 'lie => joke => distortion => insight'
         - system insight paths like 'three core functions + combine function with this definition + n distortions to nearest hub'
 
+  - examine: theres an inherent structural mismatch between some algorithms (decision tree) and some problem types (prediction) given the intent
+
+  - algorithm based on problematic adaptive systems like cancer bc theyre learning faster than the host system
+
   - extra tasks
 
     - add precomputing if a sub-pattern was already computed:

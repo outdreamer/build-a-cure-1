@@ -315,10 +315,19 @@ print('\nmixed_function_object_pairs', mixed_function_object_pairs)
 
 			- these definition routes can be derived with core component combinations & permutations like applying filters (conditions), intents (approximate), or attribute modifiers (efficient)
 
+		- if you already had concepts like balance & symmetry, you could derive the concept of equal more quickly (a symmetry being between them), 
+			but the concepts of equal are inputs to the concepts of balance & symmetry
+
 	- in general a system concept will be:
-		- a repeated pattern that cannot be left out when describing/generating the system
-		- a pattern repeated across sub-systems of the system 
-		- a structure in the system with causal system impact
-		- a combination of components that is non-trivial to derive, with unique structure or output, which if you described as just a set of its components, information about its impact or the system would be lost
+	
+		- a repeated pattern that cannot be left out when describing/generating the system (boundaries)
+		- a pattern repeated across sub-systems of the system (balance)
+		- a structure in the system with causal system impact (inputs = power)
+
+		- a combination of components that is:
+			- non-trivial to derive
+			- cant be framed as a trivial transform of another concept or component
+			- with unique structure or output
+			- which if you described as just a set of its components, information about its impact or the system would be lost
 
 '''
