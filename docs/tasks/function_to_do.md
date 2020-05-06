@@ -127,6 +127,12 @@
 
       - random can also mean 'difference is default' - difference in this case represents the efficiency, and the distortions from that efficiency represent the outlier values
 
+      - so in random functions, there are biases rewarding:
+        - difference between adjacent values (only 1/6 probability of the next value being the same value, and 2/6 (1 and 6) values have only a 1/6 probability of the next value being one unit away)
+        - similarity to default/efficient value
+        - difference in set type (average vs. extreme)
+        - compliance with common patterns (like 'many symmetry origin values (like an average) plus few extreme/different values')
+
       - how would you generate an independent variable? 
 
         - for example, how would you generate a high degree of randomness in the compounds that your bio system encounters?
@@ -137,8 +143,9 @@
 
         - the way you would seek out differences & eliminate certainties would probably not be random - it would be normally distributed - youd try one interaction for a while, then move on to another interaction within a similar range of difference, and the final output would gravitate toward an average, since different compounds are usually different to test out variable combinations or because of local/conditional optimality, rather than because theyre known to be absolutely optimal by nature, and the average is often the most stable & therefore the most efficient state, given that very different values are unlikely to coordinate with all other system objects as well as the average does given its commonness, which implies that functions to handle it already exist
 
-        - so stability often develops from aggregating many sources of difference, around the sets that offer the most difference in set type (average vs. extreme type) and the least difference because of efficiency/commonness/stability, which may as well be proxy variables for each other in this context
+        - so stability often develops from aggregating many sources of difference, around the sets that offer the most difference in set type (default/efficient/common/average vs. extreme/conditional type) and the least difference in value (1/3 and 4/6 rather than 1/6 and 2/5) because of efficiency/commonness/stability, which may as well be proxy variables for each other in this context
 
+      - a ratio of randomness is allowed in nature because the rules limiting interactions are finite
 
     - why do symmetries evolve in complex systems? so that differences can develop/stack within the symmetry range, leading to more differences when those differences interact with differences from other symmetries
 
