@@ -84,6 +84,8 @@
 
       - some algorithms are too specific or have a structural mismatch (decision tree has structural split, specify & direction intents) with the problem type (predicting a set of variables that is about to change)
 
+      - the decision tree occupies a very low-level, neutral, granular, abstract/structural position - that means it can be used for many intents 
+
       - the decision tree can be hacked with various edge case, phase shift & boundary manipulations
 
         - if two variables on different layers are about to converge, they should have been on the same layer or in the opposite causal direction or treated as one variable - the model will be increasingly wrong until it's updated or until these ambiguities and likely relationships are accounted for in the design
@@ -96,20 +98,51 @@
 
   - algorithms should produce a set of solutions (an obvious/simple answer, a pattern-compliant answer, a common answer, a robust answer)
 
-    - how could you build an algorithm that wouldnt overidentify a race as being a potential criminal?
+    - example of why youd want an 'obvious solution' tag on the output:
+
+      - how could you build an algorithm that wouldnt overidentify a race as being a potential criminal?
 
       - query maps & causal shapes:
         - query for data on related word sentiment (if theres a negative association with a word related to that race)
         - query for data on intent ('identifying potential criminals' is the intent of the training process, which needs to be an input to the algorithm)
           - why would identifying an individual by a related attribute to a negative related term be useful for the 'identify potential criminal' intent?
-          - if the intent is to 'identify potential criminals', which is a high-stakes intent, the algorithm should identify that a causal loop would be dangerous to treat as an input, given that a causal loop (like mistreatment or persecution of minorities leading to poverty which leads to crime) can hide original inputs (root cause being mistreatment)
+          - if the intent is to 'identify potential criminals', which is a high-stakes intent
+          - the algorithm should identify that a causal loop would be dangerous to treat as an input, given that a causal loop (like mistreatment or persecution of minorities leading to poverty which leads to crime) can hide original inputs (root cause being mistreatment)
 
-      - alternatively, it could use inference:
-        - 'if the answer is obvious, it must not be true bc otherwise I wouldnt have been asked to do this task'
+      - alternatively, it could use interface analysis:
 
-      - or hard-code insights like above to be consulted if a variable is mistakenly identified as significant
+        - use inference & intent (to predict) to arrive at insights like 'if the answer is obvious, it must not be true bc otherwise I wouldnt have been asked to predict it, unless this is a test situation'
 
-  - rather than using data & the training process as an indicator of consensus, they can use patterns as an indicator of consensus
+        - hard-code insights like above to be consulted if a variable is mistakenly identified as significant
+
+        - treating one involuntary variable as high-impact belies the complexity of social games, which involve learning competitions (who has the best manners, whos the smartest) that would mean there is high potential for economic status variation within nodes having that attribute
+
+        - given the changeability of that variable (easily changed with structural tools & also frequently changed in gene pool), it should not be treated as a predictor
+
+        - it should identify location & economic status as an indicator of criminal activity given the health/drug addictions symptoms of the people whose data is used for training
+
+        - it should also identify social games that are used for criminal activity & skill at those games (making intimidating or emotionless facial expressions)
+
+        - it should identify culture as a key factor in variation in criminal activity, which can be specific to an attribute but has high variation within that attribute (producing gang violence, govt corruption, or a culture of karma/street justice) with low variation in outcomes (kill or be killed) - and identify that if it doesnt have cultural information, it cant make predictions
+
+      - most algorithms dont have the complexity to identify complex sub-systems or related systems like social information games, communities, economies, or cultures
+
+      - a really smart algorithm would identify immediately a few insights like:
+
+        - 'people who have lack of justice (or other types of meaning) are likelier to do crimes'
+        - 'which people dont have justice - persecuted people'
+        - 'which people are persecuted - different people, excellent people'
+        - 'some privileged people with justice/meaning do crimes anyway just for fun to see how much they can get away with'
+
+        - how would you build an algorithm to identify those insights from mugshot data? 
+
+          the point is invalid once you have those insights, bc the answer is clearly not predicting who will do crimes but figuring out:
+          - a system of social rules to prevent those situations from happening in society
+          - at what point people start trying to have fun rather than contribute
+          - deriving intent (either mechanically or with a prediction tool)
+
+
+  - rather than using data & the training process as an indicator of consensus, they can use patterns (patterns of data, patterns of change, patterns of variables) as an indicator of consensus
 
   - algorithm based on problematic adaptive systems like cancer bc theyre learning faster than the host system
 
