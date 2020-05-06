@@ -171,6 +171,11 @@
 
   - explore how to map position to variable structures like networks/loops/trees (like how rank assigns standardized relative position to values - how would you assign a position to nodes in a network in a similarly standardized way - an attribute like connection count or node type, or a trajectory position, or another method)
 
+    - how do rankings map to ratios, and what errors would result from direct mappings of various initial data types?
+
+    - is there a standard set of structures like networks that should be applied to a sequence to get its probable prediction function the fastest (framing numbers as 1, a map from number type to node types, 2, a node's connection count, & 3, distance between nodes, in order to map the sequence in the most robust way)
+
+  - 
 
   - structural mismatches of solutions & problems
 
