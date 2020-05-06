@@ -183,15 +183,15 @@
 
     - example: without being able to see a ball in its entirety, you can check:
 
-        - vertex of its shape:
+        - vertex intersection of its shape:
           - vertex 1: that it casts a sphere's shadow
           - vertex 2: that its boundary is circular
 
-        - vertex of its motion:
+        - vertex intersection of its motion:
           - vertex 1: that it bounces instead of falling once
           - vertex 2: that it rolls on a hill in a vacuum of other forces (responds to gravity)
 
-        - vertex of its symmetries:
+        - vertex intersection of its symmetries:
           - vertex 1: doesnt dissolve in substance that dissolves non-plastics
           - vertex 2: doesnt rest in a square or triangle shape even when compressed to those shapes
 
@@ -214,6 +214,23 @@
         - 'not used for physical games'
         - 'not manmade' (also a control vertex)
 
+      - you can see that subsets of the vertices and their intersections (like two sides of a triangle forming a point) are sufficient to identify the object for a subset of intents relevant to the object
+
+    - so we can infer whole objects and object identities without documenting their every particle from every angle
+
+    - similarly we can infer other objects we cant fully measure (symmetries, origin, paths) using various vertexes and their intersections:
+
+      - infer symmetries with vertex intersections:
+        - radius & origin
+        - adjacent symmetries & limits
+
+      - infer origins with vertex intersections:
+        - current potential energy and distance from possible origin points
+        - current potential energy and patterns of movement
+
+      - infer paths with vertex intersections:
+        - destination and alternative selection metrics
+        - efficiency or resource conservation priorities
 
   - structural mismatches of solutions & problems
 
