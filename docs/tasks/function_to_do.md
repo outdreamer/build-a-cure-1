@@ -125,6 +125,20 @@
 
       - analyzing adjacent pairs as the important objects is more useful than analyzing individual outcomes in isolation
 
+      - random can also mean 'difference is default' - difference in this case represents the efficiency, and the distortions from that efficiency represent the outlier values
+
+      - how would you generate an independent variable? 
+
+        - for example, how would you generate a high degree of randomness in the compounds that your bio system encounters?
+
+        - youd make sure to interact with many different objects (like plants, locations, and experiments combining other objects) 
+
+        - youd seek out differences, and try to eliminate certainties & their patterns
+
+        - the way you would seek out differences & eliminate certainties would probably not be random - it would be normally distributed - youd try one interaction for a while, then move on to another interaction within a similar range of difference, and the final output would gravitate toward an average, since different compounds are usually different to test out variable combinations or because of local/conditional optimality, rather than because theyre known to be absolutely optimal by nature, and the average is often the most stable & therefore the most efficient state, given that very different values are unlikely to coordinate with all other system objects as well as the average does given its commonness, which implies that functions to handle it already exist
+
+        - so stability often develops from aggregating many sources of difference, around the sets that offer the most difference in set type (average vs. extreme type) and the least difference because of efficiency/commonness/stability, which may as well be proxy variables for each other in this context
+
 
     - why do symmetries evolve in complex systems? so that differences can develop/stack within the symmetry range, leading to more differences when those differences interact with differences from other symmetries
 
