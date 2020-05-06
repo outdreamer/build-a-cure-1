@@ -96,6 +96,19 @@
 
   - algorithms should produce a set of solutions (an obvious/simple answer, a pattern-compliant answer, a common answer, a robust answer)
 
+    - how could you build an algorithm that wouldnt overidentify a race as being a potential criminal?
+
+      - query maps & causal shapes:
+        - query for data on related word sentiment (if theres a negative association with a word related to that race)
+        - query for data on intent ('identifying potential criminals' is the intent of the training process, which needs to be an input to the algorithm)
+          - why would identifying an individual by a related attribute to a negative related term be useful for the 'identify potential criminal' intent?
+          - if the intent is to 'identify potential criminals', which is a high-stakes intent, the algorithm should identify that a causal loop would be dangerous to treat as an input, given that a causal loop (like mistreatment or persecution of minorities leading to poverty which leads to crime) can hide original inputs (root cause being mistreatment)
+
+      - alternatively, it could use inference:
+        - 'if the answer is obvious, it must not be true bc otherwise I wouldnt have been asked to do this task'
+
+      - or hard-code insights like above to be consulted if a variable is mistakenly identified as significant
+
   - rather than using data & the training process as an indicator of consensus, they can use patterns as an indicator of consensus
 
   - algorithm based on problematic adaptive systems like cancer bc theyre learning faster than the host system
