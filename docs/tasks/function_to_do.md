@@ -109,15 +109,22 @@
 
       - that common pattern has a hard limit placed on the central values 3 - 4, and the set of values that are outliers are less limited (can be 1 - 2 or 5 - 6 or a combination) - it requires some central values, but the outlier values are more flexible
 
-      - the alternate version of that common pattern is that 'the proportion of 5/6 values relative to the proportion of 1/2 values will be equal, and the proportion of 3/4 values will be greater than those outlier values'
+      - the alternate version of that common pattern is that 'the proportion of 5/6 values relative to the proportion of 1/2 values will be equal (the sides of the curve are similar in shape), and the proportion of 3/4 values will be greater than those outlier values'
 
       - randomness means 'lack of influence or direction' in this case, which translates to 'lack of default similarity in adjacent outcomes', removing the normal semantic value of position
 
-      - this means a sequence that has different values is likelier than a sequence that has the same value, given random selection
+      - this means in a large sample with random selection, that a sequence of different values is likelier than a sequence of the same value
 
       - the 3/4 set is different from the 1/2 set and the 5/6 set
 
-      - this means the 3/4 set is likelier to appear with the 1/2 set and the 5/6 set
+      - this means the 3/4 set is likelier to appear with the 1/2 set and the 5/6 set (same relationship applied to the interim sets, 2/5, in relation to the extreme outlier sets 1/6)
+
+      - given the ratio of the outliers in the set of 1 - 6 (4/6), the likelihood that the average set (3 & 4) will provide the most difference from the previous value in set type is higher than the likelihood that another outlier will provide the most difference from the previous value in the set type metric (average, interim, extreme set types)
+
+      - this implies the dynamic is more of a circle shape than a spectrum, where the pairs of adjacent values in a random sequence occupy points in a circle and the central tendency holds (pairs are likelier to include a 3/4 than other values, pairs are less likely to include two consecutive extreme values like 1/6)
+
+      - analyzing adjacent pairs as the important objects is more useful than analyzing individual outcomes in isolation
+
 
     - why do symmetries evolve in complex systems? so that differences can develop/stack within the symmetry range, leading to more differences when those differences interact with differences from other symmetries
 
