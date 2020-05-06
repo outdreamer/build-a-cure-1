@@ -137,11 +137,19 @@
 
         - a random variable will change if another symmetry is adjacent enough to exert gravity on the variable, at which point the random variable will conver to & be distorted around the new symmetry
 
-          - if a fly gravitates around one light but in their random motion, they encounter the edge of the light's reach, and another light is more nearby at that limit point than the original light, they may gravitate toward the new light - same with symmetries that are sufficiently adjacent as to be nearer to another symmetry's limit than the original symmetry's radius
+          - if a fly gravitates around one light but in their random motion, they encounter the edge of the light's reach, and another light is more nearby at that limit point than the original light, they may gravitate toward the new light - same with symmetries that are sufficiently adjacent as to be nearer to another symmetry's limit than the original symmetry's radius 
 
-          - this either must not happen much in nature or these trends arent often described
+            - factors include if lights are likely to be evenly distributed, if they have different radii, if they have different types of light, etc
 
-          - this is an object called an 'efficiency overlap', where radii (or the equivalent semantic object) provide an intersection between symmetries
+          - the corresponding example with the dice includes factors like:
+            - people who use dice often happen to buy magnets (or magnetic material is often used in building/furniture construction)
+            - the dice contain metal that responds to that charge 
+            - the charge is strong enough to exert a force if the dice are thrown near enough to those objects (standing near a wall or sitting on furniture)
+            - people arent careful to remove magnetic material from the experiment location
+
+          - this is an object called an 'efficiency/symmetry overlap', where radii (or the equivalent semantic object) provide an intersection between symmetries
+          
+          - this either must not happen much in nature, or the overlap isnt usually enough to cause more than a few outliers, or these trends arent often described
 
       - how would you generate an independent variable? 
 
