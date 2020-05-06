@@ -232,6 +232,13 @@
         - destination and alternative selection metrics
         - efficiency or resource conservation priorities
 
+  - statistical tests & hypotheses should be standardized for false objects (false similarities), errors in assumptions (non-normal distribution) or data collection/measurement, change types (about to become another distribution/in the process of being converted)
+    
+    - 'a hypothesis assuming random independent variables is more likely to include m/n non-random variables or x causal shapes'
+
+    - these insights can be used to adjust test critical values in the absence of data on correctness to use instead:
+      - 'a z-value of 1 is likely to be accurate 5% of the time and is likelier to be 1.2 most of the time'
+
   - structural mismatches of solutions & problems
 
     1. algorithm structures: theres an inherent structural mismatch between some algorithms (decision tree, neural net) and some problem types (prediction) given the intent & abstraction layer 
