@@ -621,6 +621,8 @@ The most common useful sets are:
 - interaction space
 - potential field
 - neutralizing/invalidating rules
+- efficiency overlap
+- vertex intersection
 
 
 Other useful objects:

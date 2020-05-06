@@ -175,7 +175,45 @@
 
     - is there a standard set of structures like networks that should be applied to a sequence to get its probable prediction function the fastest (framing numbers as 1, a map from number type to node types, 2, a node's connection count, & 3, distance between nodes, in order to map the sequence in the most robust way)
 
-  - 
+  - how do you infer the existence of objects we cant measure:
+
+    - the same way you infer that a whole object is complete, without being able to measure an object in its entirety simultaneously (being able to see it from every angle and on every scale at once)
+
+    - without being able to see an object, you still use intersections of its vertices (one of its determining behaviors & one of its identifying attribute values) to rule out or otherwise limit the possible solution set of possible identities & degrees of completeness, between the object and adjacent possible objects, where each vertex intersection you check is between the object and the adjacent possible objects, even though you cant see the whole object in every possible way to measure it
+
+    - example: without being able to see a ball in its entirety, you can check:
+
+        - vertex of its shape:
+          - vertex 1: that it casts a sphere's shadow
+          - vertex 2: that its boundary is circular
+
+        - vertex of its motion:
+          - vertex 1: that it bounces instead of falling once
+          - vertex 2: that it rolls on a hill in a vacuum of other forces (responds to gravity)
+
+        - vertex of its symmetries:
+          - vertex 1: doesnt dissolve in substance that dissolves non-plastics
+          - vertex 2: doesnt rest in a square or triangle shape even when compressed to those shapes
+
+      - and you dont have to check other vertices for most probable relevant intents (dodging ball, throwing ball) bc the intersections of these vertices rule out other adjacent classes of objects:
+        
+        optimization vertexes:
+        - 'not made to maximize difficulty on some metric'
+        - 'not made to maximize ability to catch'
+
+        symmetry vertexes:
+        - 'not aligning weight & size attribute values with hands & strength attribute values' 
+
+        structural vertexes:
+        - 'not a block'
+        - 'not a disc'
+
+        intent vertexes:
+        - 'not a hat'
+        - 'functional for intents that are not entertainment intent'
+        - 'not used for physical games'
+        - 'not manmade' (also a control vertex)
+
 
   - structural mismatches of solutions & problems
 
