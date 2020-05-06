@@ -100,7 +100,7 @@
 
     - example of why youd want an 'obvious solution' tag on the output:
 
-      - how could you build an algorithm that wouldnt overidentify a race as being a potential criminal?
+      - how could you build an algorithm that wouldnt overidentify a race attribute as being a potential criminal indicator?
 
       - query maps & causal shapes:
         - query for data on related word sentiment (if theres a negative association with a word related to that race)
@@ -181,7 +181,7 @@
 
           - the counter-object is pro-societal rule compliance that helps the group
 
-          - then it can move on to identifying specific social games (initial crimes, bullying) that remove inputs of pro-societal decisions (complying with rules)
+          - then it can move on to identifying specific social games (initial crimes, bullying) that remove inputs of pro-societal decisions (complying with rules), creating a 'reason to do crime'
 
           - then it can look for outputs of those games (stress, difference) and make an attempt to translate that to the data features (facial expressions, signs of addiction, signs of aging)
 
