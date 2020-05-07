@@ -241,6 +241,7 @@
       - distributing info & tools (like probability/causal analysis, fallacy/incentive/insider trading identification) is one way to reduce risk across agents
 
       - exchange of funds should be tied to value creation by default, unless the funds are invested in useful high-value research, which has inherent necessary valid risk (as opposed to risk of buying a faulty product that cant be converted to something useful in an adjacent way, which happens frequently and is from bad design/implementation rather than necessity because of fast research)
+
         - value can be created by valuable attributes like convenience, speed, efficiency, minimized cost, quality, relevance, fairness
         - this value can be to agents in the transaction or to society
         - value creation isnt guaranteed, like when you buy property that breaks & is unfixable, but each transaction should have a fallback mechanism to create value, rather than relying on insurance
@@ -249,6 +250,7 @@
           - this transaction would be designed by default with cost profiles for each option (cost/benefit of the transaction) based on specific demand for attributes created by the event - matching the negative event with the highest adjacent profit opportunities in the market by algorithm to minimize their losses
       
     - trading predictions for value & risk isnt always the trade being made
+
       - sometimes its trading predicting that the price will go up (buyer) for information that the price will go down (insider trading short seller)
       - or trading a prediction of price increase for market demand risk + disaster risk
       - the set of these trades can be optimized to make all agents better off most of the time
@@ -259,12 +261,21 @@
           - infrastructure repair costs may occur (power lines, pipelines)
           - byproducts are generated (heat, carbon)
         - there are agents that can benefit from most attributes created by the event
-        - if you can find a buyer interested in moving in at lower cost or someone interested in the neighborhood (real estate developer), the fire might not produce a major loss for the homeowner, even without insurance
-        - if repair costs are high, repair companies can purchase information of where new opportunities are available & what their possible profit is
-        - if the house is near enough to a water source, it can be turned into a well or other natural resource supply, so the neighborhood could buy the property directly or with taxes
-        - you can sell the risk of the house burning down beforehand, so that if the risk of it happening is 20%, you sell the risk of it not happening to people who need/earn money more & sell the risk of it happening to people who dont need/earn money
+          - if you can find a buyer interested in moving in at lower cost or someone interested in the neighborhood (real estate developer), the fire might not produce a major loss for the homeowner, even without insurance
+          - if repair costs are high, repair companies can purchase information of where new opportunities are available & what their possible profit is
+          - if the house is near enough to a water source, it can be turned into a well or other natural resource supply, so the neighborhood could buy the property directly or with taxes
+          - you can use the fire as a temporary energy source for the neighborhood which can be distributed with markets/taxes (whether they opt-in to buy the equipment to do that)
+        - you can sell the risk of the house burning down beforehand, so that if the risk of it happening is 20%, you sell the risk of it not happening to people who need/earn money more (or people with existing incentives against the house burning down if its a higher cost than benefit across all agents, so no one has an incentive for arson) & sell the risk of it happening to people who dont need/earn money (or people with existing incentives against the house burning down)
 
-    - load-balancing can also be automated between funds, so one fund isnt overloaded with liabilities
+      - similarly, other sources of systemic risks like natural disasters can be used for creating value 
+
+        - if a flood happens, suppliers & researchers can pivot to using damaged wood as their building material (researchers can experiment on converting it to a useful resource & then its used as a default supply source, or researchers are assigned to convert dead wood into plants more efficiently)
+
+        - product invalidation with tech produces obsolete tech, which can be allocated to neighborhood recycling centers rather than taken away so it can be used as a community supply for engineering & research
+
+    - there can be a cap on financial instruments with better price/relative value assessments, so that someone cant buy something at a higher price out of irrational fear (someone whos afraid of fire is likelier to pay more for insurance, even if the risk doesnt match their price point given their irrational fear) or as a premium (charged more bc they earn more)
+
+    - load-balancing can also be automated between funds, so one fund isnt overloaded with liabilities - rather than one fund that made a bad bet bearing the cost, they get updates to their decision models (explaining why a price was false or why a natural event occurred), a small percentage is distributed to funds that arent as socially conscious (dont align their incentives with socially conscious intents, or create trades that prioritize value creation, or organize their trades to build loops so incentives are connected across agents)
 
   - statistical tests & hypotheses should be standardized for false objects (false similarities), errors in assumptions (non-normal distribution) or data collection/measurement, change types (about to become another distribution/in the process of being converted)
     
