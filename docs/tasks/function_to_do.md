@@ -273,6 +273,14 @@
 
         - product invalidation with tech produces obsolete tech, which can be allocated to neighborhood recycling centers rather than taken away so it can be used as a community supply for engineering & research
 
+        - a pandemic produces either:
+          - high demand for protective supplies (so people can still go out), medical service suppliers, cleaning services, delivery services
+          - high demand for tech to invalidate protective supplies (buy computers/internet/robots/drones so people dont have to go out, and minimize quarantine time with medical solution tech investments)
+          
+        - the change in demand isnt likely to be accompanied by climate consciousness (people would rather buy gloves right away than wait for environmentally friendly gloves), so theres some increase in systemic risk bc of the requirements for fast solutions - companies with climate-friendly solutions can benefit if they can scale supply quicker, which will reduce risk for everyone
+        - companies that adapt quickly, companies already in manufacturing business, companies building tech, and companies that host/enable trades will already be in position to benefit
+        - companies building testing tools are another possible beneficiary, if people still need to interact (if you dont buy computers/internet/robots and medical solutions)
+
     - there can be a cap on financial instruments with better price/relative value assessments, so that someone cant buy something at a higher price out of irrational fear (someone whos afraid of fire is likelier to pay more for insurance, even if the risk doesnt match their price point given their irrational fear) or as a premium (charged more bc they earn more)
 
     - load-balancing can also be automated between funds, so one fund isnt overloaded with liabilities - rather than one fund that made a bad bet bearing the cost, they get updates to their decision models (explaining why a price was false or why a natural event occurred), a small percentage is distributed to funds that arent as socially conscious (dont align their incentives with socially conscious intents, or create trades that prioritize value creation, or organize their trades to build loops so incentives are connected across agents)
