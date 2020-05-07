@@ -232,12 +232,46 @@
         - destination and alternative selection metrics
         - efficiency or resource conservation priorities
 
+  - financial risk products
+
+    - routes between nodes with different information perspectives can optimize for load-balancing of the payout liability, or maximizing asset flow/trades/distribution, or connecting outcomes (creating a circuit rather than a one-directional rule or decision fork)
+
+      - allocating better decision information, models & tools to those with fewer assets or whose bets dont pay off can offset initial resource imbalances, offering better risk assessments & trades to those who need them
+
+      - distributing info & tools (like probability/causal analysis, fallacy/incentive/insider trading identification) is one way to reduce risk across agents
+
+      - exchange of funds should be tied to value creation by default, unless the funds are invested in useful high-value research, which has inherent necessary valid risk (as opposed to risk of buying a faulty product that cant be converted to something useful in an adjacent way, which happens frequently and is from bad design/implementation rather than necessity because of fast research)
+        - value can be created by valuable attributes like convenience, speed, efficiency, minimized cost, quality, relevance, fairness
+        - this value can be to agents in the transaction or to society
+        - value creation isnt guaranteed, like when you buy property that breaks & is unfixable, but each transaction should have a fallback mechanism to create value, rather than relying on insurance
+        - the fallback can be decision analysis tools, tax deductions, or insurance payouts, but it can also be built-in to the transaction contract
+          - if your house is burned down, you can have a fallback default transaction designed to sell the data about what caused the fire, sell the property to someone who doesnt want to use any damaged infrastructure (pipelines, electricity) or to researchers who need fire byproducts to test with or a small business thats been trying to move in to that neighborhood but wants to do so at lower cost
+          - this transaction would be designed by default with cost profiles for each option (cost/benefit of the transaction) based on specific demand for attributes created by the event - matching the negative event with the highest adjacent profit opportunities in the market by algorithm to minimize their losses
+      
+    - trading predictions for value & risk isnt always the trade being made
+      - sometimes its trading predicting that the price will go up (buyer) for information that the price will go down (insider trading short seller)
+      - or trading a prediction of price increase for market demand risk + disaster risk
+      - the set of these trades can be optimized to make all agents better off most of the time
+      - how do you arrange trades so the insurance company, supply company, homeowner, and future property owners are ok when a house burns down?
+        - the attributes created by the fire include (depending on reason for the fire & damage caused):
+          - adjacent houses are cheaper
+          - land of house is cheaper
+          - infrastructure repair costs may occur (power lines, pipelines)
+          - byproducts are generated (heat, carbon)
+        - there are agents that can benefit from most attributes created by the event
+        - if you can find a buyer interested in moving in at lower cost or someone interested in the neighborhood (real estate developer), the fire might not produce a major loss for the homeowner, even without insurance
+        - if repair costs are high, repair companies can purchase information of where new opportunities are available & what their possible profit is
+        - if the house is near enough to a water source, it can be turned into a well or other natural resource supply, so the neighborhood could buy the property directly or with taxes
+        - you can sell the risk of the house burning down beforehand, so that if the risk of it happening is 20%, you sell the risk of it not happening to people who need/earn money more & sell the risk of it happening to people who dont need/earn money
+
+    - load-balancing can also be automated between funds, so one fund isnt overloaded with liabilities
+
   - statistical tests & hypotheses should be standardized for false objects (false similarities), errors in assumptions (non-normal distribution) or data collection/measurement, change types (about to become another distribution/in the process of being converted)
     
     - 'a hypothesis assuming random independent variables is more likely to include m/n non-random variables or x causal shapes'
 
     - these insights can be used to adjust test critical values in the absence of data on correctness to use instead:
-      - 'a z-value of 1 is likely to be accurate 5% of the time and is likelier to be 1.2 most of the time'
+      - 'a z-value of 1 for a data set like this is likely to be accurate 5% of the time and is likelier to be 1.2 most of the time'
 
   - structural mismatches of solutions & problems
 
