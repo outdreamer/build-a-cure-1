@@ -285,7 +285,9 @@
 
     - you can also calculate the fewest bets that are necessary (invest in a small business like an experiment automator printer, invest in a research project like determining cause of a systemic imbalance, invest in a particular solution like a farming technology) that will trigger the phase shifts necessary to produce an outcome (protect the environment from risk spirals or cascades or toxic causal shapes like tangled networks or one-directional trees)
 
-    - taking the net outcome of all known bets (industry bets, product bets, price bets, demand bets, tech bets, uncertainty bets) & bet patterns (diversify risk levels & timing in portfolio) can probably predict future risks (new incentives/priorities, new tech, new attribute sets, new trade loops, new financial instruments)
+    - taking the net outcome of all known bets (info/pattern/probability bets, industry bets, product bets, price bets, demand bets, tech bets, uncertainty bets) & bet patterns (diversify risk levels & timing in portfolio) can probably predict future risks (new incentives/priorities, new products/tech, new attribute sets, new alliances, new paradoxes (conflicting products becoming more popular), new trade loops, new financial instruments) - which can be used to adjust recommended price of a bet once the relative value is known, if that risk outcome is good across agents
+
+      - example: 'if 50 people dont take this bet, another alternative tech will probably develop' or 'if 100 people invest at this price, this product will enable investment in these fields given these company contracts'
 
     - load-balancing can also be automated between funds, so one fund isnt overloaded with liabilities - rather than one fund that made a bad bet bearing the cost, they get updates to their decision models (explaining why a price was false or why a natural event occurred), a small percentage is distributed to funds that arent as socially conscious (dont align their incentives with socially conscious intents, or create trades that prioritize value creation, or organize their trades to build loops so incentives are connected across agents)
 
