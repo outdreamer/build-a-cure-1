@@ -285,6 +285,8 @@
 
     - you can also calculate the fewest bets that are necessary (invest in a small business like an experiment automator printer, invest in a research project like determining cause of a systemic imbalance, invest in a particular solution like a farming technology) that will trigger the phase shifts necessary to produce an outcome (protect the environment from risk spirals or cascades or toxic causal shapes like tangled networks or one-directional trees)
 
+    - taking the net outcome of all known bets (industry bets, product bets, price bets, demand bets, tech bets, uncertainty bets) & bet patterns (diversify risk levels & timing in portfolio) can probably predict future risks (new incentives/priorities, new tech, new attribute sets, new trade loops, new financial instruments)
+
     - load-balancing can also be automated between funds, so one fund isnt overloaded with liabilities - rather than one fund that made a bad bet bearing the cost, they get updates to their decision models (explaining why a price was false or why a natural event occurred), a small percentage is distributed to funds that arent as socially conscious (dont align their incentives with socially conscious intents, or create trades that prioritize value creation, or organize their trades to build loops so incentives are connected across agents)
 
   - statistical tests & hypotheses should be standardized for false objects (false similarities), errors in assumptions (non-normal distribution) or data collection/measurement, change types (about to become another distribution/in the process of being converted)
