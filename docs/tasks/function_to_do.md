@@ -318,7 +318,7 @@
 
     - identify vertices such as cases where individual nodes or subsets can totally change the outcome of the training or produce phase shifts or other important system objects and make decisions about thresholds for those cases before training (what do you do when adding a node adds error 60% of the time and more accuracy 10% of the time and neutral impact the rest, given the data (delegate to different network architecture, gather data, use system objects/patterns to make predictions in those cases)
 
-    - how do you check for optimal combinations reached before the end of training at a particular node, or a feature/weight set that matches the correct prediction function bc its a high-impact feature/weight combination (weight x applied to weight path 1, weight y applied to weight path 2) that happens to identify an important system object (efficiency, interaction, variance gap, causal structure) - you can include a test of original data in each node for predictive potential once you determine the level of complexity needed to create a prediction function (number of terms or level of variation, which can be used as a filter before running tests for system objects or correct prediction function similarity at each node)
+    - how do you check for optimal combinations, causation, feature sets, and system objects reached before the end of training at a particular node, or a feature/weight set that matches the correct prediction function bc its a high-impact feature/weight combination (weight x applied to weight path 1, weight y applied to weight path 2) that happens to identify an important system object (efficiency, interaction, variance gap, causal structure) - you can include a test of original data in each node for predictive potential once you determine the level of complexity needed to create a prediction function (number of terms or level of variation, which can be used as a filter before running tests for system objects or correct prediction function similarity at each node)
 
     - how do you identify different types of relevance & nodes that supply them for an intent like categorization/prediction?
 
@@ -327,6 +327,26 @@
         - for categorization, direct causation may be identifying/differentiating features - imminent causation may be converging or adjacent features
 
         - if all a node does is answer yes/no for a particular question, that will be sufficient for that question but not other important questions that could be answerable with the data
+
+        - how to tell which questions are answerable given that one question is answerable
+
+          - meaning you can reach answer node B given a starting point of attribute values, a function set, and a question intent direction identifying an information gap in attribute values, where the answer node may not fully answer the question but it will move toward the question intent direction
+
+            - for example, asking 'is ingredient A toxic' can be answered with filters (probability filter such as 'not likely in moderation') or mapping a trajectory between nodes agent starting position & agent death
+
+            - so the question ('is substance A toxic') can be formmatted like: 
+              - a path between nodes agent position and agent death
+              - a movement in the direction of node clusters with the high-toxicity attribute (implying toxic intent of the substance)
+              
+              where the question is the information gap: 
+                - will event 'ingest substance A' move in direction of high-toxicity clusters, an adjacent intent direction or state, or toward agent death
+
+            - so other answerable questions would involve a subset of that information (a subset of the path of the answer) or other related object (alternate, opposing, etc)
+
+          - involve a subset or same set of attributes
+          - involve opposing/complementary attributes
+          - involve direct causative or caused attributes
+          - involve abstract attributes
 
       - node sets/weight paths that arent important for direct causation may be important for imminent causation
 
