@@ -291,6 +291,17 @@
 
     - load-balancing can also be automated between funds, so one fund isnt overloaded with liabilities - rather than one fund that made a bad bet bearing the cost, they get updates to their decision models (explaining why a price was false or why a natural event occurred), a small percentage is distributed to funds that arent as socially conscious (dont align their incentives with socially conscious intents, or create trades that prioritize value creation, or organize their trades to build loops so incentives are connected across agents)
 
+
+  - automatic aggregated information formatting queries as an alternative to unstructured/keyword searches pointing to isolated content in manually entered formats like:
+
+    - 'show me product search data according to demos in a table with sorts' and the output would be a table with product search data by age group, economic group, in a table format, with sorts to sort each column
+
+    - this would be done by:
+      - using previous queries & feedback on search results
+      - auto-formatting
+      - aggregated data from existing content
+      - pulling definitions of keywords like 'demos' to determine what supported keyword they mean, or create a new term out of core functions (groups separated by attribute & attribute value)
+
   - graph search (with queries like 'show me relationship between time and gdp' or show me relationship between using lysol and cancer')
 
     - could scan studies related to graph for logical fallacies and adjust graph accordingly, then present a composite graph of data found
@@ -299,7 +310,7 @@
 
     - 'deploy an AI model to do tasks: find/predict relationship, categorize, or rank' option can be included to train on public data based on plain language queries like the above
 
-  - search data + verified purchases can be used to assess the value of a particular product solution for a problem (like a supplement to treat a health condition), to offset fake reviews or faulty recommendation/removal algorithm or account for product fixes over time, as well as customize it to the user (avoid this product if you have condition x)
+  - search data + verified purchases can be used to assess the value of a particular product solution for a problem (like a supplement to treat a health condition), to offset fake reviews or faulty recommendation/removal algorithm or account for product fixes over time, as well as customize it to the user (avoid this product if you have condition x, this product has correlation with onset of condition y)
 
   - for nn: 
 
