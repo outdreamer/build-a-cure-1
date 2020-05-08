@@ -314,7 +314,12 @@
 
   - search data + verified purchases can be used to assess the value of a particular product solution for a problem (like a supplement to treat a health condition), to offset fake reviews or faulty recommendation/removal algorithm or account for product fixes over time, as well as customize it to the user (avoid this product if you have condition x, this product has correlation with onset of condition y
 
+    - customization can also be done for user groups like intelligence - so people likelier to believe a story without checking it like anti-vaxx stories can be shown true stories with more repetition
 
+    - example of a system object being useful for customatization (a false categorization):
+      - busy can look like stupidity under certain circumstances - what are those circumstances and when are they most important to avoid 
+        (if someone's too busy to check a news site, send them a notification about a pandemic so theyre likelier to see it)
+ 
   - detecting objects of uncertainty
 
     - for genuinely invisible sub-systems, we may only be able to find related objects (the boundaries containing them, the filters allowing them to develop) rather than their trajectories on the shape/other attribute interfaces
