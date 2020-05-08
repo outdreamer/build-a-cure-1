@@ -326,6 +326,10 @@
 
   - for nn: 
 
+    - when you organize a network so that each node is only doing one task, its less flexible than a network of nodes that can do multiple tasks
+
+      - a node that can answer 'yes/no' should be a node that can answer 'yes/no if' (given a threshold condition) and 'aggregated yes/no if' (asking adjacent nodes a question before deciding)
+
     - identify vertices such as cases where individual nodes or subsets can totally change the outcome of the training or produce phase shifts or other important system objects and make decisions about thresholds for those cases before training (what do you do when adding a node adds error 60% of the time and more accuracy 10% of the time and neutral impact the rest, given the data (delegate to different network architecture, gather data, use system objects/patterns to make predictions in those cases)
 
     - how do you check for optimal combinations, causation, feature sets, and system objects reached before the end of training at a particular node, or a feature/weight set that matches the correct prediction function bc its a high-impact feature/weight combination (weight x applied to weight path 1, weight y applied to weight path 2) that happens to identify an important system object (efficiency, interaction, variance gap, causal structure) - you can include a test of original data in each node for predictive potential once you determine the level of complexity needed to create a prediction function (number of terms or level of variation, which can be used as a filter before running tests for system objects or correct prediction function similarity at each node)
