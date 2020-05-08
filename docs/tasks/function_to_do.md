@@ -314,6 +314,16 @@
 
   - search data + verified purchases can be used to assess the value of a particular product solution for a problem (like a supplement to treat a health condition), to offset fake reviews or faulty recommendation/removal algorithm or account for product fixes over time, as well as customize it to the user (avoid this product if you have condition x, this product has correlation with onset of condition y
 
+
+  - detecting objects of uncertainty
+
+    - for genuinely invisible sub-systems, we may only be able to find related objects (the boundaries containing them, the filters allowing them to develop) rather than their trajectories on the shape/other attribute interfaces
+
+    - we may also be able to predict a finite set that they may be contained in (given the full set of combinations, what is a probability distribution not found in any natural process but still possible, that could describe uncertainty object behavior that we cant measure)
+
+    - we may also be able to derive accurate opposite insights (given the existence of an object, what is impossible to describe, limit, define, etc)
+    
+
   - for nn: 
 
     - identify vertices such as cases where individual nodes or subsets can totally change the outcome of the training or produce phase shifts or other important system objects and make decisions about thresholds for those cases before training (what do you do when adding a node adds error 60% of the time and more accuracy 10% of the time and neutral impact the rest, given the data (delegate to different network architecture, gather data, use system objects/patterns to make predictions in those cases)
