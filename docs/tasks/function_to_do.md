@@ -326,9 +326,10 @@
 
   - for nn: 
 
-    - when you organize a network so that each node is only doing one task, its less flexible than a network of nodes that can do multiple tasks
+    - when you organize a network so that each node is only doing one task (executing a task function without any other analysis, like a dev creating a service rather than first or regularly analyzing if the service will actually help the business), its less flexible than a network of nodes that can do multiple tasks
 
-      - a node that can answer 'yes/no' should be a node that can answer 'yes/no if' (given a threshold condition) and 'aggregated yes/no if' (asking adjacent nodes a question before deciding)
+      - a node that can answer 'yes/no' should be a node that can answer 'yes/no if' (given a threshold condition) and 'aggregated yes/no if' (asking adjacent nodes a question before deciding) and 'averaged aggregated yes/no if' and so on, to mine differences between weight paths for insights
+
 
     - identify vertices such as cases where individual nodes or subsets can totally change the outcome of the training or produce phase shifts or other important system objects and make decisions about thresholds for those cases before training (what do you do when adding a node adds error 60% of the time and more accuracy 10% of the time and neutral impact the rest, given the data (delegate to different network architecture, gather data, use system objects/patterns to make predictions in those cases)
 
