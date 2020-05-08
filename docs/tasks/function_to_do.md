@@ -320,12 +320,15 @@
 
     - how do you check for optimal combinations reached before the end of training at a particular node, or a feature/weight set that matches the correct prediction function bc its a high-impact feature/weight combination (weight x applied to weight path 1, weight y applied to weight path 2) that happens to identify an important system object (efficiency, interaction, variance gap, causal structure) - you can include a test of original data in each node for predictive potential once you determine the level of complexity needed to create a prediction function (number of terms or level of variation, which can be used as a filter before running tests for system objects or correct prediction function similarity at each node)
 
-    - how do you idnetify different types of relevance & nodes that supply them for an intent like categorization/prediction?
+    - how do you identify different types of relevance & nodes that supply them for an intent like categorization/prediction?
 
       - different types of relevance like direct causation (is causative), imminent causation (will be causative, or may be if imminent conditions occur), alternate causation (can be causative)
 
-      - node sets/weight paths that arent important for direct causation may be important for imminent causation
+        - for categorization, direct causation may be identifying/differentiating features - imminent causation may be converging or adjacent features
 
+        - if all a node does is answer yes/no for a particular question, that will be sufficient for that question but not other important questions that could be answerable with the data
+
+      - node sets/weight paths that arent important for direct causation may be important for imminent causation
 
   - given that certain algorithms can only add so much certainty for a particular problem type, that should be integrated into output (trust shouldnt be default handler for algorithm output)
 
