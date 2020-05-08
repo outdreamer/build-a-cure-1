@@ -322,7 +322,7 @@
     - we may also be able to predict a finite set that they may be contained in (given the full set of combinations, what is a probability distribution not found in any natural process but still possible, that could describe uncertainty object behavior that we cant measure)
 
     - we may also be able to derive accurate opposite insights (given the existence of an object, what is impossible to describe, limit, define, etc)
-    
+
 
   - for nn: 
 
