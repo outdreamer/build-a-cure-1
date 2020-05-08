@@ -312,11 +312,13 @@
 
     - 'deploy an AI model to do tasks: find/predict relationship, categorize, or rank' option can be included to train on public data based on plain language queries like the above
 
-  - search data + verified purchases can be used to assess the value of a particular product solution for a problem (like a supplement to treat a health condition), to offset fake reviews or faulty recommendation/removal algorithm or account for product fixes over time, as well as customize it to the user (avoid this product if you have condition x, this product has correlation with onset of condition y)
+  - search data + verified purchases can be used to assess the value of a particular product solution for a problem (like a supplement to treat a health condition), to offset fake reviews or faulty recommendation/removal algorithm or account for product fixes over time, as well as customize it to the user (avoid this product if you have condition x, this product has correlation with onset of condition y
 
   - for nn: 
 
     - identify vertices such as cases where individual nodes or subsets can totally change the outcome of the training or produce phase shifts or other important system objects and make decisions about thresholds for those cases before training (what do you do when adding a node adds error 60% of the time and more accuracy 10% of the time and neutral impact the rest, given the data (delegate to different network architecture, gather data, use system objects/patterns to make predictions in those cases)
+
+    - how do you check for optimal combinations reached before the end of training at a particular node, or a feature/weight set that matches the correct prediction function bc its a high-impact feature/weight combination (weight x applied to weight path 1, weight y applied to weight path 2) that happens to identify an important system object (efficiency, interaction, variance gap, causal structure) - you can include a test of original data in each node for predictive potential once you determine the level of complexity needed to create a prediction function (number of terms or level of variation, which can be used as a filter before running tests for system objects or correct prediction function similarity at each node)
 
   - given that certain algorithms can only add so much certainty for a particular problem type, that should be integrated into output (trust shouldnt be default handler for algorithm output)
 
