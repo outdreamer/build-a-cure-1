@@ -294,7 +294,9 @@
 
   - automatic aggregated information formatting queries as an alternative to unstructured/keyword searches pointing to isolated content in manually entered formats like:
 
+    - 'show me stock/financial instrument/cryptocurrency popularity data in graph format' and the output would be a graph of relative usage statistics available, with suggested content links to definitions of the financial instruments since that's a related intent to looking up their popularity, which implies an intent to invest/profit
     - 'show me product search data according to demos in a table with sorts' and the output would be a table with product search data by age group, economic group, in a table format, with sorts to sort each column
+    - 'show me insights from language tutorials' would return a list of insights about learning a language, which is a primary implied intent of that search, with suggested content links to music in that language which is one way to learn a language
 
     - this would be done by:
       - using previous queries & feedback on search results
