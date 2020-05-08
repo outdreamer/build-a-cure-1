@@ -297,7 +297,8 @@
 
     - data from searches & product purchases can be integrated into graph (buying lysol followed by searches for cancer symptoms)
 
-  
+    - 'deploy an AI model to do tasks: find/predict relationship, categorize, or rank' option can be included to train on public data based on plain language queries like the above
+
 
   - statistical tests & hypotheses should be standardized for false objects (false similarities), errors in assumptions (non-normal distribution) or data collection/measurement, change types (about to become another distribution/in the process of being converted)
     
