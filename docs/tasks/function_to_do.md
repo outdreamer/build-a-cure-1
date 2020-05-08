@@ -301,7 +301,9 @@
 
   - search data + verified purchases can be used to assess the value of a particular product solution for a problem (like a supplement to treat a health condition), to offset fake reviews or faulty recommendation/removal algorithm or account for product fixes over time, as well as customize it to the user (avoid this product if you have condition x)
 
-    - behavior data, search data, purchase data can be used to link health conditions and train AI to predict conditions from a symptom search
+  - for nn: identify vertices such as cases where individual nodes or subsets can totally change the outcome of the training and make decisions about thresholds for those cases before training (what do you do when adding a node adds error 60% of the time and more accuracy 10% of the time and neutral impact the rest, given the data
+
+  - behavior data, search data, purchase data can be used to link health conditions and train AI to predict conditions from a symptom search
 
   - statistical tests & hypotheses should be standardized for false objects (false similarities), errors in assumptions (non-normal distribution) or data collection/measurement, change types (about to become another distribution/in the process of being converted)
     
