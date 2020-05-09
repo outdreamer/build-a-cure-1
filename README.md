@@ -492,6 +492,21 @@ When a system is totally unknown, you should diversify across all interfaces at 
 	- you could extend this to find new objects on the next outer layer after another transform/combination
 
 
+## Example of system object 'alternate routes'
+
+	- an alternate route is an important system object that can be used to reduce solution spaces for analyzing causation in a system
+
+	- a definition can be more useful if framed in objects on a certain interface
+
+	- equal
+
+		- indistinguishable given measurable attributes & their values - equal in value
+
+		- symmetric (buildable with components the other is built with) - equal in origin (resource attribute set indicating starting position)
+
+		- independent (not buildable with the components that the other is built with) - not equal in origin
+
+
 ## Examples of insight paths (specifically system filters)
 
 
