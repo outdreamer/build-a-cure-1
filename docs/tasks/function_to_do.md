@@ -93,6 +93,8 @@
       - whats the possibility that a subset/state of physics rules gathers in increasingly isolated space-times, but outside of it, the rules are more flexible
       - whats the possibility that every science rule we take as certain is a false similarity or other false object?
 
+  - most variables can be converted into one that has a normal distribution by injecting a symmetry or adding interactions from different enough sources that it generates randomness
+
   - why are randomness & symmetry often found together, like with the central limit theorem or circles? 
 
     - because symmetries are a default object that develop in complex systems on top of efficiencies, and growth on those symmetries is random (undirected) because symmetries dont typically come with default filters/limits directing the output
@@ -128,7 +130,7 @@
       - random can also mean 'difference is default' - difference in this case represents the efficiency, and the distortions from that efficiency represent the outlier values
 
       - so in random functions, given the definition of random, there are biases rewarding:
-        - difference between adjacent values (only 1/6 probability of the next value being the same value, and 2/6 (1 and 6) values have only a 1/6 probability of the next value being one unit away)
+        - difference between adjacent values (only 1/6 probability of the next value being the same value, and 2/6 (1 and 6) values have only a 1/6 probability of the next value being one unit away) if the number of possibilities is greater than 2
         - similarity to default/efficient value
         - difference in set type (average vs. extreme)
         - compliance with common patterns (like 'many symmetry origin values (like an average) plus few extreme/different values')
