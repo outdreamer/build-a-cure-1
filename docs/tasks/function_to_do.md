@@ -93,6 +93,20 @@
       - whats the possibility that a subset/state of physics rules gathers in increasingly isolated space-times, but outside of it, the rules are more flexible
       - whats the possibility that every science rule we take as certain is a false similarity or other false object?
 
+  - example of a phase shift about a vertex:
+
+    - in the problem of a rock on a hill, how do you determine at which point it will start rolling down?
+      - vertex: minimum side length to maintain position
+      - at increasingly large incremental additions to the side length variable, there will be a phase shift at the vertex (minimum side length to maintain position), after which it will start moving
+      - this is because either:
+        - the attribute (change rate of side length facing ground) and the attribute (slope of the hill and emerging force) align (rate of side length decrease increases and slope increases) or intersect (change rate of side length matches slope of hill in a way that fulfills motion intent)
+        
+        - the 'side length facing the ground' and 'its adjacent side in the direction of downward motion' are similar enough to allow momentum to develop from repeated motion (if the adjacent next side is too different, the rock might stabilize again)
+        
+        - the shape of the side length facing the ground and the next n sides aligns with the shape of the ground 
+          (a curve can align with more ground shapes, but a rock with different side set shapes aligns with a smaller number of ground shapes)
+
+
   - most variables can be converted into one that has a normal distribution by injecting a symmetry or adding interactions from different enough sources that it generates randomness
 
   - why are randomness & symmetry often found together, like with the central limit theorem or circles? 
