@@ -466,7 +466,7 @@ When a system is totally unknown, you should diversify across all interfaces at 
 
 		- bc these objects offer the most flexibility and occupy an interim interface between physical reality & conceptual networks, so its a good interface to standardize those interfaces to, theyre standard core objects with high interaction potential on similar interaction layers
 
-		- most of the system filter insight paths represent efficiencies that become system defaults
+		- most of the system filter insight paths represent efficiencies & symmetries that become system defaults
 
 			- copying is more efficient than generating an entirely new object, so attribute alignments tend to develop in systems
 			- objects with existing (lower cost) alignments tend to cluster into attribute sets

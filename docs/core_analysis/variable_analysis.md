@@ -3,7 +3,7 @@
   - terms:
     - randomness: a change base or trigger
     - chaos: a state of randomly distributed change
-    - variance: ability for objects/rules/attributes/values to change
+    - variance: ability for objects/rules/attributes/values to change; potential for randomness
     - entropy: an output of changes
     - change: differentiation on some layer/attribute/position in comparison to some other object according to some equivalence/similarity definition
     - dimension: space where variables can occur

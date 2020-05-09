@@ -328,6 +328,18 @@
 
     - we may also be able to derive accurate opposite insights (given the existence of an object, what is impossible to describe, limit, define, etc)
 
+  - minimum information:
+  
+    - whats the most efficient way to depict a physical object - as a network graph of:
+      - splits & projections
+      - splits & limits
+      - gaps & limits
+      - corners & angles
+      - shapes & positions
+      https://en.wikipedia.org/wiki/Orthographic_projection#/media/File:Graphical_projection_comparison.png
+
+      - limits may seem like the best object but youd have to list limits of every side or side type
+      - positions & shapes may seem ideal too but then youd have to store shape information
 
   - false correlation example:
 
