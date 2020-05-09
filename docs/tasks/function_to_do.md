@@ -337,7 +337,8 @@
     - the first half would seem correlated, the second half would not - it would seem like a false correlation
     - the two variables are related because of the shape they are describing motion around, but not causative of each other unless there are other factors involved like a compounding force/momentum
     - but if you just looked at the first half of the functions, it would look like a similarity
-    - how to generate the list of changes to check for when looking for minimum information like pivot points or vertices:
+    
+    - how to generate the list of change types to check for when looking for minimum information like pivot points or vertices that could contradict the apparent correlation:
       - find attributes of the change type (inflection point or change in direction at the top of the parabola is a significant factor)
       - find standardized format (compare change rate of the parabola to the linear function which already represents a change rate - which would identify a slowing of the change rate in the parabola that indicates a limit or inflection point)
       - apply change patterns (a curve like the first half of a parabola doesnt normally just drop back to a position of zero after its change rate slows down)

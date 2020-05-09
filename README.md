@@ -464,7 +464,14 @@ When a system is totally unknown, you should diversify across all interfaces at 
 
 	- why is it so useful to use system info objects like inefficiency or asymmetry as a way to frame & solve problems automatically? 
 
-		bc these objects offer the most flexibility and occupy an interim interface between physical reality & conceptual networks, so its a good interface to standardize those interfaces to, theyre standard core objects with high interaction potential on similar interaction layers
+		- bc these objects offer the most flexibility and occupy an interim interface between physical reality & conceptual networks, so its a good interface to standardize those interfaces to, theyre standard core objects with high interaction potential on similar interaction layers
+
+		- most of the system filter insight paths represent efficiencies that become system defaults
+
+			- copying is more efficient than generating an entirely new object, so attribute alignments tend to develop in systems
+			- objects with existing (lower cost) alignments tend to cluster into attribute sets
+			- most systems need to handle change and constants cant handle change, so constants tend to be fewer in number than variables
+			- ambiguities tend to develop in systems with more randomness bc randomness triggers more new interactions, which make change that may stabilize to the normal distribution more efficient, & create objects with similarities, obscuring cause
 
 	- how to generate interface filters (system, type, function), starting with unit interfaces function & attribute:
 
@@ -513,7 +520,7 @@ When a system is totally unknown, you should diversify across all interfaces at 
 		"false constant": "",
 		"false conflict": "",
 		"false category": "",
-		"false assymption": "",
+		"false assumption": "",
 		"false paradox": ""
 	},
 	"state": {

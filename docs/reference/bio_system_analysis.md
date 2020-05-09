@@ -8,7 +8,7 @@
 
 - receptor installation is a potentially useful target - a nanobot or cell that has receptors with the desired shape on the inner end and the binding shape on the outer end, so the binding shape can attach to pathogens and once attached, the inner end will be the pathogen's new receptor
 
-- does reducing sugar consumption have an alternate path to using fat as energy where it can collect sugars from pathogen surfaces?
+- does reducing sugar consumption or enzyme consumption have an alternate path to using fat as energy where it can collect sugars/proteins from pathogen surfaces?
 
 ## Key Questions
 
