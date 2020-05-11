@@ -402,13 +402,17 @@
 
   - for nn:
 
-    - what would the value be of keeping some parameters locally determined or ambiguous until training time (parameter superposition)?
+    - what would the value be of keeping some parameters locally determined or ambiguous until training/run time (parameter or weight superposition)?
 
-      - determining threshold values & aggregation/grouping methods when particular value sets or weight paths are determined to be causative:
+      - determining threshold values & aggregation/grouping methods when particular value sets or weight paths are determined to be causative or require disambiguation:
         - to provide a clear distinction in a categorization or feature selection problem
-        - to adjust for errors in the algorithm-problem type match if they become significant
-
-
+        - to adjust for errors in the algorithm-problem type match or the algorithm-complexity match if they become significant
+          - to find the optimal position of a particular function in the network by training
+          - to allow for node clusters to solve sub-problems
+          - to allow for iteration of a node & other causal shapes to be applied locally      
+      
+    - certainty networks vs. individual predictions
+      - a network of predictions with certainty rates would be more flexible as an output than a clear answer, where the network could be applied to protect against unforeseen data changes
 
     - when you organize a network so that each node is only doing one task (executing a task function without any other analysis, like a dev creating a service rather than first or regularly analyzing if the service will actually help the business), its less flexible than a network of nodes that can do multiple tasks
 
