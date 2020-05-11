@@ -425,6 +425,7 @@
           - identify error types in data like 'assign weight to leaf motion to create a direction change' and convert them to the right combination of factors like 'check for other sources of motion first'
           - apply activation functions to node sets to identify patterns that are error types which shouldnt be passed on as valuable information to determine when to change direction
           - look for similarities (mapping to attribute alignments) in weight path patterns and other system filter objects that could be error types
+          - error type deactivation in a hybrid network of networks mapped to sub-problem type (solving a sub-conflict between similar alternatives with a standard categorization network), where combinations of objects like an info asymmetry + assumption dependence lead to error types, so activations can be applied to limit the passage of data after these combinations in the hybrid network
 
         - predict these error types
           - look for attribute alignments (direction changes produced by both monkey pushing leaf & wind but appearing to be similar enough to be difficult to differentiate given that the monkey may not be visible) and other system filters
