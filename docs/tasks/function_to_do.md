@@ -98,7 +98,7 @@
     - products: product query language ('product with feature x and without component y')
     - supplies:
       - adjacent supply cost estimation ('adjacent product built from these suppliers would cost x')
-      - estimate future demand & estimate cost of production methods (how many times will you need it? if above x, then its more cost effective to build it yourself, buy from these suppliers with price-lowering trends, buy this robot to make it regularly, or build a robot to do it)
+      - estimate future demand & estimate cost of production methods (how many times will you need it? if above x, then its more cost effective to build it yourself, buy from these suppliers with price-lowering trends, buy this robot to make it regularly, or build a robot to do it - plus the timed sequence of those purchases for most cost effectiveness)
     - code as solutions:
       - code search (code as product solutions, like code to print a product or code to predict a compound or adjust vitamin combination as needed)
       - feature-to-code translation ('need a product with existing feature x and add new feature y')
@@ -391,7 +391,11 @@
 
   - what attributes determine symmetries so you could differentiate between symmetries (distortion functions, origin)
 
-  - for nn: 
+  - for nn:
+
+    - what would the value be of keeping some parameters locally determined or ambiguous until training time?
+
+      - determining threshold values & aggregation/grouping methods when particular value sets or weight paths are determined to be causative - in order to provide a clear distinction
 
     - when you organize a network so that each node is only doing one task (executing a task function without any other analysis, like a dev creating a service rather than first or regularly analyzing if the service will actually help the business), its less flexible than a network of nodes that can do multiple tasks
 
