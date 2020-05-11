@@ -93,12 +93,26 @@
       - whats the possibility that a subset/state of physics rules gathers in increasingly isolated space-times, but outside of it, the rules are more flexible
       - whats the possibility that every science rule we take as certain is a false similarity or other false object?
 
+  - product platform:
+    - filters: predicting filters that will be used the most (features that differentiate products and alternate purchases the most)
+    - products: product query language ('product with feature x and without component y')
+    - supplies:
+      - adjacent supply cost estimation ('adjacent product built from these suppliers would cost x')
+      - estimate future demand & estimate cost of production methods (how many times will you need it? if above x, then its more cost effective to build it yourself, buy from these suppliers with price-lowering trends, buy this robot to make it regularly, or build a robot to do it)
+    - code as solutions:
+      - code search (code as product solutions, like code to print a product or code to predict a compound or adjust vitamin combination as needed)
+      - feature-to-code translation ('need a product with existing feature x and add new feature y')
+
   - example of a phase shift about a vertex:
 
     - in the problem of a rock on a hill, how do you determine at which point it will start rolling down?
+
       - vertex: minimum side length to maintain position
+
       - at increasingly large incremental additions to the side length variable, there will be a phase shift at the vertex (minimum side length to maintain position), after which it will start moving
+      
       - this is because either:
+
         - the attribute (change rate of side length facing ground) and the attribute (slope of the hill and emerging force) align (rate of side length decrease increases and slope increases) or intersect (change rate of side length matches slope of hill in a way that fulfills motion intent)
         
         - the 'side length facing the ground' and 'its adjacent side in the direction of downward motion' are similar enough to allow momentum to develop from repeated motion (if the adjacent next side is too different, the rock might stabilize again)
