@@ -391,11 +391,24 @@
 
   - what attributes determine symmetries so you could differentiate between symmetries (distortion functions, origin)
 
+  - code should only be used to when there's an unsolved problem in a domain that doesnt respond to algorithmically determined solutions (when optimization of implementation is uncertain), otherwise algorithms should be selecting code
+
+  - cause is determined by:
+    - uniqueness of influence (structures that evolve even in very different boundary shapes arent likely to be caused by the boundary shape)
+    - difference from randomness
+    - difference between actual/possible functions (if an agent doesnt solve a problem, but they could have efficiently solved it, is the problem caused by them or its origin)
+    - degree of clarity (is it certain or ambiguous cause)
+    - adjacence (is it directly/near to dependence or indirectly/near to independence)
+
   - for nn:
 
-    - what would the value be of keeping some parameters locally determined or ambiguous until training time?
+    - what would the value be of keeping some parameters locally determined or ambiguous until training time (parameter superposition)?
 
-      - determining threshold values & aggregation/grouping methods when particular value sets or weight paths are determined to be causative - in order to provide a clear distinction
+      - determining threshold values & aggregation/grouping methods when particular value sets or weight paths are determined to be causative:
+        - to provide a clear distinction in a categorization or feature selection problem
+        - to adjust for errors in the algorithm-problem type match if they become significant
+
+
 
     - when you organize a network so that each node is only doing one task (executing a task function without any other analysis, like a dev creating a service rather than first or regularly analyzing if the service will actually help the business), its less flexible than a network of nodes that can do multiple tasks
 
