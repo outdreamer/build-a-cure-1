@@ -400,19 +400,29 @@
     - degree of clarity (is it certain or ambiguous cause)
     - adjacence (is it directly/near to dependence or indirectly/near to independence)
 
+    - these forms manifest as the corresponding assumptions of independent random variables that are emergent outputs (having no agency to interfere with cause) and are resolvable into orthogonal dimensions without multicollinearity and reason to believe theyre causative in the pattern (direction of influence established, direct causation, similar object interaction layer, lower-layer symmetry established like DNA being established as a cause of species variation)
+
+    - info objects like games/trade-offs/forced decisions/equivalent alternates can be integrated with algorithms portraying the set of possible info objects and allowing traversal, to identify causal objects
+
+      - once you identify causal info objects of independent variables of a data set, that can be used to abstract the prediction function:
+        example: 'tradeoff between efficiency & accuracy creates species with vertices x, y, z'
+
   - for nn:
 
-    - what would the value be of keeping some parameters locally determined or ambiguous until training/run time (parameter or weight superposition)?
+    - what would the value be of keeping some parameters randomized, some constant, some locally determined or ambiguous until training/run time (parameter or weight superposition)?
 
       - determining threshold values & aggregation/grouping methods when particular value sets or weight paths are determined to be causative or require disambiguation:
+
         - to provide a clear distinction in a categorization or feature selection problem
         - to adjust for errors in the algorithm-problem type match or the algorithm-complexity match if they become significant
           - to find the optimal position of a particular function in the network by training
           - to allow for node clusters to solve sub-problems
           - to allow for iteration of a node & other causal shapes to be applied locally      
       
-    - certainty networks vs. individual predictions
-      - a network of predictions with certainty rates would be more flexible as an output than a clear answer, where the network could be applied to protect against unforeseen data changes
+    - certainty networks vs. isolated predictions
+      - a network of predictions with certainty rates would be more flexible as an output than a clear answer, where the network could be applied to protect against unforeseen cascading data changes
+        - if an edge case value is in a certainty network, the prediction functions will be able to handle cases where edge cases cascade better than storing isolated predictions
+
 
     - when you organize a network so that each node is only doing one task (executing a task function without any other analysis, like a dev creating a service rather than first or regularly analyzing if the service will actually help the business), its less flexible than a network of nodes that can do multiple tasks
 
