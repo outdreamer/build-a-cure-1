@@ -415,6 +415,18 @@
 
   - for nn:
 
+    - error types:
+
+      - example: 'training an ai model by remote controlling a drone to pick coconuts' will have some errors with outputs like 'changing direction to account for wind blowing target in other direction', when the inputs were a monkey pushing the leaf to the side which made the drone's model think that a gust of wind moved it and it should turn to maintain its trajectory
+
+      - how would you design an ai algorithm to:
+
+        - account for these error types
+          - identify error types in data like 'assign weight to leaf motion to create a direction change' and convert them to the right combination of factors like 'check for other sources of motion first'
+          
+        - predict these error types
+          - look for attribute alignments (direction changes produced by both monkey pushing leaf & wind but appearing to be similar enough to be difficult to differentiate given that the monkey may not be visible) and other system filters
+
     - what would the value be of keeping some parameters randomized, some constant, some locally determined or ambiguous until training/run time (parameter or weight superposition)?
 
       - determining threshold values & aggregation/grouping methods when particular value sets or weight paths are determined to be causative or require disambiguation:
@@ -428,9 +440,10 @@
           - to allow for iteration of a node & other causal shapes to be applied locally 
 
     - when a decision is increasingly clearly ambiguous/indeterminable during training, what is the sequence of strategies to follow before returning an 'unknown' prediction
-      - navigate to previous nodes when decision wasnt clearly ambiguous & distort data to check for alternate versions that would be clearly differentiable
+      - navigate to previous nodes when decision wasnt clearly ambiguous & distort data to check for adjacent alternate versions that would be clearly differentiable
       - check for randomness (found with corrupted data, false similarities, and other system objects)
-      - check for different causal route to features (species with similar features will have different routes to those features, and the route would leave traces, if not in that data point, in others)
+      - check for different causal route to features 
+        (species with similar features will have different routes to those features, and the route would leave traces, if not in that data point, then in others, so integrate data set statistics)
       
     - certainty networks vs. isolated predictions
 

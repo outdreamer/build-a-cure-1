@@ -696,6 +696,9 @@
     - matching these stressors with the right number & type & sequence of handlers is key for bio system health
     - some handlers are good universal handlers (exercise, brain usage, water) but sometimes external handlers are needed like medicines until we figure out the stressor combination to trigger adaptive mutations (horizontal evolution)
 
+    - support:
+    	https://medicalxpress.com/news/2020-05-scientists-viral-infections.html
+
     - stressor states
       	- good delegation & good matching between stressors/handlers can create an emotional state (happiness)
 
