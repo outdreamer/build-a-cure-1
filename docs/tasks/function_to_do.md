@@ -420,15 +420,24 @@
       - determining threshold values & aggregation/grouping methods when particular value sets or weight paths are determined to be causative or require disambiguation:
 
         - to provide a clear distinction in a categorization or feature selection problem
-        - to adjust for errors in the algorithm-problem type match or the algorithm-complexity match if they become significant
+
+        - to adjust for errors in the algorithm-problem type match or the algorithm-complexity match if they become significant, so changing data is handled better
+
           - to find the optimal position of a particular function in the network by training
-          - to allow for node clusters to solve sub-problems
-          - to allow for iteration of a node & other causal shapes to be applied locally      
+          - to allow for node clusters/paths to solve sub-problems
+          - to allow for iteration of a node & other causal shapes to be applied locally 
+
+    - when a decision is increasingly clearly ambiguous/indeterminable during training, what is the sequence of strategies to follow before returning an 'unknown' prediction
+      - navigate to previous nodes when decision wasnt clearly ambiguous & distort data to check for alternate versions that would be clearly differentiable
+      - check for randomness (found with corrupted data, false similarities, and other system objects)
+      - check for different causal route to features (species with similar features will have different routes to those features, and the route would leave traces, if not in that data point, in others)
       
     - certainty networks vs. isolated predictions
+
       - a network of predictions with certainty rates would be more flexible as an output than a clear answer, where the network could be applied to protect against unforeseen cascading data changes
         - if an edge case value is in a certainty network, the prediction functions will be able to handle cases where edge cases cascade better than storing isolated predictions
 
+        - this would handle a range of 'potential cause' rather than just 'known cause', for variables that are likely to be causative in high degrees (in conditions like if the system is similar to known systems or has a randomness injection point or other system features)
 
     - when you organize a network so that each node is only doing one task (executing a task function without any other analysis, like a dev creating a service rather than first or regularly analyzing if the service will actually help the business), its less flexible than a network of nodes that can do multiple tasks
 
