@@ -400,12 +400,18 @@
     - degree of clarity (is it certain or ambiguous cause)
     - adjacence (is it directly/near to dependence or indirectly/near to independence)
 
-    - these forms manifest as the corresponding assumptions of independent random variables that are emergent outputs (having no agency to interfere with cause) and are resolvable into orthogonal dimensions without multicollinearity and reason to believe theyre causative in the pattern (direction of influence established, direct causation, similar object interaction layer, lower-layer symmetry established like DNA being established as a cause of species variation)
+    - these forms manifest as the corresponding assumptions of independent random variables that are emergent outputs (having no agency to interfere with cause) and are resolvable into orthogonal dimensions and reason to believe theyre causative in the pattern (direction of influence established, direct causation, similar object interaction layer, lower-layer symmetry established like DNA being established as a cause of species variation)
 
     - info objects like games/trade-offs/forced decisions/equivalent alternates can be integrated with algorithms portraying the set of possible info objects and allowing traversal, to identify causal objects
 
-      - once you identify causal info objects of independent variables of a data set, that can be used to abstract the prediction function:
-        example: 'tradeoff between efficiency & accuracy creates species with vertices x, y, z'
+      - once you identify causal info objects of independent variables of a data set, that can be used to select an algorithm or abstract the prediction function
+        example: 'tradeoff between efficiency & accuracy creates types with vertices x, y, z which match algorithm or prediction function a'
+
+    - how often is cause determinable given the attribute sets necessary to determine it? 
+
+      - how often is a variable set determinable as uniquely causing a relationship, definitely different from random interactions, adjacent in causal distance, having no agency, and clear? 
+
+      - which systems/vertices generate determinable cause (difference ratios, change rates, alignments, interaction layers, pivot points, causal structures, problem types, trade-offs, symmetries)?
 
   - for nn:
 
