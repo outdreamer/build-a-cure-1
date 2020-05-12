@@ -413,7 +413,39 @@
 
       - which systems/vertices generate determinable cause (difference ratios, change rates, alignments, interaction layers, pivot points, causal structures, problem types, trade-offs, symmetries)?
 
+  - vertices: variables where once theyre assigned a value, the rest of the uncertainties are resolved or resolvable
+
   - for nn:
+
+    - add to explanation: 
+
+      - fully connected network passes weighted versions of different weight sets from all previous inputs 
+        - 3rd layer will have weighted sum of weighted sums of input features, so each weighted sum in layer 2 is contributing to a weighted sum with the other layer 2 nodes
+        - the fully connected network is like a reverse decision tree, where decisions represent sums rather than path selections & all lower inputs are passed up
+
+    - similarities & other system filter objects between weight paths can help predict errors in pooling layers later in the network
+
+    - what happens when one variable is at a different causal level than the others? 
+
+      - example: 
+
+        - proxy variable: the tail of a cat is more constant than that of a dog, so it can be used as a proxy for a categorization function of multiple variables
+
+        - higher cause variable: DNA vertices are a higher-cause variable than any particular feature set, because they generate identification features
+
+          - how do you keep your data at the same level of cause, so DNA data isnt mixed with image data for categorization? 
+          - physical conditions can also be higher cause and could interact with image data by default if the condition is visible 
+          - a physical condition could override genetic influences to determine differentiating features (if the dog was in fights, that will override their DNA to determine their feature shapes)
+          - its especially important to keep variables at similar causal levels because algorithms will aggregate them, and if you can skip analyzing a causal variable set and instead analyze the causal output variable of that variable set, that will reduce training time
+          - in this case there should be alternate paths in the network to handle edge cases, or you could restore the overridden data to its original beforehand (restore a torn ear to its original shape)
+          - this means different weight path patterns for false similarities, false differences (a torn ear isnt really a species-specific feature, unless cats are in far fewer fights)
+          - you can generate default weight paths to handle different cases like that by:
+            - ignoring features that are corrupted (distorted) or that override the real causal variables
+            - building in paths that lead to deactivated nodes or zero-weighted features in the case of multiple distortions applied to a feature that dont appear to be from the real causal variable level (output distortions like tearing, which arent from the DNA causal layer)
+            - allocating these weight paths that found distortions or different causal level variables to other causal structures
+              - looking for DNA causal variables in the ear distortion would mean looking for causal concepts like aggression & then looking for signs of that concept in the data, for features that would cause or indicate aggression, like bigger size or sharper teeth - then the output of this causal search, which is the on the target DNA causal level, could be integrated with the original data set & training could continue
+              - or it could be determined to be an output variable rather than a causal variable, and restored to its original value & integrated with the original data set to continue training (and all nodes from that point on could apply a weight transform for that feature if the distortion level is found in other weight paths - installing a memory of weight transforms)
+
 
     - error types:
 
