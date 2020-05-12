@@ -420,8 +420,14 @@
     - add to explanation: 
 
       - fully connected network passes weighted versions of different weight sets from all previous inputs 
+
         - 3rd layer will have weighted sum of weighted sums of input features, so each weighted sum in layer 2 is contributing to a weighted sum with the other layer 2 nodes
-        - the fully connected network is like a reverse decision tree, where decisions represent sums rather than path selections & all lower inputs are passed up
+        - the fully connected network is like a reverse decision tree, where decisions represent sums rather than path selections & all lower inputs are passed up to each node above it
+        - if A, B, C, and D are the second layer nodes representing a particular weight set of the original input features, the third layer nodes is composed of weighted sets of A, B, C, & D, and so on
+
+        - another way to visualize a particular node path is as the successive progression of that path toward a central origin (the target label) where each layer is the weighted summation of all nodes on that circular layer (to do: make a diagram)
+
+    - whats the value of identifying weight path patterns that can generate a clear answer vs. the patterns that can generate a clear 'not' answer or a lack of clarity between alternatives? should you train to identify an alternate type that can be used to determine the other, given that they are alternates in a set?
 
     - similarities & other system filter objects between weight paths can help predict errors in pooling layers later in the network
 
