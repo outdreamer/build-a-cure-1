@@ -54,8 +54,22 @@
 				- minimizing cost with distortions from a standard traversal, at traversal time - given knowledge of sequence like randomness, ranges, patterns, or subsets: 
 					'starting from a standard best traversal method, evaluating metrics indicating more optimal methods, and pivoting to those methods'
 
+				- find worst-case scenario for a particular algorithm and check if that scenario applies 
+
+					- example: a worst-case scenario for a greedy algorithm is one where the function is a wave with many peaks and you start at a minimum point in a cluster of the lowest peaks
+
 			- determing whether existing algorithms optimize search for a particular sequence or if a modification of an algorithm would improve the search time for a sequence or sequence type may also be trivial, such as testing for randomness in a sequence
 
+			- optimizing algorithms for known/computable error types
+
+				- example: for a greedy algorithm, it would ideally check values after an alternate is determined to be the lower value, to prevent a false branch choice
+					- if exponential growth is common, it would check values n-nodes away to account for slow growth pattern
+					- if many peaks are common, it would check values within common width ranges away to account for that pattern
+
+				- how to compute this error type for the greedy algorithm:
+					- assumption as a constant priority: adjacent values are prioritized as indicators of global values
+					- assumption implication: the values beyond an adjacent value continue the trend (of increasing or decreasing)
+					- unenforced rule: global values arent required to match adjacent values or the pattern implied by adjacent values (a lowering sequence of values)
 
 		- storing low-cost computations with a particular algorithm & seeing if a sequence or problem can be framed as a direct combination/transform of those low-cost computations
 
