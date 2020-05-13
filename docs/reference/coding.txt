@@ -4,7 +4,7 @@
 
 		- mixed data structures: a mix of constants, generative functions, and shapes to store data in a way that allocates attributes as needed (flexibility where it's changed, quick retrieval where it's needed)
 		
-		- computing metadata like the ordered form of the sequence, the optimal split points for approved intents, or the sequence statistics at insertion time (local/global average, probability distribution)
+		- computing metadata like the ordered form of the sequence, storing successive value differences between adjacent pairs as a quicker way to find maxima/minima in a data set requiring comparisons, the optimal split points for approved intents, or the sequence statistics at insertion time (local/global average, probability distribution)
 		
 		- storing common sequences & only storing the deviations from a common sequence with the common sequence id, or the composition of sequences required to generate it, so the position of a value can be computed from composing the metadata of the other sequences, or executing the generation process & computing it when needed
 
@@ -17,6 +17,8 @@
 		- organizing the network of values given their attributes as paths, so all the values with a 'repeated' attribute would be in a similar network location
 			- storing multiple attribute networks given relevant attributes (type attribute is used when retrieving data, unique/repeated attribute is used when finding one value existence/position or sorting)
 		
+			- similarly, storing frequently requested sets of data in a network path (first requested data stored adjacent to origin, second requested data usually requested after that first request stored in the next node on the next layer)
+
 		- custom data structure optimized for a data set
 		
 		- storing traversal patterns and skipping steps needed based on request success (if the first operation output is the end of the request sequence, its considered successful, otherwise extra operations would be stored as a traversal pattern with the final operation output considered the successful value given the first request)
@@ -94,6 +96,8 @@
 				- if users' goal is to retrieve data to filter, the application should be training a prediction model (on the best filters to use, common queries & query optimization recommendations, on the data patterns & change patterns) they can use to opt-out of some queries, and should be regularly checking for alternate data sources in permitted data sets
 
 			- converting attributes to functions & generating attributes from functions or vice versa so objects are just a set of functions or attributes
+
+			- when is it best to use nodes/objects, connections/functions, object attribute sets, metadata, queries, structures, processes, & values - and combinations or components of those - as a base object?
 			
 		- queries
 			- application designed as a set of code queries
