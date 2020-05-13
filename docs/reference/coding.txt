@@ -20,11 +20,15 @@
 			- similarly, storing frequently requested sets of data in a network path (first requested data stored adjacent to origin, second requested data usually requested after that first request stored in the next node on the next layer)
 
 		- custom data structure optimized for a data set
+
+		- storing probability distributions of averages, sets, inflection points, functions, & transformation functions & using those to select storage methods, as an alternative to storing data with a constant method
 		
 		- storing traversal patterns and skipping steps needed based on request success (if the first operation output is the end of the request sequence, its considered successful, otherwise extra operations would be stored as a traversal pattern with the final operation output considered the successful value given the first request)
 
 		- embedding metadata in data structure (storing the count of maximums as the number of tree layers, storing each maximum at first position checked in breadth-first search if maximum is a target metric)
 
+		- identifying sub-optimal paths for a sequence and adding attributes to replace traversals/calculations (sub-optimal step sequences given a set of values, where losses compound or gains arent guaranteed)
+			- example: in a sequence with subsets of length 5, traversing more than 3 nodes from a direction without finding a local maximum is a sub-optimal step sequence - so subsets in the sequence matching this sub-optimal path can be marked with a recommended traversal method ('skip') or supported intents ('looking for a minimum') at the start/finish, and traversal can check the positions with these attributes first
 
 - programming
 
