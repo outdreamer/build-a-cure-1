@@ -26,6 +26,14 @@
 		- embedding metadata in data structure (storing the count of maximums as the number of tree layers, storing each maximum at first position checked in breadth-first search if maximum is a target metric)
 
 
+- programming
+
+	- stochastic programming: improvise maximization of expected value, based on available data & probability distributions
+
+	- dynamic programming: breaking problem into sub problems 
+		example: dijkstra algorthm for shortest path involves the assumption that knowing distance from origin to interim node is a pre-condition for knowing distance from origin to target node
+
+
 - algorithms
 
 	- traversals
@@ -56,9 +64,11 @@
 				- minimizing cost with distortions from a standard traversal, at traversal time - given knowledge of sequence like randomness, ranges, patterns, or subsets: 
 					'starting from a standard best traversal method, evaluating metrics indicating more optimal methods, and pivoting to those methods'
 
-				- find worst-case scenario for a particular algorithm and check if that scenario applies 
+				- find worst-case scenario for a particular algorithm and check if that scenario or adjacent states apply
 
 					- example: a worst-case scenario for a greedy algorithm is one where the function is a wave with many peaks and you start at a minimum point in a cluster of the lowest peaks
+
+				- alternatively, find rules that reduce the possible scenarios the most and apply those first (its faster to rule out an ordered sequence than it is to check for randomness)
 
 			- determing whether existing algorithms optimize search for a particular sequence or if a modification of an algorithm would improve the search time for a sequence or sequence type may also be trivial, such as testing for randomness in a sequence
 
