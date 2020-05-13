@@ -415,6 +415,13 @@
 
   - vertices: variables where once theyre assigned a value, the rest of the uncertainties are resolved or resolvable
 
+  - data structures:
+  
+    - what kind of data structure would look like the original sequence from one angle, but look like its metadata (like the ordered sequence, or average value statistics) from another angle?
+      - is the extra storage of a tree, network, or other structure with more than one dimension worth the computation gains
+    - is the best storage format of a list where position would be checked later in code a map retaining order, with keys as ordered values & values as positions in original sequence (in case original position is significant and youre not just trying to find if the value is in the sequence)
+
+
   - for nn:
 
     - add to explanation: 
