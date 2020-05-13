@@ -1,0 +1,171 @@
+- data structures
+
+	- ideas:
+
+		- mixed data structures: a mix of constants, generative functions, and shapes to store data in a way that allocates attributes as needed (flexibility where it's changed, quick retrieval where it's needed)
+		
+		- computing metadata like the ordered form of the sequence, the optimal split points for approved intents, or the sequence statistics at insertion time (local/global average, probability distribution)
+		
+		- storing common sequences & only storing the deviations from a common sequence with the common sequence id, or the composition of sequences required to generate it, so the position of a value can be computed from composing the metadata of the other sequences, or executing the generation process & computing it when needed
+
+			- example: finding the maximum value can be as simple as storing the maximum or average value of a subset, and then storing other values in that subset as versions of it (m, m + 1, m - 3) where highest distortion is also stored as subset metadata, so finding the highest global value is a subset query of metadata like the value of m in each subset and the value of the greatest distortion - for applications where more than just the maximum are needed, otherwise the maximum can be stored at insertion time
+
+		- storing frequently requested values at vertices that are stored in metadata (first/last or first value in subsets created with search/sort/split operations)
+		
+		- storing the sequence in a way that maximizes the chance of finding unique values (creating subsets where variation in subset values is maximized, subsets of equal values are clustered & attributes are attached, or a repeated value has a count attribute)
+		
+		- organizing the network of values given their attributes as paths, so all the values with a 'repeated' attribute would be in a similar network location
+			- storing multiple attribute networks given relevant attributes (type attribute is used when retrieving data, unique/repeated attribute is used when finding one value existence/position or sorting)
+		
+		- custom data structure optimized for a data set
+		
+		- storing traversal patterns and skipping steps needed based on request success (if the first operation output is the end of the request sequence, its considered successful, otherwise extra operations would be stored as a traversal pattern with the final operation output considered the successful value given the first request)
+
+		- embedding metadata in data structure (storing the count of maximums as the number of tree layers, storing each maximum at first position checked in breadth-first search if maximum is a target metric)
+
+
+- algorithms
+
+	- traversals
+
+	- divide & conquer
+
+	- breadth-first search (layer search)
+		- queue (fifo)
+		- checks whether a vertex has been discovered before enqueueing the vertex
+
+	- depth-first search (path search)
+		- stack (lifo)
+		- delays checking whether a vertex has been discovered until the vertex is popped from the stack
+	
+	- operation: 
+		- runtimes
+		- memory use
+		- limitations, worst/best case scenarios, & trade-offs
+		- example usage strategies 
+		- advantages vs. other methods
+
+	- ideas:
+
+		- algorithm for testing which algorithm is the best traversal method
+
+			- each algorithm is best in a certain variety of cases, which may have overlaps - determining if the sequence matches a standard case of each type or is within the range optimized by those cases is a trivial computation that can be done before traversal of the entire sequence
+
+				- minimizing cost with distortions from a standard traversal, at traversal time - given knowledge of sequence like randomness, ranges, patterns, or subsets: 
+					'starting from a standard best traversal method, evaluating metrics indicating more optimal methods, and pivoting to those methods'
+
+			- determing whether existing algorithms optimize search for a particular sequence or if a modification of an algorithm would improve the search time for a sequence or sequence type may also be trivial, such as testing for randomness in a sequence
+
+
+		- storing low-cost computations with a particular algorithm & seeing if a sequence or problem can be framed as a direct combination/transform of those low-cost computations
+
+			- example: 
+
+				- for bfs, storing the concept of node layer & checking the value of adjacent layer nodes is low-cost, so using that is making a bet that the value is within n layers of your origin below the cost threshold
+
+			- storing different concepts (position subsets, value pairs, subset split values, value layer, completion rate, sequence metadata) as the default/base object rather than the explicit objects stored (position, value, count, sequence) may be more efficient for certain intents & requests
+
+
+- oop: 
+	
+	- design patterns
+
+	- best practices
+
+	- ideas:
+
+		- mixed
+
+			- events/use cases/workflows/intents as objects or code update processes ('identify a new important object to users, like a search filter type') with a goal of reducing user needs as they use the application more
+				- if users' goal is to retrieve data to filter, the application should be training a prediction model (on the best filters to use, common queries & query optimization recommendations, on the data patterns & change patterns) they can use to opt-out of some queries, and should be regularly checking for alternate data sources in permitted data sets
+
+			- converting attributes to functions & generating attributes from functions or vice versa so objects are just a set of functions or attributes
+			
+		- queries
+			- application designed as a set of code queries
+
+		- filters
+			- application designed as a set of filters
+
+		- metadata
+
+			- intent: matching intents of functions with user requests in a system organized by intent, so that intents leave info traces in the form of metadata or usage that can be checked & used to grant permission
+				- dev intents as composable functions (like 'define an event-handling function') with a goal of reducing code written by pre-computing all objects (task, task list) & functions needed to code various business applications ('optimize task sequence', 'train ai model to predict time needed for a task') for a particular application intent ('build a task-scheduler app with access to calendar')
+
+				- granular functions like split or non-standard API calls shouldnt be manually-coded or standard, but automatically selected/generated (given high-level application intents & application usage) - so no code is written that isnt used for an approved intent
+
+
+- database: database concepts, tradeoffs between data storage methods, dynamoDB
+
+	- acid
+
+	- transactions
+
+	- types:
+		- relational
+		- key-value
+		- graph
+		- orm
+
+	- ideas:
+
+		- process-based application structure, rather than event/code/data-based application, so that processes' context (input-output pairs) can be re-used & passed into or used to build functions (given function metadata stored) to reduce process repetition
+			- if an initial process just queried a table and the output of the query is still cached & includes the very reduced set of fields from a second query, use that process i/o to build a function at runtime (query cached version of the table subset rather than query the table)
+
+		- multi-variable key-value store indexes
+			- store commonly requested variables as keys with at least one identifying variable, sorted by most requested first
+
+		- deriving core functions/symmetries/variables of data & storing combination of those or combination of averages/other metadata rather than the data itself
+			- example: storing 'cluster 1 origin with distortion function 3' rather than a record for records that are not commonly requested
+
+		- graph database as sequence storage structure (with values on a map and the sequence represented as a query)
+
+		- alternate structures for databases like trees/filters/functions
+
+		- databases with intent (store more sensitive data in separate tables/servers that require more access credentials)
+
+		- storing minimal data
+			- if there is a center around which data rotates or a sequence/function fulfilled by data, store all records except the missing one like one-hot encoding, which can have a placeholder to indicate it should be computed as well
+			- storing proxy variables determinable from other variables (not storing codes that are mappable like city & state or determinable like the output of a function & the function)
+
+
+- resource optimization
+
+	- service-oriented architectures
+	- map-reduce
+	- distributed caching
+	- load balancing
+
+	- ideas:
+
+		- tokenization
+			- creating a map of identifiers and common value sets to reduce sending/querying time
+
+		- server function optimization
+			- optimizing servers for certain functions
+			- optimizing server locations for common function paths
+
+		- integrating info derivation methods with info storage methods through data structures & algorithms
+			- assessing whether something needs to be re-computed or retrieved at request time
+			- predicting requests by request patterns and known user need/intent structures like trees or paths
+
+- os 
+	- memory management
+	- processes
+	- threads
+	- synchronization
+	- paging
+	- multithreading
+
+- web
+	- DNS lookups
+	- TCP/IP
+	- socket connections
+
+- ml
+	- data-driven modeling
+	- train/test protocols
+	- error analysis
+	- statistical significance
+		- problem-solution: data sources, annotation, modeling approaches, & pitfalls
+	- basic AI/ML methods & algorithms

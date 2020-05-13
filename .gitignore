@@ -1,3 +1,6 @@
+find_existing_solutions/system_analysis/code_function_names.txt
+find_existing_solutions/test/
+docs/archive_notes/
 find_existing_solutions/article.svg
 find_existing_solutions/code_function_names.txt
 find_existing_solutions/__pycache__/
@@ -14,7 +17,6 @@ build_new_solutions/graphs/
 build_new_solutions/__pycache__/
 build_new_solutions/graphs/*.png
 build_new_solutions/*.html
-*.txt
 *.dylib
 *.sqlite
 venv/
