@@ -422,6 +422,17 @@
       - is the extra storage of a tree, network, or other structure with more than one dimension worth the computation gains
     - is the best storage format of a list where position would be checked later in code a map retaining order, with keys as ordered values & values as positions in original sequence (in case original position is significant and youre not just trying to find if the value is in the sequence)
 
+  - question-answering algorithm
+  
+    - example: 'what is the definition of this word', 'what is the best route to destination', 'why does evolution occur', 'how to implement an intent with this tool'
+      - question is the set of nodes that should be connected
+      - answer is the path between nodes (set of steps to take, ordered combination of words & sub-definitions to form a definition, etc)
+
+      - various forms that the answer could take:
+        - moving in the question intent direction 
+        - approaching an interim answer to the final destination node
+        - answering on another node layer (cause) or answering the reason for the question
+        - taking a sub-optimal route for one metric (accuracy) to fulfill another metric (understandability)
 
   - for nn:
 

@@ -1,4 +1,412 @@
+Python rules
+
+	- methods like insert, remove or sort that only modify the list have no return value printed – they return the default None. This is a design principle for all mutable data structures in Python
+	
+	- procedure: function with no return value (in python returns None even without a return value)
+
+	- function:
+
+		- docstring: first, string literal statement of the function body
+		- execution: introduces a new symbol table used for the local variables of the function
+			- when a function calls another function, a new local symbol table is created for that call
+		- variable assignments in a function store the value in the local symbol table
+		- variable references look in the local table, then local tables of enclosing functions, then the global symbol table, then the built-in names table
+
+		- global: 
+			- global & enclosing function variables cannot be directly assigned a value within a function 
+			- unless a global var is named in a global statement, or an enclosing function var named in a nonlocal statement
+
+		- parameters are passed using call by value (where the value is always an object reference, not the value of the object)
+
+		- optional args have default values to the right of the required args
+		- non-keyword arguments cant be passed after a keyword/named argument
+		- arg order doesnt matter even with required args
+		- defaults are executed once in consecutive calls, unless assigned a value of None as default
+		- *args is a tuple of the positional optional arguments after the required argument or can store any arguments after the preceding formal parameters
+		- **keywords generates a dict of the keyword/named arguments, in the order they were passed
+		- *args must be before **keywords
+		- named args cant be keys in **keywords dict without positional delimiter /
+		- def f(positional, /, positional_or_keyword, *, keyword): # separates positional args, positional & keyword args, and keyword args for clarity
+
+		- pass sequence of positional arguments to a function: range(*args)
+		- pass dict of keyword arguments to a function: print_dict(**d)
+
+		- function annotations about types:
+			def f(var1: str, var2: str = 'default') -> str:
+
+	- operators
+
+		- integer numbers (e.g. 2, 4, 20) have type int, the ones with a fractional part (e.g. 5.0, 1.6) have type float
+		- operators with mixed type operands convert the integer operand to floating point
+		- division always returns a floating point number: 17 / 3 = 5.6667
+			- floor division to get an integer result: 17 // 3 = 5
+			- calculate the remainder: 17 % 3 = 2
+		- exponents: x ** 2 is x squared
+
+		- while and if statements can contain any operators, not just comparisons
+
+		- numerical operators: <, >, <=, >=
+
+			- comparison operators: is (check if same object), in (check if value in sequence)
+
+				- boolean operators: and, or, not 
+					- 'not' has the highest priority and 'or' the lowest: A and not B or C == (A and (not B)) or C
+
+				- 'and' and 'or' are short-circuit operators, whose evaluation stops as soon as the outcome is determined
+					- if A and C are true but B is false, A and B and C does not evaluate the expression C
+
+		- assignment inside expressions must be done with the walrus operator :=
+
+		- sequences are compared based on left to right ordering, one pair at a time:
+			- [1, 3] is less than [1, 4]
+			- [1, 3] is less than [1, 3, -1] because of the length
+
+	- control flow
+
+		- break: breaks out of the innermost enclosing for or while loop
+
+			- loop statements may have an else clause executed when the loop terminates through exhaustion of the iterable (with for) or when the condition becomes false (with while), but not when the loop is terminated by a break statement
+
+			- a try statement’s else clause runs when no exception occurs, and a loop’s else clause runs when no break occurs
+
+		- continue: continues with the next iteration of the loop
+
+		- pass: does nothing; can be used when a statement is required syntactically but the program requires no action
+
+	- functions
+
+		- lambda: creates small anonymous functions, where params are comma-separated and logic is after the colon, used to return functions or pass in functions or use functions in expressions
+			lambda params: logic
+			- pairs.sort(key=lambda pair: pair[1])
+
+		- list comprehensions
+			list(map(lambda x: x+1, range(10))) == [x+1 for x in range(10)]
+
+		- zip
+			- zip() in conjunction with the * operator can be used to unzip a list
+
+			# transpose a matrix
+			matrix = [[1, 2, 3], [5, 6, 7]]
+			list(zip(*matrix)) = [(1,5), (2,6), (3,7)]
+
+			questions = ['name', 'quest', 'favorite color']
+			answers = ['lancelot', 'the holy grail', 'blue']
+			for q, a in zip(questions, answers):
+				print('What is your {0}?  It is {1}.'.format(q, a))
+
+		- del
+			del a[0] # remove first item
+			del a[2:4] # remove slice
+			del a[:] # empty list a = []
+			del a # remove variable
+
+		- range(start, end, increment)
+
+		- run module as a script: if __name__ == "__main__":
+
+		- time a function execution:
+			from timeit import Timer
+			Timer('expr1', 'expr2').timeit()
+
+		- test a function: include sample call & output in interactive mode in docstring
+			"""
+			>>> print(average([20, 30, 70]))
+		    40.0
+		    """
+
+		  test embedded tests in docstrings with doctest.testmod
+		  	import doctest
+			doctest.testmod()
+
+		class TestStatisticalFunctions(unittest.TestCase):
+
+		    def test_average(self):
+				self.assertEqual(expr1, output)
+		        with self.assertRaises(ZeroDivisionError):
+		            average([])
+				with self.assertRaises(TypeError):
+		            average(20, 30, 70) # should be list passed in
+
+		  import unittest
+		  unittest.main()
+
+	- repr(object): generates str representation of an object or one that would generate the same object if passed to eval()
+
+	- random.randrange(start, stop, step), random.random() for random float between 0 inclusive and 1, choice(sequence) for random item in sequence
+
+	- round(float, number_digits)
+
+	- call function by name:
+
+		import module_name
+		result = getattr(module_name, 'function_name')()
+
+
+	- exceptions
+
+		try:
+			x = int(input("enter a number: "))
+			f = open(filename, 'r')
+			# with open("myfile.txt") as f: # has pre-defined clean up action that automatically closes file using with keyword
+			break
+		except ValueError:
+			print("not a number")
+		except OSError as err:
+			print("OS error: {0}".format(err))
+			print(err.args) # same as print(err)
+		except (RuntimeError, TypeError, NameError):
+			raise CustomGroupException
+			# raise throws a specific exception
+		else:
+			print('if no exception raised, execute this')
+			print('successful computation result', result)
+			f.close()
+		finally:
+			print('necessary code to clean up resources, regardless of if an exception is thrown')
+			# finally executed right before try (break, continue, or return)
+			# (finally return) returned instead of (try return)
+			# re-raised after this:
+			# 	unhandled try exceptions
+			# 	except/else exceptions
+
+	- threads
+		- threading allow simultaneous execution of tasks that are not sequentially dependent, like running I/O in parallel with computations in another thread
+		- synchronization primitives (locks, events, condition variables, and semaphores) help coordinate sharing data/resources across threads
+		- best practices for task coordination involve concentrating access to a resource in one thread & use queue module to feed that thread with requests from other threads
+		- threads are cheaper than processes
+		- kernel threads are part of the os, as opposed to user space threads
+		- locks let you synchronize threads, specifying whether they should be blocking or not
+
+	- memory management
+		- python does automatic memory management:
+			- reference counting for most objects
+			- garbage collection to eliminate cycles
+		- memory is freed shortly after the last reference to it has been eliminated
+		- to track objects only during usage, use weakref to avoid creating a reference, so its automatically removed from the weakref table & calls the weakref callback (ie, for caching)
+
+	- accessing web resources
+
+		from urllib.request import urlopen
+		with urlopen(url) as response:
+			for line in response:
+
+	- check variable
+
+		- var1 is var2:
+			if var1 points to the same object as var2
+
+		- exists: 
+			if 'var1' in locals() or 'var1' in globals():
+
+		- is none:
+			if var1 is None:
+
+		- is true: 
+			if var1 is True:
+
+		- is not false or 0: 
+			if var1:
+
+		- object has an attribute: 
+			if hasattr(obj, 'attr1'):
+			'attr1' in dir(obj)	
+
+		- if dict has key: 
+			if 'key1' in dict1:
+
+		- isalnum(), isdigit(), isnumeric(), isdecimal()
+
+		- wrap a var expr in a try throws NameError if var does not exist:
+			try:
+			    myVar
+			except NameError:
+			    myVar = None
+
+	- index gives first occurrence position by default
+
+	- list.insert(index, obj) 
+
+	- list.remove(obj)
+
+	- cmp(list1, list2) to compare two lists
+
 - data structures
+
+	- primitives
+		- float
+		- int
+		- str
+			- raw string (no special chars like \n): r'C:\some\name'
+			- slice: 
+				- 'test'[0:2] = 'te' # the end char at position 2 is excluded
+				- s[:i] + s[i:] == s
+				- an omitted start index defaults to zero, an omitted end index defaults to the size of the string
+				- negative indexes start at -1
+
+			- format:
+				
+				- format(input, format)
+					format(math.pi, '.2f') = '3.14'
+
+				- "%(var1)s" % dict
+					'%(var1)s' % {'var1': "Python"} # s specifies string type
+
+				- str.format(expr_or_vars)
+					"{int1}".format(expression_for_n)
+					"{0}".format(1+2)
+					'{0} = {1}'.format(var1, var2)
+
+				- f""
+					f"{var1!expression_key}" == f"{expression(var1)}"
+					f"{var1!r}." == f"{repr(var1)}."
+
+				- f"{expr}"
+					f"{var1:{type_arg1}.{type_arg2}}" 
+					var1 = decimal.Decimal("12.34567")
+					f" {var1:{width}.{precision}}" # nested field example
+
+				- f"{var1:format}"
+					var1 = 1024
+					f"{var1:#0x}" = '0x400' # uses format specifier
+		- bool
+
+	- sequence data type: list, tuple, range, str
+
+	- tuple (immutable) = ()
+
+		- tuple1 = 1,
+
+		- can contain mutable objects like lists
+
+		- accessed with sequence unpacking rather than iterating
+			t = 1, 2, 3
+			x, y, z = t # fetches 1, 2, and 3 values from t in order
+
+			- any sequence supports this but item count must be equivalent
+
+		- support nesting
+			t = 1, 2, 'a'
+			u = t, (1, 2, 3, 4, 5) = ((1, 2, 'a!'), (1, 2, 3, 4, 5))
+
+	- set (unique) = set()
+		- set1 = {1}
+		- unordered collection with no duplicates
+			a - b                              # letters in a but not in b
+			a | b                              # letters in a or b or both
+			a & b                              # letters in both a and b
+			a ^ b                              # letters in a or b but not both
+
+		- supports set comprehensions
+
+		- ordered set
+		- frozen set
+
+	- array = arr.array()
+		- requires same data type, for memory improvements
+		- array of numbers stored as two byte unsigned binary numbers (typecode "H") vs. the usual 16 bytes per entry for lists of ints:
+			a = array('H', [4000, 10, 700, 22222])
+
+	- list = []
+		- lists are order-retaining sequences
+		- represented internally as an array
+		- the largest costs come from growing beyond the current allocation size (because everything must move), or from inserting/deleting near the beginning (because everything after that must move)
+		- good for stacks using append/pop to modify the last item, but not for queues bc inserting/appending/removing at the first position requires a shift of all the others
+		- deque is good for queues where the both ends will be changed or when first item needs to be changed (from collections import deque, queue = deque(some_list), queue.append, queue.popleft)
+		- concatenation: result.append(a) = result = result + [a]
+		- use for random access & stacks
+		- optimized for fast fixed-length operations
+		- incur O(n) memory movement costs for pop(0) & insert(0, v) operations which change size & position
+
+	- collections.deque() list-like object:
+		- deques support thread-safe, memory efficient appends & pops from either side of the deque with about the same O(1) performance in either direction
+		- represented internally as a doubly linked list
+		- faster appends & pops from left end than lists (O(1) for deques, O(n) for lists), slower lookups in the middle (O(n) for deques, O(k) for lists)
+		- use for queues & breadth first tree searches
+		- indexed access is O(1) at both ends but slows to O(n) in the middle
+
+			listvar = deque([starting_node])
+
+			def breadth_first_search(sequence):
+			    node = sequence.popleft()
+			    for m in node:
+			    	if m == target_val:
+			        	return m
+			    listvar.append(node)
+
+	- heap:
+		- priority queue
+		- heap is a specialized tree-based data structure which is essentially an almost complete[1] tree that satisfies the heap property
+			- in a max heap, for any given node C, if P is a parent node of C, then the key (the value) of P is greater than or equal to the key of C
+			- in a min heap, the key of P is less than or equal to the key of C
+
+		- heapq module provides functions for implementing heaps based on regular lists. The lowest valued entry is always kept at position zero for frequent access of smallest value
+
+	- bisect has tools for manipulating sorted lists, like insertions that maintain sort
+
+	- complexity
+
+		- list:
+			- O(1)
+				get/set/append/pop last/len
+			- O(k)
+				get slice/pop intermediate/extend 
+			- O(n)
+				insert/delete/iterate/delete slice/in/min/max
+			- O(k + n)
+				set slice
+			- O(n log n)
+				sort
+			- O(nk)
+				multiply
+
+		- deque:
+			- O(1)
+				- append, appendleft, pop, popleft
+			- O(k)
+				- extend, extendleft, rotate
+			- O(n)
+				- remove, copy
+
+		- dict:
+			- O(1)
+				- get, set, delte
+			- O(n)
+				- iterate, copy
+
+		- set:
+			- O(1)
+				- in
+			- O(added len of both sets)
+				- union
+			- O(lower len of sets)
+				- intersection
+
+		- visual:
+			- strange similarities/differences should be grouped together in a table where possible
+			- an expectation table would show only surprising similarities/differences in performance for structures expected to be similar/different given position
+
+	- dict = {}
+		- dict class can now remember insertion order
+		- keys can be any immutable type (strings, numbers, or tuples with no mutable objects)
+		- list(d) returns a list of keys used, in insertion order
+		- dict([('k1', 1), ('k2', 2), ('k3', 3)]) = dict(k1=1, k2=2, k3=3)
+		- supports dict comprehensions
+
+	- linked list
+	
+	- hash map
+
+	- stack (LIFO)
+		- list type makes a decent stack data structure as it supports push & pop operations in amortized O(1) time, and random access is O(1)
+			- given that theyre based on arrays, they occasionally need to resize the storage space with append/insert/deletes
+		- linked list has more stable O(1) inserts/deletes
+
+	- queue (FIFO)
+		- collections.deque offers optimized end insert/append/delete
+
+	- non linear:
+		- tree
+		- graph
 
 	- ideas:
 
@@ -30,12 +438,15 @@
 		- identifying sub-optimal paths for a sequence and adding attributes to replace traversals/calculations (sub-optimal step sequences given a set of values, where losses compound or gains arent guaranteed)
 			- example: in a sequence with subsets of length 5, traversing more than 3 nodes from a direction without finding a local maximum is a sub-optimal step sequence - so subsets in the sequence matching this sub-optimal path can be marked with a recommended traversal method ('skip') or supported intents ('looking for a minimum') at the start/finish, and traversal can check the positions with these attributes first
 
+
 - programming
 
-	- stochastic programming: improvise maximization of expected value, based on available data & probability distributions
+	- stochastic programming: improvise a policy to maximize expected value, based on available data & probability distributions
 
-	- dynamic programming: breaking problem into sub problems 
+	- dynamic programming: breaking a problem solved over multiple periods into sub problems, which are solvable given state & optimization function
 		example: dijkstra algorthm for shortest path involves the assumption that knowing distance from origin to interim node is a pre-condition for knowing distance from origin to target node
+
+	- stochastic dynamic programming: compute a policy to maximize expected value, assuming randomness
 
 
 - algorithms
@@ -47,6 +458,7 @@
 	- breadth-first search (layer search)
 		- queue (fifo)
 		- checks whether a vertex has been discovered before enqueueing the vertex
+		- good for shortest path analysis & analyzing node relationships
 
 	- depth-first search (path search)
 		- stack (lifo)
@@ -131,7 +543,14 @@
 
 	- acid
 
-	- transactions
+		- atomicity: each tx fails or succeeds completely, vs. some steps in the tx succeeding, even with loss of power, process interruption, etc
+		- consistency: each tx is a link between valid states
+		- isolation: concurrent tx have an equal impact as sequential tx
+		- durability: completed tx are in non-volatile memory (retained if system crashes)
+
+	- transactions:
+		- support start, lock object, execution, atomic commit or roll back of operation(s) in the transaction object
+		- other transaction types or applications: distributed transactions across multiple network nodes, multi-layer/nested transactions, object transactions, file system transactions
 
 	- types:
 		- relational
@@ -196,8 +615,49 @@
 
 - ml
 	- data-driven modeling
+
 	- train/test protocols
+		- add missing data to training set
+		- train & test sets should have no overlap
+		- 80/20 is a normal split
+		- validation set is from training data
+		- add cross-validation to split the data set in multiple ways 
+		
 	- error analysis
+
 	- statistical significance
 		- problem-solution: data sources, annotation, modeling approaches, & pitfalls
+
+		- reduce overfitting
+
+			- feature selection
+				- pca: reduce variables to linear components so linear combinations can be used to represent variable sets
+				- regularization + ANOVA
+				- random forest (nodes as feature conditions so similar outputs are in the same set, where feature importance is based on tree entropy reduction)
+
+		- ROC curve
+			- plots how a binary classifier's ability changes based on its threshold value
+			- plots the true positive rate (true's predicted correctly) against the false positive rate at various thresholds
+
+		- correlation matrix to isolate variables with low correlation for independence
+
+		- confusion matrix to display precision & recall of various values, comparing prediction & true value counts
+
+		- accuracy (total correct prediction ratio)
+		- AUC (ability to distinguish +/- observations)
+		- precision (confidence in predicting a value): relevant/retrieved
+		- recall (values predicted correctly): retrieved/total relevant
+		- F1-score (measures test accuracy) = combine precision & recall with a harmonic mean (rate average) = 2 * (precision * recall) / (precision + recall)
+
+		- lime explainer to show factors for a given prediction
+
 	- basic AI/ML methods & algorithms
+		- dense network
+		- convulational network
+		- reinforcement learning
+
+		- random forest
+			- ensemble learning method to weight decision tree output
+
+		- xgboost
+			- similar to a Random Forest with the difference that every tree is fitted on the error of the previous one
