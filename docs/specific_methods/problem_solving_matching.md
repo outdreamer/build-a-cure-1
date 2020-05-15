@@ -4,21 +4,98 @@
 ## Index of solution methods
 
 
-### Apply problem & solution model
+### Apply problem & solution definitions
 
     I. Filter problem definition until it matches solution structure (using definition & standardization, applying increasing limits/filters/transforms until problem & solution match)
     II. Solve problem with structure fitting (adapt probable solution structures to match problem definition)
     III. Transforming problem into query of solved problem (using most adjacent solution formats)
     IV. Solve problem with solution function generation & selection (with intent-matching)
 
-### Apply Interface Network
+### Apply interface network
 
     V. Solve problem with conceptual query (iterate through conceptual paths & match with structural path)
     VI. Derive conceptual query & match with structural path
 
-### Intent Mapping
+### Intent matching
     
     VII. Vectorize problem/solution space & match intents
+
+### Derive
+
+    VIII. Mapping variance objects in problem space systems as starting solution space
+
+    IX. System snapshot (interface/symmetry/vertex) derivation
+
+    X. System derivation
+
+
+## Summary
+
+
+### Apply problem & solution definitions
+
+    I. Filter problem definition until it matches solution structure (using definition & standardization, applying increasing limits/filters/transforms until problem & solution match)
+
+        1. define the problem & type
+        2. standardize the problem definition
+        3. define solution requirements (like state, intent, metric, fits a definition, etc)
+        4. reduce the problem into a solution boundary (if the problem is an isolated resource, the solution boundary requires that the resource not be isolated)
+        5. check if the solution boundary fulfills a solution requirement
+        6. if it does fulfill a requirement, check for other sub-problems or new problems in the solution
+        7. iterate process with new sub-problem
+
+    II. Solve problem with structure fitting (adapt probable solution structures to match problem definition)
+
+        1. define the problem & type & relevant objects
+        2. define solution metrics
+        3. check if any relevant objects are an adjacent input to the solution (transaction system is a relevant object that can be used as a base)
+        4. if so, use that object as the base in a system layer graph, with consecutive transforms applied with navigation across layers (circle layer graph with relevant object as origin)
+        5. check if each traversal across the system layer graph fulfills solution requirements
+
+    III. Transforming problem into query of solved problems (using most adjacent solution formats)
+
+        1. define the problem & type
+        2. define solution metrics
+        3. start from solution methods that can solve most problem types if formatted correctly (route optimization, structure-fitting, regression)
+        4. determine which solution method is most adjacent
+        5. apply adjacent solution method & check if solution requirements are met
+        6. if not, iterate the application of transforms (subsets, conversions) & other problem formats
+
+    IV. Solve problem with solution function generation & selection (with intent-matching)
+
+        1. define the problem & type
+        2. define solution metrics
+        3. query for solution functions & patterns relevant to problem type
+        4. if none found or not updated recently, generate solution functions from solution functions for common or adjacent problem types
+        5. determine solution metrics like tradeoffs & other comparison objects
+        6. select & apply solution method with target metric values
+
+
+### Apply interface network
+
+    V. Solve problem with conceptual query (iterate through conceptual paths & match with structural path)
+
+        1. define the problem & type
+        2. define solution metrics
+        3. iterate through concept combinations
+        4. convert concept combinations to structures in the problem space
+        5. check if structures solve the problem on solution metrics
+        6. if not, continue iteration
+
+    VI. Derive conceptual query & match with structural path
+
+        1. define the problem & type
+        2. define solution metrics
+        3. derive concept combination likeliest to solve problem (combination of concepts like trust, balance, etc given solution metrics)
+        4. convert the concept combination to structures in the problem space
+        5. check if structures solve the problem on solution metrics
+        6. if not, apply transforms of the concept combination, using it as a base & iterate
+
+
+### Intent matching
+    
+    VII. Vectorize problem/solution space & match intents
+
 
 ### Derive
 
@@ -66,6 +143,8 @@
   - solution methods for specific problem types (insight paths) can be used in a solution-automation engine, but theyre not solution-automators themselves (interface derivation enabling traversals)
 
 
+# Workflow Examples
+
 ## Fit/Matching
 
 ### Apply problem & solution model
@@ -75,26 +154,33 @@
 
 #### I. Match problem & solution using definition & standardization, applying increasing limits or transforms until problem & solution match on relevant metrics
 
-    - get a problem, standardize & define it: 
+    - get a problem, define & standardize it: 
+
       problem: "funds cannot always be verified to exist with existing currencies"
       standardize: 
-        "there is no way to check prior transaction info to determine funds availability"
-        "transaction info exists in isolation of other transaction info"
+        sub-problem: "traders cant check prior transaction info to verify funds" => "prior transaction info is isolated from current transaction info"
+        sub-problem type: "isolation of resources"
 
     - define solution requirements: 
+
       "must be usable by any trader", 
       "transactions must be verified", 
       "must be relatively quick to enable normal transactions"
       + standard currency definition attributes
 
-    - reduce problem into necessary solution boundary:
-        "transaction info exists in isolation of other transaction info"
-        "group transaction info" (transaction log)
+    - reduce problem with necessary solution boundary:
+
+        problem: "prior transaction info is isolated from current transaction info" (two isolated nodes is the problem)
+        solution boundary: "group transaction info" (transaction log created by grouping the isolated nodes)
+
+        - the solution boundary (limit) is the grouping function, given that the transactions must be grouped together
+        - its called a limit or boundary because it can be used to filter possible solutions
+        - this means it must be within the boundary created by restricting solutions to those that group transactions
 
     - apply solution requirements to solution boundary to check if its sufficient:
 
-      apply(requirements, "group transaction info") => 
-        still has problem "transactions are still isolated from previous transactions so previous transactions can be faked to give illusion of funds"
+      apply(solution_requirements, "group transaction info") => 
+        still has problem "transactions are still isolated from previous transactions in other ways (allowing edits) so previous transactions can be faked to give illusion of funds"
 
     - iterate same process, with new problem "previous transactions can still be faked"
 
