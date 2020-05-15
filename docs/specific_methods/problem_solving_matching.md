@@ -96,14 +96,49 @@
     
     VII. Vectorize problem/solution space & match intents
 
+        1. define the problem & type ('merge files')
+        2. define solution metrics
+        3. identify variables, concepts (like equivalent lines or merging rules), intents, using definitions & core function analysis
+        4. identify objects ('equivalent lines') that:
+          - are equal ('equivalent' and 'duplicate')
+          - contradict solution intents (like 'merge file into one document' which implies duplicates arent necessary, implied by problem definition 'merge files')
+          - comply with other system filters (opposites, tradeoffs, symmetries, etc)
+        5. add to solution metrics, given new filtering rules identified ('merge files, removing duplicate lines')
+        6. position objects as a directed network, with input variables on one side & target intents on the other, with filtering objects/attributes/functions in between
+        7. traverse network to generate solutions
+        8. assess each solution by solution metrics
+
 
 ### Derive
 
     VIII. Mapping variance objects in problem space systems as starting solution space
+    
+        1. define problem & type
+        2. define solution metrics (reduce uncertainty by x%)
+        3. verify that it's a problem that can't be explained with known objects/attributes/functions
+        4. convert problem to system interface
+        5. identify variance objects
+        6. decompose variance objects into sub-systems & other explanatory objects
+        7. check each variance decomposition for fit with problem & iterate
 
     IX. System snapshot (interface/symmetry/vertex) derivation
 
+        1. define problem & type
+        2. define solution metrics (reduce uncertainty by x%)
+        3. convert problem to system interface
+        4. identify summary/snapshot objects (interfaces, symmetries, concepts, & vertices) in the problem system
+        5. iterate arrangement of summary objects as a way to structure variance
+        6. check arrangements for fulfillment of solution metrics & iterate
+
     X. System derivation
+
+        1. define problem & type
+        2. define solution metrics (reduce uncertainty by x%, explain y)
+        3. convert problem to system interface
+        4. identify all system objects (filters, limits, groups, interfaces, symmetries, concepts, & vertices) in the problem system
+        5. apply derivation methods if system objects are unknown, storing multiple alternate systems if unknown system objects are comparable in probability
+        6. iterate arrangement of system objects as a way to structure variance
+        7. check arrangements for fulfillment of solution metrics & iterate
 
 
 ## Choosing automation starting point
@@ -772,7 +807,7 @@
 
       A. vectorization
 
-        I. identify variables, metrics, concepts (and their metadata like definitions, types, priorities)
+        I. using definition & core function analysis, identify variables, metrics, concepts (and their metadata like definitions, types, priorities)
 
         II. from previous objects, identify meaningful level of variance
           - lines that are equivalent
@@ -788,9 +823,8 @@
           - a set of intent directions (to test trajectory from initial variable nodes, to concept nodes, to final metric nodes, to check that this trajectory aligns with intent direction)
 
         - This means you've vectorized the problem space.
-          - From the initial problem definition, you've created a simple network for solution theories to traverse.
-          - From here, the automation of this method is calculatable.
-          - You figure out which items in the problem space are input variables, interim nodes, and output metrics, then you convert each to vectors & transform the input vector to the output vector using the interim transforming vectors (core functions, concepts, types, priorities) as tools.
+          - from the initial problem definition, you've created a simple directed network for solution theories to traverse. From here, the automation of this method is calculatable.
+          - you figure out which items in the problem space are input variables, interim nodes, and output metrics, then you convert each to vectors & transform the input vector to the output vector using the interim transforming vectors (core functions, concepts, types, priorities) as tools.
 
         - in order to map a semantic object to a vector, you need to identify:
 
