@@ -155,8 +155,7 @@
 
 		- in the absence of other problem-solving methods, finding structures with problem-solution matches already indexed can be an efficient method of solving the original problem.
 
-		- that doesnt mean there arent cases where finding a new structure (like a core function combination circle layer system or a function system) isnt useful for depicting information in ways that will reveal problem cause & other important info, 
-		  even revealing solutions if the information is organized in the right structure
+		- that doesnt mean there arent cases where finding a new structure (like a core function combination circle layer system or a function system) isnt useful for depicting information in ways that will reveal problem cause & other important info, even revealing solutions if the information is organized in the right structure
 
 
 	3. whats the difference between your system/interface/abstract network and a typical concept map?
@@ -217,6 +216,7 @@
 
 
 	5. how is this different from category theory
+
 		- a theory of how types evolve is a useful tool to use when implementing a method of automating problem-solving, if you are restricted to type data
 		- my system has a component that involves deriving & analyzing core functions/objects/attributes and how they interact & evolve, but is not restricted to the object relationships defined in that theory,
 			as real object interactions dont involve adding an attribute at a time or combining two defined objects but rather:
@@ -384,19 +384,23 @@
 
 	15. what is the actual workflow to use this?
 
-		1. first check the output of the program (pattern indexes, concept definitions, etc) to see if it can be used as an input filter for a new problem (the system filters below are some of the outputs of this program)
+		- the program steps include the following:
 
-		2. then select a solution strategy & starting point
+			1. check pre-existing output of the program (pattern indexes, concept definitions, etc) to see if it can be used as an input filter for a new problem (the system filters below are some of the outputs of this program) to break the problem into solved problems
 
-		3. then select threshold metrics to switch between strategies 
+			2. if it isn't composable with solved problems, but the problem type is still identifiable, then select a solution strategy & starting point
 
-		4. then execute the solution strategies, checking at various threshold points for problem-solution match
+			3. then select threshold metrics to switch between strategies 
 
-		5. if no match found for one strategy, switch to other strategies
+			4. then execute the solution strategies, checking at various threshold points for problem-solution match
 
-		6. if no matches found across all strategies, switch to uncertainty description patterns & methods
+			5. if no match found for one strategy, switch to other strategies
 
-		7. output either insights found, problem-solution match, or uncertainties that need to be resolved (gather more data, answer this question, etc)
+			6. if no matches found across all strategies, switch to uncertainty description patterns & methods
+
+			7. output either insights found, problem-solution match, or uncertainties that need to be resolved (gather more data, answer this question, etc)
+
+			8. store any info objects found that arent already in indexes (insights, patterns, problem-solution matches, interfaces, functions)
 
 
 
@@ -443,6 +447,7 @@ Example:
 
 
 # Analysis
+
 
 When a system is totally unknown, you should diversify across all interfaces at first - example of finding value in a set:
 
@@ -491,9 +496,9 @@ When a system is totally unknown, you should diversify across all interfaces at 
 			- there is a trade-off between work invested in pattern-checking, subset-splitting & solution space reduction potential
 
 
-## System info objects
+## System objects
 
-	- why is it so useful to use system info objects like inefficiency or asymmetry as a way to frame & solve problems automatically? 
+	- why is it so useful to use system objects like inefficiency or asymmetry as a way to frame & solve problems automatically? 
 
 		- bc these objects offer the most flexibility and occupy an interim interface between physical reality & conceptual networks, so its a good interface to standardize those interfaces to, theyre standard core objects with high interaction potential on similar interaction layers
 
@@ -507,9 +512,7 @@ When a system is totally unknown, you should diversify across all interfaces at 
 	- how to generate interface filters (system, type, function), starting with unit interfaces function & attribute:
 
 			abstract    pattern
-
 			set 		system
-
 			subset 		filter
 
 	function    
@@ -522,23 +525,22 @@ When a system is totally unknown, you should diversify across all interfaces at 
 
 	- you could extend this to find new objects on the next outer layer after another transform/combination
 
+	- example of system object 'alternate routes'
 
-## Example of system object 'alternate routes'
+		- an alternate route is an important system object that can be used to reduce solution spaces for analyzing causation in a system
 
-	- an alternate route is an important system object that can be used to reduce solution spaces for analyzing causation in a system
+		- a definition can be more useful if framed in objects on a certain interface
 
-	- a definition can be more useful if framed in objects on a certain interface
+		- equal
 
-	- equal
+			- indistinguishable given measurable attributes & their values - equal in value
 
-		- indistinguishable given measurable attributes & their values - equal in value
+			- symmetric (buildable with components the other is built with) - equal in origin (resource attribute set indicating starting position)
 
-		- symmetric (buildable with components the other is built with) - equal in origin (resource attribute set indicating starting position)
-
-		- independent (not buildable with the components that the other is built with) - not equal in origin
+			- independent (not buildable with the components that the other is built with) - not equal in origin
 
 
-## Examples of insight paths (specifically system filters)
+## Examples of insight paths (specifically system filtering insight paths)
 
 
 ```
@@ -660,13 +662,13 @@ When a system is totally unknown, you should diversify across all interfaces at 
 		"route": ""
 	}
 }
-
+```
 
 The most common useful sets are:
 - core functions
 - boundary rules (enforced & unenforced)
 - variance injection points
-- attribute alignments
+- attribute alignments (similarities, equivalents, alternates, opposites - real & false)
 - causal direction/degree
 - embedding direction (do you use a tree of networks or a network of trees to frame a pattern)
 - symmetry stacks (example: diverging in position, then diverging in shape, then diverging in color)
@@ -676,13 +678,13 @@ The most common useful sets are:
 - neutralizing/invalidating rules
 - efficiency overlap
 - vertex intersection
+- tradeoff spectrums
 
 
 Other useful objects:
-- optimality topology (optimizing in one direction as a tradeoff or adjacent to optimizing in another)
+- optimality topology (optimizing in one metric direction as a tradeoff or adjacent to optimizing in another)
 
 
-```
 How to generate this list of useful filters to evaluate a system:
 
 	You apply core concepts to core components on core interfaces until you reach a function/object/attribute that explains/generates/determines/summarizes a system:

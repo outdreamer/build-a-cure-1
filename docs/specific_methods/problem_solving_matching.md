@@ -1,6 +1,34 @@
 # Problem Solving Operations
 
 
+## Index of solution methods
+
+
+### Apply problem & solution model
+
+    I. Filter problem definition until it matches solution structure (using definition & standardization, applying increasing limits/filters/transforms until problem & solution match)
+    II. Solve problem with structure fitting (adapt probable solution structures to match problem definition)
+    III. Transforming problem into query of solved problem (using most adjacent solution formats)
+    IV. Solve problem with solution function generation & selection (with intent-matching)
+
+### Apply Interface Network
+
+    V. Solve problem with conceptual query (iterate through conceptual paths & match with structural path)
+    VI. Derive conceptual query & match with structural path
+
+### Intent Mapping
+    
+    VII. Vectorize problem/solution space & match intents
+
+### Derive
+
+    VIII. Mapping variance objects in problem space systems as starting solution space
+
+    IX. System snapshot (interface/symmetry/vertex) derivation
+
+    X. System derivation
+
+
 ## Choosing automation starting point
 
   - the reason the methods are separated & described in problem_solving_matching.md rather than just listing 'problem space model' or 'interface network' or 'structural interface' or 'conceptual interface' or 'matching methods' as solution automation methods even though all the methods use these to some degree, is that various combinations of objects in these models are useful when used together (for example 'concept', 'match', 'structure'), and all of the methods can be used to frame the other methods
@@ -27,7 +55,7 @@
     - tool access (pre-computed conceptual network, access to common solution functions)
     - primary solution function (query, transform, matching)
 
-  - the methods in problem_solving_matching.md are examples of how to automate problem-solving, not examples of how to solve a particular problem type
+  - the methods listed here are examples of how to automate problem-solving, not examples of how to solve a particular problem type
 
   - solution methods for specific problem types include:
     - intent-mapping
@@ -45,7 +73,7 @@
   - this method is for when you have a theory about the limits of the solution, but you need to find the right structure within those solution limits, to decompose the problem
 
 
-#### I. Match problem & solution using definition & standardization, applying increasing limits or transforms until problem & solution match
+#### I. Match problem & solution using definition & standardization, applying increasing limits or transforms until problem & solution match on relevant metrics
 
     - get a problem, standardize & define it: 
       problem: "funds cannot always be verified to exist with existing currencies"
@@ -139,7 +167,7 @@
 
     - this method is for when you have a theory about the optimal base/structure of the solution, but you need to find the right attributes/transforms of that base solution to decompose the problem
 
-    - rather than sculpting an invention using an increasing set of limits, you can select or derive a structure that probably matches, then check if it fits & transform it until it does (opposite direction as I.)
+    - rather than sculpting an invention using an increasing set of limits/filters, you can select or derive a structure that probably matches, then check if it fits & transform it until it does (opposite direction as I.)
 
     - to verify whether a structure fits information:
         - check that observable attributes & emergent attributes match expected versions
@@ -330,7 +358,7 @@
 
 ### Apply Solution Definition
 
-#### IV. Solve problem with solution function selection
+#### IV. Solve problem with solution function generation & selection (with intent-matching)
 
     - this method is for selecting the best metadata of a solution object:
       - which interface to start with (intent, structure, need, variance, imbalances, symmetries)
@@ -524,7 +552,7 @@
           - matching of information supply & demand (allocate tx history to tx metadata, where it has most value)
 
 
-#### VI. Solve problem with Conceptual Combination Metadata query (different starting point as IV but using same interface)
+#### VI. Derive conceptual query & match with structural path (different starting point as V but using same interface)
 
     - subset of traverse with a combination of Concept Paths & Structure Paths
 
@@ -582,7 +610,9 @@
     - these abstracted combinations have different metadata (intent, priority, logic flow, variance level, causation) and can therefore be useful in different (possibly meaning "additional") circumstances than the original combination
 
 
-#### VII. Intent Mapping: vectorization of Problem & Solution Space, using subset of interface network
+### Intent Mapping
+
+#### VII. Vectorize problem/solution space & match intents
 
     - this is similar to translating problems into an optimal format that is already solved (get from problem space definition to target output for a task intent)
 
@@ -759,9 +789,9 @@
       - finding of optimal solution trajectory (or set of solution trajectories)
 
 
-## Derive
+### Derive
 
-#### VIII. Modeling overlapping rules or unenforced rules (variance gaps) in Problem Space Systems as Solutions
+#### VIII. Mapping variance objects in problem space systems as starting solution space
 
     - this method is for decomposing variance, either to describe/derive it (for use in prediction functions), or to use the alternatives allowed by it (for use in alternate comparisons), or to posit the existence of missing objects (an unknown object explaining variance rather than a function, variable, or system leak)
 
@@ -804,7 +834,7 @@
       - example: you can derive that a square object has variables "number of sides" (created by examining variations of the explicit corner, angle, & side objects in the 'square' system) and then permute this variable to generate adjacent objects (for example to check if triangular systems/objects would explain openings created by variance) or implicit objects (center, rotation, diagonals)
 
 
-#### IX. Interface/symmetry/vertex derivation
+#### IX. System snapshot (interface/symmetry/vertex) derivation
 
     - this method is for when you want to understand a system, for description or prediction purposes
 
