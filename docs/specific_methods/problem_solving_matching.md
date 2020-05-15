@@ -112,7 +112,7 @@
 ### Derive
 
     VIII. Mapping variance objects in problem space systems as starting solution space
-    
+
         1. define problem & type
         2. define solution metrics (reduce uncertainty by x%)
         3. verify that it's a problem that can't be explained with known objects/attributes/functions
@@ -139,6 +139,16 @@
         5. apply derivation methods if system objects are unknown, storing multiple alternate systems if unknown system objects are comparable in probability
         6. iterate arrangement of system objects as a way to structure variance
         7. check arrangements for fulfillment of solution metrics & iterate
+
+
+## Other methods
+
+  - these methods can be inputs or interim steps to other problem-solving automation methods, but can function on their own
+  - some of them involve converting between interfaces, or using objects on a specific interface to frame a problem
+
+    - causal analysis can solve most problems (shapes of cause are useful to model variable relationships)
+    - pattern queries can also solve most problems (solution patterns, insight paths, question patterns to traverse a path quickly, joke patterns to predict uncertainty, etc)
+    - structure-mapping (standardizing to the math interface, meaning finding a math structure that matches objects to use solutions that work for those math objects) can also solve most problems
 
 
 ## Choosing automation starting point
