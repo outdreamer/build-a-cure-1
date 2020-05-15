@@ -369,6 +369,37 @@
 		- rather than asking 'is this resource needed at a given location' - we can ask questions like 'did we enable people in that location to solve a resource deficit?'
 
 
+	14. what does the interface actually contain?
+
+		- the interface (a standardizing filter) is the following:
+			- the definition of the concept 
+				(the definition of 'cause' for the causal interface)
+			- the filter or conversion function to isolate attributes relevant to that interface 
+				(causal filter would isolate dependencies on other networks)
+			- the set of core objects, attributes, & functions that generate them on the interface, organized as a network
+				(causal core functions like 'create' or 'change', and core objects like 'causal network')
+
+		- standardizing an object to the causal interface means mapping how that object occupies or interacts with the network of core causal objects/attributes/functions - this means a query or traversal of those core items
+
+
+	15. what is the actual workflow to use this?
+
+		1. first check the output of the program (pattern indexes, concept definitions, etc) to see if it can be used as an input filter for a new problem (the system filters below are some of the outputs of this program)
+
+		2. then select a solution strategy & starting point
+
+		3. then select threshold metrics to switch between strategies 
+
+		4. then execute the solution strategies, checking at various threshold points for problem-solution match
+
+		5. if no match found for one strategy, switch to other strategies
+
+		6. if no matches found across all strategies, switch to uncertainty description patterns & methods
+
+		7. output either insights found, problem-solution match, or uncertainties that need to be resolved (gather more data, answer this question, etc)
+
+
+
 ## Problem-solving Insight Paths 
 
 
