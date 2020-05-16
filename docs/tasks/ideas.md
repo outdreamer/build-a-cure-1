@@ -1,5 +1,9 @@
 to do: organize into separate docs
 
+  - when physics rules stabilize, they attract & generate information, which gathers into measurable numbers
+
+  - organize db by intent & features for quicker access - like if types are a common filter, organize a graph into type clusters, and store node id's to limit size of various different graphs to depict the same database, a subset of indexes represented per graph
+
   - stat problem: "Sunrise problem: What is the probability that the sun will rise tomorrow? Very different answers arise depending on the methods used and assumptions made"
 
     - interface analysis questions:

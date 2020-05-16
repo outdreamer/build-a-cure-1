@@ -7,13 +7,17 @@
 ### Apply problem & solution definitions
 
     I. Filter problem definition until it matches solution structure (using definition & standardization, applying increasing limits/filters/transforms until problem & solution match)
+
     II. Solve problem with structure fitting (adapt probable solution structures to match problem definition)
+
     III. Transforming problem into query of solved problem (using most adjacent solution formats)
+
     IV. Solve problem with solution function generation & selection (with intent-matching)
 
 ### Apply interface network
 
     V. Solve problem with conceptual query (iterate through conceptual paths & match with structural path)
+
     VI. Derive conceptual query & match with structural path
 
 ### Intent matching
@@ -141,7 +145,7 @@
         7. check arrangements for fulfillment of solution metrics & iterate
 
 
-## Other methods
+### Other methods
 
   - these methods can be inputs or interim steps to other problem-solving automation methods, but can function on their own
   - some of them involve converting between interfaces, or using objects on a specific interface to frame a problem
@@ -149,6 +153,7 @@
     - causal analysis can solve most problems (shapes of cause are useful to model variable relationships)
     - pattern queries can also solve most problems (solution patterns, insight paths, question patterns to traverse a path quickly, joke patterns to predict uncertainty, etc)
     - structure-mapping (standardizing to the math interface, meaning finding a math structure that matches objects to use solutions that work for those math objects) can also solve most problems
+    - intent matching can also solve most problems (check if a generated functions' intent matches target intent)
 
 
 ## Choosing automation starting point
