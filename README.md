@@ -31,16 +31,111 @@
 
 			- use these patterns to jump to the correct insight quicker than normal discovery times
 
-			- using insight paths & question shortcuts, you can skip ahead in designing an optimal solution, such as:
+			- using insight paths, question shortcuts, & filters, you can skip ahead in designing an optimal solution, such as:
 
 				- building a tool in the best way first, rather than waiting to discover errors or efficiencies & building them later
 				- finding an accurate prediction function network that adapts the best to change
+				- how to guess the existence of a sub-system in the absence of information or ability to measure the sub-system
+
+					- for example, if you were a doctor in the 19th century, how would you guess the existence of DNA:
+
+						- given that:
+
+							- you know that families have traits in common, but not why
+							- you know about the standard set of organs because you're a doctor & you had to do autopsies to learn how to do surgeries
+
+						- an insight path to generate a theory of the existence of DNA:
+
+							- check known objects for contribution ('if someone is missing an organ, has nerve damage or a brain injury, or drinks a lot of alcohol - do their traits change?')
+								- look for counterexamples to any apparent contributions to the output
+							
+							- check related types for similarities & similarity source location ('are there other species like humans with similar abilities? is there anything functional they have different? where are these functions stored?')
+							
+							- check for related functionality under changing conditions & permuted assumptions ('when a trait (like hair) is damaged, what happens? some traits are repaired')
+							
+							- given lack of known object (organ/nerve) impact on traits, change layer or scale (infer that there may be a sub-system we cant see)
+							
+							- change causal direction/structure ('if organs dont change traits, do traits change organs? is there another causal node leading to both of them or in between them?')
+
+							- apply insights
+
+								- 'changes tend to cascade up in scale'
+								- 'complex systems with high variation tend to have many layers & objects'
+								- 'if something is damaged & is repaired, there is usually a set of instructions to repair it'
+
+							- apply question shortcuts
+
+								- 'is blood composed of discrete units, like water is composed of drops' (infer existence of cells)
+								- 'do blood units differ from liver units, such as by intended function' (infer different cell types)
+								- 'are there units with intent/function' (infer existence of microorganisms, match it to medical conditions)
+								- 'do some units have intent to give or take functionality from people (make them healthy or sick)' (infer existence of harmful microorganisms)
+								- 'could these units be in food or tools we use' (find different examples of resources with microorganisms, like plant fungus & bacteria in dairy)
+								- 'would a harmful unit for one species harm another species' (infer high variation in microorganisms)
+								- 'does high variation in microorganisms imply smaller inputs generate them' (infer existence of sub-system generating microorganisms & cell types)
+
+								- note: how would you arrive at blood as an object to focus on in the first place, in the above question path?
+
+									- insights like:
+
+										- 'constants can form a platform for change to occur' (noting that blood characteristics dont change much across patients
+
+									- find importance of blood by noting that:
+
+										- lack of blood causes death (implying it's important)
+										- that leeches sometimes remove symptoms of illness (implying that blood is related to illness, which can distort traits)
+										- that blood circulates through the whole system (implying it's a hub node)
+
+										- so 'important, relevant hub nodes' are a good place to start a question path within an insight path
+
+							- apply testing/filtering insights (to narrow down the possible set of implementations/structures that could explain trait differences & behavior)
+
+								- identify 'mixing bacteria colonies' as the best test, because this tests functionality emerging from combining microorganism species ('does it kill the same plants')
+									- if it doesnt kill the same plants as the other pathogen, this supports the theory of smaller inputs than the microorganism layer
+
+								- extrapolate conclusions implied by each inferred relationship output by previous queries
+									- if it explains most differences between species, it must be flexible, with many possible versions (infer a set of combinations)
+									- if it explains functionality, it must be related to needs (infer stressor as an input to evolution)
+									- if it's used as instructions to repair, it must be stored in various places, otherwise anyone without combinations of components would lose the ability to repair
+								
+							- the next logical conclusions after these testing filters may be:
+								- the repair instructions are stored in units of components that are repaired (hair, nails)
+								- the function (change unit) instructions are stored elsewhere, and not in organs that youve seen patients with severe damage or without (brain, kidney, appendix, etc)
+								- there are units with intent that create functions (confirmed by experiments with pathogens from milk & plants)
+								- pathogens have functions & units with intent, and they dont have organs that we cant live without (so its not in brain, kidney, appendix, blood, etc)
+								- the units with intent may be located wherever else they are needed to create functions
+								- the units may contain function or repair instructions
+								- repair is a function
+								- the units may contain instructions to create function instructions (function instructions like 'send pain' or 'pump blood')
+
+							- then you could apply more insights given good system design insights or other optimization insights, to guess the likeliest implementation of 'units that contain instructions':
+								- 'the safest place to store extra copies of instructions is at every possible location, in case one location is damaged'
+									- this would lead to inferring that the units containing instructions each contain all instructions
+
+						- chaining these insights/questions/tests/conclusions enables converting a question ('what explains trait differences') into a theory ('theres a sub-system that contains instructions'), which can be narrowed down with queries, filters, & insights
+
+						- linking these objects requires:
+							- having an object in common with a previous point
+							- applying core functions like 'given condition', 'apply edge case context', 'remove assumption', 'change variable', etc
+							- changing stage (testing/system discovery/filtering, applying question/insight path), according to distance to target (theory of sub-system to explain trait differences)
+
+						- this is one of many insight paths to generate this theory, given a doctor's perspective from that problem space & its technology
+
+							- there are more concise versions based on plant trait inheritance in a garden, or observing plants/animals in different environments evolve different traits, given the faster evolution, or through studying particles/matter state changes with technology or heat sources
+
+							- there are also more abstract paths
+
+								- using system insights like:
+
+									- 'noise appearing in high variation outputs with minimal functionality are often generated by interference in communication between high-variation inputs on a sub-system or other layer'
+									
+								  which explains noise (mutations) that cause trait differences, you can cover almost the same cognitive distance as the above example insight/question/filter chain, but with one insight (not covering non-mutation trait similarities)
+
 
 		- how to solve the problem of selecting between alternative solutions
 
-			- how do you select between solutions for recycling unused waste resources (research enzymes, research using it as fuel, burn it, leave it in space, build new products with it)
+			- select between solutions for recycling unused waste resources (research enzymes, research using it as fuel, burn it, leave it in space, build new products with it)
 
-			- how do you select between solutions for determining area under a function (add area of subsets, estimate area from adjacent function transforms, transform it until it's composable with known values)
+			- select between solutions for determining area under a function (add area of subsets, estimate area from adjacent function transforms, transform it until it's composable with known values)
 
 		- how to solve an information problem
 
@@ -495,8 +590,8 @@ Example:
 	- an "improvisation" is a change given a starting position and new problem information that doesnt match an existing solution
 
 - cause cant be traced when:
-- when inputs/system/measurement tools decays/changes before it can be measured
-- when change/decay outputs dont follow patterns or have multiple alternative possible patterns
+	- inputs/system/measurement tools decays/changes before it can be measured
+	- change/decay outputs dont follow patterns or have multiple alternative possible patterns
 
 
 # Analysis
@@ -613,6 +708,9 @@ When a system is totally unknown, you should diversify across all interfaces at 
 	"concept": {
 		"definition route": "",
 		"definition structure": "most abstract concepts have a definition network"
+	},
+	"info": {
+		"efficiency": ["similarity", "overlap", "expectation"]
 	},
 	"error": {
 		"false similarity": "there are many routes to a shape or point which may differ on important metrics like intent",
