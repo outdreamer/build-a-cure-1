@@ -58,7 +58,11 @@
 
 						- to map ML to this problem (finding fewest or best objects to use when calculating the area under a particular function), you could assign:
 							- feature weight to component (subset or adjacent function) shape
-							- weight paths to splitting functions, adjacent function transformation functions, metadata transformation functions (when x & y change in function1, how does metadata change, and how does that relate to how x & change in function2 & how function2 metadata changes), change rate distortion metadata functions (as more sides added to a polygon to create a curve, how does area change), or subset matching functions
+							- weight paths to splitting functions, adjacent function transformation functions, metadata transformation functions (when x & y change in function1, how does metadata change, and how does that relate to how x & change in function2 & how function2 metadata changes), change rate distortion metadata functions (as more sides are added to a polygon to create a curve, how does area change), or subset matching functions to reduce calculations
+							- prediction function to best calculation route to determine area under a curve
+
+						- why would you map ML to this problem instead of using a ML network? so you could apply methods of solving the area under the curve to the prediction function
+							- using 'subset aggregation' & 'change rate distortion of metadata' to determine the best version & method of combining feature weights to get their aggregate object (weight set, or prediction function), which is area in the other problem space
 							
 
 				- this explanation can be generated using system analysis (the system interface on the interface network)
