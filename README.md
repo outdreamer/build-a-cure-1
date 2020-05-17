@@ -1,6 +1,59 @@
 # Intro
 
 
+## Summary
+
+	This project is intended to automate interface analysis (a method to solve problems automatically).
+
+	Example of problem-solving workflows this project will automate:
+
+		- how to solve the problem of automating the generation of info objects (summaries, explanations, perspectives, etc)
+
+			- specifically, how to 'explain a complex concept in a concise way' (which is a 'mapping' problem type, mapping expert keywords to concise keywords):
+
+				- explaining ml as 'exploring different combinations of embedded weights on input feature data & weight paths, using filters to determine which weighted feature combinations contribute to incremental prediction function updates' involves:
+
+					- standardizing the concept of an artificial neural network using its concise definition
+					- identifying the right objects that are most important to include (combinations, weights, weight paths, features, filters, learning, prediction function)
+					- modifying & connecting these objects using the right functions
+
+				- this explanation can be generated using system analysis (the system interface on the interface network)
+			
+		- how to solve the problem of automating insight generation & discovery in an efficient way
+
+			- using the pattern interface, identify that insights occur in patterns as people discover levels of detail & complexity in a field
+
+			- identify questions as a key input to insights, especially insights that shift a paradigm (epiphanies)
+
+			- frame questions as a source & destination node on a network, where the standard answer is the path connecting them
+
+			- identify question path patterns across insights
+
+			- use these patterns to jump to the correct insight quicker than normal discovery times
+
+			- using insight paths & question shortcuts, you can skip ahead in designing an optimal solution, such as:
+
+				- building a tool in the best way first, rather than waiting to discover errors or efficiencies & building them later
+				- finding an accurate prediction function network that adapts the best to change
+
+		- how to solve the problem of selecting between alternative solutions
+
+			- how do you select between solutions for recycling unused waste resources (research enzymes, research using it as fuel, burn it, leave it in space, build new products with it)
+
+			- how do you select between solutions for determining area under a function (add area of subsets, estimate area from adjacent function transforms, transform it until it's composable with known values)
+
+		- how to solve an information problem
+
+			- convert it into sub-problems (missing information, info asymmetry, randomness, ambiguous alternatives)
+			- query for solutions to those sub-problems (determine missing information, distribute information, test randomness as equivalence of possible outcomes & remove, find attributes that can break ambiguity)
+			- find the sub-problem solution sets that cooperate & select one that fulfills solution requirements
+
+		- how to design a product that will prioritize a concept (like anonymity, trust, relevance, equality, distributed power, or checks on power)
+
+			- find structures with those associated concepts (just like the concept of power could have the structure of a hub node in a network), or find conceptual network path building those concepts
+			- apply filters to the structures found, testing combinations for the concept based on its definition, or apply filters to the conceptual network path until it has structure
+
+
 ## object model
 
 	- this is the standard object-function-attribute model you encounter in programming, applied to systems
