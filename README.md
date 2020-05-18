@@ -5,7 +5,9 @@
 
 	This project is intended to automate interface analysis (a method to solve problems automatically).
 
+
 	Example of problem-solving workflows this project will automate:
+
 
 		- how to solve the problem of automating the generation of info objects (summaries, explanations, perspectives, etc)
 
@@ -71,7 +73,6 @@
 
 						- why would you map ML to this problem instead of using a ML network? so you could apply methods of solving the area under the curve to the prediction function
 							- using 'subset aggregation' & 'change rate distortion of metadata' to determine the best version & method of combining feature weights to get their aggregate object (weight set, or prediction function), which is area in the other problem space
-							
 
 						- thats the problem expanded by a dimension (to focus on different metadata with an extra dimension, which is aggregation of a different type (shapes of 2-dimensional orthogonal change) than aggregating change rates to form the curve)
 
@@ -79,11 +80,14 @@
 
 							- the next lower dimension problem is finding the right position
 
-							- whats the map of the lower dimensional problem (finding length) to the higher dimensional problem (calculating area), and does it cross any metadata of the interim dimension problem (fitting prediction function), such as constants, exponents, coefficients, inflection points, change rate patterns, etc
+							- whats the map of the lower dimensional problem (finding length) to the higher dimensional problem (calculating area)
+								- does it cross any metadata of the interim dimension problem (fitting prediction function), such as constants, exponents, coefficients, inflection points, change rate patterns, etc
 
+								- how do change rate & type interaction spaces differ as dimensions are added
 
 				- this explanation can be generated using system analysis (the system interface on the interface network)
 			
+
 		- how to solve the problem of automating insight generation & discovery in an efficient way
 
 			- using the pattern interface, identify that insights occur in patterns as people discover levels of detail & complexity in a field
@@ -99,7 +103,9 @@
 			- using insight paths, question shortcuts, & filters, you can skip ahead in designing an optimal solution, such as:
 
 				- building a tool in the best way first, rather than waiting to discover errors or efficiencies & building them later
+
 				- finding an accurate prediction function network that adapts the best to change
+
 				- how to guess the existence of a sub-system in the absence of information or ability to measure the sub-system
 
 					- for example, if you were a doctor in the 19th century, how would you guess the existence of DNA:
@@ -195,18 +201,120 @@
 
 								  which explains noise (mutations) that cause trait differences, you can cover almost the same cognitive distance as the above example insight/question/filter chain, but with one insight (not covering non-mutation trait similarities)
 
+					- another example: how would you automate identifying gravity without advanced measuring tech or information that makes it obvious, & without someone telling you there's something to figure out or telling you what to focus on:
+
+						- meaning in the absence of a set of coincidences + prior exposure to similar patterns, like:
+
+							- coincidental free time from industry & resource access, a natural object in a location providing an attribute useful as protection
+								- with a coincidental useful side effect that becomes apparent when you use it for the protection (tree producing shade with a side effect of apples)
+
+							- exposure to other similar patterns like natural processes happening without human interference 
+								- adjacent to the concept of defaults or initial/origin values, or stability/equilibrium
+
+						- adjacent/obvious sources of the insight:
+
+							- sun/weather/shadow patterns
+
+							- invisible rules explaining changes like pathogens follow or generate
+
+							- object interaction patterns in contexts outside of counter-examples (even when interfering force is applied, objects stabilize on the surface)
+
+						- reason/intent to focus on it:
+
+							- something broke or broke something else when it fell (something important like a building or delicate like medical tool)
+
+							- building a machine to use accessible/costless/self-sustaining resources to power it 
+								(a ball falls with similar force if dropped from a high enough position as someone throwing it)
+
+							- building a machine to fly (get something at top of trees, construct large buildings, travel faster using wind once airborne)
+
+							- make a ball that bounces higher
+
+							- prevent domino effects from falling (objects knocking each other over)
+
+							- make things lighter to carry
+
+							- looking for fundamental forces
+
+							- explain nature
+
+						- queries to generate a theory of an invisible force governing some motion:
+
+							- useful objects/attributes/functions common in other patterns
+
+								- default behavior (any automatic process could be useful if you can chain/organize/link them in some way that produces an intent you can use)
+									- adjacent concepts to default like 'origin' or 'initial value'
+
+								- stabilization (a process that self-restores can be useful as an energy source or a boundary or a constant)
+
+								- equilibrium (a source of balance, or a point to base distortions on)
+
+								- emergent attributes at rest, as prediction tools
+
+							- insight paths
+
+								- system: there are core functions that determine most complex systems that are not in flux from variance injection
+
+								- type: there are different types of forces, such as forces between specific objects, forces that are created by other object forces, input forces, core forces
+
+								- scale: if the earth is relatively big, why would it have similar rules to objects that are small, like animals & buildings have different rules (phase shift)
+									- similarly, there may be contexts of different scales where gravity doesnt apply
+
+								- interface: changes happen on the earth surface bc it provides a foundation for those changes to occur
+									- those changes dont seem powerful enough to damage the foundation
+									- the foundation must have more powerful forces than the changes produced on it
+
+								- variable type differences: given that gravity appears to be constant & universal, and that generally there are different variable types than just constants in a system, it would make sense for gravity to be a constant and for other variables to vary
+									- constants tend to be inputs/assumptions, like fundamental forces
+
+								- change: if gravity wasnt a constant or fundamental force, other things would be changing faster or in different ways than they are
+
+								- potential: given that if something has the potential to change, it would be changing with these core distortion functions (combine, merge, split, move, intersect), there would be evidence of those distorted versions of the force if it wasnt a constant or a fundamental force
+
+							- pattern insights
+
+								- usually if a pattern appears in many circumstances in a system of interacting objects, it's because there's a function generating it, not because it keeps happening by accident
+
+						- then apply filters to reduce solution space of possible theories as to the specific function:
+
+							- filtering out counter-examples:
+
+								- objects carried by wind: gravity applies to denser/heavier/higher mass objects
+
+								- objects that float rather than sink to the surface: water has other forces like boundary & chemical rules
+
+							- filtering out immeasurable sources of the insight
+
+								- stars: cant measure how far away they are without tech or math methods or historical information (given slow rate of change of cosmic events), so developing a theory of gravity using star movements is non-adjacent
+
+									- it's possible if they become focused on shadow/weather movement patterns, from which they could infer:
+										- sun & earth rotation and gravity from the fact that the rotation repeats
+											- which implies one of them is circling the other but not getting significantly closer
+												- given historical mentions of similar weather patterns
+
 
 		- how to solve the problem of selecting between alternative solutions
 
-			- select between solutions for recycling unused waste resources (research enzymes, research using it as fuel, burn it, leave it in space, build new products with it)
+			- specific solutions:
 
-			- select between solutions for determining area under a function (add area of subsets, estimate area from adjacent function transforms, transform it until it's composable with known values)
+				- select between solutions for recycling unused waste resources (research enzymes, research using it as fuel, burn it, leave it in space, build new products with it)
+				- select between solutions for determining area under a function (add area of subsets, estimate area from adjacent function transforms, transform it until it's composable with known values)
+				- select between routes 
+
+			- solution selection abstraction:
+
+				- select metrics (specificity, testing, uncertainty reduction, cost assessment, completeness, success, intent, requirements)
+				- select starting point for queries on interface network
+				- select starting structures (problem/solution definition, object model)
+				- select starting abstract core function (filter, derive, build, change)
+
 
 		- how to solve an information problem
 
 			- convert it into sub-problems (missing information, info asymmetry, randomness, ambiguous alternatives)
 			- query for solutions to those sub-problems (determine missing information, distribute information, test randomness as equivalence of possible outcomes & remove, find attributes that can break ambiguity)
 			- find the sub-problem solution sets that cooperate & select one that fulfills solution requirements
+
 
 		- how to design a product that will prioritize a concept (like anonymity, trust, relevance, equality, distributed power, or checks on power)
 

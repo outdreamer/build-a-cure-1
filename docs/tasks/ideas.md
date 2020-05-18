@@ -1,4 +1,4 @@
-to do: organize into separate docs
+to do: organize into docs
 
   - analyzing just by change rate makes it less likely to spot other patterns like overlap/intersection of patterns
 
