@@ -540,6 +540,11 @@ to do: organize into docs
           - arriving at a non-answer (there is no right answer) or a conclusion of ambiguity or immeasurability
           - taking a sub-optimal route to the final destination node for one metric (accuracy) to fulfill another metric (understandability)
 
+  - whats the best base object for building a prediction function:
+    - constant subset functions
+    - averages/differences
+    - adjacent functions
+    - probabilities/patterns
 
   - for nn:
 
@@ -557,7 +562,6 @@ to do: organize into docs
             - should weights be adjusted according to this difference in importance
 
         - should system limits like learning rate & activation threshold have attribute values in common, or do they occupy system positions where similarity isnt productive for system intents
-
 
     - add to explanation: 
 
