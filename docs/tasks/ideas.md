@@ -541,10 +541,14 @@ to do: organize into docs
           - taking a sub-optimal route to the final destination node for one metric (accuracy) to fulfill another metric (understandability)
 
   - whats the best base object for building a prediction function:
-    - constant/tangent subset functions
+    - constant/tangent subset functions (like a tangent at a maximum of length 1)
     - averages/differences
     - adjacent functions
     - probabilities/patterns
+
+    - adjacent/tangent subset functions, where deactivated nodes function as:
+      - the subset functions that couldnt be transformed to components of the actual prediction function without a forced value intervention
+      - transformation functions (or their parameters/values like direction) that didnt convert adjacent subset functions to components of the prediction function
 
   - for nn:
 
@@ -568,6 +572,8 @@ to do: organize into docs
           - another error type scenario is that the global minima steadily decrease or decrease in an unpredictable way bc the function has many peaks, so theorizing the existence of minima will be high-cost without semantic information
 
         - when an answer is guaranteed/determinable in a weight path is when it should be checked, which may be earlier than the final layer, so calls to nodes on the same layer may be justified
+
+        - 
 
     - add to explanation: 
 
