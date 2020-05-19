@@ -587,10 +587,15 @@ to do: organize into docs
         - some alignments in the system shouldnt occur (like function aligning perfectly with data) bc the intents dont match (function intent 'predict other data' and data intent 'to represent a sample')
 
         - error cascades should be evaluated for system design
+
           - if learning rate is above a range of correctness, or weights/bias are slightly too high & the activation threshold is just below what it would take to deactivate that node
             - the error ranges that can happen from parameters should be looked for in differences between category examples that are the most similar (or likely to be similar given system analysis of problem space like 'how species typically differ')
-            - features that are too similar for the system parameters to catch can be accounted for 
-              (by magnifying the differences before training time, or accounting for error types at training time, when weight paths are found to have a gap overlooking a weight path that wont catch a particular similarity)
+
+          - features that are too similar for the system parameters to catch can be accounted for 
+            (by magnifying the differences before training time, or accounting for error types at training time, when weight paths are found to have a gap overlooking a weight path that wont catch a particular similarity)
+
+        - high cost errors can be evaluated for alternate outcomes with distortions (a system parameter determining the range of distortions that can be used to correct outcomes, that is fewer for example than the distortions that are typically required to turn one category into another)
+
 
     - add to explanation: 
 
