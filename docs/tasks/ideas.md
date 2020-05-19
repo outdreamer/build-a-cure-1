@@ -545,10 +545,16 @@ to do: organize into docs
     - averages/differences
     - adjacent functions
     - probabilities/patterns
+    - filters
 
     - adjacent/tangent subset functions, where deactivated nodes function as:
       - the subset functions that couldnt be transformed to components of the actual prediction function without a forced value intervention
       - transformation functions (or their parameters/values like direction) that didnt convert adjacent subset functions to components of the prediction function
+
+    - filter functions, where 
+      - the likeliest limits narrowing down a solution space into a function are successively selected & applied in subsets
+      - likeliest vertices determining/generating a function are tried in subsets
+
 
   - for nn:
 
