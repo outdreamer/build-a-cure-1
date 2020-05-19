@@ -9,20 +9,31 @@ to do: organize into docs
     - should ratios/bases or sets be used instead ('a set of particles' rather than a 'plant' as a standard unit)
     - when selecting a default, you should be checking for attribute matches (does a whole object make sense to describe a set)
     - the idea of a whole number may describe something that doesnt exist in 3-d physical reality - does that mean its a concept that will never occupy a form, or is it a goal physics will move towards, or it causally independent from other systems or interfaces that are known, or it evolves as brains can measure information
-    - math doesnt just describe concepts like 'whole number', it also describes basic interactions like pairs, sets, combinations, which appear in most systems 
-      - are there objects in systems that are real but not describable with our measurement/description tools
+
+  - math doesnt just describe concepts like 'whole number', it also describes basic interactions like pairs, sets, combinations, which appear in most systems 
+    - are there objects in systems that are real but not describable with our measurement/description tools
 
     - this system of math describes certain change types, values, & relationships 
-      - so something that doesnt have a structure, or value, or cant be changed with any operation, and doesnt relate to anything might not be describable with math
-      - for example a space-time with one object, which has no other objects to be used to compare to it, and the space-time is in constant flux so position, structure, & change cant be measured, just estimated
+
+      - so something that doesnt have a structure, or value, or cant be changed with any operation, and doesnt relate to anything might not be describable with known math
+
+      - for example a space-time with one object, which has no other objects to be used to compare to it except the defined boundary of the space-time (which itself may not be measurable or comparable to the object), and the space-time is in constant flux so position, structure, & change cant be measured, just estimated 
+        - or the idea of distance is invalid because change is so fast or chaotic it cant be measured, so you might try to describe its behavior with a probability distribution, but if it doesnt follow one, you may need a network of distributions, rather than a scalar value describing some distance type between positions
+        - or its in all positions as a possibility (an adjacent structure that would generate or attract the object at faster-than-information speed) and its next occupied position cant be measured, so the idea of distance is invalid, because not only is it equally likely to be in any position, but its next position is also equally likely as any other position because distance doesnt matter, as it can either travel fast enough to make distance irrelevant or it can travel through other spaces faster or each position is a potential object thats about to crystallize and which position actually does is determined by the travel of faster objects like energy
+
       - math breaks down with some interactions of change types that create ambiguities so information cant be measured
 
-      - if you try to create another description system, you end up changing definitions, variables, bases, or methods but not the system itself
+      - if you try to create another description system, you end up changing definitions, variables, bases, or methods but not the system itself, which is founded on numbers having absolute value & core operations to compare/combine them
+
         - in order for the system to exist, some objects have to be defined (a base concept crystallized into a structural object)
         - what description system do you get if you dont use units/value as a base (ranges, definitions, attribute sets, interfaces as a base)
         - are there other possible description systems than these
+        - in generating other description systems, you end up adding assumptions to physics rules instead
+          - if there was a system with no concept of equal (no objects are ever allowed to be equal) or where continuity didnt exist (no fully connected objects or whole objects, just sets/sequences) - you can create other spaces with defined operations, but if you tried to apply it in euclidean space (y could never equal x and x could not cause y), you wouldnt be able to do some operations like comparison or cause, so that would be applicable for spaces where objects couldnt occupy the same position or spaces that could only contain one object so objects couldnt interact
       
-    - are there materials/processes that erase information or which can vacillate between discrete/continuous, skipping information & leaving gaps that can break the chain of information (breaking time reversal symmetry)
+      
+    - are there materials/processes that erase information (convert back into a superposition) or which can vacillate between discrete/continuous like waves, skipping information & leaving gaps that can break the chain of information (breaking time reversal symmetry)
+
 
   - mask design can be optimized as a cover with one output flap like an esophagus preventing input on one nostril so the other can be used exclusively as an input with a filter 
     (better to sanitize at point-of-usage in environments with many unpredictable interactions like wind direction and interpersonal contact, which can get around most masks)
