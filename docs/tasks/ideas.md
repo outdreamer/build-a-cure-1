@@ -571,16 +571,26 @@ to do: organize into docs
 
         - should the activation function change across the concept of time as it occurs in the system (meaning 'a training cycle', 'a traversal of network weight paths'), 
           given that activation and learning are related (should they use the same base and change according to the same base)?
-            - should it be different if its the first or last cycle in training, or the first or last layer of a type, given that adjacence to the final category output makes the final decisions more important?
+            - should it be different if its the first or last cycle in training, or the first or last layer of a type, given that adjacence to the final category output makes the final decisions more important, just like highly differentiating weight combinations are important?
             - should weights be adjusted according to this difference in importance
 
         - should system limits like learning rate & activation threshold have attribute values in common, or do they occupy system positions where similarity isnt productive for system intents
 
-        - when estimating corrective measures, high-cost error types should be identified & prioritized:
+        - should possible weight paths have gaps in between them which are not reachable with learning?
+
+        - when estimating corrective measures to adjust the learning rate, high-cost error types should be identified & prioritized:
           - one error type scenario is that another global minimum exists thats severely different from identified minimum
           - another error type scenario is that the global minima steadily decrease or decrease in an unpredictable way bc the function has many peaks, so theorizing the existence of minima will be high-cost without semantic information
 
         - when an answer is guaranteed/determinable in a weight path is when it should be checked, which may be earlier than the final layer, so calls to nodes on the same layer may be justified
+
+        - some alignments in the system shouldnt occur (like function aligning perfectly with data) bc the intents dont match (function intent 'predict other data' and data intent 'to represent a sample')
+
+        - error cascades should be evaluated for system design
+          - if learning rate is above a range of correctness, or weights/bias are slightly too high & the activation threshold is just below what it would take to deactivate that node
+            - the error ranges that can happen from parameters should be looked for in differences between category examples that are the most similar (or likely to be similar given system analysis of problem space like 'how species typically differ')
+            - features that are too similar for the system parameters to catch can be accounted for 
+              (by magnifying the differences before training time, or accounting for error types at training time, when weight paths are found to have a gap overlooking a weight path that wont catch a particular similarity)
 
     - add to explanation: 
 
