@@ -551,9 +551,12 @@ to do: organize into docs
       - the subset functions that couldnt be transformed to components of the actual prediction function without a forced value intervention
       - transformation functions (or their parameters/values like direction) that didnt convert adjacent subset functions to components of the prediction function
 
-    - filter functions, where 
+    - filter functions, where:
       - the likeliest limits narrowing down a solution space into a function are successively selected & applied in subsets
-      - likeliest vertices determining/generating a function are tried in subsets
+      - likeliest vertices determining/generating a function are applied in subsets 
+        - test that change is slowing which means approaching a limit or an inflection point, and check for enough vertex points past the possible pivot point to confirm which one
+      - the likeliest changes/types are applied in subsets
+        - slow change is likelier to follow slow change, direction change likelier to follow stabilization of curve
 
 
   - for nn:
@@ -578,8 +581,6 @@ to do: organize into docs
           - another error type scenario is that the global minima steadily decrease or decrease in an unpredictable way bc the function has many peaks, so theorizing the existence of minima will be high-cost without semantic information
 
         - when an answer is guaranteed/determinable in a weight path is when it should be checked, which may be earlier than the final layer, so calls to nodes on the same layer may be justified
-
-        - 
 
     - add to explanation: 
 
