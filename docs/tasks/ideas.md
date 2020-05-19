@@ -2,6 +2,30 @@ to do: organize into docs
 
   - analyzing just by change rate makes it less likely to spot other patterns like overlap/intersection of patterns
 
+  - difference develops where there's potential for new interactions to develop (so a steady or increasing rate of change) & intent (like a possible gain from the difference)
+
+  - the object model may not be the right default to start from in most situations - there arent many whole objects in existence if there are any
+    - even particles have sub-particles, and the extent of that chain isnt known, and may have a causal relationship where the smallest particles act as inputs or injection points
+    - should ratios/bases or sets be used instead ('a set of particles' rather than a 'plant' as a standard unit)
+    - when selecting a default, you should be checking for attribute matches (does a whole object make sense to describe a set)
+    - the idea of a whole number may describe something that doesnt exist in 3-d physical reality - does that mean its a concept that will never occupy a form, or is it a goal physics will move towards, or it causally independent from other systems or interfaces that are known, or it evolves as brains can measure information
+    - math doesnt just describe concepts like 'whole number', it also describes basic interactions like pairs, sets, combinations, which appear in most systems 
+      - are there objects in systems that are real but not describable with our measurement/description tools
+
+    - this system of math describes certain change types, values, & relationships 
+      - so something that doesnt have a structure, or value, or cant be changed with any operation, and doesnt relate to anything might not be describable with math
+      - for example a space-time with one object, which has no other objects to be used to compare to it, and the space-time is in constant flux so position, structure, & change cant be measured, just estimated
+      - math breaks down with some interactions of change types that create ambiguities so information cant be measured
+
+      - if you try to create another description system, you end up changing definitions, variables, bases, or methods but not the system itself
+        - in order for the system to exist, some objects have to be defined (a base concept crystallized into a structural object)
+        - what description system do you get if you dont use units/value as a base (ranges, definitions, attribute sets, interfaces as a base)
+        - are there other possible description systems than these
+      
+    - are there materials/processes that erase information or which can vacillate between discrete/continuous, skipping information & leaving gaps that can break the chain of information (breaking time reversal symmetry)
+
+  - mask design can be optimized as a cover with one output flap like an esophagus preventing input on one nostril so the other can be used exclusively as an input with a filter 
+    (better to sanitize at point-of-usage in environments with many unpredictable interactions like wind direction and interpersonal contact, which can get around most masks)
 
   - causal shapes integrated with networks (patterns of aggregation matching causal shapes like trees & circuits)
 
