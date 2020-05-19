@@ -543,6 +543,22 @@ to do: organize into docs
 
   - for nn:
 
+    - objects in the ml system need to make sense together, not just being valid or functional according to their definitions, but changing in ways that benefit system intents under change/interaction conditions (contribute feature contribution information to prediction function) and dont contradict each other under certain cases
+
+      - for example:
+
+        - learning rate (with respect to time)
+
+        - activation function (based on threshold)
+
+        - should the activation function change across the concept of time as it occurs in the system (meaning 'a training cycle', 'a traversal of network weight paths'), 
+          given that activation and learning are related (should they use the same base and change according to the same base)?
+            - should it be different if its the first or last cycle in training, or the first or last layer of a type, given that adjacence to the final category output makes the final decisions more important?
+            - should weights be adjusted according to this difference in importance
+
+        - should system limits like learning rate & activation threshold have attribute values in common, or do they occupy system positions where similarity isnt productive for system intents
+
+
     - add to explanation: 
 
       - fully connected network passes weighted versions of different weight sets from all previous inputs 
