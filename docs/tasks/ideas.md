@@ -1,5 +1,24 @@
 to do: organize into docs
 
+  - risk based on key metrics like:
+    - max price of a good, given its relative value cap, absent of extreme or phase shift conditions like war
+    - 'risk caps' (worst case scenario as a standard) and 'potential caps' (potential value of good's attributes/components) in various market condition types (applying filters to avoid worst positions)
+    - attribute combinations that create phase shifts (alignments, resolved conflicts)
+    - intersecting interfaces that can override logical positions (social interface can influence even basic good prices like vitamins/food)
+    - variance flow (adjacent input/outputs/systems compromised)
+    - exploit potential (exploits can be assumed as guaranteed, so investments in easily exploited products should be either concentrated to guard against these, or distributed)
+
+  - core investment attributes:
+    - fundamental
+    - abstract
+    - produces a valuable attribute in relevant problem space
+    - produces a proxy for work (trust)
+    - can override fundamental rules (like those regarding power structures)
+    - can increase interaction rate/space
+    - produces attribute alignments & other important system objects that output change, stability, or other valuable system attributes
+    - captures previously unhandled variance
+    - interface good (an average/limit, a currency, an interim good)
+
   - analyzing just by change rate makes it less likely to spot other patterns like overlap/intersection of patterns
 
   - difference develops where there's potential for new interactions to develop (so a steady or increasing rate of change) & intent (like a possible gain from the difference)
@@ -565,12 +584,13 @@ to do: organize into docs
 
       - for example:
 
-        - learning rate (with respect to time)
+        - with two related system parameters having different bases:
 
-        - activation function (based on threshold)
+          - learning rate (improving with respect to time, with value based on change ratio)
+          - activation function (based on threshold)
 
-        - should the activation function change across the concept of time as it occurs in the system (meaning 'a training cycle', 'a traversal of network weight paths'), 
-          given that activation and learning are related (should they use the same base and change according to the same base)?
+        - should the activation function change across the concept of time as it occurs in the system (meaning 'a training cycle', 'a traversal of network weight paths'), given that activation and learning are related (should they use the same base and change according to the same base)?
+
             - should it be different if its the first or last cycle in training, or the first or last layer of a type, given that adjacence to the final category output makes the final decisions more important, just like highly differentiating weight combinations are important?
             - should weights be adjusted according to this difference in importance
 
@@ -579,6 +599,7 @@ to do: organize into docs
         - should possible weight paths have gaps in between them which are not reachable with learning?
 
         - when estimating corrective measures to adjust the learning rate, high-cost error types should be identified & prioritized:
+
           - one error type scenario is that another global minimum exists thats severely different from identified minimum
           - another error type scenario is that the global minima steadily decrease or decrease in an unpredictable way bc the function has many peaks, so theorizing the existence of minima will be high-cost without semantic information
 
@@ -586,15 +607,15 @@ to do: organize into docs
 
         - some alignments in the system shouldnt occur (like function aligning perfectly with data) bc the intents dont match (function intent 'predict other data' and data intent 'to represent a sample')
 
-        - error cascades should be evaluated for system design
+      - error cascades should be evaluated for system design
 
-          - if learning rate is above a range of correctness, or weights/bias are slightly too high & the activation threshold is just below what it would take to deactivate that node
-            - the error ranges that can happen from parameters should be looked for in differences between category examples that are the most similar (or likely to be similar given system analysis of problem space like 'how species typically differ')
+        - if learning rate is above a range of correctness, or weights/bias are slightly too high & the activation threshold is just below what it would take to deactivate that node
+          - the error ranges that can happen from parameters should be looked for in differences between category examples that are the most similar (or likely to be similar given system analysis of problem space like 'how species typically differ')
 
-          - features that are too similar for the system parameters to catch can be accounted for 
-            (by magnifying the differences before training time, or accounting for error types at training time, when weight paths are found to have a gap overlooking a weight path that wont catch a particular similarity)
+        - features that are too similar for the system parameters to catch can be accounted for 
+          - by magnifying the differences before training time, or accounting for error types at training time, when weight paths are found to have a gap overlooking a weight path that wont catch a particular similarity
 
-        - high cost errors can be evaluated for alternate outcomes with distortions (a system parameter determining the range of distortions that can be used to correct outcomes, that is fewer for example than the distortions that are typically required to turn one category into another)
+      - high cost errors can be evaluated for alternate outcomes with distortions (a system parameter determining the range of distortions that can be used to correct outcomes, that is fewer for example than the distortions that are typically required to turn one category into another)
 
 
     - add to explanation: 
