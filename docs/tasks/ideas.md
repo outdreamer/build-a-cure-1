@@ -1,13 +1,5 @@
 to do: organize into docs
 
-  - risk based on key metrics like:
-    - max price of a good, given its relative value cap, absent of extreme or phase shift conditions like war
-    - 'risk caps' (worst case scenario as a standard) and 'potential caps' (potential value of good's attributes/components) in various market condition types (applying filters to avoid worst positions)
-    - attribute combinations that create phase shifts (alignments, resolved conflicts)
-    - intersecting interfaces that can override logical positions (social interface can influence even basic good prices like vitamins/food)
-    - variance flow (adjacent input/outputs/systems compromised)
-    - exploit potential (exploits can be assumed as guaranteed, so investments in easily exploited products should be either concentrated to guard against these, or distributed)
-
   - core investment attributes:
     - fundamental
     - abstract
@@ -18,6 +10,40 @@ to do: organize into docs
     - produces attribute alignments & other important system objects that output change, stability, or other valuable system attributes
     - captures previously unhandled variance
     - interface good (an average/limit, a currency, an interim good)
+
+  - risk based on key metrics like:
+
+    - max price of a good, given its relative value cap, absent of extreme or phase shift conditions like war
+    - 'risk caps' (worst case scenario as a standard) and 'potential caps' (potential value of good's attributes/components) in various market condition types (applying filters to avoid worst positions)
+    - attribute combinations that create phase shifts (alignments, resolved conflicts)
+    - intersecting interfaces that can override logical positions (social interface can influence even basic good prices like vitamins/food)
+    - variance flow (adjacent input/outputs/systems compromised) & adjacent variance objects allowed to interact 
+    - exploit potential (exploits can be assumed as guaranteed, so investments in easily exploited products should be either concentrated to guard against these, or distributed)
+
+  - an example of how over-dependence on a fact makes it false:
+
+    - fact: "fossil fuels are valuable in a problem space with cars that use them or their byproducts for fuel"
+    - heavy investment in fossil fuels could indicate their popularity
+    - if many entities rely on them, their supply will be reduced, assuming they cant be generated with imminent tech
+    - the competition given reduced supply will produce fast innovation, resulting in side effects
+    - side effects in a fundamental interface for existence could put existence at risk
+    - side effects from mining could also produce an environment that generates new "fossil fuels" or their equivalent position (natural resources that are easy to use for a fundamental intent), but this is not as likely as causing side effects that put the whole system at risk
+
+      - why is this less likely to produce good side effects?
+
+        - the methods of transforming substances into other substances have costs (pollution of reaction byproducts)
+        - the elements likeliest to be useful as fuel produce the most pollution
+        - the elements likeliest to survive millions of years in this environment on/near the surface are the likeliest to produce the most pollution
+        - the mechanism of using fuel (engine & other components) isnt likely to require innovation invalidating fossil fuels right away
+        - alternate fuels arent as adjacent as digging in the ground & burning, which are core mechanical/chemical functions
+        - the byproducts of fossil fuels & reactions arent likely to be easily generated using alternate methods, given likely tech
+
+    - over-dependence on that fact (beyond its ability to support stress) makes it false: they were valuable in that problem space, but over-dependence on them created negative systemic side effects, and now dependence on them is a liability
+
+      - the fact collapsed into a network of related facts like "alternate fuels are valuable" and "an additional use of fossil fuels could cause system collapse"
+
+      - this is a mismatch problem type of imbalanced dependence & support functions
+
 
   - analyzing just by change rate makes it less likely to spot other patterns like overlap/intersection of patterns
 
