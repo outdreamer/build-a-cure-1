@@ -8,6 +8,8 @@ to do: organize into docs
 
     - a system prioritizing efficiency will find similarities more useful, and similarities will be more causative & likely to occur in that system
 
+    - a system prioritizing stability will prioritize & generate more limits, to prevent change types
+
   - you can predict which system filters will be useful across systems based on intent ('find' benefits from gaps & inefficiencies, 'build' benefits from efficiencies)
 
   - core investment attributes:
