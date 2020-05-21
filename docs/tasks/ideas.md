@@ -4,6 +4,12 @@ to do: organize into docs
     - investment risk allocation vs. capital allocation (swap objects allocated)
     - battery ion vs. base metal (swap a variable on top of a foundation to the foundation position)
 
+  - you can predict which system filters will be useful based on system priority
+
+    - a system prioritizing efficiency will find similarities more useful, and similarities will be more causative & likely to occur in that system
+
+  - you can predict which system filters will be useful across systems based on intent ('find' benefits from gaps & inefficiencies, 'build' benefits from efficiencies)
+
   - core investment attributes:
     - fundamental
     - abstract
