@@ -5,7 +5,22 @@
 
 	This project is intended to automate interface analysis (a method to solve problems automatically).
 
+	Much of this project automates the problem-solving methods & structures I use mentally. Other components of this project include important specific functions, like predicting, finding & using important system filters.
 
+	Example of a common system filter, permuting assumptions like system position (position swaps, where position can refer to node identity or system position)
+
+	    - investment risk allocation vs. capital allocation (swap objects allocated)
+	    - battery ion vs. base metal (swap a variable on top of a foundation to the foundation position)
+
+	You can predict which system filters will be useful based on system priority
+
+	    - a system prioritizing efficiency will find similarities more useful, and similarities will be more causative & likely to occur in that system
+
+	    - a system prioritizing stability will prioritize & generate more limits, to prevent change types
+
+	You can also predict which system filters will be useful across systems, based on system intent ('find' benefits from gaps & inefficiencies, 'build' benefits from efficiencies)
+
+	
 	Example of problem-solving workflows this project will automate:
 
 
