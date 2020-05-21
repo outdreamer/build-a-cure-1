@@ -1,5 +1,9 @@
 to do: organize into docs
 
+  - example of a common system filter, permuting assumptions like system position (position swaps, where position can refer to node identity or system position)
+    - investment risk allocation vs. capital allocation (swap objects allocated)
+    - battery ion vs. base metal (swap a variable on top of a foundation to the foundation position)
+
   - core investment attributes:
     - fundamental
     - abstract

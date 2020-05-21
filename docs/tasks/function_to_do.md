@@ -9,6 +9,8 @@
   - fix pattern matching functions
   - finish pos, clause, modifiers code from find implementation
 
+  - make function/query list for workflows, starting with information formats
+
   - identify attribute: attributes can be reduced to 'position', implemented as a:
 
       - relationship type (relative difference)
