@@ -642,6 +642,15 @@ to do: organize into docs
 
           - you can start by looking for signs of agency, in objects like 'required technology to build something' (fingers necessary to build collar) or 'extreme variation not found in nature' (hats)
 
+    - similar to reducing noise from the concept of agency, noise from other irrelevant interactions can be reduced by identifying:
+
+      - adjacent objects that have interaction potential (weather system is likely to interact and can change how an animal looks)
+
+      - objects that are required to interact, either by:
+      
+        - incentives (anyone who takes their toy is going to be interacted with)
+        - probability (anyone walking around the neighborhood could be interacted with)
+        - enforced rules (the mailman is required to interact with unless window/sound are blocked)
 
     - objects in the ml system need to make sense together, not just being valid or functional according to their definitions, but changing in ways that benefit system intents under change/interaction conditions (contribute feature contribution information to prediction function) and dont contradict each other under certain cases
 
