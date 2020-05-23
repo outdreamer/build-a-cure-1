@@ -618,7 +618,9 @@ to do: organize into docs
 
         which could position the collar feature as an output of:
           - being a dog (its easier to get collars on them)
-          - external interactions/agents (like culture, education, & DNA are sources/expressors of agency that can appear to cause similar output or chosen features)        
+          - external interactions/agents (like culture, education, & DNA are sources/expressors of agency that can appear to cause similar output or chosen features)
+
+        and therefore not causative of the dog type (instead associated with the domesticated animal type)    
 
       - identify that any domestic animal exhibiting any aggressiveness at all would also have a collar, so its not a type indicator 
         (concept trajectory: animal.domestic + animal.aggressive = animal.has['collar'])
@@ -627,7 +629,19 @@ to do: organize into docs
 
       - organizing features by intent (collar is to control/track identity, and external agents are likely to control other animal species in a similar way)
 
-    - identify decisions interfering with or causing data (decision chains & other shapes, including variants like incentivized decisions, efficient decisions, etc)
+    - reducing noise or identifying cause with decision objects
+
+      - identify decisions interfering with or causing data (decision chains & other shapes, including variants like incentivized decisions, efficient decisions, etc)
+
+        - examples:
+
+          - decision to interact with an object (causes future options or limitations)
+          - decision of short-term thinking/efficiency-prioritizing species to pollute environment (causes dangerous chemicals in water)
+
+        - rather than trying to infer the cause of the polluting chemical from physics/bio rules, you can infer starting from a decision chain given agent rules, because not every data pattern will be an accident, and agents interfering with/causing data can produce noise or legitimate data variation
+
+          - you can start by looking for signs of agency, in objects like 'required technology to build something' (fingers necessary to build collar) or 'extreme variation not found in nature' (hats)
+
 
     - objects in the ml system need to make sense together, not just being valid or functional according to their definitions, but changing in ways that benefit system intents under change/interaction conditions (contribute feature contribution information to prediction function) and dont contradict each other under certain cases
 
