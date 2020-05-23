@@ -612,7 +612,18 @@ to do: organize into docs
 
       - example: dogs wearing a collar more than cats, so collar is identified as a feature predicting species, but other data sets have more cats with collars
 
-      - output/emergent qualities of dogs are domestication & lack of aggression/docility (personality can be identified bc they smile more & bare their teeth less) which could be used to link the collar feature to the dog and identified as an output or output of external interactions/agents, like culture & DNA are sources/expressors of agency)
+      - output/emergent qualities of dogs are:
+        - domestication
+        - lack of aggression/docility (personality can be identified bc they smile more & bare their teeth less) 
+
+        which could position the collar feature as an output of:
+          - being a dog (its easier to get collars on them)
+          - external interactions/agents (like culture, education, & DNA are sources/expressors of agency that can appear to cause similar output or chosen features)        
+
+      - identify that any domestic animal exhibiting any aggressiveness at all would also have a collar, so its not a type indicator 
+        (concept trajectory: animal.domestic + animal.aggressive = animal.has['collar'])
+
+        - identify the concept of the controlling species in photo background, or infer their existence by the fact that the collar couldnt be made by the dog given its biological limitations
 
       - organizing features by intent (collar is to control/track identity, and external agents are likely to control other animal species in a similar way)
 
