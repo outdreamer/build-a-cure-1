@@ -20,7 +20,11 @@
 
 	You can also predict which system filters will be useful across systems, based on system intent ('find' benefits from gaps & inefficiencies, 'build' benefits from efficiencies)
 
-	
+	The inputs to this system are:
+		- a set of core definitions
+		- a way to discover information to feed into the system 
+			(this means internet access so API queries & searches can be done, if the specific system of the problem space isn't an input, formatted as a system network definition)
+
 	Example of problem-solving workflows this project will automate:
 
 

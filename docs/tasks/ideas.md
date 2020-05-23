@@ -606,6 +606,18 @@ to do: organize into docs
 
   - for nn:
 
+    - preventing consecutive extreme examples could prevent the need for some corrections during training
+
+    - how to identify false correlations (irrelevant features, similar features with no direct connection, interactive features like external agents)
+
+      - example: dogs wearing a collar more than cats, so collar is identified as a feature predicting species, but other data sets have more cats with collars
+
+      - output/emergent qualities of dogs are domestication & lack of aggression/docility (personality can be identified bc they smile more & bare their teeth less) which could be used to link the collar feature to the dog and identified as an output or output of external interactions/agents, like culture & DNA are sources/expressors of agency)
+
+      - organizing features by intent (collar is to control/track identity, and external agents are likely to control other animal species in a similar way)
+
+    - identify decisions interfering with or causing data (decision chains & other shapes, including variants like incentivized decisions, efficient decisions, etc)
+
     - objects in the ml system need to make sense together, not just being valid or functional according to their definitions, but changing in ways that benefit system intents under change/interaction conditions (contribute feature contribution information to prediction function) and dont contradict each other under certain cases
 
       - for example:
