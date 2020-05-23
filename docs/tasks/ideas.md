@@ -629,28 +629,42 @@ to do: organize into docs
 
       - organizing features by intent (collar is to control/track identity, and external agents are likely to control other animal species in a similar way)
 
-    - reducing noise or identifying cause with decision objects
+    - reducing noise (both in data so less training is required, & weight path patterns, so fewer variants need to be checked & variants outside of probable ranges can be eliminated early)
 
-      - identify decisions interfering with or causing data (decision chains & other shapes, including variants like incentivized decisions, efficient decisions, etc)
+      - reducing noise or identifying cause with decision objects 
 
-        - examples:
+        - identify decisions interfering with or causing data (decision chains & other shapes, including variants like incentivized decisions, efficient decisions, etc)
 
-          - decision to interact with an object (causes future options or limitations)
-          - decision of short-term thinking/efficiency-prioritizing species to pollute environment (causes dangerous chemicals in water)
+          - examples:
 
-        - rather than trying to infer the cause of the polluting chemical from physics/bio rules, you can infer starting from a decision chain given agent rules, because not every data pattern will be an accident, and agents interfering with/causing data can produce noise or legitimate data variation
+            - decision to interact with an object (causes future options or limitations)
+            - decision of short-term thinking/efficiency-prioritizing species to pollute environment (causes dangerous chemicals in water)
 
-          - you can start by looking for signs of agency, in objects like 'required technology to build something' (fingers necessary to build collar) or 'extreme variation not found in nature' (hats)
+          - rather than trying to infer the cause of the polluting chemical from physics/bio rules, you can infer starting from a decision chain given agent rules, because not every data pattern will be an accident, and agents interfering with/causing data can produce noise or legitimate data variation
 
-    - similar to reducing noise from the concept of agency, noise from other irrelevant interactions can be reduced by identifying:
+            - you can start by looking for signs of agency, in objects like 'required technology to build something' (fingers necessary to build collar) or 'extreme variation not found in nature' (hats)
 
-      - adjacent objects that have interaction potential (weather system is likely to interact and can change how an animal looks)
+      - similar to reducing noise from the concept of agency, noise from other irrelevant interactions can be reduced by identifying:
 
-      - objects that are required to interact, either by:
-      
-        - incentives (anyone who takes their toy is going to be interacted with)
-        - probability (anyone walking around the neighborhood could be interacted with)
-        - enforced rules (the mailman is required to interact with unless window/sound are blocked)
+        - adjacent objects that have interaction potential (weather system is likely to interact and can change how an animal looks)
+
+        - objects that are likely to interact, either by:
+
+          - incentives (anyone who takes their toy is going to be interacted with)
+          - probability (anyone walking around the neighborhood could be interacted with)
+          - enforced rules (the mailman is required to interact with unless window/sound are blocked)
+
+      - probable ranges & vertices of a prediction function can be estimated better once you know the reason the function emerged
+
+        - reasons on interfaces such as 'clustering rules' or 'boundary rules' or 'interaction rules'
+
+        - a function's different emergence reasons can be used as a way to generate probable vertex/range sets, given a particular reason
+
+          - example: is a function shaped like a random cloud bc several clusters are overlapping/colliding/converging, or bc theres noise in the data, or bc the type clusters just hit a variance injection point at similar times
+
+        - the 'emergence reason' concept is related to cause but is more specifically definable as 'a rule interface directly preceding the function, generating a trajectory'
+
+          - 'because they hit a point' is a reason for the function's current state, and it also describes the trajectory of the function's future behavior, so it can be called a priority/intent as well as a cause, since it relates the origin & the target of the function
 
     - objects in the ml system need to make sense together, not just being valid or functional according to their definitions, but changing in ways that benefit system intents under change/interaction conditions (contribute feature contribution information to prediction function) and dont contradict each other under certain cases
 
