@@ -84,9 +84,15 @@ BRIEF DESCRIPTION OF THE DRAWINGS
 
 [0010] FIG. 4 illustrates an example computing system.
 
+Docs:
+	- core structures
+	- core functions
+	- system filters
+	- problem/solution schema
+
 DETAILED DESCRIPTION
 
-[0011] Terms
+[0011] Terms used in claims
 
 	- interface: a useful standard for comparison consisting of the filtering object's definition routes, conversion function, core functions, objects, & attributes, and related objects like patterns & metadata specific to the interface
 	
@@ -99,7 +105,6 @@ DETAILED DESCRIPTION
 	- problem space: context relevant to a problem; the containing system(s) of a problem that may include related problems
 
 	- solution space: set of possible solutions in a problem space, which may be reduced by applying interface traversals like solution space-reducing insight paths
-
 
 [0012] Details of method described in claims
 
@@ -131,7 +136,39 @@ The system wherein the matching of a problem and a solution is done with various
 	- a question-answer interface traversal (where a question defined as missing information is framed as a source position and a target position on a network, and the answer is the most robust path or the path that moves the nearest to the target position or the path that moves in the priority direction on the network)
 	- problem space analysis (given whether the problem space changes in a way that invalidates the original or other problems once a particular solution is applied, and selecting between solutions)
 
-[0014] Examples of interface traversals
+
+[0014] The present disclosure relates to the use of interfaces for constructing a solution automation system. Any combination of the core structures referenced or general mathematical objects, functions, or attributes may be used to graphically visualize:
+
+	- a problem space
+	- the problem space dimensions maximizing variance between problems & their metadata like type, state, & position
+	- a network of related problems
+	- the origin problem occupying a position on the problem network
+	- the state of problems on the network
+	- the solution space for the origin problem & for all related problems on the network
+	- the impact of solutions on the problem network or the origin problem
+	- the expansion of embedded objects (such as problems, solutions, systems, concepts, and interfaces which change on other dimensions than the problem space dimensions) to the embedded graphs using vectors
+	- the compression of embedded graphs into the problem space graph using vectors
+	- concepts having structure in a problem space depending on the context determining that space (example of structure applied to a concept: dependence is a form of the power concept with nodes running tasks for a powerful node)
+	- interfaces having structure represented as vector sets representing different unit core functions of change possible on that interface, depicted in embedded graphs or adjacent converted graphs of a problem space, and including a function to convert other objects to combinations of the vectors in that interface's vector set. (example: converting objects to the type interface involves identifying attribute sets that are unique, and then identifying types that can describe multiple unique objects as variations of an attribute in the attribute set)
+
+A problem-solving effect may be measured based on whether a solution contains or comprises a vector that:
+	- neutralizes a problem vector
+	- reduces the problem shape size
+	- removes a problem dimension or variable
+
+	or does any combination of the above for the origin problem & related problems, potentially neutralizing the problem space itself or converting it to another problem space.
+
+This system enables the identification of solution spaces, solution sets achieving different solution metrics within the solution space, and may also identify optimal solutions for a particular problem, problem type, or problem network in a particular problem space.
+
+This enables the automation of finding solutions that optimize specific solution metrics defined in a problem statement in a discoverable system (where relevant system objects can be described, core system functions can be derived, solutions can be tested, & success can be measured with some metric & threshold or target value).
+
+This enables arriving at insights sooner, building products more optimally sooner, inventing products sooner, and predicting patterns sooner, with less data & computational capacity. 
+
+This system relies on the inputs of the problem statement & problem space context, the interface definitions (including the conversion functions, traversal functions, & operation functions), as well as functions to visualize the impact of a solution on the problem definition & test for adherence to a solution metric.
+
+[0015] One or more example embodiments are explained with reference to the accompanying drawings.
+
+[0016] Examples of interface traversals
 
 The system wherein the matching of a problem and a solution is done with various interface traversals, potentially determined by the selected origin of the traversal, problem & solution definitions & associated space definitions, including:
 
