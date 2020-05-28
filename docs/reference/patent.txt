@@ -259,6 +259,11 @@ The system wherein the matching of a problem and a solution is done with various
 			- system: a function to identify system objects given their definition, such as a variance gap (a gap in rule enforcement)
 			- concept: a function to identify concepts given their definition & a system network (either structures applies to abstract concepts - or useful combinations of objects, functions, & attributes that are causative or interfaces in a system)
 
+		- a set of functions to analyze prior queries, optimize & maintain the program, such as:
+			- removing duplicates
+			- pre-computing & storing frequently requested traversals
+			- optimizing data storage & logic given how other users are using the program
+
 [0018] The standard workflow for this system relies on the dependencies:
 
 	- inputs:
@@ -316,7 +321,15 @@ In some embodiments, such solution automation may lead to a solution for the pro
 	- utility functions like identifying unique & conceptual attributes given a system definition
 	- high-level logic functions like determining whether a solution reduced a problem or achieved an intent
 
-[0030] In some embodiments, alternate interface trajectories may be determined to be optimal, such as starting from an interface that generally solves the problem of a certain type more quickly, which is determined by querying the insight table pre-traversal once the problem type is identified, or converting problems to a problem type with many known solution methods, like a route optimization problem.
+[0030] In some embodiments, alternate default interface trajectories may be determined to be optimal using analysis of previous queries run on the solution automation module, if the user configures the program to self-optimize in the GUI, such as starting from an interface that generally solves the problem of a certain type more quickly, which is determined by querying the insight table pre-traversal once the problem type is identified, as opposed to searching for new solutions or optimizing known solutions for that problem type, or converting problems to a problem type with many known solution methods, like a route optimization problem.
+
+[0031] In some embodiments, solutions that optimize metrics not specified by the user may be included in the output, such as solutions optimizing the user-specified solution metric and metrics that impact other problem-solvers, like the environment. For example, even if a user didn't request clean energy solutions for their traversal to find the optimal implementation of a Air Conditioning unit, the program may still return energy-conserving solutions like automatically shutting itself off when target temperature is reached, given that this energy-conserving solution optimizes more metrics than the requested solution, or that other users preferred the energy-conserving solution metric, or that the program identified energy-conserving solution metrics as conserving available resources, which would not only improve cross-system design for many agents using the program but also increase the likelihood that the program would have energy to run parallel processing or large queries or self-maintenance & self-optimization logic.
+
+[0032] In some embodiments, after being presented with the solution 150, the user may be dissatisfied with the solution 150. In these and other embodiments, the user may modify or adjust one or more of the input filters provided to the solution automation module 140 regarding the problem/problem space/solution metadata derived and the origin interface & the formats selected for the problem-solution matching process.
+
+[0033] By iteratively repeating the process of adjusting the input filters from the user, the solution automation module 140 may repeatedly generate different solutions 150 until the user is satisfied with the solution 150. In some embodiments, the user may be dissatisfied with the solution based on preference the user has about their preferred optimal solution for the problem statement. In that case, they can add a filter to reduce the solution output, and if the program can find or derive the definition for that metric, it will apply it in the next query. If some metrics or formats contribute to uncertainty in the problem/solution filtering, formatting, compression, interface traversal, or other processes run by the program, the program will return output about the contribution of risky metrics to the uncertainty in the solution output. For example, if the user adds a custom filter like 'importance' and the program were to retrieve or derive an over-specific definition such as 'number of hub connections', it would cause distortions in the output, which would be included in the report as a risky filter that can be removed.
+
+[0034] One skilled in the art, after reviewing this disclosure, may recognize that modifications, additions, or omissions may be made to the system 100 without departing from the scope of the disclosure. For example, the designations of different elements in the manner described is meant to help explain concepts described herein and is not limiting. Further, the system 100 may include any number of other elements or may be implemented within other systems or contexts than those described. 
 
 [0028] Different traversals are associated with different starting information and/or different problem type and/or different solution intent. For example, framing a problem on the change interface may help predict how the problem will change better than framing it on other interfaces.
 
