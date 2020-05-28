@@ -192,6 +192,7 @@ The system wherein the matching of a problem and a solution is done with various
 
 
 [0015] A problem-solving effect may be measured based on whether a solution contains or comprises a vector that:
+
 	- neutralizes a problem vector
 	- reduces the problem shape size
 	- removes a problem dimension or variable
@@ -263,11 +264,13 @@ The system wherein the matching of a problem and a solution is done with various
 	- inputs:
 
 		- required:
+
 			- the problem statement
 			- the interface definitions
 			- logic functions to traverse interfaces, visualize the impact of a solution on the problem/problem space, & test for adherence to a solution metric, check input for validity
 
 		- optional:
+
 			- the problem space context, without which the program will make API calls to fetch data & definitions and/or predict them witih ML models to assemble a simulation of the problem space
 			- database storing example objects (example insights, problems, solutions, questions, patterns, functions, causes, concepts, types, systems, etc), as well as previous queries if configured to do so
 
@@ -278,6 +281,7 @@ The system wherein the matching of a problem and a solution is done with various
 	- outputs:
 
 		- solution information, including any of the following: 
+
 			- a particular solution implementation of a strategy
 			- a solution set of solutions that were not reducible given input filters
 			- a solution space identifying that a solution is possible in the problem space
@@ -297,14 +301,24 @@ In some embodiments, such solution automation may lead to a solution for the pro
 
 [0024] The solution automation module 140 may include any device or system or components thereof configured to utilize the inputs from the machine learning system 120 or the API finding & calling system 130 and from the user interaction module 110 to output the solution 150. 
 
-[0025] Describe implementation variants, workflows, specific methods, conditional behavior, and references to general methods like data source API finding/calling.
+## Describe implementation variants, workflows, specific methods, conditional behavior
 
-- User input may vary - problem statement may be an abstract statement, a statement about a problem type, not including all the information, or being ambiguous.
-- Output may be incomplete or otherwise sub-optimal, in which case the user can state the problem differently or add information or their own theory about the cause or solution.
-- Different traversals are associated with different starting information and/or different problem type and/or different solution intent. For example, framing a problem on the change interface may help predict how the problem will change better than framing it on other interfaces.
+[0025] In some embodiments, user input may vary, such as where the problem statement may be an abstract statement, a statement about a problem type, or missing necessary information. The output may be incomplete or otherwise sub-optimal, in which case the user can state the problem differently or add information or their own theory about the cause or solution, or expand the allowances of the configuration to include more pattern & derivation computations than more direct problem-solving methods or pre-computed solutions that may need updating. The problem statement validation will return a message if the program cannot correct the problem statement or return a validation question to prompt the user to enter specific information. Deriving problem metadata such as the minimum information to solve a problem or deriving solution requirements would take the form of logic such as identifying required probable solution structures necessary to solve the problem & information necessary for filtering solutions in that format or for a particular intent (if it's a shape, the solution needs to be in vector format and the dimensions need to be identified). The validation will also validate other input fields like problem metadata, so that a problem statement that doesn't match the specific problem type will return an error indicating that mismatch.
 
+[0026] In some embodiments, the user may want to use alternate data sources for the definitions & object metadata, or use data sources rather than deriving information, in which case API finding/calling functionality will be executed to discover public or permitted data sources matching target objects, or the data can be generated (or the definition predicted) using a standard machine learning model. Similarly these standard methods can be used to retrieve or generate the latest implementation or pre-computations for a solution or utility function (like sorting or indexing algorithms or testing tools), when local assets are compromised or when the user sets a preference for crowd-sourced or new tools.
 
-[0026] Examples of interface traversals
+[0027] In some embodiments, it may not be clear which interface should be the origin interface, in which case multiple processes can be run if allowed by user configuration (for example, if they selected 'performance' as a metric to optimize, meaning the user requests a quick solution, multiple parallel processes wouldn't be allowed), and may periodically stop and check if the other process has useful information or is nearer to the solution, at which point the slower process can stop.
+
+[0028] In some embodiments, alternate default core interfaces may be selected than the abstract interfaces such as function, system, type, etc. Some embodiments may organize these interfaces by type, so that function/pattern/insight/strategy are all stored as sub-interfaces of the rule interface, and the same for information/structure/math being related interfaces with minor transformations.
+
+[0029] In some embodiments, alternate implementations of the functions may determine the system functions such as:
+	- visualization of problem dimensions, composition, & solution application
+	- utility functions like identifying unique & conceptual attributes given a system definition
+	- high-level logic functions like determining whether a solution reduced a problem or achieved an intent
+
+[0030] In some embodiments, alternate interface trajectories may be determined to be optimal, such as starting from an interface that generally solves the problem of a certain type more quickly, which is determined by querying the insight table pre-traversal once the problem type is identified, or converting problems to a problem type with many known solution methods, like a route optimization problem.
+
+[0028] Different traversals are associated with different starting information and/or different problem type and/or different solution intent. For example, framing a problem on the change interface may help predict how the problem will change better than framing it on other interfaces.
 
 The system wherein the matching of a problem and a solution is done with various interface traversals, potentially determined by the selected origin of the traversal, problem & solution definitions & associated space definitions, including:
 
