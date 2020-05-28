@@ -104,8 +104,9 @@ DETAILED DESCRIPTION
 		- abstract interfaces include cause, concept, structure, etc
 		- specific interfaces are other foundations where change develops in a clearly defined range that can be found in specific systems
 
-	- The traversal of an interface implies finding a map between objects, functions, & attributes inherent to that interface to the problem objects, functions, & attributes
-	- The application of an interface is an operation in an interface combination or other operation
+	- the traversal of an interface implies finding a map between objects, functions, & attributes inherent to that interface to the problem objects, functions, & attributes
+
+	- the application of an interface is an operation in an interface combination, mapping, injection, or other operation
 
 	- problem space: context relevant to a problem; the containing system(s) of a problem that may include related problems
 
@@ -114,6 +115,7 @@ DETAILED DESCRIPTION
 [0012] Details of method described in claims
 
 A method that includes:
+
 	1. obtaining a problem statement from a user including required solution metrics (such as priorities, functionality, or attributes)
 	2. identifying problem & problem space metadata (such as problem type & minimum information required to solve the problem)
 	3. identifying optimal origin interface to start traversing from
@@ -141,7 +143,7 @@ The system wherein the matching of a problem and a solution is done with various
 	- a question-answer interface traversal (where a question defined as missing information is framed as a source position and a target position on a network, and the answer is the most robust path or the path that moves the nearest to the target position or the path that moves in the priority direction on the network)
 	- problem space analysis (given whether the problem space changes in a way that invalidates the original or other problems once a particular solution is applied, and selecting between solutions)
 
-[0014] The present disclosure relates to the use of interfaces for constructing a solution automation system. Any combination of the core structures referenced or general mathematical objects, functions, or attributes may be used to graphically visualize:
+[0014] The present disclosure relates to the use of interfaces & custom logic automation for constructing a solution automation system. A combination of the core structures referenced or general mathematical objects, functions, or attributes may be used to graphically visualize:
 
 	- a problem space
 	- the problem space dimensions maximizing variance between problems & their metadata like type, state, & position
@@ -155,42 +157,120 @@ The system wherein the matching of a problem and a solution is done with various
 	- concepts having structure in a problem space depending on the context determining that space (example of structure applied to a concept: dependence is a form of the power concept with nodes running tasks for a powerful node)
 	- interfaces having structure represented as vector sets representing different unit core functions of change possible on that interface, depicted in embedded graphs or adjacent converted graphs of a problem space, and including a function to convert other objects to combinations of the vectors in that interface's vector set. (example: converting objects to the type interface involves identifying attribute sets that are unique, and then identifying types that can describe multiple unique objects as variations of an attribute in the attribute set)
 
-A problem-solving effect may be measured based on whether a solution contains or comprises a vector that:
+[0015] A problem-solving effect may be measured based on whether a solution contains or comprises a vector that:
 	- neutralizes a problem vector
 	- reduces the problem shape size
 	- removes a problem dimension or variable
-
 	or does any combination of the above for the origin problem & related problems, potentially neutralizing the problem space itself or converting it to another problem space.
 
-This system enables the identification of solution spaces, solution sets achieving different solution metrics within the solution space, and may also identify optimal solutions for a particular problem, problem type, or problem network in a particular problem space.
+[0016] This system enables the identification of solution spaces, solution sets achieving different solution metrics within the solution space, and may also identify optimal solutions for a particular problem, problem type, or problem network in a particular problem space. This enables the automation of finding solutions that optimize specific solution metrics defined in a problem statement in a discoverable system (where relevant system objects can be described, core system functions can be derived, solutions can be tested, & success can be measured with some metric & threshold or target value). This enables arriving at insights sooner, building products optimally sooner, inventing products sooner, and predicting patterns sooner, with less data & computational capacity. 
 
-This enables the automation of finding solutions that optimize specific solution metrics defined in a problem statement in a discoverable system (where relevant system objects can be described, core system functions can be derived, solutions can be tested, & success can be measured with some metric & threshold or target value).
+[0017] This system relies on the dependencies:
 
-This enables arriving at insights sooner, building products more optimally sooner, inventing products sooner, and predicting patterns sooner, with less data & computational capacity. 
+	- a database including tables to store found associations & objects in queries, as well as tables storing data sources & solution sources, as well as standard objects & their metadata (such as definition routes & conceptual queries) following the schema specified here:
 
-This system relies on the inputs of the problem statement & problem space context, the interface definitions (including the conversion functions, traversal functions, & operation functions), as well as functions to visualize the impact of a solution on the problem definition & test for adherence to a solution metric.
+		https://github.com/outdreamer/build-a-cure/blob/docs/objects/schema.md
 
-[0015] One or more example embodiments are explained with reference to the accompanying drawings.
+	- a graphical user interface (GUI) providing inputs to provide problem statement, solution metrics & other metadata described below
 
-[0013] FIG. 1 is a diagram illustrating an example system 100 that may be used to automate finding a solution for a problem statement, in accordance with one or more embodiments of the present disclosure. The system 100 may include a user interaction module 110 and a machine learning system 120 and an API finding/calling system 130 that may provide input to a solution automation module 140. The solution automation module 140 may facilitate determination of the solution 150 associated with the problem statement. As used herein, a problem statement may include any context or condition that causes a negative position or state determined by a metric for an agent in a system. A solution may include any combination of events, methods, or steps that reduces the negative position or state for the specified agent.
+	- logic including:
+
+		- a definition, set of core objects, and a set of functions (converting, filtering, applying core interface functions, traversing interface network) for each interface
+
+		- a set of functions to select filters to display in the GUI, and validate input (for example, if the problem statement doesn't match problem type specified)
+
+		- a set of functions to select between comparable solutions
+
+		- a set of functions to convert a problem statement (and problem space context if provided) into the problem object metadata
+
+		- a set of functions for core operations like:
+
+			- find
+				- function to apply filters to a structure
+			- build
+				- function to assemble components given a particular definition of combine
+			- derive
+				- function to identify possible paths, compare them, and select one given a solution metric
+			- change
+				- function to apply an object, function, or attribute to another
+			- define:
+				- function to identify & define attributes, functions, & objects (given minimal information like their position in a system or their set of attributes compared to other system objects)
+
+		- a set of utility functions, including:
+
+			- a function to convert an object between formats (function => attribute sequence, function => filter sequence, etc) by mapping attributes & functions & other metadata of the objects & removing attributes that don't fit in the target format definition (for example, if you're converting to a type, the output should be in an attribute set format)
+			- a function to identify structure matching a pattern (like identify a structure embodying a mismatch, which is a problem type, given a system network definition, where the system could represent an object, function, or attribute)
+			- to identify sub-components or system context of a component (a component which could be either a function, object, or attribute)
+
+		- a set of graphing functions 
+
+			- to graph the problem space, problem, related problem network, solution space, solution, embedded graphs, interfaces, and other relevant objects
+
+		- a set of problem & solution functions
+
+			- select solutions based on input preferences selected (avoid using ML in solution, use a particular interface, use pre-computed solutions, etc)
+			- isolate the solution space in the problem space
+			- break the problem space into sub-problems that can have their own interface traversal & solution-matching process run
+			- reduce the solution space
+			- apply the solution to the problem space
+			- a function to check if a solution reduces a problem or fulfills a solution metric
+			- a function to check if a solution fits a structure such as input assumptions & limits
+
+		- a set of specific functions for each interface, for example:
+
+			- intent: a function to derive intent as a dependency of the intent interface conversion function
+			- core: a set of functions to generate the set of possible combinations in an interaction space to conduct core combination analysis & identify probable important objects like an incentive would be identified as an important system object given the system filters it passes after being generated by core combination analysis)
+			- type: a function to identify the type an object belongs to, given its metadata
+			- system: a function to identify system objects given their definition, such as a variance gap (a gap in rule enforcement)
+			- concept: a function to identify concepts given their definition & a system network (either structures applies to abstract concepts - or useful combinations of objects, functions, & attributes that are causative or interfaces in a system)
+
+[0018] The standard workflow for this system relies on the dependencies:
+
+	- inputs:
+
+		- required:
+			- the problem statement
+			- the interface definitions
+			- logic functions to traverse interfaces, visualize the impact of a solution on the problem/problem space, & test for adherence to a solution metric, check input for validity
+
+		- optional:
+			- the problem space context, without which the program will make API calls to fetch data & definitions and/or predict them witih ML models to assemble a simulation of the problem space
+			- database storing example objects (example insights, problems, solutions, questions, patterns, functions, causes, concepts, types, systems, etc), as well as previous queries if configured to do so
+
+	- process:
+
+		- process described in [0012] executed, conditionally making calls to the machine learning system and the API calling/finding system if predictions, data, or definitions are needed
+
+	- outputs:
+
+		- solution information, including any of the following: 
+			- a particular solution implementation of a strategy
+			- a solution set of solutions that were not reducible given input filters
+			- a solution space identifying that a solution is possible in the problem space
+			- a set of information objects about the problem, problem network, or problem space that clarify the problem to some degree, such as causes deemed not likely or additional problem metadata derived or a problem-invalidating event identified
+
+[0019] One or more example embodiments are explained with reference to the accompanying drawings.
+
+[0020] FIG. 1 is a diagram illustrating an example system 100 that may be used to automate finding a solution for a problem statement, in accordance with one or more embodiments of the present disclosure. The system 100 may include a user interaction module 110 and a machine learning system 120 and an API finding & calling system 130 that may provide input to a solution automation module 140. The solution automation module 140 may facilitate determination of the solution 150 associated with the problem statement. As used herein, a problem statement may include any context or condition that causes a negative position or state determined by a metric for an agent in a system. A solution may include any combination of events, methods, or steps that reduces the negative position or state for the specified agent.
 
 In some embodiments, such solution automation may lead to a solution for the problem, such as the cause of a problem, the intents fulfilled by a problem, a set of steps to reduce the problem, or a set of steps to neutralize or change the problem space containing the problem. In these and other embodiments, if a user is dissatisfied with the provided solution 150 (e.g., the solution is incomplete or no solution was found), the user may interact with the system 100 (e.g., to add more information or remove assumptions) and the solution automation may be run again.
 
-[0014] The machine learning system 120 may include any machine learning system configured to identify relationships and/or correlations from a data set. For example, the machine learning system 120 may be configured to identify a set of most likely factors contributing to a problem or sub-problem or solution, whether directly or indirectly, by analyzing data sets. As an example, the machine learning system 120 may analyze all solution examples and predict which solution would be the best implementation for a problem definition, or analyze all sub-problem & problem associations stored in the database & predict which sub-problems would be the best way to break down a problem, or analyze all previous queries on the solution automation module 140 and predict which factors will be used the most as inputs to show on the user interface module 110 (in the absence of functions on interfaces described above, or if machine learning is specified as a preferred solution method on the user interface module 110 before running the solution automation module 140). In these and other embodiments, the machine learning system 120 may provide the correlations and/or the factors contributing to an input to the user interaction module 110 and/or the solution automation module 140.
+[0021] The machine learning system 120 may include any machine learning system configured to identify relationships and/or correlations from a data set. For example, the machine learning system 120 may be configured to identify a set of most likely factors contributing to a problem or sub-problem or solution, whether directly or indirectly, by analyzing data sets. As an example, the machine learning system 120 may analyze all solution examples and predict which solution would be the best implementation for a problem definition, or analyze all sub-problem & problem associations stored in the database & predict which sub-problems would be the best way to break down a problem, or analyze all previous queries on the solution automation module 140 and predict which factors will be used the most as inputs to show on the user interface module 110 (in the absence of functions on interfaces described above, or if machine learning is specified as a preferred solution method on the user interface module 110 before running the solution automation module 140). In these and other embodiments, the machine learning system 120 may provide the correlations and/or the factors contributing to an input to the user interaction module 110 and/or the solution automation module 140.
 
-[0015] In some embodiments, the machine learning system 120 may operate using any machine learning technique or deep learning technique, such as decision tree learning, association rule learning, clustering, reinforcement learning, representation learning, genetic algorithms, etc. In some embodiments, the machine learning system 120 may be utilized to perform a task, such as providing a recommendation of input filters to show in the user interface module 110 based on previous queries of the solution automation module 140.
+[0022] In some embodiments, the machine learning system 120 may operate using any machine learning technique or deep learning technique, such as decision tree learning, association rule learning, clustering, reinforcement learning, representation learning, genetic algorithms, etc. In some embodiments, the machine learning system 120 may be utilized to perform a task, such as providing a recommendation of input filters to show in the user interface module 110 based on previous queries of the solution automation module 140.
 
-[0016] The user interaction module 110 may include any device or system or components thereof configured to receive user input and/or provide information to the user. For example, the user interaction module 110 may present an input to enter the problem statement and a set of filters (to refine the problem statement, or attach problem and/or problem space metadata such as expected complexity, known problem sub-problem, known problem factor, or preferred problem definition) as well as an input for common & other solution metrics (such as solution-finding time/cost, solution-implementing time/cost, accuracy, using pre-computed solutions or deriving solutions from scratch, using a particular data source for definitions & other API calls inserted into the workflow rather than using system-generated data sources from the initial or previous queries, etc) to a user. In these and other embodiments, the user may utilize the user interaction module 110 to identify problem & problem space metadata & solution metrics as an input filter to reduce the solution space and evalute output solutions. In these and other embodiments, the user may additionally utilize the user interaction module 110 to identify output solutions of varying types (including optimal, low-cost, reusable, able to reduce other problems, able to invalidate a problem space, able to change a problem space to a very different one, etc) to create a score to store the output in the database as a solution (if the score is high) or a problem (if the score is low) associated with the origin problem statement. For example, the user may designate an output solution as optimal for solving a sub-problem of the origin problem, and the database will store a link between the sub-problem and the output solution as one of the sub-problem's optimal solutions.
+[0023] The user interaction module 110 may include any device or system or components thereof configured to receive user input and/or provide information to the user. For example, the user interaction module 110 may present an input to enter the problem statement and a set of filters (to refine the problem statement, or attach problem and/or problem space metadata such as expected complexity, known problem sub-problem, known problem factor, or preferred problem definition) as well as an input for common & other solution metrics (such as solution-finding time/cost, solution-implementing time/cost, accuracy, using pre-computed solutions or deriving solutions from scratch, using a particular data source for definitions & other API calls inserted into the workflow rather than using system-generated data sources from the initial or previous queries, etc) to a user. In these and other embodiments, the user may utilize the user interaction module 110 to identify problem & problem space metadata & solution metrics as an input filter to reduce the solution space and evalute output solutions. In these and other embodiments, the user may additionally utilize the user interaction module 110 to identify output solutions of varying types (including optimal, low-cost, reusable, able to reduce other problems, able to invalidate a problem space, able to change a problem space to a very different one, etc) to create a score to store the output in the database as a solution (if the score is high) or a problem (if the score is low) associated with the origin problem statement. For example, the user may designate an output solution as optimal for solving a sub-problem of the origin problem, and the database will store a link between the sub-problem and the output solution as one of the sub-problem's optimal solutions.
 
-# Describe example implementation variants, workflows, specific methods, conditional behavior, and references to general methods like data source API finding/calling.
+[0024] The solution automation module 140 may include any device or system or components thereof configured to utilize the inputs from the machine learning system 120 or the API finding & calling system 130 and from the user interaction module 110 to output the solution 150. 
+
+[0025] Describe implementation variants, workflows, specific methods, conditional behavior, and references to general methods like data source API finding/calling.
 
 - User input may vary - problem statement may be an abstract statement, a statement about a problem type, not including all the information, or being ambiguous.
-
 - Output may be incomplete or otherwise sub-optimal, in which case the user can state the problem differently or add information or their own theory about the cause or solution.
+- Different traversals are associated with different starting information and/or different problem type and/or different solution intent. For example, framing a problem on the change interface may help predict how the problem will change better than framing it on other interfaces.
 
-- Different traversals are associated with different starting information and/or different problem type and/or different solution intent. Framing a problem on the change interface may help predict how the problem will change better than framing it on other interfaces.
 
-[0016] Examples of interface traversals
+[0026] Examples of interface traversals
 
 The system wherein the matching of a problem and a solution is done with various interface traversals, potentially determined by the selected origin of the traversal, problem & solution definitions & associated space definitions, including:
 
