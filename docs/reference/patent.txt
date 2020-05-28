@@ -282,7 +282,7 @@ The system wherein the matching of a problem and a solution is done with various
 
 	- process:
 
-		- process described in [0012] executed, conditionally making calls to the machine learning system and the API calling/finding system if predictions, data, or definitions are needed
+		- process described in [0012] executed, conditionally making calls to the machine learning system and the API finding/calling system if predictions, data, or definitions are needed
 
 	- outputs:
 
