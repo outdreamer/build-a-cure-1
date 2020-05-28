@@ -76,9 +76,9 @@ BRIEF DESCRIPTION OF THE DRAWINGS
 
 [0006] Example embodiments will be described and explained with additional specificity and detail through the use of the accompanying drawings in which:
 
-[0007] FIG. 1 illustrates a workflow module diagram of an example solution automation module that may be used to find a solution for a problem statement.
+[0007] FIG. 1 illustrates a module diagram of an example solution automation module that may be used to find a solution for a problem statement.
 
-[0008] FIG. 2 illustrates a workflow execution diagram of an example of how a solution automation module may find a solution for a problem statement.
+[0008] FIG. 2 illustrates a execution diagram of an example of how a solution automation module may find a solution for a problem statement.
 
 [0009] FIG. 3 illustrates an example computing system.
 
@@ -426,7 +426,7 @@ In some embodiments, such solution automation may lead to a solution for the pro
 
 [0036] The origin interface selection process may also output a interface sequence and/or an interface operation to map one interface to the other, combine them, or apply one to the other. The origin interface may also be in the form of a query across multiple interfaces. For example: 'find the patterns of associated solutions for this problem type, and convert problem to patterns, and iterate through patterns, applying them one at a time to the problem pattern'.
 
-[0037] FIGS. 3A and 3B illustrate a flow diagram illustrating one embodiment of a process 300 of identifying a potential emulated mobile device. The process 300 may be arranged in accordance with at least one embodiment described herein. One or more operations of the process 300 may be performed by a system or device, or combinations thereof, such as the system 100, the user interaction module 110, the machine learning system 120, the API finding/calling module 130, and/or the solution automation module 140 of FIG. 1, the computing system 400 of FIG. 4, etc. For illustrative purposes, various blocks below will be identified as potentially being performed by one of the user interaction module 110, the machine learning system 120, the API finding/calling system 130, and/or the solution automation module 140 of FIG. 1. In these and other embodiments, the process 300 may be performed based on the execution of instructions stored on one or more non-transitory computer-readable media. Although illustrated as discrete blocks, various blocks of the process 300 may be divided into additional blocks, combined into fewer blocks, or eliminated, depending on the desired implementation.
+[0037] FIG. 2 illustrates a flow diagram illustrating one embodiment of a process 300 of identifying a potential emulated mobile device. The process 300 may be arranged in accordance with at least one embodiment described herein. One or more operations of the process 300 may be performed by a system or device, or combinations thereof, such as the system 100, the user interaction module 110, the machine learning system 120, the API finding/calling module 130, and/or the solution automation module 140 of FIG. 1, the computing system 400 of FIG. 3, etc. For illustrative purposes, various blocks below will be identified as potentially being performed by one of the user interaction module 110, the machine learning system 120, the API finding/calling system 130, and/or the solution automation module 140 of FIG. 1. In these and other embodiments, the process 300 may be performed based on the execution of instructions stored on one or more non-transitory computer-readable media. Although illustrated as discrete blocks, various blocks of the process 300 may be divided into additional blocks, combined into fewer blocks, or eliminated, depending on the desired implementation.
 
 
 # General specs
