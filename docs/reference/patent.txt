@@ -76,11 +76,11 @@ BRIEF DESCRIPTION OF THE DRAWINGS
 
 [0006] Example embodiments will be described and explained with additional specificity and detail through the use of the accompanying drawings in which:
 
-[0007] FIG. 1 is a diagram illustrating an example interface network query output, consisting of system objects like efficiencies, alternatives, conflicts, unenforced rules, and incentives identified, having converted a problem space to a format that is directly mappable to the system interface.
+[0007] FIG. 1 illustrates a workflow module diagram of an example solution automation module that may be used to find a solution for a problem statement.
 
-[0009] FIG. 3 illustrates a workflow & component diagram of a solution automation module that may be used to find a solution for a problem statement.
+[0008] FIG. 2 illustrates a workflow execution diagram of an example of how a solution automation module may find a solution for a problem statement.
 
-[0010] FIG. 4 illustrates an example computing system.
+[0009] FIG. 3 illustrates an example computing system.
 
 Docs:
 	- core structures
@@ -109,11 +109,16 @@ DETAILED DESCRIPTION
 
 	- the application of an interface is an operation in an interface combination, mapping, injection, or other operation
 
+	- problem object/statement: may include any context or condition that causes a negative position or state determined by a metric for an agent in a system
+
 	- problem space: context relevant to a problem; the containing system(s) of a problem that may include related problems
+
+	- solution: may include any combination of events, methods, or steps that reduces the negative position or state for the specified agent
 
 	- solution space: set of possible solutions in a problem space, which may be reduced by applying interface traversals like solution space-reducing insight paths
 
 	- network: standard network graph containing nodes (sometimes called vertices) & linking functions (sometimes called edges), with or without node attributes, function relationship determining function shape, and direction as an indicator of intent or another metric.
+
 
 [0012] Details of method described in claims
 
@@ -295,7 +300,7 @@ The system wherein the matching of a problem and a solution is done with various
 
 [0019] One or more example embodiments are explained with reference to the accompanying drawings.
 
-[0020] FIG. 1 is a diagram illustrating an example system 100 that may be used to automate finding a solution for a problem statement, in accordance with one or more embodiments of the present disclosure. The system 100 may include a user interaction module 110 and a machine learning system 120 and an API finding & calling system 130 that may provide input to a solution automation module 140. The solution automation module 140 may facilitate determination of the solution 150 associated with the problem statement. As used herein, a problem statement may include any context or condition that causes a negative position or state determined by a metric for an agent in a system. A solution may include any combination of events, methods, or steps that reduces the negative position or state for the specified agent.
+[0020] FIG. 1 is a diagram illustrating an example system 100 that may be used to automate finding a solution for a problem statement, in accordance with one or more embodiments of the present disclosure. The system 100 may include a user interaction module 110 and a machine learning system 120 and an API finding & calling system 130 that may provide input to a solution automation module 140. The solution automation module 140 may facilitate determination of the solution 150 associated with the problem statement, and output the solution 150 to the user interaction module 110.
 
 In some embodiments, such solution automation may lead to a solution for the problem, such as the cause of a problem, the intents fulfilled by a problem and/or the solution, a set of steps to reduce the problem, or a set of steps to neutralize or change the problem space containing the problem. In these and other embodiments, if a user is dissatisfied with the provided solution 150 (e.g., the solution is incomplete or no solution was found), the user may interact with the system 100 (e.g., to add more information or remove assumptions) and the solution automation may be run again.
 
