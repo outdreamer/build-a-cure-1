@@ -654,7 +654,7 @@ to do: organize into docs
           - probability (anyone walking around the neighborhood could be interacted with)
           - enforced rules (the mailman is required to interact with unless window/sound are blocked)
 
-      - probable ranges & vertices of a prediction function can be estimated better once you know the reason the function emerged
+      - probable ranges & vertices of a prediction function can be estimated better once you know the reason the function emerged, which is a key function metadata attribute linking the causes & the output intents/priorities
 
         - reasons on interfaces such as 'clustering rules' or 'boundary rules' or 'interaction rules'
 
