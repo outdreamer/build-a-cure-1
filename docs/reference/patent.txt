@@ -90,10 +90,13 @@ Docs:
 	- system filters
 	- problem/solution schema
 
+		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/schema.mds
+
 	- system database (including definitions & indexes)
 	- analysis on each interface (derivation methods)
 	- call API for data like alternate definition sources, object behavior rules, latest version of an open-source solution tool, etc
 	- incorporate existing non-proprietary statistics & ML if a standard prediction function or statistical metadata description for those problem types is justified
+
 
 DETAILED DESCRIPTION
 
@@ -119,7 +122,7 @@ A method that includes:
 	1. obtaining a problem statement from a user including required solution metrics (such as priorities, functionality, or attributes)
 	2. identifying problem & problem space metadata (such as problem type & minimum information required to solve the problem)
 	3. identifying optimal origin interface to start traversing from
-	4. traversing the interface network (including interfaces such as information, insight, structure, math, concept, type, variance, potential, change, intent, perspective, system, attribute, pattern, function, cause, problem/question, solution/answer) of interfaces acting as filters (where an interface is comprised of its definition routes, conversion function, core functions, objects, & attributes, and related objects like patterns & metadata specific to the interface) starting at the origin interface
+	4. traversing the interface network (including interfaces such as information, insight, structure, math, concept, type, variance, potential, change, intent, perspective, system, attribute, pattern, function, cause, problem/question, solution/answer) of interfaces acting as filters (where an interface is comprised of its definition routes, conversion function, core functions/objects/attributes, and related objects like patterns & metadata specific to the interface) starting at the origin interface
 	5. finding components on the interface that match the problem structures (including related objects like insights, patterns, & functions)
 	6. compressing the problem statement into its most accurate structure containing the found interface objects
 	7. iterating the origin interface selection & interface traversal process for the solution space
@@ -145,17 +148,48 @@ The system wherein the matching of a problem and a solution is done with various
 
 [0014] The present disclosure relates to the use of interfaces & custom logic automation for constructing a solution automation system. A combination of the core structures referenced or general mathematical objects, functions, or attributes may be used to graphically visualize:
 
-	- a problem space
-	- the problem space dimensions maximizing variance between problems & their metadata like type, state, & position
-	- a network of related problems
+	- a problem space depicted as a set of boundaries indicating limits creating the problem space (like limited tech creates a problem space)
+	- the problem space dimensions maximizing variance between related problems
+	- a network of related problems in the problem space & their state
 	- the origin problem occupying a position on the problem network
-	- the state of problems on the network
-	- the solution space for the origin problem & for all related problems on the network
-	- the impact of solutions on the problem network or the origin problem
-	- the expansion of embedded objects (such as problems, solutions, systems, concepts, and interfaces which change on other dimensions than the problem space dimensions) to the embedded graphs using vectors
-	- the compression of embedded graphs into the problem space graph using vectors
-	- concepts having structure in a problem space depending on the context determining that space (example of structure applied to a concept: dependence is a form of the power concept with nodes running tasks for a powerful node)
-	- interfaces having structure represented as vector sets representing different unit core functions of change possible on that interface, depicted in embedded graphs or adjacent converted graphs of a problem space, and including a function to convert other objects to combinations of the vectors in that interface's vector set. (example: converting objects to the type interface involves identifying attribute sets that are unique, and then identifying types that can describe multiple unique objects as variations of an attribute in the attribute set)
+
+		- the problem object can be represented differently according to the type & the solution generation method, for example:
+			
+			- if your problem object is represented as a 3-d shape like a cube (indicating it has three main variables expanding each other from an origin corner & forced to create a closed system to maintain state, or 6 limits interacting with each other but not overlapping), the solution would need to be in a vector format to remove dimensions of the shape or reduce the size of the problem shape
+			
+		- if you're representing your problem on the information interface, you may want to represent it as an information problem type within a system context, like how:
+			- a conflict between system incentives & agent intents could be represented as two vectors with the same origin or two vectors going in different directions
+			- an information imbalance would look like extra information in different positions
+			- an information asymmetry would look like information in a position where it's not needed & can be exploited to charge rent
+			- an information market would have some trust structures embedded so information can be bought instead of derived for conveniencess
+
+		- this is similar to how concepts like delegation would look like a node sending calls to other nodes that run tasks & return response data - problem types have structure once they're framed as an information problem, and once concepts are converted to more structural interfaces, they also have default structural forms reflecting their definitions
+
+	- the solution space for the origin problem (and for all related problems on the network that the solution space applies to)
+
+		- the solution space is a reduced version of the problem shape or structure or the set of possible solutions
+
+	- solutions to the origin problem, represented as:
+
+		- a subset of the problem shape (like a path answering a question, where the solution space is all possible routes between origin & destination nodes)
+		- a structure within a system containing the problem (an optimal route with a required attribute like efficiency, or a combination of objects reducing variance in a rule gap, or a filter sequence that creates a function optimally while storing minimal code)
+		- a structure (other than reductions) to aim for when transforming the problem and the available resources implied in its definition (a solution defined as an optimal version of the problem structure, like the optimal structure to represent a concept)
+		- a compressing transform of the problem shape (solution vectors removing problem dimensions until it's a point)
+
+	- the impact of solutions on the problem network or the origin problem (depending on the problem & solution format as stated above)
+
+	- the expansion & compression of embedded objects (such as problems, solutions, systems, concepts, and interfaces which change on other dimensions than the problem space dimensions) to the embedded graphs in the problem space using vectors
+
+	- alternate versions of the problem space with other attribute sets as dimensions, to isolate impact of a solution on other attributes
+		
+	- concepts having structure in a problem space depending on the context determining that space
+
+		- example of structure applied to a concept: dependence is a form of the power concept with nodes running tasks for a powerful node
+	
+	- interfaces represented as a filter converting objects to a foundation where vector sets representing different unit core functions of change possible on that interface (where core interface functions are depicted in embedded graphs or adjacent converted graphs of a problem space, and including a function to convert other objects to combinations of the vectors in that interface's vector set
+
+		- example: converting objects to the type interface involves identifying attribute sets that are unique, and then identifying types that can describe multiple unique objects as variations of an attribute in the attribute set
+
 
 [0015] A problem-solving effect may be measured based on whether a solution contains or comprises a vector that:
 	- neutralizes a problem vector
@@ -169,7 +203,7 @@ The system wherein the matching of a problem and a solution is done with various
 
 	- a database including tables to store found associations & objects in queries, as well as tables storing data sources & solution sources, as well as standard objects & their metadata (such as definition routes & conceptual queries) following the schema specified here:
 
-		https://github.com/outdreamer/build-a-cure/blob/docs/objects/schema.md
+		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/schema.md
 
 	- a graphical user interface (GUI) providing inputs to provide problem statement, solution metrics & other metadata described below
 
