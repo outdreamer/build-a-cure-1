@@ -1,5 +1,22 @@
 to do: organize into docs
 
+  - derivatives/options/other instruments: possible money if your prediction about future value is correct
+  - insurance: future money if expected/covered risks occur
+  - debt: temporary money/resources, & possible future debt if purchased resources/investments dont increase in value
+
+  - diversification in that context means creating an investment portfolio/smart contract based on permutations of the insight powering the bet and the likely distortions of the insight, as well as permutations of related bet assumptions & other objects, such as a logical tree of conditions & tests to deactivate that investment
+  - borrow from lenders with aligned incentives to borrowers' planned resource usage/investments
+  - hedge the risk of borrowing by investing a ratio in alternatives/contradictory trends/products
+    - example: borrow to start a delivery business vs. investing in local gardening or 3d printing, and be prepared with a plan for investing resources when delivery business turns into supply pipeline, logistics, auto-mining, or tech business
+  - the logical flow of these objects given their definitions is to:
+    - arrange possible prediction money, risk expectation, and temporary money/possible future debt in a way that creates a self-sustaining loop that keeps revenue streams active enough to keep the circuit accessible or convert it into a more profitable one, for example:
+      - 'the risk expectation of possible future debt'
+      - 'a prediction payoff of a risk expectation'
+      - 'temporary money borrowed from a prediction funded by value prediction & risk expectation payoffs'
+
+    - arranging these objects in a useful way can create exploit opportunities
+      - example: if one risk is artificially increased by spoofers during risk expectation calculation
+
   - core investment attributes:
     - fundamental
     - abstract
