@@ -10,7 +10,6 @@
   - core structures (points, filters, limits, boundaries)
   - core objects
   - core functions
-
   - optimization
   - completeness
   - randomness
