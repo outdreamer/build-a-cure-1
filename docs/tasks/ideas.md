@@ -1,9 +1,9 @@
 to do: organize into docs
 
   - definitions:
-    - derivatives/options/other instruments: possible money if your prediction about future value is correct
-    - insurance: future money if expected/covered risks occur
-    - debt: temporary money/resources, & possible future debt if purchased resources/investments dont increase in value
+    - derivatives/options/other instruments: possible money if your prediction about future value is correct (where value is highly subject to risk & influenced by many factors & randomness)
+    - insurance: future money from negative unlikely predictions occur
+    - debt: temporary money/resources in exchange for possible future value of a prediction (like that your plan will succeed or that a resource will increase in value), & possible future debt if purchased resources or plans dont increase in value
 
   - diversification in that context means creating an investment portfolio/smart contract based on permutations of the insight powering the bet and the likely distortions of the insight, as well as permutations of related bet assumptions & other objects, such as a logical tree of conditions & tests to deactivate that investment
   
@@ -27,11 +27,39 @@ to do: organize into docs
 
     - a one-item circuit: 
       - borrow from investors who already invested in dependencies of your plan or bought insurance from a company that did
+      - go into debt to fund purchase of insurance against interest rate increase
 
     - a circuit based on randomness:
-      - invest borrowed resources in projects/patterns/types that appear frequently in diversified portfolios
+      - invest borrowed resources in projects/patterns/types that appear frequently in diversified portfolios - they may be uncertain in isolation, but given the frequency of their investment & bundling, they may be less uncertain
 
-    - 
+    - building a circuit logically
+
+      - system analysis:
+
+        - given a set of contradictory predictions (a trade-off or where only one prediction can be true), you can buy insurance against:
+          - the question of which one is true being invalidated
+          - the predictions having a wrong assumption restricting it to two options & the third option being true
+          - the prediction with higher investment having lower return
+          - either or both predictions having no return
+          - the assumption of them being mutually exclusive being wrong and both being capable of being true at the same time
+
+      - causal analysis:
+
+        - investing in something can increase the value of it
+        - predicting an event can increase the probability of it
+        - buying insurance against something can decrease the risk and the payoff value (bc the insurance company may invest in decreasing the cost of fixing it & change the terms)
+        
+      - structural analysis:
+        
+        - which structures (set, tree, loop, network) are useful to frame investing objects (stock, derivatives, price, product, purchase, loan, insurance, probability, value, payoff, risk, etc)
+
+      - core analysis:
+        
+        - which core component combinations are already used (such as 'option to sell', 'promise to buy', 'periodic repayment of temporary borrowed at interest', etc) and what are the next combinations on other layers or filling in gaps on existing layers?
+        
+        - given core functions (sell, buy, bundle, trade, promise, predict, etc) and core objects (option, transaction, contract, etc) and core attributes (probability, dependencies, value), what useful combined objects can be generated?
+          - value: initial value, combined value, potential value, conditional value
+
 
     - these structures like combinations, embeddings, and loops can be used to construct an optimal investment tree or network to allocate resources in a way that maximizes payoff potential
 
