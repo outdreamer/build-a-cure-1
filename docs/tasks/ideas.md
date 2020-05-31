@@ -73,14 +73,17 @@ to do: organize into docs
       - you can start from the core interface using operations core to the problem type (linear equations) and the core objects of the matrix structure (coefficients of a function)
 
       - to do: look for corrollaries between matrix multiplication and ml, as theyre both combining sets of equations using value vectors as input to create an output set of coefficients, such as:
+
         - a matrix of values is used in the position of a term or a function in the matrix multiplication example
         - by applying order & position in the form of node layer & trajectory (like a row in the matrix), the info of the input vector is organized in a way that adds value once applied across the rows
         - by varying weights & weight path patterns within a range (maximizing differences & other useful metrics across weight paths), it mimics the variation of operations within a range (linear)
         - weight paths can map to rows in the matrix, bc the rules/success of one can be used to infer the rules/success of another - same for nodes in a layer & nodes across layers that contribute to each other (nodes can be used to infer the success of later nodes, even before multiplying all of the node outputs & weights for the final node)
         - consecutive weights in a path can map to consecutive multiplication operations applied to a function in the set - so the weight path would indicate the steps required to turn a function (initial weights multiplied by input features) into a prediction of the dependent variable
         - the rules of other functions are used as inputs to other function reductions, so they act similarly to filtering influences in the neural net, like threshold values, optimization limitations, weight path differences, weight path gaps, weight paths & patterns indicating type or other determining metadata, pooling functions, etc
-        - standardization allows for comparison of values
-        - alignment between data set patterns and aggregation & weight patterns 
+        - standardization allows for comparison of values across both structures (standardization of position vs. standardization of value)
+        - alignment between data set patterns and aggregation & weight patterns
+        - networks infer the coefficients and matrix multiplication infers the values needed to produce the coefficient sets
+          - you could start with a set of probable coefficients as determined by function patterns, and reduce them to the solution of those sets of equations to see if it can produce real data
 
       - the main causal structure where existing prediction tools are useful is where the variables are all on different dependence paths/tree branches that dont tie back to the causal network except to contribute to the dependence variable (& other irrelevant variables to that function), or theyre on the same degree of causation (or the same layer) away from the dependent variable
 
