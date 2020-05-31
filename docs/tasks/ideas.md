@@ -72,6 +72,22 @@ to do: organize into docs
 
       - you can start from the core interface using operations core to the problem type (linear equations) and the core objects of the matrix structure (coefficients of a function)
 
+      - to do: look for corrollaries between matrix multiplication and ml, as theyre both combining sets of equations using value vectors as input to create an output set of coefficients, such as:
+        - a matrix of values is used in the position of a term or a function in the matrix multiplication example
+        - by applying order & position in the form of node layer & trajectory (like a row in the matrix), the info of the input vector is organized in a way that adds value once applied across the rows
+        - by varying weights & weight path patterns within a range (maximizing differences & other useful metrics across weight paths), it mimics the variation of operations within a range (linear)
+        - weight paths can map to rows in the matrix, bc the rules/success of one can be used to infer the rules/success of another
+        - consecutive weights in a path can map to consecutive multiplication operations applied to a function in the set - so the weight path would indicate the steps required to turn a function (initial weights multiplied by input features) into a prediction of the dependent variable
+        
+
+      - the main causal structure where existing prediction tools are useful is where the variables are all on different dependence paths/tree branches that dont tie back to the causal network except to contribute to the dependence variable (& other irrelevant variables to that function), or theyre on the same degree of causation (or the same layer) away from the dependent variable
+
+        - all other causal structures arent well-handled by existing prediction tools
+
+
+  - add to ml explanation
+    - in a fully connected network, every weight path from the previous layer in passed on to each node in the next layer, meaning that if a set of weight paths with additional weights applied cant produce a 'feature found' or 'yes' value above the threshold, those weight paths & additional weight combinations arent passed on as candidates for the prediction function or building blocks of it
+
 
   - definitions:
     - derivatives/options/other instruments: possible money if your prediction about future value is correct (where value is highly subject to risk & influenced by many factors & randomness)
