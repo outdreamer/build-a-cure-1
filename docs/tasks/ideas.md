@@ -1,5 +1,46 @@
 to do: organize into docs
 
+  - to do: 
+
+    - why are polynomials with a leading coefficient of one & having optional zero coefficients capable of being multiplied & added to give the roots to the system of equations?
+
+      - bc scaled versions (through multiplication) and combinations (through addition) can position leading coefficients to be 1 while also positioning trailing coefficients to be zero
+
+      - is there a polynomial coefficient set that you cant multiply or add in a way that makes a coefficient in a position to be one and every coefficient after it except the solution coefficient to be zero? 
+        no, bc that would mean the leading term cant be solved
+
+      - once you have leading coefficients equal to one and the trailing coefficients equal to zero, the system is solved for each variable
+
+      - why would you try to solve for each leading term in a matrix? bc they are ordered at that point (formatted to have the same positions in each row) and the solution is also ordered (on the right side)
+
+        - using the concept of position to produce additional organization of information, you can benefit from the alignment of the variable positions by isolating each variable (transforming with multiplication & addition of coefficients until the variable solved for in each row has a coefficient of 1 and all other coefficients except the solution are zero)
+
+
+    - how would you determine how to use matrix multiplication to solve systems of linear equations, without knowing matrix multiplication?
+
+      - use common function in solutions: organization
+      - apply that function to inputs (disorganized info) using a common definition of organization (order)
+      - what changes across functions that could benefit from being ordered? variable position
+      - once ordered, what has been added? standardization of variable position
+      - whats missing for full standardization of position? coefficients with value zero, which adds the information necessary to make functions have an equal number of terms
+      - what other changes would add information?
+      - another common function in solutions: 'applying a filter to isolate differences'
+      - what describes difference across core objects (variables)? coefficients
+      - isolating the differences in a function takes the form of a vector of their coefficients
+      - now you have an ordered vector of coefficients
+      - whats the best way to compare lists of numbers, where the positions align (theyre ordered in the same way, and are of equal length bc of adding variables with zero coefficient)? stacking them
+      - whats the goal of the solution (find value of each variable that fulfills all equations in the set), framed in this format of stacked lists? 
+        - a format where each row may set each variable equal to its solution value
+      - what could produce this format, where a variable is isolated on each row (other variables have coefficient zero)?
+      - using a version of the other functions in the set, as assumptions of transforms that can be done on other functions in the set, which therefore dont disrupt the validity of the function being reduced to a variable and its solution, since the reason theyre in the same matrix is because theyre supposed to be solved together
+        - rules about the values of x & y also apply to rules about the values of y & z,
+          if x, y & z are in the same set of linear functions that have a common solution,
+          so rules about x & y values may be used to reduce the y term in the rule about y & z values, leaving z to be equated with its solution
+      - another way to get here is noting that not every function will have every variable, and that a function missing a variable can be framed as having that variable with a zero coefficient, and zero coefficients of other variables are that frame applied to the solution for the remaining variable
+      - operations like multiplication and addition are within the bounds of the function type definition (linear) which allows shifting and scaling without leaving the type
+      - so using other functions in the set as a base, and term coefficients, variables, & solutions as core objects, and using the zero coefficient format to frame solutions, and using multiplication/addition as changes allowed within the type symmetry, you can know that these operations will add information to the structure, given the organization already applied, by producing an insight like the application of rules across functions in the system (within a limit allowed by a type symmetry)
+
+
   - definitions:
     - derivatives/options/other instruments: possible money if your prediction about future value is correct (where value is highly subject to risk & influenced by many factors & randomness)
     - insurance: future money from negative unlikely predictions occur
@@ -32,7 +73,7 @@ to do: organize into docs
     - a circuit based on randomness:
       - invest borrowed resources in projects/patterns/types that appear frequently in diversified portfolios - they may be uncertain in isolation, but given the frequency of their investment & bundling, they may be less uncertain
 
-    - building a circuit logically
+    - building a structure logically
 
       - system analysis:
 
