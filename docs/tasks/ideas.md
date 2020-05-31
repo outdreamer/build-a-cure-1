@@ -37,8 +37,21 @@ to do: organize into docs
           if x, y & z are in the same set of linear functions that have a common solution,
           so rules about x & y values may be used to reduce the y term in the rule about y & z values, leaving z to be equated with its solution
       - another way to get here is noting that not every function will have every variable, and that a function missing a variable can be framed as having that variable with a zero coefficient, and zero coefficients of other variables are that frame applied to the solution for the remaining variable
+      - now that youve identified the important object of assumptions that can be used as information to organize the system, you can examine how these assumptions allow paths to the target structure implied by your goal, which is a matrix where each variable indicated by the column has its own isolated row where its been tranformed so the other variables have zero coefficients
       - operations like multiplication and addition are within the bounds of the function type definition (linear) which allows shifting and scaling without leaving the type
-      - so using other functions in the set as a base, and term coefficients, variables, & solutions as core objects, and using the zero coefficient format to frame solutions, and using multiplication/addition as changes allowed within the type symmetry, you can know that these operations will add information to the structure, given the organization already applied, by producing an insight like the application of rules across functions in the system (within a limit allowed by a type symmetry)
+      
+      - this means by:
+        - using other functions in the set as a base
+        - using term coefficients, variables, & solutions as core objects
+        - identifying assumptions that can be used as inputs to generating a set of definitively allowed operations
+        - using the zero coefficient format to frame solutions
+        - using multiplication/addition as changes allowed within the type symmetry
+        - identifying target structure, 
+
+        you can know that these operations will add information to the structure, 
+          - given the organization already applied when creating the matrix, 
+            - by producing an insight like:
+              - "rules hold across functions in the system, within a limit allowed by a type symmetry defined in the problem" (system of linear equations)
 
 
   - definitions:
