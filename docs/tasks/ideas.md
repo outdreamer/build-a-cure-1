@@ -87,7 +87,9 @@ to do: organize into docs
           - in a matrix, the coefficients act like data vectors, and the solutions are the coefficients:
             - "what value of x, y, & z will make this coefficient data work together"
           - in a network, the data is used to produce function coefficients
-            - "what coefficients of x, y, & z can make this data work together"
+            - "what coefficients of x, y, & z can make this value data work together" 
+              - translated to a matrix structure: which scalars applied to data with the multiplication operation can isolate the most representative data or most probable weight paths/patterns
+          - the coefficients & the variable values occupy a similar position to the weights & the input values - can you extrapolate this to isolated scalars applied to different terms
 
 
       - the main causal structure where existing prediction tools are useful is where the variables are all on different dependence paths/tree branches that dont tie back to the causal network except to contribute to the dependence variable (& other irrelevant variables to that function), or theyre on the same degree of causation (or the same layer) away from the dependent variable
@@ -96,7 +98,11 @@ to do: organize into docs
 
 
   - add to ml explanation
+  
     - in a fully connected network, every weight path from the previous layer in passed on to each node in the next layer, meaning that if a set of weight paths with additional weights applied cant produce a 'feature found' or 'yes' value above the threshold, those weight paths & additional weight combinations arent passed on as candidates for the prediction function or building blocks of it
+
+    - the aggregation of weights & input values creates a tree of trees on each weight path, where leaves are the input values, which are multiplied by a weight as they hit the branch, and the branch represents addition creating a new hub or joined branch, and each tree is sent to every other tree branch hub in the next node layer
+      - can you calculate anything faster by changing this structure, like adding memory in between each tree, arranging them around the memory like in a circle, so changes, similarities, etc are synced with the memory before proceeding (so the nodes would be computing things like change rate to check if its worth mentioning to the hub, rather than checking value compared to a threshold, which would be the responsibility of the hub memory)
 
 
   - definitions:
