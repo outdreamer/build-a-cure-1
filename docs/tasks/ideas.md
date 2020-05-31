@@ -68,6 +68,10 @@ to do: organize into docs
         
       - you can also start from the target solution format (or insights to build it, like the zero coefficient method of aligning term positions), and derive organization methods, assumptions, & operations that can convert the function set to that format of variables & constants, given that solution format
 
+      - you can also start from the insight interface rather than the structural interface and build assumptions from those insights, then look for objects matching the objects in those assumptions and check if information is gained by applying the assumptions to those objects which helps the target solution intent of 'aligning each isolated variable on one side and a constant on the other'
+
+      - you can start from the core interface using operations core to the problem type (linear equations) and the core objects of the matrix structure (coefficients of a function)
+
 
   - definitions:
     - derivatives/options/other instruments: possible money if your prediction about future value is correct (where value is highly subject to risk & influenced by many factors & randomness)
