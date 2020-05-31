@@ -53,6 +53,21 @@ to do: organize into docs
             - by producing an insight like:
               - "rules hold across functions in the system, within a limit allowed by a type symmetry defined in the problem" (system of linear equations)
 
+      - which can be reduced to a general method like:
+
+        - standardize objects (terms) to a common format where common format parameters (order & position) & their common definitions are applied
+          - identify insights like 'in order to align the position attribute, the missing variables in each equation need to have a coefficient of zero'
+        - align relevant attributes (position), objects (terms), and functions (equals)
+        - isolate variables of difference (coefficients) across objects (terms), where a constant is considered a solution term & isolated from the other terms bc of its different type
+        - identify target solution format (set of equations where each variable is equal to a constant)
+          - identify implied insights like 'a solution defined in this way also has missing variables with a zero coefficient'
+        - query for available rules to use:
+          - identify assumptions (both implications derived from the structure, such as the implication of a rule being included with other rules, & explicit assumptions)
+          - identify operations that dont change the problem space (operations that preserve linearity of functions)
+        - map isolated, standardized, formatted, & aligned objects to the target solution format, using assumptions & common operations & containing structures (like sequences of operations) that dont change the problem space, to keep organization, structure, & alignment relevant
+        
+      - you can also start from the target solution format (or insights to build it, like the zero coefficient method of aligning term positions), and derive organization methods, assumptions, & operations that can convert the function set to that format of variables & constants, given that solution format
+
 
   - definitions:
     - derivatives/options/other instruments: possible money if your prediction about future value is correct (where value is highly subject to risk & influenced by many factors & randomness)
