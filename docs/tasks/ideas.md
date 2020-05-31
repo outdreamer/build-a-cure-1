@@ -95,6 +95,8 @@ to do: organize into docs
               - which method do you use to relate a function's linear version with other versions, where you know either the coefficients or variable exponent output values, but you dont know the exponent used for variables & you have enough examples to calculate it? how does the log change in relation to the prediction function as you change exponents?
               - where input data values are the terms in the matrix, where variables are the coefficients you use to modify those values to get the dependent variable value 
 
+      - integration methods are another place to look for corrollaries, bc the method of aggregation can be used to achieve different levels of complexity better than other methods
+        - example: aggregate, starting with big blocks or even blocks, until the level of change allowed without crossing a boundary is insignificant, where the change rate between block sizes as they decrease mimics momentum patterns like found in type differences & differences between function versions (like the generalized version and the specific or adjacent or subset versions)
 
       - the main causal structure where existing prediction tools are useful is where the variables are all on different dependence paths/tree branches that dont tie back to the causal network except to contribute to the dependence variable (& other irrelevant variables to that function), or theyre on the same degree of causation (or the same layer) away from the dependent variable
 
