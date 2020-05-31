@@ -72,7 +72,7 @@ to do: organize into docs
 
       - you can start from the core interface using operations core to the problem type (linear equations) and the core objects of the matrix structure (coefficients of a function)
 
-      - to do: look for corrollaries between matrix multiplication and ml, as theyre both combining sets of equations using value vectors as input to create an output set of coefficients, such as:
+      - to do: look for corrollaries between matrix multiplication and ml, as theyre both combining sets of equations using value vectors as input to create an output set of coefficients/values, such as:
 
         - a matrix of values is used in the position of a term or a function in the matrix multiplication example
         - by applying order & position in the form of node layer & trajectory (like a row in the matrix), the info of the input vector is organized in a way that adds value once applied across the rows
@@ -84,6 +84,11 @@ to do: organize into docs
         - alignment between data set patterns and aggregation & weight patterns
         - networks infer the coefficients and matrix multiplication infers the values needed to produce the coefficient sets
           - you could start with a set of probable coefficients as determined by function patterns, and reduce them to the solution of those sets of equations to see if it can produce real data
+          - in a matrix, the coefficients act like data vectors, and the solutions are the coefficients:
+            - "what value of x, y, & z will make this coefficient data work together"
+          - in a network, the data is used to produce function coefficients
+            - "what coefficients of x, y, & z can make this data work together"
+
 
       - the main causal structure where existing prediction tools are useful is where the variables are all on different dependence paths/tree branches that dont tie back to the causal network except to contribute to the dependence variable (& other irrelevant variables to that function), or theyre on the same degree of causation (or the same layer) away from the dependent variable
 
