@@ -96,7 +96,12 @@ to do: organize into docs
               - where input data values are the terms in the matrix, where variables are the coefficients you use to modify those values to get the dependent variable value 
 
       - integration methods are another place to look for corrollaries, bc the method of aggregation can be used to achieve different levels of complexity better than other methods
+
         - example: aggregate, starting with big blocks or even blocks, until the level of change allowed without crossing a boundary is insignificant, where the change rate between block sizes as they decrease mimics momentum patterns like found in type differences & differences between function versions (like the generalized version and the specific or adjacent or subset versions)
+
+        - absolute change: a metric measuring across change types (so the absolute change value at the top of a parabola would include the slope & impending direction change & tangent encounter & impending intersection with 0)
+
+        - the momentum of change in a wave is like an ellipse, which has slower change in some areas - do rules from ellipses apply to waves?
 
       - the main causal structure where existing prediction tools are useful is where the variables are all on different dependence paths/tree branches that dont tie back to the causal network except to contribute to the dependence variable (& other irrelevant variables to that function), or theyre on the same degree of causation (or the same layer) away from the dependent variable
 
