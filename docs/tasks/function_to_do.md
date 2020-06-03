@@ -46,6 +46,7 @@
         - find combination (build)
           - of filters
           - of functions
+          - of objects
           - of sets
           - of limits
 
@@ -63,23 +64,41 @@
         - in functionality
         - in intent
 
+
+        - find combination (build) of terms to build a prediction function for a data set
+          - of filters
+            - which filters should be applied to reduce solution space, find relevant objects, or find steps to produce or build the solution
+          - of functions
+            - which functions are possible solutions to a prediction function problem
+              - 'take an average metric of the set of functions predicting x% of the data with fewer than y terms'
+          - of objects
+              - 'average', 'function set', 'term count', 'accurate prediction ratio'
+          - of sets
+            - which objects should be grouped (function set, term set)
+          - of limits
+            - which assumptions are required and which are flexible
+          - of matches
+            - which objects need to match, to what degree (function terms and data)
+
       - ways to map this:
-        - attributes that differentiate problems that are shared with solutions
+        - attributes that differentiate problems that are shared with possible solutions
         - mapping intent to direction and assessing progress by movement in that direction
-        - trajectories across dimension sets representing steps
         - networks with clusters & other structures representing decisions
         - system layer graph representing possible steps
         - function sets mapped to sequences given a metric like progression toward goal
         - mapping related/approximate problem or problem higher up causal stack, having lower dimension, like a generative problem
-        - mapping change types to dimensions and graphing/calculating dimensions where change types change (a deciding dimension where change type is uncertain but influenced)
+        - mapping change types to dimensions and graphing/calculating dimensions where change types change (an aggregate, interface, or deciding dimension where change type is uncertain but not random)
         - using a layered graph to visualize change of different types/metrics built on a symmetry (vertical axis if horizontal sections are split)
         - mapping language to structure directly ('find' maps to a set of vectors leading from a node indicating possible start positions, with option to use core function vectors to reach target node)
+        - a trajectory between low-dimensional problem graphs where each graph is a decision step, and attribute sets & problem of similar type occupy a similar position on an axis depicting all the graphs traversed
+        
+      - 
 
     - solution decomposition function
 
     - solution aggregation function
 
-    - make doc to store insight paths, counterintuitive functions, counterexamples, phase shift triggers
+    - make doc to store insight paths, counterintuitive functions, hidden costs, counterexamples, phase shift triggers
 
     - function to detect patterns in queries & outputs to optimize queries & find insight paths to improve response time
 
