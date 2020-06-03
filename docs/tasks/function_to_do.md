@@ -38,9 +38,48 @@
     - import insight history data to identify insight paths 
       - info insight paths like 'lie => joke => distortion => insight'
       - system insight paths like 'three core functions + combine function with this definition + n distortions to nearest hub'
-    - mapping function, to map problems to structures
+
+    - mapping function, to map problems to structures & other problem types
+
+      - find structure
+
+        - find combination (build)
+          - of filters
+          - of functions
+          - of sets
+          - of limits
+
+        - find sequence (route)
+          - of network nodes representing
+            - steps
+            - positions
+            - sets
+            - intents
+
+      - correct imbalance (align)
+      
+        - in direction
+        - in resources
+        - in functionality
+        - in intent
+
+      - ways to map this:
+        - attributes that differentiate problems that are shared with solutions
+        - mapping intent to direction and assessing progress by movement in that direction
+        - trajectories across dimension sets representing steps
+        - networks with clusters & other structures representing decisions
+        - system layer graph representing possible steps
+        - function sets mapped to sequences given a metric like progression toward goal
+
     - solution decomposition function
     - solution aggregation function
+
+    - make doc to store insight paths, counterintuitive functions, counterexamples, phase shift triggers
+    - function to detect patterns in queries & outputs to optimize queries & find insight paths to improve response time
+      - example: 3-step jumps with direction change, navigating across a certain pathway in standard structures across interfaces, starting with system then cause & intent, etc
+      - this has to identify & remove unnecessary steps that dont change the output
+      - identify & replace with faster ways to get to the output without changing the output
+      - test cases to determine if output would be changed by removing a step and/or replacing it with another step
 
   - abstract functions
 

@@ -1,0 +1,27 @@
+{
+	"input": {
+		"problem": {
+			"text": "optimize requiring separate page click for viewing alternate folder structure",
+			"metrics": ["minimize code changes"],
+			"intents": ["optimize navigation"]
+		}
+	},
+	"interim_info": {
+		"map": {
+			"keyword": {
+				"click": "request"
+			}
+		},
+		"implications": ["current path is also relevant to user despite not being explicitly stated"]
+	},
+	"output": {
+		"solution": {
+			"text": "store path in folder structure & alternatives on same level & display navigation side component on hover",
+			"types": ["position_change", "relevance"],
+			"problems": ["permission_path"],
+			"intents": {
+				"navigation": ["minimizes page requests", "displays more navigation options"]
+			}
+		}
+	},
+}
