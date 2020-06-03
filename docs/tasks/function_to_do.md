@@ -71,7 +71,9 @@
         - system layer graph representing possible steps
         - function sets mapped to sequences given a metric like progression toward goal
         - mapping related/approximate problem or problem higher up causal stack, having lower dimension, like a generative problem
-        - mapping change types to dimensions and graphing/calculating dimensions where change types change
+        - mapping change types to dimensions and graphing/calculating dimensions where change types change (a deciding dimension where change type is uncertain but influenced)
+        - using a layered graph to visualize change of different types/metrics built on a symmetry (vertical axis if horizontal sections are split)
+        - mapping language to structure directly ('find' maps to a set of vectors leading from a node indicating possible start positions, with option to use core function vectors to reach target node)
 
     - solution decomposition function
 
