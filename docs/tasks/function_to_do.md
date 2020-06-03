@@ -124,19 +124,23 @@
         - a trajectory between low-dimensional problem graphs where each graph is a decision step, and attribute sets & problem of similar type occupy a similar position on an axis depicting all the graphs traversed
         - a metric like size of variable interaction space mapped to length/area/volume to indicate how much of the problem is left, and a metric like number of variables mapped to number of sides of the shape to graph the problem according to structural metrics
 
+
       - limits in visualization
 
         - if you reduce a shape of a subset of problem dimensions, those variables (side length if defined as a cube, or variable set like identities of sides, number of corners/sides, angle of corner, shape identity), cant be used later in the solution, so even though some reductions may seem obviously right, more than one solution should be tried
+
+        - mapping problem types to functions has side effects without limits & standardization applied to the format:
+          - removing a problem variable can only be mapped to lowering the number of variables (whether limits, multipliers, or other objects) creating a shape once the problem variables are formatted with the same term set
 
       - parameters to graph problems
 
         - number of problem-causing variables/solution metrics fulfilled
         - complexity
         - abstraction (does it solve the same problem when framed on an abstraction layer above)
-        - number of steps required, once work is standardized
-        - type/intent stack ranges
-        - intent direction
-        - type similarity (how similar to a standard problem type, or how near to limits within a type dimension)
+        - number of steps required, once work is standardized, & adjacence of steps required
+        - how much work is required to convert to a particular problem format (route, combination, composition)
+        - type/intent ranges/direction (of individual objects or composite stack)
+        - similarity (how similar to a standard problem type, or how near to limits within a type dimension)
         
 
     - solution decomposition function
