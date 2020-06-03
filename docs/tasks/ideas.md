@@ -1,5 +1,19 @@
 to do: organize into docs
 
+  - it should be possible to reverse engineer a set of system-generating rules by observing outputs and calculating 
+
+    - the set of core components that would create them with the least work (prioritizing resource re-use, sharing functions, cost minimization, etc) & other determining factors of most system development like other system interactions
+
+      - example: the most efficient way to achieve two functions that are variants of each other is using a variable as a function input
+
+    - the set of required components for a system to function, & then calculating the sub components of required components simultaneously with information about other sub components as more calculations are done
+
+      - example: the bio system needs a storage function, and edit function, a regulatory system, etc
+
+    - a causal diagram and a system diagram can intersect on the causes that maintain their shape in the system
+
+      - example: a causal structure that is generative & causative of system change
+
   - to do: 
 
     - why are polynomials with a leading coefficient of one & having optional zero coefficients capable of being multiplied & added to give the roots to the system of equations?
@@ -189,7 +203,6 @@ to do: organize into docs
       - check for false similarities to avoid side effects
       - use alternate definition routes to check for alternate similarities and routes between objects
       - standardize definitions to use same terms where possible to calculate outputs (frame prediction, risk, and resource investment objects in terms of payoffs, risk/probability, dependencies, & assumptions)
-      - 
 
   - core investment attributes:
     - fundamental
@@ -234,7 +247,6 @@ to do: organize into docs
       - the fact collapsed into a network of related facts like "alternate fuels are valuable" and "an additional use of fossil fuels could cause system collapse"
 
       - this is a mismatch problem type of imbalanced dependence & support functions
-
 
   - analyzing just by change rate makes it less likely to spot other patterns like overlap/intersection of patterns
 
