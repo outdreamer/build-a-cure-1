@@ -24,10 +24,17 @@ to do: organize into docs
 
   - voting for algorithm of resource distribution
 
-    - example: 'this algorithm will guarantee these resources at x intervals if you do y work, and provide these possible resource streams if z work is available & a technology is accessible'
-    - the number of people required to participate to get to that resource distribution could be a filter, so only realistic algorithm participation is considered an option
+    - example algorithm input/output: 
+      - 'this algorithm will guarantee these resources at x intervals if you do y work, and provide these possible resource streams if z work is available & a technology is accessible'
+
+    - example algorithm:
+      - 'invest in diverse research projects to fulfill basic intents first (researching number of evolution steps you can skip when gene editing before you create toxic plants, researching whether plants should be optimized or a composite plant should be designed with multiple intents like reducing water intake & maximizing oxygen output'
+      - 'invest in solutions so that cost/reward ratio of solutions is kept above ratio x to avoid exploits unless the system is closed and optimized, and below ratio y to avoid high-cost solutions unless theyre abstract & fulfill basic intents'
+
+    - the number of people required to participate to get to that resource distribution could be a filter, so only realistic algorithm participation (algorithms that people are likely to vote for) is an option
     - sets of realistic algorithms (each algorithm set covering income for a population) make it to the voting ballet, and the set that is voting for the most above the realistic threshold is the default winner
     - iterations of voting can apply subsequent filters of resulting algorithm sets like optional/potential work agreed to, and allow debate and lobbying to get higher rates by promoting or educating people for different types of work (they can vote for an algorithm requiring more investment if they have x signatures & if the work will produce solutions to reduce costs overall for all or other groups, otherwise an income rate isnt guaranteed)
+    - monitoring, fixing, & enforcement agencies can be used as necessary (when new drugs are discovered, systemic failures occur, etc)
 
 
   - to do: 
