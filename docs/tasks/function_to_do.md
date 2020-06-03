@@ -65,20 +65,49 @@
         - in intent
 
 
-        - find combination (build) of terms to build a prediction function for a data set
+        - example: find combination of terms to build a prediction function for a data set
+
           - of filters
             - which filters should be applied to reduce solution space, find relevant objects, or find steps to produce or build the solution
+
           - of functions
             - which functions are possible solutions to a prediction function problem
               - 'take an average metric of the set of functions predicting x% of the data with fewer than y terms'
+
           - of objects
               - 'average', 'function set', 'term count', 'accurate prediction ratio'
+
           - of sets
             - which objects should be grouped (function set, term set)
+
           - of limits
             - which assumptions are required and which are flexible
+
           - of matches
             - which objects need to match, to what degree (function terms and data)
+            - which set of reductions works the best with a given set of expansions
+
+          - of imbalances/asymmetries (questions)
+            - which metric sets are the best filters for a given problem
+
+          - you could graph the problem/solution with any of those objects, if they supply all the info needed to frame the problem
+          - navigating on the filter or mismatch section of the network may be faster given the commonness of those objects
+
+        - example: find resources to fulfill a lack of a resource
+
+          - cause of problem: missing resource or its alternatives, or missing resources to generate it or its alternatives, or dependence on resource or its alternative
+
+          1. create missing resource
+
+          - navigate up causal stack: find combinations of functions & objects that generated it
+          - navigate sideways: find alternatives or find alternative combinations to generate it
+
+          2. invalidate dependence
+          - navigate up causal stack until dependence cause is found: find combinations of functions & objects that generated dependence
+          - navigate sideways: find functions to invalidate dependence (generate resource) or correct problem (imbalance, lack, mismatch) causing dependence
+
+          - solution intents 1 & 2 have a 'generate resource' intent in common, which fulfills both solution intents - so if the intent changes between them, the solution involving generating the resource may cover the next problem iteration too, or the intent that invalidates the problem may prevent future iterations
+
 
       - ways to map this:
         - attributes that differentiate problems that are shared with possible solutions
