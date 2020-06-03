@@ -22,6 +22,11 @@ to do: organize into docs
       - when information leaves traces/side effects that are not erased by reversing the transform (not a closed system with energy storage built in)
       - example of processes that are easier in one direction: it can be easier to navigate over a local maxima than to navigate up a global valley, or to navigate a map to identify type than a map to identify individual members of a type, which can change in ways that differ from the type definition, average, etc
 
+  - voting for algorithm of resource distribution
+  
+    - example: 'this algorithm will guarantee these resources at x intervals if you do y work'
+    - the number of people required to participate to get to that resource distribution could be a filter, so only realistic algorithm participation is considered an option
+
 
   - to do: 
 
