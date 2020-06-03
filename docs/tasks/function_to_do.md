@@ -70,12 +70,17 @@
         - networks with clusters & other structures representing decisions
         - system layer graph representing possible steps
         - function sets mapped to sequences given a metric like progression toward goal
+        - mapping related/approximate problem or problem higher up causal stack, having lower dimension, like a generative problem
+        - mapping change types to dimensions and graphing/calculating dimensions where change types change
 
     - solution decomposition function
+
     - solution aggregation function
 
     - make doc to store insight paths, counterintuitive functions, counterexamples, phase shift triggers
+
     - function to detect patterns in queries & outputs to optimize queries & find insight paths to improve response time
+
       - example: 3-step jumps with direction change, navigating across a certain pathway in standard structures across interfaces, starting with system then cause & intent, etc
       - this has to identify & remove unnecessary steps that dont change the output
       - identify & replace with faster ways to get to the output without changing the output
