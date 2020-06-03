@@ -23,9 +23,11 @@ to do: organize into docs
       - example of processes that are easier in one direction: it can be easier to navigate over a local maxima than to navigate up a global valley, or to navigate a map to identify type than a map to identify individual members of a type, which can change in ways that differ from the type definition, average, etc
 
   - voting for algorithm of resource distribution
-  
-    - example: 'this algorithm will guarantee these resources at x intervals if you do y work'
+
+    - example: 'this algorithm will guarantee these resources at x intervals if you do y work, and provide these possible resource streams if z work is available & a technology is accessible'
     - the number of people required to participate to get to that resource distribution could be a filter, so only realistic algorithm participation is considered an option
+    - sets of realistic algorithms (each algorithm set covering income for a population) make it to the voting ballet, and the set that is voting for the most above the realistic threshold is the default winner
+    - iterations of voting can apply subsequent filters of resulting algorithm sets like optional/potential work agreed to, and allow debate and lobbying to get higher rates by promoting or educating people for different types of work (they can vote for an algorithm requiring more investment if they have x signatures & if the work will produce solutions to reduce costs overall for all or other groups, otherwise an income rate isnt guaranteed)
 
 
   - to do: 
