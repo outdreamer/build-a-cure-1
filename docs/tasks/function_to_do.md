@@ -41,75 +41,77 @@
 
     - mapping function, to map problems to structures & other problem types
 
-      - find structure
+      - problem types
 
-        - find combination (build)
-          - of filters
-          - of functions
-          - of objects
-          - of sets
-          - of limits
+        - find structure
 
-        - find sequence (route)
-          - of network nodes representing
-            - steps
-            - positions
-            - sets
-            - intents
+          - find combination (build)
+            - of filters
+            - of functions
+            - of objects
+            - of sets
+            - of limits
 
-      - correct imbalance (align)
-      
-        - in direction
-        - in resources
-        - in functionality
-        - in intent
+          - find sequence (route)
+            - of network nodes representing
+              - steps
+              - positions
+              - sets
+              - intents
 
+        - correct imbalance (align)
+        
+          - in direction
+          - in resources
+          - in functionality
+          - in intent
 
-        - example: find combination of terms to build a prediction function for a data set
+          - example: find combination of terms to build a prediction function for a data set
 
-          - of filters
-            - which filters should be applied to reduce solution space, find relevant objects, or find steps to produce or build the solution
+            - of filters
+              - which filters should be applied to reduce solution space, find relevant objects, or find steps to produce or build the solution
 
-          - of functions
-            - which functions are possible solutions to a prediction function problem
-              - 'take an average metric of the set of functions predicting x% of the data with fewer than y terms'
+            - of functions
+              - which functions are possible solutions to a prediction function problem
+                - 'take an average metric of the set of functions predicting x% of the data with fewer than y terms'
 
-          - of objects
-              - 'average', 'function set', 'term count', 'accurate prediction ratio'
+            - of objects
+                - 'average', 'function set', 'term count', 'accurate prediction ratio'
 
-          - of sets
-            - which objects should be grouped (function set, term set)
+            - of sets
+              - which objects should be grouped (function set, term set)
 
-          - of limits
-            - which assumptions are required and which are flexible
+            - of limits
+              - which assumptions are required and which are flexible
 
-          - of matches
-            - which objects need to match, to what degree (function terms and data)
-            - which set of reductions works the best with a given set of expansions
+            - of matches
+              - which objects need to match, to what degree (function terms and data)
+              - which set of reductions works the best with a given set of expansions
 
-          - of imbalances/asymmetries (questions)
-            - which metric sets are the best filters for a given problem
+            - of imbalances/asymmetries (questions)
+              - which metric sets are the best filters for a given problem
 
-          - you could graph the problem/solution with any of those objects, if they supply all the info needed to frame the problem
-          - navigating on the filter or mismatch section of the network may be faster given the commonness of those objects
+            - you could graph the problem/solution with any of those objects, if they supply all the info needed to frame the problem
+            - navigating on the filter or mismatch section of the network may be faster given the commonness of those objects
 
-        - example: find resources to fulfill a lack of a resource
+          - example: find resources to fulfill a lack of a resource
 
-          - cause of problem: missing resource or its alternatives, or missing resources to generate it or its alternatives, or dependence on resource or its alternative
+            - cause of problem: missing resource or its alternatives, or missing resources to generate it or its alternatives, or dependence on resource or its alternative
 
-          1. create missing resource
+            1. create missing resource
 
-          - navigate up causal stack: find combinations of functions & objects that generated it
-          - navigate sideways: find alternatives or find alternative combinations to generate it
+            - navigate up causal stack: find combinations of functions & objects that generated it
+            - navigate sideways: find alternatives or find alternative combinations to generate it
 
-          2. invalidate dependence
-          - navigate up causal stack until dependence cause is found: find combinations of functions & objects that generated dependence
-          - navigate sideways: find functions to invalidate dependence (generate resource) or correct problem (imbalance, lack, mismatch) causing dependence
+            2. invalidate dependence
+            - navigate up causal stack until dependence cause is found: find combinations of functions & objects that generated dependence
+            - navigate sideways: find functions to invalidate dependence (generate resource) or correct problem (imbalance, lack, mismatch) causing dependence
 
-          - solution intents 1 & 2 have a 'generate resource' intent in common, which fulfills both solution intents - so if the intent changes between them, the solution involving generating the resource may cover the next problem iteration too, or the intent that invalidates the problem may prevent future iterations
+            - solution intents 1 & 2 have a 'generate resource' intent in common, which fulfills both solution intents - so if the intent changes between them, the solution involving generating the resource may cover the next problem iteration too, or the intent that invalidates the problem may prevent future iterations
 
 
       - ways to map this:
+
         - attributes that differentiate problems that are shared with possible solutions
         - mapping intent to direction and assessing progress by movement in that direction
         - networks with clusters & other structures representing decisions
@@ -120,8 +122,22 @@
         - using a layered graph to visualize change of different types/metrics built on a symmetry (vertical axis if horizontal sections are split)
         - mapping language to structure directly ('find' maps to a set of vectors leading from a node indicating possible start positions, with option to use core function vectors to reach target node)
         - a trajectory between low-dimensional problem graphs where each graph is a decision step, and attribute sets & problem of similar type occupy a similar position on an axis depicting all the graphs traversed
+        - a metric like size of variable interaction space mapped to length/area/volume to indicate how much of the problem is left, and a metric like number of variables mapped to number of sides of the shape to graph the problem according to structural metrics
+
+      - limits in visualization
+
+        - if you reduce a shape of a subset of problem dimensions, those variables (side length if defined as a cube, or variable set like identities of sides, number of corners/sides, angle of corner, shape identity), cant be used later in the solution, so even though some reductions may seem obviously right, more than one solution should be tried
+
+      - parameters to graph problems
+
+        - number of problem-causing variables/solution metrics fulfilled
+        - complexity
+        - abstraction (does it solve the same problem when framed on an abstraction layer above)
+        - number of steps required, once work is standardized
+        - type/intent stack ranges
+        - intent direction
+        - type similarity (how similar to a standard problem type, or how near to limits within a type dimension)
         
-      - 
 
     - solution decomposition function
 
