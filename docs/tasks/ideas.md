@@ -12,7 +12,16 @@ to do: organize into docs
 
     - a causal diagram and a system diagram can intersect on the causes that maintain their shape in the system
 
-      - example: a causal structure that is generative & causative of system change
+      - example: a causal structure that is generative & causative of system changes
+
+  - example definition route of symmetry (same regardless of a transform & transform direction):
+
+    - structural definition:
+      - when energy gathers into a state that is easier to create than to destroy (when it uses efficiencies & shortcuts)
+      - when the boundary formed is stronger than the energy contained in it
+      - when information leaves traces/side effects that are not erased by reversing the transform (not a closed system with energy storage built in)
+      - example of processes that are easier in one direction: it can be easier to navigate over a local maxima than to navigate up a global valley, or to navigate a map to identify type than a map to identify individual members of a type, which can change in ways that differ from the type definition, average, etc
+
 
   - to do: 
 
