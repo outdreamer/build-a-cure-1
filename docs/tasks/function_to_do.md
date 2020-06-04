@@ -39,6 +39,7 @@
       - info insight paths like 'lie => joke => distortion => insight'
       - system insight paths like 'three core functions + combine function with this definition + n distortions to nearest hub'
 
+
     - mapping function, to map problems to structures & other problem types
 
       - problem types
@@ -132,16 +133,22 @@
         - mapping problem types to functions has side effects without limits & standardization applied to the format:
           - removing a problem variable can only be mapped to lowering the number of variables (whether limits, multipliers, or other objects) creating a shape once the problem variables are formatted with the same term set
 
+
       - parameters to graph problems
 
         - number of problem-causing variables/solution metrics fulfilled
-        - complexity
+        - complexity: 
+          - number of core function steps required
+          - number of variables
+          - number of counterintuitive steps (requiring non-standard solutions)
+          - number of contrary processes (requiring scoped/nuanced solutions)
         - abstraction (does it solve the same problem when framed on an abstraction layer above)
         - number of steps required, once work is standardized, & adjacence of steps required
         - how much work is required to convert to a particular problem format (route, combination, composition)
         - type/intent ranges/direction (of individual objects or composite stack)
         - similarity (how similar to a standard problem type, or how near to limits within a type dimension)
-        
+        - ratio of positive to negative outputs
+
 
     - solution decomposition function
 
