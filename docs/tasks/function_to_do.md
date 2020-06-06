@@ -39,6 +39,14 @@
       - info insight paths like 'lie => joke => distortion => insight'
       - system insight paths like 'three core functions + combine function with this definition + n distortions to nearest hub'
 
+    - network design favors adjacent features
+      - to get around this, build in a concept of default core objects like boundaries/limits/intersections to the network structure or data propagation (send data on possible boundary line positions) to look for & focus on those first rather than continuous sets of adjacent high-variance, pattern-containing features
+      - why would patterns like textures make it through as a semantic filter - bc the repetition is interpreted as significant by network design, or the texture is likely to be located in more data subsets than a shape
+      https://www.quantamagazine.org/where-we-see-shapes-ai-sees-textures-20190701/
+
+    - document how rules develop on stability
+
+    - add synchronization object & certainty object leading to inevitable collisions
 
     - mapping function, to map problems to structures & other problem types
 
@@ -140,10 +148,11 @@
         - complexity: 
           - number of core function steps required
           - number of variables
+          - number of differences/inefficiencies
           - number of counterintuitive steps (requiring non-standard solutions)
           - number of contrary processes (requiring scoped/nuanced solutions)
         - abstraction (does it solve the same problem when framed on an abstraction layer above)
-        - number of steps required, once work is standardized, & adjacence of steps required
+        - number of steps required to create problem from stable system state, once work is standardized, & adjacence of steps required
         - how much work is required to convert to a particular problem format (route, combination, composition)
         - type/intent ranges/direction (of individual objects or composite stack)
         - similarity (how similar to a standard problem type, or how near to limits within a type dimension)
