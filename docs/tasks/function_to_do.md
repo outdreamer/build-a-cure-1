@@ -59,6 +59,19 @@
       - start with these info object transforms: opposite, invalidating, symmetric, core, aligning, boundary-breaking, phase shift activating, structure stabilizing, constant changing, converging
       - add core info objects (core strategies, core assumptions) so you can make a network of graphs for a system
 
+    - add object metadata:
+
+      - spaces:
+        - attribute spaces: 
+          - default space (probable default position in a system, etc)
+          - potential/probable space
+          - adjacent space (accessible positions using minimal work)
+
+        - object spaces:
+          - interaction space (what it can interact with)
+          - efficiency space (set of efficient positions)
+          - perception space (what it can seem like)
+
     - mapping function, to map problems to structures & other problem types
 
       - problem types
