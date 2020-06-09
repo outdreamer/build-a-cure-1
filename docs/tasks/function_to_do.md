@@ -56,7 +56,7 @@
       - add synchronization object & certainty object leading to inevitable collisions (like the collision of compounding forces producing a phase shift 
         (like lack of attention in one driver and false panic in a second driver leading to a car crash)
       - define alignment on interfaces (compounding, coordinating, parallel, similar, etc)
-      - start with these info object transforms: opposite, invalidating, symmetric, core, aligning, boundary-breaking, phase shift activating, structure stabilizing, constant changing, converging
+      - start with these info object transforms that filter the most info: opposite, invalidating, symmetric, core, aligning, boundary-breaking, phase shift activating, structure stabilizing, constant changing, converging
       - add core info objects (core strategies, core assumptions) so you can make a network of graphs for a system
 
     - add object metadata:
@@ -66,11 +66,19 @@
           - default space (probable default position in a system, etc)
           - potential/probable space
           - adjacent space (accessible positions using minimal work)
+          - extreme space (attributes/functions at its limits)
+          - partial space (attributes/functions with subsets of its definition)
 
         - object spaces:
           - interaction space (what it can interact with)
           - efficiency space (set of efficient positions)
           - perception space (what it can seem like)
+          - system space (what contexts it can exist in)
+
+    - apply the set of core structures, functions, objects, and attributes to itself to get next layer of transforms & systems to run next error analysis
+      - attribute spaces (object model + structure interface = a calculation method for attributes)
+      - false similarity (info interface attribute + core attribute = an error type/definition route, if agency is involved)
+      - filter chains (structure interface + structure interface = a core object to frame info)
 
     - mapping function, to map problems to structures & other problem types
 
