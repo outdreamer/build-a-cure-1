@@ -61,7 +61,8 @@
 
     - add object metadata:
 
-      - spaces:
+      - spaces where the object can change:
+
         - attribute spaces: 
           - default space (probable default position in a system, etc)
           - potential/probable space
@@ -74,6 +75,22 @@
           - efficiency space (set of efficient positions)
           - perception space (what it can seem like)
           - system space (what contexts it can exist in)
+          - query space (what queries can produce it or its changes)
+
+    - example filter analysis
+
+      - problem: design/select optimal options for a program
+        - apply filter: reduce solution space by options that are possible (set of variables)
+          - apply filter: reduce solution space by options that users would want to change (which options to include)
+            - apply filter: reduce solution space by options that users would be willing to learn
+              - apply filter: reduce solution space by options that devs are willing to maintain
+                - apply filter: reduce solution space by options that comply with configuration patterns (option usage, like the number of buttons normally forming a set of alternatives)
+
+        - alternate filter set to produce the optimal design of a configuration set
+          - apply filter: which options are likeliest to change (identifiers, free text fields, etc)
+            - apply filter: which options are likeliest to capture information (type attribute captures a lot of information)
+
+        - these filter sets may produce the same answer, but one is more efficient than the other
 
     - apply the set of core structures, functions, objects, and attributes to itself to get next layer of transforms & systems to run next error analysis
       - attribute spaces (object model + structure interface = a calculation method for attributes)
