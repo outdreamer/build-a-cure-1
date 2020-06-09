@@ -11,6 +11,11 @@
 
   - make function/query list for workflows, starting with information formats
 
+  - why do phase shifts happen - bc of the ability for aggregated information to be measured as something else 
+    - example: molecules identifiable as a set, data identifiable as a cluster, pattern identifiable as an emergency
+
+  - what are the aggregate effects of many errors in selection of algorithms/parameters/processing/deployment - what phase shifts emerge from repeated or interacting error types?
+
   - identify attribute: attributes can be reduced to 'position', implemented as a:
 
       - relationship type (relative difference)
