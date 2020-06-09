@@ -51,10 +51,13 @@
 
     - document how rules develop on stability
 
-    - systemaize your definitions of info objects, to include analysis that produces relationships of core objects like opposites to their relevant forms (anti-symmetry) in addition to permuted object states (asymmetry), such as an anti-strategy, anti-information, anti-pattern
+    - systematize your definitions of info objects, to include analysis that produces relationships of core objects like opposites to their relevant forms (anti-symmetry) in addition to permuted object states (asymmetry), such as an anti-strategy, anti-information, anti-pattern
 
-      - add synchronization object & certainty object leading to inevitable collisions
+      - add synchronization object & certainty object leading to inevitable collisions (like the collision of compounding forces producing a phase shift 
+        (like lack of attention in one driver and false panic in a second driver leading to a car crash)
       - define alignment on interfaces (compounding, coordinating, parallel, similar, etc)
+      - start with these info object transforms: opposite, invalidating, symmetric, core, aligning, boundary-breaking, phase shift activating, structure stabilizing, constant changing, converging
+      - add core info objects (core strategies, core assumptions) so you can make a network of graphs for a system
 
     - mapping function, to map problems to structures & other problem types
 
