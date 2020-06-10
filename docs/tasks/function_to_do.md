@@ -49,12 +49,13 @@
       - why would patterns like textures make it through as a semantic filter - bc the repetition is interpreted as significant by network design, or the texture is likely to be located in more data subsets than a shape
       https://www.quantamagazine.org/where-we-see-shapes-ai-sees-textures-20190701/
 
-    - document how rules develop on stability
+    - document how rules develop on stability & how foundations are connected & destroyed
 
     - systematize your definitions of info objects, to include analysis that produces relationships of core objects like opposites to their relevant forms (anti-symmetry) in addition to permuted object states (asymmetry), such as an anti-strategy, anti-information, anti-pattern
 
-      - add synchronization object & certainty object leading to inevitable collisions (like the collision of compounding forces producing a phase shift 
-        (like lack of attention in one driver and false panic in a second driver leading to a car crash)
+      - add technicality, synchronization, & certainty objects leading to inevitable collisions
+        - the collision of compounding forces producing a phase shift
+        - lack of attention in one driver and false panic in a second driver leading to a car crash given the bases where their processes originate
       - define alignment on interfaces (compounding, coordinating, parallel, similar, etc)
       - start with these info object transforms that filter the most info: opposite, invalidating, symmetric, core, aligning, boundary-breaking, phase shift activating, structure stabilizing, constant changing, converging
       - add core info objects (core strategies, core assumptions) so you can make a network of graphs for a system
@@ -75,7 +76,14 @@
           - efficiency space (set of efficient positions)
           - perception space (what it can seem like)
           - system space (what contexts it can exist in)
-          - query space (what queries can produce it or its changes)
+          - query space (which queries can produce it or its changes)
+
+    - space can mean:
+      - the interface filter including structures for a given attribute/object like cause
+      - the impact of the attribute/object on other interfaces (impact of cause on other interfaces, like info problems)
+      - an interface applied to another to create a space (causal interface framed as a set of problem spaces)
+
+    - make a system layer diagram with interfaces to allow specification of core interfaces & other interface layers (interface interface)
 
     - example filter analysis
 
@@ -84,7 +92,7 @@
           - apply filter: reduce solution space by options that users would want to change (which options to include)
             - apply filter: reduce solution space by options that users would be willing to learn
               - apply filter: reduce solution space by options that devs are willing to maintain
-                - apply filter: reduce solution space by options that comply with configuration patterns (option usage, like the number of buttons normally forming a set of alternatives)
+                - apply filter: reduce solution space by options that comply with configuration patterns (option usage, like the number of buttons normally forming a set of alternatives, reducing learning time)
 
         - alternate filter set to produce the optimal design of a configuration set
           - apply filter: which options are likeliest to change (identifiers, free text fields, etc)

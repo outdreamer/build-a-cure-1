@@ -34,6 +34,8 @@
 
 			- https://aws.amazon.com/comprehend/?c=14&pt=4
 			- https://aws.amazon.com/quicksight/?c=1&pt=8
+			- https://techxplore.com/news/2020-06-key-scientific-texts.html
+
 
 	- info
 
