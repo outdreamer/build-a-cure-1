@@ -317,6 +317,39 @@ silly sentence: "library study buddy oversold their quiet-chip-eating skills"
 	- weird/silly attribute of 'throwing raisins' which is not a normal behavioral rule for either of those definitions, nor is it associated with the drunk definition
 	- relevance in re-using the implication of 'common location' from the party definition to permute that attribute with the expected behavior from the insecure definition ('should be at home')
 
+- “It is never difficult to distinguish between a Scotsman with a grievance and a ray of sunshine.”
+	
+	- setup of a modifier 'never' & an extreme 'difficult' applied to a verb 'distinguish' which highlights the differences between the possible, obvious, and implied interpretations
+
+		- 'easy to distinguish': stating the obvious
+		- 'always/often difficult to distinguish': sarcasm
+		- 'rarely/often difficult to distinguish': adds comedic impact through highlighting the difference given by the absolute 'never'
+		- 'never difficult to distinguish': opposite permutation of sarcasm that states the obvious, adding extra comedic impact through highlighting the difference
+			- the association of 'never difficult to distinguish' with tact, which lends comedic impact through subtlety of stating the obvious, which adds an element of surprise, an input of comedy
+			- tact is associated with 'understatement' which is often used for comedic impact through juxtaposition (saying 'the president is influential' is a comedic understatement to describe the most powerful position, if it's true)
+			- tact can also take the form of a circuitous route, here in stating a fact (adding extra modifiers or taking a very unlikely route to a point)
+
+	- comparing between:
+
+		- a person type
+			- with:
+				- an association with serious topics like war and serious instruments like moustaches and serious tones like northern darkness
+				- a social info object (reason to have a particular emotion like anger, as a standardized info object 'complaint', having an association with illegitimacy 'grievance')
+
+		- and:
+			- an idiom for frivolousness that contradicts the associations of the info object and the person type
+
+		- with conditions:
+			- where the person type is a ridiculous way to distinguish people (nation of origin), but it is assumed that they have non-standard behavior (scottish heritage is a predictor for non-standard behavior regarding a grievance, which is why it's being mentioned) and that they have an anti-association with the idiom topic (scottish heritage is a predictor for a non-sunny disposition)
+
+
+	- applying filters to reduce the possible interpretations to maximize the impact:
+
+		- association with 'a ray of sunshine' being used to describe angry people historically, built in to the language
+		- association of 'grievance' being with illegitimate anger
+
+		- taking these associations together reduces the possibility of the interpreter detecting a real threat to the scotsman
+
 
 ### Building consensus with jokes
 
