@@ -254,6 +254,12 @@
         - set traversal sequence
         - ambiguity maximization, across set traversal sequence
 
+    - document objects outside of system context
+      - what types of objects/functions/attributes survive outside of a system that isn't closed by default
+
+    - document interface math examples, like standardization of all distinct components into their own interfaces, rather than within a system context
+      - rather than framing the behavior of objects in a system, frame each object on its own interface and compute the interactions of those interfaces
+
     - example filter analysis
 
       - problem: design/select optimal options for a program
