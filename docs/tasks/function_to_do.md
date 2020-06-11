@@ -137,7 +137,7 @@
             - or identify the same contrary conclusion leading to an inevitable implication, which is that it is very unlikely to get a gap in the final distribution where some values are never seen regardless of how many variables are used, or that a large jump in probability occurs between very similar values
               - meaning there's a closed relationship between the parameters (outcome averages, possible outcome size, adjacence of possible outcome values, number of variables, & converging probability)
 
-          - when there is a large difference in outcome between similar inputs (volatility), there are other parameters contributing to the outcome probabilities (just like being an endpoint value decreases the possibility of being paired in a subset with adjacent values)
+          - when there is a large difference in outcome between similar inputs (volatility in probability of 1 and 3, which are similar in a set of outcomes from 1 - 6), there are other parameters contributing to the outcome probabilities (similar to how being an endpoint value decreases the possibility of being paired in a subset with adjacent values)
 
             - how would you identify these parameters adding volatility? by checking default system filter objects:
 
@@ -175,9 +175,6 @@
                     - the number of adjacent values that are non-averages and non-averaging
                   - the proportion of ambiguities increases as size n increases
 
-
-              - conceptual routes
-
                 - independence
 
                   - one input to the average doesn't influence other inputs to the average
@@ -190,9 +187,21 @@
                   - each average outcome value is likelier to be similar or equal to the average possible value than another value
                   - when permuting the concept of similarity, do averages change in behavior? (start with 'independence' query generating 'adjacence' concept and 'adjacent pairs' inequality or 'adjacence' query)
 
+              - derived objects that are relevant to the system 
+
+                - after you vectorize the problem (fit it to a function structure with direction from input to output), some of the relationships with derived objects is:
+                  - variables => subsets => adjacence of subsets => sum => average => outcome probabilities
+                  - variables => extremes or opposites => sum => average => outcome probabilities
+
+                - opposite
+
+                  - values on opposite sides of the average are likelier to have an averaging effect on each other than not
+                    - 4 through 6 are averaging for 1, whereas 3 doesnt move 1 closer to 3 than other numbers ((5 + 1)/2 and (6 + 1)/2 are closer to 3 compared to 1, than (1 + numbers lower than 3)/2 are closer to 3 compared to 1) - opposite side values have an impact that increases the similarity to 3 as opposed to the non-opposite side values which dont measurably increase the similarity to 3 compared to the original value (1 + 2)/2 = 1.5, where 1.5 is more similar to 1 than it is to the average 3
+                      - the threshold for similarity of the average of a pair to the average or to an extreme input is another attribute differentiating the impact of pairs on the final outcome set average
+
                 - adjacence
 
-                  - adjacence between outcome values can be a factor in the average of that subset
+                  - adjacence between outcome values can be a factor in the average of that subset, depending on the proportion of adjacent subsets and the averaging effect of pairs of these adjacent subsets
 
 
     - example filter analysis
