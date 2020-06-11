@@ -129,8 +129,34 @@
 
         - other way to frame the question: is the area of the final curved distribution contributed by x = 1 through 2 faster to calculate if you know the area contributed by that subset for the previous less curved function & the transform function from the previous curved function to the final curved function, or faster with a standard integral calculation
 
-        - another way to frame the original problem ('why does the average of many random independent variables produce a normal outcome probability distribution): why is the average of a set of constant probability lines likelier to be closer to the absolute average than not, as the number of constant probability lines applied increases? 
-          - alternatively: 'why do constants lead to a curve with central tendency similar to a parabola, when the constants represent probabilities of random variable distributions'
+        - another way to frame the original problem ('why does the average of many random independent variables produce a normal outcome probability distribution)
+          - why is the average of a set of constant probability lines likelier to be curved & closer to the absolute average than not, as the number of constant probability lines applied increases? 
+          - why does an average of constant probabilities across possible outcomes lead to a probability curve with central tendency similar to a parabola
+          - the curvature is from similarities in probabilities between similar values (1.2 is similar in probability to 1.3, so they are connected with a small change in value, leading to a curve when applied across other adjacent/similar values) and from the continuity of possible values (1.2 is a possible outcome rather than just integers)
+          - similarity across probabilities (similar probabilities of getting 1.2 and 1.3 as an average) and values (similarity of 1.2 and 1.3) is a symmetry that you could identify programmatically to predict the output shape of the distribution 
+            - or identify the same contrary conclusion leading to an inevitable implication, which is that it is very unlikely to get a gap in the final distribution where some values are never seen regardless of how many variables are used, or that a large jump in probability occurs between very similar values
+              - meaning there's a closed relationship between the parameters (outcome averages, possible outcome size, adjacence of possible outcome values, number of variables, & converging probability)
+
+          - when there is a large difference in outcome between similar inputs (volatility), there are other parameters contributing to the outcome probabilities (just like being an endpoint value decreases the possibility of being paired in a subset with adjacent values)
+
+            - how would you identify these parameters adding volatility? by checking default system filter objects:
+
+              - differences
+
+                - in structure (subsets)
+
+                  - in content filling structures (values in subsets)
+
+              - existing known objects of the problem
+
+                - extremes
+                  - differences (start with 'differences' query above)
+
+                - averages
+                  - erasure of extremes
+                  - ambiguity between subsets (1 and 5 generating the same average as 2 and 4)
+                  - the importance of subsets as a fundamental input to the concept of the sum/average
+                  - the importance of the average as an input to the concept of probability
 
 
     - example filter analysis
