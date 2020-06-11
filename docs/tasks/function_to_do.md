@@ -147,16 +147,52 @@
 
                   - in content filling structures (values in subsets)
 
-              - existing known objects of the problem
+              - existing known objects of the problem (or existing known objects defined in terms of the same object, like 'average')
 
                 - extremes
+
                   - differences (start with 'differences' query above)
 
                 - averages
+
+                  - pairs are the unit input to the sum/average
+                    - the importance of subsets as a fundamental input to the concept of the sum/average
+                  - the concept of value pairs that can produce an absolute average-adjacent value
+                    - averaging pairs
+                    - generalization to the concept of value subsets producing an average
+                      - averaging subsets
+                      - the concept of ambiguity subsets producing an average
+                        - indistinguishable averaging subsets
+                  - there are fewer averaging values for extremes than for average-adjacent values (1 can be averaged by values near 5 - 6, whereas 3 can be averaged by values near 2 - 4)
                   - erasure of extremes
-                  - ambiguity between subsets (1 and 5 generating the same average as 2 and 4)
-                  - the importance of subsets as a fundamental input to the concept of the sum/average
+                    - ambiguity between subsets (1 and 5 generating the same average as 2 and 4)
+                      - the average is determined by ambiguities (in how many different subsets can be used to generate a particular average)
                   - the importance of the average as an input to the concept of probability
+                  - each subset of values is likely to have an average similar to the absolute average, based on:
+                    - the number of ambiguous routes to the average possible in that subset, across value pairs/subsets 
+                      (a subset from 1 to 6 includes 3 distinct pairs of values that can produce the absolute average of 3)
+                    - the number of non-average values
+                    - the number of adjacent values that are non-averages and non-averaging
+                  - the proportion of ambiguities increases as size n increases
+
+
+              - conceptual routes
+
+                - independence
+
+                  - one input to the average doesn't influence other inputs to the average
+                    - adjacence within a value pair as a contrary force to the average
+                    - the full set of adjacent inputs has inequality in distribution (1 has fewer adjacent inputs than 2)
+
+                - random (distribution for each variable)
+
+                  - each possible outcome value is equally likely
+                  - each average outcome value is likelier to be similar or equal to the average possible value than another value
+                  - when permuting the concept of similarity, do averages change in behavior? (start with 'independence' query generating 'adjacence' concept and 'adjacent pairs' inequality or 'adjacence' query)
+
+                - adjacence
+
+                  - adjacence between outcome values can be a factor in the average of that subset
 
 
     - example filter analysis
