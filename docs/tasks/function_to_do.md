@@ -229,6 +229,30 @@
 
             - these derived objects enable evaluating the problem in a structural way that predicts the outcome under computation constraints (not actually calculating the answer)
 
+    - when applying ambiguity reduction to a problem like 'finding the parameters of the curve', find vertexes to begin search at by filtering:
+
+      - having a related contrary set (if the vertex is not the parameter, the other values in the set will also not be)
+      - having equidistance to other vertices, measured by numbers/size of contrary sets (each vertex is n unit contrary sets away from other vertices)
+      - minimizing number of test steps (triviality of invalidating the vertex & its contrary set)
+      - mapping sequence of vertices to test by which contrary sets invalidate which other contrary sets (so only contrary sets with ambiguity in the form of undetermined contrary sets are competing)
+      - subsets optimizing an attribute (number types, number differences, etc) associated with variation across parameters (ensuring subsets have variation within contrary sets optimizing these attributes to find other patterns in parameters)
+        - ensuring subsets have different organizing attributes
+          - ensuring subsets are organized in a way that will allow useful organizing attributes to be found early, without violating contrary set & invalidating parameter set organization & other filters
+      - which parameter values will invalidate other parameter values (if a parameter has to be x steps away from another parameter value, make sure invalidating sample parameters aren't checked within a subset
+      - which distortions will isolate or reduce possible parameters or parameter relationships, so fewer filters can be used (maximizing some metric, framing it as a combination of different components, etc)
+
+      - objects include:
+        - filters to search one parameter
+        - filters to search parameter sets
+        - invalidating parameter sets (if x is not 1, y is not 2)
+        - contrary sets (if x is not 1, it is also not 2)
+          - the other version is alternative sets (if x is not 1, 2 or 3 are not ruled out)
+        - compounding/probable sets (if x is not 1, it is less likely to be 2)
+        - interacting sets (if x is not 1 and x is not 2, it is also not 3)
+        - set variation
+        - set organization
+        - set traversal sequence
+        - ambiguity maximization, across set traversal sequence
 
     - example filter analysis
 
