@@ -255,11 +255,27 @@
         - ambiguity maximization, across set traversal sequence
 
     - document objects outside of system context
+
       - what types of objects/functions/attributes survive outside of a system that isn't closed by default, and to what extent
+
       - what interfaces capture the objects outside of a measurable system context with potential for information (maintenance of a fact for enough time & space to be measured or depended on)
+        
+        - potential
+          - probability of being interacted with by a system
+          - probability of decay without a host system
+          - lack of information (lack of position, structure, time, etc) or measurable information (changing too fast for an observer to interact with it)
+
+        - attributes
+          - opposite (everything outside of the system is 'not the system', 'not yet/anymore in the system', 'not compatible with the system', or 'not valid in the system')
+
+        - cause 
+          - generators of systems or generator side effects
 
     - document interface math examples, like standardization of all distinct components into their own interfaces, rather than within a system context
-      - rather than framing the behavior of objects in a system, frame each object on its own interface (containing all its possible forms, variables, attributes, generators, cooperative contexts, etc) and compute the interactions of those interfaces
+      - rather than framing the behavior of objects in a system, you can:
+        - remove the assumption of the system limits forcing interactions
+        - frame each object on its own interface (containing all its possible forms, variables, attributes, generators, cooperative contexts, etc)
+        - compute the interactions of those interfaces
 
     - example filter analysis
 
