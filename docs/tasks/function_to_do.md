@@ -204,6 +204,32 @@
                   - adjacence between outcome values can be a factor in the average of that subset, depending on the proportion of adjacent subsets and the averaging effect of pairs of these adjacent subsets
 
 
+            - given the input problem objects:
+              - average
+              - sum
+              - value
+              - set
+
+            - now you have a set of important objects for this problem (not all of which are necessary for a given solution, selected from standard/permuted/combined system objects):
+              - subsets
+              - extremes
+              - opposites
+              - thresholds
+              - equivalence
+                - similarity/adjacence
+              - ambiguities
+              - alternates
+
+            - and these objects can generate the significant derived objects when combined with problem objects
+
+              - averaging subsets (2,4)
+                - ambiguous averaging subsets (2,4 and 1,5 and 1,5,3)
+              - adjacent subsets (1,2)
+              - averaging thresholds (the point where opposite values start moving an extreme closer to the average than adjacent values move the extreme so it doesnt reduce the distance to the average by more than a factor)
+
+            - these derived objects enable evaluating the problem in a structural way that predicts the outcome under computation constraints (not actually calculating the answer)
+
+
     - example filter analysis
 
       - problem: design/select optimal options for a program
