@@ -85,6 +85,54 @@
 
     - make a system layer diagram with interfaces to allow specification of core interfaces & other interface layers (interface interface)
 
+    - make a system layer diagram for structures to include layers of structures (beyond core structures like curves, to include n-degree structures like a wave, as well as semantic output structures like a key, crossing the layer that generates info structures like an insight, a probability, etc)
+
+    - testing for independent variables: 
+
+      - a slice of a bottleneck (filter and/or limit applied that enforces interaction) may include enough random independent variables to generate a normal distribution of a dependent variable, if a series of variance gaps in a system has alignment (similar direction moving toward the bottleneck), where the bottleneck forces the variables to interact in a way that doesnt enforce similarity/convergence of the variables (leaves open the possibility of coordinating/cooperative differences)
+
+      - example: 
+        - a subset (out of the total observed outcome set) is likelier to contain a proportional number of successes (subset size/total size) than all the successes
+        - just like a subset is likelier to contain one success than zero if subsets have size 1 and the observed outcome set has the same size as the possible outcome set
+        - this means the outcomes are likelier to be distributed across subsets organized by adjacence than concentrated in one subset, as the subset size decreases
+        - as the likelihood of a multi-subset observed outcome distribution increases, the likelihood of a convergence to the average increases 
+          - 1,2 and 5,6 are in more different subsets organized by adjacence
+          - adjacence is a good determinant of subsets because we're measuring difference compared to the average, and adjacence measures difference
+          - the average of 1, 2, 5, 6, is nearer to the average than the average of 1, 2, 3, 4 or 3, 4, 5, 6 (which are more adjacent than 1, 2, 5, 6 even though theyre in different subsets)
+          - the subset (1, extreme value) is likelier than (1, adjacent value) (there are more ways to pair 1 with an extreme value than an adjacent value bc its on the edge)
+          - the likelihood of pairing a value with its non-averaging value (1 being the averaging value of 6, 2 being the averaging value of 5) is higher than pairing a value with its averaging value
+          - the likelihood of pairing a value with adjacent values (pairing 1 with 4 or 5) to its non-averaging value than with adjacent values to itself (pairing 1 with 2 or 3) contributes to the convergence towards the average (pairing 1 with 4, 5, or 6 is likelier than pairing 1 with 2 or 3 and contributes more to the convergence toward the average)
+          - the likelihood of pairing a value with non-adjacent values is higher than pairing it with adjacent values (if the possible outcome size is greater than 5)
+          - are there more or less subsets that would produce an average closer to the original distribution average value? if the set of possible outcomes has a large size, there are more possible outcomes that would produce an average in the set of outcomes farther away from the mean (if the outcomes can be 1 - 10, there are more non-5 outcomes than 5 outcomes, so the average of paired subsets are likelier to converge to the distribution average 5, because you can pair 1 with 10 and other very non-average values (2, 3, 8, 9) in more equally possible ways than you can pair 1 with 5 or average-adjacent values (4, 5, 6, 7) because there are more very non-average values
+
+        - subsets are a key object because the sum (implying 'of multiple numbers') is a component of the average - an average takes more than one observation to calculate, and the average is a standard to measure the relationship of one outcome value to the set of all observed outcome values, given adjacence to the average, an average giving more information in one number than either endpoint
+          - subsets are the core unit structure containing the implementation of the concept of difference (& enabling the sum/average requirements) in this problem
+
+        - so the direction moves toward the average with more fulfillments of variance gaps in the form of unenforced convergence, where differences are allowed to develop & coordinate
+        
+        - another quicker way to generate this conclusion is how there are more adjacent similar ways to generate an average value than an extreme value for most outcome subsets
+          - there are fewer different steps required to transform a given outcome subsets 1,2 and 5,6 to the average (converge to the value that is most similar to all other values) than to the extremes, given that the extremes are likelier to be farther away from factors that can be used to generate them (likelier to be prime), given that outcome numbers are the product of different routes between other numbers
+
+        - the slice structure indicates that the independent variables are being measured in a similar way or similar time, where conditions are held constant during the measurement (the outcomes and subsets are assumed to be relevant to each other, being organized into the same experiment's total outcome set)
+
+        - each outcome isn't required to converge or coordinate with the other outcomes (independence), like with the independence of closed non-adjacent systems with minimal or no enforced interaction between systems
+
+        - the limit being applied is the assumption of relevance of outcomes within an experimental total outcome set
+
+        - the filter is the standard applied (average), which standardizes to an interface that allows comparison between independent variables
+
+        - the variance gaps (unenforced rules, given that subsets aren't assumed to be dependent, so there's no default required reason for them to relate to any value) are the probability of different subsets to create an average near to the total set average, which converges to the total set average
+
+      - given that the ratio of area contributed by a subset can be calculated by the degrees away from the equal distribution that the parameters (sample size, subset size) have moved it, does the area calculation of a subset of the final curved distribution get clearer as a function of degrees?
+
+        - the ratio of area contributed by x = 1 through x = 3 of a normal distribution can be calculated by the degrees of steps taken away from default parameters for the equal distribution, separating the continuous curve of changes into a sequence of steps from the angular versions in between the line of the equal distribution and the continuous curve
+
+        - other way to frame the question: is the area of the final curved distribution contributed by x = 1 through 2 faster to calculate if you know the area contributed by that subset for the previous less curved function & the transform function from the previous curved function to the final curved function, or faster with a standard integral calculation
+
+        - another way to frame the original problem ('why does the average of many random independent variables produce a normal outcome probability distribution): why is the average of a set of constant probability lines likelier to be closer to the absolute average than not, as the number of constant probability lines applied increases? 
+          - alternatively: 'why do constants lead to a curve with central tendency similar to a parabola, when the constants represent probabilities of random variable distributions'
+
+
     - example filter analysis
 
       - problem: design/select optimal options for a program
