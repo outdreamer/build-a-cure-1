@@ -258,6 +258,20 @@
 
     - when you have one sample, it's possible to estimate distance from average using extreme attribute value sets & mapping the attribute sets to assign probability given the relationships within the sample, as a prediction tool with minimum information
 
+      - example: if you're in a position outside and you want to know if its an average or extreme position, you can: 
+      
+        - maximize attribute values 
+          (maximize elevation after deriving the concepts of ground & relative height and noticing that height can change between positions, maximize horizon landmarks, maximize connections between nodes, maximize variation within node sets), 
+        - to imagine other possible positions (a place with more landmarks, more variation in elevation, etc) 
+        - and then all the possible adjacent positions (places that would be found near each other or places that would turn into each other), 
+        - to derive paths in the system of attribute sets indicating positions, 
+        - then assign probability between sets (places that are likelier, given attribute relationships in your position like how neighborhoods cluster and how that clustering rule might be causative/caused by the attribute sets), 
+        - then identify the most probable positions as nearer to the average & identify other measures of average, and identify combinations that can create the average (other routes to the average) 
+
+        - then identify the least likely or most extreme positions and take the average from distance to those or distance to probable positions
+
+        - the most variation there can be seen when applying concepts like agency (planned cities or artificial natural landmarks), concepts which can be derived from the attribute values of your position
+
     - document generated function types
       - decoy rules that consider usage, so usage follows the actual rule
 
