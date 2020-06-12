@@ -247,12 +247,21 @@
         - invalidating parameter sets (if x is not 1, y is not 2)
         - contrary sets (if x is not 1, it is also not 2)
           - the other version is alternative sets (if x is not 1, 2 or 3 are not ruled out)
+        - filters to determine filters (rule out sets or paths in a network of sets)
+        - organizing filters by maximum probability of related subsets being adjacent, or maximum probability of variation once filters are applied (once x subsets are ruled out, the remaining subsets are likely to be very different)
         - compounding/probable sets (if x is not 1, it is less likely to be 2)
         - interacting sets (if x is not 1 and x is not 2, it is also not 3)
         - set variation
         - set organization
         - set traversal sequence
         - ambiguity maximization, across set traversal sequence
+
+    - document generated function types
+      - decoy rules that consider usage, so usage follows the actual rule
+
+    - document generated object change types
+      - constant to variable
+      - variable to removal of assumption in variable type/data type
 
     - document objects outside of system context
 
@@ -261,15 +270,22 @@
       - what interfaces capture the objects outside of a measurable system context with potential for information (maintenance of a fact for enough time & space to be measured or depended on)
         
         - potential
+
           - probability of being interacted with by a system
           - probability of decay without a host system
-          - lack of information (lack of position, structure, time, etc) or measurable information (changing too fast for an observer to interact with it)
+          - lack of information (lack of position, structure, time, etc) or lack of measurable information (changing too fast for an observer to interact with it)
 
         - attributes
-          - opposite (everything outside of the system is 'not the system', 'not yet/anymore in the system', 'not compatible with the system', or 'not valid in the system')
+
+          - opposite: everything outside of systems is:
+            - not the system
+            - not yet/anymore in the system
+            - not compatible with the system (unmatching elements)
+            - not valid in the system (like everything that cant be proved or controlled in/by a system)
 
         - cause 
-          - generators of systems or generator side effects
+
+          - generators of systems or generator side effects or system side effects
 
     - document interface math examples, like standardization of all distinct components into their own interfaces, rather than within a system context
       - rather than framing the behavior of objects in a system, you can:
