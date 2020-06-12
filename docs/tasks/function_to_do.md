@@ -256,10 +256,13 @@
         - set traversal sequence
         - ambiguity maximization, across set traversal sequence
 
+        - how would you identify the best tests to do to reduce solution space?
+          - after modeling the likely set of distributions, and identifying which tests reduce uncertainty the most in those distributions, selecting for the most common tests across distributions that reduce uncertainty
+
     - when you have one sample, it's possible to estimate distance from average using extreme attribute value sets & mapping the attribute sets to assign probability given the relationships within the sample, as a prediction tool with minimum information
 
       - example: if you're in a position outside and you want to know if its an average or extreme position, you can: 
-      
+
         - maximize attribute values 
           (maximize elevation after deriving the concepts of ground & relative height and noticing that height can change between positions, maximize horizon landmarks, maximize connections between nodes, maximize variation within node sets), 
         - to imagine other possible positions (a place with more landmarks, more variation in elevation, etc) 
@@ -271,6 +274,22 @@
         - then identify the least likely or most extreme positions and take the average from distance to those or distance to probable positions
 
         - the most variation there can be seen when applying concepts like agency (planned cities or artificial natural landmarks), concepts which can be derived from the attribute values of your position
+
+        - anything that's not required or can be transformed in some way is a candidate for a variable
+          - anything that doesnt have a point/intent is not as likely to be a variable, bc things usually change for a reason but universal change laws can still produce changes without intent
+
+        - some attribute values would be non-adjacent to derive from other positions, but become more adjacent to derive once other linking concepts/attributes are derived:
+          - deriving the concept of an island from a landlocked position would be difficult without the concepts of a lake or a boundary, moat, container, limit, or anomaly
+          - deriving the concept of a cave without seeing one would require assumptions of non-uniformity, or concepts like gaps or scaffolds, or understanding of structural physics allowing cave ceiling to be supported without a full structure underneath 
+          
+        - how would you derive the concepts that could illuminate the most alternate structures created by intersecting/aligning attribute values:
+          - core structure analysis & assumption permutation would get there the fastest without system filters (attribute alignments, unenforced rules) or intent analysis (focusing on structures with a point)
+          - deriving links between known objects
+            - linking the concept of water and the concept of land requires deriving the concept of a shore, which would lead to the repeated compounding interaction between water & rock leading to erosion & caves
+            - or alternately linking the core structure of layers to derive earth plates, & assuming they can change position, leading to earthquakes, leading to gaps in rock structures)
+          - identifying the cause of the object (natural landmarks) variation as on the element layer & deriving those relationships given your position's attribute values, then assuming different element distributions & combinations to build the landmarks up from that layer
+          
+
 
     - document generated function types
       - decoy rules that consider usage, so usage follows the actual rule
