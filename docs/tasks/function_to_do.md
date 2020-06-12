@@ -299,6 +299,8 @@
         - cost as an aggregation/interaction rule (lowest cost routes should be assumed first)
         - cost that exceeds the value of intent should be assumed to be either false, unlikely, developing into a more efficient rule, being interacted with from another object/function/attribute, or being destroyed
 
+    - organizing the stock market similarly to insurance to inject agency, investors can influence the market so that objects like competitions/incentives are created in a way that maximizes gains (making industry players compete in an industry that your other investment is capable of invalidating if they stop improving customer service vs. certain product features), or creating platform/foundation tools that are necessary components of the industry (prediction tools, specifically claim-testing tools or price assessment tools), or evaluating agent interactions at scale (what are the obvious ways & distortions of those ways to manipulate/evaluate/predict the market, who has the ability to act on those manipulations, and what is the net effect if all agents who can act on that do so)
+
     - document generated object change types
       - constant to variable
       - variable to removal of assumption in variable type/data type
