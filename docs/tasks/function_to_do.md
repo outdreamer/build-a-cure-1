@@ -301,6 +301,10 @@
 
     - organizing the stock market similarly to insurance to inject agency, investors can influence the market so that objects like competitions/incentives are created in a way that maximizes gains (making industry players compete in an industry that your other investment is capable of invalidating if they stop improving customer service vs. certain product features), or creating platform/foundation tools that are necessary components of the industry (prediction tools, specifically claim-testing tools or price assessment tools), or evaluating agent interactions at scale (what are the obvious ways & distortions of those ways to manipulate/evaluate/predict the market, who has the ability to act on those manipulations, and what is the net effect if all agents who can act on that do so)
 
+    - example of concept analysis in design of sorting function:
+      - similarity in navigation, equality in split => optimal for target value near initial split points or similar positions to the split points
+      - assumed difference embedded in pre-computation of attributes => optimal for target value with different pre-computed attribute value, or target values in similar position to values with different pre-computed attribute values or adjacent values
+
     - document generated object change types
       - constant to variable
       - variable to removal of assumption in variable type/data type
