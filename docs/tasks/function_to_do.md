@@ -256,6 +256,8 @@
         - set traversal sequence
         - ambiguity maximization, across set traversal sequence
 
+    - when you have one sample, it's possible to estimate distance from average using extreme attribute value sets & mapping the attribute sets to assign probability given the relationships within the sample, as a prediction tool with minimum information
+
     - document generated function types
       - decoy rules that consider usage, so usage follows the actual rule
 
