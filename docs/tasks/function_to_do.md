@@ -289,10 +289,12 @@
             - or alternately linking the core structure of layers to derive earth plates, & assuming they can change position, leading to earthquakes, leading to gaps in rock structures)
           - identifying the cause of the object (natural landmarks) variation as on the element layer & deriving those relationships given your position's attribute values, then assuming different element distributions & combinations to build the landmarks up from that layer
           
-
+        - assuming time independence - not assuming to be at a state of development that would guarantee a likely possibility is manifested somewhere
 
     - document generated function types
-      - decoy rules that consider usage, so usage follows the actual rule
+      - decoy rules that consider probable usage, so usage follows the actual rule
+      - cost-based system rules
+        - avoiding assumptions or other objects where the cost of being wrong is too high to recover from (multiple alternative explanations, but one is very high-cost if it's true or false, so assuming anything that rules it out cant be assumed without a high ratio of information or high number of indicators
 
     - document generated object change types
       - constant to variable
