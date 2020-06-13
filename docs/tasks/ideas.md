@@ -43,6 +43,9 @@ to do: organize into docs
       - rather than make the measurement tool better, you can make the information more accessible (change the position of information rather than the position of the measurement tool)
       - the AR component would augment the size to make it displayable to users without using the measurement tool (microscope) or indicate size/type of pathogen with standard data visualization rules
 
+      - applying the testing tool to hub nodes (then inputs/outputs of hub nodes, and adjacent objects to hub nodes) to check with increasing certainty whether surfaces were compromised
+      - redistributing resources based on immunity/infection status to avoid cleaning, like distributing unchecked, unsanitized, or contaminated goods to consumers with immunity/infection 
+
   - to do: 
 
     - why are polynomials with a leading coefficient of one & having optional zero coefficients capable of being multiplied & added to give the roots to the system of equations?
