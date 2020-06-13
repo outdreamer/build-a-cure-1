@@ -291,6 +291,13 @@
           
         - assuming time independence - not assuming to be at a state of development that would guarantee a likely possibility is manifested somewhere
 
+    - add note on evaluating object attributes, plus the ability to occupy invalidating positions/structures or fulfill invalidating intents of a system, and system requirements for those objects (invalidating position/structure/intent) to be possible
+      - example: 
+        - object attributes: a chemical on its own
+        - system position: a chemical adjacent to another chemical in a system with high temperature
+        - system structure: a system designed to make any adjacent chemicals explode, vs. a system that standardizes chemicals to a harmless format
+        - system position & structure: a chemical with an extra electron at a position in the system where an extra electron would cause an explosion
+
     - document generated function types
       - decoy rules that consider probable usage, so usage follows the actual rule
       - cost-based system rules
