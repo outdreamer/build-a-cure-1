@@ -1,9 +1,49 @@
 # Intro
 
 
-## Summary
+## Intro Example
 
-	This project is intended to automate interface analysis (a method to solve problems automatically).
+	This project is intended to automate interface analysis (a method to solve problems automatically), to produce solutions to input problems.
+
+	This program would take the problem statement:
+		- "build a tool to detect & display bacteria"
+
+	and output possible solutions such as:
+		- "grow bacteria until its more measurable"
+		- "use an animal model in an air-conditioned building (when people aren't in it like at night) that would quickly show signs of infection if the virus was live and present"
+		- "display points on an AR interface with magnified bacteria attributes, or applying other data visualization rules to indicate attributes"
+
+	along with other solution metadata like probability of success, sufficiency of information to select the optimal solution, and which solution is optimal, given which sets of resources are available.
+
+	Another example input problem statement:
+		- 'preventing infections from pathogens'
+
+	would have possible solution output:
+		- 'create artificial or hybrid pathogen to fight the deadlier pathogen'
+		- 'remove deadly components of the pathogen on the structure (surface or protein or genetic) interface that is within 3 causal or system nodes'
+		- 'point deadly pathogen at harmful cells like cancerous cells'
+		- 'create a cell that will generate antibodies on demand'
+		- 'calculate all harmful pathogens and install antibodies for each of them or their most common attributes'
+		- 'calculate the stressors that will produce which antibodies'
+		- 'calculate which stressors will produce evolution to handle the pathogen stressor'
+		- 'create more filters to validate edits done to genes'
+		- 'create more backup copies of original DNA to help the system remember which copy to use for comparison during validation'
+		- 'create a pathogen to propagate original DNA after any infection'
+		- 'calculate benefits of various pathogens and apply them to add functionality to the bio system'
+
+	and other solution metadata.
+
+	Another example problem statement:
+		- 'build an optimal thermometer'
+
+	would have possible solution output including:
+		- 'automatically shut off the thermometer when optimal temperature is adjacent or reached'
+		- 'have backup energy sources for emergencies'
+
+	and other solution metadata.
+	
+
+## Summary
 
 	Much of this project automates the problem-solving methods & structures I use mentally. Other components of this project include important specific functions, like predicting, finding & using important system filters.
 
