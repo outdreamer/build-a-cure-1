@@ -36,6 +36,12 @@ to do: organize into docs
     - iterations of voting can apply subsequent filters of resulting algorithm sets like optional/potential work agreed to, and allow debate and lobbying to get higher rates by promoting or educating people for different types of work (they can vote for an algorithm requiring more investment if they have x signatures & if the work will produce solutions to reduce costs overall for all or other groups, otherwise an income rate isnt guaranteed)
     - monitoring, fixing, & enforcement agencies can be used as necessary (when new drugs are discovered, systemic failures occur, etc)
 
+  - tool to make bacteria grow until detectable & then represent with AR
+    - this closes the gap in information:
+      - the information needed for the product (a testing & display tool) was insufficient
+      - the mechanism to make the information sufficient is accessible (solutions to feed bacteria)
+      - rather than make the measurement tool better, you can make the information more accessible (change the position of information rather than the position of the measurement tool)
+      - the AR component would augment the size to make it displayable to users without using the measurement tool (microscope) or indicate size/type of pathogen with standard data visualization rules
 
   - to do: 
 
