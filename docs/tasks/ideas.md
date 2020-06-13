@@ -45,6 +45,7 @@ to do: organize into docs
 
       - applying the testing tool to hub nodes (then inputs/outputs of hub nodes, and adjacent objects to hub nodes) to check with increasing certainty whether surfaces were compromised
       - redistributing resources based on immunity/infection status to avoid cleaning, like distributing unchecked, unsanitized, or contaminated goods to consumers with immunity/infection 
+      - keeping an animal likely to develop fast infections in buildings and then using air conditioner to distribute viral RNA when the building is unused and checking remotely if the animal shows symptoms to see if a building is safe is one way around the limitation to detect live copies of the virus, since the animal symptoms are easier to measure than a pathogen, so the problem becomes ensuring the animal will develop symptoms rather than immunity, and making sure the symptoms show up faster than a test done on hub nodes or quickened with enzymes/sugar/cells that help the pathogen replicate
 
   - to do: 
 
