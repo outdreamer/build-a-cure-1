@@ -298,6 +298,11 @@
         - system structure: a system designed to make any adjacent chemicals explode, vs. a system that standardizes chemicals to a harmless format
         - system position & structure: a chemical with an extra electron at a position in the system where an extra electron would cause an explosion
 
+        - "Similar logical patterns are absent in SARS-CoV-2, indicating that the virus evolved naturally." - the evolution of a virus to fit within certain systems implies that changing the system metadata (inputs, structure, side effects, priorities, functions) can invalidate the virus without invalidating the system
+          - removing/adding the transforms that made the virus deadly/innocuous to a system
+          - sending type signals within a contained limit around the virus to give the impression of systems that it wouldnt be deadly in
+          - changing the position of a virus (so necessary bacteria interpret pathogens as energy sources)
+
     - document generated function types
       - decoy rules that consider probable usage, so usage follows the actual rule
       - cost-based system rules
