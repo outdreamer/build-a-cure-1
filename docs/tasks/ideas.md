@@ -38,9 +38,11 @@ to do: organize into docs
     - starting from all the positions & actions that have efficiencies & reasons to move the way they do or in the direction they do is a good starting point once those are identified
 
   - stereotype nn algorithm
+
     - log objects of bias like:
+
       - false similarity between rule & data
-      - correct contextual rules
+      - correct contextual rules, that are incorrect in new/most/unexperienced/possible/common contexts
       - correct rule component/input
       - similarity between biased rule and correct rule structure/input
       - lack of concept of alternative possibilities
@@ -48,6 +50,15 @@ to do: organize into docs
       - incorrect rules applied to other data like other biased rules producing strong bias functions rather than correction functions
       - structures that incentivize bias like lack of update rules or adjacent destruction of correction rules or lack of protection for connections preventing bias
       - mismatch between time to required decision and time to make change or query for new rules
+      - concepts:
+        - stereotype rule dynamics (how they form, are destroyed/changed/replaced)
+        - scope/specificity/generalization
+      - misidentify output (wearing a similar outfit to criminal for different reason than crime) or cyclical output (wearing similar thing as an activist given culture progression who is known to be against the police can increase potential for police violence) as a cause
+      - misassigning the concept of responsibility (the source of root cause), such as misidentifying the aggressor/victim as being at fault
+      - misassigning the burden of the prevention function (burden is on the aggressor), according to power dynamics (the aggressor has the information about their own violent intents, the power to check information & the responsibility to use it)
+      - structural gaps allowing bias to gather/develop (gaps in rule enforcement/validation checks or over-prioritizing priorities known to create bias if not restricted, like efficiency/safety, or processes that have the same output like fear/caution/scanning for threats)
+      - structural components that form the inputs or components of bias, making it likelier to develop if those components are allowed to interact
+      - structural components that make bias more likely, like frequently requiring fast survival decisions
 
   - voting for algorithm of resource distribution
 
