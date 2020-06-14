@@ -298,7 +298,7 @@
         - system structure: a system designed to make any adjacent chemicals explode, vs. a system that standardizes chemicals to a harmless format
         - system position & structure: a chemical with an extra electron at a position in the system where an extra electron would cause an explosion
 
-        - "Similar logical patterns are absent in SARS-CoV-2, indicating that the virus evolved naturally." - the evolution of a virus to fit within certain systems implies that changing the system metadata (inputs, structure, side effects, priorities, functions) can invalidate the virus without invalidating the system
+        - "Similar logical patterns are absent in SARS-CoV-2, indicating that the virus evolved naturally." - the evolution of a virus to fit within certain systems confirms that changing the system metadata (inputs, structure, side effects, priorities, functions) invalidates the virus without invalidating the system
           - removing/adding the transforms that made the virus deadly/innocuous to a system
           - sending type signals within a contained limit around the virus to give the impression of systems that it wouldnt be deadly in
           - changing the position of a virus (so necessary bacteria interpret pathogens as energy sources)
@@ -310,6 +310,8 @@
           - in a case with multiple alternative explanations, but one is very high-cost if it's true or false, so assuming anything that rules it out cant be assumed without a high ratio of information or high number of indicators
         - cost as an aggregation/interaction rule (lowest cost routes should be assumed first)
         - cost that exceeds the value of intent should be assumed to be either false, unlikely, developing into a more efficient rule, being interacted with from another object/function/attribute, or being destroyed
+
+    - organize notes on embedded/chained interfaces (which interfaces to use first when describing each primary interface, to produce the formatted & filtered information likeliest to be useful in the most situations to produce the default interface network)
 
     - organizing the stock market similarly to insurance to inject agency, investors can influence the market so that objects like competitions/incentives are created in a way that maximizes gains (making industry players compete in an industry that your other investment is capable of invalidating if they stop improving customer service vs. certain product features), or creating platform/foundation tools that are necessary components of the industry (prediction tools, specifically claim-testing tools or price assessment tools), or evaluating agent interactions at scale (what are the obvious ways & distortions of those ways to manipulate/evaluate/predict the market, who has the ability to act on those manipulations, and what is the net effect if all agents who can act on that do so)
 
