@@ -37,6 +37,18 @@ to do: organize into docs
 
     - starting from all the positions & actions that have efficiencies & reasons to move the way they do or in the direction they do is a good starting point once those are identified
 
+  - stereotype nn algorithm
+    - log objects of bias like:
+      - false similarity between rule & data
+      - correct contextual rules
+      - correct rule component/input
+      - similarity between biased rule and correct rule structure/input
+      - lack of concept of alternative possibilities
+      - priorities that mimic or create error types like over-prioritizing safety can look like prioritizing efficiency or being biased
+      - incorrect rules applied to other data like other biased rules producing strong bias functions rather than correction functions
+      - structures that incentivize bias like lack of update rules or adjacent destruction of correction rules or lack of protection for connections preventing bias
+      - mismatch between time to required decision and time to make change or query for new rules
+
   - voting for algorithm of resource distribution
 
     - example algorithm input/output: 
