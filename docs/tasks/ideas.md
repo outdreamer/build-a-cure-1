@@ -53,6 +53,8 @@ to do: organize into docs
       - concepts:
         - stereotype rule dynamics (how they form, are destroyed/changed/replaced)
         - scope/specificity/generalization
+        - stupidity which is related to bias
+        - reasons not to look for contradictory/other information types
       - misidentify output (wearing a similar outfit to criminal for different reason than crime) or cyclical output (wearing similar thing as an activist given culture progression who is known to be against the police can increase potential for police violence) as a cause
       - misassigning the concept of responsibility (the source of root cause), such as misidentifying the aggressor/victim as being at fault
       - misassigning the burden of the prevention function (burden is on the aggressor), according to power dynamics (the aggressor has the information about their own violent intents, the power to check information & the responsibility to use it)
