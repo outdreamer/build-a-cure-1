@@ -22,6 +22,17 @@ to do: organize into docs
       - when information leaves traces/side effects that are not erased by reversing the transform (not a closed system with energy storage built in)
       - example of processes that are easier in one direction: it can be easier to navigate over a local maxima than to navigate up a global valley, or to navigate a map to identify type than a map to identify individual members of a type, which can change in ways that differ from the type definition, average, etc
 
+  - empathy algorithm
+
+    - start from positions: 
+      - worst case scenarios related to attacks (planning an attack)
+      - emotional sources triggering attacks (fears, etc)
+      - intents related to attacks (get resources)
+      - causes of attacks (irrational thinking)
+      - strategies of attacks (false correlation, false sense of security, surprise)
+      - strategies to prevent attacks ('never be surprised', 'assume the worst')
+      - asymmetries leading to different perspectives (such as "lack of resources like information, understanding or concepts (no concept of 'fair fight', 'attack first', etc)")
+
   - voting for algorithm of resource distribution
 
     - example algorithm input/output: 
