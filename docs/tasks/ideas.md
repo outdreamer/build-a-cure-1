@@ -22,7 +22,7 @@ to do: organize into docs
       - when information leaves traces/side effects that are not erased by reversing the transform (not a closed system with energy storage built in)
       - example of processes that are easier in one direction: it can be easier to navigate over a local maxima than to navigate up a global valley, or to navigate a map to identify type than a map to identify individual members of a type, which can change in ways that differ from the type definition, average, etc
 
-  - empathy algorithm
+  - empathy nn algorithm
 
     - start from positions: 
       - worst case scenarios related to attacks (planning an attack)
@@ -32,6 +32,10 @@ to do: organize into docs
       - strategies of attacks (false correlation, false sense of security, surprise)
       - strategies to prevent attacks ('never be surprised', 'assume the worst')
       - asymmetries leading to different perspectives (such as "lack of resources like information, understanding or concepts (no concept of 'fair fight', 'attack first', etc)")
+      - reasoning to fulfill intents (there's usually a reason to take an action that they think will fulfill an intent)
+      - alternatives to reasoning, including politeness, lack of thought, and other reasons for a decision
+
+    - starting from all the positions & actions that have efficiencies & reasons to move the way they do or in the direction they do is a good starting point once those are identified
 
   - voting for algorithm of resource distribution
 
