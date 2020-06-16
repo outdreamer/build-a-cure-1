@@ -291,14 +291,6 @@
           
         - assuming time independence - not assuming to be at a state of development that would guarantee a likely possibility is manifested somewhere
 
-    - with information representing the constant vertices of a system, by representing information a certain way, efficiencies are gained in other information, like related calculation outputs 
-      - what does the efficiency provide to uncertain/uncalculatable objects external to information?
-      - with certain concepts as priorities or embedded in the structure (like orthogonality generating intersection spaces), certain efficiencies in calculations are created
-      
-    - what is the correct position of a market, insurance, price, future value predictions, trades, currencies, etc given their definitions?
-      - a market being a reason to trade unevenly distributed resources, like matching supply & demand
-      - insurance being the allocation of risk
-
     - add note on evaluating object attributes, plus the ability to occupy invalidating positions/structures or fulfill invalidating intents of a system, and system requirements for those objects (invalidating position/structure/intent) to be possible
       - example: 
         - object attributes: a chemical on its own

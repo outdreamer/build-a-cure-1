@@ -37,6 +37,14 @@ to do: organize into docs
 
     - starting from all the positions & actions that have efficiencies & reasons to move the way they do or in the direction they do is a good starting point once those are identified
 
+  - with information representing the constant vertices of a system, by representing information a certain way, efficiencies are gained in other information, like related calculation outputs 
+      - what does the efficiency provide to uncertain/uncalculatable objects external to information?
+      - with certain concepts as priorities or embedded in the structure (like orthogonality generating intersection spaces), certain efficiencies in calculations are created
+      
+  - what is the correct position of a market, insurance, price, future value predictions, trades, currencies, etc given their definitions?
+      - a market being a reason to trade unevenly distributed resources, like matching supply & demand
+      - insurance being the allocation of risk
+
   - stereotype nn algorithm
 
     - log objects of bias like:
