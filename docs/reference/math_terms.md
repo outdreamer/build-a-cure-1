@@ -379,6 +379,32 @@
 		- joint probability distribution
 		- conditional probability: probability, given a starting point/filter
 
+
+	  - in estimating the probability of an event E,
+
+	    - the likelihood function is used: 
+
+	      - p(E|p) = (p ^ number of occurrences) * ((1 - p) ^ number of occurrences of not-p)
+	        
+	        - probability of event E given probability of A = (probability of A ^ number of A outcomes) x (probability of not A ^ number of not A outcomes)
+	      
+	      - (1/o * sqrt (2pi)) * e ^ - ((y - ax - b)^2/2o^2) for all observations (xi, yi), from i = 1 to n
+	        
+	        - (inverse of the area created by standard deviation * the square root of 2pi) * e ^ - ((area squared of (difference between xi and yi)) * (inverse of (area of one standard deviation squared * 2 for either side of average)))
+	        
+	        - (inverse of the area created by standard deviation * the square root of 2pi) * e ^ - ((area squared of (difference between xi and yi)) * (inverse of (area of one standard deviation squared * 2 for either side of average)))
+
+	        - apply natural log:
+	          - n * [
+	              log (inverse of the area created by standard deviation * the square root of 2pi) - 
+	              ((area squared of (difference between xi and yi)) * (inverse of (area of one standard deviation squared * 2 for either side of average)))
+	            ]
+
+	        - remove constant:
+	          - area squared of (difference between xi and yi)
+
+	    - MLE: the omega parameter of the probability distribution that maximizes the likelihood function can be used to estimate parameters of the probability distribution p
+
 	
 ## Functions
 

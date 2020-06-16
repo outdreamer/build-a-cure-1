@@ -133,6 +133,56 @@ to do: organize into docs
 
       - the generalized definition route & conceptual path linking definition routes to explain the intent of the operation would involve objects & processes like the multiplication of the remaining row elements to embedded objects that may be an element or a matrix (x * y subset matrix scaled by a third element z)
 
+    - function selection for an intent:
+
+      - example for selecting bernoulli function as a parameter to embed other difference-maximizing sigmoid-scaled regression functions into, in order to find an error-minimizing function:
+
+        - embedding difference-maximizing sigmoid-scaled regression functions into the bernoulli distribution for each xi/yi pair produces the cross-entropy loss function:
+
+            - https://towardsdatascience.com/the-statistical-foundations-of-machine-learning-973c356a95f
+
+            - given the classifier modeling function generating each yi from xi, which for fitting a function for linear regression is:
+                o(ax + b), where o(t) is a sigmoid function to differentiate outcomes
+              
+              for the probability of E given p above with the binomial distribution function (bernoulli case) 
+                p^(p occurrences) * (1 - p)^(not-p occurrences)
+
+              framing it instead as the probability of yi given xi,
+                f(xi)^(yi) * (1 - f(xi))^(1 - yi)
+
+              then substituting the classifier modeling function for f(xi),
+                o(ax + b)^(yi) * (1 - o(ax + b))^(1 - yi)
+
+              then apply the log to find the maximum of the function
+
+    - the reason for applying the bernoulli distribution for each x & y pair is not-determined, whereas the reason for applying the log is determined (calculate maximum)
+
+      - meaning there are other ways to map each xi to yi than by:
+
+        - mapping number of occurrences of an outcome => yi
+        - mapping likelihood of an outcome => function applied to xi
+
+      - so why use this specific function to model xi & yi?
+
+        p(E|p) = p    ^(p occurrences) * (1 - p)    ^(not-p occurrences)
+
+        p(yi | f(xi) = f(xi)^(yi)            * (1 - f(xi))^(1 - yi)
+
+        p (probability of event 'TTH' | probability of 'H' 0.3) = 0.3 ^ (H occurrences) * 0.7 ^ (not H occurrences)
+
+        p (probability of event yi | f(xi)) = f(xi) ^ (yi) * (1 - f(xi) ^ (1 - yi)
+
+        = the likelihood of getting outcome yi, given the connection function f(xi) = connection function ^ outcome * (1 - not connection function) ^ (1 - outcome)
+
+      - we're treating this as a conditional probability problem, where we want to find the success of a predictor f(xi) on an outcome yi, so f(xi) is treated as a proportion that can predict the outcome
+
+      - other models like Bayesian probability would fit their functions of p(B|A) as probability of (yi given f(xi)), or some parameter/parameter set/component of f(xi)
+
+      - so the above example uses the sigmoid-scaled linear function (maximizing differences to aggregate values near 0 or 1), by injecting it into the bernouill model (which is appropriate for estimating probabilities of boolean outcomes 1/0) in the position of a predictor, applying it to each data point & summing the outputs, wrapping it in the structure of a general error-calculation function
+
+      - this is why this set of operations done to these functions can produce a loss function for estimating error of a classifier
+
+  - why do you arrange dimensions at 90 degrees? to examine the full interaction space of all possible combinations of the two variables
  
   - stereotype nn algorithm
 
