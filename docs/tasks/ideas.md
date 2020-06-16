@@ -45,6 +45,8 @@ to do: organize into docs
       - what connects the constants in this system, representing information behavior descriptions - are there system objects like validation/formatting filters, efficiencies aligning between information & uncertainty objects, or other objects beyond the conceptual layer of discoverable information systems?
       - given that information attracts information differently in different structures, what intents can those structures & the information rules be used for?
       - if paradoxes are representable as holes in logical value connections (gaps or jumps in the information system, like asymptotes are for values), what type of information values can occupy those holes, or do they act like a symmetry to connect different spaces?
+
+      - does information withdraw into a superposition (structure with multiple potential information states) or an abstract generalization (generative structure of information or concept network trajectory of the information) or a compression (retaining some attributes of the information), once you remove its structure or remove it from a space where it can stabilize enough to attain a structure?
       
   - what is the correct position of a market, insurance, price, future value predictions, trades, currencies, etc given their definitions?
       - a market being a reason to trade unevenly distributed resources, like matching supply & demand
@@ -57,11 +59,27 @@ to do: organize into docs
       - the significance of these relationships is that being able to generate all parameter sets of all function subsets involves finding common parameters & the transforms to translate parameter sets into the other sets
 
     - other parameter sets of a polynomial or other curve include:
+
       - the vectors that can be used to generate them, such as a 90 degree vertical wavelength vector from the axis to each curve midpoint
+
       - alternate ways to split a function (like horizontal slices, subsets determined by change rates, etc) can also have parameter sets with relationships to other parameter sets that produce a more efficient function description or generation method
-        
+
+      - minimal parameter subsets, like min/max points plus a vector set in between each to indicate direction/speed/iterations of change
+
     - these alternate parameters sets to frame/generate/compress a function can map to semantic objects 
       - the vertical vectors that can be used to generate a polynomial function could map to causal factors, and the same can be said for any other set with the potential to generate the function
+
+    - other function metadata, in addition to alternate determining/generative/causative/descriptive parameters for the function & function subsets
+      - alternate functions producing output probability distribution
+      - adjacent functions using function parameters or parameters subsets, and functions that are likely to occur in a sequence including the original function
+      - opposite functions (functions/parameters generating the exact opposite function given opposites of parameters or parameter subsets)
+      - symmetry functions (functions of symmetries that determine/limit/filter the function)
+      - vertex functions (functions generating determining/generative/causative/descriptive vertices, vertex subsets or vertex parameters)
+
+    - determining: removes all uncertainties (no alternate function states left possible)
+    - generative: can re-create the function in isolation of any other information
+    - causative: generative factors that are causative (not all possible generative factors would be the cause or capable of being causative given other information)
+    - descriptive: describe the function or its parameters or the subset that is its determining/generative/causative parameters, may compress the function or describe a subset of its information, and may describe output of the parameters or emergent function behaviors/states
 
   - stereotype nn algorithm
 
