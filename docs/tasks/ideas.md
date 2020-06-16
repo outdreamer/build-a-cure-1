@@ -39,7 +39,12 @@ to do: organize into docs
 
   - with information representing the constant vertices of a system, by representing information a certain way, efficiencies are gained in other information, like related calculation outputs 
       - what does the efficiency provide to uncertain/uncalculatable objects external to information?
-      - with certain concepts as priorities or embedded in the structure (like orthogonality generating intersection spaces), certain efficiencies in calculations are created
+      - with certain concepts as priorities or embedded in the structure (like orthogonality generating intersection spaces for mapping interactions), certain efficiencies in calculations are created
+      - what filter set or subset of possible concepts can explain the information description system?
+        - what other objects are explanatory, in addition to concepts (a slice of a system with a similar object or pattern), filters, core/generative functions, limits?
+      - what connects the constants in this system, representing information behavior descriptions - are there system objects like validation/formatting filters, efficiencies aligning between information & uncertainty objects, or other objects beyond the conceptual layer of discoverable information systems?
+      - given that information attracts information differently in different structures, what intents can those structures & the information rules be used for?
+      - if paradoxes are representable as holes in logical value connections (gaps or jumps in the information system, like asymptotes are for values), what type of information values can occupy those holes, or do they act like a symmetry to connect different spaces?
       
   - what is the correct position of a market, insurance, price, future value predictions, trades, currencies, etc given their definitions?
       - a market being a reason to trade unevenly distributed resources, like matching supply & demand
