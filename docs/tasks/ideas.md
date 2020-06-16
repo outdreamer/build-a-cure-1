@@ -56,9 +56,12 @@ to do: organize into docs
       - example: in a function with an s-curve, one parameter set for the upright parabola function subset has an opposite parameter to the parameter set for the upside down parabola function subset
       - the significance of these relationships is that being able to generate all parameter sets of all function subsets involves finding common parameters & the transforms to translate parameter sets into the other sets
 
-    - other parameter sets of a polynomial or other curve include 
+    - other parameter sets of a polynomial or other curve include:
       - the vectors that can be used to generate them, such as a 90 degree vertical wavelength vector from the axis to each curve midpoint
-        - these alternate parameters sets to frame/generate/compress a function can map to semantic objects - the vertical vectors that can be used to generate a polynomial function could map to causal factors, and the same can be said for any other set with the potential to generate the function
+      - alternate ways to split a function (like horizontal slices, subsets determined by change rates, etc) can also have parameter sets with relationships to other parameter sets that produce a more efficient function description or generation method
+        
+    - these alternate parameters sets to frame/generate/compress a function can map to semantic objects 
+      - the vertical vectors that can be used to generate a polynomial function could map to causal factors, and the same can be said for any other set with the potential to generate the function
 
   - stereotype nn algorithm
 
