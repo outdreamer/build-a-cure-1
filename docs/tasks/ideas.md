@@ -222,6 +222,7 @@ to do: organize into docs
             - dont obviously respond to harmful intents if they are too emotionally or otherwise bankrupt to handle it (dont clearly be commenting on/responding to incels if youre talking to one and its not necessary to say anything about them)
             - recognize when there are clear incentives and try to avoid them if they dont benefit anyone or just benefit you in a trivial way (its easy to make fun of a name like Wang but other people probably also made fun of it so it would be annoying to respond to that incentive)
             - recognize when there are group incentives (playing race/gender card, portraying your groups positively beyond reason) and try to avoid using them unless necessary
+            - recognize when youre being victimized (your tech inventions are being stolen by countless coordinating privileged powerful tech people bc you cant afford every patent fee for all of your inventions) and when youre allowing people to victimize you (refusing to learn a skill to support yourself), based on which problems are solvable or fair to expect someone to solve
 
           - communication
             - assume they dont know something until its been communicated rather than trying to make them guess, which is passive aggression
