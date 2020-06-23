@@ -276,11 +276,14 @@
 	- interface
 
 		- filter
+
+		- standard/base for comparison
+			- https://techxplore.com/news/2020-06-deep-learning-based-surrogate-outperform-simulators.html
+
 		- perspective
 		- symmetry
 		- index
 			- shape index
-		- standard/base for comparison
 
 	- type
 

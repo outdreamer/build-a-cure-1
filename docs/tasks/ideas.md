@@ -133,7 +133,29 @@ to do: organize into docs
 
       - the generalized definition route & conceptual path linking definition routes to explain the intent of the operation would involve objects & processes like the multiplication of the remaining row elements to embedded objects that may be an element or a matrix (x * y subset matrix scaled by a third element z)
 
-    - function selection for an intent:
+
+    - sales automation
+      - types
+        - trick sell: involves a lie of some sort, like a logical fallacy (not correcting someone, slippery slope)
+        - hard sell: portraying a non-essential product as essential
+          - personal manipulations like:
+            - flirting
+            - similarity
+            - compliments
+            - understanding/sympathy
+            - giving them a chance/benefit of the doubt
+            - trust
+            - extended example: setting a trap so they break something then forgiving them
+      - association: 
+        - associate the product with things they like or that everyone likes
+        - includes attributes like a personality trait (only adventurous people buy it)
+      - relatability:
+        - analogies based on their life given the information theyve told you
+      - emotional state (fear of a negative event that the product could prevent)
+      - adjacent to an invalidating state (soon wont need the product)
+
+
+    - intent analysis computation example: function design for a particular intent
 
       - example for selecting bernoulli function as a parameter to embed other difference-maximizing sigmoid-scaled regression functions into, in order to find an error-minimizing function:
 
@@ -155,32 +177,32 @@ to do: organize into docs
 
               then apply the log to find the maximum of the function
 
-    - the reason for applying the bernoulli distribution for each x & y pair is not-determined, whereas the reason for applying the log is determined (calculate maximum)
+      - the reason for applying the bernoulli distribution for each x & y pair is not-determined, whereas the reason for applying the log is determined (calculate maximum)
 
-      - meaning there are other ways to map each xi to yi than by:
+        - meaning there are other ways to map each xi to yi than by:
 
-        - mapping number of occurrences of an outcome => yi
-        - mapping likelihood of an outcome => function applied to xi
+          - mapping number of occurrences of an outcome => yi
+          - mapping likelihood of an outcome => function applied to xi
 
-      - so why use this specific function to model xi & yi?
+        - so why use this specific function to model xi & yi?
 
-        p(E|p) = p    ^(p occurrences) * (1 - p)    ^(not-p occurrences)
+          p(E|p) = p    ^(p occurrences) * (1 - p)    ^(not-p occurrences)
 
-        p(yi | f(xi) = f(xi)^(yi)            * (1 - f(xi))^(1 - yi)
+          p(yi | f(xi) = f(xi)^(yi)            * (1 - f(xi))^(1 - yi)
 
-        p (probability of event 'TTH' | probability of 'H' 0.3) = 0.3 ^ (H occurrences) * 0.7 ^ (not H occurrences)
+          p (probability of event 'TTH' | probability of 'H' 0.3) = 0.3 ^ (H occurrences) * 0.7 ^ (not H occurrences)
 
-        p (probability of event yi | f(xi)) = f(xi) ^ (yi) * (1 - f(xi) ^ (1 - yi)
+          p (probability of event yi | f(xi)) = f(xi) ^ (yi) * (1 - f(xi) ^ (1 - yi)
 
-        = the likelihood of getting outcome yi, given the connection function f(xi) = connection function ^ outcome * (1 - not connection function) ^ (1 - outcome)
+          = the likelihood of getting outcome yi, given the connection function f(xi) = connection function ^ outcome * (1 - not connection function) ^ (1 - outcome)
 
-      - we're treating this as a conditional probability problem, where we want to find the success of a predictor f(xi) on an outcome yi, so f(xi) is treated as a proportion that can predict the outcome
+        - we're treating this as a conditional probability problem, where we want to find the success of a predictor f(xi) on an outcome yi, so f(xi) is treated as a proportion that can predict the outcome
 
-      - other models like Bayesian probability would fit their functions of p(B|A) as probability of (yi given f(xi)), or some parameter/parameter set/component of f(xi)
+        - other models like Bayesian probability would fit their functions of p(B|A) as probability of (yi given f(xi)), or some parameter/parameter set/component of f(xi)
 
-      - so the above example uses the sigmoid-scaled linear function (maximizing differences to aggregate values near 0 or 1), by injecting it into the bernouill model (which is appropriate for estimating probabilities of boolean outcomes 1/0) in the position of a predictor, applying it to each data point & summing the outputs, wrapping it in the structure of a general error-calculation function
+        - so the above example uses the sigmoid-scaled linear function (maximizing differences to aggregate values near 0 or 1), by injecting it into the bernouill model (which is appropriate for estimating probabilities of boolean outcomes 1/0) in the position of a predictor, applying it to each data point & summing the outputs, wrapping it in the structure of a general error-calculation function
 
-      - this is why this set of operations done to these functions can produce a loss function for estimating error of a classifier
+        - this is why this set of operations done to these functions can produce a loss function for estimating error of a classifier
 
   - why do you arrange dimensions at 90 degrees? to examine the full interaction space of all possible combinations of the two variables
  
