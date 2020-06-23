@@ -181,8 +181,9 @@ to do: organize into docs
           - emotion
             - use logic to counteract emotions
             - think before acting
+            - try to criticize a decision before you do it & correct any problems you see before doing it
             - use emotions as a tool
-            - recognize that other people may not have had time or other resources to develop control of their emotions
+            - recognize that other people may not have had time or other resources to develop control of their emotions & may need other tools or resources to get to the level they need to be
 
           - assumptions/expectations
             - assume as little as possible while expecting the best (they're busy, not stupid)
@@ -210,12 +211,14 @@ to do: organize into docs
             - recognize when youre abusing your luck or power (not everyone knows joke attributes/functions, but it doesnt mean they cant be funny or learn to be funny)
             - recognize that other people's agency means they also have the choice to be bad & the responsibility to change what they want if they want to hurt innocent people or harm society
             - help other people get things right where possible, rather than setting traps or forcing them into traps like rigged intelligence/character/hazing tests that are impossible to pass to get power trip/humiliation out of them
+            - give people credit for their work where possible
+            - help reduce other people's work where possible by identifying automation opportunities, or otherwise contributing to automation of their work
 
           - intent
             - recognize common intents (complaining, dodging blame, getting compliments) and in what positions they are likely to apply (people avoiding work, people covering mistakes, insecure people)
             - recognize when common intents dont apply & be extra cautious until you can identify new intent combinations, mental models, or other decision rules/metrics
             - recognize common harmful intents & avoid those as a first priority
-            - have a neutralizing joke or comment ready to prevent any foreseeable negative situations (if someone is about to pressure you to do something, have a comment ready that is polite or neutral to deflect it)
+            - have a neutralizing joke or comment ready to prevent any foreseeable negative situations (if someone is about to pressure you to do something, have a comment ready that is polite or neutral to deflect it in a way that doesnt make them feel rejected or otherwise triggers their emotions)
             - dont obviously respond to harmful intents if they are too emotionally or otherwise bankrupt to handle it (dont clearly be commenting on/responding to incels if youre talking to one and its not necessary to say anything about them)
             - recognize when there are clear incentives and try to avoid them if they dont benefit anyone or just benefit you in a trivial way (its easy to make fun of a name like Wang but other people probably also made fun of it so it would be annoying to respond to that incentive)
             - recognize when there are group incentives (playing race/gender card, portraying your groups positively beyond reason) and try to avoid using them unless necessary
@@ -231,6 +234,7 @@ to do: organize into docs
             - dont trust people on life-or-death matters, and dont ask people to trust you on life-or-death matters
 
             - criticism
+              - look for people's attempts to solve problems rather than listing every mistake when criticizing
               - dont criticize in a way that cannot be recovered from if avoidable
               - criticize by removing their identity from the criticism (saying 'this person I know does this thing that bothers me' instead of criticizing them if they dont know you know they did that)
               - criticize behaviors/concepts/priorities rather than individuals
