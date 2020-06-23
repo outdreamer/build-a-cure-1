@@ -176,6 +176,21 @@ to do: organize into docs
           - checking their understanding
           - repetition
 
+        - social skills
+          - respect other people's independence/complexity/intelligence/potential by default
+          - expect nothing from other people you cant do yourself
+          - dont create problems you cant fix
+          - assign responsibility in a fair way
+          - assume the best by default (benefit of the doubt, or trust)
+          - use logic to counteract emotions
+          - assume as little as possible while expecting the best (they're busy, not stupid)
+          - assume they have problems you cant see
+          - find a reason to cooperate/sympathize before finding a reason to compete/condemn in case the sympathy is earned
+          - give them solutions to their problems with criticism
+          - assume they've thought of everything or know everything or can figure out everything, but are in a mental state everyone has at some point (confused, in a hurry, distracted)
+          - recognize the luck in your life (had time to focus on something)
+          - dont try to force other people to do anything, but give them options to do the right thing (communicate useful rules of critical thinking if theyre not using it, etc)
+
       - objects
 
         - question traps
