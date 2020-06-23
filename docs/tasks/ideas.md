@@ -133,7 +133,7 @@ to do: organize into docs
 
       - the generalized definition route & conceptual path linking definition routes to explain the intent of the operation would involve objects & processes like the multiplication of the remaining row elements to embedded objects that may be an element or a matrix (x * y subset matrix scaled by a third element z)
 
-    - persuasion & sales automation
+    - persuasion & sales/lying automation
 
       - types
 
@@ -175,6 +175,10 @@ to do: organize into docs
           - checking their understanding
           - repetition
 
+      - objects
+
+        - question traps
+
       - state
 
         - emotional state
@@ -199,6 +203,11 @@ to do: organize into docs
     - emotion nn: algorithm with a concept of emotion built in, so that different modes of traversing a network can be switched between as needed 
       - anger for organizing resources (when noise is detected or when aggregating signals)
       - fear/disgust for identifying threats, joy for prioritizing & identifying rewards (to the prediction function accuracy)
+
+    - question algorithm: use question patterns (usable in insight paths) to skip ahead by asking questions expected given a conclusion
+      - example: once a type label is somewhat clear but still not completely determined, whats a question normally asked that will find the right deciding factors to determine the answer without further questions?
+        - asking the right question will let you 'skip ahead' in weight training after asking the question & finding/applying the answer to update the weights
+        - an example is asking the question 'is it a hybrid' once you arrive at a conclusion like 'this data point has features from two different types' (a reducing question rather than a completing question)
 
     - identifying problem types that a neural network algorithm & structure is best equipped to handle with intent-matching, then once you have components matched with core intents (aggregate, select, average, etc), you can reverse engineer network structure/algorithm given input intent, once intent is deconstructed into core intents with known components
 
