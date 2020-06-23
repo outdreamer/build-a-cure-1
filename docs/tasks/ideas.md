@@ -133,13 +133,16 @@ to do: organize into docs
 
       - the generalized definition route & conceptual path linking definition routes to explain the intent of the operation would involve objects & processes like the multiplication of the remaining row elements to embedded objects that may be an element or a matrix (x * y subset matrix scaled by a third element z)
 
-
     - sales automation
+
       - types
+
         - no sell: 'they dont need you or your purchase, you need them'
+
         - trick sell: involves a lie of some sort, like a logical fallacy
           - lie of omission: not correcting someone
           - logical fallacy: slippery slope
+
         - hard sell: portraying a non-essential product as essential
           - personal manipulations like:
             - flirting
@@ -151,6 +154,7 @@ to do: organize into docs
             - extended examples: 
               - setting a trap so they break something then forgiving them
               - stories to demonstrate their personhood & trigger your social urges to give them more opportunities to connect
+
       - distortion
         - example: portraying a likelihood that is non-extreme as extreme
 
@@ -165,12 +169,20 @@ to do: organize into docs
       - relatability
         - analogies based on their life given the information theyve told you
 
-      - emotional state
-        - fear of a negative event that the product could prevent
+      - state
 
-      - adjacent to an invalidating state (soon wont need the product)
+        - emotional state
+          - fear of a negative event that the product could prevent
+          - confused or thinking or busy, other mental states than emotions than can influence sales
+
+        - adjacent to an invalidating state (soon wont need the product)
 
       - as a neural network, persuasion algorithms can be used to 'sell' a different label to a network
+
+    - confusion nn: algorithm that tries to trick a network into thinking a set of labels is correct, and the algorithm either:
+
+      - optimizes for confusion/ambiguity for obfuscation, or for deriving differentiation methods (patterns of difference) between conflated types
+      - tries to identify confusion distortions as a way to implement a common sense algorithm (if it fulfills confusion metrics, its unlikely to fit with a common sense system)
 
     - creativity nn: switch structure, abstraction, type, attribute, function, direction (like how random jokes come from a totally different direction but still have an intersection)
 
