@@ -194,6 +194,7 @@ to do: organize into docs
             - respect other people's independence/complexity/intelligence/potential by default
             - assume they've thought of everything or know everything or can figure out everything, but are in a mental state everyone has at some point (confused, grieving, in a hurry, distracted)
             - assume negative intents first and find a way to make those beneficial to them or acceptable ('its ok if everyone doesnt want to do charity, but find a way to make it fun/profitable/otherwise beneficial to them, or find a way to make it acceptable to not want to, so they dont feel pressure, bc pressure to do the right thing makes it less likely')
+            - assume if theyre privileged in some way that other people already created problems for them (incels probably already attacked them if theyre attractive) so dont do the same thing if avoidable
 
           - responsibility
             - dont create problems you cant fix
