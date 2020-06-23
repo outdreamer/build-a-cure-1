@@ -133,18 +133,20 @@ to do: organize into docs
 
       - the generalized definition route & conceptual path linking definition routes to explain the intent of the operation would involve objects & processes like the multiplication of the remaining row elements to embedded objects that may be an element or a matrix (x * y subset matrix scaled by a third element z)
 
-    - sales automation
+    - persuasion & sales automation
 
       - types
 
         - no sell: 'they dont need you or your purchase, you need them'
 
         - trick sell: involves a lie of some sort, like a logical fallacy
+
           - lie of omission: not correcting someone
           - logical fallacy: slippery slope
 
         - hard sell: portraying a non-essential product as essential
-          - personal manipulations like:
+
+        - personal manipulations like:
             - flirting
             - similarity
             - compliments
@@ -155,25 +157,30 @@ to do: organize into docs
               - setting a trap so they break something then forgiving them
               - stories to demonstrate their personhood & trigger your social urges to give them more opportunities to connect
 
-      - distortion
-        - example: portraying a likelihood that is non-extreme as extreme
+      - attributes
 
-      - filler speech associated with good communicators
-        - checking their understanding
-        - repetition
+        - association
+          - associate the product with things they like or that everyone likes
+          - includes attributes like a personality trait (only adventurous people buy it)
 
-      - association
-        - associate the product with things they like or that everyone likes
-        - includes attributes like a personality trait (only adventurous people buy it)
+        - relatability
+          - analogies based on their life given the information theyve told you or common information
 
-      - relatability
-        - analogies based on their life given the information theyve told you
+        - distortion
+          - example: portraying a likelihood that is non-extreme as extreme
+
+      - functions
+
+        - add filler speech associated with good communicators
+          - checking their understanding
+          - repetition
 
       - state
 
         - emotional state
           - fear of a negative event that the product could prevent
           - confused or thinking or busy, other mental states than emotions than can influence sales
+          - jokes to make you laugh so youre in a generous mood
 
         - adjacent to an invalidating state (soon wont need the product)
 
