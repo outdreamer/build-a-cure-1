@@ -164,7 +164,7 @@ to do: organize into docs
           - includes attributes like a personality trait (only adventurous people buy it)
 
         - relatability
-          - analogies based on their life given the information theyve told you or common information
+          - analogies based on their life or with terms they understand, given the information theyve told you or common information
 
         - distortion
           - example: portraying a likelihood that is non-extreme as extreme
@@ -191,7 +191,33 @@ to do: organize into docs
       - optimizes for confusion/ambiguity for obfuscation, or for deriving differentiation methods (patterns of difference) between conflated types
       - tries to identify confusion distortions as a way to implement a common sense algorithm (if it fulfills confusion metrics, its unlikely to fit with a common sense system)
 
-    - creativity nn: switch structure, abstraction, type, attribute, function, direction (like how random jokes come from a totally different direction but still have an intersection)
+    - creativity nn: algorithm that mimics creativity in thinking of alternate possibilities/explanations
+      - switch structure, abstraction, type, attribute, function, direction (like how random jokes come from a totally different direction but still have an intersection)
+
+    - these mental processes can be used in different positions, for different functions:
+      
+      - creativity
+        - new paths/combinations
+        - alternate paths/combinations
+
+      - confusion
+        - obfuscation
+        - ambiguity
+        - differentiation
+        - deriving patterns (in order to resolve the point of confusion, they have to figure out why & how two types might differ & test distortion patterns to get to those differences)
+      
+      - persuasion: 
+        
+        - 'get resources without earning them' (get funds for investment in another product or a future version of the product)
+          - the structural translation of this is: 'move to a target position without the aligning action to propel the move'
+        
+        - 'get someone to act against their own interests' (get funds for investment in another product)
+          - the structural translation of this is: 'move to a target position without the aligning self-interested intent to motivate the move'
+
+        - 'get someone to match their behavior to their own interests' (the product is good for them but they dont automatically seek it out)
+          - structural translation: 'move to a target position by changing the intent direction toward the beneficial resource' (to prioritize doing whats good for them)
+        
+        - 'get someone to align their interests with the group' (the product is good for humanity, like free trade or other products with distributed benefits)
 
     - intent analysis computation example: function design for a particular intent
 
