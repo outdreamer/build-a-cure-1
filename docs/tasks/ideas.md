@@ -208,6 +208,7 @@ to do: organize into docs
             - recognize that people cant fulfill every metric all the time & have to allocate resources like everyone else
             - recognize that a mistake may not be lack of intelligence or intent to harm but rather a lack of focus or intentional thinking
             - recognize when youre abusing your luck or power (not everyone knows joke attributes/functions, but it doesnt mean they cant be funny or learn to be funny)
+            - recognize that other people's agency means they also have the choice to be bad & the responsibility to change what they want if they want to hurt innocent people or harm society
 
           - intent
             - recognize common intents (complaining, dodging blame, getting compliments) and in what positions they are likely to apply (people avoiding work, people covering mistakes, insecure people)
@@ -228,6 +229,7 @@ to do: organize into docs
               - dont criticize in a way that cannot be recovered from if avoidable
               - criticize by removing their identity from the criticism (saying 'this person I know does this thing that bothers me' instead of criticizing them if they dont know you know they did that)
               - criticize behaviors/concepts/priorities rather than individuals
+                - if you have to criticize individuals, criticize their decisions in a fair way, acknowledging any mistakes society/other people/you may have made in trying & failing to help them get everything right
               - give them solutions to their problems & examples of your mistakes or potentially making the same mistake they did, with criticism
 
             - persuasion
@@ -235,7 +237,7 @@ to do: organize into docs
               - try to only convince people to do things that benefit them, and in the absence of a direct benefit to them, things that benefit society
 
             - lying
-              - only lie when needed, like to avoid pressure to do something if other tactics have failed to get them to stop pressuring you
+              - only lie when needed (like to avoid pressure to do something, if other tactics have failed to get them to stop pressuring you)
 
 
       - objects
