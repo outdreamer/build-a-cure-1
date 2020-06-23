@@ -181,7 +181,6 @@ to do: organize into docs
           - emotion
             - use logic to counteract emotions
             - think before acting
-            - try to criticize a decision before you do it & correct any problems you see before doing it
             - use emotions as a tool
             - recognize that other people may not have had time or other resources to develop control of their emotions & may need other tools or resources to get to the level they need to be
 
@@ -214,6 +213,7 @@ to do: organize into docs
             - help other people get things right where possible, rather than setting traps or forcing them into traps like rigged intelligence/character/hazing tests that are impossible to pass to get power trip/humiliation out of them
             - give people credit for their work where possible
             - help reduce other people's work where possible by identifying automation opportunities, or otherwise contributing to automation of their work
+            - recognize that people have limits and dont push them past those limits
 
           - intent
             - recognize common intents (complaining, dodging blame, getting compliments) and in what positions they are likely to apply (people avoiding work, people covering mistakes, insecure people)
@@ -244,6 +244,7 @@ to do: organize into docs
               - give them solutions to their problems & examples of your mistakes or potentially making the same mistake they did, with criticism
               - recognize that people need reasons to be good & check if they have those before criticizing them
               - recognize that one person couldnt be responsible for society's problems, so avoid criticizing one person in a vacuum as if they did, or have no reason for or control over their behavior
+              - try to criticize a decision before you do it & correct any problems you see before doing it
 
             - persuasion
               - try to win people over to a point of view with logic/facts first and if you cant, recognize their right to disagree
