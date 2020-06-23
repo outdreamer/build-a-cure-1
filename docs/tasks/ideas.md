@@ -224,6 +224,7 @@ to do: organize into docs
             - frame something in a different way if theyre not understanding it, until they understand it - misunderstandings are usually the responsibility of the communicator rather than the interpreter
             - give other people freedom (ask them questions, ask their opinion, give them opportunities to say no, trust their answers when possible, give them information & insights, etc)
             - protect other people (make sure other people arent exploited more than they deserve, without making the exploiter feel too bad to recover)
+            - make minor negative things seem very bad so there's no incentive to do major negative things
 
             - criticism
               - dont criticize in a way that cannot be recovered from if avoidable
@@ -239,6 +240,7 @@ to do: organize into docs
             - lying
               - only lie when needed (like to avoid pressure to do something, if other tactics have failed to get them to stop pressuring you)
               - if someone's lying or doing another negative thing, find a way to portray their trick as positive/neutral before calling them out (rather than 'lying to the liberal media', theyre 'trying to entertain grandmas')
+
 
 
       - objects
