@@ -187,25 +187,56 @@ to do: organize into docs
           - assumptions/expectations
             - assume as little as possible while expecting the best (they're busy, not stupid)
             - assume they have problems you cant see
-            - recognize the pressures put on other people & acknowledge it (men are pressured to do all the work)
             - expect nothing from other people you cant do yourself
-            - recognize the incentives of other people's positions & that most people would respond to those incentives
             - find a reason to cooperate/sympathize before finding a reason to compete/condemn in case the sympathy is earned
             - assume the best by default (benefit of the doubt, or trust)
             - respect other people's independence/complexity/intelligence/potential by default
-            - try to win people over to a point of view with logic/facts and if you cant, recognize their right to disagree
             - assume they've thought of everything or know everything or can figure out everything, but are in a mental state everyone has at some point (confused, grieving, in a hurry, distracted)
+            - assume negative intents first and find a way to make those beneficial to them or acceptable ('its ok if everyone doesnt want to do charity, but find a way to make it fun/profitable/otherwise beneficial to them, or find a way to make it acceptable to not want to, so they dont feel pressure, bc pressure to do the right thing makes it less likely')
 
           - responsibility
-            - give them solutions to their problems & examples of your mistakes with criticism
             - dont create problems you cant fix
+            - check if people want to fix a problem before trying to help them fix it
             - assign responsibility in a fair way
             - recognize the luck in your life (had time to focus on something)
-            - dont try to force other people to do anything, but give them options to do the right thing (communicate useful rules of critical thinking if theyre not using it, etc)
+            - dont try to force other people to do anything, but give them options to do the right thing (communicate useful insights of critical thinking if theyre not using it, etc)
             - change your behavior with new contradictory information of your prior decision rules
             - recognize that not everyone has time or need to develop intelligence
             - recognize that other people have the ability to think of the points youre making but may have reasons or lack of resources explaining why they didnt
-            - criticize behaviors/concepts/priorities rather than individuals
+            - recognize the incentives of other people's positions & that most people would respond to those incentives
+            - recognize the pressures put on other people & acknowledge it (men are pressured to do all the work)
+            - recognize that people cant fulfill every metric all the time & have to allocate resources like everyone else
+            - recognize that a mistake may not be lack of intelligence or intent to harm but rather a lack of focus or intentional thinking
+            - recognize when youre abusing your luck or power (not everyone knows joke attributes/functions, but it doesnt mean they cant be funny or learn to be funny)
+
+          - intent
+            - recognize common intents (complaining, dodging blame, getting compliments) and in what positions they are likely to apply (people avoiding work, people covering mistakes, insecure people)
+            - recognize when common intents dont apply & be extra cautious until you can identify new intent combinations, mental models, or other decision rules/metrics
+            - recognize common harmful intents & avoid those as a first priority
+            - have a neutralizing joke or comment ready to prevent any foreseeable negative situations (if someone is about to pressure you to do something, have a comment ready that is polite or neutral to deflect it)
+            - dont obviously respond to harmful intents if they are too emotionally or otherwise bankrupt to handle it (dont clearly be commenting on/responding to incels if youre talking to one and its not necessary to say anything about them)
+
+          - communication
+            - assume they dont know something until its been communicated rather than trying to make them guess, which is passive aggression
+            - acknowledge & correct any miscommunications as soon as possible, otherwise let them go or wait for an organic opportunity to bring them up
+            - 'dont interrupt or raise volume when diplomatically negotiating or peacemaking, repeat to confirm understanding'
+            - frame something in a different way if theyre not understanding it, until they understand it - misunderstandings are usually the responsibility of the communicator rather than the interpreter
+            - give other people freedom (ask them questions, ask their opinion, give them opportunities to say no, trust their answers when possible, etc)
+            - protect other people (make sure other people arent exploited more than they deserve, without making the exploiter feel too bad to recover)
+
+            - criticism
+              - dont criticize in a way that cannot be recovered from if avoidable
+              - criticize by removing their identity from the criticism (saying 'this person I know does this thing that bothers me' instead of criticizing them if they dont know you know they did that)
+              - criticize behaviors/concepts/priorities rather than individuals
+              - give them solutions to their problems & examples of your mistakes or potentially making the same mistake they did, with criticism
+
+            - persuasion
+              - try to win people over to a point of view with logic/facts first and if you cant, recognize their right to disagree
+              - try to only convince people to do things that benefit them, and in the absence of a direct benefit to them, things that benefit society
+
+            - lying
+              - only lie when needed, like to avoid pressure to do something if other tactics have failed to get them to stop pressuring you
+
 
       - objects
 
