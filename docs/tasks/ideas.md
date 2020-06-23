@@ -177,19 +177,35 @@ to do: organize into docs
           - repetition
 
         - social skills
-          - respect other people's independence/complexity/intelligence/potential by default
-          - expect nothing from other people you cant do yourself
-          - dont create problems you cant fix
-          - assign responsibility in a fair way
-          - assume the best by default (benefit of the doubt, or trust)
-          - use logic to counteract emotions
-          - assume as little as possible while expecting the best (they're busy, not stupid)
-          - assume they have problems you cant see
-          - find a reason to cooperate/sympathize before finding a reason to compete/condemn in case the sympathy is earned
-          - give them solutions to their problems with criticism
-          - assume they've thought of everything or know everything or can figure out everything, but are in a mental state everyone has at some point (confused, in a hurry, distracted)
-          - recognize the luck in your life (had time to focus on something)
-          - dont try to force other people to do anything, but give them options to do the right thing (communicate useful rules of critical thinking if theyre not using it, etc)
+
+          - emotion
+            - use logic to counteract emotions
+            - think before acting
+            - use emotions as a tool
+            - recognize that other people may not have had time or other resources to develop control of their emotions
+
+          - assumptions/expectations
+            - assume as little as possible while expecting the best (they're busy, not stupid)
+            - assume they have problems you cant see
+            - recognize the pressures put on other people & acknowledge it (men are pressured to do all the work)
+            - expect nothing from other people you cant do yourself
+            - recognize the incentives of other people's positions & that most people would respond to those incentives
+            - find a reason to cooperate/sympathize before finding a reason to compete/condemn in case the sympathy is earned
+            - assume the best by default (benefit of the doubt, or trust)
+            - respect other people's independence/complexity/intelligence/potential by default
+            - try to win people over to a point of view with logic/facts and if you cant, recognize their right to disagree
+            - assume they've thought of everything or know everything or can figure out everything, but are in a mental state everyone has at some point (confused, grieving, in a hurry, distracted)
+
+          - responsibility
+            - give them solutions to their problems & examples of your mistakes with criticism
+            - dont create problems you cant fix
+            - assign responsibility in a fair way
+            - recognize the luck in your life (had time to focus on something)
+            - dont try to force other people to do anything, but give them options to do the right thing (communicate useful rules of critical thinking if theyre not using it, etc)
+            - change your behavior with new contradictory information of your prior decision rules
+            - recognize that not everyone has time or need to develop intelligence
+            - recognize that other people have the ability to think of the points youre making but may have reasons or lack of resources explaining why they didnt
+            - criticize behaviors/concepts/priorities rather than individuals
 
       - objects
 
