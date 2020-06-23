@@ -194,11 +194,13 @@ to do: organize into docs
     - creativity nn: algorithm that mimics creativity in thinking of alternate possibilities/explanations
       - switch structure, abstraction, type, attribute, function, direction (like how random jokes come from a totally different direction but still have an intersection)
 
-    - efficiency nn: algorithm with efficiency optimizations, like distributed starting points for a search through weight patterns or sets that signal to the others when they find efficiencies like automatically aligned intents or similar structures
+    - efficiency nn: algorithm with efficiency optimizations, like distributed starting points for a search through weight patterns/sets that signal to the others when they find efficiencies like automatically aligned intents or similar structures
 
     - emotion nn: algorithm with a concept of emotion built in, so that different modes of traversing a network can be switched between as needed 
       - anger for organizing resources (when noise is detected or when aggregating signals)
       - fear/disgust for identifying threats, joy for prioritizing & identifying rewards (to the prediction function accuracy)
+
+    - identifying problem types that a neural network algorithm & structure is best equipped to handle with intent-matching, then once you have components matched with core intents (aggregate, select, average, etc), you can reverse engineer network structure/algorithm given input intent, once intent is deconstructed into core intents with known components
 
     - these mental processes can be used in different positions, for different functions:
       
