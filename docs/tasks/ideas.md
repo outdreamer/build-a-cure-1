@@ -36,6 +36,7 @@ to do: organize into docs
       - alternatives to reasoning, including politeness, lack of thought, and other reasons for a decision
 
     - starting from all the positions & actions that have efficiencies & reasons to move the way they do or in the direction they do is a good starting point once those are identified
+    - this will reduce the solution space to identify likely starting points, intents, actions, functions, and attributes, rather than having to check them all
 
   - with information representing the constant vertices of a system, by representing information a certain way, efficiencies are gained in other information, like related calculation outputs 
       - what does the efficiency provide to uncertain/uncalculatable objects external to information?
@@ -213,6 +214,12 @@ to do: organize into docs
 
     - these mental processes can be used in different positions, for different functions:
       
+      - empathy
+        - deriving starting point & other core objects like intent functions, priority attributes, etc
+
+      - stereotype
+        - fitting objects without the need for accuracy (like when mining structural similarities for pattern gains)
+
       - creativity
         - new paths/combinations
         - alternate paths/combinations
