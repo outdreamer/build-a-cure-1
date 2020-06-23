@@ -209,6 +209,7 @@ to do: organize into docs
             - recognize that a mistake may not be lack of intelligence or intent to harm but rather a lack of focus or intentional thinking
             - recognize when youre abusing your luck or power (not everyone knows joke attributes/functions, but it doesnt mean they cant be funny or learn to be funny)
             - recognize that other people's agency means they also have the choice to be bad & the responsibility to change what they want if they want to hurt innocent people or harm society
+            - help other people get things right where possible, rather than setting traps or forcing them into traps like rigged intelligence/character/hazing tests that are impossible to pass to get power trip/humiliation out of them
 
           - intent
             - recognize common intents (complaining, dodging blame, getting compliments) and in what positions they are likely to apply (people avoiding work, people covering mistakes, insecure people)
@@ -216,6 +217,8 @@ to do: organize into docs
             - recognize common harmful intents & avoid those as a first priority
             - have a neutralizing joke or comment ready to prevent any foreseeable negative situations (if someone is about to pressure you to do something, have a comment ready that is polite or neutral to deflect it)
             - dont obviously respond to harmful intents if they are too emotionally or otherwise bankrupt to handle it (dont clearly be commenting on/responding to incels if youre talking to one and its not necessary to say anything about them)
+            - recognize when there are clear incentives and try to avoid them if they dont benefit anyone or just benefit you in a trivial way (its easy to make fun of a name like Wang but other people probably also made fun of it so it would be annoying to respond to that incentive)
+            - recognize when there are group incentives (playing race/gender card, portraying your groups positively beyond reason) and try to avoid using them unless necessary
 
           - communication
             - assume they dont know something until its been communicated rather than trying to make them guess, which is passive aggression
@@ -225,6 +228,7 @@ to do: organize into docs
             - give other people freedom (ask them questions, ask their opinion, give them opportunities to say no, trust their answers when possible, give them information & insights, etc)
             - protect other people (make sure other people arent exploited more than they deserve, without making the exploiter feel too bad to recover)
             - make minor negative things seem very bad so there's no incentive to do major negative things
+            - dont trust people on life-or-death matters, and dont ask people to trust you on life-or-death matters
 
             - criticism
               - dont criticize in a way that cannot be recovered from if avoidable
@@ -232,6 +236,8 @@ to do: organize into docs
               - criticize behaviors/concepts/priorities rather than individuals
                 - if you have to criticize individuals, criticize their decisions in a fair way, acknowledging any mistakes society/other people/you may have made in trying & failing to help them get everything right
               - give them solutions to their problems & examples of your mistakes or potentially making the same mistake they did, with criticism
+              - recognize that people need reasons to be good & check if they have those before criticizing them
+              - recognize that one person couldnt be responsible for society's problems, so avoid criticizing one person in a vacuum as if they did, or have no reason for or control over their behavior
 
             - persuasion
               - try to win people over to a point of view with logic/facts first and if you cant, recognize their right to disagree
