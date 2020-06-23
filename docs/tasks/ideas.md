@@ -136,7 +136,10 @@ to do: organize into docs
 
     - sales automation
       - types
-        - trick sell: involves a lie of some sort, like a logical fallacy (not correcting someone, slippery slope)
+        - no sell: 'they dont need you or your purchase, you need them'
+        - trick sell: involves a lie of some sort, like a logical fallacy
+          - lie of omission: not correcting someone
+          - logical fallacy: slippery slope
         - hard sell: portraying a non-essential product as essential
           - personal manipulations like:
             - flirting
@@ -145,15 +148,31 @@ to do: organize into docs
             - understanding/sympathy
             - giving them a chance/benefit of the doubt
             - trust
-            - extended example: setting a trap so they break something then forgiving them
-      - association: 
+            - extended examples: 
+              - setting a trap so they break something then forgiving them
+              - stories to demonstrate their personhood & trigger your social urges to give them more opportunities to connect
+      - distortion
+        - example: portraying a likelihood that is non-extreme as extreme
+
+      - filler speech associated with good communicators
+        - checking their understanding
+        - repetition
+
+      - association
         - associate the product with things they like or that everyone likes
         - includes attributes like a personality trait (only adventurous people buy it)
-      - relatability:
+
+      - relatability
         - analogies based on their life given the information theyve told you
-      - emotional state (fear of a negative event that the product could prevent)
+
+      - emotional state
+        - fear of a negative event that the product could prevent
+
       - adjacent to an invalidating state (soon wont need the product)
 
+      - as a neural network, persuasion algorithms can be used to 'sell' a different label to a network
+
+    - creativity nn: switch structure, abstraction, type, attribute, function, direction (like how random jokes come from a totally different direction but still have an intersection)
 
     - intent analysis computation example: function design for a particular intent
 
