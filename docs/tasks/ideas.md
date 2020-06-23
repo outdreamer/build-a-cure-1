@@ -134,6 +134,35 @@ to do: organize into docs
 
       - the generalized definition route & conceptual path linking definition routes to explain the intent of the operation would involve objects & processes like the multiplication of the remaining row elements to embedded objects that may be an element or a matrix (x * y subset matrix scaled by a third element z)
 
+    - alliance opportunity identification algorithm
+
+      - example of an alliance opportunity: two groups have an incentive to say the same thing, for different reasons & intents
+        - oppressed person has a group incentive to condemn a biased person against their oppressed group
+        - privileged person has a group incentive to condemn a biased person, even if the biased person is a member of a group they belong to
+
+        - this is because of the attribute/function/object alignment
+
+          - they have an incentive to say the same thing condemning that person, but for different reasons & intents
+
+          - the oppressed person has:
+            - incentive to condemn the biased person
+            - incentive to condemn the biased person, as a group
+            - reason to protect people in their group
+            - reason to protect themselves
+            - intent to find other people willing to condemn the biased person
+
+          - the privileged person has:
+            - incentive to condemn the biased person, if they havent done the same biased thing on the record
+            - incentive to condemn the biased person, as a group
+            - incentive to condemn biased people against oppressed minorities, with oppressed minorities
+            - reason to protect people in their group, by seeming unbiased
+            - reason to protect people in other groups or oppressed groups, to establish good will, make peace, avoid criticism, or earn future favors
+            - reason to protect themselves, by seeming unbiased
+            - intent to cooperate with other people looking to condemn the biased person
+            - intent to establish good will, relationships, make peace, avoid criticism, or earn future favors from oppressed minorities
+
+          - the reasons to say it are different, but the content of the action ('condemn the biased person') is the same, and other objects like intent also differ between those positions
+
     - persuasion & sales/lying automation
 
       - types
