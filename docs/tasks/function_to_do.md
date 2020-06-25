@@ -119,6 +119,8 @@
             - many moves, many routes, and many move functions or components are optimized in the above metrics, which all add options to the game structure, increasing complexity
             - you could produce that set of structural targets & their queries to optimize complexity, by looking for routes to optimize the number of objects (strategies, moves, move functions, move components), possible combinations (routes, states, wins) in the game structure
 
+      - this is a simple example where the problem space is already mapped to structure (shape of a game board) so no conversion is necessary to transform it into the structural interface, and no attribute subsets are queried for in the math interface, except the shape subset, which is a determining subset that doesnt usually come with other attributes (a game board doesnt always have other determining attributes like texture, the shape is usually what matters)
+
     - systematize your definitions of info objects, to include analysis that produces relationships of core objects like opposites to their relevant forms (anti-symmetry) in addition to permuted object states (asymmetry), such as an anti-strategy, anti-information, anti-pattern
 
       - add technicality, synchronization, & certainty objects leading to inevitable collisions
