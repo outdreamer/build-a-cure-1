@@ -1,10 +1,42 @@
 # causal interface definition sample
 
+
+	- interface definition
+
+		- cause object definition
+
+		- conversion function
+
+			- standardize to the cause object definition
+
+			- a structure (combination & sequence) applied to filters (to remove attributes or apply metrics), other distortion functions (to enhance or operate on attributes), & limits (to reduce attributes)
+
+			- represents each object in problem space (or unconverted query) as a component, attribute, structure, related object, etc of cause
+
+		- adjacent interfaces (interfaces acting as inputs/outputs or with similarities to this interface, like how information, math, and structure are related interfaces)
+
+		- proxy interfaces (interface combinations/embeddings that can act in place of this interface)
+
+
 	- system interface
+
+		- causal system
+
+			- system objects
+
+				- symmetries
+				- efficiencies
+				- similarities
+				- definitions (difference, power, direction)
+				- networks (term maps, concept maps)
+
+			- system functions
+
+				- core system function (apply, inject, combine) definitions on the causal interface
 
 		- object interface
 
-			- components
+			- cause components
 
 			- attributes
 
@@ -39,6 +71,7 @@
 					- number of possible causes (measures uniqueness/ambiguity of cause)
 
 				- function parameters
+
 
 			- function interface
 
@@ -87,11 +120,12 @@
 							- context
 
 								- system context
-								
+
 								- problem space context
 
 								- dimension set context
 									- spaces where cause is measurable (dimensions maximizing or displaying differences)
+
 
 			- type interface
 
@@ -103,12 +137,14 @@
 
 					- type hierarchy
 
+
 	- intent interface
 
 		- causal intents
 
 			- outputs (direct/combined/emerging)
 			- side effects (indirect side effects of outputs, processing side effects like locking inputs, opportunity cost of processing)
+
 
 	- concept interface
 
@@ -127,6 +163,7 @@
 
 		- adjacent concepts
 
+
 	- structural interface
 
 		- structures
@@ -143,6 +180,7 @@
 					- functions
 
 			- structures identifying cause
+
 				- tree origin (root cause)
 				- adjacence (causal degree)
 				- layer (alternative cause on layer)
