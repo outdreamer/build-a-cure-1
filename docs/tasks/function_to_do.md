@@ -51,6 +51,20 @@
 
     - document how rules develop on stability & how foundations are connected & destroyed
 
+    - example of conceptual math: 
+      - calculating structure of a concept definition
+      - determining structure that a concept takes in a context
+      - a concept applied to/injected in another concept
+      - identifying concepts in a context & their corresponding values in another context
+    
+    - example of interface query:
+      - which interface to start from or end at, in what sequence (start from system interface, stop at pattern interface, aim for math interface)
+      - which interfaces to embed/apply to which interfaces (apply trust to the information interface, embed power in the cause interface)
+
+    - direction of math-structure query:
+      - finding shapes that are useful for a context
+      - finding contexts that are relevant to a shape
+
     - define core operations: apply (expand one by the other), inject (input one to the other), embed (attach one as a component/attribute of the other)
 
       - power dynamics
@@ -73,6 +87,37 @@
         - the operation of injecting truth into trust on the power interface means applying the truth dynamics as an input to trust dynamics
           - example: what happens when trust is embedded in a context, and one side has more information about untrustworthiness?
 
+    - example of math-structure query:
+
+      - lets say you want to design a game with a particularly high level of complexity to make it interesting (an attribute of games)
+
+        - how could you query the math interface to use patterns of math structures to automate the game design to create complexity?
+          
+          - define objects like complexity within the context as 'maximize options' or 'maximize possible routes to a game outcome'
+          
+          - one parameter of the game is interface points (such as starting/ending/goal points - like the basket in basketball or the holes in golf - where game level/points/wins/remaining possible moves are determined by interaction with those points)
+
+          - increasing that parameter would add more complexity (more ways to score points), but you can only fit so many on the board 
+            - how many points do you choose, given that some values of this parameter will make the game impossible, boring, a test of luck rather than skill, remove luck completely making it predetermined, make the game have emergent effects you arent aiming for, etc
+          
+          - math structures can be used to calculate game-specific concepts like intersection probability
+            - example: 
+              - on a poker table, the likelihood of a collision can be calculated using the rectangle shape & sphere shape dynamics, where the middle two holes add complexity to the game
+              - if one shape has more possible intersections of components than another shape, that would add to the complexity metric, without having to find that shape or think about it manually
+
+          - other ways to increase complexity include making sure:
+
+            - every position/state/outcome has many different possible routes to get there 
+              (structural query: many paths across the board can result in a position/state/outcome)
+
+            - a low ratio of game iterations with a high ratio of irreversible potential-decreasing moves that determine the game at an early stage 
+              (structural query: very few paths from origin to win state have a few number of steps)
+
+            - applying extra distortion/combination functions to move calculations results in more possible ways to win a given iteration 
+              (structural query: more combinations of step inputs/components or steps produce more paths from origin to win state)
+
+            - many moves, many routes, and many move functions or components are optimized in the above metrics, which all add options to the game structure, increasing complexity
+            - you could produce that set of structural targets & their queries to optimize complexity, by looking for routes to optimize the number of objects (strategies, moves, move functions, move components), possible combinations (routes, states, wins) in the game structure
 
     - systematize your definitions of info objects, to include analysis that produces relationships of core objects like opposites to their relevant forms (anti-symmetry) in addition to permuted object states (asymmetry), such as an anti-strategy, anti-information, anti-pattern
 
