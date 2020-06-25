@@ -51,6 +51,29 @@
 
     - document how rules develop on stability & how foundations are connected & destroyed
 
+    - define core operations: apply (expand one by the other), inject (input one to the other), embed (attach one as a component/attribute of the other)
+
+      - power dynamics
+
+          - rules: 
+            - if a person abuses their power without contribution, the others will notice and take their power away
+
+        - truth (type of power in the form of constant, reliable information) dynamics
+          - the truth has a limit on how much it can be stretched or re-used before over-dependence will make it false or reveal its limits
+
+        - trust (type of power in the form of delegation of an unenforced opportunity/responsibility) dynamics
+          - rules:
+            - there is an incentive to trust people in an absence of resources
+            - there is an incentive to trust people to create resources (positive expectations, as an input to peaceful coexistence)
+            - there is an incentive to not trust people if they have resources like:
+              - information about signals of untrustworthiness
+              - fear response or memory of untrustworthy behavior
+              - logical knowledge of incentive structure to abuse trust
+
+        - the operation of injecting truth into trust on the power interface means applying the truth dynamics as an input to trust dynamics
+          - example: what happens when trust is embedded in a context, and one side has more information about untrustworthiness?
+
+
     - systematize your definitions of info objects, to include analysis that produces relationships of core objects like opposites to their relevant forms (anti-symmetry) in addition to permuted object states (asymmetry), such as an anti-strategy, anti-information, anti-pattern
 
       - add technicality, synchronization, & certainty objects leading to inevitable collisions
