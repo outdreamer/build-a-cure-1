@@ -28,7 +28,6 @@
 				- efficiencies
 				- similarities
 				- definitions (difference, power, direction)
-				- networks (term maps, concept maps)
 
 			- system functions
 
@@ -171,7 +170,10 @@
 			- structure network (links between causal & other structures)
 
 			- causal structures
+
 				- causal structure network (links between causal structures like sequence, hierarchy, tree, network, etc)
+
+					- structures (filters, limits, maps, networks, trades, sequences, links, circuits)
 
 			- determining structures
 
@@ -186,7 +188,7 @@
 				- layer (alternative cause on layer)
 				
 
-		- combined/applied/injected interfaces
+	- combined/applied/injected interfaces
 
 			- intent-structure interface
 
@@ -198,5 +200,30 @@
 			- pattern-structure interface
 
 				- 'a causal tree often has multiple layers & may converge to fewer nodes' 
+
+
+			- structure-function interface
+
+				- functions as structures (filters, limits, maps, networks, trades, sequences, links, circuits)
+
+				- structure functions (traverse, combine, find, build)
+
+
+			- cause-concept-system interface
+
+				- causal concept system
+
+					- system objects
+
+						- symmetries
+						- efficiencies
+						- similarities
+						- definitions
+						- structures (networks, trades, sequences, links, circuits)
+
+					- system functions
+
+						- core system function (apply, inject, combine) definitions on the causal-concept interface
+
 
 

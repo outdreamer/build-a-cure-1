@@ -245,6 +245,7 @@ to do: organize into docs
             - recognize that people have limits and dont push them past those limits
 
           - intent
+
             - recognize common intents (complaining, dodging blame, getting compliments) and in what positions they are likely to apply (people avoiding work, people covering mistakes, insecure people)
             - recognize when common intents dont apply & be extra cautious until you can identify new intent combinations, mental models, or other decision rules/metrics
             - recognize common harmful intents & avoid those as a first priority
@@ -254,12 +255,23 @@ to do: organize into docs
             - recognize when there are group incentives (playing race/gender card, portraying your groups positively beyond reason) and try to avoid using them unless necessary
             - recognize when youre being victimized (your tech inventions are being stolen by countless coordinating privileged powerful tech people bc you cant afford every patent fee for all of your inventions) and when youre allowing people to victimize you (refusing to learn a skill to support yourself), based on which problems are solvable or fair to expect someone to solve
 
+          - errors
+
+            - error types
+
+            - error attributes (weird, obvious, presumptive, familiar, stupid, repetitive, redundant, trivial, irrelevant, self-promoting, confusing, pointless, useless)
+
+            - error rules
+              - dont fulfill error attribute without acknowledging it & ideally also fixing it at the same time or at least allocating time to form a plan or having a plan to fix it
+
+
           - communication
+
             - assume they dont know something until its been communicated rather than trying to make them guess, which is passive aggression
             - acknowledge & correct any miscommunications as soon as possible, otherwise let them go or wait for an organic opportunity to bring them up
             - 'dont interrupt or raise volume when diplomatically negotiating or peacemaking, repeat to confirm understanding'
             - frame something in a different way if theyre not understanding it, until they understand it - misunderstandings are usually the responsibility of the communicator rather than the interpreter
-            - give other people freedom (ask them questions, ask their opinion, give them opportunities to say no, trust their answers when possible, give them information & insights, etc)
+            - give other people freedom (ask them questions, ask their opinion, give them opportunities to say no & to change, trust their answers when possible, give them information & insights, etc)
             - protect other people (make sure other people arent exploited more than they deserve, without making the exploiter feel too bad to recover)
             - make minor negative things seem very bad so there's no incentive to do major negative things
             - dont trust people on life-or-death matters, and dont ask people to trust you on life-or-death matters
@@ -283,13 +295,13 @@ to do: organize into docs
               - only lie when needed (like to avoid pressure to do something, if other tactics have failed to get them to stop pressuring you)
               - if someone's lying or doing another negative thing, find a way to portray their trick as positive/neutral before calling them out (rather than 'lying to the liberal media', theyre 'trying to entertain grandmas')
 
-
-
       - objects
 
         - question traps
 
       - state
+
+        - have a concept of state (dont assume theyre in the same state as before or cant change their state)
 
         - emotional state
           - fear of a negative event that the product could prevent
