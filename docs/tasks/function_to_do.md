@@ -443,6 +443,11 @@
       - false similarity (info interface attribute + core attribute = an error type/definition route, if agency is involved)
       - filter chains (structure interface + structure interface = a core object to frame info)
 
+    - rank methods of structure application for different contexts
+      - expansion/compression (by intent, function, etc)
+      - filters
+      - systematization
+
     - mapping function, to map problems to structures & other problem types
 
       - problem types

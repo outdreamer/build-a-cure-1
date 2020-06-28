@@ -271,7 +271,7 @@ to do: organize into docs
             - acknowledge & correct any miscommunications as soon as possible, otherwise let them go or wait for an organic opportunity to bring them up
             - 'dont interrupt or raise volume when diplomatically negotiating or peacemaking, repeat to confirm understanding'
             - frame something in a different way if theyre not understanding it, until they understand it - misunderstandings are usually the responsibility of the communicator rather than the interpreter
-            - give other people freedom (ask them questions, ask their opinion, give them opportunities to say no & to change, trust their answers when possible, give them information & insights, etc)
+            - give other people freedom (ask them questions, ask their opinion, give them choices/opportunities to say no & to change, trust their answers when possible, give them information & insights, etc)
             - protect other people (make sure other people arent exploited more than they deserve, without making the exploiter feel too bad to recover)
             - make minor negative things seem very bad so there's no incentive to do major negative things
             - dont trust people on life-or-death matters, and dont ask people to trust you on life-or-death matters
