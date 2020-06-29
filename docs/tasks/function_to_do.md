@@ -500,6 +500,16 @@
 
             - lack of functioning across mental objects is derivable from that conclusion, with a default input of mental objects
 
+        - another way is using system filters
+
+          - a concept of control would be default to the agent interface (agents have agency/independence)
+          - this concept can be used to form questions like 'do passenger agents have the option of decisions in this situation'
+          - the source of their control isnt important, unless you have data about injuries (like a concussion impacting their mental function)
+          - applying the concept of control accessible to agents would be a possible explanation for differences in the data set - some passengers have more control than others
+          - from this concept, mental functions (strategies + perspective + problem + priorities = plan) & objects (functions => rules => strategies) can be inferred
+
+        - this method works in the absence of these objects already identified as important or already defined
+
 
     - mapping function, to map problems to structures & other problem types
 
