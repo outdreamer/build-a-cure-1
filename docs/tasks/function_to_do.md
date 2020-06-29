@@ -522,6 +522,16 @@
               - a woman who was not protected might be in a different survival group if she had prior knowledge of sailing/accident protocol or knowledge of nearby landmarks to swim to
               - a woman who was protected might not survive for other reasons (due to mental state values like senile/in shock)
 
+        - identifying different causes of data corruption error
+
+          - different reasons for errors might cause difference impact on prediction function, which can be identified
+
+            - a cause of 'logging error' in logging the wrong value for a variable would have a high probability of causing error, if there are no data validation rules (logging passengers' attributes was checked many times)
+            - a cause of 'identification error' in logging the wrong value because a variable value was ambiguous (age or gender was not determinable and was logged incorrectly from this misidentification) would change the probability of error
+            - a cause of 'trusting logging errors' in trusting an error made at initial log time (the log was never checked) would have a high probability of causing error but a presence of trusted logs in the process wouldnt change the probability of error added by the logging process, while a lack of trusted logs would change the probability
+            
+            - these causes have different probabilities & different impact on the actual vs. the average error set, in the error interaction space
+
         - this method works in the absence of these objects already identified as important or already defined
 
 

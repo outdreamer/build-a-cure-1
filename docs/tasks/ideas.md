@@ -259,11 +259,20 @@ to do: organize into docs
 
             - error types
 
+              - lies
+
+                - self-promotion
+                  - criticizing without working to fix it or offering a solution so they can fix it
+                  - lying without work to earn
+                  - gravitating toward highly trusting nodes to avoid work
+
+                - mis-identification
+                  - identifying justifiable actions as unjustifiable, like saying that lying within potential range (say you have skill with intent/ability to acquire it) is the same as other lie types
+
             - error attributes (weird, obvious, presumptive, familiar, stupid, repetitive, redundant, trivial, irrelevant, self-promoting, confusing, pointless, useless)
 
             - error rules
               - dont fulfill error attribute without acknowledging it & ideally also fixing it at the same time or at least allocating time to form a plan or having a plan to fix it
-
 
           - communication
 
@@ -294,6 +303,10 @@ to do: organize into docs
             - lying
               - only lie when needed (like to avoid pressure to do something, if other tactics have failed to get them to stop pressuring you)
               - if someone's lying or doing another negative thing, find a way to portray their trick as positive/neutral before calling them out (rather than 'lying to the liberal media', theyre 'trying to entertain grandmas')
+
+            - context
+              - act appropriately for the context
+              - dont leave out context when making points
 
       - objects
 
