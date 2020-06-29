@@ -423,6 +423,15 @@
         - frame each object on its own interface (containing all its possible forms, variables, attributes, generators, cooperative contexts, etc)
         - compute the interactions of those interfaces
 
+    - apply combinations of core operations to get information object layers ('democracy games', 'barriers to intents or false information')
+
+      perspective: priority set with object positions & default paths
+      strategy: efficient path between points
+      joke: difference between expected & actual position
+      error: difference between expected & actual decision
+      argument: position of objects or path between points with supporting connective functions
+      game: incentivized motion within a system having limits to prevent motion
+
     - example filter analysis
 
       - problem: design/select optimal options for a program
