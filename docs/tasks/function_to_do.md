@@ -457,8 +457,49 @@
 
     - rank methods of structure application for different contexts
       - expansion/compression (by intent, function, etc)
-      - filters
+      - filters/connections
       - systematization
+    
+    - prediction/change/context as fundamental function objects
+
+    - prediction of missing vars example
+
+      - with titanic data set, a missing variable would be 'mental state' to include states like 'shock', which could be a cause of death in that situation
+
+        - how do you predict the existence of a mental state like that which could influence passenger survival? there are many routes, such as:
+
+          - using the difference in age of passenger as an important prediction variable & pulling the definition
+            - then deriving that the reason the age is logged at all is because different mental functions are acquired at different times (an embedded time parameterized variable)
+            - from the difference in mental functions with respect to time, derive that mental states can develop which are influential in decisions, a key object of survival
+            - once you know that mental states differ and can predict survival, you can identify different mental states that would directly impact survival (loss of motor control, which is a core function of the brain-body connection, linking mental state to mental decisions to physical actions), and filter that list by which mental states are likely due to probable emotions & other mental objects in that context
+
+            - the key objects to identify:
+
+              - mental state
+
+                - mental state types (lack of focus or diverted focus, impact of emotions like fear such as a state of shock, etc)
+
+              - mental function
+
+                - decisions
+                  - mental decisions
+                  - implementations of those mental decisions (physical actions)
+
+                - plans
+                  - attempted unsuccessful decision implementations can be the result of bad planning (planning being a mental function), which can be another influential factor in survival
+
+                - connections between mental objects (decisions, plans, strategies, insights, intents, priorities) & attempts/implementations/actions (physical output of decisions & other mental objects)
+
+        - another way to derive the mental state variable as an important predictor:
+
+          - a concept of dysfunction would be able to identify a lack of correct functioning in original objects of the data set
+
+            - dysfunctional health is associated with the age variable
+
+            - dysfunctional mental health is also associated with the age variable and inferrable from the dysfunctional health state
+
+            - lack of functioning across mental objects is derivable from that conclusion, with a default input of mental objects
+
 
     - mapping function, to map problems to structures & other problem types
 
