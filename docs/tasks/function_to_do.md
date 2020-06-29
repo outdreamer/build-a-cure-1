@@ -490,23 +490,37 @@
 
                 - connections between mental objects (decisions, plans, strategies, insights, intents, priorities) & attempts/implementations/actions (physical output of decisions & other mental objects)
 
-        - another way to derive the mental state variable as an important predictor:
+          - another way to derive the mental state variable as an important predictor:
 
-          - a concept of dysfunction would be able to identify a lack of correct functioning in original objects of the data set
+            - a concept of dysfunction would be able to identify a lack of correct functioning in original objects of the data set
 
-            - dysfunctional health is associated with the age variable
+              - dysfunctional health is associated with the age variable
 
-            - dysfunctional mental health is also associated with the age variable and inferrable from the dysfunctional health state
+              - dysfunctional mental health is also associated with the age variable and inferrable from the dysfunctional health state
 
-            - lack of functioning across mental objects is derivable from that conclusion, with a default input of mental objects
+              - lack of functioning across mental objects is derivable from that conclusion, with a default input of mental objects
 
-        - another way is using system filters
+          - another way is using system filters or other interfaces
 
-          - a concept of control would be default to the agent interface (agents have agency/independence)
-          - this concept can be used to form questions like 'do passenger agents have the option of decisions in this situation'
-          - the source of their control isnt important, unless you have data about injuries (like a concussion impacting their mental function)
-          - applying the concept of control accessible to agents would be a possible explanation for differences in the data set - some passengers have more control than others
-          - from this concept, mental functions (strategies + perspective + problem + priorities = plan) & objects (functions => rules => strategies) can be inferred
+            - a concept of control would be default to the agent interface (agents have agency/independence)
+            - this concept can be used to form questions like 'do passenger agents have the option of decisions in this situation'
+            - the source of their control isnt important, unless you have data about injuries (like a concussion impacting their mental function)
+            - applying the concept of control accessible to agents would be a possible explanation for differences in the data set - some passengers have more control than others
+            - from this concept, mental functions (strategies + perspective + problem + priorities = plan) & objects (functions => rules => strategies) can be inferred
+
+        - another missing variable is variation within variables across attribute values, such as gender/age
+
+          - by identifying the unenforced rules in gender roles (component object of gender variable)
+            - then identifying the stressor set that could trigger fulfillment of different gender roles
+            - you could predict the existence of a passenger that survives bc of permuted gender role (woman with useful skills from being given tasks for men may survive at higher than average rate)
+
+          - you could also predict the concept of a 'protection policy' by pulling contemporary definitions of gender roles, noting that women & children are 'protected/useless', and men are 'protecting useful' role
+            - this definition would help predict the existence of a policy to save women & children first
+            - the contemporary state of tech necessitates a policy like that rather than a protocol to use tech to signal for help in case of an accident, with an accident protocol designed based on precedents & bio understanding
+            - protected groups would be routed to safety-generating resources like lifeboats first
+            - example inferred passenger types with inferred objects like protection policy:
+              - a woman who was not protected might be in a different survival group if she had prior knowledge of sailing/accident protocol or knowledge of nearby landmarks to swim to
+              - a woman who was protected might not survive for other reasons (due to mental state values like senile/in shock)
 
         - this method works in the absence of these objects already identified as important or already defined
 
