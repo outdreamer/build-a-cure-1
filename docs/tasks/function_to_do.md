@@ -452,6 +452,9 @@
       - false similarity (info interface attribute + core attribute = an error type/definition route, if agency is involved)
       - filter chains (structure interface + structure interface = a core object to frame info)
 
+    - derive the context set that a prediction function has varying degrees of success in (type distance, missing variables, changing problem space, etc)
+      - this can be used to reduce the uncertainty by first identifying which contexts a function will be successful in predicting and then checking for those contexts in the problem space
+
     - rank methods of structure application for different contexts
       - expansion/compression (by intent, function, etc)
       - filters
