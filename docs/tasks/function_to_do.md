@@ -423,7 +423,7 @@
         - frame each object on its own interface (containing all its possible forms, variables, attributes, generators, cooperative contexts, etc)
         - compute the interactions of those interfaces
 
-    - apply combinations of core operations to get information object layers ('democracy games', 'barriers to intents or false information')
+    - apply combinations of core operations to get information object layers ('democracy games', 'barriers to intents or false information') once definitions are standardized to system interface
 
       perspective: priority set with object positions & default paths
       strategy: efficient path between points
@@ -431,6 +431,7 @@
       error: difference between expected & actual decision
       argument: position of objects or path between points with supporting connective functions
       game: incentivized motion within a system having limits to prevent motion
+      filter: barrier creating a difference between input & output
 
     - example filter analysis
 
@@ -524,7 +525,7 @@
 
         - identifying different causes of data corruption error
 
-          - different reasons for errors might cause difference impact on prediction function, which can be identified
+          - different reasons for errors might have a different impact on the prediction function, which can often be identified
 
             - a cause of 'logging error' in logging the wrong value for a variable would have a high probability of causing error, if there are no data validation rules (logging passengers' attributes was checked many times)
             - a cause of 'identification error' in logging the wrong value because a variable value was ambiguous (age or gender was not determinable and was logged incorrectly from this misidentification) would change the probability of error
@@ -534,6 +535,7 @@
 
         - this method works in the absence of these objects already identified as important or already defined
 
+        - this method works when definitions are detectable (finding adjacent attributes & probable set of required functions relevant to an object given interaction probability to assemble its definition)
 
     - mapping function, to map problems to structures & other problem types
 
