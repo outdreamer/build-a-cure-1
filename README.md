@@ -13,7 +13,7 @@
 		- "use an animal model in an air-conditioned building (when people aren't in it like at night) that would quickly show signs of infection if the virus was live and present"
 		- "display points on an AR interface with magnified bacteria attributes, or applying other data visualization rules to indicate attributes"
 
-	along with other solution metadata like probability of success, sufficiency of information to select the optimal solution, and which solution is optimal, given which sets of resources are available.
+	along with other  olution metadata like probability of success, sufficiency of information to select the optimal solution, and which solution is optimal, given which sets of resources are available.
 
 	Another example input problem statement:
 		- 'preventing infections from pathogens'
@@ -41,7 +41,7 @@
 		- 'have backup energy sources for emergencies'
 
 	and other solution metadata.
-	
+
 
 ## Summary
 
@@ -381,25 +381,32 @@
 			- apply filters to the structures found, testing combinations for the concept based on its definition, or apply filters to the conceptual network path until it has structure
 
 
-## object model
+## Terms
+
+### object model
 
 	- this is the standard object-function-attribute model you encounter in programming, applied to systems
 	- by attribute, I mean an inclusive set of terms including parameter, variable, input, output, & property
 
 
-## abstract network
+### abstract network
 
 	- this is the network of abstract concepts which are based on core structures (power, balance) 
 
+### conceptual math
 
-## interfaces
+	- an example is applying the concept of 'meta' to the concept of 'game' and getting output of the operation like 'a game where games can be created by agents inside the game' or 'a game to design games', given similarities between attributes/functions of objects in the definition & relevant spaces
+
+	- its useful to think of it like conceptual light (information) that can be combined with other concepts given trees of structural layers applied, where the concept is embedded, reflected, or absorbed on the way to the final structural layer - so the computation would be a trajectory on that tree linking the two concepts being combined
+
+### interfaces
 
 	- this is a standardizing filter (can be attributes like cause, change, potential, intent, structure, etc)
 
 	https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/interface.svg
 
 
-## core functions
+### core functions
 
 	- layer diagrams involve applying layers of chained transforms to core functions to generate new object combinations through paths on these diagrams
 	- these diagrams can be applied to objects/attributes/systems, which can be framed as a function
@@ -408,7 +415,7 @@
 	https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/insight.svg
 
 
-## useful diagrams
+## Useful Diagrams
 
 	- system diagram	
 		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/system.svg

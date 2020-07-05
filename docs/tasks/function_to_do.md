@@ -433,6 +433,14 @@
       game: incentivized motion within a system having limits to prevent motion
       filter: barrier creating a difference between input & output
 
+    - add interface diagram & interface query map
+      - interface query map indicates position of interfaces to query
+        - examples of targets of interface queries:
+          - function fitting a context, context fitting a function, causal structure fitting a function, errors or missing information fitting a function, tests determining a function
+        - the position of interfaces is determined by intent of problem/solution and cost/optimization metrics and available information or testing/derivation (information capture/generation) resources
+
+    - add conceptual math diagram
+
     - example filter analysis
 
       - problem: design/select optimal options for a program

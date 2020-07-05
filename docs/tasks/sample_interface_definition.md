@@ -11,12 +11,17 @@
 
 			- a structure (combination & sequence) applied to filters (to remove attributes or apply metrics), other distortion functions (to enhance or operate on attributes), & limits (to reduce attributes)
 
+				- given the definition of cause, converting a system to the causal interface would include logic like linking inputs & outputs on function sequences, standardizing to dependency relationships, and identifying areas of ambiguous cause explaining a pattern
+
 			- represents each object in problem space (or unconverted query) as a component, attribute, structure, related object, etc of cause
 
-		- adjacent interfaces (interfaces acting as inputs/outputs or with similarities to this interface, like how information, math, and structure are related interfaces)
+		- related interfaces
 
-		- proxy interfaces (interface combinations/embeddings that can act in place of this interface)
+			- adjacent interfaces (interfaces acting as inputs/outputs or with similarities to this interface, like how information, math, and structure are related interfaces)
 
+			- proxy interfaces (interface combinations/embeddings that can act in place of this interface)
+
+	- interface implementations
 
 	- system interface
 

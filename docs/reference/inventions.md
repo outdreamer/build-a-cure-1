@@ -36,6 +36,8 @@
 			- https://aws.amazon.com/quicksight/?c=1&pt=8
 			- https://techxplore.com/news/2020-06-key-scientific-texts.html
 
+			- https://techxplore.com/news/2020-07-math-systematic-potential-coronavirus-mutations.html
+
 
 	- info
 
