@@ -38,6 +38,8 @@
 
 			- https://techxplore.com/news/2020-07-math-systematic-potential-coronavirus-mutations.html
 
+	- intent
+		- https://techxplore.com/news/2020-07-ethical-autonomous-vehicles-dont-addressand.html
 
 	- info
 

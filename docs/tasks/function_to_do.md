@@ -441,6 +441,16 @@
 
     - add conceptual math diagram
 
+    - target objects of problem space analysis to find an 'ethical' or other algorithm to guide an object through a system:
+
+      - events that reduce potential (irreversible outcomes like an agent death)
+      - intent vs. outcome within context (repeated intents & exploits of intent stacks for malicious intents)
+      - symmetries like ambiguity, potential, & alternative-generating paths/bases
+      - assumptions/limits (neutral intents are likelier to be used maliciously than positive intents)
+      - context trajectory (such as maintaing a path through contexts to avoid calculations)
+
+      - once these objects are identified as necessary to understand the problem, then the implemented objects can be identified in the problem space, & the solution can be calculated
+
     - example filter analysis
 
       - problem: design/select optimal options for a program
