@@ -6,6 +6,7 @@
 
 	- priorities
 		- the goal of each market is to invalidate the market, rather than to maintain dependence of consumers on suppliers
+		- if there is a market that can benefit agents with artificial market maintenance (maintaining a closed trade loop if agents are optimizing their position within the loop), the goal is to maintain the market until those efficiencies are erased
 
 	- concepts
 
@@ -25,8 +26,9 @@
 		- independence
 			- independence invalidates markets and should be distributed in markets that are providing basic rights (health)
 
-		- value creation
+		- value (creation & storage)
 			- forms of value creation include innovation, efficiencies, opportunities
+			- value storage takes the form of proof of prior work, potential/promised future work, currency, & relative resource distribution
 
 		- trade structures
 
@@ -37,6 +39,18 @@
 
 			- what trade structure combinations are optimal to invalidate a given market
 				- what combination of trade loops, markets, & incentives can invalidate a market the fastest
+
+			- market structures:
+				- trade loops: independent sets of agents & positions
+				- inefficiency collisions
+				- price imbalances
+					- value assessments respond to incentives, rather than calculations of optimal paths/metrics
+				- product/test imbalances (product quality isnt currently measurable without using it)
+				- incentive imbalances
+					- agencies without regulation are trusted to enforce regulation, indirect donations from suppliers arent prohibited to regulatory agencies, regulation/testing isnt automated allowing room for incentive injection
+					- high-risk products or contexts arent optimized (non-addictive drugs, market maintenance or problem allocation isnt automated or enforced)
+				- promise trades
+					- promises to not produce unnecessary products, while necessary products are still sub-optimal
 
 		- market for markets (including market objects like demand, trades, cash flow, currency, etc)
 
@@ -102,6 +116,10 @@
 			- when you standardize products to the information interface, you can more clearly calculate which algorithms to invest in & optimize (allocation algorithms, instruction optimization algorithms, supply chain optimization algorithms, calculation algorithms, metric-identifying algorithms, system fitting algorithms, etc)
 
 	- example alternative combinations
+
+		- the reasons to choose between these vary but the more coordinated investment & labor there is, the more valuable certain options become. 
+
+		- example: if one person buys infrastructure & another person buys innovation to invalidate that infrastructure, theres a future collision creating a market for updating the infrastructure. But if they coordinate their investments, they can organize resources to achieve an interim infrastructure state trajectory that will enable compatibility with innovated infrastructure & innovation investment.
 
 		- strategy: 'buying adjacent independence-generating products'
 			- investment: purchase vaccines, laptops, & clean water generator
