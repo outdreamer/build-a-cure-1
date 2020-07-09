@@ -106,11 +106,21 @@
 		- strategy: 'buying adjacent independence-generating products'
 			- investment: purchase vaccines, laptops, & clean water generator
 
+		- strategy: 'building distant independence-generating products'
+			- implementation: building machines to generate independence-generating products
+
 		- strategy: 'buy infrastructure'
-			- investment: make transportation/energy costs lower so people have increased access to existing resources
+			- implementation: make transportation/energy/wifi costs lower so people have increased access to existing resources
+			- investment: subsidized public transporation or energy format or public wifi
 
 		- strategy: 'reduce cost of independence-generating products or their inputs'
-			- investment: invest in making computer parts cheaper, optimizing supply pipelines, automating health research
+			- implementation: invest in making computer parts cheaper, optimizing supply pipelines, automating health research, or educating people about derivation tools so they can do it themselves
+
+		- strategy: 'distribute information across economy with optimization algorithms'
+			- implementation: tell people what skills they should acquire to get a locally valuable position, tell businesses the best local suppliers & customers to transact with
+
+		- strategy: 'organize labor across economy with optimization algorithms'
+			- implementation: organize markets & labor to reduce work or increase market trades across all positions
 
 		- strategy: 'combine strategies, in their optimal strategy network positions'
-			- investment: allocate competition, markets, information & investments in their optimal positions (markets to re-allocate resources, competition to optimize, information to create markets, etc)
+			- implementation: allocate competition/coordination (to resolve questions of property rights or optimal implementations), risk (problems), bets (investments), promises (insurance, contracts), value (secret vs. shared formulas/insights), interfaces (currency, ratings), markets, information & investments in their optimal positions (markets to re-allocate resources, competition to optimize, information to create markets, etc)
