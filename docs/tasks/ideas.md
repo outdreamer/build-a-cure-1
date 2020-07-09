@@ -22,7 +22,6 @@ to do: organize into docs
       - when information leaves traces/side effects that are not erased by reversing the transform (not a closed system with energy storage built in)
       - example of processes that are easier in one direction: it can be easier to navigate over a local maxima than to navigate up a global valley, or to navigate a map to identify type than a map to identify individual members of a type, which can change in ways that differ from the type definition, average, etc
 
-
   - with information representing the constant vertices of a system, by representing information a certain way, efficiencies are gained in other information, like related calculation outputs 
       - what does the efficiency provide to uncertain/uncalculatable objects external to information?
       - with certain concepts as priorities or embedded in the structure (like orthogonality generating intersection spaces for mapping interactions), certain efficiencies in calculations are created
