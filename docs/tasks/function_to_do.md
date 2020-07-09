@@ -451,6 +451,10 @@
 
       - once these objects are identified as necessary to understand the problem, then the implemented objects can be identified in the problem space, & the solution can be calculated
 
+    - some weapons seem dangerous but are mostly only usable in certain contexts which are easily avoidable
+    
+      - deep fake tech is mostly used for criminal intents in the context of 'convincing a stupid person to vote for a corrupt candidate', though they can be used in other criminal contexts like 'revenge' or 'mocking a video of a hostage to secure payment' or 'deep fake porn' - all contexts which are avoidable with various technologies
+
     - example filter analysis
 
       - problem: design/select optimal options for a program
