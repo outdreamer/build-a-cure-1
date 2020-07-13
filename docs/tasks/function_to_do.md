@@ -65,6 +65,14 @@
       - finding shapes that are useful for a context
       - finding contexts that are relevant to a shape
 
+    - get a language map for implementing other tools
+
+    - finding value in random sequence
+
+      - implementation of random definition, including error types & output probability distribution
+      - index of randomly generated data, iteratively checked for matches of adjacent or low-cost accessible subsets
+      - subset hashing
+
     - define core operations: apply (expand one by the other), inject (input one to the other), embed (attach one as a component/attribute of the other)
 
       - power dynamics
@@ -152,6 +160,7 @@
       - the interface filter including structures for a given attribute/object like cause
       - the impact of the attribute/object on other interfaces (impact of cause on other interfaces, like info problems)
       - an interface applied to another to create a space (causal interface framed as a set of problem spaces)
+      - a structure with its own prioritized directions or other rules specific to the structure
 
     - make a system layer diagram with interfaces to allow specification of core interfaces & other interface layers (interface interface)
 
@@ -438,8 +447,18 @@
         - examples of targets of interface queries:
           - function fitting a context, context fitting a function, causal structure fitting a function, errors or missing information fitting a function, tests determining a function
         - the position of interfaces is determined by intent of problem/solution and cost/optimization metrics and available information or testing/derivation (information capture/generation) resources
+        - filter (function structure as a base) & prioritized focus & potential ranges
 
-    - add conceptual math diagram
+    - integrate the concept of an 'interference network' - to always be calculating what something is not, so you have backups to interfere if one interface is sub-optimal or insufficient to host potential
+      - if conceptual interface says to take a particular step, inject an opposing interface to add variance to the calculation approaching randomness
+
+    - add conceptual math diagrams
+      - use lattice multiplication as standard example, other than core operations (add/multiply mapped to language, concepts like irreversibility/asymmetry mapped to math)
+      - use intent & system filters & concepts as a way to reduce solution space from defaults (find space & shape limits where intents are supported) when looking for alternate efficient methods of calculation
+        - example: a method of calculating area under the curve can be built with relevant concepts (subset, linearity, similarity (to curve) as a input to the conceptual trajectory to the concept of approximation) once those concepts are identified in the problem space, and combined with different structures, each having their own intents (prioritized metrics like efficiency)
+      - quantify conceptual potential (how much change it can enable) and core operations on conceptual potential, & where potential objects occur or where they fit in to those operations
+
+    - core system layer analysis (where you generate next generation of objects using core operations supported in the space) can be used to harden a system against risk inherent in using defined objects, which will inevitably change, such as identifying new structures & interactions of the concept of risk given the next layer of imminent objects in a system
 
     - target objects of problem space analysis to find an 'ethical' or other algorithm to guide an object through a system:
 
