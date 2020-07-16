@@ -1,10 +1,167 @@
 ## Prediction markets
 
+
+  - definitions:
+    - derivatives/options/other instruments: possible money if your prediction about future value is correct (where value is highly subject to risk & influenced by many factors & randomness)
+    - insurance: future money from negative unlikely predictions occur
+    - debt: temporary money/resources in exchange for possible future value of a prediction (like that your plan will succeed or that a resource will increase in value), & possible future debt if purchased resources or plans dont increase in value
+
+  - diversification in that context means creating an investment portfolio/smart contract based on permutations of the insight powering the bet and the likely distortions of the insight, as well as permutations of related bet assumptions & other objects, such as a logical tree of conditions & tests to deactivate that investment
+  
+  - borrow from lenders with aligned incentives to borrowers' planned resource usage/investments
+  
+  - hedge the risk of borrowing by investing a ratio in alternatives/contradictory trends/products
+
+    - example: borrow to start a delivery business vs. investing in local gardening or 3d printing, and be prepared with a plan for investing resources when delivery business turns into supply pipeline, logistics, auto-mining, or tech business
+
+
+  - the logical flow of these objects given their definitions is to arrange possible prediction money, risk expectation, and temporary money/possible future debt in a way that creates a self-sustaining loop that keeps revenue streams active enough to keep the circuit accessible or convert it into a more profitable one
+
+    - for example the combinations:
+      - 'the risk expectation of possible future debt'
+      - 'a prediction payoff of a risk expectation'
+      - 'temporary money borrowed from a prediction funded by value prediction & risk expectation payoffs'
+
+    - a three-item circuit such as:
+        - predict future debt (default of a loan) to get a payoff if loan default occurs
+        - insure against future debt (default of a loan) to get a claim payment if loan default occurs
+        - invest temporary resources borrowed in prediction & risk analysis tools/methods or loan business dependencies
+
+    - a one-item circuit: 
+      - borrow from investors who already invested in dependencies of your plan or bought insurance from a company that did
+      - go into debt to fund purchase of insurance against interest rate increase
+
+    - a circuit based on randomness:
+      - invest borrowed resources in projects/patterns/types that appear frequently in diversified portfolios - they may be uncertain in isolation, but given the frequency of their investment & bundling, they may be less uncertain
+
+    - building a structure logically
+
+      - system analysis:
+
+        - given a set of contradictory predictions (a trade-off or where only one prediction can be true), you can buy insurance against:
+          - the question of which one is true being invalidated
+          - the predictions having a wrong assumption restricting it to two options & the third option being true
+          - the prediction with higher investment having lower return
+          - either or both predictions having no return
+          - the assumption of them being mutually exclusive being wrong and both being capable of being true at the same time
+
+      - causal analysis:
+
+        - investing in something can increase the value of it
+        - predicting an event can increase the probability of it
+        - buying insurance against something can decrease the risk and the payoff value (bc the insurance company may invest in decreasing the cost of fixing it & change the terms)
+        
+      - structural analysis:
+        
+        - which structures (set, tree, loop, network) are useful to frame investing objects (stock, derivatives, price, product, purchase, loan, insurance, probability, value, payoff, risk, etc)
+
+      - core analysis:
+        
+        - which core component combinations are already used (such as 'option to sell', 'promise to buy', 'periodic repayment of temporary borrowed at interest', etc) and what are the next combinations on other layers or filling in gaps on existing layers?
+        
+        - given core functions (sell, buy, bundle, trade, promise, predict, etc) and core objects (option, transaction, contract, etc) and core attributes (probability, dependencies, value), what useful combined objects can be generated?
+          - value: initial value, combined value, potential value, conditional value
+
+
+    - these structures like combinations, embeddings, and loops can be used to construct an optimal investment tree or network to allocate resources in a way that maximizes payoff potential
+
+    - arranging these objects in a useful way can create exploit opportunities
+      - example: if one risk is artificially increased by spoofers during risk expectation calculation
+
+    - these objects can be arranged in optimal ways using system rules & filters like:
+      - check for aligned intent (maximize profit) of combinations & other structures
+      - check for adjacent interactions (a prediction can take information as input, so any object that generates information is one of the candidates for the preceding object to a prediction in a sequence)
+      - check for compounding & cooperative effects, which generate efficiencies
+      - check for false similarities to avoid side effects
+      - use alternate definition routes to check for alternate similarities and routes between objects
+      - standardize definitions to use same terms where possible to calculate outputs (frame prediction, risk, and resource investment objects in terms of payoffs, risk/probability, dependencies, & assumptions)
+
+  - core investment attributes:
+    - fundamental
+    - abstract
+    - produces a valuable attribute in relevant problem space
+    - produces a proxy for work (trust)
+    - can override fundamental rules (like those regarding power structures)
+    - can increase interaction rate/space
+    - produces attribute alignments & other important system objects that output change, stability, or other valuable system attributes
+    - captures previously unhandled variance
+    - interface good (an average/limit, a currency, an interim good)
+
+  - risk based on key metrics like:
+
+    - max price of a good, given its relative value cap, absent of extreme or phase shift conditions like war
+    - 'risk caps' (worst case scenario as a standard) and 'potential caps' (potential value of good's attributes/components) in various market condition types (applying filters to avoid worst positions)
+    - attribute combinations that create phase shifts (alignments, resolved conflicts)
+    - intersecting interfaces that can override logical positions (social interface can influence even basic good prices like vitamins/food)
+    - variance flow (adjacent input/outputs/systems compromised) & adjacent variance objects allowed to interact 
+    - exploit potential (exploits can be assumed as guaranteed, so investments in easily exploited products should be either concentrated to guard against these, or distributed)
+
   - you can influence other people's predictions
     - providing prediction tools (algorithms, delivery platforms, APIs, tutorials)
     - tracking usage of those tools
     - indirect market manipulation, through trust established by making your prior predictions true
   - directly influence supply/demand & make bets on your influence
+
+  - organizing the stock market similarly to insurance to inject agency, investors can influence the market so that objects like competitions/incentives are created in a way that maximizes gains (making industry players compete in an industry that your other investment is capable of invalidating if they stop improving customer service vs. certain product features), or creating platform/foundation tools that are necessary components of the industry (prediction tools, specifically claim-testing tools or price assessment tools), or evaluating agent interactions at scale (what are the obvious ways & distortions of those ways to manipulate/evaluate/predict the market, who has the ability to act on those manipulations, and what is the net effect if all agents who can act on that do so)
+
+  - financial risk products
+
+    - routes between nodes with different information perspectives can optimize for load-balancing of the payout liability, or maximizing asset flow/trades/distribution, or connecting outcomes (creating a circuit rather than a one-directional rule or decision fork)
+
+      - allocating better decision information, models & tools to those with fewer assets or whose bets dont pay off can offset initial resource imbalances, offering better risk assessments & trades to those who need them
+
+      - distributing info & tools (like probability/causal analysis, fallacy/incentive/insider trading identification) is one way to reduce risk across agents
+
+      - exchange of funds should be tied to value creation by default, unless the funds are invested in useful high-value research, which has inherent necessary valid risk (as opposed to risk of buying a faulty product that cant be converted to something useful in an adjacent way, which happens frequently and is from bad design/implementation rather than necessity because of fast research)
+
+        - value can be created by valuable attributes like convenience, speed, efficiency, minimized cost, quality, relevance, fairness
+        - this value can be to agents in the transaction or to society
+        - value creation isnt guaranteed, like when you buy property that breaks & is unfixable, but each transaction should have a fallback mechanism to create value, rather than relying on insurance
+        - the fallback can be decision analysis tools, tax deductions, or insurance payouts, but it can also be built-in to the transaction contract
+          - if your house is burned down, you can have a fallback default transaction designed to sell the data about what caused the fire, sell the property to someone who doesnt want to use any damaged infrastructure (pipelines, electricity) or to researchers who need fire byproducts to test with or a small business thats been trying to move in to that neighborhood but wants to do so at lower cost
+          - this transaction would be designed by default with cost profiles for each option (cost/benefit of the transaction) based on specific demand for attributes created by the event - matching the negative event with the highest adjacent profit opportunities in the market by algorithm to minimize their losses
+      
+    - trading predictions for value & risk isnt always the trade being made
+
+      - sometimes its trading predicting that the price will go up (buyer) for information that the price will go down (insider trading short seller)
+      - or trading a prediction of price increase for market demand risk + disaster risk
+      - the set of these trades can be optimized to make all agents better off most of the time
+      - how do you arrange trades so the insurance company, supply company, homeowner, and future property owners are ok when a house burns down?
+        - the attributes created by the fire include (depending on reason for the fire & damage caused):
+          - adjacent houses are cheaper
+          - land of house is cheaper
+          - infrastructure repair costs may occur (power lines, pipelines)
+          - byproducts are generated (heat, carbon)
+        - there are agents that can benefit from most attributes created by the event
+          - if you can find a buyer interested in moving in at lower cost or someone interested in the neighborhood (real estate developer), the fire might not produce a major loss for the homeowner, even without insurance
+          - if repair costs are high, repair companies can purchase information of where new opportunities are available & what their possible profit is
+          - if the house is near enough to a water source, it can be turned into a well or other natural resource supply, so the neighborhood could buy the property directly or with taxes
+          - you can use the fire as a temporary energy source for the neighborhood which can be distributed with markets/taxes (whether they opt-in to buy the equipment to do that)
+        - you can sell the risk of the house burning down beforehand, so that if the risk of it happening is 20%, you sell the risk of it not happening to people who need/earn money more (or people with existing incentives against the house burning down if its a higher cost than benefit across all agents, so no one has an incentive for arson) & sell the risk of it happening to people who dont need/earn money (or people with existing incentives against the house burning down)
+
+      - similarly, other sources of systemic risks like natural disasters can be used for creating value 
+
+        - if a flood happens, suppliers & researchers can pivot to using damaged wood as their building material (researchers can experiment on converting it to a useful resource & then its used as a default supply source, or researchers are assigned to convert dead wood into plants more efficiently)
+
+        - product invalidation with tech produces obsolete tech, which can be allocated to neighborhood recycling centers rather than taken away so it can be used as a community supply for engineering & research
+
+        - a pandemic produces either:
+          - high demand for protective supplies (so people can still go out), medical service suppliers, cleaning services, delivery services
+          - high demand for tech to invalidate protective supplies (buy computers/internet/robots/drones so people dont have to go out, and minimize quarantine time with medical solution tech investments)
+          
+        - the change in demand isnt likely to be accompanied by climate consciousness (people would rather buy gloves right away than wait for environmentally friendly gloves), so theres some increase in systemic risk bc of the requirements for fast solutions - companies with climate-friendly solutions can benefit if they can scale supply quicker, which will reduce risk for everyone
+        - companies that adapt quickly, companies already in manufacturing business, companies building tech, and companies that host/enable trades will already be in position to benefit
+        - companies building testing tools are another possible beneficiary, if people still need to interact (if you dont buy computers/internet/robots and medical solutions)
+
+    - there can be a cap on financial instruments with better price/relative value assessments, so that someone cant buy something at a higher price out of irrational fear (someone whos afraid of fire is likelier to pay more for insurance, even if the risk doesnt match their price point given their irrational fear) or as a premium (charged more bc they earn more)
+
+    - you can also calculate the fewest bets that are necessary (invest in a small business like an experiment automator printer, invest in a research project like determining cause of a systemic imbalance, invest in a particular solution like a farming technology) that will trigger the phase shifts necessary to produce an outcome (protect the environment from risk spirals or cascades or toxic causal shapes like tangled networks or one-directional trees)
+
+    - taking the net outcome of all known bets (info/pattern/probability bets, industry bets, product bets, price bets, demand bets, tech bets, uncertainty bets) & bet patterns (diversify risk levels & timing in portfolio) can probably predict future risks (new incentives/priorities, new products/tech, new attribute sets, new alliances, new paradoxes (conflicting products becoming more popular), new trade loops, new financial instruments) - which can be used to adjust recommended price of a bet once the relative value is known, if that risk outcome is good across agents
+
+      - example: 'if 50 people dont take this bet, another alternative tech will probably develop at lower cost' or 'if 100 people invest at this price, this product will enable investment in these fields given these company contracts'
+
+    - load-balancing can also be automated between funds, so one fund isnt overloaded with liabilities - rather than one fund that made a bad bet bearing the cost, they get updates to their decision models (explaining why a price was false or why a natural event occurred), a small percentage is distributed to funds that arent as socially conscious (dont align their incentives with socially conscious intents, or create trades that prioritize value creation, or organize their trades to build loops so incentives are connected across agents)
 
 
 ## Loan markets
