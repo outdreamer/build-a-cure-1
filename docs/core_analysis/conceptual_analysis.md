@@ -129,6 +129,45 @@
   - example of a different conceptual system:
     - if power favored centralization, another core concept like balance would have to favor a chaotic process or not exist at all, or another core concept would need to be added to the network
 
+  - time involves meaning attached to order, where order is a fundamental base to frame changes on, and when order is reversed/removed, different rules apply
+      - this may indicate that particles have a 'probable next state' or 'probable change type/rate' stored with them, given their motion, and reversal of order, when combined with other reversals on other interfaces, doesnt erase this information right away, so different prior states can be generated - if a particle is isolated from its motion by adding potential/uncertainty, other rules may apply
+      - the range of possible orders can be generated, and the set can be filtered by various rule sets to generate the set of probable orders, so order may not be capable of capturing all information
+      - what about position/distance, set, space or other structural bases for change?
+      - does order only matter if its order is synchronized with other ordered processes, generating loss of potential from dependence between synchronized processes
+      - time can be framed as independence, and where dependence crystallizes into a measurable rule, time/potential are not possible
+      - 4-d time as typically represented is an illusion of time, capturing a prior rule/moment - these isolated dependency rules are unlikely to build time without the independence of understanding, which can generate the rules & add potential as needed - each prior rule can be used to build time/understanding/independence but some prior rules are likelier than others, and abstract rules are likeliest
+
+    - order-dependent processes can be modeled in time-based spaces
+      - in order for liquid to be irreversibly dispersed according to the time symmetry, the liquid has to be in the cup 
+
+      - change according to time-adjacent variables (potential, change) can be modeled rather than time, to increasingly remove the meaning of order/prior position, as certain change types make more or all positions possible, whereas theres no point in euclidean space representing 3-d space that can jump to any other with the same effort as an adjacence space - movement has cost in 3-d euclidean space
+
+      - removing more conditions of time (order, irreversibility, possibility, measurability) would eventually lead to the symmetric state where functions producing change would be equivalent to/generative of each other (the theoretical liquid can generate the theoretical cup in that space if it needs to, injecting more time/potential in a prior position on its timeline to further current goals (based on change potential - the set of possible moves given by its current position), which require less change/time/potential than anticipated)
+
+      - reverse time to a prior state:
+
+        - maintain potential:
+          - dont execute a decision change until needed: allow potential to maintain its superposition (not resolved to a certain structure/path/point) so when you need to, you can choose an aligning path from that potential that fits the post-selection trajectory
+        
+        - add potential as needed: 
+          - remove traces of resolution into a choice by undoing the root cause up the causal stack (like removing an attribute can restore an object to an undifferentiated type)
+          - add variance-handlers to restore potential lost bc of change cascades that take up time (buy more time by handling current & anticipating imminent change)
+          - remove limits (movement, information, boundaries, rules, structure, attributes) to enable new combinations
+          - acquire power (understanding) which is a proxy for potential (range of alternative options)
+          - remove filter determining loss of potential/change by mapping that filter to another one
+          - create efficiencies (shortcuts) to allow existing objects to interact in new ways 
+            - change definition of distance so all combinations are possible and adjacent to remove time cost to travel to them
+          - change faster than other changes so other changes could never catch up without your change methods, which youve left information out of so they'd all need to be used together to build your change rate from a different trajectory
+
+        - alter dimension to avoid reducing potential directly
+          - frame change in dimension that collapses to potential in its default low-cost state
+          - change in other dimensions that dont impact 3-d space, but which are collapsible or transferable into 3-d space as needed
+            - host changes external to or beyond measurement/prediction potential (host on interface that doesnt register the change so time cannot be said to have passed)
+
+        - organize potential so it can survive or increase
+          - chain superpositions so that collapsing one can cause a collapse of another out of reach bc its in a prior time
+          - map all positions/interfaces in prior state to current state to remove time that has passed since then
+        
 
   ### Meaning (Relevance/Structure)
 
@@ -218,3 +257,262 @@
       https://twitter.com/remixerator/status/1148816151125712896
       https://twitter.com/remixerator/status/1004578257637953537
       https://twitter.com/remixerator/status/1004578256820064257
+
+
+
+  - map core concepts to structures for use when building other concepts/objects
+
+    - similar definition structures apply to similarly abstract concepts
+
+    - change types (rule types like binding rules, boundary rules) can be used to generate different variations of a concept
+      - power can be in the form of a connection hub (binding rules with an extreme value of the connection count attribute)
+
+    - position is an important attribute in many abstract concepts (powerful position, power occupying the input position, position as an attribute of equivalence)
+      - other core structural attributes can be used to generate the other concepts
+
+    - concept definitions are useful so you can answer questions like:
+      - is this system balanced/robust to change/have distributed power
+      - what potential does this system have
+      - what priorities does this system have
+      - can this system impact many others (is it powerful)
+      - does this system produce a conceptual attribute/object like trust/equality
+      - what concepts (determining, generative, emergent, prioritized, optimized) do these systems have in common
+
+      without translating them into structure yourself
+
+    - power:
+      - core structural factors
+        - order
+        - sequence
+
+      - core definitions
+        - input
+        - cause
+        - possible
+
+      - core functions
+        - enable
+        - fulfill
+        - change
+        - force
+        - cause
+
+      - types
+
+        - potential (freedom in options)
+
+          - change power
+            - can change many things
+            - can transform to many things
+            - can reverse/distort many types of change
+            - can use many alternatives
+
+          - cause power
+            - can cause/create many things
+
+          - interaction power
+            - binding/limiting/filtering/coordination potential
+
+        - structural
+          - change rules (binding/boundary/interaction rules)
+          - dimension set (determining which value/change types are possible)
+          - connection (connection count, changeability, origin/destination/path potential as measurements of power)
+          - set (powerful as a set)
+          - intersecting (power from compounding/aligning attributes/objects/functions)
+          - adjacent (power from interaction potential)
+
+        - conditional power
+          - powerful with conditions/context
+
+        - possible power
+          - stored power
+          - formatted power
+
+        - illusory power (appearance of power, from missing information)
+
+      - attributes
+        - abstraction/irrelevance/independence (context doesnt reduce/change power)
+        - commonness (repetition can increase power)
+
+      - related object definitions
+        - option
+        - alternative
+        - input
+
+      - interface definitions
+        - the different definitions of 'power' types should be mappable with this attribute set
+          - system:
+            - powerful attribute sets
+            - power in terms of system metadata like position (occupies powerful resource set or role in system like hub or filter)
+          - change:
+            - powerful regardless of applied change types/rates/patterns/definitions
+          - intent:
+            - executes a core power function intent (intent of change is optimize/correct)
+          - function:
+            - powerful in function/function metadata (enables a core operation like find/apply/build)
+          - potential:
+            - powerful in potential
+          - cause
+            - causative position
+
+      - visualization
+        - power indicates potential which may map to a lack of information (lack of filters/limits) or powerful information (common input, common activator)
+
+
+    - truth:
+      - core structural factors
+        - match (does it match a trend/relationship)
+        - fits (does it fit within the host system)
+        - potential (is it possible/likely)
+
+      - core definitions
+        - importance
+        - relevance
+        - possible
+        - certainty
+
+      - core functions
+        - calculate/estimate
+        - predict/guess/theorize
+        - measure/check
+        - distort
+        - map/derive (find connecting path)
+
+      - types
+        - logical
+          - valid
+          - factual
+          - consistent
+          - cohesive
+        - structural
+          - connection/path
+          - origin/destination (given a particular definition of change & a value for that change type, how does motion create the object or emerge from the object) 
+          - set (true within or as a set)
+          - intersecting (overlaps with a truth at measured points)
+          - adjacent (one transform away from a truth in the form of a shift operation)
+        - subset (partial truth)
+          - approximate
+          - functional
+          - alternative
+          - interchangeable
+        - distorted truth
+        - conditional truth
+          - true with conditions/context
+        - possible truth
+          - missing contradictory information
+        - illusory truth (appearance of truth, from false similarities)
+
+      - attributes
+        - simplicity
+        - curvature
+        - clarity (is it structurable)
+        - repetition (does it keep showing up or is there one example)
+        - patterns (does it follow patterns of truth)
+        - explanatory
+        - knowability/determinability (is it possible to prove or measure, more than once)
+
+      - related object definitions
+        - distortion
+
+      - interface definitions
+        - the different definitions of 'truth' types should be mappable with this attribute set
+          - system:
+            - true within an attribute set
+            - true in terms of system metadata like position (occupies same resource set in system or same role) or context (emergent output will be the same)
+          - change:
+            - true regardless of applied change types/rates/patterns/definitions
+          - intent:
+            - constructible with valid/true intents
+          - function:
+            - true in function/function metadata
+          - potential:
+            - true in potential
+          - cause
+            - true in causation/causal position
+
+      - visualization
+        - truth has structure, bc it indicates potential that has collapsed to information
+
+    - equivalence: 
+
+      - core structural factors:
+        - position of determining points (for a line this is either endpoint)
+        - distance/length/scalar
+        - unit object/attributes/functions (what is the standard form, what core operations does it support)
+        - potential field (what positions can it occupy with adjacent transforms)
+        - angle of change
+        - space/dimension set
+
+      - core definitions
+        - equal
+          - all attributes/state/values match, irrelevant to the path to the object
+        - similar
+
+      - types
+        - structural
+          - origin/destination (given a particular definition of change & a value for that change type, how does motion create the object or emerge from the object) 
+          - shape
+          - path (same pattern between origin/destination)
+          - set (same set of generative/output/determining objects or interface objects)
+          - intersecting (y = f(x))
+          - adjacent (one transform away in the form of a shift operation)
+          - dimension (variable set, space definitions/conditions)
+        - subset equivalence
+          - approximate
+          - functional
+          - alternative
+          - interchangeable
+        - processed equivalence
+          - duplicate
+          - version
+          - iteration
+          - combination
+          - standardized equivalence
+        - conditional equivalence
+          - equal with conditions/context
+        - type equivalence
+        - matching
+          - opposite matching structures, opposite being an adjacent object to the original, and matching object being a fit of an object, indicating an opposite transform
+        - symmetric
+          - transformable/reversible transforms
+
+      - attributes
+        - degree of equivalence
+        - conditions/filters
+        - definitions
+
+      - related object definitions
+        - change
+        - value
+        - distance
+        - position
+        - scale
+        - unit
+        - angle
+        - degree
+        - space
+
+      - interface definitions
+        - the different definitions of 'equivalence' types should be mappable with this attribute set
+          - system:
+            - equal on an attribute set
+              - differences
+              - possibility/probability/related input/output/path probability distributions
+              - emergent output
+              - required inputs
+              - types
+            - equal in system position (occupies same resource set in system or same role) or context (emergent output will be the same)
+          - change:
+            - equal in change type/rate/pattern/definition
+          - intent:
+            - equal in granular intent fulfilled/neutralized
+            - equal in output priority direction
+          - function:
+            - equal in function/function metadata
+          - potential:
+            - equal in range of potential
+
+      - visualization
+        - visualizing equivalence across definitions & types:
+          - if you can standard objects to attribute sets, you can visualize as a graph of attribute sets where shapes map to attribute sets and visible or highlighted shape attributes are equivalent
+          - you need to incorporate objects like conditions & definitions as system/space attributes

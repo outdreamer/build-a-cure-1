@@ -3,10 +3,12 @@
 
 ## Intro Example
 
-	This project is intended to automate interface analysis (a method to solve problems automatically), to produce solutions to input problems.
+	This project is intended to automate interface analysis (a method to solve problems automatically), to produce solutions to input problems. This tool is based on a core concept of organizing information in a way so that solutions to problems are retrievable or buildable with a query set. Organized information is information that has had structure applied to it, so queries with this tool are applying structures (like filters, limits, or networks) to input information to create solution structures (like requirements, metrics, foundations, solution-generating methods, or the solutions themselves). 
+
+	The problem in this case can be seen as a scaffold (like a network) and the solution is the content filling the scaffold (like an optimized route in that network).
 
 	This program would take the problem statement:
-		- "build a tool to detect & display bacteria"
+		- "build a tool to detect & display bacteria in a room"
 
 	and output possible solutions such as:
 		- "grow bacteria until its more measurable"
@@ -65,8 +67,8 @@
 		- a way to discover information to feed into the system 
 			(this means internet access so API queries & searches can be done, if the specific system of the problem space isn't an input, formatted as a system network definition)
 
-	Example of problem-solving workflows this project will automate:
 
+	Example of problem-solving workflows this project will automate:
 
 		- how to solve the problem of automating the generation of info objects (summaries, explanations, perspectives, etc)
 
@@ -381,40 +383,6 @@
 			- apply filters to the structures found, testing combinations for the concept based on its definition, or apply filters to the conceptual network path until it has structure
 
 
-## Terms
-
-### object model
-
-	- this is the standard object-function-attribute model you encounter in programming, applied to systems
-	- by attribute, I mean an inclusive set of terms including parameter, variable, input, output, & property
-
-
-### abstract network
-
-	- this is the network of abstract concepts which are based on core structures (power, balance) 
-
-### conceptual math
-
-	- an example is applying the concept of 'meta' to the concept of 'game' and getting output of the operation like 'a game where games can be created by agents inside the game' or 'a game to design games', given similarities between attributes/functions of objects in the definition & relevant spaces
-
-	- its useful to think of it like conceptual light (information) that can be combined with other concepts given trees of structural layers applied, where the concept is embedded, reflected, or absorbed on the way to the final structural layer - so the computation would be a trajectory on that tree linking the two concepts being combined
-
-### interfaces
-
-	- this is a standardizing filter (can be attributes like cause, change, potential, intent, structure, etc)
-
-	https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/interface.svg
-
-
-### core functions
-
-	- layer diagrams involve applying layers of chained transforms to core functions to generate new object combinations through paths on these diagrams
-	- these diagrams can be applied to objects/attributes/systems, which can be framed as a function
-
-	https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/solution.svg
-	https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/insight.svg
-
-
 ## Useful Diagrams
 
 	- system diagram	
@@ -449,7 +417,45 @@
 		https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/perspective.svg
 
 
-## mapping concept to structure
+## Terms
+
+### object model
+
+	- this is the standard object-function-attribute model you encounter in programming, applied to systems
+	- by attribute, I mean an inclusive set of terms including parameter, variable, input, output, & property
+
+
+### abstract network
+
+	- this is the network of abstract concepts which are based on core structures (power, balance) 
+
+
+### conceptual math
+
+	- an example is applying the concept of 'meta' to the concept of 'game' and getting output of the operation like 'a game where games can be created by agents inside the game' or 'a game to design games', given similarities between attributes/functions of objects in the definition & relevant spaces
+
+	- its useful to think of it like conceptual light (information) that can be combined with other concepts given trees of structural layers applied, where the concept is embedded, reflected, or absorbed on the way to the final structural layer - so the computation would be a trajectory on that tree linking the two concepts being combined
+
+
+### interfaces
+
+	- this is a standardizing filter (can be attributes like cause, change, potential, intent, structure, etc)
+
+	https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/interface.svg
+
+
+### core functions
+
+	- layer diagrams involve applying layers of chained transforms to core functions to generate new object combinations through paths on these diagrams
+	- these diagrams can be applied to objects/attributes/systems, which can be framed as a function
+
+	https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/solution.svg
+	https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/insight.svg
+
+
+## Analysis examples
+
+### mapping concept to structure
 
 	- diagram:
 		- https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/concept.svg
@@ -466,7 +472,7 @@
 				- if above, the system is 'robust'
 
 
-## mapping problem to structure (asymmetry, conflict, lack, mismatch)
+### mapping problem to structure (asymmetry, conflict, lack, mismatch)
 
 	- for a conflict like vectors aiming at a corner of a closed shape (where the shape is formed by the intersections of limiting attributes), the structural way to solve that problem is:
 
@@ -487,7 +493,7 @@
 		(incentives that organize motion to create an oversupply of resources (motion vectors) that cant be supported by a resource (position))
  
 
-## graphing solution for a problem space
+### graphing solution for a problem space
 
 	https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/function_map.svg
 	https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/map.svg
@@ -495,7 +501,7 @@
 	https://github.com/outdreamer/build-a-cure/blob/master/docs/objects/problem_space.svg
 
 
-## limitations
+## Limitations
 
 	- depends on queryable information (the system must be discoverable) and definitions (for efficiency, although the definitions should be derivable if the system information is accessible)
 	- the set of dictionaries used may need updating to build the right queries (there may be more core functions or interfaces to add) but it will discover that during the query
@@ -506,7 +512,7 @@
 	- standard queries (example filters) may beat custom queries for some problems but it may be clear after, so both may be optimal to run
 
 
-## faq
+## FAQ
 
 	1. whats the need for mapping information problems to structure (math) problems? for example, isnt an information asymmetry already structural?
 
@@ -834,7 +840,6 @@ Example:
 
 
 # Analysis
-
 
 When a system is totally unknown, you should diversify across all interfaces at first - example of finding value in a set:
 

@@ -23,11 +23,14 @@
       - for more evolved organisms, this is a network causal shape, though species with less developed cognitive ability may have simple or uni-directional shapes with environment
     - "what is the function linking these variables, given these functions linking other adjacent generating variables/functions further up/down the causal shape"
 
-  IV. Type analysis
+  IV. Information analysis
 
-    - given a known type stack progression, what is the likeliest position or extension of that stack?
-    - "given that these species evolved this way, what level of variance is the missing link between them likely to have?"
-    - "what is the function linking these variables, given the type stacks of the function objects (dimensions, adjacent functions, identifiable shapes, etc)"
+    - information analysis involves standardizing to the object/attribute/function model (including related objects like state & type) so that information structures are clear & can be mapped to information problem types
+
+    - type analysis
+      - given a known type stack progression, what is the likeliest position or extension of that stack?
+      - "given that these species evolved this way, what level of variance is the missing link between them likely to have?"
+      - "what is the function linking these variables, given the type stacks of the function objects (dimensions, adjacent functions, identifiable shapes, etc)"
 
   V. System analysis
 
@@ -41,7 +44,7 @@
     - optimization is an example of a general intent, with a specific intent of 'optimizing the metric in question'
     - "what is the function linking these variables, given the variable intents a, b, c and the combination intent matrix ab, bc, ca, and the possible output intents of that matrix, and similarity to output intent of y"
 
-  VII. Variable analysis
+  VII. Variance analysis
 
     - includes certainty objects (known variance, metrics, change patterns) as well as uncertainty (potential/risk/opportunity) objects
     - variance accretion
@@ -60,7 +63,6 @@
       - what is divergence distance between generative paths for each object
       - example: "what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?"
       
-
   VIII. Functional analysis 
 
     - are there multiple directions to approach function derivation from?

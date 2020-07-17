@@ -158,7 +158,7 @@
 
 ## Choosing automation starting point
 
-  - the reason the methods are separated & described in problem_solving_matching.md rather than just listing 'problem space model' or 'interface network' or 'structural interface' or 'conceptual interface' or 'matching methods' as solution automation methods even though all the methods use these to some degree, is that various combinations of objects in these models are useful when used together (for example 'concept', 'match', 'structure'), and all of the methods can be used to frame the other methods
+  - the reason the methods are separated rather than just listing 'problem space model' or 'interface network' or 'structural interface' or 'conceptual interface' or 'matching methods' as solution automation methods even though all the methods use these to some degree, is that various combinations of objects in these models are useful when used together (for example 'concept', 'match', 'structure'), and all of the methods can be used to frame the other methods
 
   - the full set of combinations of interfaces, models, objects, & functions can also be generated if backup methods are needed
 
@@ -338,6 +338,8 @@
           - conflicting vectors (incentives, intents): vectors leading an agent in conflicting/diverging directions, where each vector starts at the agent or pushes the agent
           - missing info: lack of enforced rules creating an opening where info can gather
           - imbalance: different sized vectors creating bias on one side of a symmetry
+
+        - describing a problem by conceptual variables like relevance or importance means you can do a concept-structure query to find methods to reduce or increase those concepts in the problem system
 
     - example:
 
@@ -750,7 +752,11 @@
 
 #### VII. Vectorize problem/solution space & match intents
 
+    - this involves standardizing the problem definition to a directed network (with objects like concepts/functions/intents connecting the starting point & the goal)
+
     - this is similar to translating problems into an optimal format that is already solved (get from problem space definition to target output for a task intent)
+
+    - another version of this involves tracing the intents & sub-intents necessary to get from the starting point to the target and then finding functions that fulfill each sub-intent
 
     - this method is for when you want to automate solving a clearly structured specific problem, with clear optimization metrics, without deriving the logic manually
 
@@ -977,7 +983,7 @@
 
     - in order to automate problem-solving, you may need to derive the interfaces/symmetries of a problem space, and then stack/arrange them in order that maximizes their utility as a set of filters that generate solutions from the original problem statement
 
-    - by 'interface derivation' I mean finding the symmetries in a problem space, such as finding the 'spectrum interface' in the chaotic-evil matrix, or finding the 'rotation' interface in the shape progression problem space, and then stacking or otherwise arranging them in the order that they are most useful for generating/revealing solutions
+    - by 'interface derivation' I mean finding the symmetries in a problem space, such as finding the 'spectrum interface' or the 'ambiguity interface' in the chaotic-evil matrix, or finding the 'rotation' interface in the shape progression problem space, and then stacking or otherwise arranging them in the order that they are most useful for generating/revealing solutions
 
     - if these are framed correctly, it'll converge to a problem space vertex, where the key factors of a problem are found
 
