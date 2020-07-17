@@ -10,6 +10,41 @@ The overall workflow of this tool can be built with an interface query:
 	- if the information formats applied dont reveal enough info, apply combinations of the formats (structure interface, core interface)
 	- if no solution space can be identified or reduced, return the queries and the problem & problem space metadata
 
+
+- different points to approach security analysis:
+
+	- identify contexts (default permissions, information-event-function sets) likelier to incentivize exploits
+		- identify adjacent preceding contexts or objects of exploits to prevent exploit contexts from developing
+	
+	- identify structures of systems enabling exploits to apply more security or analysis to similar structures
+		- identify intersections (edge conditions) or sets (anomaly chains) likely to be exploit opportunities or allow them to develop
+	
+	- identify function sequences that have gaps in enforcement/injection points, or can be called for malicious purposes because the entire chain is abstract or the pieces being tested are abstract/neutral
+		- identify functions that can be called outside of intended justified contexts
+	
+	- identify distortion functions & approved ranges of distortion structures (like combined distortions, distortion sequences, etc)
+
+	- identify positions in a system where movement toward malicious or neutral intent positions is possible/incentivized
+
+	- identify malicious intents that look like positive intents (false similarities)
+
+	- identify system objects & concepts (expectations vs. intents, side effects, errors, potential, rule enforcement, assumptions, access, randomness, request patterns/sets, false/accidental similarities/differences, pre-approved workflows & request sets) relevant for finding exploit opportunities
+
+		- buying a set of high-level intents or pre-approved workflows can be done with a web provider (buying or promising to use intent request packages like 'doing research for homework', 'pushing code to project', 'reading news', and other intents that are neutral so they can be malicious like 'messaging' or 'entertainment', where abstract intents cost more or require earning privileges, and intents can be matched across demanders/suppliers - so a teacher can put in a request for homework research, and that intent can be used/purchased by the student but not someone else, so someone cant use a research intent with associated permissions to look up bomb formulas, and other request demand/supply matching like 'text to get list of tasks' would match some relationship types like roommates and wouldnt match other relationship types like a stranger looking for drugs so could be used for people on parole), which can help allocate resources and identify new, alternative, or malicious intents
+
+	- identify specific objects relevant to exploit opportunities for a system
+
+		- for a password system, the relevant basic objects are:
+			- 'memory access patterns' as retrieving a memory has patterns just like retrieving a password from browser storage has patterns or typing someone else's password has patterns
+			- 'memory limits' meaning that a memory has more limits on memorable passwords than browser stored passwords or an experienced hacker
+			- 'augmentation' meaning password salts
+			- 'validation' meaning hash check patterns
+			- 'generation' meaning the rules used to generate different types of password (like how passcodes typically have repeated patterns) & the enforced rules to limit passwords (requiring special char types that are usually positioned together if manually generated)
+			- 'reverse computation requirements', meaning the cost of rainbow tables and other tools to reduce computation time
+
+		- all of which can be generated with standard system objects/functions/attributes (limits, patterns, core operations like reverse and high-level operations like generate/validate) applied to password system objects/functions/attributes (password rules, char limits)
+
+
 Here's why different interfaces are more useful in different situations, given a standard problem like 'build a function automatically for a given function intent'.
 
 Intent interface
@@ -71,7 +106,7 @@ Concept interface
 				- if combining power & efficiency produces a structure set, that can be derived by querying the structures of power & efficiency and combining those structures in a way that doesnt invalidate either definition
 			- you can also apply logic to the concept operation ('inject power to distribution, limited by efficiency') to create the output concept of that conceptual operation ('efficient distribution of power'), and then do a structure query of that output concept
 			- once you have function structures matching the output (having found function logic matching 'efficient distribution of power' once translated to the structural version 'minimized cost of allocating inputs' if inputs are the structure found in the function system matching the power definition, where 'minimized cost of allocating inputs' can mean 'diversifying calls for this intent across various alternative functions' or 're-using existing functions where possible to minimize the cost of building a function on-demand or at compile time' or 'a function set that minimizes the memory/space requirements of allocating inputs'), you check if those structures optimally fulfill this function's intent, 'distribute power evenly', and then execute the final steps to resolve those structures into function logic (with input-output requirement chains, intent-matching, etc)
-			
+
 Problem interface
 
 	If the problem can be framed as a problem in a problem network of related problems, and/or a problem space, you can calculate attributes like whether the problem is about to be invalidated by other functions built for other problems, whether the profit opportunity of solving the problem is worth the probable cost, whether the whole problem space is about to fundamentally change, etc. Building a function automatically given an overall intent would mean:
