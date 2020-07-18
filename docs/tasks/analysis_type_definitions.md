@@ -1,29 +1,30 @@
-# Implementation Instructions
+# Analysis definitions
 
-This is the general blueprint for implementing the ideas in this repo, which have more specific blueprints in their own guides.
-Use case & tech debt is included where applicable.
+- reduce these to definitions of each type sufficient to understand & implement each type of analysis, optionally including function lists
 
+## Object Format
 
-## Object Model
+	- this is a standard information format commonly used in programming, including object/attribute/function information
 
-	- this is a simple standard information format
+  - the unique implementation of this used in this tool includes attribute type information, function metadata, and object derivation logic, as well as operations to merge objects & other common operations on these components
 
-	- uses:
+  - this format allows high-level problem-solving logic like:
 
-		- predict interactions & optimal versions of objects/attributes/types/rules
-			- predict emergent objects/attributes/types/rules
+		- predicting interactions or optimal/emergent versions of objects/attributes/types/rules
+		- querying objects/attributes/types/functions to find patterns & relationships between information standardized to this format
 
-		- problem-solving automation method to query objects/attributes/types/rules
-		- reduce solution space or identify causative factor in problem
-
-	- tech debt:
+	- implementation functions include logic to automatically:
 
 		- identify object data sources (code bases defining schema/class definitions, network maps)
-		- implement data sanitization & import
-		- implement identification functions (objects/attributes/types/rules) to gather more data pre-indexed
-		- implement object operation functions (combine, merge, apply, mix, filter)
-		- implement object function set (change functions, boundary functions, probability functions)
-
+		- implement identification functions (deriving & identifying objects/attributes/functions) to gather more data pre-indexed
+    - implement component definitions
+      - attribute definition includes attribute types like input/output, descriptive/identifying/differentiating, abstract, type attributes, etc
+      - object definition includes limits to identify unique or isolatable objects, that act as a cohesive set of components 
+      - function definition includes:
+        - metadata like optimization potential, input/output, logic structure, assumptions, perspective, etc
+        - different function formats like structures (filters/sequences), core functions, probabilities, attributes, etc
+        - function types like boundary/change/potential functions
+		- implement object/attribute/function operation functions (combine, merge, apply, mix, filter, chain)
 
 ## System Analysis
 
