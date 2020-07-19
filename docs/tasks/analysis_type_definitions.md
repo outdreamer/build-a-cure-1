@@ -6,6 +6,16 @@
     
     - a workflow to automate problem-solving is an interface traversal that can be applied to any problem
 
+    - this is like an insight path (a cross-system, insight-generating sequence) that can generate solutions
+
+    - workflows vary on:
+
+      - the starting point of the analysis (which interface the query starts from)
+      - the structures relevant (which structures or type of graphing method to use)
+      - the intent (create a prediction function, reduce solution space, compare solutions, or match problem with solution)
+      - the core abstract function represented (is it a find method, an apply method, a combination)
+      - the models used (object model, interface query)
+
     - if the problem is 'finding a structure that matches conceptual priorities like strength', that can clearly begin on the concept-structure traversal if information required for that traversal already exists in the problem definition or derived metadata
 
       - concept-structure interface traversal (a multi-interface traversal linking the concept & structure interfaces, so a target concept combination/set/path or target structural attribute can be achieved with structures like filters/limits/functions that adjust the origin structure until it matches the target structural attributes or concepts)
@@ -38,6 +48,7 @@
 
         IV. Solve problem with solution function generation & selection (optionally with pattern/intent-matching)
           - this uses the function interface to identify useful metrics to select functions to begin with when searching for a function to solve a problem (like 'calculate x') which can involve function metadata like identifying hub functions, functions that move in a direction, etc
+          - this analysis involves identifying/deriving decision rules to select between solution functions
 
         V. Solve problem with conceptual query (iterate through conceptual paths & match with structural path)
           - start with required concepts (but not their optimal relationships in a concept combination) such as 'trust', 'distribution', 'power', and find a structure that arranges those concepts in an optimal way that fits the requirements
@@ -60,7 +71,6 @@
           - this is a more comprehensive format that allows quick application & identification of system objects (alternates, efficiencies, incentives)
 
       - other problem-solving automation workflows would start with different interface traversals & use different origin & target structures (designing interface trajectories, identifying the fewest questions that can solve a problem, applying insight paths)
-
 
     - specific interface traversal examples
 
@@ -293,6 +303,13 @@
 
   - functions:
 
+    - conceptual math: 
+
+      - an example is applying the concept of 'meta' to the concept of 'game' and getting output of the operation like 'a game where games can be created by agents inside the game' or 'a game to design games', given similarities between attributes/functions of objects in the definition & relevant spaces
+
+      - apply one concept to another (apply 'power' to 'market' or 'evaluate market by power' involves standardizing the market concept in terms of power, using power as an interface)
+
+
   - answers questions like:
     - what concepts cannot be reduced/abstracted further
     - what concepts have which associated structures
@@ -303,9 +320,63 @@
 
   - examples:
 
-    - design sorting function:
+    - create a program that checks if a system is robust automatically, regardless of which system
+    - what would a concept like 'robust' mean for a system?
+      - given the definition route to 'robust' as 'strong enough to withstand various circumstances'
+        - you can infer that if a system is robust, it can retain its structure despite application of various change types
+        - so query for change types in that system
+        - then check which change types break the system & the ratio of (change types handled/total change types)
+        - assign a ratio to 'strong' adjective
+        - check if the change type handled ratio is above or below the strong ratio
+        - if above, the system is 'robust'
+
+    - design set-sorting or value-finding function:
         - similarity in navigation, equality in split => optimal for target value near initial split points or similar positions to the split points
         - assumed difference embedded in pre-computation of attributes => optimal for target value with different pre-computed attribute value, or target values in similar position to values with different pre-computed attribute values or adjacent values
+
+        - analyze a set from:
+
+          - core interface: what core functions determine set generation/selection/aggregation/interaction/organization
+          - causal interface: what functions were used to generate the set
+          - intent interface: what is this set for
+          - structure interface: randomness, endpoints, subsets/split
+          - potential interface: what are the limits on this set, what is the set of possible outcomes
+          - change interface: where is the change concentrated/distributed in the set from a standard set
+          - pattern interface: what patterns do sets in this position (determined by attributes or sample subset) normally follow
+          - function interface: what functions are adjacent to the set if it has a sequence or clear function map
+          - concept interface: 
+            - what specific tradeoffs/mismatches/alignments/symmetries/combinations/interactions are inherent to the problem/problem space? (specific concept filter) 
+            - where is the power distributed in the set? (abstract concept filter)
+          - system interface: what variance injection points are in the set generation/selection/aggregation/interaction/organization
+
+        - then when you find a pattern match on an interface set, you can restrict the search to those
+
+        - key concepts of this problem (like the "tradeoff of search start point/split function/organization vs. performance", "subset gains", "pattern matching", and "potential worst/best case scenario of solution") should be found quickly from various interfaces:
+
+          - structure interface: 
+
+            - position (sequence in the set problem space) is a determinant of adjacence/distance
+            - adjacence between start search position and final found value position is a key metric
+            - start-found adjacence can be maximized by changing input (number of start points)
+            - limits on number of processes involve ability to read a value at a given position at a time
+            - maximizing start-found adjacence requires more work (higher search processes) to produce a possible metric "lower search time"
+            - "search time" and "start point count" have a tradeoff structure
+
+          - potential interface:
+
+            - the set of possible outcomes (possible positions of value) is equal to the set's positions (indexes)
+            - how do you reduce the set of possible outcomes if the possible outcomes are an integer sequence equal to the set length
+            - subsets are a potential interim unit (based on the value count attribute) between the outcome data type (one value index) and the input data type (set)
+            - the potential of subsets of equivalent length to contain the value could be equally likely (adding randomness to search)
+            - potential injection point for pattern interface: skipping equivalent valued subsets could reduce solve time (if subsets with a certain split follow patterns as determined at search time)
+            - best case scenario in standard search (random or endpoint) is the first value in the set is the target value
+            - does subset search offer gains to random search?
+            - best case scenario of unit solution type (iterate check of value)in subset search is first value after first subset split (split in half) is the target value
+            - next best case scenario type (if the unit solution type best case scenario doesnt occur iteratively) is pattern found & used to reduce solution/search space
+            - splitting requires multiple processes
+            - pattern logging/searching requires multiple processes
+            - depending on set, either can reduce solution space with extra work
+            - there is a trade-off between work invested in pattern-checking, subset-splitting & solution space reduction potential
 
 
 ## Function Analysis
@@ -476,6 +547,26 @@
       - a useful new way to use this is to frame non-resource objects as resources (systems, structures, positions, paths, directions, risk chains, trade loops, markets)
       - then you can apply traditional market analysis (optimal transport) to find, for example, the optimal set of trades to change an industry's position
 
+
+    - for a problem of type 'conflict', like vectors aiming at a corner of a closed shape (where the shape is formed by the intersections of limiting attributes), the structural way to solve that problem is:
+
+      - reducing the angle of the corner 
+        which reduces the difference between corners (and the incentive to aim for a corner) & adds extra alternatives
+        - the solution is an example of 'false limit' - the limit of there being a finite supply of corners or the limit of one route occupying a position at a given time can be surmounted with extra resources
+      - reducing incentive to aim at corners
+        - if the shape has fewer corners, there will be less incentive for internal vectors to aim there
+      - reducing motion
+        - if the shape has a stable state, the motion of the internal vectors can be reduced or staggered at intervals for resource-distribution
+      - adding motion
+        - use types of motion to distribute the vectors so they aim at different corners
+
+    - you could apply these methods of solving the structural problem to the original problem 
+      (a conflict like competition or overflow or false limit or false alignment if the vectors dont need to aim for the same corner)
+
+    - the way to assign 'conflict' problem type to the closed shape structure with internal vectors is by aligning attributes 
+      (incentives that organize motion to create an oversupply of resources (motion vectors) that cant be supported by a resource (position))
+   
+
   - functions:
 
   - structures: 
@@ -563,6 +654,8 @@
       - example: "what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?"
       
 	- use case:
+
+    - predict which system filters will be useful based on system priority
 
 		- this is the problem of adding/fitting/reducing structure from a gap in structure, which can be used to solve problems like:
 
@@ -884,7 +977,7 @@
 	- core functions (filter, find, apply, derive, build, change) mapped to user intents (identify cause, predict a variable, build a function) can be used to generate & design a query on the interface network
 
 	- like all other sets of objects on an equal interface, any item in the set can be used to find the others
-
+  - when a system is totally unknown, you should diversify across all interfaces at first
 	- each interface network in the set of interfaces (core function interface network, general interface network, specific interface network) can be used to generate the others
 		- intent interface can be used to generate the type interface
 		- dependency interface can be used to generate the side effect interface

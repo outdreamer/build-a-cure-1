@@ -685,7 +685,7 @@
 
 		- the docs for some implementation strategies are here:
 			https://github.com/outdreamer/build-a-cure/blob/master/docs/core_analysis/derivation_methods.md
-			https://github.com/outdreamer/build-a-cure/blob/master/docs/specific_methods/problem_solving_matching.md
+			https://github.com/outdreamer/build-a-cure/blob/master/docs/workflow/problem_solving_matching.md
 
 		- most of my implementation strategies vary on:
 
@@ -697,7 +697,7 @@
 
 		- but they have in common:
 			- using core objects & patterns
-			- using info objects like problems/incentives/sub-systems/efficiencies & concepts like probability/relevance to create prediction functions
+			- using info objects like problems/incentives/sub-systems/efficiencies & definitions & concepts like probability/relevance to create defined structures like prediction functions
 			- applying structure to unstructured information
 
 
@@ -777,7 +777,7 @@
 
 	15. what is the actual workflow to use this?
 
-		- the program steps include the following:
+		- the general program steps include the following:
 
 			1. check pre-existing output of the program (pattern indexes, concept definitions, etc) to see if it can be used as an input filter for a new problem (the system filters below are some of the outputs of this program) to break the problem into solved problems
 
@@ -828,7 +828,7 @@ All systems will have core abstract concept implementations:
 	"position": "input"
 }
 
-But specific concepts evolve within a system given unique combinations of core objects.
+But specific concepts evolve within a system, given unique combinations of core objects.
 
 Example:
 	- a "signal joint" evolves as a concept in the gene system because it's an output of an important combination of core processes that is not matched with an equivalent handler, so it can cause further complexity bc its allowed to interact with other systems instead of decomposing it after it's used.
@@ -843,7 +843,7 @@ Example:
 
 When a system is totally unknown, you should diversify across all interfaces at first - example of finding value in a set:
 
-	- analyze a set from:
+	- finding value in a set - analyze a set from:
 
 		- core interface: what core functions determine set generation/selection/aggregation/interaction/organization
 		- causal interface: what functions were used to generate the set
