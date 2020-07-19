@@ -6,15 +6,15 @@
     
     - a workflow to automate problem-solving is an interface traversal that can be applied to any problem
 
-    - this is like an insight path (a cross-system, insight-generating sequence) that can generate solutions
+    - these are very abstract insight paths (a cross-system, insight-generating sequence) that can generate solutions automatically
 
     - workflow variables include:
 
-      - the starting point of the analysis (which interface the query starts from)
-      - the structures relevant (which structures or type of graphing method to use)
-      - the intent (create a prediction function, reduce solution space, compare solutions, or match problem with solution)
-      - the core abstract function represented (is it a find method, an apply method, a combination)
-      - the models used (object model, interface query)
+      - starting point of the analysis (which interface the query starts from)
+      - structures relevant (which structures or type of graphing method to use)
+      - intent (create a prediction function, reduce solution space, compare solutions, or match problem with solution)
+      - core abstract function represented (is it a find method, an apply method, a combination)
+      - formats & structures used (object model, interface query)
 
     - if the problem is 'finding a structure that matches conceptual priorities like strength', that can clearly begin on the concept-structure traversal if information required for that traversal already exists in the problem definition or derived metadata
 
@@ -30,7 +30,7 @@
 
     - occasionally an interface will be sufficient on its own, if the problem is already pre-structured
 
-      - the function interface may be enough to find the right sequence of functions, if the function metadata includes input/outputs and there are no ambiguities to resolve, meaning this solution is a simple query to match inputs/outputs, where the final output is the intended goal of the query
+      - for example, the function interface may be enough to find the right sequence of functions, if the function metadata includes input/outputs and there are no ambiguities to resolve, meaning this solution is a simple query to match inputs/outputs, where the final output is the intended goal of the query
 
     - problem-solving automation workflows
 
@@ -49,7 +49,7 @@
 
         III. Transforming problem into query of solved problems (using most adjacent solution formats)
           - converting the problem into a structure (set, sequence, network) of solved problems (like distributing power, resolving imbalances, etc), and then traversing that structure if multiple alternatives are found
-          - this method can take the form of a simple database query ('fetch solutions for this problem type') in its most basic form, if the problem is an existing solved problem
+          - this method can take the form of a simple database query ('fetch & apply solutions, including insight paths, for this problem type' or 'find the fewest question jumps that can solve the problem') in its most basic form, if the problem is an existing solved problem
           - for example, finding a prediction function is a set of problems like 'decide on metrics & threshold values', 'decide on complexity', 'choose between opposing sides of tradeoffs', 'generalize', 'identify outliers', 'identify noise', 'account for error types like corrupt/incorrect/unrecoverable/incentivized or improperly formatted/standardized data', 'account for alternate explanations', 'account for correlation between independent variables', 'account for incorrect data types', 'account for missing information', etc
 
         IV. Solve problem with solution function generation & selection (optionally with pattern/intent-matching)
@@ -66,6 +66,7 @@
         VII. Vectorize problem/solution space & match intents
           - this involves framing a problem as a structure like a directed network to convert it to a route optimization problem, where the assumptions are inputs, the intents are outputs, & the interim structures can be a mix of interface objects like concepts
           - if you have a general problem definition like 'find a function that calculates x', you would arrange input information on one side, the function on the other side as the goal, and identify related concepts, patterns, & other objects to that intent to connect them, given the definition routes of those terms
+          - this can also involve formatting the problem as a set of questions (sub-problems of an information asymmetry problem type) to answer that map from starting information to target information
 
         VIII. Mapping variance objects in problem space systems as starting solution space
           - framing a problem in terms of variance (on the potential interface) makes it clear which objects are important, given variance/potential structures like interaction spaces, inevitable interactions, variance gaps, etc
@@ -79,20 +80,20 @@
 
         X. System derivation
           - this is a more comprehensive format that allows quick application & identification of system objects (alternates, efficiencies, incentives)
-          - for example, identifying known system objects for the 'find a prediction function' problem would mean identifying incentives in data collection (collect small sample, collect representative sample), efficiencies in calculating prediction functions (some sections should be treated as potential fields, where a network is embedded in place of a function section, to indicate decision logic accessed with additional information if a predicted value is requested from that section of the function)
+          - for example, identifying known system objects for the 'find a prediction function' problem would mean identifying incentives in data collection (collect small sample, collect representative sample), efficiencies in calculating prediction functions (some sections should be treated as potential fields, where a network is embedded in place of a function section, to indicate decision logic or alternate functions accessible with additional information, if a predicted value is requested from that section of the function), false similarities (like the apparent similarity between two variables being correlation rather than a direct relationship), opposites (like neutralizing variables), and other core system objects
 
-      - other problem-solving automation workflows would start with different interface traversals & use different origin & target structures (designing interface trajectories, identifying the fewest questions that can solve a problem, applying insight paths)
+      - other problem-solving automation workflows would start with different interface traversals & use different origin & target structures (such as designing interface trajectories, or generating new info object layers to use as interfaces or systems (combine perspective & potential to generate a potential-perspective field, combine problems & markets to create a market for problems, combine platforms with platforms to create a platform to sell platforms, combine variables and networks to create variable networks, combine variables & risk to identify variable development sequences))
 
     - specific interface traversal examples
 
       - problem: find a prediction function to predict variables causing an output, like predicting stock price or a diagnosis from symptoms/causative conditions
           
           - interface traversal
-            - information (describing variable types, redundancies, missing info, etc)
-            - system (fitting the variables to a system format)
-            - causal (finding root/direct causes & causal structures)
-            - concept (whether the problem is valid given a definition of price)
-            - change (how the function can change)
+            - find information (describing variable types, redundancies, missing info, etc)
+            - fit system (fitting the variables to a system format)
+            - map cause (finding root/direct causes & causal structures)
+            - match concept (whether the problem is valid given a definition of price)
+            - identify change (how the function can change)
           
           - if thats not enough to fulfill solution metrics or reduce the problem (identify a range of possible prediction functions), traversals with interface operations can be done
             - causal * change * pattern - to examine whether causal change patterns can reduce the problem or identify a solution
@@ -101,25 +102,25 @@
       - problem: find & build an optimal invention design to fulfill intents like 'building a function with minimal bugs'
 
           - interface traversal
-            - information (describing function intents, limits, and assumptions like parameters)
-            - system (fitting the function to a system, formatted to include possible variance injection points, identify efficiencies like logic that can be merged, etc)
-            - structure (identifying structures that can be applied to the function system, like filters (conditions), direction changes (control flow statements), relationships (assignments), and mismatches (errors)
-            - potential (identifying unenforced rules, rule-intent imbalances, false similarities, & other objects of potential allowing exploit opportunities that are not already identified)
-            - causal, intent, concept (test function impact on other causes, concepts, & intents, which are high-level objects a function can alter)
-          
+            - find information (describing function intents, limits, and assumptions like parameters)
+            - fit system (fitting the function to a system, formatted to include possible variance injection points, identify efficiencies like logic that can be merged, etc)
+            - identify structure (identifying structures that can be applied to the function system, like filters (conditions), direction changes (control flow statements), relationships (assignments), and mismatches (errors)
+            - identify potential (identifying unenforced rules, rule-intent imbalances, false similarities, & other objects of potential allowing exploit opportunities that are not already identified)
+            - change cause, intent, concept (test function impact on other causes, concepts, & intents, which are high-level objects a function can alter)
+            - match pattern (does this function comply with patterns for functions with similar solution metrics)
+
           - if the function implementation doesnt fulfill solution metrics, other interface traversals can be done
-            - pattern interface (does this function comply with patterns for functions with similar solution metrics)
             - a system-object or function-concept interface like the 'efficiency interface' or 'ambiguity interface' (does this function have a more efficient or less ambiguous route between input & output that might fulfill a solution metric, given that maximizing efficiency & reducing ambiguity are standard system & function metrics)
 
       - problem: find an optimal route between start & end points, like the 'minimal trades to get equal problem/opportunity distribution'
           
           - interface traversal
-            - information (identify differentiating attributes/functions/sub-systems of agents/positions/routes within the network)
-            - system (identify relevant structures like abstraction layer to traverse at, identify important objects required to solve the problem, like trading problems/markets/skills/information/risk/bets vs. trading currency, or framing currency as a position attribute, rather than a standardizing interface)
-            - structure (identify trade & other market structures that are important for understanding why resources dont get distributed fairly, like closed trade loops & independence machines)
-            - potential (identify alternative perspectives that could also explain the variation in optimized routes, like alternate value definitions)
-            - causal (identify causes like marketing, collusion, and regulations that prevent or interfere with equilibrium market events)
-            - concept (identify concepts relevant to markets like balance, demand/supply matching, and how the concept of information can disrupt any other market bc it enables automation)
+            - identify information (identify differentiating attributes/functions/sub-systems of agents/positions/routes within the network)
+            - fit system (identify relevant structures like abstraction layer to traverse at, identify important objects required to solve the problem, like trading problems/markets/skills/information/risk/bets vs. trading currency, or framing currency as a position attribute, rather than a standardizing interface)
+            - identify structure (identify trade & other market structures that are important for understanding why resources dont get distributed fairly, like closed trade loops & independence machines)
+            - identify potential (identify alternative perspectives that could also explain the variation in optimized routes, like alternate value definitions)
+            - identify cause (identify causes like marketing, collusion, and regulations that prevent or interfere with equilibrium market events)
+            - identify concept (identify concepts relevant to markets like balance, demand/supply matching, and how the concept of information can disrupt any other market bc it enables automation)
           
           - if queries of those interfaces are insufficient to solve the problem, interface operations can be used
             - the information-system-structure interface operation (can be used to determine information like the next layer of information objects that are relevant if enough automation is distributed)
@@ -127,6 +128,17 @@
   - analysis types
 
     - problem space analysis (visualizing problem metadata, and changes to the problem space that invalidate the original or other problems once a particular solution is applied)
+
+      - this involves identifying the given problem & solution target structures, so the problem & solution can be visualized in the most useful & explanatory way
+
+        - formatting the problem as a n-dimensional shape where variables map to dimensions of the shape (where the solution format is a set of vectors that can reduce the dimensions & size of the shape)
+        - a network missing an optimized route between start & end points, where the solution format is the optimized route
+        - an information imbalance, where the solution format is the set of steps to balance the information
+
+      - each of those formats is better for different problem types/formats (with varying structure in the problem definition) and solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
+      - each of those involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, processes like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network or in the problem space
+      
+      - identifying problem metadata means defining the structure of a problem that the solution fulfills in some way
     
     - core analysis
       - automatically finding core objects/functions/attributes/states possible to determine/describe a system, defining core operations like find/apply/build/derive
