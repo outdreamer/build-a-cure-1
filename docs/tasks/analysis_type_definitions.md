@@ -8,7 +8,7 @@
 
     - this is like an insight path (a cross-system, insight-generating sequence) that can generate solutions
 
-    - workflows vary on:
+    - workflow variables include:
 
       - the starting point of the analysis (which interface the query starts from)
       - the structures relevant (which structures or type of graphing method to use)
@@ -38,37 +38,48 @@
 
         I. Filter problem definition until it matches solution structure (using definition & standardization, applying increasing limits/filters/transforms until problem & solution match)
           - this applies structures such as limits to fulfill solution intents iteratively
+          - for example, when deriving the structural implementation of the concept of cryptocurrency, applying a 'group' structure to the 'transaction' object creates the 'transaction ledger' object, which fulfills sub-intents of the solution ('access related information' and 'connect related information') and reduces a problem sub-component (the 'information imbalance' problem type between receiver & sender), a problem type which has related solution functions (like 'distribute information evenly')
 
         II. Solve problem with structure fitting (adapt probable solution structures to match problem definition)
           - this starts with core, probable, or difference-maximizing structures and applies additional structures until one is found that fulfills solution metrics
+          - for example, to find a prediction function for a data set, 
+            - the core functions would be common base/distortion (patterns of change), component (core patterns of prediction functions), approximation (generalizing functions), & adjacent functions (functions within a range of accuracy) of prediction functions
+            - the probable functions would be functions in between the most accurate and the most generalized function versions
+            - the difference-maximizing functions would be the most different possible functions (a circle function to explain a high-randomness data set, multiple step-functions to explain a continuous function, a linear function, etc) to start by examining the most different possibilities and eliminate them with additional filters
 
         III. Transforming problem into query of solved problems (using most adjacent solution formats)
           - converting the problem into a structure (set, sequence, network) of solved problems (like distributing power, resolving imbalances, etc), and then traversing that structure if multiple alternatives are found
-          - this method can take the form of a simple database query ('fetch solutions for this problem type') in its most basic form
+          - this method can take the form of a simple database query ('fetch solutions for this problem type') in its most basic form, if the problem is an existing solved problem
+          - for example, finding a prediction function is a set of problems like 'decide on metrics & threshold values', 'decide on complexity', 'choose between opposing sides of tradeoffs', 'generalize', 'identify outliers', 'identify noise', 'account for error types like corrupt/incorrect/unrecoverable/incentivized or improperly formatted/standardized data', 'account for alternate explanations', 'account for correlation between independent variables', 'account for incorrect data types', 'account for missing information', etc
 
         IV. Solve problem with solution function generation & selection (optionally with pattern/intent-matching)
           - this uses the function interface to identify useful metrics to select functions to begin with when searching for a function to solve a problem (like 'calculate x') which can involve function metadata like identifying hub functions, functions that move in a direction, etc
-          - this analysis involves identifying/deriving decision rules to select between solution functions
+          - this analysis involves identifying/deriving decision rules to identify alternate/interchangeable solution functions & select between solution functions
+          - an example would be deciding when to select a solution function you have indexed in the solution table and when to look for a new function, or update the existing function
 
         V. Solve problem with conceptual query (iterate through conceptual paths & match with structural path)
-          - start with required concepts (but not their optimal relationships in a concept combination) such as 'trust', 'distribution', 'power', and find a structure that arranges those concepts in an optimal way that fits the requirements
+          - start with required concepts (but not their optimal relationships in a concept combination) such as 'trust', 'distribution', 'power', and find a structure that arranges those concepts in an optimal way that fits the solution requirements
 
         VI. Derive conceptual query & match with structural path
           - start by finding the concept combination required ('trust generated from equal distribution of power'), then find matching structures of that specific combination
         
         VII. Vectorize problem/solution space & match intents
           - this involves framing a problem as a structure like a directed network to convert it to a route optimization problem, where the assumptions are inputs, the intents are outputs, & the interim structures can be a mix of interface objects like concepts
+          - if you have a general problem definition like 'find a function that calculates x', you would arrange input information on one side, the function on the other side as the goal, and identify related concepts, patterns, & other objects to that intent to connect them, given the definition routes of those terms
 
         VIII. Mapping variance objects in problem space systems as starting solution space
-          - framing a problem in terms of variance makes it clear which objects are important, given variance/potential structures like interaction spaces, inevitable interactions, variance gaps, etc
+          - framing a problem in terms of variance (on the potential interface) makes it clear which objects are important, given variance/potential structures like interaction spaces, inevitable interactions, variance gaps, etc
+          - the high-variance objects in the 'find a prediction function' problem are the error types, assumptions, change types, data set concepts (like how the concept of 'survival skills' is relevant & inferrable in the titanic survival data set), and variation across data sets, so a good solution would integrate functions to identify & handle those objects
 
         IX. System snapshot (interface/symmetry/vertex) derivation
           - finding the specific interfaces & related objects in a problem system to frame a problem efficiently
-          - in the bio system, this would mean automatically identifying the genetic interface
-          - in a function set like a code base, this would mean automatically identifying the function type interface (to identify function types like boundary/change rules for efficient function indexing)
+          - in the bio system, this would mean automatically identifying the genetic configuration, protein structure, immune memory, and brain interfaces as important determinants of the system
+          - in a function set like a code base, this would mean automatically identifying the function type interface (to identify function types like boundary/change rules for efficient function indexing) and the intent interface as important for indexing functions
+          - in the 'find a prediction function' problem, this would identify the concept of 'average' as an important symmetry balancing various tradeoffs, identify independent variable probability distributions as an important vertex in predicting the behavior of dependent variables, and identify the cause interface as an important interface for understanding, which is a proxy for a prediction function, the potential interface as a tool for understanding variable dynamics (how sources of variance gather into variables), and the system interface as a way to derive the range of possible prediction functions (how variables gather in complex systems, and how the range of prediction functions is whichever prediction functions are possible between those variables as system components, given system structure, so you should start with the vertices of that range - meaning a set of difference-maximizing functions in that range)
 
         X. System derivation
           - this is a more comprehensive format that allows quick application & identification of system objects (alternates, efficiencies, incentives)
+          - for example, identifying known system objects for the 'find a prediction function' problem would mean identifying incentives in data collection (collect small sample, collect representative sample), efficiencies in calculating prediction functions (some sections should be treated as potential fields, where a network is embedded in place of a function section, to indicate decision logic accessed with additional information if a predicted value is requested from that section of the function)
 
       - other problem-solving automation workflows would start with different interface traversals & use different origin & target structures (designing interface trajectories, identifying the fewest questions that can solve a problem, applying insight paths)
 
