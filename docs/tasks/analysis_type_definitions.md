@@ -131,14 +131,25 @@
 
       - this involves identifying the given problem & solution target structures, so the problem & solution can be visualized in the most useful & explanatory way
 
-        - formatting the problem as a n-dimensional shape where variables map to dimensions of the shape (where the solution format is a set of vectors that can reduce the dimensions & size of the shape)
+        - formatting the problem as a n-dimensional shape where variables map to dimensions of the shape (where the solution format is a set of vectors that can reduce the dimensions & size of the shape, or fill the shape with the solution shape if the problem is the method to fill the problem structure rather than reduce it)
+        
         - a network missing an optimized route between start & end points, where the solution format is the optimized route
+        
         - an information imbalance, where the solution format is the set of steps to balance the information
 
+      - selecting the right format for the problem & solution is an important part of this analysis
+
+      - other important functions include 
+        - graphing the problem on a network of related problems (on the same interaction layer, in the same problem space, etc) such as how the problem of building a technology is related to the problem of managing usage of & access to it
+        - defining the problem space as a contextual system where the problem is active
+          - this includes other problem spaces where it is or could be active
+            - for example, how the 'tech distribution' problem (where most tech is inherently neutral & can be used for good or malicious intents so what matters most is how it's distributed) acts differently in different problem spaces where distribution tools & government ethics & policies differ
+
       - each of those formats is better for different problem types/formats (with varying structure in the problem definition) and solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
-      - each of those involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, processes like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network or in the problem space
       
-      - identifying problem metadata means defining the structure of a problem that the solution fulfills in some way
+      - each of those involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, processes like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network to retrieve or connect information, or in the problem space to reduce a problem shape or traverse an optimal route in the problem network system (not necessarily the network of related problems but the route problem framed within a network)
+      
+      - identifying problem metadata means defining the structure of a problem that the solution fulfills by some metric
     
     - core analysis
       - automatically finding core objects/functions/attributes/states possible to determine/describe a system, defining core operations like find/apply/build/derive
