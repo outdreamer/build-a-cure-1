@@ -11,7 +11,7 @@
 		- "build a tool to detect & display bacteria in a room"
 
 	and output possible solutions such as:
-		- "grow bacteria until its more measurable"
+		- "grow bacteria until it's more measurable"
 		- "use an animal model in an air-conditioned building (when people aren't in it like at night) that would quickly show signs of infection if the virus was live and present"
 		- "display points on an AR interface with magnified bacteria attributes, or applying other data visualization rules to indicate attributes"
 

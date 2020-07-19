@@ -1,4 +1,4 @@
-# example interface traversal flow diagram and move to spec
+- example interface traversal flow diagram and move to spec
 
 		- Here's an example of why different interfaces are more useful in different situations, given a standard problem like 'build a function automatically for a given function intent'.
 

@@ -1,6 +1,151 @@
 # Analysis definitions
 
-- reduce these to definitions of each type sufficient to understand & implement each type of analysis, optionally including function lists
+- reduce these to definitions of each type sufficient to understand & implement each type of analysis, optionally including implementation & target function lists
+  
+  - workflows
+    
+    - a workflow to automate problem-solving is an interface traversal that can be applied to any problem
+
+    - if the problem is 'finding a structure that matches conceptual priorities like strength', that can clearly begin on the concept-structure traversal if information required for that traversal already exists in the problem definition or derived metadata
+
+      - concept-structure interface traversal (a multi-interface traversal linking the concept & structure interfaces, so a target concept combination/set/path or target structural attribute can be achieved with structures like filters/limits/functions that adjust the origin structure until it matches the target structural attributes or concepts)
+
+      - or you can standardize to the intent interface which is particularly effective at linking other interfaces (find intents & intent structures that fulfill the 'strength' attribute, and structures matching those intents)
+
+    - other workflows can be derived given alternate traversals that can generate information (like how causation, information formats, functions, and intent can generate structure information), given existing information
+
+      - problem-solution interface traversal: sometimes a sufficient solution may be already stored in the solution table (solution being an information object) and the way to solve the problem is formatting it correctly or identifying its type correctly so that solutions for that format or type can be queried & applied as-is, the most basic traversal type
+
+    - these workflows can be generated with new interface combinations or interfaces, if each interface in the sequence can add information required to solve the problem
+
+    - occasionally an interface will be sufficient on its own, if the problem is already pre-structured
+
+      - the function interface may be enough to find the right sequence of functions, if the function metadata includes input/outputs and there are no ambiguities to resolve, meaning this solution is a simple query to match inputs/outputs, where the final output is the intended goal of the query
+
+    - problem-solving automation workflows
+
+      - these workflows apply various interfaces & analysis types, and can be applied to any problem
+
+        I. Filter problem definition until it matches solution structure (using definition & standardization, applying increasing limits/filters/transforms until problem & solution match)
+          - this applies structures such as limits to fulfill solution intents iteratively
+
+        II. Solve problem with structure fitting (adapt probable solution structures to match problem definition)
+          - this starts with core, probable, or difference-maximizing structures and applies additional structures until one is found that fulfills solution metrics
+
+        III. Transforming problem into query of solved problems (using most adjacent solution formats)
+          - converting the problem into a structure (set, sequence, network) of solved problems (like distributing power, resolving imbalances, etc), and then traversing that structure if multiple alternatives are found
+          - this method can take the form of a simple database query ('fetch solutions for this problem type') in its most basic form
+
+        IV. Solve problem with solution function generation & selection (optionally with pattern/intent-matching)
+          - this uses the function interface to identify useful metrics to select functions to begin with when searching for a function to solve a problem (like 'calculate x') which can involve function metadata like identifying hub functions, functions that move in a direction, etc
+
+        V. Solve problem with conceptual query (iterate through conceptual paths & match with structural path)
+          - start with required concepts (but not their optimal relationships in a concept combination) such as 'trust', 'distribution', 'power', and find a structure that arranges those concepts in an optimal way that fits the requirements
+
+        VI. Derive conceptual query & match with structural path
+          - start by finding the concept combination required ('trust generated from equal distribution of power'), then find matching structures of that specific combination
+        
+        VII. Vectorize problem/solution space & match intents
+          - this involves framing a problem as a structure like a directed network to convert it to a route optimization problem, where the assumptions are inputs, the intents are outputs, & the interim structures can be a mix of interface objects like concepts
+
+        VIII. Mapping variance objects in problem space systems as starting solution space
+          - framing a problem in terms of variance makes it clear which objects are important, given variance/potential structures like interaction spaces, inevitable interactions, variance gaps, etc
+
+        IX. System snapshot (interface/symmetry/vertex) derivation
+          - finding the specific interfaces & related objects in a problem system to frame a problem efficiently
+          - in the bio system, this would mean automatically identifying the genetic interface
+          - in a function set like a code base, this would mean automatically identifying the function type interface (to identify function types like boundary/change rules for efficient function indexing)
+
+        X. System derivation
+          - this is a more comprehensive format that allows quick application & identification of system objects (alternates, efficiencies, incentives)
+
+      - other problem-solving automation workflows would start with different interface traversals & use different origin & target structures (designing interface trajectories, identifying the fewest questions that can solve a problem, applying insight paths)
+
+
+    - specific interface traversal examples
+
+      - problem: find a prediction function to predict variables causing an output, like predicting stock price or a diagnosis from symptoms/causative conditions
+          
+          - interface traversal
+            - information (describing variable types, redundancies, missing info, etc)
+            - system (fitting the variables to a system format)
+            - causal (finding root/direct causes & causal structures)
+            - concept (whether the problem is valid given a definition of price)
+            - change (how the function can change)
+          
+          - if thats not enough to fulfill solution metrics or reduce the problem (identify a range of possible prediction functions), traversals with interface operations can be done
+            - causal * change * pattern - to examine whether causal change patterns can reduce the problem or identify a solution
+            - concept * change * causes - to identify if a concept change looks imminent
+
+      - problem: find & build an optimal invention design to fulfill intents like 'building a function with minimal bugs'
+
+          - interface traversal
+            - information (describing function intents, limits, and assumptions like parameters)
+            - system (fitting the function to a system, formatted to include possible variance injection points, identify efficiencies like logic that can be merged, etc)
+            - structure (identifying structures that can be applied to the function system, like filters (conditions), direction changes (control flow statements), relationships (assignments), and mismatches (errors)
+            - potential (identifying unenforced rules, rule-intent imbalances, false similarities, & other objects of potential allowing exploit opportunities that are not already identified)
+            - causal, intent, concept (test function impact on other causes, concepts, & intents, which are high-level objects a function can alter)
+          
+          - if the function implementation doesnt fulfill solution metrics, other interface traversals can be done
+            - pattern interface (does this function comply with patterns for functions with similar solution metrics)
+            - a system-object or function-concept interface like the 'efficiency interface' or 'ambiguity interface' (does this function have a more efficient or less ambiguous route between input & output that might fulfill a solution metric, given that maximizing efficiency & reducing ambiguity are standard system & function metrics)
+
+      - problem: find an optimal route between start & end points, like the 'minimal trades to get equal problem/opportunity distribution'
+          
+          - interface traversal
+            - information (identify differentiating attributes/functions/sub-systems of agents/positions/routes within the network)
+            - system (identify relevant structures like abstraction layer to traverse at, identify important objects required to solve the problem, like trading problems/markets/skills/information/risk/bets vs. trading currency, or framing currency as a position attribute, rather than a standardizing interface)
+            - structure (identify trade & other market structures that are important for understanding why resources dont get distributed fairly, like closed trade loops & independence machines)
+            - potential (identify alternative perspectives that could also explain the variation in optimized routes, like alternate value definitions)
+            - causal (identify causes like marketing, collusion, and regulations that prevent or interfere with equilibrium market events)
+            - concept (identify concepts relevant to markets like balance, demand/supply matching, and how the concept of information can disrupt any other market bc it enables automation)
+          
+          - if queries of those interfaces are insufficient to solve the problem, interface operations can be used
+            - the information-system-structure interface operation (can be used to determine information like the next layer of information objects that are relevant if enough automation is distributed)
+
+  - analysis types
+
+    - problem space analysis (visualizing problem metadata, and changes to the problem space that invalidate the original or other problems once a particular solution is applied)
+    
+    - core analysis
+      - automatically finding core objects/functions/attributes/states possible to determine/describe a system, defining core operations like find/apply/build/derive
+    
+    - system analysis
+      - automatically fitting system objects like symmetries, sub-systems, sub-interfaces, false assumptions, correlations, efficiencies, incentives, and conflicts to problem definition to determine optimal organization/format/routes/metrics/positions
+    
+    - structure analysis
+      - automatically finding structures, like a route between information formats to solve a problem
+    
+    - information analysis
+      - information problem type formatting (mapping the problem as a structure composed of information problem types, like an information mismatch/inequality/minimum/overflow/gap)
+      - automatically finding definitions, examples, minimum information to solve, problem-solution matching, insight paths like question-identification functions, finding math structures to re-use math patterns to solve other problems, etc
+
+      - insight analysis
+        - insight path application (using insight paths from other fields to optimize insight generation)
+      - problem analysis
+        - formatting to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions)
+      - question analysis (where a question is framed as a source position and a target position on a network, and the answer is the most robust path or the path that moves the nearest to the target position or the path that moves in the priority direction on the network)
+    
+    - change analysis
+      - automatically identifying change metadata like change types necessary to explain a solution or solve a problem
+      - potential analysis
+        - automatically finding structures of variance like gaps/cascades/reducers, possibility fields, and determining/limiting vertices
+    
+    - logical analysis
+      - functional analysis
+        - automatically identifying function metadata like variables, input/output trajectory, the function in a filter format, intent, complexity, efficiency, & exploits)
+      - intent analysis
+        - automatically finding possible reasons to use a function to automate logic
+      - causal analysis
+        - automatically matching the problem to causal structures to infer relevant variables & causation metadata (like directness of cause, degree of cause, inevitability, uniqueness of cause, causal tree/network/loop/layer shape)
+      - pattern analysis
+        - automatically finding patterns with relevant similarities to infer the relevance of pattern metadata, where patterns replace missing required data (such as using patterns between variables of specific types or system positions to infer probable variable relationships)
+    
+    - concept analysis
+      - automatically identifying concepts associated with a structure & vice versa, identifying positions of default abstract concepts in the network
+
+    - interface analysis
+      - mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query
 
 
 ## standardized analysis
@@ -9,7 +154,7 @@
     - interface objects like patterns & concepts
 
   - structures:
-    - core structures like intersections, hubs, vertices, maps, limits, symmetries, & alignments
+    - core structures (intersections, hubs, vertices, maps, limits, symmetries, & alignments)
 
   - concepts:
     - abstract concepts (similarity, power)
@@ -155,7 +300,6 @@
     - concept-system interface:
       - what concepts are likely to evolve in a system
       - what concepts are common to most systems (would help identify concepts like an efficiency)
-
 
   - examples:
 
