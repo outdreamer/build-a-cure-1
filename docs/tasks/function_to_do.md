@@ -17,6 +17,14 @@
          'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
   - add formatting to allow multiple items as keys in json and maintain order for interface network paths
 
+  - organize derivation methods, implementation guide & specific analysis rules in core_analysis
+
+  - function list (tech debt):
+    - core operations (find, apply, identify, derive, build) with core objects (patterns, intents, definitions)
+    - once those are defined, you can run queries to find matching objects
+    - then you need conversion functions between formats (to an interface)
+    - once you have conversion functions, you can connect problem space data to solutions
+    - then youd need problem space visualization & solution metadata calculation functions to finish it
 
 ## define
 

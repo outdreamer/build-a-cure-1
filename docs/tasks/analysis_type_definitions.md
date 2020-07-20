@@ -131,25 +131,29 @@
 
       - this involves identifying the given problem & solution target structures, so the problem & solution can be visualized in the most useful & explanatory way
 
+        - identifying problem metadata includes defining the structure of a problem that the solution fulfills by some metric
+
         - formatting the problem as a n-dimensional shape where variables map to dimensions of the shape (where the solution format is a set of vectors that can reduce the dimensions & size of the shape, or fill the shape with the solution shape if the problem is the method to fill the problem structure rather than reduce it)
         
         - a network missing an optimized route between start & end points, where the solution format is the optimized route
         
         - an information imbalance, where the solution format is the set of steps to balance the information
 
-      - selecting the right format for the problem & solution is an important part of this analysis
+      - selecting the right format for the problem & solution is an important function in this analysis
 
-      - other important functions include 
+        - each of those formats is better for different problem types/formats (with varying structure in the problem definition) and solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
+      
+        - each of those involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, processes like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network to retrieve or connect information, or in the problem space to reduce a problem shape or traverse an optimal route in the problem network system (not necessarily the network of related problems but the route problem framed within a network)
+      
+      - other important functions include:
+
         - graphing the problem on a network of related problems (on the same interaction layer, in the same problem space, etc) such as how the problem of building a technology is related to the problem of managing usage of & access to it
-        - defining the problem space as a contextual system where the problem is active
-          - this includes other problem spaces where it is or could be active
-            - for example, how the 'tech distribution' problem (where most tech is inherently neutral & can be used for good or malicious intents so what matters most is how it's distributed) acts differently in different problem spaces where distribution tools & government ethics & policies differ
 
-      - each of those formats is better for different problem types/formats (with varying structure in the problem definition) and solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
-      
-      - each of those involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, processes like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network to retrieve or connect information, or in the problem space to reduce a problem shape or traverse an optimal route in the problem network system (not necessarily the network of related problems but the route problem framed within a network)
-      
-      - identifying problem metadata means defining the structure of a problem that the solution fulfills by some metric
+        - defining the problem space as a contextual system where the problem is active
+
+          - this includes other problem spaces where it is or could be active
+            
+            - for example, how the 'tech distribution' problem (where most tech is inherently neutral & can be used for good or malicious intents so what matters most is how it's distributed) acts differently in different problem spaces where distribution tools & government ethics & policies differ
     
     - core analysis
       - automatically finding core objects/functions/attributes/states possible to determine/describe a system, defining core operations like find/apply/build/derive
@@ -513,10 +517,15 @@
 ## Pattern Analysis
 
   - functions:
+
   - attributes:
+
   - objects:
+
   - structures:
+
   - concepts:
+  
   - answers questions like:
     - what would the path between inputs/output be, given patterns of other paths
     - what is the function linking these variables, given common function patterns between variables of these types/topics/ranges/other metadata?
@@ -525,48 +534,96 @@
 ## Logic Analysis
 
 	- definition:
-    - this analysis can include related objects of logic (patterns, functions, intent, cause, and change)
-	  - automates the selection, structurization (positioning), optimization, & implementation of logical rules
+    - this analysis can include related interfaces of logic (patterns, functions, intent, cause, and change)
+    - relevant logical objects with defined rules include assumptions, requirements, implications, conclusions, fallacies, inferences, etc, and logical structures like sequences, connections, alternatives which follow the rules of logic (some rules have to follow other rules, logically, so their appropriate structure is a sequence - whereas some rules cannot be implemented simultaneously like mutually exclusive rules, so their appropriate structure is a tree branch)
+    - using these logical object definitions & associated logical structures, you can derive what is logical in any given rule set
+    - this means you can derive emergent structures of possible error contexts/rules, like: 
+      - when there is a difference between the implication of a rule and the implementation of handlers for that rule, there is an opportunity for misuse of that rule
+        - if you have logic to handle the 'dog chases cat' rule but you dont have logic to connect & handle the causes of that including 'the cat did something', then the 'dog chases cat' scenario could cause variance in the system, such as being used out of context (even when the cat did not do something), or not being prevented in the system (by handling what the cat did to prevent the chase event)
+      - when an assumption may seem to fit in a system where its applied (assume that people are biased), but the implications of that assumption dont fit the system (the system user/designer/implementer may also be biased), the assumption shouldnt be used or should be adjusted to fit the system (all agents are potentially biased at any point because bias is part of the learning process)
+	  - enables automation of the selection, structurization (limiting, connecting, scoping, positioning), optimization (reducing number of rules or high-cost rules or distributing/reducing costs better), & implementation of logical rules
 
 	- examples:
 
-		- if the following code appears in this order:
+      - variable1 is not checked for False (theres a gap in enforcement between the None & False definitions) so the operation could fail
+  			if variable1 is None:
+  				return False
+  			return operation(variable1)
 
-			if variable1 is None:
-				return False
-			return operation(variable1)
+      - theres a potential gap in enforcement of data type, where variable1 might not be an integer even if its positive
+  			if variable1 <= 0:
+  				return False
+  			return int(variable1)
 
-			- variable1 is not checked for False (theres a gap in enforcement between the None & False definitions) so the operation could fail
-
-			if variable1 <= 0:
-				return False
-			return int(variable1)
-
-			- theres a potential gap in enforcement of data type, where variable1 might not be an integer even if its positive
-
-			if not variable1:
-				return False
-			if variable1:
-			
-			- there's an unnecessary condition which is invalidated by prior code (if variable1 is not defined, it would never get to the third line, so the third line is unnecesary)
+       - there's an unnecessary condition which is invalidated by prior code (if variable1 is not defined, it would never get to the third line, so the third line is unnecesary)
+  			if not variable1:
+  				return False
+  			if variable1:
 
 	- functions:
-
 		- function to identify logical problem types
-			- gaps in logic enforcement (variance gaps, assumptions)
+			- gaps in logic enforcement (variance gaps, fallacies, incorrect contexts, assumptions)
 			- overlapping/repeated logic checks (extraneous validation)
-			- side effects that don't match function intent
+			- side effects that don't match function logic objects, like implication
 
-		- corrective functions
+		- logic correction functions
 			- identify isolated logic operations
 			- identify scope required of each operation
 			- identify required position of each isolated logic operation
 
   - attributes:
   - objects:
+    - logical fallacy: mismatch of logic structures/functions/objects/attributes (scope, relevance, fit, position)
+    - assumption: depending on information, like the relevance of a particular rule or insight, as if it is true (or an adjacent/alternative definition of truth, like relevance or fit)
+    - implication: context implied by a logical structure:
+      - 'dog chases cat' implies context of a prior event like the:
+        - 'cat did something' (implies a system where there is a reason of responsibility for every decision or fairness in allocating costs)
+          - 'the dog wants something the cat stole' (specific implication)
+        - 'the dog is bored' (implies a system where there is lack of work allocation and attention/work are not maximized/optimized)
+          - 'the dog doesnt have toys' (specific implication)
+        - 'the dog wasnt trained' (implies a system where default behaviors like instincts can be relearned)
+
+      - a headline like 'politician takes a bribe' has implications of relevant context of prior events, like: 
+        - 'this is newsworthy since it doesnt happen all the time' (infer a system that doesnt often produce crimes of corruption)
+        - 'this is one of the politicians who were caught taking a bribe' (infer a system that is bad at catching criminals)
+        - 'this is one of the politicians who the newspaper doesnt like' (infer a system where bias is present in information sources)
+        - 'the politician agreed to take the hit for someone else' (infer a system where favors are traded, sometimes to give impressions of false information to protect social assets like reputation)
+        - 'the politician was tricked into taking a bribe unknowingly' (infer a system where tricks & liars are common)
+        - 'the politician was sacrificed as a scapegoat' (infer a system where criminals' costs are allocated to innocent people)
+        - 'this coverage is to pretend the police were making progress against corruption, even though other politicians were also known to take a bribe without the news coverage' (infer a system where information sources enable authorities to hide information about their own decisions that is negative to keep power)
+
+      with varying levels of probability (the more work it takes to generate the justification for an implication, the less likely it is to be true)
+    - justification
+      - alignment of logical objects (conclusions/assumptions) & related decision objects (patterns, intents) with distortion functions producing the decisions
+    - explanation
+      - description of logical objects & structures that connect a starting & end rule
+        - an explanation of 'how' is a structural route, an explanation of 'why' is a causal route
+    - conclusion
+      - a logical rule converted into an assumption
+    - contradiction
+      - a mismatch between rules
+      - specific case is a paradox, which is a false contradiction (often from different definitions or scopes of common objects between the rules)
+    - inference/deduction
+      - matching logical structures
+        - if the dog wont stop chasing the cat, someone can infer inferences like that it doesnt want to or that it cannot regulate itself or that it doesnt have other options in another way, like lack of information about negative consequences
+      - inferences are potential logical connections, whereas implications are probable logical connections
   - structures:
+    - logical sequence (logic that has a position attribute, where it has to follow or be followed by other logic)
+    - logic tree (logic with contradictory alternatives that cannot occur simultaneously, to handle different conditions)
+    - logical connection (logic that enables other logic, because their inputs, outputs, & objects like implications match rather than contradict each other)
+    - logical circle (a logic structure that depends on its output)
+
   - concepts:
+
   - answers questions like:
+    - is this rule logical or does it have logical errors like contradictions
+    - do these rules contradict each other
+    - does this rule fit the system it's used in
+    - is this assumption valid
+    - are these rules fit to the right logical structure 
+    - does this rule prohibit another rule
+    - should this rule follow this other rule
+    - what is the implication of this rule
 
 
 ## Structural Analysis
@@ -650,7 +707,7 @@
     - approximation
     - metric
     - activator
-    - trade
+    - trade/cost/benefit
     - change
     - filter
 
@@ -896,7 +953,6 @@
       - conflicts can be vectors with different direction or which overlap
 
   - functions: 
-    - *** add diagrams
     - mapping function, to map problems to structures, problem functions, & other problem types
         - graph attributes that differentiate problems that are impacted by possible solutions
         - map intent to direction & assess progress by movement in that direction
