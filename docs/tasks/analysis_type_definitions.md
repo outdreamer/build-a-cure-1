@@ -112,7 +112,7 @@
           - if the function implementation doesnt fulfill solution metrics, other interface traversals can be done
             - a system-object or function-concept interface like the 'efficiency interface' or 'ambiguity interface' (does this function have a more efficient or less ambiguous route between input & output that might fulfill a solution metric, given that maximizing efficiency & reducing ambiguity are standard system & function metrics)
 
-      - problem: find an optimal route between start & end points, like the 'minimal trades to get equal problem/opportunity distribution'
+      - problem: find an optimal route (or alternatively, find a distribution of functionality/efficiencies/costs to make all routes or a particular route less/equivalently costly) between start & end points, like the 'minimal trades to get equal problem/opportunity distribution'
           
           - interface traversal
             - identify information (identify differentiating attributes/functions/sub-systems of agents/positions/routes within the network)
@@ -239,9 +239,11 @@
       - attributes of an object contain information about other structures/functions of the object
         - 'is an object strong' translates to the question 'does the object have functions that enable it to execute tasks at high performance'
         - the 'strong' attribute refers to a net effect of the set of structures (its functions) that fulfills a metric (like high performance) relating to a state that the host object can occupy consistently, making it an identifying quality (attribute), while not required to remain in that state (can be a variable attribute, with multiple potential values)
+        - if a system works well or is efficient, it may fulfill the attribute 'strong', which means that any structures of efficiency/high-functioning (like aligned benefits/costs or aligned intents/incentives or reused functions) may be assignable to the concept of 'strong', given that those can be components/inputs of strength
+
       - attribute types like input/output, descriptive/identifying/differentiating, abstract, causal, constant/variable/parameter, dependency/requirement, type attributes, etc
-      - structurally, attribute can be represented as information flows like inputs/outputs, as emergent characteristics like additional ways to change (adding color or sound to a structure or additional embedded structures like a field/scaffold/layer) 
-        
+      - structurally, attribute can be represented as information flows like inputs/outputs, as emergent characteristics like additional ways to change (adding color or sound to a structure or additional embedded structures like a field/scaffold/layer)
+
     - object definition:
       - objects can be represented as a set of structures (like limits isolating change or vectors of change) that identify unique or isolatable objects, which act as a cohesive set of components (attributes/functions/sub-objects), or represented by context, given its position on a structure like a network, depicting its relative position to other objects
       - objects have boundaries differentiating them from other objects, containing their functions/attributes/sub-objects if present
@@ -429,7 +431,7 @@
       - processes (an altering process like format, a routing process like return, etc)
     - intent: purpose for a function (at granular layers or in strict environments, purpose can be tightly aligned with the function logic, with no side effects)
     - role: function & a position in a system
-    - pattern: sequence of specific/identified objects (like a sequence of rules, filters, or values)
+    - pattern: sequence or other relationship structure of specific/identified objects (like a sequence of rules, filters, or values)
     - connection: causal relationship (some type of interaction occurs)
     - insight: important/relevant/new/unique/abstract/cross-system relationship
     - strategy: insight & a plan intent on how to implement it, usually to achieve a specific goal intent
@@ -487,6 +489,7 @@
   - attributes:
     - implication
     - directness
+    - alignment
 
   - functions:
     - allow combination of intents to find malicious intent structures (like a sequence of neutral-intent functions that has an emergent malicious intent when used in that sequence)
@@ -511,30 +514,51 @@
       - what is the function linking these variables, given the variable intents a, b, c and the combination intent matrix ab, bc, ca, and the possible output intents of that matrix, and similarity to output intent of y
 
   - objects:
+    - priorities: abstract directions that intents may fulfill or move agents toward, whereas intents are more granular
+
   - concepts:
 
 
 ## Pattern Analysis
 
+  - definition:
+    - a pattern can include a function (the pattern being a sequence of logical steps) but it is different from a function in that it is more abstract & can include other structures, and the point of the pattern is not to get a particular object like the function output, but to identify common trends across systems so the pattern can be used for inference or value generation
+    - a pattern is a relationship between objects, the point of storing which is to identify repeated relationships
+    - the relationship between objects is not the only part of the pattern that matters - the actual object identities may be an integral part of the pattern
+    - for instance the pattern '1 1 2 3 5' may have a relationship like 'a subset of the fibonacci sequence' but it also may be important that the sequence starts at 1 (the initial object identity) because it may be used for calculation
+    - so the trajectory mapped by the pattern may not be all that matters - the starting/ending points or values of the pattern may also be relevant
+    - this is different from a function which would have abstract starting/ending points in addition to the sequence of logical steps, to govern where the function can be used
+    - patterns that are common across systems imply a level of increased probability of that pattern occurring in other systems, so patterns can be used to infer attributes like probability
+
   - functions:
+    - generator: generates a pattern given parameters
+    - compress (reduce the pattern to a generator function)
+    - expand (generate a sequence using a generator function)
+    - implement (apply a generator or sequence to a structure in a context)
 
   - attributes:
+    - abstraction: a pattern can be a pattern of specific values (1, 2, 3, 4), the metadata of those values (type: int int int int, divisor attribute: odd even odd even, exclusive divisor attribute: prime prime prime not-prime), or an abstract version of the values (number, pair/number of points required for a line, sides of a triangle, number of players required for a game), or a mix of these
+    - structure: a pattern can include any structured information, including a set of logical steps, a set of attribute values, a list of events, a query on a graph, a trajectory in a tree, a list of numbers representing feature values, etc
 
   - objects:
+    - components: any type of structured information is allowed in patterns (values like integers, words, other patterns, references to objects, etc)
 
   - structures:
+    - sequence: sequential pattern
+    - network: a pattern of relationships
 
   - concepts:
-  
+
   - answers questions like:
-    - what would the path between inputs/output be, given patterns of other paths
+    - what would the path between inputs/output probably be, given patterns of other paths
     - what is the function linking these variables, given common function patterns between variables of these types/topics/ranges/other metadata?
 
 
 ## Logic Analysis
 
 	- definition:
-    - this analysis can include related interfaces of logic (patterns, functions, intent, cause, and change)
+    - this analysis can include related interfaces of logic (patterns, functions, intent, cause, change)
+    - this analysis is used at its most basic level for identifying valid rules ('x, so y' or 'x, so not z')
     - relevant logical objects with defined rules include assumptions, requirements, implications, conclusions, fallacies, inferences, etc, and logical structures like sequences, connections, alternatives which follow the rules of logic (some rules have to follow other rules, logically, so their appropriate structure is a sequence - whereas some rules cannot be implemented simultaneously like mutually exclusive rules, so their appropriate structure is a tree branch)
     - using these logical object definitions & associated logical structures, you can derive what is logical in any given rule set
     - this means you can derive emergent structures of possible error contexts/rules, like: 
@@ -572,6 +596,7 @@
 			- identify required position of each isolated logic operation
 
   - attributes:
+
   - objects:
     - logical fallacy: mismatch of logic structures/functions/objects/attributes (scope, relevance, fit, position)
     - assumption: depending on information, like the relevance of a particular rule or insight, as if it is true (or an adjacent/alternative definition of truth, like relevance or fit)
@@ -638,7 +663,6 @@
       - a useful new way to use this is to frame non-resource objects as resources (systems, structures, positions, paths, directions, risk chains, trade loops, markets)
       - then you can apply traditional market analysis (optimal transport) to find, for example, the optimal set of trades to change an industry's position
 
-
     - for a problem of type 'conflict', like vectors aiming at a corner of a closed shape (where the shape is formed by the intersections of limiting attributes), the structural way to solve that problem is:
 
       - reducing the angle of the corner 
@@ -657,7 +681,6 @@
     - the way to assign 'conflict' problem type to the closed shape structure with internal vectors is by aligning attributes 
       (incentives that organize motion to create an oversupply of resources (motion vectors) that cant be supported by a resource (position))
    
-
   - functions:
 
   - structures: 
@@ -723,207 +746,195 @@
 
 ## Potential Analysis
 
+  - variance is semantically the opposite index (gap/unenforcement/missing information/randomness) to the filter index (limit/structure/information/organization)
+    - delegation of variance into systems/types/functions/variables/constantso
+      
+  - functions:
+
+  - attributes:
+
+  - objects:
+
+  - structures:
+    - certainty structures (patterns, rules, constants, assumptions, limits, metrics, information, similarities/matches/alignments (intents/incentives, demand/supply, limit/variation), definitions)
+    - uncertainty structures
+      - variance structures (gap, leak, cascades/catalysts, accretions/injections, compounding variance, variance building a new interface, variance distribution/alignment, unenforced rules, measurement limits, open systems)
+      - change structures (variables, dependencies, updates, replacements, distortions)
+    - interaction layer (layer on which objects are likely to interact)
+    - interaction space (set of possible interactions)
+    - potential field (range of potential states or positions)
+
+  - concepts:
+    - randomness
+    - risk/probability
+    - opportunity
+    - certainty
+    - variance
+    - enforcement/validation
+
   - answers questions like:
     - what is the conversion potential of this object given its functions
     - what is the interaction space of this object
-
-	- variance is semantically the opposite index (gap/unenforcement/missing information/randomness) to the filter index (limit/structure/information/organization)
-    - includes certainty objects (known variance, metrics, change patterns), uncertainty (potential/risk/opportunity) objects, and variance structures like cascades, injection points, accretion points
-    - delegation of variance into systems/types/functions/variables/constants
-
-    - example of variance type analysis (difference):
-
-      - what type of variable is it? (object-differentiating/identifying attribute, emergent specific/abstract property, direct function input/output)
+    - predict which system filters will be useful based on a system priority
+    - this is the problem of adding/fitting/reducing structure from a gap in structure, which can be used to solve problems like:
+      - prediction
+        - which variables are explanatory, given what we can measure
+      - causation
+        - how alternatives can converge to the same level of variance or change patterns
+    - reducing gaps in rule enforcement to shapes/paths has its own set of rules
+    - this interface can also be used for specific attribute analysis, of properties that descend from concepts & take form in a specific problem space:
+      - the power concept interface (has structures that look like trust, info, etc)
+      - the balance concept interface (has structures that look like symmetry, justice, etc)
+    - what type of variable is it? (object-differentiating/identifying attribute, emergent specific/abstract property, direct function input/output)
       - how does the variable relate to other variables? (decisive metric, substitutable alternative, collinear)
-   	  - at what point does a variable become relevant to another variable interaction layer?
+      - at what point does a variable become relevant to another variable interaction layer?
       - how do constants accrete between rules, like caps to keep variance from flowing in to corners or creating boundary-invalidating openings in a system/component boundary?
       - what causes variables to cascade across layers, creating fractal variables?
       - what is the path definitely not, based on various maximized measures of similarity?
       - what attributes & attribute sets & attribute dependency trees differ
       - what is transformation cost/potential between objects
       - what is divergence distance between generative paths for each object
-      - example: "what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?"
-      
-	- use case:
-
-    - predict which system filters will be useful based on system priority
-
-		- this is the problem of adding/fitting/reducing structure from a gap in structure, which can be used to solve problems like:
-
-			- prediction
-				- which variables are explanatory, given what we can measure
-
-			- causation
-				- how alternatives can converge to the same level of variance or change patterns
-
-		- reducing gaps in rule enforcement to shapes or paths has its own set of rules
-
-		- this interface can also be used for specific attribute analysis, of properties that descend from concepts & take form in a specific problem space:
-			- the power concept interface (has implementations that look like trust, info, etc)
-			- the balance concept interface (has implementations that look like symmetry, justice, etc)
-
-  - functions:
-  - attributes:
-  - objects:
-  - structures:
-  - concepts:
+      - what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?
 
 
 ## Change Analysis
 
-	- this regards the potential to break down & format a problem into many different combinations of solved problems (optimal transport, linear algebra, finding prediction function, etc) or known interfaces (type, intent)
-	- some sets are more adjacent than more optimal sets & may be a better investment for short-term gains
+  - definition:
 
-	- example:
-		- when approximating area of an object that is similar to a square but has a convex arc instead of a side (like an opened envelope), it may be more efficient to:
-			- calculate the integral of the arc-ed shape and add it to the square area
-			- alternatively, if those functions arent available or if the arc is a very low angle and similar enough to a straight line:
-				- the arc can be broken into sub-lines & the area of those shapes calculated & then added to the square area
+    - change analysis relates to information interfaces (question, problem), logical interfaces (function, intent, pattern) and potential interfaces (variance, risk, certainty)
+    - change analysis analyzes relationships between objects/attributes/functions
+    - change analysis is important for identifying:
+      - how relationship structures (distortions, origins, combinations, sequences) relate
+      - when change is imminent to assess the value of identifying future states (gather more data for a prediction function, implement versioning, build interfaces for change into the function by parameterizing/abstracting it)
+      - what is the best way to frame a change (on what base, with what variables that describe the change, in what spaces/systems, as a combination of what functions, as a change of what uniqueness)
 
-    - example of interface-based change:
+	- examples:
 
-      - as change increases, which interfaces are more/less adjacent, where interfaces are represented as a set of filters, each additional filter being a unit of change on the x-axis, and each subsequent filter being one distortion away from the previous filter, where the origin is the most standard filter
+		- when finding a method to approximate area of a square with an arc on one side, rather than deriving an integration method for the non-linear side, it may be more efficient to arrange questions to solve the problem based on change:
 
-    - example of context-based change:
+      - question sequence based on change:
 
-      - as change increases, how does context change (where unit of context are additional conditions)
+        - 'what is the non-linear object definition' (arc) 
+          - 'how does area change with angle of arc' (in proportion to degree of distortion from line)
+            - 'what distortion functions generate the arc from the distortion degree'
+              - 'what distortion is present in the observed object'
 
-    - example of structure-based change:
+        - this is a specific case of answering the general question:
 
-      - example of time-based change:
-
-        - as time increases, what changes:
-          - position
-          - value (position on a dimension)
-          - distance (position from a base point)
-
-        - changing position based on embedded time
-
-      - example of structure-based change:
-
-        - as change increases, what structures change (which structures are stable even in certain change rates)
-
-      - other standard structural bases as alternatives to time, where change is on a y-axis, and these parameters are on the x-axis
-
-        - order: changes are framed based on order - to examine change patterns with respect to order (where unit order is original/standard and highest order is most different order possible)
-        - position: changes are framed based on difference from previous position, starting from the standard unit position (default) - for examining change patterns with respect to position distortion
-        - distance: changes are framed based on distance type (distance from value, distance from number type, distance from pattern) - for examining change patterns with respect to distance type
-        - value: changes are framed based on value type (exponential, constant, pattern value, symmetric value, origin value) - for examining change patterns with respect to value
-        - set: changes are framed based on set membership (number type (prime), pattern (progression), distance (adjacent groups)) - for examining change patterns with respect to sets
-        - space: changes are framed based on spaces where that change can be framed (topologies, dimensions, vector spaces) - where spaces are formed by adding dimension units
-
-      - example of object-based change:
-        - as change increases, what objects (type/variable/inputs/cause) are more/less adjacent 
-
-    - example of concept-based change:
-
-      - as change increases, how does concept (similarity) change
-
-      - example of power-based change:
-
-          - as power (degree of dependency) changes, what else changes:
-
-            - previously distant points become equal to adjacent points as power increases
-            - value reverts a concept & the information of the value loses its meaning
-            - dimension space can be determined by the degree of dependency
-            - does a change increase or reduce power?
-
-          - this can be framed based on potential (bc power can change with respect to options), variance (because power can change with respect to change), and time (bc power can change over time)
-
-      - example of potential-based change:
-      
-          - as change increases, how does potential (possible change) increase:
-
-            - what probabilities/possibilities become possible (findable/generatable in structural dimensions/on the structural interface)
-            - what possibilities become adjacent/distant
-            - does a change increase or reduce potential options?
-
-          - as potential changes, how do potential objects/types vary based on the unit of potential (possibility distance, distance between required limits & optional steps)
-          - this can be framed on a base of time, because time is a related object to potential (if there is no potential, there is no time)
-
-      - example of variance-based change:
-
-          - changing stabilization based on randomness
-          - changing interface development based on randomness
-          - changing systematization based on randomness
-          - changing object change based on a changeable interface (change stack, like changing orientation of an object within a system that is changing)
-          - changing change types (variance leak, variance cascades/activation, variance injection, compounding variance, variance approaching an interface, variance distribution)
-
-          - does a change increase or reduce change sources?
-
-          - as change increases, what change objects (types/rules/rates/direction) alter position/connection/distance/existence?
-            - what else changes
-            - what aspects of change are altered
-            - what core change functions develop or change
-            - where does change go if there isnt enough time to contain it
-            - what change rates change
-            - what stabilizes
-            - what patterns emerge
-            - what change cascades are triggered
-            - what changes develop into randomness
-            - what change combinations produce change rate/type/interface changes
-          
-          - this is a removal of the time parameter, by assigning distance to change types/rates/other metadata, so that any change is framed in terms of a base unit of change (how much change it produces, by making other objects nearer, creating other objects, and connecting with other objects)
-
-          - this can be framed on a base of potential, because potential is a related object to change (if there is no potential, there is no change)
-          - this can be framed on a base of time, because time is a related object to change (if there is no time, there is no change)
-
-    - example of function (relationship)-based change:
-
-      - change with respect to function/intent:
-        - as change increases, does functionality/intent change and in what direction?
-
-      - example of cause-based change:
-
-        - change with respect to cause
-
-        - the classic parabola of a ball's motion when thrown from the ground has two primary cause-values:
-          - origin force until the peak x-value change rate, and gravity force after the peak x-value change rate
-          - if the y-value starts changing more from gravity than from origin force, the gravity force becomes determining
-
-        - additional cause values travel farther up the causal stack:
-          - forces causing the emergence of gravity & origin forces are other causes
+          - 'how does this parameter (area) change with respect to distortion from default object (line)' - a question that can be broken into the questions:
+            - 'what degree of distortion is the different object (arc) at' (how many distorting n iterations build the arc from the line, which is similar to calculating the log base line of the arc, given the available distortion operation to connect them)
+              - 'what is the impact of each distortion on the parameter (area)' (what is the impact of each distorting n iteration on area)
+              
+        - it's also like calculating: (number of distortions between line & arc) ^ (impact of each distortion on area) = difference in area between line & arc
+          using a pattern of change (impact of distortions on area) instead of calculating a way to approximate the area parameter with integration (aggregating subsets that are easier to calculate)
 
   - functions:
+    - derive change
+    - derive change base
+    - differentiate
+    - convert: change a component into another (useful for identifying alternate paths)
+    - deconstruct: change an object into its components (useful for identifying origins & common components)
+    - distort: apply a distortion function to acquire a difference object (a value difference, an extreme, a magnification, a limit, etc)
+
   - attributes:
+    - uniqueness (is the change composable with core distortion functions or is it formed with different functions than other changes, implying its origin is external to the system)
+    - inevitability (is the change pre-determined by the system, in which case its just a continuation of a state progression rather than a fundamental change or source of variance)
+    - directness (adjacent change)
+    - explicit/implicit (certain/uncertain change)
+    - degree (how much was changed, to what level of distortion)
+    - change types (create, cause, force, guarantee, convert, enable, depend, connect, structure)
+
   - objects:
+    - equality (alternate, interchangeable)
+    - difference (extreme, opposite, contradictory)
+    - change source
+
   - structures:
+    - base: varying change bases (how a change's differentiating output is defined) allows difference types to be measured (removing common parameters/attributes or standardizing by a base), such as change defined as:
+      - network position change
+      - work to create the change (inevitability)
+      - different ways to create the change (if there are many ways to create it, each individual way is insignificant)
+      - attribute value change
+      - context/system change
+      - difference from different origins (randomness, core, default, etc)
+      - change in change structures (change stack, circuit, sequence) or functions (derive change, derive change base, convert, differentiate)
+      - state change (requiring a new position on a state network)
+      - variable change (requiring more/less/new variables or fundamentally altered versions of existing variables)
+      - adjacent similarities ('if you remove attribute x, are they equal?')
+      - interface change (what interfaces are adjacent/determining/generative/differentiating across the change)
+      - interface objects (what concepts/intents differ, does potential increase, are other change types enabled across the change)
+      - change based on system vertices (imminent to/distant from a phase shift, at an intersection, changing interaction layers)
+
   - concepts:
+  
   - answers questions like:
+    - as change increases:
+      - how do interface objects (functionality/intent/potential) or change objects (structures/functions/variables/embedded parameters/spaces) change
+      - which standards/interfaces/change types are adjacent (change framed based on deviation from a standard, like deviating from the correct order or probability distribution, measured by degree of stacked distortions)
+      - which difference definition applies (changes framed based on difference type, including difference from value, symmetry, limit, origin, number type, pattern)
+      - what probabilities/possibilities become possible/adjacent (adjacent meaning findable/generatable in structural dimensions/on the structural interface)
+    - as a concept having structure (like power: degree of independence) changes, does the change definition erode (previously distant points become more equal to adjacent points, so the meaning of information about position/dependency erodes, as power to move between them increases)
 
 
 ## Causal Analysis
 
-    - given the position between these causal factors, which causal patterns are likeliest?
-    - "given that a species occupies an interim position between evolution, efficiency, time, and environment, what is the likeliest causal shape linking a species with its environment?"
-      - for more evolved organisms, this is a network causal shape, though species with less developed cognitive ability may have simple or uni-directional shapes with environment
-    - "what is the function linking these variables, given these functions linking other adjacent generating variables/functions further up/down the causal shape"
+  - definition:
+    - cause is defined as dependency
 
   - functions:
+    - resolve: identify cause in a set of possible alternate causes
+    - isolate: identify contribution of a particular cause to an output
+    - inject/extract dependency
+
   - attributes:
+    - directness (x indirectly causes y, x immediately precedes y on a causal chain)
+    - explicit/implicit (x is defined to cause y or x implies y)
+    - abstraction (x specifically causes y)
+    - isolatability (x is guaranteed to cause y and nothing else does)
+    - interchangeability/ambiguity (number of alternative causes that cannot be resolved or eliminated or invalidated)
+    - degree (x is n degrees of cause away from y)
+    - requirement/probability of cause (if x this hadnt caused y, something else in the system probably would have caused y anyway, given all the similar structures in the system that interact with y, so x is not a required cause of y)
+    - inevitability (x must cause y regardless of most possible system contexts)
+    - dominance (x is almost always causative if allowed to interact with any object - example 'a source of power')
+    - direction (x is always an output so it couldnt have caused y)
+    - proxy (x is a proxy for z, so x & z are not both required to explain y)
+    - function (x is descriptive rather than generative so it cannot be a cause)
+
   - objects:
+    - dependencies
+
   - structures:
+    - tree: directed causal network with an origin
+    - network: network with functions having a direction attribute
+    - direction: causes that fulfill directions representing priorities
+    - stack: set of adjacent (or other definition of relevant) causes
+    - chain/sequence: connected causes in a direction
+    - loop (a function that generates information may end up using that information or its side effects like decisions as an input)
+
   - concepts:
+    - interface: interfaces are causative in that they enable change to develop
+    - causative structures: some structures like limits are particularly causative
+
   - answers questions like:
+    - given the position between these causal factors, which causal patterns are likeliest?
+    - given that a species occupies an interim position between evolution, efficiency, time, and environment, what is the likeliest causal shape linking a species with its environment?
+      - for more evolved organisms, this is a network causal shape, though species with less developed cognitive ability may have simple or uni-directional shapes with environment
+    - what is the function linking these variables, given these functions linking other adjacent generating variables/functions further up/down the causal shape
 
 
 ## Info Analysis
 
+  - definition:
     - information analysis involves standardizing information formats, like standardizing to the object/attribute/function model (including related objects like state & type) so that information structures are clear & can be mapped to information problem types
-
+  
     - organization analysis
-
-	    - optimal path/distribution/states
 	    - what would the optimal path be, given a certain intent, object identity, & host system?
-	    - "what is the function linking these variables that is most efficient/involves fewest variables/involves known constants?"
-	    - identify layer to solve a problem at
-	    - identify key objects needed to solve a problem
-	    - identify structures for information
+	    - what is the function linking these variables that is most efficient/involves fewest variables/involves known constants?
+	    - identify structures (layer/format) & objects needed to solve a problem
 
     - type analysis
-      - given a known type stack progression, what is the likeliest position or extension of that stack?
-      - "given that these species evolved this way, what level of variance is the missing link between them likely to have?"
-      - "what is the function linking these variables, given the type stacks of the function objects (dimensions, adjacent functions, identifiable shapes, etc)"
+      - given a type stack progression, what is the likeliest position or extension of that stack?
+      - given that these species evolved this way, what level of variance is the missing link between them likely to have?
 
 	- information objects are related to agents & their communication (perspective, strategy, decisions, intent, game, motivation, problems)
 
@@ -937,10 +948,42 @@
 	    - filter: barrier creating a difference between input & output
       - problem: conflict or inequality
 
+  - attributes:
+    - structure
+    - format
+    - organization
+    - certainty (potential information, future information, measurable information)
+
+  - functions:
+    - match
+    - fit
+    - apply
+    - build
+    - derive
+    - define
+
   - objects:
+    - problems
+    - questions
+    - insights
+    - strategies
+    - patterns
+    - perspectives
+    - examples
+    - formats (object format, system format, core format, compressed format)
+
   - structures:
+    - asymmetry, imbalance, lack, gap
+
   - concepts:
+    - organization (format)
+
   - answers questions like:
+    - is there a version of this function on the system, and in what format (a compressed/encrypted/generative format)
+    - what is the sequence of questions that solves this problem this quickest
+    - what is the network of problem types that this problem can be broken into (optimal transport, creating efficiencies/alignments, distributing costs to points where the costs are inputs, finding a prediction function, etc)
+    - what is the set of patterns/filters/attributes that can describe this function
+    - what is an example of this pattern (what form does the pattern take in a given system)
 
 
 ## Problem Analysis
@@ -952,7 +995,8 @@
     - once you frame a problem as an info problem, you can map info to structure:
       - conflicts can be vectors with different direction or which overlap
 
-  - functions: 
+  - functions:
+  
     - mapping function, to map problems to structures, problem functions, & other problem types
         - graph attributes that differentiate problems that are impacted by possible solutions
         - map intent to direction & assess progress by movement in that direction
@@ -970,7 +1014,9 @@
         - representing changes produced by a solution as a set of vector trajectories across interfaces
 
   - objects:
+
   - structures:
+
   - concepts:
       - anomaly/counterexample/outlier/conflict
 
