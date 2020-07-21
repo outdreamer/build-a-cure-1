@@ -2,7 +2,7 @@
 
 - reduce these to definitions of each type sufficient to understand & implement each type of analysis, optionally including implementation & target function lists
   
-  - workflows
+  1. Workflows
     
     - a workflow to automate problem-solving is an interface traversal that can be applied to any problem
 
@@ -84,7 +84,7 @@
 
       - other problem-solving automation workflows would start with different interface traversals & use different origin & target structures (such as designing interface trajectories, or generating new info object layers to use as interfaces or systems (combine perspective & potential to generate a potential-perspective field, combine problems & markets to create a market for problems, combine platforms with platforms to create a platform to sell platforms, combine variables and networks to create variable networks, combine variables & risk to identify variable development sequences))
 
-    - specific interface traversal examples
+  2. Interface traversal examples
 
       - problem: find a prediction function to predict variables causing an output, like predicting stock price or a diagnosis from symptoms/causative conditions
           
@@ -125,78 +125,44 @@
           - if queries of those interfaces are insufficient to solve the problem, interface operations can be used
             - the information-system-structure interface operation (can be used to determine information like the next layer of information objects that are relevant if enough automation is distributed)
 
-  - analysis types
+  3. Analysis types
 
-    - problem space analysis (visualizing problem metadata, and changes to the problem space that invalidate the original or other problems once a particular solution is applied)
+    - each analysis type describes the logic executed on each interface, where the conversion function of each interface standardizes the problem/other object being converted to objects/functions/attributes/structures defined on that interface
 
-      - this involves identifying the given problem & solution target structures, so the problem & solution can be visualized in the most useful & explanatory way
+    - problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
 
-        - identifying problem metadata includes defining the structure of a problem that the solution fulfills by some metric
-
-        - formatting the problem as a n-dimensional shape where variables map to dimensions of the shape (where the solution format is a set of vectors that can reduce the dimensions & size of the shape, or fill the shape with the solution shape if the problem is the method to fill the problem structure rather than reduce it)
-        
-        - a network missing an optimized route between start & end points, where the solution format is the optimized route
-        
-        - an information imbalance, where the solution format is the set of steps to balance the information
-
-      - selecting the right format for the problem & solution is an important function in this analysis
-
-        - each of those formats is better for different problem types/formats (with varying structure in the problem definition) and solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
-      
-        - each of those involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, processes like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network to retrieve or connect information, or in the problem space to reduce a problem shape or traverse an optimal route in the problem network system (not necessarily the network of related problems but the route problem framed within a network)
-      
-      - other important functions include:
-
-        - graphing the problem on a network of related problems (on the same interaction layer, in the same problem space, etc) such as how the problem of building a technology is related to the problem of managing usage of & access to it
-
-        - defining the problem space as a contextual system where the problem is active
-
-          - this includes other problem spaces where it is or could be active
-            
-            - for example, how the 'tech distribution' problem (where most tech is inherently neutral & can be used for good or malicious intents so what matters most is how it's distributed) acts differently in different problem spaces where distribution tools & government ethics & policies differ
+    - core analysis: automatically finding core objects/functions/attributes/states possible to determine/describe a system, defining core operations like find/apply/build/derive
     
-    - core analysis
-      - automatically finding core objects/functions/attributes/states possible to determine/describe a system, defining core operations like find/apply/build/derive
+    - system analysis: automatically fitting system objects like symmetries, sub-systems, sub-interfaces, false assumptions, correlations, efficiencies, incentives, and conflicts to problem definition to determine optimal organization/format/routes/metrics/positions
     
-    - system analysis
-      - automatically fitting system objects like symmetries, sub-systems, sub-interfaces, false assumptions, correlations, efficiencies, incentives, and conflicts to problem definition to determine optimal organization/format/routes/metrics/positions
-    
-    - structure analysis
-      - automatically finding structures, like a route between information formats to solve a problem
+    - structure analysis: automatically finding structures, like a route between information formats to solve a problem
     
     - information analysis
-      - information problem type formatting (mapping the problem as a structure composed of information problem types, like an information mismatch/inequality/minimum/overflow/gap)
-      - automatically finding definitions, examples, minimum information to solve, problem-solution matching, insight paths like question-identification functions, finding math structures to re-use math patterns to solve other problems, etc
 
-      - insight analysis
-        - insight path application (using insight paths from other fields to optimize insight generation)
+      - insight analysis: insight path application (using insight paths from other fields to optimize insight generation)
+
       - problem analysis
         - formatting to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions)
+
       - question analysis (where a question is framed as a source position and a target position on a network, and the answer is the most robust path or the path that moves the nearest to the target position or the path that moves in the priority direction on the network)
     
-    - change analysis
-      - automatically identifying change metadata like change types necessary to explain a solution or solve a problem
-      - potential analysis
-        - automatically finding structures of variance like gaps/cascades/reducers, possibility fields, and determining/limiting vertices
+    - change analysis: automatically identifying change metadata like change types necessary to explain a solution or solve a problem
+      - potential analysis: automatically finding structures of variance like gaps/cascades/reducers, possibility fields, and determining/limiting vertices
     
     - logical analysis
-      - functional analysis
-        - automatically identifying function metadata like variables, input/output trajectory, the function in a filter format, intent, complexity, efficiency, & exploits)
-      - intent analysis
-        - automatically finding possible reasons to use a function to automate logic
-      - causal analysis
-        - automatically matching the problem to causal structures to infer relevant variables & causation metadata (like directness of cause, degree of cause, inevitability, uniqueness of cause, causal tree/network/loop/layer shape)
-      - pattern analysis
-        - automatically finding patterns with relevant similarities to infer the relevance of pattern metadata, where patterns replace missing required data (such as using patterns between variables of specific types or system positions to infer probable variable relationships)
+      - function analysis: automatically identifying function metadata like variables, input/output trajectory, the function in a filter format, intent, complexity, efficiency, & exploits)
+      - intent analysis: automatically finding possible reasons to use a function to automate logic
+      - causal analysis: automatically matching the problem to causal structures to infer relevant variables & causation metadata (like directness of cause, degree of cause, inevitability, uniqueness of cause, causal tree/network/loop/layer shape)
+      - pattern analysis: automatically finding patterns with relevant similarities to infer the relevance of pattern metadata, where patterns replace missing required data (such as using patterns between variables of specific types or system positions to infer probable variable relationships)
     
-    - concept analysis
-      - automatically identifying concepts associated with a structure & vice versa, identifying positions of default abstract concepts in the network
+    - concept analysis: automatically identifying concepts associated with a structure & vice versa, identifying positions of default abstract concepts in the network
 
-    - interface analysis
-      - mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query
+    - interface analysis: mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query
 
 
 ## standardized analysis
+
+  - definition: this describes the common components of other analysis types
 
   - objects:
     - interface objects like patterns & concepts
@@ -227,7 +193,7 @@
     - structural functions: combine, merge, apply, embed, mix, filter, chain, define, create, derive, identify, change, version
 
 
-## Object Format
+## Object Analysis
 
   - definition:
 
@@ -348,7 +314,6 @@
       - an example is applying the concept of 'meta' to the concept of 'game' and getting output of the operation like 'a game where games can be created by agents inside the game' or 'a game to design games', given similarities between attributes/functions of objects in the definition & relevant spaces
 
       - apply one concept to another (apply 'power' to 'market' or 'evaluate market by power' involves standardizing the market concept in terms of power, using power as an interface)
-
 
   - answers questions like:
     - what concepts cannot be reduced/abstracted further
@@ -746,9 +711,10 @@
 
 ## Potential Analysis
 
-  - variance is semantically the opposite index (gap/unenforcement/missing information/randomness) to the filter index (limit/structure/information/organization)
-    - delegation of variance into systems/types/functions/variables/constantso
-      
+  - definition:
+    - variance is semantically the opposite index (gap/unenforcement/missing information/randomness) to the filter index (limit/structure/information/organization)
+      - delegation of variance into systems/types/functions/variables/constantso
+        
   - functions:
 
   - attributes:
@@ -850,7 +816,7 @@
     - change source
 
   - structures:
-    - base: varying change bases (how a change's differentiating output is defined) allows difference types to be measured (removing common parameters/attributes or standardizing by a base), such as change defined as:
+    - base: varying change bases (how a change's differentiating output is defined) allows various difference types to be measured (removing common parameters/attributes or standardizing by a base), such as change defined as:
       - network position change
       - work to create the change (inevitability)
       - different ways to create the change (if there are many ways to create it, each individual way is insignificant)
@@ -925,8 +891,11 @@
 ## Info Analysis
 
   - definition:
-    - information analysis involves standardizing information formats, like standardizing to the object/attribute/function model (including related objects like state & type) so that information structures are clear & can be mapped to information problem types
-  
+    - information analysis involves: 
+      - standardizing information formats, like standardizing to the object/attribute/function model (including related objects like state & type) so that information structures are clear & can be mapped to information problem types
+      - information formatting (mapping the problem as a structure composed of information problem types, like an information mismatch/inequality/minimum/overflow/gap)
+      - automatically finding definitions, examples, minimum information to solve, problem-solution matching, insight paths like question-identification functions, finding math structures to re-use math patterns to solve other problems, etc
+
     - organization analysis
 	    - what would the optimal path be, given a certain intent, object identity, & host system?
 	    - what is the function linking these variables that is most efficient/involves fewest variables/involves known constants?
@@ -939,14 +908,14 @@
 	- information objects are related to agents & their communication (perspective, strategy, decisions, intent, game, motivation, problems)
 
 	- these objects can be defined as combinations of general interface objects:
-	    - perspective: a filter produced by chains of distortions; priority set with object positions & default paths
-	    - strategy: efficient path between points
-	    - joke: difference between expected & actual position
-	    - error: difference between expected & actual decision
-	    - argument: position of objects or path between points with supporting connective functions
-	    - game: incentivized motion within a system having limits to prevent motion; a system with conflicting/overlapping intents between agents, usually with low-stakes intents
-	    - filter: barrier creating a difference between input & output
-      - problem: conflict or inequality
+	  - perspective: a filter produced by chains of distortions; priority set with object positions & default paths
+	  - strategy: efficient path between points
+	  - joke: difference between expected & actual position
+	  - error: difference between expected & actual decision
+	  - argument: position of objects or path between points with supporting connective functions
+	  - game: incentivized motion within a system having limits to prevent motion; a system with conflicting/overlapping intents between agents, usually with low-stakes intents
+	  - filter: barrier creating a difference between input & output
+    - problem: conflict or inequality
 
   - attributes:
     - structure
@@ -989,36 +958,60 @@
 ## Problem Analysis
 
   - definition:
+
     - on this index, problems are mapped to structure, once problems have been converted to an information problem, which has a clear mapping to the structural interface
     - problems can always be framed as info problems (missing info, conflicting info, unconnected info, mismatches, imbalances, asymmetries)
       - finding a prediction function can be framed as an optimal path in a network of variable nodes
     - once you frame a problem as an info problem, you can map info to structure:
       - conflicts can be vectors with different direction or which overlap
 
+    - this involves identifying the given problem & solution target structures in the problem space & the related problem network, so the problem & solution can be visualized, including logic to:
+
+      - identify problem metadata includes defining the structure of a problem that the solution fulfills by some metric
+      - formatt the problem as a structure can take the form of:
+          - a n-dimensional shape where variables map to dimensions of the shape (where the solution format is a set of vectors that can reduce the dimensions & size of the shape, or fill the shape with the solution shape if the problem is the method to fill the problem structure rather than reduce it)
+          - a network missing an optimized route between start & end points, where the solution format is the optimized route
+          - an misalignment or mismatch (like an inefficiency, a conflict, or an information imbalance), where the solution format is the set of steps to balance the information
+
+        - selecting the right format for the problem & solution is an important function in this analysis; each of those formats is better for different problem types/formats (with varying structure in the problem definition) and solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
+        
+        - each of those formats involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, steps like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network to retrieve/connect information, or in the problem space to reduce a problem shape, move around problem components to change the problem, or traverse a route in the problem network system (not necessarily the network of related problems, but the problem framed as requiring a solution route within a network)
+        
+      - graphing the problem on a network of related problems (on the same interaction layer, in the same problem space, etc) such as how the problem of building a technology is related to the problem of managing usage of & access to it
+
+      - defining the problem space as a contextual system where the problem is active
+        - this includes other problem spaces where it is or could be active
+          - for example, how the 'tech distribution' problem (where most tech is inherently neutral & can be used for good or malicious intents so what matters most is how it's distributed) acts differently in different problem spaces where distribution tools & government ethics & policies differ
+    
+
   - functions:
-  
+
     - mapping function, to map problems to structures, problem functions, & other problem types
-        - graph attributes that differentiate problems that are impacted by possible solutions
-        - map intent to direction & assess progress by movement in that direction
-        - networks with clusters, sequences, & other structures representing decisions
-        - system layer graph representing combinations
-        - interactions of interaction spaces (which interactions are common across agents, likely given other interactions, etc)
-        - map function sets to sequences, given a metric like progression toward goal
-        - map related/approximate problems/problems elsewhere on the causal stack to a related problem network, having different dimensions (like a generative vs. identification problem)
-        - map change types to dimensions and graphing/calculating dimensions where change types change (an aggregate, interface, or deciding dimension where change type is uncertain but not random)
-        - using a layered graph to visualize change of different types/metrics built on a symmetry
-        - mapping language to structure directly (verbs like 'find' mapped to a set of vectors leading from a node indicating possible start positions, with option to use core function vectors to reach target node)
-        - a trajectory between problem graphs where each graph represents a decision/state, and attribute sets & problem of similar type occupy a similar position on an axis depicting all the graphs traversed
-        - a metric like size of variable interaction space mapped to length/area/volume to indicate how much of the problem is left, and a metric like number of variables mapped to number of dimensions/sides/layers of the shape to graph the problem according to structural metrics
-        - selecting a space (dimension set), with embedded parameters & bases for framing changes of a certain type
-        - representing changes produced by a solution as a set of vector trajectories across interfaces
+      - graph attributes that differentiate problems that are impacted by possible solutions
+      - map intent to direction & assess progress by movement in that direction
+      - networks with clusters, sequences, & other structures representing decisions
+      - system layer graph representing combinations
+      - interactions of interaction spaces (which interactions are common across agents, likely given other interactions, etc)
+      - map function sets to sequences, given a metric like progression toward goal
+      - map related/approximate problems/problems elsewhere on the causal stack to a related problem network, having different dimensions (like a generative vs. identification problem)
+      - map change types to dimensions and graphing/calculating dimensions where change types change (an aggregate, interface, or deciding dimension where change type is uncertain but not random)
+      - using a layered graph to visualize change of different types/metrics built on a symmetry
+      - mapping language to structure directly (verbs like 'find' mapped to a set of vectors leading from a node indicating possible start positions, with option to use core function vectors to reach target node)
+      - a trajectory between problem graphs where each graph represents a decision/state, and attribute sets & problem of similar type occupy a similar position on an axis depicting all the graphs traversed
+      - a metric like size of variable interaction space mapped to length/area/volume to indicate how much of the problem is left, and a metric like number of variables mapped to number of dimensions/sides/layers of the shape to graph the problem according to structural metrics
+      - selecting a space (dimension set), with embedded parameters & bases for framing changes of a certain type
+      - representing changes produced by a solution as a set of vector trajectories across interfaces
 
   - objects:
 
   - structures:
 
   - concepts:
-      - anomaly/counterexample/outlier/conflict
+      - anomaly/outlier
+      - counterexample/contradiction
+      - conflict
+      - inefficiency
+      - mismatch
 
   - attributes:
         - number of problem-causing variables/solution metrics fulfilled
@@ -1055,10 +1048,10 @@
                 - you could graph the problem/solution with any of those objects, if they supply all the info needed to frame the problem - navigating on the filter or mismatch section of the network may be faster given the commonness of those objects
               - example: find resource combination to resolve a lack of another resource
                 - problem cause: missing resource or its alternatives, or missing resources to generate it or its alternatives, or dependence on resource or its alternative
-                1. create missing resource
+                - solution 1: create missing resource
                   - navigate up causal stack: find combinations of functions & objects that generated it
                   - navigate sideways: find alternatives or find alternative combinations to generate it
-                2. invalidate dependence
+                - solution 2: invalidate dependence
                   - navigate up causal stack until dependence cause is found: find combinations of functions & objects that generated dependence
                   - navigate sideways: find functions to invalidate dependence (generate resource) or correct problem (imbalance, lack, mismatch) causing dependence
                 - solution intents 1 & 2 have a 'generate resource' intent in common, which fulfills both solution intents - so if the intent changes between them, the solution involving generating the resource may cover the next problem iteration too, or the intent that invalidates the problem may prevent future iterations
@@ -1066,19 +1059,18 @@
         - find sequence (route) of network nodes representing (steps, positions/states, sets, intents, etc)
 
               - find sequence of questions to solve a problem
-            	  - example: what is the probability the sun will rise tomorrow
-            	    - this can be done with an insight path composed of interface analysis questions:
-            	      - what are the shapes & patterns of errors in assumptions & selection/generation of methods? (what ratio of incorrect are people with each additional assumption, given the level of certainty per assumption & complexity of problem)
-            	      - what are the consequences of not correcting those errors? (how wrong will the predictions be)
-            	      - what are the shapes of cause in generating/selecting assumptions & methods
+
+            	  - example: what is the probability of event x happening
+            	      - what are the shapes & patterns of errors in assumptions, causes, & selection/generation of methods? (what ratio of incorrect are people with each additional assumption, given the level of certainty per assumption & complexity of problem)
+            	      - what are the consequences of not correcting those errors? (how wrong can the predictions be)
             	      - what is the usual correct assumption pattern once false assumptions are corrected, and whats the insight path to transform the incorrect to the correct version?
             	      - whats the rate of discovery of new sub-systems, objects, or variables in related systems like physics
             	      - whats the likelihood we created certainty out of what ratio of our assumptions (over-relying on assumptions to make them conditionally true)
-            	      - whats the possible causative impact of measurements & application of science knowledge on other knowledge
-            	      - whats the possibility that a subset/state of physics rules gathers in increasingly isolated space-times, but outside of it, the rules are more flexible
-            	      - whats the possibility that every science rule we take as certain is a false similarity or other false object?
+            	      - whats the possible causative impact of measurements & application of specific knowledge on other systems
+            	      - whats the possibility that every rule we take as certain is a false similarity, false correlation, or other false object
 
   - answers questions like:
+    - what are the problems (inefficiencies, conflicts, mismatches) in this system?
 
 
 ## Interface Analysis
