@@ -125,38 +125,75 @@
           - if queries of those interfaces are insufficient to solve the problem, interface operations can be used
             - the information-system-structure interface operation (can be used to determine information like the next layer of information objects that are relevant if enough automation is distributed)
 
+    - specific problem: design set-sorting or value-finding function:
+
+        - similarity in navigation, equality in split => optimal for target value near initial split points or similar positions to the split points
+        - assumed difference embedded in pre-computation of attributes => optimal for target value with different pre-computed attribute value, or target values in similar position to values with different pre-computed attribute values or adjacent values
+
+        - analyze a set from:
+
+          - core interface: what core functions determine set generation/selection/aggregation/interaction/organization
+          - causal interface: what functions were used to generate the set
+          - intent interface: what is this set for
+          - structure interface: randomness, endpoints, subsets/split
+          - potential interface: what are the limits on this set, what is the set of possible outcomes
+          - change interface: where is the change concentrated/distributed in the set from a standard set
+          - pattern interface: what patterns do sets in this position (determined by attributes or sample subset) normally follow
+          - function interface: what functions are adjacent to the set if it has a sequence or clear function map
+          - concept interface: 
+            - what specific tradeoffs/mismatches/alignments/symmetries/combinations/interactions are inherent to the problem/problem space? (specific concept filter) 
+            - where is the power distributed in the set? (abstract concept filter)
+          - system interface: what variance injection points are in the set generation/selection/aggregation/interaction/organization
+
+        - then when you find a pattern match on an interface set, you can restrict the search to those
+
+        - key concepts of this problem (like the "tradeoff of search start point/split function/organization vs. performance", "subset gains", "pattern matching", and "potential worst/best case scenario of solution") should be found quickly from various interfaces:
+
+          - structure interface: 
+
+            - position (sequence in the set problem space) is a determinant of adjacence/distance
+            - adjacence between start search position and final found value position is a key metric
+            - start-found adjacence can be maximized by changing input (number of start points)
+            - limits on number of processes involve ability to read a value at a given position at a time
+            - maximizing start-found adjacence requires more work (higher search processes) to produce a possible metric "lower search time"
+            - "search time" and "start point count" have a tradeoff structure
+
+          - potential interface:
+
+            - the set of possible outcomes (possible positions of value) is equal to the set's positions (indexes)
+            - how do you reduce the set of possible outcomes if the possible outcomes are an integer sequence equal to the set length
+            - subsets are a potential interim unit (based on the value count attribute) between the outcome data type (one value index) and the input data type (set)
+            - the potential of subsets of equivalent length to contain the value could be equally likely (adding randomness to search)
+            - potential injection point for pattern interface: skipping equivalent valued subsets could reduce solve time (if subsets with a certain split follow patterns as determined at search time)
+            - best case scenario in standard search (random or endpoint) is the first value in the set is the target value
+            - does subset search offer gains to random search?
+            - best case scenario of unit solution type (iterate check of value)in subset search is first value after first subset split (split in half) is the target value
+            - next best case scenario type (if the unit solution type best case scenario doesnt occur iteratively) is pattern found & used to reduce solution/search space
+            - splitting requires multiple processes
+            - pattern logging/searching requires multiple processes
+            - depending on set, either can reduce solution space with extra work
+            - there is a trade-off between work invested in pattern-checking, subset-splitting & solution space reduction potential
+
   3. Analysis types
 
     - each analysis type describes the logic executed on each interface, where the conversion function of each interface standardizes the problem/other object being converted to objects/functions/attributes/structures defined on that interface
 
     - problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
-
     - core analysis: automatically finding core objects/functions/attributes/states possible to determine/describe a system, defining core operations like find/apply/build/derive
-    
     - system analysis: automatically fitting system objects like symmetries, sub-systems, sub-interfaces, false assumptions, correlations, efficiencies, incentives, and conflicts to problem definition to determine optimal organization/format/routes/metrics/positions
-    
     - structure analysis: automatically finding structures, like a route between information formats to solve a problem
-    
     - information analysis
-
       - insight analysis: insight path application (using insight paths from other fields to optimize insight generation)
-
-      - problem analysis
-        - formatting to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions)
-
-      - question analysis (where a question is framed as a source position and a target position on a network, and the answer is the most robust path or the path that moves the nearest to the target position or the path that moves in the priority direction on the network)
-    
+      - problem analysis: formatting to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions)
+      - question analysis: where a question is framed as a source position and a target position on a network, and the answer is the most robust path or the path that moves the nearest to the target position or the path that moves in the priority direction on the network
     - change analysis: automatically identifying change metadata like change types necessary to explain a solution or solve a problem
       - potential analysis: automatically finding structures of variance like gaps/cascades/reducers, possibility fields, and determining/limiting vertices
-    
     - logical analysis
-      - function analysis: automatically identifying function metadata like variables, input/output trajectory, the function in a filter format, intent, complexity, efficiency, & exploits)
+      - function analysis: automatically identifying function metadata like variables, input/output trajectory, the function in a filter format, intent, complexity, efficiency, & exploits
       - intent analysis: automatically finding possible reasons to use a function to automate logic
       - causal analysis: automatically matching the problem to causal structures to infer relevant variables & causation metadata (like directness of cause, degree of cause, inevitability, uniqueness of cause, causal tree/network/loop/layer shape)
       - pattern analysis: automatically finding patterns with relevant similarities to infer the relevance of pattern metadata, where patterns replace missing required data (such as using patterns between variables of specific types or system positions to infer probable variable relationships)
-    
     - concept analysis: automatically identifying concepts associated with a structure & vice versa, identifying positions of default abstract concepts in the network
-
     - interface analysis: mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query
 
 
@@ -175,19 +212,25 @@
 
   - attributes:
     - interface attributes:
-        - intent, priority
-        - potential/certainty
-        - perspective
-        - causality
-        - abstraction
+      - intent/priority
+      - potential/certainty
+      - perspective
+      - causality
+      - abstraction
     - commonness
     - contexts (coordinating/opposing)
-    - coordinatability (with similar objects)
-    - interaction layer (which objects does it interact with, on what layers of a system or other layers like abstraction/scope layer)
-    - injectability (can it be used in many operations)
-    - emergence (is it generatable from other objects)
-    - neutrality (the range of operations/contexts it can be used for)
+    - coordinatability: integration potential
+    - interaction layer: which objects it interacts with, on what layers of a system like abstraction/scope layer
+    - injectability: can it be used as an input, in many operations
+    - emergence: is it generatable from other objects
+    - neutrality: the range of operations/contexts it can be used for
     - scope
+    - optimization
+    - completeness
+    - randomness
+    - reusability
+    - complexity
+    - dependence
 
   - functions:  
     - structural functions: combine, merge, apply, embed, mix, filter, chain, define, create, derive, identify, change, version
@@ -289,12 +332,21 @@
 ## Concept Analysis
 
   - definition:
+
     - a concept is an object in a system that:
       - extends the core components of the system in a new way
       - acts as an interface (for change, randomness, etc)
       - has attributes/functionality beyond its definition in that space (can have one function in one system context & another emerging function in a particular state & environment)
-    - an abstract concept cannot be abstracted further & is found across all systems
-    - a non-abstract concept is an abstract concept with structure applied (in a particular system), like how a particular definition of equivalence in a system can evolve from the abstract concept of similarity
+
+    - the abstract network is a set of related concept objects remaining after removing context, concepts that are applicable across systems, often have multiple definition routes because they take a variety of forms given the context, and are fundamental to describing a system
+
+      - example: power is the object left when objects implementing it (resources => energy => input => potential) have their context removed, navigating up the abstraction stack from:
+          - the info layer (resources & energy), removing their contextual attributes/rules
+          - to the abstract structural layer (input)
+          - to the abstract layer (potential, which is a related concept of power)
+        - so that the final object is defined in terms of other abstract objects on the top layer
+      
+    - a non-abstract concept is an abstract concept with structure applied (in a particular system), like how a particular definition of similarity in a system can evolve from the abstract concept of equivalence
 
   - objects:
 
@@ -335,55 +387,6 @@
         - check if the change type handled ratio is above or below the strong ratio
         - if above, the system is 'robust'
 
-    - design set-sorting or value-finding function:
-        - similarity in navigation, equality in split => optimal for target value near initial split points or similar positions to the split points
-        - assumed difference embedded in pre-computation of attributes => optimal for target value with different pre-computed attribute value, or target values in similar position to values with different pre-computed attribute values or adjacent values
-
-        - analyze a set from:
-
-          - core interface: what core functions determine set generation/selection/aggregation/interaction/organization
-          - causal interface: what functions were used to generate the set
-          - intent interface: what is this set for
-          - structure interface: randomness, endpoints, subsets/split
-          - potential interface: what are the limits on this set, what is the set of possible outcomes
-          - change interface: where is the change concentrated/distributed in the set from a standard set
-          - pattern interface: what patterns do sets in this position (determined by attributes or sample subset) normally follow
-          - function interface: what functions are adjacent to the set if it has a sequence or clear function map
-          - concept interface: 
-            - what specific tradeoffs/mismatches/alignments/symmetries/combinations/interactions are inherent to the problem/problem space? (specific concept filter) 
-            - where is the power distributed in the set? (abstract concept filter)
-          - system interface: what variance injection points are in the set generation/selection/aggregation/interaction/organization
-
-        - then when you find a pattern match on an interface set, you can restrict the search to those
-
-        - key concepts of this problem (like the "tradeoff of search start point/split function/organization vs. performance", "subset gains", "pattern matching", and "potential worst/best case scenario of solution") should be found quickly from various interfaces:
-
-          - structure interface: 
-
-            - position (sequence in the set problem space) is a determinant of adjacence/distance
-            - adjacence between start search position and final found value position is a key metric
-            - start-found adjacence can be maximized by changing input (number of start points)
-            - limits on number of processes involve ability to read a value at a given position at a time
-            - maximizing start-found adjacence requires more work (higher search processes) to produce a possible metric "lower search time"
-            - "search time" and "start point count" have a tradeoff structure
-
-          - potential interface:
-
-            - the set of possible outcomes (possible positions of value) is equal to the set's positions (indexes)
-            - how do you reduce the set of possible outcomes if the possible outcomes are an integer sequence equal to the set length
-            - subsets are a potential interim unit (based on the value count attribute) between the outcome data type (one value index) and the input data type (set)
-            - the potential of subsets of equivalent length to contain the value could be equally likely (adding randomness to search)
-            - potential injection point for pattern interface: skipping equivalent valued subsets could reduce solve time (if subsets with a certain split follow patterns as determined at search time)
-            - best case scenario in standard search (random or endpoint) is the first value in the set is the target value
-            - does subset search offer gains to random search?
-            - best case scenario of unit solution type (iterate check of value)in subset search is first value after first subset split (split in half) is the target value
-            - next best case scenario type (if the unit solution type best case scenario doesnt occur iteratively) is pattern found & used to reduce solution/search space
-            - splitting requires multiple processes
-            - pattern logging/searching requires multiple processes
-            - depending on set, either can reduce solution space with extra work
-            - there is a trade-off between work invested in pattern-checking, subset-splitting & solution space reduction potential
-
-
 ## Function Analysis
 
   - this interface extends the core function definition of the object format, which refers to any logical rule, and applies a comprehensive definition that can standardize & describe the function potential of other objects
@@ -411,19 +414,76 @@
     - function type (core/boundary/abstract/change/potential)
 
   - functions:
-    - general functions: find, apply, build, derive, change, define, identify
-    - core functions: reverse, shift, add
-    - info functions: standardize, differentiate, organize, check, monitor, measure, prevent, enable, regulate, store, restore, decide, track, conflict, learn, optimize
-    - structure functions: connect, chain, limit, position, change, match, convert, format, route, fill, bound, bind, mark, fit, combine (interact, compete, share, coordinate, equate, group, merge, mix, union, intersection, embed), distribute, filter
-    - interim functions: provide resources used as inputs to activate other functions (a set of molecules that when detached can activate other processes)      
-    - foundation functions: enable other functionality to develop on foundation structures
-    - function operations (resolve function definition, find functionality, index function metadata, chain functions)
+  
+    - info functions:
+      - alternate
+      - limit
+      - enable
+      - format
+      - organize
+      - generalize/specify
+      - validate
+      - track
+      - decide
+      - enforce
+      - change
+        - update
+        - distort (gap creation, divergence)
+        - standardize
+        - maintain/regulate
+        - potential 
+          - conversion (adjacence, or what can it be transformed into using available functions)
+      - conflict/resolve
+      - learn/optimize/correct/update
+      - neutralize
+      - store/restore
+      - equate/differentiate (key points of difference)
+      - interface functions (change, intent, type, pattern, concept, problem, strategy, insight, game, perspective)
+        - uncertainty/risk/potential/prediction functions
+        - solution functions (variance/stressor/error detection, tracing, identification & handler)
+
+    - core functions
+      - foundation functions: enable other functionality to develop on foundation structures
+      - granular functions (reverse, shift, add)
+      - general functions:
+        - convert (change)
+        - apply (format, filter, function, etc)
+        - find (find important objects/rules/variables/layers/systems)
+        - identify
+        - generate (using limits, filters, logic objects, structures, interfaces, symmetries, variables)
+        - derive (a combination of deconstruct, match structure, assemble/isolate structure, fill structure)
+        - define
+
+    - structure functions
+      - compress, expand, limit, position, convert, route, mark, distribute
+      - format
+      - match
+      - fill (gap closing, convergence)
+      - fit (path/structure derivation, path evolution in isolation & with other factors)
+      - filter (reduce)
+      - map (using various versions of structure/fit/format/convert functions like position/combine, and various identification functions like calculate/approximate/measure)
+      - interact (combine, isolate, chain, connect, interact, contain, compete, share, coordinate, equate, group, overlap, overload, merge, trade, mix, union, intersection, inject, embed)
+      
+    - automation
+      - function operations: resolve function definition, find functionality, index function metadata, chain functions, function-modifying/generating functions
+      - interim functions: provide resources used as inputs to activate other functions (a set of molecules that when detached can activate other processes) 
+      - metadata functions: find definition/attribute/object/function
+        
+    - dependency
+      - assume
+      - expect
+      - contextualize
+
+    - attribute
+      - state functions
+      - update attribute
+      - scope (use case, relevance, lifecycle, self-destruct triggers, context, range)
 
   - objects:
     - errors
     - assumptions
     - input/output parameters & parameter types
-    - definitions of concepts like equivalence specific to that function
+    - definitions of concepts like equivalence, specific to that function
 
   - structures:
     - formats: core functions, filters, sequences, limits, network/tree representation, probabilities, attributes
@@ -725,6 +785,7 @@
     - certainty structures (patterns, rules, constants, assumptions, limits, metrics, information, similarities/matches/alignments (intents/incentives, demand/supply, limit/variation), definitions)
     - uncertainty structures
       - variance structures (gap, leak, cascades/catalysts, accretions/injections, compounding variance, variance building a new interface, variance distribution/alignment, unenforced rules, measurement limits, open systems)
+      - potential structures (unused paths/energy/combinations, adjacent states accessible with existing/available resources)
       - change structures (variables, dependencies, updates, replacements, distortions)
     - interaction layer (layer on which objects are likely to interact)
     - interaction space (set of possible interactions)
@@ -761,7 +822,7 @@
       - what is transformation cost/potential between objects
       - what is divergence distance between generative paths for each object
       - what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?
-
+    - how does a system become overwhelmed with variance (in various forms, including randomness), does it have outlets like interfaces with other systems to delegate variance
 
 ## Change Analysis
 
@@ -968,25 +1029,27 @@
     - this involves identifying the given problem & solution target structures in the problem space & the related problem network, so the problem & solution can be visualized, including logic to:
 
       - identify problem metadata includes defining the structure of a problem that the solution fulfills by some metric
-      - formatt the problem as a structure can take the form of:
-          - a n-dimensional shape where variables map to dimensions of the shape (where the solution format is a set of vectors that can reduce the dimensions & size of the shape, or fill the shape with the solution shape if the problem is the method to fill the problem structure rather than reduce it)
-          - a network missing an optimized route between start & end points, where the solution format is the optimized route
-          - an misalignment or mismatch (like an inefficiency, a conflict, or an information imbalance), where the solution format is the set of steps to balance the information
 
-        - selecting the right format for the problem & solution is an important function in this analysis; each of those formats is better for different problem types/formats (with varying structure in the problem definition) and solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
+      - selecting the right format for the problem & solution is an important function in this analysis; each of those formats is better for different problem types/formats (with varying structure in the problem definition) and solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
         
         - each of those formats involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, steps like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network to retrieve/connect information, or in the problem space to reduce a problem shape, move around problem components to change the problem, or traverse a route in the problem network system (not necessarily the network of related problems, but the problem framed as requiring a solution route within a network)
         
       - graphing the problem on a network of related problems (on the same interaction layer, in the same problem space, etc) such as how the problem of building a technology is related to the problem of managing usage of & access to it
 
       - defining the problem space as a contextual system where the problem is active
+
         - this includes other problem spaces where it is or could be active
           - for example, how the 'tech distribution' problem (where most tech is inherently neutral & can be used for good or malicious intents so what matters most is how it's distributed) acts differently in different problem spaces where distribution tools & government ethics & policies differ
+
+      - identifying & anticipating problems in a system involves identifying problem structures (inefficiencies, conflicts, etc) that exist or could emerge
+
+        - for example, in the bio system, DNA regulation functions don't prevent pathogens from injecting DNA or mutations from occurring, so if you derive the concept of a pathogen or mutation without already having that definition available (using core system analysis), you could predict that the current DNA regulation functions wouldn't be able to offset the changes exacted by those concepts & you could predict problems of DNA disregulation in the bio system before they occur
     
 
   - functions:
 
     - mapping function, to map problems to structures, problem functions, & other problem types
+
       - graph attributes that differentiate problems that are impacted by possible solutions
       - map intent to direction & assess progress by movement in that direction
       - networks with clusters, sequences, & other structures representing decisions
@@ -1006,6 +1069,22 @@
 
   - structures:
 
+    - problem-solution formats:
+
+      - a vector set is good for converting between problem-solution structures, like converting an inefficiency to an efficiency in a system
+      
+        - problem shape-reducing vector set (where problem variables form the shape) is good for finding a function that reduces shape dimensions & size (like to form a summary), or a vector set to combine solution components in a way that fills the shape structure, if the solution format is a method to fill the problem structure rather than reducing the problem shape
+            
+        - a route optimization problem has the solution format of a vector set between network functions/nodes (where nodes are states/problems/objects, etc) that is optimal in some way (hits a node/path, moves in a direction, minimizes cost of traversal, etc)
+
+          - with a network of states, the route can be a route between states with additional routes traversed within each state to convert to the next one (set of market states & trades to achieve a market intent)
+
+      - structure-matching can be a good format for finding an example, finding a reason, or finding a causal structure of variables for a prediction function
+
+        - an misalignment or mismatch (like an inefficiency, a conflict, or an information imbalance), where the solution format is the set of structures (which can be steps/vectors or applying a pattern or finding a structure in a network) necessary to correct the mismatch (minimize cost, align priorities, balance the information)
+          
+      - abstract format of a query (break problem into information problem types and then the solution is a query of solutions for each of those solved problems)
+
   - concepts:
       - anomaly/outlier
       - counterexample/contradiction
@@ -1014,19 +1093,85 @@
       - mismatch
 
   - attributes:
-        - number of problem-causing variables/solution metrics fulfilled
-        - complexity: 
+    - number of problem-causing variables/solution metrics fulfilled
+    - complexity: 
           - number of core function steps required
           - number of variables
           - number of differences/inefficiencies
           - number of counterintuitive steps (requiring non-standard solutions)
           - number of contrary processes (requiring scoped/nuanced solutions)
-        - abstraction (does it solve the same problem when framed on an abstraction layer above)
-        - number of steps required to create problem from stable system state, once work is standardized, & adjacence of steps required
-        - how much work is required to convert to a particular problem format (route, combination, composition)
-        - type/intent ranges/direction (of individual objects or composite stack)
-        - similarity (how similar to a standard problem type, or how near to limits within a type dimension)
-        - ratio of positive to negative outputs (problems solved vs. caused)
+    - abstraction (does it solve the same problem when framed on an abstraction layer above)
+    - number of steps required to create problem from stable system state, once work is standardized, & adjacence of steps required
+    - how much work is required to convert to a particular problem format (route, combination, composition)
+    - type/intent ranges/direction (of individual objects or composite stack)
+    - similarity (how similar to a standard problem type, or how near to limits within a type dimension)
+    - ratio of positive to negative outputs (problems solved vs. caused)
+    - inevitability vs. agency of problem cause
+
+    - problem types:
+
+      - dependency/fragility
+
+      - mismatches
+
+        - conflicts
+          - intersection/collision
+          - comparison
+          - coordination
+          - competition
+          - conflicting direction/misalignment
+            - incentives/intents
+            - expectations/potential
+            - requirements/enforcement
+            - intent mismatch
+              - unintended use (involves integrated third party tech not under review)
+                - unintended side effects: whether it's a closed system or leaks variance
+                  - function side effect example:
+                    - before execution: pre-computing
+                    - during: memory access/overflow
+                    - after: process re-starting
+
+          - misidentification 
+            - incorrect structure 
+              - incorrect metric
+              - incorrect information position (info leak)
+              - incorrect organization
+
+        - imbalances
+          - misdistribution of resources
+
+        - inefficiencies
+          - unmaximized benefit/cost ratio 
+            - complexity
+            - unnecessary work
+
+        - gaps
+          - missing information
+            - ambiguity
+              - ambiguous alternatives
+          - gap in rule enforcement
+            - gap in boundary
+              - leaks (variance, resource/info)
+              - injection point (assumptions/variance/control/randomness)
+
+        - limits
+          - limited resources/functions
+
+      - specific problems:
+        
+        - malicious alternative route to get same output
+        - legitimate/alternative route to get malicious output
+
+    - solution types:
+      - solution-metadata solution: evaluating & comparing solution metadata for solution selection
+      - problem-metadata solution: evaluating problem metadata to evaluate metrics like problem-solving postponement
+      - generative solution: solution that generates solutions
+      - solution framework: provides starting point & structures for solutions to be built in/with
+      - problem decomposer: solution that reduces a problem's root causative (as opposed to just varying) parameters
+      - interim solution: clearly suboptimal solution while optimal alternative is built
+      - solution query constructor: solution that builds new solutions out of known solution types (existing structural solutions or core functions)
+      - structure-finding solution: solution that assigns a structure to information
+      - structure-fitting solution: solution that matches the gaps/limits in a problem structure to neutralize them
 
   - examples:
 
@@ -1070,7 +1215,12 @@
             	      - whats the possibility that every rule we take as certain is a false similarity, false correlation, or other false object
 
   - answers questions like:
-    - what are the problems (inefficiencies, conflicts, mismatches) in this system?
+    - what are the problems (inefficiencies, conflicts, mismatches) in this system
+    - what solutions are associated with this problem type
+    - what problems are related to this problem
+    - what problems will develop in this problem space system
+    - what is the probable cost of solving this problem
+    - what is the adjacent format of this problem
 
 
 ## Interface Analysis

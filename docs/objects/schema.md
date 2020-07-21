@@ -26,13 +26,10 @@
     - understanding of host space (are the rules clear enough that we can safely automate with little expectation of variance injection)
   
   - equivalence definition
-
     - equivalent
-
     - similar
       - common set/subset of objects/types/rules/attributes/values
       - within range of object/type/rule/attribute/value
-
     - related
       - different versions
       - sub/super type of type
@@ -156,6 +153,30 @@
 
   - types:
     - core functions
+      - distort/standardize
+      - alternate/stabilize
+      - isolate/combine
+      - position (arrange)
+      - compress/expand
+      - transform (change)
+      - fit (match/contain/fill structure)
+      - differentiate (key points of difference)
+      - filter (find: start from everything & reduce)
+      - derive (build: start from scratch & build)
+      - metadata (minimum information to derive)
+      - generate (using limits, interfaces, symmetries, variables)
+      - map (physics of limits, combination, calculation, approximation, measurement)
+    - metadata
+      - find definition
+      - find objects in data
+      - find important objects/rules/variables/layers/systems
+    - change
+    - limit
+    - automation
+    - dependency
+      - assumption/expectation
+      - context
+      - standards/protocols
     - meta (rule-modification/generation rules)
     - attribute rules:
       - state
@@ -278,7 +299,6 @@
     - generative solution: solution that generates solutions
     - solution framework: provides starting point & structures for solutions to be built in/with
     - problem decomposer: solution that reduces a problem's root causative (as opposed to just varying) parameters
-    - solution automator: solution that automates solutions of a type
     - interim solution: clearly suboptimal solution while optimal alternative is built
     - solution query constructor: solution that builds new solutions out of known solution types (existing structural solutions or core functions)
     - structure-finding solution: solution that assigns a structure to information
@@ -286,8 +306,7 @@
 
 - concept
   - definition: set of unique objects remaining once objects from other spaces have their context & contradictory attributes removed
-    - example: power is the object left when objects implementing it
-      - resources => energy => input => potential) have their context removed, navigating up the abstraction stack from:
+    - example: power is the object left when objects implementing it (resources => energy => input => potential) have their context removed, navigating up the abstraction stack from:
         - the info layer (resources & energy), removing their contextual attributes/rules
         - to the abstract structural layer (input)
         - to the abstract layer (potential, which is a related concept of power)
