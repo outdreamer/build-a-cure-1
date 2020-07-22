@@ -305,6 +305,8 @@
     - system failures
     - exploit opportunities
     - variance gaps
+    - games
+    - tradeoffs
 
   - functions:
     - optimize, traverse, open/close, etc
@@ -824,6 +826,7 @@
       - what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?
     - how does a system become overwhelmed with variance (in various forms, including randomness), does it have outlets like interfaces with other systems to delegate variance
 
+
 ## Change Analysis
 
   - definition:
@@ -901,6 +904,7 @@
       - which difference definition applies (changes framed based on difference type, including difference from value, symmetry, limit, origin, number type, pattern)
       - what probabilities/possibilities become possible/adjacent (adjacent meaning findable/generatable in structural dimensions/on the structural interface)
     - as a concept having structure (like power: degree of independence) changes, does the change definition erode (previously distant points become more equal to adjacent points, so the meaning of information about position/dependency erodes, as power to move between them increases)
+    - where can change be stored/routed in a system: if there is demand for change (stressors demanding new functionality) but all components but one are maximizing their change handlers, then you know theres one potential variable where change will gather/be routed, if its possible to route change from the variance injection point to that variable's causal stack at some layer/point
 
 
 ## Causal Analysis
@@ -926,6 +930,9 @@
     - direction (x is always an output so it couldnt have caused y)
     - proxy (x is a proxy for z, so x & z are not both required to explain y)
     - function (x is descriptive rather than generative so it cannot be a cause)
+    - difference from randomness
+    - difference between actual/possible functions (if an agent doesnt solve a problem, but they could have efficiently solved it, is the problem caused by them or its origin)
+    - hierarchical
 
   - objects:
     - dependencies
@@ -1214,6 +1221,37 @@
             	      - whats the possible causative impact of measurements & application of specific knowledge on other systems
             	      - whats the possibility that every rule we take as certain is a false similarity, false correlation, or other false object
 
+        - find objects, sub-interfaces & concepts in a problem system
+          
+          - example: for a password system, relevant basic objects & concepts include:
+            - 'memory access patterns' as retrieving a memory has patterns just like retrieving a password from browser storage has patterns or typing someone else's password has patterns
+            - 'memory limits' meaning that a memory has more limits on memorable passwords than browser stored passwords or an experienced hacker
+            - 'augmentation' meaning password salts
+            - 'validation' meaning hash check patterns
+            - 'generation' meaning the rules used to generate different types of password (like how passcodes typically have repeated patterns) & the enforced rules to limit passwords (requiring special char types that are usually positioned together if manually generated)
+            - 'reverse computation requirements', meaning the cost of rainbow tables and other tools to reduce computation time
+
+            - these objects can be generated with standard system objects/functions/attributes (limits, patterns, core operations like reverse and high-level operations like generate/validate) applied to password system objects/functions/attributes (password rules, char limits)
+
+            - identifying interface objects in a security problem space system:
+
+              - identify contexts (default permissions, information-event-function sets) likelier to incentivize exploits
+                - identify adjacent preceding contexts or objects of exploits to prevent exploit contexts from developing
+              
+              - identify structures of systems enabling exploits to apply more security or analysis to similar structures
+                - identify intersections (edge conditions) or sets (anomaly chains) likely to be exploit opportunities or allow them to develop
+                - identify malicious intents that look like positive intents (false similarities)
+                - identify function sequences that have gaps in enforcement/injection points, or can be called for malicious purposes because the entire chain is abstract or the pieces being tested are abstract/neutral
+                  - identify functions that can be called outside of intended justified contexts
+              
+              - identify distortion functions & approved ranges of distortion structures (like combined distortions, distortion sequences, etc)
+
+              - identify positions in a system where movement toward malicious or neutral intent positions is possible/incentivized
+
+              - identify system objects & concepts (expectations vs. intents, side effects, errors, potential, rule enforcement, assumptions, access, randomness, request patterns/sets, false/accidental similarities/differences, pre-approved workflows & request sets) relevant for finding exploit opportunities
+
+              - identify specific objects relevant to exploit opportunities for a system
+
   - answers questions like:
     - what are the problems (inefficiencies, conflicts, mismatches) in this system
     - what solutions are associated with this problem type
@@ -1229,130 +1267,51 @@
   - structures:
   - concepts:
 
-  - definition:
+  - definition: 
 
-  	- the interface network is the set of networks that act as useful filters/standards for comparing metadata 
+    - the interface network is the set of networks that act as useful filters/standards for applying structure to organize information, involving analysis like:
 
-    	- it can refer to a set of specific interfaces for a given problem space
-    		- the specific interface network for the debugging code space could be layers of network filters like dependencies, logic structures, side effects, and types
-    		- these specific interface networks are often implementations of the general interface network with mapped objects:
-    			- dependency interface is a combination of the cause/function interface
-    			- types (data, classes, etc) interface is a subset of the general type interface
-    			- side effects are a subset of the variance interface (gaps in intent & execution, prediction of emergent attributes after nth iterations of combinations or other operations)
+      - selecting those optimal interfaces to solve a problem: framing a conflict of type 'competition' as opposing direction/intent or equivalent direction/intent is a calculation that can be automated using any of these kinds of analysis, but the logic & intent interfaces are best at this
+      - finding explanatory variables on multiple interfaces (a trajectory on the interface network) & translating them to a shared interface where possible
+      - determining position/trajectory within an interface
+      - selecting interface as the best standard for comparison (identifying when a particular specific interface will reduce solution set across any possible host system)
+      - generating specific interfaces (filters) for a problem/space
+      - generating full set of general interfaces (intent, concept, structure)
+        - these can be generated by identifying the key differentiating factors across systems, which can be generated as system structures (like combinations of objects - type is an attribute set, intent is a function effect set, concept is a network of networks describing a structural concept (balance, power), structure is an information & rule set)
+      - identifying all interfaces with variance that cant be captured in other interfaces
+      - calculating when to skip interim variables/interfaces
+      - determining adjacent interfaces
 
-    	- the abstract interface network includes layers of network filters like:
-    		- intent (priority)
-    		- perspective (the unit filter object)
-    		- function (can include patterns, logic, strategies, core functions, and any other set of operations/objects that has order)
-    		- structure
-    		- concept
-    		- information (organization, formats, types, info objects like problems/questions/insights/assumptions)
-    		- potential
-        - change
-    		- cause
-    		- system
+    - which interface to standardize information to depends on which use you intend to use the information for
+      - if you need to implement it immediately, an interface like intent that is semantically adjacent to the structural & logical interfaces will be more useful
+      - if you need to identify new types, standardizing to the type interface will be more useful
 
-	- core functions (filter, find, apply, derive, build, change) mapped to user intents (identify cause, predict a variable, build a function) can be used to generate & design a query on the interface network
+    - the abstract interface network includes layers of network filters (intent, perspective, function (can include patterns, logic, strategies, core functions, and any other set of operations/objects that has order), structure, concept, information (organization, formats, types, info objects like problems/questions/insights/assumptions), potential, change, cause system)
 
-	- like all other sets of objects on an equal interface, any item in the set can be used to find the others
-  - when a system is totally unknown, you should diversify across all interfaces at first
-	- each interface network in the set of interfaces (core function interface network, general interface network, specific interface network) can be used to generate the others
-		- intent interface can be used to generate the type interface
-		- dependency interface can be used to generate the side effect interface
-		- interface network can be used to generate the core function interface
+  	- core functions (filter, find, apply, derive, build, change) mapped to user intents (identify cause, predict a variable, build a function) can generate & design a query on the interface network
 
-	- the filter interface is more clearly usable as a method to generate the others bc most problems can be reduced to a structure that can be filled in different ways for different reasons
-		- it can even generate the change interface, by framing each process as a filter between i/o
+  	- each interface network in the set of interfaces (core function interface network, general interface network, specific interface network) can be used to generate the others
+  		- intent interface can be used to generate the type interface
+  		- dependency interface can be used to generate the side effect interface
+  		- interface network can be used to generate the core function interface
 
-	- finding the starting interface & direction of traversal across the other interfaces in the network is its own interesting problem, beyond just generating the relevant & useful interfaces in a network
-	
-	- framing a conflict of type 'competition' as opposing direction/intent or equivalent direction/intent is a calculation that can be automated using any of these kinds of analysis, but the logic & intent interfaces are best at this, and selecting those type of analysis is an important tool to build
+  	- the overall workflow of this tool can be built with an interface query:
 
-	- other uses of the interface network include:
-
-		- finding explanatory variables on multiple interfaces (a trajectory on the interface network) & translating them to a shared interface where possible
-
-			- maybe you can identify that theres an important type, intent, & conceptual variable to identify an object
-			- then you can decide if its worth storing that info separately, or standardizing those variables to the same interface
-				- if the type variable is explanatory & you need to keep it, you can still standardize it to intent (whats the primary unique function achieved by each type)
-				- concepts can also be standardized to other interfaces (what intents do concepts like 'power' achieve in the system & what position do they occupy)
-			- which interface to standardize to depends on which use you intend to use the information for
-				- if you need to implement it immediately, an interface like intent that is semantically adjacent to the structural & logical interfaces will be more useful
-				- if you need to identify new types, standardizing to the type interface will be more useful
-
-	- The overall workflow of this tool can be built with an interface query:
-
-		- find problem type & format the problem as a combination of information problem types (information (problem, assumption) interface, type interface), as well as any related problems (information (problem) interface, pattern interface, and the change interface to generate related problems if none are logged)
-		- find solution requirements (structure interface where requirements are limits/thresholds)
-		- apply a directed graph (structure interface) of various information formats (interface interface, information interface), positioned in the sequence likeliest to find the missing information to solve (structure interface, similarity concept interface)
-			(if its missing cause information, standardize to the causal interface or generate information about likely causes from other interfaces like the pattern interface or generate adjacent or proxy information to cause information like a set of tests to filter out non-cause information or generate interaction pattern information to predict which objects will interact, generating causes)
-		- if the information formats applied dont reveal enough info, apply combinations of the formats (structure interface, core interface)
-		- if no solution space can be identified or reduced, return the queries and the problem & problem space metadata
+  		- find problem type & format the problem as a combination of information problem types (information (problem, assumption) interface, type interface), as well as any related problems (information (problem) interface, pattern interface, and the change interface to generate related problems if none are logged)
+  		- find solution requirements (structure interface where requirements are limits/thresholds)
+  		- apply a directed graph (structure interface) of various information formats (interface interface, information interface), positioned in the sequence likeliest to find the missing information to solve (structure interface, similarity concept interface)
+  			(if its missing cause information, standardize to the causal interface or generate information about likely causes from other interfaces like the pattern interface or generate adjacent or proxy information to cause information like a set of tests to filter out non-cause information or generate interaction pattern information to predict which objects will interact, generating causes)
+  		- if the information formats applied dont reveal enough info, apply combinations of the formats (structure interface, core interface)
+  		- if no solution space can be identified or reduced, return the queries and the problem & problem space metadata
 
   - attributes:
+  
     - generatability/common derivable core functions with other interfaces
     - information loss
     - variance focus (what variance is exaggerated for comparison by this interface)
     - position of interface on default interface network (what distortions produce this filter/perspective from unfiltered origin)
 
   - functions:
-
-    - determining position/trajectory on interface
-
-    - selecting interface as best standard for comparison (identifying when a particular specific interface will reduce solution set across any possible host system)
-
-    - generating specific interfaces (filters) for a problem/space
-
-    - generating full set of general interfaces (intent, concept, structure)
-        - these can be generated by identifying the key differentiating factors across systems, which can be generated as combinations of objects 
-          - type is a combination of attributes
-          - intent is a combination of function effects
-          - concept is a network of networks describing a structural concept (balance, power)
-          - structure is a combination of information & rules 
-
-    - identifying all interfaces with variance that cant be captured in other interfaces
-
-    - calculate when to skip interim variables/interfaces
-
-        - depict the spine variable & the finger position variable to demonstrate/identify chirality, skipping the connecting functions, because there are multiple connecting functions (endpoint/side selection, extremity development) and they dont determine change in either variable, as the key important relationship is the spine symmetry and the orientation transformed about the finger position interface being reversed according to the spine symmetry
-
-          - the spine isnt symmetric from the side, which implies a bias toward the front, which is a platform where features are concentrated, so the development of limbs (using derivable intents like duplicate, backups, protective, flexible, movement, alternative, balance intents) & their focus toward the front is derivable from the spine features, so we can skip to the finger order interface to identify the concept of chirality or an example of it/its patterns in the system
-
-        - the interim interfaces & variables may not add change to this relationship so they dont need to be depicted or stored in this context
-
-        - this is useful for determining where change can be stored/routed in a system
-          - if there is demand for change (stressors demanding new functionality) but all components but one are maximizing their change handlers, then you know theres one potential variable where change will gather/be routed, if its possible to route change from the variance injection point to that variable's causal stack at some layer/point
-
-        - its also useful for determining interface trajectories/adjacent interfaces
-
-      - different interfaces to approach security analysis:
-
-        - identify contexts (default permissions, information-event-function sets) likelier to incentivize exploits
-          - identify adjacent preceding contexts or objects of exploits to prevent exploit contexts from developing
-        
-        - identify structures of systems enabling exploits to apply more security or analysis to similar structures
-          - identify intersections (edge conditions) or sets (anomaly chains) likely to be exploit opportunities or allow them to develop
-          - identify malicious intents that look like positive intents (false similarities)
-          - identify function sequences that have gaps in enforcement/injection points, or can be called for malicious purposes because the entire chain is abstract or the pieces being tested are abstract/neutral
-            - identify functions that can be called outside of intended justified contexts
-        
-        - identify distortion functions & approved ranges of distortion structures (like combined distortions, distortion sequences, etc)
-
-        - identify positions in a system where movement toward malicious or neutral intent positions is possible/incentivized
-
-        - identify system objects & concepts (expectations vs. intents, side effects, errors, potential, rule enforcement, assumptions, access, randomness, request patterns/sets, false/accidental similarities/differences, pre-approved workflows & request sets) relevant for finding exploit opportunities
-
-        - identify specific objects relevant to exploit opportunities for a system
-
-          - for a password system, the relevant basic objects are:
-            - 'memory access patterns' as retrieving a memory has patterns just like retrieving a password from browser storage has patterns or typing someone else's password has patterns
-            - 'memory limits' meaning that a memory has more limits on memorable passwords than browser stored passwords or an experienced hacker
-            - 'augmentation' meaning password salts
-            - 'validation' meaning hash check patterns
-            - 'generation' meaning the rules used to generate different types of password (like how passcodes typically have repeated patterns) & the enforced rules to limit passwords (requiring special char types that are usually positioned together if manually generated)
-            - 'reverse computation requirements', meaning the cost of rainbow tables and other tools to reduce computation time
-
-          - all of which can be generated with standard system objects/functions/attributes (limits, patterns, core operations like reverse and high-level operations like generate/validate) applied to password system objects/functions/attributes (password rules, char limits)
 
     - interface operation functions:
 
