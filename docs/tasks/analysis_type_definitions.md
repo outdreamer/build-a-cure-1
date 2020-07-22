@@ -388,6 +388,7 @@
         - assign a ratio to 'strong' adjective
         - check if the change type handled ratio is above or below the strong ratio
         - if above, the system is 'robust'
+        
 
 ## Function Analysis
 
@@ -1007,10 +1008,10 @@
     - patterns
     - perspectives
     - examples
-    - formats (object format, system format, core format, compressed format)
-
+    
   - structures:
     - asymmetry, imbalance, lack, gap
+    - formats (object format, system format, core format, compressed format)
 
   - concepts:
     - organization (format)
@@ -1305,7 +1306,7 @@
   		- if no solution space can be identified or reduced, return the queries and the problem & problem space metadata
 
   - attributes:
-  
+
     - generatability/common derivable core functions with other interfaces
     - information loss
     - variance focus (what variance is exaggerated for comparison by this interface)
