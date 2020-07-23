@@ -41,6 +41,23 @@ To generate alternate data sets using the origin data set:
 
 		- in the absence of other information, a probability distribution associated with variable values & metadata or their patterns can be used to generate other data that creates that probability distribution across all generated data sets
 
+			- you can also apply limiting patterns or rules, like:
+				- 'if the maximum variance seen across standardized data sets with this metadata (causal distance/structure/level of predictability from inputs) is under x, keep variance across generated data sets under x'
+
+		- generating the 'best case scenario' where everything goes right & other scenarios can help generate alternate data sets, with various alternated conditions:
+				- what if the weather was better than reported, what if most people could swim, what if some people survived extreme conditions but eventually succumbed
+
+		- trying to predict survival from age/gender/room number may be inherently a flawed question to ask
+			- trying to predict skills or likelihood of roommates both surviving from the data set may be a better question to ask
+			- these questions can be used as a proxy for 'general survival', if you can build 'general survival' from contextual survival types like 'survived events' or 'co-survival'
+			- generating the contexts where those variables would be causative might exclude the 'sinking ship with this technology' context
+			- there were limited survival supplies and so a certain ratio of travelers werent going to survive even in the best circumstances
+			
+			- identifying the definition of 'survival' may include other contexts like: 'surviving certain events like the lifeboat hitting a rock' or 'surviving until they got to land' or 'surviving drifting for a period of time', so identifying which definition applies is relevant to correctly interpreting the data
+
+		- survival may depend on other factors not included or inferrable with the data set, like independent causal chains (randomness chains like being rescued by passing ships or populations or tides that point them to land, which can be modeled with additional data or if those probability distributions are inferrable)
+
+
 	- check if the distortion functions that generate a prediction function from one base can be used to generate a prediction function using another base
 
 		- can distortion functions of altruism/selfishness generate a prediction function given the priority policy base?
