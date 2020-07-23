@@ -58,7 +58,7 @@ To generate alternate data sets using the origin data set:
 		- survival may depend on other factors not included or inferrable with the data set, like independent causal chains (randomness chains like being rescued by passing ships or populations or tides that point them to land, which can be modeled with additional data or if those probability distributions are inferrable)
 
 
-	- check if the distortion functions that generate a prediction function from one base can be used to generate a prediction function using another base
+	- check if the distortion functions that generate a prediction function from one base/data set can be used to generate a prediction function using another base/data set
 
 		- can distortion functions of altruism/selfishness generate a prediction function given the priority policy base?
 			- example: protecting weaker groups is a form of altruism
@@ -66,11 +66,25 @@ To generate alternate data sets using the origin data set:
 		- if so, these rules are likelier to be true than distortion functions that cannot be reused across bases
 
 
+- then apply structure to distortion function sets (position sets in a network relating them)
+
+	- example: weight the distortion function sets to aggregate them to a final base & distortion function set
+	
+		- if there is x% randomness likely in the data set, weight the randomness distortion functions by a metric based on x
+
+		- if the subset functions have z% accuracy across data sets, weight the subset distortion functions by a metric based on z
+
+		- if a set of distortion functions is explanatory across data sets, weight that set higher
+
+- the network of related distortion function sets for a particular base should be explanatory if the problem is solvable with the data or interface information available
+
+
 The actual solution path would take the form:
 
 1. generate data sets
 	- fit origin data set to a causal system
 	- use adjacent points in variable interaction space (given causation patterns) to generate alternate data sets
+	- this can also be done with distortion functions & bases
 
 2. find bases relevant for distortion functions
 	- randomness/constant line
@@ -93,7 +107,7 @@ The actual solution path would take the form:
 3. generate sets of distortion functions using those bases
 	- starting from a random base (constant linear function indicating randomized distribution of outcomes across input values), how can you get to the default prediction function of origin data set
 
-4. evaluate metrics of distortion function sets (like cost given bias inherent to those functions or that space) & filter solution set
+4. evaluate metrics of distortion function sets (like cost given bias inherent to those functions or that space, and whether distortion functions are explanatory across data sets & bases) & filter solution set
 
 5. evaluate fit of sets to problem space & filter solution set
 
@@ -118,27 +132,18 @@ To generate that path, you would need to first implement an insight path in the 
 
 	- the prediction function can be built from:
 		- distortion vector sets converting another function (like a random/average/linearized function)
-		- a combination or set of related function components (terms, operations) or structures (lines, positions), or variables
-		- function to compose the prediction function using composition functions
-		- a generator structure (a system or function that generates the data is a better predictive tool than one relationship in the system)
-		- functions to predict subsets (outliers, average-circling values)
-		- embedded functions at various points to predict changing values
-		- function to identify concepts/cause/intents & aggregate them in a structure that generates or matches the prediction function
-		- function to link probable states (different data sets or different distortion levels)
-
- 	- which have required inputs like:
+		
+ 	- which has required inputs like:
  		- distortion combination function
- 		- explanatory (fit) metric selection function
- 		- standard success (accuracy, work) metric selection function
+ 		- function to identify bases
  		- bases (including inputs like function components, a default function, or an interface) to begin distortions from
- 		- interim structure selection function
  		
 Then once you have those structures generated, you can execute the solution path to generate the prediction function:
 
 1 - 3. find/generate requirements for important & interim structures
 
 	- generate alternate data sets
-	- select interim structure
+	- select interim structure (distortion functions from various bases)
 	- find/generate required inputs (distortion bases, explanatory metrics)
 	- find/generate interim structure (distortion function sets, metric calculation function)
 
