@@ -12,6 +12,8 @@ To generate alternate data sets using the origin data set:
 
 	- identify variable metadata (extreme versions of those variables (ranges), variable types, variable change probabilities, variable relationships, variable averages)
 
+	- identify bases (concepts, function versions, function subsets, function components, variable patterns, common structures like lines)
+
 	- identify & generate missing information 
 
 		- if variables can interact but dont appear to directly in the origin data set, find the output of their interaction in a generated data set
@@ -38,3 +40,97 @@ To generate alternate data sets using the origin data set:
 			- if an average value is missing from the data, include that in a generated data set, as well as data around that value, for a subset of generated data sets that have the same average as an assumption
 
 		- in the absence of other information, a probability distribution associated with variable values & metadata or their patterns can be used to generate other data that creates that probability distribution across all generated data sets
+
+	- check if the distortion functions that generate a prediction function from one base can be used to generate a prediction function using another base
+
+		- can distortion functions of altruism/selfishness generate a prediction function given the priority policy base?
+			- example: protecting weaker groups is a form of altruism
+
+		- if so, these rules are likelier to be true than distortion functions that cannot be reused across bases
+
+
+The actual solution path would take the form:
+
+1. generate data sets
+	- fit origin data set to a causal system
+	- use adjacent points in variable interaction space (given causation patterns) to generate alternate data sets
+
+2. find bases relevant for distortion functions
+	- randomness/constant line
+	- average/extreme (average line, extreme line)
+	- step function matching subset regressions
+	- alternative functions for outliers & for average-circling values
+	- linear (one standard regression line)
+	- linearized shape (three lines rather than a parabola)
+	- concepts (connecting data set concepts like function types for variable types)
+	- system functions (crossing a phase shift limit, breaking a boundary, reusing a core function, responding to an incentive, correcting bias, changing intent direction, converging to a type, variance handlers)
+	- function composition components (functions that can build the regression function, subset functions, or data set attributes like outliers/probability distribution)
+	- function subsets (values in range/domain a - b, values following a pattern, values having an attribute, values in subsets of size z)
+	- adjacent functions 
+	- function-generating structure components (functions that can build a system structure that would generate the function, which can be used to infer other data sets)
+	- common operation unit functions (add 1, multiply by 1, take to the power of 1) and component functions (add term, add constant, add multiplier)
+	- common shape functions (circle, line)
+	- state conversion functions (functions to convert between states of increasing curvature)
+	- causal functions (like if a causal loop adds an averaging effect)
+
+3. generate sets of distortion functions using those bases
+	- starting from a random base (constant linear function indicating randomized distribution of outcomes across input values), how can you get to the default prediction function of origin data set
+
+4. evaluate metrics of distortion function sets (like cost given bias inherent to those functions or that space) & filter solution set
+
+5. evaluate fit of sets to problem space & filter solution set
+
+6. fit remaining sets to structure (like a network of solution sets)
+
+
+To generate that path, you would need to first implement an insight path in the form of a solution automation workflow:
+
+1. fit the problem to a system
+
+2. identify important structures of the problem system:
+
+	- data set => alternate data set => function to generate alternate data sets
+	- concept of distortion => implies concept of a standard => concept of a base to begin distortions with
+	- calculating 'explanatory' attribute of distortion functions => metric to evaluate 'explanatory' attribute of distortion functions 
+
+3. identify missing structures of the problem system (solution format)
+
+	- the prediction function is the missing structure to build
+
+4. identify interim structures to get information about the missing structures
+
+	- the prediction function can be built from:
+		- distortion vector sets converting another function (like a random/average/linearized function)
+		- a combination or set of related function components (terms, operations) or structures (lines, positions), or variables
+		- function to compose the prediction function using composition functions
+		- a generator structure (a system or function that generates the data is a better predictive tool than one relationship in the system)
+		- functions to predict subsets (outliers, average-circling values)
+		- embedded functions at various points to predict changing values
+		- function to identify concepts/cause/intents & aggregate them in a structure that generates or matches the prediction function
+		- function to link probable states (different data sets or different distortion levels)
+
+ 	- which have required inputs like:
+ 		- distortion combination function
+ 		- explanatory (fit) metric selection function
+ 		- standard success (accuracy, work) metric selection function
+ 		- bases (including inputs like function components, a default function, or an interface) to begin distortions from
+ 		- interim structure selection function
+ 		
+Then once you have those structures generated, you can execute the solution path to generate the prediction function:
+
+1 - 3. find/generate requirements for important & interim structures
+
+	- generate alternate data sets
+	- select interim structure
+	- find/generate required inputs (distortion bases, explanatory metrics)
+	- find/generate interim structure (distortion function sets, metric calculation function)
+
+4. assemble required structures (possible sets, metrics, filtered sets) & fill with content
+
+	- assemble interim structure into target structure (prediction function)
+	- apply metric calculation functions & calculation result logic
+
+5 - 6. iterate & apply structure to final output
+
+	- iterate
+	- after iteration is complete, fit remaining sets to a structure (if there is only one set of distortion functions, return that set)
