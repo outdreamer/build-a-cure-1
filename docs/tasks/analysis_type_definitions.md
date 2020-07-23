@@ -300,13 +300,15 @@
   - structures:
 
   - objects:
-    - information objects like alternatives, efficiencies, & incentives
+    - information objects
     - variance objects like variance injection points (gaps in rule enforcement) & variance sources (gaps in system boundary allowing variance from other systems to leak in)
-    - system failures
-    - exploit opportunities
-    - variance gaps
-    - games
-    - tradeoffs
+    - system objects like system failures/versions/boundaries/maintenance
+    - games: system with resources (functions), incentives (benefits/costs), problems to solve with some metric (point maximization, route finding) and some general intent (explore, find, finish path)
+    - tradeoffs: options with mutually exclusive contradictory benefits (if you take one option, you have to sacrifice the other), often a false trade-off or dichotomy applied when both are simultaneous options rather than contradictory
+    - incentives: a reason to take an action (a benefit or cost) - usually interpreted as default in a system
+    - inefficiency: defined as not using a cost-reduction or benefit-increasing method (using extra unnecessary resources, not using a requirement-reduction method, not reusing solutions, etc)
+    - opportunity: potential move with a potential benefit, with a limited time component
+    - exploit opportunities: opportunity with temporary local (selfish) benefits that allocates cost disproportionately to the system (destroying a system-maintenance concept like 'trust' or 'rule of law') or other objects in the system, with negative emergent side effects (hoarding resource incentives, requirement for monitoring & rule enforcement investment, misallocation of justice)
 
   - functions:
     - optimize, traverse, open/close, etc
@@ -388,7 +390,7 @@
         - assign a ratio to 'strong' adjective
         - check if the change type handled ratio is above or below the strong ratio
         - if above, the system is 'robust'
-        
+
 
 ## Function Analysis
 
@@ -965,27 +967,6 @@
       - information formatting (mapping the problem as a structure composed of information problem types, like an information mismatch/inequality/minimum/overflow/gap)
       - automatically finding definitions, examples, minimum information to solve, problem-solution matching, insight paths like question-identification functions, finding math structures to re-use math patterns to solve other problems, etc
 
-    - organization analysis
-	    - what would the optimal path be, given a certain intent, object identity, & host system?
-	    - what is the function linking these variables that is most efficient/involves fewest variables/involves known constants?
-	    - identify structures (layer/format) & objects needed to solve a problem
-
-    - type analysis
-      - given a type stack progression, what is the likeliest position or extension of that stack?
-      - given that these species evolved this way, what level of variance is the missing link between them likely to have?
-
-	- information objects are related to agents & their communication (perspective, strategy, decisions, intent, game, motivation, problems)
-
-	- these objects can be defined as combinations of general interface objects:
-	  - perspective: a filter produced by chains of distortions; priority set with object positions & default paths
-	  - strategy: efficient path between points
-	  - joke: difference between expected & actual position
-	  - error: difference between expected & actual decision
-	  - argument: position of objects or path between points with supporting connective functions
-	  - game: incentivized motion within a system having limits to prevent motion; a system with conflicting/overlapping intents between agents, usually with low-stakes intents
-	  - filter: barrier creating a difference between input & output
-    - problem: conflict or inequality
-
   - attributes:
     - structure
     - format
@@ -1001,17 +982,38 @@
     - define
 
   - objects:
-    - problems
-    - questions
-    - insights
-    - strategies
-    - patterns
-    - perspectives
-    - examples
+
+    - info objects relate to agents & their communication (perspective, strategy, decision, intent, priority, game, problem)
     
+    - these objects can be defined as combinations of general interface objects (object/attribute/type) and core structures/functions/attributes
+
+    - problems: sub-optimal state with identifiable problem structures (inequality, inefficiencies, conflicts, mismatches), where the sub-optimal state can be framed as a source-target node in a network, where the solution is the optimal route between them, a vector set to move source-target nodes to change the problem, a vector set to change the format of the problem or convert it to solved problems, a vector set to change the system the problem occupies to remove the problem structure (such as making the route or all routes lower cost, so finding a route is not a problem anymore), a shape that is fillable or reducible with a solution structure (component set or vector set), or a matching solution structure that otherwise invalidates the problem (a recharge/derivation/information function at each node to make each node equally useful)
+    - questions: source & target node, implying a missing structure of the route connecting them ('how to get from a to b', 'why travel from a to b')
+    - insights: newly identified rule between objects
+    - strategies: insights with an associated context like related intents ('use this rule to achieve intent x'); efficient paths between points
+    - patterns: a structure applied to information, where the pattern can refer to the structure or the information filling it
+    - perspectives: a filter/priority/rule set, optionally having structures like object positions & default rules, produceable with a chain of distortions from a default perspective
+    - examples: structure applied to a rule in a system, so the rule directly references system objects
+    - conclusions: resulting output rules or emergent rules from a logical sequence
+    - assumptions: structures like conditions or constants taken to be true for a particular context, like a particular intent (for the 'understanding' intent, assume the condition that the 'constant is zero')
+    - implications: implications are structures implied but not specified by a definition (like how the existence of a floor is implied by the sentence 'the dog chased the cat'); used for deriving the context of an object - the structures nearby like related intents, the system context an object occupies, etc. Assumptions can be a subset of the implications of an object that are assumed to be true. Both assumptions and implications are pseudo-information that is not definitely true but is potentially true, and treated like true information for a given context like a period of time, during a discussion to learn something, or in the context of executing a function.
+    - paradox: false illusion of a contradiction that is legitimate, valid, & logical
+    - argument: position of objects or path between points with supporting connective functions
+    - game: incentivized motion within a system having limits to prevent motion; a system with conflicting/overlapping intents between agents, usually with low-stakes intents
+    - joke: difference between expected & actual position
+    - error: difference between expected & actual outcome
+
   - structures:
-    - asymmetry, imbalance, lack, gap
+    - asymmetry, imbalance, mismatch, excess, conflict, misalignment, lack, gap
     - formats (object format, system format, core format, compressed format)
+
+      - these formats can be used to format a function
+        - filter: barrier creating a difference between input & output (like a filter that allows only a particular data structure through, optionally altering that data structure as it passes through)
+        - function: sequence of logical steps
+        - limit: barrier reducing the potential motion of an object (like range of possible values of a variable, or set of variables collected into a type variable), which can be combined with other limits (corner of a shape, sides of a shape)
+        - set: group of objects (like function components)
+        - path: sequence of steps, which may be logical or produce logic
+        - system: a bounded network (the structure of which may produce a function or allow it to develop)
 
   - concepts:
     - organization (format)
@@ -1022,6 +1024,11 @@
     - what is the network of problem types that this problem can be broken into (optimal transport, creating efficiencies/alignments, distributing costs to points where the costs are inputs, finding a prediction function, etc)
     - what is the set of patterns/filters/attributes that can describe this function
     - what is an example of this pattern (what form does the pattern take in a given system)
+    - what would the optimal path be, given a certain intent, object identity, & host system?
+    - what is the function linking these variables that is most efficient/involves fewest variables/involves known constants?
+    - identify structures (layer/format) & objects needed to solve a problem
+    - given a type stack progression, what is the likeliest position or extension of that stack?
+    - given that these species evolved this way, what level of variance is the missing link between them likely to have?
 
 
 ## Problem Analysis
