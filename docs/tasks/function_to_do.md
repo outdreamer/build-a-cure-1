@@ -26,6 +26,13 @@
     - once you have conversion functions, you can connect problem space data to solutions
     - then youd need problem space visualization & solution metadata calculation functions to finish it
 
+  - include example workflows with example problems
+    - include example of how to generate other workflows (different starting/ending points & trajectories)
+
+  - give examples based on the same default example for each analysis type
+    - the default example can be a prediction function
+
+
 ## define
 
   - definition import function

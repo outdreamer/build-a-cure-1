@@ -13,6 +13,9 @@
 
   - concepts
 
+    - intents reasons (to say something)
+      - there are many possible reasons to say something (to get a reaction, to end the conversation, to give an impression, to communicate information, etc)
+
     - context (system)
       - actions have different meaning in different contexts and shouldnt be separated from context
 
