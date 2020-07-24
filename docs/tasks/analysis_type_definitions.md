@@ -6,6 +6,15 @@
     
     - a workflow to automate problem-solving is an interface traversal that can be applied to any problem
 
+    - the workflow inherent to this tool (to match a problem with a solution) uses the problem information as the default interface. The overall workflow of this tool can be built with an interface query:
+
+      - find problem type & format the problem as a combination of information problem types (information (problem, assumption) interface, type interface), as well as any related problems (information (problem) interface, pattern interface, and the change interface to generate related problems if none are logged)
+      - find solution requirements (structure interface where requirements are limits/thresholds)
+      - apply a directed graph (structure interface) of various information formats (interface interface, information interface), positioned in the sequence likeliest to find the missing information to solve (structure interface, similarity concept interface)
+        (if its missing cause information, standardize to the causal interface or generate information about likely causes from other interfaces like the pattern interface or generate adjacent or proxy information to cause information like a set of tests to filter out non-cause information or generate interaction pattern information to predict which objects will interact, generating causes)
+      - if the information formats applied dont reveal enough info, apply combinations of the formats (structure interface, core interface)
+      - if no solution space can be identified or reduced, return the queries and the problem & problem space metadata
+
     - these are very abstract insight paths (a cross-system, insight-generating sequence) that can generate solutions automatically
 
     - workflow variables include:
@@ -176,7 +185,7 @@
 
   3. Analysis types
 
-    - each analysis type describes the logic executed on each interface, where the conversion function of each interface standardizes the problem/other object being converted to objects/functions/attributes/structures defined on that interface
+    Each analysis type describes the logic executed on each interface, where the conversion function of each interface standardizes the problem/other object being converted to objects/functions/attributes/structures defined on that interface
 
     - problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
     - core analysis: automatically finding core objects/functions/attributes/states possible to determine/describe a system, defining core operations like find/apply/build/derive
@@ -304,6 +313,15 @@
     - variance objects like variance injection points (gaps in rule enforcement) & variance sources (gaps in system boundary allowing variance from other systems to leak in)
     - system objects like system failures/versions/boundaries/maintenance
     - games: system with resources (functions), incentives (benefits/costs), problems to solve with some metric (point maximization, route finding) and some general intent (explore, find, finish path)
+
+      - alternate definition route: a set of intents/alternatives/limits/incentives/exploits/rules/risk & a definition of distance from intent fulfillment (position), usually resulting in the resolution of a clearly optimal route.
+        - a game is a type of system & a mixed set, which can exist as a component of a system 
+        - games can have many different structures like: 
+        - a directed graph with a vector set representing possible agent intents/ functions/resources 
+        - a system of nodes & links where agents need function input resources to traverse 
+        - a decision tree where certain tree info becomes accessible only at certain nodes (adding uncertainty/risk) 
+        - a set of trade options between nodes with different info change/update rules in a system to optimize a resource/trade/market metric 
+
     - tradeoffs: options with mutually exclusive contradictory benefits (if you take one option, you have to sacrifice the other), often a false trade-off or dichotomy applied when both are simultaneous options rather than contradictory
     - incentives: a reason to take an action (a benefit or cost) - usually interpreted as default in a system
     - inefficiency: defined as not using a cost-reduction or benefit-increasing method (using extra unnecessary resources, not using a requirement-reduction method, not reusing solutions, etc)
@@ -341,6 +359,11 @@
       - extends the core components of the system in a new way
       - acts as an interface (for change, randomness, etc)
       - has attributes/functionality beyond its definition in that space (can have one function in one system context & another emerging function in a particular state & environment)
+      - example: power is the object left when objects implementing it: resources => energy => input => potential) have their context removed, navigating up the abstraction stack from: 
+          - the info layer (resources & energy), removing their contextual attributes/rules 
+          - to the abstract structural layer (input) 
+          - to the abstract layer (potential, which is a related concept of power) 
+          - so that the final object is defined in terms of other abstract objects on the top layer 
 
     - the abstract network is a set of related concept objects remaining after removing context, concepts that are applicable across systems, often have multiple definition routes because they take a variety of forms given the context, and are fundamental to describing a system
 
@@ -431,13 +454,6 @@
       - track
       - decide
       - enforce
-      - change
-        - update
-        - distort (gap creation, divergence)
-        - standardize
-        - maintain/regulate
-        - potential 
-          - conversion (adjacence, or what can it be transformed into using available functions)
       - conflict/resolve
       - learn/optimize/correct/update
       - neutralize
@@ -446,6 +462,13 @@
       - interface functions (change, intent, type, pattern, concept, problem, strategy, insight, game, perspective)
         - uncertainty/risk/potential/prediction functions
         - solution functions (variance/stressor/error detection, tracing, identification & handler)
+      - change
+        - update
+        - distort (gap creation, divergence)
+        - standardize
+        - maintain/regulate
+        - potential 
+          - conversion (adjacence, or what can it be transformed into using available functions)
 
     - core functions
       - foundation functions: enable other functionality to develop on foundation structures
@@ -539,7 +562,7 @@
     - intent-function interface questions:
       - which functions are most exploitable for malicious/neutral intents
       - which functions' explicit intents dont match their implicit intents (or emergent intents when combined with other functions), which is like analyzing the structural difference between developer expectation vs. user intention
-    - do variable, type, logical, & output intents align with overall given function intent
+    - do variable, type, logical, & output intents match overall given function intent
     - what is the logical sequence that best fulfills this intent (useful for automating code generation)
       - what is the function linking these variables, given the variable intents a, b, c and the combination intent matrix ab, bc, ca, and the possible output intents of that matrix, and similarity to output intent of y
 
@@ -959,6 +982,36 @@
     - what is the function linking these variables, given these functions linking other adjacent generating variables/functions further up/down the causal shape
 
 
+## Insight Analysis
+
+  - definition: an insight path is a reusable cross-system pattern, usually built out of core functions from a general interface filter (type, intent, function, structure), that allows generation of insights. It can be as simple as a function like differentiate, a standardizing attribute like relevance, or involve a standard object like a simplifying question. It does not refer to specific strategies unless those strategies can be used to generate insights. Insight paths usually consist of abstract or structural rules like 'match structure' or 'identify type'.
+
+  - attributes:
+
+  - functions:
+
+  - objects:
+
+  - concepts:
+
+  - examples:
+
+    - a unit example is 'trial and error' or 'statistical regression' or 'break up the problem into smaller problems & solve them separately, then aggregate solution output' - these are standard abstract rule sets/sequences to apply when discovering new insights in a system, which can be used across systems. You can call these specific strategies, but they can also be considered insight-generators or solution-filters, as they can reduce the solution space when narrowing down possible insights describing a link to the correct linking rule. These examples are not always ideal/efficient so they're not top priority methods, but they're a good example of what position an insight path occupies in a system. 
+
+    - an actual useful insight path would solve a common, abstract difficult problem, like 'generating the idea of regression', which would be something like:
+      - query for concept adjacent to balance/equivalence in the context of a data set output (average)
+      - apply the concept of average to indicate a general average distance within output range specified by input format (point subsets) in an input (data set)
+      - find a definition of 'average between output ranges of point subsets' that matches the change type you're aiming for (ie, least squares)
+      - find a definition of the format 'point subsets' that matches your average definition (adjacent points with euclidean distance definition, in subsets of the data set with a particular change rate)
+      - format the input (calculate the data set subsets) using the 'point subsets' definition
+      - apply the definition for 'average between output ranges of point subsets' to the formatted input (calculated data set subsets)
+
+  - answers questions like:
+    - what rules are useful across systems?
+    - what rules are derivable given a set of structures that commonly appear in systems?
+    - what are common rules used for previous insights, and how can they be optimized (shortening an insight path with a set of simplifying/standardizing questions)
+    
+
 ## Info Analysis
 
   - definition:
@@ -1046,18 +1099,15 @@
       - identify problem metadata includes defining the structure of a problem that the solution fulfills by some metric
 
       - selecting the right format for the problem & solution is an important function in this analysis; each of those formats is better for different problem types/formats (with varying structure in the problem definition) and solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
-        
         - each of those formats involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, steps like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network to retrieve/connect information, or in the problem space to reduce a problem shape, move around problem components to change the problem, or traverse a route in the problem network system (not necessarily the network of related problems, but the problem framed as requiring a solution route within a network)
         
       - graphing the problem on a network of related problems (on the same interaction layer, in the same problem space, etc) such as how the problem of building a technology is related to the problem of managing usage of & access to it
 
       - defining the problem space as a contextual system where the problem is active
-
         - this includes other problem spaces where it is or could be active
           - for example, how the 'tech distribution' problem (where most tech is inherently neutral & can be used for good or malicious intents so what matters most is how it's distributed) acts differently in different problem spaces where distribution tools & government ethics & policies differ
 
       - identifying & anticipating problems in a system involves identifying problem structures (inefficiencies, conflicts, etc) that exist or could emerge
-
         - for example, in the bio system, DNA regulation functions don't prevent pathogens from injecting DNA or mutations from occurring, so if you derive the concept of a pathogen or mutation without already having that definition available (using core system analysis), you could predict that the current DNA regulation functions wouldn't be able to offset the changes exacted by those concepts & you could predict problems of DNA disregulation in the bio system before they occur
     
 
@@ -1080,6 +1130,79 @@
       - selecting a space (dimension set), with embedded parameters & bases for framing changes of a certain type
       - representing changes produced by a solution as a set of vector trajectories across interfaces
 
+    - ezample logic of function to break a problem into sub-problems
+
+      1. decompose a problem into sub-problems, using core functions like alternate/meta/find applied to problem objects (like how measurement is a core object of a solution, and the prediction function is the default solution object, and a variable is a sub-component object of the prediction function, and so on)
+
+      2. Now that we have the sub-problem sets, we can solve the sub-problems in each set.
+
+        For example, to 'find core distortion functions to generate variation across generated or available data sets', you can generate some likely vector sets (based on difference from randomness, difference from averages, difference from common functions, etc) explaining the variation, then apply structures to organize the vectors (by applying requirements of those structures, like how the position or sequence structure has requirements for how it can be applied given its definition). 
+
+        For example, a requirement of a function that follows another is a possible match of input/output, if the functions are dependent, rather than relatively independent functions (occupying different function sequences).
+
+        Another indicator that one function follows another is that one function reduces the work of the other function. For instance, if one function is 'go to a hub node' and another function is 'find the nearest node to a hub node', the first function drastically reduces the work of the second function, so it can be inferred that the second function follows the first function.
+
+        Rules like this can be derived given the definitions of the objects involved, as well as common interface objects, like common core functions, distortion patterns, or intents, on relevant interfaces to the problem objects (like in this case, how intent is a relevant interface to the function object).
+
+        The objects involved, like a function sequence, postion, & function (including function sub-components like input/output/work, etc) have interface objects like intent, and common intents include 'reducing work' and 'organizing objects to coordinate' (like sharing resources created by work by linking input/output).
+
+        The solution to 'find core distortion functions to generate variation across generated data sets' involves:
+
+        A. generating other data sets if they haven't already been generated (by identifying variable limits & combining alternate variable values according to a likely distribution of variable values, given common patterns based on variable metadata)
+
+        B. identifying common bases to base distortion functions on:
+          - random (start from random decomposition of a data set like a random combination of explanatory vectors, or by assuming as much as possible of the variation is noise, and the actual prediction function is a constant linear function)
+          - average (start from average or general prediction function found for a data set)
+          - common structure functions (reverse, inverse, opposite, magnify, shift)
+          - common shape functions (line, wave, parabola, circle)
+          - common concept functions (type, convergence, efficiency) and specific concepts to the problem space (for predicting a species, this could include DNA distortion functions, conflict distortion functions, environment distortion functions)
+          - common causal functions (variable loop, like hormone disruption leading to aggression leading to structural damage leading to mutations leading to hormone disruption)
+          - component functions (add variable, add term, add operation (exponent, multiplication), add constant)
+
+        C. then apply structures to those distortion functions (combining them, positioning them in a sequence, applying splits between alternates, etc) and test what metadata (level of work/accuracy) is found & probable/required for matching structures that explain the data, and whether that level of work/accuracy matches the problem space
+
+          - if 50 iterations of a function are necessary to get from the base to the actual prediction function, that is less likely to be true than one requiring 5 iterations, unless the problem space has a bias or requirement of extra work (if a base 10 or 5 is applied, those iterations would have different costs)
+          - if the distortion functions predict the actual prediction function with near perfect accuracy, that is less likely to be true across all generated data sets than a less accurate set of distortion functions
+          - if the problem space has a bias toward a particular operation (like favoring addition over exponents, by making addition less work than exponents), that can filter out distortion functions involving exponents as less likely
+
+        D. filtering out the least explanatory distortion function sets across all generated data sets
+
+        E. finding a structure to contain any remaining explanatory distortion function sets, like a directed network of distortion function sets that should be applied with various contexts like phase shifts or assumptions, or taking the average of various sets of distortion functions to produce a robust default set, with conditional distortions of the default set.
+
+      3. After problems have individual solutions, you need a way to integrate the solutions - aggregation or averaging solutions is an appropriate solution integration method for solutions to the same or similar problem formats, but not across any problem set.
+
+        For example, if one sub-problem set is to generate a prediction function, and another sub-problem set is to measure the prediction function success, the solutions to the measurement should be applied after generating possible prediction function solutions, to filter the set into a subset that is likelier to be successful.
+
+        The positions of each sub-problem set can be derived using logical positioning. A generative set should be followed by a measurement set because the output of the generative set (prediction function generated) matches the input of the measurement set (prediction function to measure) - this is input-output chaining as mentioned before. A causal set may identify missing information in a variable set to establish cause between variables - that type of structure (missing information) should be followed either by generating the missing information, and if not generatable, should be integrated into the accuracy/confidence/error metrics, as not being able to find the information required to solve the problem (creating an accurate, robust prediction function).
+
+    - example logic of function to find alternate solution formats
+
+      - how to identify alternative solutions that would be interchangeable with this solution in various contexts:
+
+        - in other words, how to translate 'find optimal route fulfilling a metric' to an alternative interchangeable solution that makes the initial problem trivial to solve 'find system-wide cost-reduction function that makes system routes equally costly', at which point the original problem's solution is 'any route'.
+
+        - we are looking for ways to invalidate the problem (generate an adjacent object to act as a proxy or replacement for the solution, generate the solution automatically, change the system structure so solving the problem isnt necessary, etc) rather than generate a specific solution (like how 'trial & error navigation of all possible routes' is a specific solution)
+
+        - inference sequence using definitions & problem definition:
+          - check definition:
+            - 'route' is defined as 'a path between nodes in a network'
+          - standardize definition:
+            - 'optimal' can be removed because it means the same as 'fulfilling a metric' but adding 'fulfilling a metric the most' to translate it to the standardized form
+          - find definition (of metric)
+          - apply logic specific to metric definition, or general information-generating logic like a transform that doesnt change meaning in a context
+            - if the metric is the general 'minimize cost' metric of an optimization, apply a transform ('abstract' or 'expand/apply/distribute' or 'change specificity attribute value to its extreme value') that doesn't change the meaning, to produce: 
+              - 'minimize system costs' (which doesnt prevent minimize the original cost so it doesnt change the meaning in an invalidating way)
+          - inject new version into original problem definition:
+              - 'find route that minimizes system costs'
+          - check if definitions match logically: 
+            - a 'route' wouldnt necessarily produce a system cost-minimizing effect
+          - if they don't match, apply transforms until they match:
+            - abstract 'route' to get 'function':
+              - 'find system cost-minimizing function'
+          - check problem definition for extra information: 
+            - the intent of the original problem was to minimize cost of a particular route, a problem that would be invalidated if all routes were equally costly; if we found a 'system cost-minimizing function' that minimized system costs, they might become equally costly, thereby invalidating the problem (invalidating it being one way of solving it), producing:
+              - 'find a system cost-minimizing function that makes system costs equally likely'
+
   - objects:
 
   - structures:
@@ -1087,15 +1210,11 @@
     - problem-solution formats:
 
       - a vector set is good for converting between problem-solution structures, like converting an inefficiency to an efficiency in a system
-      
         - problem shape-reducing vector set (where problem variables form the shape) is good for finding a function that reduces shape dimensions & size (like to form a summary), or a vector set to combine solution components in a way that fills the shape structure, if the solution format is a method to fill the problem structure rather than reducing the problem shape
-            
         - a route optimization problem has the solution format of a vector set between network functions/nodes (where nodes are states/problems/objects, etc) that is optimal in some way (hits a node/path, moves in a direction, minimizes cost of traversal, etc)
-
           - with a network of states, the route can be a route between states with additional routes traversed within each state to convert to the next one (set of market states & trades to achieve a market intent)
 
       - structure-matching can be a good format for finding an example, finding a reason, or finding a causal structure of variables for a prediction function
-
         - an misalignment or mismatch (like an inefficiency, a conflict, or an information imbalance), where the solution format is the set of structures (which can be steps/vectors or applying a pattern or finding a structure in a network) necessary to correct the mismatch (minimize cost, align priorities, balance the information)
           
       - abstract format of a query (break problem into information problem types and then the solution is a query of solutions for each of those solved problems)
@@ -1108,6 +1227,7 @@
       - mismatch
 
   - attributes:
+
     - number of problem-causing variables/solution metrics fulfilled
     - complexity: 
           - number of core function steps required
@@ -1198,6 +1318,8 @@
         - concept problems: excessive definition routes, overlap in definition routes across concepts, definition route that more adjacently matches another concept
         - logic problems: excessive assumptions, contradictory conclusion & assumption, using specific logic to make absolute inferences
 
+    - example solutions
+
       - correct inequality (imbalance/mismatch) in a structural attribute (value, definition, direction, function, intent)
         - align objects (resolve conflicting objects like conflicting intents)
         - match objects (equate unequal objects like incentives/requirements, or expectations/intents, or opportunity/ability)
@@ -1268,19 +1390,21 @@
 
               - identify specific objects relevant to exploit opportunities for a system
 
-  - answers questions like:
-    - what are the problems (inefficiencies, conflicts, mismatches) in this system
-    - what solutions are associated with this problem type
-    - what problems are related to this problem
-    - what problems will develop in this problem space system
-    - what is the probable cost of solving this problem
-    - what is the adjacent format of this problem
+    - answers questions like:
+      - what are the problems (inefficiencies, conflicts, mismatches) in this system
+      - what solutions are associated with this problem type
+      - what problems are related to this problem
+      - what problems will develop in this problem space system
+      - what is the probable cost of solving this problem
+      - what is the adjacent format of this problem
 
 
 ## Interface Analysis
 
   - objects:
+
   - structures:
+
   - concepts:
 
   - definition: 
@@ -1376,7 +1500,7 @@
               - this would involve writing high-level logic language like 'find information, avoid misidentifying object1 as object2, combine common attributes of these objects with versioning in case of conflicting values, avoid this conclusion & this fallacy error type', which would allow logical object definitions (of what a fallacy is, what a legitimate conclusion/assumption/implication is, etc) to be applied automatically, rather than the existing method of applying conditional/contextual/specific low-level logic developer-defined definitions to be applied manually, which involves writing low-level logic like 'select * from table, check if object1.attribute.value == object2.attribute.value, etc'.
           - determining whether the problem can be formatted as a set of solved problems (applying organization to information, applying definitions, finding matching structures, generating tests) or in a format that is solved (route optimization)
 
-      Given the information you have, one interface may be more useful to standardize to than another. If you already have intent or cause information indexed or otherwise adjacently calculatable, or if those interfaces contain the required solution information (as in, the problem is 'finding the cause of some measurement', so the solution is going to be findable on the causal interface), you'd be better off standardizing to those interfaces first, without other information.
+      - given the information you have, one interface may be more useful to standardize to than another. If you already have intent or cause information indexed or otherwise adjacently calculatable, or if those interfaces contain the required solution information (as in, the problem is 'finding the cause of some measurement', so the solution is going to be findable on the causal interface), you'd be better off standardizing to those interfaces first, without other information.
 
     - the abstract interface network includes layers of network filters (intent, perspective, function (can include patterns, logic, strategies, core functions, and any other set of operations/objects that has order), structure, concept, information (organization, formats, types, info objects like problems/questions/insights/assumptions), potential, change, cause system)
 
@@ -1386,15 +1510,6 @@
   		- intent interface can be used to generate the type interface
   		- dependency interface can be used to generate the side effect interface
   		- interface network can be used to generate the core function interface
-
-  	- the overall workflow of this tool can be built with an interface query:
-
-  		- find problem type & format the problem as a combination of information problem types (information (problem, assumption) interface, type interface), as well as any related problems (information (problem) interface, pattern interface, and the change interface to generate related problems if none are logged)
-  		- find solution requirements (structure interface where requirements are limits/thresholds)
-  		- apply a directed graph (structure interface) of various information formats (interface interface, information interface), positioned in the sequence likeliest to find the missing information to solve (structure interface, similarity concept interface)
-  			(if its missing cause information, standardize to the causal interface or generate information about likely causes from other interfaces like the pattern interface or generate adjacent or proxy information to cause information like a set of tests to filter out non-cause information or generate interaction pattern information to predict which objects will interact, generating causes)
-  		- if the information formats applied dont reveal enough info, apply combinations of the formats (structure interface, core interface)
-  		- if no solution space can be identified or reduced, return the queries and the problem & problem space metadata
 
   - attributes:
 

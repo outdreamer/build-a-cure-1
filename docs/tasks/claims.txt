@@ -1,3 +1,47 @@
+TITLE OF INVENTION 
+
+Solution Automation 
+
+FIELD 
+[0001] Embodiments of the disclosure relate to automation of problem-solving for clearly defined problem statements using interface traversals. 
+
+BACKGROUND OF THE INVENTION 
+[0002] Problem-solving is usually done manually, without context about prior solutions, common solutions, or a way to graph the standardized problem & solution, or a systematic method to translate them into other standard formats that are more amenable to being matched using standard structural operations like map, filter, combine, etc. Any prior art relating to mathematical methods of solving problems or a protocol to generate solutions would be outputs of this invention, or stored in the database component of this invention, as a prior identified solutions for a problem type, with associated intents, insights & other metadata relating to the solution. 
+
+ABSTRACT
+[0003] This invention translates a problem definition into a structure that allows for resolution of the structure into the corresponding solution format with a set of queries (formatted as a query of the interface network - a set of standardizing filters applicable to format information in way that it can be analyzed with interface-specific logic).
+
+BRIEF SUMMARY OF THE INVENTION 
+[0004] One or more embodiments of the present disclosure may include a method that includes obtaining a problem statement from a user including required solution metrics (such as priorities, functionality, or attributes); identifying problem & problem space metadata (such as problem type & minimum information required to solve the problem); identifying optimal origin interface to start traversing from, interface traversal sequence, & applying interface operations like combine/inject; traversing interface network (including interfaces such as information, insight, structure, math, concept, type, variance, potential, change, intent, perspective, system, attribute, pattern, function, cause, problem/question, solution/answer) of interfaces acting as filters (where an interface is comprised of its definition routes, conversion function, core functions, objects, & attributes, and related objects like patterns & metadata specific to the interface) starting at the origin interface; finding components on the interface that match the problem structures (including related objects like insights, patterns, & functions); compressing the problem statement into its most accurate structure containing the found interface objects; iterating the origin interface selection & interface traversal process for the solution space; identifying & reducing the solution space from this standardized problem format; traversing subsequent interfaces to obtain additional information; reducing the solution space by the problem & problem space definition; returning the identified optimal solution as a set of steps to compress the problem as well as solution metrics, attributes, & actions, and/or insights/ patterns/system/standardized description related to the problem if no solutions are found. The attached specification appendix named methods.pdf includes a list of alternative optional implementation methods which may be integrated into the invention or used to develop other methods. 
+
+[0005] The object and advantages of the embodiments will be realized and achieved at least by the elements, features, and combinations particularly pointed out in the claims. 
+
+[0006] It is to be understood that both the foregoing general description and the following detailed description are merely examples and explanatory and are not restrictive. 
+
+BRIEF DESCRIPTION OF THE DRAWINGS 
+ 
+[0007] Example embodiments will be described and explained with additional specificity and detail through the use of the accompanying drawings in which: 
+
+[0008] FIG. 1. Problem-solving automation workflow for problem 'find a prediction function' with titanic data set
+[0009] FIG. 2. Problem formats
+[0010] FIG. 3. Matching solution formats of problem formats
+[0011] FIG. 4. Problem-solution structure matching: apply a solution function (like 'apply a definition of objects') to a structure (like a system or network) containing the problem to find specific solution structures for that problem
+[0012] FIG. 5. Find solution-combination structure to fulfill a solution metric (aggregate solutions of various structure to fulfill a metric)
+[0013] FIG. 6. Network of problem sub-problems
+[0014] FIG. 7. Network of related problems
+[0015] FIG. 8. Problem space
+[0016] FIG. 9. Find structure for a definition of a concept
+[0017] FIG. 10. Interface conversion, matching, starting point selection
+[0018] FIG. 11. Interface traversal flow diagram
+[0019] FIG. 12. Insight path application
+[0020] FIG. 13. Intent-matching
+[0021] FIG. 14. Causal structure-matching
+[0022] FIG. 15. illustrates a module & system diagram of an example solution automation module that may be used to find a solution for a problem statement. 
+[0023] FIG. 16. illustrates a execution flowchart diagram of an example of how a solution automation module may find a solution for a problem statement. 
+[0024] FIG. 17. illustrates an example computing system. 
+
+DETAILED DESCRIPTION OF THE INVENTION 
+
 CLAIMS 
 
 1. A method comprising: 
@@ -10,15 +54,13 @@ CLAIMS
 	- traversing subsequent interfaces to obtain additional information, if the minimum information to solve is not reached
 	- returning identified solutions as a set of steps to reduce/solve the problem, as well as solution metrics, attributes, & actions, and/or related information objects like insights, patterns, the systematized problem format, the reduced solution space, and the interface queries used.
 
-
 2. The method of claim 1, wherein obtaining a problem statement includes: receiving a problem statement & translating the problem statement into its most standardized form, using standardization methods like replacing esoteric words with more common synonyms or using general/abstract versions of words, converting passive to active language, and removing words that don't change the meaning of the statement, and other operations that enable framing the problem as having a target solution structure.
 
 	- converting a user-submitted query like 'distribute money equally' into a standardized problem statement like 'find a function to distribute resources while fulfilling this fairness definition', which is the actual intent of the user, given that equality and fairness definitions are often conflated
 
-
 3. The method of claim 2, wherein identifying the problem & problem space metadata includes:
 	- identifying metadata like the problem type (like an information asymmetry, incentive conflict, unenforced rule, finding a prediction function, route optimization) and problem inputs like interchangeable attribute sets, dependencies, & assumptions, as well as the minimum information required to solve the problem & other solution requirements
-	- mapping the inferred/stated information describing the problem & problem space to a multi-dimensional structure generated by the problem variables (variables like number of information asymmetries, resource limits, decision points, variance sources, unanswerable questions of the problem, the trajectory of causes generating the problem if known, etc), a problem structure usually bound by assumption/filter/limit conditions, & indicating possible interactions between the problem objects & the other system objects like related problems & previous solutions, & containing the problem object in that space (as a network or other shape indicating the problem variable interactions within the problem space structure).
+	- mapping the inferred/stated information describing the problem & problem space to a structure generated by the problem variables (variables like number of information asymmetries, resource limits, decision points, variance sources, unanswerable questions of the problem, the structure of causes generating the problem if known, etc), a problem structure usually bound by assumption/requirement structures like filter/limit conditions, & indicating possible interactions between the problem objects & the other system objects like related problems & previous solutions, & containing the problem object in that space (as a network or other shape indicating the problem variable interactions within the problem space structure).
 
 		- for example, for a 'route optimization' problem, this means identifying: 
 			- the problem type stack, like 'information asymmetry', 'find function', 'route optimization', 'system fitting', 'object identification'
@@ -28,13 +70,12 @@ CLAIMS
 			- the solution requirements, like solution formats (a function, a function to generate functions, a function to invalidate the function)
 				- for example, the solution structure of a 'prediction function' problem is a function fulfilling a metric of an associated data set, like minimized distance from maximum data points, or an insight path that can generate a prediction function in that problem space as needed
 
-
 4. The method of claim 3, wherein identifying the origin interface to start traversing from, interface traversal sequence, & applying interface operations like combine/inject includes: 
 	- assessing which interface maximizes the value (calculated as a combination of metrics like specificity, uniqueness, and differentiation potential) of the given & directly inferable information, which may include recommended traversals given the problem type, if identified (like how a 'prediction function' problem type has a recommended interface query sequence)
 	- whether interfaces should be applied to other interfaces with interface operations (applying the conceptual interface to the structural interface, for example)
-	- which interfaces should be traversed in what sequence, combination, or other structure produced by an interface operation.
+	- which interfaces should be traversed in what sequence, combination, or other structure produced by an interface operation,
 
-	This interface query is designed to maximize the chance of finding/generating/deriving additional information necessary to describe information about the problem system, beyond its initially identified metadata, so that its corresponding solution space can be identified/reduced.
+	this interface query being designed to maximize the chance of finding/generating/deriving additional information necessary to describe information about the problem system, beyond its initially identified metadata, so that its corresponding solution space can be identified/reduced.
 
 		- using core operations (like find, identify, fit, match, apply, embed, build, create, derive) and standard interfaces, generate a custom flow diagram representing the interface query, which will specify what steps to take across the interface network to solve this specific problem
 
@@ -48,22 +89,37 @@ CLAIMS
 		- if queries of those interfaces are insufficient to solve the problem, interface operations can be used
 			- apply the system-structure interface to the information interface (can be used to determine information like the next layer of information objects that are relevant if enough automation is distributed)
 
-
 5. The method of claim 4, wherein traversing the interface network includes:
-	- traversing an interface requires first converting problem objects to that interface, using that interface's conversion function (which applies logic like system-mapping, position-finding, structure-matching, & object-identification logic)
-		- the conversion function might be as simple as reducing objects to a set of attributes relevant to that interface (like how standardizing to the causal interface means focusing on dependencies between positions), or as complicated as fitting problem objects to another system
-	- once converted, the traversal proceeds to finding components on the interface that match the problem structures (including related objects like insights, patterns, & functions)
-		- once an object/attribute/function between problem objects & interface objects is matched in an interface, their connecting structures (like functions/subsets) are queried and tested for relevance to the associated problem objects
+	- traversing an interface requires first converting problem objects to that interface, using that interface's conversion function (which applies logic like system-mapping, position-finding, structure-matching, & object-identification logic), where the conversion function might be as simple as reducing objects to a set of attributes relevant to that interface (like how standardizing to the causal interface means focusing on dependencies between positions), or as complicated as fitting problem objects to another system
+	- once converted, the traversal proceeds to finding components on the interface that match the problem structures (including related objects like insights, patterns, & functions), and once an object/attribute/function between problem objects & interface objects is matched in an interface, their connecting structures (like functions/subsets) are queried and tested for relevance to the associated problem objects
 	- using matching interface relationships to infer relationships about associated problem objects
 	- identifying starting points on the interface, including core objects & functions, directly mappable objects to the problem objects, or other starting points like important/required interface objects
 	- where the output of each traversal may include information like matching interface objects, problem/solution or problem/solution space metadata, or functions/attributes reducing the problem
 	- where the intent of traversals is to match a problem & a solution & is done with various analysis specific to interfaces or the interfaces resulting from interface operations, such as:
+	- where the matching of a problem and a solution is done with interface-specific analysis, including:
+	    - problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
+	    - core analysis: automatically finding core objects/functions/attributes/states possible to determine/describe a system, defining core operations like find/apply/build/derive
+	    - system analysis: automatically fitting system objects like symmetries, sub-systems, sub-interfaces, false assumptions, correlations, efficiencies, incentives, and conflicts to problem definition to determine optimal organization/format/routes/metrics/positions
+	    - structure analysis: automatically finding structures, like a route between information formats to solve a problem
+	    - information analysis
+	      - insight analysis: insight path application (using insight paths from other fields to optimize insight generation)
+	      - problem analysis: formatting to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions)
+	      - question analysis: where a question is framed as a source position and a target position on a network, and the answer is the most robust path or the path that moves the nearest to the target position or the path that moves in the priority direction on the network
+	    - change analysis: automatically identifying change metadata like change types necessary to explain a solution or solve a problem
+	      - potential analysis: automatically finding structures of variance like gaps/cascades/reducers, possibility fields, and determining/limiting vertices
+	    - logical analysis
+	      - function analysis: automatically identifying function metadata like variables, input/output trajectory, the function in a filter format, intent, complexity, efficiency, & exploits
+	      - intent analysis: automatically finding possible reasons to use a function to automate logic
+	      - causal analysis: automatically matching the problem to causal structures to infer relevant variables & causation metadata (like directness of cause, degree of cause, inevitability, uniqueness of cause, causal tree/network/loop/layer shape)
+	      - pattern analysis: automatically finding patterns with relevant similarities to infer the relevance of pattern metadata, where patterns replace missing required data (such as using patterns between variables of specific types or system positions to infer probable variable relationships)
+	    - concept analysis: automatically identifying concepts associated with a structure & vice versa, identifying positions of default abstract concepts in the network
+	    - interface analysis: mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query,
+	    where each analysis type describes the logic executed on each interface, where the conversion function of each interface standardizes the problem/other object being converted to objects/functions/attributes/structures defined on that interface.
 
 		- converting the 'route optimization' problem to the concept interface means identifying all important concepts (varying by the conceptual structure of an abstraction layer) determining the various states, paths, attributes, limits & other known important objects of the system where the route optimization occurs, like conditions that can prevent switching or connection two nodes in the system
 
 		- once any matching interface objects are found, reducing the problem statement into its most useful structure to reflect the new information
 			- if there are 'connection-prevention conditions' between concepts relevant to the problem definition (converted to the concept interface), those conditions can be looked for in the problem itself, and rules/patterns/attributes related to those conditions can be used to improve the solution structure that is the route (by reducing the route optimization costs, like reducing steps required) or maximizing rewards of a particular route, like hitting more valuable nodes during the route), so that useful information can be associated with problem objects newly identified as important from this interface traversal
-
 
 6. The method of claim 1, wherein the solution space is identified or reduced with filtering information found from interface traversals to the original/updated problem format, & the interface network traversal process in claims 3 - 5 is repeated for converting the problem space to a solution space or reducing the solution space as needed to fulfill solution metrics, & then finding/deriving/generating a specific solution or a general solution method that reduces the problem into a format that is more similar to its final solved format (identifying a specific optimal route or explanatory variable combination), where the solution method may be calculated on other interfaces & then converted to a vector or other object impacting the formatted problem in the problem space structure (the causes of a problem & the sequence of reducing these causes calculated on the causal interface, a set of causes & reduction step sequence that is then mapped to the problem format in the problem space, at which point the solution is ready to be checked with regard to impact on the original problem, the problem space and/or related problems)
 
@@ -77,14 +133,122 @@ CLAIMS
 
 	- the solution is found when the solution metrics are fulfilled (an optimal route is found, a prediction function with some level of accuracy is found, or a set of implementation steps of a bug-free function is found), which doesn't necessarily mean the solution space has been reduced to one solution (the solution can be a set of alternatives, a range, or a comparable format)
 
-
 7. The method of claim 1, further comprising traversing subsequent interfaces to obtain additional information, if the minimum information to solve is not reached.
 		
 	- if the solution metrics are not fulfilled, the interface query is updated if new information was found, the query is continued if no information was found, or a new query is generated if the previous query was complete
 
 		- if the solution route doesn't minimize costs or maximize rewards above the specified solution metric level, or if there are nodes in the system that weren't checked during the previous interface traversal & there is room for optimization in the previous traversal's solution, the interface query can be continued/updated or a new one can be generated
 
-
 8. The method of claim 1, further comprising deriving summary solution metadata from the output of the interface traversals executed, like the success of comparable alternative found solutions & whether the solution created other problems in the problem space, given the solution requirements stated/inferred from the problem statement, where the query information & standardized problem space information is returned and if a solution or solution set is found, the summary solution metadata is included, and query metadata & any new information objects or updates identified can be stored in the database for future queries.
 
 	- this could be the specific optimized route or route-invalidating system-optimization function found, with metrics fulfilled, descriptive attributes, & relevant information like comparative cost/benefit of this solution, as well as alternate solutions, and including general metrics like success probability, robustness/permanence of solution, etc.
+
+9. A non-transitory computer-readable medium containing instructions that, when executed by a processor, cause a device to perform operations, the operations comprising: 
+	- obtaining a problem statement from a user including required solution metrics (such as priorities, functionality, or attributes)
+	- identifying problem & problem space metadata (such as problem type, variables, side effects, position on problem network, & minimum information required to solve the problem)
+	- identifying optimal origin interface to start traversing from, identifying the interface traversal sequence, & applying interface operations like combine/embed
+	- traversing the interface network (including interfaces such as information, insight, structure, math, concept, variance, potential, change, intent, perspective, system, attribute, pattern, function, cause, problem/question, solution/answer) according to that interface query, where the interface network is a network of interfaces acting as filters (where an interface is comprised of its definition routes, conversion function, core functions/objects/attributes, and related information objects like patterns & other metadata specific to the interface)
+	- identifying and/or reducing the solution space to a solution, applying filtering information found from interface traversals, to the standardized original/updated problem format
+	- traversing subsequent interfaces to obtain additional information, if the minimum information to solve is not reached
+	- returning identified solutions as a set of steps to reduce/solve the problem, as well as solution metrics, attributes, & actions, and/or related information objects like insights, patterns, the systematized problem format, the reduced solution space, and the interface queries used.
+
+10. The non-transitory computer-readable medium of claim 9, wherein obtaining a problem statement includes: receiving a problem statement & translating the problem statement into its most standardized form, using standardization methods like replacing esoteric words with more common synonyms or using general/abstract versions of words, converting passive to active language, and removing words that don't change the meaning of the statement, and other operations that enable framing the problem as having a target solution structure.
+
+11. The non-transitory computer-readable medium of claim 10, wherein identifying the problem & problem space metadata includes:
+	- identifying metadata like the problem type (like an information asymmetry, incentive conflict, unenforced rule, finding a prediction function, route optimization) and problem inputs like interchangeable attribute sets, dependencies, & assumptions, as well as the minimum information required to solve the problem & other solution requirements
+		- mapping the inferred/stated information describing the problem & problem space to a structure generated by the problem variables (variables like number of information asymmetries, resource limits, decision points, variance sources, unanswerable questions of the problem, the structure of causes generating the problem if known, etc), a problem structure usually bound by assumption/requirement structures like filter/limit conditions, & indicating possible interactions between the problem objects & the other system objects like related problems & previous solutions, & containing the problem object in that space (as a network or other shape indicating the problem variable interactions within the problem space structure).
+
+12. The non-transitory computer-readable medium of claim 11, wherein identifying the origin interface to start traversing from, interface traversal sequence, & applying interface operations like combine/inject includes: 
+	- assessing which interface maximizes the value (calculated as a combination of metrics like specificity, uniqueness, and differentiation potential) of the given & directly inferable information, which may include recommended traversals given the problem type, if identified (like how a 'prediction function' problem type has a recommended interface query sequence)
+	- whether interfaces should be applied to other interfaces with interface operations (applying the conceptual interface to the structural interface, for example)
+	- which interfaces should be traversed in what sequence, combination, or other structure produced by an interface operation,
+
+	this interface query being designed to maximize the chance of finding/generating/deriving additional information necessary to describe information about the problem system, beyond its initially identified metadata, so that its corresponding solution space can be identified/reduced.
+
+13. The non-transitory computer-readable medium of claim 12, wherein traversing the interface network includes:
+	- traversing an interface requires first converting problem objects to that interface, using that interface's conversion function (which applies logic like system-mapping, position-finding, structure-matching, & object-identification logic), where the conversion function might be as simple as reducing objects to a set of attributes relevant to that interface (like how standardizing to the causal interface means focusing on dependencies between positions), or as complicated as fitting problem objects to another system
+	- once converted, the traversal proceeds to finding components on the interface that match the problem structures (including related objects like insights, patterns, & functions), and once an object/attribute/function between problem objects & interface objects is matched in an interface, their connecting structures (like functions/subsets) are queried and tested for relevance to the associated problem objects
+	- using matching interface relationships to infer relationships about associated problem objects
+	- identifying starting points on the interface, including core objects & functions, directly mappable objects to the problem objects, or other starting points like important/required interface objects
+	- where the output of each traversal may include information like matching interface objects, problem/solution or problem/solution space metadata, or functions/attributes reducing the problem
+	- where the intent of traversals is to match a problem & a solution & is done with various analysis specific to interfaces or the interfaces resulting from interface operations, such as:
+	- where the matching of a problem and a solution is done with interface-specific analysis, including:
+	    - problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
+	    - core analysis: automatically finding core objects/functions/attributes/states possible to determine/describe a system, defining core operations like find/apply/build/derive
+	    - system analysis: automatically fitting system objects like symmetries, sub-systems, sub-interfaces, false assumptions, correlations, efficiencies, incentives, and conflicts to problem definition to determine optimal organization/format/routes/metrics/positions
+	    - structure analysis: automatically finding structures, like a route between information formats to solve a problem
+	    - information analysis
+	      - insight analysis: insight path application (using insight paths from other fields to optimize insight generation)
+	      - problem analysis: formatting to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions)
+	      - question analysis: where a question is framed as a source position and a target position on a network, and the answer is the most robust path or the path that moves the nearest to the target position or the path that moves in the priority direction on the network
+	    - change analysis: automatically identifying change metadata like change types necessary to explain a solution or solve a problem
+	      - potential analysis: automatically finding structures of variance like gaps/cascades/reducers, possibility fields, and determining/limiting vertices
+	    - logical analysis
+	      - function analysis: automatically identifying function metadata like variables, input/output trajectory, the function in a filter format, intent, complexity, efficiency, & exploits
+	      - intent analysis: automatically finding possible reasons to use a function to automate logic
+	      - causal analysis: automatically matching the problem to causal structures to infer relevant variables & causation metadata (like directness of cause, degree of cause, inevitability, uniqueness of cause, causal tree/network/loop/layer shape)
+	      - pattern analysis: automatically finding patterns with relevant similarities to infer the relevance of pattern metadata, where patterns replace missing required data (such as using patterns between variables of specific types or system positions to infer probable variable relationships)
+	    - concept analysis: automatically identifying concepts associated with a structure & vice versa, identifying positions of default abstract concepts in the network
+	    - interface analysis: mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query,
+	    where each analysis type describes the logic executed on each interface, where the conversion function of each interface standardizes the problem/other object being converted to objects/functions/attributes/structures defined on that interface.
+
+14. The non-transitory computer-readable medium of claim 9, wherein the solution space is identified or reduced with filtering information found from interface traversals to the original/updated problem format, & the interface network traversal process in claims 3 - 5 is repeated for converting the problem space to a solution space or reducing the solution space as needed to fulfill solution metrics, & then finding/deriving/generating a specific solution or a general solution method that reduces the problem into a format that is more similar to its final solved format (identifying a specific optimal route or explanatory variable combination), where the solution method may be calculated on other interfaces & then converted to a vector or other object impacting the formatted problem in the problem space structure (the causes of a problem & the sequence of reducing these causes calculated on the causal interface, a set of causes & reduction step sequence that is then mapped to the problem format in the problem space, at which point the solution is ready to be checked with regard to impact on the original problem, the problem space and/or related problems) 
+
+15. The non-transitory computer-readable medium of claim 9, further comprising traversing subsequent interfaces to obtain additional information, if the minimum information to solve is not reached.
+
+16. The non-transitory computer-readable medium of claim 9, the operations further comprising deriving summary solution metadata from the output of the interface traversals executed, like the success of comparable alternative found solutions & whether the solution created other problems in the problem space, given the solution requirements stated/inferred from the problem statement, where the query information & standardized problem space information is returned and if a solution or solution set is found, the summary solution metadata is included, and query metadata & any new information objects or updates identified can be stored in the database for future queries.
+
+17. A system comprising: one or more processors; and one or more non-transitory computer- readable media containing instructions that, when executed by the one or more processors, cause the system to perform operations, the operations comprising:
+	- obtaining a problem statement from a user including required solution metrics (such as priorities, functionality, or attributes)
+	- identifying problem & problem space metadata (such as problem type, variables, side effects, position on problem network, & minimum information required to solve the problem)
+	- identifying optimal origin interface to start traversing from, identifying the interface traversal sequence, & applying interface operations like combine/embed
+	- traversing the interface network (including interfaces such as information, insight, structure, math, concept, variance, potential, change, intent, perspective, system, attribute, pattern, function, cause, problem/question, solution/answer) according to that interface query, where the interface network is a network of interfaces acting as filters (where an interface is comprised of its definition routes, conversion function, core functions/objects/attributes, and related information objects like patterns & other metadata specific to the interface)
+	- identifying and/or reducing the solution space to a solution, applying filtering information found from interface traversals, to the standardized original/updated problem format
+	- traversing subsequent interfaces to obtain additional information, if the minimum information to solve is not reached
+	- returning identified solutions as a set of steps to reduce/solve the problem, as well as solution metrics, attributes, & actions, and/or related information objects like insights, patterns, the systematized problem format, the reduced solution space, and the interface queries used.
+
+18. The system of claim 17, wherein obtaining a problem statement includes: receiving a problem statement & translating the problem statement into its most standardized form, using standardization methods like replacing esoteric words with more common synonyms or using general/abstract versions of words, converting passive to active language, and removing words that don't change the meaning of the statement, and other operations that enable framing the problem as having a target solution structure.
+
+19. The system of claim 17, wherein identifying the problem & problem space metadata includes:
+	- identifying metadata like the problem type (like an information asymmetry, incentive conflict, unenforced rule, finding a prediction function, route optimization) and problem inputs like interchangeable attribute sets, dependencies, & assumptions, as well as the minimum information required to solve the problem & other solution requirements
+	- mapping the inferred/stated information describing the problem & problem space to a structure generated by the problem variables (variables like number of information asymmetries, resource limits, decision points, variance sources, unanswerable questions of the problem, the structure of causes generating the problem if known, etc), a problem structure usually bound by assumption/requirement structures like filter/limit conditions, & indicating possible interactions between the problem objects & the other system objects like related problems & previous solutions, & containing the problem object in that space (as a network or other shape indicating the problem variable interactions within the problem space structure).
+
+20. The system of claim 17, wherein identifying the origin interface to start traversing from, interface traversal sequence, & applying interface operations like combine/inject includes: 
+	- assessing which interface maximizes the value (calculated as a combination of metrics like specificity, uniqueness, and differentiation potential) of the given & directly inferable information, which may include recommended traversals given the problem type, if identified (like how a 'prediction function' problem type has a recommended interface query sequence)
+	- whether interfaces should be applied to other interfaces with interface operations (applying the conceptual interface to the structural interface, for example)
+	- which interfaces should be traversed in what sequence, combination, or other structure produced by an interface operation,
+
+	this interface query being designed to maximize the chance of finding/generating/deriving additional information necessary to describe information about the problem system, beyond its initially identified metadata, so that its corresponding solution space can be identified/reduced.
+
+20. The system of claim 17, wherein traversing the interface network includes:
+	- traversing an interface requires first converting problem objects to that interface, using that interface's conversion function (which applies logic like system-mapping, position-finding, structure-matching, & object-identification logic), where the conversion function might be as simple as reducing objects to a set of attributes relevant to that interface (like how standardizing to the causal interface means focusing on dependencies between positions), or as complicated as fitting problem objects to another system
+	- once converted, the traversal proceeds to finding components on the interface that match the problem structures (including related objects like insights, patterns, & functions), and once an object/attribute/function between problem objects & interface objects is matched in an interface, their connecting structures (like functions/subsets) are queried and tested for relevance to the associated problem objects
+	- using matching interface relationships to infer relationships about associated problem objects
+	- identifying starting points on the interface, including core objects & functions, directly mappable objects to the problem objects, or other starting points like important/required interface objects
+	- where the output of each traversal may include information like matching interface objects, problem/solution or problem/solution space metadata, or functions/attributes reducing the problem
+	- where the intent of traversals is to match a problem & a solution & is done with various analysis specific to interfaces or the interfaces resulting from interface operations, such as:
+	- where the matching of a problem and a solution is done with interface-specific analysis, including:
+	    - problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
+	    - core analysis: automatically finding core objects/functions/attributes/states possible to determine/describe a system, defining core operations like find/apply/build/derive
+	    - system analysis: automatically fitting system objects like symmetries, sub-systems, sub-interfaces, false assumptions, correlations, efficiencies, incentives, and conflicts to problem definition to determine optimal organization/format/routes/metrics/positions
+	    - structure analysis: automatically finding structures, like a route between information formats to solve a problem
+	    - information analysis
+	      - insight analysis: insight path application (using insight paths from other fields to optimize insight generation)
+	      - problem analysis: formatting to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions)
+	      - question analysis: where a question is framed as a source position and a target position on a network, and the answer is the most robust path or the path that moves the nearest to the target position or the path that moves in the priority direction on the network
+	    - change analysis: automatically identifying change metadata like change types necessary to explain a solution or solve a problem
+	      - potential analysis: automatically finding structures of variance like gaps/cascades/reducers, possibility fields, and determining/limiting vertices
+	    - logical analysis
+	      - function analysis: automatically identifying function metadata like variables, input/output trajectory, the function in a filter format, intent, complexity, efficiency, & exploits
+	      - intent analysis: automatically finding possible reasons to use a function to automate logic
+	      - causal analysis: automatically matching the problem to causal structures to infer relevant variables & causation metadata (like directness of cause, degree of cause, inevitability, uniqueness of cause, causal tree/network/loop/layer shape)
+	      - pattern analysis: automatically finding patterns with relevant similarities to infer the relevance of pattern metadata, where patterns replace missing required data (such as using patterns between variables of specific types or system positions to infer probable variable relationships)
+	    - concept analysis: automatically identifying concepts associated with a structure & vice versa, identifying positions of default abstract concepts in the network
+	    - interface analysis: mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query,
+	    where each analysis type describes the logic executed on each interface, where the conversion function of each interface standardizes the problem/other object being converted to objects/functions/attributes/structures defined on that interface.
+
+21. The system of claim 17, wherein the solution space is identified or reduced with filtering information found from interface traversals to the original/updated problem format, & the interface network traversal process in claims 3 - 5 is repeated for converting the problem space to a solution space or reducing the solution space as needed to fulfill solution metrics, & then finding/deriving/generating a specific solution or a general solution method that reduces the problem into a format that is more similar to its final solved format (identifying a specific optimal route or explanatory variable combination), where the solution method may be calculated on other interfaces & then converted to a vector or other object impacting the formatted problem in the problem space structure (the causes of a problem & the sequence of reducing these causes calculated on the causal interface, a set of causes & reduction step sequence that is then mapped to the problem format in the problem space, at which point the solution is ready to be checked with regard to impact on the original problem, the problem space and/or related problems)
+
+22. The system of claim 17, further comprising traversing subsequent interfaces to obtain additional information, if the minimum information to solve is not reached.
+
+23. The system of claim 17, further comprising deriving summary solution metadata from the output of the interface traversals executed, like the success of comparable alternative found solutions & whether the solution created other problems in the problem space, given the solution requirements stated/inferred from the problem statement, where the query information & standardized problem space information is returned and if a solution or solution set is found, the summary solution metadata is included, and query metadata & any new information objects or updates identified can be stored in the database for future queries.
