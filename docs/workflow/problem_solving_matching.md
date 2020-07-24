@@ -303,7 +303,7 @@
 
     - this method is for when you have a theory about the optimal base/structure of the solution, but you need to find the right attributes/transforms of that base solution to decompose the problem
 
-    - rather than sculpting an invention using an increasing set of limits/filters, you can select or derive a structure that probably matches, then check if it fits & transform it until it does (opposite direction as I.)
+    - rather than sculpting an invention using an increasing set of limits/filters, you can select or derive a structure that probably matches or use core structures or vertex structures (structures that maximize differences), then check if it fits & transform it until it does (opposite direction as I.)
 
     - to verify whether a structure fits information:
         - check that observable attributes & emergent attributes match expected versions
@@ -498,7 +498,7 @@
 
 #### IV. Solve problem with solution function generation & selection (with intent-matching)
 
-    - this method is for selecting the best metadata of a solution object:
+    - this method is for selecting the most informative metadata of a solution object:
       - which interface to start with (intent, structure, need, variance, imbalances, symmetries)
       - which variables are likeliest to be causative
       - which solution patterns to use as a base
@@ -753,11 +753,8 @@
 #### VII. Vectorize problem/solution space & match intents
 
     - this involves standardizing the problem definition to a directed network (with objects like concepts/functions/intents connecting the starting point & the goal)
-
     - this is similar to translating problems into an optimal format that is already solved (get from problem space definition to target output for a task intent)
-
     - another version of this involves tracing the intents & sub-intents necessary to get from the starting point to the target and then finding functions that fulfill each sub-intent
-
     - this method is for when you want to automate solving a clearly structured specific problem, with clear optimization metrics, without deriving the logic manually
 
     - example:

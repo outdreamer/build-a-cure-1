@@ -32,6 +32,15 @@
   - give examples based on the same default example for each analysis type
     - the default example can be a prediction function
 
+  - diagram
+
+    - identifying/reducing solution space & aggregating solutions into final structure
+    - checking if solution metric is fulfilled
+    - interface traversal flow diagram
+    - interface conversion, matching, starting point selection
+      - checking if relevant information is found
+
+
 
 ## define
 

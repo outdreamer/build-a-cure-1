@@ -8,13 +8,13 @@ The titanic data set survival variation is explained with the distortion functio
 	
 To generate alternate data sets using the origin data set:
 
-	- identify variables (age, gender, roommates, proximity to life boats, room number)
+	1. identify variables (age, gender, roommates, proximity to life boats, room number)
 
-	- identify variable metadata (extreme versions of those variables (ranges), variable types, variable change probabilities, variable relationships, variable averages)
+		- identify variable metadata (extreme versions of those variables (ranges), variable types, variable change probabilities, variable relationships, variable averages)
 
-	- identify bases (concepts, function versions, function subsets, function components, variable patterns, common structures like lines)
+	2. identify bases (concepts, function versions, function subsets, function components, variable patterns, common structures like lines)
 
-	- identify & generate missing information 
+	3. identify & generate missing information 
 
 		- if variables can interact but dont appear to directly in the origin data set, find the output of their interaction in a generated data set
 
@@ -57,14 +57,14 @@ To generate alternate data sets using the origin data set:
 
 		- survival may depend on other factors not included or inferrable with the data set, like independent causal chains (randomness chains like being rescued by passing ships or populations or tides that point them to land, which can be modeled with additional data or if those probability distributions are inferrable)
 
+	4. check if the distortion functions that generate a prediction function from one base/data set can be used to generate a prediction function using another base/data set
 
-	- check if the distortion functions that generate a prediction function from one base/data set can be used to generate a prediction function using another base/data set
-
-		- can distortion functions of altruism/selfishness generate a prediction function given the priority policy base?
-			- example: protecting weaker groups is a form of altruism
+		- can distortion functions of altruism/selfishness generate a prediction function given the priority policy base (once standardized to that base)?
+			- example: a policy protecting weaker groups is a form of altruism
 
 		- if so, these rules are likelier to be true than distortion functions that cannot be reused across bases
 
+	5. filter out unnecessary functions in a set and filter possible alternate sets by patterns/probability or other interface information
 
 - then apply structure to distortion function sets (position sets in a network relating them)
 
@@ -86,8 +86,8 @@ The actual solution path would take the form:
 	- use adjacent points in variable interaction space (given causation patterns) to generate alternate data sets
 	- this can also be done with distortion functions & bases
 
-2. find bases relevant for distortion functions
-	- randomness/constant line
+2. find bases & targets relevant for distortion functions
+	- randomness, as a constant line used as a starting point to generate the target (the regression line)
 	- average/extreme (average line, extreme line)
 	- step function matching subset regressions
 	- alternative functions for outliers & for average-circling values
@@ -103,6 +103,7 @@ The actual solution path would take the form:
 	- common shape functions (circle, line)
 	- state conversion functions (functions to convert between states of increasing curvature)
 	- causal functions (like if a causal loop adds an averaging effect)
+
 
 3. generate sets of distortion functions using those bases
 	- starting from a random base (constant linear function indicating randomized distribution of outcomes across input values), how can you get to the default prediction function of origin data set
@@ -132,11 +133,20 @@ To generate that path, you would need to first implement an insight path in the 
 
 	- the prediction function can be built from:
 		- distortion vector sets converting another function (like a random/average/linearized function)
-		
- 	- which has required inputs like:
+		- a combination or set of related function components (terms, operations) or structures (lines, positions), or variables
+		- function to compose the prediction function using composition functions
+		- a generator structure (a system or function that generates the data is a better predictive tool than one relationship in the system)
+		- functions to predict subsets (outliers, average-circling values)
+		- embedded functions at various points to predict changing values
+		- function to identify concepts/cause/intents & aggregate them in a structure that generates or matches the prediction function
+		- function to link probable states (different data sets or different distortion levels)
+
+ 	- which have required inputs like:
  		- distortion combination function
- 		- function to identify bases
+ 		- explanatory (fit) metric selection function
+ 		- standard success (accuracy, work) metric selection function
  		- bases (including inputs like function components, a default function, or an interface) to begin distortions from
+ 		- interim structure selection function
  		
 Then once you have those structures generated, you can execute the solution path to generate the prediction function:
 
