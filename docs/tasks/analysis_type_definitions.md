@@ -1,6 +1,4 @@
 # Analysis definitions
-
-- reduce these to definitions of each type sufficient to understand & implement each type of analysis, optionally including implementation & target function lists
   
   1. Workflows
     
@@ -93,97 +91,8 @@
 
       - other problem-solving automation workflows would start with different interface traversals & use different origin & target structures (such as designing interface trajectories, or generating new info object layers to use as interfaces or systems (combine perspective & potential to generate a potential-perspective field, combine problems & markets to create a market for problems, combine platforms with platforms to create a platform to sell platforms, combine variables and networks to create variable networks, combine variables & risk to identify variable development sequences))
 
-  2. Interface traversal examples
 
-      - problem: find a prediction function to predict variables causing an output, like predicting stock price or a diagnosis from symptoms/causative conditions
-          
-          - interface traversal
-            - find information (describing variable types, redundancies, missing info, etc)
-            - fit system (fitting the variables to a system format)
-            - map cause (finding root/direct causes & causal structures)
-            - match concept (whether the problem is valid given a definition of price)
-            - identify change (how the function can change)
-          
-          - if thats not enough to fulfill solution metrics or reduce the problem (identify a range of possible prediction functions), traversals with interface operations can be done
-            - causal * change * pattern - to examine whether causal change patterns can reduce the problem or identify a solution
-            - concept * change * causes - to identify if a concept change looks imminent
-
-      - problem: find & build an optimal invention design to fulfill intents like 'building a function with minimal bugs'
-
-          - interface traversal
-            - find information (describing function intents, limits, and assumptions like parameters)
-            - fit system (fitting the function to a system, formatted to include possible variance injection points, identify efficiencies like logic that can be merged, etc)
-            - identify structure (identifying structures that can be applied to the function system, like filters (conditions), direction changes (control flow statements), relationships (assignments), and mismatches (errors)
-            - identify potential (identifying unenforced rules, rule-intent imbalances, false similarities, & other objects of potential allowing exploit opportunities that are not already identified)
-            - change cause, intent, concept (test function impact on other causes, concepts, & intents, which are high-level objects a function can alter)
-            - match pattern (does this function comply with patterns for functions with similar solution metrics)
-
-          - if the function implementation doesnt fulfill solution metrics, other interface traversals can be done
-            - a system-object or function-concept interface like the 'efficiency interface' or 'ambiguity interface' (does this function have a more efficient or less ambiguous route between input & output that might fulfill a solution metric, given that maximizing efficiency & reducing ambiguity are standard system & function metrics)
-
-      - problem: find an optimal route (or alternatively, find a distribution of functionality/efficiencies/costs to make all routes or a particular route less/equivalently costly) between start & end points, like the 'minimal trades to get equal problem/opportunity distribution'
-          
-          - interface traversal
-            - identify information (identify differentiating attributes/functions/sub-systems of agents/positions/routes within the network)
-            - fit system (identify relevant structures like abstraction layer to traverse at, identify important objects required to solve the problem, like trading problems/markets/skills/information/risk/bets vs. trading currency, or framing currency as a position attribute, rather than a standardizing interface)
-            - identify structure (identify trade & other market structures that are important for understanding why resources dont get distributed fairly, like closed trade loops & independence machines)
-            - identify potential (identify alternative perspectives that could also explain the variation in optimized routes, like alternate value definitions)
-            - identify cause (identify causes like marketing, collusion, and regulations that prevent or interfere with equilibrium market events)
-            - identify concept (identify concepts relevant to markets like balance, demand/supply matching, and how the concept of information can disrupt any other market bc it enables automation)
-          
-          - if queries of those interfaces are insufficient to solve the problem, interface operations can be used
-            - the information-system-structure interface operation (can be used to determine information like the next layer of information objects that are relevant if enough automation is distributed)
-
-    - example problem: design set-sorting or value-finding function:
-
-        - similarity in navigation, equality in split => optimal for target value near initial split points or similar positions to the split points
-        - assumed difference embedded in pre-computation of attributes => optimal for target value with different pre-computed attribute value, or target values in similar position to values with different pre-computed attribute values or adjacent values
-
-        - analyze a set object from these interfaces - then when you find a pattern match on an interface set, you can restrict the search to those
-
-          - core interface: what core functions determine set generation/selection/aggregation/interaction/organization
-          - causal interface: what functions were used to generate the set
-          - intent interface: what is this set for
-          - structure interface: randomness, endpoints, subsets/split
-          - potential interface: what are the limits on this set, what is the set of possible outcomes
-          - change interface: where is the change concentrated/distributed in the set from a standard set
-          - pattern interface: what patterns do sets in this position (determined by attributes or sample subset) normally follow
-          - function interface: what functions are adjacent to the set if it has a sequence or clear function map
-          - concept interface: 
-            - what specific tradeoffs/mismatches/alignments/symmetries/combinations/interactions are inherent to the problem/problem space? (specific concept filter) 
-            - where is the power distributed in the set? (abstract concept filter)
-          - system interface: what variance injection points are in the set generation/selection/aggregation/interaction/organization
-
-        - key concepts of this problem (like the "tradeoff of search start point/split function/organization vs. performance", "subset gains", "pattern matching", and "potential worst/best case scenario of solution") should be found quickly from various interfaces:
-
-          - structure interface: 
-
-            - position (sequence in the set problem space) is a determinant of adjacence/distance
-            - adjacence between start search position and final found value position is a key metric
-            - start-found adjacence can be maximized by changing input (number of start points)
-            - limits on number of processes involve ability to read a value at a given position at a time
-            - maximizing start-found adjacence requires more work (higher search processes) to produce a possible metric "lower search time"
-            - "search time" and "start point count" have a tradeoff structure
-
-          - potential interface:
-
-            - the set of possible outcomes (possible positions of value) is equal to the set's positions (indexes)
-            - how do you reduce the set of possible outcomes if the possible outcomes are an integer sequence equal to the set length
-            - subsets are a potential interim unit (based on the value count attribute) between the outcome data type (one value index) and the input data type (set)
-            - the potential of subsets of equivalent length to contain the value could be equally likely (adding randomness to search)
-            - potential injection point for pattern interface: skipping equivalent valued subsets could reduce solve time (if subsets with a certain split follow patterns as determined at search time)
-            - best case scenario in standard search (random or endpoint) is the first value in the set is the target value
-            - does subset search offer gains to random search?
-            - best case scenario of unit solution type (iterate check of value)in subset search is first value after first subset split (split in half) is the target value
-            - next best case scenario type (if the unit solution type best case scenario doesnt occur iteratively) is pattern found & used to reduce solution/search space
-            - splitting requires multiple processes
-            - pattern logging/searching requires multiple processes
-            - depending on set, either can reduce solution space with extra work
-            - there is a trade-off between work invested in pattern-checking, subset-splitting & solution space reduction potential
-
-  3. Analysis types
-
-    Each analysis type describes the logic executed on each interface, where the conversion function of each interface standardizes the problem/other object being converted to objects/functions/attributes/structures defined on that interface
+  2. Analysis types
 
     - problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
     - core analysis: automatically finding core objects/functions/attributes/states possible to determine/describe a system, defining core operations like find/apply/build/derive
@@ -201,45 +110,7 @@
       - causal analysis: automatically matching the problem to causal structures to infer relevant variables & causation metadata (like directness of cause, degree of cause, inevitability, uniqueness of cause, causal tree/network/loop/layer shape)
       - pattern analysis: automatically finding patterns with relevant similarities to infer the relevance of pattern metadata, where patterns replace missing required data (such as using patterns between variables of specific types or system positions to infer probable variable relationships)
     - concept analysis: automatically identifying concepts associated with a structure & vice versa, identifying positions of default abstract concepts in the network
-    - interface analysis: mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query
-
-
-4. Tech debt:
-      - a set of definitions, set of core structures, and a set of functions (converting, filtering, applying core interface functions, traversing interface network) for each interface 
-      - a set of functions to select filters to display in the GUI, and validate input (for example, if the problem statement doesn't match problem type specified) 
-      - a set of functions to convert a problem statement (and problem space context if provided) into the problem object metadata 
-      - a set of functions for core operations like: 
-        - find : function to apply filters to a structure 
-        - build : function to assemble components given a particular definition of combine 
-        - derive : function to identify possible paths, compare them, and select one given a solution metric 
-        - change : function to apply an object, function, or attribute to another 
-        - define:  function to identify & define attributes, functions, & objects (given minimal information like their position in a system or their set of attributes compared to other system objects) 
-      - a set of utility functions, including: 
-        - a function to convert an object between formats (function => attribute sequence, function => filter sequence, etc) by mapping attributes & functions & other metadata of the objects & removing attributes that don't fit in the target format definition (for example, if you're converting to a type, the output should be in an attribute set format) 
-        - a function to identify structure matching a pattern (like identify a structure embodying a mismatch, which is a problem type, given a system network definition, where the system could represent an object, function, or attribute) 
-        - a function to identify sub-components or system context of a component (a component which could be either a function, object, or attribute) 
-      - a set of graphing functions 
-        - to graph the problem space, problem, related problem network, solution space, solution, embedded graphs, interfaces, and other relevant objects 
-      - a set of problem & solution functions 
-      - a set of functions to evaluate & select between comparable solutions, including selecting solutions based on input preferences selected (avoid using ML in solution, use a particular interface, use pre-computed solutions, etc)
-        - isolate the solution space in the problem space 
-        - break the problem space into sub-problems that can execute their own interface traversal & solution-matching process to find sub-solutions 
-        - reduce the solution space 
-        - apply the solution to the problem space 
-      - a function to check if a solution reduces a problem or fulfills a solution metric 
-      - a function to check if a solution fits a structure such as input assumptions & limits 
-      - a set of specific functions for each interface, for example: 
-        - intent: a function to derive intent as a dependency of the intent interface conversion function 
-        - core: a set of functions to generate the set of possible combinations in an interaction space to conduct core combination analysis & identify probable important objects like an incentive would be identified as an important system object given the system filters it passes after being generated by core combination analysis) 
-        - type: a function to identify the type an object belongs to, given its metadata 
-        - system: a function to identify system objects given their definition, such as a variance gap (a gap in rule enforcement) 
-        - concept: a function to identify concepts given their definition & a system network (either structures applies to abstract concepts - or useful combinations of objects, functions, & attributes that are causative or interfaces in a system) 
-      - a set of functions to analyze prior queries, optimize & maintain the program, such as: 
-        - removing duplicates 
-        - analyzing solution statistics 
-        - optimizing an interface traversal once found 
-        - pre-computing & storing frequently requested traversals 
-        - optimizing data storage & logic given how other users are using the program
+    - interface analysis: identifying a problem-solving automation workflow to derive/apply, mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query
 
 
 ## standardized analysis
@@ -283,7 +154,6 @@
     - relationships 
       - adjacent/related objects of same/different type 
       - problems with adjacent objects & how those problems are generated by adjacent object metadata 
-
 
   - functions:  
     - structural functions: combine, merge, apply, embed, mix, filter, chain, define, create, derive, identify, change, version
@@ -374,6 +244,14 @@
 
   - functions:
     - optimize, traverse, open/close, etc
+    - apply system filters
+    - reduce dependencies   
+    - close variance injection points   
+    - enforce rule
+    - identify system objects given their definition, such as a variance gap (a gap in rule enforcement) 
+    - map a system layer graph representing combinations
+    - identify/derive system context   
+    - find interactions of interaction spaces (which interactions are common across agents, likely given other interactions, etc)
 
   - attributes:
     - cohesiveness
@@ -409,7 +287,7 @@
           - to the abstract layer (potential, which is a related concept of power) 
           - so that the final object is defined in terms of other abstract objects on the top layer 
 
-    - the abstract network is a set of related concept objects remaining after removing context, concepts that are applicable across systems, often have multiple definition routes because they take a variety of forms given the context, and are fundamental to describing a system
+    - the abstract network is a set of related concept objects remaining after removing context, concepts that are applicable across systems, often have multiple definition routes because they take a variety of forms given the context, and are fundamental to describing a system. A subset of the abstract network is depicted in FIG 15. Concept definition network, which shows concepts related to 'relevance'.
 
       - example: power is the object left when objects implementing it (resources => energy => input => potential) have their context removed, navigating up the abstraction stack from:
           - the info layer (resources & energy), removing their contextual attributes/rules
@@ -432,16 +310,26 @@
 
   - functions:
 
+    - a function to identify concepts given their definition
+
     - conceptual math: 
 
       - an example is applying the concept of 'meta' to the concept of 'game' and getting output of the operation like 'a game where games can be created by agents inside the game' or 'a game to design games', given similarities between attributes/functions of objects in the definition & relevant spaces
 
       - apply one concept to another (apply 'power' to 'market' or 'evaluate market by power' involves standardizing the market concept in terms of power, using power as an interface)
 
+      - apply concept to a structure, as a priority
+
   - answers questions like:
     - what concepts cannot be reduced/abstracted further
     - what concepts have which associated structures
+
+    - structures that apply a concept are depicted in FIG 9 (Find structure for a definition of a concept0, which depicts structures of the 'distribution' and 'power' concepts, and FIG 2 (Structual definition routes for 'conflict' concept).
+
     - what definition routes identify a particular concept
+
+      - possible definition routes for the concept of 'equality' are given in FIG 16. Alternate definition routes
+
     - concept-system interface:
       - what concepts are likely to evolve in a system
       - what concepts are common to most systems (would help identify concepts like an efficiency)
@@ -591,6 +479,10 @@
   - functions:
     - allow combination of intents to find malicious intent structures (like a sequence of neutral-intent functions that has an emergent malicious intent when used in that sequence)
     - operate on intents (intent-modification intent)
+    - derive intent as a dependency of the intent interface conversion function 
+    - map intent to direction & assess solution progress by movement in that direction
+
+    - mapping intent to structure & vice versa is shown in FIG. 13 (Intent-matching)
 
   - structures:
     - intent matrix is the interaction space of a set of intents, where its emergent intents can be traced across the interaction space
@@ -693,6 +585,8 @@
 			- identify required position of each isolated logic operation
 
   - attributes:
+    - cohesion: measure of system fit (like fit to a 'common sense' or 'pattern' system)
+    - validity
 
   - objects:
     - logical fallacy: mismatch of logic structures/functions/objects/attributes (scope, relevance, fit, position)
@@ -779,6 +673,14 @@
       (incentives that organize motion to create an oversupply of resources (motion vectors) that cant be supported by a resource (position))
    
   - functions:
+    - find important structures (combinations/layers)
+    - find matching structures
+    - find differences
+    - find sub-components
+    - map structures (function sets) to target structures (sequences), given a metric like progression toward goal
+      - identify sub-components
+      - a function to convert an object between formats (function => attribute sequence, function => filter sequence, etc) by mapping attributes & functions & other metadata of the objects & removing attributes that don't fit in the target format definition (for example, if you're converting to a type, the output should be in an attribute set format) 
+      - a function to identify structure matching a pattern (like identify a structure embodying a mismatch, which is a problem type, given a system network definition, where the system could represent an object, function, or attribute) 
 
   - structures: 
     - dimension
@@ -848,8 +750,11 @@
       - delegation of variance into systems/types/functions/variables/constantso
         
   - functions:
+    - identify high-risk variables
+    - identify imminent variable changes
 
   - attributes:
+    - structure (potential being lack of information, and information being structure)
 
   - objects:
 
@@ -935,6 +840,8 @@
     - convert: change a component into another (useful for identifying alternate paths)
     - deconstruct: change an object into its components (useful for identifying origins & common components)
     - distort: apply a distortion function to acquire a difference object (a value difference, an extreme, a magnification, a limit, etc)
+    - map change types to dimensions
+    - identifying dimensions where change types change (an aggregate, interface, or deciding dimension where change type is uncertain but not random), with embedded parameters & bases for framing changes of a certain type      
 
   - attributes:
     - uniqueness (is the change composable with core distortion functions or is it formed with different functions than other changes, implying its origin is external to the system)
@@ -950,7 +857,7 @@
     - change source
 
   - structures:
-    - base: varying change bases (how a change's differentiating output is defined) allows various difference types to be measured (removing common parameters/attributes or standardizing by a base), such as change defined as:
+    - base: varying change bases (what a change's differentiating output is defined in terms of/in relation to) allows various difference types to be measured (removing common parameters/attributes or standardizing by a base), such as change defined as:
       - network position change
       - work to create the change (inevitability)
       - different ways to create the change (if there are many ways to create it, each individual way is insignificant)
@@ -966,6 +873,7 @@
       - change based on system vertices (imminent to/distant from a phase shift, at an intersection, changing interaction layers)
 
   - concepts:
+    - base
   
   - answers questions like:
     - as change increases:
@@ -986,6 +894,7 @@
     - resolve: identify cause in a set of possible alternate causes
     - isolate: identify contribution of a particular cause to an output
     - inject/extract dependency
+    - identify causal structure, as shown in FIG. 14 (Causal structure-matching)
 
   - attributes:
     - directness (x indirectly causes y, x immediately precedes y on a causal chain)
@@ -1033,6 +942,9 @@
   - attributes:
 
   - functions:
+    - apply/derive an insight path, shown in FIG. 12 (Insight path application)
+    - link insights
+    - identify insight
 
   - objects:
 
@@ -1137,75 +1049,71 @@
       - finding a prediction function can be framed as an optimal path in a network of variable nodes
     - once you frame a problem as an info problem, you can map info to structure:
       - conflicts can be vectors with different direction or which overlap
-
     - this involves identifying the given problem & solution target structures in the problem space & the related problem network, so the problem & solution can be visualized, including logic to:
-
       - identify problem metadata includes defining the structure of a problem that the solution fulfills by some metric
-
       - selecting the right format for the problem & solution is an important function in this analysis; each of those formats is better for different problem types/formats (with varying structure in the problem definition) and solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
         - each of those formats involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, steps like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network to retrieve/connect information, or in the problem space to reduce a problem shape, move around problem components to change the problem, or traverse a route in the problem network system (not necessarily the network of related problems, but the problem framed as requiring a solution route within a network)
-        
       - graphing the problem on a network of related problems (on the same interaction layer, in the same problem space, etc) such as how the problem of building a technology is related to the problem of managing usage of & access to it
-
       - defining the problem space as a contextual system where the problem is active
         - this includes other problem spaces where it is or could be active
           - for example, how the 'tech distribution' problem (where most tech is inherently neutral & can be used for good or malicious intents so what matters most is how it's distributed) acts differently in different problem spaces where distribution tools & government ethics & policies differ
-
       - identifying & anticipating problems in a system involves identifying problem structures (inefficiencies, conflicts, etc) that exist or could emerge
         - for example, in the bio system, DNA regulation functions don't prevent pathogens from injecting DNA or mutations from occurring, so if you derive the concept of a pathogen or mutation without already having that definition available (using core system analysis), you could predict that the current DNA regulation functions wouldn't be able to offset the changes exacted by those concepts & you could predict problems of DNA disregulation in the bio system before they occur
-    
 
   - functions:
 
-    - mapping function, to map problems to structures, problem functions, & other problem types
+    - convert a problem statement (and problem space context if provided) into the problem object metadata 
 
-      - graph attributes that differentiate problems that are impacted by possible solutions
-      - map intent to direction & assess progress by movement in that direction
-      - networks with clusters, sequences, & other structures representing decisions
-      - system layer graph representing combinations
-      - interactions of interaction spaces (which interactions are common across agents, likely given other interactions, etc)
-      - map function sets to sequences, given a metric like progression toward goal
-      - map related/approximate problems/problems elsewhere on the causal stack to a related problem network, having different dimensions (like a generative vs. identification problem)
-      - map change types to dimensions and graphing/calculating dimensions where change types change (an aggregate, interface, or deciding dimension where change type is uncertain but not random)
-      - using a layered graph to visualize change of different types/metrics built on a symmetry
-      - mapping language to structure directly (verbs like 'find' mapped to a set of vectors leading from a node indicating possible start positions, with option to use core function vectors to reach target node)
-      - a trajectory between problem graphs where each graph represents a decision/state, and attribute sets & problem of similar type occupy a similar position on an axis depicting all the graphs traversed
-      - a metric like size of variable interaction space mapped to length/area/volume to indicate how much of the problem is left, and a metric like number of variables mapped to number of dimensions/sides/layers of the shape to graph the problem according to structural metrics
-      - selecting a space (dimension set), with embedded parameters & bases for framing changes of a certain type
-      - representing changes produced by a solution as a set of vector trajectories across interfaces
+    - mapping function, to map problems to structures, problem functions, & other problem types (as graphing a problem is depicted in FIG. 8 (Problem space visualization))
 
-      - a problem space depicted as a set of boundaries indicating limits creating the problem space (like limited tech creates a problem space) 
-      - the problem space dimensions maximizing variance between related problems 
-      - a network of related problems in the problem space & their state 
-      - the origin problem occupying a position on the problem network 
-      - the problem object can be represented differently according to the type & the solution generation method, for example: 
-        - if your problem object is represented as a 3-d shape like a cube (indicating it has three main variables expanding each other from an origin corner & forced to create a closed system to maintain state, or limits interacting with each other but not overlapping), the solution would need to be in a vector format to remove dimensions of the shape or reduce the size of the problem shape 
-      - if you're representing your problem on the information interface, you may want to represent it as an information problem type within a system context, like how: 
-        - a conflict between system incentives & agent intents could be represented as two vectors with the same origin or two vectors going in different directions 
-        - an information imbalance would look like extra information in different positions 
-        - an information asymmetry would look like information in a position where it's not needed & can be exploited to charge rent 
-        - an information market would have some trust structures embedded so information can be bought instead of derived for conveniences 
-      - this is similar to how concepts like delegation would look like a node sending calls to other nodes that run tasks & return response data - problem types have structure once they're framed as an information problem, and once concepts are converted to more structural interfaces, they also have default structural forms reflecting their definitions 
-      - the solution space for the origin problem (and for all related problems on the network that the solution space applies to) 
-      - the solution space is a reduced version of the problem shape or structure or the set of possible solutions 
-      - solutions to the origin problem, represented as solution formats like:
-        - a subset of the problem shape (like a path answering a question, where the solution space is all possible routes between origin & destination nodes) 
-        - a structure within a system containing the problem (an optimal route with a required attribute like efficiency, or a combination of objects reducing variance in a rule gap, or a filter sequence that creates a function optimally while storing minimal code) 
-        - a structure (other than reductions) to aim for when transforming the problem and the available resources implied in its definition (a solution defined as an optimal version of the problem structure, like the optimal structure to represent a concept) 
-        - a compressing transform of the problem shape (solution vectors removing problem dimensions until it's a point) 
-      - the impact of solutions on the problem network or the origin problem (depending on the problem & solution format as stated above) 
-      - the expansion & compression of embedded objects (such as problems, solutions, systems, concepts, and interfaces which change on other dimensions than the problem space dimensions) to the embedded graphs in the problem space using vectors 
-      - alternate versions of the problem space with other attribute sets as dimensions, to isolate impact of a solution on other attributes 
-      - concepts having structure in a problem space depending on the context determining that space 
-      - example of structure applied to a concept: dependence is a form of the power concept with nodes running tasks for a powerful node 
-      - interfaces represented as a filter converting objects to a foundation where vector sets representing different unit core functions of change possible on that interface (where core interface functions are depicted in embedded graphs or adjacent converted graphs of a problem space, and including a function to convert other objects to combinations of the vectors in that interface's vector set 
-        - example: converting objects to the type interface involves identifying attribute sets that are unique, and then identifying types that can describe multiple unique objects as variations of an attribute in the attribute set
-      - a problem-solving effect may be measured based on whether a solution contains or comprises a vector that: 
-        - neutralizes a problem vector 
-        - reduces the problem shape size 
-        - removes a problem dimension or variable,
-        or does any combination of the above for the origin problem & related problems, potentially neutralizing the problem space itself or converting it to another problem space. 
+      - program functions
+        - validate user-provided GUI input information (for example, if the problem statement doesn't match problem type specified), entered in a form as shown in FIG. 18 (User Interface Module)
+        - optimizing functions to analyze prior queries, optimize & maintain the program, such as: 
+          - removing duplicates 
+          - calculating & compare query & solution statistics 
+          - optimizing a performance metric like interface traversal once found 
+          - pre-computing & storing frequently requested traversals 
+          - optimizing data storage & logic given how other users are using the program
 
+      - a set of graphing functions 
+        - graph system as format 
+        - graph the problem space, problem, related problem network (as shown in FIG 7), solution space, solution, embedded graphs, interfaces, and other relevant objects
+        - the problem space metadata returned & displayed to the user is shown in FIG. 20 (Problem Space Metadata), optionally including the solution metadata in FIG. 21 (Solution Metadata) & additional solution metadata in alternate formats as shown in FIG. 22 (Additional Solution Metadata), if a solution is found or if solution space information is found.
+        - select/add/remove problem dimensions 
+        - identify/reduce solution space   
+        - apply the solution to the problem space 
+        - check if a structure (like a solution) fits/matches another structure (like input assumptions & limits or a solution metric)
+          - checking if a solution matches a metric structure is shown in FIG. 5 (Finding alternate solution formats that fulfill different metrics)
+          - matching a problem format to a solution format is shown in FIG. 3 (Problem formats, with matching solution formats of problem formats) and FIG. 4 (Problem-solution structure matching: apply a solution function to a structure containing the problem to find specific solution structures for that problem)
+        - compare & select between comparable solutions, including selecting solutions based on input preferences selected 
+          (preferences like 'avoid using ML in solution', 'use a particular interface', 'use pre-computed solutions from database', etc)
+        - decompose/aggregate problems/solutions (as shown in FIG 6)
+          - break the problem space into sub-problems that can execute their own interface traversal & solution-matching process to find sub-solutions 
+        - format problem objects (like decisions) as structures (networks with clusters, sequences, & other structures)      
+        - deriving trajectory between problem graphs where each graph represents a decision/state, and attribute sets & problem of similar type occupy a similar position on an axis depicting all the graphs traversed
+        - representing a solution as a set of vector trajectories across interfaces
+        - map related/approximate problems/problems by cause into a related problem network (like a generative vs. identification problem)
+        - function to depict a problem space as:
+          - the origin problem, defined as a set of structures indicating boundaries (filters, conditions), limits (assumptions, resource limits), or vectors (priorities, forces), creating the problem space (like limited tech creates a problem space) , where the space inside the shape indicates potential for change
+            - the problem object can be represented differently according to the type & the solution generation method by applying interface filters to the problem space visualization, for example: 
+              - if your problem object is represented as a 3-d shape like a cube (indicating it has three main variables expanding each other from an origin corner & forced to create a closed system to maintain state, or limits intersecting with each other), the solution would need to be in a vector format to remove dimensions of the shape or reduce the size of the problem shape 
+              - for example, if you're representing your problem on the information interface, you may want to represent it as an information problem type within a system context, like how: 
+                - a conflict between system incentives & agent intents could be represented as two vectors with the same origin or two vectors going in different directions 
+                - an information imbalance would look like extra information in different positions 
+                - an information asymmetry would look like information in a position where it's not needed & can be exploited
+                - an information market would have some trust structures embedded, so information can be bought instead of derived for convenience
+          - where the problem space dimensions maximize variance between related problems 
+          - including a network of related problems in the problem space & their state, the origin problem occupying a position on the problem network 
+          - the solution space for the origin problem (and for all related problems on the network that the solution space applies to) - the solution space being a reduced version of the problem shape or structure, or all changes possible in a problem space, or the set of all possible solutions, whichever is the most specific definition that can be identified
+          - solutions to the origin problem, represented as solution formats like:
+            - a structure within a system containing the problem (an optimal route with a required attribute like efficiency or a route answering a question, or a combination of objects reducing variance in a rule gap, or a filter sequence that creates a function optimally while storing minimal code)
+            - a structure (other than reductions) to aim for when transforming the problem and the available resources implied in its definition (a solution defined as an optimal version of the problem structure, like the optimal structure to represent a concept or build a function) 
+            - a reducing transform of the problem shape (solution vectors removing problem dimensions until it's a point) 
+            - a problem-solving effect may be measured based on whether a solution contains or comprises a vector that: 
+              - neutralizes a problem vector , applying force in opposing direction to a problem vector (reduce an incentive)
+              - reduces the problem shape size  or dimension (resolve an ambiguity)
+              - fills the problem shape with relevant structures (build a function, find a route)
+              - or does any combination of the above for the origin problem & related problems, potentially neutralizing the problem space itself or converting it to another problem space. 
 
     - ezample logic of function to break a problem into sub-problems
 
@@ -1283,46 +1191,44 @@
         - different structures fulfill different structural solution metrics
           - if 'cost' is the metric, measured by total distance traveled, that is clearly different across the various solution formats of FIG 5.
 
+        - FIG 1. Example of a problem-solving automation workflow, with a diagram.
 
-        - FIG 1 Explanation
+          1. Problem definition: determine possible match between the problem system intersection object and the system conflict object.
 
-        1. Problem definition: determine possible match between the problem system intersection object and the system conflict object.
+          2. standardize the problem to the system interface
 
-        2. standardize the problem to the system interface
+          - Apply the context of the default interaction defined for the intersection (agents crossing the intersection)
 
-        - Apply the context of the default interaction defined for the intersection (agents crossing the intersection)
+          - Apply structures of possible matching objects in the system interface to the problem object, by applying the structure interface:
+            - components capable of interacting (they have a nonzero interaction space) can be formatted as a network
+            - the position overlap is an example of a tradeoff, so the 'subset' structure is applied) - this can be applied iteratively to check for structures that can be organized/optimized
+            - the antagonistic agent & diverging direction components are merged with the agent component, where the diverging direction structure is applied directly and the antagonistic agent component is implied by their mutual approach of the intersection
+            - the ambiguity system object is inferred by the match of the ambiguity 'unenforced rule' definition route, which matches the 'agent traversal sequence' intersection interaction attribute.
 
-        - Apply structures of possible matching objects in the system interface to the problem object, by applying the structure interface:
-          - components capable of interacting (they have a nonzero interaction space) can be formatted as a network
-          - the position overlap is an example of a tradeoff, so the 'subset' structure is applied) - this can be applied iteratively to check for structures that can be organized/optimized
-          - the antagonistic agent & diverging direction components are merged with the agent component, where the diverging direction structure is applied directly and the antagonistic agent component is implied by their mutual approach of the intersection
-          - the ambiguity system object is inferred by the match of the ambiguity 'unenforced rule' definition route, which matches the 'agent traversal sequence' intersection interaction attribute.
+          - Now the intersection's default interaction (agents looking to cross) is formatted as a network, and system objects like conflict (and its sub-components, patterns, objects, etc) have been matched & applied to the intersection interaction network.
 
-        Now the intersection's default interaction (agents looking to cross) is formatted as a network, and system objects like conflict (and its sub-components, patterns, objects, etc) have been matched & applied to the intersection interaction network.
+          - This is a structure of a problem type - 'find traversal sequence conflict resolution rule' - and given that it matches a known problem type 'resolve resource competition', it's likelier to be possible.
 
-        This is a structure of a problem type - 'find traversal sequence conflict resolution rule' - and given that it matches a known problem type 'resolve resource competition', it's likelier to be possible.
+          - The traversal sequence rule can be found by applying other agent & intersection attributes, looking for system & other interface objects like:
+            - irreversible changes (in case one agent will change the intersection in a way that prevents other people from traversing it, like burning a bridge)
+            - intents that are higher priority
+            - intent alignments (both agents have an incentive to
+            apply social norms to maintain rule of law or trust, so their intents can be aligned to follow social rules to determine who traverses first, rather than building new rules to determine this).
 
-        The traversal sequence rule can be found by applying other agent & intersection attributes, looking for system & other interface objects like:
-        - irreversible changes (in case one agent will change the intersection in a way that prevents other people from traversing it, like burning a bridge)
-        - intents that are higher priority
-        - intent alignments (both agents have an incentive to
-        apply social norms to maintain rule of law or trust, so their intents can be aligned to follow social rules to determine who traverses first, rather than building new rules to determine this).
+          3. This step identifies whether the output of the previous step creates information that is easily transformed into the solution metric, given the relevant objects/attributes/functions of the solution metric. Is it clear which agent goes first, or whether the intersection can be changed in a way that determines which agent goes first?
 
-        3. This step identifies whether the output of step 7 creates information that is easily transformed into the solution metric, given the relevant objects/attributes/functions of the solution metric. Is it clear which agent goes first, or whether the intersection can be changed in a way that determines which agent goes first?
+          - If the solution metric 1 is fulfilled, the agents have no antagonistic agent attribute & there is no trade-off because no variance from a decision is allowed at the intersection.
 
-        If the solution metric 1 is fulfilled, the agents have no antagonistic agent attribute & there is no trade-off because no variance from a decision is allowed at the intersection.
+          - If the solution metric 2 is fulfilled, the intersection loses its position overlap attribute & the diverging direction attribute doesn't matter anymore, but it does have a decision function at the intersection.
 
-        If the solution metric 2 is fulfilled, the intersection loses its position overlap attribute & the diverging direction attribute doesn't matter anymore, but it does have a decision function at the intersection.
-
-        If the intersection object with the system interface is applied can be easily transformed into having one of the solution metrics fulfilled, that transformation can be considered a possible solution.
-
+          - If the intersection object with the system interface is applied can be easily transformed into having one of the solution metrics fulfilled, that transformation can be considered a possible solution.
 
 
   - objects:
 
   - structures:
 
-    - problem-solution formats:
+    - problem-solution formats (shown in FIG 3 (Problem formats, with matching solution formats) & FIG 4 (Problem-solution structure matching))
 
       - a vector set is good for converting between problem-solution structures, like converting an inefficiency to an efficiency in a system
         - problem shape-reducing vector set (where problem variables form the shape) is good for finding a function that reduces shape dimensions & size (like to form a summary), or a vector set to combine solution components in a way that fills the shape structure, if the solution format is a method to fill the problem structure rather than reducing the problem shape
@@ -1358,7 +1264,7 @@
     - ratio of positive to negative outputs (problems solved vs. caused)
     - inevitability vs. agency of problem cause
 
-    - problem types:
+    - problem types (examples shown in FIG. 17. Problem Types)
 
       - dependency/fragility
 
@@ -1517,6 +1423,15 @@
 ## Interface Analysis
 
   - objects:
+    - interface
+    - interface operation (combine interfaces, etc)
+    - interface traversal (apply an interface to a problem)
+    - interface query (cross multiple interfaces in a sequence)
+    - workflow (apply a problem-solving automation workflow with a particular origin interface or interface query)
+      - an example of a workflow is shown in FIG. 1 (Problem-solving automation workflow)
+      - the general workflow of this program is shown in FIG. 19 (Solution Automation Module 140)
+
+    - workflow operation (select a problem-solving automation workflow)
 
   - structures:
 
@@ -1537,89 +1452,9 @@
       - calculating when to skip interim variables/interfaces
       - determining adjacent interfaces
 
-    - which interface to standardize information to depends on which use you intend to use the information for
-      - if you need to implement it immediately, an interface like intent that is semantically adjacent to the structural & logical interfaces will be more useful
-      - if you need to identify new types, standardizing to the type interface will be more useful
-
-    - selecting starting interface
-
-      - Here's an example of why different interfaces are more useful in different situations, given a standard problem like 'build a function automatically for a given function intent'.
-
-      Intent interface
-
-        If you want to build a function automatically, and you have code indexed by intent, then you don't need to write code, you need to write the intent & sub-intent sequence or other structure. I would call that 'standardizing to the intent interface' or 'applying intent structures' to the overall function intent, which is the problem definition ('build a function with this overall intent'). If you already have code indexed by intent, framing a function as a set of intents is trivial. If you don't already have code indexed by intent, the process you use to decompose an overall function intent into a structure of sub-intents is a tool that can be re-used to index existing functions by intent.
-
-      Information interface
-
-        If the problem can be framed as an information problem, you can query information problem type rules & patterns to solve it automatically. Building a function automatically given an overall intent would mean:
-              
-          - solving a series of information problems like:
-            - 'information mismatch' (object1 doesnt match object2 and it should, so assign object2 to object1)
-            - 'conflicting information' (object1 doesnt match object2 so merge their conflicts) 
-            - 'required information' (object1 is required to have this attribute value so assign it)
-            - 'missing information' (object1 is missing this attribute so return False or query for that information or generate it).
-
-      Cause interface
-
-        If the problem can be framed as a cause problem, then you are querying for causes. Building a function automatically given an overall intent would mean: 
-
-          - finding the causes of bugs
-          - finding the causes of different types of logic & structures (like sequences) applied to different types of logic (inherent rules governing logic given the point/definition of logical operations, like 'an if condition usually precedes a non-if condition' because the point of an if condition is to test for a case to apply logic, where the logic applied is not another condition)
-          - finding the causes of functions & function-related objects like side effects, memory usage, optimizations done on other functions, etc
-          - then you'd compose these causes in a structure that would allow automatic generation of functions from a given intent (first apply logic-related causes to generate a function causing the given function intent, then check for optimization-causes in the generated function & apply optimizations if those causes are found in your generated function structure, then apply tests for bug causes, etc).
-
-      Structure interface
-
-        If the problem can be framed as a structure problem, then you are querying for structures. Building a function automatically given an overall intent would mean:
-
-              - finding structures to standardize functions to (limits, filters, networks of relationships, directed networks of operations)
-              - finding structures to standardize intents to (directions as priorities or more structural goals, possible usage ranges as intents, abstraction as an indicator of intent (neutral/mathematical functions can be used for anything), using intent as a proxy structure for the concept of permission by organizing information access by intent)
-              - matching intent & function structures that fulfill the given overall function intent without causing invalidating side effect intents
-
-      Pattern interface
-
-        If the problem can be framed as a problem of resolving which patterns to combine in what structures (where patterns include abstract/generalized structures (such as variables, variable patterns, input-output path patterns, or type patterns) that resolve to specific logic when converted into information, meaning theyre assigned constants), building a function automatically given an overall intent would mean:
-              
-          - finding which patterns or alternative pattern sets (a variable type relationship pattern, an input-output type trajectory pattern, a logic sequence pattern, an optimization pattern) can generate the required logic when constants (specific information-filled versions of the abstract pattern structure) are applied
-            - the output of that may be as diverse as an input-output table to handle a variety of use cases observed, a prediction function trained on input-output data, a logical sequence, a code query, an intent sequence, a directed logic network, etc - depending on the patterns used
-
-      System interface
-
-        If the problem can be framed as a problem of fitting the function to a system, building a function automatically given an overall intent would mean:
-          - identifying starting & ending position to map intent to structure in the system (get from input start node to output end node)
-          - identify default & alternative (higher cost, lower step count, etc) paths between start & end node
-          - identifying system objects like efficiencies, incentives, etc, especially those structures clearly relevant to the default & alternative paths between start & end nodes identified
-          - applying definitions of those system objects to select the logical step sequence (avoid conflicts, target rewards without side effects, minimize costs, apply symmetries for standardization purposes)
-          - checking which routes fulfill given function intent
-
-      Concept interface
-
-        If the problem can be framed as a set of concepts required for the solution (framing the intent in terms of concepts like 'distribute power evenly'), or if you have conceptual information indexed for code, building a function automatically given an overall intent would mean:
-
-          - using conceptual math operations to determine which structure of concepts is most useful for the given intent (if combining 'power' and 'efficiency' in a 'sequence' or 'balanced' structure would produce the optimal function for an intent like 'distribute power evenly', that is calculatable if you have other functions indexed by conceptual structures, or if you have conceptual math operations accessible to determine what structure of concepts would generate the required concept set, or if you have intent indexed by conceptual structures, or if you can standardize intent & concept to another interface where you have conceptual structures indexed, etc)
-            - for example if you have functions indexed with conceptual structures like the individual concepts required (power, efficiency, distribution), what operations can be applied to these concepts to create the optimal concept combination ('distribute power evenly') - meaning conceptual operations like 'inject power to distribution structure', 'limit distribution structure with power injected by efficiency', etc.
-            - these conceptual operations involve finding matching structures across the concept definitions:
-              - 'injecting' power into a structure manifesting the 'distribution' concept is possible if the distribution-manifesting structure has an input opportunity of some structure, and power can be translated into a structure that can be used by the structure having that input opportunity (a distribution structure such as a function having an input opportunity in the form of a parameter, where power can be translated into a usable structure like information assigned to that parameter), given the definition of the 'inject' operation as 'input the injectable to the receiver'
-            - you can avoid doing structural operations by storing the structures for each concept and then storing patterns/outputs of their operations
-              - if combining power & efficiency produces a structure set, that can be derived by querying the structures of power & efficiency and combining those structures in a way that doesnt invalidate either definition
-            - you can also apply logic to the concept operation ('inject power to distribution, limited by efficiency') to create the output concept of that conceptual operation ('efficient distribution of power'), and then do a structure query of that output concept
-            - once you have function structures matching the output (having found function logic matching 'efficient distribution of power' once translated to the structural version 'minimized cost of allocating inputs' if inputs are the structure found in the function system matching the power definition, where 'minimized cost of allocating inputs' can mean 'diversifying calls for this intent across various alternative functions' or 're-using existing functions where possible to minimize the cost of building a function on-demand or at compile time' or 'a function set that minimizes the memory/space requirements of allocating inputs'), you check if those structures optimally fulfill this function's intent, 'distribute power evenly', and then execute the final steps to resolve those structures into function logic (with input-output requirement chains, intent-matching, etc)
-
-      Problem interface
-
-        If the problem can be framed as a problem in a problem network of related problems, and/or a problem space, you can calculate attributes like whether the problem is about to be invalidated by other functions built for other problems, whether the profit opportunity of solving the problem is worth the probable cost, whether the whole problem space is about to fundamentally change, etc. Building a function automatically given an overall intent would mean:
-
-          - determining whether the problem of organizing logic is a solved problem if framed differently (can AI generate code with enough accuracy to invalidate further investment)
-          - determining whether solving an adjacent or proxy problem invalidates solving this specific problem (can concept or intent identification tools or even existing code bases invalidate the need for a tool to build functions automatically, or can code bases be re-written in a way that invalidates automatic code generation, by simplifying code-writing to a task of intent-writing or code query-writing or another process simple enough to invalidate complex code and the need to generate it)
-            - determining if a solution like logic automation can replace code generation (a tool that automatically applies the definition of logic, including all related objects like logical fallacies, to prevent logically 'jumping to conclusions' or 'ignoring assumptions' or 'over-applying bias vs. updating bias', then indexing code as these logical objects so logical rules can be applied to optimize/generate code)
-              - this would involve writing high-level logic language like 'find information, avoid misidentifying object1 as object2, combine common attributes of these objects with versioning in case of conflicting values, avoid this conclusion & this fallacy error type', which would allow logical object definitions (of what a fallacy is, what a legitimate conclusion/assumption/implication is, etc) to be applied automatically, rather than the existing method of applying conditional/contextual/specific low-level logic developer-defined definitions to be applied manually, which involves writing low-level logic like 'select * from table, check if object1.attribute.value == object2.attribute.value, etc'.
-          - determining whether the problem can be formatted as a set of solved problems (applying organization to information, applying definitions, finding matching structures, generating tests) or in a format that is solved (route optimization)
-
-      - given the information you have, one interface may be more useful to standardize to than another. If you already have intent or cause information indexed or otherwise adjacently calculatable, or if those interfaces contain the required solution information (as in, the problem is 'finding the cause of some measurement', so the solution is going to be findable on the causal interface), you'd be better off standardizing to those interfaces first, without other information.
+    - interface analysis also covers building or selecting a problem-solving automation workflow (whether to start with a particular workflow, which is a layer of abstraction above the question of whether to start with a particular interface, which assumes a workflow has already been selected)
 
     - the abstract interface network includes layers of network filters (intent, perspective, function (can include patterns, logic, strategies, core functions, and any other set of operations/objects that has order), structure, concept, information (organization, formats, types, info objects like problems/questions/insights/assumptions), potential, change, cause system)
-
-  	- core functions (filter, find, apply, derive, build, change) mapped to user intents (identify cause, predict a variable, build a function) can generate & design a query on the interface network
 
   	- each interface network in the set of interfaces (core function interface network, general interface network, specific interface network) can be used to generate the others
   		- intent interface can be used to generate the type interface
@@ -1637,19 +1472,248 @@
 
     - interface operation functions:
 
+      - interface conversion function as shown in FIG. 10 (Interface conversion & matching)
+        - example: 
+          - converting objects to the type interface involves identifying attribute sets that are unique, and then identifying types that can describe multiple unique objects as variations of an attribute in the attribute set
+          - converting to the cause interface involves focusing on dependence objects (inputs/outputs)
+
+      - function to design an interface query (sequence of traversing interfaces), as shown in FIG. 11 (Interface traversal flow diagram)
+
+        - which interface to standardize to in what structure (sequence/combination) depends on which use you intend to use the information for
+          - if you need to implement it immediately, an interface like intent that is semantically adjacent to the structural & logical interfaces will be more useful
+          - if you need to identify new types, standardizing to the type interface will be more useful
+        - core functions (filter, find, apply, derive, build, change) mapped to user intents (identify cause, predict a variable, build a function) can generate & design a query on the interface network
+
+        - example interface queries for problem statements:
+
+              - problem: find a prediction function to predict variables causing an output, like predicting stock price or a diagnosis from symptoms/causative conditions
+                  
+                  - interface traversal
+                    - find information (describing variable types, redundancies, missing info, etc)
+                    - fit system (fitting the variables to a system format)
+                    - map cause (finding root/direct causes & causal structures)
+                    - match concept (whether the problem is valid given a definition of price)
+                    - identify change (how the function can change)
+                  
+                  - if thats not enough to fulfill solution metrics or reduce the problem (identify a range of possible prediction functions), traversals with interface operations can be done
+                    - causal * change * pattern - to examine whether causal change patterns can reduce the problem or identify a solution
+                    - concept * change * causes - to identify if a concept change looks imminent
+
+              - problem: find & build an optimal invention design to fulfill intents like 'building a function with minimal bugs'
+
+                  - interface traversal
+                    - find information (describing function intents, limits, and assumptions like parameters)
+                    - fit system (fitting the function to a system, formatted to include possible variance injection points, identify efficiencies like logic that can be merged, etc)
+                    - identify structure (identifying structures that can be applied to the function system, like filters (conditions), direction changes (control flow statements), relationships (assignments), and mismatches (errors)
+                    - identify potential (identifying unenforced rules, rule-intent imbalances, false similarities, & other objects of potential allowing exploit opportunities that are not already identified)
+                    - change cause, intent, concept (test function impact on other causes, concepts, & intents, which are high-level objects a function can alter)
+                    - match pattern (does this function comply with patterns for functions with similar solution metrics)
+
+                  - if the function implementation doesnt fulfill solution metrics, other interface traversals can be done
+                    - a system-object or function-concept interface like the 'efficiency interface' or 'ambiguity interface' (does this function have a more efficient or less ambiguous route between input & output that might fulfill a solution metric, given that maximizing efficiency & reducing ambiguity are standard system & function metrics)
+
+              - problem: find an optimal route (or alternatively, find a distribution of functionality/efficiencies/costs to make all routes or a particular route less/equivalently costly) between start & end points, like the 'minimal trades to get equal problem/opportunity distribution'
+                  
+                  - interface traversal
+                    - identify information (identify differentiating attributes/functions/sub-systems of agents/positions/routes within the network)
+                    - fit system (identify relevant structures like abstraction layer to traverse at, identify important objects required to solve the problem, like trading problems/markets/skills/information/risk/bets vs. trading currency, or framing currency as a position attribute, rather than a standardizing interface)
+                    - identify structure (identify trade & other market structures that are important for understanding why resources dont get distributed fairly, like closed trade loops & independence machines)
+                    - identify potential (identify alternative perspectives that could also explain the variation in optimized routes, like alternate value definitions)
+                    - identify cause (identify causes like marketing, collusion, and regulations that prevent or interfere with equilibrium market events)
+                    - identify concept (identify concepts relevant to markets like balance, demand/supply matching, and how the concept of information can disrupt any other market bc it enables automation)
+                  
+                  - if queries of those interfaces are insufficient to solve the problem, interface operations can be used
+                    - the information-system-structure interface operation (can be used to determine information like the next layer of information objects that are relevant if enough automation is distributed)
+
+              - problem: design set-sorting or value-finding function:
+
+                      - analyze a set object from these interfaces - then when you find a pattern match on an interface set, you can restrict the search to those
+
+                        - core interface: what core functions determine set generation/selection/aggregation/interaction/organization
+                        - causal interface: what functions were used to generate the set
+                        - intent interface: what is this set for
+                        - structure interface: randomness, endpoints, subsets/split
+                        - potential interface: what are the limits on this set, what is the set of possible outcomes
+                        - change interface: where is the change concentrated/distributed in the set from a standard set
+                        - pattern interface: what patterns do sets in this position (determined by attributes or sample subset) normally follow
+                        - function interface: what functions are adjacent to the set if it has a sequence or clear function map
+                        - concept interface: 
+                          - what specific tradeoffs/mismatches/alignments/symmetries/combinations/interactions are inherent to the problem/problem space? (specific concept filter) 
+                          - where is the power distributed in the set? (abstract concept filter)
+                          - identified concepts: 'similarity' in navigation, 'equality' in split => optimal for target value near initial split points or similar positions to the split points
+                        - system interface: what variance injection points are in the set generation/selection/aggregation/interaction/organization
+
+                      - key concepts of this problem (like the "tradeoff of search start point/split function/organization vs. performance", "subset gains", "pattern matching", and "potential worst/best case scenario of solution") should be found quickly from various interfaces:
+
+                        - structure interface: 
+
+                          - position (sequence in the set problem space) is a determinant of adjacence/distance
+                          - adjacence between start search position and final found value position is a key metric
+                          - start-found adjacence can be maximized by changing input (number of start points)
+                          - limits on number of processes involve ability to read a value at a given position at a time
+                          - maximizing start-found adjacence requires more work (higher search processes) to produce a possible metric "lower search time"
+                          - "search time" and "start point count" have a tradeoff structure
+
+                        - potential interface:
+
+                          - the set of possible outcomes (possible positions of value) is equal to the set's positions (indexes)
+                          - how do you reduce the set of possible outcomes if the possible outcomes are an integer sequence equal to the set length
+                          - subsets are a potential interim unit (based on the value count attribute) between the outcome data type (one value index) and the input data type (set)
+                          - the potential of subsets of equivalent length to contain the value could be equally likely (adding randomness to search)
+                          - potential injection point for pattern interface: skipping equivalent valued subsets could reduce solve time (if subsets with a certain split follow patterns as determined at search time)
+                          - best case scenario in standard search (random or endpoint) is the first value in the set is the target value
+                          - does subset search offer gains to random search?
+                          - best case scenario of unit solution type (iterate check of value)in subset search is first value after first subset split (split in half) is the target value
+                          - next best case scenario type (if the unit solution type best case scenario doesnt occur iteratively) is pattern found & used to reduce solution/search space
+                          - splitting requires multiple processes
+                          - pattern logging/searching requires multiple processes
+                          - depending on set, either can reduce solution space with extra work
+                          - there is a trade-off between work invested in pattern-checking, subset-splitting & solution space reduction potential
+
+      - function to select starting interface
+
+        - Here's an example of why different interfaces are more useful in different situations, given a standard problem like 'build a function automatically for a given function intent'.
+
+        Intent interface
+
+          If you want to build a function automatically, and you have code indexed by intent, then you don't need to write code, you need to write the intent & sub-intent sequence or other structure. I would call that 'standardizing to the intent interface' or 'applying intent structures' to the overall function intent, which is the problem definition ('build a function with this overall intent'). If you already have code indexed by intent, framing a function as a set of intents is trivial. If you don't already have code indexed by intent, the process you use to decompose an overall function intent into a structure of sub-intents is a tool that can be re-used to index existing functions by intent.
+
+        Information interface
+
+          If the problem can be framed as an information problem, you can query information problem type rules & patterns to solve it automatically. Building a function automatically given an overall intent would mean:
+                
+            - solving a series of information problems like:
+              - 'information mismatch' (object1 doesnt match object2 and it should, so assign object2 to object1)
+              - 'conflicting information' (object1 doesnt match object2 so merge their conflicts) 
+              - 'required information' (object1 is required to have this attribute value so assign it)
+              - 'missing information' (object1 is missing this attribute so return False or query for that information or generate it).
+
+        Cause interface
+
+          If the problem can be framed as a cause problem, then you are querying for causes. Building a function automatically given an overall intent would mean: 
+
+            - finding the causes of bugs
+            - finding the causes of different types of logic & structures (like sequences) applied to different types of logic (inherent rules governing logic given the point/definition of logical operations, like 'an if condition usually precedes a non-if condition' because the point of an if condition is to test for a case to apply logic, where the logic applied is not another condition)
+            - finding the causes of functions & function-related objects like side effects, memory usage, optimizations done on other functions, etc
+            - then you'd compose these causes in a structure that would allow automatic generation of functions from a given intent (first apply logic-related causes to generate a function causing the given function intent, then check for optimization-causes in the generated function & apply optimizations if those causes are found in your generated function structure, then apply tests for bug causes, etc).
+
+        Structure interface
+
+          If the problem can be framed as a structure problem, then you are querying for structures. Building a function automatically given an overall intent would mean:
+
+                - finding structures to standardize functions to (limits, filters, networks of relationships, directed networks of operations)
+                - finding structures to standardize intents to (directions as priorities or more structural goals, possible usage ranges as intents, abstraction as an indicator of intent (neutral/mathematical functions can be used for anything), using intent as a proxy structure for the concept of permission by organizing information access by intent)
+                - matching intent & function structures that fulfill the given overall function intent without causing invalidating side effect intents
+
+        Pattern interface
+
+          If the problem can be framed as a problem of resolving which patterns to combine in what structures (where patterns include abstract/generalized structures (such as variables, variable patterns, input-output path patterns, or type patterns) that resolve to specific logic when converted into information, meaning theyre assigned constants), building a function automatically given an overall intent would mean:
+                
+            - finding which patterns or alternative pattern sets (a variable type relationship pattern, an input-output type trajectory pattern, a logic sequence pattern, an optimization pattern) can generate the required logic when constants (specific information-filled versions of the abstract pattern structure) are applied
+              - the output of that may be as diverse as an input-output table to handle a variety of use cases observed, a prediction function trained on input-output data, a logical sequence, a code query, an intent sequence, a directed logic network, etc - depending on the patterns used
+
+        System interface
+
+          If the problem can be framed as a problem of fitting the function to a system, building a function automatically given an overall intent would mean:
+            - identifying starting & ending position to map intent to structure in the system (get from input start node to output end node)
+            - identify default & alternative (higher cost, lower step count, etc) paths between start & end node
+            - identifying system objects like efficiencies, incentives, etc, especially those structures clearly relevant to the default & alternative paths between start & end nodes identified
+            - applying definitions of those system objects to select the logical step sequence (avoid conflicts, target rewards without side effects, minimize costs, apply symmetries for standardization purposes)
+            - checking which routes fulfill given function intent
+
+        Concept interface
+
+          If the problem can be framed as a set of concepts required for the solution (framing the intent in terms of concepts like 'distribute power evenly'), or if you have conceptual information indexed for code, building a function automatically given an overall intent would mean:
+
+            - using conceptual math operations to determine which structure of concepts is most useful for the given intent (if combining 'power' and 'efficiency' in a 'sequence' or 'balanced' structure would produce the optimal function for an intent like 'distribute power evenly', that is calculatable if you have other functions indexed by conceptual structures, or if you have conceptual math operations accessible to determine what structure of concepts would generate the required concept set, or if you have intent indexed by conceptual structures, or if you can standardize intent & concept to another interface where you have conceptual structures indexed, etc)
+              - for example if you have functions indexed with conceptual structures like the individual concepts required (power, efficiency, distribution), what operations can be applied to these concepts to create the optimal concept combination ('distribute power evenly') - meaning conceptual operations like 'inject power to distribution structure', 'limit distribution structure with power injected by efficiency', etc.
+              - these conceptual operations involve finding matching structures across the concept definitions:
+                - 'injecting' power into a structure manifesting the 'distribution' concept is possible if the distribution-manifesting structure has an input opportunity of some structure, and power can be translated into a structure that can be used by the structure having that input opportunity (a distribution structure such as a function having an input opportunity in the form of a parameter, where power can be translated into a usable structure like information assigned to that parameter), given the definition of the 'inject' operation as 'input the injectable to the receiver'
+              - you can avoid doing structural operations by storing the structures for each concept and then storing patterns/outputs of their operations
+                - if combining power & efficiency produces a structure set, that can be derived by querying the structures of power & efficiency and combining those structures in a way that doesnt invalidate either definition
+              - you can also apply logic to the concept operation ('inject power to distribution, limited by efficiency') to create the output concept of that conceptual operation ('efficient distribution of power'), and then do a structure query of that output concept
+              - once you have function structures matching the output (having found function logic matching 'efficient distribution of power' once translated to the structural version 'minimized cost of allocating inputs' if inputs are the structure found in the function system matching the power definition, where 'minimized cost of allocating inputs' can mean 'diversifying calls for this intent across various alternative functions' or 're-using existing functions where possible to minimize the cost of building a function on-demand or at compile time' or 'a function set that minimizes the memory/space requirements of allocating inputs'), you check if those structures optimally fulfill this function's intent, 'distribute power evenly', and then execute the final steps to resolve those structures into function logic (with input-output requirement chains, intent-matching, etc)
+
+        Problem interface
+
+          If the problem can be framed as a problem in a problem network of related problems, and/or a problem space, you can calculate attributes like whether the problem is about to be invalidated by other functions built for other problems, whether the profit opportunity of solving the problem is worth the probable cost, whether the whole problem space is about to fundamentally change, etc. Building a function automatically given an overall intent would mean:
+
+            - determining whether the problem of organizing logic is a solved problem if framed differently (can AI generate code with enough accuracy to invalidate further investment)
+            - determining whether solving an adjacent or proxy problem invalidates solving this specific problem (can concept or intent identification tools or even existing code bases invalidate the need for a tool to build functions automatically, or can code bases be re-written in a way that invalidates automatic code generation, by simplifying code-writing to a task of intent-writing or code query-writing or another process simple enough to invalidate complex code and the need to generate it)
+              - determining if a solution like logic automation can replace code generation (a tool that automatically applies the definition of logic, including all related objects like logical fallacies, to prevent logically 'jumping to conclusions' or 'ignoring assumptions' or 'over-applying bias vs. updating bias', then indexing code as these logical objects so logical rules can be applied to optimize/generate code)
+                - this would involve writing high-level logic language like 'find information, avoid misidentifying object1 as object2, combine common attributes of these objects with versioning in case of conflicting values, avoid this conclusion & this fallacy error type', which would allow logical object definitions (of what a fallacy is, what a legitimate conclusion/assumption/implication is, etc) to be applied automatically, rather than the existing method of applying conditional/contextual/specific low-level logic developer-defined definitions to be applied manually, which involves writing low-level logic like 'select * from table, check if object1.attribute.value == object2.attribute.value, etc'.
+            - determining whether the problem can be formatted as a set of solved problems (applying organization to information, applying definitions, finding matching structures, generating tests) or in a format that is solved (route optimization)
+
+        - given the information you have, one interface may be more useful to standardize to than another. If you already have intent or cause information indexed or otherwise adjacently calculatable, or if those interfaces contain the required solution information (as in, the problem is 'finding the cause of some measurement', so the solution is going to be findable on the causal interface), you'd be better off standardizing to those interfaces first, without other information.
+
+      - function to traverse an interface (apply an interface to a problem, looking for matching objects)
+
+        - system interface traversal 
+          - general: fit system objects like symmetries, sub-systems, sub-interfaces, false assumptions, correlations, and conflicts to problem/solution/space definition 
+          - specific: find the lowest-cost path in a system (maximizing the number of efficiencies used) using incentivized paths 
+        
+        - information interface traversal 
+          - general: use logic such as mapping the problem as a combination/set/path containing information problem types like an information mismatch or inequality or minimum or overflow or lack 
+          - specific: frame a 'find a particular record in a data set' problem as a combination problem of a missing information problem type (composed of a filter-selection problem, an indexing problem, and a sorting problem) or a route optimization problem type (starting point in data set, search/split/sort method selection, and cost-minimization problem for worst-case destination given starting point) 
+        
+        - insight path application  
+          - general: use insight paths from other fields to optimize insight generation/ identification/derivation, where insight paths can contain questions, strategies, insights, & other information objects that are usable across systems to generate/ identify/derive insights in a semi-unknown system 
+          - specific: use insight paths from gene editing to automate inventing by mapping gene editing functions (switch, remove, alter) to inventing problem space functions (switch components, remove assumption, alter variable) 
+        
+        - intent interface application 
+          - general: convert inputs/outputs/functions, objects, & attributes to intent to check progress toward solution intent or avoid side effect intents, where adjacent reasons to call the operation & operation outputs are assumed to be included in the intent stack of an operation 
+          - specific: convert inputs/outputs/functions, objects, & attributes to intent, to check progress toward target solution metric or avoid side effects 
+        
+        - structural interface application - general: find a standard structure & format the problem using that structure 
+          - specific: convert functions to standard structures like paths, networks, filters, or attributes to check if a function fulfills a solution metric 
+        
+        - core interface traversal 
+          - general: use combinations of core functions (find, build, apply, derive), objects (layer, filter, gap, limit), and attributes (equal, similar) to create a core interaction space & system layer diagram and find target objects quickly using structural definitions of concepts like optimal or applying system filters, or predict missing objects on other layers 
+          - specific: use the core functions of the 'combine' or 'organize' intent to predict the next generation of products invented 
+        
+        - problem interface traversal, specifically a problem vectorization framing the solution as a path in the problem space (mapping the problem definition to a one-directional tree with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions) 
+          - general: infer important interim concepts of a problem system (like the 'duplicate line' concept for building a 'merge files' function) and use intent- mapping to connect stated problem objects & target outputs using available functions 
+          - specific: infer the relevant 'duplicate line', 'similar line', 'similar', & 'equal' concepts of a 'build a function to merge files' problem system and use intent- mapping to connect stated problem objects (line, file, string) & target outputs (one file without duplicate lines) using available functions (iterate, check, is_similar, is_equal) 
+        
+        - problem space analysis (analyzing a system composed of resources, agent intents, & problems) 
+          - general: analyze whether the problem space changes in a way that invalidates the original or other problems once a particular solution is applied, anticipating cascading, self-sustaining & self-solving problems, and selecting between solutions 
+          - specific: organize a set of resources into a problem space system with dimensions indicating primary factors of change that are also interfaces (as a foundation where changes can develop and be described in other embedded graphs) or cross-system attributes (like relevance), for standardized comparison of solution impact on all problems in the problem space system 
+
+        - a pattern interface traversal (where patterns replace missing required data, such as patterns between variables of specific types or system positions to infer their probable relationship) 
+          - general: select patterns related to stated objects and traversal for patterns or pattern generators linking them to generate an origin solution space to begin compressions at 
+          - specific: select patterns related to variable relationships & probability distributions to predict the likeliest ways a function will change 
+        
+        - a causal interface traversal 
+          - general: match problem structures to causal structures (like tree/network/loop/ layer) to infer probable causation metadata like directness of cause, degree of cause, inevitability, ambiguity, uniqueness of cause, causal shape 
+          - specific: - find the set of causal objects, functions, and attributes describing a relationship to create a prediction function or reduce input features - apply causal structure relationships to determine if the data is missing information 
+        
       - apply an interface as a standard to another interface:
           - intent / structure interface: assess intent interface by a standard of structure interface (which structures can simplify the intent interface)
       
+          - concept-structure traversal (a multi-interface traversal linking the concept & structure interfaces, so a target concept combination/set/path or target structural attribute can be achieved with a combination of filters & limits or functions applied to adjust the structure until it matches the target structural attributes or concepts) 
+            - general: - find a structure for a certain intent that matches a conceptual priority (like relevance, organization, robustness, equivalence, or trust) - modify a structure with a certain intent so it matches a conceptual priority (like power or a conceptual structure like power distribution) 
+            - specific: - find a structure in the finance space that minimizes trust in transactions - modify a multiplication method to find a method minimizing larger calculations 
+          
+          - structure-math interface mapping 
+            - general: use a multi-interface traversal to map problem structures to math objects to apply math insights to problem structures 
+            - specific: if the problem is 'predict the shape of the boundary of an even distribution of change across directions from the same origin' (for problems like 'finding a container needed for an experiment growing microorganisms given the requirement of the same origin and non-overlapping paths', or 'predicting the threshold marker needed for comparing speed metrics'), apply the 'circle' definition route using the 'evenly distributed outward motion' route to infer that the boundary could be circular, with variable advantages depending on problem metadata 
+          
+          - a question-answer interface traversal 
+            - general: frame a question as missing information structured as a source position and a target position on a network, and the answer as the most robust path, the most relevant path for a particular intent & objects related to it, the path that moves the nearest to the target position, or the quickest path that moves in the prioritized direction on the network 
+            - specific: - frame a question like 'how to build a filter' as an optimal path-finding problem on the network between some undefined starting component set & the destination filter object - frame a question like 'why would you build a filter' as a adjacent object- finding problem to find objects that can be produced if the filter is the starting point (input) or to find intent directions moved in when you follows paths to build the filter (reasons to build it) or subsequent paths using the filter (other applications of the filter) 
+  
       - merge interfaces:
           - function + pattern interface: merge networks of functions & patterns into one standard interface definition (input/output/logic + metadata of both objects)
       
       - expand an interface by another interface:
+
           - function * pattern interface: 
             function patterns (what patterns are there in functions), pattern functions (what functions generate patterns)
             function pattern functions (what functions generate function patterns), pattern function patterns (what patterns are there in functions that generate patterns)
           - cause * type interface: 
             causal type interface (what types of cause are there), type cause interface (what causes types)
             causal type cause (what causes causal types), type cause type (what types of type causes are there)
+
 
     - answers questions like:
         - patterns in ratios between uncertainty generated by a function combination vs. uncertainty-reduction function patterns & potential (how does it hide information vs. how can information be derived)
