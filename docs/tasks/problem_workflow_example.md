@@ -1,12 +1,155 @@
-Problem: find core distortion functions explaining variation across generated data sets (differing from functions used to generate them, which will involve application of objects like patterns of variable distributions & system objects like intersections & common priorities like 'minimizing work')
+1. Problem definition: determine possible match between the problem system intersection object and the system conflict object.
+
+2. standardize the problem to the system interface
+
+- Apply the context of the default interaction defined for the intersection (agents crossing the intersection)
+
+- Apply structures of possible matching objects in the system interface to the problem object, by applying the structure interface:
+  - components capable of interacting (they have a nonzero interaction space) can be formatted as a network
+  - the position overlap is an example of a tradeoff, so the 'subset' structure is applied) - this can be applied iteratively to check for structures that can be organized/optimized
+  - the antagonistic agent & diverging direction components are merged with the agent component, where the diverging direction structure is applied directly and the antagonistic agent component is implied by their mutual approach of the intersection
+  - the ambiguity system object is inferred by the match of the ambiguity 'unenforced rule' definition route, which matches the 'agent traversal sequence' intersection interaction attribute.
+
+Now the intersection's default interaction (agents looking to cross) is formatted as a network, and system objects like conflict (and its sub-components, patterns, objects, etc) have been matched & applied to the intersection interaction network.
+
+This is a structure of a problem type - 'find traversal sequence conflict resolution rule' - and given that it matches a known problem type 'resolve resource competition', it's likelier to be possible.
+
+The traversal sequence rule can be found by applying other agent & intersection attributes, looking for system & other interface objects like:
+- irreversible changes (in case one agent will change the intersection in a way that prevents other people from traversing it, like burning a bridge)
+- intents that are higher priority
+- intent alignments (both agents have an incentive to
+apply social norms to maintain rule of law or trust, so their intents can be aligned to follow social rules to determine who traverses first, rather than building new rules to determine this).
+
+3. This step identifies whether the output of step 7 creates information that is easily transformed into the solution metric, given the relevant objects/attributes/functions of the solution metric. Is it clear which agent goes first, or whether the intersection can be changed in a way that determines which agent goes first?
+
+If the solution metric 1 is fulfilled, the agents have no antagonistic agent attribute & there is no trade-off because no variance from a decision is allowed at the intersection.
+
+If the solution metric 2 is fulfilled, the intersection loses its position overlap attribute & the diverging direction attribute doesn't matter anymore, but it does have a decision function at the intersection.
+
+If the intersection object with the system interface is applied can be easily transformed into having one of the solution metrics fulfilled, that transformation can be considered a possible solution.
+
+
+
+Problem: find core distortion functions explaining variation across generated data sets (differing from functions used to generate them, which will involve application of objects like patterns of variable distributions & system objects like intersections & common priorities like 'minimizing work') - in order to make a robust prediction function with one data set.
+
+Here we are applying the problem vectorization workflow.
 
 The titanic data set survival variation is explained with the distortion functions:
 	- concept: survival ability, functions: health (process more stress than other people), skills (swim, steer, row), experience (navigate ship), intelligence (organize labor to build raft)
 	- concept: priority policy, function: be identified as belonging to a protected group, prioritize people in protected groups
 	- concept: randomness, functions: occupy position nearest to life boats, avoid icebergs/storms, run out of space in lifeboats, find raft materials
 	- concept: personality, functions: altruism/collaboration, selfishness/competition
-	
-To generate alternate data sets using the origin data set:
+
+To generate the solution path, first implement an insight path in the form of a solution automation workflow, particularly problem vectorization:
+
+	1. fit the problem to a system
+
+	2. identify important structures of the problem system:
+
+		- data set => alternate data set => function to generate alternate data sets
+		- concept of distortion => implies concept of a standard => concept of a base to begin distortions with
+		- calculating 'explanatory' attribute of distortion functions => metric to evaluate 'explanatory' attribute of distortion functions 
+
+	3. identify missing structures of the problem system (solution format)
+
+		- the prediction function is the missing structure to build
+
+	4. identify interim structures to get information about the missing structures (minimum information to solve)
+
+		- the prediction function can be built from:
+			- distortion vector sets converting another function (like a random/average/linearized function)
+			- a combination or set of related function components (terms, operations) or structures (lines, positions), or variables
+			- function to compose the prediction function using composition functions
+			- a generator structure (a system or function that generates the data is a better predictive tool than one relationship in the system)
+			- functions to predict subsets (outliers, average-circling values)
+			- embedded functions at various points to predict changing values
+			- function to identify concepts/cause/intents & aggregate them in a structure that generates or matches the prediction function
+			- function to link probable states (different data sets or different distortion levels)
+
+	 	- which have required inputs like:
+	 		- distortion combination function
+	 		- explanatory (fit) metric selection function
+	 		- standard success (accuracy, work) metric selection function
+	 		- bases (including inputs like function components, a default function, or an interface) to begin distortions from
+	 		- interim structure selection function
+
+	5. generate missing structures inputs & the structures themselves
+		- our solution selects the distortion vector set format & the base interim object to build a prediction function, rather than all of the methods listed above
+
+	6. apply relevant insight paths, insights & other relevant interface objects
+
+		- apply insight: 'functions that hold across systems are likelier to be true' to the structures (distortion functions, generated data sets, bases, target functions) to arrive at a solution-filtering method:
+			- distortion vector sets that can translate multiple bases to multiple targets are likelier to be true (true in this context meaning, 'robust & generative of the prediction function for a period of time')
+
+	7. apply solution filters
+
+		- apply distortion function metrics
+
+	8. apply solution aggregation methods
+
+		- in order to get a prediction function from a set of distortion vector set, the distortion vector sets need to be combined in some way (average weight being a standard way)
+
+	8. apply aggregated solution filters
+
+		- apply prediction function metrics
+
+
+Once you have the solution path identified, you can execute the solution path to generate the prediction function:
+
+	1 - 3. find/generate requirements for important & interim structures
+		- generate alternate data sets
+		- select interim structure (distortion functions from various bases)
+		- find/generate required inputs (distortion bases, explanatory metrics)
+		- find/generate interim structure (distortion function sets, metric calculation function)
+
+	4. assemble required structures (possible sets, metrics, filtered sets) & fill with content
+		- assemble interim structure into target structure (prediction function)
+		- apply metric calculation functions & calculation result logic
+
+	5 - 6. iterate & apply structure to final output
+		- after iteration is complete, fit remaining sets to a structure (if there is only one set of distortion functions, return that set)
+
+
+The actual solution path (once the automation workflow identifies the interim objects like bases, to connect distortion functions to alternate data sets/target functions) would take the form:
+
+	1. generate alternate data sets
+		- fit origin data set to a causal system
+		- use adjacent points in variable interaction space (given causation patterns) to generate alternate data sets
+		- this can also be done with distortion functions & bases
+
+	2. find bases & targets relevant for distortion functions
+		- randomness, as a constant line used as a starting point to generate the target (the regression line)
+		- average/extreme (average line, extreme line)
+		- step function matching subset regressions
+		- alternative functions for outliers & for average-circling values
+		- linear (one standard regression line)
+		- linearized shape (three lines rather than a parabola)
+		- concepts (connecting data set concepts like function types for variable types)
+		- system functions (crossing a phase shift limit, breaking a boundary, reusing a core function, responding to an incentive, correcting bias, changing intent direction, converging to a type, variance handlers)
+		- function composition components (functions that can build the regression function, subset functions, or data set attributes like outliers/probability distribution)
+		- function subsets (values in range/domain a - b, values following a pattern, values having an attribute, values in subsets of size z)
+		- adjacent functions 
+		- function-generating structure components (functions that can build a system structure that would generate the function, which can be used to infer other data sets)
+		- common operation unit functions (add 1, multiply by 1, take to the power of 1) and component functions (add term, add constant, add multiplier)
+		- common shape functions (circle, line)
+		- state conversion functions (functions to convert between states of increasing curvature)
+		- causal functions (like if a causal loop adds an averaging effect)
+
+	3. generate sets of distortion functions using those bases
+		- starting from a random base (constant linear function indicating randomized distribution of outcomes across input values), how can you get to the default prediction function of origin data set
+
+	4. evaluate metrics of distortion function sets (like cost given bias inherent to those functions or that space, and whether distortion functions are explanatory across data sets & bases) & filter solution set
+
+	5. evaluate fit of sets to problem space & filter solution set
+
+	6. fit remaining sets to structure (like a network of solution sets, having been aggregated/organized)
+
+		- example: they can be aggregated according to probability (how likely is randomness to be explanatory), to a component or subset (does randomness explain a subset of the data or a ratio or component)
+
+
+Actual queries implementing solution path
+
+- to generate alternate data sets using the origin data set:
 
 	1. identify variables (age, gender, roommates, proximity to life boats, room number)
 
@@ -14,7 +157,7 @@ To generate alternate data sets using the origin data set:
 
 	2. identify bases (concepts, function versions, function subsets, function components, variable patterns, common structures like lines)
 
-	3. identify & generate missing information 
+	3. identify & generate missing information (minimum information to solve the problem)
 
 		- if variables can interact but dont appear to directly in the origin data set, find the output of their interaction in a generated data set
 
@@ -78,91 +221,3 @@ To generate alternate data sets using the origin data set:
 
 - the network of related distortion function sets for a particular base should be explanatory if the problem is solvable with the data or interface information available
 
-
-The actual solution path would take the form:
-
-1. generate data sets
-	- fit origin data set to a causal system
-	- use adjacent points in variable interaction space (given causation patterns) to generate alternate data sets
-	- this can also be done with distortion functions & bases
-
-2. find bases & targets relevant for distortion functions
-	- randomness, as a constant line used as a starting point to generate the target (the regression line)
-	- average/extreme (average line, extreme line)
-	- step function matching subset regressions
-	- alternative functions for outliers & for average-circling values
-	- linear (one standard regression line)
-	- linearized shape (three lines rather than a parabola)
-	- concepts (connecting data set concepts like function types for variable types)
-	- system functions (crossing a phase shift limit, breaking a boundary, reusing a core function, responding to an incentive, correcting bias, changing intent direction, converging to a type, variance handlers)
-	- function composition components (functions that can build the regression function, subset functions, or data set attributes like outliers/probability distribution)
-	- function subsets (values in range/domain a - b, values following a pattern, values having an attribute, values in subsets of size z)
-	- adjacent functions 
-	- function-generating structure components (functions that can build a system structure that would generate the function, which can be used to infer other data sets)
-	- common operation unit functions (add 1, multiply by 1, take to the power of 1) and component functions (add term, add constant, add multiplier)
-	- common shape functions (circle, line)
-	- state conversion functions (functions to convert between states of increasing curvature)
-	- causal functions (like if a causal loop adds an averaging effect)
-
-
-3. generate sets of distortion functions using those bases
-	- starting from a random base (constant linear function indicating randomized distribution of outcomes across input values), how can you get to the default prediction function of origin data set
-
-4. evaluate metrics of distortion function sets (like cost given bias inherent to those functions or that space, and whether distortion functions are explanatory across data sets & bases) & filter solution set
-
-5. evaluate fit of sets to problem space & filter solution set
-
-6. fit remaining sets to structure (like a network of solution sets)
-
-
-To generate that path, you would need to first implement an insight path in the form of a solution automation workflow:
-
-1. fit the problem to a system
-
-2. identify important structures of the problem system:
-
-	- data set => alternate data set => function to generate alternate data sets
-	- concept of distortion => implies concept of a standard => concept of a base to begin distortions with
-	- calculating 'explanatory' attribute of distortion functions => metric to evaluate 'explanatory' attribute of distortion functions 
-
-3. identify missing structures of the problem system (solution format)
-
-	- the prediction function is the missing structure to build
-
-4. identify interim structures to get information about the missing structures
-
-	- the prediction function can be built from:
-		- distortion vector sets converting another function (like a random/average/linearized function)
-		- a combination or set of related function components (terms, operations) or structures (lines, positions), or variables
-		- function to compose the prediction function using composition functions
-		- a generator structure (a system or function that generates the data is a better predictive tool than one relationship in the system)
-		- functions to predict subsets (outliers, average-circling values)
-		- embedded functions at various points to predict changing values
-		- function to identify concepts/cause/intents & aggregate them in a structure that generates or matches the prediction function
-		- function to link probable states (different data sets or different distortion levels)
-
- 	- which have required inputs like:
- 		- distortion combination function
- 		- explanatory (fit) metric selection function
- 		- standard success (accuracy, work) metric selection function
- 		- bases (including inputs like function components, a default function, or an interface) to begin distortions from
- 		- interim structure selection function
- 		
-Then once you have those structures generated, you can execute the solution path to generate the prediction function:
-
-1 - 3. find/generate requirements for important & interim structures
-
-	- generate alternate data sets
-	- select interim structure (distortion functions from various bases)
-	- find/generate required inputs (distortion bases, explanatory metrics)
-	- find/generate interim structure (distortion function sets, metric calculation function)
-
-4. assemble required structures (possible sets, metrics, filtered sets) & fill with content
-
-	- assemble interim structure into target structure (prediction function)
-	- apply metric calculation functions & calculation result logic
-
-5 - 6. iterate & apply structure to final output
-
-	- iterate
-	- after iteration is complete, fit remaining sets to a structure (if there is only one set of distortion functions, return that set)

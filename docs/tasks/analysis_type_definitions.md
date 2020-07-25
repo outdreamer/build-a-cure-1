@@ -134,12 +134,12 @@
           - if queries of those interfaces are insufficient to solve the problem, interface operations can be used
             - the information-system-structure interface operation (can be used to determine information like the next layer of information objects that are relevant if enough automation is distributed)
 
-    - specific problem: design set-sorting or value-finding function:
+    - example problem: design set-sorting or value-finding function:
 
         - similarity in navigation, equality in split => optimal for target value near initial split points or similar positions to the split points
         - assumed difference embedded in pre-computation of attributes => optimal for target value with different pre-computed attribute value, or target values in similar position to values with different pre-computed attribute values or adjacent values
 
-        - analyze a set from:
+        - analyze a set object from these interfaces - then when you find a pattern match on an interface set, you can restrict the search to those
 
           - core interface: what core functions determine set generation/selection/aggregation/interaction/organization
           - causal interface: what functions were used to generate the set
@@ -153,8 +153,6 @@
             - what specific tradeoffs/mismatches/alignments/symmetries/combinations/interactions are inherent to the problem/problem space? (specific concept filter) 
             - where is the power distributed in the set? (abstract concept filter)
           - system interface: what variance injection points are in the set generation/selection/aggregation/interaction/organization
-
-        - then when you find a pattern match on an interface set, you can restrict the search to those
 
         - key concepts of this problem (like the "tradeoff of search start point/split function/organization vs. performance", "subset gains", "pattern matching", and "potential worst/best case scenario of solution") should be found quickly from various interfaces:
 
@@ -206,6 +204,44 @@
     - interface analysis: mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query
 
 
+4. Tech debt:
+      - a set of definitions, set of core structures, and a set of functions (converting, filtering, applying core interface functions, traversing interface network) for each interface 
+      - a set of functions to select filters to display in the GUI, and validate input (for example, if the problem statement doesn't match problem type specified) 
+      - a set of functions to convert a problem statement (and problem space context if provided) into the problem object metadata 
+      - a set of functions for core operations like: 
+        - find : function to apply filters to a structure 
+        - build : function to assemble components given a particular definition of combine 
+        - derive : function to identify possible paths, compare them, and select one given a solution metric 
+        - change : function to apply an object, function, or attribute to another 
+        - define:  function to identify & define attributes, functions, & objects (given minimal information like their position in a system or their set of attributes compared to other system objects) 
+      - a set of utility functions, including: 
+        - a function to convert an object between formats (function => attribute sequence, function => filter sequence, etc) by mapping attributes & functions & other metadata of the objects & removing attributes that don't fit in the target format definition (for example, if you're converting to a type, the output should be in an attribute set format) 
+        - a function to identify structure matching a pattern (like identify a structure embodying a mismatch, which is a problem type, given a system network definition, where the system could represent an object, function, or attribute) 
+        - a function to identify sub-components or system context of a component (a component which could be either a function, object, or attribute) 
+      - a set of graphing functions 
+        - to graph the problem space, problem, related problem network, solution space, solution, embedded graphs, interfaces, and other relevant objects 
+      - a set of problem & solution functions 
+      - a set of functions to evaluate & select between comparable solutions, including selecting solutions based on input preferences selected (avoid using ML in solution, use a particular interface, use pre-computed solutions, etc)
+        - isolate the solution space in the problem space 
+        - break the problem space into sub-problems that can execute their own interface traversal & solution-matching process to find sub-solutions 
+        - reduce the solution space 
+        - apply the solution to the problem space 
+      - a function to check if a solution reduces a problem or fulfills a solution metric 
+      - a function to check if a solution fits a structure such as input assumptions & limits 
+      - a set of specific functions for each interface, for example: 
+        - intent: a function to derive intent as a dependency of the intent interface conversion function 
+        - core: a set of functions to generate the set of possible combinations in an interaction space to conduct core combination analysis & identify probable important objects like an incentive would be identified as an important system object given the system filters it passes after being generated by core combination analysis) 
+        - type: a function to identify the type an object belongs to, given its metadata 
+        - system: a function to identify system objects given their definition, such as a variance gap (a gap in rule enforcement) 
+        - concept: a function to identify concepts given their definition & a system network (either structures applies to abstract concepts - or useful combinations of objects, functions, & attributes that are causative or interfaces in a system) 
+      - a set of functions to analyze prior queries, optimize & maintain the program, such as: 
+        - removing duplicates 
+        - analyzing solution statistics 
+        - optimizing an interface traversal once found 
+        - pre-computing & storing frequently requested traversals 
+        - optimizing data storage & logic given how other users are using the program
+
+
 ## standardized analysis
 
   - definition: this describes the common components of other analysis types
@@ -226,8 +262,9 @@
       - perspective
       - causality
       - abstraction
+      - interface queries that can produce this object 
     - commonness
-    - contexts (coordinating/opposing)
+    - contexts (coordinating/opposing, use cases, extreme cases, examples)
     - coordinatability: integration potential
     - interaction layer: which objects it interacts with, on what layers of a system like abstraction/scope layer
     - injectability: can it be used as an input, in many operations
@@ -240,6 +277,13 @@
     - reusability
     - complexity
     - dependence
+    - automation/optimization potential (resource investment, rule stabilization) 
+    - applicable definitions (like for equivalence) 
+    - minimum object identification information (required identity attributes) 
+    - relationships 
+      - adjacent/related objects of same/different type 
+      - problems with adjacent objects & how those problems are generated by adjacent object metadata 
+
 
   - functions:  
     - structural functions: combine, merge, apply, embed, mix, filter, chain, define, create, derive, identify, change, version
@@ -1010,7 +1054,7 @@
     - what rules are useful across systems?
     - what rules are derivable given a set of structures that commonly appear in systems?
     - what are common rules used for previous insights, and how can they be optimized (shortening an insight path with a set of simplifying/standardizing questions)
-    
+
 
 ## Info Analysis
 
