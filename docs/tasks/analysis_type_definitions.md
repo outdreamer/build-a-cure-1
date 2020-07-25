@@ -113,7 +113,7 @@
     - interface analysis: identifying a problem-solving automation workflow to derive/apply, mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query
 
 
-## standardized analysis
+## Standardized analysis
 
   - definition: this describes the common components of other analysis types
 
@@ -482,7 +482,7 @@
     - derive intent as a dependency of the intent interface conversion function 
     - map intent to direction & assess solution progress by movement in that direction
 
-    - mapping intent to structure & vice versa is shown in FIG. 13 (Intent-matching)
+    - mapping intent to structure & vice versa is shown in FIG 13 (Intent-matching)
 
   - structures:
     - intent matrix is the interaction space of a set of intents, where its emergent intents can be traced across the interaction space
@@ -894,7 +894,7 @@
     - resolve: identify cause in a set of possible alternate causes
     - isolate: identify contribution of a particular cause to an output
     - inject/extract dependency
-    - identify causal structure, as shown in FIG. 14 (Causal structure-matching)
+    - identify causal structure, as shown in FIG 14 (Causal structure-matching)
 
   - attributes:
     - directness (x indirectly causes y, x immediately precedes y on a causal chain)
@@ -942,7 +942,7 @@
   - attributes:
 
   - functions:
-    - apply/derive an insight path, shown in FIG. 12 (Insight path application)
+    - apply/derive an insight path, shown in FIG 12 (Insight path application)
     - link insights
     - identify insight
 
@@ -1049,25 +1049,19 @@
       - finding a prediction function can be framed as an optimal path in a network of variable nodes
     - once you frame a problem as an info problem, you can map info to structure:
       - conflicts can be vectors with different direction or which overlap
-    - this involves identifying the given problem & solution target structures in the problem space & the related problem network, so the problem & solution can be visualized, including logic to:
-      - identify problem metadata includes defining the structure of a problem that the solution fulfills by some metric
-      - selecting the right format for the problem & solution is an important function in this analysis; each of those formats is better for different problem types/formats (with varying structure in the problem definition) and solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
-        - each of those formats involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, steps like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network to retrieve/connect information, or in the problem space to reduce a problem shape, move around problem components to change the problem, or traverse a route in the problem network system (not necessarily the network of related problems, but the problem framed as requiring a solution route within a network)
-      - graphing the problem on a network of related problems (on the same interaction layer, in the same problem space, etc) such as how the problem of building a technology is related to the problem of managing usage of & access to it
-      - defining the problem space as a contextual system where the problem is active
-        - this includes other problem spaces where it is or could be active
-          - for example, how the 'tech distribution' problem (where most tech is inherently neutral & can be used for good or malicious intents so what matters most is how it's distributed) acts differently in different problem spaces where distribution tools & government ethics & policies differ
-      - identifying & anticipating problems in a system involves identifying problem structures (inefficiencies, conflicts, etc) that exist or could emerge
+    - this involves 
+      - identifying the given problem & solution target structures in the problem space & the related problem network, so the problem & solution can be visualized
+      - identifying & anticipating problems in a system, which includes identifying problem structures (inefficiencies, conflicts, etc) that exist or could emerge
         - for example, in the bio system, DNA regulation functions don't prevent pathogens from injecting DNA or mutations from occurring, so if you derive the concept of a pathogen or mutation without already having that definition available (using core system analysis), you could predict that the current DNA regulation functions wouldn't be able to offset the changes exacted by those concepts & you could predict problems of DNA disregulation in the bio system before they occur
 
   - functions:
 
     - convert a problem statement (and problem space context if provided) into the problem object metadata 
 
-    - mapping function, to map problems to structures, problem functions, & other problem types (as graphing a problem is depicted in FIG. 8 (Problem space visualization))
+    - mapping function, to map problems to structures, problem functions, & other problem types (as graphing a problem is depicted in FIG 8 (Problem space visualization))
 
       - program functions
-        - validate user-provided GUI input information (for example, if the problem statement doesn't match problem type specified), entered in a form as shown in FIG. 18 (User Interface Module)
+        - validate user-provided GUI input information (for example, if the problem statement doesn't match problem type specified), entered in a form as shown in FIG 18 (User Interface Module)
         - optimizing functions to analyze prior queries, optimize & maintain the program, such as: 
           - removing duplicates 
           - calculating & compare query & solution statistics 
@@ -1078,13 +1072,31 @@
       - a set of graphing functions 
         - graph system as format 
         - graph the problem space, problem, related problem network (as shown in FIG 7), solution space, solution, embedded graphs, interfaces, and other relevant objects
-        - the problem space metadata returned & displayed to the user is shown in FIG. 20 (Problem Space Metadata), optionally including the solution metadata in FIG. 21 (Solution Metadata) & additional solution metadata in alternate formats as shown in FIG. 22 (Additional Solution Metadata), if a solution is found or if solution space information is found.
+          - the problem space metadata returned & displayed to the user is shown in FIG 20 (Problem Space Metadata), optionally including the solution metadata in FIG 21 (Solution Metadata) & additional solution metadata in alternate formats as shown in FIG 22 (Additional Solution Metadata), if a solution is found or if solution space information is found.
+          - solution metadata function: deriving, evaluating & comparing solution metadata for solution selection
+              - input filters 
+              - risk contributed by input filters 
+              - risk contributed by traversals (using a pattern instead of an insight contributes risk) 
+              - solution(s) and/or solution space 
+              - solution implementation steps  & components 
+              - visualization of solution impact on problem space 
+              - set of queries used to generate/find/derive solutions 
+              - methods to generate optimizations of those queries which the system will store for any future users with a similar problem 
+              - other solution information, like solution statistics, success probability, ratio of patterns to insights used in the solution, etc. 
+              - any non-fatal errors encountered, such as missing optional information or components, or patterns/predictions made in the absence of clarity 
+              - any problem space information derived during the traversal, such as identified possible/probable insights, questions, strategies, patterns, causes, etc.
+          - graph the problem on a network of related problems (on the same interaction layer, in the same problem space, etc) such as how the problem of building a technology is related to the problem of managing usage of & access to it
+            - defining the problem space as a contextual system where the problem is active
+              - this includes other problem spaces where it is or could be active
+                - for example, how the 'tech distribution' problem (where most tech is inherently neutral & can be used for good or malicious intents so what matters most is how it's distributed) acts differently in different problem spaces where distribution tools & government ethics & policies differ
+          - select the right format for the problem & solution is an important function in this analysis; each of those formats is better for different information, problem types/formats (with varying structure in the problem definition) & solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
+            - each of those formats involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, steps like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network to retrieve/connect information, or in the problem space to reduce a problem shape, move around problem components to change the problem, or traverse a route in the problem network system (not necessarily the network of related problems, but the problem framed as requiring a solution route within a network)
         - select/add/remove problem dimensions 
         - identify/reduce solution space   
         - apply the solution to the problem space 
         - check if a structure (like a solution) fits/matches another structure (like input assumptions & limits or a solution metric)
-          - checking if a solution matches a metric structure is shown in FIG. 5 (Finding alternate solution formats that fulfill different metrics)
-          - matching a problem format to a solution format is shown in FIG. 3 (Problem formats, with matching solution formats of problem formats) and FIG. 4 (Problem-solution structure matching: apply a solution function to a structure containing the problem to find specific solution structures for that problem)
+          - checking if a solution matches a metric structure is shown in FIG 5 (Finding alternate solution formats that fulfill different metrics)
+          - matching a problem format to a solution format is shown in FIG 3 (Problem formats, with matching solution formats of problem formats) and FIG 4 (Problem-solution structure matching: apply a solution function to a structure containing the problem to find specific solution structures for that problem)
         - compare & select between comparable solutions, including selecting solutions based on input preferences selected 
           (preferences like 'avoid using ML in solution', 'use a particular interface', 'use pre-computed solutions from database', etc)
         - decompose/aggregate problems/solutions (as shown in FIG 6)
@@ -1118,47 +1130,14 @@
     - ezample logic of function to break a problem into sub-problems
 
       1. decompose a problem into sub-problems, using core functions like alternate/meta/find applied to problem objects (like how measurement is a core object of a solution, and the prediction function is the default solution object, and a variable is a sub-component object of the prediction function, and so on)
+        - an example is breaking a problem into a problem of finding core components & arranging them in a way that passes filters formed by its solution requirements
+          - a requirement of a function that follows another is a possible match of input/output, if the functions are dependent, rather than relatively independent functions (occupying different function sequences), thereby translating a requirement to a filter that can be used to reduce the solution space to only function sequences that have matching inputs/outputs.
 
-      2. Now that we have the sub-problem sets, we can solve the sub-problems in each set.
+      2. After sub-problems have individual solutions, you need a way to integrate the sub-solutions so they can solve the original problem
 
-        For example, to 'find core distortion functions to generate variation across generated or available data sets', you can generate some likely vector sets (based on difference from randomness, difference from averages, difference from common functions, etc) explaining the variation, then apply structures to organize the vectors (by applying requirements of those structures, like how the position or sequence structure has requirements for how it can be applied given its definition). 
+        - for example, once you have the problem broken into a set of filter structures to reduce the solution space, you need a way to arrange those filters so their output generates the solution (so that the input/output of the filters match, & the sequence of filters makes progress toward reducing the solution space).
 
-        For example, a requirement of a function that follows another is a possible match of input/output, if the functions are dependent, rather than relatively independent functions (occupying different function sequences).
-
-        Another indicator that one function follows another is that one function reduces the work of the other function. For instance, if one function is 'go to a hub node' and another function is 'find the nearest node to a hub node', the first function drastically reduces the work of the second function, so it can be inferred that the second function follows the first function.
-
-        Rules like this can be derived given the definitions of the objects involved, as well as common interface objects, like common core functions, distortion patterns, or intents, on relevant interfaces to the problem objects (like in this case, how intent is a relevant interface to the function object).
-
-        The objects involved, like a function sequence, postion, & function (including function sub-components like input/output/work, etc) have interface objects like intent, and common intents include 'reducing work' and 'organizing objects to coordinate' (like sharing resources created by work by linking input/output).
-
-        The solution to 'find core distortion functions to generate variation across generated data sets' involves:
-
-        A. generating other data sets if they haven't already been generated (by identifying variable limits & combining alternate variable values according to a likely distribution of variable values, given common patterns based on variable metadata)
-
-        B. identifying common bases to base distortion functions on:
-          - random (start from random decomposition of a data set like a random combination of explanatory vectors, or by assuming as much as possible of the variation is noise, and the actual prediction function is a constant linear function)
-          - average (start from average or general prediction function found for a data set)
-          - common structure functions (reverse, inverse, opposite, magnify, shift)
-          - common shape functions (line, wave, parabola, circle)
-          - common concept functions (type, convergence, efficiency) and specific concepts to the problem space (for predicting a species, this could include DNA distortion functions, conflict distortion functions, environment distortion functions)
-          - common causal functions (variable loop, like hormone disruption leading to aggression leading to structural damage leading to mutations leading to hormone disruption)
-          - component functions (add variable, add term, add operation (exponent, multiplication), add constant)
-
-        C. then apply structures to those distortion functions (combining them, positioning them in a sequence, applying splits between alternates, etc) and test what metadata (level of work/accuracy) is found & probable/required for matching structures that explain the data, and whether that level of work/accuracy matches the problem space
-
-          - if 50 iterations of a function are necessary to get from the base to the actual prediction function, that is less likely to be true than one requiring 5 iterations, unless the problem space has a bias or requirement of extra work (if a base 10 or 5 is applied, those iterations would have different costs)
-          - if the distortion functions predict the actual prediction function with near perfect accuracy, that is less likely to be true across all generated data sets than a less accurate set of distortion functions
-          - if the problem space has a bias toward a particular operation (like favoring addition over exponents, by making addition less work than exponents), that can filter out distortion functions involving exponents as less likely
-
-        D. filtering out the least explanatory distortion function sets across all generated data sets
-
-        E. finding a structure to contain any remaining explanatory distortion function sets, like a directed network of distortion function sets that should be applied with various contexts like phase shifts or assumptions, or taking the average of various sets of distortion functions to produce a robust default set, with conditional distortions of the default set.
-
-      3. After problems have individual solutions, you need a way to integrate the solutions - aggregation or averaging solutions is an appropriate solution integration method for solutions to the same or similar problem formats, but not across any problem set.
-
-        For example, if one sub-problem set is to generate a prediction function, and another sub-problem set is to measure the prediction function success, the solutions to the measurement should be applied after generating possible prediction function solutions, to filter the set into a subset that is likelier to be successful.
-
-        The positions of each sub-problem set can be derived using logical positioning. A generative set should be followed by a measurement set because the output of the generative set (prediction function generated) matches the input of the measurement set (prediction function to measure) - this is input-output chaining as mentioned before. A causal set may identify missing information in a variable set to establish cause between variables - that type of structure (missing information) should be followed either by generating the missing information, and if not generatable, should be integrated into the accuracy/confidence/error metrics, as not being able to find the information required to solve the problem (creating an accurate, robust prediction function).
+        - the positions of each sub-problem set can be derived using logical positioning. A generative set should be followed by a measurement set because the output of the generative set (prediction function generated) matches the input of the measurement set (prediction function to measure); this involves a basic input-output chaining operation as mentioned before. A causal set may identify missing information in a variable set to establish cause between variables - that type of structure (missing information) should be followed either by generating the missing information, and if not generatable, should be integrated into the accuracy/confidence/error metrics, as not being able to find the information required to solve the problem (creating an accurate, robust prediction function).
 
     - example logic of function to find alternate solution formats (FIG 5)
 
@@ -1191,7 +1170,7 @@
         - different structures fulfill different structural solution metrics
           - if 'cost' is the metric, measured by total distance traveled, that is clearly different across the various solution formats of FIG 5.
 
-        - FIG 1. Example of a problem-solving automation workflow, with a diagram.
+      - FIG 1. Example of a problem-solving automation workflow, with a diagram.
 
           1. Problem definition: determine possible match between the problem system intersection object and the system conflict object.
 
@@ -1264,7 +1243,7 @@
     - ratio of positive to negative outputs (problems solved vs. caused)
     - inevitability vs. agency of problem cause
 
-    - problem types (examples shown in FIG. 17. Problem Types)
+    - problem types (examples shown in FIG 17. Problem Types)
 
       - dependency/fragility
 
@@ -1319,15 +1298,13 @@
         - legitimate/alternative route to get malicious output
 
     - solution types:
-      - solution-metadata solution: evaluating & comparing solution metadata for solution selection
       - problem-metadata solution: evaluating problem metadata to evaluate metrics like problem-solving postponement
       - generative solution: solution that generates solutions
       - solution framework: provides starting point & structures for solutions to be built in/with
       - problem decomposer: solution that reduces a problem's root causative (as opposed to just varying) parameters
       - interim solution: clearly suboptimal solution while optimal alternative is built
       - solution query constructor: solution that builds new solutions out of known solution types (existing structural solutions or core functions)
-      - structure-finding solution: solution that assigns a structure to information
-      - structure-fitting solution: solution that matches the gaps/limits in a problem structure to neutralize them
+      - structure-finding/fitting solution: solution that assigns a structure to information or matches the gaps/limits in a problem structure to neutralize them
 
   - examples:
 
@@ -1428,8 +1405,8 @@
     - interface traversal (apply an interface to a problem)
     - interface query (cross multiple interfaces in a sequence)
     - workflow (apply a problem-solving automation workflow with a particular origin interface or interface query)
-      - an example of a workflow is shown in FIG. 1 (Problem-solving automation workflow)
-      - the general workflow of this program is shown in FIG. 19 (Solution Automation Module 140)
+      - an example of a workflow is shown in FIG 1 (Problem-solving automation workflow)
+      - the general workflow of this program is shown in FIG 19 (Solution Automation Module 140)
 
     - workflow operation (select a problem-solving automation workflow)
 
@@ -1472,12 +1449,12 @@
 
     - interface operation functions:
 
-      - interface conversion function as shown in FIG. 10 (Interface conversion & matching)
+      - interface conversion function as shown in FIG 10 (Interface conversion & matching)
         - example: 
           - converting objects to the type interface involves identifying attribute sets that are unique, and then identifying types that can describe multiple unique objects as variations of an attribute in the attribute set
           - converting to the cause interface involves focusing on dependence objects (inputs/outputs)
 
-      - function to design an interface query (sequence of traversing interfaces), as shown in FIG. 11 (Interface traversal flow diagram)
+      - function to design an interface query (sequence of traversing interfaces), as shown in FIG 11 (Interface traversal flow diagram)
 
         - which interface to standardize to in what structure (sequence/combination) depends on which use you intend to use the information for
           - if you need to implement it immediately, an interface like intent that is semantically adjacent to the structural & logical interfaces will be more useful

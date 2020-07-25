@@ -1,4 +1,4 @@
-# causal interface definition sample
+# Causal interface definition sample
 
 
 	- interface definition
