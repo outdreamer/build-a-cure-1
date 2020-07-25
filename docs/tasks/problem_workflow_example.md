@@ -1,35 +1,3 @@
-1. Problem definition: determine possible match between the problem system intersection object and the system conflict object.
-
-2. standardize the problem to the system interface
-
-- Apply the context of the default interaction defined for the intersection (agents crossing the intersection)
-
-- Apply structures of possible matching objects in the system interface to the problem object, by applying the structure interface:
-  - components capable of interacting (they have a nonzero interaction space) can be formatted as a network
-  - the position overlap is an example of a tradeoff, so the 'subset' structure is applied) - this can be applied iteratively to check for structures that can be organized/optimized
-  - the antagonistic agent & diverging direction components are merged with the agent component, where the diverging direction structure is applied directly and the antagonistic agent component is implied by their mutual approach of the intersection
-  - the ambiguity system object is inferred by the match of the ambiguity 'unenforced rule' definition route, which matches the 'agent traversal sequence' intersection interaction attribute.
-
-Now the intersection's default interaction (agents looking to cross) is formatted as a network, and system objects like conflict (and its sub-components, patterns, objects, etc) have been matched & applied to the intersection interaction network.
-
-This is a structure of a problem type - 'find traversal sequence conflict resolution rule' - and given that it matches a known problem type 'resolve resource competition', it's likelier to be possible.
-
-The traversal sequence rule can be found by applying other agent & intersection attributes, looking for system & other interface objects like:
-- irreversible changes (in case one agent will change the intersection in a way that prevents other people from traversing it, like burning a bridge)
-- intents that are higher priority
-- intent alignments (both agents have an incentive to
-apply social norms to maintain rule of law or trust, so their intents can be aligned to follow social rules to determine who traverses first, rather than building new rules to determine this).
-
-3. This step identifies whether the output of step 7 creates information that is easily transformed into the solution metric, given the relevant objects/attributes/functions of the solution metric. Is it clear which agent goes first, or whether the intersection can be changed in a way that determines which agent goes first?
-
-If the solution metric 1 is fulfilled, the agents have no antagonistic agent attribute & there is no trade-off because no variance from a decision is allowed at the intersection.
-
-If the solution metric 2 is fulfilled, the intersection loses its position overlap attribute & the diverging direction attribute doesn't matter anymore, but it does have a decision function at the intersection.
-
-If the intersection object with the system interface is applied can be easily transformed into having one of the solution metrics fulfilled, that transformation can be considered a possible solution.
-
-
-
 Problem: find core distortion functions explaining variation across generated data sets (differing from functions used to generate them, which will involve application of objects like patterns of variable distributions & system objects like intersections & common priorities like 'minimizing work') - in order to make a robust prediction function with one data set.
 
 Here we are applying the problem vectorization workflow.

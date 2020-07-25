@@ -1174,6 +1174,39 @@
       - selecting a space (dimension set), with embedded parameters & bases for framing changes of a certain type
       - representing changes produced by a solution as a set of vector trajectories across interfaces
 
+      - a problem space depicted as a set of boundaries indicating limits creating the problem space (like limited tech creates a problem space) 
+      - the problem space dimensions maximizing variance between related problems 
+      - a network of related problems in the problem space & their state 
+      - the origin problem occupying a position on the problem network 
+      - the problem object can be represented differently according to the type & the solution generation method, for example: 
+        - if your problem object is represented as a 3-d shape like a cube (indicating it has three main variables expanding each other from an origin corner & forced to create a closed system to maintain state, or limits interacting with each other but not overlapping), the solution would need to be in a vector format to remove dimensions of the shape or reduce the size of the problem shape 
+      - if you're representing your problem on the information interface, you may want to represent it as an information problem type within a system context, like how: 
+        - a conflict between system incentives & agent intents could be represented as two vectors with the same origin or two vectors going in different directions 
+        - an information imbalance would look like extra information in different positions 
+        - an information asymmetry would look like information in a position where it's not needed & can be exploited to charge rent 
+        - an information market would have some trust structures embedded so information can be bought instead of derived for conveniences 
+      - this is similar to how concepts like delegation would look like a node sending calls to other nodes that run tasks & return response data - problem types have structure once they're framed as an information problem, and once concepts are converted to more structural interfaces, they also have default structural forms reflecting their definitions 
+      - the solution space for the origin problem (and for all related problems on the network that the solution space applies to) 
+      - the solution space is a reduced version of the problem shape or structure or the set of possible solutions 
+      - solutions to the origin problem, represented as solution formats like:
+        - a subset of the problem shape (like a path answering a question, where the solution space is all possible routes between origin & destination nodes) 
+        - a structure within a system containing the problem (an optimal route with a required attribute like efficiency, or a combination of objects reducing variance in a rule gap, or a filter sequence that creates a function optimally while storing minimal code) 
+        - a structure (other than reductions) to aim for when transforming the problem and the available resources implied in its definition (a solution defined as an optimal version of the problem structure, like the optimal structure to represent a concept) 
+        - a compressing transform of the problem shape (solution vectors removing problem dimensions until it's a point) 
+      - the impact of solutions on the problem network or the origin problem (depending on the problem & solution format as stated above) 
+      - the expansion & compression of embedded objects (such as problems, solutions, systems, concepts, and interfaces which change on other dimensions than the problem space dimensions) to the embedded graphs in the problem space using vectors 
+      - alternate versions of the problem space with other attribute sets as dimensions, to isolate impact of a solution on other attributes 
+      - concepts having structure in a problem space depending on the context determining that space 
+      - example of structure applied to a concept: dependence is a form of the power concept with nodes running tasks for a powerful node 
+      - interfaces represented as a filter converting objects to a foundation where vector sets representing different unit core functions of change possible on that interface (where core interface functions are depicted in embedded graphs or adjacent converted graphs of a problem space, and including a function to convert other objects to combinations of the vectors in that interface's vector set 
+        - example: converting objects to the type interface involves identifying attribute sets that are unique, and then identifying types that can describe multiple unique objects as variations of an attribute in the attribute set
+      - a problem-solving effect may be measured based on whether a solution contains or comprises a vector that: 
+        - neutralizes a problem vector 
+        - reduces the problem shape size 
+        - removes a problem dimension or variable,
+        or does any combination of the above for the origin problem & related problems, potentially neutralizing the problem space itself or converting it to another problem space. 
+
+
     - ezample logic of function to break a problem into sub-problems
 
       1. decompose a problem into sub-problems, using core functions like alternate/meta/find applied to problem objects (like how measurement is a core object of a solution, and the prediction function is the default solution object, and a variable is a sub-component object of the prediction function, and so on)
@@ -1219,9 +1252,9 @@
 
         The positions of each sub-problem set can be derived using logical positioning. A generative set should be followed by a measurement set because the output of the generative set (prediction function generated) matches the input of the measurement set (prediction function to measure) - this is input-output chaining as mentioned before. A causal set may identify missing information in a variable set to establish cause between variables - that type of structure (missing information) should be followed either by generating the missing information, and if not generatable, should be integrated into the accuracy/confidence/error metrics, as not being able to find the information required to solve the problem (creating an accurate, robust prediction function).
 
-    - example logic of function to find alternate solution formats
+    - example logic of function to find alternate solution formats (FIG 5)
 
-      - how to identify alternative solutions that would be interchangeable with this solution in various contexts:
+      - how to identify alternative solutions that would be interchangeable with this solution in various contexts (like for different solution metrics):
 
         - in other words, how to translate 'find optimal route fulfilling a metric' to an alternative interchangeable solution that makes the initial problem trivial to solve 'find system-wide cost-reduction function that makes system routes equally costly', at which point the original problem's solution is 'any route'.
 
@@ -1246,6 +1279,44 @@
           - check problem definition for extra information: 
             - the intent of the original problem was to minimize cost of a particular route, a problem that would be invalidated if all routes were equally costly; if we found a 'system cost-minimizing function' that minimized system costs, they might become equally costly, thereby invalidating the problem (invalidating it being one way of solving it), producing:
               - 'find a system cost-minimizing function that makes system costs equally likely'
+
+        - different structures fulfill different structural solution metrics
+          - if 'cost' is the metric, measured by total distance traveled, that is clearly different across the various solution formats of FIG 5.
+
+
+        - FIG 1 Explanation
+
+        1. Problem definition: determine possible match between the problem system intersection object and the system conflict object.
+
+        2. standardize the problem to the system interface
+
+        - Apply the context of the default interaction defined for the intersection (agents crossing the intersection)
+
+        - Apply structures of possible matching objects in the system interface to the problem object, by applying the structure interface:
+          - components capable of interacting (they have a nonzero interaction space) can be formatted as a network
+          - the position overlap is an example of a tradeoff, so the 'subset' structure is applied) - this can be applied iteratively to check for structures that can be organized/optimized
+          - the antagonistic agent & diverging direction components are merged with the agent component, where the diverging direction structure is applied directly and the antagonistic agent component is implied by their mutual approach of the intersection
+          - the ambiguity system object is inferred by the match of the ambiguity 'unenforced rule' definition route, which matches the 'agent traversal sequence' intersection interaction attribute.
+
+        Now the intersection's default interaction (agents looking to cross) is formatted as a network, and system objects like conflict (and its sub-components, patterns, objects, etc) have been matched & applied to the intersection interaction network.
+
+        This is a structure of a problem type - 'find traversal sequence conflict resolution rule' - and given that it matches a known problem type 'resolve resource competition', it's likelier to be possible.
+
+        The traversal sequence rule can be found by applying other agent & intersection attributes, looking for system & other interface objects like:
+        - irreversible changes (in case one agent will change the intersection in a way that prevents other people from traversing it, like burning a bridge)
+        - intents that are higher priority
+        - intent alignments (both agents have an incentive to
+        apply social norms to maintain rule of law or trust, so their intents can be aligned to follow social rules to determine who traverses first, rather than building new rules to determine this).
+
+        3. This step identifies whether the output of step 7 creates information that is easily transformed into the solution metric, given the relevant objects/attributes/functions of the solution metric. Is it clear which agent goes first, or whether the intersection can be changed in a way that determines which agent goes first?
+
+        If the solution metric 1 is fulfilled, the agents have no antagonistic agent attribute & there is no trade-off because no variance from a decision is allowed at the intersection.
+
+        If the solution metric 2 is fulfilled, the intersection loses its position overlap attribute & the diverging direction attribute doesn't matter anymore, but it does have a decision function at the intersection.
+
+        If the intersection object with the system interface is applied can be easily transformed into having one of the solution metrics fulfilled, that transformation can be considered a possible solution.
+
+
 
   - objects:
 

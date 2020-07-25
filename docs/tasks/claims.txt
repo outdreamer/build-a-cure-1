@@ -22,24 +22,29 @@ BRIEF DESCRIPTION OF THE DRAWINGS
  
 [0007] Example embodiments will be described and explained with additional specificity and detail through the use of the accompanying drawings in which: 
 
-[0008] FIG. 1. Problem-solving automation workflow for problem 'fit a structure (intersection) to another structure (conflict)'
-[0009] FIG. 2. Problem formats
-[0010] FIG. 3. Matching solution formats of problem formats
-[0011] FIG. 4. Problem-solution structure matching: apply a solution function (like 'apply a definition of objects') to a structure (like a system or network) containing the problem to find specific solution structures for that problem
-[0012] FIG. 5. Find solution-combination structure to fulfill a solution metric (aggregate solutions of various structure to fulfill a metric)
+[0008] FIG. 1. Problem-solving automation workflow illustrates a diagram of an example solution automation workflow depicting how a solution automation module may find a solution for a problem statement. 
+[0009] FIG. 2. Structual definition routes for 'conflict' concept
+[0010] FIG. 3. Problem formats, with matching solution formats of problem formats
+[0011] FIG. 4. Problem-solution structure matching: apply a solution function to a structure containing the problem to find specific solution structures for that problem
+[0012] FIG. 5. Finding alternate solution formats that fulfill different metrics
 [0013] FIG. 6. Network of problem sub-problems
 [0014] FIG. 7. Network of related problems
-[0015] FIG. 8. Problem space
+[0015] FIG. 8. Problem space visualization
 [0016] FIG. 9. Find structure for a definition of a concept
 [0017] FIG. 10. Interface conversion & matching
 [0018] FIG. 11. Interface traversal flow diagram
 [0019] FIG. 12. Insight path application
 [0020] FIG. 13. Intent-matching
 [0021] FIG. 14. Causal structure-matching
-[0021] FIG. 15. Concept definition network
-[0022] FIG. 16. illustrates a module & system diagram of an example solution automation module that may be used to find a solution for a problem statement. 
-[0023] FIG. 17. illustrates a execution flowchart diagram of an example of how a solution automation module may find a solution for a problem statement. 
-[0024] FIG. 18. illustrates an example computing system. 
+[0022] FIG. 15. Concept definition network
+[0023] FIG. 16. Alternate definition routes
+[0024] FIG. 17. Problem Types
+[0025] FIG. 18. User Interface Module
+[0026] FIG. 19. Solution Automation Module illustrates a execution flowchart diagram of a general workflow for how the solution automation program may find a solution for a problem statement. 
+[0027] FIG. 20. Problem Space Metadata 
+[0028] FIG. 21. Solution Metadata
+[0029] FIG. 22. Additional Solution Metadata
+[0030] FIG. 19. illustrates an example computing system. 
 
 
 CLAIMS 
