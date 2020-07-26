@@ -117,7 +117,7 @@
     - interface analysis: identifying a problem-solving automation workflow to derive/apply, mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query
 
 
-## Standardized analysis
+## Core analysis
 
   - definition: this describes the common components of other analysis types
 
@@ -291,7 +291,7 @@
           - to the abstract layer (potential, which is a related concept of power) 
           - so that the final object is defined in terms of other abstract objects on the top layer 
 
-    - the abstract network is a set of related concept objects remaining after removing context, concepts that are applicable across systems, often have multiple definition routes because they take a variety of forms given the context, and are fundamental to describing a system. A subset of the abstract network is depicted in FIG 15. Concept definition network, which shows concepts related to 'relevance'.
+    - the abstract network is a set of related concept objects remaining after removing context, concepts that are applicable across systems, often have multiple definition routes because they take a variety of forms given the context, and are fundamental to describing a system. A subset of the abstract network is depicted in FIG 16. Concept definition network, which shows concepts related to 'relevance'.
 
       - example: power is the object left when objects implementing it (resources => energy => input => potential) have their context removed, navigating up the abstraction stack from:
           - the info layer (resources & energy), removing their contextual attributes/rules
@@ -328,11 +328,11 @@
     - what concepts cannot be reduced/abstracted further
     - what concepts have which associated structures
 
-    - structures that apply a concept are depicted in FIG 9 (Find structure for a definition of a concept0, which depicts structures of the 'distribution' and 'power' concepts, and FIG 2 (Structual definition routes for 'conflict' concept).
+    - structures that apply a concept are depicted in FIG 18 (Match structure for a definition of a concept0, which depicts structures of the 'distribution' and 'power' concepts, and FIG 15 (Structual definition routes for 'conflict' concept).
 
     - what definition routes identify a particular concept
 
-      - possible definition routes for the concept of 'equality' are given in FIG 16. Alternate definition routes
+      - possible definition routes for the concept of 'equality' are given in FIG 17. Alternate definition routes
 
     - concept-system interface:
       - what concepts are likely to evolve in a system
@@ -486,7 +486,7 @@
     - derive intent as a dependency of the intent interface conversion function 
     - map intent to direction & assess solution progress by movement in that direction
 
-    - mapping intent to structure & vice versa is shown in FIG 13 (Intent-matching)
+    - mapping intent to structure & vice versa is shown in FIG 19 (Intent-matching)
 
   - structures:
     - intent matrix is the interaction space of a set of intents, where its emergent intents can be traced across the interaction space
@@ -898,7 +898,7 @@
     - resolve: identify cause in a set of possible alternate causes
     - isolate: identify contribution of a particular cause to an output
     - inject/extract dependency
-    - identify causal structure, as shown in FIG 14 (Causal structure-matching)
+    - identify causal structure, as shown in FIG 13 (Causal structure-matching)
 
   - attributes:
     - directness (x indirectly causes y, x immediately precedes y on a causal chain)
@@ -946,7 +946,7 @@
   - attributes:
 
   - functions:
-    - apply/derive an insight path, shown in FIG 12 (Insight path application)
+    - apply/derive an insight path, shown in FIG 20 (Insight path application)
     - link insights
     - identify insight
 
@@ -1160,11 +1160,11 @@
                       - 'find a system cost-minimizing function that makes system costs equally likely'
 
                 - different structures fulfill different structural solution metrics
-                  - if 'cost' is the metric, measured by total distance traveled, that is clearly different across the various solution formats of FIG 10.
+                  - if 'cost' is the metric, measured by total distance traveled, that is clearly different across the various solution formats of FIG 11 (Finding alternate solution formats that fulfill different metrics).
 
           - functions to match & select a problem-solution connecting format trajectory
 
-          - functions to decompose/aggregate problems/solutions (as shown in FIG 12)
+          - functions to decompose/aggregate problems/solutions (as shown in FIG 12, Network of problem sub-problems, breaking a problem into component problems)
             - break the problem space into sub-problems, that can execute their own interface traversal & solution-matching process to find sub-solutions 
             - find a structure to combine solutions & combine sub-solutions to create the origin problem's solution, once the sub-solutions to sub-problems are found
             - ezample logic of function to break a problem into sub-problems, shown in FIG 12 (Network of problem sub-problems, breaking a problem into component problems)
@@ -1197,7 +1197,7 @@
 
           - functions to identify/reduce solution space   
 
-      - FIG 6. Example of a problem-solving automation workflow for a problem like 'find an optimal implemenation of an intersection', using the system/structure/concept interfaces.
+      - FIG 14. Example of a problem-solving automation workflow for a problem like 'find an optimal implemenation of an intersection', using the system/structure/concept interfaces.
 
           1. Problem definition: determine possible match between the problem system intersection object and the system conflict object.
 
@@ -1431,7 +1431,7 @@
     - interface traversal (apply an interface to a problem)
     - interface query (cross multiple interfaces in a sequence)
     - workflow (apply a problem-solving automation workflow with a particular origin interface or interface query)
-      - an example of a workflow is shown in FIG 6 (Problem-solving automation workflow)
+      - an example of a workflow is shown in FIG 14 (Problem-solving automation workflow)
       - the general workflow of this program is shown in FIG 2 (Solution Automation Module 140)
 
     - workflow operation (select a problem-solving automation workflow)
@@ -1475,12 +1475,12 @@
 
     - interface operation functions:
 
-      - interface conversion function as shown in FIG 10 (Interface conversion & matching)
+      - interface conversion function as shown in FIG 21 (Interface conversion & matching)
         - example: 
           - converting objects to the type interface involves identifying attribute sets that are unique, and then identifying types that can describe multiple unique objects as variations of an attribute in the attribute set
           - converting to the cause interface involves focusing on dependence objects (inputs/outputs)
 
-      - function to design an interface query (sequence of traversing interfaces), as shown in FIG 11 (Interface traversal flow diagram)
+      - function to design an interface query (sequence of traversing interfaces), as shown in FIG 22 (Interface traversal flow diagram)
 
         - which interface to standardize to in what structure (sequence/combination) depends on which use you intend to use the information for
           - if you need to implement it immediately, an interface like intent that is semantically adjacent to the structural & logical interfaces will be more useful
