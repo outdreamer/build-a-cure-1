@@ -1074,10 +1074,12 @@
           - optimizing data storage & logic given how other users are using the program
 
       - a set of graphing functions 
-        - graph system as format 
+
         - graph the problem space, problem, related problem network (as shown in FIG 7), solution space, solution, embedded graphs, interfaces, and other relevant objects
-          - the problem space metadata returned & displayed to the user is shown in FIG 3 (Problem Space Metadata), optionally including the solution metadata in FIG 4 (Solution Metadata) & additional solution metadata in alternate formats as shown in FIG 5 (Additional Solution Metadata), if a solution is found or if solution space information is found.
-          - solution metadata function: deriving, evaluating & comparing solution metadata for solution selection
+
+          - function to derive the problem space metadata (which is returned & displayed to the user is shown in FIG 3 Problem Space Metadata), optionally including the solution metadata in FIG 4 (Solution Metadata) & additional solution metadata in alternate formats as shown in FIG 5 (Additional Solution Metadata), if a solution is found or if solution space information is found.
+
+          - function to derive, analyze & compare solution metadata, for solution selection purposes
               - input filters 
               - risk contributed by input filters 
               - risk contributed by traversals (using a pattern instead of an insight contributes risk) 
@@ -1089,40 +1091,29 @@
               - other solution information, like solution statistics, success probability, ratio of patterns to insights used in the solution, etc. 
               - any non-fatal errors encountered, such as missing optional information or components, or patterns/predictions made in the absence of clarity 
               - any problem space information derived during the traversal, such as identified possible/probable insights, questions, strategies, patterns, causes, etc.
-          - graph the problem on a network of related problems (on the same interaction layer, in the same problem space, etc) such as how the problem of building a technology is related to the problem of managing usage of & access to it
+          
+          - function to graph the problem on a network of related problems (on the same interaction layer, in the same problem space, etc) such as how the problem of building a technology is related to the problem of managing usage of & access to it
+            
+            - map related/approximate problems/problems (by a metric like cause or similarity) into a related problem network (like a generative vs. identification problem)
             - defining the problem space as a contextual system where the problem is active
               - this includes other problem spaces where it is or could be active
                 - for example, how the 'tech distribution' problem (where most tech is inherently neutral & can be used for good or malicious intents so what matters most is how it's distributed) acts differently in different problem spaces where distribution tools & government ethics & policies differ
-          - select the right format for the problem & solution is an important function in this analysis; each of those formats is better for different information, problem types/formats (with varying structure in the problem definition) & solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
-            - each of those formats involves a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, steps like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network to retrieve/connect information, or in the problem space to reduce a problem shape, move around problem components to change the problem, or traverse a route in the problem network system (not necessarily the network of related problems, but the problem framed as requiring a solution route within a network)
-        - select/add/remove problem dimensions 
-        - identify/reduce solution space   
-        - apply the solution to the problem space 
-        - check if a structure (like a solution) fits/matches another structure (like input assumptions & limits or a solution metric)
-          - checking if a solution matches a metric structure is shown in FIG 11 (Finding alternate solution formats that fulfill different metrics)
-          - matching a problem format to a solution format is shown in FIG 9 (Problem formats, with matching solution formats of problem formats) and FIG 10 (Problem-solution structure matching: apply a solution function to a structure containing the problem to find specific solution structures for that problem)
-        - compare & select between comparable solutions, including selecting solutions based on input preferences selected 
-          (preferences like 'avoid using ML in solution', 'use a particular interface', 'use pre-computed solutions from database', etc)
-        - decompose/aggregate problems/solutions (as shown in FIG 12)
-          - break the problem space into sub-problems that can execute their own interface traversal & solution-matching process to find sub-solutions 
-          - aggregate sub-solutions once solutions to sub-problems are found
-        - format problem objects (like decisions) as structures (networks with clusters, sequences, & other structures)      
-        - deriving trajectory between problem graphs where each graph represents a decision/state, and attribute sets & problem of similar type occupy a similar position on an axis depicting all the graphs traversed
-        - representing a solution as a set of vector trajectories across interfaces
-        - map related/approximate problems/problems by cause into a related problem network (like a generative vs. identification problem)
-        - function to depict a problem space as:
-          - the origin problem, defined as a set of structures indicating boundaries (filters, conditions), limits (assumptions, resource limits), or vectors (priorities, forces), creating the problem space (like limited tech creates a problem space) , where the space inside the shape indicates potential for change
+          
+          - function to graph a problem as a set of structures indicating boundaries (filters, conditions), limits (assumptions, resource limits), or vectors (priorities, forces), creating the problem space (like limited tech creates a problem space) , where the space inside the shape indicates potential for change
+            
             - the problem object can be represented differently according to the type & the solution generation method by applying interface filters to the problem space visualization, for example: 
-              - if your problem object is represented as a 3-d shape like a cube (indicating it has three main variables expanding each other from an origin corner & forced to create a closed system to maintain state, or limits intersecting with each other), the solution would need to be in a vector format to remove dimensions of the shape or reduce the size of the problem shape 
-              - for example, if you're representing your problem on the information interface, you may want to represent it as an information problem type within a system context, like how: 
-                - a conflict between system incentives & agent intents could be represented as two vectors with the same origin or two vectors going in different directions 
-                - an information imbalance would look like extra information in different positions 
-                - an information asymmetry would look like information in a position where it's not needed & can be exploited
-                - an information market would have some trust structures embedded, so information can be bought instead of derived for convenience
-          - where the problem space dimensions maximize variance between related problems 
-          - including a network of related problems in the problem space & their state, the origin problem occupying a position on the problem network 
-          - the solution space for the origin problem (and for all related problems on the network that the solution space applies to) - the solution space being a reduced version of the problem shape or structure, or all changes possible in a problem space, or the set of all possible solutions, whichever is the most specific definition that can be identified
-          - solutions to the origin problem, represented as solution formats like:
+                - if your problem object is represented as a 3-d shape like a cube (indicating it has three main variables expanding each other from an origin corner & forced to create a closed system to maintain state, or limits intersecting with each other), the solution would need to be in a vector format to remove dimensions of the shape or reduce the size of the problem shape 
+                - for example, if you're representing your problem on the information interface, you may want to represent it as an information problem type within a system context, like how: 
+                  - a conflict between system incentives & agent intents could be represented as two vectors with the same origin or two vectors going in different directions 
+                  - an information imbalance would look like extra information in different positions 
+                  - an information asymmetry would look like information in a position where it's not needed & can be exploited
+                  - an information market would have some trust structures embedded, so information can be bought instead of derived for convenience
+            
+          - function to graph the problem space, which includes the solution space for the origin problem (and for all related problems on the network that the solution space applies to) - the solution space being a reduced version of the problem shape or structure, or all changes possible in a problem space, or the set of all possible solutions, whichever is the most specific definition that can be identified
+          
+          - function to derive trajectory between problem graphs where each graph represents a decision/state, and attribute sets & problem of similar type occupy a similar position on an axis depicting all the graphs traversed
+
+          - function to graph solutions to the origin problem, which can be represented with formats like:
             - a structure within a system containing the problem (an optimal route with a required attribute like efficiency or a route answering a question, or a combination of objects reducing variance in a rule gap, or a filter sequence that creates a function optimally while storing minimal code)
             - a structure (other than reductions) to aim for when transforming the problem and the available resources implied in its definition (a solution defined as an optimal version of the problem structure, like the optimal structure to represent a concept or build a function) 
             - a reducing transform of the problem shape (solution vectors removing problem dimensions until it's a point) 
@@ -1132,48 +1123,79 @@
               - fills the problem shape with relevant structures (build a function, find a route)
               - or does any combination of the above for the origin problem & related problems, potentially neutralizing the problem space itself or converting it to another problem space. 
 
-    - ezample logic of function to break a problem into sub-problems
+          - function to apply the solution to the problem space 
+            - applying a problem-reducing solution vector to a problem space should reduce the origin problem, and possibly other problems or the problem space itself
+            - applying a 'route optimization' solution may take the form of adjusting the system structure to invalidate the route, may attach a function to nodes, or inject an efficiency structure to the system, which may also reduce the problem dimensions in the problem space visualization in addition to changing the system structure in the associated visualized system-structure interface format of the problem.
 
-      1. decompose a problem into sub-problems, using core functions like alternate/meta/find applied to problem objects (like how measurement is a core object of a solution, and the prediction function is the default solution object, and a variable is a sub-component object of the prediction function, and so on)
-        - an example is breaking a problem into a problem of finding core components & arranging them in a way that passes filters formed by its solution requirements
-          - a requirement of a function that follows another is a possible match of input/output, if the functions are dependent, rather than relatively independent functions (occupying different function sequences), thereby translating a requirement to a filter that can be used to reduce the solution space to only function sequences that have matching inputs/outputs.
+          - function to select the right format for the problem & solution
+            - each format is better for different information, problem types/formats (with varying structure in the problem definition) & solution intents, but if you have a particular required solution format, you may need to translate a sub-optimal problem format into one associated with that solution format
+            - each format involves a standard form like a set of vectors (which may represent a set of database/interface queries or insight paths, info objects like questions/insights/related problems, decisions/actions, causes/explanations, steps like removal/addition of variables, directed structures like distortions/intents, etc) which may be applicable in the interface network to retrieve/connect information, or in the problem space to reduce a problem shape, move around problem components to change the problem, or traverse a route in the problem network system (not necessarily the network of related problems, but the problem framed as requiring a solution route within a network)
+        
+            - example logic of function to find alternate solution formats in FIG 11 (Finding alternate solution formats that fulfill different metrics)
 
-      2. After sub-problems have individual solutions, you need a way to integrate the sub-solutions so they can solve the original problem
+              - how to identify alternative solutions that would be interchangeable with this solution in various contexts (like for different solution metrics):
 
-        - for example, once you have the problem broken into a set of filter structures to reduce the solution space, you need a way to arrange those filters so their output generates the solution (so that the input/output of the filters match, & the sequence of filters makes progress toward reducing the solution space).
+                - in other words, how to translate 'find optimal route fulfilling a metric' to an alternative interchangeable solution that makes the initial problem trivial to solve 'find system-wide cost-reduction function that makes system routes equally costly', at which point the original problem's solution is 'any route'.
 
-        - the positions of each sub-problem set can be derived using logical positioning. A generative set should be followed by a measurement set because the output of the generative set (prediction function generated) matches the input of the measurement set (prediction function to measure); this involves a basic input-output chaining operation as mentioned before. A causal set may identify missing information in a variable set to establish cause between variables - that type of structure (missing information) should be followed either by generating the missing information, and if not generatable, should be integrated into the accuracy/confidence/error metrics, as not being able to find the information required to solve the problem (creating an accurate, robust prediction function).
+                - we are looking for ways to invalidate the problem (generate an adjacent object to act as a proxy or replacement for the solution, generate the solution automatically, change the system structure so solving the problem isnt necessary, etc) rather than generate a specific solution (like how 'trial & error navigation of all possible routes' is a specific solution)
 
-    - example logic of function to find alternate solution formats in FIG 11 (Finding alternate solution formats that fulfill different metrics)
+                - inference sequence using definitions & problem definition:
+                  - check definition:
+                    - 'route' is defined as 'a path between nodes in a network'
+                  - standardize definition:
+                    - 'optimal' can be removed because it means the same as 'fulfilling a metric' but adding 'fulfilling a metric the most' to translate it to the standardized form
+                  - find definition (of metric)
+                  - apply logic specific to metric definition, or general information-generating logic like a transform that doesnt change meaning in a context
+                    - if the metric is the general 'minimize cost' metric of an optimization, apply a transform ('abstract' or 'expand/apply/distribute' or 'change specificity attribute value to its extreme value') that doesn't change the meaning, to produce: 
+                      - 'minimize system costs' (which doesnt prevent minimize the original cost so it doesnt change the meaning in an invalidating way)
+                  - inject new version into original problem definition:
+                      - 'find route that minimizes system costs'
+                  - check if definitions match logically: 
+                    - a 'route' wouldnt necessarily produce a system cost-minimizing effect
+                  - if they don't match, apply transforms until they match:
+                    - abstract 'route' to get 'function':
+                      - 'find system cost-minimizing function'
+                  - check problem definition for extra information: 
+                    - the intent of the original problem was to minimize cost of a particular route, a problem that would be invalidated if all routes were equally costly; if we found a 'system cost-minimizing function' that minimized system costs, they might become equally costly, thereby invalidating the problem (invalidating it being one way of solving it), producing:
+                      - 'find a system cost-minimizing function that makes system costs equally likely'
 
-      - how to identify alternative solutions that would be interchangeable with this solution in various contexts (like for different solution metrics):
+                - different structures fulfill different structural solution metrics
+                  - if 'cost' is the metric, measured by total distance traveled, that is clearly different across the various solution formats of FIG 10.
 
-        - in other words, how to translate 'find optimal route fulfilling a metric' to an alternative interchangeable solution that makes the initial problem trivial to solve 'find system-wide cost-reduction function that makes system routes equally costly', at which point the original problem's solution is 'any route'.
+          - functions to select a problem-solution connecting format trajectory
 
-        - we are looking for ways to invalidate the problem (generate an adjacent object to act as a proxy or replacement for the solution, generate the solution automatically, change the system structure so solving the problem isnt necessary, etc) rather than generate a specific solution (like how 'trial & error navigation of all possible routes' is a specific solution)
+          - functions to decompose/aggregate problems/solutions (as shown in FIG 12)
+            - break the problem space into sub-problems, that can execute their own interface traversal & solution-matching process to find sub-solutions 
+            - find a structure to combine solutions & combine sub-solutions to create the origin problem's solution, once the sub-solutions to sub-problems are found
+            - ezample logic of function to break a problem into sub-problems, shown in FIG 12 (Network of problem sub-problems, breaking a problem into component problems)
 
-        - inference sequence using definitions & problem definition:
-          - check definition:
-            - 'route' is defined as 'a path between nodes in a network'
-          - standardize definition:
-            - 'optimal' can be removed because it means the same as 'fulfilling a metric' but adding 'fulfilling a metric the most' to translate it to the standardized form
-          - find definition (of metric)
-          - apply logic specific to metric definition, or general information-generating logic like a transform that doesnt change meaning in a context
-            - if the metric is the general 'minimize cost' metric of an optimization, apply a transform ('abstract' or 'expand/apply/distribute' or 'change specificity attribute value to its extreme value') that doesn't change the meaning, to produce: 
-              - 'minimize system costs' (which doesnt prevent minimize the original cost so it doesnt change the meaning in an invalidating way)
-          - inject new version into original problem definition:
-              - 'find route that minimizes system costs'
-          - check if definitions match logically: 
-            - a 'route' wouldnt necessarily produce a system cost-minimizing effect
-          - if they don't match, apply transforms until they match:
-            - abstract 'route' to get 'function':
-              - 'find system cost-minimizing function'
-          - check problem definition for extra information: 
-            - the intent of the original problem was to minimize cost of a particular route, a problem that would be invalidated if all routes were equally costly; if we found a 'system cost-minimizing function' that minimized system costs, they might become equally costly, thereby invalidating the problem (invalidating it being one way of solving it), producing:
-              - 'find a system cost-minimizing function that makes system costs equally likely'
+              1. decompose a problem into sub-problems, using core functions like alternate/meta/find applied to problem objects (like how measurement is a core object of a solution, and the prediction function is the default solution object, and a variable is a sub-component object of the prediction function, and so on)
+                - an example is breaking a problem into a problem of finding core components & arranging them in a way that passes filters formed by its solution requirements
+                  - a requirement of a function that follows another is a possible match of input/output, if the functions are dependent, rather than relatively independent functions (occupying different function sequences), thereby translating a requirement to a filter that can be used to reduce the solution space to only function sequences that have matching inputs/outputs.
 
-        - different structures fulfill different structural solution metrics
-          - if 'cost' is the metric, measured by total distance traveled, that is clearly different across the various solution formats of FIG 10.
+              2. solve sub-problems after the decomposition
+
+              3. identify structures (like a sequence containing combination operations, or other combination structures like an unordered set, or filters) to combine solutions
+
+                After sub-problems have individual solutions, you need a way to integrate the sub-solutions so they can solve the original problem
+
+                - for example, once you have the problem broken into a set of filter structures to reduce the solution space, you need a way to arrange those filters so their output generates the solution (so that the input/output of the filters match, & the sequence of filters makes progress toward reducing the solution space).
+
+                - the positions of each sub-problem set can be derived using logical positioning. A generative set should be followed by a measurement set because the output of the generative set (prediction function generated) matches the input of the measurement set (prediction function to measure); this involves a basic input-output chaining operation as mentioned before. A causal set may identify missing information in a variable set to establish cause between variables - that type of structure (missing information) should be followed either by generating the missing information, and if not generatable, should be integrated into the accuracy/confidence/error metrics, as not being able to find the information required to solve the problem (creating an accurate, robust prediction function).
+
+              4. apply structures to combine solutions & test combined solution output
+
+          - function to convert/represent objects (like a system/decisions/problem/solution) as a particular format (like a set of vector trajectories across interfaces, or a function)
+          
+          - function to check if a structure (like a solution) fits/matches another structure (like input assumptions & limits or a solution metric)
+            - checking if a solution matches a metric structure is shown in FIG 11 (Finding alternate solution formats that fulfill different metrics)
+            - matching a problem format to a solution format is shown in FIG 9 (Problem formats, with matching solution formats of problem formats) and FIG 10 (Problem-solution structure matching: apply a solution function to a structure containing the problem to find specific solution structures for that problem)
+
+          - function to compare & select between comparable solutions, including selecting solutions based on input preferences selected (preferences like 'avoid using ML in solution', 'use a particular interface', 'use pre-computed solutions from database', etc)
+
+          - functions to select/add/remove problem dimensions 
+
+          - functions to identify/reduce solution space   
 
       - FIG 6. Example of a problem-solving automation workflow, with a diagram.
 
@@ -1207,8 +1229,12 @@
 
           - If the intersection object with the system interface is applied can be easily transformed into having one of the solution metrics fulfilled, that transformation can be considered a possible solution.
 
-
   - objects:
+
+    - problem
+    - solution
+    - problem/solution space
+    - problem/solution network
 
   - structures:
 
