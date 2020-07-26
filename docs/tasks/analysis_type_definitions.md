@@ -1123,7 +1123,7 @@
               - fills the problem shape with relevant structures (build a function, find a route)
               - or does any combination of the above for the origin problem & related problems, potentially neutralizing the problem space itself or converting it to another problem space. 
 
-          - function to apply the solution to the problem space 
+          - function to apply the solution to the problem space , as shown in FIG 5 (Additional Solution Metadata)
             - applying a problem-reducing solution vector to a problem space should reduce the origin problem, and possibly other problems or the problem space itself
             - applying a 'route optimization' solution may take the form of adjusting the system structure to invalidate the route, may attach a function to nodes, or inject an efficiency structure to the system, which may also reduce the problem dimensions in the problem space visualization in addition to changing the system structure in the associated visualized system-structure interface format of the problem.
 
@@ -1162,7 +1162,7 @@
                 - different structures fulfill different structural solution metrics
                   - if 'cost' is the metric, measured by total distance traveled, that is clearly different across the various solution formats of FIG 10.
 
-          - functions to select a problem-solution connecting format trajectory
+          - functions to match & select a problem-solution connecting format trajectory
 
           - functions to decompose/aggregate problems/solutions (as shown in FIG 12)
             - break the problem space into sub-problems, that can execute their own interface traversal & solution-matching process to find sub-solutions 
@@ -1197,7 +1197,7 @@
 
           - functions to identify/reduce solution space   
 
-      - FIG 6. Example of a problem-solving automation workflow, with a diagram.
+      - FIG 6. Example of a problem-solving automation workflow for a problem like 'find an optimal implemenation of an intersection', using the system/structure/concept interfaces.
 
           1. Problem definition: determine possible match between the problem system intersection object and the system conflict object.
 
