@@ -89,7 +89,11 @@
           - this is a more comprehensive format that allows quick application & identification of system objects (alternates, efficiencies, incentives)
           - for example, identifying known system objects for the 'find a prediction function' problem would mean identifying incentives in data collection (collect small sample, collect representative sample), efficiencies in calculating prediction functions (some sections should be treated as potential fields, where a network is embedded in place of a function section, to indicate decision logic or alternate functions accessible with additional information, if a predicted value is requested from that section of the function), false similarities (like the apparent similarity between two variables being correlation rather than a direct relationship), opposites (like neutralizing variables), and other core system objects
 
-      - other problem-solving automation workflows would start with different interface traversals & use different origin & target structures (such as designing interface trajectories, or generating new info object layers to use as interfaces or systems (combine perspective & potential to generate a potential-perspective field, combine problems & markets to create a market for problems, combine platforms with platforms to create a platform to sell platforms, combine variables and networks to create variable networks, combine variables & risk to identify variable development sequences))
+      - other problem-solving automation workflows would start with different interface traversals & use different origin & target structures (such as:
+        - designing interface trajectories
+        - generating new info object layers to use as interfaces or systems (combine perspective & potential to generate a potential-perspective field, combine problems & markets to create a market for problems, combine platforms with platforms to create a platform to sell platforms, combine variables and networks to create variable networks, combine variables & risk to identify variable development sequences))
+        - finding structures (like insights such as 'break a problem into sub-problems & aggregate solutions' or 'apply filters until the problem space is a solution space, then repeat until the solution space is a solution') that when applied to a problem, create a clear format/structure sequence linking the problem with a solution
+          - a specific example is 'problem vectorization' as mentioned above in VII: finding specific interim formats linking a problem & solution format (such as the structure of concepts/interfaces that would link variables with a prediction function) & applying structures to create that format sequence (like a directed network)
 
 
   2. Analysis types
@@ -1058,10 +1062,10 @@
 
     - convert a problem statement (and problem space context if provided) into the problem object metadata 
 
-    - mapping function, to map problems to structures, problem functions, & other problem types (as graphing a problem is depicted in FIG 8 (Problem space visualization))
+    - mapping function, to map problems to structures, problem functions, & other problem types (as graphing a problem is depicted in FIG 7 (Problem space visualization))
 
       - program functions
-        - validate user-provided GUI input information (for example, if the problem statement doesn't match problem type specified), entered in a form as shown in FIG 18 (User Interface Module)
+        - validate user-provided GUI input information (for example, if the problem statement doesn't match problem type specified), entered in a form as shown in FIG 1 (User Interface Module)
         - optimizing functions to analyze prior queries, optimize & maintain the program, such as: 
           - removing duplicates 
           - calculating & compare query & solution statistics 
@@ -1072,7 +1076,7 @@
       - a set of graphing functions 
         - graph system as format 
         - graph the problem space, problem, related problem network (as shown in FIG 7), solution space, solution, embedded graphs, interfaces, and other relevant objects
-          - the problem space metadata returned & displayed to the user is shown in FIG 20 (Problem Space Metadata), optionally including the solution metadata in FIG 21 (Solution Metadata) & additional solution metadata in alternate formats as shown in FIG 22 (Additional Solution Metadata), if a solution is found or if solution space information is found.
+          - the problem space metadata returned & displayed to the user is shown in FIG 3 (Problem Space Metadata), optionally including the solution metadata in FIG 4 (Solution Metadata) & additional solution metadata in alternate formats as shown in FIG 5 (Additional Solution Metadata), if a solution is found or if solution space information is found.
           - solution metadata function: deriving, evaluating & comparing solution metadata for solution selection
               - input filters 
               - risk contributed by input filters 
@@ -1095,12 +1099,13 @@
         - identify/reduce solution space   
         - apply the solution to the problem space 
         - check if a structure (like a solution) fits/matches another structure (like input assumptions & limits or a solution metric)
-          - checking if a solution matches a metric structure is shown in FIG 5 (Finding alternate solution formats that fulfill different metrics)
-          - matching a problem format to a solution format is shown in FIG 3 (Problem formats, with matching solution formats of problem formats) and FIG 4 (Problem-solution structure matching: apply a solution function to a structure containing the problem to find specific solution structures for that problem)
+          - checking if a solution matches a metric structure is shown in FIG 11 (Finding alternate solution formats that fulfill different metrics)
+          - matching a problem format to a solution format is shown in FIG 9 (Problem formats, with matching solution formats of problem formats) and FIG 10 (Problem-solution structure matching: apply a solution function to a structure containing the problem to find specific solution structures for that problem)
         - compare & select between comparable solutions, including selecting solutions based on input preferences selected 
           (preferences like 'avoid using ML in solution', 'use a particular interface', 'use pre-computed solutions from database', etc)
-        - decompose/aggregate problems/solutions (as shown in FIG 6)
+        - decompose/aggregate problems/solutions (as shown in FIG 12)
           - break the problem space into sub-problems that can execute their own interface traversal & solution-matching process to find sub-solutions 
+          - aggregate sub-solutions once solutions to sub-problems are found
         - format problem objects (like decisions) as structures (networks with clusters, sequences, & other structures)      
         - deriving trajectory between problem graphs where each graph represents a decision/state, and attribute sets & problem of similar type occupy a similar position on an axis depicting all the graphs traversed
         - representing a solution as a set of vector trajectories across interfaces
@@ -1139,7 +1144,7 @@
 
         - the positions of each sub-problem set can be derived using logical positioning. A generative set should be followed by a measurement set because the output of the generative set (prediction function generated) matches the input of the measurement set (prediction function to measure); this involves a basic input-output chaining operation as mentioned before. A causal set may identify missing information in a variable set to establish cause between variables - that type of structure (missing information) should be followed either by generating the missing information, and if not generatable, should be integrated into the accuracy/confidence/error metrics, as not being able to find the information required to solve the problem (creating an accurate, robust prediction function).
 
-    - example logic of function to find alternate solution formats (FIG 5)
+    - example logic of function to find alternate solution formats in FIG 11 (Finding alternate solution formats that fulfill different metrics)
 
       - how to identify alternative solutions that would be interchangeable with this solution in various contexts (like for different solution metrics):
 
@@ -1168,9 +1173,9 @@
               - 'find a system cost-minimizing function that makes system costs equally likely'
 
         - different structures fulfill different structural solution metrics
-          - if 'cost' is the metric, measured by total distance traveled, that is clearly different across the various solution formats of FIG 5.
+          - if 'cost' is the metric, measured by total distance traveled, that is clearly different across the various solution formats of FIG 10.
 
-      - FIG 1. Example of a problem-solving automation workflow, with a diagram.
+      - FIG 6. Example of a problem-solving automation workflow, with a diagram.
 
           1. Problem definition: determine possible match between the problem system intersection object and the system conflict object.
 
@@ -1207,7 +1212,7 @@
 
   - structures:
 
-    - problem-solution formats (shown in FIG 3 (Problem formats, with matching solution formats) & FIG 4 (Problem-solution structure matching))
+    - problem-solution formats (shown in FIG 9 (Problem formats, with matching solution formats) & FIG 10 (Problem-solution structure matching))
 
       - a vector set is good for converting between problem-solution structures, like converting an inefficiency to an efficiency in a system
         - problem shape-reducing vector set (where problem variables form the shape) is good for finding a function that reduces shape dimensions & size (like to form a summary), or a vector set to combine solution components in a way that fills the shape structure, if the solution format is a method to fill the problem structure rather than reducing the problem shape
@@ -1242,6 +1247,7 @@
     - similarity (how similar to a standard problem type, or how near to limits within a type dimension)
     - ratio of positive to negative outputs (problems solved vs. caused)
     - inevitability vs. agency of problem cause
+    - agency involved in the problem
 
     - problem types (examples shown in FIG 17. Problem Types)
 
@@ -1370,22 +1376,16 @@
             - these objects can be generated with standard system objects/functions/attributes (limits, patterns, core operations like reverse and high-level operations like generate/validate) applied to password system objects/functions/attributes (password rules, char limits)
 
             - identifying interface objects in a security problem space system:
-
               - identify contexts (default permissions, information-event-function sets) likelier to incentivize exploits
                 - identify adjacent preceding contexts or objects of exploits to prevent exploit contexts from developing
-              
               - identify structures of systems enabling exploits to apply more security or analysis to similar structures
                 - identify intersections (edge conditions) or sets (anomaly chains) likely to be exploit opportunities or allow them to develop
                 - identify malicious intents that look like positive intents (false similarities)
                 - identify function sequences that have gaps in enforcement/injection points, or can be called for malicious purposes because the entire chain is abstract or the pieces being tested are abstract/neutral
                   - identify functions that can be called outside of intended justified contexts
-              
               - identify distortion functions & approved ranges of distortion structures (like combined distortions, distortion sequences, etc)
-
               - identify positions in a system where movement toward malicious or neutral intent positions is possible/incentivized
-
               - identify system objects & concepts (expectations vs. intents, side effects, errors, potential, rule enforcement, assumptions, access, randomness, request patterns/sets, false/accidental similarities/differences, pre-approved workflows & request sets) relevant for finding exploit opportunities
-
               - identify specific objects relevant to exploit opportunities for a system
 
     - answers questions like:
@@ -1405,8 +1405,8 @@
     - interface traversal (apply an interface to a problem)
     - interface query (cross multiple interfaces in a sequence)
     - workflow (apply a problem-solving automation workflow with a particular origin interface or interface query)
-      - an example of a workflow is shown in FIG 1 (Problem-solving automation workflow)
-      - the general workflow of this program is shown in FIG 19 (Solution Automation Module 140)
+      - an example of a workflow is shown in FIG 6 (Problem-solving automation workflow)
+      - the general workflow of this program is shown in FIG 2 (Solution Automation Module 140)
 
     - workflow operation (select a problem-solving automation workflow)
 
