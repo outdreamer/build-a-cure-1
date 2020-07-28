@@ -122,6 +122,7 @@
 				- future tense (event y, so connected event z with y input will happen)
 				- possibility (event x, so system where x is possible or where x can develop)
 				- necessity (x, so inputs/requirement of or foundation enabling x)
+				- point (theres a reason for x, and the reason is y, so x can be used in structures requiring y)
 				- coincidence (x is something that just happens sometimes from lack of distractions 'dog was bored & chasing negates boredom' or happened because of a different trigger, creating a false similarity 'dog was chasing other cat and appeared to be chasing original cat', or is configured by default 'dog just chases things by default')
 				- related objects
 					- function metadata
@@ -153,33 +154,43 @@
 				- unapproved intents:
 					- request sensitive data (account numbers/passwords)
 
-
 		- question
+			- definition: implied trajectory between source/target
+			- types:
+				- structural question: a question of how to connect source/target, source/target metadata (identity/position)
+				- semantic question: a question of why to connect source/target
+					- cause question: a question of which causal structure/layer/degree/power is relevant
+					- reason question: a question of emergent intent (what priority does this fulfill or rule out eventually)
+				 
 
 	- query patterns in language map graph database queries
 
 		- assumption
-			- subset of a set (missing information being the subset)
+			- subset of a set (missing information generating assumption being the subset)
 			- context mismatch (applying an unproven statement as a fact, rather than applying tests to prove it)
 
 		- implication
-			- preceding input/following output, application intent, containing context, possibility/requirement
+			- structures with related required or probable structures (preceding input/following output, application intent, containing context, possibility/requirement, disabling/enabling, competing exclusive/coordinating inclusive)
 
 		- intent
-			- function output
+			- output
+				- intended/expected/supported function output
 				- function side effects
 					- side effects of calling the function (using/accessing memory, applying an inefficiency of that function)
-					- side effects of inputs (locking input data so it cant be simultaneous accessed by some process)
-					- side effects of outputs (non-randomness coincidentally appearing in random set)
-					- side effects of input-output pairs (favoring a pre-computation or other assumption, or traversing a particular network route or function set)
+					- side effects of using/producing inputs/outputs (locking input data so it cant be simultaneous accessed by some process)
+					- side effects of outputs (non-randomness coincidentally appearing in random set likelier to be guessed first)
+					- side effects of input-output pairs (favoring a pre-computation, input/output pair, or other assumption, or traversing a particular network route or function set)
 
 		- question
 			- structural:
-				- how to get from origin to target
+				- how: path involving alternatives that need to be resolved
+					- how to get from origin to target
+ 
 			- semantic:
-				- why to aim for target or start at origin
-				- what priority direction does trajectory align with, generate, or use?
-				- what is the causal structure (origin) of target
+				- why: path moving in a priority direction or having a causal metadata attribute value (structure, degree, power)
+					- why to aim for target or start at origin
+					- what priority direction does trajectory align with, generate, or use?
+					- what is the causal structure (origin) of target
 
 - functions
 
