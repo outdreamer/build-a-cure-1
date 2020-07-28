@@ -4,7 +4,12 @@ to do: organize into docs
 
   - example of intent mapped to structure: the outlier or data point in the middle of two categories isnt supposed to be categorized, its supposed to be identified as belonging to a different group (a group in a state of change), which can be used to derive group boundaries, but shouldnt necessarily be integrated into a categorization function
 
-  - example of alternate explanations: for a pattern like why people have different responses to a pathogen, is it bc the pathogen fits into the bio system in a way that requires the same functions used to protect it from another condition, taking protection from that condition away?
+  - example of alternate explanations: for a pattern like why people have different responses to a pathogen, is it bc of coincidences like that:
+    - the pathogen fits into the bio system in a way that requires the same functions used to protect it from another second condition, taking protection against that condition away
+    - the pathogen coincidentally applies mutations that the bio system hasnt yet evolved to handle
+    - the pathogen applies mutations that coincidentally spiral out of control bc theyre mutations to important/core change/regulation rules, or that it causes another error that triggers the second condition
+    - the pathogen evolved in an animal that didnt have those vulnerabilities so it was able to live in the host indefinitely rather than killing the host
+    - the pathogen needs a function that requires evolving other functions that are coincidentally harmful to the bio system
 
   - with information representing the constant vertices of a system, by representing information a certain way, efficiencies are gained in other information, like related calculation outputs 
 
