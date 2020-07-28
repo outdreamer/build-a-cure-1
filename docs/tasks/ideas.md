@@ -1,5 +1,11 @@
 to do: organize into docs
 
+  - alternate routes to arrange spacetimes in a way that makes origin & target space-times adjacent
+
+  - example of intent mapped to structure: the outlier or data point in the middle of two categories isnt supposed to be categorized, its supposed to be identified as belonging to a different group (a group in a state of change), which can be used to derive group boundaries, but shouldnt necessarily be integrated into a categorization function
+
+  - example of alternate explanations: for a pattern like why people have different responses to a pathogen, is it bc the pathogen fits into the bio system in a way that requires the same functions used to protect it from another condition, taking protection from that condition away?
+
   - with information representing the constant vertices of a system, by representing information a certain way, efficiencies are gained in other information, like related calculation outputs 
 
       - what does the efficiency provide to uncertain/uncalculatable objects external to information?

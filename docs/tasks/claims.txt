@@ -19,7 +19,7 @@ BRIEF DESCRIPTION OF THE DRAWINGS
 
 [0007] Example embodiments will be described and explained with additional specificity and detail through the use of the accompanying drawings in which: 
 [0008] FIG. 1. 'User Interface Module' illustrates a diagram of a user interface that can accept user input about a problem & program configuration.
-[0009] FIG. 2. 'Solution Automation Module' illustrates a diagram of a general workflow for how the solution automation program may find a solution for a problem statement. 
+[0009] FIG. 2. 'Solution Automation Module' illustrates a diagram of a general workflow for how the solution automation program may find a solution for a problem statement, including FIG 24 & FIG 25
 [0010] FIG. 3. 'Problem Space Metadata' illustrates an example of metadata describing a problem, problem space, or related problem network.
 [0011] FIG. 4. 'Solution Metadata' illustrates an example of metadata describing a solution, solution set, or solution space.
 [0012] FIG. 5. 'Additional Solution Metadata' illustrates an example of additional solution metadata & formats, as well as an example of applying a solution to a problem space or another problem format.
@@ -41,6 +41,8 @@ BRIEF DESCRIPTION OF THE DRAWINGS
 [0028] FIG. 21. 'Interface conversion & matching' illustrates an example of selecting an interface to traverse.
 [0029] FIG. 22. 'Interface & traversal diagram' illustrates an example of a diagram indicating an example interface, & a diagram indicating which interfaces to traverse in what sequence (forming an interface query).
 [0030] FIG. 23. illustrates an example computing system. 
+[0031] FIG. 24. illustrates a diagram of an example wrapper function calling a machine learning system 120.
+[0032] FIG. 25. illustrates a diagram of an example wrapper function calling an API calling/finding system 130.
 
 CLAIMS 
 
@@ -68,7 +70,7 @@ CLAIMS
 		- using core operations (like find, identify, fit, match, apply, embed, build, create, derive) and standard interfaces, generate a custom diagram representing the interface query, which will specify what steps to take across the interface network to solve this specific problem
 			- identify information (identify differentiating attributes/functions/sub-systems of agents/positions/routes within the system)
 			- fit a system (identify relevant structures like abstraction layer to traverse at, identify important objects required to solve the problem, like trading problems/markets/skills/information/risk/bets vs. trading currency, or framing currency as a position attribute, rather than a standardizing interface)
-			- match structures (identify trade & other market structures that are important for understanding why resources dont get distributed fairly, like closed trade loops & independence machines)
+			- match structures (identify trade & other market structures that are important for understanding why resources don't get distributed fairly, like closed trade loops & independence machines)
 			- identify potential (identify alternative perspectives that could also explain the variation in optimized routes, like alternate value definitions)
 			- fit causes (identify causes like marketing, collusion, and regulations that prevent or interfere with equilibrium market events)
 			- find concepts (identify concepts relevant to markets like balance, demand/supply matching, and how the concept of information can disrupt any other market bc it enables automation)
@@ -91,7 +93,7 @@ CLAIMS
 	- system analysis: automatically fitting system objects like symmetries, sub-systems, sub-interfaces, false assumptions, correlations, efficiencies, incentives, and conflicts to problem definition to determine optimal organization/format/routes/metrics/positions
 	- structure analysis: automatically finding structures, like a route between information formats to solve a problem
 	- information analysis
-		- insight analysis: insight path application (using insight paths from other fields to optimize insight generation) - some of which is depicted in FIG 20 Insigh path application.
+		- insight analysis: insight path application (using insight paths from other fields to optimize insight generation) - some of which is depicted in FIG 20 Insight path application.
 		- problem analysis: applying structure to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions) 
 			- problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
 				- some of which is depicted in diagrams FIG. 3 Problem Space Metadata, FIG. 4 Solution Metadata, FIG. 5 Additional Solution Metadata, FIG. 6 Problem space visualization, FIG. 7 Network of related problems, FIG. 8 Problem Types, FIG. 9 Problem formats, FIG. 10 Problem-solution structure-matching, FIG. 11 Finding alternate solution formats that fulfill different metrics, FIG. 12 Network of problem sub-problems, breaking a problem into component problems, & FIG. 14 Problem-solving automation workflow.
@@ -155,7 +157,7 @@ CLAIMS
 	- system analysis: automatically fitting system objects like symmetries, sub-systems, sub-interfaces, false assumptions, correlations, efficiencies, incentives, and conflicts to problem definition to determine optimal organization/format/routes/metrics/positions
 	- structure analysis: automatically finding structures, like a route between information formats to solve a problem
 	- information analysis
-		- insight analysis: insight path application (using insight paths from other fields to optimize insight generation) - some of which is depicted in FIG 20 Insigh path application.
+		- insight analysis: insight path application (using insight paths from other fields to optimize insight generation) - some of which is depicted in FIG 20 Insight path application.
 		- problem analysis: applying structure to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions) 
 			- problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
 				- some of which is depicted in diagrams FIG. 3 Problem Space Metadata, FIG. 4 Solution Metadata, FIG. 5 Additional Solution Metadata, FIG. 6 Problem space visualization, FIG. 7 Network of related problems, FIG. 8 Problem Types, FIG. 9 Problem formats, FIG. 10 Problem-solution structure-matching, FIG. 11 Finding alternate solution formats that fulfill different metrics, FIG. 12 Network of problem sub-problems, breaking a problem into component problems, & FIG. 14 Problem-solving automation workflow.
@@ -210,7 +212,7 @@ CLAIMS
 	- system analysis: automatically fitting system objects like symmetries, sub-systems, sub-interfaces, false assumptions, correlations, efficiencies, incentives, and conflicts to problem definition to determine optimal organization/format/routes/metrics/positions
 	- structure analysis: automatically finding structures, like a route between information formats to solve a problem
 	- information analysis
-		- insight analysis: insight path application (using insight paths from other fields to optimize insight generation) - some of which is depicted in FIG 20 Insigh path application.
+		- insight analysis: insight path application (using insight paths from other fields to optimize insight generation) - some of which is depicted in FIG 20 Insight path application.
 		- problem analysis: applying structure to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions) 
 			- problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
 				- some of which is depicted in diagrams FIG. 3 Problem Space Metadata, FIG. 4 Solution Metadata, FIG. 5 Additional Solution Metadata, FIG. 6 Problem space visualization, FIG. 7 Network of related problems, FIG. 8 Problem Types, FIG. 9 Problem formats, FIG. 10 Problem-solution structure-matching, FIG. 11 Finding alternate solution formats that fulfill different metrics, FIG. 12 Network of problem sub-problems, breaking a problem into component problems, & FIG. 14 Problem-solving automation workflow.
@@ -271,7 +273,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 			- find solution requirements (structure interface where requirements are limits/thresholds)
 			- apply a directed graph (structure interface) of various information formats (interface interface, information interface), positioned in the sequence likeliest to find the missing information to solve (structure interface, similarity concept interface)
 			(if its missing cause information, standardize to the causal interface or generate information about likely causes from other interfaces like the pattern interface or generate adjacent or proxy information to cause information like a set of tests to filter out non-cause information or generate interaction pattern information to predict which objects will interact, generating causes)
-			- if the information formats applied dont reveal enough info, apply combinations of the formats (structure interface, core interface)
+			- if the information formats applied don't reveal enough info, apply combinations of the formats (structure interface, core interface)
 			- if no solution space can be identified or reduced, return the queries and the problem & problem space metadata
 		- these are very abstract insight paths (a cross-system, insight-generating sequence) that can generate solutions automatically
 	Workflow variables optionally include:
@@ -316,7 +318,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 			- this can also involve formatting the problem as a set of questions (sub-problems of an information asymmetry problem type) to answer that map from starting information to target information
 		VIII. Mapping variance objects in problem space systems as starting solution space
 			- framing a problem in terms of variance (on the potential interface) makes it clear which objects are important, given variance/potential structures like interaction spaces, inevitable interactions, variance gaps, etc
-			- the high-variance objects in the 'find a prediction function' problem are the error types, assumptions, change types, data set concepts (like how the concept of 'survival skills' is relevant & inferrable in the titanic survival data set), and variation across data sets, so a good solution would integrate functions to identify & handle those objects
+			- the high-variance objects in the 'find a prediction function' problem are the error types, assumptions, change types, data set concepts (like how the concept of 'survival skills' is relevant & inferable in the titanic survival data set), and variation across data sets, so a good solution would integrate functions to identify & handle those objects
 		IX. System snapshot (interface/symmetry/vertex) derivation
 			- finding the specific interfaces & related objects in a problem system to frame a problem efficiently
 			- in the bio system, this would mean automatically identifying the genetic configuration, protein structure, immune memory, and brain interfaces as important determinants of the system
@@ -419,13 +421,13 @@ DETAILED DESCRIPTION OF THE INVENTION 
 					- identify potential (identifying unenforced rules, rule-intent imbalances, false similarities, & other objects of potential allowing exploit opportunities that are not already identified)
 					- change cause, intent, concept (test function impact on other causes, concepts, & intents, which are high-level objects a function can alter)
 					- match pattern (does this function comply with patterns for functions with similar solution metrics)
-					- if the function implementation doesnt fulfill solution metrics, other interface traversals can be done
+					- if the function implementation doesn't fulfill solution metrics, other interface traversals can be done
 					- a system-object or function-concept interface like the 'efficiency interface' or 'ambiguity interface' (does this function have a more efficient or less ambiguous route between input & output that might fulfill a solution metric, given that maximizing efficiency & reducing ambiguity are standard system & function metrics)
 				- problem: find an optimal route (or alternatively, find a distribution of functionality/efficiencies/costs to make all routes or a particular route less/equivalently costly) between start & end points, like the 'minimal trades to get equal problem/opportunity distribution'
 					- interface traversal
 					- identify information (identify differentiating attributes/functions/sub-systems of agents/positions/routes within the network)
 					- fit system (identify relevant structures like abstraction layer to traverse at, identify important objects required to solve the problem, like trading problems/markets/skills/information/risk/bets vs. trading currency, or framing currency as a position attribute, rather than a standardizing interface)
-					- identify structure (identify trade & other market structures that are important for understanding why resources dont get distributed fairly, like closed trade loops & independence machines)
+					- identify structure (identify trade & other market structures that are important for understanding why resources don't get distributed fairly, like closed trade loops & independence machines)
 					- identify potential (identify alternative perspectives that could also explain the variation in optimized routes, like alternate value definitions)
 					- identify cause (identify causes like marketing, collusion, and regulations that prevent or interfere with equilibrium market events)
 					- identify concept (identify concepts relevant to markets like balance, demand/supply matching, and how the concept of information can disrupt any other market bc it enables automation)
@@ -463,7 +465,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 							- best case scenario in standard search (random or endpoint) is the first value in the set is the target value
 							- does subset search offer gains to random search?
 							- best case scenario of unit solution type (iterate check of value)in subset search is first value after first subset split (split in half) is the target value
-							- next best case scenario type (if the unit solution type best case scenario doesnt occur iteratively) is pattern found & used to reduce solution/search space
+							- next best case scenario type (if the unit solution type best case scenario doesn't occur iteratively) is pattern found & used to reduce solution/search space
 							- splitting requires multiple processes
 							- pattern logging/searching requires multiple processes
 							- depending on set, either can reduce solution space with extra work
@@ -475,8 +477,8 @@ DETAILED DESCRIPTION OF THE INVENTION 
 				2. Information interface
 				- If the problem can be framed as an information problem, you can query information problem type rules & patterns to solve it automatically. Building a function automatically given an overall intent would mean:
 					- solving a series of information problems like:
-						- 'information mismatch' (object1 doesnt match object2 and it should, so assign object2 to object1)
-						- 'conflicting information' (object1 doesnt match object2 so merge their conflicts) 
+						- 'information mismatch' (object1 doesn't match object2 and it should, so assign object2 to object1)
+						- 'conflicting information' (object1 doesn't match object2 so merge their conflicts) 
 						- 'required information' (object1 is required to have this attribute value so assign it)
 						- 'missing information' (object1 is missing this attribute so return False or query for that information or generate it).
 				3. Cause interface
@@ -491,7 +493,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 						- finding structures to standardize intents to (directions as priorities or more structural goals, possible usage ranges as intents, abstraction as an indicator of intent (neutral/mathematical functions can be used for anything), using intent as a proxy structure for the concept of permission by organizing information access by intent)
 						- matching intent & function structures that fulfill the given overall function intent without causing invalidating side effect intents
 				5. Pattern interface
-				- If the problem can be framed as a problem of resolving which patterns to combine in what structures (where patterns optionally include abstract/generalized structures (such as variables, variable patterns, input-output path patterns, or type patterns) that resolve to specific logic when converted into information, meaning theyre assigned constants), building a function automatically given an overall intent would mean:
+				- If the problem can be framed as a problem of resolving which patterns to combine in what structures (where patterns optionally include abstract/generalized structures (such as variables, variable patterns, input-output path patterns, or type patterns) that resolve to specific logic when converted into information, meaning they're assigned constants), building a function automatically given an overall intent would mean:
 					- finding which patterns or alternative pattern sets (a variable type relationship pattern, an input-output type trajectory pattern, a logic sequence pattern, an optimization pattern) can generate the required logic when constants (specific information-filled versions of the abstract pattern structure) are applied
 						- the output of that may be as diverse as an input-output table to handle a variety of use cases observed, a prediction function trained on input-output data, a logical sequence, a code query, an intent sequence, a directed logic network, etc - depending on the patterns used
 				6. System interface
@@ -508,7 +510,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 						- these conceptual operations involve finding matching structures across the concept definitions:
 						- 'injecting' power into a structure manifesting the 'distribution' concept is possible if the distribution-manifesting structure has an input opportunity of some structure, and power can be translated into a structure that can be used by the structure having that input opportunity (a distribution structure such as a function having an input opportunity in the form of a parameter, where power can be translated into a usable structure like information assigned to that parameter), given the definition of the 'inject' operation as 'input the injectable to the receiver'
 						- you can avoid doing structural operations by storing the structures for each concept and then storing patterns/outputs of their operations
-						- if combining power & efficiency produces a structure set, that can be derived by querying the structures of power & efficiency and combining those structures in a way that doesnt invalidate either definition
+						- if combining power & efficiency produces a structure set, that can be derived by querying the structures of power & efficiency and combining those structures in a way that doesn't invalidate either definition
 						- you can also apply logic to the concept operation ('inject power to distribution, limited by efficiency') to create the output concept of that conceptual operation ('efficient distribution of power'), and then do a structure query of that output concept
 						- once you have function structures matching the output (having found function logic matching 'efficient distribution of power' once translated to the structural version 'minimized cost of allocating inputs' if inputs are the structure found in the function system matching the power definition, where 'minimized cost of allocating inputs' can mean 'diversifying calls for this intent across various alternative functions' or 're-using existing functions where possible to minimize the cost of building a function on-demand or at compile time' or 'a function set that minimizes the memory/space requirements of allocating inputs'), you check if those structures optimally fulfill this function's intent, 'distribute power evenly', and then execute the final steps to resolve those structures into function logic (with input-output requirement chains, intent-matching, etc)
 				8. Problem interface
@@ -737,20 +739,20 @@ DETAILED DESCRIPTION OF THE INVENTION 
 			- example logic of function to find alternate solution formats in FIG 11 (Finding alternate solution formats that fulfill different metrics)
 				- how to identify alternative solutions that would be interchangeable with this solution in various contexts (like for different solution metrics):
 				- in other words, how to translate 'find optimal route fulfilling a metric' to an alternative interchangeable solution that makes the initial problem trivial to solve 'find system-wide cost-reduction function that makes system routes equally costly', at which point the original problem's solution is 'any route'.
-				- we are looking for ways to invalidate the problem (generate an adjacent object to act as a proxy or replacement for the solution, generate the solution automatically, change the system structure so solving the problem isnt necessary, etc) rather than generate a specific solution (like how 'trial & error navigation of all possible routes' is a specific solution)
+				- we are looking for ways to invalidate the problem (generate an adjacent object to act as a proxy or replacement for the solution, generate the solution automatically, change the system structure so solving the problem isn't necessary, etc) rather than generate a specific solution (like how 'trial & error navigation of all possible routes' is a specific solution)
 				- inference sequence using definitions & problem definition:
 					- check definition:
 					- 'route' is defined as 'a path between nodes in a network'
 					- standardize definition:
 					- 'optimal' can be removed because it means the same as 'fulfilling a metric' but adding 'fulfilling a metric the most' to translate it to the standardized form
 					- find definition (of metric)
-					- apply logic specific to metric definition, or general information-generating logic like a transform that doesnt change meaning in a context
+					- apply logic specific to metric definition, or general information-generating logic like a transform that doesn't change meaning in a context
 					- if the metric is the general 'minimize cost' metric of an optimization, apply a transform ('abstract' or 'expand/apply/distribute' or 'change specificity attribute value to its extreme value') that doesn't change the meaning, to produce: 
-						- 'minimize system costs' (which doesnt prevent minimize the original cost so it doesnt change the meaning in an invalidating way)
+						- 'minimize system costs' (which doesn't prevent minimize the original cost so it doesn't change the meaning in an invalidating way)
 					- inject new version into original problem definition:
 						- 'find route that minimizes system costs'
 					- check if definitions match logically: 
-					- a 'route' wouldnt necessarily produce a system cost-minimizing effect
+					- a 'route' wouldn't necessarily produce a system cost-minimizing effect
 					- if they don't match, apply transforms until they match:
 					- abstract 'route' to get 'function':
 						- 'find system cost-minimizing function'
@@ -763,7 +765,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 			- functions to decompose/aggregate problems/solutions (as shown in FIG 12, Network of problem sub-problems, breaking a problem into component problems)
 			- break the problem space into sub-problems, that can execute their own interface traversal & solution-matching process to find sub-solutions 
 			- find a structure to combine solutions & combine sub-solutions to create the origin problem's solution, once the sub-solutions to sub-problems are found
-			- ezample logic of function to break a problem into sub-problems, shown in FIG 12 (Network of problem sub-problems, breaking a problem into component problems)
+			- example logic of function to break a problem into sub-problems, shown in FIG 12 (Network of problem sub-problems, breaking a problem into component problems)
 				1. decompose a problem into sub-problems, using core functions like alternate/meta/find applied to problem objects (like how measurement is a core object of a solution, and the prediction function is the default solution object, and a variable is a sub-component object of the prediction function, and so on)
 					- an example is breaking a problem into a problem of finding core components & arranging them in a way that passes filters formed by its solution requirements
 						- a requirement of a function that follows another is a possible match of input/output, if the functions are dependent, rather than relatively independent functions (occupying different function sequences), thereby translating a requirement to a filter that can be used to reduce the solution space to only function sequences that have matching inputs/outputs.
@@ -780,7 +782,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 					- function to compare & select between comparable solutions, optionally including selecting solutions based on input preferences selected (preferences like 'avoid using ML in solution', 'use a particular interface', 'use pre-computed solutions from database', etc)
 					- functions to select/add/remove problem dimensions 
 					- functions to identify/reduce solution space
-		- FIG 14. Example of a problem-solving automation workflow for a problem like 'find an optimal implemenation of an intersection', using the system/structure/concept interfaces.
+		- FIG 14. Example of a problem-solving automation workflow for a problem like 'find an optimal implementation of an intersection', using the system/structure/concept interfaces.
 			1. Problem definition: determine possible match between the problem system intersection object and the system conflict object.
 			2. standardize the problem to the system interface
 				- Apply the context of the default interaction defined for the intersection (agents crossing the intersection)
@@ -874,7 +876,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 			- system problems: inefficiency, conflict, mismatch
 			- information problems: excessive information, conflicting information, information asymmetry
 			- structural problems: unnecessary components, contradictory function requirements, mismatch in shapes
-			- intent problems: adding specificity where unnecessary, intents that neutralize each other given position, sub-intents that dont match function intent
+			- intent problems: adding specificity where unnecessary, intents that neutralize each other given position, sub-intents that don't match function intent
 			- concept problems: excessive definition routes, overlap in definition routes across concepts, definition route that more adjacently matches another concept
 			- logic problems: excessive assumptions, contradictory conclusion & assumption, using specific logic to make absolute inferences
 	- example solutions
@@ -950,14 +952,14 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- isolatability (x is guaranteed to cause y and nothing else does)
 	- interchangeability/ambiguity (number of alternative causes that cannot be resolved or eliminated or invalidated)
 	- degree (x is n degrees of cause away from y)
-	- requirement/probability of cause (if x this hadnt caused y, something else in the system probably would have caused y anyway, given all the similar structures in the system that interact with y, so x is not a required cause of y)
+	- requirement/probability of cause (if x this hadn't caused y, something else in the system probably would have caused y anyway, given all the similar structures in the system that interact with y, so x is not a required cause of y)
 	- inevitability (x must cause y regardless of most possible system contexts)
 	- dominance (x is almost always causative if allowed to interact with any object - example 'a source of power')
-	- direction (x is always an output so it couldnt have caused y)
+	- direction (x is always an output so it couldn't have caused y)
 	- proxy (x is a proxy for z, so x & z are not both required to explain y)
 	- function (x is descriptive rather than generative so it cannot be a cause)
 	- difference from randomness
-	- difference between actual/possible functions (if an agent doesnt solve a problem, but they could have efficiently solved it, is the problem caused by them or its origin)
+	- difference between actual/possible functions (if an agent doesn't solve a problem, but they could have efficiently solved it, is the problem caused by them or its origin)
 	- hierarchical
 - objects:
 	- dependencies
@@ -1044,7 +1046,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 
 - definition:
 	- variance is semantically the opposite index (gap/unenforcement/missing information/randomness) to the filter index (limit/structure/information/organization)
-		- delegation of variance into systems/types/functions/variables/constantso
+		- delegation of variance into systems/types/functions/variables/constants/objects
 - functions:
 	- identify high-risk variables
 	- identify imminent variable changes
@@ -1109,7 +1111,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		- adding motion
 		- use types of motion to distribute the vectors so they aim at different corners
 	- you could apply these methods of solving the structural problem to the original problem 
-		(a conflict like competition or overflow or false limit or false alignment if the vectors dont need to aim for the same corner)
+		(a conflict like competition or overflow or false limit or false alignment if the vectors don't need to aim for the same corner)
 	- the way to assign 'conflict' problem type to the closed shape structure with internal vectors is by aligning attributes 
 		(incentives that organize motion to create an oversupply of resources (motion vectors) that cant be supported by a resource (position))
 - functions:
@@ -1140,8 +1142,8 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		- using these logical object definitions & associated logical structures, you can derive what is logical in any given rule set
 		- this means you can derive emergent structures of possible error contexts/rules, like: 
 			- when there is a difference between the implication of a rule and the implementation of handlers for that rule, there is an opportunity for misuse of that rule
-			- if you have logic to handle the 'dog chases cat' rule but you dont have logic to connect & handle the causes of that optionally including 'the cat did something', then the 'dog chases cat' scenario could cause variance in the system, such as being used out of context (even when the cat did not do something), or not being prevented in the system (by handling what the cat did to prevent the chase event)
-			- when an assumption may seem to fit in a system where its applied (assume that people are biased), but the implications of that assumption dont fit the system (the system user/designer/implementer may also be biased), the assumption shouldnt be used or should be adjusted to fit the system (all agents are potentially biased at any point because bias is part of the learning process)
+			- if you have logic to handle the 'dog chases cat' rule but you don't have logic to connect & handle the causes of that optionally including 'the cat did something', then the 'dog chases cat' scenario could cause variance in the system, such as being used out of context (even when the cat did not do something), or not being prevented in the system (by handling what the cat did to prevent the chase event)
+			- when an assumption may seem to fit in a system where its applied (assume that people are biased), but the implications of that assumption don't fit the system (the system user/designer/implementer may also be biased), the assumption shouldn't be used or should be adjusted to fit the system (all agents are potentially biased at any point because bias is part of the learning process)
 			- enables automation of the selection, structurization (limiting, connecting, scoping, positioning), optimization (reducing number of rules or high-cost rules or distributing/reducing costs better), & implementation of logical rules
 	- examples:
 		- variable1 is not checked for False (theres a gap in enforcement between the None & False definitions) so the operation could fail
@@ -1152,7 +1154,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 			if variable1 <= 0:
 				return False
 			return int(variable1)
-		- there's an unnecessary condition which is invalidated by prior code (if variable1 is not defined, it would never get to the third line, so the third line is unnecesary)
+		- there's an unnecessary condition which is invalidated by prior code (if variable1 is not defined, it would never get to the third line, so the third line is unnecessary)
 			if not variable1:
 				return False
 			if variable1:
@@ -1174,12 +1176,12 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		- 'cat did something' (implies a system where there is a reason of responsibility for every decision or fairness in allocating costs)
 			- 'the dog wants something the cat stole' (specific implication)
 		- 'the dog is bored' (implies a system where there is lack of work allocation and attention/work are not maximized/optimized)
-			- 'the dog doesnt have toys' (specific implication)
-		- 'the dog wasnt trained' (implies a system where default behaviors like instincts can be relearned)
+			- 'the dog doesn't have toys' (specific implication)
+		- 'the dog wasn't trained' (implies a system where default behaviors like instincts can be relearned)
 		- a headline like 'politician takes a bribe' has implications of relevant context of prior events, like: 
-		- 'this is newsworthy since it doesnt happen all the time' (infer a system that doesnt often produce crimes of corruption)
+		- 'this is newsworthy since it doesn't happen all the time' (infer a system that doesn't often produce crimes of corruption)
 		- 'this is one of the politicians who were caught taking a bribe' (infer a system that is bad at catching criminals)
-		- 'this is one of the politicians who the newspaper doesnt like' (infer a system where bias is present in information sources)
+		- 'this is one of the politicians who the newspaper doesn't like' (infer a system where bias is present in information sources)
 		- 'the politician agreed to take the hit for someone else' (infer a system where favors are traded, sometimes to give impressions of false information to protect social assets like reputation)
 		- 'the politician was tricked into taking a bribe unknowingly' (infer a system where tricks & liars are common)
 		- 'the politician was sacrificed as a scapegoat' (infer a system where criminals' costs are allocated to innocent people)
@@ -1197,7 +1199,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		- specific case is a paradox, which is a false contradiction (often from different definitions or scopes of common objects between the rules)
 	- inference/deduction
 		- matching logical structures
-		- if the dog wont stop chasing the cat, someone can infer inferences like that it doesnt want to or that it cannot regulate itself or that it doesnt have other options in another way, like lack of information about negative consequences
+		- if the dog wont stop chasing the cat, someone can infer inferences like that it doesn't want to or that it cannot regulate itself or that it doesn't have other options in another way, like lack of information about negative consequences
 		- inferences are potential logical connections, whereas implications are probable logical connections
 - structures:
 	- logical sequence (logic that has a position attribute, where it has to follow or be followed by other logic)
@@ -1272,7 +1274,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- intent-system interface question: which intents are common to all functions in the system
 	- intent-function interface questions:
 		- which functions are most exploitable for malicious/neutral intents
-		- which functions' explicit intents dont match their implicit intents (or emergent intents when combined with other functions), which is like analyzing the structural difference between developer expectation vs. user intention
+		- which functions' explicit intents don't match their implicit intents (or emergent intents when combined with other functions), which is like analyzing the structural difference between developer expectation vs. user intention
 	- do variable, type, logical, & output intents match overall given function intent
 	- what is the logical sequence that best fulfills this intent (useful for automating code generation)
 		- what is the function linking these variables, given the variable intents a, b, c and the combination intent matrix ab, bc, ca, and the possible output intents of that matrix, and similarity to output intent of y
@@ -1423,7 +1425,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- measurability (is an attribute measurable, is its value range knowable)
 	- default format (is a component more similar to an attribute or function)
 - objects (type, state, definition)
-- structures (attribute sets, type hierachies, state networks)
+- structures (attribute sets, type hierarchies, state networks)
 - concepts: standardization (defining objects in terms of core/structural terms), core components (sets of components that can be used to construct other objects in a system)
 - functions:
 	- identify data sources (code bases defining schema/class definitions, network maps) automatically with a search to identify tabular data in web resources
