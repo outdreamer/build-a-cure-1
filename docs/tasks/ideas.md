@@ -10,6 +10,9 @@ to do: organize into docs
     - the pathogen applies mutations that coincidentally spiral out of control bc theyre mutations to important/core change/regulation rules, or that it causes another error that triggers the second condition
     - the pathogen evolved in an animal that didnt have those vulnerabilities so it was able to live in the host indefinitely rather than killing the host
     - the pathogen needs a function that requires evolving other functions that are coincidentally harmful to the bio system
+    - the pathogen misidentifies the genes to target or cant identify the right genes in different systems
+    - how to generate the set of possible alternate explanations:
+      - apply structures (evolution process of change sequences), concepts (identification function error, coincidence), functions (functions producing changes, such as mutations), and position them using other structures (causal network)
 
   - with information representing the constant vertices of a system, by representing information a certain way, efficiencies are gained in other information, like related calculation outputs 
 
