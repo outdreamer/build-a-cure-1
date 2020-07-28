@@ -10,29 +10,39 @@
 
 		- example: 'Clarence told me that x'
 
-			- assumptions:
-				- assumption: 'you know who Clarence is'
+			- assumptions
+				- assumption: 'that you know who Clarence is'
 					- assumption reason: 'because they didnt include the last name'
 					- assumption type: 'you know the missing information'
 
-				- assumption: 'you want to know who gave me the information' (hence why theyre telling you)
+				- assumption: 'that you want to know who gave me the information' (hence why theyre telling you)
 					- assumption reason: 'because its not certain that you need/want to know who gave you the information, as there may be protocols involved precluding that'
 					- assumption type: assuming intent (assuming you intend to find out who gave them the information)
 			
 			- implications
-				- 'they had a conversation with Clarence'
-				- 'Clarence had valuable information to communicate'
-				- 'Clarence thought it was best to communicate this to them'
+				- 'they had a conversation with Clarence' (implies conversation object)
+				- 'Clarence had valuable information to communicate' (implies valuable information exchange potential & execution)
+				- 'Clarence thought it was best/important/necessary to communicate this to recipients' (implies reason for the communication)
 			
 			- questions
-				- 'was the conversation in a meeting or in private'
-				- 'was the conversation by email/chat/phone, in person, or by video conference'
+				- situation context: 'was the conversation in a meeting or in private'
+				- medium: 'was the conversation by email/chat/phone, in person, or by video conference'
 			
 			- intents
-				- 'indicate the source of information' (Clarence)
-				- 'indicate that they have information x'
-				- 'indicate that they would like to share this information x with you'
+				- direct intents
+					- 'indicate the source of information' (add legitimacy or deflect responsibility)
+					- 'indicate that they have information x' (prepare the recipient)
+					- 'indicate that they would like to share this information x with you' (explicitly/implicitly declare their intent)
+					- 'indicate information x' (share information)
 
+				- alternative intents
+					- 'Clarence did not intend to send this (or some email metadata like recipient or timing or content was accidental)' (explanation for irrelevant information)
+					- 'Clarence did not finish the email' (explanation for incompleteness)
+					- 'Clarence did not organize/format the email, swayed by his emotional state or imminent deadline' (explanation for disorganization)
+					- 'Clarence forgot he already sent this email or a similar email' (explanation for repetition)
+					- 'Clarence or his source was misinformed' (explanation for misinformation)
+					- 'Clarence is trying to be deceptive' (explanation for misinformation)
+					- 'Clarence forgot to take out information y' (explanation for excessive information)
 
 	- regex model for language patterns
 
@@ -147,14 +157,29 @@
 		- question
 
 	- query patterns in language map graph database queries
+
 		- assumption
+			- subset of a set (missing information being the subset)
+			- context mismatch (applying an unproven statement as a fact, rather than applying tests to prove it)
 
 		- implication
+			- preceding input/following output, application intent, containing context, possibility/requirement
 
 		- intent
+			- function output
+				- function side effects
+					- side effects of calling the function (using/accessing memory, applying an inefficiency of that function)
+					- side effects of inputs (locking input data so it cant be simultaneous accessed by some process)
+					- side effects of outputs (non-randomness coincidentally appearing in random set)
+					- side effects of input-output pairs (favoring a pre-computation or other assumption, or traversing a particular network route or function set)
 
 		- question
-
+			- structural:
+				- how to get from origin to target
+			- semantic:
+				- why to aim for target or start at origin
+				- what priority direction does trajectory align with, generate, or use?
+				- what is the causal structure (origin) of target
 
 - functions
 
