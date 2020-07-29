@@ -9,16 +9,26 @@
 
 			- variable layers
 
-				- variable size, like number of words or the grouping mechanism used to categorize values for a variable, like the mechanism differentiating word vs. phrase vs. sentence)
+				- value-differentiating rules
 
-					- example grouping mechanism other than size
-						- phrases have adjacence to/containment by filler words or identifying words like subjects & subject action verbs
-						- sentences have subject-predicate clauses
+					- variable size, like number of words or the grouping rule used to categorize values for a variable, like the rule differentiating word vs. phrase vs. sentence)
 
-					- sentence: sentence
-						- is this sentence normal for its contexts (neighbors, summary, paragraph, template, email title/subject/recipients/metadata)
+						- example grouping mechanism other than size
+							- phrases have adjacence to/containment by filler words or identifying words like subjects & subject action verbs
+							- sentences have subject-predicate clauses
 
-					- sentence: word (is the word normal for this sentence, is the sentence normal for this word
+						- sentence: sentence
+							- is this sentence normal for its contexts (neighbors, summary, paragraph, template, email title/subject/recipients/metadata)
+
+						- sentence: word (is the word normal for this sentence, is the sentence normal for this word
+
+				- variable-grouping rules (into types, relevant variable sets, isolatable variable sets, alternative or proxy sets, outlier-predicting sets, etc)
+
+			- probability distribution for variables
+
+				- there will occasionally be a need for an outlier variable to make certain predictions, resolving questions that dont come up often
+
+				- common variable sets can be pulled from variables within x standard deviations away (variable sets which may have the same/similar average or average definition)
 
 			- variable sequences (ordered by importance, causal direction, etc)
 
