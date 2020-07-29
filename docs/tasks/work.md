@@ -3,16 +3,22 @@
 
 	- what relationships are significant in identifying attacks?
 
-		- var interaction space for building a model for model performance & vertex identification
+		- variable interaction space for building a model for model performance & vertex identification
 
 			- variables
 
-			- variable layers (variable size like number of words or grouping mechanism in a variable, like mechanism differentiating word vs. phrase vs. sentence)
+			- variable layers
 
-				- sentence: sentence
-					- is this sentence normal for its contexts (neighbors, summary, paragraph, template, email title/subject/recipients/metadata)
+				- variable size, like number of words or the grouping mechanism used to categorize values for a variable, like the mechanism differentiating word vs. phrase vs. sentence)
 
-				- sentence: word (is the word normal for this sentence, is the sentence normal for this word
+					- example grouping mechanism other than size
+						- phrases have adjacence to/containment by filler words or identifying words like subjects & subject action verbs
+						- sentences have subject-predicate clauses
+
+					- sentence: sentence
+						- is this sentence normal for its contexts (neighbors, summary, paragraph, template, email title/subject/recipients/metadata)
+
+					- sentence: word (is the word normal for this sentence, is the sentence normal for this word
 
 			- variable sequences
 
@@ -20,9 +26,15 @@
 
 			- variable trees
 
-			- vertexes
+			- vertexes: positions in variable interaction space where navigating away from vertex variable set reduces accuracy of prediction
 
-				- position in variable interaction space where navigating away from vertex variable set reduces accuracy of prediction
+				- can be in the generative interaction space or in the existing interaction space variable structures
+
+				- can indicate a relevant format/base/structure
+
+				- can identify relevant missing information
+
+				- can infer a system context
 
 		- data set: dependent predicted label
 
@@ -33,7 +45,6 @@
 
 				- email: info objects (assumption, implication, intent, question, information, format, requirement)
 
-					
 		- standardized & metadata versions of the above
 			- standardized sentence: standardized word
 			- sentence metadata: word metadata
@@ -45,6 +56,12 @@
 			- what other metrics are used instead of average (within expected/supported variation, within variation indicating a change state, within outlier variation, within range predicted for noise ratio, distance from random/other bases)
 
 		- mixed relationships across above variable variables
+
+
+	- identify language subset definitions
+
+		- summary:
+			- includes insights, abstract summary using metadata, quick summary (communicates general intent while losing information like tone, or identifies best reason to read the document, or summarizes relevant objects like primary argument or set of strategies/fallacies used, or missing information)
 
 	- train algorithm that works with small data sets until you can import more
 	- spin up elk stack
