@@ -2,6 +2,10 @@ to do: organize into docs
 
   - alternate routes to arrange spacetimes in a way that makes origin & target space-times adjacent
 
+  - variance generators (of noise) including objects on same interaction level and components that can build changes on interaction level as well as containing object interaction outputs that can cascade to lower interaction level changes
+
+  - how to erase causation contributed by a prior/root cause to subsequent variables if root cause & subsequent variables are both included in the data set
+
   - example of intent mapped to structure: the outlier or data point in the middle of two categories isnt supposed to be categorized, its supposed to be identified as belonging to a different group (a group in a state of change), which can be used to derive group boundaries, but shouldnt necessarily be integrated into a categorization function
 
   - example of alternate explanations: for a pattern like why people have different responses to a pathogen, is it bc of coincidences like that:

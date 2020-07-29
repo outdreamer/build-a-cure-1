@@ -1,10 +1,60 @@
 - to do:
 	- label some example data & data from the email data set (aim for 100-200 records)
+
+	- what relationships are significant in identifying attacks?
+
+		- var interaction space for building a model for model performance & vertex identification
+
+			- variables
+
+			- variable layers (variable size like number of words or grouping mechanism in a variable, like mechanism differentiating word vs. phrase vs. sentence)
+
+				- sentence: sentence
+					- is this sentence normal for its contexts (neighbors, summary, paragraph, template, email title/subject/recipients/metadata)
+
+				- sentence: word (is the word normal for this sentence, is the sentence normal for this word
+
+			- variable sequences
+
+			- variable combinations
+
+			- variable trees
+
+			- vertexes
+
+				- position in variable interaction space where navigating away from vertex variable set reduces accuracy of prediction
+
+		- data set: dependent predicted label
+
+			- email: 
+
+				- email: category (general intent, topic, error, attack type)
+					- is this email normal for this category
+
+				- email: info objects (assumption, implication, intent, question, information, format, requirement)
+
+					
+		- standardized & metadata versions of the above
+			- standardized sentence: standardized word
+			- sentence metadata: word metadata
+
+		- definition of metric:
+
+			- what definition of normal (normal across all data, normal for a sub-type, normal for a metadata set)
+
+			- what other metrics are used instead of average (within expected/supported variation, within variation indicating a change state, within outlier variation, within range predicted for noise ratio, distance from random/other bases)
+
+		- mixed relationships across above variable variables
+
 	- train algorithm that works with small data sets until you can import more
 	- spin up elk stack
-	- import email data set to elk stack
+	- import email data set & event data set to elk stack
+	- config elk stack for ml anomaly detection
 	- create wrappers for api queries
 	- test algorithm on untrained email 
+	- lookup existing products, tools & techniques
+
+	
 
 	- data examples
 
