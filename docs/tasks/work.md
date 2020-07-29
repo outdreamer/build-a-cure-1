@@ -1,57 +1,39 @@
 - to do:
+
 	- label some example data & data from the email data set (aim for 100-200 records)
 
-	- what relationships are significant in identifying attacks?
+	- what relationships & relationship structures are significant in identifying attacks?
 
 		- variable interaction space for building a model for model performance & vertex identification
 
 			- variables
-
 			- variable layers
-
 				- value-differentiating rules
-
 					- variable size, like number of words or the grouping rule used to categorize values for a variable, like the rule differentiating word vs. phrase vs. sentence)
-
 						- example grouping mechanism other than size
 							- phrases have adjacence to/containment by filler words or identifying words like subjects & subject action verbs
 							- sentences have subject-predicate clauses
-
 						- sentence: sentence
 							- is this sentence normal for its contexts (neighbors, summary, paragraph, template, email title/subject/recipients/metadata)
-
 						- sentence: word (is the word normal for this sentence, is the sentence normal for this word
-
 				- variable-grouping rules (into types, relevant variable sets, isolatable variable sets, alternative or proxy sets, outlier-predicting sets, etc)
-
 			- probability distribution for variables
-
 				- there will occasionally be a need for an outlier variable to make certain predictions, resolving questions that dont come up often
-
 				- common variable sets can be pulled from variables within x standard deviations away (variable sets which may have the same/similar average or average definition)
-
 			- variable sequences (ordered by importance, causal direction, etc)
-
 			- variable combinations (functions relevant to the prediction function, like adjacent/subset/component or moment/probability distribution functions)
-
 			- variable circuits/trees/networks
-
 			- vertexes: positions in variable interaction space where navigating away from vertex variable set reduces accuracy of prediction
-
 				- can be in the generative interaction space or in the existing interaction space variable structures
-
 				- can indicate a relevant format/base/structure
-
 				- can identify/infer relevant missing information, like a system context
 
 		- data set: dependent predicted label
 
-			- email: 
-
-				- email: category (general intent, topic, error, attack type)
+			- email:
+				- email: category (topic, error type, attack type)
 					- is this email normal for this category
-
-				- email: info objects (assumption, implication, intent, question, information, format, requirement, logical jump, conclusion, inference, fact, insight)
+				- email: info objects (assumption, implication, intent, question, missing information, format, requirement, logical jump, conclusion, inference, fact, insight)
 					- insights are important to identify for alerting purposes (new important information that explains a system should be prioritized)
 
 			- standardized & metadata versions of the above
@@ -76,6 +58,7 @@
 								- comparing chihuahuas to cats loses the information that other dogs are similar/different to cats in various ways, like:
 									- cats that bark (over-focuses on type, rather than the important variable, which is proximity within types likely to be domesticated both having vocal chords with structural similarities necessary for audio data misidentifications)
 									- dwarf dogs with similar sizes to cats (there are other similarities that can produce misidentifications in image data)
+									- dogs with mutations (one-population type distortions) that make them seem similar to chihuahuas or cats
 							- an information gain
 								- comparing chihuahuas to cats highlights the significant similarities between them that are more relevant to certain question than comparing all dogs to cats, like intent to resolve misidentification problem types
 
@@ -92,7 +75,11 @@
 				- within range predicted for noise ratio
 				- distance from random/other bases
 
-		- mixed relationships across above variable variables
+		- mixed relationships across above variable variables, with math metrics describing them
+
+			- '3 word-sentence anomalies in different paragraphs compared to their positions in the primary intent summary'
+
+			- '5:2 ratio of topic-assumption anomalies in email, compared to email template'
 
 
 	- identify language subset definitions
