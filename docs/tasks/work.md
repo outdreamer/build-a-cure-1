@@ -20,11 +20,11 @@
 
 					- sentence: word (is the word normal for this sentence, is the sentence normal for this word
 
-			- variable sequences
+			- variable sequences (ordered by importance, causal direction, etc)
 
-			- variable combinations
+			- variable combinations (functions relevant to the prediction function, like adjacent/subset/component or moment/probability distribution functions)
 
-			- variable trees
+			- variable trees/networks
 
 			- vertexes: positions in variable interaction space where navigating away from vertex variable set reduces accuracy of prediction
 
@@ -32,9 +32,7 @@
 
 				- can indicate a relevant format/base/structure
 
-				- can identify relevant missing information
-
-				- can infer a system context
+				- can identify/infer relevant missing information, like a system context
 
 		- data set: dependent predicted label
 
@@ -43,17 +41,41 @@
 				- email: category (general intent, topic, error, attack type)
 					- is this email normal for this category
 
-				- email: info objects (assumption, implication, intent, question, information, format, requirement)
+				- email: info objects (assumption, implication, intent, question, information, format, requirement, logical jump, conclusion, inference, fact, insight)
+					- insights are important to identify for alerting purposes (new important information that explains a system should be prioritized)
 
-		- standardized & metadata versions of the above
-			- standardized sentence: standardized word
-			- sentence metadata: word metadata
+			- standardized & metadata versions of the above
+				- standardized sentence: standardized word
+				- sentence metadata: word metadata
+
+			- asymmetries: which variables are better predictors than predicted given causal position
+
+				- if we have surrounding (preceding/alternative/following) variables for a target variable in a causal structure, can we infer the surrounded target variable (and its metadata if not provided) with the other surrounding variable data, with a model of sub-systems that could be determining that variable, if its complexity is variable)
+
+					- like how 'level of variation from template' is an interim variable, predicted by email/template metadata, & predicting the output attack type
+
+					- certain types of these surrounded/interim variables will be inferable, even with overlap across type values, and even with missing variables
+
+					- the reason for inferring the surrounded 'level of variation' variable in the data missing it is to use it as a predictor in data including it
+
+				- other variable relationships involve loss of information in one direction, depending on context
+
+					- type data can lose information in a context with multiple different classes having significant differences, but having the same type, if the type is too general
+
+					- type information should be stored at the right abstraction level for intent
+
+						- storing a species variant rather than a species can be an information loss (comparing chihuahuas to cats loses the information that other dogs are similar/different to cats in various ways, like cats that bark or dwarf dogs with similar sizes to cats) or an information gain (comparing chihuahuas to cats highlights the significant similarities between them that are more relevant to certain question than comparing all dogs to cats, like to resolve misidentification problem types)
 
 		- definition of metric:
 
 			- what definition of normal (normal across all data, normal for a sub-type, normal for a metadata set)
 
-			- what other metrics are used instead of average (within expected/supported variation, within variation indicating a change state, within outlier variation, within range predicted for noise ratio, distance from random/other bases)
+			- what other metrics are used instead of average
+				- within expected/supported variation
+				- within variation indicating a change state
+				- within outlier variation
+				- within range predicted for noise ratio
+				- distance from random/other bases
 
 		- mixed relationships across above variable variables
 
