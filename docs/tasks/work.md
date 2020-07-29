@@ -1,103 +1,13 @@
 - to do:
 
-	- label some example data & data from the email data set (aim for 100-200 records)
-
-	- what relationships & relationship structures are significant in identifying attacks?
-
-		- variable interaction space for building a model for model performance & vertex identification
-
-			- variables
-			- variable layers
-				- value-differentiating rules
-					- variable size, like number of words or the grouping rule used to categorize values for a variable, like the rule differentiating word vs. phrase vs. sentence)
-						- example grouping mechanism other than size
-							- phrases have adjacence to/containment by filler words or identifying words like subjects & subject action verbs
-							- sentences have subject-predicate clauses
-						- sentence: sentence
-							- is this sentence normal for its contexts (neighbors, summary, paragraph, template, email title/subject/recipients/metadata)
-						- sentence: word (is the word normal for this sentence, is the sentence normal for this word
-				- variable-grouping rules (into types, relevant variable sets, isolatable variable sets, alternative or proxy sets, outlier-predicting sets, etc)
-			- probability distribution for variables
-				- there will occasionally be a need for an outlier variable to make certain predictions, resolving questions that dont come up often
-				- common variable sets can be pulled from variables within x standard deviations away (variable sets which may have the same/similar average or average definition)
-			- variable sequences (ordered by importance, causal direction, etc)
-			- variable combinations (functions relevant to the prediction function, like adjacent/subset/component or moment/probability distribution functions)
-			- variable circuits/trees/networks
-			- vertexes: positions in variable interaction space where navigating away from vertex variable set reduces accuracy of prediction
-				- can be in the generative interaction space or in the existing interaction space variable structures
-				- can indicate a relevant format/base/structure
-				- can identify/infer relevant missing information, like a system context
-
-		- data set: dependent predicted label
-
-			- email:
-				- email: category (topic, error type, attack type)
-					- is this email normal for this category
-				- email: info objects (assumption, implication, intent, question, missing information, format, requirement, logical jump, conclusion, inference, fact, insight)
-					- insights are important to identify for alerting purposes (new important information that explains a system should be prioritized)
-
-			- standardized & metadata versions of the above
-				- standardized sentence: standardized word
-				- sentence metadata: word metadata
-
-			- asymmetries: which variables are better predictors than predicted given causal position, required intent, and ability to lose information for that intent
-
-				- if we have surrounding (preceding/alternative/following) variables for a target variable in a causal structure, can we infer the surrounded target variable (and its metadata if not provided) with the other surrounding variable data, with a model of sub-systems that could be determining that variable, if its complexity is variable)
-					- like how 'level of variation from template' is an interim variable, predicted by email/template metadata, & predicting the output attack type
-					- certain types of these surrounded/interim variables will be inferable, even with overlap across type values, and even with missing variables
-					- the reason for inferring the surrounded 'level of variation' variable in the data missing it is to use it as a predictor in data including it
-
-				- other variable relationships involve loss of information in one direction, depending on context
-
-					- type data can lose information in a context with multiple different classes having significant differences, but having the same type, if the type is too general
-
-					- type information should be stored at the right abstraction level for intent
-
-						- storing a species variant rather than a species can be:
-							- an information loss
-								- comparing chihuahuas to cats loses the information that other dogs are similar/different to cats in various ways, like:
-									- cats that bark (over-focuses on type, rather than the important variable, which is proximity within types likely to be domesticated both having vocal chords with structural similarities necessary for audio data misidentifications)
-									- dwarf dogs with similar sizes to cats (there are other similarities that can produce misidentifications in image data)
-									- dogs with mutations (one-population type distortions) that make them seem similar to chihuahuas or cats
-							- an information gain
-								- comparing chihuahuas to cats highlights the significant similarities between them that are more relevant to certain question than comparing all dogs to cats, like intent to resolve misidentification problem types
-
-					- this requires identifying limiting rules of cause (rules that aggregate cause, allocate cause, or route cause in a direction)
-
-		- definition of metric:
-
-			- what definition of normal (normal across all data, normal for a sub-type, normal for a metadata set)
-
-			- what other metrics are used instead of average
-				- within expected/supported variation
-				- within variation indicating a change state
-				- within outlier variation
-				- within range predicted for noise ratio
-				- distance from random/other bases
-
-		- mixed relationships across above variable variables, with math metrics describing them
-
-			- '3 word-sentence anomalies in different paragraphs compared to their positions in the primary intent summary'
-
-			- '5:2 ratio of topic-assumption anomalies in email, compared to email template'
-
-
-	- identify language subset definitions
-
-		- summary:
-			- includes insights, abstract summary using metadata, quick summary (communicates general intent while losing information like tone, or identifies best reason to read the document, or summarizes relevant objects like primary argument or set of strategies/fallacies used, or missing information)
-
+	- label some example data & data from the email data set
 	- train algorithm that works with small data sets until you can import more
-	- spin up elk stack
 	- import email data set & event data set to elk stack
 	- config elk stack for ml anomaly detection
 	- create wrappers for api queries
-	- test algorithm on untrained email 
-	- lookup existing products, tools & techniques
+	- test algorithm on untrained email
 
-	
-
-	- data examples
+	- create & label data examples with metadata (semantic like assumptions, structural like keywords)
 
 		- example: 'Clarence told me that x'
 
@@ -135,6 +45,8 @@
 					- 'Clarence is trying to be deceptive' (explanation for misinformation)
 					- 'Clarence forgot to take out information y' (explanation for excessive information)
 
+	- apply semantic model with schema identification & logic functions
+
 	- regex model for language patterns
 
 		- assumption (unproven statement)
@@ -163,9 +75,198 @@
 				- each assumption has an implied question (is the assumption true/relevant/appropriate to apply in the 'fact' position)
 				- each implication has questions of implied relevance (is the implication relevant, does it fit other info)
 
-	- semantic model:
+	- query patterns in language map graph database queries
+
+		- assumption
+			- subset of a set (missing information generating assumption being the subset)
+			- context mismatch (applying an unproven statement as a fact, rather than applying tests to prove it)
+
+		- implication
+			- structures with related required or probable structures (preceding input/following output, application intent, containing context, possibility/requirement, disabling/enabling, competing exclusive/coordinating inclusive)
+
+		- intent
+			- output
+				- intended/expected/supported function output
+				- function side effects
+					- side effects of calling the function (using/accessing memory, applying an inefficiency of that function)
+					- side effects of using/producing inputs/outputs (locking input data so it cant be simultaneous accessed by some process)
+					- side effects of outputs (non-randomness coincidentally appearing in random set likelier to be guessed first)
+					- side effects of input-output pairs (favoring a pre-computation, input/output pair, or other assumption, or traversing a particular network route or function set)
+
+		- question
+			- structural:
+				- how: path involving alternatives that need to be resolved
+					- how to get from origin to target
+ 
+			- semantic:
+				- why: path moving in a priority direction or having a causal metadata attribute value (structure, degree, power)
+					- why to aim for target or start at origin
+					- what priority direction does trajectory align with, generate, or use?
+					- what is the causal structure (origin) of target
+
+- functions to build
+
+	- standardize words in a document
+
+	- identify email metadata
+
+		- category by ml/regex model (business, admin, small talk, etc)
+		- topic (security, incident, meeting, etc)
+		- summary
+		- intent by ml/regex model (transfer knowlege, ask question, introduce people, etc)
+			- intent metadata (sequence, degree of sentiments, determination to complete intent, method of applying intent, assumption/implication of intent)
+		- context (approved/legitimate object/function/attribute) fit (is there actually a meeting/document as mentioned in the email? did they use real names of coworkers? did they use full name or actual used name?)
+
+		- variation
+			- how many different intents/problems/questions mentioned
+			- differences in sentence metadata (sequence, format, word choice given the rest of the sentence/email, grammar)
+			- differences in word metadata (word choice)
+			- variation from user-specific style/language (is this person a good communicator, are they learning english, do they prefer email to communicate, etc)
+
+		- exploit objects
+			- assumptions (assume that youre the right person to receive the email)
+				- expectations (expect that you know the person/process/tool referenced in the email)
+			- implications (imply that the email is internal, imply that you need to reset your password, imply that you need to click a link)
+			- unenforced rules (does expectation or assumption match intent? is it supposed to differ from intent?)
+				- mismatches (does email/headers/content match the implication that its internal, did you try to reset your password)
+
+		- related objects (emails)
+
+	- measure how similar two documents are (for comparing email to standard email for an intent, or malicious emails)
+		- tf-idf cosine similarity
+		- levenshtein distance between strings
+		- shannon entropy for detecting random (as a proxy for auto-generated) strings
+		- trajectory across language map
+		- fit of document to approved object relationship network (network of relationships between approved objects like contacts in the company, services, tools we use, etc)
+		- word frequency for email metadata (email type, intent, email variation)
+
+	- combine features in structures like conditions/sequences (x given y)
+
+	- format features (position/trajectory in approved object network) to train ml models on, bc algorithms cant infer all those objects
+
+	- identify what relationships & relationship structures are significant in identifying attacks
+
+		- attack : attack structure (sequence, network)
+			- is this attack a distortion of previous attacks (is the attacker learning or inventing new attack vectors or developing an attack model in a standard way)
+
+		- distortion vectors (conversion vectors from official to casual content): attributes produced by distortions (casual tone)
+
+		- info : info object type (as a proxy for info object definition/identification function, keyword counting, templates, or regex)
+
+		- variable interaction space for building a model for model performance & vertex identification
+
+			- variables
+			- variable layers
+				- value-differentiating rules
+					- variable size, like number of words or the grouping rule used to categorize values for a variable, like the rule differentiating word vs. phrase vs. sentence)
+						- example grouping mechanism other than size
+							- phrases have adjacence to/containment by filler words or identifying words like subjects & subject action verbs
+							- sentences have subject-predicate clauses
+						- sentence: sentence
+							- is this sentence normal for its contexts (neighbors, summary, paragraph, template, email title/subject/recipients/metadata)
+						- sentence: word (is the word normal for this sentence, is the sentence normal for this word
+				- variable-grouping rules (into types, relevant variable sets, isolatable variable sets, alternative or proxy sets, outlier-predicting sets, etc)
+			- probability distribution for variables
+				- there will occasionally be a need for an outlier variable to make certain predictions, resolving questions that dont come up often
+				- common variable sets can be pulled from variables within x standard deviations away (variable sets which may have the same/similar average or average definition)
+			- variable sequences (ordered by importance, causal direction, etc)
+			- variable combinations (functions relevant to the prediction function, like adjacent/subset/component or moment/probability distribution functions)
+			- variable circuits/trees/networks
+			- vertexes: positions in variable interaction space where navigating away from vertex variable set reduces accuracy of prediction
+				- can be in the generative interaction space or in the existing interaction space variable structures
+				- can indicate a relevant format/base/structure
+				- can identify/infer relevant missing information, like a system context
+
+		- data set: predicted label
+
+			- email:
+				- email: category (topic, error type, attack type)
+					- is this email normal for this category
+				- email: info objects (assumption, implication, intent, question, missing information, format, requirement, logical jump, conclusion, inference, fact, insight)
+					- insights are important to identify for alerting purposes (new important information that explains a system should be prioritized)
+
+			- standardized & metadata versions of the above
+				- standardized sentence: standardized word
+				- sentence metadata: word metadata
+
+			- asymmetries: which variables are better predictors than predicted given causal position, required intent, and ability to lose information for that intent
+
+				- if we have surrounding (preceding/alternative/following) variables for a target variable in a causal structure, can we infer the surrounded target variable (and its metadata if not provided) with the other surrounding variable data, with a model of sub-systems that could be determining that variable, if its complexity is variable)
+					- like how 'level of variation from template' is an interim variable, predicted by email/template metadata, & predicting the output attack type
+					- certain types of these surrounded/interim variables will be inferable, even with overlap across type values, and even with missing variables
+					- the reason for inferring the surrounded 'level of variation' variable in the data missing it is to use it as a predictor in data including it
+
+				- other variable relationships involve loss of information in one direction, depending on context
+					- type data can lose information in a context with multiple different classes having significant differences, but having the same type, if the type is too general
+					- type information should be stored at the right abstraction level for intent
+						- storing a species variant rather than a species can be:
+							- an information loss, including type-conflation examples like:
+								- comparing chihuahuas to cats loses the information that other dogs are similar/different to cats in various ways, like:
+									- cats that bark (over-focuses on type, rather than the important variable, which is proximity within types likely to be domesticated both having vocal chords with structural similarities necessary for audio data misidentifications)
+									- dwarf dogs with similar sizes to cats (there are other similarities that can produce misidentifications in image data)
+									- dogs with mutations (one-population type distortions) that make them seem similar to chihuahuas or cats
+							- an information gain
+								- comparing chihuahuas to cats highlights the significant similarities between them that are more relevant to certain question than comparing all dogs to cats, like intent to resolve misidentification problem types
+					- this requires identifying limiting rules of cause (rules that aggregate cause, allocate cause, or route cause in a direction)
+
+		- definition of metric:
+
+			- what definition of normal (normal across all data, normal for a sub-type, normal for a metadata set)
+			- what other metrics are used instead of average
+				- within expected/supported variation
+				- within variation indicating a change state
+				- within outlier variation
+				- within range predicted for noise ratio
+				- distance from random/other bases
+
+		- mixed relationships across above variable variables, with math metrics describing them
+
+			- '3 word-sentence anomalies in different paragraphs compared to their positions in the primary intent summary'
+			- '5:2 ratio of topic-assumption anomalies in email, compared to email template'
+
+		- type conflation routes 
+
+			- how one type can appear to be another type, with a false (chihuahua is not a cat) or semi-relevant similarity (noises may be similarly possible across types bc of similar vocal chords, which may differ within/across types given sub-species and mutations, helping differentiate the types
+
+	- identify info structure definitions
+
+
+- schema
+
+	- security objects
+
+		- attack 
+			- types
+			- patterns
+			- templates
+
+		- error 
+			- types
+			- patterns
+			- templates
+
+		- privilege objects
+			- sensitive information
+			- permissions
+			- access-granting protocol
+			- user types
+
+		- resource access objects
+			- tools
+			- implementations
+			- versions
+			- dependencies
+			- events
+			- use cases (need to know)
+
+	- info objects
+
+		- summary
+
+			- includes insights, abstract summary using metadata, quick summary (communicates general intent while losing information like tone, or identifies best reason to read the document, or summarizes relevant objects like primary argument or set of strategies/fallacies used, or missing information)
 
 		- communication
+
 			- types
 				- email to draw attention to something (reminder of deadline)
 				- email for reference (legal policy)
@@ -190,6 +291,7 @@
 				- communicates information successfully, clearly, relevantly, efficiently
 
 		- assumption
+
 			- types:
 				- unproven declarative statements (may include facts, but are assumed true even if not)
 				- assumption of recipient:
@@ -200,6 +302,7 @@
 				- uses an unproven statement in an inappropriate fact context (assumes an unproven statement to be true)
 
 		- implication
+
 			- information revealed about system context
 				- to do: train a separate algorithm to infer system context from implication data & vice versa)
 			- infer implied prior/future events from a statement
@@ -236,15 +339,26 @@
 					- check (ask a question to test/verify/check)
 
 				- approved intents:
-					- notify about a meeting
-					- send follow-up to a meeting
-					- recommend reading a policy or document
-					- share work-related information necessary to perform job well
-					- reset password
+					- email
+						- notify about a meeting
+						- send follow-up to a meeting
+						- recommend reading a policy or document
+						- share work-related information necessary to perform job well
+						- reset password
+					- web
+						- check email
+						- check dashboard/alerts/reports
+						- download data for local work
 
 				- unapproved intents:
 					- request sensitive data (account numbers/passwords)
+					- get resource (permission, event)
+					- access memory/script
+					- edit/inject/install code
+					- direct memory retrieval
 
+			- missing information for a given intent, mismatches between email structure/content and stated intent, distortions that aren't composable with approved core functions
+		
 		- question
 			- definition: implied trajectory between source/target
 			- types:
@@ -253,134 +367,23 @@
 					- cause question: a question of which causal structure/layer/degree/power is relevant
 					- reason question: a question of emergent intent (what priority does this fulfill or rule out eventually)
 				 
+		- expectations
+			- users will stick to approved intents
+			- sometimes users will want freedom from approved intents
+			- users tend to use decision functions that have patterns
+			- requests/events that differs from expectations (approved intents) need to have a reason justifying the distortion, from a set of approved distortion reasons
 
-	- query patterns in language map graph database queries
+		- system objects
+			- filters (filters for suspicious data, filters for access)
+			- injection points, false similarities/alignments, distortions, & distortion patterns
 
-		- assumption
-			- subset of a set (missing information generating assumption being the subset)
-			- context mismatch (applying an unproven statement as a fact, rather than applying tests to prove it)
-
-		- implication
-			- structures with related required or probable structures (preceding input/following output, application intent, containing context, possibility/requirement, disabling/enabling, competing exclusive/coordinating inclusive)
-
-		- intent
-			- output
-				- intended/expected/supported function output
-				- function side effects
-					- side effects of calling the function (using/accessing memory, applying an inefficiency of that function)
-					- side effects of using/producing inputs/outputs (locking input data so it cant be simultaneous accessed by some process)
-					- side effects of outputs (non-randomness coincidentally appearing in random set likelier to be guessed first)
-					- side effects of input-output pairs (favoring a pre-computation, input/output pair, or other assumption, or traversing a particular network route or function set)
-
-		- question
-			- structural:
-				- how: path involving alternatives that need to be resolved
-					- how to get from origin to target
- 
-			- semantic:
-				- why: path moving in a priority direction or having a causal metadata attribute value (structure, degree, power)
-					- why to aim for target or start at origin
-					- what priority direction does trajectory align with, generate, or use?
-					- what is the causal structure (origin) of target
-
-- functions
-
-	- standardize words in a document
-
-	- email metadata
-
-		- category by ml/regex model (business, admin, small talk, etc)
-		- topic (security, incident, meeting, etc)
-		- summary
-
-		- intent by ml/regex model (transfer knowlege, ask question, introduce people, etc)
-			- intent metadata (sequence, degree of sentiments, determination to complete intent, method of applying intent, assumption/implication of intent)
-
-		- approved/legitimate object/function/attribute fit (is there actually a meeting/document as mentioned in the email? did they use real names of coworkers? did they use full name or actual used name?)
-
-		- variation
-			- how many different intents/problems/questions mentioned
-			- differences in sentence metadata (sequence, format, word choice given the rest of the sentence/email, grammar)
-			- differences in word metadata (word choice)
-			- variation from user-specific style/language (is this person a good communicator, are they learning english, do they prefer email to communicate, etc)
-
-		- exploit objects
-			- assumptions (assume that youre the right person to receive the email)
-				- expectations (expect that you know the person/process/tool referenced in the email)
-			- implications (imply that the email is internal, imply that you need to reset your password, imply that you need to click a link)
-			- unenforced rules (does expectation or assumption match intent? is it supposed to differ from intent?)
-				- mismatches (does email/headers/content match the implication that its internal, did you try to reset your password)
-
-		- related emails
-
-	- measure how similar two documents are (for comparing email to standard email for an intent, or malicious emails)
-		- tf-idf cosine similarity
-		- trajectory across language map
-		- fit of document to approved object relationship network (network of relationships between approved objects like contacts in the company, services, tools we use, etc)
-		- word frequency for email metadata (email type, intent, email variation)
-
-	- combine features in structures like conditions/sequences (x given y)
-	- format features (position/trajectory in approved object network) to train ml models on bc algorithms cant infer all those objects
 
 - data
 	- incidents
 	- email data set
+		- https://spamassassin.apache.org/old/publiccorpus/
+		- https://www.kaggle.com/rtatman/fraudulent-email-corpus?select=fradulent_emails.txt
 	- event data access (browser history data can be used for inferring legitimacy of requested actions like clicking password reset link)
 
 - ai/security cloud tools
-
-- ai models
-
-- regex patterns
-
-- attack 
-	- types
-	- patterns
-	- templates
-
-- error 
-	- types
-	- patterns
-	- templates
-
-- info objects
-
-	- intent
-		- approved intents
-			- check email
-			- check dashboard/alerts/reports
-			- download data for local work
-
-		- malicious intents
-			- get resource (permission, event)
-			- access memory/script
-			- edit/inject/install code
-			- direct memory retrieval
-
-		- missing information for a given intent, mismatches between email structure/content and stated intent, distortions that aren't composable with approved core functions
-	
-	- expectations
-		- users will stick to approved intents
-		- sometimes users will want freedom from approved intents
-		- users tend to use decision functions that have patterns
-		- requests/events that differs from expectations (approved intents) need to have a reason justifying the distortion, from a set of approved distortion reasons
-
-- system objects
-	- filters (filters for suspicious data, filters for access)
-	- injection points, false similarities/alignments, distortions, & distortion patterns
-
-- privilege objects
-	- sensitive information
-	- permissions
-	- access-granting protocol
-	- user types
-
-- resource access objects
-	- tools
-	- implementations
-	- versions
-	- dependencies
-	- events
-	- use cases (need to know)
-
-- methods
+	- ai models/regex patterns

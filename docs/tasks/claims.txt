@@ -11,38 +11,36 @@ ABSTRACT
 [0003] This invention translates a problem definition into a structure that allows for resolution of the structure into the corresponding solution format with a set of queries (formatted as a query of the interface network - a set of standardizing filters applicable to format information in way that it can be analyzed with interface-specific logic).
 
 BRIEF SUMMARY OF THE INVENTION 
-[0004] One or more embodiments of the present disclosure may include a method that involves obtaining a problem statement from a user, optionally including solution metrics (such as priorities, functionality, or attributes); identifying problem & problem space metadata (such as problem type & minimum information required to solve the problem); identifying optimal origin interface to start traversing from, interface traversal sequence, & applying interface operations like combine/inject; traversing interface network (optionally including such interfaces as information, insight, structure, math, concept, type, variance, potential, change, intent, perspective, system, attribute, pattern, function, cause, problem/question, solution/answer) of interfaces acting as filters (where an interface is comprised of its definition routes, conversion function, core functions, objects, & attributes, and related objects like patterns & metadata specific to the interface) starting at the origin interface; finding components on the interface that match the problem structures (optionally including related objects like insights, patterns, & functions); compressing the problem statement into its most accurate structure containing the found interface objects; iterating the origin interface selection & interface traversal process for the solution space; identifying & reducing the solution space from this standardized problem format; traversing subsequent interfaces to obtain additional information; reducing the solution space by the problem & problem space definition; returning the identified optimal solution as a set of steps to compress the problem as well as solution metrics, attributes, & actions, and/or insights/patterns/system/standardized description related to the problem if no solutions are found. The attached specification appendix named methods.pdf optionally includes a list of alternative optional implementation methods which may be integrated into the invention or used to develop other methods. 
-[0005] The object and advantages of the embodiments will be realized and achieved at least by the elements, features, and combinations particularly pointed out in the claims. 
-[0006] It is to be understood that both the foregoing general description and the following detailed description are merely examples and explanatory and are not restrictive. 
+[0004] One or more embodiments of the present disclosure may include a method that involves obtaining a problem statement from a user, optionally including solution metrics (such as priorities, functionality, or attributes); identifying problem & problem space metadata (such as problem type & minimum information required to solve the problem); identifying optimal origin interface to start traversing from, interface traversal sequence, & applying interface operations like combine/inject; traversing interface network (optionally including such interfaces as information, insight, structure, math, concept, type, variance, potential, change, intent, perspective, system, attribute, pattern, function, cause, problem/question, solution/answer) of interfaces acting as filters (where an interface is comprised of its definition routes, conversion function, core functions, objects, & attributes, and related objects like patterns & metadata specific to the interface) starting at the origin interface; finding components on the interface that match the problem structures (optionally including related objects like insights, patterns, & functions); compressing the problem statement into its most accurate structure containing the found interface objects; iterating the origin interface selection & interface traversal process for the solution space; identifying & reducing the solution space from this standardized problem format; traversing subsequent interfaces to obtain additional information; reducing the solution space by the problem & problem space definition; returning the identified optimal solution as a set of steps to compress the problem as well as solution metrics, attributes, & actions, and/or insights/patterns/system/standardized description related to the problem if no solutions are found. The attached specification appendix named methods.pdf optionally includes a list of alternative optional implementation methods which may be integrated into the invention or used to develop other methods. The object and advantages of the embodiments will be realized and achieved at least by the elements, features, and combinations particularly pointed out in the claims. It is to be understood that both the foregoing general description and the following detailed description are merely examples and explanatory and are not restrictive. 
 
 BRIEF DESCRIPTION OF THE DRAWINGS 
 
-[0007] Example embodiments will be described and explained with additional specificity and detail through the use of the accompanying drawings in which: 
-[0008] FIG. 1. 'User Interface Module' illustrates a diagram of a user interface that can accept user input about a problem & program configuration.
-[0009] FIG. 2. 'Solution Automation Module' illustrates a diagram of a general workflow for how the solution automation program may find a solution for a problem statement, including FIG 24 & FIG 25
-[0010] FIG. 3. 'Problem Space Metadata' illustrates an example of metadata describing a problem, problem space, or related problem network.
-[0011] FIG. 4. 'Solution Metadata' illustrates an example of metadata describing a solution, solution set, or solution space.
-[0012] FIG. 5. 'Additional Solution Metadata' illustrates an example of additional solution metadata & formats, as well as an example of applying a solution to a problem space or another problem format.
-[0013] FIG. 6. 'Problem space visualization' illustrates an example visualization of a problem space.
-[0014] FIG. 7. 'Network of related problems' illustrates an example of a network of related problems.
-[0015] FIG. 8. 'Problem Types' illustrates a set of common problem types formatted as information or structural problems.
-[0016] FIG. 9. 'Problem formats, with matching solution formats of problem formats' illustrates an example of various problem formats & solution formats that match them.
-[0017] FIG. 10. 'Problem-solution structure-matching: apply a solution function to a structure containing the problem to find specific solution structures for that problem' illustrates an example of matching a problem with a solution.
-[0018] FIG. 11. 'Finding alternate solution formats that fulfill different metrics' illustrates an example of selecting a solution format that fulfills a solution metric.
-[0019] FIG. 12. 'Network of problem sub-problems, breaking a problem into components problems' illustrates an example of breaking a problem into a set of sub-problems, which once solved, can be aggregated with a solution-aggregation method as shown.
-[0020] FIG. 13. 'Causal structure-matching' illustrates a method of matching causal structures to a variable set.
-[0021] FIG. 14. 'Problem-solving automation workflow' illustrates a diagram of an example solution automation workflow depicting how a solution automation module may find a solution for a problem statement.
-[0022] FIG. 15. 'Structural definition routes for "conflict" concept' illustrates an example of a structural definition route for a concept.
-[0023] FIG. 16. 'Concept definition network' illustrates a network of related concepts.
-[0024] FIG. 17. 'Alternate definition routes' illustrates a set of definition routes for a concept.
-[0025] FIG. 18. 'Match structure for a definition of a concept' illustrates matching a structure to a concept.
-[0026] FIG. 19. 'Intent-matching' illustrates matching intent to structure & vice versa.
-[0027] FIG. 20. 'Insight path application' illustrates insight path examples and an example of applying an insight path.
-[0028] FIG. 21. 'Interface conversion & matching' illustrates an example of selecting an interface to traverse.
-[0029] FIG. 22. 'Interface & traversal diagram' illustrates an example of a diagram indicating an example interface, & a diagram indicating which interfaces to traverse in what sequence (forming an interface query).
-[0030] FIG. 23. illustrates an example computing system. 
-[0031] FIG. 24. illustrates a diagram of an example wrapper function calling a machine learning system 120.
-[0032] FIG. 25. illustrates a diagram of an example wrapper function calling an API calling/finding system 130.
+[0005] Example embodiments will be described and explained with additional specificity and detail through the use of the accompanying drawings in which: 
+[0006] FIG. 1. 'User Interface Module' illustrates a diagram of a user interface that can accept user input about a problem & program configuration.
+[0007] FIG. 2. 'Solution Automation Module' illustrates a diagram of a general workflow for how the solution automation program may find a solution for a problem statement.
+[0008] FIG. 3. 'Problem Space Metadata' illustrates an example of metadata describing a problem, problem space, or related problem network.
+[0009] FIG. 4. 'Solution Metadata' illustrates an example of metadata describing a solution, solution set, or solution space.
+[0010] FIG. 5. 'Additional Solution Metadata' illustrates an example of additional solution metadata & formats, as well as an example of applying a solution to a problem space or another problem format.
+[0011] FIG. 6. 'Problem space visualization' illustrates an example visualization of a problem space.
+[0012] FIG. 7. 'Network of related problems' illustrates an example of a network of related problems.
+[0013] FIG. 8. 'Problem Types' illustrates a set of common problem types formatted as information or structural problems.
+[0014] FIG. 9. 'Problem formats, with matching solution formats of problem formats' illustrates an example of various problem formats & solution formats that match them.
+[0015] FIG. 10. 'Problem-solution structure-matching: apply a solution function to a structure containing the problem to find specific solution structures for that problem' illustrates an example of matching a problem with a solution.
+[0016] FIG. 11. 'Finding alternate solution formats that fulfill different metrics' illustrates an example of selecting a solution format that fulfills a solution metric.
+[0017] FIG. 12. 'Network of problem sub-problems, breaking a problem into components problems' illustrates an example of breaking a problem into a set of sub-problems, which once solved, can be aggregated with a solution-aggregation method as shown.
+[0018] FIG. 13. 'Causal structure-matching' illustrates a method of matching causal structures to a variable set.
+[0019] FIG. 14. 'Problem-solving automation workflow' illustrates a diagram of an example solution automation workflow depicting how a solution automation module may find a solution for a problem statement.
+[0020] FIG. 15. 'Structural definition routes for "conflict" concept' illustrates an example of a structural definition route for a concept.
+[0021] FIG. 16. 'Concept definition network' illustrates a network of related concepts.
+[0022] FIG. 17. 'Alternate definition routes' illustrates a set of definition routes for a concept.
+[0023] FIG. 18. 'Match structure for a definition of a concept' illustrates matching a structure to a concept.
+[0024] FIG. 19. 'Intent-matching' illustrates matching intent to structure & vice versa.
+[0025] FIG. 20. 'Insight path application' illustrates insight path examples and an example of applying an insight path.
+[0026] FIG. 21. 'Interface conversion & matching' illustrates an example of selecting an interface to traverse.
+[0027] FIG. 22. 'Interface & traversal diagram' illustrates an example of a diagram indicating an example interface, & a diagram indicating which interfaces to traverse in what sequence (forming an interface query).
+[0028] FIG. 23. illustrates an example computing system. 
+[0029] FIG. 24. illustrates a diagram of an example wrapper function calling a machine learning system 120.
+[0030] FIG. 25. illustrates a diagram of an example wrapper function calling an API calling/finding system 130.
 
 CLAIMS 
 
