@@ -34,7 +34,7 @@
 
 			- variable combinations (functions relevant to the prediction function, like adjacent/subset/component or moment/probability distribution functions)
 
-			- variable trees/networks
+			- variable circuits/trees/networks
 
 			- vertexes: positions in variable interaction space where navigating away from vertex variable set reduces accuracy of prediction
 
@@ -58,14 +58,11 @@
 				- standardized sentence: standardized word
 				- sentence metadata: word metadata
 
-			- asymmetries: which variables are better predictors than predicted given causal position
+			- asymmetries: which variables are better predictors than predicted given causal position, required intent, and ability to lose information for that intent
 
 				- if we have surrounding (preceding/alternative/following) variables for a target variable in a causal structure, can we infer the surrounded target variable (and its metadata if not provided) with the other surrounding variable data, with a model of sub-systems that could be determining that variable, if its complexity is variable)
-
 					- like how 'level of variation from template' is an interim variable, predicted by email/template metadata, & predicting the output attack type
-
 					- certain types of these surrounded/interim variables will be inferable, even with overlap across type values, and even with missing variables
-
 					- the reason for inferring the surrounded 'level of variation' variable in the data missing it is to use it as a predictor in data including it
 
 				- other variable relationships involve loss of information in one direction, depending on context
@@ -74,7 +71,15 @@
 
 					- type information should be stored at the right abstraction level for intent
 
-						- storing a species variant rather than a species can be an information loss (comparing chihuahuas to cats loses the information that other dogs are similar/different to cats in various ways, like cats that bark or dwarf dogs with similar sizes to cats) or an information gain (comparing chihuahuas to cats highlights the significant similarities between them that are more relevant to certain question than comparing all dogs to cats, like to resolve misidentification problem types)
+						- storing a species variant rather than a species can be:
+							- an information loss
+								- comparing chihuahuas to cats loses the information that other dogs are similar/different to cats in various ways, like:
+									- cats that bark (over-focuses on type, rather than the important variable, which is proximity within types likely to be domesticated both having vocal chords with structural similarities necessary for audio data misidentifications)
+									- dwarf dogs with similar sizes to cats (there are other similarities that can produce misidentifications in image data)
+							- an information gain
+								- comparing chihuahuas to cats highlights the significant similarities between them that are more relevant to certain question than comparing all dogs to cats, like intent to resolve misidentification problem types
+
+					- this requires identifying limiting rules of cause (rules that aggregate cause, allocate cause, or route cause in a direction)
 
 		- definition of metric:
 
