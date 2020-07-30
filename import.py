@@ -1,5 +1,15 @@
 import os, json, elasticsearch
 
+'''
+
+config:
+
+curl -XPUT -H "Content-Type: application/json" http://localhost:9200/_cluster/settings -d '{ "transient": { "cluster.routing.allocation.disk.threshold_enabled": false } }'
+
+curl -X PUT "localhost:9200/_all/_settings" -H 'Content-Type: application/json' -d'{ "index.blocks.read_only_allow_delete" : false } }'
+
+'''
+
 def import_entries():
 	entries = get_entries()
 	if entries:
@@ -14,20 +24,35 @@ def import_entries():
 				file_type_name = ''.join([file_type, '.json'])
 				with open(file_type_name, 'w') as f:
 					print('entries[file_type]', file_type, entries[file_type])
-					json.dump(f, entries[file_type])
+					print('entries[file_type]', type(entries[file_type]))
+					'''
+					try:
+						json.dump(f, entries[file_type])
+					except Exception as e:
+						print('json write failed for data', e, entries[file_type])
+						entry_lines = []
+						for entry in entries[file_type]:
+							entry = ''.join([':'.join([k, v]) for k, v in entry.items()])
+							entry_lines.append(entry)
+						if len(entry_lines) > 0:
+							f.write('\n'.join(entry_lines))
 					f.close()
+					'''
 				for i, entry in enumerate(entries[file_type]):
 					doc_type = 'event' if 'fgt' in file_type else 'email'
-					es.index(index=file_type, doc_type=doc_type, id=i, body=entry)
+					try:
+						es.index(index=file_type, id=i, body=entry)
+					except Exception as e:
+						print('elastic', e)
 			return True
 	return False
 
 def get_entries():
 	entries = {}
 	cwd = os.getcwd()
-	origin_path = ''.join([cwd, '/data'])
+	origin_path = ''.join([cwd, '/data/'])
 	print('path', origin_path)
-	for subdir in ['/email', '/event']:
+	for subdir in ['email', 'event']:
 		path = ''.join([origin_path, subdir])
 		for dirname in os.listdir(path):
 			full_dirname = ''.join([path, '/', dirname])
@@ -36,54 +61,80 @@ def get_entries():
 				for cur, _dirs, files in os.walk(full_dirname):
 					for filename in files:
 						filename = ''.join([cur, '/', filename])
+						file_type = 'fgt_event' if 'fgt_event' in filename else 'fgt_traffic' if 'fgt_traffic' in filename else 'email'
+						if file_type not in entries:
+							entries[file_type] = [] 
 						print('filename', filename)
-						entries = add_to_entries(filename, entries)
+						data = get_data(filename)
+						if data:
+							if type(data) == list:
+								entry = add_to_entries(data)
+								if entry:
+									entries[file_type].append(entry)
+							else:
+								for row in data:
+									entry = row['result'] if 'result' in row else row						
+									entries[file_type].append(entry)
 			else:
-				entries = add_to_entries(full_dirname, entries)
+				file_type = 'fgt_event' if 'fgt_event' in full_dirname else 'fgt_traffic' if 'fgt_traffic' in full_dirname else 'email'
+				if file_type not in entries:
+					entries[file_type] = [] 
+				data = get_data(full_dirname)
+				if data:
+					if type(data) == list:
+						entry = add_to_entries(data)
+						if entry:
+							entries[file_type].append(entry)
+					else:
+						for row in data:
+							entry = row['result'] if 'result' in row else row
+							entries[file_type].append(entry)
 	if entries:
 		print('entries', len(entries))
-		exit()
+		for key in entries:
+			print('key', len(entries[key]))
+			for entry in entries[key]:
+				for k, v in entry.items():
+					print('k', k, ' : ', v)
 		return entries
-	return False
+	return Falsee
 
-def add_to_entries(filename, entries):
-	data = get_data(filename)
-	if data:
-		print('data', data)
-		file_type = 'fgt_event' if 'fgt_event' in filename else 'fgt_traffic' if 'fgt_traffic' in filename else 'email'
-		if file_type not in entries:
-			entries[file_type] = [] 
-		if type(data) == list:
-			entry = {}
-			for i, line in enumerate(data):
-				if i > 0: # skip first line
-					data_split = '\n'.join(line).split('\n\n')
-					if len(data_split) == 2:
-						fields = data_split[0]
-						entry['content'] = data_split[1]
-						total_line = [fields]
-						next_data = data[i:]
-						for j, next_line in enumerate(next_data):
-							if next_line.count('\t') > line.count('\t'):
-								# add next lines until you find 
-								total_line.append(next_line)
-								'''
-								Received: from coolre42375.com ([64.86.155.179]) by dogma.slashnull.org
-							    (8.11.6/8.11.6) with SMTP id g7N96hZ17715 for <zzzz@jmason.org>;
-							    Fri, 23 Aug 2002 10:06:45 +0100
-							    '''
-						if len(total_line) > 1:
-							line = '\n'.join(total_line)
-						if ':' in line:
-							line_fields = line.split(':')
-							entry[line_fields[0]] = line_fields[1].strip()
-			if entry:
-				entries[file_type].append(entry)
-		else:
-			for row in data:
-				entry = row['result'] if 'result' in row else row
-				entries[file_type].append(entry)
-	return entries
+def add_to_entries(data):
+	entry = {}	
+	content = []
+	for i, line in enumerate(data):
+		if i > 0: # skip first line
+			delimiter = '\n\n' if '\n\n' in data else '<HTML>' if '<HTML>' in data else '<html>'
+			data_split = '\n'.join(data).split(delimiter) 
+			if len(data_split) == 2:
+				fields = data_split[0]
+				entry['content'] = ''.join(['<HTML>', data_split[1]]) if '<HTML>' in data else ''.join(['<html>', data_split[1]]) if '<html>' in data else data_split[1]
+				total_line = [fields]
+				next_data = data[i:]
+				for j, next_line in enumerate(next_data):
+					if next_line.count('\t') > line.count('\t'):
+						# add next lines until you find 
+						total_line.append(next_line)
+				if len(total_line) > 1:
+					line = '\n'.join(total_line)
+				if ':' in line:
+					tags = ['a', 'html', 'p', 'span', 'table', 'th', 'tr', 'td']
+					for tag in tags:
+						if ''.join(['<', tag, ' ']) in line or ''.join(['<', tag, '>']) in line:
+							print('content line', line)
+							content.append(line)
+					else: 
+						''' key: value metadata '''
+						line_fields = line.split(':')
+						entry[line_fields[0]] = line_fields[1].strip()
+			else:
+				print('content delimiter not found for email', data)
+	if len(content) > 0:
+		print('content', content)
+		entry['content'] = '\n'.join(content)
+	if entry:
+		return entry
+	return False
 
 def get_data(file_path):
 	if os.path.exists(file_path):
@@ -101,7 +152,7 @@ def get_data(file_path):
 					except Exception as e:
 						print('read', e)
 					if objects:
-						print('lines', objects)
+						print('objects', len(objects))
 			f.close()
 		if objects:
 			return objects

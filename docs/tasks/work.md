@@ -1,13 +1,19 @@
 - to do:
+	- finish es import function
+	- complete hardware security
 
-	- label some example data & data from the email data set
 	- train algorithm that works with small data sets until you can import more
-	- import email data set & event data set to elk stack
 	- config elk stack for ml anomaly detection
 	- create wrappers for api queries
-	- test algorithm on untrained email
+	- a requirement of the assumption/intent/implication model is:
+		- a network of objects inherent to the problem space
+		- a set of queries for each object type to fetch the related objects
+			- query to get surrounding objects to retrieve implications of a statement (node connection)
+			- query to get requirements + prior implications to retrieve assumptions of a statement (node connection)
+			- query to get paths using a node to get intents for a statement (node connection)
+			- query to get missing information & uncertainty structures to get questions for a statement (node connection)
 
-	- create & label data examples with metadata (semantic like assumptions, structural like keywords)
+	- label some example data & data from the email data set with metadata (semantic like assumptions, structural like keywords)
 
 		- example: 'Clarence told me that x'
 
