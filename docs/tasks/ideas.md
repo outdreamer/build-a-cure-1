@@ -17,10 +17,12 @@ to do: organize into docs
             - a universe with different dimensions of change than position/time/structure
           - universe with potential to switch off time with sub-interface alignment (coordinating changes on quantum interface like with a quantum chain reaction to prevent or reset variance)
           - universe with potential for extreme information states
-            - at one extreme, truth can crystallize into a universe-determining rule if not prevented from doing so, and at the other extreme, structures allowing guaranteed variance to develop first can prevent truth from developing at all
+            - at one extreme, truth can crystallize into a universe-determining input rule if not prevented from doing so, and at the other extreme, structures allowing guaranteed variance to develop first can prevent truth from developing at all
             - universe where information (stable states) is not allowed to develop (a universe requiring distributed randomness, or lack of information), and measurable information is an abstract concept that the universe structure can never create a sub-structure to contain
             - universe where noise/randomness is an intent rather than a side effect of intent alignment & development, so reversing the intent development process to be an input rather than the output of interaction rules allows certain types of information & randomness to develop
             - universe where the ratio & types of information/time allowed to develop allows/prevents certain types of information derivation about universe manipulation/traversal, which if combined with other types from adjacent universes on a certain definition of distance, would invalidate origin or other types of universes
+          - universe where potential (in the form of variance injection points) is evenly distributed as a constant condition
+          - universe where some calculation types are conditionally/contextually possible, like at regular intervals where variance drops below a certain level because of passing adjacent universes
     - calculation trajectory (calculations possible in this universe or space-time used to calculate position in regard to the others, given intents possible with those calculations
       - calculating position (knowing if your space-time is a pawn/knight & the pawn/knight functions, and deriving the existence of other positions) & possible intents of that position (& the ensuing functionality) enables determining the set of possible moves on the board, the limits of the board, the point of the game, and the optimal positions/moves/states in the game, giving you a direction to move in if you can coordinate with other players
 
