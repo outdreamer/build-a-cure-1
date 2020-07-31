@@ -23,6 +23,7 @@ to do: organize into docs
             - universe where the ratio & types of information/time allowed to develop allows/prevents certain types of information derivation about universe manipulation/traversal, which if combined with other types from adjacent universes on a certain definition of distance, would invalidate origin or other types of universes
           - universe where potential (in the form of variance injection points) is evenly distributed as a constant condition
           - universe where some calculation types are conditionally/contextually possible, like at regular intervals where variance drops below a certain level because of passing adjacent universes
+          - universe where information derivation-loss ratio makes calculations irrelevant because of the symmetry types present, which make info loss from info asymmetries trivial
     - calculation trajectory (calculations possible in this universe or space-time used to calculate position in regard to the others, given intents possible with those calculations
       - calculating position (knowing if your space-time is a pawn/knight & the pawn/knight functions, and deriving the existence of other positions) & possible intents of that position (& the ensuing functionality) enables determining the set of possible moves on the board, the limits of the board, the point of the game, and the optimal positions/moves/states in the game, giving you a direction to move in if you can coordinate with other players
 
