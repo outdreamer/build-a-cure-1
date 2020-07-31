@@ -9,9 +9,16 @@ to do: organize into docs
       - what other types of universe are there, other than a universe allowing sequence between states (conditional/temporary truth) achieving/executing absolute truths?
         - other structures include:
           - state circuits/networks (illusion of time, but still on the same circuit/network, meaning the states are pre-determined in that theyre guaranteed to be on the circuit/network)
-          - universes where information (stable states) is not allowed to develop (a universe requiring distributed randomness, or lack of information), and measurable information is an abstract concept that the universe structure can never create a sub-structure to contain
           - a universe of vertexes (generators/determinators/descriptors of other variables, like a set of constants such as identities of nodes on the abstract network), where the primary function is preventing change or routing changes to universes with the potential handlers to contain it in a stable way
-          - a universe with different fundamental definitions or different fundamental dimensions of change
+            - a universe with a 'regulation' intent that prevents excess change from other universes
+          - a universe with different fundamental definitions/dimensions of change/core components/interfaces
+            - a universe that builds its foundation off of a different interface than the structural interface
+            - a universe with a different definition of information/randomness/position/change
+            - a universe with different dimensions of change than position/time/structure
+          - universe with potential to switch off time with sub-interface alignment (coordinating changes on quantum interface like with a quantum chain reaction to prevent or reset variance)
+          - universe with potential for extreme information states
+            - at one extreme, truth can crystallize into a universe-determining rule if not prevented from doing so, and at the other extreme, structures allowing guaranteed variance to develop first can prevent truth from developing at all
+            - universe where information (stable states) is not allowed to develop (a universe requiring distributed randomness, or lack of information), and measurable information is an abstract concept that the universe structure can never create a sub-structure to contain
     - calculation trajectory (calculations possible in this universe or space-time used to calculate position in regard to the others, given intents possible with those calculations
       - calculating position (knowing if your space-time is a pawn/knight & the pawn/knight functions, and deriving the existence of other positions) & possible intents of that position (& the ensuing functionality) enables determining the set of possible moves on the board, the limits of the board, the point of the game, and the optimal positions/moves/states in the game, giving you a direction to move in if you can coordinate with other players
 
