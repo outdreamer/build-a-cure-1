@@ -1,6 +1,14 @@
 to do: organize into docs
 
-  - alternate routes to arrange spacetimes in a way that makes origin & target space-times adjacent
+  - physics vertexes
+    - black hole unpacking function
+    - universe overlap/collision
+    - variance injections & interaction rules allowing variance cascades to prop up a universe structure, allowing time to develop
+    - upward arc on a wave (development of time marks the upward arc), where the downward arc is the unraveling of time back to the origin big bang (collapse into a black hole, eject variance, rebound universe)
+
+  - ways to navigate space-time
+    - alternate routes to arrange spacetimes in a way that makes origin & target space-times adjacent or traversible
+
 
   - variance generators (of noise) including objects on same interaction level and components that can build changes on interaction level as well as containing object interaction outputs that can cascade to lower interaction level changes
 
