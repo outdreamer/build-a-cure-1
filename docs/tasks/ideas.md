@@ -21,9 +21,13 @@ to do: organize into docs
             - universe where information (stable states) is not allowed to develop (a universe requiring distributed randomness, or lack of information), and measurable information is an abstract concept that the universe structure can never create a sub-structure to contain
             - universe where noise/randomness is an intent rather than a side effect of intent alignment & development, so reversing the intent development process to be an input rather than the output of interaction rules allows certain types of information & randomness to develop
             - universe where the ratio & types of information/time allowed to develop allows/prevents certain types of information derivation about universe manipulation/traversal, which if combined with other types from adjacent universes on a certain definition of distance, would invalidate origin or other types of universes
-          - universe where potential (in the form of variance injection points) is evenly distributed as a constant condition
+          - universe where potential (in the form of variance injection points) is evenly distributed as a constant condition, so certainty cant develop (in any form, including time/structure/priority)
           - universe where some calculation types are conditionally/contextually possible, like at regular intervals where variance drops below a certain level because of passing adjacent universes
-          - universe where information derivation-loss ratio makes calculations irrelevant because of the symmetry types present, which make info loss from info asymmetries trivial
+          - universe where information derivation-loss ratio makes calculations irrelevant because of the symmetry types present, which make info loss from info asymmetries trivial (where symmetries can be combined to offset every asymmetry)
+          - universe where efficiencies develop in a way that certain priorities are incentivized despite universal constants exerting limits on direction change
+            - prioritizing similarity or optimization contradicting a universe constant ratio of variance
+            - prioritizing calculation types that prevent measuring information of a particular type
+          - universe that involves trajectories between bases as a way to measure change (a changing interface network vs. change on an interface network)
     - calculation trajectory (calculations possible in this universe or space-time used to calculate position in regard to the others, given intents possible with those calculations
       - calculating position (knowing if your space-time is a pawn/knight & the pawn/knight functions, and deriving the existence of other positions) & possible intents of that position (& the ensuing functionality) enables determining the set of possible moves on the board, the limits of the board, the point of the game, and the optimal positions/moves/states in the game, giving you a direction to move in if you can coordinate with other players
 
