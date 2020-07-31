@@ -41,6 +41,7 @@ to do: organize into docs
             - if something can be calculated from something else & vice versa (independent variables generating a dependent variable), time has not passed while that relationship is true
             - if something cannot be calculated from something else (asymmetry or information loss), time has passed
             - the set of time-independent calculation relationships may determine the amount of time a universe has until it either decays, compresses, changes its determining factors, or finishes its original intended calculation
+          - time defined as the potential to calculate trajectories around a universe's singularities, or the ability to arrange calculations in a way that doesnt make all information calculatable
     - calculation trajectory (calculations possible in this universe or space-time used to calculate position in regard to the others, given intents possible with those calculations
       - calculating position (knowing if your space-time is a pawn/knight & the pawn/knight functions, and deriving the existence of other positions) & possible intents of that position (& the ensuing functionality) enables determining the set of possible moves on the board, the limits of the board, the point of the game, and the optimal positions/moves/states in the game, giving you a direction to move in if you can coordinate with other players
         - derive information with rules like:
