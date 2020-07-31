@@ -21,6 +21,7 @@ to do: organize into docs
           - universe with potential for extreme information states
             - at one extreme, truth can crystallize into a universe-determining input rule if not prevented from doing so, and at the other extreme, structures allowing guaranteed variance to develop first can prevent truth from developing at all
             - universe where information (stable states) is not allowed to develop (a universe requiring distributed randomness, or lack of information), and measurable information is an abstract concept that the universe structure can never create a sub-structure to contain
+              - where every possibility is equally likely, invalidating the concept of probability
             - universe where noise/randomness is an intent rather than a side effect of intent alignment & development, so reversing the intent development process to be an input rather than the output of interaction rules allows certain types of information & randomness to develop
             - universe where the ratio & types of information/time allowed to develop allows/prevents certain types of information derivation about universe manipulation/traversal, which if combined with other types from adjacent universes on a certain definition of distance, would invalidate origin or other types of universes
           - universe where potential (in the form of variance injection points) is evenly distributed as a constant condition, so certainty cant develop (in any form, including time/structure/priority)
@@ -30,8 +31,18 @@ to do: organize into docs
             - prioritizing similarity or optimization contradicting a universe constant ratio of variance
             - prioritizing calculation types that prevent measuring information of a particular type
           - universe that involves trajectories between bases as a way to measure change (a changing interface network vs. change on an interface network)
+          - universe where external universes are determining, rather than internal states or generative rules
+            - coordinating rules in universe development have compounding effects on potential of universe interactions
+            - universes where the generative rules, other constants/metrics, and position with respect to other universes are changeable from inside/outside (input/output sides, reversing causation)
+          - the influence of one universe on another implies a notion of universe-external time (if a state change occurs, time has passed, even if the state is a change to the set of generative rules), where in reality, the universe relationships might not change (a static game), unless it's possible to coordinate/hook up their dimensions to influence each other
+            - but this type of time may not exist, or may only exist conditionally when two universes interact, which doesnt change the absolute rules governing their interactions because the change stabilizes reliably enough to invalidate the idea of change of that type, so universe-external time can only exist in universe-to-universe interactions, but not in universe-to-universe relationship interactions
+
     - calculation trajectory (calculations possible in this universe or space-time used to calculate position in regard to the others, given intents possible with those calculations
       - calculating position (knowing if your space-time is a pawn/knight & the pawn/knight functions, and deriving the existence of other positions) & possible intents of that position (& the ensuing functionality) enables determining the set of possible moves on the board, the limits of the board, the point of the game, and the optimal positions/moves/states in the game, giving you a direction to move in if you can coordinate with other players
+        - derive information with rules like:
+          - if there is a universe that can destroy yours when adjacent, you know that its not adjacent to you
+            - similarly, if there is another pair/set of destroying universes when in certain positions that are related to your universe (inputs/outputs/alternatives of yours, or cooperating with yours), you know theyre not in those positions
+          - if there are rules that are invalidating to particular types of potential/information/randomness/change that have been measured or determined to be valid in some measured or possible context, you know those rules are not absolute
 
   - ways to navigate space-time
     - alternate routes to arrange spacetimes in a way that makes origin & target space-times adjacent or traversible
