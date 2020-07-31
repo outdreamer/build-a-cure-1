@@ -5,6 +5,9 @@ to do: organize into docs
     - universe overlap/collision/combination
     - variance injections & interaction rules allowing variance cascades to prop up a universe structure, allowing time to develop
     - upward arc on a wave or parabola (development of time marks the upward arc), where the downward arc is the unraveling of time back to the origin big bang (collapse into a black hole, eject variance, rebound universe), as material or structure allowing material of the universe is stretched temporarily to hold the variance injected via the entry point (whether black hole, universe collision, or something else)
+      - what other types of universe are there, other than a universe allowing sequence between states (conditional/temporary truth) achieving or executing absolute truths?
+        - other structures include:
+          - state circuits/networks (illusion of time, but still on the same circuit/network, meaning the states are pre-determined in that theyre guaranteed to be on the circuit/network)
     - calculation trajectory (calculations possible in this universe or space-time used to calculate position in regard to the others, given intents possible with those calculations
       - calculating position (knowing if your space-time is a pawn/knight & the pawn/knight functions, and deriving the existence of other positions) & possible intents of that position (& the ensuing functionality) enables determining the set of possible moves on the board, the limits of the board, the point of the game, and the optimal positions/moves/states in the game, giving you a direction to move in if you can coordinate with other players
 
