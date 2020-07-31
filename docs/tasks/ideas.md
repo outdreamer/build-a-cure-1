@@ -3,19 +3,20 @@ to do: organize into docs
   - physics vertexes
     - black hole unpacking function (allows information to develop)
     - universe overlap/collision/combination
+    - lack of universe-preventing conditions (like how information can develop if black holes are far enough away)
     - variance injections & interaction rules allowing variance cascades to prop up a universe structure, allowing time to develop
     - upward arc on a wave or parabola (development of time marks the upward arc), where the downward arc is the unraveling of time back to the origin big bang (collapse into a black hole, eject variance, rebound universe), as material or structure allowing material of the universe is stretched temporarily to hold the variance injected via the entry point (whether black hole, universe collision, or something else)
       - what other types of universe are there, other than a universe allowing sequence between states (conditional/temporary truth) achieving/executing absolute truths?
         - other structures include:
           - state circuits/networks (illusion of time, but still on the same circuit/network, meaning the states are pre-determined in that theyre guaranteed to be on the circuit/network)
-          - universes where information (stable states) is not allowed to develop, and measurable information is an abstract concept that the universe structure can never create a sub-structure to contain
+          - universes where information (stable states) is not allowed to develop (a universe requiring distributed randomness, or lack of information), and measurable information is an abstract concept that the universe structure can never create a sub-structure to contain
           - a universe of vertexes (generators/determinators/descriptors of other variables, like a set of constants such as identities of nodes on the abstract network), where the primary function is preventing change or routing changes to universes with the potential handlers to contain it in a stable way
+          - a universe with different fundamental definitions or different fundamental dimensions of change
     - calculation trajectory (calculations possible in this universe or space-time used to calculate position in regard to the others, given intents possible with those calculations
       - calculating position (knowing if your space-time is a pawn/knight & the pawn/knight functions, and deriving the existence of other positions) & possible intents of that position (& the ensuing functionality) enables determining the set of possible moves on the board, the limits of the board, the point of the game, and the optimal positions/moves/states in the game, giving you a direction to move in if you can coordinate with other players
 
   - ways to navigate space-time
     - alternate routes to arrange spacetimes in a way that makes origin & target space-times adjacent or traversible
-
 
   - variance generators (of noise) including objects on same interaction level and components that can build changes on interaction level as well as containing object interaction outputs that can cascade to lower interaction level changes
 
