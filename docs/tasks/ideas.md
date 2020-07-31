@@ -51,6 +51,12 @@ to do: organize into docs
 
   - ways to navigate space-time
     - alternate routes to arrange spacetimes in a way that makes origin & target space-times adjacent or traversible
+    - navigating by symmetries as a guide to reversible routes through space-times; where theres a window of opportunity to reverse trajectory (on a space-time tree branch ending with a dead-end leaf) if a structure of symmetries like a foundation or net or symmetry-generating structure is within reach
+
+  - browser optimizing web sites based on clear feature-execution mismatch created by malware or outdated code given origin code intent, a ratio of version/other change allowed, & intent of site actions
+    - browser configurations like versions/modes/settings applied for tabs
+
+  - add structures to diagram: interface overflow (to sub-interfaces), interface foundation
 
   - variance generators (of noise) including objects on same interaction level and components that can build changes on interaction level as well as containing object interaction outputs that can cascade to lower interaction level changes
 
