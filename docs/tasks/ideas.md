@@ -3,11 +3,13 @@ to do: organize into docs
   - physics vertexes
     - black hole unpacking function (allows information to develop)
     - universe overlap/collision/combination
-    - lack of universe-preventing conditions (like how information can develop if black holes are far enough away)
+    - lack of universe-preventing conditions (like how information can develop if black holes are far enough away) or potential to avoid destruction mechanisms
     - variance injections & interaction rules allowing variance cascades to prop up a universe structure, allowing time to develop
     - upward arc on a wave or parabola (development of time marks the upward arc), where the downward arc is the unraveling of time back to the origin big bang (collapse into a black hole, eject variance, rebound universe), as material or structure allowing material of the universe is stretched temporarily to hold the variance injected via the entry point (whether black hole, universe collision, or something else)
       - what other types of universe are there, other than a universe allowing sequence between states (conditional/temporary truth) achieving/executing absolute truths?
         - other structures include:
+          - similar rules but different origin position, different rules (including most extremely different rule set) but similar origin position, & other permutations of universe constants/rules & generative structures like filters/containing sets
+            - universe defined as a set of possible trajectories from the various different generative structures, or a space between the various different limiting structures
           - state circuits/networks (illusion of time, but still on the same circuit/network, meaning the states are pre-determined in that theyre guaranteed to be on the circuit/network)
           - a universe of vertexes (generators/determinators/descriptors of other variables, like a set of constants such as identities of nodes on the abstract network), where the primary function is preventing change or routing changes to universes with the potential handlers to contain it in a stable way
             - a universe with a 'regulation' intent that prevents excess change from other universes
