@@ -49,11 +49,16 @@ to do: organize into docs
             - similarly, if there is another pair/set of destroying universes when in certain positions that are related to your universe (inputs/outputs/alternatives of yours, or cooperating with yours), you know theyre not in those positions
           - if there are rules that are invalidating to particular types of potential/information/randomness/change that have been measured or determined to be valid in some measured or possible context, you know those rules are not absolute
 
+    - structure-information interface:
+      entanglement, as the accretion of possible information into a core function (information generator, like the physical component of an assumption - a defined relationship, with its own definition of difference (reducing distance type of difference between entangled particle positions)
+      polarity, as the accretion of information into a core function
+      wave-function collapse, as the angle at which information appears to have one dimension of change
+
   - ways to navigate space-time
     - alternate routes to arrange spacetimes in a way that makes origin & target space-times adjacent or traversible
     - navigating by symmetries as a guide to reversible routes through space-times; where theres a window of opportunity to reverse trajectory (on a space-time tree branch ending with a dead-end leaf) if a structure of symmetries like a foundation or net or symmetry-generating structure is within reach
 
-  - browser optimizing web sites based on clear feature-execution mismatch created by malware or outdated code given origin code intent, a ratio of version/other change allowed, & intent of site actions
+  - browser optimizing web sites based on clear feature-execution mismatch created by malware or outdated code given origin code intent, a ratio of version/other change allowed, intent of site actions (not making changes that would break other functionality calculatable on the page)
     - browser configurations like versions/modes/settings applied for tabs
 
   - add structures to diagram: interface overflow (to sub-interfaces), interface foundation
