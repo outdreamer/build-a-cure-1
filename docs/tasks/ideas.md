@@ -63,6 +63,28 @@ to do: organize into docs
 
   - add structures to diagram: interface overflow (to sub-interfaces), interface foundation
 
+  - program should be able to identify, predict, & finally calculate structures that will be useful for an intent, to avoid reducing/searching a solution set
+    - identify with structure-matching (which of these structures can fulfill this goal)
+      - example: finding a 'progression' structure for a function
+    - predict with intent-matching (find structures matching these intents)
+      - example: for calculating area, which structures fulfill that intent
+    - calculate with intent structures (derive intent-structure relationships and find operation sequence that will produce target intents)
+      - example: 
+        - which structures simplify difference calculations (like area) extending the addition/core/unit operation (like how multiply is an extension of add) when increasing a parameter like number of dimensions, given that 
+          - the add operation has a 'combine' intent
+          - multiply has a 'combine with different direction' or 'combine interaction space' intent
+          - length has a 'describe difference' intent for a dimension count of 1
+          - and so on for other operations
+          
+  - insight path examples
+    - hypothetical questions & question chains ('what if x') 
+    - missing the point
+    - invalidating the point
+    - switching positions/structures
+    - relevance cycles
+    - similarities
+    - extremes
+
   - variance generators (of noise) including objects on same interaction level and components that can build changes on interaction level as well as containing object interaction outputs that can cascade to lower interaction level changes
 
   - how to erase causation contributed by a prior/root cause to subsequent variables if root cause & subsequent variables are both included in the data set
