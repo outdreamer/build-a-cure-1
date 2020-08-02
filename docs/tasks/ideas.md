@@ -138,14 +138,39 @@ to do: organize into docs
               - which would help predict what impact a change would have on change metrics, which are also calculatable from other change types/states, such as estimating the impact on area from a unit change in one direction (of various change types, including a unit addition/multiplication/parameter change, etc), and include the impact on difference from related change types (impact on tangents, inflection points, subsets, and related objects), and related change states (difference from adjacent functions like with one-off parameters (constants/exponents one degree away)
               - where the intents are structural by default ('multiply by this constant' having intents like 'increase the scale of this function from the unit version, keeping this maximum as a center or this point as an origin')
 
-  - insight path examples
-    - hypothetical assumptions/questions & question chains ('what if x') 
-    - missing the point
-    - invalidating the point
-    - switching positions/structures
-    - relevance cycles
-    - similarities
-    - extremes
+  - joke insight path examples
+
+    - expectations
+      - hypothetical questions & question chains ('what if x') to generate assumptions
+        - what if function x normally associated with object 1 is instead in object 2, which shows no evidence of function x
+
+      - assumptions & assumption chains
+        - not just "that inanimate object x has feelings" but also "and has tried to manage them but fell for a sock anyway" to fulfill an 'explanatory alternate route' intent of "how it got stuck"
+
+    - intent
+      - missing the point
+        - the point of preventing animal cruelty is not "so they dont have obvious evidence to point to when justifying organizing criminal enterprise against humans"
+      - invalidating the point
+        - protesting animal cruelty using signs & bumper stickers made with glue made out of dead animals
+      - making a point in an unexpected route
+        - preventing animal cruelty so they taste better
+
+    - structures
+      - switching positions/structures
+      - relevance cycles
+      - efficiencies
+      - similarities
+      - extremes
+      - bases
+        - maintaining a base of reality is useful for highlighting differences
+          - "reverse-engineering how an idiot came to a conclusion without the assumption that a cult got to them"
+      - paths
+        - alternate routes are a place to inject assumptions
+
+    - logic
+      - validity
+        - illogical connections are a plact to inject assumptions
+        - system has to make sense (have some organization) to maximize impact
 
   - variance generators (of noise) including objects on same interaction level and components that can build changes on interaction level as well as containing object interaction outputs that can cascade to lower interaction level changes
 
