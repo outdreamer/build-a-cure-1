@@ -307,6 +307,10 @@
 					- function (ability to know, responsibility to know)
 				- uses an unproven statement in an inappropriate fact context (assumes an unproven statement to be true)
 
+			- structures:
+				- assumptions can be found in contradictions
+					- example: a statement implying an exclusive/certain path (related species has X, so they must have co-evolved it on the same lineage before splitting), when a contradictory alternate possible path was mentioned (independently evolving it), and the reason for certainty/exclusivity wasnt given (why could it not be independently evolved)
+
 		- implication
 
 			- information revealed about system context

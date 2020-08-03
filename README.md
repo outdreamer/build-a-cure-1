@@ -678,6 +678,19 @@
 		- my system analyzes agent position based on info & physical assets rather than just physical assets
 
 
+	9. whats the difference between your conceptual math and 'conceptual math' as indicated here:
+		https://towardsdatascience.com/email-spam-detection-1-2-b0e06a5c0472
+
+		- that type of 'conceptual math' is removing attributes of an object and checking for a matching object in a network map
+		- my type of 'conceptual math' involves operations on the structures of a concept
+			- for example, applying or finding a concept to a system, so the concept can be detected in structures specific to the system
+				- applying 'power' to a system would impact the sources of power in that system (like functionality, function inputs, & hub nodes), adding efficiencies making each operation more powerful, alignments to maximize impact of operations, etc
+				- the abstract concept of power has structures indicated by its definition routes indicating core applications of power, like delegation & trust
+				- applying one abstract concept to another might involve translating both to a system standardized to another interface (than the conceptual interface) so their corresponding structures can be compared, their application calculated, and then translated back to the conceptual interface
+				- the concept of power would have different structures in different systems, like how different incentives allocate power differently, but a system would have its standard defined abstract structures in defined positions (function inputs)
+				- executing conceptual math operations as indicated in this repo involve standardizing to these interfaces (such as a system), and could involve different power structures each time the same operation is done, depending on context
+
+
 	9. is this too abstract to be useful? how would you implement this?
 
 		- the fact that we can imagine what a concept is means it can have structure, & interfaces act like standardizing filters:
