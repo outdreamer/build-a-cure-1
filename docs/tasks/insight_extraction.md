@@ -27,6 +27,7 @@
 			- pull function definitions from steps
 
 				- indent logic that has iterable or condition context (within a loop, if a condition occurs)
+
 				- indent logic that gives context (in the form of implementation details, like origin point)
 
 				- truth table
@@ -45,12 +46,88 @@
 			- rhetorical questions
 			- repeated segments
 
+	- apply definition
+
+		- expand examples given a definition
+
+			- given that a path is 'ambiguous', list the ways it can be ambiguous (which has a structure in this context of 'not 1-1 input-output mapping'):
+
+				- same input, different output
+				- different input, same output
+				- same input-output, different path
+
 	- identify & organize information:
 
 		- add categories to indicate information intent (design system spec, implement system, hardware components & topics)
 			- add new category when a new topic or intent is detected at the same level/topic
 				- design & implement are on the same intent level
 				- hardware components & hardware problems are at the same level, regarding the same topic
+
+		- add missing information
+			- for steps (convert to digital, map input to output, and convert to analog), a related 'intent' object (specifically 'build a function' intent) is missing 
+
+			- identify requirements of a universal gate from this paragraph:
+				- "A gate or a set of gates is called universal, if it can implement all digital systems or all the Boolean functions. So this is a very, very strong statement, a gate will be able to implement all the Boolean functions, so how can we verify that, there's no way you can en, enumerate all the Boolean functions. So how we do this is, we start, from the definition of Boolean functions, we've realized that, all of the Boolean functions can be expressed as the logical AND, the logical OR, or inverters, so by putting these three gates together, we have the so called, the standard universal gate, so all the Boolean functions, should be able to implemented by these three logical gates. And now this seems becomes easier, so for us to prove, any logical gate is universal, we only need to show that this cage can be used to implement the standard universal gates which is logical AND, logical OR, and the inverter."
+
+				- universal gate: gate set that can implement all digital systems (or all the boolean functions)
+
+					- question: how to verify that a gate set is universal
+
+						- standardized question: how to verify a gate set can implement all boolean functions
+
+					- problem: verify a gate set is universal
+
+						- standardized problem: how to verify a gate set can implement all boolean functions
+
+						- problem limit: no way to list all the boolean functions it can implement
+
+						- problem type: 
+							- limitation problem: 
+								- question: why cant you just list all the functions it can implement
+								- answer: its inefficient to just list all the functions it can implement with the intent of verifying all the functions it can implement
+							- information problem: 
+								- question: 'what does universal mean'
+								- standardized question: "what structure does a 'universal gate set' take"
+									- definition: 'meaning' indicates 'structure once standardized to relevant system'
+						
+						- solution:
+
+							- origin assumption: start from boolean function definition:
+								- "boolean function: can be implemented with just AND, OR, & NOT"
+
+							- apply component definition:
+
+								- universal gate: gate set that can implement all digital systems (or all the boolean functions)
+
+								- inject component definition
+									- inject boolean function definition:
+										- boolean function: can be implemented with just AND, OR, & NOT
+										- assess impact of definitions
+											- standardize component definition
+												- standardize boolean function definition to same format as universal gate definition, for comparison/analysis
+													- standardized boolean function definition, given order of 'universal gate' definition ('components that can implement functionality')
+														- 'AND, OR, & NOT components can implement boolean functionality (conversion of 0/1 to 0/1)'
+
+									- inject new definition with same order as universal gate definition:
+
+										- universal gate: gate set that can implement all boolean functions
+											- requirement: gates
+												- output: boolean function
+
+										- boolean function: AND, OR, & NOT component set that implement conversion of 0 or 1 to a 0 or 1
+											- requirement: AND, OR, & NOT components
+												- output: 0 or 1 converted to 0 or 1
+
+									- apply universal gate requirement/output to boolean function requirement/output
+										- to implement a universal gate that can implement boolean functions,
+											- you need AND, OR, & NOT components (requirements of boolean function)
+
+								- output universal gate definition: gate set that can implement AND, OR, & NOT
+
+							- metric: to test if a gate is universal, it needs to be able to implement AND, OR, & NOT
+
+		- group relevant processes:
+			- conversion of digital to analog & continuous to discrete
 
 		- identify steps & organize into a list
 			- instructions (execute this, apply this)
@@ -84,7 +161,7 @@
 					- functionality of sum & carry
 					- list of gates
 
-		- identify examples, function implementations, problems & solution methods as insights
+		- identify info objects (examples, questions, assumptions, function implementations, problems & solution methods) as insights, if they add useful/relevant information (usable for common intents)
 
 			- insight types:
 
@@ -106,7 +183,7 @@
 						- function step list
 
 				- define intent:
-				
+
 					- definitions
 						- references
 						- usage
