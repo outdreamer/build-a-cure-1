@@ -689,6 +689,7 @@
 				- applying one abstract concept to another might involve translating both to a system standardized to another interface (than the conceptual interface) so their corresponding structures can be compared, their application calculated, and then translated back to the conceptual interface
 				- the concept of power would have different structures in different systems, like how different incentives allocate power differently, but a system would have its standard defined abstract structures in defined positions (function inputs)
 				- executing conceptual math operations as indicated in this repo involve standardizing to these interfaces (such as a system), and could involve different power structures each time the same operation is done, depending on context
+				- this means the core operation of conceptual math from this repo 'find power' (applied to a system), would still identify a function input as having power even without 'function input' as part of the definition of power or stored as an example of power structures.
 
 
 	9. is this too abstract to be useful? how would you implement this?

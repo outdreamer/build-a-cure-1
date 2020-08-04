@@ -142,11 +142,15 @@ to do: organize into docs
   - joke insight path examples
 
     - expectations
+
       - hypothetical questions & question chains ('what if x') to generate assumptions
         - what if function x normally associated with object 1 is instead in object 2, which shows no evidence of function x
 
       - assumptions & assumption chains
         - not just "that inanimate object x has feelings" but also "and has tried to manage them but fell for a sock anyway" to fulfill an 'explanatory alternate route' intent of "how it got stuck"
+
+        - permuting the assumption that a gender will be classified as an object of the gender classification system rather than an object of a different classification system, like race or social status or species
+          https://www.twitter.com/alienbot1/status/1053376572558852100
 
     - intent
       - missing the point
