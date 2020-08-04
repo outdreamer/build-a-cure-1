@@ -68,6 +68,51 @@
 
 			- for steps (convert to digital, map input to output, and convert to analog), a related 'intent' object (specifically 'build a function' intent) is missing 
 
+		- identify definition
+
+			- pull definition of 'dont care conditions' by converting "user doesn't care what, what will be the output in these five cases" to "input value sets that dont change relevant output"
+			- statement: 'user doesnt care what will be the output in these cases'
+				- 'x doesnt care about y' means 'x finds y irrelevant' or 'y is irrelevant to x'
+			- standardized statement: 'these cases are irrelevant to the user'
+			- irrelevant definition:
+				- operates on a different interaction layer (inactive on a relevant interaction layer)
+				- useless: doesnt change/help any important things like required inputs
+				- pointless: doesnt change/help any important things like intents
+					- this includes different intents, so if it fulfills similar intents (is an equivalent), its also irrelevant in a pointless way
+			- standardized statement: 'the output of these cases doesnt help/change the user'
+			- implied question: what would execute help/change intents for the user
+				- user inputs
+				- functions to fulfill user intents
+			- implied conclusion: these cases dont fulfill user intents or provide user inputs or do anything
+			- applied implied conclusion & irrelevant definition to statement:
+				- these cases:
+					- active:
+						- are never triggered
+						- are never handled
+					- inputs:
+						- dont change inputs
+							- only change irrelevant inputs
+					- outputs:
+						- dont create outputs
+							- only create irrelevant outputs
+					- input/output conversion:
+						- change inputs to outputs in irrelevant ways
+			- apply irrelevant definition
+				- these cases involve inputs that produce the same outputs as the other cases, dont produce an output at all because theyre not allowed, or produce outputs that cant impact the user (cant be measured)
+			- apply 'abstract' standardization
+				- apply 'remove redundant objects' filter
+					- 'these cases' is redundant because a case is an input value set
+				- check for different functionality
+						- 'produce same outputs' => 'produce irrelevantly different outputs'
+						- 'produce outputs that cant impact the user' => 'produce irrelevant outputs'
+							- 'impact the user' is 'relevant'
+						- 'dont produce outputs' => 'not relevant to user'
+					- these are all reducible to 'dont change or create relevant output' 
+			- standardized statement:
+				- 'dont care conditions: input value sets that dont change relevant outputs'
+					- with an 'abstract' intent, we lose information like 'inputs that produce the same output in different ways'
+					- with a more specific definition of 'relevance' or additional defining information about the dont care conditions, we can specify rules, generalize more accurately, or add other information
+
 		- derive/identify related information
 
 			- identify steps for an intent (reduce operations in a function, map inputs to outputs, implement a definition of an 'OR gate', test if a gate is universal)
@@ -78,7 +123,7 @@
 					- operations:
 						- set parameter
 						- set parameter to constant
-						- identify equivalents (value * 1 = value, whether an input/output mapping mimics an OR gate)
+						- identify equivalents (value * 1 = value, whether an input/output mapping mimics an OR gate or the complement of a variable)
 						- remove zero term (opposite of 1 is zero, 0 * value = 0)
 						- remove neutralized term set
 						- apply definitions
