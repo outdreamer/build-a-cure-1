@@ -1,0 +1,1 @@
+risk = threats x vulnerabilities x consequences

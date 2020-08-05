@@ -1,6 +1,5 @@
 - to do:
 	- finish es import function
-	- submit ets timecard tomorrow
 	- complete hardware security & send form
 	- train algorithm that works with small data sets until you can import more
 	- config elk stack for ml anomaly detection

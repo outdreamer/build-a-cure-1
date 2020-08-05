@@ -68,6 +68,13 @@
 
 			- for steps (convert to digital, map input to output, and convert to analog), a related 'intent' object (specifically 'build a function' intent) is missing 
 
+		- identify alternate interpretations
+			- "how many different f(x,y,z) can we have to make f(0,0,1)=01, f(0,1,0)=10, f(1,0,0)=11"
+				- exclude functions that prevent:
+					- three different states
+					- reversal of one output when position of an input is moved
+				- combine operations to connect input & output
+
 		- identify definition
 
 			- pull definition of 'dont care conditions' by converting "user doesn't care what, what will be the output in these five cases" to "input value sets that dont change relevant output"
