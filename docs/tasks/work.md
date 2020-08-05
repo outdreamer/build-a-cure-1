@@ -4,6 +4,7 @@
 	- complete hardware security & send form
 	- train algorithm that works with small data sets until you can import more
 	- config elk stack for ml anomaly detection
+	- look up auto deploy tools or write a script for a standard algorithm/data set combination
 	- create wrappers for api queries
 	- a requirement of the assumption/intent/implication model is:
 		- a network of objects inherent to the problem space

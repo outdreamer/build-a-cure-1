@@ -115,6 +115,17 @@
 
 		- derive/identify related information
 
+			- identify objects like 'redundancy identification example/rule' and 'operation or object removal rule' from:
+				- "these are all the input combinations of x and y. And that they are all don't cares. Which means that this logical gate is redundant. All the possible input accommodations they are don't cares. It is irrelevant to the output here. Which in some sense means that we can ignore this gate and then the circuit remains the same."
+
+				- standardize objects
+				- apply relevant definition
+				- remove interim objects
+				- check for important objects (redundancies)
+					- apply redundancy object filters (remove extra redundant objects)
+				- identify outputs as possible intents
+					- removing an object is a possible implementation or rule to include in a 'simplification' or 'filtering' function
+
 			- identify steps for an intent (reduce operations in a function, map inputs to outputs, implement a definition of an 'OR gate', test if a gate is universal)
 
 				- "We define an example logical gate as a Boolean function f of x, y, z, it is defined as, as x prime yz plus xy prime plus y prime z, and we claim this function with this gate is universal. And how do we prove this? The first one will show that, I can use this function block f or this gate to implement the inverter. And how do I do that? I set, the second and the third parameter to f as constant to 1, so if I plug in this into the definition of f, I got x prime times 1 times 1 plus x times 1 compliments plus 1 compliments times 1. And because 1 compliments equal to 0, so this last of two terms disappeared, and then 1 times anything is, that thing itself, so this give us x compliments, that is exactly the inverter. And to draw a, a diagram, I can show this, so this is my logical gate f, and how I feed into this system is I feed x and 1, 1 into f. And, but higher from outside the box, what people see is, I give it input x to the system, and then the system outputs x prime, which is equivalent to the logical AND, logical NOT gate, the inverters. So next, we show you how to implement the OR gate, and then similarly, we put the middle, parameter to 0, and then plug in to the definition of f, so we, what we get is x prime and a y 0, so this becomes 0 times z, and the z is the new y here. And plus the first variable, which is x, times the compliments of the second variable, which is zero compliments, plus the compliments of the second variable times the third variable, which is y here. And because we know that 0 complements is 1, and 0, cancel this one so the only thing left is x plus y, which is the logical OR. 'Kay? And then to show this concept, we can go the same figure, is thus the box you feed the x and the y, and internally you are taking 0 as the middle, parameter, let this function f, give you x plus y, so from outside, this looks like a OR gate. And then similarly, we can implement the AND gate, and, which is a little bit of, more, I mean, complicated than, AND, than OR gate or NOT gate. And here is the logical implementation here, with two functional blocks, this one, the first one, get y complements, the second one get x times y, and from the outside you see x, y coming in, and then from outside you see x times y coming out, so, this is the logical AND. And because I can implement a logical AND, logical OR, and inverters, using this f, so I know that f is universal, and I can use f to implement any kind of Boolean functions or any kind of digital systems."
@@ -123,9 +134,18 @@
 					- operations:
 						- set parameter
 						- set parameter to constant
-						- identify equivalents (value * 1 = value, whether an input/output mapping mimics an OR gate or the complement of a variable)
+						- identify core logical objects
+							- equivalents (value * 1 = value, whether an input/output mapping mimics an OR gate or the complement of a variable)
+							- alternatives
+							- inputs/outputs
+							- neutralizers
+							- conditions
+							- filters
+							- variables
+							- possibilities/impossibilities
 						- remove zero term (opposite of 1 is zero, 0 * value = 0)
 						- remove neutralized term set
+						- check requirement
 						- apply definitions
 							- to specify (inject structure)
 							- to identify similarities (categorize examples of a type, identify equivalents)
