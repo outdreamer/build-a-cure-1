@@ -11,17 +11,17 @@ to do: organize into docs
         - example: does a site dev want the site to be tested? then it can accept 'test' intent workflows, otherwise request patterns similar to test request patterns & no other request patterns will be assumed to be illegitimate
     - intent-based navigation & configuration (generate config for a particular priority set like 'safety first, then functionality, then performance' or intent like 'protect my system from all third parties' or 'ask me for permission to train a model to filter external requests')
     - changing encyption algorithms on server & client according to a function with ambiguities built in (following a particular algorithm with different algorithms for example)
-    - request metadata matching: 
+    - context-fitting & request metadata matching: 
       - one person couldnt execute two simultaneous processes, so check for computations done on computer that would preclude a particular process
       - one person couldnt execute two simultaneous requests without software (verifying requests across sites with anonymizing functions), so check for approved 'bot developer' intents
       - people dont usually just infer that they should change a configuration on a site, it usually happens after they receive information about that configuration (verify information across requests at different sites to establish request legitimacy)
       - apply request/communication patterns, like that info objects such as conclusions usually follow other info objects like news articles, and actions follow conclusions
       - predictability of requests is an identifying feature and a way to generate probable data (like a probable conversation or headline, given new information queried) but also a security flaw, as it can be mimicked easier when its more predictable
       - explanation of their cause/intent for a request wont usually differ drastically from previous explanations/intents/causes without exposure to information (request change rate metadata)
-      - match intents across processes: if a user is checking their email, its highly unlikely they also suddenly simultaneously want to encrypt all their files and show a popup with a skull on it asking for credit card information
+      - match intents across processes/context: if a user is checking their email, its highly unlikely they also suddenly simultaneously want to encrypt all their files and show a popup with a skull on it asking for credit card information
     - reducing requests needed by deriving code on-demand rather than pulling it, and aligning intents across code bases to identify code that can be shared/reduced
       - example: running bug-spotting/fixing programs locally & testing in a local vm rather than installing updates, running installed updates in a local vm with extra security until typical period of attacks has passed
-
+    - computation network: calculating whether a request like 'have you calculated this & cached result' or 'calculate this' is the more efficient operation with calculation server networks
 
   - example of how the physics system has structures preventing certain cascading change types (local scope bubbling) & allowing others (nuclear chain reactions), partially through forces like gravity keeping objects at a distance: https://www.sciencealert.com/time-travel-through-a-quantum-world-has-nothing-to-fear-from-the-butterfly-effect
   - physics vertexes
