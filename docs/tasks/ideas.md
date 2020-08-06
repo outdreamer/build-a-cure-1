@@ -12,6 +12,8 @@ to do: organize into docs
       - one person couldnt execute two simultaneous processes, so check for computations done on computer that would preclude a particular process
       - one person couldnt execute two simultaneous requests without software (verifying requests across sites with anonymizing functions), so check for approved 'bot developer' intents
       - people dont usually just infer that they should change a configuration on a site, it usually happens after they receive information about that configuration (verify information across requests at different sites to establish request legitimacy)
+      - apply request/communication patterns, like that info objects such as conclusions usually follow other info objects like news articles, and actions follow conclusions
+      - predictability of requests is an identifying feature and a way to generate probable data (like a probable conversation or headline, given new information queried) but also a security flaw, as it can be mimicked easier when its more predictable
       
 
   - example of how the physics system has structures preventing certain cascading change types (local scope bubbling) & allowing others (nuclear chain reactions), partially through forces like gravity keeping objects at a distance: https://www.sciencealert.com/time-travel-through-a-quantum-world-has-nothing-to-fear-from-the-butterfly-effect
