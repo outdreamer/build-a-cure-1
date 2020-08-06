@@ -1,6 +1,10 @@
 to do: organize into docs
 
   - add 'because' operator to link each decision to an intent or assumption
+    - vms, servers, networks, encryption algorithms with intent & approved actions (browse web, email, edit doc, test software)
+    - approved workflows: use components like approved action sequences of previous sessions as the site matches requested actions
+    - centralized data store: if you go to a site for 'change your address intent', it infers & confirms your address with an address storing server/network rather than you having to type it
+    - code changing per request: once code-generation is automated, generate slightly different site code for each request (swap out dependencies, use alternative functions or workflows that have ambiguous/neutral impact on intent & execution)
 
   - example of how the physics system has structures preventing certain cascading change types (local scope bubbling) & allowing others (nuclear chain reactions), partially through forces like gravity keeping objects at a distance: https://www.sciencealert.com/time-travel-through-a-quantum-world-has-nothing-to-fear-from-the-butterfly-effect
   - physics vertexes
