@@ -8,7 +8,11 @@ to do: organize into docs
     - code changing per request: once code-generation is automated, generate slightly different site code for each request (swap out dependencies, use alternative functions or workflows that have ambiguous/neutral impact on intent & execution)
     - request demand-supply matching: assign cause to each intent (I have to go to the car insurance site bc the insurance provider submitted a request to pay a bill to a third party request tracker that approves site access requests)
     - changing encyption algorithms on server & client according to a function with ambiguities built in (following a particular algorithm with different algorithms for example)
-    - request metadata matching: one person couldnt execute two simultaneous processes or requests without software (verifying requests across sites with anonymizing functions), so check for approved 'bot developer' intents or check for computations done on computer that would preclude a particular process
+    - request metadata matching: 
+      - one person couldnt execute two simultaneous processes, so check for computations done on computer that would preclude a particular process
+      - one person couldnt execute two simultaneous requests without software (verifying requests across sites with anonymizing functions), so check for approved 'bot developer' intents
+      - people dont usually just infer that they should change a configuration on a site, it usually happens after they receive information about that configuration (verify information across requests at different sites to establish request legitimacy)
+      
 
   - example of how the physics system has structures preventing certain cascading change types (local scope bubbling) & allowing others (nuclear chain reactions), partially through forces like gravity keeping objects at a distance: https://www.sciencealert.com/time-travel-through-a-quantum-world-has-nothing-to-fear-from-the-butterfly-effect
   - physics vertexes
