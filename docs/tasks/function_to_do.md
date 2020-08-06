@@ -42,6 +42,9 @@
 
   - port changes from claims to repo
 
+  - organize certainty (info) vs. uncertainty objects (potential, risk, probability)
+
+
 ## define
 
   - definition import function

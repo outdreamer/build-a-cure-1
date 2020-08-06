@@ -2,7 +2,11 @@ to do: organize into docs
 
   - document nn-intent matching
     - in an algorithm, functions emerge like minimize, aggregate, differentiate, compete/win, choose
-    - these functions between data objects (like variables, types, etc) are suitable in a particular structure (like a sequence) for different problem types
+    - these functions between data objects (like variables, types, etc) are suitable in a particular structure (like a sequence) for different problem types, which are appropriate/optimal for different data variance, variable type sets, category difference complexity, causal structures, etc)
+
+      - when detecting the difference between cat & dog:
+        - were a hundred different variables combined, weighted & changed, with interim variables at various points, then selected after having to compete? then an algorithm/network with a similar function structure might be able to capture that difference
+      - does a particular variable in the data set (output dog feature) indicate a path between other variables not in the data set (causal path between DNA & output features), which could be captured with a particular structure of nodes/layers or level of variation between weight paths?
 
   - organize security methods
     - add 'because' operator to link each decision to an intent, implication, interpretation, or assumption
