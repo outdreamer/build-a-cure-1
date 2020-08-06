@@ -1,5 +1,9 @@
 to do: organize into docs
 
+  - document nn-intent matching
+    - in an algorithm, functions emerge like minimize, aggregate, differentiate, compete/win, choose
+    - these functions between data objects (like variables, types, etc) are suitable in a particular structure (like a sequence) for different problem types
+
   - organize security methods
     - add 'because' operator to link each decision to an intent, implication, interpretation, or assumption
     - vms, servers, networks, encryption algorithms with intent & approved actions (browse web, email, edit doc, test software)
@@ -7,7 +11,7 @@ to do: organize into docs
     - centralized data store: if you go to a site for 'change your address intent', it retrieves or infers & confirms your updated address with an address storing server/network that picked it up from an original update you submitted with authorization procedures, rather than you having to update it everywhere
     - code changing per request: once code-generation is automated, generate slightly different site code for each request (swap out dependencies, use alternative functions or workflows that have ambiguous/neutral impact on intent & execution)
     - request demand-supply matching: 
-      - assign cause to each intent (I have to go to the car insurance site bc the insurance provider submitted a request to pay a bill to a third party request tracker that approves site access requests)
+      - assign cause (demand/need/requirement or reason for intent) to each intent (I have to go to the car insurance site bc the insurance provider submitted a request to pay a bill to a third party request tracker that approves site access requests)
         - example: does a site dev want the site to be tested? then it can accept 'test' intent workflows, otherwise request patterns similar to test request patterns & no other request patterns will be assumed to be illegitimate
     - intent-based navigation & configuration (generate config for a particular priority set like 'safety first, then functionality, then performance' or intent like 'protect my system from all third parties' or 'ask me for permission to train a model to filter external requests')
     - changing encyption algorithms on server & client according to a function with ambiguities built in (following a particular algorithm with different algorithms for example)
