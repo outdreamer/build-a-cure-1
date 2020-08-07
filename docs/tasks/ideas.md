@@ -218,6 +218,19 @@ to do: organize into docs
           - identifying variables likely to change
           - identifying variables & patterns likely in a system/context
           - interfaces (priorities, abstract attributes like relevance/meaning/sense, logic)
+        - difference types:
+          - absence of object
+          - combined object in a set
+          - distorted object
+          - filtered/subset object
+          - ambiguous/alternative/interchangeable object
+          - new object type
+          - developed object with new functionality/attributes
+          - deconstructed object
+          - formatted object
+          - object generator/effect
+          - illusory/implied difference
+          - reference vs. structural vs. systemic difference
       - extremes
       - bases
         - maintaining a base of reality is useful for highlighting differences
