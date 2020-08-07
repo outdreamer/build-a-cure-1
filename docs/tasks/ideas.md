@@ -1,13 +1,17 @@
 to do: organize into docs
 
   - document nn-intent matching
+    
     - in an algorithm, functions emerge like minimize, aggregate, differentiate, compete/win, choose
-    - these functions between data objects (like variables, types, etc) are suitable in a particular structure (like a sequence) for different problem types, which are appropriate/optimal for different data variance, variable type sets, category difference complexity, causal structures, etc)
+    
+    - these functions between data objects (like variables, types, etc) are suitable in a particular structure (like a sequence) for different problem types, which are appropriate/optimal for different data variance, variable type sets, category difference complexity, causal structures, different bases & ranges of difference, modeling sub-systems & alternate routes, etc)
 
       - when detecting the difference between cat & dog:
         - were a hundred different variables combined, weighted & changed, with interim variables at various points, then selected after having to compete? then an algorithm/network with a similar function structure might be able to capture that difference
       - does a particular variable in the data set (output dog feature) indicate a path between other variables not in the data set (causal path between DNA & output features), which could be captured with a particular structure of nodes/layers or level of variation between weight paths?
+    
     - how do core network algorithm structural operations (power, scale, add, average, differentiate) map to functions & structure of a problem type (categorize, predict) or function assembly/filter (average)
+      - 'type patterns' and 'weight path patterns'
       - 'averages of adjacent points' mimicking 'features with similar positions' and 'change about a base'
       - 'a sequence of repeated options determining possible combinations' (like DNA) and 'initial starting nodes & node sequences across layers' and 'weight path patterns, starting at a base like average'
       - 'unit vectors with different direction get a vote in determining function curvature' and 'different weight vectors get a vote in determining variable importance'
@@ -184,6 +188,8 @@ to do: organize into docs
 
     - expectations
 
+      - inevitabilities/incentives/assumptions as a source of expectations
+
       - hypothetical questions & question chains ('what if x') to generate assumptions
         - what if function x normally associated with object 1 is instead in object 2, which shows no evidence of function x
 
@@ -206,6 +212,12 @@ to do: organize into docs
       - relevance cycles
       - efficiencies
       - similarities
+        - differences can be found in:
+          - attribute value, attribute structure, attribute metadata
+          - adding/removing variables, variable structures (sets, sequences, networks)
+          - identifying variables likely to change
+          - identifying variables & patterns likely in a system/context
+          - interfaces (priorities, abstract attributes like relevance/meaning/sense, logic)
       - extremes
       - bases
         - maintaining a base of reality is useful for highlighting differences
