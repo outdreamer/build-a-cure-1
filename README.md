@@ -732,6 +732,17 @@
 				- using a similar method as this example of attribute/function combination, generate all possible sets:
 				  https://twitter.com/alienbot123/status/1245950414278627328
 
+			- more evidence of damnation:
+
+				- Problem solving automation workflow identifying structure implementing the concept of randomness, which can be used to generate functions with conceptual properties like high ratio of 'calculatability of answer' to 'verification of answer'
+
+				- Identifying randomness as a determining vertex linking the concept of 'average' and the concept of 'balance' or 'equality'
+
+				- Generating the symmetry concept as a combination of reversible changes without losing information
+
+				- Identifying structure as an interface that can capture non-structured information like concepts
+
+
 	10. what is an interface 
 
 		- its a standard for comparison - in my system its a standard that reduces systems so they can be compared
