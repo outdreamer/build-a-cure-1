@@ -23,6 +23,7 @@ to do: organize into docs
     - add 'because' operator to link each decision to an intent, implication, interpretation, or assumption
     - add 'meaning' operator to index functions by meaning in addition to intent/cause/assumption/implication/context
       - "object.attribute1 = 'value' means "users can configure a variable that they will probably have different preferences on that will not add excess complexity or vulnerability to the system"
+      - 'what does it mean' translates to 'what structure does it have in a relevant system' (such as relevance to users' system of use cases & preferences)
     - vms, servers, networks, encryption algorithms with intent & approved actions (browse web, email, edit doc, test software)
     - approved workflows: use components like approved action sequences of previous sessions as the site matches requested actions
     - centralized data store: if you go to a site for 'change your address intent', it retrieves or infers & confirms your updated address with an address storing server/network that picked it up from an original update you submitted with authorization procedures, rather than you having to update it everywhere
