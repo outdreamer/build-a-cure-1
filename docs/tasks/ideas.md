@@ -25,6 +25,10 @@ to do: organize into docs
     - are there intervals of numbers that are property dense or sparse?
     - are properties denser in numbers that are more measurable or calculatable?
     - do properties have similarities (type), symmetries (function & series), coordinations (orthogonality & area measure), & efficiencies (translating to a space with computations reduced or embedded) that mean they'll accrue into particular property sets more than other property sets?
+    - which properties are never observed together (which numbers cant be combined in any space)?
+    - which properties could be changed without changing the net or general behavior of the system?
+    - what is the full set of possible difference or change types (generated with components of difference & change), and is there a gap in descriptions for them?
+    - what type of information is not structurable?
 
   - function metadata
 
