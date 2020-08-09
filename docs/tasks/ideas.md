@@ -19,11 +19,23 @@ to do: organize into docs
     - how does the problem type map to the function & function assembly?
       - if problem type is 'identification' and function assembly has a gap indicating an ambiguity, the identification cant occur in that gap, so functions with ambiguities arent good for the identification problem type, unless the ambiguity captures alternate structures (like variable values, causal paths, or variable sets)
 
-  - organize security methods
+  - whats the reason for number relationships (numbers being a definition of value, math having a set of relationships between values)
+    - can one number have a limited number of properties before its overloaded - whats the reason properties are distributed across intervals & sequences of numbers
+    - is it so awareness of a particular number gives you adjacent numbers near it that together cover a wide range of number properties, so the rest can be derived?
+    - are there intervals of numbers that are property dense or sparse?
+    - are properties denser in numbers that are more measurable or calculatable?
+    - do properties have similarities, symmetries, coordinations, & efficiencies that mean they'll accrue into particular property sets more than other property sets?
+
+  - function metadata
+
     - add 'because' operator to link each decision to an intent, implication, interpretation, or assumption
     - add 'meaning' operator to index functions by meaning in addition to intent/cause/assumption/implication/context
       - "object.attribute1 = 'value' means "users can configure a variable that they will probably have different preferences on that will not add excess complexity or vulnerability to the system"
       - 'what does it mean' translates to 'what structure does it have in a relevant system' (such as relevance to users' system of use cases & preferences)
+      - functions/libraries/applications should be indexed by meaning so they can be fit into a global function system across applications ("we're building this app because there's a need for this degree of difference given user intents, which means there is a mismatch in supply & demand for that market")
+
+  - organize security methods
+
     - vms, servers, networks, encryption algorithms with intent & approved actions (browse web, email, edit doc, test software)
     - approved workflows: use components like approved action sequences of previous sessions as the site matches requested actions
     - centralized data store: if you go to a site for 'change your address intent', it retrieves or infers & confirms your updated address with an address storing server/network that picked it up from an original update you submitted with authorization procedures, rather than you having to update it everywhere
@@ -60,6 +72,7 @@ to do: organize into docs
   - physics vertexes
     - potential energy collapses, cascades, & aggregates into structural information (like numbers) on efficiencies, in a way that maximizes difference
       - an example of a cross-interface insight
+      - symmetries are an input of interchangeability, such as two functions that can be transformed into the other that perform a similar computation, creating an efficiency (if you have one function in the symmetry, you can generate another, in case the first function doesnt compute what or how you need it to)
     - black hole unpacking function (allows information to develop)
     - universe overlap/collision/combination
     - lack of universe-preventing conditions (like how information can develop if black holes are far enough away) or potential to avoid destruction mechanisms
