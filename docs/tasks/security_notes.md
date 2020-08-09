@@ -44,5 +44,6 @@ attack types:
 - potentially unwanted programs: antivirus cant tell if its intentional installation/download
 - cross-site-scripting vulnerability
 
-- hybrid encryption uses one algorithm to encrypt data & other algorithm to encrypt exchange
+- hybrid encryption uses symmetric algorithm to encrypt data & asymmetric algorithm to encrypt key exchange
 - tls, https over tls, & pgp use hybrid encryption
+- digital signature is a hash value encrypted private key, protecting from changes after exchange and authenticating sender

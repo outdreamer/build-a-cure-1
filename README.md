@@ -692,7 +692,7 @@
 				- this means the core operation of conceptual math from this repo 'find power' (applied to a system), would still identify a function input as having power even without 'function input' as part of the definition of power or stored as an example of power structures.
 
 
-	9. is this too abstract to be useful? how would you implement this?
+	10. is this too abstract to be useful? how would you implement this?
 
 		- the fact that we can imagine what a concept is means it can have structure, & interfaces act like standardizing filters:
 		  while they are abstract terms, they have intrinsic physical attributes & map to structures even when they are abstract enough to have few physical attributes
@@ -714,6 +714,22 @@
 			- using info objects like problems/incentives/sub-systems/efficiencies & definitions & concepts like probability/relevance to create defined structures like prediction functions
 			- applying structure to unstructured information
 
+	11. can this really be used to automate math insights? that requires complex thought that cant be automated.
+
+		- whoever told you that is full of
+
+			Lattice multiplication method automation
+				- https://github.com/outdreamer/build-a-cure/tree/master/docs/specific_problem_analysis/multiplication.md
+
+			Integration method automation
+				- https://github.com/outdreamer/build-a-cure/tree/master/docs/objects/problem_space.svg
+
+			Eigenvector/eigenvalue relationship derivation automation
+				- https://twitter.com/alienbot123/status/1154930391012167680
+
+			Set generation automation
+				- using a similar method as this example of attribute/function combination, generate all possible sets:
+				  https://twitter.com/alienbot123/status/1245950414278627328
 
 	10. what is an interface 
 

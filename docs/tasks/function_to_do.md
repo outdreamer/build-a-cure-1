@@ -25,6 +25,8 @@
     - then you need conversion functions between formats (to an interface)
     - once you have conversion functions, you can connect problem space data to solutions
     - then youd need problem space visualization & solution metadata calculation functions to finish it
+    - function to determine minimum information & other solvability metrics
+      - example: if a process happened in the past and didnt leave measurable info like fossils or evolution, that problem isnt solvable, but if the phenomenon happens again and can be predicted or triggered, the information may be capturable
 
   - include example workflows with example problems
     - include example of how to generate other workflows (different starting/ending points & trajectories)
