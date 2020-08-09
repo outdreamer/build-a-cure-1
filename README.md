@@ -726,6 +726,7 @@
 
 			Eigenvector/eigenvalue relationship derivation automation
 				- https://twitter.com/alienbot123/status/1154930391012167680
+				- https://github.com/outdreamer/build-a-cure/tree/master/docs/specific_problem_analysis/automate_math_proof_example.md
 
 			Set generation automation
 				- using a similar method as this example of attribute/function combination, generate all possible sets:
