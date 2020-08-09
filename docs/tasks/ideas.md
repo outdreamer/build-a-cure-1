@@ -24,7 +24,7 @@ to do: organize into docs
     - is it so awareness of a particular number gives you adjacent numbers near it that together cover a wide range of number properties, so the rest can be derived?
     - are there intervals of numbers that are property dense or sparse?
     - are properties denser in numbers that are more measurable or calculatable?
-    - do properties have similarities, symmetries, coordinations, & efficiencies that mean they'll accrue into particular property sets more than other property sets?
+    - do properties have similarities (type), symmetries (function & series), coordinations (orthogonality & area measure), & efficiencies (translating to a space with computations reduced or embedded) that mean they'll accrue into particular property sets more than other property sets?
 
   - function metadata
 
