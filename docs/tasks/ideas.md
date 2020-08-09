@@ -21,6 +21,8 @@ to do: organize into docs
 
   - organize security methods
     - add 'because' operator to link each decision to an intent, implication, interpretation, or assumption
+    - add 'meaning' operator to index functions by meaning in addition to intent/cause/assumption/implication/context
+      - "object.attribute1 = 'value' means "users can configure a variable that they will probably have different preferences on that will not add excess complexity or vulnerability to the system"
     - vms, servers, networks, encryption algorithms with intent & approved actions (browse web, email, edit doc, test software)
     - approved workflows: use components like approved action sequences of previous sessions as the site matches requested actions
     - centralized data store: if you go to a site for 'change your address intent', it retrieves or infers & confirms your updated address with an address storing server/network that picked it up from an original update you submitted with authorization procedures, rather than you having to update it everywhere
@@ -44,6 +46,14 @@ to do: organize into docs
     - reducing requests needed by deriving code on-demand rather than pulling it, and aligning intents across code bases to identify code that can be shared/reduced
       - example: running bug-spotting/fixing programs locally & testing in a local vm rather than installing updates, running installed updates in a local vm with extra security until typical period of attacks has passed
     - computation network: calculating whether a request like 'have you calculated this & cached result' or 'calculate this' is the more efficient operation with calculation server networks
+
+  - example of choosing priorities/metrics to value:
+    - something that not everyone has the potential to be (non-structural) is more valuable if it optimizes some metric
+    - reductiveness: the lowest/simplest structure that complies with a metric (reductive choice like a parasite) also reduces potential, whereas the highest structure that complies with a metric (empowering choice like a mammal) increases potential
+    - evaluating the potential of lower life forms is less optimal than fixing them, so the metric becomes whether you fixed/empowered them or reduced them, bc they cant fix themselves
+    - the metric is whether you got the point (empowering, fixing, making other life forms complex), not whether a lower life form can become complex
+    - potential is an important metric bc more complex life forms are supposed to have the potential to be complex, so its more wrong for them (like a puppy or human) to not optimize a complexity metric than it is for a simpler life form with less potential (parasite)
+    - some metrics will be alignment with priorities rather than reaching a threshold value
 
   - example of how the physics system has structures preventing certain cascading change types (local scope bubbling) & allowing others (nuclear chain reactions), partially through forces like gravity keeping objects at a distance: https://www.sciencealert.com/time-travel-through-a-quantum-world-has-nothing-to-fear-from-the-butterfly-effect
   - physics vertexes
