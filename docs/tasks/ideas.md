@@ -27,8 +27,14 @@ to do: organize into docs
     - do properties have similarities (type), symmetries (function & series), coordinations (orthogonality & area measure), & efficiencies (translating to a space with computations reduced or embedded) that mean they'll accrue into particular property sets more than other property sets?
     - which properties are never observed together (which numbers cant be combined in any space)?
     - which properties could be changed without changing the net or general behavior of the system?
-    - what is the full set of possible difference or change types (generated with components of difference & change), and is there a gap in descriptions for them?
+    - what is the full set of possible difference or change types (generated with components of difference & change), and is there a gap in descriptions for them? (usable as a filter)
     - what type of information is not structurable?
+
+    - what happens when you stress information?
+      - it vibrates under stress, and breaks into objects of potential (like a superposition)
+        https://en.wikipedia.org/wiki/Hilbert_space#/media/File:Standing_waves_on_a_string.gif
+      - what makes it stabilize into measurable values?
+        - common intents, efficiencies, matching structures (coordinations)
 
   - function metadata
 
