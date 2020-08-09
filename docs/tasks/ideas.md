@@ -30,8 +30,8 @@ to do: organize into docs
     - what is the full set of possible difference or change types (generated with components of difference & change), and is there a gap in descriptions for them? (usable as a filter)
     - what type of information is not structurable?
 
-    - what happens when you stress information (injecting change/difference variables, or adding assumptions)?
-      - it vibrates under stress, and breaks into objects of potential (like a superposition), expands in dimension, or crosses a phase shift threshold
+    - what happens when you stress information (injecting change/difference variables, adding assumptions, using it as a dependency)?
+      - it vibrates under stress, and breaks into objects of potential (like a superposition), objects of change (adds a variance/expands in dimension, crosses a phase shift threshold)
         https://en.wikipedia.org/wiki/Hilbert_space#/media/File:Standing_waves_on_a_string.gif
       - what makes it stabilize into measurable values?
         - common assumptions, intents, efficiencies, matching structures (coordinations)
