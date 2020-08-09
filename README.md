@@ -714,6 +714,7 @@
 			- using info objects like problems/incentives/sub-systems/efficiencies & definitions & concepts like probability/relevance to create defined structures like prediction functions
 			- applying structure to unstructured information
 
+
 	11. can this really be used to automate math insights? that requires complex thought that cant be automated.
 
 		- whoever told you that is full of
@@ -731,30 +732,34 @@
 			Set generation automation
 				- using a similar method as this example of attribute/function combination, generate all possible sets:
 				  https://twitter.com/alienbot123/status/1245950414278627328
+				  <img src="https://github.com/outdreamer/build-a-cure/tree/master/docs/specific_problem_analysis/predict_pathogen_species.png" />
 
-			- more evidence of damnation:
+			- more evidence of damnation - come get your poison:
 
-				- Problem solving automation workflow identifying structure implementing the concept of randomness, which can be used to generate functions with conceptual properties like high ratio of 'calculatability of answer' to 'verification of answer'
+				- Problem solving automation workflow identifying structure implementing the concept of randomness, which can be used to generate functions with conceptual properties like high ratio of 'calculatability of answer' to 'verification of answer' (which can also be used to identify structure as an interface that can capture non-structured information like concepts)
+					https://github.com/outdreamer/build-a-cure/tree/master/docs/workflow/problem_solving_matching.md
 
-				- Identifying randomness as a determining vertex linking the concept of 'average' and the concept of 'balance' or 'equality'
+				- Linking relevant concepts to randomness such as average and balance/equality using definition routes as a method of identifying a probability distribution with randomness built-in (distribution with equal probability distributed across outcomes, or alternatively a distribution where each outcome has the same averaged probability value)
 
-				- Generating the symmetry concept as a combination of reversible changes without losing information
+				- Generating the symmetry concept as a combination of objects/attributes/functions like 'reversible changes without losing information', using core component combination analysis
+					https://github.com/outdreamer/build-a-cure/tree/master/find_existing_solutions/system_analysis/core_analysis.py
 
-				- Identifying structure as an interface that can capture non-structured information like concepts
+				- Identifying bases & other structures as an origin of a prediction function, rather than data sets alone, as alternate routes to a prediction function
+					https://github.com/outdreamer/build-a-cure/tree/master/docs/tasks/problem_workflow_example.md
 
 
-	10. what is an interface 
+	12. what is an interface 
 
 		- its a standard for comparison - in my system its a standard that reduces systems so they can be compared
 
 
-	11. what is a problem space
+	13. what is a problem space
 
 		- its the space where youd graph all the info relevant to a problem - I often use tech as a key determinant of a problem space bc which tech you have often determines which strategies you can use 
 		  but it includes all the other resources you might have access to (info, potential, energy, physical assets, etc)
 
 
-	12. why improve problem-solving at all?
+	14. why improve problem-solving at all?
 
 		- the problems with current solution methods:
 
@@ -782,7 +787,7 @@
 				- there should always be at least two comparable alternatives so a decision is difficult & not certain
 					- at least two systems, at least two perspectives, at least two metrics, at least two intents, etc - the ark requires differentiation to sustain potential
 
-	13. what do you mean by 'using potential as a base rather than time'
+	15. what do you mean by 'using potential as a base rather than time'
 
 		- time as a base for assessing change is useful in solving information problems
 		- time occurs when there are no symmetries allowing for reversibility - in order for something to be reversible, symmetries have to align to allow for efficient organization of energy flow so a system can form to be a platform for the change
@@ -804,7 +809,7 @@
 		- rather than asking 'is this resource needed at a given location' - we can ask questions like 'did we enable people in that location to solve a resource deficit?'
 
 
-	14. what does the interface actually contain?
+	16. what does the interface actually contain?
 
 		- the interface (a standardizing filter) is the following:
 			- the definition of the concept 
@@ -817,7 +822,7 @@
 		- standardizing an object to the causal interface means mapping how that object occupies or interacts with the network of core causal objects/attributes/functions - this means a query or traversal of those core items
 
 
-	15. what is the actual workflow to use this?
+	17. what is the actual workflow to use this?
 
 		- the general program steps include the following:
 
