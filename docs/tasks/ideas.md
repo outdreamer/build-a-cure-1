@@ -47,7 +47,8 @@ to do: organize into docs
 
   - example of how the physics system has structures preventing certain cascading change types (local scope bubbling) & allowing others (nuclear chain reactions), partially through forces like gravity keeping objects at a distance: https://www.sciencealert.com/time-travel-through-a-quantum-world-has-nothing-to-fear-from-the-butterfly-effect
   - physics vertexes
-    - potential energy collapses, cascades, & aggregates into structural information like numbers in a way that maximizes difference
+    - potential energy collapses, cascades, & aggregates into structural information (like numbers) on efficiencies, in a way that maximizes difference
+      - an example of a cross-interface insight
     - black hole unpacking function (allows information to develop)
     - universe overlap/collision/combination
     - lack of universe-preventing conditions (like how information can develop if black holes are far enough away) or potential to avoid destruction mechanisms
