@@ -42,15 +42,62 @@
 
 ### Stats
 
-    - bias error (missing features) is from erroneous assumptions in the learning algorithm
-    	- high bias can cause an algorithm to miss the relevant relations between features & target outputs (underfitting)
+	- errors
 
-    - variance error (doesnt generalize well) is from sensitivity to small fluctuations in the training set
-    	- high variance can cause an algorithm to model the random noise in the training data, rather than the intended outputs (overfitting)
+	    - bias error (missing features) is from erroneous assumptions in the learning algorithm
+	    	- high bias can cause an algorithm to miss the relevant relations between features & target outputs (underfitting)
 
-	- degrees of freedom: 
-		- a single scalar numerical independent parameter indicating the dimensions of a system's phase space (the set of all possible system states)
-		- standard movement in 3d space requires 3 position params & 3 velocity params describing speed & direction 
+	    - variance error (doesnt generalize well) is from sensitivity to small fluctuations in the training set
+	    	- high variance can cause an algorithm to model the random noise in the training data, rather than the intended outputs (overfitting)
+
+	- questions
+		- why isnt the squared deviation halved to take into account curvature & it's assumed to be tangential with one intersection with the function at the edge of the square
+
+	- operation intents
+
+		- standardize:
+			- compare
+			- differentiate
+			- classify
+			- equate
+
+		- scale: 
+			- standardize (if less than one)
+			- identify (if equal to one)
+			- create base for change (if greater than one, which expands it by a dimension)
+
+		- average:
+			- find a base value
+			- compare
+
+	- insights
+
+		- why choosing one measurement isnt always optimal
+		
+			- if you were deciding between using half & square root as a measurement of an area, using the insight 'find the base/unit example' might lead you to believe there were no gains to either or that they were interchangeable, bc the square root of 1, 2, 3, 4 and half of 1, 2, 3, 4 are similar enough for their differences to seem irrelevant
+
+	- definitions
+
+		- skew is unequal tails
+			- standard definition: position of mean
+		
+		- kurtosis is extremity of deviations/outliers (like fat tails), having a value of 3 for the normal distribution
+			- standard definition: deviation from random variable base (equal distribution across possible outcomes)
+		
+		- variance is expectation of the standard deviation of a random variable from its mean (how spread out values are from average, or collective deviation from mean)
+			- standard definition: centralization of change
+
+		- degrees of freedom: 
+			- a single scalar numerical independent parameter indicating the dimensions of a system's phase space (the set of all possible system states)
+			- standard movement in 3d space requires 3 position params & 3 velocity params describing speed & direction 
+
+	- you can generate the moments by combining attributes (position, centrality, range) & functions (average, standard) & objects (base implementing a random/equal distribution across outcome probabilities), building on a key metric like the mean, and filtering the combinations by which describe different change/difference types
+
+	- other metrics include:
+		- position in relation to other distributions
+		- determining tangent intersections
+		- bases
+		- initial value (was the initial value of this variable when the variable first began to change nearer to a particular metric like the average)
 
 
 ### Space
