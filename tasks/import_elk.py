@@ -10,12 +10,19 @@ curl -X PUT "localhost:9200/_all/_settings" -H 'Content-Type: application/json' 
 
 '''
 
-def import_to_elk(doc_type, data):
+def connect_to_es():
 	es = elasticsearch.Elasticsearch(
 		['localhost'],
 		port=9200
 	)
 	if es:
+		return es
+	return False
+
+def import_to_elk(doc_type, data):
+	es = connect_to_es()
+	if es:
+		import_count = 0
 		if data is None:
 			cwd = os.getcwd()
 			origin_path = ''.join([cwd, '/data/event/'])
@@ -34,9 +41,11 @@ def import_to_elk(doc_type, data):
 			for i, line in enumerate(data):
 				try:
 					es.index(index=doc_type, id=i, body=line)
+					import_count ++ 1
 				except Exception as e:
 					print('elastic import', e)
-
+			return import_count / len(data)
+	return False
 
 def import_entries():
 	entries = get_entries()
