@@ -9,9 +9,15 @@ from sanitize import sanitize_data
 '''
 which strategies will the models use?
 
+	- standard data analysis (pca, feature reduction, relationship metrics)
+
+	- use object detection api's with language-structure map
+
 	- initial version:
 
 		- templates
+			- after applying standardization function to compare overall structure, intent, & meaning
+			- without standardization, to compare to custom user-specific model
 		- unsupervised learning (k means, nearest neighbors)
 		- anomaly detection algorithms
 		
@@ -22,16 +28,21 @@ which strategies will the models use?
 	 		- every resource access, including function calls, is a possible target of a malicious agent
 	 		- apply filters on resources (valuable resources, enabling resources, access-granting resources, etc)
 
+	 		- does this request have the preceding/following request that we'd expect from a request with this intent (cause)
+
 	 		- initial implementation can be with object definition routes mapped to language map structures, then to system map structures
 
 	 	- distortion/base model
-	 		- given a particular base, what distortion functions apply?
+	 		- given a particular base (request type, user group, intent), what distortion functions apply?
+	 		- what ranges of distortion functions overlap?
+	 		- what change types of distortion functions indicate a type or base change?
 
 	 	- change model
 	 		- is this function or data point in a state of flux or does it clearly fall into a known category?
+
 '''
 
-def create_instance():
+def create_instance(client):
 	instance_name = 'API_spam'
 	on_start_content = None
 	with open('on_start.sh', 'r') as f:
@@ -40,7 +51,6 @@ def create_instance():
 	if on_start_content:
 		encoded = base64.base64_encode(on_start_content)
 		if encoded:
-			client = boto3.client('sagemaker')
 			config_response = client.create_notebook_instance_lifecycle_config(
 				NotebookInstanceLifecycleConfigName='API_config',
 				OnStart=[{'Content': encoded}]
@@ -102,10 +112,11 @@ def wait_instance(client, instance_name):
 		return False
 	return True
 
-def connect_to_instance():
+def connect_to_instance(client, instance_name):
+	''' for ec2/ecs '''
 	return False
 
-def install_dependencies(connection, dependency_type, instance_name):
+def install_dependencies(client, connection, instance_name, dependency_type):
 	if dependency_type == 'python':
 		pass
 	elif dependency_type == 'elk':
@@ -116,53 +127,49 @@ def install_dependencies(connection, dependency_type, instance_name):
 		pass
 	return False
 
-def run_tasks(connection, task_type, param, instance_name):
-	'''
+def run_tasks(client, connection, instance_name, task_type, params):
 	if task_type == 'train':
+		model_path = apply_algorithm(params['data'], params['algorithm'])		
 
-	elif task_type == 'start_api':
+	elif task_type == 'deploy_api':
+		deployed = deploy_api(params['model_path'])
 
-	elif task_type == 'stop_api':
+	elif task_type == 'start_instance':
+		start_instance(client, instance_name)
+
+	elif task_type == 'stop_instance':
+		stop_instance(client, instance_name)
 
 	elif task_type == 'start_elk':
 
 	elif task_type == 'stop_elk':
 
 	elif task_type == 'upload_data':
+		upload_data(client, connection, instance_name, params['filename'], params['target_dir'])
 
 	elif task_type == 'import_data':
 		data = sanitize_data()
 		if data:
 			print('len data', len(data))
-			import_ratio = import_to_elk('fgt_event', data)
+			import_ratio = import_to_elk('fgt_event', data, '/data/event/')
 
 	elif task_type == 'create_graph':
-		visualize_data(connection, param, instance_name)
+		graph_data(client, connection, instance_name, params['graph_type'])
 
 	else:
 		print('unknown task type')
 	return False
-	'''
 
-''' VIZ '''
-
-def visualize_data(connection, visual_type, instance_name):
-	''' add options like network graph, word stats, clusters and create an image that can be retrieved by api '''
-	image_url = ''
-	api_url = ''.join(['https://', instance_ip, 'api_url'])
-	if visual_type == 'graph':
-		''' create network graph of data '''
-		pass
-	elif visual_type == 'prediction_function':
-		''' graph prediction function with reduced vars '''
-		pass
-	else:
-		print('unknown visual type', visual_type)
-	return False
-
-def upload_data(filename, instance_name):
+def upload_data(client, connection, instance_name, filename, target_dir):
 	''' upload data or script in filename '''
-	return False
+	s3_client = boto3.client('s3')
+	key_filename = '/'.join([target_dir, filename])
+    try:
+        response = s3_client.upload_file(key_filename, 'default-bucket')
+    except ClientError as e:
+        print('s3 upload error', e)
+        return False
+    return True
 
 ''' sample scripts '''
 
@@ -171,29 +178,31 @@ script to spin up aws instance & upload data, run install.py for model dependenc
 
 '''
 def deploy_trained_prediction_model():
-	created = create_instance()
+	client = boto3.client('sagemaker')
+	created = create_instance(client)
 	if created:
 		started = start_instance(client, instance_name)
 		connection = connect_to_instance(instance_name)
 		if connection:
-			uploaded = upload_data(filename, instance_name)
+			uploaded = upload_data(client, connection, instance_name, filename, target_dir)
 			for dep_type in ['python', 'model']:
-				install_dependencies(connection, dep_type, instance_name)
-			for task_type in ['upload_data', 'train', 'start_api']:
-				run_tasks(connection, task_type, instance_name)
+				install_dependencies(client, connection, instance_name, dep_type)
+			for task_type in ['upload_data', 'train', 'deploy_api']:
+				run_tasks(client, connection, instance_name, task_type, params)
 
 '''
 script to spin up aws instance, upload data, run install.py for elk stack & import.py
 
 '''
 def deploy_elk_stack():
-	created = create_instance()
+	client = boto3.client('sagemaker')
+	created = create_instance(client)
 	if created:
 		started = start_instance(client, instance_name)
 		connection = connect_to_instance(instance_name)
 		if connection:
-			uploaded = upload_data(filename, instance_name)
+			uploaded = upload_data(client, connection, instance_name, filename, target_dir)
 			for dep_type in ['python', 'elk']:
-				install_dependencies(connection, dep_type, instance_name)
+				install_dependencies(client, connection, instance_name, dep_type)
 			for task_type in ['upload_data', 'start_elk', 'import_data']:
-				run_tasks(connection, task_type, instance_name)
+				run_tasks(client, connection, instance_name, task_type, params)
