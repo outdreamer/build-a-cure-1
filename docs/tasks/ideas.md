@@ -41,7 +41,7 @@ to do: organize into docs
     - add 'because' operator to link each decision to an intent, implication, interpretation, or assumption
     - add 'meaning' operator to index functions by meaning in addition to intent/cause/assumption/implication/context
       - "object.attribute1 = 'value' means "users can configure a variable that they will probably have different preferences on that will not add excess complexity or vulnerability to the system"
-      - 'what does it mean' translates to 'what structure does it have in a relevant system' (such as relevance to users' system of use cases & preferences)
+      - 'what does it mean' translates to 'what structure does it have in a relevant system' (such as relevance to users' system of use cases & preferences), or 'how does it fit within this system'
       - functions/libraries/applications should be indexed by meaning so they can be fit into a global function system across applications ("we're building this app because there's a need for this degree of difference given user intents, which means there is a mismatch in supply & demand for that market")
 
   - organize security methods
