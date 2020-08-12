@@ -51,7 +51,6 @@
 	    	- high variance can cause an algorithm to model the random noise in the training data, rather than the intended outputs (overfitting)
 
 	- questions
-		- why isnt the squared deviation halved to take into account curvature & it's assumed to be tangential with one intersection with the function at the edge of the square
 
 	- operation intents
 
@@ -73,8 +72,11 @@
 	- insights
 
 		- why choosing one measurement isnt always optimal
-		
+
 			- if you were deciding between using half & square root as a measurement of an area, using the insight 'find the base/unit example' might lead you to believe there were no gains to either or that they were interchangeable, bc the square root of 1, 2, 3, 4 and half of 1, 2, 3, 4 are similar enough for their differences to seem irrelevant
+
+		- why operations arent possible with certain information formats (like assigning a number to categories):
+			- it loses information needed to differentiate positions & define an addition/combination operation (like a standard definition such as 'combining attributes & removing duplicates')
 
 	- definitions
 
