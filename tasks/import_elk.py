@@ -10,6 +10,34 @@ curl -X PUT "localhost:9200/_all/_settings" -H 'Content-Type: application/json' 
 
 '''
 
+def import_to_elk(doc_type, data):
+	es = elasticsearch.Elasticsearch(
+		['localhost'],
+		port=9200
+	)
+	if es:
+		if data is None:
+			cwd = os.getcwd()
+			origin_path = ''.join([cwd, '/data/event/'])
+			for cur, _dirs, files in os.walk(origin_path):
+				for original_filename in files:
+					filename = ''.join([cur, '/', original_filename])
+					if '.json' in filename and 'new_' in filename:
+						new_json = ''.join([cur, '/new_', original_filename])
+						with open(new_json, 'r') as f:
+							lines = []
+							for i, line in enumerate(f):
+								line_data = json.loads(line)
+								data.append(line_data)
+							f.close()
+		if data:
+			for i, line in enumerate(data):
+				try:
+					es.index(index=doc_type, id=i, body=line)
+				except Exception as e:
+					print('elastic import', e)
+
+
 def import_entries():
 	entries = get_entries()
 	if entries:
@@ -157,6 +185,3 @@ def get_data(file_path):
 		if objects:
 			return objects
 	return False
-
-
-import_entries()

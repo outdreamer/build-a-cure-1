@@ -4,14 +4,15 @@ import numpy as np
 
 def sanitize_data():
 	''' use import functionality of elk or apply json data schema templates '''
+	all_new_dicts = []
 	cwd = os.getcwd()
 	origin_path = ''.join([cwd, '/data/event/'])
 	for cur, _dirs, files in os.walk(origin_path):
-		for filename in files:
-			filename = ''.join([cur, '/', filename])
-			if '.json' in filename:
-				print('filename', filename)
+		for original_filename in files:
+			filename = ''.join([cur, '/', original_filename])
+			if '.json' in filename and 'new_' not in filename:
 				csv_path = filename.replace('.json', '.csv')
+				new_json = ''.join([cur, '/new_', original_filename])
 				with open(csv_path, 'w') as csv_file:
 					with open(filename, 'r') as f:
 						''' assemble & write header '''
@@ -31,26 +32,40 @@ def sanitize_data():
 							csv_file.write('\n')
 
 						''' assign values '''
+						
 						for line in lines:
 							value_list = [str(uuid.uuid4())]
+							new_dict = {}
 							for c in all_columns:
 								if c in line:
 									v = line[c]
 									value = '::'.join(v) if type(v) == list or type(v) == tuple or type(v) == set else '::'.join(['_'.join([k, c]) for k, c in v.items()]) if type(v) == dict else v
-									value_list.append(value.strip().replace(',','__'))
+									value = value.strip().replace(',',';')
+									new_dict[c] = value
+									value_list.append(value)
 								else:
 									cols_not_found.add(c)
+									new_dict[c] = '0'
 									value_list.append('0')
 							if len(value_list) > 0:
 								csv_file.write(','.join(value_list))
 								csv_file.write('\n')
-
+								all_new_dicts.append(new_dict)
 						print('cols not found', cols_not_found)
-
 						f.close()
+
+						with open(new_json, 'w') as nf:
+							all_vals = []
+							for new_dict in all_new_dicts:
+								new_val = ','.join(['_'.join([k, v]) for k, v in new_dict.items()])
+								all_vals.append(new_val)
+							nf.write('\n'.join(all_vals))
+							nf.close()
 					csv_file.close()
 
 				df = data_processing(csv_path)
+	if len(lines) > 0:
+		return lines
 	return False
 
 def data_processing(csv_path):
