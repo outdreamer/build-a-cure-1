@@ -17,7 +17,10 @@ from numpy import array
 import scipy
 from scipy.sparse import random as sparse_random
 
-from sklearn.preprocessing import LabelEncoder, StandardScaler
+import xgboost
+
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder, OrdinalEncoder, StandardScaler
 from sklearn.decomposition import PCA, LatentDirichletAllocation, TruncatedSVD
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.manifold import TSNE
@@ -25,6 +28,7 @@ from sklearn.random_projection import sparse_random_matrix
 from sklearn.metrics import accuracy_score, f1_score
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.neural_network import MLPClassifier
 
 mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["r", "k", "c"]) 
 
@@ -39,7 +43,7 @@ def convert_reduce_classify_train_score_graph(data, problem_type, reductions, cl
 		- visualize integrated results
 	'''
 	reductions = ['pca', 'lda', 'svd', 'tsne'] if reductions is None else reductions
-	classifiers = ['lda', 'dirichlet', 'logreg'] if classifiers is None and problem_type == 'classify' else classifiers
+	classifiers = ['lda', 'dirichlet', 'logreg', 'xgb', 'mlp'] if classifiers is None and problem_type == 'classify' else classifiers
 	numeric_data = convert_data_to_numeric(data, reductions)
 	results = []
 	if numeric_data:
@@ -86,25 +90,50 @@ def convert_reduce_classify_train_score_graph(data, problem_type, reductions, cl
 		return results
 	return False
 
-def convert_data_to_numeric(data, reductions):
+def convert_data_to_numeric(data, reductions, label_column_name):
 	''' 
 		- sanitize data
 		- encode categorical data
 		- vectorize text data
 		- map trajectories of text data
 	'''
+
+	categorical = data.iloc[:,:-1].select_dtypes('object').columns
+	print('categorical', categorical)
+	for i in categorical:
+		print('categorical group count', data[i].unique())
+	print('groups count', sum(data[categorical].nunique()))
+	numeric = data._get_numeric_data()
+	print('numerical', numeric)
+	# convert numeric to float64
+	data[numeric] = data[numeric].astype('float64')
+	# data.describe() # outputs stats
+
+	for col in data.columns:
+		counts = col.value_counts()		
+		print('counts', col, counts)
+		''' to do: exclude low-count values if necessary '''
+		#data = data[col != low_count_col_value]
+
+	categorical_names = {}
 	scaler = StandardScaler()
 	for col in data.columns:
-		''' to do: encode categorical data '''
+		''' to do: encode label/categorical data '''
 		if col.dtype.name == 'object':
-			encoder = LabelEncoder()
-			encoder.fit(data[col])
-			encoded_col = encoder.transform(training_data[col])
-			data[col] = encoded_col
-			data[col] = encoder.fit_transform(data[col])
+			if col == label_column_name:
+				encoder = LabelEncoder()
+				data[col] = encoder.fit_transform(data[col])
+				categorical_names[col] = encoder.classes_
+			else:
+				enc = OneHotEncoder(drop='first') # ignore='unknown'
+				enc.fit(x_features)
+				print('one hot categories', enc.categories_)
+				data[col] = enc.transform(data[col]).toarray()
+				# enc.get_feature_names(cols)
 		''' to do: scalar takes in np.array format '''
 		data[col] = np.array(data[col]).reshape(-1, 1)
 		data[col] = scaler.fit_transform(data[col])
+	print('categorical_names', categorical_names)
 	return data
 
 def confusion_matrix(x_features, y_labels, result):
@@ -148,6 +177,10 @@ def test_model(model):
 	''' add test metrics & output a score '''
 	return False
 
+def explain_model(model):
+	''' add lime & other explanatory tools '''
+	return False
+
 def fit_regression_model(method_name, x_features, y_labels):
 	''' apply linear regression or other applicable regression type '''
 	return False
@@ -160,17 +193,29 @@ def classify(method_name, x_features, y_labels):
 		model = LatentDirichletAllocation() if components_count is None else LatentDirichletAllocation(n_components=components_count) # random_state=0)
 	elif method_name == 'lda':
 		model = LinearDiscriminantAnalysis() if components_count is None else LinearDiscriminantAnalysis(n_components=components_count)
+	elif method_name == 'xgb':
+		model = xgboost.XGBClassifier(n_estimators=600, objective='binary:logistic', silent=True, nthread=1)
+	elif method_name == 'mlp':
+		model = MLPClassifier(solver='adam', alpha=0.0001, activation='relu', batch_size=150, hidden_layer_sizes=(200, 100), random_state=1)
+
 	if model:
 		X_train, X_val, y_train, y_val = train_test_split(x_features, y_labels, test_size=0.2, random_state=27)
 		model.fit(X_train, y_train)
 		result['original']['preds'] = model.predict(X_val)
+		result['original']['score'] = model.score(X_val, y_val)
 		result['original']['acc'] = accuracy_score(y_val, preds)
 		result['original']['f1'] = f1_score(y_val, preds)
 		features_new = model.transform(x_features)
 		X_train, X_val, y_train, y_val = train_test_split(features_new, y_labels, test_size=0.2, random_state=27)
 		result['transformed']['preds'] = model.predict(X_val)
+		result['transformed']['score'] = model.score(X_val, y_val)
 		result['transformed']['acc'] = accuracy_score(y_val, preds)
 		result['transformed']['f1'] = f1_score(y_val, preds)
+
+		''' predict probability of a class '''
+		for category in set(y_labels):
+			probability = model.predict_proba(category)
+			print('category', category, 'probability', probability)		
 		return result
 	return False
 
