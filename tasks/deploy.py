@@ -141,9 +141,9 @@ def run_tasks(client, connection, instance_name, task_type, params):
 		stop_instance(client, instance_name)
 
 	elif task_type == 'start_elk':
-
+		pass
 	elif task_type == 'stop_elk':
-
+		pass
 	elif task_type == 'upload_data':
 		upload_data(client, connection, instance_name, params['filename'], params['target_dir'])
 
@@ -164,12 +164,12 @@ def upload_data(client, connection, instance_name, filename, target_dir):
 	''' upload data or script in filename '''
 	s3_client = boto3.client('s3')
 	key_filename = '/'.join([target_dir, filename])
-    try:
-        response = s3_client.upload_file(key_filename, 'default-bucket')
-    except ClientError as e:
-        print('s3 upload error', e)
-        return False
-    return True
+	try:
+		response = s3_client.upload_file(key_filename, 'default-bucket')
+	except ClientError as e:
+		print('s3 upload error', e)
+		return False
+	return True
 
 ''' sample scripts '''
 
@@ -191,7 +191,7 @@ def deploy_trained_prediction_model():
 				run_tasks(client, connection, instance_name, task_type, params)
 
 '''
-script to spin up aws instance, upload data, run install.py for elk stack & import.py
+script to spin up aws instance, upload data, run install.py for elk stack & import.py, generate default kibana vieual config & return kibana dashboard url
 
 '''
 def deploy_elk_stack():
