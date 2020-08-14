@@ -19,9 +19,10 @@ from scipy.sparse import random as sparse_random
 
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.decomposition import PCA, LatentDirichletAllocation, TruncatedSVD
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.manifold import TSNE
 from sklearn.random_projection import sparse_random_matrix
 from sklearn.metrics import accuracy_score, f1_score
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 
@@ -48,22 +49,28 @@ def convert_data_to_numeric(data, reductions):
 			encoded_col = encoder.transform(training_data[col])
 			data[col] = encoded_col
 	   		data[col] = encoder.fit_transform(data[col])
-
+		''' to do: scalar takes in np.array format '''
 		data[col] = np.array(data[col]).reshape(-1, 1)
 		data[col] = scaler.fit_transform(data[col])
-
 	results = {}
-	X_features = data.iloc[:,1:23]
+	X_features = data.iloc[:,1:23] # drop y label
 	y_label = data.iloc[:, 0]
-	''' to do: scalar takes in np.array format '''
-
 	reductions = ['pca', 'lda', 'svd', 'tsne'] if reductions is None else reductions
 	components_count = int(round(len(X_features) / 3, 0)) if len(X_features) < 100 else int(round(len(X_features) / 10, 0))
 	for reduction in reductions:
 		result = reduce_features(X_features, components_count, reduction)
 		if result:
 			results[reduction] = result
+			print('Original feature #', X_features.shape[1])
+			print('Reduced feature # with method', reduction, result['graph_data'].shape[1])
+			print('explained variance', result['explained_variance_ratio'], '\n\n')
+
 	''' to do: compare features reduced & select final set '''
+	''' iterate through classifiers and use each set to make prediction '''
+	classifiers = ['lda', 'dirichlet', 'logreg']
+	for reduction_name in classifiers:
+		acc, f1 = classify(reduction_name, X_features, y_label, ['original', 'transformed'])
+
 	return False
 
 def save_graph(data, graph_type, graph_label, xlabel, ylabel, zlabel):
@@ -138,6 +145,38 @@ def add_graph(data, fig, axs, graph_type, graph_label, xlabel, ylabel, zlabel):
 
 	return False
 
+def classify(method_name, x_features, y_labels, data_sets):
+	X_train, X_val, y_train, y_val = train_test_split(x_features, y_labels, test_size=0.2, random_state=27)
+	model = None
+	if method_name == 'logreg':
+		model = LogisticRegression()
+	elif method_name == 'dirichlet':
+		model = LatentDirichletAllocation() if components_count is None else LatentDirichletAllocation(n_components=components_count) # random_state=0)
+	elif method_name == 'lda':
+		model = LinearDiscriminantAnalysis() if components_count is None else LinearDiscriminantAnalysis(n_components=components_count)
+	if model:
+		if 'original' in data_sets:
+			model.fit(X_train, y_train)
+			preds = model.predict(X_val)
+			acc = accuracy_score(y_val, preds)
+			f1 = f1_score(y_val, preds)
+			print("Original Accuracy: {}".format(acc))
+			print("Original F1 Score: {}".format(f1))
+		if 'transformed' in data_sets:
+			model.fit(x_features, y_labels)
+			features_new = model.transform(x_features)
+			X_train, X_val, y_train, y_val = train_test_split(features_new, y_labels, test_size=0.2, random_state=27)
+			logreg_clf = LogisticRegression()
+			logreg_clf.fit(X_train, y_train)
+			preds = logreg_clf.predict(X_val)
+			acc = accuracy_score(y_val, preds)
+			f1 = f1_score(y_val, preds)
+			print("Transformed Accuracy: {}".format(acc))
+			print("Transformed F1 Score: {}".format(f1))
+		return acc, f1
+	return False, False
+
+
 def reduce_features(X_features, y, components_count, reduction_name, data_type):
 	''' 
 	X_features is in a dataframe, output by pandas.read_csv()
@@ -173,7 +212,7 @@ def reduce_features(X_features, y, components_count, reduction_name, data_type):
 		# n_components = 100 for lsa, n_iter & random_state for randomized solver, tol for arpack
 	elif reduction_name == 'dirichlet':
 		''' 
-		LDA (n_components=10, *, doc_topic_prior=None, topic_word_prior=None, learning_method='batch', learning_decay=0.7, learning_offset=10.0, max_iter=10, batch_size=128, 
+		LatentDirichletAllocation (n_components=10, *, doc_topic_prior=None, topic_word_prior=None, learning_method='batch', learning_decay=0.7, learning_offset=10.0, max_iter=10, batch_size=128, 
 		evaluate_every=-1, total_samples=1000000.0, perp_tol=0.1, mean_change_tol=0.001, max_doc_update_iter=100, n_jobs=None, verbose=0, random_state=None)
 		
 		input: array-like or sparse matrix, [samples, features]
@@ -187,7 +226,7 @@ def reduce_features(X_features, y, components_count, reduction_name, data_type):
 
 	elif reduction_name == 'lda':
 		'''
-		LDA (*, solver='svd', shrinkage=None, priors=None, n_components=None, store_covariance=False, tol=0.0001) # solver = ‘svd’ (doesnt compute cov unless store_covariance is True), ‘lsqr’, ‘eigen’
+		LinearDiscriminantAnalysis (*, solver='svd', shrinkage=None, priors=None, n_components=None, store_covariance=False, tol=0.0001) # solver = ‘svd’ (doesnt compute cov unless store_covariance is True), ‘lsqr’, ‘eigen’
 
 		"A classifier with a linear decision boundary, generated by fitting class conditional densities to the data and using Bayes’ rule.
 		The model fits a Gaussian density to each class, assuming that all classes share the same covariance matrix.
@@ -219,26 +258,43 @@ def reduce_features(X_features, y, components_count, reduction_name, data_type):
 
 	elif reduction_name == 'tsne':
 
+		''' tsne (n_components=2, *, perplexity=30.0, early_exaggeration=12.0, learning_rate=200.0, n_iter=1000, n_iter_without_progress=300, min_grad_norm=1e-07, 
+			metric='euclidean', init='random', verbose=0, random_state=None, method='barnes_hut', angle=0.5, n_jobs=None)
+
+			"converts similarities between data points to joint probabilities and tries to minimize the Kullback-Leibler divergence between the joint probabilities of the low-dimensional embedding and the high-dimensional data. t-SNE has a cost function that is not convex, i.e. with different initializations we can get different results.
+			It is highly recommended to use another dimensionality reduction method (e.g. PCA for dense data or TruncatedSVD for sparse data) to reduce the number of dimensions to a reasonable amount (e.g. 50) if the number of features is very high"
+
+			attributes:
+				embedding_ - array-like, shape (n_samples, n_components) - Stores the embedding vectors 
+	    		kl_divergence_ - float - Kullback-Leibler divergence after optimization.
+				n_iter_ - int - number of iterations run
+
+			output: Embedding of the training data in low-dimensional space
+
+		'''
+
+		X = np.array([[0, 0, 0], [0, 1, 1], [1, 0, 1], [1, 1, 1]])
+		X_embedded = TSNE(n_components=2).fit_transform(X)
+		# X_embedded.shape
+
 	else:
 		print('unknown method', reduction_name)
 
 	if reduction_method:
-		result = {}
+		result = {'reduction_method': reduction_method}
 		# graph_data = reduction.fit_transform(X_features) # fit_transform takes in array-like shape(samples, features), and returns X_new, ndarray array of shape(samples, components)
-		if reduction_name == 'lda':
-			reduction_method.fit(X_features, y)
-		else:
-			reduction_method.fit(X_features) # input is array-like shape(samples, features)
-		result['graph_data'] = reduction_method.transform(X_features)
+		result['graph_data'] = reduction_method.fit_transform(X_features) # input is array-like shape(samples, features)
 		'''
 		transform() & fit_transform():
 			- apply dimensionality reduction to x, returns x_new, array-like shape(samples, components)
 			- dirichlet.transform() returns doc_topic_distribution shape(samples, components)
 			- lda.transform() projects data to maximize class separation
+			- tsne.transform() doesnt exist
 		'''
 		result['components'] = reduction_method.components_ # principal axes, sorted by explained_variance_
 		result['singular_values'] = reduction_method.singular_values_ # singular values of components (2-norms of components in lower dimensional space)
 		result['explained_variance'] = reduction_method.explained_variance_ # amount of variance explained by each feature
+		result['explained_variance_ratio'] = reduction_method.explained_variance_ratio_
 		variance_image_path = save_graph(result['explained_variance'], 'bar', ''.join([reduction_name, 'feature variance']), reduction_name, 'explained variance', None)
 		if variance_image_path:
 			result['variance_image'] = variance_image_path
