@@ -4,7 +4,6 @@
 	- config elk stack for ml anomaly detection
 	- multiple elk stacks for applied filters (legit email adresses, matching legit templates, matching anomaly patterns)
 	- look up auto deploy tools or write a script for a standard algorithm/data set combination
-	- create wrappers for api queries
 	- a requirement of the assumption/intent/implication model is:
 		- a network of objects inherent to the problem space
 		- a set of queries for each object type to fetch the related objects
@@ -13,6 +12,13 @@
 			- query to get paths using a node to get intents for a statement (node connection)
 			- query to get missing information & uncertainty structures to get questions for a statement (node connection)
 	- fireeye mx/hx, misp
+
+	- xgboost installation
+		brew install cmake && gcc@8
+		git clone --recursive https://github.com/dmlc/xgboost && mkdir xgboost/my_build && cd xgboost/my_build
+		CC=gcc-8 CXX=g++-8 cmake ..
+		make -j4
+		cd ../python_package && python3 setup.py install
 
 	- label some example data & data from the email data set with metadata (semantic like assumptions, structural like keywords)
 

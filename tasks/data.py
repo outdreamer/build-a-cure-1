@@ -42,11 +42,57 @@ def convert_reduce_classify_train_score_graph(data, problem_type, reductions, cl
 		- integrate results to produce insights on data set
 		- visualize integrated results
 	'''
-	reductions = ['pca', 'lda', 'svd', 'tsne'] if reductions is None else reductions
-	classifiers = ['lda', 'dirichlet', 'logreg', 'xgb', 'mlp'] if classifiers is None and problem_type == 'classify' else classifiers
+	''' to do: filter options by problem type & data set '''
+
+	kernel_functions = ['radial_basis_function']
+
+	ann = ['cnn', 'mlp', 'gan', 'recurrent', 'ltsm']
+
+	ensemble = ['adaboost', 'boosting', 'bagging', 'xgb', 'gradient_boosted_decision_tree', 'gradient_boosting_machine', 'random_forest', 'stacked_generalization']
+	
+	# unsupervised clustering with methods appropriate according to varying density measures
+	clustering = ['knn', 'kmeans', 'dbscan', 'expectation-maximization', 'hierarchical']
+	
+	# unsupervised
+	unsupervised = ['hierarchical_clustering', 'gan', 'kmeans', 'mixture', 'dbscan', 'local_outlier_factor', 'autoencoder', 'deep_belief', 'self_organizing_map', 'expectation-maximization', 'pca', 'ica', 'nmf', 'svd']
+	
+	# supervised
+	supervised = ['svm', 'nearest_neighbors', 'regression', 'decision_tree', 'naive_bayes', 'lda', 'knn', 'learning_vector_quant']
+
+	# dimensionality reduction
+	reductions = ['dirichlet', 'pca', 'lda', 'svd', 'tsne', 'ica', 'nmf', 'mds', 'autoencoder', 'self_organizing_map'] # multidimensional scaling, non-negative matrix factorization
+
+	function_approximation = ['radial_basis_function']
+
+	regressions = ['linear', 'binary', 'mixed', 'nonparametric', 'nonlinear', 'polynomial', 'binomial', 'poisson', 'ordinal', 'logreg', 'gaussian_process', 'partial_least_squares', 'principal_components']
+
+	anomaly = ['autoencoder', 'variational_autoencoders', 'local_outlier_factor', 'lstm', 'bayesian', 'hidden_markov', 'cluster_analysis_outlier_detection', 'knn', 'one-class svm', 'bagging', 'score_normalization']
+
+	regularizations = ['ridge', 'lasso']
+	
+	# other
+	hierarchical_linear_models = ['random_effects']
+
+	if problem_type == 'anomaly':
+		algorithms = anomaly
+	elif problem_type == 'cluster':
+		algorithms = clustering
+	elif problem_type == 'supervised':
+		algorithms = supervised
+	elif problem_type == 'unsupervised':
+		algorithms = unsupervised
+	elif problem_type == 'regression':
+		algorithms = regressions
+	elif problem_type == 'ann':
+		algorithms = ann
+	elif problem_type == 'reduce_dimensions':
+		''' just reduce & return features '''
+		algorithms = reductions
+
 	numeric_data = convert_data_to_numeric(data, reductions)
 	results = []
 	if numeric_data:
+		regularized_data = regularize_data(data, regularizations)
 		for reduction_name in reductions:
 			X_features = numeric_data.iloc[:,1:] # drop y label
 			y_labels = numeric_data.iloc[:, 0]
@@ -88,6 +134,9 @@ def convert_reduce_classify_train_score_graph(data, problem_type, reductions, cl
 				results.append(result)
 	if len(results) > 0:
 		return results
+	return False
+
+def regularize_data(data, regularizations):
 	return False
 
 def convert_data_to_numeric(data, reductions, label_column_name):

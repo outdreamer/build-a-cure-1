@@ -171,7 +171,9 @@ def upload_data(client, connection, instance_name, filename, target_dir):
 		return False
 	return True
 
-''' sample scripts '''
+''' installation:
+- python3, pip3, requirements.txt
+'''
 
 '''
 script to spin up aws instance & upload data, run install.py for model dependencies & train.py, and api.py to start api server for model
