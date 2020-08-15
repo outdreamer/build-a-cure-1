@@ -747,6 +747,10 @@
 				- Identifying bases & other structures as an origin of a prediction function, rather than data sets alone, as alternate routes to a prediction function
 					https://github.com/outdreamer/build-a-cure/tree/master/docs/tasks/problem_workflow_example.md
 
+				- generate a function with certain attributes using net intent of structural component operations
+
+					- to generate a function with ambiguity in input/output relationships (as in multiple inputs produce the same output), introduce an exponent in the dependent variable (like how x^2 + y^2 removes the concept of 'uniqueness' from the input/output relationship, given how exponents use repetition of the same base (x as a base, multiplied by itself), and using how combining different types of repetition can remove 'uniqueness' from the input/output relationship, and using how different pairs of inputs can generate the same outputs with a squaring operation (making squaring the unit operation to fulfills intents like "generate the 'ambiguity' attribute" or "remove the 'uniqueness' attribute")
+
 				- kernel trick: 
 
 					- so from the origin intent 'differentiate shapes', we:
@@ -768,7 +772,7 @@
 									- origin group A: origin group B
 									- origin position attribute similarity (low values of A are similar to low values of B)
 									- target position attribute difference (low values of A are different from low values of B)
-									- to get a difference in an attribute (like position), you can apply a transform to maximize differences within that attribute, or add an attribute that offers another type of difference
+									- to get a difference in an attribute (like position), you can apply a transform to maximize differences within that attribute, or add an attribute that offers another type of difference, so that the attribute as defined in another space/system is differentiated
 									- origin & target position attribute similarity can be converted into a difference:
 										- if there is a similarity between the threshold structure within a function output, and the threshold structure differentiating groups, that could make the input-output relationship generating function align with the overall 'differentiating shapes' intent
 											- inject a similarity in that position, taking advantage of the existing similarity in structures (output threshold & group boundary both being examples of the 'differentiating limit' structure)
