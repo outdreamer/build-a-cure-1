@@ -749,19 +749,46 @@
 
 				- kernel trick: 
 
+					- so from the origin intent 'differentiate shapes', we:
+						- pulled definitions relevant to that intent
+						- iterated through definitions
+						- applied definitions to a system to get their structure in that system (answering the question, "what form would 'maximize difference' take in the graph system"), with answers like ('add a change type' and 'maximize change')
+						- applying the structures retrieved by that definition application to the system (apply 'add a change type' by pulling types of change, iterating & applying them) in a way that aligns with origin intent
+							- apply 'add a change type' (specifically a dimension of change) in a way that aligns with intent 'differentiating shapes'
+							- this application takes the form of pulling metrics to measure change:
+								- output difference, across inputs
+								- input differences
+
+						- you have various starting points to automate finding the solution:
+
+							- find the structure missing the solution first (derive solution structure, then fill it in with a solution)
+								- find the structure of the input/output relationship that needs to occur
+								- then fill it in with a function producing that input/output relationship
+
+							- or try to combine solution components first & apply limits/tests/filters to check if it matches solution metrics (build & refine solution)
+								- find functions likely to produce difference across inputs
+								- then check if they produce the right difference, and refine it (by centering/scaling) until it matches the difference you need
+
 					- the intent is to 'differentiate shapes on a graph with a straight line' (shapes indicating clusters belonging to different data categories)
+					
 					- in its standard definition routes, 'differentiating' can take the form of:
 						- 'maximizing difference'
 						- 'isolating difference'
 						- 'producing difference'
+					
 					- 'maximizing difference' can take the form of 'adding a difference' rather than 'maximizing an existing difference'
+					
 					- if there is a difference, but it's not defined by a straight line, the difference boundary can be used to indicate a group of data that should have a different added attribute value (like height) than the other points
+					
 					- 'adding a difference' between shapes can translate to the structures:
 						- 'adding a dimension'
 						- 'changing the difference definition'
 						- 'adding a difference of an existing type (scalar in current dimension)'
+					
 					- now that you have a specific structure ('add a difference in the form of a dimension') to achieve this general intent ('differentiate shapes'), apply that structure to the problem:
+				      
 				      - structural intent: find a function that maximizes differences between shapes on a graph
+				        
 				        - find the differentiating boundary on the current graph if there is one
 
 					        1. identify a function that would create different values on either side of the boundary (minimizing values on one side, maximizing values on the other side)
@@ -771,9 +798,11 @@
 					          		- so 'alignment' here consists of centering/shifting the axes so that:
 					          			- low/high values occur in the right positions
 					          			- the difference where low outputs change into high outputs aligns with the differentiating boundary
+					       
 					       	2. alternatively, find the direction of change (from one shape to another) that could be mapped to a direction of growth in a function
 					        	- 'direction of change' = 'outward from center of shape', so growth in value (from zero up) should align with the outward direction (align origin with center of shape)
 					        		- <img src="https://en.wikipedia.org/wiki/Kernel_method#/media/File:Kernel_trick_idea.svg"/>
+					        
 					        3. alternatively, identify that the shape-differentiating boundary is the important object, and that this boundary should also be the separator in low/high outputs from whatever function is chosen
 					        
 					        - 1, 2, & 3 are just different starting points/formats of the same trajectory ('aligning inputs/outputs across differentiating boundary', 'differentiating outputs for different group inputs', 'align direction of group change with direction of increasing change')
@@ -781,6 +810,7 @@
 					      - then apply this differentiating function to add a dimension of change
 					      - then test if the new low outputs & relatively higher inputs are different enough to clearly separate them with a line (the unit separator)
 					      - if not, try another function to maximize differences in outputs between shapes, with other structures that definitions (like 'adding a difference' or 'maximizing difference') can map to
+
 					    - if there isnt a differentiating boundary, find a differentiating attribute between data groups, such as numbers that are square roots/primes/integers
 					    	- then apply the same procedure as above, to find a function that differentiates numbers with that attribute from numbers without it
 
@@ -878,6 +908,10 @@
 
 			8. store any info objects found that arent already in indexes (insights, patterns, problem-solution matches, interfaces, functions)
 
+
+	18. how come youre the only person who came up with this in all of human history?
+
+		- I decided to try to automate problem-solving once I saw patterns in the rules people used to solve problems, and once I found an example proof of concept, I pursued it. Alternatively, if you don't have thoughts like that or any thoughts at all, you can try some caffeine.
 
 
 ## Problem-solving Insight Paths 
