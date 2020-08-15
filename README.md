@@ -748,16 +748,31 @@
 					https://github.com/outdreamer/build-a-cure/tree/master/docs/tasks/problem_workflow_example.md
 
 				- kernel trick: 
-			      - how to find a function that maximizes differences between shapes (indicating clusters belonging to different data categories) on a graph
-			        - find the differentiating boundary on the current graph
-			        - identify a function that would create different values on either side of the boundary (minimizing values on one side, maximizing values on the other side)
-			          - example: exponent functions have low outputs for low inputs and proportionately higher outputs for slightly higher inputs, so if you align the boundary with the position where the input/output proportion changes, you'll align low inputs with low outputs and slightly higher inputs with high outputs
-			          - alignment consists of centering/shifting the axis so low/high values occur in the target positions
-			        - alternatively, find the direction of change (from one shape to another) that could be mapped to a direction of growth
-			      - then apply this function to add a dimension of change
-			      - then test if the new low outputs & relatively higher inputs are different enough to clearly separate them with a line (the unit separator)
-			      - if not, try another function to maximize differences in outputs between shapes
 
+					- the intent is to 'differentiate shapes on a graph with a straight line' (shapes indicating clusters belonging to different data categories)
+					- in its standard definition routes, 'differentiating' can take the form of:
+						- 'maximizing difference'
+						- 'isolating difference'
+						- 'producing difference'
+					- 'maximizing difference' can take the form of 'adding a difference' rather than 'maximizing an existing difference'
+					- if there is a difference, but it's not defined by a straight line, the difference boundary can be used to indicate a group of data that should have a different added attribute value (like height) than the other points
+					- 'adding a difference' between shapes can translate to the structures:
+						- 'adding a dimension'
+						- 'changing the difference definition'
+						- 'adding a difference of an existing type (scalar in current dimension)'
+					- now that you have a specific structure ('add a difference in the form of a dimension') to achieve this general intent ('differentiate shapes'), apply that structure to the problem:
+				      - structural intent: find a function that maximizes differences between shapes on a graph
+				        - find the differentiating boundary on the current graph if there is one
+					        - identify a function that would create different values on either side of the boundary (minimizing values on one side, maximizing values on the other side)
+					          - example: 
+					          	- functions like x^2 have low outputs for low inputs and proportionately higher outputs for slightly higher inputs, so if you align the boundary with the position where the input/output proportion changes, you'll align low inputs with low outputs and slightly higher inputs with high outputs
+					          - alignment consists of centering/shifting the axis so low/high values occur in the target positions
+					        - alternatively, find the direction of change (from one shape to another) that could be mapped to a direction of growth
+					      - then apply this differentiating function to add a dimension of change
+					      - then test if the new low outputs & relatively higher inputs are different enough to clearly separate them with a line (the unit separator)
+					      - if not, try another function to maximize differences in outputs between shapes, with other structures that definitions (like 'adding a difference' or 'maximizing difference') can map to
+					    - if there isnt one, find a differentiating attribute between data groups, such as numbers that are square roots/primes/integers
+					    	- then apply the same procedure as above, to find a function that differentiates numbers with that attribute from numbers without it
 
 	12. what is an interface 
 
