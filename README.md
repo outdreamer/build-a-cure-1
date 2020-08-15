@@ -753,40 +753,6 @@
 
 				- kernel trick: 
 
-					- so from the origin intent 'differentiate shapes', we:
-
-						- pulled definitions relevant to that intent
-						- iterated through definitions
-						- applied definitions to a system to get their structure in that system (answering the question, "what form would 'maximize difference' take in the graph system"), with answers like ('add a change type' and 'maximize change')
-						- applying the structures retrieved by that definition application to the system (apply 'add a change type' by pulling types of change, iterating & applying them) in a way that aligns with origin intent
-							- apply 'add a change type' (specifically a dimension of change) in a way that aligns with intent 'differentiating shapes'
-								- this application involves first pulling important change types:
-									- change type 'input difference', in group membership
-									- change type 'output difference', across inputs of different types
-									- change type 'output difference thresshold', where outputs begin to change from one change type (linear, like 1^2 = 1) to another (quadratic, like 2^2 = 4)
-									- change type 'attribute difference', in attributes of a data point
-									- change type 'value difference', in various values of an attribute across different data points
-
-								- then mapping these to the group differences, which have their own input/output relationship already defined (input data::output group label)
-								- mapping the change types to the group difference implies a function linking inputs & outputs, across the difference trajectory:
-									- origin group A: origin group B
-									- origin position attribute similarity (low values of A are similar to low values of B)
-									- target position attribute difference (low values of A are different from low values of B)
-									- to get a difference in an attribute (like position), you can apply a transform to maximize differences within that attribute, or add an attribute that offers another type of difference, so that the attribute as defined in another space/system is differentiated
-									- origin & target position attribute similarity can be converted into a difference:
-										- if there is a similarity between the threshold structure within a function output, and the threshold structure differentiating groups, that could make the input-output relationship generating function align with the overall 'differentiating shapes' intent
-											- inject a similarity in that position, taking advantage of the existing similarity in structures (output threshold & group boundary both being examples of the 'differentiating limit' structure)
-
-						- you have various starting points to automate finding the solution:
-
-							- find the structure missing the solution first (derive solution structure, then fill it in with a solution)
-								- find the structure of the input/output relationship that needs to occur
-								- then fill it in with a function producing that input/output relationship
-
-							- or try to combine solution components first & apply limits/tests/filters to check if it matches solution metrics (build & refine solution)
-								- find functions likely to produce difference across inputs
-								- then check if they produce the right difference, and refine it (by centering/scaling) until it matches the difference you need
-
 					- the intent is to 'differentiate shapes on a graph with a straight line' (shapes indicating clusters belonging to different data categories)
 					
 					- in its standard definition routes, 'differentiating' can take the form of:
@@ -831,6 +797,67 @@
 
 					    - if there isnt a differentiating boundary, find a differentiating attribute between data groups, such as numbers that are square roots/primes/integers
 					    	- then apply the same procedure as above, to find a function that differentiates numbers with that attribute from numbers without it
+
+					- so from the origin intent 'differentiate shapes', we:
+
+						- pulled definitions relevant to that intent
+						
+						- iterated through definitions
+						
+						- applied definitions to a system to get their structure in that system (answering the question, "what form would 'maximize difference' take in the graph system"), with answers like ('add a change type' and 'maximize change')
+						
+						- applying the structures retrieved by that definition application to the system (apply 'add a change type' by pulling types of change, iterating & applying them) in a way that aligns with origin intent
+
+							- apply 'add a change type' (specifically a dimension of change) in a way that aligns with intent 'differentiating shapes'
+
+								- this application involves first pulling core or important change types in this system:
+									- change type 'input difference', in group membership
+									- change type 'output difference', across inputs of different types
+									- change type 'output difference thresshold', where outputs begin to change from one change type (linear, like 1^2 = 1) to another (quadratic, like 2^2 = 4)
+									- change type 'attribute difference', in attributes of a data point
+									- change type 'value difference', in various values of an attribute across different data points
+
+								- then mapping these as inputs generating the group differences, which have their own input/output relationship already defined (input data::output group label)
+
+								- formatting/arranging the change types in a structure that generates the group difference implies a function linking inputs & outputs, across the difference trajectory:
+									
+									- origin group A: origin group B difference
+									
+									- origin position attribute similarity (low values of A are similar to low values of B)
+									
+									- target position attribute difference (low values of A are different from low values of B)
+										- meaning converted low values of A are lower/higher than converted low values of B
+									
+										- to get a difference in an attribute (like position), you can apply a conversion to maximize differences within that attribute, or add an attribute that offers another type of position difference, so that the attribute as defined in another space/system (3-d as opposed to 2-d) is differentiated
+									
+								- the origin position attribute similarity can be converted into the target position attribute difference with a function:
+
+									- if there is a similarity between the threshold structure within a function output, and the threshold structure differentiating groups, that could make the input-output relationship generating function align with the overall 'differentiating shapes' intent
+
+										- inject a similarity in that position, taking advantage of the existing similarity in structures (output threshold & group boundary both being examples of the 'differentiating limit' structure), by aligning group membership and threshold side
+
+									- now you can search for a function that would align inputs/outputs across this threshold, starting your search with functions having an attribute of volatility (similar inputs produce very different outputs)
+
+										- with the restrictions that:
+
+											- it should have one major change in output change type, like x^2 has one major change from semi-linear to very nonlinear change
+											- this major change should occur at relatively low values, for standardization & the fact that there isnt much room in the center shape for growth types
+
+										- other functions maximizing difference would include a wave where adjacent inputs produce positive/negative values, but that implies other groups or alternating groups beyond the two categories
+
+
+						- you have various starting points to automate finding the solution:
+
+							- find the structure missing the solution first (derive solution structure, then fill it in with a solution)
+								- find the structure of the input/output relationship that needs to occur
+								- then fill it in with a function producing that input/output relationship
+
+							- or try to combine solution components first & apply limits/tests/filters to check if it matches solution metrics (build & refine solution)
+								- find functions likely to produce difference across inputs
+								- then check if they produce the right difference, and refine it (by centering/scaling) until it matches the difference you need
+
+							- this solution is an example implementation of the structure-intent interface combination, with a specific implementation of the 'change' interface within that interface combination
+
 
 	12. what is an interface 
 
