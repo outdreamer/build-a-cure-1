@@ -1,4 +1,5 @@
-	kernel_functions = ['radial_basis_function']
+	
+	kernel_functions = ['radial_basis_function'] # weighting
 	ann = ['cnn', 'mlp', 'gan', 'recurrent', 'ltsm']
 	ensemble = ['adaboost', 'boosting', 'bagging', 'xgb', 'gradient_boosted_decision_tree', 'gradient_boosting_machine', 'random_forest', 'stacked_generalization']
 	clustering = ['knn', 'kmeans', 'dbscan', 'expectation-maximization', 'hierarchical', 'svm_clustering']
@@ -11,11 +12,17 @@
 	parameters = []
 	metrics = []
 	limits = []
-	efficiencies = [] # why some information is more adjacently mappable to other information
+	assumptions = [
+		'random variable', 'regression linearity', 'homogeneity of error variances', 'independence/normality of error terms', 'homogeneity of regression slopes', 'independence/orthogonality of variables'
+	]
+	problems = ['multicollinearity', 'bias', 'assumption', 'method_mismatch']
+	efficiencies = [
+		'similar structures like a boundary and a phase shift', 
+		'phase shifts like when a change type converts to another', 
+		'existing differences as an input/source of other differences'
+	] # why some information is more adjacently mappable to other information
 	all_intents = {
-		'regression': {
-
-		}, 
+		'regression': {}, 
 		'predict', 
 		'classify': {
 			'linear',
@@ -28,9 +35,13 @@
 		'differentiate clusters', 
 		'combine'
 	}
+	alternatives = {}
+	alternatives['cov_adjustments'] = ['ANCOVA', 'random_effects'] # analysis of covariance
+	alternatives['dependent_mean_equality_across_independent_category_without_continuous_covariates'] = ['ANOVA/regression', 'ANCOVA']
 	definition_schema = {
 		'name': {
 			'definitions': []
+			'related_objects': {},
 			'alternatives': [], # interchangeable or alternate methods, not variants of this method
 			'assumptions': [],
 			'variants': {
@@ -52,11 +63,6 @@
 			'method_steps': []
 		}
 	}
-	assumptions = [
-		'random variable', 'regression linearity', 'homogeneity of error variances', 'independence/normality of error terms', 'homogeneity of regression slopes', 'independence/orthogonality of variables'
-
-	]
-	problems = ['multicollinearity', 'bias', 'assumption', 'method_mismatch']
 	methods = {
 		'multidimensional_scaling': {
 			'definitions': [
@@ -64,6 +70,7 @@
 				'principal coordinates analysis', 
 				'input pair-difference matrix & output coordinate matrix minimizing strain loss function'
 			],
+			'related_objects': {},
 			'alternatives': [], 
 			'assumptions': ['euclidean distance'],
 			'variants': {
@@ -91,6 +98,7 @@
 				'assigns new data to one category or the other, given labeled data with two label categories',
 				'maximizes difference between example data points of different categories, predicting category by side of gap'
 			]
+			'related_objects': {},
 			'alternatives': [], # interchangeable or alternate methods, not variants of this method
 			'assumptions': [],
 			'variants': {
@@ -117,9 +125,23 @@
 			'insights': [],
 			'method_steps': []
 		},
-		'kernel_method': {
-			'definitions': ['']
-			'alternatives': [], 
+		'kernel': {
+			'definitions': [
+				'method of mapping an input-output relationship to a space where different sets are linearly separable'
+			]
+			'related_objects': {
+				'kernel_function': {
+					'function': {
+						'integration/aggregation': 'weighted sum function', 
+						'differentiation': ''.join([
+							"function that calculates a weighted sum of similarities of new x' to origin data set x-values (similarities found with the kernel mapping x to x'),",
+							"with weights applied to each origin input x-value's similarity to x' indicating importance of that origin input in determining y",
+							"to find output y for each new x'"
+						])
+					}
+				}
+			},
+			'alternatives': [],
 			'assumptions': [],
 			'variants': {
 				'reason_why_it_varies_varied_attribute_or_variant_type': {
@@ -127,7 +149,13 @@
 				}
 			},
 			'types': [],
-			'usage_intents': [],
+			'usage_intents': {
+				'functions': [
+					'compute differences with a lower-dimensional calculation',
+					'convert function into a higher-dimensional function by replacing features with kernel function',
+				],
+				'neural networks': ['svm', 'kernel perceptron', 'gaussian_process', 'pca', 'canonical_correlation_analysis', 'ridge_regression', 'spectral_clustering', 'linear_adaptive_filters']
+			},
 			'problems': [],
 			'intents::strategies': [
 				'general_intent': ['specific_intent'],
@@ -136,12 +164,10 @@
 				}
 			],
 			'functional_reasons': {},
-			'insights': [],
+			'insights': [
+				'avoids computation cost of explicitly mapping a data set to another space with a feature map, using kernel functions to map to inner product spaces using existing variables'
+			],
 			'method_steps': []
 		}
 
 	}
-
-	alternatives = {}
-	alternatives['cov_adjustments'] = ['ANCOVA', 'random_effects'] # analysis of covariance
-	alternatives['dependent_mean_equality_across_independent_category_without_continuous_covariates'] = ['ANOVA/regression', 'ANCOVA']
