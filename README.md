@@ -763,15 +763,25 @@
 					- now that you have a specific structure ('add a difference in the form of a dimension') to achieve this general intent ('differentiate shapes'), apply that structure to the problem:
 				      - structural intent: find a function that maximizes differences between shapes on a graph
 				        - find the differentiating boundary on the current graph if there is one
-					        - identify a function that would create different values on either side of the boundary (minimizing values on one side, maximizing values on the other side)
+
+					        1. identify a function that would create different values on either side of the boundary (minimizing values on one side, maximizing values on the other side)
 					          - example: 
 					          	- functions like x^2 have low outputs for low inputs and proportionately higher outputs for slightly higher inputs, so if you align the boundary with the position where the input/output proportion changes, you'll align low inputs with low outputs and slightly higher inputs with high outputs
-					          - alignment consists of centering/shifting the axis so low/high values occur in the target positions
-					        - alternatively, find the direction of change (from one shape to another) that could be mapped to a direction of growth
+					          	- 'aligning low inputs' means arranging the axes so the low axis values near zero overlap with the shape positions that should have low outputs
+					          		- so 'alignment' here consists of centering/shifting the axes so that:
+					          			- low/high values occur in the right positions
+					          			- the difference where low outputs change into high outputs aligns with the differentiating boundary
+					       	2. alternatively, find the direction of change (from one shape to another) that could be mapped to a direction of growth in a function
+					        	- 'direction of change' = 'outward from center of shape', so growth in value (from zero up) should align with the outward direction (align origin with center of shape)
+					        		- <img src="https://en.wikipedia.org/wiki/Kernel_method#/media/File:Kernel_trick_idea.svg"/>
+					        3. alternatively, identify that the shape-differentiating boundary is the important object, and that this boundary should also be the separator in low/high outputs from whatever function is chosen
+					        
+					        - 1, 2, & 3 are just different starting points/formats of the same trajectory ('aligning inputs/outputs across differentiating boundary', 'differentiating outputs for different group inputs', 'align direction of group change with direction of increasing change')
+
 					      - then apply this differentiating function to add a dimension of change
 					      - then test if the new low outputs & relatively higher inputs are different enough to clearly separate them with a line (the unit separator)
 					      - if not, try another function to maximize differences in outputs between shapes, with other structures that definitions (like 'adding a difference' or 'maximizing difference') can map to
-					    - if there isnt one, find a differentiating attribute between data groups, such as numbers that are square roots/primes/integers
+					    - if there isnt a differentiating boundary, find a differentiating attribute between data groups, such as numbers that are square roots/primes/integers
 					    	- then apply the same procedure as above, to find a function that differentiates numbers with that attribute from numbers without it
 
 	12. what is an interface 
