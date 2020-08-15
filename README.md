@@ -747,6 +747,17 @@
 				- Identifying bases & other structures as an origin of a prediction function, rather than data sets alone, as alternate routes to a prediction function
 					https://github.com/outdreamer/build-a-cure/tree/master/docs/tasks/problem_workflow_example.md
 
+				- kernel trick: 
+			      - how to find a function that maximizes differences between shapes (indicating clusters belonging to different data categories) on a graph
+			        - find the differentiating boundary on the current graph
+			        - identify a function that would create different values on either side of the boundary (minimizing values on one side, maximizing values on the other side)
+			          - example: exponent functions have low outputs for low inputs and proportionately higher outputs for slightly higher inputs, so if you align the boundary with the position where the input/output proportion changes, you'll align low inputs with low outputs and slightly higher inputs with high outputs
+			          - alignment consists of centering/shifting the axis so low/high values occur in the target positions
+			        - alternatively, find the direction of change (from one shape to another) that could be mapped to a direction of growth
+			      - then apply this function to add a dimension of change
+			      - then test if the new low outputs & relatively higher inputs are different enough to clearly separate them with a line (the unit separator)
+			      - if not, try another function to maximize differences in outputs between shapes
+
 
 	12. what is an interface 
 

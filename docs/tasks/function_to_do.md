@@ -46,6 +46,8 @@
 
   - organize certainty (info) vs. uncertainty objects (potential, risk, probability)
 
+  - add examples of math automation
+  
 
 ## define
 
