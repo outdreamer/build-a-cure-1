@@ -127,18 +127,23 @@
 		},
 		'kernel': {
 			'definitions': [
-				'method of mapping an input-output relationship to a space where different sets are linearly separable'
+				'method of mapping an input-output relationship to a space where different sets are linearly separable',
+				'instance-based learner',
+
 			]
 			'related_objects': {
 				'kernel_function': {
 					'function': {
-						'integration/aggregation': 'weighted sum function', 
+						'integration/aggregation': 'weighting function for a weighted sum', 
 						'differentiation': ''.join([
 							"function that calculates a weighted sum of similarities of new x' to origin data set x-values (similarities found with the kernel mapping x to x'),",
 							"with weights applied to each origin input x-value's similarity to x' indicating importance of that origin input in determining y",
 							"to find output y for each new x'"
 						])
 					}
+				},
+				'inner_product': {
+
 				}
 			},
 			'alternatives': [],

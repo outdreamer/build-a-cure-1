@@ -1,24 +1,29 @@
 - to do:
-	- finish es import function for other data
-	- train algorithm that works with small data sets until you can import more
-	- config elk stack for ml anomaly detection
-	- multiple elk stacks for applied filters (legit email adresses, matching legit templates, matching anomaly patterns)
-	- look up auto deploy tools or write a script for a standard algorithm/data set combination
-	- a requirement of the assumption/intent/implication model is:
-		- a network of objects inherent to the problem space
-		- a set of queries for each object type to fetch the related objects
-			- query to get surrounding objects to retrieve implications of a statement (node connection)
-			- query to get requirements + prior implications to retrieve assumptions of a statement (node connection)
-			- query to get paths using a node to get intents for a statement (node connection)
-			- query to get missing information & uncertainty structures to get questions for a statement (node connection)
-	- fireeye mx/hx, misp
 
-	- xgboost installation
-		brew install cmake && gcc@8
-		git clone --recursive https://github.com/dmlc/xgboost && mkdir xgboost/my_build && cd xgboost/my_build
-		CC=gcc-8 CXX=g++-8 cmake ..
-		make -j4
-		cd ../python_package && python3 setup.py install
+	- finish es import function for other data, config elk stack for ml anomaly detection & test
+
+	- add standard algorithms to data.py
+
+	- finish deploy functions in deploy.py
+
+	- finish install scripts
+
+		- xgboost installation
+			brew install cmake && gcc@8
+			git clone --recursive https://github.com/dmlc/xgboost && mkdir xgboost/my_build && cd xgboost/my_build
+			CC=gcc-8 CXX=g++-8 cmake ..
+			make -j4
+			cd ../python_package && python3 setup.py install
+
+	- finish metric graph function & data set graph function with hover tooltip
+
+	- create deployed instances to test
+
+	- function to pull data from es with label column parameter & apply a standard model & output metric graph
+
+	- label data & train
+
+	- email metadata identification functions
 
 	- label some example data & data from the email data set with metadata (semantic like assumptions, structural like keywords)
 
@@ -59,6 +64,16 @@
 					- 'Clarence forgot to take out information y' (explanation for excessive information)
 
 	- apply semantic model with schema identification & logic functions
+
+	- document multiple elk stacks for applied filters (legit email addresses, matching legit templates, matching anomaly patterns)
+
+	- a requirement of the assumption/intent/implication model is:
+		- a network of objects inherent to the problem space
+		- a set of queries for each object type to fetch the related objects
+			- query to get surrounding objects to retrieve implications of a statement (node connection)
+			- query to get requirements + prior implications to retrieve assumptions of a statement (node connection)
+			- query to get paths using a node to get intents for a statement (node connection)
+			- query to get missing information & uncertainty structures to get questions for a statement (node connection)
 
 	- regex model for language patterns
 

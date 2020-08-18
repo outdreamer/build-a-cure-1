@@ -32,7 +32,33 @@ from sklearn.neural_network import MLPClassifier
 
 mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["r", "k", "c"]) 
 
-def convert_reduce_classify_train_score_graph(data, problem_type, reductions, classifiers, algorithms, graphs):
+def pull_function_def(algorithm):
+	code = []
+	params = {}
+	reqs = []
+	return False
+
+def check_params_for_data(algorithm, params, data):
+	return False
+
+def update_params(algorithm, params, data):
+	return False
+
+def check_requirements_for_data(algorithm, requirements, params, data):
+	return False
+
+def check_algorithm(algorithm, data):
+	result = {}
+	code, params, requirements = pull_function_def(algorithm)
+	params_pass = check_params_for_data(algorithm, params, data)
+	if not params_pass:
+		params = update_params(algorithm, params, data)
+	reqs_pass = check_requirements_for_data(algorithm, requirements, params, data)
+	if reqs_pass:
+		return result
+	return False
+
+def select_algorithms_for_data(data, problem_type, reductions, classifiers, algorithms, intents, graphs):
 	'''
 		- sanitize & transform data
 		- reduce features with reductions passed in
@@ -44,34 +70,27 @@ def convert_reduce_classify_train_score_graph(data, problem_type, reductions, cl
 	'''
 	''' to do: filter options by problem type & data set '''
 
-	kernel_functions = ['radial_basis_function']
-
-	ann = ['cnn', 'mlp', 'gan', 'recurrent', 'ltsm']
-
+	standard_nns = ['cnn', 'mlp', 'gan', 'recurrent', 'ltsm']
 	ensemble = ['adaboost', 'boosting', 'bagging', 'xgb', 'gradient_boosted_decision_tree', 'gradient_boosting_machine', 'random_forest', 'stacked_generalization']
-	
 	# unsupervised clustering with methods appropriate according to varying density measures
 	clustering = ['knn', 'kmeans', 'dbscan', 'expectation-maximization', 'hierarchical']
-	
 	# unsupervised
 	unsupervised = ['hierarchical_clustering', 'gan', 'kmeans', 'mixture', 'dbscan', 'local_outlier_factor', 'autoencoder', 'deep_belief', 'self_organizing_map', 'expectation-maximization', 'pca', 'ica', 'nmf', 'svd']
-	
 	# supervised
 	supervised = ['svm', 'nearest_neighbors', 'regression', 'decision_tree', 'naive_bayes', 'lda', 'knn', 'learning_vector_quant']
-
 	# dimensionality reduction
 	reductions = ['dirichlet', 'pca', 'lda', 'svd', 'tsne', 'ica', 'nmf', 'mds', 'autoencoder', 'self_organizing_map'] # multidimensional scaling, non-negative matrix factorization
-
-	function_approximation = ['radial_basis_function']
-
 	regressions = ['linear', 'binary', 'mixed', 'nonparametric', 'nonlinear', 'polynomial', 'binomial', 'poisson', 'ordinal', 'logreg', 'gaussian_process', 'partial_least_squares', 'principal_components']
+	anomaly = ['autoencoder', 'variational_autoencoders', 'local_outlier_factor', 'lstm', 'bayesian', 'hidden_markov', 'cluster_analysis_outlier_detection', 'knn', 'one-class svm', 'bagging', 'score_normalization']	
+	# hierarchical_linear_models = ['random_effects']
+	# kernel_functions = ['radial_basis_function'] # function_approximation = ['radial_basis_function']
 
-	anomaly = ['autoencoder', 'variational_autoencoders', 'local_outlier_factor', 'lstm', 'bayesian', 'hidden_markov', 'cluster_analysis_outlier_detection', 'knn', 'one-class svm', 'bagging', 'score_normalization']
-
+	''' default params '''
+	intents = ['apply_most_reduced_features', 'reduce', 'train', 'score']
+	processes = ['sanitize', 'standardize', 'convert_type', 'regularize']
 	regularizations = ['ridge', 'lasso']
-	
-	# other
-	hierarchical_linear_models = ['random_effects']
+	graphs = ['feature', 'variance', 'confusion', 'regression']
+	algorithms = ['mlp', 'random_forest', 'xgb', 'ensemble', 'mixed'] # if a category is listed, decide if you need to pick one or use all
 
 	if problem_type == 'anomaly':
 		algorithms = anomaly
@@ -83,63 +102,59 @@ def convert_reduce_classify_train_score_graph(data, problem_type, reductions, cl
 		algorithms = unsupervised
 	elif problem_type == 'regression':
 		algorithms = regressions
-	elif problem_type == 'ann':
-		algorithms = ann
+	elif problem_type == 'standard_nns':
+		algorithms = standard_nns
 	elif problem_type == 'reduce_dimensions':
 		''' just reduce & return features '''
 		algorithms = reductions
+	else:
+		print('unknown problem type', problem_type)
+	if len(algorithms) > 0:
+		return algorithms
+	return False
 
-	numeric_data = convert_data_to_numeric(data, reductions)
-	results = []
-	if numeric_data:
+def get_features_label_columns(data):
+	''' assume last column without additional info '''
+	y_labels = data.iloc[:, 0]
+	X_features = data.iloc[:,1:] # drop y label
+	return x_features, y_labels, 'label'
+
+def filter_reduced_features(results):
+	''' to do: evaluate reductions & select remaining features '''
+	return False
+
+def convert_reduce_classify_train_score_graph(data, problem_type, processes, reductions, regularizations, algorithms, intents, graphs):
+	if 'convert_type' in processes:
+		''' to do: add data type check '''
+		''' to do: derive label_column_name if not present '''
+		numeric_data = convert_data_to_numeric(data, label_column_name)
+		if numeric_data:
+			data = numeric_data
+	if 'regularize' in processes:
 		regularized_data = regularize_data(data, regularizations)
-		for reduction_name in reductions:
-			X_features = numeric_data.iloc[:,1:] # drop y label
-			y_labels = numeric_data.iloc[:, 0]
-			components_count = int(round(len(X_features) / 3, 0)) if len(X_features) < 100 else int(round(len(X_features) / 10, 0))
-			result = reduce_features(X_features, y_labels, components_count, reduction_name)
-			if result:
-				''' for each reduction of the feature set, apply a classifier & print the scores '''
-				print('feature reduction', reduction_name)
-				print('\tOriginal feature #', X_features.shape[1])
-				print('\tReduced feature #', result['graph_data'].shape[1])
-				for key, val in result.items():
-					print(key, ': ', val)
-				if len(classifiers) > 0:
-					for classifier_name in classifiers:
-						scores = classify(classifier_name, result['graph_data'], y_labels)
-				if len(algorithms) > 0:
-					for algorithm in algorithms:
-						''' deploy resources as needed to train & save weights, then test each prediction model & generate scores '''
-						pass
-				if scores:
-					print('\tPredicted data', classifier_name, scores)
-					if 'scores' not in result:
-						result['scores'] = {}
-					result['scores'][classifier_name] = scores
-
-				if len(build_graphs) > 0:
-					if 'variance' in graphs:
-						variance_image_path = save_graph(result['explained_variance'], 'bar', ''.join([reduction_name, 'feature variance']), reduction_name, 'explained variance', None)
-						if variance_image_path:
-							result['variance_image'] = variance_image_path
-					if 'feature' in graphs:
-						feature_image_path = save_graph(result['graph_data'], 'scatter', ''.join([reduction_name, 'features with components: ', components_count]), 'variation', 'features', None)
-						if feature_image_path:
-							result['feature_image'] = feature_image_path
-					if 'confusion' in graphs:
-						confusion_matrix = confusion_matrix(x_features, y_labels, result)
-						if confusion_matrix:
-							result['confusion_matrix'] = confusion_matrix
-				results.append(result)
-	if len(results) > 0:
-		return results
+		if regularized_data:
+			data = regularized_data
+	x_features, y_labels, label_column_name = get_features_label_columns(data)
+	components_count = int(round(len(x_features) / 3, 0)) if len(x_features) < 100 else int(round(len(x_features) / 10, 0))
+	if algorithms is None or len(algorithms) == 0:
+		algorithms = select_algorithms_for_data(data, problem_type, reductions, algorithms, intents, graphs)
+	if algorithms:
+		algorithm_results = []
+		for algorithm in algorithms:
+			passed = check_algorithm(algorithm, data)
+			if passed:
+				''' passed contains updated params, given data & requirements & algorithm '''
+				results = apply_algorithm(algorithm, reductions, x_features, y_labels, intents, components_count, graphs)
+				if results:
+					algorithm_results.append(results)
+		if len(algorithm_results) > 0:
+			return algorithm_results
 	return False
 
 def regularize_data(data, regularizations):
 	return False
 
-def convert_data_to_numeric(data, reductions, label_column_name):
+def convert_data_to_numeric(data, label_column_name):
 	''' 
 		- sanitize data
 		- encode categorical data
@@ -197,31 +212,6 @@ def split_data_by_algorithm(data):
 	''' split into nlp/clustering/decision tree data variables & associated predicted independent variables '''
 	return False
 
-def apply_algorithm(data, algorithm):
-	if algorithm == 'decision_forest':
-		pass
-	elif algorithm == 'xgboost':
-		pass
-	elif algorithm == 'nearest_neighbors':
-		pass
-	elif algorithm == 'kmeans':
-		pass
-	elif algorithm == 'linear_regression':
-		pass
-	else:
-		print('unhandled algorithm', algorithm)
-
-	results = test_model(model)
-	if results:
-		if results['score'] > 0.5:
-			''' save model & weights files that api pulls from '''
-			model_dir = '/home/ec2-user/model/'
-			model_path = ''.join([model_dir, 'model.json'])
-			model_weights_path =''.join([model_dir, 'weights.h5'])
-			''' to do: save '''
-
-	return False
-
 def test_model(model):
 	''' add test metrics & output a score '''
 	return False
@@ -234,45 +224,122 @@ def fit_regression_model(method_name, x_features, y_labels):
 	''' apply linear regression or other applicable regression type '''
 	return False
 
-def classify(method_name, x_features, y_labels):
+def predict_class_probabilities(y_labels, model):
+	''' predict probability of a class '''
+	probabilities = {}
+	for category in set(y_labels):
+		probability = model.predict_proba(category)
+		print('category', category, 'probability', probability)	
+		probabilities[category] = probability
+	if probabilities:
+		return probabilities
+	return False
+
+def apply_algorithm(algorithm, reductions, x_features, y_labels, intents, components_count, graphs):
 	model = None
-	if method_name == 'logreg':
+	if algorithm == 'random_forest':
+		pass
+	elif algorithm == 'xgb':
+		pass
+	elif algorithm == 'knn':
+		pass
+	elif algorithm == 'kmeans':
+		pass
+	elif algorithm == 'linear_regression':
+		pass
+	elif algorithm == 'logreg':
 		model = LogisticRegression()
-	elif method_name == 'dirichlet':
+	elif algorithm == 'dirichlet':
 		model = LatentDirichletAllocation() if components_count is None else LatentDirichletAllocation(n_components=components_count) # random_state=0)
-	elif method_name == 'lda':
+	elif algorithm == 'lda':
 		model = LinearDiscriminantAnalysis() if components_count is None else LinearDiscriminantAnalysis(n_components=components_count)
-	elif method_name == 'xgb':
+	elif algorithm == 'xgb':
 		model = xgboost.XGBClassifier(n_estimators=600, objective='binary:logistic', silent=True, nthread=1)
-	elif method_name == 'mlp':
+	elif algorithm == 'mlp':
 		model = MLPClassifier(solver='adam', alpha=0.0001, activation='relu', batch_size=150, hidden_layer_sizes=(200, 100), random_state=1)
-
-	if model:
-		X_train, X_val, y_train, y_val = train_test_split(x_features, y_labels, test_size=0.2, random_state=27)
-		model.fit(X_train, y_train)
-		result['original']['preds'] = model.predict(X_val)
-		result['original']['score'] = model.score(X_val, y_val)
-		result['original']['acc'] = accuracy_score(y_val, preds)
-		result['original']['f1'] = f1_score(y_val, preds)
-		features_new = model.transform(x_features)
-		X_train, X_val, y_train, y_val = train_test_split(features_new, y_labels, test_size=0.2, random_state=27)
-		result['transformed']['preds'] = model.predict(X_val)
-		result['transformed']['score'] = model.score(X_val, y_val)
-		result['transformed']['acc'] = accuracy_score(y_val, preds)
-		result['transformed']['f1'] = f1_score(y_val, preds)
-
-		''' predict probability of a class '''
-		for category in set(y_labels):
-			probability = model.predict_proba(category)
-			print('category', category, 'probability', probability)		
+	else:
+		print('unhandled algorithm', algorithm)
+		''' algorithm will also be null if we're just applying reductions '''
+	if model is not None or 'reduce' in intents:
+		results = {}
+		if algorithm and model:
+			''' train the original model '''
+			result = model_train(algorithm, model, x_features, y_labels, intents, components_count, graphs)
+			if result:
+				results['original'] = result
+		if 'reduce' in intents:
+			''' reduce features and train a new model on each reduced feature set '''
+			iterative_reduced_features = x_features if 'iterative_reduce' in intents else None					
+			for reduction in reductions:
+				features_to_reduce = iterative_reduced_features if 'iterative_reduce' in intents else x_features
+				reduced_feature_result = reduce_features(features_to_reduce, y_labels, components_count, algorithm)
+				if reduced_feature_result:
+					''' update iteratively reduced feature set '''
+					iterative_reduced_features = reduced_feature_result['features'] if 'iterative_reduce' in intents else iterative_reduced_features
+					''' train new model on reduced features '''
+					if 'score' in intents or 'train' in intents:
+						reduced_feature_model = model_train(algorithm, model, reduced_feature_result['features'], y_labels, intents, components_count, graphs)
+						if reduced_feature_model:
+							iteration_name = ''.join(['iteration', reduction])
+							results[iteration_name] = reduced_feature_model
+		if results:
+			if 'apply_most_reduced_features' in intents:
+				''' find most reduced feature set across all reduced feature sets & train new model on that most reduced set'''
+				reduced_features = filter_reduced_features(results)
+				if reduced_features:
+					reduced_feature_model = model_train(algorithm, model, reduced_features, y_labels, intents, components_count, graphs)
+					if reduced_feature_model:
+						results['iteration_most_reduced'] = reduced_feature_model
+			return results
 		return result
 	return False
+
+def model_train(algorithm, model, x_features, y_labels, intents, components_count, graphs):
+	x_train, x_val, y_train, y_val = train_test_split(x_features, y_labels, test_size=0.2, random_state=27)
+	if x_train and x_val and y_train and y_val:
+		if 'save' in intents:
+			model_dir = '/home/ec2-user/model/'
+			model_path = ''.join([model_dir, algorithm, '_', '-'.join(intents), '_model.json'])
+			model_weights_path =''.join([model_dir, algorithm, '_', '-'.join(intents), '_weights.h5'])
+			save(model, model_path, model_weights_path)
+		if 'train' in intents:
+			return {'x_train': x_train, 'x_val': x_val, 'y_train': y_train, 'y_val': y_val, 'new_features': x_features, 'model': model}
+		result['model'] = model
+		result['predictions'] = model.predict(x_val)
+		result['score'] = model.score(x_val, y_val)
+		result['acc'] = accuracy_score(y_val, result['predictions'])
+		result['f1'] = f1_score(y_val, result['predictions'])
+		result['explained_variance'] = model.explained_variance_
+		result['features'] = model.fit_transform(x_features)
+		result['components'] = model.components_
+		if len(graphs) > 0:
+			for graph in graphs:
+				if graph == 'variance':
+					variance_image_path = save_graph(result['explained_variance'], 'bar', ''.join([algorithm, 'feature variance']), algorithm, 'explained variance', None)
+					if variance_image_path:
+						result['variance_image'] = variance_image_path
+				if graph == 'feature':
+					feature_image_path = save_graph(result['features'], 'scatter', ''.join([algorithm, 'features with components: ', components_count]), 'variation', 'features', None)
+					if feature_image_path:
+						result['feature_image'] = feature_image_path
+				if graph == 'confusion':
+					confusion_matrix = confusion_matrix(x_features, y_labels, result)
+					if confusion_matrix:
+						result['confusion_image'] = confusion_matrix
+	return result
 
 def reduce_features(X_features, y_labels, components_count, reduction_name):
 	''' 
 	X_features is in a dataframe, output by pandas.read_csv()
 	components_count is the number of features to reduce to
 	apply svd, lda, pca, t-sne & other feature reduction methods once data is filtered to numeric variables 
+	'''
+	'''
+	transform() & fit_transform():
+		- apply dimensionality reduction to x, returns x_new, array-like shape(samples, components)
+		- dirichlet.transform() returns doc_topic_distribution shape(samples, components)
+		- lda.transform() projects data to maximize class separation
+		- tsne.transform() doesnt exist
 	'''
 	reduction_method = None
 	if reduction_name == 'pca':
@@ -370,21 +437,14 @@ def reduce_features(X_features, y_labels, components_count, reduction_name):
 
 	if reduction_method:
 		result = {'reduction_method': reduction_method}
-		# graph_data = reduction.fit_transform(X_features) # fit_transform takes in array-like shape(samples, features), and returns X_new, ndarray array of shape(samples, components)
-		result['graph_data'] = reduction_method.fit_transform(X_features) # input is array-like shape(samples, features)
+		result['features'] = reduction_method.fit_transform(X_features) # input is array-like shape(samples, features), returns X_new, ndarray array of shape(samples, components)
 		result['y_labels'] = y_labels
-		'''
-		transform() & fit_transform():
-			- apply dimensionality reduction to x, returns x_new, array-like shape(samples, components)
-			- dirichlet.transform() returns doc_topic_distribution shape(samples, components)
-			- lda.transform() projects data to maximize class separation
-			- tsne.transform() doesnt exist
-		'''
+		result['model'] = reduction_method
 		result['components'] = reduction_method.components_ # principal axes, sorted by explained_variance_
 		result['singular_values'] = reduction_method.singular_values_ # singular values of components (2-norms of components in lower dimensional space)
 		result['explained_variance'] = reduction_method.explained_variance_ # amount of variance explained by each feature
 		result['explained_variance_ratio'] = reduction_method.explained_variance_ratio_
-
+		print('feature reduction', reduction_name, '\n\tOriginal feature #', X_features.shape[1], '\n\tReduced feature #', result['features'].shape[1])
 		return result
 	return False
 

@@ -32,6 +32,12 @@ to do: organize into docs
       - from 'get/make/trick them into' to 'win them over'
       - from 'please dont do that' to 'taxing that'
       - from 'youre annoying' to 'redrawing district borders so their vote doesnt count'
+
+    - work productivity perspective:
+      - from 'flaw/mistake' to 'would you like to work on our mistake-fixing algorithm'
+      - from 'get/make/trick them into' to 'incentive alignment algorithm'
+      - from 'please dont do that' to 'cost-allocation learning optimization algorithm'
+      - from 'youre annoying' to 'busy work algorithm'
     
   - query for specific info object structures in a language map:
 
