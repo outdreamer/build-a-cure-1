@@ -14,10 +14,20 @@ to do: organize into docs
     - identify uncertainties like config relevant to their intent and ask questions to confirm to reduce produced set of implementation diagrams
 
   - social manners perspective/intent translations
-    - diplomatic translations:
+    
+    - diplomatic perspective:
       - from 'flaw/mistake' to 'new optimization metrics' or 'variance source'
       - from 'get/make/trick them into' to 'inspire'
-      - from 'please dont do that' to 'thank you for being self-aware enough to not do that'
+      - from 'please dont do that' to 'thank you for being self-aware enough to not do that' or 'i hate when this other person does that, im glad you dont do that'
+      - from 'youre annoying' to 'i need to recalculate my trajectory/time to process that'
+    
+  - query for specific info objects in a language map:
+    - ambiguously controversial paths (cant pin down anything you said as wrong but it sounds controversial)
+      - from standard path 'fill out the self-reporting census form' to ambiguously controversial path 'exploitation of the race/gender/disability option'
+
+    - things that sound controversial but are just accurate:
+      - having one set of optimal attributes creates a system with more ways to be wrong than ways to be right, so the minority at the top will be oppressed until a new optimal is chosen, which is a slower evolution process than having more than one optimal set (uses controversial word 'minority' and controversial depiction of 'minority at the top' being 'oppressed' in some way, which is true bc of the ratios and power dynamics resulting from them)
+
 
   - document nn-intent matching
     
