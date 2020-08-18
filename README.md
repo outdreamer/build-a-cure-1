@@ -852,11 +852,14 @@
 								- find the structure of the input/output relationship that needs to occur
 								- then fill it in with a function producing that input/output relationship
 
-							- or try to combine solution components first & apply limits/tests/filters to check if it matches solution metrics (build & refine solution)
+							- combine solution components first & apply limits/tests/filters to check if it matches solution metrics (build & refine solution)
 								- find functions likely to produce difference across inputs
 								- then check if they produce the right difference, and refine it (by centering/scaling) until it matches the difference you need
 
 							- this solution is an example implementation of the structure-intent interface combination, with a specific implementation of the 'change' interface within that interface combination
+
+
+						- this method can be generalized to a method of finding functions for an intent like 'reduce computation' or 'differentiate with a line'
 
 
 	12. what is an interface 
@@ -956,7 +959,7 @@
 
 	18. how come youre the only person who came up with this in all of human history?
 
-		- I decided to try to automate problem-solving once I saw patterns in the rules people used to solve problems, and once I found an example proof of concept, I pursued it. Alternatively, if you don't have thoughts like that or any thoughts at all, you can try some caffeine.
+		- I decided to try to automate problem-solving once I saw patterns in the rules people used to solve problems, and once I found an example proof of concept, I pursued it. Alternatively, if you don't have human thoughts like that, or if you don't have human sources of joy/motivation, such as caring about protecting other people enough to try, or intellectual curiousity, or believing in yourself, you can try some caffeine.
 
 
 ## Problem-solving Insight Paths 

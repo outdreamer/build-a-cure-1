@@ -1,5 +1,11 @@
 to do: organize into docs
 
+  - example of UI for implementing intent-matching for code generation
+
+    - form accepting intent queries like 'build streaming platform optimizing for metric c with these data sources'
+    - upload a diagram positioning data sources, formatting/aggregation/analysis processes, metrics, query types, permissions, visuals, & target output, which produces various implementation diagrams the program derives, which the user selects between
+    - identify uncertainties like config relevant to their intent and ask questions to confirm to reduce produced set of implementation diagrams
+
   - document nn-intent matching
     
     - in an algorithm, functions emerge like minimize, aggregate, differentiate, compete/win, choose
@@ -18,6 +24,8 @@ to do: organize into docs
       
     - how does the problem type map to the function & function assembly?
       - if problem type is 'identification' and function assembly has a gap indicating an ambiguity, the identification cant occur in that gap, so functions with ambiguities arent good for the identification problem type, unless the ambiguity captures alternate structures (like variable values, causal paths, or variable sets)
+
+    - treat other objects than params (assumptions, processing steps) as prediction inputs
 
   - whats the reason for number relationships (numbers being a definition of value, math having a set of relationships between values)
     - can one number have a limited number of properties before its overloaded - whats the reason properties are distributed across intervals & sequences of numbers
