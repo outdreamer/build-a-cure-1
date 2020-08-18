@@ -4,7 +4,20 @@ to do: organize into docs
 
     - form accepting intent queries like 'build streaming platform optimizing for metric c with these data sources'
     - upload a diagram positioning data sources, formatting/aggregation/analysis processes, metrics, query types, permissions, visuals, & target output, which produces various implementation diagrams the program derives, which the user selects between
+      - including attributes/functions like:
+        - which data should be streamed where
+        - which data should be encrypted in what way
+        - which actions should follow which actions
+        - which data should be accessible by api, to which apps
+        - which queries are expected, from which users/apps
+
     - identify uncertainties like config relevant to their intent and ask questions to confirm to reduce produced set of implementation diagrams
+
+  - social manners perspective/intent translations
+    - diplomatic translations:
+      - from 'flaw/mistake' to 'new optimization metrics' or 'variance source'
+      - from 'get/make/trick them into' to 'inspire'
+      - from 'please dont do that' to 'thank you for being self-aware enough to not do that'
 
   - document nn-intent matching
     
