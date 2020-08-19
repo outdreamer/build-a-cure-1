@@ -2,7 +2,9 @@
 
 	- finish es import function for other data, config elk stack for ml anomaly detection & test
 
-	- add standard algorithms to data.py
+	- finish scaling in preprocessing
+
+	- add regularization/normalization
 
 	- finish deploy functions in deploy.py
 

@@ -24,7 +24,7 @@ from scipy.sparse import random as sparse_random
 from sklearn.cluster import KMeans
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression, LinearRegression, Ridge
+from sklearn.linear_model import LogisticRegression, LinearRegression, Ridge, Lasso, ElasticNet
 from sklearn.neural_network import MLPClassifier
 from sklearn.decomposition import PCA, LatentDirichletAllocation, TruncatedSVD
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
@@ -172,7 +172,7 @@ def select_algorithms_for_data(data, problem_type, reductions, algorithms, model
 	''' default params '''
 	model_tasks = ['apply_most_reduced_features', 'reduce', 'train', 'score']
 	processes = ['sanitize', 'standardize', 'convert_type', 'regularize']
-	regularizations = ['ridge', 'lasso']
+	regularizations = ['ridge', 'lasso', 'elastic_net']
 	graphs = ['feature', 'variance', 'confusion', 'regression']
 	algorithms = ['mlp', 'random_forest', 'xgb', 'ensemble', 'mixed'] # if a category is listed, decide if you need to pick one or use all
 	
@@ -236,6 +236,19 @@ def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, co
 		'''
 		params: alpha=1.0, *, fit_intercept=True, normalize=False, precompute=False, copy_X=True, max_iter=1000, tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic'
 		'''
+	elif algorithm == 'elastic_net':
+		model = ElasticNet()
+		'''
+		params: alpha=1.0, *, l1_ratio=0.5, fit_intercept=True, normalize=False, precompute=False, max_iter=1000, copy_X=True, tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic')[source]
+		attributes: coef_, sparse_coef_, intercept_, n_iter_
+		methods:
+			- has sample_weight param for its fit/score methods
+			- path(X, y, *[, l1_ratio, eps, n_alphas, …]) - compute elastic net path with coordinate descent
+		variants:
+			ElasticNetCV: Elastic net model with best model selection by cross-validation.
+			SGDRegressor: implements elastic net regression with incremental training.
+			SGDClassifier: implements logistic regression with elastic net penalty (SGDClassifier(loss="log", penalty="elasticnet"))
+		'''
 	elif algorithm == 'dirichlet':
 		model = LatentDirichletAllocation() 
 	elif algorithm == 'lda':
@@ -249,7 +262,6 @@ def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, co
 	if model is not None or 'reduce' in model_tasks:
 		results = {}
 		if algorithm and model:
-			# model.set_params(params[algorithm])
 			for k, v in params[algorithm].items():
 				model = model.set_params(**{k: v})
 			''' train the original model '''
@@ -297,6 +309,9 @@ def model_train(algorithm, model, x_features, y_labels, model_tasks, components_
 		result['features'] = model.fit_transform(x_features, y_labels) if 'fit_transform' in model_methods else model.fit(x_features, y_labels)
 		result['components'] = model.components_ if 'components_' in model_methods else None
 		result['predictions'] = model.predict(x_test)
+		result['coef'] if 'coef_' in model_methods else None # array of shape (n_features, ) or (n_targets, n_features) based on how many targets are passed in
+		result['intercept'] if 'intercept_' in model_methods else None
+		# add rank_ & singular_ attributes of matrix for regression where applicable
 		result['explained_variance'] = model.explained_variance_ if 'explained_variance_' in model_methods else None
 		result['score'] = model.score(x_test, y_test)
 		# result['cv_scores'] = cross_val_score(model, x_test, y_test, cv=5) # take the average of cross validation scores
@@ -377,6 +392,7 @@ def convert_reduce_classify_train_score_graph(data, label_column_name, problem_t
 				params = {
 					'ridge': {'alpha': 0.5},
 					'lasso': {'alpha': 0.5},
+					'elastic_net': {'alpha': 0.5},
 					'knn': {'n_neighbors': 5},
 					'random_forest': {'max_depth': 2, 'random_state': 0},
 					'xgb': {'n_estimators': 600, 'objective': 'binary:logistic', 'silent': True, 'nthread': 1},

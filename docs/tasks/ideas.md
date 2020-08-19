@@ -1,5 +1,11 @@
 to do: organize into docs
 
+  - identify other things the data set might be able to predict other than y's
+
+    - subsets or the data set might predict other dependent vars
+
+  - identify extra variables having patterns that if included in independent vars, can explain y's or other dependent vars
+
   - example of UI for implementing intent-matching for code generation
 
     - form accepting intent queries like 'build streaming platform optimizing for metric c with these data sources'
