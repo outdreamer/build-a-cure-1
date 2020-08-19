@@ -34,7 +34,7 @@ from sklearn.model_selection import train_test_split
 
 from graph import add_graph, save_graph
 from reduction import reduce_features
-from sanitize import convert_data_to_numeric, json_to_csv
+from sanitize import convert_data, json_to_csv
 
 mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["r", "k", "c"]) 
 
@@ -230,6 +230,7 @@ def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, co
 				features_to_reduce = iterative_reduced_features if 'iterative_reduce' in model_tasks else x_features
 				reduced_feature_result = reduce_features(features_to_reduce, y_labels, components_count, algorithm)
 				if reduced_feature_result:
+					print('starting features to reduce', features_to_reduce, 'reduced features', reduced_feature_result['features'])
 					''' update iteratively reduced feature set '''
 					iterative_reduced_features = reduced_feature_result['features'] if 'iterative_reduce' in model_tasks else iterative_reduced_features
 					''' train new model on reduced features '''
@@ -298,21 +299,17 @@ def model_train(algorithm, model, x_features, y_labels, model_tasks, components_
 
 def convert_reduce_classify_train_score_graph(data, label_column_name, problem_type, processes, reductions, regularizations, algorithms, model_tasks, graphs):
 	''' to do: add custom processes, reductions, regularization & model_tasks according to data set/algorithm '''
-
-	y_labels = None
 	if label_column_name is None:
-		y_labels = get_label_column(data)
 		label_column_name = y_labels.name
-	else:
-		if label_column_name in data:
-			y_labels = data[label_column_name]
-
 	if 'convert_type' in processes:
 		''' to do: add data type check '''
 		''' to do: derive label_column_name if not present '''
-		numeric_data = convert_data_to_numeric(data, label_column_name)
-		if not numeric_data.empty:
-			data = numeric_data
+		converted_data = convert_data(data, label_column_name, ['date'])
+		if not converted_data.empty:
+			data = converted_data
+	print('converted', data.head())
+	exit()
+	y_labels = data[label_column_name] if label_column_name in data else get_label_column(data)
 
 	if 'regularize' in processes:
 		regularized_data = regularize_data(data, regularizations)

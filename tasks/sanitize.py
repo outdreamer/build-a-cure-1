@@ -3,51 +3,110 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, OrdinalEncoder, StandardScaler
 
-def convert_data_to_numeric(data, label_column_name):
+def convert_data(data, label_column_name, remove_types):
 	''' 
 		- sanitize data
 		- encode categorical data
-		- vectorize text data
+		- to do: remove columns of type in remove_types, like date or text columns
+		- to do: vectorize text data
+		- to do: apply scaler 
 		- map trajectories of text data
 	'''
 
+	#check number of rows and columns in dataset
+	print('shape (rows, columns)', data.shape)
+	print('data.describe()', data.describe())
+
 	categorical = data.iloc[:,:].select_dtypes('object').columns
 	print('categorical', categorical)
-	'''
-	for i in categorical:
-		print('categorical group count', data[i].unique())
-	'''
 	print('groups count', sum(data[categorical].nunique()))
-	print('data.describe()', data.describe())
 	print('dtype value counts', data.dtypes.value_counts())
-
-	''' to do: skip dates '''
 	numeric_data = data._get_numeric_data().astype('float64')
 	print('numerical', numeric_data)
-	return numeric_data
-	
-	''' to do: exclude low-count values if necessary '''
+	# data.set_index('uuid')
 	#data = data[col != low_count_col_value]
-	
-	categorical_names = {}
-	scaler = StandardScaler()
-	for col in data.columns:
-		''' to do: encode label/categorical data '''
-		if col.dtype.name == 'object':
-			if col == label_column_name:
-				encoder = LabelEncoder()
-				data[col] = encoder.fit_transform(data[col])
-				categorical_names[col] = encoder.classes_
+	text_columns = {}
+	text_column_threshold = 100
+
+	for col in data.keys():
+		sample_value = data[col].values[0]
+		unique_values = data[col].unique()
+		print('column', col, 'sample value', sample_value)
+		''' exclude columns with low-count values'''
+		if len(unique_values) > 1:
+			if data[col].dtype.name == 'object':
+				datetime_object_type = None
+				if len(sample_value) < text_column_threshold:
+					chars_to_remove = '' # add any extra chars to remove
+					# data[col] = ''.join([char for char in data[col] if char not in chars_to_remove]) 
+					numeric_chars = ''.join([char for char in data[col] if char in '0123456789,.'])
+					if len(numeric_chars) == len(data[col]):
+						data[col] = data[col].replace(',','').astype('float64')	
+						#scaler = StandardScaler()
+						#data[col] = scaler.fit_transform(np.array(data[col]).reshape(-1, 1))
+					elif 'time' in col or 'date' in col or ':' in sample_value or '-' in sample_value or '/' in sample_value:
+						''' 
+						convert date values into datetime objects
+						to do: handle lowercase values 'sunday' 
+						'''
+						day_month_name_formats = ["%A", "%B"]
+						numerical_date_formats = ["%Y", "%Y-%m-%d", "%y-%m-%d", "%m-%d-%y", "%m-%d-%Y", "%m-%d-%Y %H:%M:%S", "%m-%d-%Y %H:%M:%S.%Z", "%H:%M:%S"]
+						for format_list in [day_month_name_formats, numerical_date_formats]:
+							for format in format_list:
+								datetime_object = None
+								try:
+									datetime_object = pd.to_datetime(data[col], format=format)
+								except Exception as error:
+									print('could not convert to date with format', format, data[col][0])
+								if datetime_object is not None:
+									data[col] = datetime_object
+									datetime_object_type = format_list
+						if datetime_object_type is None:
+							number_col = None
+							''' order by exclusive/common type if there is one '''
+							for number_type in ['int64', 'float64']:
+								try:
+									number_col = data[col].astype(number_type)
+								except Exception as error:
+									print('could not convert to', number_type, number_col)
+								if number_col and datetime_object_type is None:
+									number_col_sample = number_col.values()[0]
+									if number_col_sample >= 0 and number_col_sample < 60:
+										''' to do: handle possible minute, second, hour, month, day column '''
+										datetime_object_type = 'possible_numerical_date'
+										data[col] = number_col
+										#scaler = StandardScaler()
+										#data[col] = scaler.fit_transform(np.array(data[col]).reshape(-1, 1))
+										print('scaler col', col, data[col])
+				print('datetime_object_type', col, datetime_object_type)
+				if datetime_object_type is None:
+					''' encode label/categorical data '''
+					if col == label_column_name:
+						encoder = LabelEncoder()
+						data[col] = encoder.fit_transform(data[col].values)
+						print('encoded labels', data[col])
+						print('classes', col, encoder.classes_)
+					else:
+						enc = OneHotEncoder() # drop='first') # ignore='unknown'
+						''' data[col] = np.array(data[col]).reshape(-1, 1) '''
+						values_array = data[col].values.reshape(-1, 1)
+						data[col] = enc.fit_transform(values_array)
+						print('one hot categories', enc.categories_)
+						'''
+							index: (0, 2)	1.0 <class 'scipy.sparse.csr.csr_matrix'>
+							encoded_values_array.toarray(): [[0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+						'''
+						print('one hot encoded col values', col, data[col]) #print('feature names', enc.get_feature_names(data))
+				else:
+					text_columns[col] = sample_value
+			elif data[col].dtype.name == 'int64':
+				data[col] = data[col].astype('float64')
+				#scaler = StandardScaler()
+				#data[col] = scaler.fit_transform(data[col].values.reshape(-1, 1))
 			else:
-				enc = OneHotEncoder(drop='first') # ignore='unknown'
-				enc.fit(x_features)
-				print('one hot categories', enc.categories_)
-				data[col] = enc.transform(data[col]).toarray()
-				# enc.get_feature_names(cols)
-		''' to do: scalar takes in np.array format '''
-		data[col] = np.array(data[col]).reshape(-1, 1)
-		data[col] = scaler.fit_transform(data[col])
-	print('categorical_names', categorical_names)
+				print('unhandled type', col.dtype, col)			
+	print('found text cols', text_columns)
+	print('transformed data', data.head())
 	return data
 	
 def json_to_csv():
@@ -112,23 +171,21 @@ def json_to_csv():
 							nf.write(formatted_json)
 							nf.close()
 					csv_file.close()
-				df = data_processing(csv_path)
+				df = pd.read_csv(csv_path)
+				if df:
+					df = data_processing(df)
 	if len(all_new_dicts) > 0:
 		return all_new_dicts
 	return False
 
-def data_processing(csv_path):
-	df = pd.read_csv(csv_path)
-	print('df head', df.head()) #head(10)
-	# df.set_index('uuid')
-	df = df.applymap(sanitize_all_values)
-	for column in df:
-		#print('column', df[column]) #, 'type', df[column].dtype)
-		#null_ratio = get_null_ratio(df, column)
-		isolated_subset_column = execute_operation_on_column(df[column], 'subset', r'^(\d{4})', None)
-		numeric_column = execute_operation_on_column(df[column], 'numeric', None, None)
-	print('df head', df.head())
-	return df
+def data_processing(data):
+	print('data processing: head', data.head()) #head(10)
+	data = data.applymap(sanitize_all_values)
+	for column in data:
+		isolated_subset_column = execute_operation_on_column(data[column], 'subset', r'^(\d{4})', None)
+		numeric_column = execute_operation_on_column(data[column], 'numeric', None, None)
+	print('data head', data.head())
+	return data
 
 def sanitize_all_values(value):
 	value = value.strip() if type(value) == str else value
