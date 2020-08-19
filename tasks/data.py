@@ -19,6 +19,7 @@ from scipy.sparse import random as sparse_random
 
 #import xgboost
 
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
 from sklearn.decomposition import PCA, LatentDirichletAllocation, TruncatedSVD
@@ -30,6 +31,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder, OrdinalEncoder, S
 
 from sklearn.random_projection import sparse_random_matrix
 from sklearn.metrics import accuracy_score, f1_score
+from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
 
 from graph import add_graph, save_graph
@@ -191,14 +193,14 @@ def select_algorithms_for_data(data, problem_type, reductions, algorithms, model
 		return algorithms
 	return False
 
-def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, components_count, graphs):
+def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, components_count, graphs, params):
 	model = None
 	if algorithm == 'random_forest':
 		pass
 	elif algorithm == 'xgb':
 		pass
 	elif algorithm == 'knn':
-		pass
+		model = KNeighborsClassifier(n_neighbors = params[algorithm])
 	elif algorithm == 'kmeans':
 		pass
 	elif algorithm == 'linear_regression':
@@ -206,9 +208,9 @@ def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, co
 	elif algorithm == 'logreg':
 		model = LogisticRegression()
 	elif algorithm == 'dirichlet':
-		model = LatentDirichletAllocation() if components_count is None else LatentDirichletAllocation(n_components=components_count) # random_state=0)
+		model = LatentDirichletAllocation() if components_count.empty else LatentDirichletAllocation(n_components=components_count) # random_state=0)
 	elif algorithm == 'lda':
-		model = LinearDiscriminantAnalysis() if components_count is None else LinearDiscriminantAnalysis() #n_components=components_count)
+		model = LinearDiscriminantAnalysis() if components_count.empty else LinearDiscriminantAnalysis() #n_components=components_count)
 	elif algorithm == 'xgb':
 		model = xgboost.XGBClassifier(n_estimators=600, objective='binary:logistic', silent=True, nthread=1)
 	elif algorithm == 'mlp':
@@ -266,6 +268,7 @@ def model_train(algorithm, model, x_features, y_labels, model_tasks, components_
 		result['predictions'] = model.predict(x_val)
 		result['explained_variance'] = model.explained_variance_ if 'explained_variance_' in model_methods else None
 		result['score'] = model.score(x_val, y_val)
+		# result['cv_scores'] = cross_val_score(model, x_val, y_val, cv=5) # take the average of cross validation scores
 		result['acc'] = accuracy_score(y_val, result['predictions'])
 		'''
 		result['f1'] = f1_score(y_val, result['predictions'])
@@ -299,16 +302,23 @@ def model_train(algorithm, model, x_features, y_labels, model_tasks, components_
 
 def convert_reduce_classify_train_score_graph(data, label_column_name, problem_type, processes, reductions, regularizations, algorithms, model_tasks, graphs):
 	''' to do: add custom processes, reductions, regularization & model_tasks according to data set/algorithm '''
+
+	''' to do: retain original copy of data if processing is done before this function call '''
+
 	if label_column_name is None:
 		label_column_name = y_labels.name
+
 	if 'convert_type' in processes:
 		''' to do: add data type check '''
 		''' to do: derive label_column_name if not present '''
-		converted_data = convert_data(data, label_column_name, ['date'])
-		if not converted_data.empty:
+		converted_data, removed_cols = convert_data(data, label_column_name, ['datetime', 'one_hot_encoding', 'low_value', 'text'])
+		if removed_cols:
+			print('removed_cols', removed_cols)
+		if converted_data.empty:
 			data = converted_data
+
 	print('converted', data.head())
-	exit()
+
 	y_labels = data[label_column_name] if label_column_name in data else get_label_column(data)
 
 	if 'regularize' in processes:
@@ -325,13 +335,18 @@ def convert_reduce_classify_train_score_graph(data, label_column_name, problem_t
 
 	if algorithms is None or len(algorithms) == 0:
 		algorithms = select_algorithms_for_data(data, problem_type, reductions, algorithms, model_tasks, graphs)
+
 	if algorithms:
 		algorithm_results = []
 		for algorithm in algorithms:
 			passed = check_algorithm(algorithm, data)
 			if passed:
 				''' passed contains updated params, given data & requirements & algorithm '''
-				results = apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, components_count, graphs)
+				''' to do: calculate params for data set '''
+				params = {
+					'knn': 5 # n_neighbors
+				}
+				results = apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, components_count, graphs, params)
 				if results:
 					algorithm_results.append(results)
 		if len(algorithm_results) > 0:
