@@ -6,7 +6,13 @@ to do: organize into docs
     - example: the image of a dog/cat can predict species type, as well as locations of animals, objects found in domestic settings, species variation in similarly developed species, etc
 
   - identify extra variables having patterns that if included in independent vars, can explain y's or other dependent vars
+    
     - example: if you add a random sequence or a sequence with some similarity to another column (indicating an independent but coincidentally similar value), and it increases variation explained in the data set, you might have a more simple, homogeneous system that has similar core functions used across positions/layers/other subsets (square container producing triangular shapes of components inside corners), or you might have a very complex system that generates a variety of objects within a certain range (cell surface structures having similar shapes across very different cell types)
+
+  - document what concepts look like in data sets:
+    - first identify sets of core bases/functions/assumptions/values that can generate variation seen in data set
+    - then systematize sets
+    - then identify trajectories in those set systems that can be identified as a unique concept according to your definition
 
   - example of UI for implementing intent-matching for code generation
 
