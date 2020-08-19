@@ -240,10 +240,8 @@ def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, co
 		model = LatentDirichletAllocation() 
 	elif algorithm == 'lda':
 		model = LinearDiscriminantAnalysis()
-	elif algorithm == 'xgb':
-		model = xgboost.XGBClassifier(n_estimators=600, objective='binary:logistic', silent=True, nthread=1)
 	elif algorithm == 'mlp':
-		model = MLPClassifier(solver='adam', alpha=0.0001, activation='relu', batch_size=150, hidden_layer_sizes=(200, 100), random_state=1)
+		model = MLPClassifier()
 	else:
 		print('unhandled algorithm', algorithm)
 		''' algorithm will also be null if we're just applying reductions '''
@@ -251,7 +249,9 @@ def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, co
 	if model is not None or 'reduce' in model_tasks:
 		results = {}
 		if algorithm and model:
-			model.set_params(params)
+			# model.set_params(params[algorithm])
+			for k, v in params[algorithm].items():
+				model = model.set_params(**{k: v})
 			''' train the original model '''
 			result = model_train(algorithm, model, x_features, y_labels, model_tasks, components_count, graphs)
 			if result:
@@ -379,7 +379,9 @@ def convert_reduce_classify_train_score_graph(data, label_column_name, problem_t
 					'lasso': {'alpha': 0.5},
 					'knn': {'n_neighbors': 5},
 					'random_forest': {'max_depth': 2, 'random_state': 0},
+					'xgb': {'n_estimators': 600, 'objective': 'binary:logistic', 'silent': True, 'nthread': 1},
 					'lda': {'n_components': components_count},
+					'mlp': {'solver': 'adam', 'alpha': 0.0001, 'activation': 'relu', 'batch_size': 150, 'hidden_layer_sizes': (200, 100), 'random_state': 1},
 					'dirichlet': {'n_components': components_count, 'random_state': 0}
 				}
 				results = apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, components_count, graphs, params)
