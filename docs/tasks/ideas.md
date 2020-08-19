@@ -2,9 +2,11 @@ to do: organize into docs
 
   - identify other things the data set might be able to predict other than y's
 
-    - subsets or the data set might predict other dependent vars
+    - subsets or the data set might predict other dependent vars beyond or adjacent to y
+    - example: the image of a dog/cat can predict species type, as well as locations of animals, objects found in domestic settings, species variation in similarly developed species, etc
 
   - identify extra variables having patterns that if included in independent vars, can explain y's or other dependent vars
+    - example: if you add a random sequence or a sequence with some similarity to another column (indicating an independent but coincidentally similar value), and it increases variation explained in the data set, you might have a more simple, homogeneous system that has similar core functions used across positions/layers/other subsets (square container producing triangular shapes of components inside corners), or you might have a very complex system that generates a variety of objects within a certain range (cell surface structures having similar shapes across very different cell types)
 
   - example of UI for implementing intent-matching for code generation
 
