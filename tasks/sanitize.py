@@ -1,12 +1,61 @@
 import os, csv, json, uuid
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder, OrdinalEncoder, StandardScaler
 
-def sanitize_data():
+def convert_data_to_numeric(data, label_column_name):
+	''' 
+		- sanitize data
+		- encode categorical data
+		- vectorize text data
+		- map trajectories of text data
+	'''
+
+	categorical = data.iloc[:,:].select_dtypes('object').columns
+	print('categorical', categorical)
+	'''
+	for i in categorical:
+		print('categorical group count', data[i].unique())
+	'''
+	print('groups count', sum(data[categorical].nunique()))
+	print('data.describe()', data.describe())
+	print('dtype value counts', data.dtypes.value_counts())
+
+	''' to do: skip dates '''
+	numeric_data = data._get_numeric_data().astype('float64')
+	print('numerical', numeric_data)
+	return numeric_data
+	
+	''' to do: exclude low-count values if necessary '''
+	#data = data[col != low_count_col_value]
+	
+	categorical_names = {}
+	scaler = StandardScaler()
+	for col in data.columns:
+		''' to do: encode label/categorical data '''
+		if col.dtype.name == 'object':
+			if col == label_column_name:
+				encoder = LabelEncoder()
+				data[col] = encoder.fit_transform(data[col])
+				categorical_names[col] = encoder.classes_
+			else:
+				enc = OneHotEncoder(drop='first') # ignore='unknown'
+				enc.fit(x_features)
+				print('one hot categories', enc.categories_)
+				data[col] = enc.transform(data[col]).toarray()
+				# enc.get_feature_names(cols)
+		''' to do: scalar takes in np.array format '''
+		data[col] = np.array(data[col]).reshape(-1, 1)
+		data[col] = scaler.fit_transform(data[col])
+	print('categorical_names', categorical_names)
+	return data
+	
+def json_to_csv():
 	''' use import functionality of elk or apply json data schema templates '''
 	all_new_dicts = []
 	cwd = os.getcwd()
-	origin_path = ''.join([cwd, '/data/event/'])
+	print('cwd', cwd)
+	origin_path = ''.join([cwd, '/tasks/data/event/'])
 	for cur, _dirs, files in os.walk(origin_path):
 		for original_filename in files:
 			filename = ''.join([cur, '/', original_filename])
@@ -15,8 +64,9 @@ def sanitize_data():
 				new_json = ''.join([cur, '/new_', original_filename])
 				with open(csv_path, 'w') as csv_file:
 					with open(filename, 'r') as f:
+						print('loading json', filename)
 						''' assemble & write header '''
-						all_columns = ['uuid']
+						all_columns = [] # 'uuid'
 						cols_not_found = set()
 						lines = []
 						for line in f:
@@ -27,14 +77,13 @@ def sanitize_data():
 										if a not in all_columns:
 											all_columns.append(a)
 									lines.append(data['result'])
+						print('got json data', lines[0])
 						if len(all_columns) > 0:
 							csv_file.write(','.join(all_columns))
 							csv_file.write('\n')
-
 						''' assign values '''
-						
 						for line in lines:
-							value_list = [str(uuid.uuid4())]
+							value_list = [] # [str(uuid.uuid4())]
 							new_dict = {}
 							for c in all_columns:
 								if c in line:
@@ -53,26 +102,25 @@ def sanitize_data():
 								all_new_dicts.append(new_dict)
 						print('cols not found', cols_not_found)
 						f.close()
-
 						with open(new_json, 'w') as nf:
 							all_vals = []
 							for new_dict in all_new_dicts:
 								new_val = ','.join(['_'.join([k, v]) for k, v in new_dict.items()])
 								all_vals.append(new_val)
-							nf.write('\n'.join(all_vals))
+							formatted_json = json.dumps(all_vals)
+							print('formatted_json', type(formatted_json), formatted_json)
+							nf.write(formatted_json)
 							nf.close()
 					csv_file.close()
-
 				df = data_processing(csv_path)
-	if len(lines) > 0:
-		return lines
+	if len(all_new_dicts) > 0:
+		return all_new_dicts
 	return False
 
 def data_processing(csv_path):
 	df = pd.read_csv(csv_path)
 	print('df head', df.head()) #head(10)
-	df.set_index('uuid')
-	print('dtype value counts', df.dtypes.value_counts())
+	# df.set_index('uuid')
 	df = df.applymap(sanitize_all_values)
 	for column in df:
 		#print('column', df[column]) #, 'type', df[column].dtype)

@@ -148,7 +148,7 @@ def run_tasks(client, connection, instance_name, task_type, params):
 		upload_data(client, connection, instance_name, params['filename'], params['target_dir'])
 
 	elif task_type == 'import_data':
-		data = sanitize_data()
+		data = json_to_csv()
 		if data:
 			print('len data', len(data))
 			import_ratio = import_to_elk('fgt_event', data, '/data/event/')
