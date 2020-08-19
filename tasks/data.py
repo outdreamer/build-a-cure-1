@@ -19,8 +19,12 @@ from scipy.sparse import random as sparse_random
 
 #import xgboost
 
+# to do: add regressors for classifiers if available
+# from xgboost import XGBClassifier
+from sklearn.cluster import KMeans
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression, LinearRegression, Ridge
 from sklearn.neural_network import MLPClassifier
 from sklearn.decomposition import PCA, LatentDirichletAllocation, TruncatedSVD
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
@@ -196,21 +200,46 @@ def select_algorithms_for_data(data, problem_type, reductions, algorithms, model
 def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, components_count, graphs, params):
 	model = None
 	if algorithm == 'random_forest':
-		pass
+		model = RandomForestClassifier() # has methods: decision_path(X) & apply
 	elif algorithm == 'xgb':
-		pass
+		model = XGBClassifier()
 	elif algorithm == 'knn':
-		model = KNeighborsClassifier(n_neighbors = params[algorithm])
+		model = KNeighborsClassifier()
 	elif algorithm == 'kmeans':
-		pass
+		model = KMeans() 
+		'''
+		- fast
+		- fails in local minima
+		- If the algorithm stops before fully converging, the cluster_centers wont be the labels_ (means of each center)
+		- labels_ are reassigned after last prediction
+		attributes: cluster_centers (ndarray), labels (ndarray), inertia (float), n_iter (number of iterations run)
+		variants: MiniBatchKMeans may be faster for large number of samples, does incremental updates of the centers positions using mini-batches
+		methods: 
+			- fit_predict(X[, y, sample_weight]) - Compute cluster centers and predict cluster index for each sample
+			- has sample_weight param for its fit/transform/predict methods
+		params: n_clusters=8, *, init='k-means++', n_init=10, max_iter=300, tol=0.0001, precompute_distances='deprecated', verbose=0, random_state=None, copy_x=True, n_jobs='deprecated', algorithm='auto'
+		'''
 	elif algorithm == 'linear_regression':
-		pass
+		model = LinearRegression()
+		'''
+		params: *, fit_intercept=True, normalize=False, copy_X=True, n_jobs=None
+		attributes: coef_, rank_, singular_, intercept_
+		methods:
+			- has sample_weight param for its fit/score methods
+		'''
 	elif algorithm == 'logreg':
 		model = LogisticRegression()
+	elif algorithm == 'ridge':
+		model = Ridge()
+	elif algorithm == 'lasso':
+		model = Lasso()
+		'''
+		params: alpha=1.0, *, fit_intercept=True, normalize=False, precompute=False, copy_X=True, max_iter=1000, tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic'
+		'''
 	elif algorithm == 'dirichlet':
-		model = LatentDirichletAllocation() if components_count.empty else LatentDirichletAllocation(n_components=components_count) # random_state=0)
+		model = LatentDirichletAllocation() 
 	elif algorithm == 'lda':
-		model = LinearDiscriminantAnalysis() if components_count.empty else LinearDiscriminantAnalysis() #n_components=components_count)
+		model = LinearDiscriminantAnalysis()
 	elif algorithm == 'xgb':
 		model = xgboost.XGBClassifier(n_estimators=600, objective='binary:logistic', silent=True, nthread=1)
 	elif algorithm == 'mlp':
@@ -218,9 +247,11 @@ def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, co
 	else:
 		print('unhandled algorithm', algorithm)
 		''' algorithm will also be null if we're just applying reductions '''
+
 	if model is not None or 'reduce' in model_tasks:
 		results = {}
 		if algorithm and model:
+			model.set_params(params)
 			''' train the original model '''
 			result = model_train(algorithm, model, x_features, y_labels, model_tasks, components_count, graphs)
 			if result:
@@ -253,25 +284,25 @@ def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, co
 	return False
 
 def model_train(algorithm, model, x_features, y_labels, model_tasks, components_count, graphs):
-	x_train, x_val, y_train, y_val = train_test_split(x_features, y_labels, test_size=0.2, random_state=27)
+	x_train, x_test, y_train, y_test = train_test_split(x_features, y_labels, test_size=0.2, random_state=27)
 	print('x_train', type(x_train), len(x_train), 'any', x_train.any(), x_train.head())
-	print('x_val', type(x_val), len(x_val), 'any', x_val.any(), x_val.head())
+	print('x_test', type(x_test), len(x_test), 'any', x_test.any(), x_test.head())
 	print('y_train', type(y_train), len(y_train), 'any', y_train.any(), y_train.head())
-	print('y_val', type(y_val), len(y_val), 'any', y_val.any(), y_val.head())
+	print('y_test', type(y_test), len(y_test), 'any', y_test.any(), y_test.head())
 	print(dir(model))
-	if not x_train.empty and not x_val.empty and not y_train.empty and not y_val.empty:
+	if not x_train.empty and not x_test.empty and not y_train.empty and not y_test.empty:
 		model_methods = dir(model)
 		result = {}
 		result['model'] = model
 		result['features'] = model.fit_transform(x_features, y_labels) if 'fit_transform' in model_methods else model.fit(x_features, y_labels)
 		result['components'] = model.components_ if 'components_' in model_methods else None
-		result['predictions'] = model.predict(x_val)
+		result['predictions'] = model.predict(x_test)
 		result['explained_variance'] = model.explained_variance_ if 'explained_variance_' in model_methods else None
-		result['score'] = model.score(x_val, y_val)
-		# result['cv_scores'] = cross_val_score(model, x_val, y_val, cv=5) # take the average of cross validation scores
-		result['acc'] = accuracy_score(y_val, result['predictions'])
+		result['score'] = model.score(x_test, y_test)
+		# result['cv_scores'] = cross_val_score(model, x_test, y_test, cv=5) # take the average of cross validation scores
+		result['acc'] = accuracy_score(y_test, result['predictions'])
 		'''
-		result['f1'] = f1_score(y_val, result['predictions'])
+		result['f1'] = f1_score(y_test, result['predictions'])
 		'''
 		print('result', result)
 
@@ -282,7 +313,7 @@ def model_train(algorithm, model, x_features, y_labels, model_tasks, components_
 			save(model, model_path, model_weights_path)
 
 		if 'train' in model_tasks:
-			return {'x_train': x_train, 'x_val': x_val, 'y_train': y_train, 'y_val': y_val, 'new_features': x_features, 'model': model}
+			return {'x_train': x_train, 'x_test': x_test, 'y_train': y_train, 'y_test': y_test, 'new_features': x_features, 'model': model}
 
 		if len(graphs) > 0:
 			for graph in graphs:
@@ -344,7 +375,12 @@ def convert_reduce_classify_train_score_graph(data, label_column_name, problem_t
 				''' passed contains updated params, given data & requirements & algorithm '''
 				''' to do: calculate params for data set '''
 				params = {
-					'knn': 5 # n_neighbors
+					'ridge': {'alpha': 0.5},
+					'lasso': {'alpha': 0.5},
+					'knn': {'n_neighbors': 5},
+					'random_forest': {'max_depth': 2, 'random_state': 0},
+					'lda': {'n_components': components_count},
+					'dirichlet': {'n_components': components_count, 'random_state': 0}
 				}
 				results = apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, components_count, graphs, params)
 				if results:

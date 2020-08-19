@@ -15,6 +15,13 @@
 			make -j4
 			cd ../python_package && python3 setup.py install
 
+			git clone --recursive https://github.com/dmlc/xgboost
+			cd xgboost
+			cp make/minimum.mk ./config.mk
+			make -j4
+			cd python-package
+			sudo python setup.py install
+
 	- finish metric graph function & data set graph function with hover tooltip
 
 	- create deployed instances to test
