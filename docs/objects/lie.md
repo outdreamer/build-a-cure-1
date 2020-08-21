@@ -1,5 +1,20 @@
 # Lie
 
+
+	To spot a lie, you need to analyze every statement as follows:
+		
+		1. analyze the statement metadata:
+			- inputs (like a lying habit)
+			- outputs (like side effects)
+		
+		2. inputs: analyze whether those inputs might apply (might they be lying out of habit, like a pathological liar, rather than for a specific intent)
+			- check if those inputs apply to the speaker (have they said other lies for no reason)
+			- analyze whether the statement exists in isolation or is determined by the context, without inputs/outputs like reasons to say it (they said it bc its an expected or default response in the conversation, not because they really mean it)
+		
+		3. outputs: analyze how those outputs could benefit the speaker (derive intents, as in reasons to make the statement)
+			- reason to say something include: 'bc its true', 'bc they mean it', 'to get a reaction' (trolling), 'end a conversation', 'amuse themselves', 'undermine you', 'to get stuff (attention, compliments, favors)', 'bc they saw someone else say it on tv/social circle and saw that person get rewards', 'bc its fun to say', 'to make conversation/keep the conversation going', 'to make a point', 'to trigger other conversations/questions/assumptions/conclusions/jokes/other info objects'
+			- check if those intents apply to the speaker (do they have that intent)
+
 	In order to generate a lie, you need to create an alignment between some attribute/object/function that is not accurate, meaningful, or relevant (a false appearance of truth). You can identify lying opportunities as the set of all false similarities in a system (malicious intents that look virtuous, behaviors that seem to fulfill the victim's interests until the error is irreversible, claims that align with feelings but not facts or facts but not logic or logic but not potential, false excuses that have something in common with legitimate behavior, planned lack of attention or regulation as an opportunity for malicious behavior, etc). You can also identify lie trajectories that have the potential to be or become true (unprovable ethical claims, unmeasurable states without information stored, ambiguities in similarities), or are moving in the direction of being true (lack of empathy driving a behavior that is converted to empathy because of the behavior) across states.
 
 ## Lie metadata
