@@ -98,7 +98,7 @@ VI. safety
 - attribute (contextual, political, self-aware, self-referential, fourth-wall breaking, joke commentary)
 - roast (specific to an individual agent or group)
 
-	- example roast/response of common features
+	- example roast/response of common structural features
 
 		- big/small nose:
 
@@ -180,6 +180,23 @@ VI. safety
 			- "God made me a decoy so the people with a higher destiny could avoid creeps"
 				- generative question:
 					- what side effects does attractiveness have that are positive? (takes unwanted attention away from other people)
+
+
+	- examples of roast of non-structural features
+
+		- roasting a decision
+			- word/fashion choice: "my word, what a bible belt juggalo thing to say"
+			- concern troll: "well bless your heart, how can I be of assistance here"
+
+		- roasting a character trait
+			- "you must be annoying to keep people away bc you have too much love in your life"
+
+		- roasting a behavior
+			- "I think your hands are either horny or looking for a hobby bc they keep fidgeting like a dog dreaming about chasing cats"
+
+		- roasting a group membership
+			- "the Lutherans must be quaking in their boots at your church's gym membership discount"
+
 
 	- questions to generate roast
 
