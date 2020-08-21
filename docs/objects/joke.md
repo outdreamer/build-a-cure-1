@@ -98,7 +98,7 @@ VI. safety
 - attribute (contextual, political, self-aware, self-referential, fourth-wall breaking, joke commentary)
 - roast (specific to an individual agent or group)
 
-	- example roast of common features
+	- example roast/response of common features
 
 		- big/small nose:
 
@@ -139,6 +139,26 @@ VI. safety
 				- generative question:
 					- what do they assume will happen if they change size, that your eyes will change in function? (derive their assumption)
 						- what function might they be hoping youll acquire (derive their intent from that assumption)
+
+		- eye color:
+
+			- brown/black eyes:
+				- roast: "bug"
+				- response: "dont get lost in my eyes bc you wont find love in an abyss" or "they turn red from all the crying when Im into someone"
+
+			- green eyes: 
+				- roast: "green-eyed with jealousy"
+				- response: "that was something blue & brown eyed women had to come up with to trick men into hating us but it clearly didnt work"
+
+			- blue eyes:
+				- roast: "blue from the depression at how inadequate you are"
+				- response: "theyre to trick pirates into thinking there's only blue skies ahead"
+
+		- cheeks:
+
+			- chubby cheeks: "evolved from a line of thieves to hide contraband from the police"
+
+			- dimples: "to help cover fake smiles from the professional liars I hail from"
 
 		- big/small hands:
 			
@@ -200,7 +220,7 @@ VI. safety
 				- trying to have a relationship of a certain time period (short relationship if the roast is really mean)
 				- trying to have bdsm/hate sex (if the roast if really mean)
 				- trying to get out of their parent's basement by finding a mate
-				- trying to distract you
+				- trying to distract you/get attention
 				- trying to break your heart to establish a kill count/reputation
 
 			- side effects
