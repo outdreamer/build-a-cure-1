@@ -185,18 +185,22 @@ VI. safety
 	- examples of roast of non-structural features
 
 		- roasting a decision
-			- word/fashion choice: "my word, what a bible belt juggalo thing to say"
+			- word/fashion choice: "my word, what a bible belt juggalo thing to say" or "did the redneck gays gang-dress you again on your way to work"
 			- concern troll: "well bless your heart, how can I be of assistance here"
 
 		- roasting a character trait
 			- "you must be annoying to keep people away bc you have too much love in your life"
+			- "you must be attracted to yourself bc you keep trying to make sure you have you all to yourself"
 
 		- roasting a behavior
 			- "I think your hands are either horny or looking for a hobby bc they keep fidgeting like a dog dreaming about chasing cats"
 
 		- roasting a group membership
 			- "the Lutherans must be quaking in their boots at your church's gym membership discount"
-
+		
+		- roasting a perspective
+			- "I dont think pretending you dont believe in god will get the demons to write off your debts or protect your soul from loan sharks"
+			- "I dont think inventing your own god/cult is a way to escape various circles of hell you earned in other religions"
 
 	- questions to generate roast
 
