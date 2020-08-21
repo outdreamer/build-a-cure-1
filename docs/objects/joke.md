@@ -213,7 +213,23 @@ VI. safety
 		- roasting a concept (like 'roasting')
 			- roast invalidation: "imagine not being able to get a date so you have to get incels to help you learn how to roast me, wont someone please date this roaster by necessity"
 			- horror troll: "what if you couldnt tell that roasting an individual as a group revealed your obsession with & inferiority to that individual, your life would be so hard if you were that stupid - what if they cant tell theyre stupid? lets get these people on medicare, maybe theres some research trial that could help their brains grow"
-			- curious troll: "i didnt know there were still people living in the humiliation game era where people dont realize roasting is about control? it's like discovering an isolated tribe in a jungle"
+			- curious troll: 
+				- "i didnt know there were still people living in the humiliation game era where people dont realize roasting is about control? it's like discovering an isolated tribe in a jungle"
+				- "isnt it interesting that some species of monkeys used to do roasting as an easy means of acquiring resources bc they never evolved intelligence"
+
+		- contextual roast:
+			- when someone roasts an attribute their own partner has: "are you trying to teach me how to love your partner"
+			- when someone repeats someone else's roast: "copying is only cute when x does it"
+			- when someone re-uses an old roast bc they cant think of a new one: "heres the roast you would have said if you could think"
+
+		- abstract roast (for general use):
+			- you dont have to scream how much my achievements bother you by attacking me out of nowhere
+			- you know that other people being happy isnt a direct attack on you right
+			- you know you didnt have to interpret my comment about group x to be about you right
+			- are you aware of other reasons to live than hunting happy people
+			- do you realize that when you respond emotionally to a comment about a group, people realize youre probably in that group
+			- do you want tips on how to sell a roast? such as 'your smile cant be very obviously fake & rehearsed'
+			- you know when you do a fake laugh in response to a roast that people immediately understand you cant retort right
 
 	- roast
 		- attributes
