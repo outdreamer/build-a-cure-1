@@ -85,7 +85,6 @@ VI. safety
 - this can overlap with relatability, bc if a joke is relatable, it will make the audience feel less judged/attacked
 
 
-
 #### Rules
 
 - must be tied to reality in some way (must have some nonzero non-real ratio)
@@ -97,6 +96,115 @@ VI. safety
 - topic (any object forming expectations, such as social group dynamics, norms, religious tenets, assumptions, stereotypes, roles, etc)
 - style (meta-humor, comedian's comedy, dark humor, sarcasm, high brow, raunchy)
 - attribute (contextual, political, self-aware, self-referential, fourth-wall breaking, joke commentary)
+- roast (specific to an individual agent or group)
+
+	- example roast of common features
+
+		- big/small nose:
+
+			- big nose: "i come from a line of drug dealers who had to test their own product as a sales tactic"
+				- generative question: 
+					- what is a function of the object? (testing substance)
+						- what process would produce that object distortion over evolutionary time? (drug habit)
+
+			- small nose: "my family always had farmland so we had to evolve small noses to withstand pig feeding time"
+				- generative question:
+					- what is a function of the object? (sensing scents)
+						- what negative distortions can functions have? (too effective, sub-optimal in processing speed/accuracy)
+							- what is a reason/intent of distorting the object to a smaller size? (preventing that function from being too effective)
+								- what situations might produce an incentive to limit that functionality? (farm animal tasks)
+
+		- big/small ears:
+			
+			- big ears: "they get bigger every time i break someone's heart, to serve as a warning" or "to hear clingy bitches coming a mile away so I can get a head start running"
+				- generative question: 
+					- what is a useful function of the object? (alert)
+						- why would you need/evolve an alert? (to warn yourself/others)
+			
+			- small ears: "i come from a bloodline of spies who have evolved to eavesdrop while appearing not to"
+				- generative question: 
+					- what process would produce that object distortion over evolutionary time? (spying)
+					- what useful function would something small be? (to be hidden)
+						- what would the usefulness of hiding a listening device be? (improved spying function)
+		
+		- big/small eyes:
+			
+			- big eyes: "Chucky/Annabel right before they molt into a fly"
+				- generative question:
+					- what looks structurally similar? (horror movie doll)
+						- whats an extreme distortion? (fly)
+							- how could one distortion become extreme? (evolution)
+			
+			- small eyes: "still wouldnt think youre attractive or wonderful if they were bigger, it doesnt mean you can see things that arent there"
+				- generative question:
+					- what do they assume will happen if they change size, that your eyes will change in function? (derive their assumption)
+						- what function might they be hoping youll acquire (derive their intent from that assumption)
+
+		- big/small hands:
+			
+			- "big hands are for slapping bitches who get mouthy about peoples' hands"
+				- generative question: 
+					- what are the functions of the object?
+						- what functions could be relevant to roasts?
+			
+			- "small hands are for making runts feel big"
+				- generative question:
+					- what function could the object do, in a system context with other object attributes that vary in size?
+
+		- minor flaws:
+			- "the rest of me was too perfect to fulfill my destiny of achievement x, so God made sure I wouldnt get molested/too popular with creeps"
+				- generative question:
+					- what side effects does attractiveness have that are negative? (getting assaulted, being object of obsession/stalking)
+
+		- attractive:
+			- "God made me a decoy so the people with a higher destiny could avoid creeps"
+				- generative question:
+					- what side effects does attractiveness have that are positive? (takes unwanted attention away from other people)
+
+	- questions to generate roast
+
+		- what are the objects/attributes/functions of the object/attribute/function?
+			- what are objects/attributes/functions of those functions (over-effectiveness, sub-optimal, not necessary)
+		
+		- what are the objects/attributes/functions of the type/cause/intent/change functions?
+		
+		- what are the objects/attributes/functions of the generative/descriptive/predictive objects/attributes/functions?
+		
+		- what is the object/attribute/function state history of how it develops over time?
+		
+		- what are the structures (bases/distortions/paths/targets) used?
+			- bases (assumptions, constants, systems, interfaces, perspectives)
+			- distortions (perspective distortions, functional distortions, priority distortions)
+			- paths (functions, historical trajectories)
+			- targets (priorities, states)
+
+	- questions to respond to roast
+
+		- what are the info objects of the roast:
+
+			- agents
+				- intents/incentives
+				- backstory/memories/upbringing/social life
+
+			- assumptions
+				- embedded input distortions
+				- embedded input functions
+
+			- intents
+				- to get you/other people to like/dislike them
+				- to get you/other people to be so hurt that you stay away/respect them/are afraid of them
+
+			- causes
+				- boredom
+				- their insecurity needing to rely on a roast to get your attention on tinder
+				- trying to have a relationship of a certain time period (short relationship if the roast is really mean)
+				- trying to have bdsm/hate sex (if the roast if really mean)
+				- trying to get out of their parent's basement by finding a mate
+				- trying to distract you
+				- trying to break your heart to establish a kill count/reputation
+
+			- side effects
+				- base side effects (social, religious, political, comedy)
 
 
 #### Common joke components/functions

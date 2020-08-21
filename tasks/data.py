@@ -34,7 +34,8 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, OrdinalEncoder, StandardScaler
 
 from sklearn.random_projection import sparse_random_matrix
-from sklearn.metrics import accuracy_score, f1_score
+from sklearn.metrics import accuracy_score, f1_score, classification_report,confusion_matrix
+
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
 
@@ -254,7 +255,7 @@ def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, co
 	elif algorithm == 'lda':
 		model = LinearDiscriminantAnalysis()
 	elif algorithm == 'mlp':
-		model = MLPClassifier()
+		model = MLPClassifier()	
 	else:
 		print('unhandled algorithm', algorithm)
 		''' algorithm will also be null if we're just applying reductions '''
@@ -309,6 +310,7 @@ def model_train(algorithm, model, x_features, y_labels, model_tasks, components_
 		result['features'] = model.fit_transform(x_features, y_labels) if 'fit_transform' in model_methods else model.fit(x_features, y_labels)
 		result['components'] = model.components_ if 'components_' in model_methods else None
 		result['predictions'] = model.predict(x_test)
+		result['class_probabilities'] = predict_class_probabilities(y_labels, model) if 'predict_proba' in model_methods else None
 		result['coef'] if 'coef_' in model_methods else None # array of shape (n_features, ) or (n_targets, n_features) based on how many targets are passed in
 		result['intercept'] if 'intercept_' in model_methods else None
 		# add rank_ & singular_ attributes of matrix for regression where applicable
@@ -340,10 +342,12 @@ def model_train(algorithm, model, x_features, y_labels, model_tasks, components_
 					feature_image_path = save_graph(result['features'], 'scatter', ''.join([algorithm, 'features with components: ', components_count]), 'variation', 'features', None)
 					if feature_image_path:
 						result['feature_image'] = feature_image_path
-				if graph == 'confusion' and not x_features.empty:
-					confusion_matrix = confusion_matrix(x_features, y_labels, result)
-					if confusion_matrix:
-						result['confusion_image'] = confusion_matrix
+				if graph == 'confusion' and not y_test.empty and len(result['predictions']) > 0:
+					result['confusion_matrix'] = confusion_matrix(y_test, result['predictions'])
+					result['classification_report'] = classification_report(y_test, result['predictions'])
+					confusion_image = save_graph(result['confusion_matrix'], 'confusion', 'confusion_matrix', '', '', None)
+					if confusion_image:
+						result['confusion_image'] = confusion_image
 	return result
 
 def convert_reduce_classify_train_score_graph(data, label_column_name, problem_type, processes, reductions, regularizations, algorithms, model_tasks, graphs):

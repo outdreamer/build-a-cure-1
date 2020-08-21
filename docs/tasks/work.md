@@ -1,36 +1,40 @@
 - to do:
 
-	- finish es import function for other data, config elk stack for ml anomaly detection & test
+	- finish es methods
 
-	- finish scaling in preprocessing
+		- finish es import function for other data, config elk stack for ml anomaly detection & test
+		- function to pull data from es with label column parameter & apply a standard model & output metric graph
 
-	- add regularization/normalization
+	- finish model training methods
 
-	- finish deploy functions in deploy.py
+		- finish scaling in preprocessing
+		- add regularization/normalization
+		- finish metric graph function & data set graph function with hover tooltip
+		- label data & train
 
-	- finish install scripts
+	- finish deploy functions in deploy.py to:
+		- select aws config depending on data set/algorithm/dependency params
+		- create/start/stop ecs instance
+		- connect/install
+		- start/stop programs on instance
 
-		- xgboost installation
-			brew install cmake && gcc@8
-			git clone --recursive https://github.com/dmlc/xgboost && mkdir xgboost/my_build && cd xgboost/my_build
-			CC=gcc-8 CXX=g++-8 cmake ..
-			make -j4
-			cd ../python_package && python3 setup.py install
+		- finish install scripts
 
-			git clone --recursive https://github.com/dmlc/xgboost
-			cd xgboost
-			cp make/minimum.mk ./config.mk
-			make -j4
-			cd python-package
-			sudo python setup.py install
+			- xgboost installation
+				brew install cmake && gcc@8
+				git clone --recursive https://github.com/dmlc/xgboost && mkdir xgboost/my_build && cd xgboost/my_build
+				CC=gcc-8 CXX=g++-8 cmake ..
+				make -j4
+				cd ../python_package && python3 setup.py install
 
-	- finish metric graph function & data set graph function with hover tooltip
+				git clone --recursive https://github.com/dmlc/xgboost
+				cd xgboost
+				cp make/minimum.mk ./config.mk
+				make -j4
+				cd python-package
+				sudo python setup.py install
 
-	- create deployed instances to test
-
-	- function to pull data from es with label column parameter & apply a standard model & output metric graph
-
-	- label data & train
+		- create deployed instances to test
 
 	- email metadata identification functions
 
