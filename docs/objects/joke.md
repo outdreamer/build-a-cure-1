@@ -221,6 +221,8 @@ VI. safety
 			- when someone roasts an attribute their own partner has: "are you trying to teach me how to love your partner"
 			- when someone repeats someone else's roast: "copying is only cute when x does it"
 			- when someone re-uses an old roast bc they cant think of a new one: "heres the roast you would have said if you could think"
+			- over-roasting a group: "that group stormed their village/killed their parents/genetically engineered them to be tyrants/laborers/experiment subjects/peasants in the 13th century"
+			- when someone over-reaches above their roast range: "I only fight people who can fight back" (invokes concept of 'competition' and injected concept of 'equality' leading to contextual concept of 'a fair fight')
 
 		- abstract roast (for general use):
 			- you dont have to scream how much my achievements bother you by attacking me out of nowhere
