@@ -185,7 +185,9 @@ VI. safety
 	- examples of roast of non-structural features
 
 		- roasting a decision
-			- word/fashion choice: "my word, what a bible belt juggalo thing to say" or "did the redneck gays gang-dress you again on your way to work"
+			- specific choice (word/fashion/career)
+				- "my word, what a bible belt juggalo thing to say" or "did the redneck gays gang-dress you again on your way to work"
+				- "did you become a hacker so you could look at people's thirst traps or protect your gf from hackers"
 			- concern troll: "well bless your heart, how can I be of assistance here"
 
 		- roasting a character trait
@@ -202,50 +204,84 @@ VI. safety
 			- "I dont think pretending you dont believe in god will get the demons to write off your debts or protect your soul from loan sharks"
 			- "I dont think inventing your own god/cult is a way to escape various circles of hell you earned in other religions"
 
-	- questions to generate roast
+		- roasting an opinion
+			- "imagine having to hire a philosopher to write unintelligible nonsense to sell your belief system to the morons bc the tax structure is so clearly anti-moron"
 
-		- what are the objects/attributes/functions of the object/attribute/function?
-			- what are objects/attributes/functions of those functions (over-effectiveness, sub-optimal, not necessary)
-		
-		- what are the objects/attributes/functions of the type/cause/intent/change functions?
-		
-		- what are the objects/attributes/functions of the generative/descriptive/predictive objects/attributes/functions?
-		
-		- what is the object/attribute/function state history of how it develops over time?
-		
-		- what are the structures (bases/distortions/paths/targets) used?
-			- bases (assumptions, constants, systems, interfaces, perspectives)
-			- distortions (perspective distortions, functional distortions, priority distortions)
-			- paths (functions, historical trajectories)
-			- targets (priorities, states)
+		- roasting a lie
+			- pity troll: "what if you couldnt come up with a reason someone should hire you, so you had to look up a blog about a skill & then quote it as if they cant search for what you said & find the blog, have some compassion"
 
-	- questions to respond to roast
+		- roasting a concept (like 'roasting')
+			- roast invalidation: "imagine not being able to get a date so you have to get incels to help you learn how to roast me, wont someone please date this roaster by necessity"
+			- horror troll: "what if you couldnt tell that roasting an individual as a group revealed your obsession with & inferiority to that individual, your life would be so hard if you were that stupid - what if they cant tell theyre stupid? lets get these people on medicare, maybe theres some research trial that could help their brains grow"
+			- curious troll: "i didnt know there were still people living in the humiliation game era where people dont realize roasting is about control? it's like discovering an isolated tribe in a jungle"
 
-		- what are the info objects of the roast:
+	- roast
+		- attributes
+			- specificity (is it about an individual or a group or a structure (limit, system, function) or a priority/perspective/point/belief/concept)
+			- accuracy (did it hit the target)
+			- gentleness
+			- brevity (above retort to "green eyes" roast can be reduced to "jealous peoples' projections on me didnt work" or "I came up with that to keep you away")
+			- intent (friendly fire, to score a point, to establish a reputation, to get attention, to teach them how to roast/retort)
+			- perspective
+				- agent relationship perspective (concern, horror, pity, curious trolling)
+			- optimal attributes
+				- should be as specific as possible
 
-			- agents
-				- intents/incentives
-				- backstory/memories/upbringing/social life
+		- functions
+			- questions to generate roast
 
-			- assumptions
-				- embedded input distortions
-				- embedded input functions
+				- what are the objects/attributes/functions of the object/attribute/function?
+					- what are objects/attributes/functions of those functions (over-effectiveness, sub-optimal, not necessary)
+				
+				- what are the objects/attributes/functions of the type/cause/intent/change functions?
+				
+				- what are the objects/attributes/functions of the generative/descriptive/predictive objects/attributes/functions?
+				
+				- what is the object/attribute/function state history of how it develops over time?
+				
+				- what are the structures (bases/distortions/paths/targets) used?
+					- bases (assumptions, constants, systems, interfaces, perspectives)
+					- distortions (perspective distortions, functional distortions, priority distortions)
+					- paths (functions, historical trajectories)
+					- targets (priorities, states)
 
-			- intents
-				- to get you/other people to like/dislike them
-				- to get you/other people to be so hurt that you stay away/respect them/are afraid of them
+	- retort 
+		- attributes
+			- same as roast
+			- optimal attributes
+				- should be relevant/specific to the roast where possible to show adaptability
+		- types
+			- direct response to specific roast
+			- indirect response to all roasts or concept of roasting or cause/other metadata of roasting
 
-			- causes
-				- boredom
-				- their insecurity needing to rely on a roast to get your attention on tinder
-				- trying to have a relationship of a certain time period (short relationship if the roast is really mean)
-				- trying to have bdsm/hate sex (if the roast if really mean)
-				- trying to get out of their parent's basement by finding a mate
-				- trying to distract you/get attention
-				- trying to break your heart to establish a kill count/reputation
+		- functions
+			- questions to generate retort
 
-			- side effects
-				- base side effects (social, religious, political, comedy)
+				- what are the info objects of the roast:
+
+					- agents
+						- intents/incentives
+						- backstory/memories/upbringing/social life
+
+					- assumptions
+						- embedded input distortions
+						- embedded input functions
+
+					- intents
+						- to get you/other people to like/dislike them
+						- to get you/other people to be so hurt that you stay away/respect them/are afraid of them
+
+					- causes
+						- boredom
+						- their insecurity needing to rely on a roast to get your attention on tinder
+						- trying to have a relationship of a certain time period (short relationship if the roast is really mean)
+						- trying to have bdsm/hate sex (if the roast if really mean)
+						- trying to get out of their parent's basement by finding a mate
+						- trying to distract you/get attention
+						- trying to break your heart to establish a kill count/reputation
+
+					- side effects
+						- base side effects (social, religious, political, comedy)
 
 
 #### Common joke components/functions
