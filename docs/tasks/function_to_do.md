@@ -34,6 +34,8 @@
   - give examples based on the same default example for each analysis type
     - the default example can be a prediction function
 
+  - document time structures (concave time explaining compounding similarities up to a point of maximum concavity, a structure that can separate from the other space-times)
+
   - diagram
 
     - identifying/reducing solution space & aggregating solutions into final structure

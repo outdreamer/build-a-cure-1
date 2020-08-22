@@ -234,7 +234,9 @@ VI. safety
 			- you know when you do a fake laugh in response to a roast that people immediately understand you cant retort right
 
 	- roast
+
 		- attributes
+		
 			- specificity (is it about an individual or a group or a structure (limit, system, function) or a priority/perspective/point/belief/concept)
 			- accuracy (did it hit the target)
 			- gentleness
