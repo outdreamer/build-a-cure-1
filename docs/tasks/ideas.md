@@ -14,6 +14,12 @@ to do: organize into docs
     - then systematize sets
     - then identify trajectories in those set systems that can be identified as a unique concept according to your definition
 
+  - example of other derivable content metadata (giving context to an isolated descriptive variable analysis):
+    - the insight path an author took to generate their work, given their input info (what trajectory did they take from A 'reading the bible' to B 'writing this poem)
+    - other effective/creative/robust insight paths (how to get from A to B in a more creative way)
+    - the structures like core functions/bases/layers/objects to generate the content (take a plot from an old bible story, add drama, add local/contemporary plot lines, mix characters, apply a structural pattern like syllables to refine it)
+    - generative variables of the content, rather than just the descriptive variables (find objects that generate attention (drama), find new combinations of character attributes, find a structural pattern & apply it)
+
   - example of UI for implementing intent-matching for code generation
 
     - form accepting intent queries like 'build streaming platform optimizing for metric c with these data sources'
