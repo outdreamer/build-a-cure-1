@@ -981,6 +981,21 @@
 
 				- I realized this fatal disadvantage of isolated information when I started examining statistics, which frames variable relationships based on a snapshot of a set of variables, without really digging into what a variable is (a change type), how they develop & aggregate into other variables (like types & concepts), whether patterns of change across variable types/networks could be used to strengthen prediction functions against bias, where/how randomness develops in complex systems, whether bases/subsets were better structures to begin analysis from than averages, the causal structures like position of the variables, and other fundamental questions that seemed to be ignored from the statistical perspective.
 
+				- you can frame this tool (or its network of interfaces, as a meaning interface) as meaning detection/generation automation.
+
+				- meaning can take several forms in different systems:
+					
+					- the fit of an object in a system (position/structure)
+						- the fit of an object in a particular system like the interface system (which relevant objects align across the interface systems)
+					
+					- the relevant structuress of an object:
+						- a subset of the context, including related objects that are important for understanding, like a good explanation has
+						- its most reduced form, like a rule that can generate the info you need to remember
+
+					- the structures of importance (one attribute of a definition of meaning), like equivalence (similarity, balance) & power (hubs, inputs, catalysts)
+
+				- the meaning is the answer to the question of 'why is this important or relevant', where other interfaces answer questions like 'why' (intent), 'how' (structure), 'when' (cause), 'where' (in what system context), and 'whether' (potential).
+
 		- this insight about isolated analysis converged with another insight about the isolation of optimizations, either in priority or other relevant structures to the concept of optimization
 
 			- optimization metrics: another important insight was the realization that having one winning system or metric was itself a sub-optimal system in most cases; a 'win-based perspective' narrows the focus too much toward one set of optimal (definition, metric, etc) when theres usually a combination structure of optimals (multiple government types, rules, metrics).
