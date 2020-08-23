@@ -901,6 +901,7 @@
 				- there should always be at least two comparable alternatives so a decision is difficult & not certain
 					- at least two systems, at least two perspectives, at least two metrics, at least two intents, etc - the ark requires differentiation to sustain potential
 
+
 	15. what do you mean by 'using potential as a base rather than time'
 
 		- time as a base for assessing change is useful in solving information problems
@@ -1020,13 +1021,26 @@
 
 		- intent: one of the reasons I identified intent as an important object was that I usually have multiple reasons for decisions, like a decision to post a quote could have multiple intents (to get criticized given the quote metadata like who it quoted, to draw attention to an insight, to inspire copying behavior to see who is watching, etc), so I realized intents were not only an abundant source of variation, but an object that could be derived for functions. Then I thought about how to map intents to core functions, and I realized you could map high-level function intents like retrieve data to operations on granular intents like check.
 
-		- math automation: how did I realize that math insights were automatable? The first clues were that it had core functions, like other automatable systems - then another clue that certain operations had default intents associated (there were reasons to apply certain operations, similar to incentives), and the related system objects you'd expect to see were there (efficiencies, like adjacent transformations that made certain calculations quicker).
+		- math automation: how did I realize that math insights were automatable? The first clues were that it had core functions, like other automatable systems - then another clue that certain operations had default intents associated (there were reasons to apply certain operations, similar to incentives), and the related system objects you'd expect to see were there (efficiencies, like adjacent transformations that made certain calculations quicker). It was also clear that if functions had attributes, these attributes were connected to structure & were therefore automatable, especially once I derived the insight path to produce the cryptocurrency invention, which is a structure with conceptual attributes like 'trustless'.
 
 		- looking back, I think some objects were clues to this trajectory, which could be structures that you could use to generate this (mandela, detachment from the Bhagavad Gita, the psychic instrument from His Dark Materials, the signpost from the Phantom Tollbooth, the 'abstractions as islands' trope in fiction, the time-traveling trope in fiction or conflicts between the church & state alerting me to different perspectives) but I can't point to one structure that I focused on through the years except the abstract network that I used for my book, which I realized was real somewhere after thinking about how certain concepts seemed to have rules they followed, like how power seems to gather in certain places. I began to think of an abstract city where these concepts could change, in conceptual time, and thought about how they might change in their interactions if not their structure, since they didn't seem changeable in this dimension set, but instead seemed to cascade down to structural dimensions, like a form of light.
 
 		- why did I wait until this year to patent it? Partly bc I was keeping some pieces of the invention private in case I got a pitch meeting, partly bc I was busy with work/health/thinking of new ideas in specific problem spaces, and partly bc of the 1-year limit on public disclosures of inventions in the current outdated legal framework, and partly bc I decided to figure out the mechanics/implementation of pieces of it later, once I arrived at & verified the initial proof of concept (later meaning once I got a pitch meeting).
 
 		- Not everyone has a built-in reason to automate problem-solving (like if they don't have serious problems to solve relevant to them, like the well-being of good people), but once I realized automation of problem-solving was possible, that gave me extra drive to get there, so I didn't need other reasons past that point, though luckily I had them just in case.
+
+
+	19. what problems cant be solved with this?
+
+		- this can solve problems where information is calculatable (like on the math interface) or where information is retrievable/testable (where you have data you can find & retrieve).
+		- it cant solve problems where information isnt measurable or calculatable - that means:
+			- problems that require more computation than we have computing power for
+			- problems regarding information that is not retrievable (destroyed information, like historical information or information inside black holes)
+			- problems regarding structures we dont have the understanding to organize information queries for, or retrieve information for (if there is a physics or math insight that is so foreign to our understanding that we don't even know to look for it, that may not be solvable with this tool, but it should be able to point understanding & information retrieval in that direction if not reach the destination structure). This would happen if the analysis isn't comprehensive enough when generating different perspectives, to identify new interfaces & new structures on them not adjacently derivable with existing interfaces.
+				- maybe there's an object that generates so much randomness that we cant ever capture enough information about it to derive it
+				- maybe there's a mechanism preventing necessary computation time to derive the mechanism from gathering around certain structures capable of hosting sentient life
+				- maybe information has a built-in expiration in physics, and if it's not used, it decays - maybe this is how math develops, around efficiency energy organization that is allocated according to incentives & aligned with meaningful intent based on usage
+			- these are examples I can come up with, which means my system can also come up with them - but you can see how non-standard assumptions can generate a high level of difference, to come up with alternative explanations originating from very different but still possible systems.
 
 
 ## Problem-solving Insight Paths 
