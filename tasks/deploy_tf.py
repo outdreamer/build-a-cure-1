@@ -96,6 +96,11 @@ def get_tf_config(params):
 		'vars': {},
 		'resources': {
 			'ec2': [
+				"provider \"aws\" {",
+				''.join(["  region  = \"", params['region'], "\""]),
+				''.join(["  shared_credentials_file = \"", params['credential_path'], "\""]),
+				"}",
+				"",
 				"resource \"aws_security_group\" \"ec2_sg\" {",
 				"  name   = \"ec2_sg\"# SSH access from anywhere",
 				"  ingress {",
@@ -156,9 +161,9 @@ def get_tf_config(params):
 				"  public_key = tls_private_key.ec2_key.public_key_openssh",
 				"}",
 				"",
-				"provider \"aws\" {",
-				''.join(["  region  = \"", params['region'], "\""]),
-				''.join(["  shared_credentials_file = \"", params['credential_path'], "\""]),
+				"resource \"aws_iam_instance_profile\" \"ec2_profile\" {",
+				"  name = \"ec2_profile\"",
+				"  role = aws_iam_role.ec2_role.name",
 				"}",
 				"",
 				"resource \"aws_instance\" \"task_ec2_instance\" {",
@@ -179,6 +184,10 @@ def get_tf_config(params):
 			'ec2': [
 				"output \"output_public_ip\" {",
 				"  value = aws_instance.task_ec2_instance.public_ip",
+				"}",
+				"",
+				"output \"output_instance_id\" {",
+				"  value = aws_instance.task_ec2_instance.id",
 				"}"
 			]
 		}
@@ -220,9 +229,13 @@ def deploy_generated_tf_config(params):
 			elif command == 'terraform apply':
 				result, stdout, stderr = t.apply(skip_plan=True) #, vars = {'region': params['region']})	
 				if stdout and result == 0:
+					okeys = {}
 					for line in stdout.split('\n'):
-						if params['output_key'] in line:
-							return line.replace(params['output_key'], '').replace('=','').strip()
+						for ok in params['output_keys']:
+							if ok in line:
+								okeys[ok] = line.replace(ok, '').replace('=','').strip()
+					if okeys:
+						return okeys
 		except Exception as e:
 			print('tf exception', e)
 		print('tf command result', command, result) # result is 0 if without error
@@ -331,19 +344,51 @@ def deploy(params):
 			configured = generate_config(params)
 			if configured:
 				print('generated config at config_path', params['tf_config_path'])
-				output_key = deploy_generated_tf_config(params)
-				print('deployed resources with output', output_key)
-				if output_key:
+				output_keys = deploy_generated_tf_config(params)
+				print('deployed resources with output', output_keys)
+				if output_keys:
+					for ok, val in output_keys.items():
+						params[ok] = val
 					for i in range(0, 20):
-						print('trying to connect to url', i, output_key)
-						opened = open_output_in_browser(output_key, params)
+						print('trying to connect to url', i, output_keys['output_public_ip'])
+						opened = open_output_in_browser(output_keys['output_public_ip'], params)
 						if not opened:
 							time.sleep(60)
 						else:
-							break
+							return params
 				else:
 					print('could not deploy')
 	return False
+
+def destroy_resources(params):
+	''' to do: delete tls_private_key '''
+	ec2 = boto3.client('ec2')
+	iam = boto3.client('iam')
+	try:
+		deleted_key_pair = ec2.delete_key_pair(KeyName='deploy_key')	
+	except Exception as e:
+		print('key pair exception', e)
+	try:
+		deleted_ec2_instance = ec2.terminate_instances(InstanceIds=[params['output_instance_id']])
+	except Exception as e:
+		print('ec2 exception', e)
+	try:
+		deleted_sg = ec2.delete_security_group(GroupName='ec2_sg')
+	except Exception as e:
+		print('sg exception', e)
+	try:
+		removed_role = iam.remove_role_from_instance_profile(InstanceProfileName='ec2_profile', RoleName='ec2_role')
+	except Exception as e:
+		print('remove role from instance profile exception', e)
+	try:
+		deleted_instance_profile = iam.delete_instance_profile(InstanceProfileName='ec2_profile')
+	except Exception as e:
+		print('instance profile exception', e)
+	try:
+		deleted_role = iam.delete_role(RoleName='ec2_role')
+	except Exception as e:
+		print('role exception', e)
+	return True
 
 ''' 
 - task 'elk', requires ecs with python requirements.txt install
@@ -351,10 +396,11 @@ def deploy(params):
 '''
 
 params = {'cloud': 'aws', 'task': 'elk', 'instance': 'demo'}
+params['output_instance_id'] = ''
 params['user_dir'] = '/'.join(os.getcwd().split('/')[0:3])
 params['keypath'] = ''.join([params['user_dir'], '/tf_deploy.pem'])
 params['pub_key_path'] = params['keypath'].replace('.pem', '.pem.pub')
-params['credential_path'] = '/.aws/credentials/credentials.ini'
+params['credential_path'] = '/.aws/credentials_tf/credentials.ini'
 params['tf_config_path'] = ''.join([os.getcwd(), '/', params['cloud'], '_', params['task'], '_config.tf'])
 params['plan_path'] = params['tf_config_path'].replace('_config.tf', '_plan_config.bin')
 params = remove_generated_config(params)
@@ -364,9 +410,12 @@ params['ami'] = 'ami-0baeabdd230a4e508' # centos 7
 params['region'] = 'us-west-2'
 params['user'] = 'ec2-user' if params['cloud'] == 'aws' else None
 params['instance_type'] = 't2.micro' if params['task'] == 'elk' else 'm2.medium'
-params['output_key'] = 'output_public_ip'
+params['output_keys'] = ['output_public_ip', 'output_instance_id']
 params['tagname'] = ''.join(['task_ec2_instance', '_', params['task']])
 params['task_script_path'] = ''.join([os.getcwd(), '/', 'install_boot_', params['task'], '.sh'])
+
+
+# destroy_resources(params)
 
 stored_env = {}
 for i, arg in enumerate(sys.argv):
@@ -388,6 +437,12 @@ if params['access_key'] != '' and params['secret_key'] != '':
 	for env, val in params['env'].items():
 		stored_env[env] = os.environ.get(env)
 		os.environ[env] = val
-	deploy(params)
+	clean_params = deploy(params)
+	if clean_params:
+		print('clean_params', clean_params)
+
+	''' cleanup task '''
 	for env, val in params['env'].items():
 		os.environ[env] = '' if env not in stored_env else stored_env[env] if stored_env[env] is not None else ''
+
+	destroy_resources(clean_params)
