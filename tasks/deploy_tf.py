@@ -62,6 +62,31 @@ def execute_remote_command(command, connection):
 	except Exception as e:
 		print('execute_command exception', e)
 	return False, False
+
+def generate_key(keypath):
+	OpenSSH public key format (the format in ~/.ssh/authorized_keys). If you connect using SSH while using the EC2 Instance Connect API, the SSH2 format is also supported.
+	Base64 encoded DER format
+	SSH public key file format as specified in RFC4716
+	SSH private key file format must be PEM (for example, use ssh-keygen -m PEM to convert the OpenSSH key into the PEM format)
+	# ssh-keygen -t rsa -b 4096 -f
+	gen_key = ''.join(['ssh-keygen -P "" -t rsa -b 2048 -m pem -f ', params['keypath']])
+	generated = subprocess.check_output(gen_key, shell=True)
+	os.system(''.join(["chmod 400 ", params['keypath']]))
+	convert = ''.join(['ssh-keygen -f ', params['keypath'], ' -e -m pem'])
+	# ssh-keygen -y -f /path_to_key_pair/my-key-pair.pem - get pub key
+	converted = subprocess.check_output(convert, shell=True)
+	open(params['pub_key_path'], 'w').write(converted.decode('utf-8'))
+	os.system(''.join(["chmod 600 ", params['pub_key_path']]))
+	ec2 = boto3.client('ec2')
+	keypair = ec2.create_key_pair(KeyName='deploy_key') # 'KeyMaterial' : An unencrypted PEM encoded RSA private key.
+	if keypair:
+		open(params['keypath'], 'w').write(keypair['KeyMaterial'])
+		os.system(''.join(["chmod 400 ", params['keypath']]))
+		convert = ''.join(['ssh-keygen -y -f ', params['keypath'], ' > ', params['pub_key_path']])
+		converted = subprocess.check_output(convert, shell=True)
+		# open(params['pub_key_path'], 'w').write(converted.decode('utf-8'))
+		os.system(''.join(["chmod 600 ", params['pub_key_path']]))
+	return keypath
 '''
 
 def get_tf_config(params):
@@ -188,10 +213,17 @@ def get_tf_config(params):
 				"",
 				"output \"output_instance_id\" {",
 				"  value = aws_instance.task_ec2_instance.id",
+				"}",
+				"",
+				"output \"output_private_key\" {",
+				"  value = tls_private_key.ec2_key.private_key_pem",
 				"}"
 			]
 		}
 	}
+	'''
+
+	'''
 	return tf_config
 
 def generate_config(params):
@@ -230,9 +262,22 @@ def deploy_generated_tf_config(params):
 				result, stdout, stderr = t.apply(skip_plan=True) #, vars = {'region': params['region']})	
 				if stdout and result == 0:
 					okeys = {}
+					add_flag = 0
+					okeys['output_private_key'] = []
+					for i, subline in enumerate(stdout.split('\n')):
+						if 'output_private_key' in subline:
+							add_flag = i
+						if 'output_public_ip' not in subline:
+							if add_flag > 0 and i >= add_flag:
+								okeys['output_private_key'].append(subline.strip())
+						else:
+							break
+					okeys['output_private_key'] = '\n'.join(okeys['output_private_key']).replace('output_private_key = ', '')
+					open('testing.pem', 'w').write(okeys['output_private_key'])
+					os.system('chmod 600 testing.pem')
 					for line in stdout.split('\n'):
 						for ok in params['output_keys']:
-							if ok in line:
+							if ok != 'output_private_key' and ok in line:
 								okeys[ok] = line.replace(ok, '').replace('=','').strip()
 					if okeys:
 						return okeys
@@ -285,24 +330,6 @@ def mkdir_structure(file_path, params):
 	folders_path = ''.join([folders_path, '/'])
 	return folders_path
 
-def generate_key(keypath):
-	'''
-	OpenSSH public key format (the format in ~/.ssh/authorized_keys). If you connect using SSH while using the EC2 Instance Connect API, the SSH2 format is also supported.
-	Base64 encoded DER format
-	SSH public key file format as specified in RFC4716
-	SSH private key file format must be PEM (for example, use ssh-keygen -m PEM to convert the OpenSSH key into the PEM format)
-	'''
-	# ssh-keygen -t rsa -b 4096 -f
-	gen_key = ''.join(['ssh-keygen -P "" -t rsa -b 2048 -m pem -f ', params['keypath']])
-	generated = subprocess.check_output(gen_key, shell=True)
-	os.system(''.join(["chmod 400 ", params['keypath']]))
-	convert = ''.join(['ssh-keygen -f ', params['keypath'], ' -e -m pem'])
-	# ssh-keygen -y -f /path_to_key_pair/my-key-pair.pem - get pub key
-	converted = subprocess.check_output(convert, shell=True)
-	open(params['pub_key_path'], 'w').write(converted.decode('utf-8'))
-	os.system(''.join(["chmod 600 ", params['pub_key_path']]))
-	return keypath
-
 def open_output_in_browser(ip, params):
 	''' open notebook/api graph or elk kibana login '''
 	host = ''.join(['ec2-', ip.replace('.','-'), '.', params['region'], '.compute.amazonaws.com']) if params['cloud'] == 'ec2' else ip
@@ -335,29 +362,29 @@ def remove_generated_config(params):
 
 ''' to do: create install scripts install_boot_elk.sh and install_boot_model.sh '''
 def deploy(params):
-	generated = generate_key(params['keypath'])
-	if generated:
-		print('generated key', generated)
-		local_install = install_local_tf_cloud(params)
-		if local_install:
-			print('installed aws config, env var, pip reqs')
-			configured = generate_config(params)
-			if configured:
-				print('generated config at config_path', params['tf_config_path'])
-				output_keys = deploy_generated_tf_config(params)
-				print('deployed resources with output', output_keys)
-				if output_keys:
-					for ok, val in output_keys.items():
-						params[ok] = val
-					for i in range(0, 20):
-						print('trying to connect to url', i, output_keys['output_public_ip'])
-						opened = open_output_in_browser(output_keys['output_public_ip'], params)
-						if not opened:
-							time.sleep(60)
-						else:
-							return params
-				else:
-					print('could not deploy')
+	#generated = generate_key(params['keypath'])
+	#if generated:
+		#print('generated key', generated)
+	local_install = install_local_tf_cloud(params)
+	if local_install:
+		print('installed aws config, env var, pip reqs')
+		configured = generate_config(params)
+		if configured:
+			print('generated config at config_path', params['tf_config_path'])
+			output_keys = deploy_generated_tf_config(params)
+			print('deployed resources with output', output_keys)
+			if output_keys:
+				for ok, val in output_keys.items():
+					params[ok] = val
+				for i in range(0, 20):
+					print('trying to connect to url', i, output_keys['output_public_ip'])
+					opened = open_output_in_browser(output_keys['output_public_ip'], params)
+					if not opened:
+						time.sleep(60)
+					else:
+						return params
+			else:
+				print('could not deploy')
 	return False
 
 def destroy_resources(params):
@@ -365,7 +392,7 @@ def destroy_resources(params):
 	ec2 = boto3.client('ec2')
 	iam = boto3.client('iam')
 	try:
-		deleted_key_pair = ec2.delete_key_pair(KeyName='deploy_key')	
+		deleted_key_pair = ec2.delete_key_pair(KeyName='deploy_key') # 'deploy_key'	
 	except Exception as e:
 		print('key pair exception', e)
 	try:
@@ -396,10 +423,9 @@ def destroy_resources(params):
 '''
 
 params = {'cloud': 'aws', 'task': 'elk', 'instance': 'demo'}
-params['output_instance_id'] = ''
 params['user_dir'] = '/'.join(os.getcwd().split('/')[0:3])
 params['keypath'] = ''.join([params['user_dir'], '/tf_deploy.pem'])
-params['pub_key_path'] = params['keypath'].replace('.pem', '.pem.pub')
+params['pub_key_path'] = params['keypath'].replace('.pem', '.pub')
 params['credential_path'] = '/.aws/credentials_tf/credentials.ini'
 params['tf_config_path'] = ''.join([os.getcwd(), '/', params['cloud'], '_', params['task'], '_config.tf'])
 params['plan_path'] = params['tf_config_path'].replace('_config.tf', '_plan_config.bin')
@@ -410,12 +436,10 @@ params['ami'] = 'ami-0baeabdd230a4e508' # centos 7
 params['region'] = 'us-west-2'
 params['user'] = 'ec2-user' if params['cloud'] == 'aws' else None
 params['instance_type'] = 't2.micro' if params['task'] == 'elk' else 'm2.medium'
-params['output_keys'] = ['output_public_ip', 'output_instance_id']
+params['output_keys'] = ['output_public_ip', 'output_instance_id', 'output_private_key']
+params['output_instance_id'] = 'i-04ad6517520e8d781'
 params['tagname'] = ''.join(['task_ec2_instance', '_', params['task']])
 params['task_script_path'] = ''.join([os.getcwd(), '/', 'install_boot_', params['task'], '.sh'])
-
-
-# destroy_resources(params)
 
 stored_env = {}
 for i, arg in enumerate(sys.argv):
@@ -437,12 +461,15 @@ if params['access_key'] != '' and params['secret_key'] != '':
 	for env, val in params['env'].items():
 		stored_env[env] = os.environ.get(env)
 		os.environ[env] = val
+
+	destroy_resources(params)
+
 	clean_params = deploy(params)
 	if clean_params:
 		print('clean_params', clean_params)
 
+	# destroy_resources(clean_params)
+
 	''' cleanup task '''
 	for env, val in params['env'].items():
 		os.environ[env] = '' if env not in stored_env else stored_env[env] if stored_env[env] is not None else ''
-
-	destroy_resources(clean_params)

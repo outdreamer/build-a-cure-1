@@ -1,3 +1,4 @@
+*.pem
 /tasks/terraform.*
 /tasks/.terraform.tfstate.lock.info
 /tasks/.terraform/*
