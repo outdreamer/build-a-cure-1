@@ -1,15 +1,28 @@
 import boto3
 import botocore
 import paramiko
-from python_terraform import Terraform
+from python_terraform import *
 import os, sys, subprocess	
 
-''' to add remote_exec rather than user data, add tf_command_lines to tf config output
+''' to add remote_exec rather than user data, add tf_command_lines to tf config output to a resource
 remote_commands = open(task_script_path, 'r').readlines()
 remote_tf_exec_commands = ["  provisioner \"remote-exec\" {", "	inline = ["]
 for command in remote_commands:
 	remote_tf_exec_commands.append(''.join(["	  \"", command, "\","]))
 remote_tf_exec_commands.extend(["	]", "  }"])
+
+add_connection_lines = [
+	"  provisioner \"remote-exec\" {",
+	"    script        = \"${path.module}/elasticsearch.sh\"",
+	"\n",   
+	"    connection {",
+	"      type        = \"ssh\""<
+	"      user        = \"ubuntu\"",
+	"      private_key = \"${var.private_key}\"",
+	"    }",
+	"  }"
+]
+
 config_content = [
 	''.join(["[default] aws_access_key_id=", default_access_key,  " aws_secret_access_key=", default_secret_key]),
 	''.join(["[profile testing] aws_access_key_id=", access_key, " aws_secret_access_key=", secret_key, " region=", region])
@@ -51,7 +64,7 @@ def get_tf_config(params):
 			'ssh': [
 				"variable \"keypath\" {",
 				"  description = \"Path to SSH private key to SSH-connect to instances\"",
-				"  default = \"", params['keypath'], "\"",
+				''.join(["  default = \"", params['keypath'], "\""]),
 				"}"
 			]
 		},
@@ -60,32 +73,36 @@ def get_tf_config(params):
 				"connection {",
 				"	type	 = \"ssh\"",
 				''.join(["	user	 = \"", params['user'], "\""]),
-				"	private_key = \"${file(var.keypath)}\"",
+				"	private_key = file(var.keypath)",
 				"	host	 = aws_instance.task_ec2_instance.public_ip",
 				"}",
 				"resource \"aws_key_pair\" \"task_key_pair\" {",
 				"  key_name   = \"terraform-demo\"",
-				''.join(["  public_key = \"${file(", params['pub_key_path'], ")}\""]),
-				"}"
-			],
-			'ec2': [
-				"resource \"aws_instance\" \"task_ec2_instance\" {\"",
-				''.join(["  ami		   = \"", params['ami'], "\""]),
-				''.join(["  region		   = \"", params['region'], "\""]),
-				''.join(["  instance_type = \"", params['instance_type'], "\""]),
-				"  key_name	  = \"${aws_key_pair.task_key_pair.key_name}\"",
-				''.join(["  user_data	 = \"${file(", params['task_script_path'], ")}\""]),
-				"  tags = {",
-				''.join(["	Name  = \"", params['tagname'], "\""]),
-				"  }",
+				''.join(["  public_key = file(\"", params['pub_key_path'], "\")"]),
 				"}"
 			]
 		},
 		'remote_exec': [], # alt to userdata or remote session login with connect_to_instance
+		'output': {}
+	}
+	tf_config = {
+		'vars': {},
+		'resources': {
+			'ec2': [
+				"resource \"aws_instance\" \"task_ec2_instance\" {",
+				''.join(["  ami		   = \"", params['ami'], "\""]),
+				''.join(["  instance_type = \"", params['instance_type'], "\""]),
+				''.join(["  user_data	 = file(\"", params['task_script_path'], "\")"]),
+				"  tags = {",
+				''.join(["    Name  = \"", params['tagname'], "\""]),
+				"  }",
+				"}"
+			]
+		},
 		'output': {
 			'ec2': [
 				"output \"output_public_ip\" {",
-				"  value = \"${aws_instance.task_ec2_instance.public_ip}\"",
+				"  value = aws_instance.task_ec2_instance.public_ip",
 				"}"
 			]
 		}
@@ -97,43 +114,42 @@ def generate_config(params):
 	aws_resource_list = ['ec2', 'ssh']
 	tf_config = get_tf_config(params)
 	if tf_config:
-		config_path = ''.join([os.getcwd(), '/', params['cloud'], '_', params['task'], '_config.tf'])
 		for category in ['vars', 'resources', 'output']:
 			for item in aws_resource_list:
 				if item in tf_config[category]:
 					deployment_resources_lines.append('\n'.join(tf_config[category][item]))
 		if len(deployment_resources_lines) > 0:
 			''' write generated config '''
-			open(config_path, 'w').write('\n'.join(deployment_resources_lines))
-	return config_path
+			open(params['tf_config_path'], 'w').write('\n'.join(deployment_resources_lines))
+	return True
 
-def deploy_generated_tf_config(config_path, output_key):
+def deploy_generated_tf_config(params):
 	tf_commands = {
 		'check': 'terraform -help', 
-		'create': ['terraform validate', 'terraform init', 'terraform apply'], 
+		'create': ['terraform init', 'terraform validate', 'terraform apply'], 
 		'view': ['terraform show'], 
 		'destroy': ['terraform destroy']
 	}
-	config_dir = '/'.join(config_path.split('/')[0:-1])
-	t = Terraform(working_dir=config_dir)
+	t = Terraform()
 	for command in tf_commands['create']: # validate, init, apply
 		print('running tf command', command)
-		return_code = None
-		stdout = None
-		stderr = None
+		result = None
 		try:
-			return_code, stdout, stderr = t.cmd(command) # var={'keypath': params['keypath']}
+			if command == 'terraform validate':
+				result, stdout, stderr = t.validate(vars = {'region': params['region']})
+			elif command == 'terraform init':
+				result, stdout, stderr = t.init(vars = {'region': params['region']})
+			elif command == 'terraform apply':
+				result, stdout, stderr = t.apply(vars = {'region': params['region']})
 		except Exception as e:
 			print('tf exception', e)
-		print('tf command', command, 'return_code', return_code, 'stdout', type(stdout), stdout, 'stderr', stderr)
+		print('tf command result', command, result) # result is 0 if without error
 		if command == 'apply':
-			if return_code and stdout:
-				if return_code == 200:
-					for line in stdout.readlines():
-						print('stdout line', line)
-						if output_key in line:
-							print('\n\n****found line with output_key', line)
-							return line.replace(output_key, '').strip()
+			for line in result.readlines():
+				print('stdout line', line)
+				if output_key in line:
+					print('\n\n****found line with output_key', line)
+					return line.replace(output_key, '').strip()
 	return False
 
 def install_local_tf_cloud(params):
@@ -143,27 +159,44 @@ def install_local_tf_cloud(params):
 		''.join(["[testing] aws_access_key_id=", params['access_key'], " aws_secret_access_key=", params['secret_key']])
 	]
 	open(params['credential_path'], 'w').write('\n'.join(credential_content))
-	install_commmands = [
-		'pip3 install -r requirements.txt'
-	]
+	dependencies = {
+		'language': {
+			'python3 --version': 'brew install python3'
+		},
+		'package_manager': {
+			'pip3 -help': 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py'
+		},
+		'script': {
+			'terraform -help': 'brew install terraform', 
+			'aws --version': 'pip3 install -r requirements.txt'
+		}
+	}
+	install_commands = []
+	for dependency_type in ['script']: #['language', 'package_manager', 'script']:
+		for program, install_command in dependencies[dependency_type].items():
+			try:
+				tf_installed_result = subprocess.check_output(program, shell = True)
+			except Exception as e:
+				print('dependency not installed exception', e) # Command 'terraform -help' returned non-zero exit status 127
+				install_commands.append(install_command)	
+				try:
+					result = os.system(command)
+					print('install_tf_cloud env vars result', command, result)
+				except Exception as e:
+					print('install error', e)
 	for env, val in params['env'].items():
 		os.environ[env] = val
-	for command in install_commmands:
-		try:
-			result = os.system(command)
-			print('install_tf_cloud env vars result', command, result)
-		except Exception as e:
-			print('install error', e)
 	return True
 
 def mkdir_structure(file_path, params):
 	folders = []
+	folders_path = ''
 	for folder in file_path.split('/')[0:-1]: # skip last item which is assumed to be a file
 		folders.append(folder)
-		folders_path = ''.join([params['user_dir'], '/'.join(folders)])
+		folders_path = ''.join([params['user_dir'], '/', '/'.join(folders)])
 		if not os.path.isdir(folders_path):
 			os.mkdir(folders_path)
-	return True
+	return folders_path
 
 def generate_key(keypath):
 	''' ssh-keygen -t rsa, keypath, 'N' for passphrase skip, Enter '''
@@ -182,7 +215,7 @@ def generate_key(keypath):
 
 def open_output_in_browser(ip, params):
 	''' open notebook/api graph or elk kibana login '''
-	url = ''.join(['http://', ip, '/kibana']) if params['task'] == 'elk' else ''.join(['http://', ip, '/api/predict-test'])
+	url = ''.join(['http://', ip, ':5601']) if params['task'] == 'elk' else ''.join(['http://', ip, '/api/predict-test'])
 	response = requests.get(url) #, params = {}, args = {})
 	if response:
 		print('response', url, response)
@@ -198,10 +231,10 @@ def deploy(params):
 		local_install = install_local_tf_cloud(params)
 		if local_install:
 			print('installed aws config, env var, pip reqs')
-			config_path = generate_config(params)
-			if config_path:
-				print('generated config at config_path', config_path)
-				output_key = deploy_generated_tf_config(config_path, params['output_key'])
+			configured = generate_config(params)
+			if configured:
+				print('generated config at config_path', params['tf_config_path'])
+				output_key = deploy_generated_tf_config(params)
 				if output_key:
 					print('deployed resources with output', output_key)
 					open_output_in_browser(output_key, params)
@@ -219,31 +252,32 @@ params['user_dir'] = '/'.join(os.getcwd().split('/')[0:3])
 params['keypath'] = ''.join([params['user_dir'], '/tf_deploy.pem'])
 params['pub_key_path'] = params['keypath'].replace('.pem', '.pub')
 params['credential_path'] = '/.aws/credentials/credentials.ini'
+params['tf_config_path'] = ''.join([os.getcwd(), '/', params['cloud'], '_', params['task'], '_config.tf'])
 
 for file_to_remove in ['credential_path', 'keypath', 'pub_key_path']:
-	if file_to_remove == 'credential_path':
-		mkdir_structure(params[file_to_remove], params)
-	params[file_to_remove] = ''.join([params['user_dir'], params[file_to_remove]]) if params['user_dir'] not in params[file_to_remove] else params[file_to_remove]
+	if 'key' not in file_to_remove:
+		folder_created = mkdir_structure(params[file_to_remove], params)
+		if folder_created:
+			params[file_to_remove] = ''.join([folder_created, '/', params[file_to_remove].split('/')[-1]])
+	params[file_to_remove] = '/'.join([params['user_dir'], params[file_to_remove]]) if params['user_dir'] not in params[file_to_remove] else params[file_to_remove]
 	if os.path.exists(params[file_to_remove]):
 		os.remove(params[file_to_remove]) # remove original file if you need to re-create on each run
 
 params['secret_key'] = ''
 params['access_key'] = ''
-params['ami'] = 'ami-024d1b90da07e64a6' # python3 with flask installed
+params['ami'] = 'ami-024d1b90da07e64a6' # python3 with flask installed, centos 7 087c4938c7f618b53
 params['region'] = 'us-west-2'
 params['user'] = 'ec2-user' if params['cloud'] == 'aws' else None
 params['instance_type'] = 't2.micro' if params['task'] == 'elk' else 'm2.medium'
 params['output_key'] = 'output_public_ip'
-params['tagname'] = ''.join(['task_ec2_instance', params['task']])
-params['task_script_path'] = ''.join(['install_boot_', params['task'], '.sh'])
-params['env'] = {'AWS_SHARED_CREDENTIALS_FILE': params['credential_path']}
-
+params['tagname'] = ''.join(['task_ec2_instance', '_', params['task']])
+params['task_script_path'] = ''.join([os.getcwd(), '/', 'tasks/install_boot_', params['task'], '.sh'])
 for i, arg in enumerate(sys.argv):
 	if (i + 1) < len(sys.argv):
 		if 'secret' in arg:
 			params['secret_key'] = sys.argv[i + 1]
 		elif 'access' in arg:
 			params['access_key'] = sys.argv[i + 1]
-
 if params['access_key'] != '' and params['secret_key'] != '':
+	params['env'] = {'AWS_SHARED_CREDENTIALS_FILE': params['credential_path'], 'AWS_REGION': params['region'], 'AWS_ACCESS_KEY_ID': params['access_key'], 'AWS_SECRET_ACCESS_KEY': params['secret_key']}
 	deploy(params)

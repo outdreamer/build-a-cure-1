@@ -1,3 +1,6 @@
+terraform.tfstate
+.terraform.tfstate.lock.info
+.terraform/*
 tasks/__pycache__/
 tasks/data
 find_existing_solutions/system_analysis/code_function_names.txt
