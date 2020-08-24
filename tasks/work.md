@@ -1,5 +1,15 @@
 - to do:
 
+	- add model params call of model generation/training/testing script in install_boot_model.sh
+
+	- add api function to call & return json of model metadata & graph urls:
+
+			convert_reduce_classify_train_score_graph(
+				data, label_column_name, problem_type, processes, reductions, regularizations, algorithms, model_tasks, graphs
+			)
+
+	- change '/api/predict-test' to url of api function
+
 	- finish es methods
 
 		- finish es import function for other data, config elk stack for ml anomaly detection & test

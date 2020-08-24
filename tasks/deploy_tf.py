@@ -82,19 +82,85 @@ def get_tf_config(params):
 				"	private_key = file(var.keypath)",
 				"	host	 = aws_instance.task_ec2_instance.public_ip",
 				"}",
-				"resource \"aws_key_pair\" \"task_key_pair\" {",
-				"  key_name   = \"terraform-demo\"",
-				''.join(["  public_key = file(\"", params['pub_key_path'], "\")"]),
-				"}"
 			]
 		},
 		'remote_exec': [], # alt to userdata or remote session login with connect_to_instance
 		'output': {}
 	}
+	'''
+      "Effect": "Allow",
+      "Action": ["s3:*"],
+      "Resource": ["*"]
+	'''
 	tf_config = {
 		'vars': {},
 		'resources': {
 			'ec2': [
+				"resource \"aws_security_group\" \"ec2_sg\" {",
+				"  name   = \"ec2_sg\"# SSH access from anywhere",
+				"  ingress {",
+				"    from_port   = 22",
+				"    to_port     = 22",
+				"    protocol    = \"tcp\"",
+				"    cidr_blocks = [\"0.0.0.0/0\"]",
+				"  }",
+				"  ingress {",
+				"    from_port   = 80",
+				"    to_port     = 80",
+				"    protocol    = \"tcp\"",
+				"    cidr_blocks = [\"0.0.0.0/0\"]",
+				"  }",
+				"   ingress {",
+				"    from_port   = 5601",
+				"    to_port     = 5601",
+				"    protocol    = \"tcp\"",
+				"    cidr_blocks = [\"0.0.0.0/0\"]",
+				"  }",
+				"   ingress {",
+				"    from_port   = 9200",
+				"    to_port     = 9200",
+				"    protocol    = \"tcp\"",
+				"    cidr_blocks = [\"0.0.0.0/0\"]",
+				"  }",
+				"  egress {",
+				"    from_port   = 0",
+				"    to_port     = 0",
+				"    protocol    = \"-1\"",
+				"    cidr_blocks = [\"0.0.0.0/0\"]",
+				"  }",
+				"}",
+				"",
+				"resource \"aws_iam_role\" \"ec2_role\" {",
+				"  name = \"ec2_role\"",
+				"  assume_role_policy = <<EOF",
+				"{",
+				"  \"Version\": \"2012-10-17\",",
+				"  \"Statement\": [",
+				"    {",
+				"      \"Effect\": \"Allow\",",
+				"      \"Principal\": { \"Service\": \"ec2.amazonaws.com\"},",
+				"      \"Action\": \"sts:AssumeRole\"",
+				"    }",
+				"  ]",
+				"}",
+				"EOF",
+				"}",
+				"",
+				"resource \"ec2_private_key\" \"ec2_key\" {",
+				"  algorithm = \"RSA\"",
+				"  rsa_bits  = 4096",
+				"}",
+				"",
+				"resource \"aws_key_pair\" \"generated_key\" {",
+				"  key_name   = \"deploy_key\"",
+				"  public_key = ec2_private_key.ec2_key.public_key_openssh",
+				"}",
+				"",
+				"resource \"aws_iam_instance_profile\" \"ec2_profile\" {",
+				"  name = \"ec2_profile\"",
+				"  role = aws_iam_role.ec2_role.name",
+				"}",
+				"",
 				"provider \"aws\" {",
 				''.join(["  region  = \"", params['region'], "\""]),
 				''.join(["  shared_credentials_file = \"", params['credential_path'], "\""]),
@@ -107,6 +173,9 @@ def get_tf_config(params):
 				"  tags = {",
 				''.join(["    Name  = \"", params['tagname'], "\""]),
 				"  }",
+				"  vpc_security_group_ids = [aws_security_group.ec2_sg.id]",
+				"  key_name               = aws_key_pair.generated_key.key_name",
+				"  iam_instance_profile   = aws_iam_instance_profile.ec2_profile.name",
 				"}",
 				"",
 			]
@@ -154,7 +223,7 @@ def deploy_generated_tf_config(params):
 			elif command == 'terraform plan':
 				result, stdout, stderr = t.plan(out=params['plan_path'], detailed_exitcode=False)
 			elif command == 'terraform apply':
-				result, stdout, stderr = t.apply(auto_approve=True, skip_plan=True) #, vars = {'region': params['region']})	
+				result, stdout, stderr = t.apply(skip_plan=True) #, vars = {'region': params['region']})	
 				if stdout and result == 0:
 					for line in stdout.split('\n'):
 						if params['output_key'] in line:
@@ -209,23 +278,27 @@ def mkdir_structure(file_path, params):
 	return folders_path
 
 def generate_key(keypath):
-	''' ssh-keygen -t rsa, keypath, 'N' for passphrase skip, Enter '''
-	keygen = None
-	try:
-		keygen = paramiko.RSAKey.generate(1024)
-	except Exception as e:
-		print('generate key error', e)
-	if keygen:
-		open(params['keypath'], 'w').write('')
-		keygen.write_private_key_file(keypath)
-		pub_key_path = keypath.replace('.pem', '.pub')
-		open(pub_key_path ,"w").write(keygen.get_base64())
-		return keypath
-	return False
+	'''
+	OpenSSH public key format (the format in ~/.ssh/authorized_keys). If you connect using SSH while using the EC2 Instance Connect API, the SSH2 format is also supported.
+	Base64 encoded DER format
+	SSH public key file format as specified in RFC4716
+	SSH private key file format must be PEM (for example, use ssh-keygen -m PEM to convert the OpenSSH key into the PEM format)
+	'''
+	# ssh-keygen -t rsa -b 4096 -f
+	gen_key = ''.join(['ssh-keygen -P "" -t rsa -b 2048 -m pem -f ', params['keypath']])
+	generated = subprocess.check_output(gen_key, shell=True)
+	os.system(''.join(["chmod 400 ", params['keypath']]))
+	convert = ''.join(['ssh-keygen -f ', params['keypath'], ' -e -m pem'])
+	# ssh-keygen -y -f /path_to_key_pair/my-key-pair.pem - get pub key
+	converted = subprocess.check_output(convert, shell=True)
+	open(params['pub_key_path'], 'w').write(converted.decode('utf-8'))
+	os.system(''.join(["chmod 600 ", params['pub_key_path']]))
+	return keypath
 
 def open_output_in_browser(ip, params):
 	''' open notebook/api graph or elk kibana login '''
-	url = ''.join(['http://', ip, ':5601']) if params['task'] == 'elk' else ''.join(['http://', ip, '/api/predict-test'])
+	host = ''.join(['ec2-', ip.replace('.','-'), '.', params['region'], '.compute.amazonaws.com']) if params['cloud'] == 'ec2' else ip
+	url = ''.join(['http://', host, ':5601']) if params['task'] == 'elk' else ''.join(['http://', host, '/api/predict-test'])
 	response = None
 	try:
 		response = requests.get(url) #, params = {}, args = {})
@@ -237,6 +310,20 @@ def open_output_in_browser(ip, params):
 			webbrowser.open(url, new=0, autoraise=True) # webbrowser.get('firefox').open_new_tab(url)
 			return True
 	return False
+
+def remove_generated_config(params):
+	for file_to_mkdir in ['credential_path', 'keypath', 'pub_key_path']:
+		if 'key' not in file_to_mkdir:
+			folder_created = mkdir_structure(params[file_to_mkdir], params)
+			if folder_created:
+				params[file_to_mkdir] = ''.join([folder_created, '', params[file_to_mkdir].split('/')[-1]])
+		params[file_to_mkdir] = '/'.join([params['user_dir'], params[file_to_mkdir]]) if params['user_dir'] not in params[file_to_mkdir] else params[file_to_mkdir]
+		if os.path.exists(params[file_to_mkdir]):
+			os.remove(params[file_to_mkdir]) # remove original file if you need to re-create on each run
+	for file_to_remove in ['tf_config_path', 'plan_path']:
+		if os.path.exists(params[file_to_remove]):
+			os.remove(params[file_to_remove]) # remove original file if you need to re-create on each run
+	return params
 
 ''' to do: create install scripts install_boot_elk.sh and install_boot_model.sh '''
 def deploy(params):
@@ -252,11 +339,11 @@ def deploy(params):
 				output_key = deploy_generated_tf_config(params)
 				print('deployed resources with output', output_key)
 				if output_key:
-					for i in range(0, 100):
+					for i in range(0, 20):
 						print('trying to connect to url', i, output_key)
 						opened = open_output_in_browser(output_key, params)
 						if not opened:
-							time.sleep(10)
+							time.sleep(60)
 						else:
 							break
 				else:
@@ -271,24 +358,11 @@ def deploy(params):
 params = {'cloud': 'aws', 'task': 'elk', 'instance': 'demo'}
 params['user_dir'] = '/'.join(os.getcwd().split('/')[0:3])
 params['keypath'] = ''.join([params['user_dir'], '/tf_deploy.pem'])
-params['pub_key_path'] = params['keypath'].replace('.pem', '.pub')
+params['pub_key_path'] = params['keypath'].replace('.pem', '.pem.pub')
 params['credential_path'] = '/.aws/credentials/credentials.ini'
 params['tf_config_path'] = ''.join([os.getcwd(), '/', params['cloud'], '_', params['task'], '_config.tf'])
 params['plan_path'] = params['tf_config_path'].replace('_config.tf', '_plan_config.bin')
-
-for file_to_mkdir in ['credential_path', 'keypath', 'pub_key_path']:
-	if 'key' not in file_to_mkdir:
-		folder_created = mkdir_structure(params[file_to_mkdir], params)
-		if folder_created:
-			params[file_to_mkdir] = ''.join([folder_created, '', params[file_to_mkdir].split('/')[-1]])
-	params[file_to_mkdir] = '/'.join([params['user_dir'], params[file_to_mkdir]]) if params['user_dir'] not in params[file_to_mkdir] else params[file_to_mkdir]
-	if os.path.exists(params[file_to_mkdir]):
-		os.remove(params[file_to_mkdir]) # remove original file if you need to re-create on each run
-
-for file_to_remove in ['tf_config_path', 'plan_path']:
-	if os.path.exists(params[file_to_remove]):
-		os.remove(params[file_to_remove]) # remove original file if you need to re-create on each run
-
+params = remove_generated_config(params)
 params['secret_key'] = ''
 params['access_key'] = ''
 params['ami'] = 'ami-0baeabdd230a4e508' # centos 7
@@ -300,16 +374,17 @@ params['tagname'] = ''.join(['task_ec2_instance', '_', params['task']])
 params['task_script_path'] = ''.join([os.getcwd(), '/', 'install_boot_', params['task'], '.sh'])
 
 stored_env = {}
-
 for i, arg in enumerate(sys.argv):
 	if (i + 1) < len(sys.argv):
 		if 'secret' in arg:
 			params['secret_key'] = sys.argv[i + 1]
 		elif 'access' in arg:
 			params['access_key'] = sys.argv[i + 1]
+		''' to do: add support for other cli params
 		for key in params:
 			if key in arg:
 				params[key] = sys.argv[i + 1]
+		'''
 if params['access_key'] != '' and params['secret_key'] != '':
 	params['env'] = {
 		'AWS_SHARED_CREDENTIALS_FILE': params['credential_path'], 'AWS_REGION': params['region'], 'AWS_DEFAULT_REGION': params['region'], 
