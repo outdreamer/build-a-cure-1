@@ -1,8 +1,14 @@
 import boto3
 import botocore
 import paramiko
+import requests
 from python_terraform import *
-import os, sys, subprocess	
+import os, sys, time, subprocess, logging
+
+logging.basicConfig(level=logging.DEBUG)
+root_logger = logging.getLogger()
+ch = logging.StreamHandler(sys.stdout)
+root_logger.addHandler(ch)
 
 ''' to add remote_exec rather than user data, add tf_command_lines to tf config output to a resource
 remote_commands = open(task_script_path, 'r').readlines()
@@ -89,6 +95,11 @@ def get_tf_config(params):
 		'vars': {},
 		'resources': {
 			'ec2': [
+				"provider \"aws\" {",
+				''.join(["  region  = \"", params['region'], "\""]),
+				''.join(["  shared_credentials_file = \"", params['credential_path'], "\""]),
+				"}",
+				"",
 				"resource \"aws_instance\" \"task_ec2_instance\" {",
 				''.join(["  ami		   = \"", params['ami'], "\""]),
 				''.join(["  instance_type = \"", params['instance_type'], "\""]),
@@ -96,7 +107,8 @@ def get_tf_config(params):
 				"  tags = {",
 				''.join(["    Name  = \"", params['tagname'], "\""]),
 				"  }",
-				"}"
+				"}",
+				"",
 			]
 		},
 		'output': {
@@ -136,33 +148,26 @@ def deploy_generated_tf_config(params):
 		result = None
 		try:
 			if command == 'terraform validate':
-				result, stdout, stderr = t.validate(vars = {'region': params['region']})
+				result, stdout, stderr = t.validate()
 			elif command == 'terraform init':
-				result, stdout, stderr = t.init(vars = {'region': params['region']})
+				result, stdout, stderr = t.init()
 			elif command == 'terraform plan':
-				result, stdout, stderr = t.plan(out=params['plan_path'])
+				result, stdout, stderr = t.plan(out=params['plan_path'], detailed_exitcode=False)
 			elif command == 'terraform apply':
-				print('applying plan', params['plan_path'], params['tf_config_path'])
-				if os.path.exists(params['plan_path']):
-					result, stdout, stderr = t.apply() #, vars = {'region': params['region']})	
-				else:
-					result, stdout, stderr = t.apply(vars = {'region': params['region']})
+				result, stdout, stderr = t.apply(auto_approve=True, skip_plan=True) #, vars = {'region': params['region']})	
+				if stdout and result == 0:
+					for line in stdout.split('\n'):
+						if params['output_key'] in line:
+							return line.replace(params['output_key'], '').replace('=','').strip()
 		except Exception as e:
 			print('tf exception', e)
 		print('tf command result', command, result) # result is 0 if without error
-		if command == 'apply':
-			for line in result.readlines():
-				print('stdout line', line)
-				if output_key in line:
-					print('\n\n****found line with output_key', line)
-					return line.replace(output_key, '').strip()
 	return False
 
 def install_local_tf_cloud(params):
 	''' install terraform/aws cli on local, awscli & terraform should already be installed from requirements.txt, if not re-run '''
 	credential_content = [
-		''.join(["[default] aws_access_key_id=", params['access_key'], " aws_secret_access_key=", params['secret_key']]), 
-		''.join(["[testing] aws_access_key_id=", params['access_key'], " aws_secret_access_key=", params['secret_key']])
+		''.join(["[default]\naws_access_key_id=", params['access_key'], "\naws_secret_access_key=", params['secret_key']])
 	]
 	open(params['credential_path'], 'w').write('\n'.join(credential_content))
 	dependencies = {
@@ -190,8 +195,6 @@ def install_local_tf_cloud(params):
 					print('install_tf_cloud env vars result', command, result)
 				except Exception as e:
 					print('install error', e)
-	for env, val in params['env'].items():
-		os.environ[env] = val
 	return True
 
 def mkdir_structure(file_path, params):
@@ -223,11 +226,16 @@ def generate_key(keypath):
 def open_output_in_browser(ip, params):
 	''' open notebook/api graph or elk kibana login '''
 	url = ''.join(['http://', ip, ':5601']) if params['task'] == 'elk' else ''.join(['http://', ip, '/api/predict-test'])
-	response = requests.get(url) #, params = {}, args = {})
+	response = None
+	try:
+		response = requests.get(url) #, params = {}, args = {})
+	except Exception as e:
+		print('request error', url, e)
 	if response:
 		print('response', url, response)
 		if response.status_code == 200:
 			webbrowser.open(url, new=0, autoraise=True) # webbrowser.get('firefox').open_new_tab(url)
+			return True
 	return False
 
 ''' to do: create install scripts install_boot_elk.sh and install_boot_model.sh '''
@@ -242,9 +250,15 @@ def deploy(params):
 			if configured:
 				print('generated config at config_path', params['tf_config_path'])
 				output_key = deploy_generated_tf_config(params)
+				print('deployed resources with output', output_key)
 				if output_key:
-					print('deployed resources with output', output_key)
-					open_output_in_browser(output_key, params)
+					for i in range(0, 100):
+						print('trying to connect to url', i, output_key)
+						opened = open_output_in_browser(output_key, params)
+						if not opened:
+							time.sleep(10)
+						else:
+							break
 				else:
 					print('could not deploy')
 	return False
@@ -277,7 +291,7 @@ for file_to_remove in ['tf_config_path', 'plan_path']:
 
 params['secret_key'] = ''
 params['access_key'] = ''
-params['ami'] = 'ami-024d1b90da07e64a6' # python3 with flask installed, centos 7 087c4938c7f618b53
+params['ami'] = 'ami-0baeabdd230a4e508' # centos 7
 params['region'] = 'us-west-2'
 params['user'] = 'ec2-user' if params['cloud'] == 'aws' else None
 params['instance_type'] = 't2.micro' if params['task'] == 'elk' else 'm2.medium'
@@ -285,12 +299,25 @@ params['output_key'] = 'output_public_ip'
 params['tagname'] = ''.join(['task_ec2_instance', '_', params['task']])
 params['task_script_path'] = ''.join([os.getcwd(), '/', 'install_boot_', params['task'], '.sh'])
 
+stored_env = {}
+
 for i, arg in enumerate(sys.argv):
 	if (i + 1) < len(sys.argv):
 		if 'secret' in arg:
 			params['secret_key'] = sys.argv[i + 1]
 		elif 'access' in arg:
 			params['access_key'] = sys.argv[i + 1]
+		for key in params:
+			if key in arg:
+				params[key] = sys.argv[i + 1]
 if params['access_key'] != '' and params['secret_key'] != '':
-	params['env'] = {'AWS_SHARED_CREDENTIALS_FILE': params['credential_path'], 'AWS_REGION': params['region'], 'AWS_ACCESS_KEY_ID': params['access_key'], 'AWS_SECRET_ACCESS_KEY': params['secret_key']}
+	params['env'] = {
+		'AWS_SHARED_CREDENTIALS_FILE': params['credential_path'], 'AWS_REGION': params['region'], 'AWS_DEFAULT_REGION': params['region'], 
+		'AWS_ACCESS_KEY_ID': params['access_key'], 'AWS_SECRET_ACCESS_KEY': params['secret_key']
+	}
+	for env, val in params['env'].items():
+		stored_env[env] = os.environ.get(env)
+		os.environ[env] = val
 	deploy(params)
+	for env, val in params['env'].items():
+		os.environ[env] = '' if env not in stored_env else stored_env[env] if stored_env[env] is not None else ''
