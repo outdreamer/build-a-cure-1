@@ -31,8 +31,16 @@ def import_to_elk(doc_type, data, data_path):
 								line_data = json.loads(line)
 								if 'result' in line_data:
 									print('indexing', line_data['result'])
+									record = {}
+									for key, val in line_data['result'].items():
+										if '_' == key[0]:
+											new_key = key[1:]
+											print('key', key, new_key)
+											record[new_key] = val
+										else:
+											record[key] = val
 									try:
-										es.index(index=doc_type, id=i, body=line_data['result'])
+										es.index(index=doc_type, id=i, body=record)
 									except Exception as e:
 										print('elastic import', e)
 		else:
