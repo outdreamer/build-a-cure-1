@@ -16,7 +16,6 @@ def connect_to_es():
 	return False
 
 def import_to_elk(doc_type, data, data_path):
-	data_keys = []
 	es = connect_to_es()
 	if es:
 		import_count = 0
@@ -28,39 +27,14 @@ def import_to_elk(doc_type, data, data_path):
 					filename = ''.join([cur, '/', original_filename])
 					if '.json' in filename and 'new_' not in filename:
 						with open(filename, 'r') as f:
-							data = []
 							for i, line in enumerate(f):
 								line_data = json.loads(line)
 								if 'result' in line_data:
-									data_keys = line_data['result'].keys()
-					if '.json' in filename and 'new_' in filename:
-						new_json = ''.join([cur, 'new_', original_filename]) if 'new_' not in original_filename else ''.join([cur, original_filename])
-						with open(new_json, 'r') as f:
-							record_dicts = []
-							data = []
-							for i, line in enumerate(f):
-								line_data = json.loads(line)
-								for record in line_data:
-									record_dict = {}
-									fields = record.split(',')
-									for field in fields:
-										field_name = ''
-										values = []
-										for key in data_keys:
-											if key in field:
-												values = field.replace(key, '')
-												field_name = key
-												record_dict[field_name] = values
-									if record_dict:
-										record_dicts.append(record_dict)
-										print('indexing', record_dict)
-										try:
-											es.index(index=doc_type, id=i, body=record_dict)
-											import_count ++ 1
-										except Exception as e:
-											print('elastic import', e)
-								data.append(line_data)
-							f.close()
+									print('indexing', line_data['result'])
+									try:
+										es.index(index=doc_type, id=i, body=line_data['result'])
+									except Exception as e:
+										print('elastic import', e)
 		else:
 			for i, line in enumerate(data):
 				try:
