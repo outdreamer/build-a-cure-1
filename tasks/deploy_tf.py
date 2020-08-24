@@ -126,7 +126,7 @@ def generate_config(params):
 def deploy_generated_tf_config(params):
 	tf_commands = {
 		'check': 'terraform -help', 
-		'create': ['terraform init', 'terraform validate', 'terraform apply'], 
+		'create': ['terraform init', 'terraform validate', 'terraform plan', 'terraform apply'], 
 		'view': ['terraform show'], 
 		'destroy': ['terraform destroy']
 	}
@@ -139,8 +139,14 @@ def deploy_generated_tf_config(params):
 				result, stdout, stderr = t.validate(vars = {'region': params['region']})
 			elif command == 'terraform init':
 				result, stdout, stderr = t.init(vars = {'region': params['region']})
+			elif command == 'terraform plan':
+				result, stdout, stderr = t.plan(out=params['plan_path'])
 			elif command == 'terraform apply':
-				result, stdout, stderr = t.apply(vars = {'region': params['region']})
+				print('applying plan', params['plan_path'], params['tf_config_path'])
+				if os.path.exists(params['plan_path']):
+					result, stdout, stderr = t.apply() #, vars = {'region': params['region']})	
+				else:
+					result, stdout, stderr = t.apply(vars = {'region': params['region']})
 		except Exception as e:
 			print('tf exception', e)
 		print('tf command result', command, result) # result is 0 if without error
@@ -193,9 +199,10 @@ def mkdir_structure(file_path, params):
 	folders_path = ''
 	for folder in file_path.split('/')[0:-1]: # skip last item which is assumed to be a file
 		folders.append(folder)
-		folders_path = ''.join([params['user_dir'], '/', '/'.join(folders)])
+		folders_path = ''.join([params['user_dir'], '/'.join(folders)])
 		if not os.path.isdir(folders_path):
 			os.mkdir(folders_path)
+	folders_path = ''.join([folders_path, '/'])
 	return folders_path
 
 def generate_key(keypath):
@@ -223,7 +230,7 @@ def open_output_in_browser(ip, params):
 			webbrowser.open(url, new=0, autoraise=True) # webbrowser.get('firefox').open_new_tab(url)
 	return False
 
-''' to do: create install scriptss install_boot_elk.sh and install_boot_model.sh '''
+''' to do: create install scripts install_boot_elk.sh and install_boot_model.sh '''
 def deploy(params):
 	generated = generate_key(params['keypath'])
 	if generated:
@@ -253,13 +260,18 @@ params['keypath'] = ''.join([params['user_dir'], '/tf_deploy.pem'])
 params['pub_key_path'] = params['keypath'].replace('.pem', '.pub')
 params['credential_path'] = '/.aws/credentials/credentials.ini'
 params['tf_config_path'] = ''.join([os.getcwd(), '/', params['cloud'], '_', params['task'], '_config.tf'])
+params['plan_path'] = params['tf_config_path'].replace('_config.tf', '_plan_config.bin')
 
-for file_to_remove in ['credential_path', 'keypath', 'pub_key_path']:
-	if 'key' not in file_to_remove:
-		folder_created = mkdir_structure(params[file_to_remove], params)
+for file_to_mkdir in ['credential_path', 'keypath', 'pub_key_path']:
+	if 'key' not in file_to_mkdir:
+		folder_created = mkdir_structure(params[file_to_mkdir], params)
 		if folder_created:
-			params[file_to_remove] = ''.join([folder_created, '/', params[file_to_remove].split('/')[-1]])
-	params[file_to_remove] = '/'.join([params['user_dir'], params[file_to_remove]]) if params['user_dir'] not in params[file_to_remove] else params[file_to_remove]
+			params[file_to_mkdir] = ''.join([folder_created, '', params[file_to_mkdir].split('/')[-1]])
+	params[file_to_mkdir] = '/'.join([params['user_dir'], params[file_to_mkdir]]) if params['user_dir'] not in params[file_to_mkdir] else params[file_to_mkdir]
+	if os.path.exists(params[file_to_mkdir]):
+		os.remove(params[file_to_mkdir]) # remove original file if you need to re-create on each run
+
+for file_to_remove in ['tf_config_path', 'plan_path']:
 	if os.path.exists(params[file_to_remove]):
 		os.remove(params[file_to_remove]) # remove original file if you need to re-create on each run
 
@@ -271,7 +283,8 @@ params['user'] = 'ec2-user' if params['cloud'] == 'aws' else None
 params['instance_type'] = 't2.micro' if params['task'] == 'elk' else 'm2.medium'
 params['output_key'] = 'output_public_ip'
 params['tagname'] = ''.join(['task_ec2_instance', '_', params['task']])
-params['task_script_path'] = ''.join([os.getcwd(), '/', 'tasks/install_boot_', params['task'], '.sh'])
+params['task_script_path'] = ''.join([os.getcwd(), '/', 'install_boot_', params['task'], '.sh'])
+
 for i, arg in enumerate(sys.argv):
 	if (i + 1) < len(sys.argv):
 		if 'secret' in arg:

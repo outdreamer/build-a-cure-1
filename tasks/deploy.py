@@ -130,32 +130,21 @@ def install_dependencies(client, connection, instance_name, dependency_type):
 def run_tasks(client, connection, instance_name, task_type, params):
 	if task_type == 'train':
 		model_path = apply_algorithm(params['data'], params['algorithm'])		
-
 	elif task_type == 'deploy_api':
 		deployed = deploy_api(params['model_path'])
-
 	elif task_type == 'start_instance':
 		start_instance(client, instance_name)
-
 	elif task_type == 'stop_instance':
 		stop_instance(client, instance_name)
-
-	elif task_type == 'start_elk':
-		pass
-	elif task_type == 'stop_elk':
-		pass
 	elif task_type == 'upload_data':
 		upload_data(client, connection, instance_name, params['filename'], params['target_dir'])
-
 	elif task_type == 'import_data':
 		data = json_to_csv()
 		if data:
 			print('len data', len(data))
 			import_ratio = import_to_elk('fgt_event', data, '/data/event/')
-
 	elif task_type == 'create_graph':
 		graph_data(client, connection, instance_name, params['graph_type'])
-
 	else:
 		print('unknown task type')
 	return False
@@ -171,13 +160,9 @@ def upload_data(client, connection, instance_name, filename, target_dir):
 		return False
 	return True
 
-''' installation:
-- python3, pip3, requirements.txt
 '''
-
-'''
-script to spin up aws instance & upload data, run install.py for model dependencies & train.py, and api.py to start api server for model
-
+model: script to spin up aws instance & upload data, run install.py for model dependencies & train.py, and api.py to start api server for model
+elk: script to spin up aws instance, upload data, run install.py for elk stack & import.py, generate default kibana vieual config & return kibana dashboard url
 '''
 def deploy_trained_prediction_model():
 	client = boto3.client('sagemaker')
@@ -190,21 +175,4 @@ def deploy_trained_prediction_model():
 			for dep_type in ['python', 'model']:
 				install_dependencies(client, connection, instance_name, dep_type)
 			for task_type in ['upload_data', 'train', 'deploy_api']:
-				run_tasks(client, connection, instance_name, task_type, params)
-
-'''
-script to spin up aws instance, upload data, run install.py for elk stack & import.py, generate default kibana vieual config & return kibana dashboard url
-
-'''
-def deploy_elk_stack():
-	client = boto3.client('sagemaker')
-	created = create_instance(client)
-	if created:
-		started = start_instance(client, instance_name)
-		connection = connect_to_instance(instance_name)
-		if connection:
-			uploaded = upload_data(client, connection, instance_name, filename, target_dir)
-			for dep_type in ['python', 'elk']:
-				install_dependencies(client, connection, instance_name, dep_type)
-			for task_type in ['upload_data', 'start_elk', 'import_data']:
 				run_tasks(client, connection, instance_name, task_type, params)

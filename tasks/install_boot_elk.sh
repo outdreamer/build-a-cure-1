@@ -31,3 +31,9 @@ firewall-cmd --reload
 
 curl -X GET http://localhost:9200
 
+python - <<'END_SCRIPT'
+print("importing to elk stack")
+from import_elk import
+import_to_elk\nimport_to_elk('fgt_event', data, '/data/event/')
+print('finished importing')
+END_SCRIPT

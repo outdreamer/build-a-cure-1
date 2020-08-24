@@ -12,7 +12,8 @@ pip3 install -r model_requirements.txt
 
 # install xgboost
 cd ~/ && git clone --recursive https://github.com/dmlc/xgboost.git && cd xgboost
-make
+# cp make/minimum.mk ./config.mk
+make # make -j4
 cd python-package && python3 setup.py install --user
 
 # pull data
