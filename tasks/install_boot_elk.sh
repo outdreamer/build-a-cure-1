@@ -1,15 +1,12 @@
 # install pip, python 
 
-# ubuntu
-apt install python3-pip	
-
 # centos
 yum install epel-release 
 yum install python3-pip
 
 # pull data
-cd ~/ && git clone https://github.com/outdreamer/build-a-cure.git && cd ./build_a_cure
-pip3 install -r tasks/elk_requirements.txt
+cd ~/ && git clone https://github.com/outdreamer/build-a-cure.git && cd ./build_a_cure/tasks
+pip3 install -r elk_requirements.txt
 
 "[elasticsearch]\nname=Elasticsearch repository\nbaseurl=http://packages.elastic.co/elasticsearch/2.x/centos\ngpgcheck=1\ngpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch\nenabled=1" >> /etc/yum.repos.d/elasticsearch.repo
 "[logstash]\nname=Logstash\nbaseurl=http://packages.elasticsearch.org/logstash/2.2/centos\ngpgcheck=1\ngpgkey=http://packages.elasticsearch.org/GPG-KEY-elasticsearch\nenabled=1" >> /etc/yum.repos.d/logstash.repo
