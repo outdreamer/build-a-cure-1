@@ -273,6 +273,7 @@ def deploy_generated_tf_config(params):
 						else:
 							break
 					okeys['output_private_key'] = '\n'.join(okeys['output_private_key']).replace('output_private_key = ', '')
+					okeys['output_private_key'] = okeys['output_private_key'][0:-1] if okeys['output_private_key'][-1] == '\n' else okeys['output_private_key']
 					open('testing.pem', 'w').write(okeys['output_private_key'])
 					os.system('chmod 600 testing.pem')
 					for line in stdout.split('\n'):
@@ -389,6 +390,17 @@ def deploy(params):
 
 def destroy_resources(params):
 	''' to do: delete tls_private_key '''
+	instance_ids = []
+	if os.path.exists('output.txt'):
+		data = open('output.txt', 'r').readlines()
+		print('output from previous execution', data)
+		for line in data:
+			key = line.split('=')[0]
+			val = line.split('=')[1]
+			''' cleaning before initializing resources '''
+			if key == 'output_instance_id':
+				instance_ids.append(val)
+
 	ec2 = boto3.client('ec2')
 	iam = boto3.client('iam')
 	try:
@@ -396,7 +408,8 @@ def destroy_resources(params):
 	except Exception as e:
 		print('key pair exception', e)
 	try:
-		deleted_ec2_instance = ec2.terminate_instances(InstanceIds=[params['output_instance_id']])
+		if len(instance_ids) > 0:
+			deleted_ec2_instance = ec2.terminate_instances(InstanceIds=instance_ids)
 	except Exception as e:
 		print('ec2 exception', e)
 	try:
@@ -454,10 +467,15 @@ for i, arg in enumerate(sys.argv):
 				params[key] = sys.argv[i + 1]
 		'''
 if params['access_key'] != '' and params['secret_key'] != '':
+
 	params['env'] = {
-		'AWS_SHARED_CREDENTIALS_FILE': params['credential_path'], 'AWS_REGION': params['region'], 'AWS_DEFAULT_REGION': params['region'], 
-		'AWS_ACCESS_KEY_ID': params['access_key'], 'AWS_SECRET_ACCESS_KEY': params['secret_key']
+		'AWS_SHARED_CREDENTIALS_FILE': params['credential_path'], 
+		'AWS_REGION': params['region'], 
+		'AWS_DEFAULT_REGION': params['region'], 
+		'AWS_ACCESS_KEY_ID': params['access_key'], 
+		'AWS_SECRET_ACCESS_KEY': params['secret_key']
 	}
+
 	for env, val in params['env'].items():
 		stored_env[env] = os.environ.get(env)
 		os.environ[env] = val
@@ -468,7 +486,9 @@ if params['access_key'] != '' and params['secret_key'] != '':
 	if clean_params:
 		print('clean_params', clean_params)
 
-	# destroy_resources(clean_params)
+	output_tracker = '\n'.join([''.join([key, '=', params[key]])for key in ['output_instance_id'] if key in params])
+	if output_tracker:
+		open('output.txt', 'w').write(output_tracker)
 
 	''' cleanup task '''
 	for env, val in params['env'].items():

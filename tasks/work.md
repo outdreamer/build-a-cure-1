@@ -1,5 +1,8 @@
 - to do:
 
+    - configure passwordAuthentication flag in ssh config command
+    	"ssh -o "PasswordAuthentication=no" -i testing.pem root@ip"
+
 	- add model params call of model generation/training/testing script in install_boot_model.sh
 
 	- add api function to call & return json of model metadata & graph urls:

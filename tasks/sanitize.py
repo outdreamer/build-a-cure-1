@@ -204,13 +204,13 @@ def json_to_csv():
 	all_new_dicts = []
 	cwd = os.getcwd()
 	print('cwd', cwd)
-	origin_path = ''.join([cwd, '/tasks/data/event/'])
+	origin_path = ''.join([cwd, '/data/event/'])
 	for cur, _dirs, files in os.walk(origin_path):
 		for original_filename in files:
 			filename = ''.join([cur, '/', original_filename])
 			if '.json' in filename and 'new_' not in filename:
 				csv_path = filename.replace('.json', '.csv')
-				new_json = ''.join([cur, '/new_', original_filename])
+				new_json = ''.join([cur, 'new_', original_filename]) if 'new_' not in original_filename else ''.join([cur, original_filename])
 				with open(csv_path, 'w') as csv_file:
 					with open(filename, 'r') as f:
 						print('loading json', filename)
@@ -262,7 +262,7 @@ def json_to_csv():
 							nf.close()
 					csv_file.close()
 				df = pd.read_csv(csv_path)
-				if df:
+				if df.any:
 					df = data_processing(df)
 	if len(all_new_dicts) > 0:
 		return all_new_dicts

@@ -1,4 +1,5 @@
 *.pem
+/tasks/output.txt
 /tasks/terraform.*
 /tasks/.terraform.tfstate.lock.info
 /tasks/.terraform/*
