@@ -1,5 +1,9 @@
 - to do:
 
+	- you can install from local ssh, tf config ec2 userdata, tf config remote_exec
+
+	- you can avoid install with pre-configured ami instances
+
 	- finish es methods
 
 		- finish es import function for other data, config elk stack for ml anomaly detection & test
