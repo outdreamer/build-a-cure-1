@@ -17,6 +17,13 @@
          'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
   - add formatting to allow multiple items as keys in json and maintain order for interface network paths
 
+  - add problem prediction example with market organization 
+    - anticipating problems across many agents with n steps, and calculating which problems will develop and which solutions can be constructed in advance
+    - unit example: predict when a dev will need a tool based on usage/purchase/request data (alternatives with different priorities/perspective built-in)
+      - which problems will develop from which tool sets used at scale (migration tools between comparable alternatives)
+      - which problemss will be prioritized & have solutions constructed
+      - how to optimize by constructing other calculated solutions to prevent high-risk problems
+
   - organize derivation methods, implementation guide & specific analysis rules in core_analysis
 
   - function list (tech debt):
