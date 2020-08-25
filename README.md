@@ -997,6 +997,53 @@
 
 				- the meaning is the answer to the question of 'why is this important or relevant', where other interfaces answer questions like 'why' (intent), 'how' (structure), 'when' (cause), 'where' (in what system context), and 'whether' (potential).
 
+				- meaning can help you identify answers to questions like 'what is the important object' or 'what is the better priority', such as:
+					
+					- question: "what concept is explanatory or prioritized in society" (specifically the question "is society about truth or teamwork?" for a person raised by wolves trying to understand society quickly to survive)
+						
+						- how would you derive the answer "teamwork is a good default, except when the team succumbs to negative group dynamics, at which point individuals/other teams external to the group need to be in position to criticize it", given the thousands of objects that could explain the function of 'optimizing society'
+						
+						- there are many interface traversals to gather output to derive the answer:
+
+							- insight: 
+								- 'over-focus on facts makes arguments & potential restrictive', 'teamwork is good for risk distribution for robust populations'
+								- 'given that information is necessarily existing in the past according to the observer, and that information doesnt exist according to an observer outside the space-time, does this apply to the information system of math - is there information forming or possible information that can be captured by future number types which are gathering, where existing math is the observer looking backward'
+							
+							- system: 
+								- 'teamwork has built-in incentive alignment with whats best for other people'
+							
+							- interface: 
+								- 'truth is one interface, but teamwork is applicable across many'
+							
+							- function: 
+								- 'teamwork is an important concept by default because it is related to a core function type, which is interaction functions'
+							
+							- concept-structure: 
+								- 'teamwork as a structurized concept is based on the core structures of checking if other team members have what they need to benefit the team & maintain the team advantage, which is based on the concept of balance'
+								- 'teamwork involves a network subset with aligned incentives'
+							
+							- concept
+								- 'truth is related to the concept of state'
+								- 'teamwork involves the concept of a group'
+								- 'facts are ignored by many groups which find their trade loops more efficient without that information - the concept of a cult'
+							
+							- pattern: 
+								- 'patterns of state changes are often more useful for their predictive power than state information'
+							
+							- meaning:
+								- the information from the other interface traversals can help build the meaning of the priority ranking relationship between these two concepts:
+									- 'facts dont mean anything to a group unless they help the group'
+									- 'teams that dont assimilate the important facts quickly enough may become irrelevant enough to seem false or not real to other groups'
+									- 'if an observer sees a group problem, they can save the group, and they have an incentive to, if the group is beneficial to other groups'
+						
+						- now the observer can quickly figure out what to prioritize, rather than waiting for someone to explain it to them
+
+							- vertices:
+								- determinative/generative/power: does truth determine teamwork or the other way around?
+								- differentiating: what is truth that teamwork is not and vice versa?
+
+							- vertices like generative/hub/differentiating variables can shorten the distance from lack of understanding to understanding, similar to the insight paths associated with the vertices
+
 		- this insight about isolated analysis converged with another insight about the isolation of optimizations, either in priority or other relevant structures to the concept of optimization
 
 			- optimization metrics: another important insight was the realization that having one winning system or metric was itself a sub-optimal system in most cases; a 'win-based perspective' narrows the focus too much toward one set of optimal (definition, metric, etc) when theres usually a combination structure of optimals (multiple government types, rules, metrics).
