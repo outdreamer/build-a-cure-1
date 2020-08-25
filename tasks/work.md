@@ -2,6 +2,31 @@
 
 	- fix multi-line import json
 
+	- create common config from merged & abstracted config samples
+
+	- https://cloud.google.com/compute/docs/instances/managing-instance-access
+
+	- check for conversion script
+		'google_compute_instance': 'aws_instance',
+			'': 'iam_instance_profile',
+			'': 'vpc_security_group_ids',
+			'metadata': '',
+			'metadata.ssh-keys': 'key_name',
+			'metadata_startup_script': 'user_data',
+			'tags[]': 'tags{}',
+			'name': 'tags.Name',
+			'network': 'vpc',
+			'machine_type': 'ami', # image
+			'boot_disk.initialize_params.size/image': {}
+			'size': 'instance_type',
+			'region': 'region', # zone
+			'network_interface.network/access_config': ''
+		'google_compute_firewall': 'aws_security_group'
+			'network': '',
+			'allow.protocol': 'ingress/egress.protocol,
+			'allow.ports': 'ingress/egress.from_port/to_port',
+			'source_ranges': 'ingress/egress.cidr_blocks',
+			
 	- finish 'train_model', 'upload_data', 'deploy_api', 'create_graph' functions
 
 	- use terraform destroy in cleanup task
@@ -9,8 +34,6 @@
 	- add nohup busybox httpd -f -p “${var.server_port}” &
 
 	- add sample data to repo
-
-	- check install script with new instance
 
     - configure passwordAuthentication flag in ssh config command
     	"ssh -o "PasswordAuthentication=no" -i testing.pem root@ip"

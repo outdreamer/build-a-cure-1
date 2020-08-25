@@ -1,0 +1,73 @@
+resource "tls_private_key" "node-key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+provider "google" {
+  version = "~> 2.0"
+  project = var.project
+  region  = var.region # us-west1
+  zone    = var.zone
+  # credentials = "${file("${var.gcp_credentials_file}")}"
+}
+locals {
+  image_name   = "ubuntu-os-cloud/ubuntu-1604-lts"
+  node_boot_script = <<EOT
+cat <<EOS > /home/${local.ssh_username}/.ssh/id_rsa
+${tls_private_key.node-key.private_key_pem}EOS
+EOT 
+}
+resource "google_compute_firewall" "elk-gcp" {
+  name = "default-allow"
+  network = "default"
+  allow { 
+    protocol = "tcp"
+    ports = ["80", "443", "5601", "9200"]
+  }
+  source_ranges = ["0.0.0.0/0"]
+  target_tags = ["elk-server"]
+}
+resource "google_compute_firewall" "elk-gcp-ssh" {
+  name = "default-allow-ssh"
+  network = "default"
+  allow {
+    protocol = "tcp"
+    ports = ["22"]
+  }
+  source_ranges = ["${var.localip}/32"]
+  target_tags = ["elk-server"]
+}
+data "template_file" "elasticsearch-startup-script" {
+  template = file("${path.module}/templates/scripts/install-elasticsearch.sh.tpl")
+  vars = {
+    cluster_name  = var.elasticsearch_cluster_name
+    project       = var.gcp_project
+    zone          = var.gcp_zone
+  }
+}
+resource "google_compute_instance" "elk-gcp" {
+  name = "${var.instance_name}-elk-gcp"
+  machine_type = var.machine_type
+  zone         = var.gcp_zone
+  boot_disk {
+    initialize_params {
+      image = var.image
+      size  = var.elasticsearch_disk_size_gb
+    }
+  }
+  network_interface {
+    network = "default"
+    access_config {
+
+    }
+  }
+  metadata_startup_script = "${local.node_boot_script}"
+  metadata_startup_script = data.template_file.elasticsearch-startup-script.rendered
+  metadata = {
+    ssh-keys = "${local.ssh_username}:${tls_private_key.node-key.public_key_openssh}"
+  }
+  tags = ["elk-server"]
+}
+output "ip" {
+  value = "${google_compute_instance.elk-gcp.network_interface.0.access_config.0.nat_ip}"
+  # value = "${google_compute_instance.elk-gcp.network_interface[0].access_config[0].nat_ip}"
+}
