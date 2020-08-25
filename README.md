@@ -1044,6 +1044,15 @@
 
 							- vertices like generative/hub/differentiating variables can shorten the distance from lack of understanding to understanding, similar to the insight paths associated with the vertices
 
+						- other examples of high-value use cases (other than identifying important concepts):
+
+							- identifying the important base to frame changes on (identifying new interfaces)
+							- identifying the right interaction level to focus on (identifying the change-maximizing layer of a system to examine a particular relationship)
+							- identifying the right perspective to filter with (like 'identifying whether the legal/scientific/progressive perspective is most useful for an intent')
+							- identifying the right context/position for an object (derive context when it's missing or fit an object to a system)
+							- identifying the most causative function set (like identifying core functions, or the most misused functionss, or the most change-causing functions)
+							- identifying important differentiating types (like function types indexed by intent & structure types, like boundary/change functions)
+
 		- this insight about isolated analysis converged with another insight about the isolation of optimizations, either in priority or other relevant structures to the concept of optimization
 
 			- optimization metrics: another important insight was the realization that having one winning system or metric was itself a sub-optimal system in most cases; a 'win-based perspective' narrows the focus too much toward one set of optimal (definition, metric, etc) when theres usually a combination structure of optimals (multiple government types, rules, metrics).
