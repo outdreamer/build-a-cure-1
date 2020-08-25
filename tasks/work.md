@@ -3,6 +3,14 @@
     - configure passwordAuthentication flag in ssh config command
     	"ssh -o "PasswordAuthentication=no" -i testing.pem root@ip"
 
+    - overwrite original es code with "doc" instead of "_doc" to avoid error with indexing:
+    	elastic import RequestError(400, 'invalid_type_name_exception', "Document mapping type name can't start with '_'")
+
+		code in:
+		../venv/lib/python3.7/site-packages/elasticsearch/_async/client/__init__.py to modified_original/new_async_init.py
+		../venv/lib/python3.7/site-packages/elasticsearch/client/__init__.py to modified_original/new_client_init.py
+ 
+
 	- add model params call of model generation/training/testing script in install_boot_model.sh
 
 	- add api function to call & return json of model metadata & graph urls:
