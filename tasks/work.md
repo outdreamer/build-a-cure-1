@@ -1,15 +1,19 @@
 - to do:
 
+	- fix multi-line import json
+
+	- finish 'train_model', 'upload_data', 'deploy_api', 'create_graph' functions
+
+	- use terraform destroy in cleanup task
+
+	- add nohup busybox httpd -f -p “${var.server_port}” &
+
+	- add sample data to repo
+
+	- check install script with new instance
+
     - configure passwordAuthentication flag in ssh config command
     	"ssh -o "PasswordAuthentication=no" -i testing.pem root@ip"
-
-    - overwrite original es code with "doc" instead of "_doc" to avoid error with indexing:
-    	elastic import RequestError(400, 'invalid_type_name_exception', "Document mapping type name can't start with '_'")
-
-		code in:
-		../venv/lib/python3.7/site-packages/elasticsearch/_async/client/__init__.py to modified_original/new_async_init.py
-		../venv/lib/python3.7/site-packages/elasticsearch/client/__init__.py to modified_original/new_client_init.py
- 
 
 	- add model params call of model generation/training/testing script in install_boot_model.sh
 
@@ -34,6 +38,39 @@
 		- label data & train
 
 	- email metadata identification functions
+
+	- which strategies will the models use?
+
+		- standard data analysis (pca, feature reduction, relationship metrics)
+
+		- use object detection api's with language-structure map
+
+		- initial version:
+
+			- templates
+				- after applying standardization function to compare overall structure, intent, & meaning
+				- without standardization, to compare to custom user-specific model
+			- unsupervised learning (k means, nearest neighbors)
+			- anomaly detection algorithms
+			
+		 - secondary version depending on data access:
+
+		 	- intent/cause/meaning model, optionally with assumption/implication/conclusions integrated
+		 		- do functions with these intents enable an overall malicious intent when executed in a sequence?
+		 		- every resource access, including function calls, is a possible target of a malicious agent
+		 		- apply filters on resources (valuable resources, enabling resources, access-granting resources, etc)
+
+		 		- does this request have the preceding/following request that we'd expect from a request with this intent (cause)
+
+		 		- initial implementation can be with object definition routes mapped to language map structures, then to system map structures
+
+		 	- distortion/base model
+		 		- given a particular base (request type, user group, intent), what distortion functions apply?
+		 		- what ranges of distortion functions overlap?
+		 		- what change types of distortion functions indicate a type or base change?
+
+		 	- change model
+		 		- is this function or data point in a state of flux or does it clearly fall into a known category?
 
 	- label some example data & data from the email data set with metadata (semantic like assumptions, structural like keywords)
 
