@@ -1035,6 +1035,8 @@
 									- 'facts dont mean anything to a group unless they help the group'
 									- 'teams that dont assimilate the important facts quickly enough may become irrelevant enough to seem false or not real to other groups'
 									- 'if an observer sees a group problem, they can save the group, and they have an incentive to, if the group is beneficial to other groups'
+
+								- this is the meaning bc its the structure relevant to the initial concern, which was the question asked
 						
 						- now the observer can quickly figure out what to prioritize, rather than waiting for someone to explain it to them
 

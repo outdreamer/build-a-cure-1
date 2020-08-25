@@ -72,6 +72,27 @@
 
   ### Time
 
+  - does a concept like 'time' have inherent meaning?
+
+    - its a structure used to sync change types, to frame changes in sequential relation to other changes
+      - what is sequence in terms of importance?
+        - sequence is determined by structure & initial position state - once you know those, you know which operations will occur in what sequence
+      - so 'does sequence have meaning, compared to structure & initial position state info' is the question here
+      - initial position state info is useful, but you can derive it with just the structure & a testing function to acquire information
+      - the structure (generative structure) can be derived from the initial position state info (structure content) & the sequence (or other descriptive structures)
+      - which is more important:
+        - the initial state info
+        - the generative structure
+        - the structures that determine trajectory within the structure (like sequence)
+      - it depends on intent, which in this case is to find the structure that explains the most & most relevant changes (a definition route of meaning) - which could be:
+        - the structure where most change occurs
+        - the structure where important (in the form of explanatory, descriptive, generative) changes occur, which enable adjacent derivation of the other relevant structures
+        - the structure where change types develop & interact (change interface)
+      - if the intent is to 'find sequential position of change types', time has meaning as a base, for the change types in question (conceptual time, standard time, change time)
+    
+  - if nothing changes from what existing information allows derivation of, time cannot be said to occur 
+    - another stricter definition route of time is 'change that cannot be described/generated with existing information', which connects it to the conceptss of randomness (equally likely change, lack of information) & potential (potential for change), leading to another definition route for time as 'potential information' or 'structures such as positions where certainty can develop'
+
   - its possible to derive the great filter (with every permutation of its output in every possible interface object combination)
     - can you shine the light of time in reverse, to highlight what is right behind the filter
     - are tools output by the filter capable of reaching beyond the light's domain
