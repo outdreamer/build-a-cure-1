@@ -692,7 +692,14 @@
 				- this means the core operation of conceptual math from this repo 'find power' (applied to a system), would still identify a function input as having power even without 'function input' as part of the definition of power or stored as an example of power structures.
 
 
-	10. is this too abstract to be useful? how would you implement this?
+	10. that (a problem/a language map/a math-language mapping/an attribute graph/a set of filters) already exists!
+
+		- yes, problems, concepts, attributes, language, information, & a connection between math & language already existed - which is why its weird that no one came up with a tool to automate information derivation, specifically to solve information problems - I did not invent the ideas of concepts, attributes, language, or information
+
+		- This tool is not problems, concepts, attributes, language, & information - it's a way to automate deriving a solution for a problem (automating the trajectory from problem definition, to solution objects like meaning, cause, & insights), which to my knowledge doesnt exist, as statistics/attribute graphs/machine learning cant currently solve problems without a severe amount of specific information, computation, configuration in the form of manual (flawed) selection of algorithms, limitations built in the assumptions/perspective of the configurer, testing in the form of parameter tuning, strategy injection like trial & error, & other forms of human intervention - and can only solve isolated specific problems of specific types with information formatted in a specific way, without cross-system understanding or system context built-in.
+
+
+	11. is this too abstract to be useful? how would you implement this?
 
 		- the fact that we can imagine what a concept is means it can have structure, & interfaces act like standardizing filters:
 		  while they are abstract terms, they have intrinsic physical attributes & map to structures even when they are abstract enough to have few physical attributes
@@ -715,7 +722,7 @@
 			- applying structure to unstructured information
 
 
-	11. can this really be used to automate math insights? that requires complex thought that cant be automated.
+	12. can this really be used to automate math insights? that requires complex thought that cant be automated.
 
 		- whoever told you that is full of
 
@@ -862,18 +869,18 @@
 						- this method can be generalized to a method of finding functions for an intent like 'reduce computation' or 'differentiate with a line'
 
 
-	12. what is an interface 
+	13. what is an interface 
 
 		- its a standard for comparison - in my system its a standard that reduces systems so they can be compared
 
 
-	13. what is a problem space
+	14. what is a problem space
 
 		- its the space where youd graph all the info relevant to a problem - I often use tech as a key determinant of a problem space bc which tech you have often determines which strategies you can use 
 		  but it includes all the other resources you might have access to (info, potential, energy, physical assets, etc)
 
 
-	14. why improve problem-solving at all?
+	15. why improve problem-solving at all?
 
 		- the problems with current solution methods:
 
@@ -902,7 +909,7 @@
 					- at least two systems, at least two perspectives, at least two metrics, at least two intents, etc - the ark requires differentiation to sustain potential
 
 
-	15. what do you mean by 'using potential as a base rather than time'
+	16. what do you mean by 'using potential as a base rather than time'
 
 		- time as a base for assessing change is useful in solving information problems
 		- time occurs when there are no symmetries allowing for reversibility - in order for something to be reversible, symmetries have to align to allow for efficient organization of energy flow so a system can form to be a platform for the change
@@ -924,7 +931,7 @@
 		- rather than asking 'is this resource needed at a given location' - we can ask questions like 'did we enable people in that location to solve a resource deficit?'
 
 
-	16. what does the interface actually contain?
+	17. what does the interface actually contain?
 
 		- the interface (a standardizing filter) is the following:
 			- the definition of the concept 
@@ -937,7 +944,7 @@
 		- standardizing an object to the causal interface means mapping how that object occupies or interacts with the network of core causal objects/attributes/functions - this means a query or traversal of those core items
 
 
-	17. what is the actual workflow to use this?
+	18. what is the actual workflow to use this?
 
 		- the general program steps include the following:
 
@@ -958,7 +965,7 @@
 			8. store any info objects found that arent already in indexes (insights, patterns, problem-solution matches, interfaces, functions)
 
 
-	18. how come youre the only person who came up with this in all of human history?
+	19. how come youre the only person who came up with this in all of human history?
 
 		- I decided to try to automate problem-solving once I saw patterns in the rules people used to solve problems, and once I found an example proof of concept, I pursued it. Alternatively, if you don't have human thoughts like that, or if you don't have human sources of joy/motivation, such as caring about protecting good people enough to try, or intellectual curiousity, or believing in yourself, you can try some caffeine.
 
@@ -1088,7 +1095,7 @@
 		- Not everyone has a built-in reason to automate problem-solving (like if they don't have serious problems to solve relevant to them, like the well-being of good people), but once I realized automation of problem-solving was possible, that gave me extra drive to get there, so I didn't need other reasons past that point, though luckily I had them just in case.
 
 
-	19. what problems cant be solved with this?
+	20. what problems cant be solved with this?
 
 		- this can solve problems where information is calculatable (like on the math interface) or where information is retrievable/testable (where you have data you can find & retrieve).
 		- it cant solve problems where information isnt measurable or calculatable - that means:

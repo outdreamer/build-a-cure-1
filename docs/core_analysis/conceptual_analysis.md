@@ -89,6 +89,11 @@
         - the structure where important (in the form of explanatory, descriptive, generative) changes occur, which enable adjacent derivation of the other relevant structures
         - the structure where change types develop & interact (change interface)
       - if the intent is to 'find sequential position of change types', time has meaning as a base, for the change types in question (conceptual time, standard time, change time)
+
+    - in the sense of time as a synchronizing standard for change types, time has more meaning as a network of those change types than a standard applied as a directed dimension of change
+      - yes, y is based on x, but how unexpected is that given existing information? is that the strict definition of change, or just expectation fulfillment given the inevitability of that connection based on the host structure & its rules? does the 'y based on x' relationship indicate anything about the structure or its rules that we didnt know? 
+        - yes, attributes gather into types, but is this connection a new way of doing so, indicating the development of a new change type, or is it expected given the other information, in which case the strict definition of time has not occurred?
+        - if it cannot be calculated with existing information, it can be framed as a concept describing a gap (its initial definition is 'not something else' or a 'lack of information' or 'another related concept + randomness') until it resolves into a structure
     
   - if nothing changes from what existing information allows derivation of, time cannot be said to occur 
     - another stricter definition route of time is 'change that cannot be described/generated with existing information', which connects it to the conceptss of randomness (equally likely change, lack of information) & potential (potential for change), leading to another definition route for time as 'potential information' or 'structures such as positions where certainty can develop'
