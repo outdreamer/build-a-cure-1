@@ -1,3 +1,4 @@
+/tasks/install_*.sh
 *.pem
 /tasks/output.txt
 /tasks/terraform.*

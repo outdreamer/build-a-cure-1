@@ -2,6 +2,7 @@ import boto3
 import botocore
 import paramiko
 import requests
+import webbrowser
 from python_terraform import *
 import os, sys, time, subprocess, logging
 
@@ -27,18 +28,18 @@ def run_remote_tasks(params):
 
 def connect_to_instance(params):
 	''' "ssh -o "PasswordAuthentication=no" -i testing.pem root@ip" '''
-	keypath = "testing.pem" if os.path.exists("testing.pem") else params['keypath'] if os.path.exists(params['keypath']) else None
-	if keypath:
-		key = paramiko.RSAKey.from_private_key_file(keypath)
-		client = paramiko.SSHClient()
-		if client:
-			client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-			try:
-				connection = client.connect(hostname=params['output_public_ip'], username=params['user'], pkey=key)
-				if connection:
-					return client, connection
-			except Exception as e:
-				print('connect exception', e)
+	if 'keypath' in params:
+		if params['keypath'] != '' and os.path.exists(params['keypath']):
+			key = paramiko.RSAKey.from_private_key_file(params['keypath'])
+			client = paramiko.SSHClient()
+			if client:
+				client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+				try:
+					connection = client.connect(hostname=params['output_public_ip'], username=params['user'], pkey=key)
+					if connection:
+						return client, connection
+				except Exception as e:
+					print('connect exception', e)
 	return False, False
 
 def execute_remote_command(client, command):
@@ -94,8 +95,8 @@ def deploy_generated_tf_config(params):
 							break
 					okeys['output_private_key'] = '\n'.join(okeys['output_private_key']).replace('output_private_key = ', '')
 					okeys['output_private_key'] = okeys['output_private_key'][0:-1] if okeys['output_private_key'][-1] == '\n' else okeys['output_private_key']
-					open('testing.pem', 'w').write(okeys['output_private_key'])
-					os.system('chmod 600 testing.pem')
+					open(params['keypath'], 'w').write(okeys['output_private_key'])
+					os.system(''.join(['chmod 600 ', params['keypath']]))
 					for line in stdout.split('\n'):
 						for ok in params['output_keys']:
 							if ok != 'output_private_key' and ok in line:
@@ -145,8 +146,7 @@ def mkdir_structure(file_path, params):
 	folders_path = ''
 	for folder in file_path.split('/')[0:-1]: # skip last item which is assumed to be a file
 		folders.append(folder)
-		user_dir = '/'.join(os.getcwd().split('/')[0:3])
-		folders_path = ''.join([user_dir, '/'.join(folders)])
+		folders_path = ''.join([params['user_dir'], '/'.join(folders)])
 		if not os.path.isdir(folders_path):
 			os.mkdir(folders_path)
 	folders_path = ''.join([folders_path, '/'])
@@ -188,6 +188,7 @@ def deploy(params):
 		''' specify task dependencies in the install.sh for the task '''
 		install_script = generate_script_for_task(params)
 		if install_script:
+			print('generated task script at task_script_path', install_script)
 			''' generate terraform config with resources & install script for the task '''
 			configured = generate_config(params) 
 			if configured:
@@ -200,7 +201,7 @@ def deploy(params):
 						params[ok] = val
 
 					''' save ec2 id for cleanup task '''
-					output_tracker = '\n'.join([''.join([key, '=', params[key]]) for key in ['output_instance_id'] if key in params])
+					output_tracker = ''.join(['output_instance_id=', params['output_instance_id']])
 					if output_tracker:
 						open('output.txt', 'w').write(output_tracker)
 
@@ -223,22 +224,24 @@ def remove_generated_config(params):
 			folder_created = mkdir_structure(params[file_to_mkdir], params)
 			if folder_created:
 				params[file_to_mkdir] = ''.join([folder_created, '', params[file_to_mkdir].split('/')[-1]])
-		user_dir = '/'.join(os.getcwd().split('/')[0:3])
-		params[file_to_mkdir] = '/'.join([user_dir, params[file_to_mkdir]]) if user_dir not in params[file_to_mkdir] else params[file_to_mkdir]
-		if os.path.exists(params[file_to_mkdir]):
-			os.remove(params[file_to_mkdir]) # remove original file if you need to re-create on each run
 	for file_to_remove in ['tf_config_path', 'plan_path']:
+		params[file_to_remove] = '/'.join([params['user_dir'], params[file_to_remove]]) if params['user_dir'] not in params[file_to_remove] else params[file_to_remove]
 		if os.path.exists(params[file_to_remove]):
 			os.remove(params[file_to_remove]) # remove original file if you need to re-create on each run
 	return params
 
-def destroy_resources(params):
+def destroy_resources(params, before_after):
 	''' to do: delete tls_private_key '''
 	exceptions = []
 	instance_ids = []
-	if os.path.exists('output.txt'):
-		data = open('output.txt', 'r').readlines()
-		instance_ids = [line.split('=')[1] for line in data if line.split('=')[0] == 'output_instance_id']
+	if params['destroy_before_run'] == '1' and before_after == 'before':
+		if os.path.exists('output.txt'):
+			data = open('output.txt', 'r').readlines()
+			for line in data:
+				if line.split('=')[0] == 'output_instance_id':
+					instance_ids.append(line.split('=')[1].replace('\n',''))
+	elif params['destroy_after_run'] == '1' and before_after == 'after':
+		instance_ids = [params['output_instance_id']] if params['output_instance_id'] != '' else []
 	ec2 = boto3.client('ec2')
 	iam = boto3.client('iam')
 	key_name = 'deploy_key'
@@ -251,10 +254,10 @@ def destroy_resources(params):
 		if len(instance_ids) > 0:
 			deleted_ec2_instance = ec2.terminate_instances(InstanceIds=instance_ids)
 			if deleted_ec2_instance:
-				os.path.remove('output.txt')
+				os.remove('output.txt')
 	except Exception as e:
 		print('ec2 exception', e)
-		exceptions.append('_'.join(['ec2', ','.join([instance_ids])]))
+		exceptions.append('_'.join(['ec2', ','.join(instance_ids)]))
 	try:
 		deleted_sg = ec2.delete_security_group(GroupName='ec2_sg')
 	except Exception as e:
@@ -279,19 +282,16 @@ def destroy_resources(params):
 		return True
 	return exceptions
 
-params = {'cloud': 'aws', 'task': 'elk', 'instance': 'demo', 'secret_key': '', 'access_key': '', 'keypath': ''}
-params['tagname'] = ''.join(['task_', '_', params['task']])
+params = {'cloud': 'aws', 'task': '', 'secret_key': '', 'access_key': '', 'keypath': ''}
 
-params['credential_path'] = '/.aws/credentials_tf/credentials.ini'
-params['tf_config_path'] = ''.join([os.getcwd(), '/', params['cloud'], '_', params['task'], '_config.tf'])
-params['plan_path'] = params['tf_config_path'].replace('_config.tf', '_plan_config.bin')
-params['task_script_path'] = ''.join([os.getcwd(), '/', params['task'], '.py']) if params['task'] not in ['elk', 'model'] else ''.join(['install_', params['task'], '.sh'])
+params['user_dir'] = '/'.join(os.getcwd().split('/')[0:3])
+params['credential_path'] = ''.join([params['user_dir'], '/.aws/credentials_tf/credentials.ini'])
+params['keypath'] = 'testing.pem'
 
 params['ami'] = 'ami-0baeabdd230a4e508' # centos 7
 params['region'] = 'us-west-2'
 params['user'] = 'ec2-user' if params['cloud'] == 'aws' else ''
 params['remote_dir'] = '/home/ec2-user' if params['cloud'] == 'aws' else ''
-params['instance_type'] = 't2.micro' if params['task'] == 'elk' else 'm2.medium'
 params['output_keys'] = ['output_public_ip', 'output_instance_id', 'output_private_key']
 
 params['tf_commands'] = {
@@ -320,7 +320,7 @@ for i, arg in enumerate(sys.argv):
 				params['destroy_before_run'] = "1"
 		if 'destroy_after_run' in arg:
 			if sys.argv[i + 1] == "1":
-				params['destroy_after_creation'] = "1"
+				params['destroy_after_run'] = "1"
 
 if params['access_key'] != '' and params['secret_key'] != '':
 
@@ -339,21 +339,28 @@ if params['access_key'] != '' and params['secret_key'] != '':
 	if 'destroy_before_run' in params:
 
 		if params['destroy_before_run'] == '1':
-			destroyed = destroy_resources(params)
+			destroyed = destroy_resources(params, 'before')
 			if destroyed:
-				print('resources removed before run', destroyed)
+				print('resources removal exceptions before run', destroyed)
 
 	if 'task' in params:
 
+		params['task_script_path'] = ''.join([os.getcwd(), '/', params['task'], '.py']) if params['task'] not in ['elk', 'model'] else ''.join(['install_', params['task'], '.sh'])
+		params['tagname'] = ''.join(['task_', params['task']])
+		params['tf_config_path'] = ''.join([os.getcwd(), '/', params['cloud'], '_', params['task'], '_config.tf'])
+		params['instance_type'] = 't2.medium' if params['task'] == 'elk' else 'm2.medium'
+		params['plan_path'] = params['tf_config_path'].replace('_config.tf', '_plan_config.bin')
+
 		print('running task', params['task'], ' with params', params)
 
-		if params['task'] not in ['elk', 'model']:
-			ran_task = run_remote_task(params)
-			print('ran task', ran_task)
-		else:
-			deploy_params_to_clean = deploy(params)
-			if deploy_params_to_clean:
-				print('deploy_params_to_clean', deploy_params_to_clean)
+		if params['task'] != '':
+			if params['task'] not in ['elk', 'model']:
+				ran_task = run_remote_task(params)
+				print('ran task', ran_task)
+			else:
+				deploy_params_to_clean = deploy(params)
+				if deploy_params_to_clean:
+					print('deploy_params_to_clean', deploy_params_to_clean)
 
 	if 'env' in params:
 
@@ -364,6 +371,6 @@ if params['access_key'] != '' and params['secret_key'] != '':
 	if 'destroy_after_run' in params:
 
 		if params['destroy_after_run'] == '1':
-			destroyed = destroy_resources(params)
+			destroyed = destroy_resources(params, 'after')
 			if destroyed:
-				print('resources removed after run', destroyed)
+				print('resources removal exceptions after run', destroyed)
