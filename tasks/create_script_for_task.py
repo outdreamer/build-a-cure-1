@@ -7,13 +7,22 @@ def generate_script_for_task(params):
 	if params['task'] in ['elk', 'model']:
 		open_ports = ['9200', '5601'] if params['task'] == 'elk' else ['80']
 		home_dir = '/home/ec2-user' if params['cloud'] == 'aws' else '~'
-		init_packages = ['java-1.8.0-openjdk-devel', 'git', 'epel-release', 'python3', 'python3-pip', 'firewalld'] if params['task'] == 'elk' else ['git', 'epel-release', 'python3', 'python3-pip', 'firewalld']
+		init_packages = ['git', 'wget', 'epel-release', 'python3', 'python3-pip', 'firewalld']
+		if params['task'] == 'elk':
+			init_packages.append('java-1.8.0-openjdk-devel')
+		if params['task'] == 'model':
+			init_packages.extend(['centos-release-scl', 'devtoolset-7-gcc*', 'gcc-c++', 'cmake3']) # GCC version must be at least 5.0!
 		all_commands = {}
 		if params['task'] == 'model':
 			all_commands['xgboost'] = [
-				'cd ~/ && git clone --recursive https://github.com/dmlc/xgboost.git && cd xgboost'
-				'make' # make -j4, cp make/minimum.mk ./config.mk
-				'cd python-package && python3 setup.py install --user'
+				'scl enable devtoolset-7 bash',
+				'export CC=/opt/rh/devtoolset-7/root/usr/bin/gcc',
+				'export CXX=/opt/rh/devtoolset-7/root/usr/bin/g++',
+				'cd ~/ && git clone --recursive https://github.com/dmlc/xgboost.git && cd xgboost',
+				'mkdir build && cd build',
+				'cmake3 -D CMAKE_C_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/gcc -D CMAKE_CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/g++ ..',
+				'make -j4',
+				'cd ../python-package && python3 setup.py install --user'
 			]
 		if params['task'] == 'elk':
 			service_packages = ['elasticsearch', 'logstash', 'kibana']
@@ -49,7 +58,7 @@ def generate_script_for_task(params):
 			all_commands['firewall'].append('firewall-cmd --reload')
 		# all_commands['final'] = [] # ['reboot']
 		if params['task'] == 'elk':
-			all_commands['test'] = [''.join(['cd ', home_dir, ' && cd ./build-a-cure/tasks && python3 task__test_import.py'])]
+			all_commands['test'] = [''.join(['cd ', home_dir, '/build-a-cure/tasks && python3 task__test_import.py'])]
 			all_commands['test'].append('curl -X GET http://localhost:9200/_cat/indices?v')
 			# all_commands['cleanup'] = ['curl -XDELETE http://localhost:9200/fgt_event']
 		for command_type in ['init', 'repo', 'yum_repo', 'service', 'config', 'firewall', 'test']:
