@@ -4,24 +4,33 @@ import os, json, elasticsearch
 config:
 	curl -XPUT -H "Content-Type: application/json" http://localhost:9200/_cluster/settings -d '{ "transient": { "cluster.routing.allocation.disk.threshold_enabled": false } }'
 	curl -X PUT "localhost:9200/_all/_settings" -H 'Content-Type: application/json' -d'{ "index.blocks.read_only_allow_delete" : false } }'
+
+test:
+	# get indexes: curl -X GET http://localhost:9200/_aliases
+	# search index: curl -X GET http://localhost:9200/fgt_event/_search
+	# import one: curl -XPUT 'http://localhost:9200/fgt_event/doc/1' -H 'Content-Type: application/json' -d '{"command": "DHCP statistics3"}'
+	# delete index: curl -XDELETE http://localhost:9200/fgt_event
+	# import schema: sudo curl -XPUT 'http://127.0.0.1:9200/_template/sample' -d@~/sample.template.json
+
+cleanup:
+    curl -XDELETE http://localhost:9200/fgt_event
 '''
 
-def connect_to_es():
+def connect_to_es(params):
 	es = elasticsearch.Elasticsearch(
-		['localhost'],
+		[params['es_host']],
 		port=9200
 	)
 	if es:
 		return es
 	return False
 
-def import_to_elk(doc_type, data, data_path):
-	es = connect_to_es()
+def import_to_elk(params):
+	es = connect_to_es(params)
 	if es:
 		import_count = 0
-		if data is None:
-			cwd = os.getcwd()
-			origin_path = ''.join([cwd, data_path]) # path = '/data/event/'
+		if params['data'] is None:
+			origin_path = ''.join([os.getcwd(), params['data_path']]) # path = '/data/event/'
 			for cur, _dirs, files in os.walk(origin_path):
 				for original_filename in files:
 					filename = ''.join([cur, '/', original_filename])
@@ -29,29 +38,28 @@ def import_to_elk(doc_type, data, data_path):
 						with open(filename, 'r') as f:
 							for i, line in enumerate(f):
 								line_data = json.loads(line)
-								if 'result' in line_data:
-									print('indexing', line_data['result'])
-									record = {}
-									for key, val in line_data['result'].items():
-										if '_' == key[0]:
-											new_key = key[1:]
-											print('key', key, new_key)
-											record[new_key] = val
-										else:
-											record[key] = val
-									try:
-										es.index(index=doc_type, id=i, body=record)
-									except Exception as e:
-										print('elastic import', e)
+								if line_data:
+									if 'result' in line_data:
+										record = {}
+										for key, val in line_data['result'].items():
+											if '_' == key[0]:
+												record[key[1:]] = val
+											else:
+												record[key] = val
+										try:
+											es.index(index=params['index_name'], id=i, body=record)
+											import_count ++ 1
+										except Exception as e:
+											print('elastic import', e)
 		else:
-			for i, line in enumerate(data):
+			for i, line in enumerate(params['data']):
 				try:
-					print('indexing', doc_type, i, line)
-					es.index(index=doc_type, id=i, body=line)
+					print('indexing', params['index_name'], i, line)
+					es.index(index=params['index_name'], id=i, body=line)
 					import_count ++ 1
 				except Exception as e:
 					print('elastic import', e)
-			return import_count / len(data)
+		return import_count / len(params['data'])
 	return False
 
 def get_entry(es, index_name, item_id):

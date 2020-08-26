@@ -1,43 +1,9 @@
 import os
 
 def generate_script_for_task(params):
-	''' given a task, specify task dependencies in the install.sh script for that task
-
-		- tasks to execute on boot:
-			- install elk (including dependencies)
-			- install model (dependencies)
-
-		- tasks to execute after boot: 
-			- model tasks: 'train', 'deploy_api'
-			- elk tasks: 'import', 'start/stop elk', and possibly scheduled bulk operations/queries/reports 
-
-		- to do: 
-			- finish 'train_model', 'upload_data', 'deploy_api', 'create_graph' functions
-	'''
+	''' given an install task, specify task dependencies & commands in the install.sh script for that task '''
 	print('generate_script_for_task: ', params['task'], ' at task script path', params['task_script_path'])
-	if not os.path.exists(params['task_script_path']):
-		print('need to generate script for task', params['task'], params['task_script_path'])
-		''' to do: decide if you should overwrite or not '''
 	commands = ["#!/bin/bash"] if '.sh' in params['task_script_path'] else []
-	all_tasks = ['stop_elastic', 'start_elastic', 'download_model', 'start_api', 'stop_api', 'import_data', 'train_model', 'upload_data', 'deploy_api', 'create_graph', 'test_elk', 'cleanup']
-	if params['task'] == 'import_data':
-		commands = [
-			"data = json_to_csv()",
-			"if data:",
-			"\tprint('len data to import', len(data))",
-			"\timport_ratio = import_to_elk('fgt_event', data, '/data/event/')",
-		]
-	elif params['task'] == 'train_model':
-		commands = ["model_path = apply_algorithm(params['data'], params['algorithm'])"]
-	elif params['task'] == 'upload_data':
-		commands = ["uploaded = upload_data(client, connection, instance_name, params['filename'], params['target_dir'])"]
-	elif params['task'] == 'deploy_api':
-		commands = ["deployed = deploy_api(params['model_path'])"]
-	elif params['task'] == 'create_graph':
-		''' this should have params like data set, dependent var, graph type, which we'll translate to matplotlib graph layers, axis labels, etc '''
-		commands = "graphed = graph_data(client, connection, instance_name, params['graph_type'])"
-	else:
-		print('unsupported task', params)
 	if params['task'] in ['elk', 'model']:
 		open_ports = ['9200', '5601'] if params['task'] == 'elk' else ['80']
 		home_dir = '/home/ec2-user' if params['cloud'] == 'aws' else '~'
@@ -78,24 +44,15 @@ def generate_script_for_task(params):
 			steps['kibana'] = ['enable', 'start']
 		all_commands['config'] = ["systemctl daemon-reload"]
 		all_commands['config'].extend([''.join(["systemctl ", ccommand, " ", service]) for service, steps in steps.items() for ccommand in steps])
-		
 		if len(open_ports) > 0:
 			all_commands['firewall'] = [''.join(['firewall-cmd --permanent --add-port ', port, '/tcp']) for port in open_ports]
 			all_commands['firewall'].append('firewall-cmd --reload')
-
-		all_commands['final'] = [] # ['reboot']
-
-		if params['task'] == 'test_elk':
-			all_commands['test'] = [''.join(['cd ', home_dir, ' && cd ./build-a-cure/tasks && python3 test_import.py'])]
+		# all_commands['final'] = [] # ['reboot']
+		if params['task'] == 'elk':
+			all_commands['test'] = [''.join(['cd ', home_dir, ' && cd ./build-a-cure/tasks && python3 task__test_import.py'])]
 			all_commands['test'].append('curl -X GET http://localhost:9200/_cat/indices?v')
-			all_commands['cleanup'] = ['curl -XDELETE http://localhost:9200/fgt_event']
-			# get indexes: curl -X GET http://localhost:9200/_aliases
-			# search index: curl -X GET http://localhost:9200/fgt_event/_search
-			# import one: curl -XPUT 'http://localhost:9200/fgt_event/doc/1' -H 'Content-Type: application/json' -d '{"command": "DHCP statistics3"}'
-			# delete index: curl -XDELETE http://localhost:9200/fgt_event
-			# import schema: sudo curl -XPUT 'http://127.0.0.1:9200/_template/sample' -d@~/sample.template.json
-
-		for command_type in ['init', 'repo', 'yum_repo', 'service', 'config', 'firewall', 'final']:
+			# all_commands['cleanup'] = ['curl -XDELETE http://localhost:9200/fgt_event']
+		for command_type in ['init', 'repo', 'yum_repo', 'service', 'config', 'firewall', 'test']:
 			if command_type in all_commands:
 				if all_commands[command_type] is not None:
 					if len(all_commands[command_type]) > 0:
@@ -103,7 +60,6 @@ def generate_script_for_task(params):
 						for command in all_commands[command_type]:
 							print('command', command)
 							commands.append(command)
-
 	if len(commands) > 0:
 		open(params['task_script_path'], 'w').write('\n'.join(commands))
 		return params['task_script_path']

@@ -12,9 +12,7 @@
   - finish pos, clause, modifiers code from find implementation
   - get a language map for implementing other tools
   - add conversion of pattern matching options to regex
-  - add precomputing if a sub-pattern was already computed:
-               'ALL_N ALL_N of ALL_N ALL_N'
-         'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
+  - add precomputing if a sub-pattern was already computed: 'ALL_N ALL_N of ALL_N ALL_N' in 'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
   - add formatting to allow multiple items as keys in json and maintain order for interface network paths
 
   - add problem prediction example with market organization 
@@ -30,6 +28,7 @@
     - core operations (find, apply, identify, derive, build) with core objects (patterns, intents, definitions)
     - once those are defined, you can run queries to find matching objects
     - then you need conversion functions between formats (to an interface)
+      - a good test of conversion functions is 'can they find a docs site for alternate tools, and map/fit objects between docs to generate a key-value map to migrate between tools'
     - once you have conversion functions, you can connect problem space data to solutions
     - then youd need problem space visualization & solution metadata calculation functions to finish it
     - function to determine minimum information & other solvability metrics

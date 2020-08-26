@@ -18,7 +18,6 @@ import scipy
 from scipy.sparse import random as sparse_random
 
 #import xgboost
-
 # to do: add regressors for classifiers if available
 # from xgboost import XGBClassifier
 from sklearn.cluster import KMeans
@@ -41,9 +40,55 @@ from sklearn.model_selection import train_test_split
 
 from graph import add_graph, save_graph
 from reduction import reduce_features
-from sanitize import convert_data, json_to_csv
+from sanitize import convert_data
+
+import logging
+logging.basicConfig(level=logging.DEBUG)
+root_logger = logging.getLogger()
+ch = logging.StreamHandler(sys.stdout)
+root_logger.addHandler(ch)
 
 mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["r", "k", "c"]) 
+
+def reduce_features(x_features, y_labels, components_count, reduction_name):
+	''' 
+	x_features is in a dataframe, output by pandas.read_csv()
+	components_count is the number of features to reduce to
+	apply svd, lda, pca, t-sne & other feature reduction methods once data is filtered to numeric variables 
+	transform() & fit_transform():
+		- apply dimensionality reduction to x, returns x_new, array-like shape(samples, components)
+		- dirichlet.transform() returns doc_topic_distribution shape(samples, components)
+		- lda.transform() projects data to maximize class separation
+		- tsne.transform() doesnt exist
+	'''
+	reduction_method = None
+	if reduction_name == 'pca':
+		reduction_method = PCA() if components_count is None else PCA(n_components=components_count) # svd_solver='full', 'arpack')
+	elif reduction_name == 'svd':
+		reduction_method = TruncatedSVD() if components_count is None else TruncatedSVD(n_components=components_count, algorithm='randomized') 
+		# n_components = 100 for lsa, n_iter & random_state for randomized solver, tol for arpack
+	elif reduction_name == 'dirichlet':
+		#X, _ = make_multilabel_classification(random_state=0)
+		reduction_method = LatentDirichletAllocation() if components_count is None else LatentDirichletAllocation(n_components=components_count) # random_state=0)
+	elif reduction_name == 'lda':
+		reduction_method = LinearDiscriminantAnalysis()
+		# reduction_method.predict([[-0.8, -1]])
+	elif reduction_name == 'tsne':
+		reduction_method = TSNE(n_components=components_count) # reduction_method.shape
+	else:
+		print('unknown method', reduction_name)
+	if reduction_method:
+		result = {'reduction_method': reduction_method}
+		result['features'] = reduction_method.fit_transform(x_features) # input is array-like shape(samples, features), returns X_new, ndarray array of shape(samples, components)
+		result['y_labels'] = y_labels
+		result['model'] = reduction_method
+		result['components'] = reduction_method.components_ # principal axes, sorted by explained_variance_
+		result['singular_values'] = reduction_method.singular_values_ # singular values of components (2-norms of components in lower dimensional space)
+		result['explained_variance'] = reduction_method.explained_variance_ # amount of variance explained by each feature
+		result['explained_variance_ratio'] = reduction_method.explained_variance_ratio_
+		print('feature reduction', reduction_name, '\n\tOriginal feature #', x_features.shape[1], '\n\tReduced feature #', result['features'].shape[1])
+		return result
+	return False
 
 def get_features(data, label_column_name):
 	'''

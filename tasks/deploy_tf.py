@@ -8,22 +8,48 @@ import os, sys, time, subprocess, logging
 
 from task_type_resources import get_tf_config
 from create_script_for_task import generate_script_for_task
+from sanitize import json_to_csv
+from import_elk import import_to_elk
 
 logging.basicConfig(level=logging.DEBUG)
 root_logger = logging.getLogger()
 ch = logging.StreamHandler(sys.stdout)
 root_logger.addHandler(ch)
 
-def run_remote_tasks(params):
-	client, connection = connect_to_instance(params)
-	if client and connection:
+def run_remote_task(params):
+	''' tasks include: data upload/import/download, service setup/management, scheduled bulk operations/queries/reports 
+	import: requires data_path & service (logstash/elasticsearch) params
+	upload/download: requires source/destination params
+	train_model: requires data source & algorithm params
+
+	to do: add logging to output.txt of errors in functions applied as one-line commands like apply_algorithm or create_graph
+	'''
+	command = None
+	client = connect_to_instance(params)
+	if client:
 		''' executing commands can be done in userdata, but if not this is another way '''
-		execute_script_command = ''.join(['python3 ', params['task_script_path']]) if '.py' in params['task_script_path'] else ''.join([params['task_script_path']])
-		stdout, stderr = execute_remote_command(client, execute_script_command)
-		if stdout:
-			print('executed', execute_script_command, stdout.read())
-		if stderr:
-			print('execution error', execute_script_command, stderr.read())
+		command = ''.join(['python3 ', params['task_script_path']]) if '.py' in params['task_script_path'] else ''.join([params['task_script_path']])
+		if params['task'] == 'start_elk':
+			command = 'systemctl start elasticsearch'
+		elif params['task'] == 'stop_elk':
+			command = 'systemctl stop elasticsearch'
+		elif params['task'] == 'start_api':
+			command = 'flask run' # 'sagemaker start
+		elif params['task'] == 'stop_api':
+			command = '' # sagemaker stop
+		elif params['task'] == 'train_model':
+			command = ''.join(["python3 -c apply_algorithm(", params['data'], ", ", params['algorithm'], ")"])
+		elif params['task'] == 'create_graph':
+			''' this should have params like data set, dependent var, graph type, which we'll translate to matplotlib graph layers, axis labels, etc '''
+			command = ''.join(["python3 -c graph_data(", params['graph_type'], ")"])
+		else:
+			print('unsupported task', params)
+		if command:
+			stdout, stderr = execute_remote_command(client, command)
+			if stdout:
+				print('executed', execute_script_command, stdout.read())
+			if stderr:
+				print('execution error', execute_script_command, stderr.read())
 	return False
 
 def connect_to_instance(params):
@@ -37,10 +63,10 @@ def connect_to_instance(params):
 				try:
 					connection = client.connect(hostname=params['output_public_ip'], username=params['user'], pkey=key)
 					if connection:
-						return client, connection
+						return client
 				except Exception as e:
 					print('connect exception', e)
-	return False, False
+	return False
 
 def execute_remote_command(client, command):
 	if client and command:
@@ -168,18 +194,6 @@ def open_output_in_browser(ip, params):
 			return True
 	return False
 
-def upload_data(client, connection, instance_name, filename, target_dir):
-	''' upload data or script in filename '''
-	s3_client = boto3.client('s3')
-	key_filename = '/'.join([target_dir, filename])
-	try:
-		response = s3_client.upload_file(key_filename, 'default-bucket')
-	except ClientError as e:
-		print('s3 upload error', e)
-		return False
-	return True
-
-''' to do: create install scripts install_boot_elk.sh and install_boot_model.sh '''
 def deploy(params):
 	''' make sure local has terraform & cloud cli's installed '''
 	local_install = install_local_tf_cloud(params)
@@ -282,48 +296,16 @@ def destroy_resources(params, before_after):
 		return True
 	return exceptions
 
-params = {'cloud': 'aws', 'task': '', 'secret_key': '', 'access_key': '', 'keypath': ''}
-
-params['user_dir'] = '/'.join(os.getcwd().split('/')[0:3])
-params['credential_path'] = ''.join([params['user_dir'], '/.aws/credentials_tf/credentials.ini'])
-params['keypath'] = 'testing.pem'
-
-params['ami'] = 'ami-0baeabdd230a4e508' # centos 7
-params['region'] = 'us-west-2'
-params['user'] = 'ec2-user' if params['cloud'] == 'aws' else ''
-params['remote_dir'] = '/home/ec2-user' if params['cloud'] == 'aws' else ''
-params['output_keys'] = ['output_public_ip', 'output_instance_id', 'output_private_key']
-
-params['tf_commands'] = {
-	'check': 'terraform -help', 
-	'create': ['terraform init', 'terraform validate', 'terraform plan', 'terraform apply'], 
-	'view': ['terraform show'], 
-	'destroy': ['terraform destroy']
-}
-
-stored_env = {}
-for i, arg in enumerate(sys.argv):
-	if (i + 1) < len(sys.argv):
-		if 'secret' in arg:
-			params['secret_key'] = sys.argv[i + 1]
-		elif 'access' in arg:
-			params['access_key'] = sys.argv[i + 1]
-		for key in ['cloud', 'task', 'region', 'tagname']:
-			if key in arg:
-				params[key] = sys.argv[i + 1]
-		if 'remove_config' in arg:
-			if sys.argv[i + 1] == "1":
-				''' flag to remove previously generated terraform config/plan, generated keys/credentials from previous sys.argv '''
-				params = remove_generated_config(params)
-		if 'destroy_before_run' in arg:
-			if sys.argv[i + 1] == "1":
-				params['destroy_before_run'] = "1"
-		if 'destroy_after_run' in arg:
-			if sys.argv[i + 1] == "1":
-				params['destroy_after_run'] = "1"
-
-if params['access_key'] != '' and params['secret_key'] != '':
-
+def get_params_from_args(args, params):
+	for i, arg in enumerate(args):
+		if (i + 1) < len(args):
+			if 'secret' in arg:
+				params['secret_key'] = args[i + 1]
+			elif 'access' in arg:
+				params['access_key'] = args[i + 1]
+			for key in ['cloud', 'task', 'region', 'tagname']:
+				if key in arg:
+					params[key] = args[i + 1]
 	params['env'] = {
 		'AWS_SHARED_CREDENTIALS_FILE': params['credential_path'], 
 		'AWS_REGION': params['region'], 
@@ -331,46 +313,85 @@ if params['access_key'] != '' and params['secret_key'] != '':
 		'AWS_ACCESS_KEY_ID': params['access_key'], 
 		'AWS_SECRET_ACCESS_KEY': params['secret_key']
 	}
-
+	stored_env = {}
 	for env, val in params['env'].items():
 		stored_env[env] = os.environ.get(env)
 		os.environ[env] = val
+	return params, stored_env
+	
+params = {'cloud': 'aws', 'task': '', 'secret_key': '', 'access_key': '', 'keypath': ''}
+params['user_dir'] = '/'.join(os.getcwd().split('/')[0:3])
+params['credential_path'] = ''.join([params['user_dir'], '/.aws/credentials_tf/credentials.ini'])
+params['keypath'] = 'testing.pem'
+params['ami'] = 'ami-0baeabdd230a4e508' # centos 7
+params['region'] = 'us-west-2'
+params['user'] = 'ec2-user' if params['cloud'] == 'aws' else ''
+params['remote_dir'] = '/home/ec2-user' if params['cloud'] == 'aws' else ''
+params['output_keys'] = ['output_public_ip', 'output_instance_id', 'output_private_key']
+params['tf_commands'] = {
+	'check': 'terraform -help', 
+	'create': ['terraform init', 'terraform validate', 'terraform plan', 'terraform apply'], 
+	'view': ['terraform show'], 
+	'destroy': ['terraform destroy']
+}
+params['all_tasks'] = [
+	'elk', 'stop_elk', 'start_elk', 
+	'import', 'download', 'upload', 
+	'model', 'start_api', 'stop_api', 'train_model',
+	'test', 'cleanup', 'destroy_before_run', 'destroy_after_run', 'remove_config'
+]
+local_tasks = ['test', 'destroy_before_run', 'destroy_after_run', 'remove_config', 'import', 'upload', 'download']
+remote_tasks = ['stop_elk', 'start_elk', 'start_api', 'stop_api', 'train_model']
+params, stored_env = get_params_from_args(sys.argv, params)
+# import task
+params['es_host'] = 'localhost' # check that you can import to remote from local, otherwise set for internal requests on server
+params['data_path'] = '/data/event/'
+params['index_name'] = 'fgt_event'
+# upload/download task
+params['source'] = ''
+params['target'] = ''
 
-	if 'destroy_before_run' in params:
-
-		if params['destroy_before_run'] == '1':
-			destroyed = destroy_resources(params, 'before')
-			if destroyed:
-				print('resources removal exceptions before run', destroyed)
-
+if params['access_key'] != '' and params['secret_key'] != '':
 	if 'task' in params:
-
-		params['task_script_path'] = ''.join([os.getcwd(), '/', params['task'], '.py']) if params['task'] not in ['elk', 'model'] else ''.join(['install_', params['task'], '.sh'])
-		params['tagname'] = ''.join(['task_', params['task']])
-		params['tf_config_path'] = ''.join([os.getcwd(), '/', params['cloud'], '_', params['task'], '_config.tf'])
-		params['instance_type'] = 't2.medium' if params['task'] == 'elk' else 'm2.medium'
-		params['plan_path'] = params['tf_config_path'].replace('_config.tf', '_plan_config.bin')
-
-		print('running task', params['task'], ' with params', params)
-
 		if params['task'] != '':
-			if params['task'] not in ['elk', 'model']:
-				ran_task = run_remote_task(params)
-				print('ran task', ran_task)
-			else:
+			print('running task', params['task'], ' with params', params)
+			if params['task'] == 'destroy_before_run' or params['task'] == 'destroy_after_run':
+				timing = 'after' if params['task'] == 'destroy_after_run' else 'before'
+				destroyed = destroy_resources(params, timing)
+				if destroyed:
+					print('resources removal exceptions ', timing, ' run', destroyed)
+			elif params['task'] == 'remove_config':
+				''' remove previously generated terraform config/plan, generated keys/credentials '''
+				params = remove_generated_config(params)
+			elif params['task'] == 'import':
+				data = json_to_csv(params['data_path'])
+				if data:
+					params['data'] = data
+					print('len data to import', len(params['data']))
+					import_ratio = import_to_elk(params)
+					print('import_ratio', import_ratio)
+			elif params['task'] == 'upload':
+				upload_command = ''.join(['scp -o "PasswordAuthentication=no" -i ', params['keypath'], ' ', params['source'], ' ', params['user'], '@', params['output_instance_ip'], ':', params['target']])
+				os.system(upload_command)
+			elif params['task'] == 'download':
+				download_command = ''.join(['scp -o "PasswordAuthentication=no" -i ', params['keypath'], ' ', params['user'], '@', params['output_instance_ip'], ':', params['target'], ' ', params['source']])
+				os.system(download_command)
+			elif params['task'] == 'test':
+				pass
+			elif params['task'] in ['elk', 'model']:
+				params['task_script_path'] = ''.join([os.getcwd(), '/', params['task'], '.py']) if params['task'] not in ['elk', 'model'] else ''.join(['install_', params['task'], '.sh'])
+				params['tagname'] = ''.join(['task_', params['task']])
+				params['tf_config_path'] = ''.join([os.getcwd(), '/', params['cloud'], '_', params['task'], '_config.tf'])
+				params['instance_type'] = 'm2.medium' if params['task'] == 'model' else 't2.medium'
+				params['plan_path'] = params['tf_config_path'].replace('_config.tf', '_plan_config.bin')
 				deploy_params_to_clean = deploy(params)
 				if deploy_params_to_clean:
 					print('deploy_params_to_clean', deploy_params_to_clean)
-
+			elif params['task'] in remote_tasks:
+				ran_task = run_remote_task(params)
+				if ran_task:
+					print('ran task', ran_task)
 	if 'env' in params:
-
-		''' cleanup task to remove access & secret key from env vars or restore previous config for those env vars '''
+		''' cleanup task to remove access & secret key from env vars, and restore previous config for those env vars if any found '''
 		for env, val in params['env'].items():
 			os.environ[env] = '' if env not in stored_env else stored_env[env] if stored_env[env] is not None else ''
-
-	if 'destroy_after_run' in params:
-
-		if params['destroy_after_run'] == '1':
-			destroyed = destroy_resources(params, 'after')
-			if destroyed:
-				print('resources removal exceptions after run', destroyed)

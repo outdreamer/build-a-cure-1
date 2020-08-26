@@ -2,9 +2,12 @@
 
 	- fix multi-line import json
 
-	- create common config from merged & abstracted config samples
+	- add test lines to elk task
 
-	- https://cloud.google.com/compute/docs/instances/managing-instance-access
+	- move destroy function to task param
+	- use terraform destroy in cleanup task
+
+	- finish 'train_model', 'upload_data', 'deploy_api', 'create_graph' functions
 
 	- check for conversion script
 		'google_compute_instance': 'aws_instance',
@@ -26,10 +29,8 @@
 			'allow.protocol': 'ingress/egress.protocol,
 			'allow.ports': 'ingress/egress.from_port/to_port',
 			'source_ranges': 'ingress/egress.cidr_blocks',
-			
-	- finish 'train_model', 'upload_data', 'deploy_api', 'create_graph' functions
-
-	- use terraform destroy in cleanup task
+		
+		- https://cloud.google.com/compute/docs/instances/managing-instance-access
 
 	- add nohup busybox httpd -f -p “${var.server_port}” &
 

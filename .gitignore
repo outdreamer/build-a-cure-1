@@ -6,7 +6,8 @@
 /tasks/.terraform/*
 /tasks/*.bin
 tasks/__pycache__/
-tasks/data
+tasks/data/event
+tasks/data/email
 find_existing_solutions/system_analysis/code_function_names.txt
 find_existing_solutions/test/
 docs/archive_notes/

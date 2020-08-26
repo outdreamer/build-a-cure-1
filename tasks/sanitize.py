@@ -1,25 +1,22 @@
-import os, csv, json, uuid
+import os, csv, json, uuid, sys
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, OrdinalEncoder, StandardScaler
 
+import logging
+logging.basicConfig(level=logging.DEBUG)
+root_logger = logging.getLogger()
+ch = logging.StreamHandler(sys.stdout)
+root_logger.addHandler(ch)
+
 def convert_data(data, label_column_name, remove_types):
 	''' 
-		- sanitize data
-		- encode categorical data
-		- to do: remove columns of type in remove_types, like date or text columns
-		- to do: vectorize text data
-		- to do: apply scaler 
-		- map trajectories of text data
-
-		- to do: standardize params None/len checks
-		
+		- sanitizes & encodes data
+		- to do: vectorize text data, apply scaler, standardize params None/len checks
 	'''
-
 	#check number of rows and columns in dataset
 	print('shape (rows, columns)', data.shape)
 	print('data.describe()', data.describe())
-
 	categorical = data.iloc[:,:].select_dtypes('object').columns
 	print('categorical', categorical)
 	print('groups count', sum(data[categorical].nunique()))
@@ -192,19 +189,18 @@ def convert_data(data, label_column_name, remove_types):
 		else:
 			removed_cols['low_value'][col] = data[col]
 			del data[col]
-
 	print('found text cols', text_columns)
 	print('transformed data', data.head())
 	for col in data:
 		print('col', col, type(data[col]), data[col].values)
 	return data, removed_cols
 	
-def json_to_csv():
+def json_to_csv(data_path):
 	''' use import functionality of elk or apply json data schema templates '''
 	all_new_dicts = []
 	cwd = os.getcwd()
 	print('cwd', cwd)
-	origin_path = ''.join([cwd, '/data/event/'])
+	origin_path = ''.join([cwd, data_path])
 	for cur, _dirs, files in os.walk(origin_path):
 		for original_filename in files:
 			filename = ''.join([cur, '/', original_filename])
