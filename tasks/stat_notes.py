@@ -1,4 +1,40 @@
 		'''
+		- lasso
+			- params: alpha=1.0, *, fit_intercept=True, normalize=False, precompute=False, copy_X=True, max_iter=1000, tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic'
+		'''
+		'''
+		- kmeans
+			- fast
+			- fails in local minima
+			- If the algorithm stops before fully converging, the cluster_centers wont be the labels_ (means of each center)
+			- labels_ are reassigned after last prediction
+			attributes: cluster_centers (ndarray), labels (ndarray), inertia (float), n_iter (number of iterations run)
+			variants: MiniBatchKMeans may be faster for large number of samples, does incremental updates of the centers positions using mini-batches
+			methods: 
+				- fit_predict(X[, y, sample_weight]) - Compute cluster centers and predict cluster index for each sample
+				- has sample_weight param for its fit/transform/predict methods
+			params: n_clusters=8, *, init='k-means++', n_init=10, max_iter=300, tol=0.0001, precompute_distances='deprecated', verbose=0, random_state=None, copy_x=True, n_jobs='deprecated', algorithm='auto'
+		'''
+		'''
+		- linear_regression
+			- params: *, fit_intercept=True, normalize=False, copy_X=True, n_jobs=None
+			- attributes: coef_, rank_, singular_, intercept_
+			- methods:
+				- has sample_weight param for its fit/score methods
+		'''
+		'''
+		- elastic_net
+			- params: alpha=1.0, *, l1_ratio=0.5, fit_intercept=True, normalize=False, precompute=False, max_iter=1000, copy_X=True, tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic')[source]
+			- attributes: coef_, sparse_coef_, intercept_, n_iter_
+			- methods:
+				- has sample_weight param for its fit/score methods
+				- path(X, y, *[, l1_ratio, eps, n_alphas, …]) - compute elastic net path with coordinate descent
+			- variants:
+				ElasticNetCV: Elastic net model with best model selection by cross-validation.
+				SGDRegressor: implements elastic net regression with incremental training.
+				SGDClassifier: implements logistic regression with elastic net penalty (SGDClassifier(loss="log", penalty="elasticnet"))
+		'''
+		'''
 		PCA (n_components=None, *, copy=True, whiten=False, svd_solver='auto', tol=0.0, iterated_power='auto', random_state=None)
 
 		alt: KernelPCA

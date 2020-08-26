@@ -14,6 +14,7 @@ def generate_script_for_task(params):
 			init_packages.extend(['centos-release-scl', 'devtoolset-7-gcc*', 'gcc-c++', 'cmake3']) # GCC version must be at least 5.0!
 		all_commands = {}
 		if params['task'] == 'model':
+			# https://xgboost.readthedocs.io/en/latest/build.html#building-on-linux-distributions
 			all_commands['xgboost'] = [
 				'scl enable devtoolset-7 bash',
 				'export CC=/opt/rh/devtoolset-7/root/usr/bin/gcc',
@@ -58,9 +59,7 @@ def generate_script_for_task(params):
 			all_commands['firewall'].append('firewall-cmd --reload')
 		# all_commands['final'] = [] # ['reboot']
 		if params['task'] == 'elk':
-			all_commands['test'] = [''.join(['cd ', home_dir, '/build-a-cure/tasks && python3 task__test_import.py'])]
-			all_commands['test'].append('curl -X GET http://localhost:9200/_cat/indices?v')
-			# all_commands['cleanup'] = ['curl -XDELETE http://localhost:9200/fgt_event']
+			all_commands['test'] = [''.join(['sleep 60 && cd ', home_dir, '/build-a-cure/tasks && python3 task__test_import.py >> import.txt && curl -X GET http://localhost:9200/_cat/indices?v >> curl.txt'])]
 		for command_type in ['init', 'repo', 'yum_repo', 'service', 'config', 'firewall', 'test']:
 			if command_type in all_commands:
 				if all_commands[command_type] is not None:

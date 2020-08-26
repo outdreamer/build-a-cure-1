@@ -1,13 +1,19 @@
 - to do:
 
-	- fix multi-line import json
+	- test local ip in ssh rule for existing deployment
+	- debug task import not running in install script, add sleep
+	
+	- finish 'train_model' function
+		- add api function to call & return json of model metadata & graph urls:
+			convert_reduce_classify_train_score_graph(
+				data, label_column_name, problem_type, processes, reductions, regularizations, algorithms, model_tasks, graphs
+			)
 
-	- add test lines to elk task
+	- function to pull data from fireeye api & import to elk
 
-	- move destroy function to task param
-	- use terraform destroy in cleanup task
-
-	- finish 'train_model', 'upload_data', 'deploy_api', 'create_graph' functions
+	https://github.com/outdreamer/build-a-cure/tree/master/tasks
+		- python3 deploy_tf.py --secret "" --access "" --task "destroy_before_run"
+		- python3 deploy_tf.py --secret "" --access "" --task "elk"
 
 	- check for conversion script
 		'google_compute_instance': 'aws_instance',
@@ -32,30 +38,14 @@
 		
 		- https://cloud.google.com/compute/docs/instances/managing-instance-access
 
-	- add nohup busybox httpd -f -p “${var.server_port}” &
-
-	- add sample data to repo
-
-    - configure passwordAuthentication flag in ssh config command
-    	"ssh -o "PasswordAuthentication=no" -i testing.pem root@ip"
-
-	- add model params call of model generation/training/testing script in install_boot_model.sh
-
-	- add api function to call & return json of model metadata & graph urls:
-
-			convert_reduce_classify_train_score_graph(
-				data, label_column_name, problem_type, processes, reductions, regularizations, algorithms, model_tasks, graphs
-			)
-
-	- change '/api/predict-test' to url of api function
+	- add nohup busybox httpd -f -p “${var.server_port}” & to install for services on non-demo instances that should keep running
 
 	- finish es methods
-
 		- finish es import function for other data, config elk stack for ml anomaly detection & test
 		- function to pull data from es with label column parameter & apply a standard model & output metric graph
+		- fix multi-line import json
 
 	- finish model training methods
-
 		- finish scaling in preprocessing
 		- add regularization/normalization
 		- finish metric graph function & data set graph function with hover tooltip

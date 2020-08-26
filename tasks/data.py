@@ -50,46 +50,6 @@ root_logger.addHandler(ch)
 
 mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["r", "k", "c"]) 
 
-def reduce_features(x_features, y_labels, components_count, reduction_name):
-	''' 
-	x_features is in a dataframe, output by pandas.read_csv()
-	components_count is the number of features to reduce to
-	apply svd, lda, pca, t-sne & other feature reduction methods once data is filtered to numeric variables 
-	transform() & fit_transform():
-		- apply dimensionality reduction to x, returns x_new, array-like shape(samples, components)
-		- dirichlet.transform() returns doc_topic_distribution shape(samples, components)
-		- lda.transform() projects data to maximize class separation
-		- tsne.transform() doesnt exist
-	'''
-	reduction_method = None
-	if reduction_name == 'pca':
-		reduction_method = PCA() if components_count is None else PCA(n_components=components_count) # svd_solver='full', 'arpack')
-	elif reduction_name == 'svd':
-		reduction_method = TruncatedSVD() if components_count is None else TruncatedSVD(n_components=components_count, algorithm='randomized') 
-		# n_components = 100 for lsa, n_iter & random_state for randomized solver, tol for arpack
-	elif reduction_name == 'dirichlet':
-		#X, _ = make_multilabel_classification(random_state=0)
-		reduction_method = LatentDirichletAllocation() if components_count is None else LatentDirichletAllocation(n_components=components_count) # random_state=0)
-	elif reduction_name == 'lda':
-		reduction_method = LinearDiscriminantAnalysis()
-		# reduction_method.predict([[-0.8, -1]])
-	elif reduction_name == 'tsne':
-		reduction_method = TSNE(n_components=components_count) # reduction_method.shape
-	else:
-		print('unknown method', reduction_name)
-	if reduction_method:
-		result = {'reduction_method': reduction_method}
-		result['features'] = reduction_method.fit_transform(x_features) # input is array-like shape(samples, features), returns X_new, ndarray array of shape(samples, components)
-		result['y_labels'] = y_labels
-		result['model'] = reduction_method
-		result['components'] = reduction_method.components_ # principal axes, sorted by explained_variance_
-		result['singular_values'] = reduction_method.singular_values_ # singular values of components (2-norms of components in lower dimensional space)
-		result['explained_variance'] = reduction_method.explained_variance_ # amount of variance explained by each feature
-		result['explained_variance_ratio'] = reduction_method.explained_variance_ratio_
-		print('feature reduction', reduction_name, '\n\tOriginal feature #', x_features.shape[1], '\n\tReduced feature #', result['features'].shape[1])
-		return result
-	return False
-
 def get_features(data, label_column_name):
 	'''
 	df.loc['index_col_value'] # get row for index col value
@@ -243,6 +203,46 @@ def select_algorithms_for_data(data, problem_type, reductions, algorithms, model
 		return algorithms
 	return False
 
+def reduce_features(x_features, y_labels, components_count, reduction_name):
+	''' 
+	x_features is in a dataframe, output by pandas.read_csv()
+	components_count is the number of features to reduce to
+	apply svd, lda, pca, t-sne & other feature reduction methods once data is filtered to numeric variables 
+	transform() & fit_transform():
+		- apply dimensionality reduction to x, returns x_new, array-like shape(samples, components)
+		- dirichlet.transform() returns doc_topic_distribution shape(samples, components)
+		- lda.transform() projects data to maximize class separation
+		- tsne.transform() doesnt exist
+	'''
+	reduction_method = None
+	if reduction_name == 'pca':
+		reduction_method = PCA() if components_count is None else PCA(n_components=components_count) # svd_solver='full', 'arpack')
+	elif reduction_name == 'svd':
+		reduction_method = TruncatedSVD() if components_count is None else TruncatedSVD(n_components=components_count, algorithm='randomized') 
+		# n_components = 100 for lsa, n_iter & random_state for randomized solver, tol for arpack
+	elif reduction_name == 'dirichlet':
+		#X, _ = make_multilabel_classification(random_state=0)
+		reduction_method = LatentDirichletAllocation() if components_count is None else LatentDirichletAllocation(n_components=components_count) # random_state=0)
+	elif reduction_name == 'lda':
+		reduction_method = LinearDiscriminantAnalysis()
+		# reduction_method.predict([[-0.8, -1]])
+	elif reduction_name == 'tsne':
+		reduction_method = TSNE(n_components=components_count) # reduction_method.shape
+	else:
+		print('unknown method', reduction_name)
+	if reduction_method:
+		result = {'reduction_method': reduction_method}
+		result['features'] = reduction_method.fit_transform(x_features) # input is array-like shape(samples, features), returns X_new, ndarray array of shape(samples, components)
+		result['y_labels'] = y_labels
+		result['model'] = reduction_method
+		result['components'] = reduction_method.components_ # principal axes, sorted by explained_variance_
+		result['singular_values'] = reduction_method.singular_values_ # singular values of components (2-norms of components in lower dimensional space)
+		result['explained_variance'] = reduction_method.explained_variance_ # amount of variance explained by each feature
+		result['explained_variance_ratio'] = reduction_method.explained_variance_ratio_
+		print('feature reduction', reduction_name, '\n\tOriginal feature #', x_features.shape[1], '\n\tReduced feature #', result['features'].shape[1])
+		return result
+	return False
+
 def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, components_count, graphs, params):
 	model = None
 	if algorithm == 'random_forest':
@@ -253,48 +253,16 @@ def apply_algorithm(algorithm, reductions, x_features, y_labels, model_tasks, co
 		model = KNeighborsClassifier()
 	elif algorithm == 'kmeans':
 		model = KMeans() 
-		'''
-		- fast
-		- fails in local minima
-		- If the algorithm stops before fully converging, the cluster_centers wont be the labels_ (means of each center)
-		- labels_ are reassigned after last prediction
-		attributes: cluster_centers (ndarray), labels (ndarray), inertia (float), n_iter (number of iterations run)
-		variants: MiniBatchKMeans may be faster for large number of samples, does incremental updates of the centers positions using mini-batches
-		methods: 
-			- fit_predict(X[, y, sample_weight]) - Compute cluster centers and predict cluster index for each sample
-			- has sample_weight param for its fit/transform/predict methods
-		params: n_clusters=8, *, init='k-means++', n_init=10, max_iter=300, tol=0.0001, precompute_distances='deprecated', verbose=0, random_state=None, copy_x=True, n_jobs='deprecated', algorithm='auto'
-		'''
 	elif algorithm == 'linear_regression':
 		model = LinearRegression()
-		'''
-		params: *, fit_intercept=True, normalize=False, copy_X=True, n_jobs=None
-		attributes: coef_, rank_, singular_, intercept_
-		methods:
-			- has sample_weight param for its fit/score methods
-		'''
 	elif algorithm == 'logreg':
 		model = LogisticRegression()
 	elif algorithm == 'ridge':
 		model = Ridge()
 	elif algorithm == 'lasso':
 		model = Lasso()
-		'''
-		params: alpha=1.0, *, fit_intercept=True, normalize=False, precompute=False, copy_X=True, max_iter=1000, tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic'
-		'''
 	elif algorithm == 'elastic_net':
 		model = ElasticNet()
-		'''
-		params: alpha=1.0, *, l1_ratio=0.5, fit_intercept=True, normalize=False, precompute=False, max_iter=1000, copy_X=True, tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic')[source]
-		attributes: coef_, sparse_coef_, intercept_, n_iter_
-		methods:
-			- has sample_weight param for its fit/score methods
-			- path(X, y, *[, l1_ratio, eps, n_alphas, …]) - compute elastic net path with coordinate descent
-		variants:
-			ElasticNetCV: Elastic net model with best model selection by cross-validation.
-			SGDRegressor: implements elastic net regression with incremental training.
-			SGDClassifier: implements logistic regression with elastic net penalty (SGDClassifier(loss="log", penalty="elasticnet"))
-		'''
 	elif algorithm == 'dirichlet':
 		model = LatentDirichletAllocation() 
 	elif algorithm == 'lda':
@@ -397,12 +365,9 @@ def model_train(algorithm, model, x_features, y_labels, model_tasks, components_
 
 def convert_reduce_classify_train_score_graph(data, label_column_name, problem_type, processes, reductions, regularizations, algorithms, model_tasks, graphs):
 	''' to do: add custom processes, reductions, regularization & model_tasks according to data set/algorithm '''
-
 	''' to do: retain original copy of data if processing is done before this function call '''
-
 	if label_column_name is None:
 		label_column_name = y_labels.name
-
 	if 'convert_type' in processes:
 		''' to do: add data type check '''
 		''' to do: derive label_column_name if not present '''
@@ -411,26 +376,19 @@ def convert_reduce_classify_train_score_graph(data, label_column_name, problem_t
 			print('removed_cols', removed_cols)
 		if converted_data.empty:
 			data = converted_data
-
 	print('converted', data.head())
-
 	y_labels = data[label_column_name] if label_column_name in data else get_label_column(data)
-
 	if 'regularize' in processes:
 		regularized_data = regularize_data(data, regularizations)
 		if regularized_data:
 			data = regularized_data
-	
 	print('label column', label_column_name, 'y label', y_labels)
 	x_features = get_features(data, label_column_name)
 	print('x features', x_features.keys())
-	
 	components_count = len(x_features) # int(round(len(x_features) / 3, 0)) if len(x_features) < 100 else int(round(len(x_features) / 10, 0))
 	print('components count', components_count)
-
 	if algorithms is None or len(algorithms) == 0:
 		algorithms = select_algorithms_for_data(data, problem_type, reductions, algorithms, model_tasks, graphs)
-
 	if algorithms:
 		algorithm_results = []
 		for algorithm in algorithms:

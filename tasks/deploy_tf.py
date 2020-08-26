@@ -80,6 +80,11 @@ def execute_remote_command(client, command):
 
 def generate_config(params):
 	cloud_resources = {'aws': ['ec2', 'ssh']}
+	ip_addr = os.system("curl ipecho.net/plain >> ip.txt")
+	if os.path.exists('ip.txt'):
+		with open('ip.txt','r') as f:
+			params['my_ip_addr'] = f.read()
+			f.close()
 	tf_config = get_tf_config(params)
 	if tf_config:
 		deployment_resources_lines = []
@@ -95,7 +100,7 @@ def generate_config(params):
 
 def deploy_generated_tf_config(params):
 	t = Terraform()
-	for command in params['tf_commands']['create']: # validate, init, apply
+	for command in ['terraform init', 'terraform validate', 'terraform plan', 'terraform apply']: # validate, init, apply
 		print('running tf command', command)
 		result = None
 		try:
@@ -248,7 +253,6 @@ def remove_generated_config(params):
 	return params
 
 def destroy_resources(params, before_after):
-	''' to do: delete tls_private_key '''
 	exceptions = []
 	instance_ids = []
 	if params['task'] == 'destroy_before_run' and before_after == 'before':
@@ -259,42 +263,48 @@ def destroy_resources(params, before_after):
 					instance_ids.append(line.split('=')[1].replace('\n',''))
 	elif params['task'] == 'destroy_after_run' and before_after == 'after':
 		instance_ids = [params['output_instance_id']] if params['output_instance_id'] != '' else []
+
+	'''
+	t = Terraform()
+	try:
+		result, stdout, stderr = t.destroy()
+		if result:
+			print('result', result, stdout.read(), stderr.read())
+	except Exception as e:
+		print('destroy exception', e)
+	'''
+
 	ec2 = boto3.client('ec2')
 	iam = boto3.client('iam')
 	key_name = 'deploy_key'
-	try:
-		if len(instance_ids) > 0:
-			deleted_ec2_instance = ec2.terminate_instances(InstanceIds=instance_ids)
-			if deleted_ec2_instance:
-				os.remove('output.txt')
-	except Exception as e:
-		print('ec2 exception', e)
-		exceptions.append('_'.join(['ec2', ','.join(instance_ids)]))
-	try:
-		removed_role = iam.remove_role_from_instance_profile(InstanceProfileName='ec2_profile', RoleName='ec2_role')
-	except Exception as e:
-		print('remove role from instance profile exception', e)
-		exceptions.append('_'.join(['iam role-profile', 'ec2_profile', 'ec2_role']))
-	try:
-		deleted_instance_profile = iam.delete_instance_profile(InstanceProfileName='ec2_profile')
-	except Exception as e:
-		print('instance profile exception', e)
-		exceptions.append('_'.join(['iam profile', 'ec2_profile', 'ec2_role']))
-	try:
-		deleted_role = iam.delete_role(RoleName='ec2_role')
-	except Exception as e:
-		print('role exception', e)
-		exceptions.append('_'.join(['iam role', 'ec2_profile', 'ec2_role']))
-	try:
-		deleted_key_pair = ec2.delete_key_pair(KeyName=key_name)	
-	except Exception as e:
-		print('key pair exception', e)
-		exceptions.append('_'.join(['key pair', key_name]))
-	try:
-		deleted_sg = ec2.delete_security_group(GroupName='ec2_sg')
-	except Exception as e:
-		print('sg exception', e)
-		exceptions.append('_'.join(['sg', 'ec2_sg']))
+	args = {'InstanceProfileName': 'ec2_profile', 'RoleName': 'ec2_role', 'InstanceIds': instance_ids, 'KeyName': key_name, 'GroupName': 'ec2_sg'}
+	functions = {
+		'ec2': {
+			'terminate_instances': ['InstanceIds'], 
+			'delete_key_pair': ['KeyName'],
+			'delete_security_group': ['GroupName']
+		},
+		'iam': {
+			'remove_role_from_instance_profile': ['InstanceProfileName', 'RoleName'], 
+			'delete_instance_profile': ['InstanceProfileName'],
+			'delete_role': ['RoleName']
+		}		
+	}
+	for service_name, function_dict in functions.items():
+		for function_name, parameters in function_dict.items():
+			key_vals = {key: args[key] for key in parameters}
+			key_val_str = ','.join([':'.join([key, val]) if type(val) == str else ':'.join([key, ','.join(val)]) for key, val in key_vals.items()])
+			try:
+				service = ec2 if service_name == 'ec2' else iam
+				function_call = getattr(service, function_name)(**key_vals)
+				if function_call:
+					print('destroy function_call', function_call)
+			except Exception as e:
+				print('destroy function call error', e)
+				message = e.response['Error']['Message'] if 'Error' in e.response and 'Message' in e.response['Error'] else ''
+				exceptions.append('::'.join(['destroy function call error ', service_name, function_name, key_val_str, message]))
+	if os.path.exists('output.txt'):
+		os.remove('output.txt')
 	if len(exceptions) == 0:
 		return True
 	return exceptions
@@ -331,21 +341,12 @@ params['region'] = 'us-west-2'
 params['user'] = 'ec2-user' if params['cloud'] == 'aws' else ''
 params['remote_dir'] = '/home/ec2-user' if params['cloud'] == 'aws' else ''
 params['output_keys'] = ['output_public_ip', 'output_instance_id', 'output_private_key']
-params['tf_commands'] = {
-	'check': 'terraform -help', 
-	'create': ['terraform init', 'terraform validate', 'terraform plan', 'terraform apply'], 
-	'view': ['terraform show'], 
-	'destroy': ['terraform destroy']
-}
-params['all_tasks'] = [
-	'elk', 'stop_elk', 'start_elk', 
-	'import', 'download', 'upload', 
-	'model', 'start_api', 'stop_api', 'train_model',
-	'test', 'cleanup', 'destroy_before_run', 'destroy_after_run', 'remove_config'
-]
-local_tasks = ['test', 'destroy_before_run', 'destroy_after_run', 'remove_config', 'import', 'upload', 'download']
-remote_tasks = ['stop_elk', 'start_elk', 'start_api', 'stop_api', 'train_model']
 params, stored_env = get_params_from_args(sys.argv, params)
+
+local_tasks = ['destroy_before_run', 'destroy_after_run', 'remove_config', 'import', 'upload', 'download']
+remote_tasks = ['stop_elk', 'start_elk', 'start_api', 'stop_api', 'train_model']
+
+params['remote_ip'] = ''
 # import task
 params['es_host'] = 'localhost' # check that you can import to remote from local, otherwise set for internal requests on server
 params['data_path'] = '/data/event/'
@@ -353,6 +354,8 @@ params['index_name'] = 'fgt_event'
 # upload/download task
 params['source'] = ''
 params['target'] = ''
+# train model task
+params['data_path'] = ''
 
 if params['access_key'] != '' and params['secret_key'] != '':
 	if 'task' in params:
@@ -375,10 +378,10 @@ if params['access_key'] != '' and params['secret_key'] != '':
 					import_ratio = import_to_elk(params)
 					print('import_ratio', import_ratio)
 			elif params['task'] == 'upload':
-				upload_command = ''.join(['scp -o "PasswordAuthentication=no" -i ', params['keypath'], ' ', params['source'], ' ', params['user'], '@', params['output_instance_ip'], ':', params['target']])
+				upload_command = ''.join(['scp -o "PasswordAuthentication=no" -i ', params['keypath'], ' ', params['source'], ' ', params['user'], '@', params['remote_ip'], ':', params['target']])
 				os.system(upload_command)
 			elif params['task'] == 'download':
-				download_command = ''.join(['scp -o "PasswordAuthentication=no" -i ', params['keypath'], ' ', params['user'], '@', params['output_instance_ip'], ':', params['target'], ' ', params['source']])
+				download_command = ''.join(['scp -o "PasswordAuthentication=no" -i ', params['keypath'], ' ', params['user'], '@', params['remote_ip'], ':', params['target'], ' ', params['source']])
 				os.system(download_command)
 			elif params['task'] == 'test':
 				pass
