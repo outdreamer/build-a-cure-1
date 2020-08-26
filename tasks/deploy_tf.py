@@ -172,7 +172,8 @@ def mkdir_structure(file_path, params):
 	folders_path = ''
 	for folder in file_path.split('/')[0:-1]: # skip last item which is assumed to be a file
 		folders.append(folder)
-		folders_path = ''.join([params['user_dir'], '/'.join(folders)])
+		if params['user_dir'] not in folders_path:
+			folders_path = ''.join([params['user_dir'], '/'.join(folders)])
 		if not os.path.isdir(folders_path):
 			os.mkdir(folders_path)
 	folders_path = ''.join([folders_path, '/'])
@@ -239,31 +240,28 @@ def remove_generated_config(params):
 			if folder_created:
 				params[file_to_mkdir] = ''.join([folder_created, '', params[file_to_mkdir].split('/')[-1]])
 	for file_to_remove in ['tf_config_path', 'plan_path']:
-		params[file_to_remove] = '/'.join([params['user_dir'], params[file_to_remove]]) if params['user_dir'] not in params[file_to_remove] else params[file_to_remove]
-		if os.path.exists(params[file_to_remove]):
-			os.remove(params[file_to_remove]) # remove original file if you need to re-create on each run
+		if file_to_remove in params:
+			if params['user_dir'] not in params[file_to_remove]:
+				params[file_to_remove] = '/'.join([params['user_dir'], params[file_to_remove]])
+			if os.path.exists(params[file_to_remove]):
+				os.remove(params[file_to_remove]) # remove original file if you need to re-create on each run
 	return params
 
 def destroy_resources(params, before_after):
 	''' to do: delete tls_private_key '''
 	exceptions = []
 	instance_ids = []
-	if params['destroy_before_run'] == '1' and before_after == 'before':
+	if params['task'] == 'destroy_before_run' and before_after == 'before':
 		if os.path.exists('output.txt'):
 			data = open('output.txt', 'r').readlines()
 			for line in data:
 				if line.split('=')[0] == 'output_instance_id':
 					instance_ids.append(line.split('=')[1].replace('\n',''))
-	elif params['destroy_after_run'] == '1' and before_after == 'after':
+	elif params['task'] == 'destroy_after_run' and before_after == 'after':
 		instance_ids = [params['output_instance_id']] if params['output_instance_id'] != '' else []
 	ec2 = boto3.client('ec2')
 	iam = boto3.client('iam')
 	key_name = 'deploy_key'
-	try:
-		deleted_key_pair = ec2.delete_key_pair(KeyName=key_name)	
-	except Exception as e:
-		print('key pair exception', e)
-		exceptions.append('_'.join(['key pair', key_name]))
 	try:
 		if len(instance_ids) > 0:
 			deleted_ec2_instance = ec2.terminate_instances(InstanceIds=instance_ids)
@@ -272,11 +270,6 @@ def destroy_resources(params, before_after):
 	except Exception as e:
 		print('ec2 exception', e)
 		exceptions.append('_'.join(['ec2', ','.join(instance_ids)]))
-	try:
-		deleted_sg = ec2.delete_security_group(GroupName='ec2_sg')
-	except Exception as e:
-		print('sg exception', e)
-		exceptions.append('_'.join(['sg', 'ec2_sg']))
 	try:
 		removed_role = iam.remove_role_from_instance_profile(InstanceProfileName='ec2_profile', RoleName='ec2_role')
 	except Exception as e:
@@ -292,6 +285,16 @@ def destroy_resources(params, before_after):
 	except Exception as e:
 		print('role exception', e)
 		exceptions.append('_'.join(['iam role', 'ec2_profile', 'ec2_role']))
+	try:
+		deleted_key_pair = ec2.delete_key_pair(KeyName=key_name)	
+	except Exception as e:
+		print('key pair exception', e)
+		exceptions.append('_'.join(['key pair', key_name]))
+	try:
+		deleted_sg = ec2.delete_security_group(GroupName='ec2_sg')
+	except Exception as e:
+		print('sg exception', e)
+		exceptions.append('_'.join(['sg', 'ec2_sg']))
 	if len(exceptions) == 0:
 		return True
 	return exceptions
@@ -362,7 +365,8 @@ if params['access_key'] != '' and params['secret_key'] != '':
 					print('resources removal exceptions ', timing, ' run', destroyed)
 			elif params['task'] == 'remove_config':
 				''' remove previously generated terraform config/plan, generated keys/credentials '''
-				params = remove_generated_config(params)
+				#params = remove_generated_config(params)
+				pass
 			elif params['task'] == 'import':
 				data = json_to_csv(params['data_path'])
 				if data:
@@ -379,6 +383,8 @@ if params['access_key'] != '' and params['secret_key'] != '':
 			elif params['task'] == 'test':
 				pass
 			elif params['task'] in ['elk', 'model']:
+				''' remove previously generated terraform config/plan, generated keys/credentials '''
+				params = remove_generated_config(params)
 				params['task_script_path'] = ''.join([os.getcwd(), '/', params['task'], '.py']) if params['task'] not in ['elk', 'model'] else ''.join(['install_', params['task'], '.sh'])
 				params['tagname'] = ''.join(['task_', params['task']])
 				params['tf_config_path'] = ''.join([os.getcwd(), '/', params['cloud'], '_', params['task'], '_config.tf'])

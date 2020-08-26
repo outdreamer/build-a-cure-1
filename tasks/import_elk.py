@@ -29,7 +29,7 @@ def import_to_elk(params):
 	es = connect_to_es(params)
 	if es:
 		import_count = 0
-		if params['data'] is None:
+		if 'data' not in params:
 			origin_path = ''.join([os.getcwd(), params['data_path']]) # path = '/data/event/'
 			for cur, _dirs, files in os.walk(origin_path):
 				for original_filename in files:
@@ -51,15 +51,17 @@ def import_to_elk(params):
 											import_count ++ 1
 										except Exception as e:
 											print('elastic import', e)
+			return import_count
 		else:
-			for i, line in enumerate(params['data']):
-				try:
-					print('indexing', params['index_name'], i, line)
-					es.index(index=params['index_name'], id=i, body=line)
-					import_count ++ 1
-				except Exception as e:
-					print('elastic import', e)
-		return import_count / len(params['data'])
+			if len(params['data']) > 0:
+				for i, line in enumerate(params['data']):
+					try:
+						print('indexing', params['index_name'], i, line)
+						es.index(index=params['index_name'], id=i, body=line)
+						import_count ++ 1
+					except Exception as e:
+						print('elastic import', e)
+				return import_count
 	return False
 
 def get_entry(es, index_name, item_id):
