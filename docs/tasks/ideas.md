@@ -1,5 +1,26 @@
 to do: organize into docs
 
+  - function to identify next gen object layers would apply attribute changes & stack operations
+    - attributes
+      - attachment
+        - over
+          - addiction
+      - belief
+        - ratio
+          - uncertainty
+            - religion
+      - connection
+        - moment
+          - difference
+            - direction
+              - inspiration
+    - functions
+      - deciding
+    - objects
+      - ethical system
+      - understanding
+      - definitions
+
   - identify other things the data set might be able to predict other than y's
 
     - subsets or the data set might predict other dependent vars beyond or adjacent to y
