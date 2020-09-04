@@ -21,7 +21,7 @@
 
 - convert definitions to system interface
 
-	- find routes that 'fulfills original intent with higher or similar resources after units of work, compared to units of work'
+	- find routes that 'fulfill original intent with higher or similar resources after units of work, compared to units of work'
 
 	- convert sub-objects to system interface
 		- resources in the system
@@ -46,8 +46,24 @@
 
 		- are often found with this object type (efficiency) or related object types (inefficiency)
 		- generate these or related objects
-		- fulfill their definitions (identify the object, determine whether an object fulfills that definitions' metric)
+		- fulfill their definitions (identify the object, determine whether an object fulfills that definitions' metric, invalidate an object identity according to definition metrics)
 		- describe their interactions or related interactions
+
+		- how to identify the components likeliest to be relevant to identify efficiency in a system (such as the 'unnecessary' attribute, the 'alignment' attribute, the 'coordination' function, etc)
+		
+			- apply system analysis to identify the important generative causes, changers/catalysts, core components, and other important vertices
+
+				- core structures of efficiency
+					- a core structure of 'cost-reduction' is removing unnecessary costs
+				
+				- efficiency interaction & change types
+					- scope is an important structure bc inefficiencies tend to compound
+				
+				- proxies/alternates of efficiency
+					- optimization is a related function that doesnt always produce the target efficiency but may fulfill another metric, so can be used as a proxy for efficiency & then irrelevant optimizations can be filtered out
+				
+				- changers of efficiency
+					- resource distribution/sharing is related to efficiency bc if resources are distributed differently, different routes are optimal or efficient
 
 		- attribute: required/unnecessary
 
