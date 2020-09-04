@@ -28,9 +28,19 @@
 
 - identify objects or combinations matching converted structural definition routes
 
-	- does system object combination 'resource A + function B for intent C' match the efficiency definition 'high benefit/cost ratio' in its structural version 'high resource output compared to work input'?
-		- does it have an optimization opportunity (does it match an inefficiency structural definition)?
-			- if so, how could that inefficiency be converted to an inefficiency?
-				- apply all mechanisms to reduce work units that could result in higher resource outputs
+	- identify relevant objects in the system
+		- units of work that result in higher or similar resources after the units of work
+		- intents that have a high association with high resource/work ratio
+		- resources that enable a high ratio of work units (resources that are an input to many functions)
 
+	- identify relevant combinations in the system
+		- does system object combination 'resource A + function B for intent C' match the efficiency definition 'high benefit/cost ratio' in its structural version 'high resource output compared to work input'?
+			- does it have an optimization opportunity (does it match an inefficiency structural definition)?
+				- if so, how could that inefficiency be converted to an inefficiency?
+					- apply all mechanisms to reduce work units that could result in higher resource outputs, such as:
+						- 'removing middlemen (unnecessary nodes/functions for an intent)'
+						- 'removing unnecessary inputs/outputs that create costs'
+						- 'calling conditional functions as needed (when the condition occurs) rather than every time'
+						- 'removing interactions that dont change outputs'
+						- 'removing ambiguities that dont add necessary variation'
 '''
