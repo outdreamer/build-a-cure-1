@@ -1,5 +1,8 @@
 ''' poc system object identification:
 
+- ethics is the concept of balance applied to a system with agents 
+	- is there a requirement that every good system has an implementation of each concept in the abstract network in a way that obeys their interaction rules?
+
 - import system as network
 
 	- system of rules like:
