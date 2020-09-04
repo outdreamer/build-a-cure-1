@@ -31,14 +31,20 @@
 	- resource A + function B for intent C
 	- function A + object B + function C for intent 'get function C output D'
 
-- identify objects or combinations matching converted structural definition routes
+- identify system objects (standard or specific) or object combinations matching the converted structural definition routes
 
-	- identify relevant object filters in the system
+	- identify relevant object filters in the system, according to the converted structural definition
+
 		- units of work that result in higher or similar resources after the units of work
 		- intents that have a high association with high resource/work ratio
 		- resources that enable a high ratio of work units (resources that are an input to many functions)
 
-	- identify system structures often found with this object type (efficiency) or related object types (inefficiency)
+	- identify relevant system structures that:
+
+		- are often found with this object type (efficiency) or related object types (inefficiency)
+		- generate these or related objects
+		- fulfill their definitions (identify the object, determine whether an object fulfills that definitions' metric)
+		- describe their interactions or related interactions
 
 		- attribute: required/unnecessary
 
@@ -58,15 +64,36 @@
 			- optimization opportunity (a trajectory between nodes that increases a resource/cost ratio)
 				- alternate functions with an intent in common with varying speed in input cases that dont occur in this system
 
+			- not all optimization opportunities will be useful in a system, given supported intents/metrics
+
 		- object: scope
 
-			- efficiencies can be local to agents or interactions rather than system-wide
-				
+			- efficiencies can be local to agents or interactions rather than system-wide 
+				- is it increasing one resource/cost ratio, at the expense of the system resource/cost ratios? if so, its an inefficiency even if it seems like an optimization
+
+		- function: distribution
+
+			- cost can be allocated in unfair/unbalanced ways
+				- ethical rules can be injected as a filter to rule out optimization opportunities that distribute cost/resources unfairly (without considering cause/value/uniqueness of work)
+
+		- attribute: alignment
+
+			- alignment between intents is an efficiency-generator, since alignment creates a coordination/sharing opportunity of both work & resources (such as network effects)
+
+		- function: info magnification
+
+			- function attribute: many-to-one
+			- object type: hub nodes
+					
 	- iterate through objects & combinations
+
 		- does system object combination 'resource A + function B for intent C' match the efficiency definition 'high benefit/cost ratio' in its structural version 'high resource output compared to work input'?
+			
 			- does it have an optimization opportunity (does it match an inefficiency structural definition)?
+				
 				- if so, how could that inefficiency be converted to an inefficiency?
-					- apply all mechanisms to reduce work units that could result in higher resource outputs, such as:
+					
+					- apply all insight mechanisms to reduce work units that could result in higher resource outputs, such as:
 						- 'removing middlemen (unnecessary nodes/functions for an intent)'
 						- 'removing unnecessary inputs/outputs that create costs'
 						- 'calling conditional functions as needed (when the condition occurs) rather than every time'
