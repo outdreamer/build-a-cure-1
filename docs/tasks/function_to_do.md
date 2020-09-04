@@ -24,6 +24,13 @@
 
   - organize derivation methods, implementation guide & specific analysis rules in core_analysis
 
+  - function to find structure for an object/function (similar variance, difference from related objects, intents/priorities, causes, potential ranges, etc)
+
+  - function to select interfaces by usefulness for problem-solving intents
+    - cause is a good interface to host constructive discussions about decisions, that avoids information used to allocate fault
+    - intent is a good interface to frame lies
+    - pattern is a good interface to frame change types, after already standardizing to the change interface
+
   - function list (tech debt):
     - core operations (find, apply, identify, derive, build) with core objects (patterns, intents, definitions)
     - once those are defined, you can run queries to find matching objects
@@ -33,6 +40,30 @@
     - then youd need problem space visualization & solution metadata calculation functions to finish it
     - function to determine minimum information & other solvability metrics
       - example: if a process happened in the past and didnt leave measurable info like fossils or evolution, that problem isnt solvable, but if the phenomenon happens again and can be predicted or triggered, the information may be capturable
+
+  - function to identify next gen object layers would apply attribute changes & stack operations to get the structural definition routes
+    - attributes
+      - attachment
+        - over
+          - addiction
+      - belief
+        - ratio
+          - uncertainty
+            - religion
+      - connection
+        - moment
+          - difference
+            - direction
+              - inspiration
+    - functions
+      - deciding
+      - persecuting
+    - objects
+      - ethical system
+      - understanding
+      - definitions
+      - fallacies
+      - arguments
 
   - include example workflows with example problems
     - include example of how to generate other workflows (different starting/ending points & trajectories)
