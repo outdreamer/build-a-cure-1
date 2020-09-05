@@ -26,10 +26,16 @@
 
   - function to find structure for an object/function (similar variance, difference from related objects, intents/priorities, causes, potential ranges, etc)
 
+  - document vertex definition (as an intersection/combination of determining/description/generative/derivation variables)
+
   - function to select interfaces by usefulness for problem-solving intents
     - cause is a good interface to host constructive discussions about decisions, that avoids information used to allocate fault
     - intent is a good interface to frame lies
     - pattern is a good interface to frame change types, after already standardizing to the change interface
+
+  - function to find the important differentiating questions
+    - example: ethics is the concept of balance applied to a system with agents 
+      - question: is there a requirement that every good system has an implementation of each concept in the abstract network in a way that obeys their interaction rules?
 
   - function list (tech debt):
     - core operations (find, apply, identify, derive, build) with core objects (patterns, intents, definitions)
