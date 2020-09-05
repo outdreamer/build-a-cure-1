@@ -1,4 +1,4 @@
-- insight extraction
+- insight extraction from raw text to assemble explanations & summaries
 	
 	- definitions:
 

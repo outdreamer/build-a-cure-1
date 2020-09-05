@@ -50,7 +50,7 @@
 		- describe their interactions or related interactions
 
 		- how to identify the components likeliest to be relevant to identify efficiency in a system (such as the 'unnecessary' attribute, the 'alignment' attribute, the 'coordination' function, etc)
-		
+
 			- apply system analysis to identify the important generative causes, changers/catalysts, core components, and other important vertices
 
 				- core structures of efficiency
@@ -110,7 +110,7 @@
 			
 			- does it have an optimization opportunity (does it match an inefficiency structural definition)?
 				
-				- if so, how could that inefficiency be converted to an inefficiency?
+				- if so, how could that inefficiency be converted to an efficiency?
 					
 					- apply all insight mechanisms to reduce work units that could result in higher resource outputs, such as:
 						- 'removing middlemen (unnecessary nodes/functions for an intent)'

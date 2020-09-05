@@ -694,9 +694,15 @@
 
 	10. that (a problem/a language map/a math-language mapping/an attribute graph/a set of filters) already exists!
 
-		- yes, problems, concepts, attributes, language, information, & a connection between math & language already existed - which is why its weird that no one came up with a tool to automate information derivation, specifically to solve information problems - I did not invent the ideas of concepts, attributes, language, or information
+		- yes, problems, concepts, attributes, language, information, & a connection between math & language already existed - which is why its weird that no one came up with a tool to automate information derivation, specifically to solve information problems - I did not invent the ideas of concepts, attributes, language, or information - I also did not invent problems.
 
 		- This tool is not problems, concepts, attributes, language, & information - it's a way to automate deriving a solution for a problem (automating the trajectory from problem definition, to solution objects like meaning, cause, & insights), which to my knowledge doesnt exist, as statistics/attribute graphs/machine learning cant currently solve problems without a severe amount of specific information, computation, configuration in the form of manual (flawed) selection of algorithms, manual & isolated analysis of attributes like intent & concepts instead of automated & integrated analysis, limitations built in the assumptions/perspective of the configurer, testing in the form of parameter tuning, strategy injection like trial & error, & other forms of human intervention - and can only solve isolated specific problems of specific types with information formatted in a specific way, without cross-system understanding or system context built-in.
+
+		10.a. isnt machine learning the automation of problem-solving?
+
+			- When there is a machine-learning algorithm that can predict the unpredictable side effects/errors & meaning of its own application in a given system context (such as a particular civilization, in a given scope/scale, with particular parameters & information access), and correct its own parameters/information/other inputs to avoid any side effects/errors it predicted, it will have the potential to be AGI (an agent that can solve any problem with info access) - right now it's still a prediction tool that is heavily dependent on data & human intervention (human configuration, activation, selection, application, testing, monitoring, updating, correcting).
+
+			- The primary dependencies of my tool are a set of definitions (like what an object/attribute/function/interface/concept is), a set of functions to implement interface standards (like structure/cause) & interface operations (like traversal/combination), and info access. The expected input from a human using my tool is a problem statement & a data set or internet connection.
 
 
 	11. is this too abstract to be useful? how would you implement this?
@@ -965,7 +971,7 @@
 			8. store any info objects found that arent already in indexes (insights, patterns, problem-solution matches, interfaces, functions)
 
 
-	19. how come youre the only person who came up with this in all of human history?
+	19. how come youre the only person who identified that automating problem-solving was even possible, let alone the only person who came up with a method to do it in all of human history?
 
 		- I decided to try to automate problem-solving once I saw patterns in the rules people used to solve problems, and once I found an example proof of concept, I pursued it. Alternatively, if you don't have human thoughts like that, or if you don't have human sources of joy/motivation, such as caring about protecting good people enough to try, or intellectual curiousity, or believing in yourself, you can try some caffeine.
 
