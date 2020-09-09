@@ -1,26 +1,154 @@
 TITLE OF INVENTION 
-Solution Automation 
+
+INTERFACE ANALYSIS
 
 FIELD 
-[0001] Embodiments of the disclosure relate to automation of problem-solving for clearly defined problem statements using information formats, processing & queries. 
+[0001] Embodiments of the disclosure relate to interface-specific analysis for extracting formatted information (like solutions, functions, meaning, & insights) from input information.
 
 BACKGROUND OF THE INVENTION 
-[0002] Problem-solving is usually done manually, without context about prior solutions, common solutions, or a way to graph the standardized problem & solution, or a systematic method to translate them into other standard formats that are more amenable to being matched using standard structural operations like map, filter, combine, etc. Any prior art relating to mathematical methods of solving problems or a protocol to generate solutions would be outputs of this invention, or stored in the database component of this invention, as a prior identified solutions for a problem type, with associated intents, insights & other metadata relating to the solution. 
+[0002] Analysis logic is usually done manually, without structure applied that would enable automation of the analysis. Any prior art relating to methods of applying analysis logic automatically would be possible outputs of this invention, as this invention includes logic executed on interfaces (interfaces as defined in application 16887411 as a information-filtering standard/format where cross-system change occurs), which can include logic to apply an interface standard to information, find & build logic for an intent, or applying structures to information operations (which enables analysis automation).
 
 ABSTRACT
-[0003] This invention translates a problem definition into a structure that allows for resolution of the structure into the corresponding solution format with a set of queries (formatted as a query of the interface network - a set of standardizing filters applicable to format information in way that it can be analyzed with interface-specific logic).
+[0003] This invention translates input information (such as a data set, API, or document) into a format that is explanatory/descriptive/generative/predictive (insights, patterns, functions, meaning, cause, structure, etc).
 
 BRIEF SUMMARY OF THE INVENTION 
-[0004] One or more embodiments of the present disclosure may include a method that involves obtaining a problem statement from a user, optionally including solution metrics (such as priorities, functionality, or attributes); identifying problem & problem space metadata (such as problem type & minimum information required to solve the problem); identifying optimal origin interface to start traversing from, interface traversal sequence, & applying interface operations like combine/inject; traversing interface network (optionally including such interfaces as information, insight, structure, math, concept, type, variance, potential, change, intent, perspective, system, attribute, pattern, function, cause, problem/question, solution/answer) of interfaces acting as filters (where an interface is comprised of its definition routes, conversion function, core functions, objects, & attributes, and related objects like patterns & metadata specific to the interface) starting at the origin interface; finding components on the interface that match the problem structures (optionally including related objects like insights, patterns, & functions); compressing the problem statement into its most accurate structure containing the found interface objects; iterating the origin interface selection & interface traversal process for the solution space; identifying & reducing the solution space from this standardized problem format; traversing subsequent interfaces to obtain additional information; reducing the solution space by the problem & problem space definition; returning the identified optimal solution as a set of steps to compress the problem as well as solution metrics, attributes, & actions, and/or insights/patterns/system/standardized description related to the problem if no solutions are found. The attached specification appendix named methods.pdf optionally includes a list of alternative optional implementation methods which may be integrated into the invention or used to develop other methods. The object and advantages of the embodiments will be realized and achieved at least by the elements, features, and combinations particularly pointed out in the claims. It is to be understood that both the foregoing general description and the following detailed description are merely examples and explanatory and are not restrictive. 
+[0004] One or more embodiments of the present disclosure may include a method that involves the logic inherent to steps 402-410 of process 400 of the application 16887411:
+
+General interface analysis process:
+
+1. obtaining input information from a program or user (like a data set of possibly related variables, or objects in a relational database)
+2. retrieving an interface definition
+3. deriving the interface definition if not found
+4. applying the conversion function from the interface definition to standardize the information to the interface format, which involves:
+	4.A. applying the interface definition to standardize the input information (input information meaning the original information or another version of it produced by prior interface analysis)
+		- apply interface-specific conversion functions to input information or current/other interface components & check for matching components
+		- apply interface-specific change functions to input information or current/other interface components & check for matching components
+
+	4.B. retrieve related objects of matching interface components & check if the related objects of the matching interface component also apply to the input information
+		- if related objects of the matching interface component also match the input information, that indicates the probability of an accurate match is higher, so proceed to next step 'convert matching interface components to input information'
+		- if not, either it may not be a match or a new structure (like a new variable or a new type of component) may be justified
+	
+	4.C convert matching interface components to input information
+		- if the probability of an accurate match is high enough, store that matching interface component, formatted to fit the input information
+			- for example, if the 'causal vector' structure fits the relationship between input variables, store those variables with a sequence, so that any additional interface analysis can take that as an input structure functioning as a possible version of the input information
+	
+	- this is where the problem-solving automation in application 16887411 would determine if the information retrieved by this interface analysis is sufficient to solve the input problem, at which point it's safe to traverse the 'meaning' interface (uniting other interfaces in the interface network) to integrate the information into a structure relevant to the user, or if additional interface traversals are needed
+5. repeat step 4, iterating through remaining or alternative interface analysis as needed to achieve different input information formats (or to fill out an interface with newly identified components), optionally using the newly formatted input information as input to step 4.
+
+Detailed interface analysis process:
+
+1. obtaining input information from a program or user (like a data set of possibly related variables, or objects in a relational database)
+2. retrieving an interface definition
+3. deriving the interface definition if not found
+4. applying the conversion function from the interface definition to standardize the information to the interface format, which involves:
+	
+	4.A. applying logical rules specific to that interface to format or otherwise alter the information to identify its structural relevance to that interface
+		
+		- for example:
+			
+			- once a data set is converted to the information interface format, like:
+				- an information-interface structure indicating information position/distribution/identity across agents
+				- a structural-interface structure like a language network
+				- a system-interface structure like the interaction of two information systems (with different internal functions/attributes/objects and/or information, like two type clusters in a data set) in a host system
+				- a math-interface graph of data points on various dimension sets
+
+			 - the analysis program may follow that conversion with an additional conversion to a format amenable for comparison with important components on the information interface, like:
+			  	
+			  	- core info objects (like a core differentiating/comparison/storage rule, core conversion/filtering/organization function for new information, or a constant fact as a core information unit)
+			  	- primary info objects (like perspectives/insights/questions/etc)
+
+				- for example, the structure of a question in its default format might be a structure indicating missing information (the important object of the 'question' definition) for an intent
+
+			- in a graph format, this core 'missing information' structure of the question info object could take the form of structures in the graph like:
+
+					- mismatches (like an incomplete rule set missing a function/variable attribute/object)
+					- assumptions (questions being the removal of an assumption, the missing information being how the graph would change if the assumption was removed)
+					- randomness (missing relevance/dependency to the system, like a data set having outliers that are missing the information of relationship to the data set)
+
+				- which could indicate several embedded questions given these question type sub-structures:
+
+					- which are the independent/dependent variables?
+					- what is the independent/dependent variable relationship?
+					- what do the clusters mean? (group membership of a data record)
+					- what are the patterns of the clusters?
+					- what is the probability of various given/generated data points being in a cluster?
+					- what causes the outliers? (randomness, group resolution/dissolution/merging/divergence/adaptation/misidentification)
+					- what function describes each clusters' variation? (function relating variables in data set)
+					- what functions relate the clusters? (how could you transform one cluster to the other)
+					- what direction or other structures of causation exist between the clusters? (does one group tend to become the other, and why/how/in what contexts)
+			
+			- as another example, once a data set is converted to the system interface format (like a network of objects & functions with attribute shapes like layers), the program would follow that by converting it to a format amenable for comparison with primary interface objects (like incentives), functions (like optimize), or attributes (like complexity).
+				
+				- a format that enables comparison with interface objects like incentives would attach labels & structures where known interface structures (or calculated probably interactive/relevant alternative/adjacent interface structures using core combination analysis) are found
+					
+					- for example, if incentives have a structure like 'a shape where resources would stabilize at rest', a related structure would be generatable with core combination analysis by applying core functions like 'condition where other system variables are simultaneously changing' instead of the 'condition where other system variables are unchanging (at rest)' to generate an adjacent structures like 'a shape where resources are constant regardless of other variables', which may be a 'constant' or 'assumption' object
+					
+					- if the data set has a structure matching the 'constant' or 'assumption' object definition the program just generated by applying core distortions to the system 'incentive' object definition, it may be comparable with the 'incentive' definition object, because those objects are adjacent and operate on similar interaction layers, and may even interact (the program would query for insights or functions to check).
+
+	4.B. identify matching components between information & interface components (components like systems, objects, functions, attributes, & types)
+
+		A. then the input information objects (converted to the interface) would be compared to interface components, to find matching structures
+
+		B. after this initial match check, the function interface is applied, using interface-specific functions, which are either:
+			- functions of that interface (function types like core/common/interactive/relevant/change/causative/generative/other prioritized distortion function types)
+			- functions of other interfaces
+				- patterns & functions across interfaces (apply the pattern interface)
+				- insights & insight paths (apply the insight interface, a sub-interface of the information interface)
+				- functions to achieve core/common/current interface intents, like core/common formats like 'minimized', attributes like a 'change-handling' priority, or other outputs like core/common/generative functions (apply the intent interface)
+				- functions of cause/change/potential (apply change/cause/potential interfaces, to ensure youre checking versions of the structure that are probably relevant by commonness or other core priorities like causative change types, causal adjacence, or probability)
+				- functions of concepts (apply concept interface, to identify concept structures)
+				- functions of systems (apply the system interface & its components, like the 'optimize' function)
+		
+		C.A. once these functions are applied, iterate through distortion sets producing different states of the input information:
+			- verify that the distortions are still relevant to the interface
+			- repeat the matching process, looking for matching structures between the newly distorted input information structures & the interface components
+				- for example, once youve applied an insight like 'comparison is quicker if you only compare different attributes', which involves reducing the attributes of the input information to the different attributes, do you find any new matches with interface objects, like a match with a function that could produce those differences, from either point in a compared pair as the input & the other point in the compared pair as the output?
+					- if so, this is a function that you might not have found as quickly if you were matching the object having those attributes on a different interaction layer, like how comparing two shapes would benefit from different functions than comparing two generative functions of the two shapes
+
+		C.B. optionally, distortion functions can be applied with intent to identify new components on the interface (apply an intent distortion function on the cause interface)
+
+		C.C. optionally, distortion functions can be applied to other interface objects, to identify new components on other interfaces (such as applying a causal distortion function to an insight path to check if a new insight path applies, while traversing the cause interface), using the new input information and/or the cause interface objects for comparison
+
+	4.C. convert matching interface components to input information
+
+		- if the program identifies a matching object in step 4 like a pattern (like two variable types that are usually related in a certain way indicated by the pattern) found in the input information, apply that pattern to the input information
+
+		- this means:
+			- retrieving functions/attributes/objects of that matching pattern (like which variable types are applicable), as well as relationships of that pattern to related objects (like related patterns/insights/functions, such as a validation function to check variable type)
+			- iterating through those related components and/or component sets of the matching pattern from the interface
+			- applying each related component or component set to the original input information (does this variable pair have the pattern implied by their variable types, which are applicable for that pattern)
+			- testing the new state of the input information for validity
+				- does that pattern make sense (does it match functions/outputs or other structures) or have meaning (does it interact with relevant structures), given the system context of other input information or other information generated by prior interface-specific analysis)
+
+		- if the probability of an accurate match is high enough, store that matching interface component, formatted to fit the input information, as a possible version of the input information, on which other interface analysis can be applied sequentially
+
+5. repeat step 4 if the selected interface analysis intent (support intents of interface analysis including 'traversing the interface' or 'formatting input information in as many ways as possible' or 'filling out an interface definition') is not complete.
+
+The object and advantages of the embodiments will be realized and achieved at least by the elements, features, and combinations particularly pointed out in the claims. 
+
+It is to be understood that both the foregoing general description and the following detailed description are merely examples and explanatory and are not restrictive. 
+
+''' to do:
+- remove any drawings from original patent 
+- add new diagram of meaning interface (integrating information across interfaces into relevant structures for an intent)
+- add example of generating solution automation workflows, as an implementation of core component analysis on the function-intent interface
+- add example of why different interfaces are more useful
+- add interface queries for problem statements
+- add sample cause interface definition 
+- integrate analysis from interface_analysis, function_to_do, ideas.md
+- remove repeated items from analysis
+- give fig 22 as an example of interface analysis
+
+'''
 
 BRIEF DESCRIPTION OF THE DRAWINGS 
 
 [0005] Example embodiments will be described and explained with additional specificity and detail through the use of the accompanying drawings in which: 
 [0006] FIG. 1. 'User Interface Module' illustrates a diagram of a user interface that can accept user input about a problem & program configuration.
-[0007] FIG. 2. 'Solution Automation Module' illustrates a diagram of a general workflow for how the solution automation program may find a solution for a problem statement.
+[0007] FIG. 2. 'Interface-specific analysis Module' illustrates a diagram of a general workflow for how the interface-specific analysis program may find a solution for a problem statement.
 [0008] FIG. 3. 'Problem Space Metadata' illustrates an example of metadata describing a problem, problem space, or related problem network.
 [0009] FIG. 4. 'Solution Metadata' illustrates an example of metadata describing a solution, solution set, or solution space.
-[0010] FIG. 5. 'Additional Solution Metadata' illustrates an example of additional solution metadata & formats, as well as an example of applying a solution to a problem space or another problem format.
+[0010] FIG. 5. 'Structure Application Function (Apply)' illustrates applying a structure to another structure.
 [0011] FIG. 6. 'Problem space visualization' illustrates an example visualization of a problem space.
 [0012] FIG. 7. 'Network of related problems' illustrates an example of a network of related problems.
 [0013] FIG. 8. 'Problem Types' illustrates a set of common problem types formatted as information or structural problems.
@@ -29,8 +157,6 @@ BRIEF DESCRIPTION OF THE DRAWINGS
 [0016] FIG. 11. 'Finding alternate solution formats that fulfill different metrics' illustrates an example of selecting a solution format that fulfills a solution metric.
 [0017] FIG. 12. 'Network of problem sub-problems, breaking a problem into components problems' illustrates an example of breaking a problem into a set of sub-problems, which once solved, can be aggregated with a solution-aggregation method as shown.
 [0018] FIG. 13. 'Causal structure-matching' illustrates a method of matching causal structures to a variable set.
-[0019] FIG. 14. 'Problem-solving automation workflow' illustrates a diagram of an example solution automation workflow depicting how a solution automation module may find a solution for a problem statement.
-[0020] FIG. 15. 'Structural definition routes for "conflict" concept' illustrates an example of a structural definition route for a concept.
 [0021] FIG. 16. 'Concept definition network' illustrates a network of related concepts.
 [0022] FIG. 17. 'Alternate definition routes' illustrates a set of definition routes for a concept.
 [0023] FIG. 18. 'Match structure for a definition of a concept' illustrates matching a structure to a concept.
@@ -39,8 +165,7 @@ BRIEF DESCRIPTION OF THE DRAWINGS
 [0026] FIG. 21. 'Interface conversion & matching' illustrates an example of selecting an interface to traverse.
 [0027] FIG. 22. 'Interface & traversal diagram' illustrates an example of a diagram indicating an example interface, & a diagram indicating which interfaces to traverse in what sequence (forming an interface query).
 [0028] FIG. 23. illustrates an example computing system. 
-[0029] FIG. 24. illustrates a diagram of an example wrapper function calling a machine learning system 120.
-[0030] FIG. 25. illustrates a diagram of an example wrapper function calling an API calling/finding system 130.
+
 
 CLAIMS 
 
@@ -94,7 +219,7 @@ CLAIMS
 		- insight analysis: insight path application (using insight paths from other fields to optimize insight generation) - some of which is depicted in FIG 20 Insight path application.
 		- problem analysis: applying structure to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions) 
 			- problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
-				- some of which is depicted in diagrams FIG. 3 Problem Space Metadata, FIG. 4 Solution Metadata, FIG. 5 Additional Solution Metadata, FIG. 6 Problem space visualization, FIG. 7 Network of related problems, FIG. 8 Problem Types, FIG. 9 Problem formats, FIG. 10 Problem-solution structure-matching, FIG. 11 Finding alternate solution formats that fulfill different metrics, FIG. 12 Network of problem sub-problems, breaking a problem into component problems, & FIG. 14 Problem-solving automation workflow.
+				- some of which is depicted in diagrams FIG. 3 Problem Space Metadata, FIG. 4 Solution Metadata, FIG. 5 Additional Solution Metadata, FIG. 6 Problem space visualization, FIG. 7 Network of related problems, FIG. 8 Problem Types, FIG. 9 Problem formats, FIG. 10 Problem-solution structure-matching, FIG. 11 Finding alternate solution formats that fulfill different metrics, FIG. 12 Network of problem sub-problems, breaking a problem into component problems, & FIG. 14 Interface-specific analysis workflow.
 		- question analysis: where a question is framed as a source position and a target position on a network, and the answer is the most robust path or the path that moves the nearest to the target position or the path that moves in the priority direction on the network
 	- change analysis: automatically identifying change metadata like change types necessary to explain a solution or solve a problem
 		- potential analysis: automatically finding structures of variance like gaps/cascades/reducers, possibility fields, and determining/limiting vertices
@@ -104,7 +229,7 @@ CLAIMS
 		- causal analysis: automatically matching the problem to causal structures to infer relevant variables & causation metadata (like directness of cause, degree of cause, inevitability, uniqueness of cause, causal tree/network/loop/layer shape) - some of which is depicted in FIG 13 Causal structure-matching
 		- pattern analysis: automatically finding patterns with relevant similarities to infer the relevance of pattern metadata, where patterns replace missing required data (such as using patterns between variables of specific types or system positions to infer probable variable relationships)
 	- concept analysis: automatically identifying concepts associated with a structure & vice versa, identifying positions of default abstract concepts in the network - some of which is depicted in FIG. 15 Structural definition routes for 'conflict' concept, FIG. 16 Concept definition network, FIG. 17 Alternate definition routes, and FIG. 18 Match structure for a definition of a concept.
-	- interface analysis: identifying a problem-solving automation workflow to derive/apply, mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query (some of which is depicted in FIG 21 Interface conversion & matching and FIG 22 Interface & traversal diagram).
+	- interface analysis: identifying a interface-specific analysis workflow to derive/apply, mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query (some of which is depicted in FIG 21 Interface conversion & matching and FIG 22 Interface & traversal diagram).
 
 7. [original] The method of claim 1, wherein the solution space is identified or reduced with filtering information found from interface traversals to the original/updated problem format, & the interface network traversal process in claims 3 - 5 is repeated for converting the problem space to a solution space or reducing the solution space as needed to fulfill solution metrics, & then finding/deriving/generating a specific solution or a general solution method that reduces the problem into a format that is more similar to its final solved format (identifying a specific optimal route or explanatory variable combination), where the solution method may be calculated on other interfaces & then converted to a vector or other object impacting the formatted problem in the problem space structure (the causes of a problem & the sequence of reducing these causes calculated on the causal interface, a set of causes & reduction step sequence that is then mapped to the problem format in the problem space, at which point the solution is ready to be checked with regard to impact on the original problem, the problem space and/or related problems)
 	- the solution space is the set of possible solutions, which in a 'route optimization' problem (formatted as a network of possible node positions with connecting functions, and/or a set of state networks) is the set of all possible routes that fulfill some solution metric, if not all of them
@@ -158,7 +283,7 @@ CLAIMS
 		- insight analysis: insight path application (using insight paths from other fields to optimize insight generation) - some of which is depicted in FIG 20 Insight path application.
 		- problem analysis: applying structure to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions) 
 			- problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
-				- some of which is depicted in diagrams FIG. 3 Problem Space Metadata, FIG. 4 Solution Metadata, FIG. 5 Additional Solution Metadata, FIG. 6 Problem space visualization, FIG. 7 Network of related problems, FIG. 8 Problem Types, FIG. 9 Problem formats, FIG. 10 Problem-solution structure-matching, FIG. 11 Finding alternate solution formats that fulfill different metrics, FIG. 12 Network of problem sub-problems, breaking a problem into component problems, & FIG. 14 Problem-solving automation workflow.
+				- some of which is depicted in diagrams FIG. 3 Problem Space Metadata, FIG. 4 Solution Metadata, FIG. 5 Additional Solution Metadata, FIG. 6 Problem space visualization, FIG. 7 Network of related problems, FIG. 8 Problem Types, FIG. 9 Problem formats, FIG. 10 Problem-solution structure-matching, FIG. 11 Finding alternate solution formats that fulfill different metrics, FIG. 12 Network of problem sub-problems, breaking a problem into component problems, & FIG. 14 Interface-specific analysis workflow.
 		- question analysis: where a question is framed as a source position and a target position on a network, and the answer is the most robust path or the path that moves the nearest to the target position or the path that moves in the priority direction on the network
 	- change analysis: automatically identifying change metadata like change types necessary to explain a solution or solve a problem
 		- potential analysis: automatically finding structures of variance like gaps/cascades/reducers, possibility fields, and determining/limiting vertices
@@ -168,7 +293,7 @@ CLAIMS
 		- causal analysis: automatically matching the problem to causal structures to infer relevant variables & causation metadata (like directness of cause, degree of cause, inevitability, uniqueness of cause, causal tree/network/loop/layer shape) - some of which is depicted in FIG 13 Causal structure-matching
 		- pattern analysis: automatically finding patterns with relevant similarities to infer the relevance of pattern metadata, where patterns replace missing required data (such as using patterns between variables of specific types or system positions to infer probable variable relationships)
 	- concept analysis: automatically identifying concepts associated with a structure & vice versa, identifying positions of default abstract concepts in the network - some of which is depicted in FIG. 15 Structural definition routes for 'conflict' concept, FIG. 16 Concept definition network, FIG. 17 Alternate definition routes, and FIG. 18 Match structure for a definition of a concept.
-	- interface analysis: identifying a problem-solving automation workflow to derive/apply, mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query (some of which is depicted in FIG 21 Interface conversion & matching and FIG 22 Interface & traversal diagram).
+	- interface analysis: identifying a interface-specific analysis workflow to derive/apply, mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query (some of which is depicted in FIG 21 Interface conversion & matching and FIG 22 Interface & traversal diagram).
 
 16. [original] The non-transitory computer-readable medium of claim 10, wherein the solution space is identified or reduced with filtering information found from interface traversals to the original/updated problem format, & the interface network traversal process in claims 3 - 5 is repeated for converting the problem space to a solution space or reducing the solution space as needed to fulfill solution metrics, & then finding/deriving/generating a specific solution or a general solution method that reduces the problem into a format that is more similar to its final solved format (identifying a specific optimal route or explanatory variable combination), where the solution method may be calculated on other interfaces & then converted to a vector or other object impacting the formatted problem in the problem space structure (the causes of a problem & the sequence of reducing these causes calculated on the causal interface, a set of causes & reduction step sequence that is then mapped to the problem format in the problem space, at which point the solution is ready to be checked with regard to impact on the original problem, the problem space and/or related problems) 
 
@@ -213,7 +338,7 @@ CLAIMS
 		- insight analysis: insight path application (using insight paths from other fields to optimize insight generation) - some of which is depicted in FIG 20 Insight path application.
 		- problem analysis: applying structure to convert problems to a format with more solution methods, such as problem vectorization (mapping the problem definition to a directed network with inputs on one side, interim inferred important problem concepts in between, and target priorities or attributes on the other, linked by available functions) 
 			- problem space analysis: visualizing problem metadata & related problem network, and changes to the problem space that invalidate the original or other problems once a particular solution is applied
-				- some of which is depicted in diagrams FIG. 3 Problem Space Metadata, FIG. 4 Solution Metadata, FIG. 5 Additional Solution Metadata, FIG. 6 Problem space visualization, FIG. 7 Network of related problems, FIG. 8 Problem Types, FIG. 9 Problem formats, FIG. 10 Problem-solution structure-matching, FIG. 11 Finding alternate solution formats that fulfill different metrics, FIG. 12 Network of problem sub-problems, breaking a problem into component problems, & FIG. 14 Problem-solving automation workflow.
+				- some of which is depicted in diagrams FIG. 3 Problem Space Metadata, FIG. 4 Solution Metadata, FIG. 5 Additional Solution Metadata, FIG. 6 Problem space visualization, FIG. 7 Network of related problems, FIG. 8 Problem Types, FIG. 9 Problem formats, FIG. 10 Problem-solution structure-matching, FIG. 11 Finding alternate solution formats that fulfill different metrics, FIG. 12 Network of problem sub-problems, breaking a problem into component problems, & FIG. 14 Interface-specific analysis workflow.
 		- question analysis: where a question is framed as a source position and a target position on a network, and the answer is the most robust path or the path that moves the nearest to the target position or the path that moves in the priority direction on the network
 	- change analysis: automatically identifying change metadata like change types necessary to explain a solution or solve a problem
 		- potential analysis: automatically finding structures of variance like gaps/cascades/reducers, possibility fields, and determining/limiting vertices
@@ -223,7 +348,7 @@ CLAIMS
 		- causal analysis: automatically matching the problem to causal structures to infer relevant variables & causation metadata (like directness of cause, degree of cause, inevitability, uniqueness of cause, causal tree/network/loop/layer shape) - some of which is depicted in FIG 13 Causal structure-matching
 		- pattern analysis: automatically finding patterns with relevant similarities to infer the relevance of pattern metadata, where patterns replace missing required data (such as using patterns between variables of specific types or system positions to infer probable variable relationships)
 	- concept analysis: automatically identifying concepts associated with a structure & vice versa, identifying positions of default abstract concepts in the network - some of which is depicted in FIG. 15 Structural definition routes for 'conflict' concept, FIG. 16 Concept definition network, FIG. 17 Alternate definition routes, and FIG. 18 Match structure for a definition of a concept.
-	- interface analysis: identifying a problem-solving automation workflow to derive/apply, mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query (some of which is depicted in FIG 21 Interface conversion & matching and FIG 22 Interface & traversal diagram).
+	- interface analysis: identifying a interface-specific analysis workflow to derive/apply, mapping a query across combination or embedded interfaces given problem requirements, or identifying a specific or new interface to define/query (some of which is depicted in FIG 21 Interface conversion & matching and FIG 22 Interface & traversal diagram).
 
 25. [original] The system of claim 19, wherein the solution space is identified or reduced with filtering information found from interface traversals to the original/updated problem format, & the interface network traversal process in claims 3 - 5 is repeated for converting the problem space to a solution space or reducing the solution space as needed to fulfill solution metrics, & then finding/deriving/generating a specific solution or a general solution method that reduces the problem into a format that is more similar to its final solved format (identifying a specific optimal route or explanatory variable combination), where the solution method may be calculated on other interfaces & then converted to a vector or other object impacting the formatted problem in the problem space structure (the causes of a problem & the sequence of reducing these causes calculated on the causal interface, a set of causes & reduction step sequence that is then mapped to the problem format in the problem space, at which point the solution is ready to be checked with regard to impact on the original problem, the problem space and/or related problems)
 
@@ -249,7 +374,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- solution space: set of possible solutions in a problem space, which may be reduced by applying interface traversals like solution space-reducing insight paths 
 	- network: standard network graph containing nodes (sometimes called vertices) & linking functions (sometimes called edges), with or without node attributes, function relationship determining function shape, and direction as an indicator of intent or another metric. 
 
-[0032] The present disclosure relates to the use of solution automation workflows, standardizing interfaces & custom logic automation for constructing a solution automation system, enabling the identification of solution spaces, solution sets achieving different solution metrics within the solution space, with an intent of identifying optimal solutions for a particular problem, problem type, or problem network in a particular problem space. This system enables the automation of finding solutions that optimize specific solution metrics defined in a problem statement in a discoverable system (where information can be derived, found, retrieved, generated, or gathered with testing, such as how relevant system objects can be described, core system functions can be derived, solutions can be tested, & success can be measured with some metric & threshold or target value). This system enables arriving at insights sooner, building products optimally sooner, inventing products sooner, and predicting patterns sooner, with less data, computational capacity, and human input. 
+[0032] The present disclosure relates to the use of interface-specific analysis workflows, standardizing interfaces & custom logic automation for constructing a interface-specific analysis system, enabling the identification of solution spaces, solution sets achieving different solution metrics within the solution space, with an intent of identifying optimal solutions for a particular problem, problem type, or problem network in a particular problem space. This system enables the automation of finding solutions that optimize specific solution metrics defined in a problem statement in a discoverable system (where information can be derived, found, retrieved, generated, or gathered with testing, such as how relevant system objects can be described, core system functions can be derived, solutions can be tested, & success can be measured with some metric & threshold or target value). This system enables arriving at insights sooner, building products optimally sooner, inventing products sooner, and predicting patterns sooner, with less data, computational capacity, and human input. 
 
 [0033] Method described in claims includes a general program workflow, from user problem input to requested solution output:
 
@@ -325,7 +450,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		X. System derivation
 			- this is a more comprehensive format that allows quick application & identification of system objects (alternates, efficiencies, incentives)
 			- for example, identifying known system objects for the 'find a prediction function' problem would mean identifying incentives in data collection (collect small sample, collect representative sample), efficiencies in calculating prediction functions (some sections should be treated as potential fields, where a network is embedded in place of a function section, to indicate decision logic or alternate functions accessible with additional information, if a predicted value is requested from that section of the function), false similarities (like the apparent similarity between two variables being correlation rather than a direct relationship), opposites (like neutralizing variables), and other core system objects
-	Other problem-solving automation workflows would start with different interface traversals & use different origin & target structures (such as:
+	Other interface-specific analysis workflows would start with different interface traversals & use different origin & target structures (such as:
 		- designing interface trajectories
 		- generating new info object layers to use as interfaces or systems (combine perspective & potential to generate a potential-perspective field, combine problems & markets to create a market for problems, combine platforms with platforms to create a platform to sell platforms, combine variables and networks to create variable networks, combine variables & risk to identify variable development sequences))
 		- finding structures (like insights such as 'break a problem into sub-problems & aggregate solutions' or 'apply filters until the problem space is a solution space, then repeat until the solution space is a solution') that when applied to a problem, create a clear format/structure sequence linking the problem with a solution
@@ -333,25 +458,25 @@ DETAILED DESCRIPTION OF THE INVENTION 
 
 [0034] One or more example embodiments are explained with reference to the accompanying drawings.
 
-[0035] FIG 2 is a diagram illustrating an example system 100 that may be used to automate finding a solution for a problem statement, in accordance with one or more embodiments of the present disclosure. The system 100 may include a user interaction module 110 and a machine learning system 120 and an API finding & calling system 130 that may provide input to a solution automation module 140. The solution automation module 140 may facilitate determination of the solution 150 associated with the problem statement, and output the solution 150 to the user interaction module 110. In some embodiments, such solution automation may lead to a solution for the problem, such as the cause of a problem, the intents fulfilled by a problem and/or the solution, a set of steps to reduce the problem, or a set of steps to neutralize or change the problem space containing the problem. In these and other embodiments, if a user is dissatisfied with the provided solution 150 (e.g., the solution is incomplete or no solution was found), the user may interact with the system 100 (e.g., to add more information or remove assumptions) and the solution automation may be run again. 
+[0035] FIG 2 is a diagram illustrating an example system 100 that may be used to automate finding a solution for a problem statement, in accordance with one or more embodiments of the present disclosure. The system 100 may include a user interaction module 110 and a machine learning system 120 and an API finding & calling system 130 that may provide input to a interface-specific analysis module 140. The interface-specific analysis module 140 may facilitate determination of the solution 150 associated with the problem statement, and output the solution 150 to the user interaction module 110. In some embodiments, such interface-specific analysis may lead to a solution for the problem, such as the cause of a problem, the intents fulfilled by a problem and/or the solution, a set of steps to reduce the problem, or a set of steps to neutralize or change the problem space containing the problem. In these and other embodiments, if a user is dissatisfied with the provided solution 150 (e.g., the solution is incomplete or no solution was found), the user may interact with the system 100 (e.g., to add more information or remove assumptions) and the interface-specific analysis may be run again. 
 
-[0036] The machine learning system 120 may include any machine learning system configured to identify relationships and/or correlations from a data set. For example, the machine learning system 120 may be configured to identify a set of most likely factors contributing to a problem or sub-problem or solution, whether directly or indirectly, by analyzing data sets. As an example, the machine learning system 120 may analyze all solution examples and predict which solution would be the best implementation for a problem definition, or analyze all sub- problem & problem associations stored in the database & predict which sub-problems would be the best way to break down a problem, or analyze all previous queries on the solution automation module 140 and predict which factors will be used the most as inputs to show on the user interface module 110 (in the absence of functions on interfaces described above, or if machine learning is specified as a preferred solution method on the user interface module 110 before running the solution automation module 140). In these and other embodiments, the machine learning system 120 may provide the correlations and/or the factors contributing to an input to the user interaction module 110 and/or the solution automation module 140. In some embodiments, the machine learning system 120 may operate using any machine learning technique or deep learning technique, such as decision tree learning, association rule learning, clustering, reinforcement learning, representation learning, genetic algorithms, etc. In some embodiments, the machine learning system 120 may be utilized to perform a task, such as providing a recommendation of input filters to show in the user interface module 110 based on previous queries of the solution automation module 140. 
+[0036] The machine learning system 120 may include any machine learning system configured to identify relationships and/or correlations from a data set. For example, the machine learning system 120 may be configured to identify a set of most likely factors contributing to a problem or sub-problem or solution, whether directly or indirectly, by analyzing data sets. As an example, the machine learning system 120 may analyze all solution examples and predict which solution would be the best implementation for a problem definition, or analyze all sub- problem & problem associations stored in the database & predict which sub-problems would be the best way to break down a problem, or analyze all previous queries on the interface-specific analysis module 140 and predict which factors will be used the most as inputs to show on the user interface module 110 (in the absence of functions on interfaces described above, or if machine learning is specified as a preferred solution method on the user interface module 110 before running the interface-specific analysis module 140). In these and other embodiments, the machine learning system 120 may provide the correlations and/or the factors contributing to an input to the user interaction module 110 and/or the interface-specific analysis module 140. In some embodiments, the machine learning system 120 may operate using any machine learning technique or deep learning technique, such as decision tree learning, association rule learning, clustering, reinforcement learning, representation learning, genetic algorithms, etc. In some embodiments, the machine learning system 120 may be utilized to perform a task, such as providing a recommendation of input filters to show in the user interface module 110 based on previous queries of the interface-specific analysis module 140. 
 
 [0037] The user interaction module 110 may include any device or system or components thereof configured to receive user input and/or provide information to the user. For example, the user interaction module 110 may present an input to enter the problem statement and a set of filters (to refine the problem statement, or attach problem and/or problem space metadata such as expected complexity, known problem sub-problem, known problem factor, or preferred problem definition) as well as an input for common & other solution metrics (such as solution-finding time/cost, solution-implementing time/cost, accuracy, using pre-computed solutions or deriving solutions from scratch, using a particular data source for definitions & other API calls inserted into the workflow rather than using system-generated data sources from the initial or previous queries, etc) to a user. In these and other embodiments, the user may utilize the user interaction module 110 to identify problem & problem space metadata & solution metrics as an input filter to reduce the solution space and evaluate output solutions. In these and other embodiments, the user may additionally utilize the user interaction module 110 to identify output solutions of varying types (optionally including optimal, low-cost, reusable, able to reduce other problems, able to invalidate a problem space, able to change a problem space to a very different one, etc) to create a score to store the output in the database as a solution (if the score is high) or a problem (if the score is low) associated with the origin problem statement. For example, the user may designate an output solution as optimal for solving a sub-problem of the origin problem, and the database will store a link between the sub-problem and the output solution as one of the sub-problem's optimal solutions.
 
-[0038] FIG. 1 illustrates a diagram depicting one embodiment of a component of the solution automation module 140 of FIG 2, the User Interface Module 110. Information displayed in the User Interface Module 110 may include structures from any of the other diagrams, given that the output sent to the User Interface Module 110 optionally includes query information about the processes run to generate problem & solution information.
+[0038] FIG. 1 illustrates a diagram depicting one embodiment of a component of the interface-specific analysis module 140 of FIG 2, the User Interface Module 110. Information displayed in the User Interface Module 110 may include structures from any of the other diagrams, given that the output sent to the User Interface Module 110 optionally includes query information about the processes run to generate problem & solution information.
 
-[0039] FIG. 2 illustrates a diagram illustrating one embodiment of a process 200 of applying a general solution automation workflow. The process 200 may be arranged in accordance with at least one embodiment described herein. One or more operations of the process 200 may be performed by a system or device, or combinations thereof, such as the system 100, the user interaction module 110, the machine learning system 120, the API finding/calling module 130, and/or the solution automation module 140 of FIG 2, the computing system 300 of FIG 23, etc. For illustrative purposes, various blocks below will be identified as potentially being performed by one of the user interaction module 110, the machine learning system 120, the API finding/calling system 130, and/or the solution automation module 140 of FIG 2. In these and other embodiments, the process 200 may be performed based on the execution of instructions stored on one or more non-transitory computer-readable media. Although illustrated as discrete blocks, various blocks of the process 200 may be divided into additional blocks, combined into fewer blocks, or eliminated, depending on the desired implementation. The solution automation module 140 may include any device or system or components thereof configured to utilize the inputs from the machine learning system 120 or the API finding & calling system 130 and from the user interaction module 110 to output the solution 150. In some embodiments, user input may vary, such as where the problem statement may be an abstract statement, a statement about a problem type, or missing necessary information. The output may be incomplete or otherwise sub-optimal, in which case the user can state the problem differently or add information or their own theory about the cause or solution, or expand the allowances of the configuration to optionally include more pattern & derivation computations than more direct problem-solving methods or pre-computed solutions that may need updating. The problem statement validation will return a message if the program cannot correct the problem statement or return a validation question to prompt the user to enter specific information. Deriving problem metadata such as the minimum information to solve a problem or deriving solution requirements would take the form of logic such as identifying required probable solution structures necessary to solve the problem, & information necessary for filtering solutions in that format, or for a particular intent (if it's a shape, the solution needs to be in vector format and the dimensions need to be identified). The validation will also validate other input fields like problem metadata, so that a problem statement that doesn't match the specific problem type will return an error indicating that mismatch. The user may want to use alternate data sources for the definitions & object metadata, or use data sources rather than deriving information, in which case API finding/calling functionality will be executed to discover public or permitted data sources matching target objects, or the data can be generated (or the definition predicted) using a standard machine learning model. Similarly these standard methods can be used to retrieve or generate the latest implementation or pre-computations for a solution or utility function (like sorting or indexing algorithms or testing tools), when local assets are compromised or when the user sets a preference for crowd-sourced or new tools. It may not be clear which interface should be the origin interface, in which case multiple processes can be run if allowed by user configuration (for example, if they selected 'performance' as a metric to optimize, meaning the user requests a quick solution, multiple parallel processes wouldn't be allowed), and may periodically stop and check if the other process has useful information or is nearer to the solution, at which point the slower process can stop. Alternate default core interfaces may be selected than the abstract interfaces such as function, system, type, etc. Some embodiments may organize these interfaces by type, so that function, pattern, insight, strategy, & so on, are all stored as sub-interfaces of the rule interface, and the same for information/structure/math being related interfaces with minor transformations. Alternate default interface trajectories may be determined to be optimal using analysis of previous queries run on the solution automation module, if the user configures the program to self-optimize, such as by starting from an interface that generally solves the problem of a certain type more quickly, which is determined by querying the insight table during query design, once the problem type is identified, as opposed to searching for new solutions or optimizing known solutions for that problem type, or converting problems to a problem type with many known solution methods, like a route optimization problem. Solutions that optimize metrics not specified by the user may be optionally included in the output, such as solutions optimizing the user-specified solution metric and metrics that impact other problem-solvers, like the environment. For example, even if a user didn't request clean energy solutions for their traversal to find the optimal implementation of a Air Conditioning unit, the program may still return energy-conserving solutions like automatically shutting itself off when target temperature is reached, given that this energy-conserving solution optimizes more metrics than the requested solution, or that other users preferred the energy-conserving solution metric, or that the program identified energy-conserving solution metrics as conserving available resources, which would not only improve cross-system design for many agents using the program but also increase the likelihood that the program would have energy to run parallel processing or large queries or self-maintenance & self-optimization logic. After being presented with the solution 150, the user may be dissatisfied with the solution 150. In these and other embodiments, the user may modify or adjust one or more of the input filters provided to the solution automation module 140 regarding the problem/problem space/solution metadata derived and the origin interface & the formats selected for the problem-solution matching process. By iteratively repeating the process of adjusting the input filters by the user, the solution automation module 140 may repeatedly generate different solutions 150 until the user is satisfied with the solution 150. In some embodiments, the user may be dissatisfied with the solution based on preference the user has about their preferred optimal solution for the problem statement. In that case, they can add a filter to reduce the solution output, and if the program can find or derive the definition for that metric, it will apply it in the next query. If some metrics or formats contribute to uncertainty in the problem/solution filtering, formatting, compression, interface traversal, or other processes run by the program, the program will return output about the contribution of risky metrics to the uncertainty in the solution output. For example, if the user adds a custom filter like 'importance' and the program were to retrieve or derive an over-specific definition such as 'number of hub connections', it would cause distortions in the output, which would be optionally included in the report as a risky filter that can be removed. Otherwise the solution may speed up the user's problem-solving process, to identify improvements to a product design, prediction function, or route with just a problem statement.
+[0039] FIG. 2 illustrates a diagram illustrating one embodiment of a process 200 of applying a general interface-specific analysis workflow. The process 200 may be arranged in accordance with at least one embodiment described herein. One or more operations of the process 200 may be performed by a system or device, or combinations thereof, such as the system 100, the user interaction module 110, the machine learning system 120, the API finding/calling module 130, and/or the interface-specific analysis module 140 of FIG 2, the computing system 300 of FIG 23, etc. For illustrative purposes, various blocks below will be identified as potentially being performed by one of the user interaction module 110, the machine learning system 120, the API finding/calling system 130, and/or the interface-specific analysis module 140 of FIG 2. In these and other embodiments, the process 200 may be performed based on the execution of instructions stored on one or more non-transitory computer-readable media. Although illustrated as discrete blocks, various blocks of the process 200 may be divided into additional blocks, combined into fewer blocks, or eliminated, depending on the desired implementation. The interface-specific analysis module 140 may include any device or system or components thereof configured to utilize the inputs from the machine learning system 120 or the API finding & calling system 130 and from the user interaction module 110 to output the solution 150. In some embodiments, user input may vary, such as where the problem statement may be an abstract statement, a statement about a problem type, or missing necessary information. The output may be incomplete or otherwise sub-optimal, in which case the user can state the problem differently or add information or their own theory about the cause or solution, or expand the allowances of the configuration to optionally include more pattern & derivation computations than more direct problem-solving methods or pre-computed solutions that may need updating. The problem statement validation will return a message if the program cannot correct the problem statement or return a validation question to prompt the user to enter specific information. Deriving problem metadata such as the minimum information to solve a problem or deriving solution requirements would take the form of logic such as identifying required probable solution structures necessary to solve the problem, & information necessary for filtering solutions in that format, or for a particular intent (if it's a shape, the solution needs to be in vector format and the dimensions need to be identified). The validation will also validate other input fields like problem metadata, so that a problem statement that doesn't match the specific problem type will return an error indicating that mismatch. The user may want to use alternate data sources for the definitions & object metadata, or use data sources rather than deriving information, in which case API finding/calling functionality will be executed to discover public or permitted data sources matching target objects, or the data can be generated (or the definition predicted) using a standard machine learning model. Similarly these standard methods can be used to retrieve or generate the latest implementation or pre-computations for a solution or utility function (like sorting or indexing algorithms or testing tools), when local assets are compromised or when the user sets a preference for crowd-sourced or new tools. It may not be clear which interface should be the origin interface, in which case multiple processes can be run if allowed by user configuration (for example, if they selected 'performance' as a metric to optimize, meaning the user requests a quick solution, multiple parallel processes wouldn't be allowed), and may periodically stop and check if the other process has useful information or is nearer to the solution, at which point the slower process can stop. Alternate default core interfaces may be selected than the abstract interfaces such as function, system, type, etc. Some embodiments may organize these interfaces by type, so that function, pattern, insight, strategy, & so on, are all stored as sub-interfaces of the rule interface, and the same for information/structure/math being related interfaces with minor transformations. Alternate default interface trajectories may be determined to be optimal using analysis of previous queries run on the interface-specific analysis module, if the user configures the program to self-optimize, such as by starting from an interface that generally solves the problem of a certain type more quickly, which is determined by querying the insight table during query design, once the problem type is identified, as opposed to searching for new solutions or optimizing known solutions for that problem type, or converting problems to a problem type with many known solution methods, like a route optimization problem. Solutions that optimize metrics not specified by the user may be optionally included in the output, such as solutions optimizing the user-specified solution metric and metrics that impact other problem-solvers, like the environment. For example, even if a user didn't request clean energy solutions for their traversal to find the optimal implementation of a Air Conditioning unit, the program may still return energy-conserving solutions like automatically shutting itself off when target temperature is reached, given that this energy-conserving solution optimizes more metrics than the requested solution, or that other users preferred the energy-conserving solution metric, or that the program identified energy-conserving solution metrics as conserving available resources, which would not only improve cross-system design for many agents using the program but also increase the likelihood that the program would have energy to run parallel processing or large queries or self-maintenance & self-optimization logic. After being presented with the solution 150, the user may be dissatisfied with the solution 150. In these and other embodiments, the user may modify or adjust one or more of the input filters provided to the interface-specific analysis module 140 regarding the problem/problem space/solution metadata derived and the origin interface & the formats selected for the problem-solution matching process. By iteratively repeating the process of adjusting the input filters by the user, the interface-specific analysis module 140 may repeatedly generate different solutions 150 until the user is satisfied with the solution 150. In some embodiments, the user may be dissatisfied with the solution based on preference the user has about their preferred optimal solution for the problem statement. In that case, they can add a filter to reduce the solution output, and if the program can find or derive the definition for that metric, it will apply it in the next query. If some metrics or formats contribute to uncertainty in the problem/solution filtering, formatting, compression, interface traversal, or other processes run by the program, the program will return output about the contribution of risky metrics to the uncertainty in the solution output. For example, if the user adds a custom filter like 'importance' and the program were to retrieve or derive an over-specific definition such as 'number of hub connections', it would cause distortions in the output, which would be optionally included in the report as a risky filter that can be removed. Otherwise the solution may speed up the user's problem-solving process, to identify improvements to a product design, prediction function, or route with just a problem statement.
 
-[0040] Solution Automation Module 140 is a general example of a workflow to find a solution to a problem automatically. It's an abstract version of specific solution automation workflows, and can therefore be used to generate those solution automation workflows. The process 200 runs logic to:
+[0040] Interface-specific analysis Module 140 is a general example of a workflow to find a solution to a problem automatically. It's an abstract version of specific interface-specific analysis workflows, and can therefore be used to generate those interface-specific analysis workflows. The process 200 runs logic to:
 	- design interface queries (a sequence or directed network of interfaces to traverse) & execute interface queries
 	- derive metadata & structure of problem & solution objects for the user to analyze & operate on in the problem space visualization generated by the process 200
 	- optimize the queries run for a particular problem or problem type/format/version
-	- identify/derive/apply/combine/generate solution automation workflows which determine the general solution method (like query for specific solutions to re-use solutions in the database, or apply a format to the problem to make calculating the solution trivial)
+	- identify/derive/apply/combine/generate interface-specific analysis workflows which determine the general solution method (like query for specific solutions to re-use solutions in the database, or apply a format to the problem to make calculating the solution trivial)
 	- identify/derive/apply/combine/generate interfaces
 	- apply the analysis specific to each interface (finding formats linking other formats, finding a structure for a concept, applying a function to a structure, etc). Examples of this type of logic are described in the other diagrams.
 
-[0041] Method described in claims includes interface analysis mentioned as a component of solution automation module 140 (optionally including example logic & output depicted in diagrams FIG 21 & 22), with an example definition of the analysis as follows:
+[0041] Method described in claims includes interface analysis mentioned as a component of interface-specific analysis module 140 (optionally including example logic & output depicted in diagrams FIG 21 & 22), with an example definition of the analysis as follows:
 
 - definition: 
 	- the interface network is the set of networks that act as useful filters/standards for applying structure to organize information, involving analysis like:
@@ -365,7 +490,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		- identifying all interfaces with variance that cant be captured in other interfaces
 		- calculating when to skip interim variables/interfaces
 		- determining adjacent interfaces
-	- interface analysis also covers building or selecting a problem-solving automation workflow (whether to start with a particular workflow, which is a layer of abstraction above the question of whether to start with a particular interface, which assumes a workflow has already been selected)
+	- interface analysis also covers building or selecting a interface-specific analysis workflow (whether to start with a particular workflow, which is a layer of abstraction above the question of whether to start with a particular interface, which assumes a workflow has already been selected)
 	- the abstract interface network optionally includes layers of network filters (intent, perspective, function (can optionally include patterns, logic, strategies, core functions, and any other set of operations/objects that has order), structure, concept, information (organization, formats, types, info objects like problems/questions/insights/assumptions), potential, change, cause system)
 	- each interface network in the set of interfaces (core function interface network, general interface network, specific interface network) can be used to generate the others
 		- intent interface can be used to generate the type interface
@@ -376,10 +501,10 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- interface operation (combine interfaces, etc)
 	- interface traversal (apply an interface to a problem)
 	- interface query (cross multiple interfaces in a sequence)
-	- workflow (apply a problem-solving automation workflow with a particular origin interface or interface query)
-		- an example of a workflow is shown in FIG 14 (Problem-solving automation workflow)
-		- the general workflow of this program is shown in FIG 2 (Solution Automation Module 140)
-	- workflow operation (select a problem-solving automation workflow)
+	- workflow (apply a interface-specific analysis workflow with a particular origin interface or interface query)
+		- an example of a workflow is shown in FIG 14 (Interface-specific analysis workflow)
+		- the general workflow of this program is shown in FIG 2 (Interface-specific analysis Module 140)
+	- workflow operation (select a interface-specific analysis workflow)
 - structures:
 	- interface filter (conversion function)
 	- interface network (of relevant injected/chained interfaces within an interface relevant for executing calculations)
@@ -591,10 +716,10 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		- value accretion into units (integers)
 		- what patterns turn into objects that attract/hold (or provide a platform or conduit for) the most variance
 		- attributes accrete into aggregate/type/emergent attributes ("equipollent when they are parallel, of the same length, and similarly oriented")
-		- how to generate a new solution automation workflow
-		- what solution automation workflow is optimal for this problem
+		- how to generate a new interface-specific analysis workflow
+		- what interface-specific analysis workflow is optimal for this problem
 
-[0042] Method described in claims may include information interface analysis mentioned as a component of solution automation module 140, with an example definition of the analysis as follows:
+[0042] Method described in claims may include information interface analysis mentioned as a component of interface-specific analysis module 140, with an example definition of the analysis as follows:
 
 - definition:
 	- information analysis involves: 
@@ -644,7 +769,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- given a type stack progression, what is the likeliest position or extension of that stack?
 	- given that these species evolved this way, what level of variance is the missing link between them likely to have?
 
-[0043] Method described in claims may include insight interface analysis mentioned as a component of solution automation module 140 (optionally including example logic & output depicted in diagrams FIG 20), with an example definition of the analysis as follows:
+[0043] Method described in claims may include insight interface analysis mentioned as a component of interface-specific analysis module 140 (optionally including example logic & output depicted in diagrams FIG 20), with an example definition of the analysis as follows:
 
 - definition: an insight path is a reusable cross-system pattern, usually built out of core functions from a general interface filter (type, intent, function, structure), that allows generation of insights. It can be as simple as a function like differentiate, a standardizing attribute like relevance, or involve a standard object like a simplifying question. It does not refer to specific strategies unless those strategies can be used to generate insights. Insight paths usually consist of abstract or structural rules like 'match structure' or 'identify type'.
 - attributes: reusability (insights can have a limited opportunity of applicability, and may have scope beyond their host system)
@@ -666,7 +791,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- what rules are derivable given a set of structures that commonly appear in systems?
 	- what are common rules used for previous insights, and how can they be optimized (shortening an insight path with a set of simplifying/standardizing questions)
 
-[0044] Method described in claims includes problem interface analysis mentioned as a component of solution automation module 140 (optionally including example logic & output depicted in diagrams FIG 3, 4, 5, 6, 7, 8, 9, 10, 11, & 12), with an example definition of the analysis as follows:
+[0044] Method described in claims includes problem interface analysis mentioned as a component of interface-specific analysis module 140 (optionally including example logic & output depicted in diagrams FIG 3, 4, 5, 6, 7, 8, 9, 10, 11, & 12), with an example definition of the analysis as follows:
 
 - definition:
 	- on this index, problems are mapped to structure, once problems have been converted to an information problem, which has a clear mapping to the structural interface
@@ -723,11 +848,6 @@ DETAILED DESCRIPTION OF THE INVENTION 
 			- a structure within a system containing the problem (an optimal route with a required attribute like efficiency or a route answering a question, or a combination of objects reducing variance in a rule gap, or a filter sequence that creates a function optimally while storing minimal code)
 			- a structure (other than reductions) to aim for when transforming the problem and the available resources implied in its definition (a solution defined as an optimal version of the problem structure, like the optimal structure to represent a concept or build a function) 
 			- a reducing transform of the problem shape (solution vectors removing problem dimensions until it's a point) 
-			- a problem-solving effect may be measured based on whether a solution contains or comprises a vector that: 
-				- neutralizes a problem vector , applying force in opposing direction to a problem vector (reduce an incentive)
-				- reduces the problem shape size  or dimension (resolve an ambiguity)
-				- fills the problem shape with relevant structures (build a function, find a route)
-				- or does any combination of the above for the origin problem & related problems, potentially neutralizing the problem space itself or converting it to another problem space. 
 			- function to apply the solution to the problem space , as shown in FIG 5 (Additional Solution Metadata)
 			- applying a problem-reducing solution vector to a problem space should reduce the origin problem, and possibly other problems or the problem space itself
 			- applying a 'route optimization' solution may take the form of adjusting the system structure to invalidate the route, may attach a function to nodes, or inject an efficiency structure to the system, which may also reduce the problem dimensions in the problem space visualization in addition to changing the system structure in the associated visualized system-structure interface format of the problem.
@@ -780,7 +900,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 					- function to compare & select between comparable solutions, optionally including selecting solutions based on input preferences selected (preferences like 'avoid using ML in solution', 'use a particular interface', 'use pre-computed solutions from database', etc)
 					- functions to select/add/remove problem dimensions 
 					- functions to identify/reduce solution space
-		- FIG 14. Example of a problem-solving automation workflow for a problem like 'find an optimal implementation of an intersection', using the system/structure/concept interfaces.
+		- FIG 14. Example of a interface-specific analysis workflow for a problem like 'find an optimal implementation of an intersection', using the system/structure/concept interfaces.
 			1. Problem definition: determine possible match between the problem system intersection object and the system conflict object.
 			2. standardize the problem to the system interface
 				- Apply the context of the default interaction defined for the intersection (agents crossing the intersection)
@@ -935,7 +1055,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		- what is the probable cost of solving this problem
 		- what is the adjacent format of this problem
 
-[0045] Method described in claims may include cause interface analysis mentioned as a component of solution automation module 140 (optionally including example logic & output depicted in diagrams FIG 13), with an example definition of the analysis as follows:
+[0045] Method described in claims may include cause interface analysis mentioned as a component of interface-specific analysis module 140 (optionally including example logic & output depicted in diagrams FIG 13), with an example definition of the analysis as follows:
 - definition:
 	- cause can be defined as dependency
 - functions:
@@ -977,7 +1097,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		- for more evolved organisms, this is a network causal shape, though species with less developed cognitive ability may have simple or uni-directional shapes with environment
 	- what is the function linking these variables, given these functions linking other adjacent generating variables/functions further up/down the causal shape
 
-[0046] Method described in claims may include change interface analysis mentioned as a component of solution automation module 140, with an example definition of the analysis as follows:
+[0046] Method described in claims may include change interface analysis mentioned as a component of interface-specific analysis module 140, with an example definition of the analysis as follows:
 
 - definition:
 	- change analysis relates to information interfaces (question, problem), logical interfaces (function, intent, pattern) and potential interfaces (variance, risk, certainty)
@@ -1040,7 +1160,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- as a concept having structure (like power: degree of independence) changes, does the change definition erode (previously distant points become more equal to adjacent points, so the meaning of information about position/dependency erodes, as power to move between them increases)
 	- where can change be stored/routed in a system: if there is demand for change (stressors demanding new functionality) but all components but one are maximizing their change handlers, then you know theres one potential variable where change will gather/be routed, if its possible to route change from the variance injection point to that variable's causal stack at some layer/point
 
-[0047] Method described in claims may include potential interface analysis mentioned as a component of solution automation module 140, with an example definition of the analysis as follows:
+[0047] Method described in claims may include potential interface analysis mentioned as a component of interface-specific analysis module 140, with an example definition of the analysis as follows:
 
 - definition:
 	- variance is semantically the opposite index (gap/unenforcement/missing information/randomness) to the filter index (limit/structure/information/organization)
@@ -1088,7 +1208,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		- what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?
 	- how does a system become overwhelmed with variance (in various forms, optionally including randomness), does it have outlets like interfaces with other systems to delegate variance
 
-[0048] Method described in claims may include structure interface analysis mentioned as a component of solution automation module 140, with an example definition of the analysis as follows:
+[0048] Method described in claims may include structure interface analysis mentioned as a component of interface-specific analysis module 140, with an example definition of the analysis as follows:
 
 - definition:
 	- indexing objects by structure allows clear matching of useful structures to objects/attributes/types/rules
@@ -1131,7 +1251,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		- will a type stack (which type values on different type layers) or a network/tree (type hierarchy) be a more useful structure to capture a type relationship
 	- identify compression/conversion functions of a shape
 
-[0049] Method described in claims may include logic interface analysis mentioned as a component of solution automation module 140, with an example definition of the analysis as follows:
+[0049] Method described in claims may include logic interface analysis mentioned as a component of interface-specific analysis module 140, with an example definition of the analysis as follows:
 
 	- definition:
 		- this analysis can optionally include related interfaces of logic (patterns, functions, intent, cause, change)
@@ -1216,7 +1336,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- should this rule follow this other rule
 	- what is the implication of this rule
 
-[0050] Method described in claims may include pattern interface analysis mentioned as a component of solution automation module 140, with an example definition of the analysis as follows:
+[0050] Method described in claims may include pattern interface analysis mentioned as a component of interface-specific analysis module 140, with an example definition of the analysis as follows:
 
 - definition:
 	- a pattern can be or contain any structure, optionally including a function (the pattern being a sequence of logical steps) but it is different from a function in that it is more abstract & can optionally include other structures, and the point of the pattern is not to get a particular object like the function output, but to identify common trends across systems so the pattern can be used for inference or value generation
@@ -1244,7 +1364,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- what would the path between inputs/output probably be, given patterns of other paths
 	- what is the function linking these variables, given common function patterns between variables of these types/topics/ranges/other metadata?
 
-[0051] Method described in claims may include intent interface analysis mentioned as a component of solution automation module 140 (optionally including example logic & output depicted in diagrams FIG 19), with an example definition of the analysis as follows:
+[0051] Method described in claims may include intent interface analysis mentioned as a component of interface-specific analysis module 140 (optionally including example logic & output depicted in diagrams FIG 19), with an example definition of the analysis as follows:
 
 - definition:
 	- intent can be defined as possible reasons to use a function (or use an object as a function):
@@ -1279,7 +1399,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 - objects (priorities: abstract directions that intents may fulfill or move agents toward, whereas intents are more granular)
 - concepts (applicability: what a function can be used for)
 
-[0052] Method described in claims may include function interface analysis mentioned as a component of solution automation module 140, with an example definition of the analysis as follows:
+[0052] Method described in claims may include function interface analysis mentioned as a component of interface-specific analysis module 140, with an example definition of the analysis as follows:
 
 - definition: a function can be any of the following general types:
 	- rule: a static function
@@ -1310,7 +1430,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- function-system interface question: is this function necessary for the system
 	- what functions are adjacent to this function (similar to the function, or efficiently buildable with the same core functions or associated/available distortion functions)
 
-[0053] Method described in claims may include concept interface analysis mentioned as a component of solution automation module 140 (optionally including example logic & output depicted in diagrams FIG 15, 16, 17, & 18), with an example definition of the analysis as follows:
+[0053] Method described in claims may include concept interface analysis mentioned as a component of interface-specific analysis module 140 (optionally including example logic & output depicted in diagrams FIG 15, 16, 17, & 18), with an example definition of the analysis as follows:
 
 - definition:
 	- a concept is an object in a system that:
@@ -1359,7 +1479,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		- check if the change type handled ratio is above or below the strong ratio
 		- if above, the system is 'robust'
 
-[0054] Method described in claims may include system interface analysis mentioned as a component of solution automation module 140, with an example definition of the analysis as follows:
+[0054] Method described in claims may include system interface analysis mentioned as a component of interface-specific analysis module 140, with an example definition of the analysis as follows:
 
 - definition:
 	- this is a format accessible once information is standardized to object model
@@ -1400,7 +1520,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- what system structures (or buildable system structures) fit in this unknown information-generating sub-system
 	- system-problem interface: what problem types does this system have
 
-[0055] Method described in claims may include object interface analysis mentioned as a component of solution automation module 140, with an example definition of the analysis as follows:
+[0055] Method described in claims may include object interface analysis mentioned as a component of interface-specific analysis module 140, with an example definition of the analysis as follows:
 
 - definition:
 	- this is a standard information format commonly used in programming, optionally including object/attribute/function information
@@ -1445,7 +1565,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 	- what is the net functionality of the object set
 	- how do/will these objects interact
 
-[0056] Method described in claims may include core interface analysis mentioned as a component of solution automation module 140, with an example definition of the analysis as follows:
+[0056] Method described in claims may include core interface analysis mentioned as a component of interface-specific analysis module 140, with an example definition of the analysis as follows:
 
 - definition: this describes the common components that can build other analysis types
 - objects (interface objects like patterns & concepts)
@@ -1468,17 +1588,17 @@ DETAILED DESCRIPTION OF THE INVENTION 
 		- problems with adjacent objects & how those problems are generated by adjacent object metadata 
 - functions (structural functions: combine, merge, apply, embed, mix, filter, chain, define, create, derive, identify, change, version)
 
-[0057] Method described in claims optionally includes the aforementioned interface analysis types mentioned as a component of solution automation module 140, as well as other optional interface analysis types, which optionally includes example analysis type definitions that allow for automation of that analysis & allow for the application of specific functions powering that analysis (custom analysis functions like 'find the set of questions or formats that makes finding a solution trivial'), examples of these custom analysis functions being provided in the example interface analysis definitions above.
+[0057] Method described in claims optionally includes the aforementioned interface analysis types mentioned as a component of interface-specific analysis module 140, as well as other optional interface analysis types, which optionally includes example analysis type definitions that allow for automation of that analysis & allow for the application of specific functions powering that analysis (custom analysis functions like 'find the set of questions or formats that makes finding a solution trivial'), examples of these custom analysis functions being provided in the example interface analysis definitions above.
 
 [0058] One skilled in the art, after reviewing this disclosure, may recognize that modifications, additions, or omissions may be made to the system 100 without departing from the scope of the disclosure. For example, the operations of the system 100 may be implemented in differing order. Additionally or alternatively, two or more operations may be performed at the same time. Furthermore, the outlined operations and actions are provided as examples, and some of the operations and actions may be optional, combined into fewer operations and actions, or expanded into additional operations and actions without detracting from the essence of the disclosed embodiments. 
 
-[0059] FIG 23 illustrates an example computing system 300 for solving a problem with a solution automation module, according to at least one embodiment described in the present disclosure. The computing system 300 may include a processor 310, a memory 320, a data storage 330, and/or a communication unit 340, which all may be communicatively coupled. Any or all of the system 100 of FIG 19 may be implemented as a computing system consistent with the computing system 300. For example, the user interaction module 110, the machine learning system 120, the API finding & calling system 130, and the solution automation module 140 may be implemented together as a single computing system. As another example, the machine learning system 120 and the API finding & calling system 130 may be implemented as one computing system while the solution automation module 140 and the user interaction module 110 may be implemented as a separate computing system. As an additional example, the machine learning system 120 may be implemented as one computing system, the API finding & calling system 130 may be implemented as another computing system, the solution automation module 140 may be implemented as another computing system, and the user interaction module 110 may be implemented as an additional computing system. In these and other embodiments, the computing system 300 may be a specialized computing system configured to perform specific and non-conventional operations, such as those identified in FIG 19. 
+[0059] FIG 23 illustrates an example computing system 300 for solving a problem with a interface-specific analysis module, according to at least one embodiment described in the present disclosure. The computing system 300 may include a processor 310, a memory 320, a data storage 330, and/or a communication unit 340, which all may be communicatively coupled. Any or all of the system 100 of FIG 19 may be implemented as a computing system consistent with the computing system 300. For example, the user interaction module 110, the machine learning system 120, the API finding & calling system 130, and the interface-specific analysis module 140 may be implemented together as a single computing system. As another example, the machine learning system 120 and the API finding & calling system 130 may be implemented as one computing system while the interface-specific analysis module 140 and the user interaction module 110 may be implemented as a separate computing system. As an additional example, the machine learning system 120 may be implemented as one computing system, the API finding & calling system 130 may be implemented as another computing system, the interface-specific analysis module 140 may be implemented as another computing system, and the user interaction module 110 may be implemented as an additional computing system. In these and other embodiments, the computing system 300 may be a specialized computing system configured to perform specific and non-conventional operations, such as those identified in FIG 19. 
 
 [0060] Generally, the processor 310 may include any suitable special-purpose or general- purpose computer, computing entity, or processing device optionally including various computer hardware or software modules and may be configured to execute instructions stored on any applicable computer-readable storage media. For example, the processor 310 may include a microprocessor, a microcontroller, a digital signal processor (DSP), an application-specific integrated circuit (ASIC), a Field-Programmable Gate Array (FPGA), or any other digital or analog circuitry configured to interpret and/or to execute program instructions and/or to process data. 
 
 [0061] Although illustrated as a single processor in FIG 23, it is understood that the processor 310 may include any number of processors distributed across any number of network or physical locations that are configured to perform individually or collectively any number of operations described in the present disclosure. In some embodiments, the processor 310 may interpret and/or execute program instructions and/or process data stored in the memory 320, the data storage 330, or the memory 320 and the data storage 330. In some embodiments, the processor 310 may fetch program instructions from the data storage 330 and load the program instructions into the memory 320. 
 
-[0062] After the program instructions are loaded into the memory 320, the processor 310 may execute the program instructions, such as instructions to perform the process 200 of FIG 19. For example, the processor 310 may obtain instructions regarding solving a problem with a solution automation module, and generating a solution for the problem statement. As another example, the processor 310 may analyze user changes to outputs filtering, describing or analyzing the solution, solution space, problem space, or problem statement, and determine the success of a solution based on those changes to outputs. 
+[0062] After the program instructions are loaded into the memory 320, the processor 310 may execute the program instructions, such as instructions to perform the process 200 of FIG 19. For example, the processor 310 may obtain instructions regarding solving a problem with a interface-specific analysis module, and generating a solution for the problem statement. As another example, the processor 310 may analyze user changes to outputs filtering, describing or analyzing the solution, solution space, problem space, or problem statement, and determine the success of a solution based on those changes to outputs. 
 
 [0063] The memory 320 and the data storage 330 may include computer-readable storage media or one or more computer-readable storage mediums for carrying or having computer- executable instructions or data structures stored thereon. Such computer-readable storage media may be any available media that may be accessed by a general-purpose or special- purpose computer, such as the processor 310. In some embodiments, the computing system 300 may or may not optionally include either of the memory 320 and the data storage 330. 
 
