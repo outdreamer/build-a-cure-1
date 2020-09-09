@@ -1562,11 +1562,11 @@ XI. Interface analysis
         https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/README.md
 
 
-    - find distortions to apply that would generate useful information (example: 'apply core/interaction layer/generative/causative/primary functions to input information')
+    - function to find distortions to apply that would generate useful information (example: 'apply core/interaction layer/generative/causative/primary functions to input information')
     
-    - identify & find related objects of an interface
+    - function to identify & find related objects of an interface
     
-    - apply a distortion function from an interface to input information
+    - function to apply a distortion function from an interface to input information
     
     - conversion functions (conversion to an interface format, and conversion back to input information system format)
       - interface conversion function as shown in FIG 21 (Interface conversion & matching) example: 
@@ -1584,6 +1584,13 @@ XI. Interface analysis
 
     - build interfaces
       - construct an interface (apply interface definition & generate structures to fill it)
+
+      - deriving an interface definition from examples of objects/functions/outputs of that interface or a source of unhandled variation:
+
+        - 'searching for examples of the interface on other interfaces'
+        - 'aggregating unhandled variance into the new interface as a potential change type formattable on that interface',
+        - 'filtering examples of an interface into core components, which can be used to generate the examples'
+        - 'assuming common core components & patterns for the interface from other interfaces and applying distortion functions until the interface examples can be generated'
 
       - derive the interface network from an interface
 
