@@ -1,5 +1,16 @@
 to do: organize into docs
 
+  - pre-approved transactions on a schedule that give id service provider permission to update id
+    - businesses contact id provider to check that id hasnt changed or get new id if its changed
+    - then makes call to bank associated with id or updated id, which is expecting the transaction at that schedule & has already allocated/locked funds for that transaction
+    - this means customers dont need to update card numbers or bank account numbers if prior numbers are compromised, but the id provider does need to track the original number & changes, and new numbers need to be unique across customers
+    - transactions that are already configured/scheduled and havent been canceled are automatically approved
+    - transactions that are implied/predicted (purchasing jacket if the weather is colder or moving to a colder location) have conditional pre-approval
+    - customers can register their original id number with a particular business & optionally approve a budget with ratios of intents for transactions at that business/business type/product/product type, or range of transaction amounts, intents, types & other variables for their id number (by importing prior purchase histories or filling out new configurations or making new purchases) so transactions outside of that range arent allowed or have extra security intent layers applied
+    - intents can be used to add validation to purchases (what are you buying this for? for event x coming up, which the calendar app api can provide validation of)
+    - they can dis/associate other info with their id as needed (voting, address, purchase/subscription/transaction/configuration history)
+    - using contribution to economy/markets/financial instruments/purchases/legal frameworks (like whether they can influence/create purchases or markets or product regulations) as an input to credit (indicating their value-creation potential)
+
   - identify mechanisms to identify proxy variables of a missing variable
 
     - includes inference of alternate variables that could generate the same information
@@ -9,7 +20,7 @@ to do: organize into docs
     - example: if you dont have a variable like 'level of education' or 'level of intelligence' which is a predictor of income, how could you derive it from other variables, as an interim dependent variable to predict, before other dependent variables like income can be predicted?
       
       - apply a variable type pattern: 
-        - 'variables with metadata similar to income have a predictive variable with metadata similar to education (which could point to intelligence, info access, tech access, and other variables with similar functionality to education)'
+        - 'variables with metadata similar to income have a predictive variable with metadata similar to education (which could point to intelligence, info access, tech access, group membership, and other variables with similar functionality to education)'
       
       - identify functionality produced by other variables you do have in the data set
         - 'what functionality does a system with these types of variation in genes, experiences, medicine, & information access produce?' 
@@ -26,7 +37,7 @@ to do: organize into docs
           we could:
             - identify the concept of 'gene' from any genetic attributes like gender/race in the data set 
               - the definition of the concept can be as simple as 'a set of constants for a record' or 'a set of constant inputs for a record' or 'a set of constant inputs of original position for a record', depending on necessity of specification
-              - later we alter the gene concept to generate the 'genetic mutation' concept by applying the core function 'change' to the 'gene' concept, so we probably doesnt need 'constant' in the gene definition
+              - later we alter the gene concept to generate the 'genetic mutation' concept by applying the core function 'change' to the 'gene' concept, so we probably dont need 'constant' in the gene definition
               - we also infer a core component like 'functionality' being determined by the 'gene' concept, which can be added to the definition in this initial step rather than inferred later from other components
               - we also infer that the 'pollution' concept can be an input to the 'gene mutation' concept, which may be included in the original definition as a variable rather than inferring 'pollution' from other components like 'location'
             - identify a relationship between the 'location' variable correlating with the 'information access' variable
