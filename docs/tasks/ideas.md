@@ -24,6 +24,11 @@ to do: organize into docs
           - an insight data set about information usage not being equivalent to information access (indicating a need for different terms)
 
           we could:
+            - identify the concept of 'gene' from any genetic attributes like gender/race in the data set 
+              - the definition of the concept can be as simple as 'a set of constants for a record' or 'a set of constant inputs for a record' or 'a set of constant inputs of original position for a record', depending on necessity of specification
+              - later we alter the gene concept to generate the 'genetic mutation' concept by applying the core function 'change' to the 'gene' concept, so we probably doesnt need 'constant' in the gene definition
+              - we also infer a core component like 'functionality' being determined by the 'gene' concept, which can be added to the definition in this initial step rather than inferred later from other components
+              - we also infer that the 'pollution' concept can be an input to the 'gene mutation' concept, which may be included in the original definition as a variable rather than inferring 'pollution' from other components like 'location'
             - identify a relationship between the 'location' variable correlating with the 'information access' variable
             - identify location-specific variables, like the 'pollution' concept
             - pull 'pollution-location' data
@@ -31,7 +36,7 @@ to do: organize into docs
             - identify a relationship between 'info usage' and 'pollution-location' data
             - infer concept of 'gene' from original data set if it had any genetic attribute data
             - infer concept of 'gene mutation' from pollution definition
-            - generate a possible function linking 'gene' concept and 'functionality', with 'gene' as an input
+            - generate the concept of a possible function linking 'gene' concept and 'functionality', with 'gene' as an input
             - identify 'info usage' as an example of 'functionality'
             - infer that 'gene mutations' are also possible inputs to 'functionality', in addition to 'genes'
             - infer that 'gene mutations' are a possible input to functionality example 'info usage'
@@ -41,6 +46,7 @@ to do: organize into docs
 
         - you could infer the link from functionality (such as info usage) to 'intelligence' by further inferring that functionality varies in effectiveness by usage ('info usage' usage, or learning), which implies the concept of 'agency' or 'intelligence' (defined in similar terms as 'having the option of using a resource')
 
+        - you could also infer 'education' as 'info storage' (remembering it) or 'info exposure' (reading it rather than just having access to it) from the 'info access' variable in the original data set, where education is an alternative or proxy variable for intelligence in some cases
 
   - identify other things the data set might be able to predict other than y's
 
