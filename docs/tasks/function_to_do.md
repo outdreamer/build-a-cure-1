@@ -1,26 +1,19 @@
 # to do
 
-  - fix indexing 'NNP NN NNS1 of JJ JJ JJ2' or postpone to pattern evaluation time
-  - fix missing alts
-      pattern_index::verb_phrase::plays a |VB NN| role::a NN role
-  - fix one-letter alts: pattern_index::phrase_identifier::ALL_N DPC ALL_N |VBG VBD|::N D N V
-  - generalize alt logic to use embedded pair finding
-  - fix supported stem assignment (endings like 'is': {'functions a', 'acts a', 'plays a', 'operates a', 'works a'})
-  - fix charge function ('edit' is assigned positive score)
-  - add core clause patterns 
-  - fix pattern matching functions
-  - finish pos, clause, modifiers code from find implementation
-  - get a language map for implementing other tools
-  - add conversion of pattern matching options to regex
-  - add precomputing if a sub-pattern was already computed: 'ALL_N ALL_N of ALL_N ALL_N' in 'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
-  - add formatting to allow multiple items as keys in json and maintain order for interface network paths
-
   - add problem prediction example with market organization 
     - anticipating problems across many agents with n steps, and calculating which problems will develop and which solutions can be constructed in advance
     - unit example: predict when a dev will need a tool based on usage/purchase/request data (alternatives with different priorities/perspective built-in)
       - which problems will develop from which tool sets used at scale (migration tools between comparable alternatives)
       - which problemss will be prioritized & have solutions constructed
       - how to optimize by constructing other calculated solutions to prevent high-risk problems
+
+  - add rules from diagrams to a document
+
+  - add to do items from analysis & code to to do list
+
+  - organize examples/diagrams to make
+
+  - organize analysis type rules
 
   - organize derivation methods, implementation guide & specific analysis rules in core_analysis
 
@@ -380,3 +373,19 @@
         - example: a method of calculating area under the curve can be built with relevant concepts (subset, linearity, similarity (to curve) as a input to the conceptual trajectory to the concept of approximation) once those concepts are identified in the problem space, and combined with different structures, each having their own intents (prioritized metrics like efficiency)
       - quantify conceptual potential (how much change it can enable) and core operations on conceptual potential, & where potential objects occur or where they fit in to those operations
 
+## pattern 
+
+  - fix indexing 'NNP NN NNS1 of JJ JJ JJ2' or postpone to pattern evaluation time
+  - fix missing alts
+      pattern_index::verb_phrase::plays a |VB NN| role::a NN role
+  - fix one-letter alts: pattern_index::phrase_identifier::ALL_N DPC ALL_N |VBG VBD|::N D N V
+  - generalize alt logic to use embedded pair finding
+  - fix supported stem assignment (endings like 'is': {'functions a', 'acts a', 'plays a', 'operates a', 'works a'})
+  - fix charge function ('edit' is assigned positive score)
+  - add core clause patterns 
+  - fix pattern matching functions
+  - finish pos, clause, modifiers code from find implementation
+  - get a language map for implementing other tools
+  - add conversion of pattern matching options to regex
+  - add precomputing if a sub-pattern was already computed: 'ALL_N ALL_N of ALL_N ALL_N' in 'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
+  - add formatting to allow multiple items as keys in json and maintain order for interface network paths

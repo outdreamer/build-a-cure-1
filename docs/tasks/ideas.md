@@ -1,5 +1,26 @@
 to do: organize into docs
 
+  - identify mechanisms to identify proxy variables of a missing variable
+
+    - includes inference of alternate variables that could generate the same information
+    
+    - also includes inference of side effects of the missing variable
+    
+    - example: if you dont have a variable like 'level of education' or 'level of intelligence' which is a predictor of income, how could you derive it from other variables, as an interim dependent variable to predict, before other dependent variables like income can be predicted?
+      
+      - apply a variable type pattern: 
+        - 'variables with metadata similar to income have a predictive variable with metadata similar to education (which could point to intelligence, info access, tech access, and other variables with similar functionality to education)'
+      
+      - identify functionality produced by other variables you do have in the data set
+        - 'what functionality does a system with these types of variation in genes, experiences, medicine, & information access produce?' 
+          - output: the concept of 'agency' (and its related functions), which is a causal input/output of intelligence
+
+      - identify insights in interactions of other variables explaining the missing variable
+        - "these data points are distributed in physical position (data comes from several countries), which implies difference in 'information access', which is correlated with target dependent variable 'income', if you add a related interim variable (given insights like 'accessible information is not always used') like 'information usage' (a proxy for intelligence variable) that varies by cross-indexing with pollution-location data (creating mutations), indicating the 'information usage' is impacted by gene mutations (a gene determining information usage, such as intelligence genes) or other side effects of pollution (impacting 'information usage' functionality)"
+
+        - bc we had location data in the original data set, and we had another data set relating location & pollution, and we had an insight data set about information usage not being equivalent to information access (indicating a need for different terms), we could identify a relationship between the 'location' variable correlating with the 'information access' variable, an interim 'information usage' variable correlating with pollution-location data, and the target dependent variable 'income' by inferring that information usage & pollution might explain the difference between 'information access' & 'income'.
+
+
   - identify other things the data set might be able to predict other than y's
 
     - subsets or the data set might predict other dependent vars beyond or adjacent to y
