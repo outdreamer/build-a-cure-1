@@ -14,82 +14,49 @@ ABSTRACT
 BRIEF SUMMARY OF THE INVENTION 
 [0004] One or more embodiments of the present disclosure may include a method that involves the logic inherent to steps 402-410 of process 400 of the application 16887411:
 
+''' to do:
+- include link to repo for a more readable version with indents
+- add new diagram of meaning interface (integrating information across interfaces into relevant structures for an intent)
+- give fig 22 as an example of interface analysis
+'''
+
 General interface analysis process:
 
-1. find information needed
-2. find interfaces or interface structures like combinations that are best for finding that information
-3. organize useful interface structures into an interface query structure
-4. execute query, checking for information needed after each interface or interface structure traversal
+	1. convert to interface based on definition
+	2. apply an interface to input information
+	3. apply interface components to distort information to generate additional information to match
+	    - specific interface components (like navigation functions) for that interface
+	    - core/common components (like distortion functions) of that interface
+		- related components of the interface
+		- other interfaces/interface operations
+	4. find matching objects
+	5. convert to original system format)
 
 General interface traversal process:
 
-1. obtaining input information from a program or user (like a data set of possibly related variables, or objects in a relational database)
-2. retrieving an interface definition
-3. deriving the interface definition if not found
-4. applying the conversion function from the interface definition to standardize the information to the interface format, which involves:
+	1. obtaining input information from a program or user (like a data set of possibly related variables, or objects in a relational database)
+	2. retrieving an interface definition
+	3. deriving the interface definition if not found
+	4. determining relevant interfaces or interface structures
+	5. determining an interface query structure to organize relevant interfaces or interface structures
+	6. execute query, checking for information needed after each interface or interface structure traversal
+	7. applying the conversion function from the interface definition to standardize the information to the interface format, which involves:
 
-        1. converting to interface format (based on interface definition)
-        2. apply the interface to input information & check for matches
-        3. apply distortions like core functions & check for matches
-        4. apply related objects & check for matches
-        5. convert to original system format
+		7.A. applying default or prioritized structures (interface components like functions for navigating that interface, core/common distortion functions of that interface, related components of the interface) to format or otherwise alter the information to identify its structural relevance to that interface
 
-	4.A. applying the interface definition to standardize the input information (input information meaning the original information or another version of it produced by prior interface analysis)
-		- apply interface-specific conversion functions to input information or current/other interface components & check for matching components of original input information
-		- apply interface-specific change functions to input information or current/other interface components & check for matching components of changed information
+		7.B. identify matching components between information & interface components (components like systems, objects, functions, attributes, & types)
 
-	4.B. retrieve related objects of matching interface components & check if the related objects of the matching interface component also apply to the input information
-		- if related objects of the matching interface component also match the input information, that indicates the probability of an accurate match is higher, so proceed to next step 'convert matching interface components to input information'
-		- if not, either it may not be a match or a new structure (like a new variable or a new type of component) may be justified
-	
-	4.C convert matching interface components to input information
-		- if the probability of an accurate match is high enough, store that matching interface component, formatted to fit the input information
-			- for example, if the 'causal vector' structure fits the relationship between input variables, store those variables with a sequence, so that any additional interface analysis can take that as an input structure functioning as a possible version of the input information
-	
-	- this is where the problem-solving automation in application 16887411 would determine if the information retrieved by this interface analysis is sufficient to solve the input problem, at which point it's safe to traverse the 'meaning' interface (uniting other interfaces in the interface network) to integrate the information into a structure relevant to the user, or if additional interface traversals are needed
+		7.C. convert matching interface components back to input information
 
-5. repeat step 4, iterating through remaining or alternative interface analysis as needed to achieve different input information formats (or to fill out an interface with newly identified components), optionally using the newly formatted input information as input to step 4.
+		7.D. repeat steps 7.A - 7.C if the selected interface analysis intent (support intents of interface analysis including 'traversing the interface' or 'formatting input information in as many ways as possible' or 'filling out an interface definition') is not complete.
+
+	8. integrate output into a structure relevant to the interface traversal intent (on the interface-interface), interface traversal intents such as 'find a cause of this variable' or 'find an optimal structure for this information', which involves applying structure to the output information as designated in the initial interface query design
 
 The object and advantages of the embodiments will be realized and achieved at least by the elements, features, and combinations particularly pointed out in the claims. 
 
 It is to be understood that both the foregoing general description and the following detailed description are merely examples and explanatory and are not restrictive. 
 
-''' to do:
-- add new diagram of meaning interface (integrating information across interfaces into relevant structures for an intent)
-- add example of generating solution automation workflows, framed as an implementation of core component analysis on the function-intent interface
-- add example of why different interfaces are more useful
-- add example of interface queries for problem statements
-- integrate cause interface definition
-- integrate analysis from interface_analysis, function_to_do, ideas.md
-- remove repeated items from analysis
-- give fig 22 as an example of interface analysis
 
-
-General interface analysis process:
-
-1. obtain input information from a program or user (like a data set of possibly related variables, or objects in a relational database)
-2. retrieve interface definitions
-3. derive interface definitions if not found
-4. determine relevant interfaces or interface structures like combinations that are best for finding that information
-5. determine an interface query structure to organize relevant interfaces or interface structures
-6. execute query, checking for information needed after each interface or interface structure traversal
-7. apply each interface in the interface query
-8. integrate output into a structure relevant to the interface traversal intent (on the interface-interface), interface traversal intents such as 'find a cause of this variable' or 'find an optimal structure for this information', which involves applying structure to the output information as designated in the initial interface query design
-
-
-Interface traversal process:
-
-1. convert to interface based on definition
-2. apply an interface to input information
-3. apply interface components to distort information to generate additional information to match
-    - specific interface components (like navigation functions) for that interface
-    - core/common components (like distortion functions) of that interface
-    - related components of the interface
-    - other interfaces/interface operations
-4. find matching objects
-5. convert to original system format)
-
-      
 '''
 
 BRIEF DESCRIPTION OF THE DRAWINGS 

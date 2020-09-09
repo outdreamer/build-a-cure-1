@@ -224,39 +224,251 @@ II. Change analysis
 III. Causal analysis
 
 [0045] Method described in claims may include cause interface analysis mentioned as a component of solution automation module 140 (optionally including example logic & output depicted in diagrams FIG 13), with an example definition of the analysis as follows:
-- definition:
-  - cause can be defined as dependency
-- functions:
-  - resolve: identify cause in a set of possible alternate causes
-  - isolate: identify contribution of a particular cause to an output
-  - inject/extract dependency
-  - identify causal structure, as shown in FIG 13 (Causal structure-matching)
-    - answers the question: 
-      - why did something work (because of its causal position/structure/layer/pattern/interactions/attributes/similarities)
-      - what layer of the causal stack is the relevant cause  
-- attributes:
-  - directness (x indirectly causes y, x immediately precedes y on a causal chain)
-  - explicit/implicit (x is defined to cause y or x implies y)
-  - abstraction (x specifically causes y)
-  - uniqueness/isolatability (x is guaranteed to cause y and nothing else does)
-  - interchangeability/ambiguity (number of alternative causes that cannot be resolved or eliminated or invalidated)
-  - degree (x is n degrees of cause away from y)
-  - requirement/probability of cause (x must cause y regardless of most possible system contexts; if x this hadn't caused y, something else in the system probably would have caused y anyway, given all the similar structures in the system that interact with y, so x is not a required cause of y)
-  - generatability/controllability
-  - dominance (x is almost always causative if allowed to interact with any object - example 'a source of power')
-  - direction (x is always an output so it couldn't have caused y)
-  - proxy (x is a proxy for z, so x & z are not both required to explain y)
-  - function (x is descriptive rather than generative so it cannot be a cause)
-  - difference from randomness
-  - difference between actual/possible functions (if an agent doesn't solve a problem, but they could have efficiently solved it, is the problem caused by them or its origin)
-  - hierarchical
-  - multiple/alternate
-- objects:
-  - dependencies
-- structures:
-  - most causal shapes are cyclical, layer, or network-shaped rather than one-directional vector-shaped (like a tree), which is why some existing methods are inherently incapable of producing system-fitted insights that wont break the system when applied (a particular drug that is not evaluated for bio-system impact, just impact on a particular pathogen or process)
-  - stack: set of adjacent (or other definition of relevant) causes
-  - causal loop: a function that generates information may end up using that information or its side effects like decisions as an input, creating a causal loop
+
+  - causal interface definition
+
+    - conversion function
+
+      - standardize to the cause object definition
+        - default conversion operations:
+          - mapping objects that can be converted
+          - adding/deriving missing objects required for the interface
+          - removing irrelevant objects
+
+        - conversion operations that apply other interfaces on top of the causal interface
+          - structure-function interface: linking inputs & outputs for causal functions that have structure (sequential functions, hub functions, etc)
+          - concept interface: identify dependency, state, adaptability, & agency
+          - structure-type interface combination:
+            - identifying causal types, such as ambiguous cause, structured as multiple alternate similar routes or multiple unenforced rules/variance injection points
+
+      - the conversion function can be formatted with many different formats (like filters/limits/routes/combinations) to achieve conversion intents (like add/derive/change/remove attributes, or apply metrics) 
+
+      - the intent of the conversion function is to represent each component in the problem space (or data set) as a component of cause (attribute, structure, concept, related object, etc)
+
+      - the conversion function will attempt to standardize to related interfaces, if the minimum information for the current interface is not met
+        - adjacent causal interfaces (interfaces acting as inputs/outputs or with similarities to this interface, like how information, math, and structure are related interfaces)
+        - alternate/proxy causal interfaces (interface combinations/embeddings that can act in place of this interface)
+
+      - a structure with a causation attribute (standardizable to the causal interfacee) can have:
+        - causal attributes (causal inputs/outputs, function variables, causal metrics, and descriptive attributes like direction, ambiguity, relevance, uniqueness, directness, inevitability)
+        - causal types (root, direct, hub)
+        - causal functions (converge/diverge, catalyze, depend, isolate)
+        - causal structures (vector, tree, loop, network)
+        - related objects (related concepts like dependence, ambiguity, relevance, agency)
+
+      - you can look for cause in structures by prioritizing:
+        - known causal structures & causal patterns
+        - causal vertex variables (like dependence)
+        - variables that are often found with cause
+          - combinations of identifying objects/attributes/functions, like ambiguous-direction or inevitable-unique structures
+          - causal function inputs/outputs
+          - related objects to cause
+          - preceding/determining/generative structures of these components (generative structures of related objects, causal function outputs, inevitable-unique structures)
+
+    - cause object definition
+
+      - definition:
+        - cause can be defined as dependency
+
+      - objects:
+        - dependencies
+
+      - structures:
+        - most causal shapes are cyclical, layer, or network-shaped rather than one-directional vector-shaped (like a tree), which is why some existing methods are inherently incapable of producing system-fitted insights that wont break the system when applied (a particular drug that is not evaluated for bio-system impact, just impact on a particular pathogen or process)
+        - stack: set of adjacent (or other definition of relevant) causes
+        - causal loop: a function that generates information may end up using that information or its side effects like decisions as an input, creating a causal loop
+
+      - attributes
+
+        - identification/description variables
+          - degree (x is n degrees of cause away from y)
+          - direction: describes direction of control between nodes (x is always an output so it couldn't have caused y)
+          - interchangeability: can function as another cause (x is a proxy for z, so x & z are not both required to explain y)
+          - ambiguity: occurs with multiple alternates that are not clearly different in their input/output (alternative causes that cannot be resolved or invalidated)
+          - directness: adjacency of cause (x indirectly causes y, x immediately precedes y on a causal chain)
+          - uniqueness: describing whether multiple causes can be ruled out (x is guaranteed to cause y and nothing else does)
+          - inevitability: pre-determination of cause, which occurs from structure
+          - explicit/implicit (x is defined to cause y or x implies y)
+          - abstraction (x contextually or absolutely causes y)
+          - relevance
+          - set of possible alternate causes
+          - requirement/probability of cause (x must cause y regardless of most possible system contexts; if x this hadn't caused y, something else in the system probably would have caused y anyway, given all the similar structures in the system that interact with y, so x is not a required cause of y)
+          - generatability/controllability (how many inputs does the causal have, how fragile is the causation)
+          - dominance (x is almost always causative if allowed to interact with any object - example 'a source of power')
+          - function (x is descriptive rather than generative so it cannot be a cause unless descriptions are an input)
+            - difference from randomness
+          - difference between actual/possible functions (if an agent doesn't solve a problem, but they could have efficiently solved it, is the problem caused by them or its origin)
+
+        - types (apply attributes with varying values to generate core types)
+          - root cause: an origin cause of a causal branch
+          - catalyst: triggers cascade of causes
+          - hub: a causal node where causes aggregate, are generated, or connect (like a structural or information cause)
+          - indirect/inevitable/ambiguous/unique cause
+          - relevant cause: cause on similar interaction layer or in similar position as:
+            - agents ('describe the problem' has relevant causes like direct cause)
+            - agent intents ('intent to invalidate the problem' has different relevant causes, like the root cause)
+          - alternate cause
+          - interface causes
+            - structural cause
+              - cause from position
+              - cause from interaction layer
+            - concept cause
+              - balance/power as a cause (balance/power attributes/functions caused the output)
+          - causation bases
+            - decision-based cause (from an agent)
+            - time-based cause (the cause is the default/natural progression from a prior state)
+            - random cause (from lack of agents or organization)
+        - inputs (interaction, adjacence, similarity, cooperativeness, potential, structure, change)
+        - outputs (inevitability, influence)
+        - description attributes (structure, type, causation potential, randomness)
+        - generative attributes (structure, system context, change rules, object identities, interaction iterations)
+        - metric attributes
+          - number of steps between causal nodes (measures directness of cause)
+          - number of possible causes (measures uniqueness/ambiguity of cause)
+        - function parameters
+
+      - function interface
+        - patterns
+        - functions
+          - core functions
+            - inherits structural core functions (combine, merge, rotate, convert, format, limit, enforce)
+            - resolve: identify cause in a set of possible alternate causes
+            - isolate: identify contribution of a particular cause to an output
+            - inject/extract dependency
+            - identify causal structure, as shown in FIG 13 (Causal structure-matching)
+              - answers the question: 
+                  - why did something work (because of its causal position/structure/layer/pattern/interactions/attributes/similarities)
+                  - what layer of the causal stack is the relevant cause  
+
+          - change functions
+            - change structure
+            - change intent
+            - change cause metrics
+            - change cause attributes or attribute values
+            - change causal direction
+            - dis/ambiguate (clarify) cause
+            - distance/connect cause
+            - apply/inject cause
+            - intend cause (use a cause to fulfill an intent)
+            - require/invalidate cause
+            - assume cause
+            - depend/isolate
+            - converge/diverge
+
+          - boundary functions
+            - cause is not:
+              - lack of a resource that couldnt be expected (divine intervention, meaning/reasons/incentives, connection across distant systems)
+
+          - condition/context functions
+
+            - cause of the same event can have different structure across contexts, such as:
+              - being poisoned by a plant while lost on a hike (evolution, randomness, lack of information, low agency injection) has a different cause than taking the substance for a research experiment (high level of agency injection), and this will impact the causal structures activated by that substance (being eaten by bears, receiving antidote)
+
+            - conditional cause functions assess the conditions/context of a cause, to determine contextual (system-fitted) cause
+              - accidentally taking luggage on a plane that someone planted drugs in often has a different cause than agreeing to do it
+                - unless the only reason they accidentally didnt check their luggage was fear of gangs, and if the agreement would also occur bc of fear of gangs
+
+            - functions include:
+              - determine causal position relative to other causes (like context or system structure)
+              - determine range of possible structures of a cause, with other conditions/contexts applied
+              - apply context/condition to a cause
+
+          - connecting functions
+            - combination functions
+              - these functions determine how causes of different attributes/types/change states interact, answering questions like: how does an agent cause combine with a structural cause?
+
+
+    - related objects of causal interface
+
+      - information interface
+        - definitions
+          - cause: input, power, excess unhandled energy, lack of organization
+        - strategies
+          - 'when creating ambiguity, use abstract rules'
+        - insights
+          - 'causation is a relative term'
+        - questions
+          - 'which causal relationships should be checked first when finding variable relationships?'
+        - context
+          - system context
+          - problem space context
+          - dimension set context
+            - spaces where cause is measurable (dimensions maximizing or displaying differences)
+
+      - intent interface
+        - causal intents
+          - outputs (direct/combined/emerging)
+          - side effects (indirect side effects of outputs, processing side effects like locking inputs, opportunity cost of processing)
+        - intent vs. incentives: an intent without an agency cause is an incentive
+          - incentives are usually considered less causal than intents, from the agent perspective: 
+          - agents cant be expected to go against incentives every time, as theyre generated by system structure
+          - but agents can usually inject agency into the system, to change its structure & the intents resulting from it
+          - intents exist outside of the system, which can motivate agents to change a system
+          - so structure of a system is not the cause of all causes, but it is an important interface to apply on top of the causal interface
+          - if there is an absolute root cause, it may be change rules (how systems change)
+
+      - concept interface
+        - core causal concepts
+          - state: important for identifying sequential causation
+          - structure: important for identifying inevitable causation
+          - agency: injection of intent into structure (like with organization)
+          - adaptation: important for identifying causal potential (an organism that can learn/change is likelier to be causal)
+          - dependence (structure: causal links)
+            - mutual dependence (structure: causal loop)
+          - ambiguity vs. determination/uniqueness (reducing possible alternatives)
+        - determining concepts
+        - adjacent concepts
+
+      - type interface
+        - attribute sets differentiating objects
+        - attribute sets without types
+        - type hierarchy
+
+      - system interface
+        - causal system
+          - system objects
+            - symmetries/efficiencies/similarities
+            - definitions (difference, power, direction)
+          - system functions
+            - core system function (apply, inject, combine) definitions on the causal interface
+
+      - structural interface
+        - structures
+          - structure network (links between causal & other structures)
+          - causal structures
+            - causal structure network (links between causal structures like sequence, hierarchy, tree, network, etc)
+              - structures (filters, limits, maps, networks, trades, sequences, links, circuits)
+          - determining structures
+            - input/determining structures
+              - filters
+              - functions
+          - structures identifying cause
+            - tree origin (root cause)
+            - adjacence (causal degree)
+            - layer (alternative cause on layer)
+
+    - interface operation (combined/applied/injected) output
+
+      - intent-structure interface
+        - intents identifying cause
+          - aligned intents (compounding cause)
+
+      - pattern-structure interface
+        - 'a causal tree often has multiple layers & may converge to fewer nodes' 
+
+      - structure-function interface
+        - functions as structures (filters, limits, maps, networks, trades, sequences, links, circuits)
+        - structure functions (traverse, combine, find, build)
+
+      - cause-concept-system interface
+        - causal concept system
+          - system objects
+            - symmetries/efficiencies/similarities
+            - definitions
+            - structures (networks, trades, sequences, links, circuits)
+
+          - system functions
+            - core system function (apply, inject, combine) definitions on the causal-concept interface
 
 
 IV. Information Analysis
@@ -972,8 +1184,22 @@ XI. Interface analysis
     - component traversal function (to execute after after conversion)
     - a function (and corresponding data, like definitions or interface structures) to find/generate/derive the interface network from that interface, in case resources are isolated
 
+  - each interface may have related interface objects, like supported intents
+
+  - interface traversal & queries have supported intents such as:
+    - 'finding formats linking other formats'
+    - 'finding a structure for a concept'
+    - 'applying a function to a structure'
+    - 'match a problem in this format, with a solution (in a format that can interact with the problem)'
+    - 'optimize this system'
+    - 'find an optimal route between these system positions'
+    - 'find a cause of this variable'
+    - 'find an optimal structure for this information'
+    - 'design an interface query to convert input information into an output information type (like an insight, a cause, a new interface in data, problem-solving automation workflow)'
+    - 'assemble a meaningful (relevant) format of this information for this intent'
+
 - objects:
-  - ''' to do: ''' structurized interfaces: interfaces with other interface components applied (like limits applied to the causal interface components)
+  - structurized interfaces: interfaces with other interface components applied (like limits applied to the causal interface components)
   - interface operation (combine interfaces, etc)
   - interface traversal (apply an interface to a problem)
   - interface query (cross multiple interfaces in a sequence)
@@ -1002,49 +1228,37 @@ XI. Interface analysis
   - variance focus (what variance is exaggerated for comparison by this interface)
   - position of interface on default interface network (what distortions produce this filter/perspective from unfiltered origin)
 
-- answers questions like: ''' to do: '''
-
-    - selecting those optimal interfaces to solve a problem: framing a conflict of type 'competition' as opposing direction/intent or equivalent direction/intent is a calculation that can be automated using any of these kinds of analysis, but the logic & intent interfaces are best at this
-    - finding explanatory variables on multiple interfaces (a trajectory on the interface network) & translating them to a shared interface where possible
-    - determining position/trajectory within an interface
-    - selecting interface as the best standard for comparison (identifying when a particular specific interface will reduce solution set across any possible host system)
-    - generating specific interfaces (filters) for a problem/space
-    - generating full set of general interfaces (intent, concept, structure)
-    - these can be generated by identifying the key differentiating factors across systems, which can be generated as system structures (like combinations of objects - type is an attribute set, intent is a function effect set, concept is a network of networks describing a structural concept (balance, power), structure is an information & rule set)
-    - identifying all interfaces with variance that cant be captured in other interfaces
-    - calculating when to skip interim variables/interfaces
-    - determining adjacent interfaces
-    - building a problem-solving automation workflow
-    - selecting a problem-solving automation workflow to start with for a particular problem (which is the same as designing an interface query)
- 
-  - finding the structure of cross-interface relationships
-    - patterns in ratios between uncertainty generated by a function combination vs. uncertainty-reduction function patterns & potential (how does it hide information vs. how can information be derived)
-    - the relationship between the transformation function converting one space into another, and the transformation function converting a space's objects (like insights) to another space's objects
-    - valid/invalid operations in a space
-    - set of all possible spaces (fulfilling concept combinations) & link to the objects best described in that space whose differences are relevant to those concepts
-    - within a description system, there will be rules linking objects (like a shape & another shape type) that align with inherent system attributes like symmetry: "given any line, an equilateral triangle can be constructed with the line as its base"
-    - core operations done on one attribute (length) vs. another attribute (angle)
-    - how core operations & objects accrete in a space (multiple, shift, embed) on every interface layer
-    - spaces as the intersection of variables of a certain format
-    - derive object types with attributes useful for a particular operation ("quaternions for 3-d rotation")
-    - information objects (like value) conversion into system objects (like units, such as integer units)
-    - what patterns turn into objects that attract/hold (or provide a platform or conduit for) the most variance
-    - attributes accrete into aggregate/type/emergent attributes ("equipollent when they are parallel, of the same length, and similarly oriented")
+- answers questions like:
+  - finding explanatory variables on multiple interfaces
+  - identifying variance that cant be captured in other interfaces
+  - building a problem-solving automation workflow
+  - selecting a problem-solving automation workflow to start with for a particular problem (which is the same as designing an interface query)
+  - finding the structure of cross-interface interactions, such as:
+    - finding patterns in ratios between uncertainty generated by a function combination vs. uncertainty-reduction function patterns & potential 
+    - determining the relationship between the function converting one structure into another & the function converting its determining/descriptive/causative/generative variables
+    - finding valid/invalid change types in a structure
+    - finding structures fulfilling a concept combination & trajectory to the objects in that structure whose differences are relevant to those concepts
+    - determining the impact of operations done on one attribute (length) vs. another attribute (angle)
+    - finding how core operations & objects develop & accrete in a structure (like a system)
+    - deriving object types with attributes useful for a particular operation ("quaternions for 3-d rotation")
+    - converting information objects (like value) into system objects (like units, such as integer units)
+    - finding patterns that turn into objects that attract/hold the most variance
     - how to generate a new solution automation workflow
     - what solution automation workflow is optimal for this problem
-    - as change increases, which interfaces are more/less adjacent, where interfaces are represented as a set of filters, each additional filter being a unit of change on the x-axis, and each subsequent filter being one distortion away from the previous filter, where the origin is the most standard filter
 
 - functions
 
   - interface integration functions
+
     - assemble meaning (relevant cross-system structures) of information retrieved, during & after interface traversal, integrating new information retrieved/generated with input and/or prior information retrieved/generated
-      - this function integrates output into a structure relevant to the interface traversal intent (on the interface-interface), interface traversal intents such as:
-        - 'find a cause of this variable'
-        - 'find an optimal structure for this information'
-        - 'design an interface query to convert input information into an output information type (like an insight, a cause, a new interface in data, problem-solving automation workflow)'
-        which involves applying structure to the output information as designated in the initial interface query design
+      - this function integrates output into a structure relevant to the interface query intent (on the interface-interface) which involves applying structure to the integrated output information from the interface traversals, as designated in the interface query design
 
   - interface query functions
+
+      - function to find/derive/build an interim interface to standardize components from multiple interfaces
+        - example: changes from other interfaces can all be framed on the interim change interface
+
+      - function to determine adjacent/causative/generative/descriptive/alternative interfaces
 
       - function to design an interface query (sequence of traversing interfaces), as shown in FIG 22 (Interface & traversal diagram)
 
@@ -1058,18 +1272,237 @@ XI. Interface analysis
             - whether to exit processing and return output to the user if information fulfilling a certain metric like 'explanatory potential' is found
           - the interface query may apply interface operations to determine interface application structure like sequence or network
 
-      - function to select starting interface
+      - function to find an interface, interface structure, or interface traversal to fulfill an intent
 
-        - function to select an interface as the best standard for comparison
-          - identifying when a particular specific interface will reduce solution set across any possible host system
-          - examples:
+        - this function finds a structure of information formats/standards that would be useful for a given input intent, and selects the interfaces that could produce that structure of formats
+          
+        - this function identifies when a particular specific interface will reduce solution set across any possible host system
+          
+        - examples:
+
             - the filter interface is more clearly usable as a method to generate the others bc most problems can be reduced to a structure that can be filled in different ways for different reasons
               - it can even generate the change interface, by framing each process as a filter between i/o
+            
             - framing a conflict of type 'competition' as opposing direction/intent or equivalent direction/intent is a calculation that can be automated using any of these kinds of analysis, but the logic & intent interfaces are best at this, and selecting those type of analysis is an important tool to build
+            
             - which interface to standardize to in what structure (sequence/combination) depends on which use you intend to use the information for
               - if you need to implement it immediately, an interface like intent that is semantically adjacent to the structural & logical interfaces will be more useful
               - if you need to identify new types, standardizing to the type interface will be more useful
         
+
+          - example interface queries for problem statements:
+              https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/docs/specific_methods/problem_solving_matching.md
+
+            - problem: find a prediction function to predict variables causing an output, like predicting stock price or a diagnosis from symptoms/causative conditions
+              - interface traversal
+              - find information (describing variable types, redundancies, missing info, etc)
+              - fit system (fitting the variables to a system format)
+              - map cause (finding root/direct causes & causal structures)
+              - match concept (whether the problem is valid given a definition of price)
+              - identify change (how the function can change)
+              - if thats not enough to fulfill solution metrics or reduce the problem (identify a range of possible prediction functions), traversals with interface operations can be done
+              - causal * change * pattern - to examine whether causal change patterns can reduce the problem or identify a solution
+              - concept * change * causes - to identify if a concept change looks imminent
+            - problem: find & build an optimal invention design to fulfill intents like 'building a function with minimal bugs'
+              - interface traversal
+              - find information (describing function intents, limits, and assumptions like parameters)
+              - fit system (fitting the function to a system, formatted to optionally include possible variance injection points, identify efficiencies like logic that can be merged, etc)
+              - identify structure (identifying structures that can be applied to the function system, like filters (conditions), direction changes (control flow statements), relationships (assignments), and mismatches (errors)
+              - identify potential (identifying unenforced rules, rule-intent imbalances, false similarities, & other objects of potential allowing exploit opportunities that are not already identified)
+              - change cause, intent, concept (test function impact on other causes, concepts, & intents, which are high-level objects a function can alter)
+              - match pattern (does this function comply with patterns for functions with similar solution metrics)
+              - if the function implementation doesn't fulfill solution metrics, other interface traversals can be done
+              - a system-object or function-concept interface like the 'efficiency interface' or 'ambiguity interface' (does this function have a more efficient or less ambiguous route between input & output that might fulfill a solution metric, given that maximizing efficiency & reducing ambiguity are standard system & function metrics)
+            - problem: find an optimal route (or alternatively, find a distribution of functionality/efficiencies/costs to make all routes or a particular route less/equivalently costly) between start & end points, like the 'minimal trades to get equal problem/opportunity distribution'
+              - interface traversal
+              - identify information (identify differentiating attributes/functions/sub-systems of agents/positions/routes within the network)
+              - fit system (identify relevant structures like abstraction layer to traverse at, identify important objects required to solve the problem, like trading problems/markets/skills/information/risk/bets vs. trading currency, or framing currency as a position attribute, rather than a standardizing interface)
+              - identify structure (identify trade & other market structures that are important for understanding why resources don't get distributed fairly, like closed trade loops & independence machines)
+              - identify potential (identify alternative perspectives that could also explain the variation in optimized routes, like alternate value definitions)
+              - identify cause (identify causes like marketing, collusion, and regulations that prevent or interfere with equilibrium market events)
+              - identify concept (identify concepts relevant to markets like balance, demand/supply matching, and how the concept of information can disrupt any other market bc it enables automation)
+              - if queries of those interfaces are insufficient to solve the problem, interface operations can be used
+              - the information-system-structure interface operation (can be used to determine information like the next layer of information objects that are relevant if enough automation is distributed)
+            - problem: design set-sorting or value-finding function:
+                - analyze a set object from these interfaces - then when you find a pattern match on an interface set, you can restrict the search to those
+                - core interface: what core functions determine set generation/selection/aggregation/interaction/organization
+                - causal interface: what functions were used to generate the set
+                - intent interface: what is this set for
+                - structure interface: randomness, endpoints, subsets/split
+                - potential interface: what are the limits on this set, what is the set of possible outcomes
+                - change interface: where is the change concentrated/distributed in the set from a standard set
+                - pattern interface: what patterns do sets in this position (determined by attributes or sample subset) normally follow
+                - function interface: what functions are adjacent to the set if it has a sequence or clear function map
+                - concept interface: 
+                  - what specific tradeoffs/mismatches/alignments/symmetries/combinations/interactions are inherent to the problem/problem space? (specific concept filter) 
+                  - where is the power distributed in the set? (abstract concept filter)
+                  - identified concepts: 'similarity' in navigation, 'equality' in split => optimal for target value near initial split points or similar positions to the split points
+                - system interface: what variance injection points are in the set generation/selection/aggregation/interaction/organization
+                - key concepts of this problem (like the "tradeoff of search start point/split function/organization vs. performance", "subset gains", "pattern matching", and "potential worst/best case scenario of solution") should be found quickly from various interfaces:
+                - structure interface: 
+                  - position (sequence in the set problem space) is a determinant of adjacence/distance
+                  - adjacence between start search position and final found value position is a key metric
+                  - start-found adjacence can be maximized by changing input (number of start points)
+                  - limits on number of processes involve ability to read a value at a given position at a time
+                  - maximizing start-found adjacence requires more work (higher search processes) to produce a possible metric "lower search time"
+                  - "search time" and "start point count" have a tradeoff structure
+                - potential interface:
+                  - the set of possible outcomes (possible positions of value) is equal to the set's positions (indexes)
+                  - how do you reduce the set of possible outcomes if the possible outcomes are an integer sequence equal to the set length
+                  - subsets are a potential interim unit (based on the value count attribute) between the outcome data type (one value index) and the input data type (set)
+                  - the potential of subsets of equivalent length to contain the value could be equally likely (adding randomness to search)
+                  - potential injection point for pattern interface: skipping equivalent valued subsets could reduce solve time (if subsets with a certain split follow patterns as determined at search time)
+                  - best case scenario in standard search (random or endpoint) is the first value in the set is the target value
+                  - does subset search offer gains to random search?
+                  - best case scenario of unit solution type (iterate check of value)in subset search is first value after first subset split (split in half) is the target value
+                  - next best case scenario type (if the unit solution type best case scenario doesn't occur iteratively) is pattern found & used to reduce solution/search space
+                  - splitting requires multiple processes
+                  - pattern logging/searching requires multiple processes
+                  - depending on set, either can reduce solution space with extra work
+                  - there is a trade-off between work invested in pattern-checking, subset-splitting & solution space reduction potential
+
+
+        - interface query logic example: 
+            - to fulfill an intent like 'determine if type variables are a predictor for this data set' (where type variables arent included in the data set), this function would organize the relevant interfaces by core operations:
+
+            - interface query:
+
+              - check that:
+                - variables[independent] / (standardized by)
+                  - [type interface].function.(patterns || insights) or [attribute interface].function[aggregation](patterns || insights)
+                    - as an input to [potential interface].[prediction interface].functions (including regression)
+                      - outputs [input information].variable[dependent]
+
+            - function logic (from format structure to interface query)
+
+              - convert intent to requirements:
+                  - condition: 'if type variables predict dependent variable from data set'
+                  - intent: 
+                    - determine if condition is true
+                      - function to fulfill 'determine if condition is true' intent applies logic to:
+                        - fulfill 'predict dependent variable in data set from type variables' sub-intent
+                  - input: data set
+
+              - determine required formats:
+                
+                - input requirement: type variables
+                  - type formats:
+                    - attribute set
+                    - type attribute
+                
+                - input requirement: prediction
+                  - prediction formats:
+                    - function structures: functions formatted as a set of limits/vectors/filters/networks/sequences/sets
+                    - function format types
+                      - function development functions (and their formats)
+                      - generative/descriptive/causative/determining functions (and their formats)
+                      - mixed-certainty function (with points or subsets where non-uniqueness of outputs is introduced to represent a possibility structure like a possible output range)
+                
+                - output requirement: dependent variable predictor
+                  - variable formats
+
+                - function requirements:
+                  - combine attributes into sets creating generative functions or function components
+                  - iterate through attribute sets
+                  - identify attribute sets indicating types
+                    (attribute sets that could create a generative function or function component that would be combined with other functions/components to build the original function)
+                  - identify predictive variables
+                  - identify dependent variable relationship to function components or alternate functions
+
+                - organized function format (by input/output/logic organization) for an input format combination (attribute set & generative functions) & output format (predictor of dependent variable)
+
+                  - combine: create combinations of attributes
+                    - iterate: for each combination created
+                      - match: identify if combination & type variable definition match 
+                        - check: if attribute set describes a function that can generate the original function when combined with other generative functions from other attribute sets
+                          - condition: if so
+                            - store: attribute set as a type variable
+                    - check: if identified type attribute sets can predict the original dependent variable
+
+              - apply organized function format to organize & connect the available input & output formats
+
+                - iterate through required input format combinations:
+
+                  - example:
+
+                    - format combination: 
+                      - type format (as an 'attribute set' format)
+                      - prediction format (as a 'set of generative functions' format)
+
+                    - logic:
+                      - apply the organized function format to fulfill the intents:
+                        - intent: 'determine if condition is true'
+                          - condition intent:
+                            - for 'prediction' sub-intent:
+                              - generate attribute sets (possible type variables)
+                                - apply combination functions to combine attributes into attribute sets
+                                - iterate through combinations
+                                  - identify if combination is a type variable:
+                                    - apply filtering functions to check if an attribute set describes an alternate function that could represent a type generating the original function
+                                      - if so, store the attribute set as a type variable
+                                - apply prediction functions (like regression) to check if output dependent variable can be predicted from identified type variables
+                                  - if so, return output true
+                              - otherwise return output false
+
+                          - lastly, determine if condition intent is fulfilled
+                            - apply true/false format on a match check (of prediction intent output & original condition)
+
+          - example: here's an example of why different interfaces are more useful in different situations, given a standard problem like 'build a function automatically for a given function intent'.
+            https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/docs/core_analysis/system_analysis.md
+            https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/docs/core_analysis/interface_analysis.md
+            https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/docs/core_analysis/derivation_methods.md
+            https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/docs/specific_methods/problem_solving_matching.md
+
+            1. Intent interface
+            - If you want to build a function automatically, and you have code indexed by intent, then you don't need to write code, you need to write the intent & sub-intent sequence or other structure. I would call that 'standardizing to the intent interface' or 'applying intent structures' to the overall function intent, which is the problem definition ('build a function with this overall intent'). If you already have code indexed by intent, framing a function as a set of intents is trivial. If you don't already have code indexed by intent, the process you use to decompose an overall function intent into a structure of sub-intents is a tool that can be re-used to index existing functions by intent.
+            2. Information interface
+            - If the problem can be framed as an information problem, you can query information problem type rules & patterns to solve it automatically. Building a function automatically given an overall intent would mean:
+              - solving a series of information problems like:
+                - 'information mismatch' (object1 doesn't match object2 and it should, so assign object2 to object1)
+                - 'conflicting information' (object1 doesn't match object2 so merge their conflicts) 
+                - 'required information' (object1 is required to have this attribute value so assign it)
+                - 'missing information' (object1 is missing this attribute so return False or query for that information or generate it).
+            3. Cause interface
+            - If the problem can be framed as a cause problem, then you are querying for causes. Building a function automatically given an overall intent would mean: 
+              - finding the causes of bugs
+              - finding the causes of different types of logic & structures (like sequences) applied to different types of logic (inherent rules governing logic given the point/definition of logical operations, like 'an if condition usually precedes a non-if condition' because the point of an if condition is to test for a case to apply logic, where the logic applied is not another condition)
+              - finding the causes of functions & function-related objects like side effects, memory usage, optimizations done on other functions, etc
+              - then you'd compose these causes in a structure that would allow automatic generation of functions from a given intent (first apply logic-related causes to generate a function causing the given function intent, then check for optimization-causes in the generated function & apply optimizations if those causes are found in your generated function structure, then apply tests for bug causes, etc).
+            4. Structure interface
+            - If the problem can be framed as a structure problem, then you are querying for structures. Building a function automatically given an overall intent would mean:
+                - finding structures to standardize functions to (limits, filters, networks of relationships, directed networks of operations)
+                - finding structures to standardize intents to (directions as priorities or more structural goals, possible usage ranges as intents, abstraction as an indicator of intent (neutral/mathematical functions can be used for anything), using intent as a proxy structure for the concept of permission by organizing information access by intent)
+                - matching intent & function structures that fulfill the given overall function intent without causing invalidating side effect intents
+            5. Pattern interface
+            - If the problem can be framed as a problem of resolving which patterns to combine in what structures (where patterns optionally include abstract/generalized structures (such as variables, variable patterns, input-output path patterns, or type patterns) that resolve to specific logic when converted into information, meaning they're assigned constants), building a function automatically given an overall intent would mean:
+              - finding which patterns or alternative pattern sets (a variable type relationship pattern, an input-output type trajectory pattern, a logic sequence pattern, an optimization pattern) can generate the required logic when constants (specific information-filled versions of the abstract pattern structure) are applied
+                - the output of that may be as diverse as an input-output table to handle a variety of use cases observed, a prediction function trained on input-output data, a logical sequence, a code query, an intent sequence, a directed logic network, etc - depending on the patterns used
+            6. System interface
+            - If the problem can be framed as a problem of fitting the function to a system, building a function automatically given an overall intent would mean:
+              - identifying starting & ending position to map intent to structure in the system (get from input start node to output end node)
+              - identify default & alternative (higher cost, lower step count, etc) paths between start & end node
+              - identifying system objects like efficiencies, incentives, etc, especially those structures clearly relevant to the default & alternative paths between start & end nodes identified
+              - applying definitions of those system objects to select the logical step sequence (avoid conflicts, target rewards without side effects, minimize costs, apply symmetries for standardization purposes)
+              - checking which routes fulfill given function intent
+            7. Concept interface
+            - If the problem can be framed as a set of concepts required for the solution (framing the intent in terms of concepts like 'distribute power evenly'), or if you have conceptual information indexed for code, building a function automatically given an overall intent would mean:
+              - using conceptual math operations to determine which structure of concepts is most useful for the given intent (if combining 'power' and 'efficiency' in a 'sequence' or 'balanced' structure would produce the optimal function for an intent like 'distribute power evenly', that is calculatable if you have other functions indexed by conceptual structures, or if you have conceptual math operations accessible to determine what structure of concepts would generate the required concept set, or if you have intent indexed by conceptual structures, or if you can standardize intent & concept to another interface where you have conceptual structures indexed, etc)
+                - for example if you have functions indexed with conceptual structures like the individual concepts required (power, efficiency, distribution), what operations can be applied to these concepts to create the optimal concept combination ('distribute power evenly') - meaning conceptual operations like 'inject power to distribution structure', 'limit distribution structure with power injected by efficiency', etc.
+                - these conceptual operations involve finding matching structures across the concept definitions:
+                - 'injecting' power into a structure manifesting the 'distribution' concept is possible if the distribution-manifesting structure has an input opportunity of some structure, and power can be translated into a structure that can be used by the structure having that input opportunity (a distribution structure such as a function having an input opportunity in the form of a parameter, where power can be translated into a usable structure like information assigned to that parameter), given the definition of the 'inject' operation as 'input the injectable to the receiver'
+                - you can avoid doing structural operations by storing the structures for each concept and then storing patterns/outputs of their operations
+                - if combining power & efficiency produces a structure set, that can be derived by querying the structures of power & efficiency and combining those structures in a way that doesn't invalidate either definition
+                - you can also apply logic to the concept operation ('inject power to distribution, limited by efficiency') to create the output concept of that conceptual operation ('efficient distribution of power'), and then do a structure query of that output concept
+                - once you have function structures matching the output (having found function logic matching 'efficient distribution of power' once translated to the structural version 'minimized cost of allocating inputs' if inputs are the structure found in the function system matching the power definition, where 'minimized cost of allocating inputs' can mean 'diversifying calls for this intent across various alternative functions' or 're-using existing functions where possible to minimize the cost of building a function on-demand or at compile time' or 'a function set that minimizes the memory/space requirements of allocating inputs'), you check if those structures optimally fulfill this function's intent, 'distribute power evenly', and then execute the final steps to resolve those structures into function logic (with input-output requirement chains, intent-matching, etc)
+            8. Problem interface
+            - If the problem can be framed as a problem in a problem network of related problems, and/or a problem space, you can calculate attributes like whether the problem is about to be invalidated by other functions built for other problems, whether the profit opportunity of solving the problem is worth the probable cost, whether the whole problem space is about to fundamentally change, etc. Building a function automatically given an overall intent would mean:
+              - determining whether the problem of organizing logic is a solved problem if framed differently (can AI generate code with enough accuracy to invalidate further investment)
+              - determining whether solving an adjacent or proxy problem invalidates solving this specific problem (can concept or intent identification tools or even existing code bases invalidate the need for a tool to build functions automatically, or can code bases be re-written in a way that invalidates automatic code generation, by simplifying code-writing to a task of intent-writing or code query-writing or another process simple enough to invalidate complex code and the need to generate it)
+                - determining if a solution like logic automation can replace code generation (a tool that automatically applies the definition of logic, optionally including all related objects like logical fallacies, to prevent logically 'jumping to conclusions' or 'ignoring assumptions' or 'over-applying bias vs. updating bias', then indexing code as these logical objects so logical rules can be applied to optimize/generate code)
+                - this would involve writing high-level logic language like 'find information, avoid misidentifying object1 as object2, combine common attributes of these objects with versioning in case of conflicting values, avoid this conclusion & this fallacy error type', which would allow logical object definitions (of what a fallacy is, what a legitimate conclusion/assumption/implication is, etc) to be applied automatically, rather than the existing method of applying conditional/contextual/specific low-level logic developer-defined definitions to be applied manually, which involves writing low-level logic like 'select * from table, check if object1.attribute.value == object2.attribute.value, etc'.
+              - determining whether the problem can be formatted as a set of solved problems (applying organization to information, applying definitions, finding matching structures, generating tests) or in a format that is solved (route optimization)
+            - given the information you have, one interface may be more useful to standardize to than another. If you already have intent or cause information indexed or otherwise adjacently calculatable, or if those interfaces contain the required solution information (as in, the problem is 'finding the cause of some measurement', so the solution is going to be findable on the causal interface), you'd be better off standardizing to those interfaces first, without other information.
+
       - function to determine whether to skip adjacent interfaces in interface trajectory
           - sometimes you'll be able to skip interim variables/interfaces
             - example: depict the spine variable & the finger position variable to demonstrate/identify chirality, skipping the connecting functions, because there are multiple connecting functions (endpoint/side selection, extremity development) and they dont determine change in either variable, as the key important relationship is the spine symmetry and the orientation transformed about the finger position interface being reversed according to the spine symmetry
@@ -1119,6 +1552,16 @@ XI. Interface analysis
         - applying related objects of the interface:
           - example: applying interface info objects like related questions/insights
 
+
+      - the function to traverse an interface is referenced here:
+        https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/docs/specific_methods/math_semantic_map.md
+        https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/docs/specific_methods/problem_solving_matching.md
+        https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/docs/tasks/function_to_do.md
+        https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/docs/tasks/to_do.md
+        https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/docs/tasks/ideas.md
+        https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/README.md
+
+
     - find distortions to apply that would generate useful information (example: 'apply core/interaction layer/generative/causative/primary functions to input information')
     
     - identify & find related objects of an interface
@@ -1137,12 +1580,11 @@ XI. Interface analysis
       - identifying all interfaces with variance that cant be captured in other interfaces
       - filter interfaces 
         - filtering the pattern interface by the intent interface with would produce a set of intents found in patterns
+      - identifying specific interfaces (filters) for a problem/space
 
     - build interfaces
       - construct an interface (apply interface definition & generate structures to fill it)
 
-      - generating specific interfaces (filters) for a problem/space
-      
       - derive the interface network from an interface
 
         - each interface network in the set of interfaces (core function interface network, general interface network, specific interface network) can be used to generate the others
@@ -1182,5 +1624,83 @@ XI. Interface analysis
         - cause * type interface: 
           causal type interface (what types of cause are there), type cause interface (what causes types)
           causal type cause (what causes causal types), type cause type (what types of type causes are there)
+
+- examples
+
+  - examples of interface queries that function as problem-solving automation workflows
+      https://github.com/outdreamer/build-a-cure/blob/52c3461fdd3ff38284b63f8c2e71542f415d88d9/docs/specific_methods/problem_solving_matching.md
+
+    - The following are general examples of a workflow to find a solution to a problem automatically, as described in application 16887411. 
+
+    The process 400 in application 16887411 runs interface queries to match a problem with its intended solution information (like a strategy) in the intended solution format (strategy formatted as a set of steps in a problem network or vectors reducing a problem shape)
+
+      - interface queries to solve a problem can be as simple as a query for specific solutions to re-use solutions in the database, or as complex as applying a format to the problem to make calculating the solution trivial)
+        
+      Workflow variables optionally include:
+        - starting point of the analysis (which interface the query starts from)
+        - structures relevant (which structures or type of graphing method to use)
+        - intent (create a prediction function, reduce solution space, compare solutions, or match problem with solution)
+        - core abstract function represented (is it a find method, an apply method, a combination)
+        - formats & structures used (object model, interface query)
+      
+      If the problem is 'finding a structure that matches conceptual priorities like strength', that can clearly begin on the concept-structure traversal, if information required for that traversal already exists in the problem definition or derived metadata
+        - concept-structure interface traversal (a multi-interface traversal linking the concept & structure interfaces, so a target concept combination/set/path or target structural attribute can be achieved with structures like filters/limits/functions that adjust the origin structure until it matches the target structural attributes or concepts)
+        - problem-solution interface traversal: sometimes a sufficient solution may be already stored in the solution table (solution being an information object) and the way to solve the problem is formatting it correctly or identifying its type correctly so that solutions for that format or type can be queried & applied as-is, the most basic traversal type
+        - intent interface traversal, which is particularly effective at linking other interfaces (find intents & intent structures that fulfill the 'strength' attribute, and structures matching those intents)
+      
+      Other workflows can be derived given alternate traversals that can generate information (like how causation, information formats, functions, and intent can generate structure information), given existing information.
+      These workflows can be generated with new interface combinations or interfaces, if each interface in the sequence can add information required to solve the problem. Occasionally an interface will be sufficient on its own, if the problem is already pre-structured. For example, the function interface may be enough to find the right sequence of functions, if the function metadata optionally includes input/outputs and there are no ambiguities to resolve, meaning this solution is a simple query to match inputs/outputs, where the final output is the intended goal of the query
+      
+      Other problem-solving automation workflows would start with different interface traversals & use different origin & target structures, different target structures like: 
+        - a new method to design interface trajectories
+        - new info object layers to use as interfaces/systems (like by combining perspective & potential to generate a potential-perspective field, problems & markets to create a market for problems, platforms & platforms to create a platform to sell platforms, variables & networks to create variable networks, variables & risk to identify variable development sequences)).
+        - structures that, when applied to a problem, create a clear format/structure sequence linking the problem with a solution (like insights such as 'break a problem into sub-problems & aggregate solutions' or 'apply filters until the problem space is a solution space, then repeat until the solution space is a solution'). A specific example is 'problem vectorization' as mentioned above in VII: finding specific interim formats linking a problem & solution format (such as the structure of concepts/interfaces that would link variables with a prediction function) & applying structures to create that format sequence (like a directed network)
+
+      A problem-solving automation workflow is a type of interface traversal that can be applied to any problem, although some workflows are more adjacent to a problem definition than others, like how a highly structured problem may already have an existing solution in the database, so that workflow of querying the database to find a solution should be applied first. Workflows are very abstract insight paths (a cross-system, insight-generating sequence) detailing specific interface traversals that can generate solutions automatically.    
+      
+      For example, the workflow inherent to this tool (to match a problem with a solution) uses the problem information as the default interface. The overall workflow of this tool can be built with an interface query:
+        - find problem type & format the problem as a combination of information problem types (information (problem, assumption) interface, type interface), as well as any related problems (information (problem) interface, pattern interface, and the change interface to generate related problems if none are logged)
+        - find solution requirements (structure interface where requirements are limits/thresholds)
+        - apply a set of various information formats (interface interface, information interface, structure interface), positioned in the sequence likeliest to find the missing information to solve the problem. For example, if its missing cause information, standardize to the causal interface or generate information about likely causes from other interfaces like the pattern interface or generate adjacent or proxy information to cause information like a set of tests to filter out non-cause information or generate interaction pattern information to predict which objects will interact, generating causes.
+        - if the information formats applied don't reveal enough info, apply combinations of the formats (structure interface, core interface)
+        - if no solution space can be identified or reduced, return the queries and the problem & problem space metadata
+        
+      Specific workflows to automate problem-solving apply various interfaces & analysis types, and can be applied to any problem with sufficient information in its definition. These workflows optionally include:
+        I. Filter problem definition until it matches solution structure (using definition & standardization, applying increasing limits/filters/transforms until problem & solution match)
+          - this applies structures such as limits to fulfill solution intents iteratively
+          - for example, when deriving the structural implementation of the concept of cryptocurrency, applying a 'group' structure to the 'transaction' object creates the 'transaction ledger' object, which fulfills sub-intents of the solution ('access related information' and 'connect related information') and reduces a problem sub-component (the 'information imbalance' problem type between receiver & sender), a problem type which has related solution functions (like 'distribute information evenly')
+        II. Solve problem with structure fitting (adapt probable solution structures to match problem definition)
+          - this starts with core, probable, or difference-maximizing structures and applies additional structures until one is found that fulfills solution metrics
+          - for example, to find a prediction function for a data set, 
+          - the core functions would be common base/distortion (patterns of change), component (core patterns of prediction functions), approximation (generalizing functions), & adjacent functions (functions within a range of accuracy) of prediction functions
+          - the probable functions would be functions in between the most accurate and the most generalized function versions
+          - the difference-maximizing functions would be the most different possible functions (a circle function to explain a high-randomness data set, multiple step-functions to explain a continuous function, a linear function, etc) to start by examining the most different possibilities and eliminate them with additional filters
+        III. Transforming problem into query of solved problems (using most adjacent solution formats)
+          - converting the problem into a structure (set, sequence, network) of solved problems (like distributing power, resolving imbalances, etc), and then traversing that structure if multiple alternatives are found
+          - this method can take the form of a simple database query ('fetch & apply solutions, optionally including insight paths, for this problem type' or 'find the fewest question jumps that can solve the problem') in its most basic form, if the problem is an existing solved problem
+          - for example, finding a prediction function is a set of problems like 'decide on metrics & threshold values', 'decide on complexity', 'choose between opposing sides of tradeoffs', 'generalize', 'identify outliers', 'identify noise', 'account for error types like corrupt/incorrect/unrecoverable/incentivized or improperly formatted/standardized data', 'account for alternate explanations', 'account for correlation between independent variables', 'account for incorrect data types', 'account for missing information', etc
+        IV. Solve problem with solution function generation & selection (optionally with pattern/intent-matching)
+          - this uses the function interface to identify useful metrics to select functions to begin with when searching for a function to solve a problem (like 'calculate x') which can involve function metadata like identifying hub functions, functions that move in a direction, etc
+          - this analysis involves identifying/deriving decision rules to identify alternate/interchangeable solution functions & select between solution functions
+          - an example would be deciding when to select a solution function you have indexed in the solution table and when to look for a new function, or update the existing function
+        V. Solve problem with conceptual query (iterate through conceptual paths & match with structural path)
+          - start with required concepts (but not their optimal relationships in a concept combination) such as 'trust', 'distribution', 'power', and find a structure that arranges those concepts in an optimal way that fits the solution requirements
+        VI. Derive conceptual query & match with structural path
+          - start by finding the concept combination required ('trust generated from equal distribution of power'), then find matching structures of that specific combination
+        VII. Vectorize problem/solution space & match intents
+          - this involves framing a problem as a structure like a directed network to convert it to a route optimization problem, where the assumptions are inputs, the intents are outputs, & the interim structures can be a mix of interface objects like concepts
+          - if you have a general problem definition like 'find a function that calculates x', you would arrange input information on one side, the function on the other side as the goal, and identify related concepts, patterns, & other objects to that intent to connect them, given the definition routes of those terms
+          - this can also involve formatting the problem as a set of questions (sub-problems of an information asymmetry problem type) to answer that map from starting information to target information
+        VIII. Mapping variance objects in problem space systems as starting solution space
+          - framing a problem in terms of variance (on the potential interface) makes it clear which objects are important, given variance/potential structures like interaction spaces, inevitable interactions, variance gaps, etc
+          - the high-variance objects in the 'find a prediction function' problem are the error types, assumptions, change types, data set concepts (like how the concept of 'survival skills' is relevant & inferable in the titanic survival data set), and variation across data sets, so a good solution would integrate functions to identify & handle those objects
+        IX. System snapshot (interface/symmetry/vertex) derivation
+          - finding the specific interfaces & related objects in a problem system to frame a problem efficiently
+          - in the bio system, this would mean automatically identifying the genetic configuration, protein structure, immune memory, and brain interfaces as important determinants of the system
+          - in a function set like a code base, this would mean automatically identifying the function type interface (to identify function types like boundary/change rules for efficient function indexing) and the intent interface as important for indexing functions
+          - in the 'find a prediction function' problem, this would identify the concept of 'average' as an important symmetry balancing various tradeoffs, identify independent variable probability distributions as an important vertex in predicting the behavior of dependent variables, and identify the cause interface as an important interface for understanding, which is a proxy for a prediction function, the potential interface as a tool for understanding variable dynamics (how sources of variance gather into variables), and the system interface as a way to derive the range of possible prediction functions (how variables gather in complex systems, and how the range of prediction functions is whichever prediction functions are possible between those variables as system components, given system structure, so you should start with the vertices of that range - meaning a set of difference-maximizing functions in that range)
+        X. System derivation
+          - this is a more comprehensive format that allows quick application & identification of system objects (alternates, efficiencies, incentives)
+          - for example, identifying known system objects for the 'find a prediction function' problem would mean identifying incentives in data collection (collect small sample, collect representative sample), efficiencies in calculating prediction functions (some sections should be treated as potential fields, where a network is embedded in place of a function section, to indicate decision logic or alternate functions accessible with additional information, if a predicted value is requested from that section of the function), false similarities (like the apparent similarity between two variables being correlation rather than a direct relationship), opposites (like neutralizing variables), and other core system objects
 
 [0057] Method described in claims optionally includes the aforementioned interface analysis types mentioned as a component of solution automation module 140, as well as other optional interface analysis types, which optionally includes example analysis type definitions that allow for automation of that analysis & allow for the application of specific functions powering that analysis (custom analysis functions like 'find the set of questions or formats that makes finding a solution trivial'), examples of these custom analysis functions being provided in the example interface analysis definitions above.
