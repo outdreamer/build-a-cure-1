@@ -18,11 +18,11 @@ BRIEF SUMMARY OF THE INVENTION
 
 [0004] One or more embodiments of the present disclosure may include a method that involves the logic inherent to steps 402-410 of process 400 of the application 16887411:
 
-[0004] Note: a more readable version of this document with indentation is here: https://github.com/outdreamer/build-a-cure/blob/master/docs/tasks/interface_specific_analysis.py
+[0005] Note: a more readable version of this document with indentation is here: https://github.com/outdreamer/build-a-cure/blob/master/docs/tasks/interface_specific_analysis.py
 
-[0004] General interface analysis process includes general logic like:
+[0006] General interface analysis process includes general logic like:
 
-	1. convert input information to interface based on interface object definition (remove information unrelated to dependencies for the causal interface)
+	1. convert input information to an interface based on interface object definition (remove information unrelated to dependencies for the causal interface)
 	2. apply an interface to input information (find core causal interface components (like structures, such as directions of dependency) in the input information necessary to do other causal interface operations)
 	3. apply interface components to distort information to generate additional information to match (distort input information with causal or other interface components)
 	    - specific interface components (like navigation functions) for that interface
@@ -32,9 +32,9 @@ BRIEF SUMMARY OF THE INVENTION
 	4. find matching objects (check formatted information & distorted information for objects that match the causal interface objects
 	5. convert to input information format (integrate causal structures found with the input information, checking for validity of the structures & their related objects once integrated with the input information)
 
-[0004] General interface traversal process includes general logic like:
+[0007] General interface traversal process includes general logic like:
 
-	1. obtaining a request (comprising information & intent) from a program or user
+	1. obtaining a request (comprising information & intent, and optionally query configuration) from a program or user
 	2. retrieving an interface definition
 	3. deriving the interface definition if not found
 	4. determining relevant interfaces or interface structures
@@ -43,55 +43,51 @@ BRIEF SUMMARY OF THE INVENTION
 	7. applying the interface definition to standardize the information, and finding matching information & interface components, executing the interface analysis steps of the previous paragraph.
 	8. integrating output into a structure relevant to the interface traversal intent (on the meaning or interface-interface), interface traversal intents such as 'find a cause of this variable' or 'find an optimal structure for this information', which involves applying structure to the output information as designated in the initial interface query design
 
-[0004] The object and advantages of the embodiments will be realized and achieved at least by the elements, features, and combinations particularly pointed out in the claims. 
+[0008] The object and advantages of the embodiments will be realized and achieved at least by the elements, features, and combinations particularly pointed out in the claims. 
 
-[0004] It is to be understood that both the foregoing general description and the following detailed description are merely examples and explanatory and are not restrictive. 
+[0009] It is to be understood that both the foregoing general description and the following detailed description are merely examples and explanatory and are not restrictive. 
 
 ''' to do:	
-- add new diagram of meaning interface (integrating information across interfaces into relevant structures for an intent)
-- replace references to diagrams & update numbers, using Fig. notation
 - add paragraph numbers
-- add page numbers & line spacing & calibri, add abstract & claims on separate pages
+- edit user interface diagram for interface analysis, edit functions on figure 2
 - add indication that a program can also make requests to this program in the diagram for the computing system workflow
-- remove references to fig 2, 3, 4, 14, 15, 24, 25 before updating numbers
-- update numbers in diagram 
-- add device & computing system diagrams to diagrams.svg
-- add user interface diagram for interface analysis
+- add new diagram of meaning interface (integrating information across interfaces into relevant structures for an intent)
+- add page numbers, line spacing, calibri font, add abstract & claims on separate pages
+- change 1A - 1J to 1 - 10, change 16 - 25 to 14 - 23
 '''
 
 BRIEF DESCRIPTION OF THE DRAWINGS 
 
-[0005] Example embodiments will be described and explained with additional specificity and detail through the use of the accompanying drawings in which: 
-[0006] FIG. 1. 'User Interface Module' illustrates a diagram of a user interface that can accept user input about a problem & program configuration.
-
-[0007] FIG. 2. 'Interface-specific analysis Module' illustrates a diagram of a general workflow for how the interface-specific analysis program may find a solution for a problem statement.
-[0008] FIG. 3. 'Problem Space Metadata' illustrates an example of metadata describing a problem, problem space, or related problem network.
-[0009] FIG. 4. 'Solution Metadata' illustrates an example of metadata describing a solution, solution set, or solution space.
-
-
-[0010] FIG. 5. 'Structure Application Function (Apply)' illustrates applying a structure to another structure.
-[0011] FIG. 6. 'Problem space visualization' illustrates an example visualization of a problem space.
-[0012] FIG. 7. 'Network of related problems' illustrates an example of a network of related problems.
-[0013] FIG. 8. 'Problem Types' illustrates a set of common problem types formatted as information or structural problems.
-[0014] FIG. 9. 'Problem formats, with matching solution formats of problem formats' illustrates an example of various problem formats & solution formats that match them.
-[0015] FIG. 10. 'Problem-solution structure-matching: apply a solution function to a structure containing the problem to find specific solution structures for that problem' illustrates an example of matching a problem with a solution.
-[0016] FIG. 11. 'Finding alternate solution formats that fulfill different metrics' illustrates an example of selecting a solution format that fulfills a solution metric.
-[0017] FIG. 12. 'Network of problem sub-problems, breaking a problem into components problems' illustrates an example of breaking a problem into a set of sub-problems, which once solved, can be aggregated with a solution-aggregation method as shown.
-[0018] FIG. 13. 'Causal structure-matching' illustrates a method of matching causal structures to a variable set.
-[0021] FIG. 16. 'Concept definition network' illustrates a network of related concepts.
-[0022] FIG. 17. 'Alternate definition routes' illustrates a set of definition routes for a concept.
-[0023] FIG. 18. 'Match structure for a definition of a concept' illustrates matching a structure to a concept.
-[0024] FIG. 19. 'Intent-matching' illustrates matching intent to structure & vice versa.
-[0025] FIG. 20. 'Insight path application' illustrates insight path examples and an example of applying an insight path.
-[0026] FIG. 21. 'Interface conversion & matching' illustrates an example of selecting an interface to traverse.
-[0027] FIG. 22. 'Interface & traversal diagram' illustrates an example of a diagram indicating an example interface, & a diagram indicating which interfaces to traverse in what sequence (forming an interface query).
-[0028] FIG. 23. illustrates an example computing system. 
-
+[0010] Example embodiments will be described and explained with additional specificity and detail through the use of the accompanying drawings.
+[0006] Figs. 1 - 20 contain diagrams of an overview of an example implementation 100 described herein.
+[0011] FIG. 1. 'User Interface Module' illustrates a diagram of a user interface that can accept user input about a problem & program configuration.
+[0008] Fig. 2. Interface Analysis Module 140 is a diagram of example components (such as functions & constants) of a program to automatically apply information formats to achieve an input intent.
+[0009] Fig. 3. Machine learning system 120 is a diagram of an example wrapper component that would call a machine learning system to predict a variable.
+[0010] Fig. 4. API finding/calling system 130 is a diagram of an example wrapper component that would call an API finding/calling system to retrieve data.
+[0012] FIG. 5. 'Structure Application Function - Apply Function' illustrates applying a structure to another structure.
+[0013] FIG. 6. 'Problem space visualization' illustrates an example visualization of a problem space.
+[0014] FIG. 7. 'Network of related problems' illustrates an example of a network of related problems.
+[0015] FIG. 8. 'Problem Types' illustrates a set of common problem types formatted as information or structural problems.
+[0016] FIG. 9. 'Problem formats, with matching solution formats of problem formats' illustrates an example of various problem formats & solution formats that match them.
+[0017] FIG. 10. 'Problem-solution structure-matching: apply a solution function to a structure containing the problem to find specific solution structures for that problem' illustrates an example of matching a problem with a solution.
+[0018] FIG. 11. 'Finding alternate solution formats that fulfill different metrics' illustrates an example of selecting a solution format that fulfills a solution metric.
+[0019] FIG. 12. 'Network of problem sub-problems, breaking a problem into components problems' illustrates an example of breaking a problem into a set of sub-problems, which once solved, can be aggregated with a solution-aggregation method as shown.
+[0020] FIG. 13. 'Causal structure-matching' illustrates a method of matching causal structures to a variable set.
+[0021] FIG. 14. 'Concept definition network' illustrates a network of related concepts.
+[0022] FIG. 15. 'Alternate definition routes' illustrates a set of definition routes for a concept.
+[0023] FIG. 16. 'Match structure for a definition of a concept' illustrates matching a structure to a concept.
+[0024] FIG. 17. 'Intent-matching' illustrates matching intent to structure & vice versa.
+[0025] FIG. 18. 'Insight path application' illustrates insight path examples and an example of applying an insight path.
+[0026] FIG. 19. 'Interface conversion & matching' illustrates an example of selecting an interface to traverse.
+[0027] FIG. 20. 'Interface & traversal diagram' illustrates an example of a diagram indicating an example interface, & a diagram indicating which interfaces to traverse in what sequence (forming an interface query).
+[0028] Fig. 21 is a diagram of an example usage of the system.
+[0029] Fig. 22 is a diagram of an example environment in which systems and/or methods, described herein, may be implemented, including interface analysis module 220 in FIG. 22.
+[0030] Fig. 23 is a diagram of example components of one or more devices of FIG. 22.
 
 CLAIMS 
 
 1. A method comprising: 
-	1. obtaining a request (comprising information & intent) from a program or user
+	1. obtaining a request (comprising information & intent, and optionally query configuration) from a program or user
 	2. retrieving an interface definition
 	3. deriving the interface definition if not found
 	4. determining relevant interfaces or interface structures
@@ -128,7 +124,7 @@ CLAIMS
 9. The method of claim 1, further comprising integrating output into a structure relevant to the requested intent (on the meaning or interface-interface), which involves applying structure to the output information as designated in the interface query design.
 
 10. A non-transitory computer-readable medium containing instructions that, when executed by a processor, cause a device to perform operations, the operations comprising: 
-	1. obtaining a request (comprising information & intent) from a program or user
+	1. obtaining a request (comprising information & intent, and optionally query configuration) from a program or user
 	2. retrieving an interface definition
 	3. deriving the interface definition if not found
 	4. determining relevant interfaces or interface structures
@@ -166,7 +162,7 @@ CLAIMS
 
 
 19. A system comprising: one or more processors; and one or more non-transitory computer-readable media containing instructions that, when executed by the one or more processors, cause the system to perform operations, the operations comprising:
-	1. obtaining a request (comprising information & intent) from a program or user
+	1. obtaining a request (comprising information & intent, and optionally query configuration) from a program or user
 	2. retrieving an interface definition
 	3. deriving the interface definition if not found
 	4. determining relevant interfaces or interface structures
@@ -209,14 +205,9 @@ DETAILED DESCRIPTION OF THE INVENTION 
 
 	- component: functions/attributes/types/objects/systems
 	- input information: can refer to original information input to the initial interface traversal, or traversal output information that has been converted, enhanced, formatted, or otherwise altered in a prior interface traversal, stored as a possible version of the original input information, and sent as input to another interface traversal
-	
-	''' to do: '''
 	- interface: a useful standard for comparison consisting of the filtering object's definition routes, conversion function, core functions, objects, & attributes, and related objects like patterns & metadata specific to the interface 
-		- abstract interfaces optionally include cause, concept, structure, etc 
-		- specific interfaces are other foundations where change develops in a clearly defined range that can be found in specific systems 
-	- the traversal of an interface implies finding a map between objects, functions, & attributes inherent to that interface to the problem objects, functions, & attributes 
-	- the application of an interface is an operation in an interface combination, mapping, injection, or other operation 
-	
+	    - the traversal of an interface implies mapping input information to interface components
+	    - interface operation act on interfaces themselves (like application, combination, mapping, or injection of an interface)
 	- function: a set of inputs, a sequential list of rules or rule lists (logic tree) applied to the input set, an output set created by changes to the input set executed by the sequential rule list, optionally including side effects from execution. A function may be formatted in a different way, such as a list of attributes, filters, or a network.
 	- intent: any of an abstract goal with direction, a reason to use something, or an output such as the intended result or an unintended side effect, which can be an abstract priority like fairness, a concrete goal, and can have a starting & ending position.
 	- concept: set of unique objects remaining once objects from other spaces have their context & contradictory attributes removed. 
@@ -325,7 +316,7 @@ DETAILED DESCRIPTION OF THE INVENTION 
 
 [0031]
 	As shown in FIG. 1B, and by reference number 140, the example interface analysis module 140 may be used to automate finding a solution for a problem statement, in accordance with one or more embodiments of the present disclosure. The interface analysis module 140 may include a user interaction module 110 and a machine learning system 120 and an API finding & calling system 130 that may provide input to a interface analysis module 140. The interface analysis module 140 may facilitate determination of the solution 150 associated with the problem statement, and output the solution 150 to the user interaction module 110.
-	In some embodiments, such solution automation may lead to a solution for the problem, such as the cause of a problem, the intents fulfilled by a problem and/or the solution, a set of steps to reduce the problem, or a set of steps to neutralize or change the problem space containing the problem. In these and other embodiments, if a user is dissatisfied with the provided solution 150 (e.g., the solution is incomplete or no solution was found), the user may interact with the interface analysis module 140 (e.g., to add more information or remove assumptions) and the solution automation may be run again.
+	In some embodiments, such interface analysis may lead to a solution for the problem, such as the cause of a problem, the intents fulfilled by a problem and/or the solution, a set of steps to reduce the problem, or a set of steps to neutralize or change the problem space containing the problem. In these and other embodiments, if a user is dissatisfied with the provided solution 150 (e.g., the solution is incomplete or no solution was found), the user may interact with the interface analysis module 140 (e.g., to add more information or remove assumptions) and the interface analysis may be run again.
 	The interface analysis module 140 may include any device or system or components thereof configured to utilize the inputs from the machine learning system 120 or the API finding & calling system 130 and from the user interaction module 110 to output the solution 150.
 
 [0032]
