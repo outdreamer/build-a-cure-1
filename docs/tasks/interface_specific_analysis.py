@@ -520,7 +520,7 @@
     - given that these species evolved this way, what level of variance is the missing link between them likely to have?
 
 
-[0043] Method described in claims may include insight interface analysis (a sub-interface of the information interface) mentioned as a component of interface analysis module 140 (optionally including example logic & output depicted in diagrams FIG. 20), with an example definition of the analysis as follows:
+[0043] Method described in claims may include insight interface analysis (a sub-interface of the information interface) mentioned as a component of interface analysis module 140 (optionally including example logic & output depicted in diagrams FIG. 19), with an example definition of the analysis as follows:
 
   - example of the analysis for this interface:
     - an insight path is a reusable cross-system pattern, usually built out of core functions from a general interface filter (type, intent, function, structure), that allows generation of insights. It can be as simple as a function like differentiate, a standardizing attribute like relevance, or involve a standard object like a simplifying question. It does not refer to specific strategies unless those strategies can be used to generate insights. Insight paths usually consist of abstract or structural rules like 'match structure' or 'identify type'.
@@ -529,7 +529,7 @@
       - insight path of a route type (optimal/realistic)
       - insight path trajectory for a particular assumption set
   - attributes: reusability (insights can have a limited opportunity of applicability, and may have scope beyond their host system)
-  - functions: apply/derive an insight path, shown in FIG. 20 (Insight path application), link insights, identify insight
+  - functions: apply/derive an insight path, shown in FIG. 19 (Insight path application), link insights, identify insight
   - objects: rule structure (combination of rules, sequence of rules, position of rules)
   - structures: insight path
   - concepts: predictive power (an insight is true & may be powerful in predicting across systems)
@@ -569,8 +569,8 @@
 
 - functions:
   - a set of functions to select filters to display in the GUI, and validate input 
-  - mapping function, to map objects to structures, functions, & other object types (as graphing an object is depicted in FIG. 7 (Problem space visualization))
-      - graph a related object network (as shown in FIG. 7) & other relevant objects
+  - mapping function, to map objects to structures, functions, & other object types (as graphing an object is depicted in FIG. 6 (Problem space visualization))
+      - graph a related object network (as shown in FIG. 6) & other relevant objects
       - function to match structures with coordinating formats, as shown in FIG. 9
       - function to apply an object to another object, as shown in FIG. 5 (Structure Application Function - Apply Function)
         - example: applying a 'route optimization' solution may take the form of adjusting the system structure to invalidate the route, may attach a function to nodes, or inject an efficiency structure to the system, which may also reduce the problem dimensions in the problem space visualization in addition to changing the system structure in the associated visualized system-structure interface format of the problem.
@@ -666,7 +666,7 @@
   - ratio of positive to negative outputs (problems solved vs. caused)
   - inevitability vs. agency of problem cause
   - agency involved in the problem
-  - problem types (examples shown in FIG. 17. Problem Types)
+  - problem types (examples shown in FIG. 8. Problem Types)
     - dependency/fragility
     - mismatches
     - conflicts
@@ -808,7 +808,7 @@
   - functions (structural functions: combine, merge, apply, embed, mix, filter, chain, define, create, derive, identify, change, version)        
 
 
-[0051] Method described in claims may include intent interface analysis mentioned as a component of interface analysis module 140 (optionally including example logic & output depicted in diagrams FIG. 19), with an example definition of the analysis as follows:
+[0051] Method described in claims may include intent interface analysis mentioned as a component of interface analysis module 140 (optionally including example logic & output depicted in diagrams FIG. 18), with an example definition of the analysis as follows:
 
   - example of the analysis for this interface:
     - intent can be defined as possible reasons to use a function (or use an object as a function):
@@ -823,7 +823,7 @@
     - operate on intents (intent-modification intent)
     - derive intent as a dependency of the intent interface conversion function 
     - map intent to direction & assess solution progress by movement in that direction
-    - mapping intent to structure & vice versa is shown in FIG. 19 (Intent-matching)
+    - mapping intent to structure & vice versa is shown in FIG. 18 (Intent-matching)
   - structures:
     - intent matrix is the interaction space of a set of intents, where its emergent intents can be traced across the interaction space
     - intent stack is the set of adjacent intents of a function, from granular/neutral/abstract to specific/explicit, across various interfaces like logic, abstraction, & structure
@@ -940,7 +940,7 @@
     - what is the implication of this rule
 
 
-[0053] Method described in claims may include concept interface analysis mentioned as a component of interface analysis module 140 (optionally including example logic & output depicted in diagrams FIG. 16, 17, & 18), with an example definition of the analysis as follows:
+[0053] Method described in claims may include concept interface analysis mentioned as a component of interface analysis module 140 (optionally including example logic & output depicted in diagrams FIGS. 15 - 17), with an example definition of the analysis as follows:
 
   - example of the analysis for this interface:
     - a concept is an object in a system that:
@@ -948,10 +948,10 @@
       - acts as an interface (for change, randomness, etc) or determinant of change
       - has attributes/functionality beyond its definition in that space (can have one function in one system context & another emerging function in a particular state & environment)
       - example: power is the object left when objects implementing it: resources => energy => input => potential) have their context removed, navigating up the abstraction stack from the info layer (resources & energy), removing their contextual attributes/rules, to the abstract structural layer (input) , to the abstract layer (potential, which is a related concept of power) , so that the final object is defined in terms of other abstract objects on the top layer 
-    - the abstract network is a set of related concept objects remaining after removing context, concepts that are applicable across systems, often have multiple definition routes because they take a variety of forms given the context, and are fundamental to describing a system. A subset of the abstract network is depicted in FIG. 16. Concept definition network, which shows concepts related to 'relevance'.
+    - the abstract network is a set of related concept objects remaining after removing context, concepts that are applicable across systems, often have multiple definition routes because they take a variety of forms given the context, and are fundamental to describing a system. A subset of the abstract network is depicted in FIG. 15. Concept definition network, which shows concepts related to 'relevance'.
       - so that the final object is defined in terms of other abstract objects on the top layer
     - a non-abstract concept is an abstract concept with structure applied (in a particular system), like how a particular definition of similarity in a system can evolve from the abstract concept of equivalence
-    - example structures that apply a concept are depicted in FIG. 18 (Match structure for a definition of a concept), which depicts structures of the 'distribution' and 'power' concepts.
+    - example structures that apply a concept are depicted in FIG. 17 (Match structure for a definition of a concept), which depicts structures of the 'distribution' and 'power' concepts.
     - this interface can be used for specific attribute analysis, of properties that descend from concepts & take form in a specific problem space:
       - the power concept interface (has structures that look like trust, info, etc)
       - the balance concept interface (has structures that look like symmetry, justice, etc)
@@ -961,7 +961,7 @@
   - attributes (abstraction, uniqueness, isolatability)
   - functions:
     - function to identify/derive/define concepts in a system (unique objects in a system that cant be defined in terms of standard operations on other objects)
-      - example of possible definition routes for the concept of 'equality' are given in FIG. 17. Alternate definition routes
+      - example of possible definition routes for the concept of 'equality' are given in FIG. 16. Alternate definition routes
       - example: 'meaning' concept definition (relevance/structure) is based on attributes like reduction of signals (relevance) and matching of signal structures (similarity)
     - function to identify abstract concepts, by attributes like whether they:
       - can take many structures (the concept of equivalence has many possible implementations)
@@ -1062,7 +1062,7 @@
           - identify structures for information
 
 
-[0041] Method described in claims includes interface analysis mentioned as a component of interface analysis module 140 (optionally including example logic & output depicted in diagrams FIG. 21 & 22), with an example definition of the analysis as follows:
+[0041] Method described in claims includes interface analysis mentioned as a component of interface analysis module 140 (optionally including example logic & output depicted in diagrams FIGS. 20 & 21), with an example definition of the analysis as follows:
 
   - example of the analysis for this interface:
 
@@ -1165,7 +1165,7 @@
 
         - function to determine adjacent/causative/generative/descriptive/alternative interfaces
 
-        - function to design an interface query (sequence of traversing interfaces), as shown in FIG. 22 (Interface & traversal diagram)
+        - function to design an interface query (sequence of traversing interfaces), as shown in FIG. 21 (Interface & traversal diagram)
 
           - this function assembles a structure (like sequence or network) of interfaces or interface structures (like a combination) that can fulfill a user intent (the user optionally being a program requesting an interface traversal or query)
           
@@ -1267,65 +1267,60 @@
                     - there is a trade-off between work invested in pattern-checking, subset-splitting & solution space reduction potential
 
 
-          - interface query logic example: 
+          - interface query logic example, as shown in Fig. 14 Design Interface Query
               - to fulfill an intent like 'determine if type variables are a predictor for this data set' (where type variables arent included in the data set), this function would organize the relevant interfaces by core operations:
 
-              - example of output interface query:
+              - example of output interface query in abstracted form (this can be used as a structure to fill with logic, rather than starting from format structure):
                 - check that:
                   - variables[independent] / (standardized by)
                     - [type interface].function.(patterns || insights) or [attribute interface].function[aggregation](patterns || insights)
                       - as an input to [potential interface].[prediction interface].functions (including regression)
                         - outputs [input information].variable[dependent]
 
-              - determine general function logic (from format structure to interface query)
+              1. convert initial intent to organized requirements, given dependencies
+                  - intent: 'determine if type variables predict dependent variable from data set'
+                    - sub-intent 'predict dependent variable in data set from type variables'
+                      - sub-intent 'find type variables'
+                  - input: data set variables
 
-                - convert intent to requirements:
-                      - condition: 'if type variables predict dependent variable from data set'
-                      - intent: 
-                        - determine if condition is true
-                          - function to fulfill 'determine if condition is true' intent applies logic to:
-                            - fulfill 'predict dependent variable in data set from type variables' sub-intent
-                      - input: data set
-
-              - determine required formats:
-
+              2. determine required formats given requirements
                       - input requirements:
                         - type variable format: 
                           - variable set
                           - type attribute
-
                         - prediction format: 
                           - function structures: functions formatted as a set of limits/vectors/filters/networks/sequences/sets
                           - function format types
                             - function development functions (and their formats)
                             - generative/descriptive/causative/determining functions (and their formats)
                             - mixed-certainty function (with points or subsets where non-uniqueness of outputs is introduced to represent a possibility structure like a possible output range)
-
                       - output requirement: 
                         - dependent variable predictor: function
 
-              - determine organized intent-function format (by core operations, input/output/formatting/logic rules, & organization rules) for an input format combination (variable set & generative functions) & output format (predictor of dependent variable)
-
+              3. generate interface query:
+                - use core operations (check/find/apply) & interface rules (regarding input/output, structure/formatting, connection logic) 
+                  to connect input format (variable set & generative functions) & output format (predictor of dependent variable),
+                  applying the above organized intent requirement format:
                     - containing intent: 'check if identified type variable sets can predict the original dependent variable'
                       - prediction intent: predict dependent variable from type variables
                         - sub-intent: identify type variables
-                          - sub-intent: apply type format to variables
+                          - sub-intent: apply type format to variables ('attribute set')
                             - sub-intent: generate variable combinations
                         - sub-intent: check if each variable combination matches predictor definitions
-                          - sub-intent: apply prediction format 'generative function' to each variable combination
+                          - sub-intent: apply prediction format ('generative function') to each variable combination
                             - sub-intent: store generative function for prediction intent
-                      - prediction intent: check if generative function for variable combinations can generate the original function when combined with other generative functions (like how combining y = 2 and y = 4 can generate y = 3)
+                      - prediction intent: check if generative function for variable combinations can generate the original function when combined with other generative functions 
                     - containing intent: 'check that dependent variable is predicted with sub-intent prediction output (identified type variables)'
 
-              - determine function requirements, given intent format
-                    - function: combine variables into sets creating generative functions or function components
+              4. determine function requirements, given intent format, with sub-queries to generate/find/derive these functions as needed, before running the above interface query
+                    - function: combine variables into sets creating generative functions
                     - function: iterate through variable sets
                     - function: identify variable sets indicating types
-                      (variable sets that could create a generative function or function component that would be combined with other functions/components to build the original function)
+                      (variable sets that could create a generative function that would be combined with other functions to build the original function, like how combining y = 2 and y = 4 can generate y = 3)
                      - function: identify predictive variables
                     - function: identify dependent variable relationship to function components or alternate functions
 
-              - optionally, iterate through other input format combinations, applying format combinations to organize & connect the available input & output formats
+              5. optionally, iterate through other input format combinations, applying format combinations to organize & connect the available input & output formats
 
 
             - example: here's an example of why different interfaces are more useful in different situations, given a standard problem like 'build a function automatically for a given function intent'.
@@ -1393,7 +1388,7 @@
                 - if there is demand for change (stressors demanding new functionality) but all components but one are maximizing their change handlers, then you know theres one potential variable where change will gather/be routed, if its possible to route change from the variance injection point to that variable's causal stack at some layer/point
               - its also useful for determining interface trajectories/adjacent interfaces
         
-    - interface traversal functions (as shown in FIG. 22 (Interface & traversal diagram))
+    - interface traversal functions (as shown in FIG. 21 (Interface & traversal diagram))
 
       - function to design an (internal) interface traversal:
 
@@ -1450,7 +1445,7 @@
       - function to apply a distortion function from an interface to input information
       
       - conversion functions (conversion to an interface format, and conversion back to input information system format)
-        - interface conversion function as shown in FIG. 21 (Interface conversion & matching) example: 
+        - interface conversion function as shown in FIG. 20 (Interface conversion & matching) example: 
           - converting objects to the type interface involves identifying attribute sets that are unique, and then identifying types that can describe multiple unique objects as variations of an attribute in the attribute set
           - converting to the cause interface involves focusing on dependence objects (inputs/outputs)
 
