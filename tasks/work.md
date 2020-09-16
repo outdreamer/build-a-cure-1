@@ -1,8 +1,4 @@
-- to do:
-
-	- test local ip in ssh rule for existing deployment
-	- debug task import not running in install script, add sleep
-	
+- to do:	
 	- finish 'train_model' function
 		- add api function to call & return json of model metadata & graph urls:
 			convert_reduce_classify_train_score_graph(
@@ -14,6 +10,8 @@
 	https://github.com/outdreamer/build-a-cure/tree/master/tasks
 		- python3 deploy_tf.py --secret "" --access "" --task "destroy_before_run"
 		- python3 deploy_tf.py --secret "" --access "" --task "elk"
+
+	- move credential params to config
 
 	- check for conversion script
 		'google_compute_instance': 'aws_instance',

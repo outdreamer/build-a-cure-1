@@ -25,6 +25,7 @@ def run_remote_task(params):
 	to do: add logging to output.txt of errors in functions applied as one-line commands like apply_algorithm or create_graph
 	'''
 	command = None
+
 	client = connect_to_instance(params)
 	if client:
 		''' executing commands can be done in userdata, but if not this is another way '''
@@ -37,7 +38,7 @@ def run_remote_task(params):
 			command = 'flask run' # 'sagemaker start
 		elif params['task'] == 'stop_api':
 			command = '' # sagemaker stop
-		elif params['task'] == 'train_model':
+		elif params['task'] == 'model':
 			command = ''.join(["python3 -c apply_algorithm(", params['data'], ", ", params['algorithm'], ")"])
 		elif params['task'] == 'create_graph':
 			''' this should have params like data set, dependent var, graph type, which we'll translate to matplotlib graph layers, axis labels, etc '''
@@ -61,7 +62,8 @@ def connect_to_instance(params):
 			if client:
 				client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 				try:
-					connection = client.connect(hostname=params['output_public_ip'], username=params['user'], pkey=key)
+					task_ip_output = '_'.join([params['task'], 'output_public_ip'])
+					connection = client.connect(hostname=params[task_ip_output], username=params['user'], pkey=key)
 					if connection:
 						return client
 				except Exception as e:
@@ -80,11 +82,13 @@ def execute_remote_command(client, command):
 
 def generate_config(params):
 	cloud_resources = {'aws': ['ec2', 'ssh']}
-	ip_addr = os.system("curl ipecho.net/plain >> ip.txt")
+	params['my_ip_addr'] = None
 	if os.path.exists('ip.txt'):
-		with open('ip.txt','r') as f:
-			params['my_ip_addr'] = f.read()
-			f.close()
+		params['my_ip_addr'] = open('ip.txt', 'r').read()
+	if params['my_ip_addr'] is None or params['my_ip_addr'] == '':
+		os.system("curl ipecho.net/plain >> ip.txt")
+		if os.path.exists('ip.txt'):
+			params['my_ip_addr'] = open('ip.txt', 'r').read()
 	tf_config = get_tf_config(params)
 	if tf_config:
 		deployment_resources_lines = []
@@ -115,22 +119,29 @@ def deploy_generated_tf_config(params):
 				if stdout and result == 0:
 					okeys = {}
 					add_flag = 0
-					okeys['output_private_key'] = []
+					task_key_output = '_'.join([params['task'], 'output_private_key'])
+					task_ip_output = '_'.join([params['task'], 'output_public_ip'])
+
+					''' add key in output '''
+					okeys[task_key_output] = []
 					for i, subline in enumerate(stdout.split('\n')):
-						if 'output_private_key' in subline:
+						if task_key_output in subline:
 							add_flag = i
-						if 'output_public_ip' not in subline:
+						if task_ip_output not in subline:
 							if add_flag > 0 and i >= add_flag:
-								okeys['output_private_key'].append(subline.strip())
+								okeys[task_key_output].append(subline.strip())
 						else:
 							break
-					okeys['output_private_key'] = '\n'.join(okeys['output_private_key']).replace('output_private_key = ', '')
-					okeys['output_private_key'] = okeys['output_private_key'][0:-1] if okeys['output_private_key'][-1] == '\n' else okeys['output_private_key']
-					open(params['keypath'], 'w').write(okeys['output_private_key'])
+					okeys[task_key_output] = '\n'.join(okeys[task_key_output]).replace(task_key_output, '').replace(' = ', '')
+					okeys[task_key_output] = okeys[task_key_output][0:-1] if okeys[task_key_output][-1] == '\n' else okeys[task_key_output]
+
+					print('generated key', okeys[task_key_output])
+					open(params['keypath'], 'w').write(okeys[task_key_output])
+
 					os.system(''.join(['chmod 600 ', params['keypath']]))
 					for line in stdout.split('\n'):
 						for ok in params['output_keys']:
-							if ok != 'output_private_key' and ok in line:
+							if ok != task_key_output and ok in line:
 								okeys[ok] = line.replace(ok, '').replace('=','').strip()
 					if okeys:
 						return okeys
@@ -219,17 +230,18 @@ def deploy(params):
 					print('deployed resources with output', output_keys)
 					for ok, val in output_keys.items():
 						params[ok] = val
-
 					''' save ec2 id for cleanup task '''
-					output_tracker = ''.join(['output_instance_id=', params['output_instance_id']])
+					task_id_output = '_'.join([params['task'], 'output_instance_id'])
+					output_tracker = ''.join([task_id_output, '=', params[task_id_output]])
 					if output_tracker:
 						open('output.txt', 'w').write(output_tracker)
 
 					''' to do: add waiter for resource creation '''
 					''' open generated resources '''
 					for i in range(0, 20):
-						print('trying to connect to url', i, output_keys['output_public_ip'])
-						opened = open_output_in_browser(output_keys['output_public_ip'], params)
+						task_ip_output = '_'.join([params['task'], 'output_public_ip'])
+						print('trying to connect to url', i, output_keys[task_ip_output])
+						opened = open_output_in_browser(output_keys[task_ip_output], params)
 						if not opened:
 							time.sleep(60)
 						else:
@@ -253,31 +265,8 @@ def remove_generated_config(params):
 	return params
 
 def destroy_resources(params, before_after):
+
 	exceptions = []
-	instance_ids = []
-	if params['task'] == 'destroy_before_run' and before_after == 'before':
-		if os.path.exists('output.txt'):
-			data = open('output.txt', 'r').readlines()
-			for line in data:
-				if line.split('=')[0] == 'output_instance_id':
-					instance_ids.append(line.split('=')[1].replace('\n',''))
-	elif params['task'] == 'destroy_after_run' and before_after == 'after':
-		instance_ids = [params['output_instance_id']] if params['output_instance_id'] != '' else []
-
-	'''
-	t = Terraform()
-	try:
-		result, stdout, stderr = t.destroy()
-		if result:
-			print('result', result, stdout.read(), stderr.read())
-	except Exception as e:
-		print('destroy exception', e)
-	'''
-
-	ec2 = boto3.client('ec2')
-	iam = boto3.client('iam')
-	key_name = 'deploy_key'
-	args = {'InstanceProfileName': 'ec2_profile', 'RoleName': 'ec2_role', 'InstanceIds': instance_ids, 'KeyName': key_name, 'GroupName': 'ec2_sg'}
 	functions = {
 		'ec2': {
 			'terminate_instances': ['InstanceIds'], 
@@ -288,25 +277,83 @@ def destroy_resources(params, before_after):
 			'remove_role_from_instance_profile': ['InstanceProfileName', 'RoleName'], 
 			'delete_instance_profile': ['InstanceProfileName'],
 			'delete_role': ['RoleName']
-		}		
+		}
 	}
-	for service_name, function_dict in functions.items():
-		for function_name, parameters in function_dict.items():
-			key_vals = {key: args[key] for key in parameters}
-			key_val_str = ','.join([':'.join([key, val]) if type(val) == str else ':'.join([key, ','.join(val)]) for key, val in key_vals.items()])
-			try:
-				service = ec2 if service_name == 'ec2' else iam
-				function_call = getattr(service, function_name)(**key_vals)
-				if function_call:
-					print('destroy function_call', function_call)
-			except Exception as e:
-				print('destroy function call error', e)
-				message = e.response['Error']['Message'] if 'Error' in e.response and 'Message' in e.response['Error'] else ''
-				exceptions.append('::'.join(['destroy function call error ', service_name, function_name, key_val_str, message]))
-	if os.path.exists('output.txt'):
-		os.remove('output.txt')
+	iam_functions = ['remove_role_from_instance_profile', 'delete_instance_profile', 'delete_role']
+
+	for task in params['all_tasks']:
+
+		print('task', task)
+		instance_ids = []
+		task_id_output = ''.join([task, '_output_instance_id'])
+		if task_id_output in params:
+			instance_ids = [params[task_id_output]] if params[task_id_output] != '' else []
+		if params['task'] == 'destroy_before_run' and before_after == 'before':
+			if os.path.exists('output.txt'):
+				data = open('output.txt', 'r').readlines()
+				for line in data:
+					if line.split('=')[0] == task_id_output:
+						instance_ids.append(line.split('=')[1].replace('\n',''))
+		args = {
+			'InstanceProfileName': ''.join([task, '_ec2_profile']),
+			'RoleName': ''.join([task, '_ec2_role']), 
+			'InstanceIds': instance_ids, 
+			'KeyName': 'deploy_key', 
+			'GroupName': ''.join([task, '_ec2_sg'])
+		}
+
+		''' iam has order-dependent actions '''
+		for service_name, function_dict in functions.items():
+			if service_name == 'iam':
+				for function_name in iam_functions:
+					parameters = functions[service_name][function_name]
+					new_exceptions = execute_function(parameters, args, service_name, function_name, function_dict)	
+					if len(new_exceptions) > 0:
+						exceptions.append(new_exceptions)				
+			else:
+				for function_name, parameters in function_dict.items():
+					new_exceptions = execute_function(parameters, args, service_name, function_name, function_dict)	
+					if len(new_exceptions) > 0:
+						exceptions.append(new_exceptions)	
+	cwd = os.getcwd()
+	for cur, _dirs, files in os.walk(cwd):
+		for original_filename in files:
+			filename = ''.join([cur, '/', original_filename])
+			if filename[-3:] == '.tf' or filename[-3:] == '.sh':
+				os.remove(filename)
+				print('destroy_resources: removed', filename)
+			elif 'ip.txt' in filename or 'output.txt' in filename:
+				os.remove(filename)
+			#elif 'testing.pem' in filename:
+			#	os.remove(filename)
 	if len(exceptions) == 0:
 		return True
+	return exceptions
+
+def execute_function(parameters, args, service_name, function_name, function_dict):
+	service = None
+	exceptions = []
+	ec2 = boto3.client('ec2')
+	iam = boto3.client('iam')
+	key_vals = {key: args[key] for key in parameters}
+	key_val_str = ','.join([':'.join([key, val]) if type(val) == str else ':'.join([key, ','.join(val)]) for key, val in key_vals.items()])
+	try:
+		service = boto3.client(service_name)
+	except Exception as e:
+		print('service not found', e)
+		exceptions.append(''.join(['service not found', service_name]))
+	if service is not None:
+		try:
+			function_call = getattr(service, function_name)(**key_vals)
+			if function_call:
+				print('destroy function_call', function_call)
+		except Exception as e:
+			print('destroy function call error', e)
+			if 'response' in dir(e):
+				message = e.response['Error']['Message'] if 'Error' in e.response and 'Message' in e.response['Error'] else ''
+				exceptions.append('::'.join(['destroy function call error ', service_name, function_name, key_val_str, message]))
+			else:
+				exceptions.append('::'.join(['destroy function call error ', service_name, function_name, key_val_str]))
 	return exceptions
 
 def get_params_from_args(args, params):
@@ -332,7 +379,15 @@ def get_params_from_args(args, params):
 		os.environ[env] = val
 	return params, stored_env
 	
+
+
+
 params = {'cloud': 'aws', 'task': '', 'secret_key': '', 'access_key': '', 'keypath': ''}
+local_tasks = ['destroy_before_run', 'destroy_after_run', 'remove_config', 'import', 'upload', 'download', 'elk']
+remote_tasks = ['stop_elk', 'start_elk', 'start_api', 'stop_api', 'model']
+params['all_tasks'] = [item for item in local_tasks]
+params['all_tasks'].extend(remote_tasks)
+
 params['user_dir'] = '/'.join(os.getcwd().split('/')[0:3])
 params['credential_path'] = ''.join([params['user_dir'], '/.aws/credentials_tf/credentials.ini'])
 params['keypath'] = 'testing.pem'
@@ -340,13 +395,15 @@ params['ami'] = 'ami-0baeabdd230a4e508' # centos 7
 params['region'] = 'us-west-2'
 params['user'] = 'ec2-user' if params['cloud'] == 'aws' else ''
 params['remote_dir'] = '/home/ec2-user' if params['cloud'] == 'aws' else ''
-params['output_keys'] = ['output_public_ip', 'output_instance_id', 'output_private_key']
+
 params, stored_env = get_params_from_args(sys.argv, params)
 
-local_tasks = ['destroy_before_run', 'destroy_after_run', 'remove_config', 'import', 'upload', 'download']
-remote_tasks = ['stop_elk', 'start_elk', 'start_api', 'stop_api', 'train_model']
-
+task_key_output = '_'.join([params['task'], 'output_private_key'])
+task_ip_output = '_'.join([params['task'], 'output_public_ip'])
+task_id_output = '_'.join([params['task'], 'output_instance_id'])
+params['output_keys'] = [task_ip_output, task_id_output, task_key_output]
 params['remote_ip'] = ''
+
 # import task
 params['es_host'] = 'localhost' # check that you can import to remote from local, otherwise set for internal requests on server
 params['data_path'] = '/data/event/'
@@ -365,7 +422,7 @@ if params['access_key'] != '' and params['secret_key'] != '':
 				timing = 'after' if params['task'] == 'destroy_after_run' else 'before'
 				destroyed = destroy_resources(params, timing)
 				if destroyed:
-					print('resources removal exceptions ', timing, ' run', destroyed)
+					print('resources removal exceptions ', timing, ' run: ', destroyed)
 			elif params['task'] == 'remove_config':
 				''' remove previously generated terraform config/plan, generated keys/credentials '''
 				#params = remove_generated_config(params)
@@ -391,7 +448,7 @@ if params['access_key'] != '' and params['secret_key'] != '':
 				params['task_script_path'] = ''.join([os.getcwd(), '/', params['task'], '.py']) if params['task'] not in ['elk', 'model'] else ''.join(['install_', params['task'], '.sh'])
 				params['tagname'] = ''.join(['task_', params['task']])
 				params['tf_config_path'] = ''.join([os.getcwd(), '/', params['cloud'], '_', params['task'], '_config.tf'])
-				params['instance_type'] = 'm2.medium' if params['task'] == 'model' else 't2.medium'
+				params['instance_type'] = 'm5.large' if params['task'] == 'model' else 't2.medium'
 				params['plan_path'] = params['tf_config_path'].replace('_config.tf', '_plan_config.bin')
 				deploy_params_to_clean = deploy(params)
 				if deploy_params_to_clean:

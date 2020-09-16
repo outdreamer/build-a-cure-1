@@ -25,8 +25,7 @@ def generate_script_for_task(params):
 				'make -j4',
 				'cd ../python-package && python3 setup.py install --user'
 			]
-		if params['task'] == 'elk':
-			service_packages = ['elasticsearch', 'logstash', 'kibana']
+		service_packages = ['elasticsearch', 'logstash', 'kibana'] if params['task'] == 'elk' else []
 		all_commands['init'] = [''.join(['yum install ', ' '.join(init_packages), ' -y'])]
 		all_commands['repo'] = [''.join(["cd ", home_dir, " && git clone https://github.com/outdreamer/build-a-cure.git && cd ./build-a-cure/tasks && pip3 install -r ", params['task'], "_requirements.txt"])]
 		if params['task'] == 'elk':
