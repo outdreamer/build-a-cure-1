@@ -34,16 +34,6 @@
     - example: ethics is the concept of balance applied to a system with agents 
       - question: is there a requirement that every good system has an implementation of each concept in the abstract network in a way that obeys their interaction rules?
 
-  - function list (tech debt):
-    - core operations (find, apply, identify, derive, build) with core objects (patterns, intents, definitions)
-    - once those are defined, you can run queries to find matching objects
-    - then you need conversion functions between formats (to an interface)
-      - a good test of conversion functions is 'can they find a docs site for alternate tools, and map/fit objects between docs to generate a key-value map to migrate between tools'
-    - once you have conversion functions, you can connect problem space data to solutions
-    - then youd need problem space visualization & solution metadata calculation functions to finish it
-    - function to determine minimum information & other solvability metrics
-      - example: if a process happened in the past and didnt leave measurable info like fossils or evolution, that problem isnt solvable, but if the phenomenon happens again and can be predicted or triggered, the information may be capturable
-
   - function to identify next gen object layers would apply attribute changes & stack operations to get the structural definition routes
     - attributes
       - attachment
