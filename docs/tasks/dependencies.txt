@@ -13,8 +13,6 @@
 		- function types:
 
 
-  - function list (tech debt):
-    - core operations (find, apply, identify, derive, build) with core objects (patterns, intents, definitions)
     - once those are defined, you can run queries to find matching objects
     - then you need conversion functions between formats (to an interface)
       - a good test of conversion functions is 'can they find a docs site for alternate tools, and map/fit objects between docs to generate a key-value map to migrate between tools'
@@ -32,7 +30,17 @@
 
 			- interface operation functions (to apply an interface to another, combine interfaces, etc)
 
+			- interface-specific logic functions (to navigate a particular interface, such as with interface-specific priorities or operations)
+
+				- this function applies the core functions to interface objects (patterns, intents, definitions)
+
+					- then it iterates that application, until the iterated core function-interface object combinations describe the important interaction layer referenced in the interface definition
+
+					- example: when the information interface applies core functions (find, build, apply) to the core information interface objects (value, fact, rule), permuting them with structural components (position, distribution, routes, state), it will produce the core structures of that interface (info imbalance), and subsequently produce the interaction layer that the information interface is normally interacted with (assumption (constant info), questions (info imbalance), insights (new true info), etc), and the set of emerging interaction functions at that layer describe the interface-specific functions that may differ from those on other interfaces, which should be stored as interface-specific logic functions.
+
 	- objects:
+
+		- an interface object index (including objects like insights, example patterns, or function definitions) can be a dependency, so the system can re-generate itself if other dependencies are compromised
 		
 		- language map
 
@@ -64,6 +72,6 @@
 
 			- these maps can also be updated with patterns & other predictive tools like core analysis, to identify probable new combinations of core components likely to be used next
 
-			
+
 
 
