@@ -12,8 +12,6 @@
 
 		- function types:
 
-      - example: if a process happened in the past and didnt leave measurable info like fossils or evolution, that problem isnt solvable, but if the phenomenon happens again and can be predicted or triggered, the information may be capturable
-
       		- problem/solution interface-specific functions (a dependency for solution automation)
 
       			- function to determine minimum information to solve a problem (an example of an interface-specific logic function)
@@ -21,15 +19,35 @@
       				- interface trajectory indicating how to generate this interface-specific logic function:
       					[structural concept (minimum) + information interface object (information)] as a function interface object ('input') to another function interface object ('solve problem' function), which includes an information interface object ('problem', 'solution') and a core operation ('matching')
 
+      				- example output of function that calculates 'minimum information to solve': if a process happened in the past and didnt leave measurable info like fossils or evolution, that problem isnt solvable, but if the phenomenon happens again and can be predicted or triggered, the information may be capturable
+
       			- function to visualize a problem space
-      				- interface trajectory producing this interface-specific function: agent.measure(description[problem, related objects])
+
+      				- interface trajectory indicating how to generate this interface-specific logic function: agent.measure(description[problem, related objects])
 
 			- core functions (find, identify, apply, build, derive, change)
 
 			- interface conversion functions (standardize to an interface format)
-      			- a good test of conversion functions is 'can they find a docs site for alternate tools, and map/fit objects between docs to generate a key-value map to migrate between tools'
+
+      			- a good test of conversion functions is:
+      				- 'can they find a docs site for alternate tools, and map/fit objects between docs to generate a key-value map to migrate between tools'
+
+      			- these functions:
+      				
+      				1. apply an interface definition (so the input is formatted as core components like definitions/structures/operations used on the interface)
+      					- example: formatting a problem like 'find out if these variables predict variable y' on the causal interface may generate a structure such as a directed graph where the possible independent variables are allowed to interact, to produce information y, and a test condition to check if that structure matches the interactions of those components
+      				
+      				2. proceed to interface traversal functions to find matching components of the formatted info
+      					- example: with the input information formatted as a directed graph & a test condition (similar to the formatting done to produce the interface query in meaning.svg), proceed to checking for matches of components on the interface & related objects, with other interfaces applied
+
+      				3. with the output of the interface traversal functions, convert any matches found to the input information format, integrating it with the meaning (meta) interface if an interface query (involving multiple interface traversals, with intent to fulfill the intent task) initiated the transaction
+      					- example: if a causal structure like a loop or tree is found between the variables, integrate that information with the input information, to indicate:
+      						- whether the original intent task is still valid (does predicting variable y still make sense, given this causal structure)
+      						- the probability of the meaningful attributes like relevance (since we're converting to the meta-interface, where questions like whether more information/more interface traversals are necessary can be analyzed) of the structures found (yes, theres a matching causal structure of some variables, but is that information relevant to the intent task of the query?)
 
 			- interface traversal functions (to find matching components between input & interface)
+				- these functions find matches of varying definitions of 'equal'
+				- usually a match on a few attributes isnt significant between complex objects, so these functions also analyze the related objects & the interface objects describing those interactions (like patterns/functions, etc)
 
 			- interface operation functions (to apply an interface to another, combine interfaces, etc)
 
@@ -67,6 +85,8 @@
 						- once you have a set of functions which describes important interactions or a set of core operations which can generate descriptions of important interactions (and a function to combine these core operations), you're almost done describing the interface-specific logic
 						- the next step is describing cross-interface interactions, to identify how a specific interface interacts with other specific interfaces
 						- then finally, describing any logic specific to how that interface changes
+
+					- you can see this analysis in the system layer diagrams, which include the application of other interfaces & interface objects to generate components of an interface like interaction layers, core structures, etc
 
 	- objects:
 
