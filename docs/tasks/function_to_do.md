@@ -11,7 +11,9 @@
 
   - expand on core operation mapping (like add: combine, subtract: differentiate (isolate difference), multiply: expand by, divide: standardize by) with interface queries for core operations
 
-  - add to do items from analysis & code to to do list
+  - organize 'to do' items from analysis & code to to do list
+
+  - add interface query visuals
 
   - organize examples/diagrams to make
 

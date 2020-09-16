@@ -96,7 +96,7 @@ to do: organize into docs
     
     - diplomatic perspective:
       - from 'flaw/mistake' to 'optimization metrics' or 'variance source'
-      - from 'get/make/trick them into' to 'inspire'
+      - from 'get/make/trick them into' to 'inspire them to' or 'give them a reason to' or 'enable them to justify'
       - from 'please dont do that' to 'thank you for being self-aware enough to not do that' or 'i hate when this other person does that, im glad you dont do that'
       - from 'youre annoying' to 'i need to recalculate my trajectory/i need time to process that'
 
