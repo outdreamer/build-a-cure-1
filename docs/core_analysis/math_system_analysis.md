@@ -338,8 +338,7 @@
                     - this method uses concepts/objects/attributes/functions of the space, their definitions, & combinations of them to generate sets of probable important items and to derive probable important relationships
 
 
-                - to do:
-                  - above we adjust the function a bit to get:
+                - above we adjust the function a bit to get:
                     e ^ y * x^-1 = 1
 
                   - how would we get euler's identity from that, without knowing that e & pi are inherently related?

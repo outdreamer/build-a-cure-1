@@ -7,6 +7,8 @@
       - which problemss will be prioritized & have solutions constructed
       - how to optimize by constructing other calculated solutions to prevent high-risk problems
 
+  - update repo doc version with patent version & remove repeated info 
+
   - add rules from diagrams to a document
 
   - expand on core operation mapping (like add: combine, subtract: differentiate (isolate difference), multiply: expand by, divide: standardize by) with interface queries for core operations
