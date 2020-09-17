@@ -23,6 +23,9 @@
   - attributes (cohesiveness) 
   - concepts: closed system (a system that can exist without other systems), optimized system (a system that generates zero variance, whose inputs/outputs are all connected without side effects) 
   - answers questions like: 
+    - what known/potential inputs/outputs available in the system could build the path?
+    - "what is the function linking these variables, given the core functions used to build this system?"
+    - where are the problem types (gaps, misalignments, mismatches & conflicts)?
     - where are the inefficiencies in this system 
     - how can this system be optimized 
     - are too many assumptions hard-coded in this system 

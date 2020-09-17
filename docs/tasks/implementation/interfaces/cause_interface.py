@@ -6,10 +6,21 @@
           - adding/deriving missing objects required for the interface 
           - removing irrelevant objects 
         - conversion operations that apply other interfaces on top of the causal interface 
-          - structure-function interface: linking inputs & outputs for causal functions that have structure (sequential functions, hub functions, etc) 
-          - concept interface: identify dependency, state, adaptability, & agency 
-          - structure-type interface combination: 
-            - identifying causal types, such as ambiguous cause, structured as multiple alternate similar routes or multiple unenforced rules/variance injection points 
+          - structure-function interface: 
+            - linking inputs & outputs for causal functions that have structure (sequential functions, hub functions, etc) 
+          - concept interface:
+            - identify core causal concepts like:
+              - state: important for identifying sequential causation 
+              - structure: important for identifying inevitable causation 
+              - agency: injection of intent into structure (like with organization) 
+              - adaptation: important for identifying causal potential (an organism that can learn/change is likelier to be causal) 
+              - dependence (structure: causal links) 
+                - mutual dependence (structure: causal loop) 
+              - ambiguity vs. determination/uniqueness (reducing possible alternatives) 
+              - determining concepts 
+              - adjacent concepts 
+            - structure-type interface combination: 
+              - identifying causal types, such as ambiguous cause, structured as multiple alternate similar routes or multiple unenforced rules/variance injection points 
       - the conversion function can be formatted with many different formats (like filters/limits/routes/combinations) to achieve conversion intents (like add/derive/change/remove attributes, or apply metrics)  
       - the intent of the conversion function is to represent each component in the problem space (or data set) as a component of cause (attribute, structure, concept, related object, etc) 
       - the conversion function will attempt to standardize to related interfaces, if the minimum information for the current interface is not met 
@@ -29,19 +40,24 @@
           - causal function inputs/outputs 
           - related objects to cause 
           - preceding/determining/generative structures of these components (generative structures of related objects, causal function outputs, inevitable-unique structures) 
-    
+   
     - cause object definition 
+
       - definition: 
         - cause can be defined as dependency 
+
       - concepts:
         - interface: interfaces are causative in that they enable change to develop
         - causative structures: some structures like limits are particularly causative
+
       - objects: 
         - dependencies 
+
       - structures: 
         - most causal shapes are cyclical, layer, or network-shaped rather than one-directional vector-shaped (like a tree), which is why some existing methods are inherently incapable of producing system-fitted insights that wont break the system when applied (a particular drug that is not evaluated for bio-system impact, just impact on a particular pathogen or process) 
         - stack: set of adjacent (or other definition of relevant) causes 
         - causal loop: a function that generates information may end up using that information or its side effects like decisions as an input, creating a causal loop 
+      
       - attributes 
         - identification/description variables 
           - degree (x is n degrees of cause away from y) 
@@ -88,6 +104,7 @@
           - number of steps between causal nodes (measures directness of cause) 
           - number of possible causes (measures uniqueness/ambiguity of cause) 
         - function parameters 
+
       - function interface 
         - patterns 
         - functions 
@@ -147,29 +164,64 @@
           - connecting functions 
             - combination functions 
               - these functions determine how causes of different attributes/types/change states interact, answering questions like: how does an agent cause combine with a structural cause? 
+    
     - related objects of causal interface 
+      
       - information interface 
+
         - definitions 
           - cause: input, power, excess unhandled energy, lack of organization 
+        
         - strategies 
           - 'when creating ambiguity, use abstract rules' 
+        
         - insights 
           - 'causation is a relative term' 
+        
         - questions 
           - 'which causal relationships should be checked first when finding variable relationships?' 
           - given the position between these causal factors, which causal patterns are likeliest?
           - given that a species occupies an interim position between evolution, efficiency, time, and environment, what is the likeliest causal shape linking a species with its environment?
             - for more evolved organisms, this is a network causal shape, though species with less developed cognitive ability may have simple or uni-directional shapes with environment
           - what is the function linking these variables, given these functions linking other adjacent generating variables/functions further up/down the causal shape
+          - how to define causal structures, in terms of a particular interface
+            - example: define cause in terms of the structure & math interfaces:
+              - the corresponding assumptions of independent random variables that are emergent outputs (having no agency to interfere with cause) and are resolvable into orthogonal dimensions and reason to believe theyre causative in the pattern (direction of influence established, direct causation, similar object interaction layer, lower-layer symmetry established like DNA being established as a cause of species variation)
+          - how to identify causal objects in other interface formats, such as info objects like games/trade-offs/forced decisions/equivalent alternates
+            - once you identify causal info objects of independent variables of a data set, that can be used to select an algorithm or abstract the prediction function
+              example: 'tradeoff between efficiency & accuracy creates types with vertices x, y, z which match algorithm or prediction function a'
+          - how often is cause determinable given the attribute sets necessary to determine it? 
+            - how often is a variable set determinable as uniquely causing a relationship, definitely different from random interactions, adjacent in causal distance, having no agency, and clear? 
+            - which systems/vertices generate determinable cause (difference ratios, change rates, alignments, interaction layers, pivot points, causal structures, problem types, trade-offs, symmetries)?
+        
         - context 
           - system context 
           - problem space context 
           - dimension set context 
             - spaces where cause is measurable (dimensions maximizing or displaying differences) 
+      
+        - examples
+
+          - causal shapes integrated with networks (patterns of aggregation matching causal shapes like trees & circuits)
+
+            - integrating system analysis with networks
+              https://twitter.com/remixerator/status/1150578597339340805
+              https://twitter.com/remixerator/status/1205724743741014018
+            - system of causal types (integrated with type path example as a version of weight paths)
+              https://twitter.com/remixerator/status/1156860484294852609
+            - causal types
+              twitter.com/remixerator/status/1126040476023279616
+            - applying causal shapes to a network
+              https://twitter.com/remixerator/status/1004579263507566592
+            - position on causal type network
+              https://twitter.com/remixerator/status/1018540899859607552
+
       - intent interface 
+
         - causal intents 
           - outputs (direct/combined/emerging) 
           - side effects (indirect side effects of outputs, processing side effects like locking inputs, opportunity cost of processing) 
+        
         - intent vs. incentives: an intent without an agency cause is an incentive 
           - incentives are usually considered less causal than intents, from the agent perspective:  
           - agents cant be expected to go against incentives every time, as theyre generated by system structure 
@@ -177,21 +229,12 @@
           - intents exist outside of the system, which can motivate agents to change a system 
           - so structure of a system is not the cause of all causes, but it is an important interface to apply on top of the causal interface 
           - if there is an absolute root cause, it may be change rules (how systems change) 
-      - concept interface 
-        - core causal concepts 
-          - state: important for identifying sequential causation 
-          - structure: important for identifying inevitable causation 
-          - agency: injection of intent into structure (like with organization) 
-          - adaptation: important for identifying causal potential (an organism that can learn/change is likelier to be causal) 
-          - dependence (structure: causal links) 
-            - mutual dependence (structure: causal loop) 
-          - ambiguity vs. determination/uniqueness (reducing possible alternatives) 
-        - determining concepts 
-        - adjacent concepts 
+      
       - type interface 
         - attribute sets differentiating objects 
         - attribute sets without types 
         - type hierarchy 
+      
       - system interface 
         - causal system 
           - system objects 
@@ -199,6 +242,7 @@
             - definitions (difference, power, direction) 
           - system functions 
             - core system function (apply, inject, combine) definitions on the causal interface 
+      
       - structural interface 
         - structures 
           - structure network (links between causal & other structures) 
@@ -213,15 +257,20 @@
             - tree origin (root cause) 
             - adjacence (causal degree) 
             - layer (alternative cause on layer) 
+   
     - interface operation (combined/applied/injected) output 
+
       - intent-structure interface 
         - intents identifying cause 
           - aligned intents (compounding cause) 
+      
       - pattern-structure interface 
         - 'a causal tree often has multiple layers & may converge to fewer nodes'  
+      
       - structure-function interface 
         - functions as structures (filters, limits, maps, networks, trades, sequences, links, circuits) 
         - structure functions (traverse, combine, find, build) 
+      
       - cause-concept-system interface 
         - causal concept system 
           - system objects 
@@ -230,4 +279,5 @@
             - structures (networks, trades, sequences, links, circuits) 
           - system functions 
             - core system function (apply, inject, combine) definitions on the causal-concept interface 
+
 '''

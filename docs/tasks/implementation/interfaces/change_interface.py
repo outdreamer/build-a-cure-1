@@ -1,5 +1,5 @@
 '''
-  - example of the analysis for this interface: 
+  - definition: 
     - change analysis relates to information interfaces (question, problem), logical interfaces (function, intent, pattern) and potential interfaces (variance, risk, certainty) 
     - change analysis analyzes relationships between objects/attributes/functions 
     - change analysis is important for identifying: 
@@ -24,25 +24,12 @@
           - the balance concept interface (has implementations that look like symmetry, justice, etc) 
         - what is the path definitely not, based on various maximized measures of similarity? 
         - what attributes & attribute sets & attribute dependency trees differ 
-        - what is transformation cost/potential between objects 
+        - what is transformation cost between objects 
         - what is divergence distance between generative paths for each object 
           - example: "what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?" 
         - variance accretion 
         - what variance is unexplained 
-        - at what point does a variable become relevant to another variable interaction layer? 
-        - how do constants accrete between rules, like caps to keep variance from flowing in to corners or creating boundary-invalidating openings in a system/component boundary? 
-        - what causes variables to cascade across layers, creating fractal variables? 
-        - delegation of variance into systems/types/functions/variables/constants 
-        - what type of variable is it? (object-differentiating/identifying attribute, emergent specific/abstract property, direct function input/output) 
-        - how does the variable relate to other variables? (decisive metric, substitutable alternative, collinear) 
-        - given that variance flows through systems in patterns, what are the common variance shapes, given host system type & structure + set of unknowns? 
-        - as change increases: 
-          - how do interface objects (functionality/intent/potential) or change objects (structures/functions/variables/embedded parameters/spaces) change 
-          - which standards/interfaces/change types are adjacent (change framed based on deviation from a standard, like deviating from the correct order or probability distribution, measured by degree of stacked distortions) 
-          - which difference definition applies (changes framed based on difference type, optionally including difference from value, symmetry, limit, origin, number type, pattern) 
-          - what probabilities/possibilities become possible/adjacent (adjacent meaning findable/generatable in structural dimensions/on the structural interface) 
-        - as a concept having structure (like power: degree of independence) changes, does the change definition erode (previously distant points become more equal to adjacent points, so the meaning of information about position/dependency erodes, as power to move between them increases) 
-        - where can change be stored/routed in a system: if there is demand for change (stressors demanding new functionality) but all components but one are maximizing their change handlers, then you know theres one potential variable where change will gather/be routed, if its possible to route change from the variance injection point to that variable's causal stack at some layer/point 
+
   - attributes: 
     - uniqueness (is the change composable with core distortion functions or is it formed with different functions than other changes, implying its origin is external to the system) 
     - inevitability (is the change pre-determined by the system, in which case its just a continuation of a state progression rather than a fundamental change or source of variance) 
@@ -71,20 +58,40 @@
               - interface change (what interfaces are adjacent/determining/generative/differentiating across the change)
               - interface objects (what concepts/intents differ, does potential increase, are other change types enabled across the change)
               - change based on system vertices (imminent to/distant from a phase shift, at an intersection, changing interaction layers)
-        
-          - similarities ('if you remove attribute x, are they equal?') 
-        - certainty structures (patterns, rules, constants, assumptions, limits, metrics, information, similarities/matches/alignments (intents/incentives, demand/supply, limit/variation), definitions) 
-  
+          - similarities ('if you remove attribute x, are they equal?')   
 
   - functions: 
-        - function to derive change/change type/change base 
-        - function to differentiate 
-        - function to convert: change a component into another (useful for identifying alternate paths) 
-        - function to deconstruct: change an object into its components (useful for identifying origins & common components) 
-        - function to distort: apply a distortion function to acquire a difference object (a value difference, an extreme, a magnification, a limit, etc) 
-        - function to map change types to dimensions 
-        - function to identify dimensions where change types change (an aggregate, interface, or deciding dimension where change type is uncertain but not random), with embedded parameters & bases for framing changes of a certain type 
-        - function to identify the variance structures (gaps/cascades/filters) in a system, to identify the best dimension sets to frame certain change types in 
+
+      - function to derive change/change type/change base 
+      - function to differentiate 
+      - function to convert: change a component into another (useful for identifying alternate paths) 
+      - function to deconstruct: change an object into its components (useful for identifying origins & common components) 
+      - function to distort: apply a distortion function to acquire a difference object (a value difference, an extreme, a magnification, a limit, etc) 
+      - function to map change types to dimensions 
+      - function to identify dimensions where change types change (an aggregate, interface, or deciding dimension where change type is uncertain but not random), with embedded parameters & bases for framing changes of a certain type 
+      - function to identify the variance structures (gaps/cascades/filters) in a system, to identify the best dimension sets to frame certain change types in 
+
+      - function to identify/analyze variables as change sources (and alternatively as potential/uncertainty or information/certainty sources)
+        - what type of variable is it? (object-differentiating/identifying attribute, emergent specific/abstract property, direct function input/output) 
+        - how does the variable relate to other variables? (decisive metric, substitutable alternative, collinear) 
+        - at what point does a variable become relevant to another variable interaction layer? 
+        - how do constants accrete between rules, like caps to keep variance from flowing in to corners or creating boundary-invalidating openings in a system/component boundary? 
+        - what causes variables to cascade across layers, creating fractal variables? 
+        - what is a structure definitely not, based on various maximized measures of similarity? 
+        - what attributes & attribute sets & attribute dependency trees differ 
+        - what is transformation cost/potential (divergence distance) between objects (like generative functions) 
+        - what is the probable function, function range, or mixed probability/certainty function (with probable & certain subsets) linking these variables 
+        - delegation of variance into systems/types/functions/variables/constants 
+        - given that variance flows through systems in patterns, what are the common variance shapes, given host system type & structure + set of unknowns? 
+        - as change increases: 
+          - how do interface objects (functionality/intent/potential) or change objects (structures/functions/variables/embedded parameters/spaces) change 
+          - which standards/interfaces/change types are adjacent (change framed based on deviation from a standard, like deviating from the correct order or probability distribution, measured by degree of stacked distortions) 
+          - which difference definition applies (changes framed based on difference type, optionally including difference from value, symmetry, limit, origin, number type, pattern) 
+          - what probabilities/possibilities become possible/adjacent (adjacent meaning findable/generatable in structural dimensions/on the structural interface) 
+        - as a concept having structure (like power: degree of independence) changes, does the change definition erode (previously distant points become more equal to adjacent points, so the meaning of information about position/dependency erodes, as power to move between them increases) 
+        - where can change be stored/routed in a system: if there is demand for change (stressors demanding new functionality) but all components but one are maximizing their change handlers, then you know theres one potential variable where change will gather/be routed, if its possible to route change from the variance injection point to that variable's causal stack at some layer/point 
+  
+
   - change types: 
         - change from different bases (randomness, core, default, etc) 
         - change in change structures (change stack, circuit, sequence) or functions (derive change, derive change base, convert, differentiate) 

@@ -1,82 +1,40 @@
 # to do
 
-  - add problem prediction example with market organization 
-    - anticipating problems across many agents with n steps, and calculating which problems will develop and which solutions can be constructed in advance
-    - unit example: predict when a dev will need a tool based on usage/purchase/request data (alternatives with different priorities/perspective built-in)
-      - which problems will develop from which tool sets used at scale (migration tools between comparable alternatives)
-      - which problemss will be prioritized & have solutions constructed
-      - how to optimize by constructing other calculated solutions to prevent high-risk problems
-
   - make core function graph (apply, find, build)
-
-  - update repo doc version with patent version & remove repeated info 
-
-  - add rules from diagrams to a document
-
+  - update links
+  - add rules from diagrams to relevant documents
   - expand on core operation mapping (like add: combine, subtract: differentiate (isolate difference), multiply: expand by, divide: standardize by) with interface queries for core operations
-
   - organize 'to do' items from analysis & code to to do list as function list with dependencies
-
-  - diagram
-    - interface query visuals
-    - interface traversal flow diagram
-    - interface conversion, matching, starting point selection
-      - checking if relevant information is found
-
-  - port changes from claims to repo
-
-  - organize examples/diagrams to make
-
-  - organize analysis type rules
-
-  - organize derivation methods, implementation guide & specific analysis rules in core_analysis
-
-  - function to find structure for an object/function (similar variance, difference from related objects, intents/priorities, causes, potential ranges, etc)
-
-  - document vertex definition & give examples (as an intersection/combination of determining/description/generative/derivation variables)
-
-  - function to find the important differentiating questions
-    - example: ethics is the concept of balance applied to a system with agents 
-      - question: is there a requirement that every good system has an implementation of each concept in the abstract network in a way that obeys their interaction rules?
-
-  - function to identify next gen object layers would apply attribute changes & stack operations to get the structural definition routes
-    - attributes
-      - attachment
-        - over
-          - addiction
-      - belief
-        - ratio
-          - uncertainty
-            - religion
-      - connection
-        - moment
-          - difference
-            - direction
-              - inspiration
-    - functions
-      - deciding
-      - persecuting
-    - objects
-      - ethical system
-      - understanding
-      - definitions
-      - fallacies
-      - arguments
-
-  - include example workflows with example problems
-    - include example of how to generate other workflows (different starting/ending points & trajectories)
-
-  - give examples based on the same default example for each analysis type
-    - the default example can be a prediction function
-
-  - document time structures (concave time explaining compounding similarities up to a point of maximum concavity, a structure that can separate from the other space-times)
-
+  - integrate changes from solution_automation_analysis.py claims to repo
+  - integrate logic from core_analysis/* and 
+  - integrate implementation_guide.md & problem_solving_matching.md
+  - de duplicate logic
   - organize certainty (info) vs. uncertainty objects (potential, risk, probability)
-
-  - add examples of math automation
   
 
 ## define
+
+  - document time structures (concave time explaining compounding similarities up to a point of maximum concavity, a structure that can separate from the other space-times)
+
+  - document vertex definition & give examples (as an intersection/combination of determining/description/generative/derivation variables)
+
+  - document questions to test system filters
+
+    - why do phase shifts happen - bc of the ability for aggregated information to be measured as something else 
+      - example: molecules identifiable as a set, data identifiable as a cluster, pattern identifiable as an emergency
+
+    - what are the aggregate effects of many errors in selection of algorithms/parameters/processing/deployment - what phase shifts emerge from repeated or interacting error types?
+
+    - why do you arrange dimensions at 90 degrees? to examine the full interaction space of all possible combinations of the two variables
+
+    - why are polynomials with a leading coefficient of one & having optional zero coefficients capable of being multiplied & added to give the roots to the system of equations?
+
+        - bc scaled versions (through multiplication) and combinations (through addition) can position leading coefficients to be 1 while also positioning trailing coefficients to be zero
+        - is there a polynomial coefficient set that you cant multiply or add in a way that makes a coefficient in a position to be one and every coefficient after it except the solution coefficient to be zero? 
+          no, bc that would mean the leading term cant be solved
+        - once you have leading coefficients equal to one and the trailing coefficients equal to zero, the system is solved for each variable
+        - why would you try to solve for each leading term in a matrix? bc they are ordered at that point (formatted to have the same positions in each row) and the solution is also ordered (on the right side)
+          - using the concept of position to produce additional organization of information, you can benefit from the alignment of the variable positions by isolating each variable (transforming with multiplication & addition of coefficients until the variable solved for in each row has a coefficient of 1 and all other coefficients except the solution are zero)
 
   - definition import function
 
@@ -156,6 +114,32 @@
 
 ## document 
 
+    - document test questions
+
+      - questions to test system filters
+
+          - why do phase shifts happen - bc of the ability for aggregated information to be measured as something else 
+            - example: molecules identifiable as a set, data identifiable as a cluster, pattern identifiable as an emergency
+
+          - what are the aggregate effects of many errors in selection of algorithms/parameters/processing/deployment - what phase shifts emerge from repeated or interacting error types?
+
+          - why do you arrange dimensions at 90 degrees? to examine the full interaction space of all possible combinations of the two variables
+
+          - why are polynomials with a leading coefficient of one & having optional zero coefficients capable of being multiplied & added to give the roots to the system of equations?
+
+              - bc scaled versions (through multiplication) and combinations (through addition) can position leading coefficients to be 1 while also positioning trailing coefficients to be zero
+              - is there a polynomial coefficient set that you cant multiply or add in a way that makes a coefficient in a position to be one and every coefficient after it except the solution coefficient to be zero? 
+                no, bc that would mean the leading term cant be solved
+              - once you have leading coefficients equal to one and the trailing coefficients equal to zero, the system is solved for each variable
+              - why would you try to solve for each leading term in a matrix? bc they are ordered at that point (formatted to have the same positions in each row) and the solution is also ordered (on the right side)
+                - using the concept of position to produce additional organization of information, you can benefit from the alignment of the variable positions by isolating each variable (transforming with multiplication & addition of coefficients until the variable solved for in each row has a coefficient of 1 and all other coefficients except the solution are zero)
+
+    - document explainability as a space limited by derivable attributes from data set & cross-system similarity
+
+    - function for threshold value selection
+
+    - examine whether new concepts (gaps in network rules) evolve once structure is applied to prior concepts 
+
     - make doc to store insight paths, counterintuitive functions, hidden costs, counterexamples, phase shift triggers
 
     - document how rules develop on stability & how foundations are connected & destroyed
@@ -206,21 +190,6 @@
 
 ## function list
 
-  - identify attribute: attributes can be reduced to 'position', implemented as a:
-
-      - relationship type (relative difference)
-      - structure type (shape)
-      - change type (generators of difference)
-
-    - the structural network can frame these position differences to capture all attributes
-    - add function to derive structures of an object given its attributes/functions (related attribute sets indicating a type or sub-system, etc)
-
-  - make function/query list for workflows, starting with information formats
-
-  - identify function: a function can be reduced to a 'change unit'
-
-  - identify object: an object has attributes/functions and is not itself either of those (for standard definition of object, even though both attributes/functions can be framed as objects)
-
   - after identification functions
 
     - import rules for selecting interfaces to solve a problem on
@@ -236,7 +205,7 @@
       - info insight paths like 'lie => joke => distortion => insight'
       - system insight paths like 'three core functions + combine function with this definition + n distortions to nearest hub'
 
-    - network design favors adjacent features
+    - network design favors an adjacency definition that differentiates features
       - to get around this, build in a concept of default core objects like boundaries/limits/intersections to the network structure or data propagation (send data on possible boundary line positions) to look for & focus on those first rather than continuous sets of adjacent high-variance, pattern-containing features
       - why would patterns like textures make it through as a semantic filter - bc the repetition is interpreted as significant by network design, or the texture is likely to be located in more data subsets than a shape
       https://www.quantamagazine.org/where-we-see-shapes-ai-sees-textures-20190701/
@@ -248,11 +217,6 @@
       - identify & replace with faster ways to get to the output without changing the output
       - test cases to determine if output would be changed by removing a step and/or replacing it with another step
 
-    - solution decomposition function
-
-    - solution aggregation function
-
-
   - abstract functions
 
       - derive combinations & make sure you have full function coverage of all important combinations
@@ -261,52 +225,10 @@
         - check that you have sample data in json for each combination
 
       - attribute/object/function match functions
-      - specific interface identification function
       - standardization network-framing function to describe a system as a network (the standard structure) & position each object, identifying connecting functions
       - system analysis function (identify boundaries, gaps, limits, layers, incentives/intents/questions, & other system objects)
       - isolation function, representating function/attribute changes independent of system context with respect to position or time (snapshot/state or subset)
       - function to define (isolate an object/concept/function for identification, identify definition routes)
-
-
-## system layer analysis
-
-    - apply combinations of core operations to get information object layers ('democracy games', 'barriers to intents or false information') once definitions are standardized to system interface
-
-      perspective: priority set with object positions & default paths
-      strategy: efficient path between points
-      joke: difference between expected & actual position
-      error: difference between expected & actual decision
-      argument: position of objects or path between points with supporting connective functions
-      game: incentivized motion within a system having limits to prevent motion
-      filter: barrier creating a difference between input & output
-
-    - core system layer analysis (where you generate next generation of objects using core operations supported in the space) can be used to harden a system against risk inherent in using defined objects, which will inevitably change, such as identifying new structures & interactions of the concept of risk given the next layer of imminent objects in a system
-
-    - target objects of problem space analysis to find an 'ethical' or other algorithm to guide an object through a system:
-
-      - events that reduce potential (irreversible outcomes like an agent death)
-      - intent vs. outcome within context (repeated intents & exploits of intent stacks for malicious intents)
-      - symmetries like ambiguity, potential, & alternative-generating paths/bases
-      - assumptions/limits (neutral intents are likelier to be used maliciously than positive intents)
-      - context trajectory (such as maintaing a path through contexts to avoid calculations)
-
-      - once these objects are identified as necessary to understand the problem, then the implemented objects can be identified in the problem space, & the solution can be calculated
-
-    - apply the set of core structures, functions, objects, and attributes to itself to get next layer of transforms & systems to run next error analysis
-      - attribute spaces (object model + structure interface = a calculation method for attributes)
-      - false similarity (info interface attribute + core attribute = an error type/definition route, if agency is involved)
-      - filter chains (structure interface + structure interface = a core object to frame info)
-
-    - derive the context set that a prediction function has varying degrees of success in (type distance, missing variables, changing problem space, etc)
-      - this can be used to reduce the uncertainty by first identifying which contexts a function will be successful in predicting and then checking for those contexts in the problem space
-
-    - rank methods of structure application for different contexts
-      - expansion/compression (by intent, function, etc)
-      - filters/connections
-      - systematization
-    
-    - prediction/change/context as fundamental function objects
-
 
 ## content
 
@@ -323,6 +245,16 @@
 
 
 ## examples to make
+
+  - include example workflows with example problems
+    - include example of how to generate other workflows (different starting/ending points & trajectories)
+  
+  - give examples based on the same default example for each analysis type
+    - the default example can be a prediction function
+  
+  - add examples of math automation
+
+  - give an example of mapping an invention & insight on the abstract network
 
   - give intent combination example with actual functions
 
@@ -344,6 +276,29 @@
 
 ## diagram
 
+    - interface query visuals
+    - interface traversal flow diagram
+    - interface conversion, matching, starting point selection
+      - checking if relevant information is found
+
+    - make diagram for dimension links higher than 3d that are depictable in the same network space
+      - should show variables that impact other variables, the change rates of these relationships
+      - overall impact should be calculatable from these relationships
+      - should show similar movements for correlated variables
+      - should show skippable/derivable variables (variables that can be resolved later than they normally are)
+      - should show meta forces for overall trends in change rules (direction of combined variable forces)
+      - should show limits of measurability & threshold metrics
+
+    - finish diagrams for specific concepts, core functions, concept operations (combine, collide, connect, merge, apply), ethical shapes
+      - chaos & ethics graph
+      - variable accretion patterns (how an object becomes influenced by a new variable, complex system interaction patterns, etc)
+      - make diagram of potential matrix to display the concept
+        - map parameter sets to potential matrix shapes 
+      - finish diagrams for intent (more examples of matching structure with intent), cause (shapes & ambiguity), concept (evolution of concepts, networks, distortion functions)
+      - diagram for argument
+
+    - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
+
     - make a system layer diagram with interfaces to allow specification of core interfaces & other interface layers (interface interface)
 
     - make a system layer diagram for structures to include layers of structures (beyond core structures like curves, to include n-degree structures like a wave, as well as semantic output structures like a key, crossing the layer that generates info structures like an insight, a probability, etc)
@@ -361,20 +316,3 @@
       - use intent & system filters & concepts as a way to reduce solution space from defaults (find space & shape limits where intents are supported) when looking for alternate efficient methods of calculation
         - example: a method of calculating area under the curve can be built with relevant concepts (subset, linearity, similarity (to curve) as a input to the conceptual trajectory to the concept of approximation) once those concepts are identified in the problem space, and combined with different structures, each having their own intents (prioritized metrics like efficiency)
       - quantify conceptual potential (how much change it can enable) and core operations on conceptual potential, & where potential objects occur or where they fit in to those operations
-
-## pattern 
-
-  - fix indexing 'NNP NN NNS1 of JJ JJ JJ2' or postpone to pattern evaluation time
-  - fix missing alts
-      pattern_index::verb_phrase::plays a |VB NN| role::a NN role
-  - fix one-letter alts: pattern_index::phrase_identifier::ALL_N DPC ALL_N |VBG VBD|::N D N V
-  - generalize alt logic to use embedded pair finding
-  - fix supported stem assignment (endings like 'is': {'functions a', 'acts a', 'plays a', 'operates a', 'works a'})
-  - fix charge function ('edit' is assigned positive score)
-  - add core clause patterns 
-  - fix pattern matching functions
-  - finish pos, clause, modifiers code from find implementation
-  - get a language map for implementing other tools
-  - add conversion of pattern matching options to regex
-  - add precomputing if a sub-pattern was already computed: 'ALL_N ALL_N of ALL_N ALL_N' in 'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
-  - add formatting to allow multiple items as keys in json and maintain order for interface network paths

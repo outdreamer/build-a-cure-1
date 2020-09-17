@@ -16,6 +16,7 @@
     - intent matrix is the interaction space of a set of intents, where its emergent intents can be traced across the interaction space 
     - intent stack is the set of adjacent intents of a function, from granular/neutral/abstract to specific/explicit, across various interfaces like logic, abstraction, & structure 
   - answers questions like: 
+    - find specific implementations of a general intent like 'optimization', such as a specific intent of 'optimizing the metric in question'
     - which intents should follow or be combined with which intents 
     - which intents are likelier, given the context implications of the function 
     - which intents are missing, given an overall function intent 

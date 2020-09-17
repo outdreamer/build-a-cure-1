@@ -64,6 +64,15 @@
       - function to identify & find related objects of an interface 
       - function to apply a distortion function from an interface to input information 
     - interface-interface functions 
+          - interface operations:
+          - intent / structure interface: assess intent interface by a standard of structure interface (which structures can simplify the intent interface)
+          - function + pattern interface: merge networks of functions & patterns into one standard interface definition (input/output/logic + metadata of both objects)
+          - function * pattern interface: 
+            function patterns (what patterns are there in functions), pattern functions (what functions generate patterns)
+            function pattern functions (what functions generate function patterns), pattern function patterns (what patterns are there in functions that generate patterns)
+          - cause * type interface: 
+            causal type interface (what types of cause are there), type cause interface (what causes types)
+            causal type cause (what causes causal types), type cause type (what types of type causes are there)
     - interface implementation functions
 
   - visuals

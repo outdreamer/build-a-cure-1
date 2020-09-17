@@ -28,16 +28,7 @@
           - change definition of distance so all combinations are possible and adjacent to remove time cost to travel to them 
         - change faster than other changes so other changes could never catch up without your change methods, which youve left information out of so they'd all need to be used together to build your change rate from a different trajectory 
       - function to identify potential structures (conversion potential/interaction space) 
-      - function to identify/analyze variables as potential/uncertainty or information/certainty sources 
-        - what type of variable is it? (object-differentiating/identifying attribute, emergent specific/abstract property, direct function input/output) 
-        - how does the variable relate to other variables? (decisive metric, substitutable alternative, collinear) 
-        - at what point does a variable become relevant to another variable interaction layer? 
-        - how do constants accrete between rules, like caps to keep variance from flowing in to corners or creating boundary-invalidating openings in a system/component boundary? 
-        - what causes variables to cascade across layers, creating fractal variables? 
-        - what is a structure definitely not, based on various maximized measures of similarity? 
-        - what attributes & attribute sets & attribute dependency trees differ 
-        - what is transformation cost/potential (divergence distance) between objects (like generative functions) 
-        - what is the probable function, function range, or mixed probability/certainty function (with probable & certain subsets) linking these variables 
+
   - attributes: 
     - structure (potential being lack of information, and information being structure) 
   - concepts (randomness, risk/probability, opportunity, certainty, variance, enforcement, validation) 

@@ -42,4 +42,9 @@
     - what is the net functionality of the object set 
     - how do/will these objects interact 
 
+    - type analysis
+      - given a known type stack progression, what is the likeliest position or extension of that stack?
+      - "given that these species evolved this way, what level of variance is the missing link between them likely to have?"
+      - "what is the function linking these variables, given the type stacks of the function objects (dimensions, adjacent functions, identifiable shapes, etc)"
+
 '''

@@ -111,6 +111,8 @@
 
   - functions to match & select a input-output format connecting format structure, like a format sequence or directed network 
 
+    - example: find structure for an object/function (similar variance, difference from related objects, intents/priorities, causes, potential ranges, etc)
+
         - An example problem-solving automation workflow for a problem like 'find an optimal implementation of an intersection' (shown in application 16887411 Figs. 1F - 1I and Fig. 14), using the system/structure/concept interfaces. 
           1. Problem definition: determine possible match between the problem system intersection object and the system conflict object. 
           2. Standardize the problem to the system interface 
@@ -197,56 +199,6 @@
     
   - this function may identify a format structure, such as a sequence of formats, that connect the original input & target output formats
   - this function includes metrics like structure
-
-      - problem-solution formats (shown in FIG. 9 (Problem formats, with matching solution formats) & FIG. 10 (Problem-solution structure matching)) 
-        - a vector set is good for converting between problem-solution structures, like converting an inefficiency to an efficiency in a system 
-        - problem shape-reducing vector set (where problem variables form the shape) is good for finding a function that reduces shape dimensions & size (like to form a summary), or a vector set to combine solution components in a way that fills the shape structure, if the solution format is a method to fill the problem structure rather than reducing the problem shape 
-        - a route optimization problem has the solution format of a vector set between network functions/nodes (where nodes are states/problems/objects, etc) that is optimal in some way (hits a node/path, moves in a direction, minimizes cost of traversal, etc) 
-          - with a network of states, the route can be a route between states with additional routes traversed within each state to convert to the next one (set of market states & trades to achieve a market intent) 
-        - structure-matching can be a good format for finding an example, finding a reason, or finding a causal structure of variables for a prediction function 
-        - an misalignment or mismatch (like an inefficiency, a conflict, or an information imbalance), where the solution format is the set of structures (which can be steps/vectors or applying a pattern or finding a structure in a network) necessary to correct the mismatch (minimize cost, align priorities, balance the information) 
-        - abstract format of a query (break problem into information problem types and then the solution is a query of solutions for each of those solved problems) 
-    
-
-      - example structures that apply a concept are depicted in FIG. 17 (Match structure for a definition of a concept), which depicts structures of the 'distribution' and 'power' concepts. 
-        - In the example 'distribution' function on the left of Fig. 17, a distribution function (that implements conceptual attributes like balance) is depicted, which may produce the Balanced Info Distribution example output from the Standard Info Distribution input.
-        - In the example concept structures, such as the 'power' concept structures, on the right of Fig. 17:
-            - a 'delegation' power structure is depicted, which indicates that information is sent to other entities for processing work.
-            - a 'derivation' power structure is depicted, which indicates that no information is shared except derivation tools.
-            - a 'delegation of derivation' power structure is depicted, which indicates that all entities delegate to entity with no caching/data retention power, only processing power.
-    
-
-       - example of possible definition routes for the concept of 'equality' are given in FIG. 16. Alternate definition routes 
-        - FIG. 16 depicts an example of alternate structural definition routes for 'equality'.
-            - For a concept like 'equality', the structural definition routes (standardized language map trajectories) may include:
-                - interchangeable (similar enough to be usable for the same trajectories (functions/intents))
-                - minimally distant (adjacent enough to be usable for the same trajectories)
-                - efficiently convertable (convertible with sufficiently minimal work as to be usable for the same trajectories)
-            - For another example, the definition routes for the 'power' concept may include:
-                - structural definitions: alternatives, connection hub, input
-                - concept-structure definitions: potential, change potential, change activation, truth source, truth access point/path (power being formattable as information)
-                - concept definitions: freedom, independence
-                - info definitions: energy
-            - The alternate definition routes for the 'truth' concept may include:
-                - ratio of information you need to ignore to make something seem true (low number of required conditions being an indicator of truth)
-                - ratio of successful usages (repeated usability, or robustness)
-                - ratio of fitting contexts (fit with other truths)
-
-        - mapping intent to structure & vice versa is shown in FIG. 18 (Intent-matching) 
-          - Fig. 18 depicts examples of matching operations between intent & structure.
-          - In the 'Mapping Structure to Intent' section on the top left of Fig. 18, mapping intent to direction is depicted in a system as allowing the identification of different intents, given the general intent of the direction.
-          - In the 'Identifying side effects of Intents' section on the top right of Fig. 18, an example of deriving intents in a system - intents that have side effects - is depicted.
-              - The system limits may force someone prioritizing a priority to move in certain directions that they ordinarily would not if left to make their own decisions in a vacuum. 
-              - They start from a selfish priority, moving in the direction of being uncriticizable and building functions to enable that intent, and by the system they're operating in, they're forced to move in other directions (making a gesture of charity, copying agent with priority of improving functionality of other nodes), while still having the same intent.
-              - The agent prioritizing that priorit will have pivot/angle/rotation functions/concepts, and their decisions will be buildable with those functions. The agent prioritizing improving other nodes' functionality will have cooperation, sharing, problem-solving functions and their decisions will be buildable with those functions.
-              - This is an example of how different intents can not only have the same output (arriving at the same end node), but a similar/overlapping trajectory at various points, while still leaving traces of different intents in their side effects (traces such as functionality developed to serve different intents, at different stages of development).
-          - In the 'Intents mapped to structure' section on the bottom half of Fig. 18, examples of structural input intents are depicted on the left, which can adjacently support example structural output intents on the right.
-          - For example:
-              - Intent 1A (Unenforced equal growth) and intent 1B (Enforced equal growth) may support intents like intent 1C (See which entity gets to the corner first) and intent 1D (Create the emergent entities).
-              - Intent 2A (Inject variance in growth inputs) and intent 2B (Inject variance in growth inputs) may support intents like intent 2C (Create field of potential for emergent entities to grow, either within an existing or new boundary) and intent 2D (Create interaction space on emergent entity layer).
-              - Intent 3A (Inject variance in state (position after a process)) and intent 3B (Incentive to move toward corners decreases, leading eventually to corner erosion) may support intents like intent 3C (Create temporary interaction layer as needed to resolve question of which entities emerge or create their functions, then dissolve it by switching their positions).
-              - Intent 4A (Create evenly distributed growth incentives once corner objects & functions develop) and intent 4B (Remove square boundary & let all functions & objects develop new interaction patterns in outer circle) may support intents like intent 4C (Developing new layer functionality) and 4D (Apply a standardizing, transforming, or reducing filter (square boundary) to a system).
-    
         - FIG. 8 contains examples of problem types & associated example structures.
           - On the left of FIG. 8, structures for core problem types standardized to various formats are depicted.
           - An example Info Asymmetry problem structure is depicted in FIG. 8, which is an imbalance in information (when depicted in an information format) or position (when depicted in a system format).
@@ -283,7 +235,8 @@
                 - an object (resource, function, constant) to close the opening in the system 
                 - an object to prevent further variance injections 
               - for an asymmetry, the solution shape would be: 
-                - an optimal transport operation set to distribute the resource optimally according to the metric of symmetry 
+                - an optimal transport operation set to distribute the resource optimally according to the metric of symmetry
+
         - this analysis involves: 
           - identifying the given problem & solution target structures in the problem space & the related problem network, so the problem & solution can be visualized 
           - identifying & anticipating problems in a system, which optionally includes identifying problem structures (inefficiencies, conflicts, etc) that exist or could emerge 
@@ -349,4 +302,57 @@
                     - 'find a system cost-minimizing function that makes system costs equally likely' 
                 - different structures fulfill different structural solution metrics 
                   - if 'cost' is the metric, measured by total distance traveled, that is clearly different across the various solution formats of FIG. 11 (Finding alternate solution formats that fulfill different metrics). 
+
+
+  - this function includes metrics like structure
+
+      - problem-solution formats (shown in FIG. 9 (Problem formats, with matching solution formats) & FIG. 10 (Problem-solution structure matching)) 
+        - a vector set is good for converting between problem-solution structures, like converting an inefficiency to an efficiency in a system 
+        - problem shape-reducing vector set (where problem variables form the shape) is good for finding a function that reduces shape dimensions & size (like to form a summary), or a vector set to combine solution components in a way that fills the shape structure, if the solution format is a method to fill the problem structure rather than reducing the problem shape 
+        - a route optimization problem has the solution format of a vector set between network functions/nodes (where nodes are states/problems/objects, etc) that is optimal in some way (hits a node/path, moves in a direction, minimizes cost of traversal, etc) 
+          - with a network of states, the route can be a route between states with additional routes traversed within each state to convert to the next one (set of market states & trades to achieve a market intent) 
+        - structure-matching can be a good format for finding an example, finding a reason, or finding a causal structure of variables for a prediction function 
+        - an misalignment or mismatch (like an inefficiency, a conflict, or an information imbalance), where the solution format is the set of structures (which can be steps/vectors or applying a pattern or finding a structure in a network) necessary to correct the mismatch (minimize cost, align priorities, balance the information) 
+        - abstract format of a query (break problem into information problem types and then the solution is a query of solutions for each of those solved problems) 
+    
+
+      - example structures that apply a concept are depicted in FIG. 17 (Match structure for a definition of a concept), which depicts structures of the 'distribution' and 'power' concepts. 
+        - In the example 'distribution' function on the left of Fig. 17, a distribution function (that implements conceptual attributes like balance) is depicted, which may produce the Balanced Info Distribution example output from the Standard Info Distribution input.
+        - In the example concept structures, such as the 'power' concept structures, on the right of Fig. 17:
+            - a 'delegation' power structure is depicted, which indicates that information is sent to other entities for processing work.
+            - a 'derivation' power structure is depicted, which indicates that no information is shared except derivation tools.
+            - a 'delegation of derivation' power structure is depicted, which indicates that all entities delegate to entity with no caching/data retention power, only processing power.
+    
+
+       - example of possible definition routes for the concept of 'equality' are given in FIG. 16. Alternate definition routes 
+        - FIG. 16 depicts an example of alternate structural definition routes for 'equality'.
+            - For a concept like 'equality', the structural definition routes (standardized language map trajectories) may include:
+                - interchangeable (similar enough to be usable for the same trajectories (functions/intents))
+                - minimally distant (adjacent enough to be usable for the same trajectories)
+                - efficiently convertable (convertible with sufficiently minimal work as to be usable for the same trajectories)
+            - For another example, the definition routes for the 'power' concept may include:
+                - structural definitions: alternatives, connection hub, input
+                - concept-structure definitions: potential, change potential, change activation, truth source, truth access point/path (power being formattable as information)
+                - concept definitions: freedom, independence
+                - info definitions: energy
+            - The alternate definition routes for the 'truth' concept may include:
+                - ratio of information you need to ignore to make something seem true (low number of required conditions being an indicator of truth)
+                - ratio of successful usages (repeated usability, or robustness)
+                - ratio of fitting contexts (fit with other truths)
+
+        - mapping intent to structure & vice versa is shown in FIG. 18 (Intent-matching) 
+          - Fig. 18 depicts examples of matching operations between intent & structure.
+          - In the 'Mapping Structure to Intent' section on the top left of Fig. 18, mapping intent to direction is depicted in a system as allowing the identification of different intents, given the general intent of the direction.
+          - In the 'Identifying side effects of Intents' section on the top right of Fig. 18, an example of deriving intents in a system - intents that have side effects - is depicted.
+              - The system limits may force someone prioritizing a priority to move in certain directions that they ordinarily would not if left to make their own decisions in a vacuum. 
+              - They start from a selfish priority, moving in the direction of being uncriticizable and building functions to enable that intent, and by the system they're operating in, they're forced to move in other directions (making a gesture of charity, copying agent with priority of improving functionality of other nodes), while still having the same intent.
+              - The agent prioritizing that priorit will have pivot/angle/rotation functions/concepts, and their decisions will be buildable with those functions. The agent prioritizing improving other nodes' functionality will have cooperation, sharing, problem-solving functions and their decisions will be buildable with those functions.
+              - This is an example of how different intents can not only have the same output (arriving at the same end node), but a similar/overlapping trajectory at various points, while still leaving traces of different intents in their side effects (traces such as functionality developed to serve different intents, at different stages of development).
+          - In the 'Intents mapped to structure' section on the bottom half of Fig. 18, examples of structural input intents are depicted on the left, which can adjacently support example structural output intents on the right.
+          - For example:
+              - Intent 1A (Unenforced equal growth) and intent 1B (Enforced equal growth) may support intents like intent 1C (See which entity gets to the corner first) and intent 1D (Create the emergent entities).
+              - Intent 2A (Inject variance in growth inputs) and intent 2B (Inject variance in growth inputs) may support intents like intent 2C (Create field of potential for emergent entities to grow, either within an existing or new boundary) and intent 2D (Create interaction space on emergent entity layer).
+              - Intent 3A (Inject variance in state (position after a process)) and intent 3B (Incentive to move toward corners decreases, leading eventually to corner erosion) may support intents like intent 3C (Create temporary interaction layer as needed to resolve question of which entities emerge or create their functions, then dissolve it by switching their positions).
+              - Intent 4A (Create evenly distributed growth incentives once corner objects & functions develop) and intent 4B (Remove square boundary & let all functions & objects develop new interaction patterns in outer circle) may support intents like intent 4C (Developing new layer functionality) and 4D (Apply a standardizing, transforming, or reducing filter (square boundary) to a system).
+              
 '''

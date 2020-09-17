@@ -40,10 +40,23 @@
   - find source of bio keywords & synonyms
 
 
-# Examples
+# Pattern Functions
 
-  - give an example of mapping an invention & insight on the abstract network
-
+  - fix indexing 'NNP NN NNS1 of JJ JJ JJ2' or postpone to pattern evaluation time
+  - fix missing alts
+      pattern_index::verb_phrase::plays a |VB NN| role::a NN role
+  - fix one-letter alts: pattern_index::phrase_identifier::ALL_N DPC ALL_N |VBG VBD|::N D N V
+  - generalize alt logic to use embedded pair finding
+  - fix supported stem assignment (endings like 'is': {'functions a', 'acts a', 'plays a', 'operates a', 'works a'})
+  - fix charge function ('edit' is assigned positive score)
+  - add core clause patterns 
+  - fix pattern matching functions
+  - finish pos, clause, modifiers code from find implementation
+  - get a language map for implementing other tools
+  - add conversion of pattern matching options to regex
+  - add precomputing if a sub-pattern was already computed: 'ALL_N ALL_N of ALL_N ALL_N' in 'ALL_N ALL_N ALL_N of ALL_N ALL_N ALL_N'
+  - add formatting to allow multiple items as keys in json and maintain order for interface network paths
+  
 
 # Structural Objects
 
@@ -123,37 +136,7 @@
     - dimension/variable/axis
     - space/system/context
 
-  - add identification functions:
-          - types (['structure', 'life form', 'organic molecule'] from 'protein')
-          - topic/problem domain
-          - objects (nouns like 'protein')
-          - components (topical nouns that are found in another topical component, like organelles of a cell)
-          - attributes (attribute metric/feature nouns like 'toxicity')
-          - functions (verbs like 'ionizing', 'activate', inputs/outputs like subject/predicate nouns)
-          - variables (function inputs like subject/modifier nouns)
-          - then test on bio systems:
-            - "adjacency as a definition of relevance can be used as a way to derive paths" + "path optimization can be used to get a drug to a location in the system"
-            - "isolate a pathogen cell before destroying it so it cant communicate info about what destroyed it to other pathogens to help them evolve resistance"
-
-      - function to derive core component functions for any system - then you can write functions to calculate function metadata:
-        - determine equivalent functions or more optimal version of a function
-        - determine function intent
-        - alter core functions used to alter function intent
-        - when generating solutions, change core functions to vary to describe any function set that builds any other function set in a system
-          - set of binding/interaction/priority functions for element atoms
-
-
-# Conceptual
-
-  - explainability as a space limited by derivable attributes from data set & cross-system similarity
-  - threshold mechanics for threshold value selection
-  - give example of structuring problem in a certain format (optimal transport) as an interface to highlight key differences
-  - give example of matching structure, mapping problem semantically, map from intent to structural algorithm design
-  - examine whether new concepts (gaps in network rules) evolve once structure is applied to prior concepts 
-  - all problem-solving automation methods have a variance assignment, allowing for variation to be explored in a certain location 
-  - you can either map problems to fit that structure or design new automation methods based on the variance gap necessary to solve a problem
-
-  - use distortion patterns of entities like atlases, templates, solution progressions to form a compressed version of the host system - https://techxplore.com/news/2019-11-medical-image-analysis.html
+  - use distortion patterns of entities (like atlases, templates, solution progressions) to form a compressed version of the host system - https://techxplore.com/news/2019-11-medical-image-analysis.html
 
   - add stressor language patterns
 
@@ -164,6 +147,8 @@
     - find compound with function = "refolds DNA"
     https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
 
+  - program to identify optimal use cases 
+  - program to delegate optimized use cases to tools optimized for them (languages better at one task than another)
 
 # ML
   - the full data set should have numerical categories indicating condition(s) treated in the output label so it can be separated into sub-sets by condition treated
@@ -173,32 +158,6 @@
   - from a data set, it should be possible to compute which questions can be answered by the data set, with what confidence & specificity - if it matches user intent, you can proceed with the analysis
   - accretion of data set variables into types using info filters is one relationship that occurs on the interface network
 
-
-# Programming
-
-  - program to identify optimal use cases 
-  - program to delegate optimized use cases to tools optimized for them (languages better at one task than another)
-
-
-# Diagrams
-
-  - make diagram for dimension links higher than 3d that are depictable in the same network space
-    - should show variables that impact other variables, the change rates of these relationships
-    - overall impact should be calculatable from these relationships
-    - should show similar movements for correlated variables
-    - should show skippable/derivable variables (variables that can be resolved later than they normally are)
-    - should show meta forces for overall trends in change rules (direction of combined variable forces)
-    - should show limits of measurability & threshold metrics
-
-  - finish diagrams for specific concepts, core functions, concept operations (combine, collide, connect, merge, apply), ethical shapes
-    - chaos & ethics graph
-    - variable accretion patterns (how an object becomes influenced by a new variable, complex system interaction patterns, etc)
-    - make diagram of potential matrix to display the concept
-      - map parameter sets to potential matrix shapes 
-    - finish diagrams for intent (more examples of matching structure with intent), cause (shapes & ambiguity), concept (evolution of concepts, networks, distortion functions)
-    - diagram for argument
-
-  - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
 
 # Questions
   - are pathogen receptors/membranes unique enough that you could design a substance to artificially bind with them to deactivate or puncture the membrane without impacting other structures?

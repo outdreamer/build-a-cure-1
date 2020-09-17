@@ -51,6 +51,10 @@
           - does a change increase or reduce power? 
         - this can be framed based on potential (bc power can change with respect to options), variance (because power can change with respect to change), and time (bc power can change over time) 
   - answers questions like: 
+    - how to derive unique concepts & their relationships
+    - how to derive output intents of concept combinations
+    - how to fit concept combinations to structures
+    - how to describe problem space, deriving strategies & perspectives in that space
     - what concepts cannot be reduced/abstracted further 
     - what concepts have which associated structures 
     - what definition routes identify a particular concept 

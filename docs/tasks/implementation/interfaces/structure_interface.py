@@ -1,31 +1,12 @@
 '''
-  - example of the analysis for this interface: 
+  - definition: 
     - indexing objects by structure allows clear matching of useful structures to objects/attributes/types/rules 
     - this allows objects to be graphed in a standard way, which means translating objects like problems into a computable interface 
+    - anything that has its own internal gravity can be modeled as a physics system, but if it has its own internal operations like how to traverse the interface network, it also has a description system which can be mapped to structure
   - attributes (order, balance, equivalence, accuracy/fit, position) 
   - objects (comparison, combination, permutation, approximation, metric, activator, trade/cost/benefit, change, filter) 
   - concepts (equivalent, alternate, substitute, opposite, inverse) 
 
-  - examples:
-    - market structure analysis
-      - the market interface is a standard interface where resources (goods, labor, time, risk, information, expectations, theories, & stored prior labor (currency)) are traded
-      - a useful new way to use this is to frame non-resource objects as resources (systems, structures, positions, paths, directions, risk chains, trade loops, markets)
-      - then you can apply traditional market analysis (optimal transport) to find, for example, the optimal set of trades to change an industry's position
-    - for a problem of type 'conflict', like vectors aiming at a corner of a closed shape (where the shape is formed by the intersections of limiting attributes), the structural way to solve that problem is:
-      - reducing the angle of the corner 
-        which reduces the difference between corners (and the incentive to aim for a corner) & adds extra alternatives
-        - the solution is an example of 'false limit' - the limit of there being a finite supply of corners or the limit of one route occupying a position at a given time can be surmounted with extra resources
-      - reducing incentive to aim at corners
-        - if the shape has fewer corners, there will be less incentive for internal vectors to aim there
-      - reducing motion
-        - if the shape has a stable state, the motion of the internal vectors can be reduced or staggered at intervals for resource-distribution
-      - adding motion
-        - use types of motion to distribute the vectors so they aim at different corners
-    - you could apply these methods of solving the structural problem to the original problem 
-      (a conflict like competition or overflow or false limit or false alignment if the vectors dont need to aim for the same corner)
-    - the way to assign 'conflict' problem type to the closed shape structure with internal vectors is by aligning attributes 
-      (incentives that organize motion to create an oversupply of resources (motion vectors) that cant be supported by a resource (position))
-   
   - answers questions like:
     - how to identify components with structural attributes like chainability (cause, risk, variance, errors, gaps, limits) or variability
     - how to identify a shape fitting information: chain/stack/network/mix/layer, adjacent shapes, or emergent info shapes like alignments/gaps/conflicts
@@ -38,7 +19,7 @@
     - space: dimension set
     - scale, range, spectrum
     - group: set, potentially across dimensions (cluster of data points)
-    - position
+    - position (point)
     - line: position link
     - sequence
     - center: possible in a shape with symmetries
@@ -64,6 +45,21 @@
     - expansion
     - progression
     - distribution
+    - combination/contextual/conceptual structures:
+      - unit (isolatable entity)
+      - comparison (rate)
+      - combination (group)
+      - permutation
+      - interface (common attribute or attribute set)
+      - trigger
+      - trade
+      - variance
+      - pattern
+      - change
+      - state (combination of structure & information)
+      - filter/standard (reduce)
+      - perspective (focus)
+      - equivalent, alternate, substitute, opposite, inverse
 
   - functions: 
     - identify components with structural attributes like chainability (cause, risk, variance, errors, gaps, limits) or variability 
@@ -86,9 +82,6 @@
         - node: many connections to many other objects having a similar property, like having a type in common, usually unique 
         - links: usually many connections between two objects at a time, having many possible variations, can be repeated 
       - example of structural analysis by applying a particular structure: 
-        - market analysis: the market interface is a standard interface where resources (goods, labor, time, risk, information, expectations, theories, & stored prior labor (currency)) are traded 
-          - a useful new way to use this is to frame non-resource objects as resources (systems, structures, positions, paths, directions, risk chains, trade loops, markets) 
-          - then you can apply traditional market analysis (optimal transport) to find, for example, the optimal set of trades to change an industry's position 
         - time analysis: as time increases, what changes: 
               - position 
               - value (position on a dimension) 
@@ -111,4 +104,22 @@
           - identify layer to solve a problem at 
           - identify key objects needed to solve a problem 
           - identify structures for information 
+      - market structure analysis
+        - the market interface is a standard interface where resources (goods, labor, time, risk, information, expectations, theories, & stored prior labor (currency)) are traded
+        - a useful new way to use this is to frame non-resource objects as resources (systems, structures, positions, paths, directions, risk chains, trade loops, markets)
+        - then you can apply traditional market analysis (optimal transport) to find, for example, the optimal set of trades to change an industry's position
+      - for a problem of type 'conflict', like vectors aiming at a corner of a closed shape (where the shape is formed by the intersections of limiting attributes), the structural way to solve that problem is:
+        - reducing the angle of the corner 
+          which reduces the difference between corners (and the incentive to aim for a corner) & adds extra alternatives
+          - the solution is an example of 'false limit' - the limit of there being a finite supply of corners or the limit of one route occupying a position at a given time can be surmounted with extra resources
+        - reducing incentive to aim at corners
+          - if the shape has fewer corners, there will be less incentive for internal vectors to aim there
+        - reducing motion
+          - if the shape has a stable state, the motion of the internal vectors can be reduced or staggered at intervals for resource-distribution
+        - adding motion
+          - use types of motion to distribute the vectors so they aim at different corners
+      - you could apply these methods of solving the structural problem to the original problem 
+        (a conflict like competition or overflow or false limit or false alignment if the vectors dont need to aim for the same corner)
+      - the way to assign 'conflict' problem type to the closed shape structure with internal vectors is by aligning attributes 
+        (incentives that organize motion to create an oversupply of resources (motion vectors) that cant be supported by a resource (position))
 '''

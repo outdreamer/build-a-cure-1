@@ -9,6 +9,8 @@
         - identifying the given problem & solution target structures in the problem space & the related problem network, so the problem & solution can be visualized
         - identifying & anticipating problems in a system, which includes identifying problem structures (inefficiencies, conflicts, etc) that exist or could emerge
           - for example, in the bio system, DNA regulation functions don't prevent pathogens from injecting DNA or mutations from occurring, so if you derive the concept of a pathogen or mutation without already having that definition available (using core system analysis), you could predict that the current DNA regulation functions wouldn't be able to offset the changes exacted by those concepts & you could predict problems of DNA disregulation in the bio system before they occur
+      - all problem-solving automation methods have a variance assignment, allowing for variation to be explored in a certain location 
+        - you can either map problems to fit that structure or design new automation methods based on the variance gap necessary to solve a problem
 
     - objects (problem, solution, problem/solution space/network) 
 
@@ -85,13 +87,21 @@
 
 
     - examples:
-          - examples of problem types on different interfaces:
-            - system problems: inefficiency, conflict, mismatch
-            - information problems: excessive information, conflicting information, information asymmetry
-            - structural problems: unnecessary components, contradictory function requirements, mismatch in shapes
-            - intent problems: adding specificity where unnecessary, intents that neutralize each other given position, sub-intents that dont match function intent
-            - concept problems: excessive definition routes, overlap in definition routes across concepts, definition route that more adjacently matches another concept
-            - logic problems: excessive assumptions, contradictory conclusion & assumption, using specific logic to make absolute inferences
+
+      - examples of problem types on different interfaces:
+        - system problems: inefficiency, conflict, mismatch
+        - information problems: excessive information, conflicting information, information asymmetry
+        - structural problems: unnecessary components, contradictory function requirements, mismatch in shapes
+        - intent problems: adding specificity where unnecessary, intents that neutralize each other given position, sub-intents that dont match function intent
+        - concept problems: excessive definition routes, overlap in definition routes across concepts, definition route that more adjacently matches another concept
+        - logic problems: excessive assumptions, contradictory conclusion & assumption, using specific logic to make absolute inferences
+
+      - problem prediction example with market organization 
+        - anticipating problems across many agents with n steps, and calculating which problems will develop and which solutions can be constructed in advance
+        - unit example: predict when a dev will need a tool based on usage/purchase/request data (alternatives with different priorities/perspective built-in)
+          - which problems will develop from which tool sets used at scale (migration tools between comparable alternatives)
+          - which problemss will be prioritized & have solutions constructed
+          - how to optimize by constructing other calculated solutions to prevent high-risk problems
 
     - dependencies
       - this interface relies on the find_format_for_metric.py function 
