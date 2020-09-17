@@ -1,0 +1,34 @@
+'''
+  - example of the analysis for this interface: 
+    - intent can be defined as possible reasons to use a function (or use an object as a function): 
+      - possible outputs (optionally including the explicit intended output, resource access/usage like memory retrieval, object lock, routing information to a function while it's being looked for elsewhere, or processing usage, and side effects) 
+      - explicit intents ('calculate x') 
+      - implied intents (the implication of an intent like 'calculate x' is to 'use the output of that calculation to make another decision') 
+      - embedded intents (implementing a function optimally has an embedded intent of 'optimize this function') 
+      - injectable intents (intents that can be injected into a range of functions, like the 'use processing power' intent can be injected into any function) 
+  - attributes (implication, directness, alignment) 
+  - functions: 
+    - allow combination of intents to find malicious intent structures (like a sequence of neutral-intent functions that has an emergent malicious intent when used in that sequence) 
+    - operate on intents (intent-modification intent) 
+    - derive intent as a dependency of the intent interface conversion function  
+    - map intent to direction & assess solution progress by movement in that direction 
+  - structures: 
+    - intent matrix is the interaction space of a set of intents, where its emergent intents can be traced across the interaction space 
+    - intent stack is the set of adjacent intents of a function, from granular/neutral/abstract to specific/explicit, across various interfaces like logic, abstraction, & structure 
+  - answers questions like: 
+    - which intents should follow or be combined with which intents 
+    - which intents are likelier, given the context implications of the function 
+    - which intents are missing, given an overall function intent 
+    - which intents do the optimized/simplest/reusable function versions fulfill 
+    - intent-logic interface question: which intents align with logical objects (assumptions, conclusions) 
+    - intent-system interface question: which intents are common to all functions in the system 
+    - intent-function interface questions: 
+      - which functions are most exploitable for malicious/neutral intents 
+      - which functions' explicit intents don't match their implicit intents (or emergent intents when combined with other functions), which is like analyzing the structural difference between developer expectation vs. user intention 
+    - do variable, type, logical, & output intents match overall given function intent 
+    - what is the logical sequence that best fulfills this intent (useful for automating code generation) 
+      - what is the function linking these variables, given the variable intents a, b, c and the combination intent matrix ab, bc, ca, and the possible output intents of that matrix, and similarity to output intent of y 
+    - what intents/directions/priorities does this path align with or could be built from? 
+  - objects (priorities: abstract directions that intents may fulfill or move agents toward, whereas intents are more granular) 
+  - concepts (applicability: what a function can be used for) 
+'''

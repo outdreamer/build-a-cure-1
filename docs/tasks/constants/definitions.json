@@ -1,0 +1,51 @@
+  - define the database schema containing:
+    - an index of info objects (data store containing info objcts like queries, definitions, formats, concepts, insights, solutions, functions, strategies, patterns, etc)
+    - program configuration (data sources, query & usage statistics, optimization configuration, prior queries & related objects) 
+
+
+    - component: functions/attributes/types/objects/systems 
+    - input information: can refer to original information input to the initial interface traversal, or traversal output information that has been converted, enhanced, formatted, or otherwise altered in a prior interface traversal, stored as a possible version of the original input information, and sent as input to another interface traversal 
+    - interface: a useful standard for comparison consisting of the filtering object's definition routes, conversion function, core functions, objects, & attributes, and related objects like patterns & metadata specific to the interface  
+        - the traversal of an interface implies mapping input information to interface components 
+        - interface operation act on interfaces themselves (like application, combination, mapping, or injection of an interface) 
+    - function: a set of inputs, a sequential list of rules or rule lists (logic tree) applied to the input set, an output set created by changes to the input set executed by the sequential rule list, optionally including side effects from execution. A function may be formatted in a different way, such as a list of attributes, filters, or a network. 
+    - intent: any of an abstract goal with direction, a reason to use something, or an output such as the intended result or an unintended side effect, which can be an abstract priority like fairness, a concrete goal, and can have a starting & ending position. 
+    - concept: set of unique objects remaining once objects from other spaces have their context & contradictory attributes removed.  
+    - network: standard network graph containing nodes (sometimes called vertices) & linking functions (sometimes called edges), with or without node attributes, function relationship determining function shape, and direction as an indicator of intent or another metric.  
+
+
+    - structurized interfaces: interfaces with other interface components applied (like limits applied to the causal interface components) 
+    - interface operation (combine interfaces, etc) 
+    - interface traversal (apply an interface to a problem) 
+    - interface query (cross multiple interfaces in a sequence) 
+    - workflow: a particular interface query or traversal to solve a problem or problem type, as defined in application 16887411 
+      - an example of a problem-solving automation workflow is shown in application 16887411 Figs. 1F - 1I and referenced in this application's Fig. 14 (Design Interface Query). 
+      - the default problem type of an interface traversal is 'find matching components between input information & this interface' 
+    - the interface-interface where interface analysis is executed (the meta-interface or meaning interface) uses the core functions that can generate the general interface network (filter/find/identify, apply/combine, build/fill, derive/predict, change/transform/process) 
+  
+    - interface network: the set of networks that act as useful filters/standards for applying structure to organize information 
+
+
+    - interface: a filter/standard for comparison of specific attribute(s) 
+      - interfaces evolve when a unifying attribute (priority, cause, structure) can frame a set of developing variance 
+      - interfaces, standards, & perspectives can all be formatted as filters 
+        - an interface can be specific but on the general interface network, it offers a standard for multiple related attributes or causative attributes (types/intents/patterns offer a way to interact with all layers of a system), whereas a perspective is focused on a very restricted set of variables, with the intention of distorting reality to highlight information that other perspectives dont make clear.
+    - each interface's definition has a specific: 
+      - conversion (filter) function to convert input information to that interface (or a combination or other structure of interfaces), and convert retrieved/generated information back to the input format 
+      - component traversal function (to execute after after conversion) 
+      - a function (and corresponding data, like definitions or interface structures) to find/generate/derive the interface network from that interface, in case resources are isolated 
+    - each interface may have related interface objects, like supported intents 
+    - interface traversal & queries have supported intents such as: 
+      - 'finding formats linking other formats' 
+      - 'finding a structure for a concept' 
+      - 'applying a function to a structure' 
+      - 'match a problem in this format, with a solution (in a format that can interact with the problem)' 
+      - 'optimize this system' 
+      - 'find an optimal route between these system positions' 
+      - 'find a cause of this variable' 
+      - 'find an optimal structure for this information' 
+      - 'design an interface query to convert input information into an output information type (like an insight, a cause, a new interface in data, problem-solving automation workflow)' 
+      - 'assemble a meaningful (relevant) format of this information for this intent' 
+
+
+- problem:

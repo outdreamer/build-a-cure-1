@@ -1,0 +1,1 @@
+''' function to get related objects '''

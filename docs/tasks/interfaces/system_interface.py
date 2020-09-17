@@ -1,0 +1,38 @@
+'''
+  - definition: 
+    - the system interface is the structural version of the meaning interface
+    - the fundamental system question 'how does info fit in a system' is relevant to the fundamental meaning question 'what structures are relevant to this intent'
+    - this is a format accessible once information is standardized to object model 
+    - this involves framing information as a connected network with a boundary defining the system, that has core system operations, structures, & objects 
+  - structures: 
+    - structural system objects like connections/boundaries 
+    - structures applying info system objects like variance/dependencies/equivalencies/efficiencies/incentives/asymmetries (info/risk/time) 
+  - objects: 
+    - information objects 
+    - variance objects like variance injection points (gaps in rule enforcement) & variance sources (problem types, gaps in system boundary allowing variance from other systems to leak in) 
+    - tradeoffs: options with mutually exclusive contradictory benefits (if you take one option, you have to sacrifice the other), often a false trade-off or dichotomy applied when both are simultaneous options rather than contradictory 
+    - incentives: a reason to take an action (a benefit or cost) - usually interpreted as default in a system 
+    - inefficiency: defined as not using a cost-reduction or benefit-increasing method (using extra unnecessary resources, not using a requirement-reduction method, not reusing solutions, etc) 
+    - opportunity: potential move with a potential benefit, with a limited time component 
+    - exploit opportunities: opportunity with temporary local (selfish) benefits that allocates cost disproportionately to the system (destroying a system-maintenance concept like 'trust' or 'rule of law') or other objects in the system, with negative emergent side effects (hoarding resource incentives, requirement for monitoring & rule enforcement investment, misallocation of justice) 
+    - vertices (factors that generate or influence the system development) 
+  - functions (optimize, traverse, open/close, apply system filters, reduce dependencies, close variance injection points, enforce rule, identify system objects given their definition, such as a variance gap, map a system layer graph representing combinations, identify/derive system context, find interactions of interaction spaces (which interactions are common across agents, likely given other interactions, etc)) 
+    - function to generate a different object (like a different concept network) by varying attributes: 
+      - example: if power favored centralization, another core concept like balance would have to favor a chaotic process or not exist at all, or another core concept would need to be added to the network 
+    - function to predict which system filters will be useful based on a system priority 
+  - attributes (cohesiveness) 
+  - concepts: closed system (a system that can exist without other systems), optimized system (a system that generates zero variance, whose inputs/outputs are all connected without side effects) 
+  - answers questions like: 
+    - where are the inefficiencies in this system 
+    - how can this system be optimized 
+    - are too many assumptions hard-coded in this system 
+    - is this system capable of a particular function 
+    - does this system coordinate with other systems in a stable way 
+    - is this system adjacently exploitable 
+    - does this system contain more potential (options) than it needs 
+    - what input/output paths are available that can achieve a particular intent 
+    - where would this system generate coincidentally similar structures (a query to identify false similarities) 
+    - what system structures (or buildable system structures) fit in this unknown information-generating sub-system 
+    - system-problem interface: what problem types does this system have 
+    - how does a system become overwhelmed with variance (in various forms, optionally including randomness), does it have outlets like interfaces with other systems to delegate variance 
+'''

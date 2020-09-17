@@ -1,0 +1,61 @@
+'''
+  - definition 
+    - a concept is an object in a system that: 
+      - extends the core components of the system in a new way (introducing a new object on the system layer graph of core component combinations) 
+      - acts as an interface (for change, randomness, etc) or determinant of change 
+      - has attributes/functionality beyond its definition in that space (can have one function in one system context & another emerging function in a particular state & environment) 
+      - example: power is the object left when objects implementing it: resources => energy => input => potential) have their context removed, navigating up the abstraction stack from the info layer (resources & energy), removing their contextual attributes/rules, to the abstract structural layer (input) , to the abstract layer (potential, which is a related concept of power) , so that the final object is defined in terms of other abstract objects on the top layer  
+    - the abstract network is a set of related concept objects remaining after removing context, concepts that are applicable across systems, often have multiple definition routes because they take a variety of forms given the context, and are fundamental to describing a system. A subset of the abstract network is depicted in FIG. 15. Concept definition network, which shows concepts related to 'relevance'. 
+      - so that the final object is defined in terms of other abstract objects on the top layer 
+    - a non-abstract concept is an abstract concept with structure applied (in a particular system), like how a particular definition of similarity in a system can evolve from the abstract concept of equivalence 
+    - this interface can be used for specific attribute analysis, of properties that descend from concepts & take form in a specific problem space: 
+      - the power concept interface (has structures that look like trust, info, etc) 
+      - the balance concept interface (has structures that look like symmetry, justice, etc) 
+  - objects (abstract network of structural, irreducible cross-system concepts, like power, balance, etc) 
+  - structures (abstraction layer (level of specificity/certainty in a structure), systems where the concept fits as an interaction object, trajectory to generate the concept in conceptual networks) 
+  - concepts: definability (how clear is the definition, given the level of structure like context applied, making a concept concrete rather than abstract) 
+  - attributes (abstraction, uniqueness, isolatability) 
+  - functions: 
+    - function to identify/derive/define concepts in a system (unique objects in a system that cant be defined in terms of standard operations on other objects) 
+      - example: 'meaning' concept definition (relevance/structure) is based on attributes like reduction of signals (relevance) and matching of signal structures (similarity) 
+    - function to identify abstract concepts, by attributes like whether they: 
+      - can take many structures (the concept of equivalence has many possible implementations) 
+      - can impact many systems varying by system attributes or system types (abstract, calculatable, variable, understood, types, functional, prioritized, optimized) 
+      - cannot be perfectly defined as a simple function of other objects, but rather are definable with a set of simple, core boundary rules that differentiate them from other concepts 
+        - these boundary rules do not involve other concepts on the same layer, but rather core components 
+        - for example, the core components of common shapes are: line, point, curve, corner 
+          - the set of common shapes are the uniquely identifiable combinations of these components (circle, square, triangle) that are not identifiable as simple transforms of other common shapes, but rather are composed of simple limit rules based on their core components (line, point, curve, corner) 
+          - "enablement" doesnt perfectly capture "power", and the concept of "enablement" also relies on the concept of "power", but it does differentiate power from other concepts & unite its possible implementations & meanings 
+          - "symmetry" doesnt perfectly capture "balance" 
+          - "similarity" or "substitutability" or "identity" doesnt perfectly capture "equivalence" 
+      - are uniquely identifiable compared to other concepts 
+        - balance is related to symmetry so these are not unique concepts but embedded/dependent/overlapping/hierarchical concepts 
+        - however balance is clearly differentiable from power, as balance inherently involves equivalence and power doesnt, whereas power inherently involves enablement and balance doesnt 
+    - function to identify structures generating a concept or concepts generating a structure: 
+      - example of finding a structure generating a concept:  
+        - create a program that checks if a system is robust automatically, regardless of which system: what would a concept like 'robust' mean for a system? 
+          - given the definition route to 'robust' as 'strong enough to withstand various circumstances', you can infer that if a system is robust, it can retain its structure despite application of various change types 
+          - so query for change types in that system, then check which change types break the system & the ratio of (change types handled/total change types) 
+          - assign a ratio to 'strong' adjective, then check if the change type handled ratio is above or below the strong ratio: if above, the system is 'robust' 
+        - independence can be created with closed trade loops: the most basic example is where agent A produces everything agent B needs, and vice versa     
+    - conceptual math functions: 
+      - an example is applying the concept of 'meta' to the concept of 'game' and getting output of the operation like 'a game where games can be created by agents inside the game' or 'a game to design games', given similarities between attributes/functions of objects in the definition & relevant spaces 
+      - apply one concept to another (apply 'power' to 'market' or 'evaluate market by power' involves standardizing the market concept in terms of power, using power as an interface) 
+      - apply concept to a structure, as a priority 
+    - function to evaluate conceptual change 
+      - example of concept-based (power-based) change: 
+        - as power (degree of dependency) changes, what else changes: 
+          - previously distant points become equal to adjacent points as power increases 
+          - value reverts a concept & the information of the value loses its meaning 
+          - dimension space can be determined by the degree of dependency 
+          - does a change increase or reduce power? 
+        - this can be framed based on potential (bc power can change with respect to options), variance (because power can change with respect to change), and time (bc power can change over time) 
+  - answers questions like: 
+    - what concepts cannot be reduced/abstracted further 
+    - what concepts have which associated structures 
+    - what definition routes identify a particular concept 
+    - as change increases, how does a concept (like similarity) change 
+    - concept-system interface:
+      - what concepts are likely to evolve in a system
+      - what concepts are common to most systems (would help identify concepts like an efficiency)
+'''

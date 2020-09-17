@@ -7,15 +7,23 @@
       - which problemss will be prioritized & have solutions constructed
       - how to optimize by constructing other calculated solutions to prevent high-risk problems
 
+  - make core function graph (apply, find, build)
+
   - update repo doc version with patent version & remove repeated info 
 
   - add rules from diagrams to a document
 
   - expand on core operation mapping (like add: combine, subtract: differentiate (isolate difference), multiply: expand by, divide: standardize by) with interface queries for core operations
 
-  - organize 'to do' items from analysis & code to to do list
+  - organize 'to do' items from analysis & code to to do list as function list with dependencies
 
-  - add interface query visuals
+  - diagram
+    - interface query visuals
+    - interface traversal flow diagram
+    - interface conversion, matching, starting point selection
+      - checking if relevant information is found
+
+  - port changes from claims to repo
 
   - organize examples/diagrams to make
 
@@ -25,12 +33,7 @@
 
   - function to find structure for an object/function (similar variance, difference from related objects, intents/priorities, causes, potential ranges, etc)
 
-  - document vertex definition (as an intersection/combination of determining/description/generative/derivation variables)
-
-  - function to select interfaces by usefulness for problem-solving intents
-    - cause is a good interface to host constructive discussions about decisions, that avoids information used to allocate fault
-    - intent is a good interface to frame lies
-    - pattern is a good interface to frame change types, after already standardizing to the change interface
+  - document vertex definition & give examples (as an intersection/combination of determining/description/generative/derivation variables)
 
   - function to find the important differentiating questions
     - example: ethics is the concept of balance applied to a system with agents 
@@ -67,16 +70,6 @@
     - the default example can be a prediction function
 
   - document time structures (concave time explaining compounding similarities up to a point of maximum concavity, a structure that can separate from the other space-times)
-
-  - diagram
-
-    - identifying/reducing solution space & aggregating solutions into final structure
-    - checking if solution metric is fulfilled
-    - interface traversal flow diagram
-    - interface conversion, matching, starting point selection
-      - checking if relevant information is found
-
-  - port changes from claims to repo
 
   - organize certainty (info) vs. uncertainty objects (potential, risk, probability)
 

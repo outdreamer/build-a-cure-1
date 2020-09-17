@@ -1,0 +1,45 @@
+'''
+  - definition: 
+    - this is a standard information format commonly used in programming, optionally including object/attribute/function information 
+    - the unique implementation of this used in this tool optionally includes attribute type information, function metadata, and object derivation logic, as well as operations to merge objects & other common operations on these components 
+    - attribute definition: 
+      - attributes of an object contain information about other structures/functions of the object 
+      - 'is an object strong' translates to the question 'does the object have functions that enable it to execute tasks at high performance' 
+      - the 'strong' attribute refers to a net effect of the set of structures (its functions) that fulfills a metric (like high performance) relating to a state that the host object can occupy consistently, making it an identifying quality (attribute), while not required to remain in that state (can be a variable attribute, with multiple potential values) 
+      - if a system works well or is efficient, it may fulfill the attribute 'strong', which means that any structures of efficiency/high-functioning (like aligned benefits/costs or aligned intents/incentives or reused functions) may be assignable to the concept of 'strong', given that those can be components/inputs of strength 
+      - attribute types like input/output, descriptive/identifying/differentiating, abstract, causal, constant/variable/parameter, dependency/requirement, type attributes, etc 
+      - structurally, attribute can be represented as information flows like inputs/outputs, as emergent characteristics like additional ways to change (adding color or sound to a structure or additional embedded structures like a field/scaffold/layer) 
+    - object definition: 
+      - objects can be represented as a set of structures (like limits isolating change or vectors of change) that identify unique or isolatable objects, which act as a cohesive set of components (attributes/functions/sub-objects), or represented by context, given its position on a structure like a network, depicting its relative position to other objects 
+      - objects have boundaries differentiating them from other objects, containing their functions/attributes/sub-objects if present 
+    - function definition (metadata like input/output parameters) 
+    - definitions are identified by definition routes, which are alternate paths in a standardized language map (with language formatted to use interface terms) to define a object/attribute/function 
+      - the more abstract a concept, the more definition routes it may have 
+      - definition routes may reveal a particular structure of a concept, like how power is associated with delegation structures and can be optionally defined as 'ability to delegate' 
+  - attributes: 
+    - measurability (is an attribute measurable, is its value range knowable) 
+    - default format (is a component more similar to an attribute or function) 
+  - objects (type, state, definition) 
+  - structures (attribute sets, type hierarchies, state networks) 
+  - concepts: standardization (defining objects in terms of core/structural terms), core components (sets of components that can be used to construct other objects in a system) 
+  - functions: 
+    - identify data sources (code bases defining schema/class definitions, network maps) automatically with a search to identify tabular data in web resources 
+    - import (to import objects/attributes/functions) 
+    - object functions: define, create, derive, identify, change, version 
+      - definition (definition route) functions 
+      - definition operation functions (merge definitions) 
+    - structural functions: combine, merge, apply, embed, mix, filter, chain 
+      - example: combining a function and an attribute can mean: 
+          - changing any structures/metadata of the function that are capable of fulfilling/displaying/hosting the attribute 
+          - applying the function to the attribute to change its definition 
+        - which operation is used depends on which type of combine operation is used (merge, embed, intersect, union, version, merge with a particular conflict resolution definition, etc)         
+  - answers questions like: 
+    - what attributes do these objects have in common 
+    - what are the differentiating attributes of this object set 
+    - what is the relative position of this object on a network of objects 
+    - what attributes emerge from this object set 
+    - which objects change in what ways 
+    - what is the net functionality of the object set 
+    - how do/will these objects interact 
+
+'''
