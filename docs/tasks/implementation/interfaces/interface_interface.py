@@ -7,7 +7,9 @@
           - dependency interface is a combination of the cause/function interface 
           - types (data, classes, etc) interface is a subset of the general type interface 
           - side effects are a subset of the variance interface (gaps in intent & execution, prediction of emergent attributes after nth iterations of combinations or other operations) 
-  
+        - like all other sets of objects on an equal interface, any item in the set can be used to find the others
+        - in a set of (4, 6, 2, 3) you can start with 4 to find 2 or 3 to find 4
+
   - attributes: 
     - generatability/common derivable core functions with other interfaces 
     - information loss 

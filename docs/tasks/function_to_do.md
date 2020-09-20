@@ -5,14 +5,26 @@
   - organize 'to do' items from analysis & code to to do list as function list with dependencies
   - integrate changes from solution_automation_analysis.py claims to repo
   - integrate logic from core_analysis/*
-  - integrate implementation_guide.md & problem_solving_matching.md & analysis_examples.md & specific_methods/*
+  - integrate problem_solving_matching.md & analysis_examples.md & specific_methods/*
   - de-duplicate logic
+  - organize specific interface analysis definitions/logic/questions answered/problems solved/examples
   - write query to compile functions in interface definitions (after definition, functions & answer questions section), as well as identify/build/find/derive/change attributes/types/objects/structures in definition
   - use examples in repo as test cases
   - give example of generating problem types by applying structure
     - for instance, a common problem type is a mismatch/imbalance
       - by applying the 'mismatch' to the cost/benefit relationship, you get an 'inefficiency' problem type, which can be defined as a mismatch/imbalance between the cost & benefit, favoring the cost side (the negative object out of (cost, benefit), associated with problems)
   
+
+  - examples of objects on different interfaces
+    - potential (risk chain, uncertainty) 
+    - causal objects (causal degree, cause, dependency)
+    - information objects (contradiction, implication, perspective, similarities/differences)
+    - structure objects (direction, boundary, node, connection, filter, extreme)
+    - system objects (inefficiency, incentive, error, alternative, opportunity, conflict)
+
+    - the reason these abstract objects fit on a particular interface is because they describe specific interactions:
+      - a conflict may occur on every interface, but in the system interface, the interactions of a conflict with other objects are the clearest, closest to its most concise definition, & capture the most variation, whereas on other interfaces, the conflict object can take many forms
+
 
 ## define
 

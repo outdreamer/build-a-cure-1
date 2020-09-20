@@ -85,17 +85,24 @@
     - identify a fallacy
 
  - examples:
-      - variable1 is not checked for False (theres a gap in enforcement between the None & False definitions) so the operation could fail
-        if variable1 is None:
-          return False
-        return operation(variable1)
-      - theres a potential gap in enforcement of data type, where variable1 might not be an integer even if its positive
-        if variable1 <= 0:
-          return False
-        return int(variable1)
-       - there's an unnecessary condition which is invalidated by prior code (if variable1 is not defined, it would never get to the third line, so the third line is unnecesary)
-        if not variable1:
-          return False
-        if variable1:
 
+     - if the following code appears in this order:
+
+        - if variable1 is None:
+            return False
+          return operation(variable1)
+        
+          - variable1 is not checked for False (theres a gap in enforcement between the None & False definitions) so the operation could fail
+
+        - if variable1 <= 0:
+            return False
+          return int(variable1)
+          
+          - theres a potential gap in enforcement of data type, where variable1 might not be an integer even if its positive
+
+        - if not variable1:
+            return False
+          if variable1:
+          
+          - there's an unnecessary condition which is invalidated by prior code (if variable1 is not defined, it would never get to the third line, so the third line is unnecessary)
 '''

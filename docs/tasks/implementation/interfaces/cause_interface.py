@@ -280,4 +280,11 @@
           - system functions 
             - core system function (apply, inject, combine) definitions on the causal-concept interface 
 
+      - cause-change:
+        - example:
+          - the classic parabola of a ball's motion when thrown from the ground has two primary cause-values:
+            - origin force until the peak x-value change rate, and gravity force after the peak x-value change rate
+            - if the y-value starts changing more from gravity than from origin force, the gravity force becomes determining
+          - additional cause values travel farther up the causal stack:
+            - forces causing the emergence of gravity & origin forces are other causes
 '''

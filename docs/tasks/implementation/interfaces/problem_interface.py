@@ -125,7 +125,14 @@
         - a set of graphing functions 
          
           - graph the problem space, problem, related problem network (as shown in FIG 7), solution space, solution, embedded graphs, interfaces, and other relevant objects
-            
+          
+            - function to apply limiting rules to problem visualization/formatting
+              - if you reduce a shape of a subset of problem dimensions, those variables cant be used later in the solution, so even though some reductions may seem obviously right, more than one solution should be tried
+                (side length if defined as a cube, or variable set like identities of sides, number of corners/sides, angle of corner, shape identity), 
+
+              - mapping problem types to functions has side effects without limits & standardization applied to the format:
+                - removing a problem variable can only be mapped to lowering the number of variables (whether limits, multipliers, or other objects) creating a shape once the problem variables are formatted with the same term set
+
             - function to derive the problem space metadata (which is returned & displayed to the user is shown in FIG 3 Problem Space Metadata), optionally including the solution metadata in FIG 4 (Solution Metadata) & additional solution metadata in alternate formats as shown in FIG 5 (Additional Solution Metadata), if a solution is found or if solution space information is found.
             
             - function to derive, analyze & compare solution metadata, for solution selection purposes
@@ -189,4 +196,5 @@
                 - how to identify alternative solutions that would be interchangeable with this solution in various contexts (like for different solution metrics):
                   - in other words, how to translate 'find optimal route fulfilling a metric' to an alternative interchangeable solution that makes the initial problem trivial to solve 'find system-wide cost-reduction function that makes system routes equally costly', at which point the original problem's solution is 'any route'.
                   - we are looking for ways to invalidate the problem (generate an adjacent object to act as a proxy or replacement for the solution, generate the solution automatically, change the system structure so solving the problem isnt necessary, etc) rather than generate a specific solution (like how 'trial & error navigation of all possible routes' is a specific solution)
-            
+
+'''

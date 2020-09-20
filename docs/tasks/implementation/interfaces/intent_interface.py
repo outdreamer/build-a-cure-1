@@ -1,5 +1,5 @@
 '''
-  - example of the analysis for this interface: 
+  - definition: 
     - intent can be defined as possible reasons to use a function (or use an object as a function): 
       - possible outputs (optionally including the explicit intended output, resource access/usage like memory retrieval, object lock, routing information to a function while it's being looked for elsewhere, or processing usage, and side effects) 
       - explicit intents ('calculate x') 

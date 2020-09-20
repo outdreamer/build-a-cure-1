@@ -1,3 +1,22 @@
+  - variance is semantically the opposite index (gap/unenforcement/missing information/randomness) to the filter index (limit/structure/information/organization)
+    - includes certainty objects (known variance, metrics, change patterns), uncertainty (potential/risk/opportunity) objects, and variance structures like cascades, injection points, accretion points
+    - delegation of variance into systems/types/functions/variables/constants
+
+    - this is the problem of adding/fitting/reducing structure from a gap in structure, which can be used to solve problems like:
+
+      - prediction
+        - which variables are explanatory, given what we can measure
+
+      - causation
+        - how alternatives can converge to the same level of variance or change patterns
+
+    - reducing gaps in rule enforcement to shapes or paths has its own set of rules
+
+    - this interface can also be used for specific attribute analysis, of properties that descend from concepts & take form in a specific problem space:
+      - the power concept interface (has implementations that look like trust, info, etc)
+      - the balance concept interface (has implementations that look like symmetry, justice, etc)
+
+
 '''
   - example of the analysis for this interface: 
     - variance is semantically the opposite index (gap/unenforcement/missing information/randomness) to the filter index (limit/structure/information/organization) 
@@ -61,26 +80,6 @@
   - answers questions like:
     - what is the conversion potential of this object given its functions
     - what is the interaction space of this object
-    - predict which system filters will be useful based on a system priority
-    - this is the problem of adding/fitting/reducing structure from a gap in structure, which can be used to solve problems like:
-      - prediction
-        - which variables are explanatory, given what we can measure
-      - causation
-        - how alternatives can converge to the same level of variance or change patterns
-    - reducing gaps in rule enforcement to shapes/paths has its own set of rules
-    - this interface can also be used for specific attribute analysis, of properties that descend from concepts & take form in a specific problem space:
-      - the power concept interface (has structures that look like trust, info, etc)
-      - the balance concept interface (has structures that look like symmetry, justice, etc)
-    - what type of variable is it? (object-differentiating/identifying attribute, emergent specific/abstract property, direct function input/output)
-      - how does the variable relate to other variables? (decisive metric, substitutable alternative, collinear)
-      - at what point does a variable become relevant to another variable interaction layer?
-      - how do constants accrete between rules, like caps to keep variance from flowing in to corners or creating boundary-invalidating openings in a system/component boundary?
-      - what causes variables to cascade across layers, creating fractal variables?
-      - what is the path definitely not, based on various maximized measures of similarity?
-      - what attributes & attribute sets & attribute dependency trees differ
-      - what is transformation cost/potential between objects
-      - what is divergence distance between generative paths for each object
-      - what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?
-    - how does a system become overwhelmed with variance (in various forms, including randomness), does it have outlets like interfaces with other systems to delegate variance
-
+    - what could this object become in probable system contexts?
+    - is this problem solvable in this system context?
 '''

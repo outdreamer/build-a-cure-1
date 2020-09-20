@@ -62,4 +62,9 @@
     - concept-system interface:
       - what concepts are likely to evolve in a system
       - what concepts are common to most systems (would help identify concepts like an efficiency)
+
+  - examples:
+    - concept analysis in design of sorting function:
+      - similarity in navigation, equality in split => optimal for target value near initial split points or similar positions to the split points
+      - assumed difference embedded in pre-computation of attributes => optimal for target value with different pre-computed attribute value, or target values in similar position to values with different pre-computed attribute values or adjacent values
 '''

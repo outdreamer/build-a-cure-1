@@ -12,6 +12,7 @@
     FIG. 18. 'Intent-matching' illustrates matching intent to structure & vice versa.
 
 
+
   - this function can generate objects like problem-solving automation workflows, found in problem_solving_matching.md and /solution_workflows/*
 
 
@@ -142,6 +143,7 @@
           - align objects (resolve conflicting objects like conflicting intents)
           - match objects (equate unequal objects like incentives/requirements, or expectations/intents, or opportunity/ability)
 
+        - correct imbalance (direction, resources, functionality, intent)
         - find combination (build) of structures (filters, functions, objects, sets, concepts, intents)
               - example: find combination of structures to build a prediction function for a data set
                   - combination of filters: which filters should be applied to reduce solution space, find relevant objects, or find steps to produce or build the solution
@@ -315,6 +317,18 @@
         - an misalignment or mismatch (like an inefficiency, a conflict, or an information imbalance), where the solution format is the set of structures (which can be steps/vectors or applying a pattern or finding a structure in a network) necessary to correct the mismatch (minimize cost, align priorities, balance the information) 
         - abstract format of a query (break problem into information problem types and then the solution is a query of solutions for each of those solved problems) 
     
+        - ways to format a problem:
+          - attributes that differentiate problems that are shared with possible solutions
+          - mapping intent to direction and assessing progress by movement in that direction
+          - networks with clusters & other structures representing decisions
+          - system layer graph representing possible steps
+          - function sets mapped to sequences given a metric like progression toward goal
+          - mapping change types to dimensions and graphing/calculating dimensions where change types change (an aggregate, interface, or deciding dimension where change type is uncertain but not random)
+          - using a layered graph to visualize change of different types/metrics built on a symmetry (vertical axis if horizontal sections are split)
+          - mapping language to structure directly ('find' maps to a set of vectors leading from a node indicating possible start positions, with option to use core function vectors to reach target node)
+          - a trajectory between low-dimensional problem graphs where each graph is a decision step, and attribute sets & problem of similar type occupy a similar position on an axis depicting all the graphs traversed
+          - a metric like size of variable interaction space mapped to length/area/volume to indicate how much of the problem is left, and a metric like number of variables mapped to number of sides of the shape to graph the problem according to structural metrics
+
 
       - example structures that apply a concept are depicted in FIG. 17 (Match structure for a definition of a concept), which depicts structures of the 'distribution' and 'power' concepts. 
         - In the example 'distribution' function on the left of Fig. 17, a distribution function (that implements conceptual attributes like balance) is depicted, which may produce the Balanced Info Distribution example output from the Standard Info Distribution input.

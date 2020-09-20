@@ -29,6 +29,13 @@
           - example: "what is the probable function linking these variables, given that it is an adjacent transform of a square (related function type), & a distant transform of a manifold (unrelated function type)?" 
         - variance accretion 
         - what variance is unexplained 
+      - this allows different representations of a multi-variable dimension like change in visually representable space without using topologies or parallel dimension lines:
+        - vectors representing directions as types of change according to the unit base vectors (units of change types) and scalar as the degree of change
+        - the perimeter of the changes to these vectors as a shape, and the function for that shape as the overall change function, and difference in area calculated the normal way to represent degree of change
+        - the network of change represented as a traditional graph, but the degree of change is treated like momentum and a function is graphed according to the momentum to connect the change nodes
+        - these are ways to graph aggregate change/other bases having different types without resorting to non-standard spaces
+        - the vectorized form of all change type features (a matrix) applied to objects in a standard shape
+          (dimensions are mapped to shape objects like sub-systems, so a dimension like a particular change type would be applied to a shape object like an angle/corner, if their change types align)
 
   - attributes: 
     - uniqueness (is the change composable with core distortion functions or is it formed with different functions than other changes, implying its origin is external to the system) 
@@ -44,20 +51,16 @@
         - variance structures (gap, leak, cascades/catalysts, accretions/injections, compounding variance, variance building a new interface, variance distribution/alignment, unenforced rules, measurement limits, open systems) 
         - change structures (variables, dependencies, updates, replacements, distortions) 
           - base: varying change bases (what a change's differentiating output is defined in terms of/in relation to) allows various difference types to be measured (removing common parameters/attributes or standardizing by a base), such as change defined as: 
-          
               - network position change
               - work to create the change (inevitability)
               - different ways to create the change (if there are many ways to create it, each individual way is insignificant)
-              - attribute value change
+              - state/attribute value change (requiring a new position on a state network) 
               - context/system change
+                - change based on system vertices (imminent to/distant from a phase shift, at an intersection, changing interaction layers)
               - difference from different origins (randomness, core, default, etc)
-              - change in change structures (change stack, circuit, sequence) or functions (derive change, derive change base, convert, differentiate)
               - state change (requiring a new position on a state network)
-              - variable change (requiring more/less/new variables or fundamentally altered versions of existing variables)
-              - adjacent similarities ('if you remove attribute x, are they equal?')
               - interface change (what interfaces are adjacent/determining/generative/differentiating across the change)
-              - interface objects (what concepts/intents differ, does potential increase, are other change types enabled across the change)
-              - change based on system vertices (imminent to/distant from a phase shift, at an intersection, changing interaction layers)
+                - interface object change (what concepts/intents differ, does potential increase, are other change types enabled across the change)
           - similarities ('if you remove attribute x, are they equal?')   
 
   - functions: 
@@ -70,7 +73,6 @@
       - function to map change types to dimensions 
       - function to identify dimensions where change types change (an aggregate, interface, or deciding dimension where change type is uncertain but not random), with embedded parameters & bases for framing changes of a certain type 
       - function to identify the variance structures (gaps/cascades/filters) in a system, to identify the best dimension sets to frame certain change types in 
-
       - function to identify/analyze variables as change sources (and alternatively as potential/uncertainty or information/certainty sources)
         - what type of variable is it? (object-differentiating/identifying attribute, emergent specific/abstract property, direct function input/output) 
         - how does the variable relate to other variables? (decisive metric, substitutable alternative, collinear) 
@@ -90,21 +92,16 @@
           - what probabilities/possibilities become possible/adjacent (adjacent meaning findable/generatable in structural dimensions/on the structural interface) 
         - as a concept having structure (like power: degree of independence) changes, does the change definition erode (previously distant points become more equal to adjacent points, so the meaning of information about position/dependency erodes, as power to move between them increases) 
         - where can change be stored/routed in a system: if there is demand for change (stressors demanding new functionality) but all components but one are maximizing their change handlers, then you know theres one potential variable where change will gather/be routed, if its possible to route change from the variance injection point to that variable's causal stack at some layer/point 
-  
 
   - change types: 
         - change from different bases (randomness, core, default, etc) 
         - change in change structures (change stack, circuit, sequence) or functions (derive change, derive change base, convert, differentiate) 
-        - state change (requiring a new position on a state network) 
         - variable change (requiring more/less/new variables or fundamentally altered versions of existing variables) 
-        - interface change (what interfaces are adjacent/determining/generative/differentiating across the change) 
-        - interface object change (what concepts/intents differ, does potential increase, are other change types enabled across the change) 
-        - change based on system vertices (imminent to/distant from a phase shift, at an intersection, changing interaction layers) 
         - changing attributes (like systematization/stabilization) based on a concept (like randomness) 
         - changing object change based on a changing interface (change stack, like changing orientation of an object within a system that is changing) 
         - changing change types (variance leak, variance cascades/activation, variance injection, compounding variance, variance approaching an interface, variance distribution) 
         - as change increases, what change objects (types/rules/rates/direction) alter position/connection/distance/existence? 
-        - does a change increase or reduce: attributes/functions of change like a change definition/change sources/core change functions/change rate/change type/change interface 
+        - does a change increase/reduce: attributes/functions of change, like a change definition/change sources/core change functions/change rate/change type/change interface 
         - what changes develop into change structures like randomness/constants/change cascades 
         - change can be framed on other bases like potential, because potential is a related object to change (if there is no potential, there is no change) 
         - certain change types have certain intents associated 
@@ -118,21 +115,25 @@
           - how does potential change with respect to starting position? 
           - if a starting position is isolated, there is less potential for dependence & more potential for independence (the net impact on overall potential is variable) 
           - this reveals more information about actual potential change types by placing useful limits on value ranges 
+  
   - examples: 
-      - when approximating area of an object that is similar to a square but has a convex arc instead of a side (like an opened envelope), it may be more efficient to: 
-          - calculate the integral of the arc-ed shape and add it to the square area 
-          - alternatively, if those functions arent available or if the arc is a very low angle and similar enough to a straight line: 
-            - the arc can be broken into sub-lines & the area of those shapes calculated & then added to the square area 
-          - rather than deriving an integration method for the non-linear side, it may be more efficient to arrange questions to solve the problem based on change: 
-            - question sequence based on change: 
-              - 'what is the non-linear object definition' (arc)  
-                - 'how does area change with angle of arc' (in proportion to degree of distortion from line) 
-                  - 'what distortion functions generate the arc from the distortion degree' 
-                    - 'what distortion is present in the observed object' 
-            - this is a specific case of answering the general question: 
-              - 'how does this parameter (area) change with respect to distortion from default object (line)' - a question that can be broken into the questions: 
-                - 'what degree of distortion is the different object (arc) at' (how many distorting n iterations build the arc from the line, which is similar to calculating the log base line of the arc, given the available distortion operation to connect them) 
-                  - 'what is the impact of each distortion on the parameter (area)' (what is the impact of each distorting n iteration on area) 
-          - it's also like calculating: (number of distortions between line & arc) ^ (impact of each distortion on area) = difference in area between line & arc, 
-            which is using a pattern of change (impact of distortions on area) instead of calculating a way to approximate the area parameter with integration (aggregating subsets that are easier to calculate) 
-'''
+    - change analysis involves the potential to format a problem into many change types, representing different combinations of solved problems (optimal transport, linear algebra, finding prediction function, etc) or known interfaces (type, intent)
+      - some sets are more adjacent than more optimal sets & may be a better investment for short-term gains
+        - example:
+        - when approximating area of an object that is similar to a square but has a convex arc instead of a side (like an opened envelope), it may be more efficient to: 
+            - calculate the integral of the arc-ed shape and add it to the square area 
+            - alternatively, if those functions arent available or if the arc is a very low angle and similar enough to a straight line: 
+              - the arc can be broken into sub-lines & the area of those shapes calculated & then added to the square area 
+            - rather than deriving an integration method for the non-linear side, it may be more efficient to arrange questions to solve the problem based on change: 
+              - question sequence based on change: 
+                - 'what is the non-linear object definition' (arc)  
+                  - 'how does area change with angle of arc' (in proportion to degree of distortion from line) 
+                    - 'what distortion functions generate the arc from the distortion degree' 
+                      - 'what distortion is present in the observed object' 
+              - this is a specific case of answering the general question: 
+                - 'how does this parameter (area) change with respect to distortion from default object (line)' - a question that can be broken into the questions: 
+                  - 'what degree of distortion is the different object (arc) at' (how many distorting n iterations build the arc from the line, which is similar to calculating the log base line of the arc, given the available distortion operation to connect them) 
+                    - 'what is the impact of each distortion on the parameter (area)' (what is the impact of each distorting n iteration on area) 
+            - it's also like calculating: (number of distortions between line & arc) ^ (impact of each distortion on area) = difference in area between line & arc, 
+              which is using a pattern of change (impact of distortions on area) instead of calculating a way to approximate the area parameter with integration (aggregating subsets that are easier to calculate) 
+  '''

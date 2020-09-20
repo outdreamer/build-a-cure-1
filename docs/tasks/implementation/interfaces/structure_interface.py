@@ -12,7 +12,10 @@
     - how to identify a shape fitting information: chain/stack/network/mix/layer, adjacent shapes, or emergent info shapes like alignments/gaps/conflicts
         - will a type stack (which type values on different type layers) or a network/tree (type hierarchy) be a more useful structure to capture a type relationship
     - identify compression/conversion functions of a shape
-
+    - this interface can also be used for specific attribute analysis, of properties that descend from concepts & take form in a specific problem space:
+      - the power concept interface (has structures that look like trust, info, etc)
+      - the balance concept interface (has structures that look like symmetry, justice, etc)
+      
   - structures: 
     - dimension
     - layer: parameter determining variance accretion interfaces where interactions develop
