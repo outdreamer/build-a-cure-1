@@ -3,28 +3,6 @@
 This is the general blueprint for implementing the ideas in this repo, which have more specific blueprints in their own guides.
 Use case & tech debt is included where applicable.
 
-
-## Object Model
-
-	- this is a simple standard information format
-
-	- uses:
-
-		- predict interactions & optimal versions of objects/attributes/types/rules
-			- predict emergent objects/attributes/types/rules
-
-		- problem-solving automation method to query objects/attributes/types/rules
-		- reduce solution space or identify causative factor in problem
-
-	- tech debt:
-
-		- identify object data sources (code bases defining schema/class definitions, network maps)
-		- implement data sanitization & import
-		- implement identification functions (objects/attributes/types/rules) to gather more data pre-indexed
-		- implement object operation functions (combine, merge, apply, mix, filter)
-		- implement object function set (change functions, boundary functions, probability functions)
-
-
 ## System Analysis
 
 	- format accessible once information is standardized to object model

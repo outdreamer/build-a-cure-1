@@ -1,3 +1,15 @@
+    - where are the problem types (gaps, misalignments, mismatches & conflicts)?
+
+  - observes not just rules between objects, but other key system data like:
+
+    - variance (gaps in rule enforcement) & variance sources (gaps in system boundary allowing variance from other systems to leak in)
+    - emerging objects
+    - system errors & error-handlers
+    - vertices (factors that generate or influence the system development)
+    - efficiencies, alternatives, & incentives (forces with a built-in reason lending it extra momentum/gravity pulling agents in that direction)
+    - interface metadata (intent, pattern, types, function, etc)
+    - relationship metadata (related systems, system position in system interface network)
+
 '''
   - definition: 
     - the system interface is the structural version of the meaning interface
@@ -25,8 +37,6 @@
   - answers questions like: 
     - what known/potential inputs/outputs available in the system could build the path?
     - "what is the function linking these variables, given the core functions used to build this system?"
-    - where are the problem types (gaps, misalignments, mismatches & conflicts)?
-    - where are the inefficiencies in this system 
     - how can this system be optimized 
     - are too many assumptions hard-coded in this system 
     - is this system capable of a particular function 
@@ -36,6 +46,6 @@
     - what input/output paths are available that can achieve a particular intent 
     - where would this system generate coincidentally similar structures (a query to identify false similarities) 
     - what system structures (or buildable system structures) fit in this unknown information-generating sub-system 
-    - system-problem interface: what problem types does this system have 
+    - system-problem interface: what problem types does this system have (gaps, misalignments, mismatches, inefficiencies & conflicts)
     - how does a system become overwhelmed with variance (in various forms, optionally including randomness), does it have outlets like interfaces with other systems to delegate variance 
 '''

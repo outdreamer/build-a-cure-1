@@ -997,7 +997,7 @@
 
 		- I decided to try to automate problem-solving once I saw patterns in the rules people used to solve problems, and once I found an example proof of concept, I pursued it. Alternatively, if you don't have human thoughts like that, or if you don't have human sources of joy/motivation, such as caring about protecting good people enough to try, or intellectual curiousity, or believing in yourself, you can try some caffeine.
 
-		- I discovered concepts first in books & movies, then insights linking them while building the abstract network, then I identified interfaces as useful objects to frame other objects on, given their patterns of change.
+		- I discovered concepts first in books & movies, then insights linking them while building the abstract network for my book in 2008, then I identified interfaces as useful objects to frame other objects on, given their patterns of change.
 
 		- I first realized the fundamental object of insight paths when I realized people used methods to solve problems, which I realized at college. The probability problems I examined were framed in a way with patterns in the missing information, and the method to retrieve or generate it.
 
@@ -1140,16 +1140,20 @@
 		- Not everyone has a built-in reason to automate problem-solving (like if they don't have serious problems to solve relevant to them, like the well-being of good people), but once I realized automation of problem-solving was possible, that gave me extra drive to get there, so I didn't need other reasons past that point, though luckily I had them just in case.
 
 
-	20. what problems cant be solved with this?
+	20. is all value created? are there any problems left to chase? what problems cant be solved with this?
 
-		- this can solve problems where information is calculatable (like on the math interface) or where information is retrievable/testable (where you have data you can find & retrieve).
+		- this system can solve problems where information is calculatable (like on the math interface) or where information is retrievable/testable (where you have data you can find & retrieve).
+			- it can identify new interfaces on which problem-solving automation is possible, as they develop or become measurable
+			- it can integrate new problems & new problem types into the system
+		
 		- it cant solve problems where information isnt measurable or calculatable - that means:
-			- problems that require more computation than we have computing power for
-			- problems regarding information that is not retrievable (destroyed information, like historical information or information inside black holes)
-			- problems regarding structures we dont have the understanding to organize information queries for, or retrieve information for (if there is a physics or math insight that is so foreign to our understanding that we don't even know to look for it, that may not be solvable with this tool, but it should be able to point understanding & information retrieval in that direction if not reach the destination structure). This would happen if the analysis isn't comprehensive enough when generating different perspectives, to identify new interfaces & new structures on them not adjacently derivable with existing interfaces.
-				- maybe there's an object that generates so much randomness that we cant ever capture enough information about it to derive it
-				- maybe there's a mechanism preventing necessary computation time to derive the mechanism from gathering around certain structures capable of hosting sentient life
-				- maybe information has a built-in expiration in physics, and if it's not used, it decays - maybe this is how math develops, around efficiency energy organization that is allocated according to incentives & aligned with meaningful intent based on usage
+			- problems that are not solvable in this host system (a universe with these laws of physics):
+				- problems that require more computation than we have computing power for
+				- problems regarding information that is not retrievable or derivable (destroyed information, like historical information or information inside black holes)
+				- problems regarding structures we dont have the understanding to organize information queries for, or retrieve information for (if there is a physics or math insight that is so foreign to our understanding that we don't even know to look for it, that may not be solvable with this tool, but it should be able to point understanding & information retrieval in that direction if not reach the destination structure). This would happen if the analysis isn't comprehensive enough when generating different perspectives, to identify new interfaces & new structures on them not adjacently derivable with existing interfaces.
+					- maybe there's an object that generates so much randomness that we cant ever capture enough information about it to derive it
+					- maybe there's a mechanism preventing necessary computation time to derive the mechanism from gathering around certain structures capable of hosting sentient life
+					- maybe information has a built-in expiration in physics, and if it's not used, it decays - maybe this is how math develops, around efficiency energy organization that is allocated according to incentives & aligned with meaningful intent based on usage
 			- these are examples I can come up with, which means my system can also come up with them - but you can see how non-standard assumptions can generate a high level of difference, to come up with alternative explanations originating from very different but still possible systems.
 
 

@@ -41,6 +41,9 @@
     - which objects change in what ways 
     - what is the net functionality of the object set 
     - how do/will these objects interact 
+    - how to predict interactions & optimal versions of objects/attributes/types/rules
+      - predict emergent objects/attributes/types/rules
+    - apply a problem-solving automation workflow to query objects/attributes/types/rules
 
     - type analysis
       - given a known type stack progression, what is the likeliest position or extension of that stack?

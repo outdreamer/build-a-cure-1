@@ -5,34 +5,20 @@
   - organize 'to do' items from analysis & code to to do list as function list with dependencies
   - integrate changes from solution_automation_analysis.py claims to repo
   - integrate logic from core_analysis/*
-  - integrate implementation_guide.md & problem_solving_matching.md & analysis_examples.md
-  - de duplicate logic
+  - integrate implementation_guide.md & problem_solving_matching.md & analysis_examples.md & specific_methods/*
+  - de-duplicate logic
+  - write query to compile functions in interface definitions (after definition, functions & answer questions section), as well as identify/build/find/derive/change attributes/types/objects/structures in definition
+  - use examples in repo as test cases
+  - give example of generating problem types by applying structure
+    - for instance, a common problem type is a mismatch/imbalance
+      - by applying the 'mismatch' to the cost/benefit relationship, you get an 'inefficiency' problem type, which can be defined as a mismatch/imbalance between the cost & benefit, favoring the cost side (the negative object out of (cost, benefit), associated with problems)
   
 
 ## define
 
-  - expand on core operation mapping (like add: combine, subtract: differentiate (isolate difference), multiply: expand by, divide: standardize by) with interface queries for core operations
+  - expand on core math-language operation mapping (like add: combine, subtract: differentiate (isolate difference), multiply: expand by, divide: standardize by) with interface queries for core operations
 
   - diagram to document sub-functions of core functions with distortions
-
-  - give example of how to generate core functions from each other
-
-    - find: 
-      - find a structure & components to fill it (build)
-      - find a sequence of input/output/embedding to integrate components (apply)
-      - find a structure describing a connection (derive)
-    - build:
-      - build a set of filters to apply (find)
-      - build a combination/integration function (apply)
-      - build a structure of components matching attributes of a connection (derive)
-    - apply:
-      - apply split structures by difference types to make search trivial (find)
-      - apply combine/integration functions to commponents (build)
-      - apply filters to component sets (derive)
-    - derive:
-      - derive difference types to organize navigation (find)
-      - derive structure-component matching function (build)
-      - derive coordinating function chains (apply)
 
   - organize certainty (info) vs. uncertainty objects (potential, risk, probability)
 
