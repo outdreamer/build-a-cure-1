@@ -997,6 +997,23 @@
 
 		- I decided to try to automate problem-solving once I saw patterns in the rules people used to solve problems, and once I found an example proof of concept, I pursued it. Alternatively, if you don't have human thoughts like that, or if you don't have human sources of joy/motivation, such as caring about protecting good people enough to try, or intellectual curiousity, or believing in yourself, you can try some caffeine.
 
+		- I discovered concepts first in books & movies, then insights linking them while building the abstract network, then I identified interfaces as useful objects to frame other objects on, given their patterns of change.
+
+		- I first realized the fundamental object of insight paths when I realized people used methods to solve problems, which I realized at college. The probability problems I examined were framed in a way with patterns in the missing information, and the method to retrieve or generate it.
+
+		- Here's an example of why insight paths are useful:
+			- you could try to spot a liar by checking every fact, which is an implementation of the method of trial & error, and is very fragile given its dependence on data.
+			- or you could try to spot a liar by checking the output of people's choices, given the intended output (output like reactions) and figuring out why they might want that output (to see what they can get away with to check their social status, etc) - a method based on understanding that is relatively independent of data.
+			- the insight paths there are:
+				- trial & error
+				- look up information
+				- intent-derivation method, given actual & intended outputs of a decision
+			- the intent-derivation method is clearly more robust & accurate
+			- another insight path involves identifying those robust insight paths: how would you identify the insights that are more powerful than others?
+				- this insight path involves identifying the important objects on the relevant structures (like object interaction layers, such as the layer where objects like intent/patterns/rules/decisions interact) determining a problem of differentiating a lie from a fact, given that people lie for a reason, and the reason/intent is an important object determining the variation in the lie object
+				- once you've identified that intent is the important object to the lie differentiation problem, you can build an insight path to detect intent from actual/intended outputs of the decision (the insight path above, the 'intent-derivation' method)
+			- then even without knowing the intent-derivation method, you could derive it by doing queries on that structure for the important objects, and determine those objects' relationships relevant to the lie-differentiating problem - and youd have a good method of solving the problem, that was more efficient & accurate than standard methods, with just a general problem-solving insight path, in the form of a structural query (like 'find relevant objects in this structure').
+
 		- dimensions: thinking about other dimensions was what led to identifying perspectives as important, after which I realized perspectives were like filters
 
 		- interfaces: the term 'application programming interface' made me focus a little more than average on the term 'interface' (given its abstraction), which I initially stored in my head as a 'way/place for two different programs to communicate, like a language, applying a standardizing transform'. Eventually I realized that these interfaces were similar in function to filters.
