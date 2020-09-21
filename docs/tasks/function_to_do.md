@@ -14,7 +14,6 @@
     - for instance, a common problem type is a mismatch/imbalance
       - by applying the 'mismatch' to the cost/benefit relationship, you get an 'inefficiency' problem type, which can be defined as a mismatch/imbalance between the cost & benefit, favoring the cost side (the negative object out of (cost, benefit), associated with problems)
   
-
   - examples of objects on different interfaces
     - potential (risk chain, uncertainty) 
     - causal objects (causal degree, cause, dependency)
@@ -25,6 +24,36 @@
     - the reason these abstract objects fit on a particular interface is because they describe specific interactions:
       - a conflict may occur on every interface, but in the system interface, the interactions of a conflict with other objects are the clearest, closest to its most concise definition, & capture the most variation, whereas on other interfaces, the conflict object can take many forms
 
+  - insight path: to generate comical statements (like a word choice), execute the insight path:
+    - find related objects, interface objects, unlikely objects, similar objects, required objects, & invalidating objects
+    - alternative steps:
+      - position the invalidating object with a context that emphasizes it (maximizes its difference)
+      - change required objects until theyre invalidating (change required object like intent to 'protect self' into an invalidating object)
+
+    1. on the use of the word 'help' vs 'persuade/trick':
+      - help: give someone what they need (act in someone else's interest)
+      - trick: get something out of someone against their own interest (act in your interest, against someone else's)
+      - invalidating object:
+        - trick themselves
+        - not helping themselves
+      - missing object: 
+        - you shouldnt have to trick someone into helping themselves (act in their own interest)
+        - the missing object is the 'intent to help themselves', which is assumed as a default related object to an agent's decision
+      - emphasizing context:
+        - if a person is against against their own interest, you will not be able to help them trick themselves into acting in their own interest
+
+    2. on the response 'so true' to a negative factual statement about them:
+      - invalidating object: a negative factual statement (invalidates an agent portraying themselves falsely)
+      - related objects:
+        - agreement
+        - argument/contradiction
+        - counterattack
+      - unlikely object:
+        - the agreement of an agent with a self-invalidating object (a negative factual statement that invalidates their false statements)
+      - missing object: 
+        - the missing object is the 'intent to help themselves', which is assumed as a default related object to an agent's decision
+      - emphasizing context:
+        
 
 ## define
 
@@ -36,7 +65,7 @@
 
   - document time structures (concave time explaining compounding similarities up to a point of maximum concavity, a structure that can separate from the other space-times)
 
-  - document vertex definition & give examples (as an intersection/combination of determining/description/generative/derivation variables)
+  - document vertex definition & give examples (as an intersection/combination of interface variables, such as determining/description(compressing)/generative/causative/derivation variables), around which change develops
 
   - document questions to test system filters
 
