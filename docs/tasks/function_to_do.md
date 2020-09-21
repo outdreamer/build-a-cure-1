@@ -25,13 +25,26 @@
       - a conflict may occur on every interface, but in the system interface, the interactions of a conflict with other objects are the clearest, closest to its most concise definition, & capture the most variation, whereas on other interfaces, the conflict object can take many forms
 
   - example insight path: to generate comical statements (like a word choice), execute the insight path:
-    - find relevant, related, interface, unlikely, similar, required, & invalidating objects
-    - alternative steps:
+    
+    - step 1: find objects of types such as:
+      - relevant (directly relevant objects like functionality/interactions, as well as structures like system contexts in which meaning occurs, prior patterns or references, integration structures)
+      - related (inputs, outputs, requirements, assumptions, alternatives)
+      - interface (causal objects, vertex objects, like core/hub objects, determining/causative/generative variables, etc)
+      - unlikely (improbable objects given a system context)
+      - similar (objects with core (fundamental), explicit (known) or multiple (correlation) similarities)
+      - required (known related objects)
+      - invalidating (known contradictory objects, which contradict the existence of an object)
+    
+    - alternative/chainable step 2:
       - change required objects until theyre invalidating (change required object like intent to 'protect self' into an invalidating object) or vice versa
       - change similar/likely objects until theyre different/unlikely or vice versa
       - change related objects until theyre unrelated or vice versa
       - change relevant objects (meaningful) until theyre irrelevant (nonsensical) or vice versa
-    - position the altered object with an emphasizing context, or alter the context to emphasize the original object ('emphasize' meaning 'maximize its difference')
+    
+    - alternative/chainable step 3:
+      - position the altered object with an emphasizing context, or alter the context to emphasize the original object ('emphasize' meaning 'maximize its difference')
+      - position the altered object with a relevant context, or alter the context to make the original object relevant ('relevant' meaning 'structurally connected')
+
 
     1. on the use of the word 'help' vs 'persuade/trick':
       - help: give someone what they need (act in someone else's interest)
@@ -56,7 +69,7 @@
       - missing object: 
         - the missing object is the 'intent to help themselves', which is assumed as a default related object to an agent's decision
       - emphasizing context:
-
+        - someone saying a negative statement, and responding in a sincere, extremely validating (such as 'reassuring' or 'complete agreement') way
 
 ## define
 
