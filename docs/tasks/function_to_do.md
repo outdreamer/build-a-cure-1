@@ -71,6 +71,21 @@
       - emphasizing context:
         - someone saying a negative statement, and responding in a sincere, extremely validating (such as 'reassuring' or 'complete agreement') way
 
+    - alternative insight paths:
+      - to generate example 1 above, you could also generate the question 'why would you have to help someone act in their own interest', a question that uses the path:
+        - pull standardized verbs & iterate
+        - retrieve related words (by association, 'help' => 'obligation') & synonyms of related words: 'need', 'responsibility', 'have to'
+        - iterate default question types: why/how
+        - execute core operations (combine, differentiate, identify, filter, replace)
+          - combine the two above: 'why have to'
+          - inject concept of 'agent': 'why would an agent have to'
+          - add original verb 'help': 'why would an agent have to help'
+          - inject concept of 'agent': 'why would an agent have to help an agent'
+          - identify the one system context where 'help' would not be required: in theory, you wouldnt have to help someone in the context of 'helping themselves' (act in their own interest)
+          - apply not required context: 'why would an agent have to help an agent help themselves'
+        - this question clarifies the ridiculous nature of the combination, by associating an 'obligation' verb with a not-required context (uniting the two with the common concept of 'requirement')
+        - from this question, you can identify a comical word choice of 'help' to replace a word like 'trick' or 'convince', in the context of 'help them realize theyre better off'
+
 ## define
 
   - expand on core math-language operation mapping (like add: combine, subtract: differentiate (isolate difference), multiply: expand by, divide: standardize by) with interface queries for core operations
