@@ -24,11 +24,14 @@
     - the reason these abstract objects fit on a particular interface is because they describe specific interactions:
       - a conflict may occur on every interface, but in the system interface, the interactions of a conflict with other objects are the clearest, closest to its most concise definition, & capture the most variation, whereas on other interfaces, the conflict object can take many forms
 
-  - insight path: to generate comical statements (like a word choice), execute the insight path:
-    - find related objects, interface objects, unlikely objects, similar objects, required objects, & invalidating objects
+  - example insight path: to generate comical statements (like a word choice), execute the insight path:
+    - find relevant, related, interface, unlikely, similar, required, & invalidating objects
     - alternative steps:
-      - position the invalidating object with a context that emphasizes it (maximizes its difference)
-      - change required objects until theyre invalidating (change required object like intent to 'protect self' into an invalidating object)
+      - change required objects until theyre invalidating (change required object like intent to 'protect self' into an invalidating object) or vice versa
+      - change similar/likely objects until theyre different/unlikely or vice versa
+      - change related objects until theyre unrelated or vice versa
+      - change relevant objects (meaningful) until theyre irrelevant (nonsensical) or vice versa
+    - position the altered object with an emphasizing context, or alter the context to emphasize the original object ('emphasize' meaning 'maximize its difference')
 
     1. on the use of the word 'help' vs 'persuade/trick':
       - help: give someone what they need (act in someone else's interest)
@@ -53,7 +56,7 @@
       - missing object: 
         - the missing object is the 'intent to help themselves', which is assumed as a default related object to an agent's decision
       - emphasizing context:
-        
+
 
 ## define
 
