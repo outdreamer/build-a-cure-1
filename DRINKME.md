@@ -50,6 +50,68 @@
 	Much of this project automates the problem-solving methods & structures I use mentally. Other components of this project include important specific functions, like predicting, finding & using important system filters.
 
 
+### Example insight path: to generate comical statements (in the form of a word choice or response), you can execute the insight path:
+    
+    - step 1: find objects of types such as:
+      - relevant (directly relevant objects like functionality/interactions, as well as structures like system contexts in which meaning occurs, prior patterns or references, integration structures)
+      - related (inputs, outputs, requirements, assumptions, alternatives)
+      - interface (causal objects, vertex objects, like core/hub objects, determining/causative/generative variables, etc)
+      - unlikely (improbable objects given a system context)
+      - similar (objects with core (fundamental), explicit (known) or multiple (correlation) similarities)
+      - required (known related objects)
+      - invalidating (known contradictory objects, which contradict the existence of an object)
+    
+    - alternative/chainable step 2:
+      - change required objects until theyre invalidating (change required object like intent to 'protect self' into an invalidating object) or vice versa
+      - change similar/likely objects until theyre different/unlikely or vice versa
+      - change related objects until theyre unrelated or vice versa
+      - change relevant objects (meaningful) until theyre irrelevant (nonsensical) or vice versa
+    
+    - alternative/chainable step 3:
+      - position the altered object with an emphasizing context, or alter the context to emphasize the original object ('emphasize' meaning 'maximize its difference')
+      - position the altered object with a relevant context, or alter the context to make the original object relevant ('relevant' meaning 'structurally connected')
+
+    1. on the use of the word 'help' vs 'convince/trick':
+      - help: give someone what they need (act in someone else's interest)
+      - trick: get something out of someone against their own interest (act in your interest, against someone else's)
+      - invalidating object:
+        - trick themselves
+        - not helping themselves
+      - missing object: 
+        - you shouldnt have to trick someone into helping themselves (act in their own interest)
+        - the missing object is the 'intent to help themselves', which is assumed as a default related object to an agent's decision
+      - emphasizing context:
+        - if a person is against against their own interest, you will not be able to help them trick themselves into acting in their own interest
+
+    2. on the response 'so true' to a negative factual statement about them:
+      - invalidating object: a negative factual statement (invalidates an agent portraying themselves falsely)
+      - related objects:
+        - agreement
+        - argument/contradiction
+        - counterattack
+      - unlikely object:
+        - the agreement of an agent with a self-invalidating object (a negative factual statement that invalidates their false statements)
+      - missing object: 
+        - the missing object is the 'intent to help themselves', which is assumed as a default related object to an agent's decision
+      - emphasizing context:
+        - someone saying a negative statement, and responding in a sincere, extremely validating (such as 'reassuring' or 'complete agreement') way
+
+    - alternative insight paths:
+      - to generate example 1 above, you could also generate the question 'why would you have to help someone act in their own interest', a question that uses the path:
+        - pull standardized verbs & iterate
+        - retrieve related words (by association, 'help' => 'obligation') & synonyms of related words: 'need', 'responsibility', 'have to'
+        - iterate default question types: why/how
+        - execute core operations (combine, differentiate, identify, filter, replace)
+          - combine the two above: 'why have to'
+          - inject concept of 'agent': 'why would an agent have to'
+          - add original verb 'help': 'why would an agent have to help'
+          - inject concept of 'agent': 'why would an agent have to help an agent'
+          - identify the one system context where 'help' would not be required: in theory, you wouldnt have to help someone in the context of 'helping themselves' (act in their own interest)
+          - apply not-required context: 'why would an agent have to help an agent help themselves'
+        - this question clarifies the ridiculous nature of the combination, by associating an 'obligation' verb with a not-required context (uniting the two with the common concept of 'requirement')
+        - from this question, you can identify a comical word choice of 'help' to replace a word like 'trick' or 'convince', in the context of 'help them realize theyre better off'
+
+
 ### Example of a common system filter, permuting assumptions like system position (position swaps, where position can refer to node identity or system position)
 
 	- investment risk allocation vs. capital allocation (swap objects allocated)
