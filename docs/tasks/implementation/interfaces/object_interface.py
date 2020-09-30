@@ -19,6 +19,16 @@
   - attributes: 
     - measurability (is an attribute measurable, is its value range knowable) 
     - default format (is a component more similar to an attribute or function) 
+    - core system vertex attributes:
+      - generative
+      - causative
+      - predictive
+      - determining
+      - defining
+      - descriptive
+      - identifying
+      - differentiating
+      - compressing
   - objects (type, state, definition) 
   - structures (attribute sets, type hierarchies, state networks) 
   - concepts: standardization (defining objects in terms of core/structural terms), core components (sets of components that can be used to construct other objects in a system) 

@@ -57,7 +57,9 @@
         - most causal shapes are cyclical, layer, or network-shaped rather than one-directional vector-shaped (like a tree), which is why some existing methods are inherently incapable of producing system-fitted insights that wont break the system when applied (a particular drug that is not evaluated for bio-system impact, just impact on a particular pathogen or process) 
         - stack: set of adjacent (or other definition of relevant) causes 
         - causal loop: a function that generates information may end up using that information or its side effects like decisions as an input, creating a causal loop 
-      
+        - the causal network that can generate a set of values for a variable given a traversal structure like a random walk with probability x
+        - causal units (like direction, dependence, input/output parameters, causal vectors)
+
       - attributes 
         - identification/description variables 
           - degree (x is n degrees of cause away from y) 
@@ -193,7 +195,16 @@
           - how often is cause determinable given the attribute sets necessary to determine it? 
             - how often is a variable set determinable as uniquely causing a relationship, definitely different from random interactions, adjacent in causal distance, having no agency, and clear? 
             - which systems/vertices generate determinable cause (difference ratios, change rates, alignments, interaction layers, pivot points, causal structures, problem types, trade-offs, symmetries)?
-        
+          - finding causal structures
+            - part of the problem with using a one-directional vector to model a relationship is that the underlying parameter (usually time) may not be relevant for predicting the relationship evolution
+            - rather than modeling it by a standard of changes over time, it can be modeled by a standard of changes over variance potentials
+              - will a particular variance source change compoundingly or converge to a constant in all possible parameterizations of that variance source
+              - does a particular variance source have the potential to generate variance or will it eventually become static in all possible implementations, 
+                meaning it either:
+                  - doesn't exist (at any time), like a final output that doesnt ever return to interact with other systems as an input
+                  - is one of the few things that does exist (across all times), like a concept that never stops influencing variance
+
+
         - context 
           - system context 
           - problem space context 

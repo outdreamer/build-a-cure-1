@@ -1,17 +1,12 @@
   - variance is semantically the opposite index (gap/unenforcement/missing information/randomness) to the filter index (limit/structure/information/organization)
     - includes certainty objects (known variance, metrics, change patterns), uncertainty (potential/risk/opportunity) objects, and variance structures like cascades, injection points, accretion points
     - delegation of variance into systems/types/functions/variables/constants
-
     - this is the problem of adding/fitting/reducing structure from a gap in structure, which can be used to solve problems like:
-
       - prediction
         - which variables are explanatory, given what we can measure
-
       - causation
         - how alternatives can converge to the same level of variance or change patterns
-
     - reducing gaps in rule enforcement to shapes or paths has its own set of rules
-
     - this interface can also be used for specific attribute analysis, of properties that descend from concepts & take form in a specific problem space:
       - the power concept interface (has implementations that look like trust, info, etc)
       - the balance concept interface (has implementations that look like symmetry, justice, etc)
@@ -22,6 +17,7 @@
     - variance is semantically the opposite index (gap/unenforcement/missing information/randomness) to the filter index (limit/structure/information/organization) 
       - delegation of variance into systems/types/functions/variables/constants/objects 
     - analyzing potential focuses on what errors/functionality/structure is possible/allowed/prevented 
+
   - functions: 
       - identify high-risk variables 
       - identify imminent variable changes 
@@ -61,21 +57,29 @@
       - potential structures (unused paths/energy/combinations, adjacent states accessible with existing/available resources)
       - change structures (variables, dependencies, updates, replacements, distortions)
     - uncertainty/potential structures: 
-        - unused resources (paths/energy/combinations) 
-        - adjacent states accessible with existing/available resources 
-        - complex systems (which have greater complexity than that which can be understood by its observers using existing tools) like markets 
-        - risk generators (variance-producing variables, such as equal distribution of information, randomizing functions, etc) 
-        - boundary/limit-changing functions 
-        - risk structures: a chain of risks (uncertainties) is a common structure seen in market patterns (such as trades, product engineering, demand assessment, & prediction markets) 
-        - risk-reduction structures (using diverse models to check predictions rather than one) 
-            - categorizing functions (delegating risk to the accuracy of the function combination of variables, constants & operations) 
-            - boundaries/limits (minimizing risk & establishing probabilities) 
-        - risk-distribution structures (distributing different information to different positions/agents) 
-          - probability distributions (delegating risk to accuracy of distribution selection) 
-        - probabilities (probable convergence/divergence points like filters, constants, etc) 
       - interaction layer (layer on which objects are likely to interact) 
       - interaction space (set of possible interactions) 
       - potential field (range of potential states or positions) 
+      - a chain of risks (uncertainties) is a common structure seen in market patterns (such as trades, product engineering, demand assessment, & prediction markets)
+      - asymmetries:
+        - info asymmetry (info being better than no info, all other things being equal)
+        - understanding asymmetry (understanding being better than a prediction hypothesis)
+        - risk chain asymmetry (luck being better than preparation, in edge cases)
+      - equivalencies:
+        - randomness (in input identity)
+        - balance (in resource distribution)
+      - variance generators:
+        - risk generators (variance-producing variables, such as equal distribution of information, randomizing functions, etc)
+        - complex systems (which have greater complexity than that which can be understood by its observers using existing tools) like markets
+        - boundary-changing variables/functions
+      - variance changers/reducers:
+        - risk-reduction structures (using diverse models to check predictions rather than one)
+          - categorizing functions (delegating risk to the accuracy of the function combination of variables, constants & operations) 
+          - boundaries/limits (minimizing risk & establishing probabilities) 
+        - risk-distribution structures (distributing different information to different positions/agents)
+          - probability distributions (delegating risk to accuracy of distribution selection) 
+        - probabilities (probable convergence/divergence points like filters, constants, etc) 
+        - optimization methods
 
   - answers questions like:
     - what is the conversion potential of this object given its functions

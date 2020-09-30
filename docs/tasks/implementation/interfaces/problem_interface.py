@@ -9,8 +9,10 @@
         - identifying the given problem & solution target structures in the problem space & the related problem network, so the problem & solution can be visualized
         - identifying & anticipating problems in a system, which includes identifying problem structures (inefficiencies, conflicts, etc) that exist or could emerge
           - for example, in the bio system, DNA regulation functions don't prevent pathogens from injecting DNA or mutations from occurring, so if you derive the concept of a pathogen or mutation without already having that definition available (using core system analysis), you could predict that the current DNA regulation functions wouldn't be able to offset the changes exacted by those concepts & you could predict problems of DNA disregulation in the bio system before they occur
+        - identifying solvable problems, as well as what problems a solution matches or doesnt match, such as how a solution automation workflow involving a structure like a 'subset' (like 'break a problem into sub-problems & aggregate solutions') wouldnt match on a structural level with a fractal structure with certain problem types possible on that structure
       - all problem-solving automation methods have a variance assignment, allowing for variation to be explored in a certain location 
         - you can either map problems to fit that structure or design new automation methods based on the variance gap necessary to solve a problem
+
 
     - objects (problem, solution, problem/solution space/network) 
 
@@ -23,6 +25,29 @@
         - structure-matching can be a good format for finding an example, finding a reason, or finding a causal structure of variables for a prediction function
           - an misalignment or mismatch (like an inefficiency, a conflict, or an information imbalance), where the solution format is the set of structures (which can be steps/vectors or applying a pattern or finding a structure in a network) necessary to correct the mismatch (minimize cost, align priorities, balance the information)
         - abstract format of a query (break problem into information problem types and then the solution is a query of solutions for each of those solved problems)
+
+      - problem shapes 
+
+        - problems can have multiple dimensions creating the output problem shape, 
+          which can occupy a network of related problems (both specific problems and problem types)
+        - the problem space is the system in which the problem is relevant (can be a network of problem spaces)
+        - different problem types have different default problem shapes
+        - example problem type shapes:
+          - a misalignment problem has at least two vectors differing in direction, where the optimal alignment is calculatable or at least the alignment is clearly improvable
+          - a variance injection problem has a opening in a closed system
+          - an asymmetry has an uneven resource distribution
+        - if a problem has a misalignment problem and a variance injection problem, the problem shape can have both shapes in isolation, 
+          or they can be merged, applied, added, mixed, intersecting, or combined in another way
+        - example solution shape for problem shape:
+          - for a misalignment problem, the solution shape would be:
+            - a vector aligning them
+            - another adjustment to the system that makes the existing misalignment a correct alignment
+            - a combination of the two
+          - for a variance injection problem, the solution shape would be:
+            - an object (resource, function, constant) to close the opening in the system
+            - an object to prevent further variance injections
+          - for an asymmetry, the solution shape would be:
+            - an optimal transport operation set to distribute the resource optimally according to the metric of symmetry
 
     - concepts (anomaly, outlier, conflict, inefficiency, mismatch, inequality) 
 

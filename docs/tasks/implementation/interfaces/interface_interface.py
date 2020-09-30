@@ -53,7 +53,11 @@
       - building or selecting a problem-solving automation workflow (whether to start with a particular workflow, which is a layer of abstraction above the question of whether to start with a particular interface, which assumes a workflow has already been selected)
 
     - questions answered
-    
+      - how to find the metadata that is most useful in determining other information:
+        - are core functions the best method to derive the system structure?
+        - once you have system structure, can all the sub-components be derived? Can other systems be derived?
+        - once you have the flow network indicating the derivation dependencies, you'll have a framework for deciding which metadata to use to solve which problem types
+
     - concepts:  
       - perspective (default version of an interface, which implies a different method of calculation, priorities, & focus on different objects) 
     

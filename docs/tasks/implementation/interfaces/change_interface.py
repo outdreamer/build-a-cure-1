@@ -116,6 +116,8 @@
           - if a starting position is isolated, there is less potential for dependence & more potential for independence (the net impact on overall potential is variable) 
           - this reveals more information about actual potential change types by placing useful limits on value ranges 
   
+        - change rules (subtypes like the change rules that dont modify identity/boundary, change rules that add randomness, change rules that add convergence)
+
   - examples: 
     - change analysis involves the potential to format a problem into many change types, representing different combinations of solved problems (optimal transport, linear algebra, finding prediction function, etc) or known interfaces (type, intent)
       - some sets are more adjacent than more optimal sets & may be a better investment for short-term gains

@@ -52,6 +52,22 @@
     - intent: generative, filtering, grouping, organization/delegation/ distribution/matching/grouping/filtering, classification, differentiation/ transformation 
     - scope: use case, context, range, host system 
     - related objects (like host spaces/systems & object positions in those) 
+    - interface attributes
+      - intent: network of side effects (vectors, value sets, probability distributions, ranges, & complexity)
+      - change: 
+        - network of transformation distance/angles in relevant spaces
+        - network of change responses to set of all possibly relevant transforms (capable of impacting at least one attribute or rule of the operation or its inputs) done on the operation itself
+        - relevant attribute-maximizing dimensions
+      - structure:
+        - structure required to hold info at any given point & full set of info states
+        - structure required to hold sub-operations (vector shape) 
+      - function: 
+        - position in function network (starting from origin & navigating outward by minimal incremental steps or attribute improvements)
+        - related functions
+          - alternative operations with no undesirable side effects
+          - alternative operations with irrelevant undesirable side effects
+          - reversing operations
+          - optimizing operations
 
 - functions:
   

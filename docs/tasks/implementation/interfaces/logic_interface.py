@@ -27,9 +27,9 @@
   - attributes (validity, cohesion (measure of system fit, like fit to a 'common sense' or 'pattern' system)) 
 
   - objects (fallacy, assumption, implication, justification, explanation, argument, conclusion, contradiction, inference/deduction/guess) 
-    - logical fallacy: mismatch of logic structures/functions/objects/attributes (scope, relevance, fit, position)
+    - logical fallacy: mismatch of logic structures/functions/objects/attributes (scope, relevance, fit, position), such as a false alternate path with different output metric value than original path
     - assumption: depending on information, like the relevance of a particular rule or insight, as if it is true (or an adjacent/alternative definition of truth, like relevance or fit)
-    - implication: context implied by a logical structure:
+    - implication: context implied by a logical structure, assumption beyond explicit meaning
       - 'dog chases cat' implies context of a prior event like the:
         - 'cat did something' (implies a system where there is a reason of responsibility for every decision or fairness in allocating costs)
           - 'the dog wants something the cat stole' (specific implication)
