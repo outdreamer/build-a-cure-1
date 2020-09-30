@@ -67,6 +67,10 @@
       - 'use truth to apply pressure'
       - 'express faith to motivate'
 
+    - specific attribute analysis, of properties that descend from concepts & take form in a specific problem space: 
+      - the power concept interface (has implementations that look like trust, info, etc) 
+      - the balance concept interface (has implementations that look like symmetry, justice, etc) 
+
     - how to map core concepts to structures for use when building other concepts/objects
       - similar definition structures apply to similarly abstract concepts
       - change types (rule types like binding rules, boundary rules) can be used to generate different variations of a concept

@@ -10,6 +10,23 @@
         - like all other sets of objects on an equal interface, any item in the set can be used to find the others
         - in a set of (4, 6, 2, 3) you can start with 4 to find 2 or 3 to find 4
 
+      - interfaces that capture change types: conceptual bases (power), intent bases (motion, increase, efficiency), type bases (number type, variable type), structural bases (value, position, distance, set), change bases (rate, possibility/opportunity difference, randomness ratio, change interface stack, change type)
+      - if the interface network (position of power with respect to balance, interfaces like intent/concept/structure) is static, there is a limited supply of change/potential/power in the universe/system, and change should be allocated non-randomly (priorities matter)
+      - if the interface network is not static (you can change the position of power with respect to balance, you can change base interfaces), then information should be standardized to a set of filtering interfaces, because the filters will host the most changes & changes to the filters will cause other changes
+      - other embedded parameters than time: adjacent/probable/convergent/inevitable states/causes/patterns/interactions/changes/limits based on system position
+      - some spaces have embedded concepts like core/unit and relevance, and others have embedded concepts like type & potential 
+        (adjacence is assumed to indicate potential field in some spaces so its not explicitly represented)
+      - whether to frame other bases as the independent or dependent variable in a pair:
+        - you usually want to find the impact of a variable (change, position, value, distance) on the interface (potential, change), rather than the impact of the interface (potential) on a variable (distance), but either can be useful depending on needed intents (finding causal direction, emphasizing certain change types)
+        - this is in a space where time has been removed, indicating potential - is one type of change capable of being transformed into another? then point a can be connected to point b on the x-axis
+        - this is using potential as a proxy variable for embedded time, since if change is not possible, time cannot pass, so types of change or changes or change states that are causally linked & possible are adjacent, so changes in the x-axis indicate changes in type/state, but they may not be chronological, according to corresponding changes in time (if they dont change the set of possible events, time may not have passed, even if the change or change state or change type may have changed due to physics indicating probable transformations if left unattended or if some force is applied)
+        - two adjacent change states may not be chronological in time, if a lot of time is required to offset the loss of potential represented by one change state turning into another, or it may be impossible to get from one change state to another despite adjacence in the change interface, given amounts of time still possible in a system with that change applied
+        - one change state turning into another may require more time than can be injected, removal of time, reversal, or symmetry violation of time
+        - in euclidean space where the y-axis represents position, adjacence represents possibility as well - indicating that an object has to traverse every point on a continuous path between two points in order to get there - the same cant be said for the change interface, where one point may not be able to get to another point no matter how many transformations are done
+        - there may be symmetries and limits preventing certain changes from being possible, given a starting point/direction, so each point on the change interface has a set of possible starting points, and traversing the change interface often means a set of points rather than a continuous function, so the set of points needs to be converted to a space where they can be a continuous function to describe time-based change
+        - when there's no more potential in a system, the system cant be represented based on potential or change, and collapses to a constant/measurable shape in 3-d irrespective of time, like an assumption core to 3-d space
+        - order-independent processes can be modeled in other spaces (generative functions where it doesnt matter which function you start with bc each function can generate the others)
+    
   - attributes: 
     - generatability/common derivable core functions with other interfaces 
     - information loss 

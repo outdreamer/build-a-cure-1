@@ -7,21 +7,7 @@
       - when change is imminent to assess the value of identifying future states (gather more data for a prediction function, implement versioning, build interfaces for change into the function by parameterizing/abstracting it) 
       - what is the best way to frame a change (on what base, with what variables that describe the change, in what spaces/systems, as a combination of what functions, as a change of what uniqueness) 
     - related to the information (certainty) and potential (uncertainty, risk, predictions, possibility, probability) indexes 
-    - variance is semantically the opposite index (gap) to the filter index (limit) 
-    - variance/difference type analysis: 
-        - part of the problem with using a one-directional vector to model a relationship is that the underlying parameter (usually time) may not be relevant for predicting the relationship evolution 
-          - rather than modeling it by a standard of changes over time, it can be modeled by a standard of changes over variance potentials 
-            - will a particular variance source change compoundingly or converge to a constant in all possible parameterizations of that variance source 
-            - does a particular variance source have the potential to generate variance or will it eventually become static in all possible implementations, meaning it either: 
-                - doesn't exist (at any time), like a final output that doesnt ever return to interact with other systems as an input 
-                - is one of the few things that does exist (across all times), like a concept that never stops influencing variance 
-        - this is the problem of adding/fitting/reducing structure from a gap in structure, which can be used to solve problems like: 
-          - prediction: which variables are explanatory, given what we can measure 
-          - causation: how alternatives can converge to the same level of variance or change patterns 
-        - reducing gaps in rule enforcement to shapes or paths has its own set of rules 
-        - this interface can also be used for specific attribute analysis, of properties that descend from concepts & take form in a specific problem space: 
-          - the power concept interface (has implementations that look like trust, info, etc) 
-          - the balance concept interface (has implementations that look like symmetry, justice, etc) 
+    - change (difference) analysis: 
         - what is the path definitely not, based on various maximized measures of similarity? 
         - what attributes & attribute sets & attribute dependency trees differ 
         - what is transformation cost between objects 
@@ -46,9 +32,12 @@
     - change types (create, cause, force, guarantee, convert, enable, depend, connect, structure) 
     - different ways to create the change (if there are many ways to create it, each individual way is insignificant) 
   - objects (equality (alternate, interchangeable), difference (extreme, opposite, contradictory), change source) 
-  - concepts (base, similarity) 
+  - concepts (base, similarity)
+    - change: differentiation on some layer/attribute/position in comparison to some other object according to some equivalence/similarity definition
+    - dimension: space where variables can occur
+      - give example of deriving variable types possible in a dimension given combinations of variable attribute values
+
   - structures: 
-        - variance structures (gap, leak, cascades/catalysts, accretions/injections, compounding variance, variance building a new interface, variance distribution/alignment, unenforced rules, measurement limits, open systems) 
         - change structures (variables, dependencies, updates, replacements, distortions) 
           - base: varying change bases (what a change's differentiating output is defined in terms of/in relation to) allows various difference types to be measured (removing common parameters/attributes or standardizing by a base), such as change defined as: 
               - network position change
@@ -72,19 +61,16 @@
       - function to distort: apply a distortion function to acquire a difference object (a value difference, an extreme, a magnification, a limit, etc) 
       - function to map change types to dimensions 
       - function to identify dimensions where change types change (an aggregate, interface, or deciding dimension where change type is uncertain but not random), with embedded parameters & bases for framing changes of a certain type 
-      - function to identify the variance structures (gaps/cascades/filters) in a system, to identify the best dimension sets to frame certain change types in 
+    
       - function to identify/analyze variables as change sources (and alternatively as potential/uncertainty or information/certainty sources)
         - what type of variable is it? (object-differentiating/identifying attribute, emergent specific/abstract property, direct function input/output) 
         - how does the variable relate to other variables? (decisive metric, substitutable alternative, collinear) 
         - at what point does a variable become relevant to another variable interaction layer? 
-        - how do constants accrete between rules, like caps to keep variance from flowing in to corners or creating boundary-invalidating openings in a system/component boundary? 
         - what causes variables to cascade across layers, creating fractal variables? 
         - what is a structure definitely not, based on various maximized measures of similarity? 
         - what attributes & attribute sets & attribute dependency trees differ 
         - what is transformation cost/potential (divergence distance) between objects (like generative functions) 
         - what is the probable function, function range, or mixed probability/certainty function (with probable & certain subsets) linking these variables 
-        - delegation of variance into systems/types/functions/variables/constants 
-        - given that variance flows through systems in patterns, what are the common variance shapes, given host system type & structure + set of unknowns? 
         - as change increases: 
           - how do interface objects (functionality/intent/potential) or change objects (structures/functions/variables/embedded parameters/spaces) change 
           - which standards/interfaces/change types are adjacent (change framed based on deviation from a standard, like deviating from the correct order or probability distribution, measured by degree of stacked distortions) 
@@ -99,7 +85,6 @@
         - variable change (requiring more/less/new variables or fundamentally altered versions of existing variables) 
         - changing attributes (like systematization/stabilization) based on a concept (like randomness) 
         - changing object change based on a changing interface (change stack, like changing orientation of an object within a system that is changing) 
-        - changing change types (variance leak, variance cascades/activation, variance injection, compounding variance, variance approaching an interface, variance distribution) 
         - as change increases, what change objects (types/rules/rates/direction) alter position/connection/distance/existence? 
         - does a change increase/reduce: attributes/functions of change, like a change definition/change sources/core change functions/change rate/change type/change interface 
         - what changes develop into change structures like randomness/constants/change cascades 

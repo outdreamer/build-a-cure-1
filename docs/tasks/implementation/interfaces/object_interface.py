@@ -17,6 +17,15 @@
       - the more abstract a concept, the more definition routes it may have 
       - definition routes may reveal a particular structure of a concept, like how power is associated with delegation structures and can be optionally defined as 'ability to delegate' 
   - attributes: 
+    - attribute attributes:
+      - attributes: different aspects of an object
+      - variable: a change type
+      - property: a description of a change type output
+      - metric: proxy/shortcut to measuring a variable (metrics are by definition measurable, whereas not all attributes are)
+      - metadata: 
+        - cross-object attributes (type, position, attribute sets, etc)
+        - can refer to all attributes
+        - can refer to meta attributes (attribute pattern, attribute type)
     - measurability (is an attribute measurable, is its value range knowable) 
     - default format (is a component more similar to an attribute or function) 
     - core system vertex attributes:
@@ -31,7 +40,13 @@
       - compressing
   - objects (type, state, definition) 
   - structures (attribute sets, type hierarchies, state networks) 
-  - concepts: standardization (defining objects in terms of core/structural terms), core components (sets of components that can be used to construct other objects in a system) 
+  - concepts: 
+    - standardization (defining objects in terms of core/structural terms)
+    - core components (sets of components that can be used to construct other objects in a system) 
+    - randomness: a change base or trigger
+    - chaos: a state of randomly distributed change
+    - variance: ability for objects/rules/attributes/values to change; potential for randomness
+
   - functions: 
     - identify data sources (code bases defining schema/class definitions, network maps) automatically with a search to identify tabular data in web resources 
     - import (to import objects/attributes/functions) 
