@@ -172,15 +172,18 @@
 
 ### V. Kidney function
 
+- avoid:
+	- any artificial substances, which will get in your blood and may not get filtered out by your damaged filtration organs, which may cause structural damage & mutations leading to cancer
+
 - to lower creatinine:
-    - dont eat: 
+    - avoid: 
       - creatine, nsaids, vanadium, diuretics, arginine tends to increase the liver’s production of creatine
       - foods like meat, dairy, chocolate, almonds/walnuts/peanuts/pumpkin/sesame, tofu, egg whites, seaweed, spirulina, & gelatin will raise creatinine
-    - eat: fiber, chitosan, WH30, salvia, chamomile, nettle, dandelion root, cinnamon, siberian ginseng, corn silk, sage, chinese rhubarb
+    - try: fiber, chitosan, salvia, chamomile, nettle, dandelion root, cinnamon, siberian ginseng, corn silk, sage, chinese rhubarb
 
 - to lower phosphorus:
 	- eat: coconut, almond milk
-	- soy milk has no phosphorus, while almond milk has about 6% (20 - 60 mg) of our daily recommended value per serving
+	- almond milk has about 6% (20 - 60 mg) of phosphorus RDA per serving
 
 - to lower oxalates:
 	- oxalic acid in almond milk can steal calcium from the body and to form it into dangerous calcium stones in the kidneys
