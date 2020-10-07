@@ -175,8 +175,19 @@
 - to lower creatinine:
     - dont eat: 
       - creatine, nsaids, vanadium, diuretics, arginine tends to increase the liver’s production of creatine
-      - foods like dairy, chocolate, almonds/walnuts/peanuts/pumpkin/sesame, tofu, egg whites, seaweed, spirulina, & gelatin will raise creatinine
+      - foods like meat, dairy, chocolate, almonds/walnuts/peanuts/pumpkin/sesame, tofu, egg whites, seaweed, spirulina, & gelatin will raise creatinine
     - eat: fiber, chitosan, WH30, salvia, chamomile, nettle, dandelion root, cinnamon, siberian ginseng, corn silk, sage, chinese rhubarb
+
+- to lower phosphorus:
+	- eat: coconut, almond milk
+	- soy milk has no phosphorus, while almond milk has about 6% (20 - 60 mg) of our daily recommended value per serving
+
+- to lower oxalates:
+	- oxalic acid in almond milk can steal calcium from the body and to form it into dangerous calcium stones in the kidneys
+
+- to lower blood pressure 
+  - stevia
+  - melatonin 
 
 - digesting protein:
   - Proteases and peptidases split proteins into small peptides and amino acids
@@ -204,6 +215,9 @@
   - carnitine, arginine 
   - lactulose
   - sodium benzoate, phenylbutyrate
+
+- avoiding acidosis
+	- Baking soda can help supplement alkaline matter, bicarbonate, so it can help prevent acidosis and prevent kidney function decreasing so quickly
 
 - kidney function support: 
 
