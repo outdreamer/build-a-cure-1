@@ -175,6 +175,12 @@
 - avoid:
 	- any artificial substances, which will get in your blood and may not get filtered out by your damaged filtration organs, which may cause structural damage & mutations leading to cancer
 
+	- histidine & angiotensin 11 receptor blockers, regarding glomerulonephritis
+		- Angiotensin_II_receptor_blockers reduce kidney function in the form of reducing glomerular repair
+		- Angiotensin_II_receptor_blocker share a imidazole component with histidine
+
+	- too much calcium can lead to hyperparathyroidism 
+
 - to lower creatinine:
     - avoid: 
       - potassium, sodium, phosphorus, creatine, nsaids, ace inhibitors, vanadium, diuretics, arginine tends to increase the liver’s production of creatine
@@ -182,7 +188,7 @@
 
     	- The amino acids methionine, arginine, & glycine are processed in the kidneys to produce guanidinoacetic acid, which is then sent to the liver where it is converted to another amino acid called creatine. Creatinine is a waste byproduct of metabolizing creatine
 
-    - try: water, alpha lipoic acid, vitamin c, cucumber, fiber, chitosan, salvia, chamomile, nettle, dandelion root, cinnamon, siberian ginseng, corn silk, sage, chinese rhubarb
+    - try: water, alpha lipoic acid, vitamin c, cucumber, fiber, chitosan, salvia, chamomile, nettle, dandelion root, cinnamon, siberian ginseng, corn silk, red sage, chinese rhubarb
 
 - to lower phosphorus:
 	- eat: coconut, almond milk
@@ -296,7 +302,7 @@
     lycopene
     vitamin d (help control phosphorus levels)
     glutamate cystein ligase and glutathione reductase
-    calcium
+    calcium (bind to oxalates)
     testosterone
     isoflavones
     black cohosh
@@ -304,15 +310,15 @@
     Gynostemma (reduce fibrosis)
     beet root (enhance your production of nitric oxide, increase blood flow)
     ginger (remove toxins, reduce fibrosis)
-    Punarnava/Boerhavia diffusa (regulating the creatinine level)
+    Punarnava/Boerhavia diffusa (regulating the creatinine level, diuretic, reduces kidney stones, reduces fibrosis)
     echinacea (removes various toxins like urea, uric acid, creatinine, high cholesterol from the blood)
-    Rehmannia (lower angiotensin II)
+    Rehmannia (reduced the serum creatinine level, 24-h urinary protein excretion, & glomerulosclerosis, inhibited the expression of angiotensin II, AT(1) receptor, TGF-beta1 and type IV collagen )
     Ginkgo biloba (renoprotective)
     salvia (red sage, Chinese sage, tan shen, or danshen): (increase glomerular filtration rate. This helps facilitate creatinine elimination)
-    celery
+    celery seed (diuretic)
     onion
     stinging nettle (diuretic properties that help remove metabolic waste products. The herb will also purify the blood and boost the immune system)
-    lemon juice
+    lemon juice/citric acid
     chamomile (lower creatinine levels)
     dandelion root (reduces creatinine levels)
     cinnamon (lower serum creatinine and improve kidney problems by promoting kidney filtration)
@@ -324,6 +330,50 @@
     Parsley (detoxify, diuretic)
     Uva-Ursi (anti-irritant)
 
+	- fucoidan (seaweed)
+	- sulphurophane
+	- cysteamine (produced by degradation of coenzyme A. The intermediate pantetheine is broken down into cysteamine and pantothenic acid - for renal glomerular disease, oral cysteamine reduces cellular cystine)
+
+	- ketoanalogues of essential amino-acids (with nitrogen removed to reduce work for kidneys)
+
+		- amino acids
+
+			- Essential:  
+			  histidine (beans, cauliflower, mushroom)
+			  isoleucine
+			  leucine
+			  lysine (soy, pea, beans)
+			  methionine
+			  phenylalanine (soy)
+			  threonine (lentils, sesame)
+			  tryptophan (spirulina, soy, sesame, sunflower)
+			  valine
+			- Conditionally essential:
+			  arginine
+			  	- synthesized in the body from glutamine via citrulline
+			  	- required to produce nitric oxide which may damage tissues
+			  	- useful with renal ablation, ureteral obstruction, nephropathy secondary to diabetes, and salt-sensitive hypertension, attenuating the symptoms of preeclampsia, protective in ischemic acute renal failure
+			  	- harmful in glomerulonephritis
+			  cysteine
+			  glutamine
+			  	- glutamine supplementation in healthy athletes were associated with no significant adverse effects, but it can cause glomerulosclerosis and serum creatinine level elevation in the setting of diabetic nephropathy
+			  glycine (sesame, soy, pumpkin, nuts)
+			  proline
+			  	- produced from arginine
+			  tyrosine
+			- Non-essential:
+			  alanine 
+			  aspartic acid 
+			  asparagine
+			  glutamic acid
+			  serine
+			  selenocysteine
+			  pyrrolysine
+
+			- possibly helpful to kidney function: branch chain amino acids (isoleucine, leucine, valine), glutamine, arginine
+			- possibly harmful to kidney function: glycine, arginine, methionine
+
+			- carnitine (derived from lysine): reduce lipid level, counter c reactive protein, anti-anemia action due to its effects on erythropoiesis, and positive effects on the longevity and deformability of erythrocytes
 
     - prevent infection
         Gravel Root (antibiotic)
