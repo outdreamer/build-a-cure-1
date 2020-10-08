@@ -177,9 +177,12 @@
 
 - to lower creatinine:
     - avoid: 
-      - creatine, nsaids, vanadium, diuretics, arginine tends to increase the liver’s production of creatine
-      - foods like meat, dairy, chocolate, almonds/walnuts/peanuts/pumpkin/sesame, tofu, egg whites, seaweed, spirulina, & gelatin will raise creatinine
-    - try: fiber, chitosan, salvia, chamomile, nettle, dandelion root, cinnamon, siberian ginseng, corn silk, sage, chinese rhubarb
+      - potassium, sodium, phosphorus, creatine, nsaids, ace inhibitors, vanadium, diuretics, arginine tends to increase the liver’s production of creatine
+      - foods like meat, dairy, chocolate, nuts, soy, eggs, seaweed, spirulina, & gelatin will raise creatinine
+
+    	- The amino acids methionine, arginine, & glycine are processed in the kidneys to produce guanidinoacetic acid, which is then sent to the liver where it is converted to another amino acid called creatine. Creatinine is a waste byproduct of metabolizing creatine
+
+    - try: water, alpha lipoic acid, vitamin c, cucumber, fiber, chitosan, salvia, chamomile, nettle, dandelion root, cinnamon, siberian ginseng, corn silk, sage, chinese rhubarb
 
 - to lower phosphorus:
 	- eat: coconut, almond milk
@@ -187,6 +190,14 @@
 
 - to lower oxalates:
 	- oxalic acid in almond milk can steal calcium from the body and to form it into dangerous calcium stones in the kidneys
+	- macadamia are lower in oxalates than other nuts
+		Almonds 	1 oz (28 g) 	122 mg
+		Cashew Nuts 1 oz (28 g) 	49 mg
+		Peanuts 	1 oz (28 g) 	27 mg
+		Pistachios 	1 oz (28 g) 	14 mg
+		Pecans 		1 oz (28 g) 	10 mg
+
+	- bind to oxalates: calcium, Citric acid, green tea
 
 - to lower blood pressure 
   - stevia
@@ -281,6 +292,7 @@
     garlic
     soy
     phytoestrogens
+    astragalus (asparagine that reduces creatinine levels and eliminates fluid in the kidneys)
     lycopene
     vitamin d (help control phosphorus levels)
     glutamate cystein ligase and glutathione reductase
@@ -296,20 +308,22 @@
     echinacea (removes various toxins like urea, uric acid, creatinine, high cholesterol from the blood)
     Rehmannia (lower angiotensin II)
     Ginkgo biloba (renoprotective)
-    salvia/sage
+    salvia (red sage, Chinese sage, tan shen, or danshen): (increase glomerular filtration rate. This helps facilitate creatinine elimination)
     celery
     onion
+    stinging nettle (diuretic properties that help remove metabolic waste products. The herb will also purify the blood and boost the immune system)
     lemon juice
-    chamomile
-    dandelion
-    cinnamon
-    siberian ginseng
+    chamomile (lower creatinine levels)
+    dandelion root (reduces creatinine levels)
+    cinnamon (lower serum creatinine and improve kidney problems by promoting kidney filtration)
+    siberian ginseng (eleutheroside compounds in Siberian ginseng are thought to effectively rid the body of excess creatinine by promoting kidney circulation)
     Goldenrod (detoxify urinary tract)
     Horsetail (diuretic)
     Juniper (protects kidney cells against harmful toxins)
     Java Tea (diuretic, prevent kidney stones)
     Parsley (detoxify, diuretic)
     Uva-Ursi (anti-irritant)
+
 
     - prevent infection
         Gravel Root (antibiotic)

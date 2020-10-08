@@ -13,6 +13,16 @@
   - give example of generating problem types by applying structure
     - for instance, a common problem type is a mismatch/imbalance
       - by applying the 'mismatch' to the cost/benefit relationship, you get an 'inefficiency' problem type, which can be defined as a mismatch/imbalance between the cost & benefit, favoring the cost side (the negative object out of (cost, benefit), associated with problems)
+
+  - soon users will be able to select & add features to apps automatically, invalidating the app market
+  - automated product quality testing (to invalidate reviews & product endorsements from the platform) & faster delivery service as competition to amazon
+  - monopolies should be allowed to develop while their products are below an exploit ratio or are still improving/adding useful features, and while theyre contributing in other ways (research, open source, etc), and ended when theyre not
+  - the government or market can incentivize businesses to coordinate that could replace monopoly products (delivery/logistic products/services like drones, and product testing) without regulating monopolies themselves, but this may invalidate the potential profit incentive to develop those products in the first place, so should be used for non-essential products
+  - privacy is relative to intent
+    - can you submit a 'reassure' or 'post photo from event' intent to your messaging app, and it generates a re-assuring message or photo at an event using predictive logic & user decision history/algorithm on their device, instead of you sending the message, and the intents you allow are pre-approved by you or from a standard open source intent & context package, contextually applied in conversation (when 'reassure' is contextually appropriate given the prior message history or the open source context package)
+
+  - structurize definitions of objects specific to interfaces
+    - example: info asymmetry is associated with an info loss in a particular direction between info types/formats, rather than just an info imbalance or mismatch
   
   - examples of objects on different interfaces
     - potential (risk chain, uncertainty) 
@@ -24,6 +34,10 @@
     - the reason these abstract objects fit on a particular interface is because they describe specific interactions:
       - a conflict may occur on every interface, but in the system interface, the interactions of a conflict with other objects are the clearest, closest to its most concise definition, & capture the most variation, whereas on other interfaces, the conflict object can take many forms
 
+
+  - add examples of system/object/rule/type change patterns
+  - add examples of variable gathering patterns into a type
+    
 
 ## define
 
