@@ -1,5 +1,16 @@
 to do: organize into docs
 
+  - 'responsibility' as a software concept to align with 'intent', to tie functions to input/processing/output resources/processes and the associated tasks, like cleaning up resources, deleting temp resources, optimizing a memory store, setting a cache, resetting a timer, changing permissions, etc - as a method of correcting incomplete functions
+    - 'integration' as a software concept to calculate interface metadata for integrated functions forming an app/site/workflow
+  - privacy is relative to intent
+    - can you submit a 'reassure' or 'send funny meme' or 'post photo from event' intent to your messaging app, and it generates/finds a re-assuring message or meme or photo at an event using predictive logic & user decision history/algorithm on their device, instead of you sending the message, and the intents you allow are pre-approved by you or from a standard open source intent & context package, contextually applied in conversation (when 'reassure' is contextually appropriate given the prior message history or the open source context package)
+
+  - soon users will be able to select & add features to apps automatically, invalidating the app market
+    - add a prepay option for features that can be built by a deadline if enough people prepay, as an alternative to monopoly abuse of power by not fulfilling user needs
+  - automated product quality testing (to invalidate reviews & product endorsements from the platform) & faster delivery service as competition to amazon
+  - monopolies should be allowed to develop while their products are below an exploit ratio or are still improving/adding useful features, and while theyre contributing in other ways (research, open source, etc), and ended when theyre not
+  - the government or market can incentivize businesses to coordinate that could replace monopoly products (product-generation products to invalidate shopping/delivery services like medical/lab chemical printers, delivery/logistic products/services like drones, shopping/subscription/discount/purchase/shipping aggregation tool across multiple web sites (so they can make one order to multiple companies), similar to news aggregation/prioritization/merging, or structured content aggregation into a merged structure like a list/graph, product testing) without regulating monopolies themselves, but this may invalidate the potential profit incentive to develop those products in the first place, so should be used for non-essential products
+
   - pre-approved transactions on a schedule that give id service provider permission to update id
     - businesses contact id provider to check that id hasnt changed or get new id if its changed
     - then makes call to bank associated with id or updated id, which is expecting the transaction at that schedule & has already allocated/locked funds for that transaction

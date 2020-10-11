@@ -14,13 +14,6 @@
     - for instance, a common problem type is a mismatch/imbalance
       - by applying the 'mismatch' to the cost/benefit relationship, you get an 'inefficiency' problem type, which can be defined as a mismatch/imbalance between the cost & benefit, favoring the cost side (the negative object out of (cost, benefit), associated with problems)
 
-  - soon users will be able to select & add features to apps automatically, invalidating the app market
-  - automated product quality testing (to invalidate reviews & product endorsements from the platform) & faster delivery service as competition to amazon
-  - monopolies should be allowed to develop while their products are below an exploit ratio or are still improving/adding useful features, and while theyre contributing in other ways (research, open source, etc), and ended when theyre not
-  - the government or market can incentivize businesses to coordinate that could replace monopoly products (delivery/logistic products/services like drones, shopping/subscription/discount/purchase/shipping aggregation tool across multiple web sites (so they can make one order to multiple companies), similar to news aggregation/prioritization/merging, or structured content aggregation into a merged structure like a list/graph, product testing) without regulating monopolies themselves, but this may invalidate the potential profit incentive to develop those products in the first place, so should be used for non-essential products
-  - privacy is relative to intent
-    - can you submit a 'reassure' or 'send funny meme' or 'post photo from event' intent to your messaging app, and it generates/finds a re-assuring message or meme or photo at an event using predictive logic & user decision history/algorithm on their device, instead of you sending the message, and the intents you allow are pre-approved by you or from a standard open source intent & context package, contextually applied in conversation (when 'reassure' is contextually appropriate given the prior message history or the open source context package)
-
   - structurize definitions of objects specific to interfaces
     - example: info asymmetry is associated with an info loss in a particular direction between info types/formats, rather than just an info imbalance or mismatch
   
