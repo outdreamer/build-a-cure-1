@@ -1,18 +1,24 @@
 # to do
 
-  - update links
-  - integrate rules from diagrams to relevant documents
-  - organize 'to do' items from analysis & code to to do list as function list with dependencies
-  - integrate changes from solution_automation_analysis.py claims to repo
-  - integrate logic from core_analysis/*
-  - integrate problem_solving_matching.md & analysis_examples.md & specific_methods/*
   - de-duplicate logic
+    - integrate logic from core_analysis/*
+    - integrate problem_solving_matching.md & analysis_examples.md & specific_methods/*
+    - integrate changes from solution_automation_analysis.py claims to repo
+    - integrate rules from diagrams to relevant documents
+
+  - update links
+  - organize 'to do' items from analysis & code to to do list as function list with dependencies
   - organize specific interface analysis definitions/logic/questions answered/problems solved/examples
   - write query to compile functions in interface definitions (after definition, functions & answer questions section), as well as identify/build/find/derive/change attributes/types/objects/structures in definition
-  - use examples in repo as test cases
+
   - give example of generating problem types by applying structure
     - for instance, a common problem type is a mismatch/imbalance
       - by applying the 'mismatch' to the cost/benefit relationship, you get an 'inefficiency' problem type, which can be defined as a mismatch/imbalance between the cost & benefit, favoring the cost side (the negative object out of (cost, benefit), associated with problems)
+
+  - make query examples for situations like:
+    - lack of information stored
+    - query problem breakdown & integration diagram
+    - calculating various different problem breakdown strategies first
 
   - structurize definitions of objects specific to interfaces
     - example: info asymmetry is associated with an info loss in a particular direction between info types/formats, rather than just an info imbalance or mismatch
@@ -26,7 +32,6 @@
 
     - the reason these abstract objects fit on a particular interface is because they describe specific interactions:
       - a conflict may occur on every interface, but in the system interface, the interactions of a conflict with other objects are the clearest, closest to its most concise definition, & capture the most variation, whereas on other interfaces, the conflict object can take many forms
-
 
   - add examples of system/object/rule/type change patterns
   - add examples of variable gathering patterns into a type

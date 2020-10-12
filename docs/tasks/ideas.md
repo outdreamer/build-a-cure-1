@@ -2,6 +2,13 @@ to do: organize into docs
 
   - 'responsibility' as a software concept to align with 'intent', to tie functions to input/processing/output resources/processes and the associated tasks, like cleaning up resources, deleting temp resources, optimizing a memory store, setting a cache, resetting a timer, changing permissions, etc - as a method of correcting incomplete functions
     - 'integration' as a software concept to calculate interface metadata for integrated functions forming an app/site/workflow
+    - this is analogous to how there are intrinsically related info object dependencies, like:
+      - an argument is associated with underlying facts & logic
+      - a suggestion/idea is associated with implementation details
+      - a criticism is associated with a solution on how to fix it
+      - similarly, functions have power that involves associated responsibility to use that, in the form of permissions (to access inputs, processing requirements, & outputs), relevance (in cleaning memory), prioritization (in process sequence or rank)
+      - integrating these responsibilities with other functions isnt automated - a function doesnt check if another function with similar power has a gap in relevance-checking responsibility before leaving information unprotected, to make sure another function cant access irrelevant resources
+      - responsibility is tied to relevance of the function intent 
   - privacy is relative to intent
     - can you submit a 'reassure' or 'send funny meme' or 'post photo from event' intent to your messaging app, and it generates/finds a re-assuring message or meme or photo at an event using predictive logic & user decision history/algorithm on their device, instead of you sending the message, and the intents you allow are pre-approved by you or from a standard open source intent & context package, contextually applied in conversation (when 'reassure' is contextually appropriate given the prior message history or the open source context package)
 
