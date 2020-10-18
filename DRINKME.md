@@ -15,7 +15,7 @@
 		- "use an animal model in an air-conditioned building (when people aren't in it like at night) that would quickly show signs of infection if the virus was live and present"
 		- "display points on an AR interface with magnified bacteria attributes, or applying other data visualization rules to indicate attributes"
 
-	along with other  olution metadata like probability of success, sufficiency of information to select the optimal solution, and which solution is optimal, given which sets of resources are available.
+	along with other solution metadata like probability of success, sufficiency of information to select the optimal solution, and which solution is optimal, given which sets of resources are available.
 
 	Another example input problem statement:
 		- 'preventing infections from pathogens'
@@ -48,6 +48,50 @@
 ## Summary
 
 	Much of this project automates the problem-solving methods & structures I use mentally. Other components of this project include important specific functions, like predicting, finding & using important system filters.
+
+
+### Invention Relationship
+
+  Solution automation is the main program implementing problem-solving workflows, API service, UI, & product, interface analysis is configuration of logic which is also accessible by API, and info objects like imported insights/functions are the content/data.
+
+
+### Example interface queries to generate an invention
+
+  - example of specific queries for a cnn
+
+    1. start with the pattern interface
+      - check for patterns in interface structures of the problem system, like variables, incentives, intents, priorities, questions:
+        - find pattern 'features usually have a certain size'
+          - identify relevant objects to pattern, including false requirements/assumptions, like:
+            - input space needs to include all inputs
+              - apply relevant interface structures to false requirement, like 'subset' on the structural interface
+                - test if subset of inputs includes more relevant information
+
+    2. another way to generate this invention:
+      - start with system, then function interface, identifying functions governing problem system object relationships, like aggregation
+        - match pattern of input-to-label aggregation with subset-to-type aggregation pattern
+          - apply associated structures of one pattern (subset) to another (inputs)
+
+    3. start with conceptual interface
+      - start with fundamental concepts, like the concept of 'relevance'
+        - relevant information to differentiating between types takes the form of the regions where differences aggregates
+          - regions inherently mean a section rather than a whole
+            - arrive at the subset object, and apply it to any complete/whole sets in the problem (neural net) system structure
+
+    4. start with intent interface
+      - identify intent of all problem system relationships
+        - intent of 'using all inputs' is to 'capture all information'
+          - apply change opportunities from other interface queries, like the 'input subset' change, and re-calculate the intent
+            - intent of 'using subset of inputs' is to 'capture information of a particular size'
+              - identify opportunities where that intent is relevant (where information has a size similar to the subset size, like variables that have aggregated into differentiating features between types)
+                - check if that opportunity is relevant to the problem of 'differentiating types'
+
+    - interface queries like these can be abstracted to insight paths to solve problems:
+      - start with the pattern interface without other information
+      - start with fundamental (either foundational, important, causative, generative, descriptive/compressing, determining, or core objects) cross-system objects without other information
+      - systematize or structurize the problem first, where possible
+      - false objects like false requirements are important for identifying opportunities for change, so identify false problem types in the form of information mismatches when looking for relevant changes
+      - intent alignment is a good way to detect solution types like change (innovation/optimization) opportunities, in the form of mis-alignments between existing problem system intents and problem-solving intents (mis-alignments representing change opportunities)
 
 
 ### Example insight path: to generate comical statements (in the form of a word choice or response), you can execute the insight path:

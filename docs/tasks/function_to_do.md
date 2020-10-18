@@ -1,5 +1,24 @@
 # to do
 
+  - apathy & stupidity query:
+
+    - stupidity structural definitions:
+      - short-term thinking
+
+    - apathy structural definitions:
+      - indifference to others' well-being
+      - egotism
+      - selfishness
+
+    - connecting link:
+      - short-term thinking is related to the concept of 'local bias'
+      - local bias is a component of selfishness (bias toward nearest individual)
+
+    - once you standardize to the structural interface (applying structural metrics to definitions, like: distance to find the nearest individual, and short-term thinking & local bias),
+      you can connect these two concepts with a query to find similar structures (short-term thinking is related to local bias, which happens to be a component of selfishness)
+
+    - this is an example of how to arrive at an insight about which concepts are related by applying the structural interface, and insight paths (find similar objects, as a way to find relevant objects)
+
   - de-duplicate logic
     - integrate logic from core_analysis/*
     - integrate problem_solving_matching.md & analysis_examples.md & specific_methods/*
@@ -11,42 +30,7 @@
   - organize specific interface analysis definitions/logic/questions answered/problems solved/examples
   - write query to compile functions in interface definitions (after definition, functions & answer questions section), as well as identify/build/find/derive/change attributes/types/objects/structures in definition
 
-  - give example of specific queries with cnn
-    1. start with the pattern interface
-      - check for patterns in interface structures of the problem system, like variables, incentives, intents, priorities, questions:
-        - find pattern 'features usually have a certain size'
-          - identify relevant objects to pattern, including false requirements/assumptions, like:
-            - input space needs to include all inputs
-              - apply relevant interface structures to false requirement, like 'subset' on the structural interface
-                - test if subset of inputs includes more relevant information
-
-    2. another way to generate this invention:
-      - start with system, then function interface, identifying functions governing problem system object relationships, like aggregation
-        - match pattern of input-to-label aggregation with subset-to-type aggregation pattern
-          - apply associated structures of one pattern (subset) to another (inputs)
-
-    3. start with conceptual interface
-      - start with fundamental concepts, like the concept of 'relevance'
-        - relevant information to differentiating between types takes the form of the regions where differences aggregates
-          - regions inherently mean a section rather than a whole
-            - arrive at the subset object, and apply it to any complete/whole sets in the problem (neural net) system structure
-
-    4. start with intent interface
-      - identify intent of all problem system relationships
-        - intent of 'using all inputs' is to 'capture all information'
-          - apply change opportunities from other interface queries, like the 'input subset' change, and re-calculate the intent
-            - intent of 'using subset of inputs' is to 'capture information of a particular size'
-              - identify opportunities where that intent is relevant (where information has a size similar to the subset size, like variables that have aggregated into differentiating features between types)
-                - check if that opportunity is relevant to the problem of 'differentiating types'
-
-    - interface queries like these can be abstracted to insight paths to solve problems:
-      - start with the pattern interface without other information
-      - start with fundamental (either foundational, important, causative, generative, descriptive/compressing, determining, or core objects) cross-system objects without other information
-      - systematize or structurize the problem first, where possible
-      - false objects like false requirements are important for identifying opportunities for change, so identify false problem types in the form of information mismatches when looking for relevant changes
-      - intent alignment is a good way to detect solution types like change (innovation/optimization) opportunities, in the form of mis-alignments between existing problem system intents and problem-solving intents (mis-alignments representing change opportunities)
-
-  - mention how solution automation is the main program implementing problem-solving workflows, API service, UI, & product, interface analysis is configuration of logic which is also accessible by API, and info objects like imported insights/functions are the content/data
+  - document limitations of interfaces & how to derive them
 
   - give example of generating problem types by applying structure
     - for instance, a common problem type is a mismatch/imbalance
@@ -55,7 +39,7 @@
   - make query examples for situations like:
     - lack of information stored
     - query problem breakdown & integration diagram
-    - calculating various different problem breakdown strategies first
+    - calculating various different problem breakdown strategies first before executing normal query-building logic for each
 
   - structurize definitions of objects specific to interfaces
     - example: info asymmetry is associated with an info loss in a particular direction between info types/formats, rather than just an info imbalance or mismatch
