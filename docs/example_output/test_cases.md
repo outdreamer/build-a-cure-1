@@ -188,7 +188,7 @@
 
     	- The amino acids methionine, arginine, & glycine are processed in the kidneys to produce guanidinoacetic acid, which is then sent to the liver where it is converted to another amino acid called creatine. Creatinine is a waste byproduct of metabolizing creatine
 
-    - try: water, alpha lipoic acid, vitamin c, cucumber, fiber, chitosan, salvia, chamomile, nettle, dandelion root, cinnamon, siberian ginseng, corn silk, red sage, chinese rhubarb
+    - try: water, alpha lipoic acid, vitamin c, cucumber, fiber, chitosan, chamomile, nettle, dandelion root, cinnamon, siberian ginseng, corn silk, salvia/red sage, chinese rhubarb
 
 - to lower phosphorus:
 	- eat: coconut, almond milk
@@ -330,8 +330,10 @@
     Parsley (detoxify, diuretic)
     Uva-Ursi (anti-irritant)
 
-	- fucoidan (seaweed)
-	- sulphurophane
+	- fucoidan (algaes & seaweeds like mozuku, kombu, bladderwrack, wakame, and hijiki)
+		- inhibits renal fibrosis and glomerular sclerosis by reducing the accumulation of extracellular matrix. In addition, fucoidan reduces the inflammatory response and P-selectin expression, maintains the glomerular basement membrane and glomerular structural integrity, improves glomerular filtration function, and protects renal glycosaminoglycans from abnormal degradation
+		
+	- sulphurophane (maintained hemodynamics, mainly renal blood flow, Preservation of the nitric oxide pathway)
 	- cysteamine (produced by degradation of coenzyme A. The intermediate pantetheine is broken down into cysteamine and pantothenic acid - for renal glomerular disease, oral cysteamine reduces cellular cystine)
 
 	- ketoanalogues of essential amino-acids (with nitrogen removed to reduce work for kidneys)
@@ -531,6 +533,43 @@
         severe weakness
         swelling of the hands and feet
         urinating more or less than usual
+
+
+- bio markers
+	- types
+		- functional biomarkers
+		- up-regulated proteins
+		- enzymes
+		- cycle arrest biomarkers
+
+	- urine
+		- neutrophil gelatinase-associated lipocalin (NGAL)
+		- kidney injury molecule-1 (KIM-1)
+		- TIMP-2
+		- IGFBP7
+		- urine output
+		- urine creatinine
+
+	- serum
+		- serum creatinine (SCr)
+			- SCr is limited as a marker of kidney dysfunction in both settings and may be inaccurate in several situations, such as in patients with low muscle mass or with fluid overload
+		
+	- Cystatin C
+	- interleukin-6 (IL-6), interleukin-8 (IL-8), interleukin-18 (IL-18)
+	- N-acetyl-glucosaminidase (NAG)
+	- glutathione transferases (GST)
+	- liver fatty acid binding protein (LFABP)
+	- FGF-23
+	- surrogate markers of GFR (urine output, serum/urine creatinine, scr)
+
+- ckd stage calculation
+
+	- CKD stage 	GFR level (mL/min/1.73 m2)
+		Stage 1 	≥ 90
+		Stage 2 	60–89
+		Stage 3 	30–59
+		Stage 4 	15–29
+		Stage 5 	< 15 
 
 - test metrics
 

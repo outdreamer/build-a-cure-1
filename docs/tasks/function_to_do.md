@@ -1,6 +1,6 @@
 # to do
 
-  - apathy & stupidity query:
+  - apathy & stupidity query example:
 
     - stupidity structural definitions:
       - short-term thinking
@@ -17,7 +17,7 @@
     - once you standardize to the structural interface (applying structural metrics to definitions, like: distance to find the nearest individual, and short-term thinking & local bias),
       you can connect these two concepts with a query to find similar structures (short-term thinking is related to local bias, which happens to be a component of selfishness)
 
-    - this is an example of how to arrive at an insight about which concepts are related by applying the structural interface, and insight paths (find similar objects, as a way to find relevant objects)
+    - this is an example of how to arrive at an insight about which concepts are related by applying the structural interface, and insight paths (insight paths like 'find similar objects, as a way to find relevant objects, when looking for connections between components')
 
   - de-duplicate logic
     - integrate logic from core_analysis/*

@@ -1,6 +1,7 @@
 I think social problems like crime are mostly information problems (info about resources like opportunities, group memberships, solutions, insights like how to communicate) so please share this quickly with whoever might benefit, during a brief testing period to catch anything else that should be communicated with these things, to prevent additional deaths
 
 For all of them:
+
 	- there are monsters of every vice controlling them for the amusement of Alpha, controlling humans to a degree of uncertainty, and controlling animals completely
 	- every time they do something wrong, it hurts the whole world too to see them fall prey to the monsters controlling humanity & other species, and it hurts Joni's children, which includes themselves
 	- we love them & their potential, will never abandon them & will always be here for them
@@ -18,11 +19,12 @@ For the criminals:
 	- tell them a fixing protocol of how to make up for their crimes, so they dont give up on fixing it or being good & do worse things (for starter criminals)  
 	- to cry with their victims, tell them everything, listen to them, ask their victim questions, ask what they can do to help them, be totally honest & dont try to manipulate their victims unless they acknowledge the manipulation to make it fair, talk about what they were thinking/feeling (maybe they panicked, or felt like they owe the world nothing bc no one prevented crimes to themselves, or they kept getting away with it so they thought their victims didnt deserve respect (like when liars think people deserve to be lied to if the lie keeps working & being believed)) & what they've thought about or realized since then, and who they want to be & what they want to do. This can be communicated by letter or online (to give them time to think through their response, and to prevent violence) or in person (to help empathize), whichever is better for the context (or a combination)  
 	- show their victims their potential, such as ways they can help the world (such as contributing to research, or teaching other criminals how to fix their crimes)  
-	- show criminals what a person can become with the right resources (inspiring stories, clean water & medicine, kindness) and what people tend to become with a lack of those (so they understand that they had a default response to that lack, and show them other options)
+	- show criminals what a person can become with the right resources (inspiring stories, clean water & medicine, kindness) and what people tend to become with a lack of those (so they understand that they had a default response to that lack, and show them other options, like abstraction or making other calculations like seeing the bigger picture or understanding & fixing their abusers)
 	- communicate that they can protect themselves from guilt & fear of consequences by choosing the consequences (the consequence of offering help to fix it)  
 	- if their victims need their death & it wouldnt hurt their soul to kill someone (communicate that possibility without guilting them about it), their death contributes to the end of the cycle of killing & the pain cycles it triggers, so there are no more unfair deaths poisoning society (make it easy for criminals to kill themselves with a painless death if so, like a pill) 
 	- the victims should be able to convince the criminal that this is going to help them & is fair (without placing a burden on the victim to make the argument, by offering help in communicating that)
 	- teach criminals what mental functions they were missing that created the crime (lack of intelligence, lack of impulse control, lack of ability to calculate consequences, lack of mental models like empathy) and other lacking resources (other groups than gangs to belong to, other ways to make money)
+	- if they start fixing problems, communicate how to deal with the associated problems (how to deal with the pain of failing to fix someone or a problem)
 
 For the unloved:
 
@@ -71,6 +73,7 @@ For the insane:
 	- compare it to similar behaviors in other species
 	- show them examples & the advantages to other types of interactions, like a typical friendship, that are healthier for all parties involved
 	- if they do crimes for amusement, show them other ways to get amusement, like building better agencies like their space or AI program, or show them how a game where dictators just prioritize one metric like amusement or feeling important for ruining other countries' sand castles & never coordinate for things important to humanity is a boring game that no one ever wins
+	- show them how to fix their problems, if the problem causing their insanity was shock that something this bad could happen to them in reality (so they had to disassociate), so that reality is good enough for them to want to inhabit it
 
 For anyone who wants to know what happens if these systems that they currently benefit from are changed:
 
