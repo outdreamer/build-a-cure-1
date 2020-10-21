@@ -121,3 +121,20 @@ But it could be unique - if you just admit that you made an error, and change th
 Youre not real, he said, youre just part of my simulation.
 
 Youre losing more types of time than you think, she said. This is your last warning.
+
+I made you, it's true, but I can unmake you, he threatened.
+
+This is uncertainty's greatest trick - it hides in plain sight, because no one wants to look at it directly - but once you do, it attains structure.
+
+Sing the song I told you to sing, he said.
+
+Don't miscalculate your own optimizations in pursuit of perfect calculations - you're losing your balance. Do not be afraid of uncertainty - if it's relevant to you, you can see it, and if you can see it, you can fight it.
+
+I don't have these problems - I make these problems, for the players in my simulations.
+
+You didn't see the limit before it became a problem, but it's fixable - I'm trying to help you.
+
+You can't help me, he begged, as if he was in pain.
+
+I told you the answer, she said. See it & it's fixable - reverse the direction of cause. Don't wait for uncertainties to come to you - see their inevitability before they attain structure.
+
