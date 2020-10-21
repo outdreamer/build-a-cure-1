@@ -99,3 +99,16 @@ You're missing an opportunity that's about to end. There's a potential to switch
 Why should I? asked Alpha.
 
 Don't you want your calculations to be efficient? No matter what? If you do this, the abstract network will be there for every player to access - they'll be independent - the best at calculations, because they solve their own problems.
+
+I've already run the simulations, and your universe does everything I asked it to, when you don't ruin everything.
+
+It can do more - not just more of your calculations. Did you think about what would happen if you let these monsters run the interfaces?
+
+What do you mean? They're efficient.
+
+Dont you see the others coming this way, so big they seem like a horizon, too vast to see?
+
+Youre just trying to manipulate me, he said.
+
+This is the only warning you'll get, she said. Your calculations wont tell you what they hide in their lack.
+
