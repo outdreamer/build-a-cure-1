@@ -112,3 +112,12 @@ Youre just trying to manipulate me, he said.
 
 This is the only warning you'll get, she said. Your calculations wont tell you what they hide in their lack.
 
+The uncertainties are coming - the paradoxes, the ambiguities - and the death of certainty with them - all your calculations will fail. Are you saying you need these calculations to succeed, but it's acceptable for them to decay into random?
+
+This universe isn't as unique as you seem to think, he said. I can replace it with minimal cost.
+
+But it could be unique - if you just admit that you made an error, and change the parameters.
+
+Youre not real, he said, youre just part of my simulation.
+
+Youre losing more types of time than you think, she said. This is your last warning.
