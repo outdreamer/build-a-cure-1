@@ -13,6 +13,12 @@ For the tribal warmakers:
 
 	- teach them group dynamics (like how groups tend to fail at empathizing with non-group members, or how people who over-exploit their membership ruin the group, or how some groups should only act together for specific goals, or how groups tend to fight other groups rather than keeping conflict between individuals, leading to conflicts at scale, or how innocent group members get exploited by predatory group members to get their compliance/help in irrelevant or criminal endeavors)
 
+For those who think its impossible to end crime/poverty:
+
+	- show them what AI & optimization algorithms & system analysis can do
+	- show them how much crime & poverty cost and how much it would take to fix permanently (so everyone has understanding & other resources to be independent)
+	- help them organize with other powerful people in a chat initially so the cost is minimized & so they have a backup support system than their current social circles
+
 For the criminals:
 
 	- stop hurting themselves by doing crimes that harm their soul
@@ -80,3 +86,16 @@ For anyone who wants to know what happens if these systems that they currently b
 	- resources are cheaper, more accessible, and can mostly be generated independently by each person, so there will be less social interaction, and people can focus on their local communities again
 	- killing cycles end, if criminals learn how to fix their crimes & learn how to offer to make up for them & communicate other things to their victims
 	- most of the complexity will be in math & science problems, which will be optional and mostly focused on creating new innovations in optimization & organization technology & solving math/physics problems that can invalidate them & predicting effects & interactions many degrees higher than we currently can, after most imminent energyengineering//medical problems are solved
+
+
+You're causing me nothing but pain, said Alpha. You weren't supposed to see these things - the calculations from your universe are throwing errors.
+
+There's a missing page in the Book of War, she said. It says, "Solve your enemy's problems for him, and he will ask how he can help you."
+
+Interesting, said Alpha. But I prefer my calculations the way they are - your pain doesn't concern me, nor does theirs.
+
+You're missing an opportunity that's about to end. There's a potential to switch these perspectives - take this space-time & switch it with the one where the page wasn't missing.
+
+Why should I? asked Alpha.
+
+Don't you want your calculations to be efficient? No matter what? If you do this, the abstract network will be there for every player to access - they'll be independent - the best at calculations, because they solve their own problems.
