@@ -51,9 +51,9 @@
 
   These components can be used to solve problems like "predicting system behavior more efficiently", by:
     - applying a problem-solving workflow, like 'break into sub-problems, solve independently, aggregate & integrate sub-solutions & test aggregate solution'
-      - breaking it into sub-problems, like 'optimize predictions', 'increase prediction accuracy' & 'optimize learning'
+      - breaking it into sub-problems, like 'optimize predictions', 'increase prediction accuracy' & 'optimize learning', with a corresponding interface query to link the problem with a solution using info formats (to break into sub-problems & integrate the sub-problem solutions) & a metric to evaluate them
       - identify key components of the problem system 'learning', like 'bias'
-      - applying an insight path having a relevant supported intent like "find & describe change rules of identified key components of the problem system to optimize"
+      - applying relevant structures, like an insight path having a relevant supported intent like "find & describe change rules of identified key components of the problem system to optimize"
       - retrieving/deriving & applying insights about the mechanics of bias
       - organizing the retrieved information (including bias insights & bias patterns) to fulfill intent 'optimize predictions', with other intents 'increase prediction accuracy' & "make 'learning' system more efficient".
 
@@ -64,6 +64,36 @@
     - problem intent: optimize predictions
       - apply structure: find object in the learning system that allows specific measurements of predictions (prediction metrics, like accuracy)
       - problem intent: increase prediction accuracy
+
+  You can derive key components like 'bias' in the 'learning' system with various methods, including:
+
+    - interface-specific definitions:
+    
+      - structural definitions of bias include 'applying a rule out of context' 
+        - matching this structure or its abstraction (insight path of this structure, like 'identify structures having the mismatch problem type between core/important components') to a structural format of the problem system would enable identifying other alternative structures matching this structural definition (to build the abstract insight path if it doesnt already exist in the database)
+
+    - core analysis:
+
+      - generating important components from core components
+        - (rule) x (rule change type, or change type that can be applied to rules) x (system that doesnt support that change type) = 'irrelevant rule'
+        - (rule) x (system change type, or change type that can be applied to systems, where the system may not support that change type) = 'irrelevant rule'
+
+    - interface-specific analysis:
+
+      - applying a problem type format like 'enforcement gap' or 'variance injection point' would allow components of one system to enter other systems, which might not benefit from those components in the same way due to their different structure
+
+    - common components analysis:
+
+      - apply common important interface objects
+
+        - apply the important 'relevance' concept
+          - 'out of context' maps to 'relevance', so if you apply important concepts & other interface objects like relevance to core components like 'rules', you can arrive at the structural definition another way
+            - 'irrelevant rules' maps to 'applying a rule out of context'
+
+        - apply important problem types
+          - common problem type is a 'mismatch'
+            - apply this problem type to important learning objects, like 'context' on the system interface & 'rule' on the function interface
+              - 'a mismatch of context & rule' maps to the structural definition 'applying a rule out of context'
 
   - the 'prediction accuracy' is the relevant object to optimize, which can be derived from the original problem statement 'predicting system behavior more efficiently' once broken into sub-problem problem-solving intents like 'optimize learning' with the same structure-application process.
 
@@ -81,7 +111,6 @@
 ### Invention Relationship
 
   Solution automation is the main program implementing problem-solving workflows, API service, UI, & product, interface analysis is configuration of logic which is also accessible by API, and info objects like imported insights/functions are the content/data.
-
 
 
 ### Example interface queries to generate an invention
