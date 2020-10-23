@@ -47,7 +47,14 @@
 
 ## Summary
 
-	Much of this project automates the problem-solving methods & structures I use mentally. Other components of this project include important specific functions, like predicting, finding & using important system filters.
+	Much of this project automates the problem-solving methods & structures I use mentally - so it can be viewed as meaning, information organization, or intelligence automation. Other components of this project include important specific functions, like predicting, finding & using important system filters. 
+
+  These components can be used to solve problems like "predicting system behavior more efficiently", by:
+    - breaking it into sub-problems, like 'optimize predictions' & 'optimize learning'
+    - identify key components of the problem system 'learning', like 'bias'
+    - applying an insight path with a relevant supported intent like "find & describe change rules of identified key components of the problem system to optimize"
+    - retrieving/deriving & applying insights about the mechanics of bias
+    - organizing the information to fulfill intent 'optimize predictions', with other intents 'increase prediction accuracy' & "make 'learning' system more efficient".
 
 
 ### Invention Relationship
@@ -93,6 +100,26 @@
       - false objects like false requirements are important for identifying opportunities for change, so identify false problem types in the form of information mismatches when looking for relevant changes
       - intent alignment is a good way to detect solution types like change (innovation/optimization) opportunities, in the form of mis-alignments between existing problem system intents and problem-solving intents (mis-alignments representing change opportunities)
 
+### Example interface query to generate an insight (problem type: find relationship between concepts)
+
+    - apathy & stupidity query example:
+
+      - stupidity structural definitions:
+        - short-term thinking
+
+      - apathy structural definitions:
+        - indifference to others' well-being
+        - egotism
+        - selfishness
+
+      - connecting link:
+        - short-term thinking is related to the concept of 'local bias'
+        - local bias is a component of selfishness (bias toward nearest individual)
+
+      - once you standardize to the structural interface (applying structural metrics to definitions, like: distance to find the nearest individual, and short-term thinking & local bias),
+        you can connect these two concepts with a query to find similar structures (short-term thinking is related to local bias, which happens to be a component of selfishness)
+
+      - this is an example of how to arrive at an insight about which concepts are related by applying the structural interface, and insight paths (insight paths like 'find similar objects, as a way to find relevant objects, when looking for connections between components')
 
 ### Example insight path: to generate comical statements (in the form of a word choice or response), you can execute the insight path:
     

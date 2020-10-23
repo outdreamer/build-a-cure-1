@@ -1,34 +1,22 @@
 # to do
 
-  - put in readme
-
-    - apathy & stupidity query example:
-
-      - stupidity structural definitions:
-        - short-term thinking
-
-      - apathy structural definitions:
-        - indifference to others' well-being
-        - egotism
-        - selfishness
-
-      - connecting link:
-        - short-term thinking is related to the concept of 'local bias'
-        - local bias is a component of selfishness (bias toward nearest individual)
-
-      - once you standardize to the structural interface (applying structural metrics to definitions, like: distance to find the nearest individual, and short-term thinking & local bias),
-        you can connect these two concepts with a query to find similar structures (short-term thinking is related to local bias, which happens to be a component of selfishness)
-
-      - this is an example of how to arrive at an insight about which concepts are related by applying the structural interface, and insight paths (insight paths like 'find similar objects, as a way to find relevant objects, when looking for connections between components')
-
   - de-duplicate logic
     - integrate logic from core_analysis/*
     - integrate problem_solving_matching.md & analysis_examples.md & specific_methods/*
     - integrate changes from solution_automation_analysis.py claims to repo
     - integrate rules from diagrams to relevant documents
 
+  - finish dilemma example formats
+
+  - translate documented interface query logic from example.py into interface language (combination of core functions (find/build) & other core components)
+
+  - make query examples for use cases like:
+    - lack of information stored (match problem of type 'information lack' with interface query 'check pattern interface for similar patterns')
+    - query problem breakdown & integration diagram
+    - calculating various different problem breakdown strategies first before executing normal query-building logic for each
+
   - update links
-  - organize 'to do' items from analysis & code to to do list as function list with dependencies
+  - organize 'to do' items from analysis & code to to do list as function list with dependencies (finish function list in next 2 weeks)
   - organize specific interface analysis definitions/logic/questions answered/problems solved/examples
   - write query to compile functions in interface definitions (after definition, functions & answer questions section), as well as identify/build/find/derive/change attributes/types/objects/structures in definition
 
@@ -45,12 +33,7 @@
     - for instance, a common problem type is a mismatch/imbalance
       - by applying the 'mismatch' to the cost/benefit relationship, you get an 'inefficiency' problem type, which can be defined as a mismatch/imbalance between the cost & benefit, favoring the cost side (the negative object out of (cost, benefit), associated with problems)
 
-  - make query examples for situations like:
-    - lack of information stored
-    - query problem breakdown & integration diagram
-    - calculating various different problem breakdown strategies first before executing normal query-building logic for each
-
-  - structurize definitions of objects specific to interfaces
+  - structurize (apply structure to) definitions of objects specific to interfaces
     - example: info asymmetry is associated with an info loss in a particular direction between info types/formats, rather than just an info imbalance or mismatch
   
   - examples of objects on different interfaces
