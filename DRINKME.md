@@ -47,19 +47,41 @@
 
 ## Summary
 
-	Much of this project automates the problem-solving methods & structures I use mentally - so it can be viewed as meaning, information organization, or intelligence automation. Other components of this project include important specific functions, like predicting, finding & using important system filters. 
+	Much of this project automates the problem-solving methods & structures I use mentally - so it can be viewed as meaning, information organization, solution or intelligence automation. Other components of this project include important specific functions, like predicting/finding/using important system filters & finding useful problem type-agnostic insight paths.
 
   These components can be used to solve problems like "predicting system behavior more efficiently", by:
-    - breaking it into sub-problems, like 'optimize predictions' & 'optimize learning'
-    - identify key components of the problem system 'learning', like 'bias'
-    - applying an insight path with a relevant supported intent like "find & describe change rules of identified key components of the problem system to optimize"
-    - retrieving/deriving & applying insights about the mechanics of bias
-    - organizing the information to fulfill intent 'optimize predictions', with other intents 'increase prediction accuracy' & "make 'learning' system more efficient".
+    - applying a problem-solving workflow, like 'break into sub-problems, solve independently, aggregate & integrate sub-solutions & test aggregate solution'
+      - breaking it into sub-problems, like 'optimize predictions', 'increase prediction accuracy' & 'optimize learning'
+      - identify key components of the problem system 'learning', like 'bias'
+      - applying an insight path having a relevant supported intent like "find & describe change rules of identified key components of the problem system to optimize"
+      - retrieving/deriving & applying insights about the mechanics of bias
+      - organizing the retrieved information (including bias insights & bias patterns) to fulfill intent 'optimize predictions', with other intents 'increase prediction accuracy' & "make 'learning' system more efficient".
+
+  You can see how these components - once standardized to the meaning (relevance to problem-solving intent) interface - are formatted with the structures of relevance.
+
+  - problem intent: optimize learning
+    - apply structure: find object in the learning system that is measurable (predictions)
+    - problem intent: optimize predictions
+      - apply structure: find object in the learning system that allows specific measurements of predictions (prediction metrics, like accuracy)
+      - problem intent: increase prediction accuracy
+
+  - the 'prediction accuracy' is the relevant object to optimize, which can be derived from the original problem statement 'predicting system behavior more efficiently' once broken into sub-problem problem-solving intents like 'optimize learning' with the same structure-application process.
+
+  This invention involves several key components like:
+    - a network of interfaces
+    - information formats
+    - a definition of problem-related objects - like intent, problem space, solution, & meaning (the meaning interface is a meta-interface to connect the other interfaces in a way that is relevant to the problem intent)
+    - the concept of insight paths & problem-solving workflows & interface traversals
+    - interface-specific definitions of concepts (like a structural definition of the concept 'cause')
+    - interface query logic that comes with defaults built-in (such as 'query the pattern interface to handle missing information or to find common information')
+    - a language to standardize & connect these components using as few terms as possible (verbs like find/build/apply, components like interface/problem/context, formats like intent/cause/system)
+    - interface-specific configuration to include useful logic & structures specific to each interface given its definition, like common problem types/formats or problem-solution matching logic
 
 
 ### Invention Relationship
 
   Solution automation is the main program implementing problem-solving workflows, API service, UI, & product, interface analysis is configuration of logic which is also accessible by API, and info objects like imported insights/functions are the content/data.
+
 
 
 ### Example interface queries to generate an invention
