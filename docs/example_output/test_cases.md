@@ -97,8 +97,9 @@
 		- known cancer drugs
 		- ameliorative pathogen & microbe communities
 		- metabolism (especially in blood sugar control & other fuels for cancer, as well as culling misfolded proteins), dietary enzymes
-		- structural damage prevention
+		- structural damage prevention (bind to toxins so theyre treated as fuel or not digested, tuning immune system to assume pathogens are hostile by default, tagging each new example encountered until its proven non-toxic using bio components as containers to form filters to allow testing, tuning immune system to gather & use the set of pathogen sub-components that will protect against all deadly pathogens)
 		- immune system triggers
+		- anti-inflammation triggers & similar triggers preventing excess unnecessary work of bio system like excess digestion
 		- adjacent pathogens that can provide similar immunity
 		- combinations/subsets & other structures of pathogens that can provide similar or equivalent immunity (wind blowing pieces of pathogens to form natural vaccine)
 		- cell communication to prevent cancer from gathering (exercise, blood flow, oxygen absorption, deep breathing)
