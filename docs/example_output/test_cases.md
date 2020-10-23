@@ -92,8 +92,19 @@
 		- system & process error types
 
 	- treatments should include:
-		- anthrax for bladder cancer
+		- anthrax for bladder cancer, salicylic acid (aspirin), AHCC, probiotics
+		- stressors & handlers (change demand request & supply response matching)
 		- known cancer drugs
+		- ameliorative pathogen & microbe communities
+		- metabolism (especially in blood sugar control & other fuels for cancer, as well as culling misfolded proteins), dietary enzymes
+		- structural damage prevention
+		- immune system triggers
+		- adjacent pathogens that can provide similar immunity
+		- combinations/subsets & other structures of pathogens that can provide similar or equivalent immunity (wind blowing pieces of pathogens to form natural vaccine)
+		- cell communication to prevent cancer from gathering (exercise, blood flow, oxygen absorption, deep breathing)
+		- cell regeneration to cull compromised cells (exercise, cell proliferation/apoptosis triggers)
+		- regulatory process triggers
+		- neutralizing compounds to toxic chemicals (pollution, plastics, additives)
 
 	- treatment strategies should include:
 	  	- promote circulation in the organ (like caffeoquinone acid in the liver) to increasee cell communication, or push them to a place with greater blood flow or cell communication
@@ -172,6 +183,8 @@
 
 ### V. Kidney function
 
+- check all compounds for dosage & interactions given your health with your doctor to verify research interpretation
+
 - avoid:
 	- any artificial substances, which will get in your blood and may not get filtered out by your damaged filtration organs, which may cause structural damage & mutations leading to cancer
 
@@ -239,7 +252,7 @@
 - avoiding acidosis
 	- Baking soda can help supplement alkaline matter, bicarbonate, so it can help prevent acidosis and prevent kidney function decreasing so quickly
 
-- kidney function support: 
+- kidney function support 
 
   - carnitine (help with anemia)
   - quercetin (capers, dill, cilantro, fennel)
