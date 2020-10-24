@@ -24,10 +24,18 @@
 
   - finish list of structural definitions of relevance
     - input/output
+      - supplying requirements/dependencies of a system is meaningful in that it 'enables the existence of' or is 'fundamental to' the system, 
     - ambiguity resolution
+      - applying structure to resolve ambiguities has meaning in the form of 'directness' or 'clarity'
     - similarity
+      - for example, when finding if a claim of an intent is legitimate, look for matches (similarities) between the agent actions and the related objects of that intent in that system structure (related objects of a good intent are actions like 'checking if someone has what they need', which will be present if the claim of the intent is legitimate)
+        - the similarity of the matching structure between the related objects and the agent action is a signal of meaning (in the form of 'validity')
+    - coordinating structures (like efficiencies)
+      - example: a system context that fits a rule (their structures coordinate to optimize a metric like resource usage/exchange) has meaning like 'accuracy' or 'appropriate context' or 'validity'
     - alternate substitutes
-    - approximations
+      - a backup interchangeable or more optimal alternative is a structure of meaning because it 'enables robust functioning/existence of' a system/function/component, which fulfills an 'importance' attribute of meaning
+    - approximations (like predictions)
+      - approximations can be a structure of meaning in that they 'enable robust functioning/existence of' a system/function/component in a sub-optimal state with missing information
 
   - give example of generating problem types by applying structure
     - for instance, a common problem type is a mismatch/imbalance
