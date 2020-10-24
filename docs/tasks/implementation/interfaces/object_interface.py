@@ -4,6 +4,9 @@
     - the unique implementation of this used in this tool optionally includes attribute type information, function metadata, and object derivation logic, as well as operations to merge objects & other common operations on these components 
     - attribute definition: 
       - attributes of an object contain information about other structures/functions of the object 
+      - a change type that describes differences of an isolatable measurable metric in a system that is independent compared to other dimensions
+      - describes a change that other attributes cannot
+      - information described in that dimension is not repeated on other dimensions, although it may correlate with or influence information described in other dimensions
       - 'is an object strong' translates to the question 'does the object have functions that enable it to execute tasks at high performance' 
       - the 'strong' attribute refers to a net effect of the set of structures (its functions) that fulfills a metric (like high performance) relating to a state that the host object can occupy consistently, making it an identifying quality (attribute), while not required to remain in that state (can be a variable attribute, with multiple potential values) 
       - if a system works well or is efficient, it may fulfill the attribute 'strong', which means that any structures of efficiency/high-functioning (like aligned benefits/costs or aligned intents/incentives or reused functions) may be assignable to the concept of 'strong', given that those can be components/inputs of strength 

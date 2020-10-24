@@ -5,6 +5,7 @@
       - automatically finding definitions, examples, minimum information to solve, problem-solution matching, insight paths like question-identification functions, generating information objects like insights, finding math structures to re-use math patterns to solve other problems, etc 
   - attributes (structure, format, organization, certainty (potential/future/measurable information)) 
   - functions (match, fit, apply, build, derive, define) 
+
   - objects: 
     - info objects relate to agents & their communication (perspective, strategy, decision, intent, priority, game, problem) 
     - these objects can be defined as combinations of general interface objects (object/attribute/type) and core structures/functions/attributes 

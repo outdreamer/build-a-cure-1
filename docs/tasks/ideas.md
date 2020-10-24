@@ -1,5 +1,7 @@
 to do: organize into docs
 
+  - universe as a topology, where points are interface network queries
+
   - 'responsibility' as a software concept to align with 'intent', to tie functions to input/processing/output resources/processes and the associated tasks, like cleaning up resources, deleting temp resources, optimizing a memory store, setting a cache, resetting a timer, changing permissions, etc - as a method of correcting incomplete functions
     - 'integration' as a software concept to calculate interface metadata for integrated functions forming an app/site/workflow
     - this is analogous to how there are intrinsically related info object dependencies, like:

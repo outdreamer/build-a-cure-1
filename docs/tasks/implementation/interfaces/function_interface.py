@@ -38,6 +38,12 @@
   - should this function be stored as an abstract structure or code query and generated/retrieved at run-time or stored as a specific implementation
   - function-system interface question: is this function necessary for the system
   - what functions are adjacent to this function (similar to the function, or efficiently buildable with the same core functions or associated/available distortion functions)
+  - examine how functions accrete into chains - how does one function get selected when it has the same input/output as another function?
+    - common metrics like efficiency/availability or something more complex
+    - having function metadata similarities beyond input/output
+    - having core functions in common
+    - having common intents
+    - having enough difference to be useful to cooperate with, given inefficiency of regenerating other function on its own
 
 - attributes:
     - state

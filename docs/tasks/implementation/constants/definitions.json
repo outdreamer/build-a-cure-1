@@ -1,8 +1,94 @@
+      - power dynamics
+          - rules: 
+            - if a person abuses their power without contribution, the others will notice and take their power away
+
+        - truth (type of power in the form of constant, reliable information) dynamics
+          - the truth has a limit on how much it can be stretched or re-used before over-dependence will make it false or reveal its limits
+
+        - trust (type of power in the form of delegation of an unenforced opportunity/responsibility) dynamics
+          - rules:
+            - there is an incentive to trust people in an absence of resources
+            - there is an incentive to trust people to create resources (positive expectations, as an input to peaceful coexistence)
+            - there is an incentive to not trust people if they have resources like:
+              - information about signals of untrustworthiness
+              - fear response or memory of untrustworthy behavior
+              - logical knowledge of incentive structure to abuse trust
+
+
+{
+
+  "efficiency": {
+    "structure": [
+      "symmetries": {
+        "logic": ["can be the quickest way to determine relevant/causative variables"]
+      },
+      "similarity": {
+        "logic": ["similarity of shape/position can be a quick way to classify or match"]
+      },
+      "attribute alignments": {
+        "logic": ["alignments between attributes can cause similar systems or emergent rules/attributes, which can provide an interface for comparison or reusing solutions"]
+      },
+      "incentive alignment": {
+        "logic": [
+          "default rules without exerting force",
+          "intents (structural/conceptual goals)"
+        ],
+        "example": [
+          "if transporting an object where there is a decrease in height along the trajectory, letting it fall at a rate that wont damage it to take advantage of the gravity incentive built-in that aligns with the intent of 'transportation'"
+        ]
+      },
+      "side effect": {
+        "logic": ["assuming each output is potentially useful until proven otherwise, especially if the relationship occurs from system forces like stabilizing incentives rather than costing something to create"]
+      }
+    ]
+  },
+  "relevance": {
+      "structure": [
+         "input/output": {
+            "attribute": ["usefulness", "required", "enabling"],
+            "logic": ["supplying requirements/dependencies of a system is meaningful in that it 'enables the existence of' or is 'fundamental to' the system"]
+         },
+         "ambiguity resolution": {
+            "attribute": ["directness", "clarity", "usefulness"],
+            "logic": ["applying structure to resolve ambiguities has meaning in the form of 'directness' or 'clarity'"]
+         },
+         "similarity": {
+          "attribute": ["usefulness", "validity", "functional", "fitting"],
+           "example": [
+              "when finding if a claim of an intent is legitimate, look for matches (similarities) between the agent actions and the related objects of that intent in that system structure (related objects of a good intent are actions like 'checking if someone has what they need', which will be present if the claim of the intent is legitimate)"
+             ],
+            "logic": [
+             "the similarity of the matching structure between the related objects and the agent action is a signal of meaning (in the form of 'validity')"
+             ]
+         },
+         "coordinating structures": {
+          "attribute": ["usefulness", "efficiency"],
+           "example": [
+              "efficiencies",
+              " a system context that fits a rule (their structures coordinate to optimize a metric like resource usage/exchange) has meaning like 'accuracy' or 'appropriate context' or 'validity'",
+              "if an action fits one system, it can mean 'good intent', whereas if it fits another system with different information, the same action can mean 'bad intent' (in the larger context of a system with good & bad defined as conceptual objects, so the matching of these intents to those concepts in the larger system frames their meaning in that system)"
+            ],
+            "logic": [
+              "the range of systems that fit an action (matching/similarity) are a structure of meaning as well in the form of 'coordinating structures')"
+            ]
+         },
+         "alternate substitutes": {
+            "attribute": ["usefulness", "robustness", "enabling"],
+            "logic": ["a backup interchangeable or more optimal alternative is a structure of meaning because it 'enables robust functioning/existence of' a system/function/component, which fulfills an 'importance' attribute of meaning"],
+         },
+         "approximations": {
+            "attribute": ["usefulness", "robustness", "enabling"],
+            "example": ["predictions"],
+            "logic": ["approximations can be a structure of meaning in that they 'enable robust functioning/existence of' a system/function/component in a sub-optimal state with missing information"]
+         }
+      ]
+  },
+}
+
+
   - define the database schema containing:
     - an index of info objects (data store containing info objcts like queries, definitions, formats, concepts, insights, solutions, functions, strategies, patterns, etc)
     - program configuration (data sources, query & usage statistics, optimization configuration, prior queries & related objects) 
-
-
     - component: functions/attributes/types/objects/systems 
     - input information: can refer to original information input to the initial interface traversal, or traversal output information that has been converted, enhanced, formatted, or otherwise altered in a prior interface traversal, stored as a possible version of the original input information, and sent as input to another interface traversal 
     - interface: a useful standard for comparison consisting of the filtering object's definition routes, conversion function, core functions, objects, & attributes, and related objects like patterns & metadata specific to the interface  
@@ -12,8 +98,6 @@
     - intent: any of an abstract goal with direction, a reason to use something, or an output such as the intended result or an unintended side effect, which can be an abstract priority like fairness, a concrete goal, and can have a starting & ending position. 
     - concept: set of unique objects remaining once objects from other spaces have their context & contradictory attributes removed.  
     - network: standard network graph containing nodes (sometimes called vertices) & linking functions (sometimes called edges), with or without node attributes, function relationship determining function shape, and direction as an indicator of intent or another metric.  
-
-
     - structurized interfaces: interfaces with other interface components applied (like limits applied to the causal interface components) 
     - interface operation (combine interfaces, etc) 
     - interface traversal (apply an interface to a problem) 
@@ -22,30 +106,5 @@
       - an example of a problem-solving automation workflow is shown in application 16887411 Figs. 1F - 1I and referenced in this application's Fig. 14 (Design Interface Query). 
       - the default problem type of an interface traversal is 'find matching components between input information & this interface' 
     - the interface-interface where interface analysis is executed (the meta-interface or meaning interface) uses the core functions that can generate the general interface network (filter/find/identify, apply/combine, build/fill, derive/predict, change/transform/process) 
-  
     - interface network: the set of networks that act as useful filters/standards for applying structure to organize information 
-
-
     - interface: a filter/standard for comparison of specific attribute(s) 
-      - interfaces evolve when a unifying attribute (priority, cause, structure) can frame a set of developing variance 
-      - interfaces, standards, & perspectives can all be formatted as filters 
-        - an interface can be specific but on the general interface network, it offers a standard for multiple related attributes or causative attributes (types/intents/patterns offer a way to interact with all layers of a system), whereas a perspective is focused on a very restricted set of variables, with the intention of distorting reality to highlight information that other perspectives dont make clear.
-    - each interface's definition has a specific: 
-      - conversion (filter) function to convert input information to that interface (or a combination or other structure of interfaces), and convert retrieved/generated information back to the input format 
-      - component traversal function (to execute after after conversion) 
-      - a function (and corresponding data, like definitions or interface structures) to find/generate/derive the interface network from that interface, in case resources are isolated 
-    - each interface may have related interface objects, like supported intents 
-    - interface traversal & queries have supported intents such as: 
-      - 'finding formats linking other formats' 
-      - 'finding a structure for a concept' 
-      - 'applying a function to a structure' 
-      - 'match a problem in this format, with a solution (in a format that can interact with the problem)' 
-      - 'optimize this system' 
-      - 'find an optimal route between these system positions' 
-      - 'find a cause of this variable' 
-      - 'find an optimal structure for this information' 
-      - 'design an interface query to convert input information into an output information type (like an insight, a cause, a new interface in data, problem-solving automation workflow)' 
-      - 'assemble a meaningful (relevant) format of this information for this intent' 
-
-
-- problem:
