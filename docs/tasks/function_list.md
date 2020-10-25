@@ -5,8 +5,8 @@
     - add 'to do' items from analysis & code to do lists as function list with dependencies (finish function list in next 2 weeks)
 
   - core language functions
+    - match, fit, apply, build, derive, define
     - expand on core math-language operation mapping (like add: combine, subtract: differentiate (isolate difference), multiply: expand by, divide: standardize by) with interface queries for core operations
-
     - define core operations: apply (expand one by the other), inject (input one to the other), embed (attach one as a component/attribute of the other)
       - the operation of injecting truth into trust on the power interface means applying the truth dynamics as an input to trust dynamics
         - example: what happens when trust is embedded in a context, and one side has more information about untrustworthiness?
@@ -19,7 +19,7 @@
         - cost as an aggregation/interaction rule (lowest cost routes should be assumed first)
         - cost that exceeds the value of intent should be assumed to be either false, unlikely, developing into a more efficient rule, being interacted with from another object/function/attribute, or being destroyed
 
-  - definition import function
+  - definition functions (identify/match/import/derive)
 
   - function to select metric threshold value selection
 

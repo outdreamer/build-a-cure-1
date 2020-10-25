@@ -12,6 +12,7 @@
 
   ### Predictive tools
 
+    - prediction function to identify vulnerabilities (combinations of functions + position that can be deadly to a bio system), & match vulnerabilities with pathogens that could use them (analogous to code intent combination & event matching)
     - prediction function for computing which pathogen combination will produce the target antibodies
     - prediction function for drug impact between species, mapping species transform function to changes in drug impact
     - prediction function for what ratio of compounds is present in nutrients & drugs with differing success rates
