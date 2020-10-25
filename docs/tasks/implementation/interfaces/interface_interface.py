@@ -400,6 +400,12 @@
 
       - sub-interface identification function
         - identifying sub-interfaces (electricity, potential, similarity) is an important first step before doing other analysis, because if you can identify the important/causative interfaces right away, you can ignore a lot of information
+    
+      - function to detect patterns in queries & outputs to optimize queries & find insight paths to improve response time
+        - example: 3-step jumps with direction change, navigating across a certain pathway in standard structures across interfaces, starting with system then cause & intent, etc
+        - this has to identify & remove unnecessary steps that dont change the output
+        - identify & replace with faster ways to get to the output without changing the output
+        - test cases to determine if output would be changed by removing a step and/or replacing it with another step
 
       - function to map between core & important objects
         - example of choosing inefficiencies/exploit combinations in a system
@@ -408,12 +414,20 @@
         - function to find key questions to filter objects (like attention/info-gathering/solution) to counteract biases, counterintuitive change types, & other objects that create inefficiencies in problem-solving
       
       - interface selection function: 
+        - applying structures like sequence/combination to select which interfaces to use first when describing each primary interface, to produce the formatted & filtered information likeliest to be useful in the most situations to produce the default interface network)
         - how many degrees away from core functions, specific layers or sub-systems, what position on causal structures
         - choosing bio interfaces including electricity as components with a common language on an interface
         - format selection: 
           - selecting filter vs. rule as a structural conflict in the form of a trade-off
           - framing filters as positions
           - framing common problems with the standard of variance vs. time (recurrent nn)
+        - import rules for selecting interfaces to solve a problem on
+          - determine minimum information
+          - query for rules making inferences from available information sets
+          - Function interface helps find unused functions
+          - Intent interface helps predict system priorities & find exploit opportunities
+          - System interface helps find efficiencies
+          - Pattern interface helps find insight paths/similarities
 
       - function to calculate the interface query (set & order of filters/interfaces/standards to use to solve a particular problem)
         - 'deriving core functions' can be converted to a set of filters in a particular order, just like a normal finding problem can

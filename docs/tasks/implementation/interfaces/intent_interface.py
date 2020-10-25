@@ -98,6 +98,12 @@
     - derive intent as a dependency of the intent interface conversion function  
     - map intent to direction & assess solution progress by movement in that direction 
 
+    - function to select components for an intent (function, pattern, metrics/threshold values)
+      - network design favors an adjacency definition that differentiates features
+        - to get around this, build in a concept of default core objects like boundaries/limits/intersections to the network structure or data propagation (send data on possible boundary line positions) to look for & focus on those first rather than continuous sets of adjacent high-variance, pattern-containing features
+        - why would patterns like textures make it through as a semantic filter - bc the repetition is interpreted as significant by network design, or the texture is likely to be located in more data subsets than a shape
+        https://www.quantamagazine.org/where-we-see-shapes-ai-sees-textures-20190701/
+
     - required functions for each intent:
       - intent-derivation function (whats the probable intent stack/network of a particular event)
       - intent-metadata function (does this intent have side effects or is it granular/neutral)

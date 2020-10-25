@@ -121,32 +121,14 @@
   - fill in keywords & patterns for objects (strategies/mechanisms used by an organism/on a compound)
   - find situations where systems dont act like objects in a system (despite similarities in object/system behavior like variance/definition gaps)
   - merge finder & builder notes
-  - resolve terms that can be conflated: 
-    - replace:
-      - shape/structure
-    - rule/test/metric/limit/threshold/boundary/state change/phase shift
-    - intent/priority/motivation/incentive
-    - method/function/rule/pattern (pattern is a sequence of specific objects)
-    - path/route/trajectory/traversal/order/list/sequence
-    - object/entity/item
-    - type/class/category/group/subset
-    - closed/isolated/independence/unique/orthogonal
-    - model/perspective/filter
-    - standard/interface/index/symmetry
-    - dimension/variable/axis
-    - space/system/context
-
   - use distortion patterns of entities (like atlases, templates, solution progressions) to form a compressed version of the host system - https://techxplore.com/news/2019-11-medical-image-analysis.html
-
   - add stressor language patterns
-
   - for queries of functions like "disable a gene", you can include intent & function metadata to point to sets of compounds that could do the required edits:
     - find compound (protein, enzyme, etc) that unfolds DNA
     - find compound that modifies (edits, activates, removes) the gene once unfolded as specifically as possible 
       (can be a compound with a cutting subcomponent at the right length to target the dna if you can bind it to the first or last gene with another compound)
     - find compound with function = "refolds DNA"
     https://medicalxpress.com/news/2019-12-common-insulin-pathway-cancer-diabetes.html
-
   - program to identify optimal use cases 
   - program to delegate optimized use cases to tools optimized for them (languages better at one task than another)
 

@@ -80,6 +80,7 @@
       - equivalent, alternate, substitute, opposite, inverse
 
   - functions: 
+    - formatting (structure-application) function to describe an object in a structure/format
     - identify components with structural attributes like chainability (cause, risk, variance, errors, gaps, limits) or variability 
     - identify a shape fitting information: chain/stack/network/mix/layer, adjacent shapes, or emergent info shapes like alignments/gaps/conflicts 
       - will a type stack (which type values on different type layers) or a network/tree (type hierarchy) be a more useful structure to capture a type relationship 

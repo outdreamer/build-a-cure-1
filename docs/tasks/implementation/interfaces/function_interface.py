@@ -145,6 +145,14 @@
       - update attribute
       - scope (use case, relevance, lifecycle, self-destruct triggers, context, range)
 
+    - other function types
+      - decoy rules that consider probable usage, so usage follows the actual rule
+      - cost-based system rules
+        - avoiding assumptions or other objects where the cost of being wrong is too high to recover from 
+          - in a case with multiple alternative explanations, but one is very high-cost if it's true or false, so assuming anything that rules it out cant be assumed without a high ratio of information or high number of indicators
+        - cost as an aggregation/interaction rule (lowest cost routes should be assumed first)
+        - cost that exceeds the value of intent should be assumed to be either false, unlikely, developing into a more efficient rule, being interacted with from another object/function/attribute, or being destroyed
+
 - objects:
     - errors
     - assumptions

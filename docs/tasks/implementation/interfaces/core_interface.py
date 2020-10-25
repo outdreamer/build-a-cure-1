@@ -174,14 +174,27 @@
       game: incentivized motion within a system having limits to prevent motion
       filter: barrier creating a difference between input & output
 
-    - core system layer analysis (where you generate next generation of objects using core operations supported in the space) can be used to harden a system against risk inherent in using defined objects, which will inevitably change, such as identifying new structures & interactions of the concept of risk given the next layer of imminent objects in a system
+    - function to apply core system layer analysis (where you generate next generation of objects using core operations supported in the space) can be used to harden a system against risk inherent in using defined objects, which will inevitably change, such as identifying new structures & interactions of the concept of risk given the next layer of imminent objects in a system
 
     - apply the set of core structures, functions, objects, and attributes to itself to get next layer of transforms & systems to run next error analysis
       - attribute spaces (object model + structure interface = a calculation method for attributes)
       - false similarity (info interface attribute + core attribute = an error type/definition route, if agency is involved)
       - filter chains (structure interface + structure interface = a core object to frame info)
 
-    - function to identify next gen object layers would apply attribute changes & stack operations to get the structural definition routes
+    - function to define/generate core language functions
+      - the core functionality includes combinations of the following components:
+        - core operations: match, fit, apply, test, inject, build, derive, define, identify, import, change, format, structure (combine, stack, sequence, filter)
+        - core objects: definition, interface, type, object, function, attribute (including interface-specific objects)
+        - core attributes: relevance, difference, uniqueness, usefulness, intents, abstraction, dependencies
+        - core structures: set, subset, stack/layer, sequence, connection, filter, position/point/value, boundary/limit/threshold, gap, distance, min/max, range
+        - for example: combining operation 'change' with structure 'position' = a 'move' function
+      - derive combinations & make sure you have full function coverage of all important combinations (check codebase function index for combinations)
+      - expand on core math-language operation mapping (like add: combine, subtract: differentiate (isolate difference), multiply: expand by, divide: standardize by) with interface queries for core operations
+        - define core operations: apply (expand one by the other), inject (input one to the other), embed (attach one as a component/attribute of the other)
+          - the operation of injecting truth into trust on the power interface means applying the truth dynamics as an input to trust dynamics
+            - example: what happens when trust is embedded in a context, and one side has more information about untrustworthiness?
+
+    - function to identify next gen object layers would apply attribute changes & stack operations to get the structural definition routes or describe new systems
       - attributes
         - attachment
           - over

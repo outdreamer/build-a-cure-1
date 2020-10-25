@@ -21,7 +21,7 @@
       - definition routes may reveal a particular structure of a concept, like how power is associated with delegation structures and can be optionally defined as 'ability to delegate' 
  
   - attributes: 
-  
+
     - object metadata:
       - spaces where the object can change:
         - attribute spaces: 
@@ -73,6 +73,7 @@
     - variance: ability for objects/rules/attributes/values to change; potential for randomness
 
   - functions: 
+    - isolation function, representing function/attribute changes independent of system context with respect to position or time (snapshot/state or subset) - indicating interaction/impact probabilities given system or object patterns - important for defining an object or isolating a change type
     - identify data sources (code bases defining schema/class definitions, network maps) automatically with a search to identify tabular data in web resources 
     - import (to import objects/attributes/functions) 
     - object functions: define, create, derive, identify, change, version 

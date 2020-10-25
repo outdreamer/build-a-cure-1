@@ -1,110 +1,66 @@
 # to do
-
   - de-duplicate logic
     - integrate problem_solving_matching.md & analysis_examples.md
     - integrate changes from solution_automation_analysis.py claims to repo
+    - integrate example.py & workflow logic
     - integrate rules from diagrams to relevant documents
-
   - merge definitions into docs/tasks/implementation/constants/definitions.json
-
   - finish dilemma example formats
-
-  - clarify/resolve terms 
-    - update links
-    - perspective/filter/standard/index & relationship to variables/operations on the interface
-    - filter vs. rule is a similar question to attribute vs. rule - sometimes one format is better based on the info you have, sometimes its worth it to transform the format
-
-  - translate documented interface query logic from example.py into interface language (combination of core functions (find/build) & other core components)
-
   - make query examples for use cases like:
     - lack of information stored (match problem of type 'information lack' with interface query 'check pattern interface for similar patterns')
     - query problem breakdown & integration diagram
     - calculating various different problem breakdown strategies first before executing normal query-building logic for each
-
   - organize each interface analysis definitions/logic/questions answered/problems solved/examples
-
   - document limitations of interfaces & how to derive them
-
-  - structurize (apply structure to) definitions of objects specific to interfaces
-    - example: info asymmetry is associated with an info loss in a particular direction between info types/formats, rather than just an info imbalance or mismatch
-
-  - define default & core objects necessary for system to function (out of the box, rather than minimal config necessary to derive other system components & assemble)
-    - add default functions to solve common problem types
-
-  - organize certainty (info) vs. uncertainty objects (potential, risk, probability)
-
-  - document time structures (concave time explaining compounding similarities up to a point of maximum concavity, a structure that can separate from the other space-times)
-
-  - document vertex definition & give examples (as an intersection/combination of interface variables, such as determining/description(compressing)/generative/causative/derivation variables), around which change develops
-
-
-  - default definitions
+  - clarify/resolve terms 
+    - resolve terms that can be conflated: 
+      - replace:
+        - shape/structure
+      - rule/test/metric/limit/threshold/boundary/state change/phase shift
+      - intent/priority/motivation/incentive
+      - method/function/rule/pattern (pattern is a sequence of specific objects)
+      - path/route/trajectory/traversal/order/list/sequence
+      - object/entity/item
+      - type/class/category/group/subset
+      - closed/isolated/independence/unique/orthogonal
+      - model/perspective/filter
+      - standard/interface/index/symmetry
+      - dimension/variable/axis
+      - space/system/context
+    - update links
+    - perspective/filter/standard/index & relationship to variables/operations on the interface
+    - filter vs. rule is a similar question to attribute vs. rule - sometimes one format is better based on the info you have, sometimes its worth it to transform the format
+    - translate interface query logic into interface language (combination of core functions (find/build) & other core components)
   
-    - alternate utility function implementations have variation potential in the exact operations used to achieve the function intents, but there are requirements in which definitions these functions use because they are inherent to the system. For example, the embodiment may use a specific definition of an attribute (standardized to a set of filters) in order to build the attribute- identification function using a set of filters - but the general attribute definition is still partially determined in its initial version by requirements specified in the documentation, such as a set of core attribute types (input, output, function parameter, abstract, descriptive, identifying, differentiating, variable, constant), the definition of a function, and the definition of conversion functions between standard formats.
-
-  - systematize your definitions of info objects, to include analysis that produces relationships of core objects like opposites to their relevant forms (anti-symmetry) in addition to permuted object states (asymmetry), such as an anti-strategy, anti-information, anti-pattern
-
-      - make doc to store insight paths, counterintuitive functions, hidden costs, counterexamples, phase shift triggers
-
-      - add technicality, synchronization, bias, counterintuition, & certainty objects leading to inevitable collisions
-        - the collision of compounding forces producing a phase shift
-        - lack of attention in one driver and false panic in a second driver leading to a car crash given the bases where their processes originate
-      - define alignment on interfaces (compounding, coordinating, parallel, similar, etc)
-      - start with these info object transforms that filter the most info: opposite, invalidating, symmetric, core, aligning, boundary-breaking, phase shift activating, structure stabilizing, constant changing, converging
-      - add core info objects (core strategies, core assumptions) so you can make a network of graphs for a system
-
-    - document explainability as a space limited by derivable attributes from data set & cross-system similarity
-    - examine whether new concepts (gaps in network rules) evolve once structure is applied to prior concepts 
-    - document how rules develop on stability & how foundations are connected & destroyed
-    - organize notes on embedded/chained interfaces (which interfaces to use first when describing each primary interface, to produce the formatted & filtered information likeliest to be useful in the most situations to produce the default interface network)
-    - document generated object change types
-      - constant to variable
-      - variable to removal of assumption in variable type/data type
-    - research implementing your solution type (constructing structures (made of boundary/filter/resource sets) to produce substances like antibodies, using bio system stressors)
-
 ## examples to make
-
   - give interface math examples, like standardization of all distinct components into their own interfaces, rather than within a system context
       - rather than framing the behavior of objects in a system, you can:
         - remove the assumption of the system limits forcing interactions
         - frame each object on its own interface (containing all its possible forms, variables, attributes, generators, cooperative contexts, etc)
         - compute the interactions of those interfaces
-
   - give example of generating problem types by applying structure
     - for instance, a common problem type is a mismatch/imbalance
       - by applying the 'mismatch' to the cost/benefit relationship, you get an 'inefficiency' problem type, which can be defined as a mismatch/imbalance between the cost & benefit, favoring the cost side (the negative object out of (cost, benefit), associated with problems)
-
   - examples of objects on different interfaces
     - potential (risk chain, uncertainty) 
     - causal objects (causal degree, cause, dependency)
     - information objects (contradiction, implication, perspective, similarities/differences)
     - structure objects (direction, boundary, node, connection, filter, extreme)
     - system objects (inefficiency, incentive, error, alternative, opportunity, conflict)
-    
     - the reason these abstract objects fit on a particular interface is because they describe specific interactions:
       - a conflict may occur on every interface, but in the system interface, the interactions of a conflict with other objects are the clearest, closest to its most concise definition, & capture the most variation, whereas on other interfaces, the conflict object can take many forms
-
   - add examples of system/object/rule/type change patterns
   - add examples of variable gathering patterns into a type
-  
   - include example workflows with example problems
     - include example of how to generate other workflows (different starting/ending points & trajectories)
-  
   - give examples based on the same default example for each analysis type
     - the default example can be a prediction function
-  
   - add examples of math automation
-
   - give an example of mapping an invention & insight on the abstract network
-
   - give intent combination example with actual functions
-
   - give example of each type of problem-solving workflows
-
     - workflow 1:
-
       - finish function to determine relevance filter ('functions', 'required') from a problem_step ('find incentives') for a problem definition, to modify problem_steps with extra functions/attributes ('change_position') to be more specific to the problem definition ('find_incentives_to_change_position') for problem_steps involving 'incentives', so you know to use the function_name to modify the problem step if it's between the type 'functions' and the object searched for 'incentives'
-
       - finish function to get all codebase functions & store them in a dict with their type, context/usage, and intents, just like functions are stored in the problem_metadata.json example for workflow 1
       - finish common sense check
       - finish defining objects in object_schema.json
@@ -114,16 +70,12 @@
       - finish apply_solution to problem_definition using problem_steps
         - involves building a function to evenly distribute objects (like information/types), given problem positions/agents/objects
 
-
 ## diagram
-
     - diagram to document sub-functions of core functions with distortions
-
     - interface query visuals
     - interface traversal flow diagram
     - interface conversion, matching, starting point selection
       - checking if relevant information is found
-
     - make diagram for dimension links higher than 3d that are depictable in the same network space
       - should show variables that impact other variables, the change rates of these relationships
       - overall impact should be calculatable from these relationships
@@ -131,7 +83,6 @@
       - should show skippable/derivable variables (variables that can be resolved later than they normally are)
       - should show meta forces for overall trends in change rules (direction of combined variable forces)
       - should show limits of measurability & threshold metrics
-
     - finish diagrams for specific concepts, core functions, concept operations (combine, collide, connect, merge, apply), ethical shapes
       - chaos & ethics graph
       - variable accretion patterns (how an object becomes influenced by a new variable, complex system interaction patterns, etc)
@@ -139,23 +90,46 @@
         - map parameter sets to potential matrix shapes 
       - finish diagrams for intent (more examples of matching structure with intent), cause (shapes & ambiguity), concept (evolution of concepts, networks, distortion functions)
       - diagram for argument
-
     - finish informal fallacy diagrams: https://en.wikipedia.org/wiki/List_of_fallacies
-
     - make a system layer diagram with interfaces to allow specification of core interfaces & other interface layers (interface interface)
-
     - make a system layer diagram for structures to include layers of structures (beyond core structures like curves, to include n-degree structures like a wave, as well as semantic output structures like a key, crossing the layer that generates info structures like an insight, a probability, etc)
-
     - add interface diagram & interface query map
       - interface query map indicates position of interfaces to query
         - the position of interfaces is determined by intent of problem/solution and cost/optimization metrics and available information or testing/derivation (information capture/generation) resources
         - filter (function structure as a base) & prioritized focus & potential ranges
-
     - integrate the concept of an 'interference network' - to always be calculating what something is not, so you have backups to interfere if one interface is sub-optimal or insufficient to host potential
       - if conceptual interface says to take a particular step, inject an opposing interface to add variance to the calculation approaching randomness (like emotions as a supplemental variance source to offset logic inadequacies)
-
     - add conceptual math diagrams
       - use lattice multiplication as standard example, other than core operations (add/multiply mapped to language, concepts like irreversibility/asymmetry mapped to math)
       - use intent & system filters & concepts as a way to reduce solution space from defaults (find space & shape limits where intents are supported) when looking for alternate efficient methods of calculation
         - example: a method of calculating area under the curve can be built with relevant concepts (subset, linearity, similarity (to curve) as a input to the conceptual trajectory to the concept of approximation) once those concepts are identified in the problem space, and combined with different structures, each having their own intents (prioritized metrics like efficiency)
       - quantify conceptual potential (how much change it can enable) and core operations on conceptual potential, & where potential objects occur or where they fit in to those operations
+
+# content
+    - import insight history data to identify insight paths 
+      - info insight paths like 'lie => joke => distortion => insight'
+      - system insight paths like 'three core functions + combine function with this definition + n distortions to nearest hub'
+    - structurize (apply structure to) definitions of objects specific to interfaces
+      - example: info asymmetry is associated with an info loss in a particular direction between info types/formats, rather than just an info imbalance or mismatch
+    - define default & core objects necessary for system to function (out of the box, rather than minimal config necessary to derive other system components & assemble)
+      - add default functions to solve common problem types
+      - alternate utility function implementations have variation potential in the exact operations used to achieve the function intents, but there are requirements in which definitions these functions use because they are inherent to the system. For example, the embodiment may use a specific definition of an attribute (standardized to a set of filters) in order to build the attribute- identification function using a set of filters - but the general attribute definition is still partially determined in its initial version by requirements specified in the documentation, such as a set of core attribute types (input, output, function parameter, abstract, descriptive, identifying, differentiating, variable, constant), the definition of a function, and the definition of conversion functions between standard formats.
+    - organize certainty (info) vs. uncertainty objects (potential, risk, probability)
+    - document time structures (concave time explaining compounding similarities up to a point of maximum concavity, a structure that can separate from the other space-times)
+    - document vertex definition & give examples (as an intersection/combination of interface variables, such as determining/description(compressing)/generative/causative/derivation variables), around which change develops
+    - systematize your definitions of info objects, to include analysis that produces relationships of core objects like opposites to their relevant forms (anti-symmetry) in addition to permuted object states (asymmetry), such as an anti-strategy, anti-information, anti-pattern
+      - make doc to store insight paths, counterintuitive functions, hidden costs, counterexamples, phase shift triggers
+      - add technicality, synchronization, bias, counterintuition, & certainty objects leading to inevitable collisions
+        - the collision of compounding forces producing a phase shift
+        - lack of attention in one driver and false panic in a second driver leading to a car crash given the bases where their processes originate
+      - define alignment on interfaces (compounding, coordinating, parallel, similar, etc)
+      - start with these info object transforms that filter the most info: opposite, invalidating, symmetric, core, aligning, boundary-breaking, phase shift activating, structure stabilizing, constant changing, converging
+      - add core info objects (core strategies, core assumptions) so you can make a network of graphs for a system
+    - document explainability as a space limited by derivable attributes from data set & cross-system similarity
+    - document how new concepts (gaps in network rules) evolve once structure is applied to prior concepts 
+    - document how rules develop on stability & how foundations are connected & destroyed
+    - document generated object change types
+      - constant to variable
+      - variable to removal of assumption in variable type/data type
+    - research implementing your solution type (constructing structures (made of boundary/filter/resource sets) to produce substances like antibodies, using bio system stressors)
+

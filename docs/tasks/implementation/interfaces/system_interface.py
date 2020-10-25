@@ -121,6 +121,7 @@
     - vertices: important variables that generate/cause/determine/change system development, preferably all of the above but also variables that execute a subset
   
   - functions (optimize, traverse, open/close, apply system filters, reduce dependencies, close variance injection points, enforce rule, identify system objects given their definition, such as a variance gap, map a system layer graph representing combinations, identify/derive system context, find interactions of interaction spaces (which interactions are common across agents, likely given other interactions, etc)) 
+    - system analysis function (identify boundaries, gaps, limits, layers, incentives/intents/questions, & other system objects)
     - function to generate a different object (like a different concept network) by varying attributes: 
       - example: if power favored centralization, another core concept like balance would have to favor a chaotic process or not exist at all, or another core concept would need to be added to the network 
     - function to predict which system filters will be useful based on a system priority 
