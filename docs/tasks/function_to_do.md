@@ -4,35 +4,19 @@
     - integrate changes from solution_automation_analysis.py claims to repo
     - integrate example.py & workflow logic
     - integrate rules from diagrams to relevant documents
-  - merge definitions into docs/tasks/implementation/constants/definitions.json
+  - organize interface analysis definitions
+  - add functions from workflows & analysis (to do list, questions answered, problems solved, interface definition & functions) as files in functions/ folder
+    - resolve duplicates
+    - organize into primary core functions & list sample parameters (like objects to identify for the identify function)
+  - translate interface query logic into interface language (combination of core functions (find/build) & other core components)
+  
+## examples to make
+
   - finish dilemma example formats
   - make query examples for use cases like:
     - lack of information stored (match problem of type 'information lack' with interface query 'check pattern interface for similar patterns')
     - query problem breakdown & integration diagram
     - calculating various different problem breakdown strategies first before executing normal query-building logic for each
-  - organize each interface analysis definitions/logic/questions answered/problems solved/examples
-  - document limitations of interfaces & how to derive them
-  - clarify/resolve terms 
-    - resolve terms that can be conflated: 
-      - replace:
-        - shape/structure
-      - rule/test/metric/limit/threshold/boundary/state change/phase shift
-      - intent/priority/motivation/incentive
-      - method/function/rule/pattern (pattern is a sequence of specific objects)
-      - path/route/trajectory/traversal/order/list/sequence
-      - object/entity/item
-      - type/class/category/group/subset
-      - closed/isolated/independence/unique/orthogonal
-      - model/perspective/filter
-      - standard/interface/index/symmetry
-      - dimension/variable/axis
-      - space/system/context
-    - update links
-    - perspective/filter/standard/index & relationship to variables/operations on the interface
-    - filter vs. rule is a similar question to attribute vs. rule - sometimes one format is better based on the info you have, sometimes its worth it to transform the format
-    - translate interface query logic into interface language (combination of core functions (find/build) & other core components)
-  
-## examples to make
   - give interface math examples, like standardization of all distinct components into their own interfaces, rather than within a system context
       - rather than framing the behavior of objects in a system, you can:
         - remove the assumption of the system limits forcing interactions
@@ -71,6 +55,7 @@
         - involves building a function to evenly distribute objects (like information/types), given problem positions/agents/objects
 
 ## diagram
+
     - diagram to document sub-functions of core functions with distortions
     - interface query visuals
     - interface traversal flow diagram
@@ -105,7 +90,8 @@
         - example: a method of calculating area under the curve can be built with relevant concepts (subset, linearity, similarity (to curve) as a input to the conceptual trajectory to the concept of approximation) once those concepts are identified in the problem space, and combined with different structures, each having their own intents (prioritized metrics like efficiency)
       - quantify conceptual potential (how much change it can enable) and core operations on conceptual potential, & where potential objects occur or where they fit in to those operations
 
-# content
+# content/config
+
     - import insight history data to identify insight paths 
       - info insight paths like 'lie => joke => distortion => insight'
       - system insight paths like 'three core functions + combine function with this definition + n distortions to nearest hub'
@@ -128,8 +114,26 @@
     - document explainability as a space limited by derivable attributes from data set & cross-system similarity
     - document how new concepts (gaps in network rules) evolve once structure is applied to prior concepts 
     - document how rules develop on stability & how foundations are connected & destroyed
+    - document limitations of interfaces & how to derive them
     - document generated object change types
       - constant to variable
       - variable to removal of assumption in variable type/data type
     - research implementing your solution type (constructing structures (made of boundary/filter/resource sets) to produce substances like antibodies, using bio system stressors)
-
+    - merge definitions into docs/tasks/implementation/constants/definitions.json
+    - clarify/resolve terms that can be conflated: 
+      - replace:
+        - shape/structure
+      - rule/test/metric/limit/threshold/boundary/state change/phase shift
+      - intent/priority/motivation/incentive
+      - method/function/rule/pattern (pattern is a sequence of specific objects)
+      - path/route/trajectory/traversal/order/list/sequence
+      - object/entity/item
+      - type/class/category/group/subset
+      - closed/isolated/independence/unique/orthogonal
+      - model/perspective/filter
+      - standard/interface/index/symmetry
+      - dimension/variable/axis
+      - space/system/context
+      - perspective/filter/standard/index & relationship to variables/operations on the interface
+      - filter vs. rule is a similar question to attribute vs. rule - sometimes one format is better based on the info you have, sometimes its worth it to transform the format
+    - update links
