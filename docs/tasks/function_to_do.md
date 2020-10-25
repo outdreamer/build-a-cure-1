@@ -37,18 +37,6 @@
 
   - document vertex definition & give examples (as an intersection/combination of interface variables, such as determining/description(compressing)/generative/causative/derivation variables), around which change develops
 
-  - document questions to test system filters
-    - why do phase shifts happen - bc of the ability for aggregated information to be measured as something else 
-      - example: molecules identifiable as a set, data identifiable as a cluster, pattern identifiable as an emergency
-    - what are the aggregate effects of many errors in selection of algorithms/parameters/processing/deployment - what phase shifts emerge from repeated or interacting error types?
-    - why do you arrange dimensions at 90 degrees? to examine the full interaction space of all possible combinations of the two variables
-    - why are polynomials with a leading coefficient of one & having optional zero coefficients capable of being multiplied & added to give the roots to the system of equations?
-        - bc scaled versions (through multiplication) and combinations (through addition) can position leading coefficients to be 1 while also positioning trailing coefficients to be zero
-        - is there a polynomial coefficient set that you cant multiply or add in a way that makes a coefficient in a position to be one and every coefficient after it except the solution coefficient to be zero? 
-          no, bc that would mean the leading term cant be solved
-        - once you have leading coefficients equal to one and the trailing coefficients equal to zero, the system is solved for each variable
-        - why would you try to solve for each leading term in a matrix? bc they are ordered at that point (formatted to have the same positions in each row) and the solution is also ordered (on the right side)
-          - using the concept of position to produce additional organization of information, you can benefit from the alignment of the variable positions by isolating each variable (transforming with multiplication & addition of coefficients until the variable solved for in each row has a coefficient of 1 and all other coefficients except the solution are zero)
 
   - default definitions
   
@@ -65,73 +53,13 @@
       - start with these info object transforms that filter the most info: opposite, invalidating, symmetric, core, aligning, boundary-breaking, phase shift activating, structure stabilizing, constant changing, converging
       - add core info objects (core strategies, core assumptions) so you can make a network of graphs for a system
 
-    - add object metadata:
-      - spaces where the object can change:
-        - attribute spaces: 
-          - default space (probable default position in a system, etc)
-          - potential/probable space
-          - adjacent space (accessible positions using minimal work)
-          - extreme space (attributes/functions at its limits)
-          - partial space (attributes/functions with subsets of its definition)
-        - object spaces:
-          - interaction space (what it can interact with)
-          - efficiency space (set of efficient positions)
-          - perception space (what it can seem like)
-          - system space (what contexts it can exist in)
-          - query space (which queries can produce it or its changes)
-
-      - space can mean:
-          - the interface filter including structures for a given attribute/object like cause
-          - the impact of the attribute/object on other interfaces (impact of cause on other interfaces, like info problems)
-          - an interface applied to another to create a space (causal interface framed as a set of problem spaces)
-          - a structure with its own prioritized directions or other rules specific to the structure
-
-  - add note on evaluating object attributes, plus the ability to occupy invalidating positions/structures or fulfill invalidating intents of a system, and system requirements for those objects (invalidating position/structure/intent) to be possible
-
-      - example: 
-        - object attributes: a chemical on its own
-        - system position: a chemical adjacent to another chemical in a system with high temperature
-        - system structure: a system designed to make any adjacent chemicals explode, vs. a system that standardizes chemicals to a harmless format
-        - system position & structure: a chemical with an extra electron at a position in the system where an extra electron would cause an explosion
-
-        - "Similar logical patterns are absent in SARS-CoV-2, indicating that the virus evolved naturally." - the evolution of a virus to fit within certain systems confirms that changing the system metadata (inputs, structure, side effects, priorities, functions) invalidates the virus without invalidating the system
-          - removing/adding the transforms that made the virus deadly/innocuous to a system
-          - sending type signals within a contained limit around the virus to give the impression of systems that it wouldnt be deadly in
-          - changing the position of a virus (so necessary bacteria interpret pathogens as energy sources)
-
     - document explainability as a space limited by derivable attributes from data set & cross-system similarity
-
     - examine whether new concepts (gaps in network rules) evolve once structure is applied to prior concepts 
-
     - document how rules develop on stability & how foundations are connected & destroyed
-
     - organize notes on embedded/chained interfaces (which interfaces to use first when describing each primary interface, to produce the formatted & filtered information likeliest to be useful in the most situations to produce the default interface network)
-
     - document generated object change types
       - constant to variable
       - variable to removal of assumption in variable type/data type
-
-    - document objects outside of system context
-
-      - what types of objects/functions/attributes survive outside of a system that isn't closed by default, and to what extent
-
-      - what interfaces capture the objects outside of a measurable system context with potential for information (maintenance of a fact for enough time & space to be measured or depended on)
-        
-        - potential
-          - probability of being interacted with by a system
-          - probability of decay without a host system
-          - lack of information (lack of position, structure, time, etc) or lack of measurable information (changing too fast for an observer to interact with it)
-
-        - attributes
-          - opposite: everything outside of systems is:
-            - not the system
-            - not yet/anymore in the system
-            - not compatible with the system (unmatching elements)
-            - not valid in the system (like everything that cant be proved or controlled in/by a system)
-
-        - cause 
-          - generators of systems or generator side effects or system side effects
-
     - research implementing your solution type (constructing structures (made of boundary/filter/resource sets) to produce substances like antibodies, using bio system stressors)
 
 ## examples to make
@@ -190,8 +118,6 @@
 ## diagram
 
     - diagram to document sub-functions of core functions with distortions
-
-    - make core function graph (apply, find, build)
 
     - interface query visuals
     - interface traversal flow diagram

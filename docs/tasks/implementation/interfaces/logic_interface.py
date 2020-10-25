@@ -10,7 +10,19 @@
       - if you have logic to handle the 'dog chases cat' rule but you don't have logic to connect & handle the causes of that optionally including 'the cat did something', then the 'dog chases cat' scenario could cause variance in the system, such as being used out of context (even when the cat did not do something), or not being prevented in the system (by handling what the cat did to prevent the chase event) 
       - when an assumption may seem to fit in a system where its applied (assume that people are biased), but the implications of that assumption don't fit the system (the system user/designer/implementer may also be biased), the assumption shouldn't be used or should be adjusted to fit the system (all agents are potentially biased at any point because bias is part of the learning process) 
       - enables automation of the selection, structurization (limiting, connecting, scoping, positioning), optimization (reducing number of rules or high-cost rules or distributing/reducing costs better), & implementation of logical rules 
-  
+
+    - add note on evaluating object attributes, plus the ability to occupy invalidating positions/structures or fulfill invalidating intents of a system, and system requirements for those objects (invalidating position/structure/intent) to be possible
+      - example: 
+        - object attributes: a chemical on its own
+        - system position: a chemical adjacent to another chemical in a system with high temperature
+        - system structure: a system designed to make any adjacent chemicals explode, vs. a system that standardizes chemicals to a harmless format
+        - system position & structure: a chemical with an extra electron at a position in the system where an extra electron would cause an explosion
+
+        - "Similar logical patterns are absent in SARS-CoV-2, indicating that the virus evolved naturally." - the evolution of a virus to fit within certain systems confirms that changing the system metadata (inputs, structure, side effects, priorities, functions) invalidates the virus without invalidating the system
+          - removing/adding the transforms that made the virus deadly/innocuous to a system
+          - sending type signals within a contained limit around the virus to give the impression of systems that it wouldnt be deadly in
+          - changing the position of a virus (so necessary bacteria interpret pathogens as energy sources)
+
   - functions: 
     - function to identify logical problem types 
       - gaps in logic enforcement (variance gaps, fallacies, incorrect contexts, assumptions) 

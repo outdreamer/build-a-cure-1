@@ -3,10 +3,19 @@
   - to do:
     - add functions from interface definitions as files in functions/ folder and resolve duplicates
     - add 'to do' items from analysis & code to do lists as function list with dependencies (finish function list in next 2 weeks)
+    - add functions from problem solving workflows
 
   - core language functions
-    - match, fit, apply, build, derive, define
+    - the core functionality includes combinations of the following components:
+      - core operations: match, fit, apply, test, inject, build, derive, define, identify, change, format, structure (combine, stack, sequence, filter)
+      - core objects: definition, interface, type, object, function, attribute (including interface-specific objects)
+      - core attributes: relevance, difference, uniqueness, usefulness, intents, abstraction, dependencies
+      - core structures: set, subset, stack/layer, sequence, connection, filter, position/point/value, boundary/limit/threshold, gap, distance, min/max, range
+
+      - for example: combining operation 'change' with structure 'position' = a 'move' function
+
     - expand on core math-language operation mapping (like add: combine, subtract: differentiate (isolate difference), multiply: expand by, divide: standardize by) with interface queries for core operations
+    
     - define core operations: apply (expand one by the other), inject (input one to the other), embed (attach one as a component/attribute of the other)
       - the operation of injecting truth into trust on the power interface means applying the truth dynamics as an input to trust dynamics
         - example: what happens when trust is embedded in a context, and one side has more information about untrustworthiness?

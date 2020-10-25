@@ -19,7 +19,29 @@
     - definitions are identified by definition routes, which are alternate paths in a standardized language map (with language formatted to use interface terms) to define a object/attribute/function 
       - the more abstract a concept, the more definition routes it may have 
       - definition routes may reveal a particular structure of a concept, like how power is associated with delegation structures and can be optionally defined as 'ability to delegate' 
+ 
   - attributes: 
+  
+    - object metadata:
+      - spaces where the object can change:
+        - attribute spaces: 
+          - default space (probable default position in a system, etc)
+          - potential/probable space
+          - adjacent space (accessible positions using minimal work)
+          - extreme space (attributes/functions at its limits)
+          - partial space (attributes/functions with subsets of its definition)
+        - object spaces:
+          - interaction space (what it can interact with)
+          - efficiency space (set of efficient positions)
+          - perception space (what it can seem like)
+          - system space (what contexts it can exist in)
+          - query space (which queries can produce it or its changes)
+      - space can mean:
+          - the interface filter including structures for a given attribute/object like cause
+          - the impact of the attribute/object on other interfaces (impact of cause on other interfaces, like info problems)
+          - an interface applied to another to create a space (causal interface framed as a set of problem spaces)
+          - a structure with its own prioritized directions or other rules specific to the structure
+
     - attribute attributes:
       - attributes: different aspects of an object
       - variable: a change type
