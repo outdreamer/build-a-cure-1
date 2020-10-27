@@ -12,7 +12,7 @@
   
 ## examples to make
 
-  - finish dilemma example formats
+  - finish dilemma example formats & threat-finding interface queries
   - make query examples for use cases like:
     - lack of information stored (match problem of type 'information lack' with interface query 'check pattern interface for similar patterns')
     - query problem breakdown & integration diagram

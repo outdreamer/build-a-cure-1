@@ -1,5 +1,9 @@
 to do: organize into docs
 
+  - browser user error-config form to generate site options
+    - they can specify what kind of errors they make (clicking on wrong thing) or features they want (auto-scroll on articles at their pace)
+    - these configurations can be stored by the browser to adjust site content (as a list of info, formats, priorities, & relationship functions between them) to be displayed & usable in a way that fits customer configuration (preventing their error types & adjusting site UI/events/updates according to customer config, so the UI is always customizing itself to their needs if specified, rather than a particular design (replaced with site info/formats/priorities/etc from server, which can act as the default)
+
   - universe as a topology, where points are interface network queries
 
   - 'responsibility' as a software concept to align with 'intent', to tie functions to input/processing/output resources/processes and the associated tasks, like cleaning up resources, deleting temp resources, optimizing a memory store, setting a cache, resetting a timer, changing permissions, etc - as a method of correcting incomplete functions
