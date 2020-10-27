@@ -208,6 +208,12 @@ to do: organize into docs
         - example: does a site dev want the site to be tested? then it can accept 'test' intent workflows, otherwise request patterns similar to test request patterns & no other request patterns will be assumed to be illegitimate
     - intent-based navigation & configuration (generate config for a particular priority set like 'safety first, then functionality, then performance' or intent like 'protect my system from all third parties' or 'ask me for permission to train a model to filter external requests')
     - changing encyption algorithms on server & client according to a function with ambiguities built in (following a particular algorithm with different algorithms for example)
+    
+    - traffic algorithms applied to internet requests, so that a user set can request a resource at a scheduled time, and the content can be pre-delivered to temp storage on local servers & updated with update requests if they miss their scheduled time, which can be done in bulk for data requested commonly & frequently in a community
+
+    - intent-permission integration: 
+      - context metadata for permissions-granting, so that certain info can only be accessed if certain system processes & conditions occur matching or associated with the valid intents, rather than if a user knows a password
+
     - context-fitting & request metadata matching: 
       - one person couldnt execute two simultaneous processes, so check for computations done on computer that would preclude a particular process
       - one person couldnt execute two simultaneous requests without software (verifying requests across sites with anonymizing functions), so check for approved 'bot developer' intents
