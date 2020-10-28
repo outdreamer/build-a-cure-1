@@ -16,6 +16,7 @@
   - concepts: definability (how clear is the definition, given the level of structure like context applied, making a concept concrete rather than abstract) 
   - attributes (abstraction, uniqueness, isolatability) 
   - functions: 
+    - function to quantify conceptual potential (how much change it can enable) and core operations on conceptual potential, & where potential objects occur or where they fit in to those operations
     - function to identify/derive/define concepts in a system (unique objects in a system that cant be defined in terms of standard operations on other objects) 
       - example: 'meaning' concept definition (relevance/structure) is based on attributes like reduction of signals (relevance) and matching of signal structures (similarity) 
     - function to identify abstract concepts, by attributes like whether they: 

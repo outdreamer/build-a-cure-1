@@ -10,9 +10,11 @@
         - like all other sets of objects on an equal interface, any item in the set can be used to find the others
         - in a set of (4, 6, 2, 3) you can start with 4 to find 2 or 3 to find 4
 
-      - interface: attribute that highlights differences within a limit when objects are reduced to that attribute, using it as a standard for comparison, that filters out attributes that dont fit its definition
-        - gaps in known rules allowing filter to be applied to objects that can occupy the gaps, to identify variance nodes
-        - interfaces should produce a network when their variance is exhausted
+      - interface: 
+        - an attribute that highlights differences within a limit when objects are reduced to that attribute, using it as a standard for comparison, that filters out attributes that dont fit its definition
+          - gaps in known rules allowing filter to be applied to objects that can occupy the gaps, to identify variance nodes
+        - each abstract interface (concept, cause, intent, structure, etc) can describe other abstract interfaces (you can use the concept interface to describe the cause/system/pattern interfaces, etc)
+        - interfaces should resolve to a network or other structure when their variance is exhausted
 
       - can generate an interface by the combinations of variables that minimize & maximize change (filters to remove common information to leave differentiating information for comparison)
 
@@ -69,6 +71,16 @@
       - an example of a workflow is shown in FIG 14 (Problem-solving automation workflow)
       - the general workflow of this program is shown in FIG 2 (Solution Automation Module 140)
     - workflow operation (select a problem-solving automation workflow)
+
+    - examples of interface objects
+      - potential (risk chain, uncertainty) 
+      - causal objects (causal degree, cause, dependency)
+      - information objects (contradiction, implication, perspective, similarities/differences)
+      - structure objects (direction, boundary, node, connection, filter, extreme)
+      - system objects (inefficiency, incentive, error, alternative, opportunity, conflict)
+      - the reason these abstract objects fit on a particular interface is because they describe specific interactions:
+        - a conflict may occur on every interface, but in the system interface, the interactions of a conflict with other objects are the clearest, closest to its most concise definition, & capture the most variation, whereas on other interfaces, the conflict object can take many forms
+
     - symmetry: change types that dont lose information, so can be used to define the boundaries of an interface or used as a base
 
         - symmetry => interface
@@ -243,7 +255,8 @@
 
       - finding explanatory variables on multiple interfaces 
       - building a problem-solving automation workflow 
-      - selecting those optimal interfaces to solve a problem: framing a conflict of type 'competition' as opposing direction/intent or equivalent direction/intent is a calculation that can be automated using any of these kinds of analysis, but the logic & intent interfaces are best at this
+      - selecting those optimal interfaces to solve a problem: 
+        - framing a conflict of type 'competition' as opposing direction/intent or equivalent direction/intent is a calculation that can be automated using any of these kinds of analysis, but the logic & intent interfaces are best at this
       - finding explanatory variables on multiple interfaces (a trajectory on the interface network) & translating them to a shared interface where possible
       - determining position/trajectory within an interface
       - selecting interface as the best standard for comparison (identifying when a particular specific interface will reduce solution set across any possible host system)
@@ -413,6 +426,10 @@
         - function to find decision metrics (bias towards more measurable/different metrics rather than the right metric)
         - function to find key questions to filter objects (like attention/info-gathering/solution) to counteract biases, counterintuitive change types, & other objects that create inefficiencies in problem-solving
       
+      - interface traversal logic
+        - integrate the concept of an 'interference network' - to always be calculating what something is not, so you have backups to interfere if one interface is sub-optimal or insufficient to host potential
+          - if conceptual interface says to take a particular step, inject an opposing interface to add variance to the calculation approaching randomness (like emotions as a supplemental variance source to offset logic inadequacies)
+
       - interface selection function: 
         - applying structures like sequence/combination to select which interfaces to use first when describing each primary interface, to produce the formatted & filtered information likeliest to be useful in the most situations to produce the default interface network)
         - how many degrees away from core functions, specific layers or sub-systems, what position on causal structures
@@ -430,6 +447,8 @@
           - Pattern interface helps find insight paths/similarities
 
       - function to calculate the interface query (set & order of filters/interfaces/standards to use to solve a particular problem)
+        - the position of interfaces is determined by intent of problem/solution and cost/optimization metrics and available information or testing/derivation (information capture/generation) resources
+          - example: filter (function structure as a base) & prioritized focus & potential ranges
         - 'deriving core functions' can be converted to a set of filters in a particular order, just like a normal finding problem can
         - calculating the set of generative/expanding dimensions or reductive/standardizing filters to use is more valuable than writing the function manually
         - can dimensions act as filters or vice versa? dimensions can capture & highlight information differences, whereas filters can remove information similarities & highlight differences

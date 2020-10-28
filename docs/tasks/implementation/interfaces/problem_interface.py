@@ -132,6 +132,11 @@
       - this interface relies on the find_format_for_metric.py function 
 
     - functions
+
+      - function to filter/reduce solution space
+        - use intent & system filters & concepts as a way to reduce solution space from defaults (find space & shape limits where intents are supported) when looking for alternate efficient methods of calculation
+          - example: a method of calculating area under the curve can be built with relevant concepts (subset, linearity, similarity (to curve) as a input to the conceptual trajectory to the concept of approximation) once those concepts are identified in the problem space, and combined with different structures, each having their own intents (prioritized metrics like efficiency)
+          
       - this interface implements a function that calls find_format_for_metric.py with intent to find structures that neutralize other structures (rather than a basic match)
       - convert a problem statement (and problem space context if provided) into the problem object metadata 
       - mapping function, to map problems to structures, problem functions, & other problem types (as graphing a problem is depicted in FIG 7 (Problem space visualization))
