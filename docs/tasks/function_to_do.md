@@ -12,22 +12,6 @@
     - organize into primary core functions & list sample parameters (like objects to identify for the identify function)
   - function to translate interface query logic into interface language (combination of core functions (find/build) & other core components)
   
-  - function test concepts: 
-    - usage: application, expectation/intention convergence, permission, error, interaction
-    - change: difference/similarity types (difference in value, similarity in position), update, initialization, association/relation, removal, move
-    - state, storage (database, distributed sync, cache, data structure), data
-    - organization (index, business logic)
-    - priority/intent/requirement
-    - variable (parameter, attribute, input/output, type)
-    - logic (function, fit, completeness, validity, match, gap, connection)
-    - assumption: legitimate assumption (context) or false assumption (logic gap)
-    - cause, responsibility, dependency
-    - scope/relevance, system/context, meaning/integration (system context fit), understanding (state of application relative to intended/optimal state, given problem/intent/tech understanding)
-    - interface analysis answers 'how do these concepts interact in a typical implementation', and 'what is the graph of their optimal interactions', with output like:
-      - sub-intent of lines of code should match intents of code blocks, functions, & other larger units & structures of code
-      - cause, intent, & meaning of code should align (the cause of a function call should match the intents supported by the function and the meaning of the function fit in the system context)
-      - workflows & other larger structures of code usage shouldnt produce contradictory cause/intent/meaning/related objects (calling two functions in isolation shouldnt contradict the meaning of calling those functions in a sequence, all other things being equal - otherwise its a potential vuln)
-
 ## examples to make
 
   - finish dilemma example formats
@@ -46,6 +30,21 @@
   - add examples of system/object/rule/type change patterns
   - include example workflows with example problems
     - include example of how to generate other workflows (different starting/ending points & trajectories)
+  - function test concepts: 
+    - usage: application, expectation/intention convergence, permission, error, interaction
+    - change: difference/similarity types (difference in value, similarity in position), update, initialization, association/relation, removal, move
+    - state, storage (database, distributed sync, cache, data structure), data
+    - organization (index, business logic)
+    - priority/intent/requirement
+    - variable (parameter, attribute, input/output, type)
+    - logic (function, fit, completeness, validity, match, gap, connection)
+    - assumption: legitimate assumption (context) or false assumption (logic gap)
+    - cause, responsibility, dependency
+    - scope/relevance, system/context, meaning/integration (system context fit), understanding (state of application relative to intended/optimal state, given problem/intent/tech understanding)
+    - interface analysis answers 'how do these concepts interact in a typical implementation', and 'what is the graph of their optimal interactions', with output like:
+      - sub-intent of lines of code should match intents of code blocks, functions, & other larger units & structures of code
+      - cause, intent, & meaning of code should align (the cause of a function call should match the intents supported by the function and the meaning of the function fit in the system context)
+      - workflows & other larger structures of code usage shouldnt produce contradictory cause/intent/meaning/related objects (calling two functions in isolation shouldnt contradict the meaning of calling those functions in a sequence, all other things being equal - otherwise its a potential vuln)
 
 ## diagram
 
