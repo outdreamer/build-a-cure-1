@@ -45,6 +45,16 @@
       - sub-intent of lines of code should match intents of code blocks, functions, & other larger units & structures of code
       - cause, intent, & meaning of code should align (the cause of a function call should match the intents supported by the function and the meaning of the function fit in the system context)
       - workflows & other larger structures of code usage shouldnt produce contradictory cause/intent/meaning/related objects (calling two functions in isolation shouldnt contradict the meaning of calling those functions in a sequence, all other things being equal - otherwise its a potential vuln)
+      - the function lifecycle can start at an abstract set of filters or other function generators, then resolves to a structure containing logical tree structure, then resolves to a particular logical tree as more information about usage is gathered, then resolves to a set of core functions that are used to optimize that function tree rather than using more complex functions with potential side effects not already calculated (unlike core functions), then resolves to an input/output map once usage stops changing.
+      - functions of an intent should be derived from general app intents & reduced into a core function set, before writing code for each function
+      - problem types of code often involve conceptual or other interface mismatches, like a mismatch between responsibility & exit behavior, or a mismatch between types, or a mismatch in user intent & dev expectation, or a mismatch between function set intent & application intent
+        - many problem types involve structural mismatches, like a sequence that should be a network, or a causal circuit that should be a node-to-node or interface connection
+      - functions should have state (rather than being coded once at a particular abstraction level), and their state should change according to usage & integration with other functions & components
+      - function-generating & function-deriving code should always be stored with an application in case the actual executed code is corrupted/deleted
+      - probable contexts of an app or other components should be continuously re-generated & their integrations re-calculated and tested for, rather than a particular manually generated set of contexts
+      - the organization of functions should also be continuously re-calculated according to the emerging meaning of an application (as it becomes more static in intent & usage, it should be transferred to a database rather than existing as a dynamically updated code-base)
+      - the purpose of a function, app or other component should be to invalidate itself - so the final state of a function is erasing itself once the user doesnt need it
+      - functions should be entitled to push back on general app or other containing structure intents, if they are capable of spotting a probleem that could cascade upward that the app or other structures cannot (just like an engineer can see problems that the organization or industry cannot bc of incentive conflicts, profit cycles, & other structures)
 
 ## diagram
 
