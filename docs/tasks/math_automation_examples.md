@@ -64,15 +64,74 @@ a) Find the probability that the class has 2 left-handed students.
 								- produces structure: '5' value
 
 			- then the total count
-
 				- apply aggregation concept to get denominator:
 					- apply 'aggregate' operation to get 'all classes' metric
 						- produces structure: '30' value
 
-
 			- then the ratio of these (with total as the denominator, since the solution format is a subset, or a proportion of a whole)
 				- apply 'ratio' structure to 'subset' and 'total' value structures: "'5' / '30'" = 1/6
 
+	- this can take place after standardizing the problem statement to the problem system:
+
+		- find & apply relevant standardizing interfaces, based on given info (including definitions of probability, ratio, etc)
+
+			- if definitions are given or retrievable:
+				- apply structure or system interface
+
+			- else:
+
+				- derive definitions:
+
+					- apply object interface
+
+						- find objects/attributes/functions in problem statement: 'find probability of class with 2-LH students'
+
+							- objects: 'probability', 'class', 'student'
+								- either derive the function of the 'frequency' concept relative to concepts 'selection sequence' & 'time' as a precursor to the 'ratio' concept, or use language patterns:
+									- apply concept interface:
+										- frequency: 'outcome count, as a subset of total outcome count'
+										- subset: 'count of items with an attribute in a set with variables including that attribute'
+										- ratio: 'relationship between subset count and total count'
+									- apply pattern interface:
+										- probability:
+											- 'find x of y' means 'find subset in y set'
+											- 'with z' means 'find subset in y set matching z'
+											- 'subset' is associated with 'ratio' metric
+											- derive structural definition of 'probability': 
+												- 'find ratio of subset to set matching metric'
+										- class:
+											- 'x with z' means 'object with attribute/function/other component'
+
+							- attributes: 'n-LH students in class'
+								- identify structure matching this language pattern: 'subset in set' and find structures in given info (map between LH-count and class count)
+								- identify variable 'n' in given info & solution filter metric
+
+						- derive relationship between probability & class:
+							- combine ('find ratio of subset to set matching metric', 'object with component') = 'find ratio of objects in object set matching component metric'
+
+						- now we have functional definitions:
+							- probability is the "application of the 'compare' operation between a subset & a set", or alternatively 'relative frequencies' (sometimes vs. every time)
+							- class is an object having an attribute 'count of LH-students' or 'n-LH count'
+
+			- apply problem interface:
+					- find problem-solving workflows:
+						- apply relevant problem structures to problem type:
+							- apply relevant problem structure 'randomly draw sample from set' to this problem type 'find probability': 
+								- 'find the probability of randomly selecting an outcome matching this filter from this outcome set'
+						
+					- find solution format in problem statement:
+						- apply structure interface (as in 'apply standardized structural probability definition' section above): 
+							solution format: 
+								- standardized solution format: 'probability of class count subset compared to total class count'
+									- apply 'probability' definition: 'ratio of class count subset compared to total class count'
+									- apply 'compare' definition: 'class count subset, divided by total class count'
+									- apply other problem metadata & solution format ('subset produced by what filter'): 
+										- 'class count matching metric, divided by total class count'
+							
+					- given that this is a 'find' problem, there will be 'filter' structures to apply to reduce solution space
+						- find set of possible filters (metric structure):
+							- given attributes (left-handed) & calculatable/derivable object attributes (like count/ratio/difference)
+						
 
 b) What is the probability that the class has at least 3 left-handed students?
 
