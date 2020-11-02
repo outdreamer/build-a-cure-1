@@ -1,16 +1,23 @@
 to do: organize into docs
   
-  - with constantly updated opinion/priority/argument/reason data, you can have:
+  - with constantly updated opinion/priority/argument/reason/resource/problem data, you can have:
     - districts that choose their own voting algorithm & issues to vote on
     - calculated assignment of perspectives (opinion sets) to territories that can support those populations (as they grow in population, they can acquire more territory, and offer relocation assistance to people who want to live there)
       - perspectives can include priorities, focus of laws on certain topics (not regulating others), issues or decision methods (voting/optimization algorithms applied, automation applied)
         - socialist/libertarian perspective can have their own district
+        - assignment of perspectives can be done manually by argument
         - guaranteed science jobs or jobs in local industries (according to climate or other resources)
-      - this applies competitive markets to perspectives - if one perspective is successful & attracts citizens, it can have more resources
+          - guaranteed jobs can also take the form of offering relocation to places with jobs & education to get current/imminent jobs
+        - jobs/industries/markets can be calculated by algorithm to determine jobs that add value to society as opposed to charging rent on positions (skills, information)
+      - this applies competitive markets to perspectives 
+        - if one perspective is successful & attracts citizens, it can have more resources
+        - a perspective can be registered to compete if it has an answer to a set of common problems (what is the perspective's solution to war, jobs allocation, regulatory corruption)
       - optimization algorithms applied to voter data (opinion sets, voting metadata preferences like election frequency, resources, needs) & other data (neighboring district resources/opinions) to determine optimal position, interaction & state trajectory of the same
       - decisions on issues are based on scope & other metadata 
         - stakeholders vote on issues rather than objective third parties, the same information is given to all stakeholders
         - if a question cant be determined with science, its not eligible to be voted into law (cant vote religious issues into law)
+      - weighted influence on decisions can be assigned to algorithms or systems (or attributes/functions of systems, like a particular priority) with a proven track record
+        - smart people can have more influence on decisions, if theyre able to convince people to agree with them using an argument based on just facts & valid logic & have a history of successful decisions if this isnt their first public argument and if they can compete with an algorithm in terms of making better recommendations (based on past decision & decision simulation data), otherwise they dont have influence
 
   - universe as a topology, where points are interface network queries
 
