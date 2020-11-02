@@ -12,6 +12,7 @@
     - organize into primary core functions & list sample parameters (like objects to identify for the identify function)
   - function to translate interface query logic into interface language (combination of core functions (find/build) & other core components)
   
+  
 ## examples to make
 
   - finish dilemma example formats
@@ -62,7 +63,6 @@
       - do they need a consensus? then make sure the network of advisers has an odd number
       - do they need an accurate resolution rather than an efficient one? then allow an even number & have regular re-calculations of votes until the issue is resolved
     - the application of different analysis methods in calculating the different probable & relevant perspectives on an issue & the optimal structure of the issue should be integrated as AI voters into human decision systems, as an independent third party that is biased in its incentives embedded in its learning algorithm (which can be selected for relevant issues, like a bias toward priorities like accuracy or efficiency depending on what type of decision is required) but not biased by financial incentives
-
     - a network or other structure of biases that is updated constantly is one way to counteract over-prioritization leading to a particular bias
 
 

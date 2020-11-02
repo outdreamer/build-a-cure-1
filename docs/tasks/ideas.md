@@ -1,4 +1,16 @@
 to do: organize into docs
+  
+  - with constantly updated opinion/priority/argument/reason data, you can have:
+    - districts that choose their own voting algorithm & issues to vote on
+    - calculated assignment of perspectives (opinion sets) to territories that can support those populations (as they grow in population, they can acquire more territory, and offer relocation assistance to people who want to live there)
+      - perspectives can include priorities, focus of laws on certain topics (not regulating others), issues or decision methods (voting/optimization algorithms applied, automation applied)
+        - socialist/libertarian perspective can have their own district
+        - guaranteed science jobs or jobs in local industries (according to climate or other resources)
+      - this applies competitive markets to perspectives - if one perspective is successful & attracts citizens, it can have more resources
+      - optimization algorithms applied to voter data (opinion sets, voting metadata preferences like election frequency, resources, needs) & other data (neighboring district resources/opinions) to determine optimal position, interaction & state trajectory of the same
+      - decisions on issues are based on scope & other metadata 
+        - stakeholders vote on issues rather than objective third parties, the same information is given to all stakeholders
+        - if a question cant be determined with science, its not eligible to be voted into law (cant vote religious issues into law)
 
   - universe as a topology, where points are interface network queries
 

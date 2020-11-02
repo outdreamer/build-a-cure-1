@@ -1,3 +1,5 @@
+https://www.onlinemathlearning.com/probability-problems.html
+
 At a car park there are 100 vehicles, 60 of which are cars, 30 are vans and the remainder are lorries. If every vehicle is equally likely to leave, find the probability of:
 a) find the probability of van leaving first.
 b) find the probability of lorry leaving first.
