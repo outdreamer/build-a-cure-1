@@ -19,6 +19,10 @@ to do: organize into docs
       - weighted influence on decisions can be assigned to algorithms or systems (or attributes/functions of systems, like a particular priority) with a proven track record
         - smart people can have more influence on decisions, if theyre able to convince people to agree with them using an argument based on just facts & valid logic & have a history of successful decisions if this isnt their first public argument and if they can compete with an algorithm in terms of making better recommendations (based on past decision & decision simulation data), otherwise they dont have influence
 
+  - https://phys.org/news/2020-11-digital-revolution-hundreds-millions-farmers.html
+    - wifi trucks or wifi generating devices to deliver periodic or shared wifi if they cant afford the standard infrastructure
+    - buying predictions/data from AI or api services that are received by mail or covered as part of basic mobile package, if they cant afford a cell phone/wifi/data bundle
+
   - universe as a topology, where points are interface network queries
 
   - 'responsibility' as a software concept to align with 'intent', to tie functions to input/processing/output resources/processes and the associated tasks, like cleaning up resources, deleting temp resources, optimizing a memory store, setting a cache, resetting a timer, changing permissions, etc - as a method of correcting incomplete functions
