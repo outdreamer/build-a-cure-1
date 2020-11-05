@@ -12,7 +12,7 @@
     - organize into primary core functions & list sample parameters (like objects to identify for the identify function)
   - function to translate interface query logic into interface language (combination of core functions (find/build) & other core components)
   
-  
+
 ## examples to make
 
   - finish dilemma example formats

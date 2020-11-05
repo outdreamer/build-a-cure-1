@@ -26,3 +26,93 @@
 12. When & how do you use your emotions, attention, curiosity, work, & intelligence? What do you aim them at?
 
 13. Where are the interfaces & interface components (problems, uncertainties, risk, randomness, meaning, & potential) in your life? What makes you wonder or want to know more? 
+
+
+# Humanity structures
+
+    - how many of the following variable structures is a person allowed/required:
+
+    	- structures
+	    	- moments
+	    	- positions
+    		- pivots
+    		- gaps
+    		- limits/boundaries
+    		- paths/rules/connections (functions, ratios)
+    		- probabilities
+    		- systems
+
+    	- variables
+    		- access
+    		- origin
+    		- metrics/calculations
+    		- roles/responsibilities
+    		- assumptions/dependencies
+    		- protection/rights
+    		- property/sharing
+    		- empathy/sympathy/apathy
+	    	- optimizations/improvements
+	    	- alternatives/decisions
+	    	- agency (freedom/power/independence): random, accidental, default, bias, misunderstanding, learning, intentional, & powerful
+	    	- insanity & mass hallucinations
+	    	- laws/decrees/suggestions
+	    	- gods
+	    	- realities
+	    	- belief/disbelief
+	 	    - virtues/vices
+	    	- mistakes
+	    	- judgment
+	    	- cause
+	    	- change
+	    	- abstraction
+	    	- variance/potential
+	    	- bias/fallacies
+	    	- perspectives
+    		- intent/priorities
+			- controversy
+			- mysteries/questions/answers
+
+
+# Ethical position matrix
+
+	- interactions of the following ethically relevant objects:
+
+		- attributes:
+			- morality: good/evil
+				- related objects: conscience, ethical rules, the right thing
+			- requirements/assumptions/responsibilities
+			- conditions (future/past/unknown)
+			- probability
+			- potential
+			- fairness
+			- agency/intelligence
+			- events/decisions
+			- information
+			- related objects (possessed info objects, relationships)
+			- characters/roles
+			- status/trajectory/origin/destination
+			- intent
+			- feelings
+			- state/time
+			- simplicity
+			- relevance/importance
+			- understanding
+
+		- structures:
+			- is/not/and/but
+			- direction
+			- spectrum
+			- combination
+			- vertexes
+				- related objects: description/summary/encapsulation
+			- dependencies
+			- dichotomy
+			- threshold
+			- above/below
+			- in-between
+			- lack (missing info, rule gap)
+			- info gap
+				- related objects: ambiguity, minimum information
+			- metric
+			- interaction layer
+			- similarities/differences
