@@ -41,36 +41,47 @@
     		- paths/rules/connections (functions, ratios)
     		- probabilities
     		- systems
+    		- variables
+    		- origin/destination
+    		- similarities/differences
 
     	- variables
-    		- access
-    		- origin
+    		- access/status
     		- metrics/calculations
     		- roles/responsibilities
     		- assumptions/dependencies
-    		- protection/rights
-    		- property/sharing
+    		- protection/rights/property/sharing
     		- empathy/sympathy/apathy
+    		- judgment, understanding, explanations, feelings
 	    	- optimizations/improvements
 	    	- alternatives/decisions
+	    	- games/strategies
 	    	- agency (freedom/power/independence): random, accidental, default, bias, misunderstanding, learning, intentional, & powerful
 	    	- insanity & mass hallucinations
 	    	- laws/decrees/suggestions
+	    	- expectations/promises/dreams
 	    	- gods
 	    	- realities
-	    	- belief/disbelief
+	    	- belief/disbelief/trust/guarantees
+	    	- time
+	    	- concepts (power, balance, truth)
 	 	    - virtues/vices
-	    	- mistakes
-	    	- judgment
 	    	- cause
 	    	- change
-	    	- abstraction
+	    	- abstraction/automation
 	    	- variance/potential
 	    	- bias/fallacies
 	    	- perspectives
     		- intent/priorities
 			- controversy
-			- mysteries/questions/answers
+			- achievements
+			- standards
+			- logic
+			- ego/identity
+			- mysteries/lies/distortions/facts
+			- problems/questions/errors
+			- solutions/answers/corrections
+			- opportunities
 
 
 # Ethical position matrix

@@ -266,7 +266,7 @@
       - huang qi (Astragalus membranaceus)
       - dong chong xia cao (Cordyceps sinensis
     - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5123830/
-      - reduce bun level: Polyenylphosphatidycholine (egg/soy)
+      - reduce bun level: Polyenylphosphatidycholine (egg/soy, alternative version in lecithin)
       - quercetin
       - curcumin
       - hesperidin
